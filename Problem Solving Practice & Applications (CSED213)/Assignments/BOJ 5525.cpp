@@ -44,6 +44,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 // queue = que = q
 // deque = dq
 // ans = answer
+// cnt = count
 // cur = current
 // coordinate = coord
 // adjacency matrix = adj_mat
@@ -57,6 +58,26 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    int N, M;
+    string S;
+    cin>>N;
+    cin>>M;
+    cin>>S;
+    int ans=0;
+    for(int i=0; i<M; ++i){
+        int cnt=0;
+        if(S[i]=='O') continue;
+        while(S[i+1]=='O' && S[i+2]=='I'){
+            ++cnt;
+            if(cnt==N){
+                ++ans;
+                --cnt;
+            }
+            i+=2;
+        }
+    }
+    cout<<ans;
 
     return 0;
 }
