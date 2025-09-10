@@ -42,6 +42,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 // queue = que = q
 // deque = dq
 // ans = answer
+// cnt = count
 // cur = current
 // coordinate = coord
 // adjacency matrix = adj_mat
