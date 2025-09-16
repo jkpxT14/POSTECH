@@ -7,7 +7,7 @@
 #include <vector>
 #include <stack>
 #include <queue>
-#include <deque>
+#include <deque> // DEQUE = Double-Ended QUEue
 #include <list>
 #include <set>
 #include <map>
@@ -28,6 +28,7 @@ using vll=vector<long long>;
 using vd=vector<double>;
 using vb=vector<bool>;
 using sti=stack<int>;
+using stch=stack<char>;
 using qi=queue<int>;
 using dqi=deque<int>;
 using dqll=deque<long long>;
@@ -45,14 +46,6 @@ using vvpii=vector<vector<pair<int, int>>>;
 
 // 0b(2), 0(8), 0x(16)
 // 0-based index vs 1-based index
-// vector = vec = v
-// stack = sta = st
-// queue = que = q
-// deque = dq
-// ans = answer
-// cur = current
-// coordinate = coord
-// adjacency matrix = adj_mat
 
 // const int INF=INT_MAX/4; // INF = INFinity
 
@@ -66,6 +59,27 @@ int main(){
 
     int n, w, L;
     cin>>n>>w>>L;
+    dqpii ontb, offtb;
+    for(int i=0; i<n; i++){
+        int a;
+        cin>>a;
+        offtb.push_back({a, -1});
+    }
+    int cur_weight(0), ans(0);
+    while(!ontb.empty() || !offtb.empty()){
+        for(auto it=ontb.begin(); it!=ontb.end(); ++it) ++((*it).second);
+        if(!ontb.empty() && ontb.front().second==w){
+            cur_weight-=ontb.front().first;
+            ontb.pop_front();
+        }
+        if(!offtb.empty() && offtb.front().first+cur_weight<=L){
+            ontb.push_back({offtb.front().first, 0});
+            cur_weight+=offtb.front().first;
+            offtb.pop_front();
+        }
+        ++ans;
+    }
+    cout<<ans;
 
     return 0;
 }
