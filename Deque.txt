@@ -1,0 +1,36 @@
+deque<int> dq;
+deque<int> dq(N);
+deque<int> dq(N, val);
+deque<int> dq{1, 2, 3, ...};
+deque<int> dq2(dq1);
+
+dq.assign(N, val);
+dq.resize(N);
+dq.resize(N, val);
+dq.clear();
+
+dq[idx];
+dq.at(idx);
+
+dq.front();
+dq.back();
+
+dq.push_front(val);
+dq.pop_front();
+dq.push_back(val);
+dq.pop_back();
+
+// iterator
+dq.begin();
+dq.end();
+dq.rbegin();
+dq.rend();
+
+dq.size();
+dq2.swap(dq1);
+
+dq.insert(pos, cnt, val); // pos is iterator
+(iter=)dq.insert(pos, val);
+
+(iter=)dq.erase(pos);
+dq.empty();

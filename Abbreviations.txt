@@ -1,0 +1,14 @@
+vector = vec = v
+stack = sta = st // string = str( = st)
+queue = que = q
+deque = dq
+sol = solution
+ans = answer
+cur = current
+coordinate = coord
+val = value
+pos = position
+count = cnt
+index = idx
+iterator = iter = it
+adjacency matrix = adj_mat

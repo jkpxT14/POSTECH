@@ -1,4 +1,4 @@
-//
+// BOJ 13335: 트럭
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -7,7 +7,7 @@
 #include <vector>
 #include <stack>
 #include <queue>
-#include <deque>
+#include <deque> // DEQUE = Double-Ended QUEue
 #include <list>
 #include <set>
 #include <map>
@@ -46,15 +46,6 @@ using vvpii=vector<vector<pair<int, int>>>;
 
 // 0b(2), 0(8), 0x(16)
 // 0-based index vs 1-based index
-// vector = vec = v
-// stack = sta = st // string = str( = st)
-// queue = que = q
-// deque = dq
-// sol = solution
-// ans = answer
-// cur = current
-// coordinate = coord
-// adjacency matrix = adj_mat
 
 // const int INF=INT_MAX/4; // INF = INFinity
 
