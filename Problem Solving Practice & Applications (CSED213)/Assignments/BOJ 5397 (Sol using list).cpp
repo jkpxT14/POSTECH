@@ -1,4 +1,4 @@
-//
+// BOJ 5397: 키로거
 
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -28,7 +28,6 @@ using vll=vector<long long>;
 using vd=vector<double>;
 using vb=vector<bool>;
 using sti=stack<int>;
-using stch=stack<char>;
 using qi=queue<int>;
 using dqi=deque<int>;
 using dqll=deque<long long>;
@@ -47,7 +46,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 // 0b(2), 0(8), 0x(16)
 // 0-based index vs 1-based index
 // vector = vec = v
-// stack = sta = st // string = str( = st)
+// stack = sta = st
 // queue = que = q
 // deque = dq
 // sol = solution
@@ -65,6 +64,37 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    int tc;
+    cin>>tc;
+    while(tc--){
+        string s;
+        cin>>s;
+        int L=s.length();
+
+        list<char> password;
+        list<char>::iterator iter=password.begin();
+
+        for(int i=0; i<L; ++i){
+            if(s[i]=='-'){
+                if(iter!=password.begin()) iter=password.erase(--iter);
+            }
+            else if(s[i]=='<'){
+                if(iter!=password.begin()) --iter;
+            }
+            else if(s[i]=='>'){
+                if(iter!=password.end()) ++iter;
+            }
+            else{
+                password.insert(iter, s[i]);
+            }
+        }
+
+        for(iter=password.begin(); iter!=password.end(); ++iter){
+            cout<<*iter;
+        }
+        cout<<"\n";
+    }
 
     return 0;
 }
