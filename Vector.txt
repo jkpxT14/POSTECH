@@ -1,0 +1,45 @@
+vector<int> v;
+vector<int> v(N);
+vector<int> v(N, val);
+vector<int> v{1, 2, 3, ...};
+vector<int> v2(v1);
+
+list<int> l{1, 2, 3, ...};
+vector<int> v(l.begin(), l.end());
+
+v.assign(N, val)
+v.resize(N)
+v.resize(N, val)
+
+// iterator
+v.begin()
+v.end()
+v.rbegin()
+v.rend()
+
+v.at(idx)
+v[idx]
+v.front()
+v.back()
+
+v.push_back(val)
+v.pop_back()
+(iter=)v.insert(pos, val)
+v.insert(pos, cnt, val)
+v.emplace(pos, val)
+v.emplace_back(val)
+v.erase(pos)
+v.erase(pos1, pos2)
+v.clear()
+v2.swap(v1)
+v2.assign(v1.begin(), v1.end())
+
+v.empty()
+v.size()
+v.capacity()
+v.max_size()
+
+v.reserve(N);
+
+sort(v.begin(), v.end())
+iter_swap(v.begin(), v.begin()+2)
