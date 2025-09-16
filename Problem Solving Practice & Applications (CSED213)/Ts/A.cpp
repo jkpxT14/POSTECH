@@ -1,4 +1,4 @@
-// BOJ 13335: 트럭
+//
 
 // #include <bits/stdc++.h>
 #include <iostream>
