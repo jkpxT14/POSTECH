@@ -28,6 +28,7 @@ using vll=vector<long long>;
 using vd=vector<double>;
 using vb=vector<bool>;
 using sti=stack<int>;
+using stch=stack<char>;
 using qi=queue<int>;
 using dqi=deque<int>;
 using dqll=deque<long long>;
@@ -46,9 +47,10 @@ using vvpii=vector<vector<pair<int, int>>>;
 // 0b(2), 0(8), 0x(16)
 // 0-based index vs 1-based index
 // vector = vec = v
-// stack = sta = st
+// stack = sta = st // string = str( = st)
 // queue = que = q
 // deque = dq
+// sol = solution
 // ans = answer
 // cur = current
 // coordinate = coord
@@ -68,7 +70,45 @@ int main(){
     cin>>tc;
     while(tc--){
         string s;
+        cin>>s;
         int L=s.length();
+
+        stch sta_left, sta_right;
+        for(char c: s){
+            if(c=='-'){
+                if(!sta_left.empty()){
+                    sta_left.pop();
+                }
+            }
+            else if(c=='<'){
+                if(!sta_left.empty()){
+                    sta_right.push(sta_left.top());
+                    sta_left.pop();
+                }
+            }
+            else if(c=='>'){
+                if(!sta_right.empty()){
+                    sta_left.push(sta_right.top());
+                    sta_right.pop();
+                }
+            }
+            else{
+                sta_left.push(c);
+            }
+        }
+        while(!sta_right.empty()){
+            sta_left.push(sta_right.top());
+            sta_right.pop();
+        }
+        while(!sta_left.empty()){
+            sta_right.push(sta_left.top());
+            sta_left.pop();
+        }
+        while(!sta_right.empty()){
+            cout<<sta_right.top();
+            sta_right.pop();
+        }
+        cout<<"\n";
     }
 
     return 0;
