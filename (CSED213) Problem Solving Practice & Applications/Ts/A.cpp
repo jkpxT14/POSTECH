@@ -1,9 +1,9 @@
-//
+// BOJ 1182: 부분수열의 합
 
 // #include <bits/stdc++.h>
+
 #include <iostream>
 #include <string>
-
 #include <vector>
 #include <stack>
 #include <queue>
@@ -11,7 +11,6 @@
 #include <list>
 #include <set>
 #include <map>
-
 #include <algorithm>
 #include <numeric>
 #include <utility>
@@ -27,9 +26,9 @@ using vi=vector<int>;
 using vll=vector<long long>;
 using vd=vector<double>;
 using vb=vector<bool>;
-using sti=stack<int>;
-using stch=stack<char>;
-using qi=queue<int>;
+// using sti=stack<int>;
+// using stch=stack<char>;
+// using qi=queue<int>;
 using dqi=deque<int>;
 using dqll=deque<long long>;
 using pii=pair<int, int>;
@@ -45,7 +44,6 @@ using vvpii=vector<vector<pair<int, int>>>;
 #define LLONG_MIN -9223372036854775808
 
 // 0b(2), 0(8), 0x(16)
-// 0-based index vs 1-based index
 
 // const int INF=INT_MAX/4; // INF = INFinity
 
@@ -56,6 +54,6 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
-
+    
     return 0;
 }
