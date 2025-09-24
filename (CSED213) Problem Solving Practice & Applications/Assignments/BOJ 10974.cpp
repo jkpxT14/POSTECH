@@ -1,4 +1,4 @@
-//
+// BOJ 10974: 모든 순열
 
 // #include <bits/stdc++.h>
 
@@ -54,6 +54,15 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
-    
+
+    int N;
+    cin>>N;
+    vi v(N+1);
+    for(int i=1; i<=N; ++i) v[i]=i;
+    do{
+        for(auto it=v.begin()+1; it!=v.end(); ++it) cout<<*it<<" ";
+        cout<<"\n";
+    } while(next_permutation(v.begin()+1, v.end()));
+
     return 0;
 }
