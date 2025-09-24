@@ -14,3 +14,4 @@ iterator = iter = it
 adjacency matrix = adj_mat
 character = char = ch
 // 0-based index vs 1-based index
+// 1. ++i 2. i++

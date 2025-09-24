@@ -1,4 +1,4 @@
-// BOJ 1182: 부분수열의 합
+//
 
 // #include <bits/stdc++.h>
 
