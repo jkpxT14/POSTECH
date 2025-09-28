@@ -43,9 +43,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 #define LLONG_MAX 9223372036854775807 // = 2^63-1
 #define LLONG_MIN -9223372036854775808
 
-// 0b(2), 0(8), 0x(16)
-
-// const int INF=INT_MAX/4; // INF = INFinity
+// const int INF=INT_MAX/4;
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -54,6 +52,6 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
-    
+
     return 0;
 }
