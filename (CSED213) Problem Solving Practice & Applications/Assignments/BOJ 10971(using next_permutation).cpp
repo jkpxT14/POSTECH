@@ -1,4 +1,4 @@
-// BOJ 16943: 숫자 재배치
+// BOJ 10971: 외판원 순회 2
 
 // #include <bits/stdc++.h>
 
@@ -43,9 +43,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 #define LLONG_MAX 9223372036854775807 // = 2^63-1
 #define LLONG_MIN -9223372036854775808
 
-// 0b(2), 0(8), 0x(16)
-
-// const int INF=INT_MAX/4; // INF = INFinity
+// const int INF=INT_MAX/4;
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -55,18 +53,36 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    int A, B;
-    cin>>A>>B;
-    int C=-1;
-    string D=to_string(A);
-    sort(D.begin(), D.end());
+    int N;
+    cin>>N;
+    vvi W(N, vi(N));
+    for(int i=0; i<N; ++i){
+        for(int j=0; j<N; ++j){
+            cin>>W[i][j];
+        }
+    }
+    vi order(N);
+    for(int i=0; i<N; ++i){
+        order[i]=i;
+    }
+    int ans(INT_MAX);
     do{
-        if(D[0]=='0') continue;
-        int E=stoi(D);
-        if(E<B) C=max(C, E);
-    } while(next_permutation(D.begin(), D.end()));
+        int cost(0);
+        bool flag=true;
+        for(int i=0; i<N-1; i++){
+            if(W[order[i]][order[i+1]]) cost+=W[order[i]][order[i+1]];
+            else{
+                flag=false;
+                break;
+            }
+        }
+        if(flag && W[order[N-1]][order[0]]){
+            cost+=W[order[N-1]][order[0]];
+            ans=min(ans, cost);
+        }
+    } while(next_permutation(order.begin(), order.end()));
 
-    cout<<C;
+    cout<<ans;
     
     return 0;
 }
