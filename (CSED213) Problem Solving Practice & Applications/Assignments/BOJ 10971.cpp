@@ -1,4 +1,4 @@
-// BOJ 16943: 숫자 재배치
+// BOJ 10971: 외판원 순회 2
 
 // #include <bits/stdc++.h>
 
@@ -43,9 +43,25 @@ using vvpii=vector<vector<pair<int, int>>>;
 #define LLONG_MAX 9223372036854775807 // = 2^63-1
 #define LLONG_MIN -9223372036854775808
 
-// 0b(2), 0(8), 0x(16)
+// const int INF=INT_MAX/4;
 
-// const int INF=INT_MAX/4; // INF = INFinity
+int N, ans=INT_MAX;
+vvi W;
+vb visited;
+
+void search(int start, int cur, int cnt, int cost){
+    if(cnt==N){
+        if(W[cur][start]) ans=min(ans, cost+W[cur][start]);
+        return;
+    }
+    for(int i=0; i<N; ++i){
+        if(W[cur][i] && !visited[i]){
+            visited[i]=true;
+            search(start, i, cnt+1, cost+W[cur][i]);
+            visited[i]=false;
+        }
+    }
+}
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -55,18 +71,20 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    int A, B;
-    cin>>A>>B;
-    int C=-1;
-    string D=to_string(A);
-    sort(D.begin(), D.end());
-    do{
-        if(D[0]=='0') continue;
-        int E=stoi(D);
-        if(E<B) C=max(C, E);
-    } while(next_permutation(D.begin(), D.end()));
-
-    cout<<C;
+    cin>>N;
+    W.assign(N, vi(N));
+    visited.assign(N, false);
+    for(int i=0; i<N; ++i){
+        for(int j=0; j<N; ++j){
+            cin>>W[i][j];
+        }
+    }
+    for(int i=0; i<N; ++i){
+        visited[i]=true;
+        search(i, i, 1, 0);
+        visited[i]=false;
+    }
+    cout<<ans;
     
     return 0;
 }

@@ -4,6 +4,7 @@ queue = que = q
 deque = dq
 sol = solution
 ans = answer
+result = res
 cur = current
 coordinate = coord
 val = value
@@ -14,5 +15,8 @@ iterator = iter = it
 adjacency matrix = adj_mat
 character = char = ch
 factorial = fact
+level = lv
+INF = INFinity
+// 0b(2), 0(8), 0x(16)
 // 0-based index vs 1-based index
 // 1. ++i 2. i++
