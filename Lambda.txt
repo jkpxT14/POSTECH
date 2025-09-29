@@ -1,0 +1,20 @@
+[capture_list](parameter_list) mutable noexcept -> return_type {
+
+};
+
+[](){
+
+};
+
+[](){
+    
+}();
+
+auto f=[](){
+
+};
+
+[x]
+[&x]
+[=]
+[&]

@@ -1,6 +1,7 @@
 vector = vec = v
 stack = sta = st // string = str( = st)
 queue = que = q
+priority queue = pq
 deque = dq
 sol = solution
 ans = answer
@@ -17,6 +18,8 @@ character = char = ch
 factorial = fact
 level = lv
 INF = INFinity
+
 // 0b(2), 0(8), 0x(16)
 // 0-based index vs 1-based index
-// 1. ++i 2. i++
+// ++i vs i++
+// start&finish vs begin&end
