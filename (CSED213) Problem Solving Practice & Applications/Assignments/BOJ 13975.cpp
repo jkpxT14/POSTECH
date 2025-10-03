@@ -7,7 +7,7 @@
 #include <vector>
 #include <stack>
 #include <queue>
-#include <deque> // DEQUE = Double-Ended QUEue
+#include <deque>
 #include <list>
 #include <set>
 #include <map>
@@ -18,6 +18,7 @@
 // #include <limits>
 #include <cmath>
 #include <bitset>
+#include <functional>
 
 using namespace std;
 
@@ -31,6 +32,8 @@ using vb=vector<bool>;
 // using qi=queue<int>;
 using dqi=deque<int>;
 using dqll=deque<long long>;
+using pqi=priority_queue<int>;
+using pqll=priority_queue<long long>;
 using pii=pair<int, int>;
 using vvi=vector<vector<int>>;
 using vpii=vector<pair<int, int>>;
@@ -52,6 +55,28 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    int T;
+    cin>>T;
+    while(T--){
+        int K;
+        cin>>K;
+        priority_queue<ll, vll, greater<ll>> C;
+        for(int i=1; i<=K; ++i){
+            ll D;
+            cin>>D;
+            C.push(D);
+        }
+        ll ans(0);
+        while(C.size()>1){
+            ll D(C.top()); C.pop();
+            ll E(C.top()); C.pop();
+            ll F(D+E);
+            ans+=F;
+            C.push(F);
+        }
+        cout<<ans<<"\n";
+    }
 
     return 0;
 }
