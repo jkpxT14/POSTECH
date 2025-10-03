@@ -33,7 +33,9 @@ using vb=vector<bool>;
 using dqi=deque<int>;
 using dqll=deque<long long>;
 using pqi=priority_queue<int>;
+using pqig=priority_queue<int, vector<int>, greater<int>>;
 using pqll=priority_queue<long long>;
+using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
 using pii=pair<int, int>;
 using vvi=vector<vector<int>>;
 using vpii=vector<pair<int, int>>;
@@ -55,6 +57,24 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    int N;
+    cin>>N;
+    vpii C(N);
+    for(int i=0; i<N; ++i){
+        cin>>C[i].first>>C[i].second;
+    }
+    sort(C.begin(), C.end(), [](pii x, pii y){
+        if(x.first!=y.first) return x.first<y.first;
+        return x.second<y.second;
+    });
+    pqig R;
+    R.push(C[0].second);
+    for(int i=1; i<C.size(); ++i){
+        if(C[i].first>=R.top()) R.pop();
+        R.push(C[i].second);
+    }
+    cout<<R.size();
 
     return 0;
 }
