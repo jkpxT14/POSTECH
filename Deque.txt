@@ -1,3 +1,5 @@
+// DEQUE = Double-Ended QUEue
+
 deque<int> dq;
 deque<int> dq(N);
 deque<int> dq(N, val);

@@ -1,0 +1,16 @@
+priority_queue<int> pq;
+priority_queue<int, deque<int>> pq;
+priority_queue<int, vector<int>, less<int>> pq;
+priority_queue<int, vector<int>, greater<int>> pq;
+
+// greater
+// less
+
+pq.push();
+pq.pop();
+
+pq.top();
+
+pq.empty();
+
+pq.size();
