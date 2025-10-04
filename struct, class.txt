@@ -1,3 +1,9 @@
 struct
 
+struct Student{
+    int name;
+    int id;
+    Student(int n, int i)
+}
+
 class
