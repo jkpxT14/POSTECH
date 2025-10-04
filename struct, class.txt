@@ -1,9 +1,18 @@
-struct
+// struct
 
 struct Student{
     int name;
     int id;
-    Student(int n, int i)
+    Student(int n, int i): name(n), id(i) {}
+    bool operator<(const Student& other) const {
+        return this->id<other.id;
+    }
+};
+
+struct cmp{
+    bool operator()(Student A, Student B) const {
+        return A.id<B.id;
+    }
 }
 
-class
+// class
