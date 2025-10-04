@@ -61,6 +61,25 @@ int main(){
 
     int n;
     cin>>n;
+    vpii prod(n);
+    for(int i=0; i<n; ++i){
+        cin>>prod[i].first>>prod[i].second; // {p, d}
+    }
+    sort(prod.begin(), prod.end(), [](pii x, pii y){
+        return x.first>y.first;
+    });
+    int ans(0);
+    vb visited(10001, false);
+    for(int i=0; i<n; ++i){
+        for(int j=prod[i].second; j>0; --j){
+            if(!visited[j]){
+                visited[j]=true;
+                ans+=prod[i].first;
+                break;
+            }
+        }
+    }
+    cout<<ans;
 
     return 0;
 }
