@@ -49,6 +49,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 #define LLONG_MIN -9223372036854775808
 
 // const int INF=INT_MAX/4;
+// const ll mod=1000000007; // 10^9+7
 
 int main(){
     ios_base::sync_with_stdio(false);
