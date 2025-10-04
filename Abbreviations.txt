@@ -18,6 +18,8 @@ character = char = ch
 factorial = fact
 level = lv
 INF = INFinity
+cmp = compare
+ptr = pointer
 
 // 0b(2), 0(8), 0x(16)
 // 0-based index vs 1-based index
