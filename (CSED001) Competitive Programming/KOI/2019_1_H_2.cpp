@@ -53,6 +53,40 @@ using vvpii=vector<vector<pair<int, int>>>;
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
+map<pii, int> dp_1;
+map<pii, int> dp_2;
+
+int w_1(int p, int q){
+    if(dp_1.find({p, q})!=dp_1.end()) return dp_1[{p, q}];
+    int ret(-1);
+    int k(0);
+    pii block({0, 0}); // [2^k-1, 2^(k+1)-2]
+    while(block.first>q || q>block.second){
+        ++k;
+        block.first=((block.first+1)<<1)-1;
+        block.second=((block.second+2)<<1)-2;
+    }
+    if(block.first<=p && p<=block.second) ret=k+w_1(p-block.first, q-block.first);
+    else ret=max(w_1(p, block.first-1), k+w_1(0, q-block.first));
+    return dp_1[{p, q}]=ret;
+}
+
+int w_2(int p, int q){
+    if(dp_2.find({p, q})!=dp_2.end()) return dp_2[{p, q}];
+    int ret(-1);
+    for(int i=1; i<=30; ++i){
+        int r=(1<<i)-1;
+        int s=(1<<(i+1))-2;
+        r=max(p, r); s=min(q, s);
+        if(r<=s){
+            int u=r-(1<<i)+1;
+            int v=s-(1<<i)+1;
+            ret=max(ret, w_2(u, v)+i);
+        }
+    }
+    return dp_2[{p, q}]=ret;
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -60,6 +94,16 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    dp_1.insert({{0, 0}, 0}); // dp_1[{0, 0}]=0;
+    dp_2.insert({{0, 0}, 0}); // dp_2[{0, 0}]=0;
+    int T;
+    cin>>T;
+    while(T--){
+        int x, y;
+        cin>>x>>y;
+        cout<<w_1(x, y)<<" "<<w_2(x, y)<<"\n";
+    }
 
     return 0;
 }
