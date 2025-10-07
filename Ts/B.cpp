@@ -19,6 +19,7 @@
 #include <cmath>
 #include <bitset>
 #include <functional>
+#include <cassert>
 
 using namespace std;
 

@@ -1,5 +1,16 @@
-- Pointer
+<Pointer>
 
-- Reference(r)
+<Reference(r)>
+struct Student{
+    string name;
+    int id;
 
-- Iterator
+    Student(string n, int i): name(n), id(i) {}
+
+    static bool cmp(Student a, Student b){}
+    static bool cmp(Student& a, Student& b){}
+    static bool cmp(const Student& a, const Student& b){}
+    static bool cmp(Student&& a, Student&& b){}
+}
+
+<Iterator>
