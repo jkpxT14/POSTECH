@@ -1,0 +1,38 @@
+map<key, value> m;
+map<string, int> m;
+map<int, int, greater<int>> m;
+map<int, string, greater<int>> m;
+
+m.find("KYL")
+m.find("KYL")!=m.end()
+
+m.count("KYL")
+
+m.insert({"KYL", 1})
+
+for(auto it=m.begin(); it!=m.end(); ++it){
+    cout<<it->first<<" "<<it->second<<"\n";
+}
+
+for(auto it: m){
+    cout<<it.first<<" "<<it.second<<"\n";
+}
+
+for(pair<string, int> p: m){
+    cout<<p.first<<" "<<p.second<<"\n";
+}
+
+m.erase(m.begin()+2)
+m.erase(m.begin(), m.end())
+m.erase("KYL")
+
+m.clear()
+
+m.size()
+
+m.empty()
+
+m.begin()
+m.end()
+m.rbegin()
+m.rend()
