@@ -1,9 +1,14 @@
 // struct
 
 struct Student{
-    int name;
+    string name;
     int id;
-    Student(int n, int i): name(n), id(i) {}
+
+    Student(string n, int i): name(n), id(i) {}
+
+    static bool cmp(const Student& a, const Student& b){
+        return a.id<b.id;
+    }
     bool operator<(const Student& other) const {
         return this->id<other.id;
     }

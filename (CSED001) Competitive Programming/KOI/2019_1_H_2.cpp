@@ -1,4 +1,4 @@
-//
+// BOJ 17613: 점프
 
 // #include <bits/stdc++.h>
 
