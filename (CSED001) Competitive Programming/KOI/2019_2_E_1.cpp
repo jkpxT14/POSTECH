@@ -44,9 +44,9 @@ using vpipii=vector<pair<int, pair<int, int>>>;
 using dqpii=deque<pair<int, int>>;
 using vvpii=vector<vector<pair<int, int>>>;
 
-#define INT_MAX 2147483647 // = 2^31-1
+#define INT_MAX 2147483647 // = 2^31-1 > 2*10^9
 #define INT_MIN -2147483648
-#define LLONG_MAX 9223372036854775807 // = 2^63-1
+#define LLONG_MAX 9223372036854775807 // = 2^63-1 > 9*10^18
 #define LLONG_MIN -9223372036854775808
 
 // const int INF(INT_MAX/4);
@@ -60,6 +60,17 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    int N;
+    cin>>N;
+    int ans(0);
+    for(int i=1; i<=N; ++i){
+        string s=to_string(i);
+        for(char c: s){
+            if(c=='3' || c=='6' || c=='9') ++ans;
+        }
+    }
+    cout<<ans;
 
     return 0;
 }

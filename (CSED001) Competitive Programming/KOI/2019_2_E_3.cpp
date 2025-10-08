@@ -1,4 +1,4 @@
-//
+// BOJ 17616: 등수 찾기
 
 // #include <bits/stdc++.h>
 
