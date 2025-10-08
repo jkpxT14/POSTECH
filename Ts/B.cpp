@@ -38,15 +38,17 @@ using pqig=priority_queue<int, vector<int>, greater<int>>;
 using pqll=priority_queue<long long>;
 using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
 using pii=pair<int, int>;
+using pci=pair<char, int>;
 using vvi=vector<vector<int>>;
 using vpii=vector<pair<int, int>>;
+using vpci=vector<pair<char, int>>;
 using vpipii=vector<pair<int, pair<int, int>>>;
 using dqpii=deque<pair<int, int>>;
 using vvpii=vector<vector<pair<int, int>>>;
 
-#define INT_MAX 2147483647 // = 2^31-1
+#define INT_MAX 2147483647 // = 2^31-1 > 2*10^9
 #define INT_MIN -2147483648
-#define LLONG_MAX 9223372036854775807 // = 2^63-1
+#define LLONG_MAX 9223372036854775807 // = 2^63-1 > 9*10^18
 #define LLONG_MIN -9223372036854775808
 
 // const int INF(INT_MAX/4);

@@ -1,4 +1,4 @@
-//
+// BOJ 17615: 볼 모으기
 
 // #include <bits/stdc++.h>
 
@@ -62,6 +62,38 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    int N;
+    cin>>N;
+    string ball;
+    cin>>ball;
+    int cnt_R(0), cnt_B(0);
+    for(char c: ball){
+        if(c=='R') ++cnt_R;
+        else if(c=='B') ++cnt_B;
+    }
+    assert(cnt_R+cnt_B==N);
+    int ans(min(cnt_R, cnt_B));
+    vpci block;
+    char cur_color(ball[0]);
+    int cur_idx(0);
+    bool flag(false);
+    while(true){
+        int consecutive(0);
+        while(ball[cur_idx]==cur_color && cur_idx<N){
+            ++consecutive;
+            ++cur_idx;
+            if(cur_idx==N) flag=true;
+        }
+        block.push_back({cur_color, consecutive});
+        if(flag) break;
+        cur_color=ball[cur_idx];
+    }
+    if(block[0].first=='R') ans=min(ans, cnt_R-block[0].second);
+    if(block[0].first=='B') ans=min(ans, cnt_B-block[0].second);
+    if(block[block.size()-1].first=='R') ans=min(ans, cnt_R-block[block.size()-1].second);
+    if(block[block.size()-1].first=='B') ans=min(ans, cnt_B-block[block.size()-1].second);
+    cout<<ans;
 
     return 0;
 }

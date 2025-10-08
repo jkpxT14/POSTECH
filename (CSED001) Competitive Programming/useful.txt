@@ -1,0 +1,16 @@
+int to string: to_string
+long long to string: to_string
+float to string: to_string
+double to string: to_string
+
+string to int: stoi
+string to long long: stoll
+string to float: stof
+string to double: stod
+
+Ex.
+    string s="12KYL";
+    size_t idx;
+    int n=stoi(s, &idx);
+    cout<<n<<"\n"; // 12
+    cout<<idx; // 2
