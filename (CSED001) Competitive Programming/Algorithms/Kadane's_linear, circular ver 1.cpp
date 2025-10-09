@@ -1,4 +1,4 @@
-// BOJ 17617: 로봇
+//
 
 // #include <bits/stdc++.h>
 
@@ -55,6 +55,34 @@ using vvpii=vector<vector<pair<int, int>>>;
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
+int N;
+vi v;
+int KMl, Kml, KMc;
+
+int Kadane_Max_linear(){
+    vi cur(N);
+    cur[0]=v[0];
+    int ret(v[0]);
+    for(int i=1; i<N; ++i){
+        ret=max(ret, cur[i]=max(v[i], cur[i-1]+v[i]));
+    }
+    return ret;
+}
+
+int Kadane_min_linear(){
+    vi cur(N);
+    cur[0]=v[0];
+    int ret(v[0]);
+    for(int i=1; i<N; ++i){
+        ret=min(ret, cur[i]=min(v[i], cur[i-1]+v[i]));
+    }
+    return ret;
+}
+
+int Kadane_Max_circular(){
+    return KMl<0? KMl : max(KMl, accumulate(v.begin(), v.end(), 0)-Kml);
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -63,10 +91,15 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    int N;
     cin>>N;
-    int R, M;
-    cin>>R>>M;
+    v.resize(N);
+    for(int i=0; i<N; ++i){
+        cin>>v[i];
+    }
+    KMl=Kadane_Max_linear();
+    Kml=Kadane_min_linear();
+    KMc=Kadane_Max_circular();
+    cout<<KMl<<" "<<Kml<<" "<<KMc;
 
     return 0;
 }

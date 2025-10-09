@@ -1,3 +1,4 @@
+//
 int to string: to_string
 long long to string: to_string
 float to string: to_string
@@ -14,3 +15,13 @@ Ex.
     int n=stoi(s, &idx);
     cout<<n<<"\n"; // 12
     cout<<idx; // 2
+
+//
+int sum(accumulate(v.begin(), v.end(), 0));
+int product(accumulate(v.begin(), v.end(), 1, multiplies<int>()));
+int _(accumulate(v.begin(), v.end(), 0, minus<int>()));
+int _(accumulate(v.begin(), v.end(), 0, [](int x, iny y){
+    return x-y;
+}));
+
+//
