@@ -55,6 +55,27 @@ using vvpii=vector<vector<pair<int, int>>>;
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
+vvi adj, radj;
+vb visited;
+
+int dfs(int cur){
+    int ret(1);
+    visited[cur]=true;
+    for(int next: adj[cur]){
+        if(!visited[next]) ret+=dfs(next);
+    }
+    return ret;
+}
+
+int rdfs(int cur){
+    int ret(1);
+    visited[cur]=true;
+    for(int next: radj[cur]){
+        if(!visited[next]) ret+=rdfs(next);
+    }
+    return ret;
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -63,5 +84,20 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
+    int N, M, X;
+    cin>>N>>M>>X;
+    adj.resize(N+1);
+    radj.resize(N+1);
+    for(int i=0; i<M; ++i){
+        int A, B;
+        cin>>A>>B;
+        adj[B].push_back(A);
+        radj[A].push_back(B);
+    }
+    visited.assign(N+1, false);
+    int U(dfs(X));
+    visited.assign(N+1, false);
+    int V(N-rdfs(X)+1);
+    cout<<U<<" "<<V;
     return 0;
 }
