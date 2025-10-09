@@ -63,11 +63,5 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    vi v(10, 0);
-    v.assign(3, 1);
-    for(auto it=v.begin(); it!=v.end(); ++it){
-        cout<<*it<<" ";
-    }
-
     return 0;
 }
