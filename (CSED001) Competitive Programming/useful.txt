@@ -16,7 +16,7 @@ Ex.
     cout<<n<<"\n"; // 12
     cout<<idx; // 2
 
-//
+// accumulate
 int sum(accumulate(v.begin(), v.end(), 0));
 int product(accumulate(v.begin(), v.end(), 1, multiplies<int>()));
 int _(accumulate(v.begin(), v.end(), 0, minus<int>()));
@@ -37,3 +37,15 @@ int _(accumulate(v.begin(), v.end(), 0, [](int x, iny y){
 #define INT_MIN -2147483648
 #define LLONG_MAX 9223372036854775807LL // = 2^63-1 > 9*10^18
 #define LLONG_MIN -9223372036854775807LL-1LL
+
+// unique
+vector<int> v({1, 3, 1, 1, 1, 2, 3, 2, 2, 2});
+unique(v.begin(), v.end())
+v.erase(unique(v.begin(), v.end()), v.end());
+
+//
+vector<int> v(N);
+iota(v.begin(), v.end(), val);
+
+vector<int> v(10);
+iota(v.begin(), v.end(), 0);

@@ -29,6 +29,7 @@ using vi=vector<int>;
 using vll=vector<long long>;
 using vd=vector<double>;
 using vb=vector<bool>;
+using vstr=vector<string>;
 // using sti=stack<int>;
 // using stch=stack<char>;
 // using qi=queue<int>;

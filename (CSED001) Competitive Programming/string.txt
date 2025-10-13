@@ -1,0 +1,18 @@
+string a, b;
+b.swap(a);
+
+string a, b;
+a.compare(b)
+b.compare(a)
+b.compare(pos_b, cnt_b, a)
+b.compare(pos_b, cnt_b, a, pos_a, cnt_a)
+
+string a;
+a.substr(pos, len)
+
+string a, b;
+b.find(a)
+b.find(a, pos)
+b.find(a)!=string::npos
+
+string::npos // no position
