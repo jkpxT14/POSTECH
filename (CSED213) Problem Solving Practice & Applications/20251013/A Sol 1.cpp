@@ -1,4 +1,4 @@
-//
+// BOJ 14225: 부분수열의 합
 
 // #include <bits/stdc++.h>
 
@@ -15,8 +15,7 @@
 #include <numeric>
 #include <utility>
 #include <tuple>
-#include <climits>
-#include <limits>
+// #include <limits>
 #include <cmath>
 #include <bitset>
 #include <functional>
@@ -52,6 +51,11 @@ using vvpii=vector<vector<pair<int, int>>>;
 
 #define elif else if
 
+#define INT_MAX 2147483647 // = 2^31-1 > 2*10^9
+#define INT_MIN -2147483648
+#define LLONG_MAX 9223372036854775807 // = 2^63-1 > 9*10^18
+#define LLONG_MIN -9223372036854775808
+
 // const int INF(INT_MAX/4);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
@@ -63,6 +67,28 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    int N;
+    cin>>N;
+    vi S(N);
+    int sum(0);
+    for(int i=0; i<N; ++i){
+        cin>>S[i];
+        sum+=S[i];
+    }
+    vb check(sum+1, false);
+    for(int mask=1; mask<(1<<N); ++mask){
+        int possible(0);
+        for(int i=0; i<N; ++i) if(mask&(1<<i)) possible+=S[i];
+        check[possible]=true;
+    }
+    for(int i=1; i<=sum; ++i){
+        if(!check[i]){
+            cout<<i;
+            return 0;
+        }
+    }
+    cout<<sum+1;
 
     return 0;
 }

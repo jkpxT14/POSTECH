@@ -21,9 +21,3 @@ INF = INFinity
 cmp = compare
 ptr = pointer
 ret = return
-
-// 0b(2), 0(8), 0x(16)
-// 0-based index vs 1-based index
-// ++i vs i++
-// start&finish vs begin&end
-// lvalue(locator value, left(-hand) value) vs rvalue(right(-hand) value)
