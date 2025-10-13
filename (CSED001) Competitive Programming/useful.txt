@@ -24,4 +24,16 @@ int _(accumulate(v.begin(), v.end(), 0, [](int x, iny y){
     return x-y;
 }));
 
+// 0b(2), 0(8), 0x(16)
+// 0-based index vs 1-based index
+// ++i vs i++
+// start&finish vs begin&end
+// lvalue(locator value, left(-hand) value) vs rvalue(right(-hand) value)
+// auto vs decltype
+// previous>current>next
+
 //
+#define INT_MAX 2147483647 // = 2^31-1 > 2*10^9
+#define INT_MIN -2147483648
+#define LLONG_MAX 9223372036854775807LL // = 2^63-1 > 9*10^18
+#define LLONG_MIN -9223372036854775807LL-1LL

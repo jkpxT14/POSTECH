@@ -1,4 +1,4 @@
-//
+// BOJ 20300: 서강근육맨
 
 // #include <bits/stdc++.h>
 
@@ -15,8 +15,7 @@
 #include <numeric>
 #include <utility>
 #include <tuple>
-#include <climits>
-#include <limits>
+// #include <limits>
 #include <cmath>
 #include <bitset>
 #include <functional>
@@ -52,6 +51,11 @@ using vvpii=vector<vector<pair<int, int>>>;
 
 #define elif else if
 
+#define INT_MAX 2147483647 // = 2^31-1 > 2*10^9
+#define INT_MIN -2147483648
+#define LLONG_MAX 9223372036854775807 // = 2^63-1 > 9*10^18
+#define LLONG_MIN -9223372036854775808
+
 // const int INF(INT_MAX/4);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
@@ -63,6 +67,22 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    int N;
+    cin>>N;
+    vll t(N);
+    for(int i=0; i<N; ++i) cin>>t[i];
+    sort(t.begin(), t.end());
+    ll M(LLONG_MIN);
+    if(N%2==1){
+        M=max(M, t[N-1]);
+        t.pop_back();
+        --N;
+    }
+    for(int i=0; i<N/2; ++i){
+        M=max(M, t[i]+t[N-1-i]);
+    }
+    cout<<M;
 
     return 0;
 }
