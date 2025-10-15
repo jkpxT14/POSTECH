@@ -1,4 +1,4 @@
-//
+// BOJ 3015: PATRIK(오아시스 재결합)
 
 // #include <bits/stdc++.h>
 
@@ -64,6 +64,31 @@ int main(){
     
     cout<<fixed;
     cout.precision(10);
+
+    int N;
+    cin>>N;
+    dqpii height;
+    // int ans(0);
+    ll ans(0);
+    for(int i=0; i<N; ++i){
+        int h;
+        cin>>h;
+        int same(1);
+        while(!height.empty() && height.back().first<h){
+            ans+=height.back().second;
+            height.pop_back();
+        }
+        if(!height.empty()){
+            if(height.back().first==h){
+                ans+=((height.size()>1)?(height.back().second+1):(height.back().second));
+                same+=height.back().second;
+                height.pop_back();
+            }
+            else ++ans;
+        }
+        height.push_back({h, same});
+    }
+    cout<<ans;
 
     return 0;
 }
