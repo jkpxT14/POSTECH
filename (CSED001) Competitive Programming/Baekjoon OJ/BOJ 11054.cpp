@@ -61,12 +61,32 @@ int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    
+
     cout<<fixed;
     cout.precision(10);
-
+    
     int N;
     cin>>N;
+    vi A(N);
+    for(int i=0; i<N; ++i) cin>>A[i];
+    vi dp_left(N, 1), dp_right(N, 1), dp(N);
+    for(int i=0; i<N; ++i){
+        for(int j=0; j<i; ++j){
+            if(A[i]>A[j]) dp_left[i]=max(dp_left[i], dp_left[j]+1);
+        }
+    }
+    for(int i=N-1; i>-1; --i){
+        for(int j=N-1; j>i; --j){
+            if(A[i]>A[j]) dp_right[i]=max(dp_right[i], dp_right[j]+1);
+        }
+    }
+    int ans(0);
+    for(int i=0; i<N; ++i){
+        dp[i]=dp_left[i]+dp_right[i];
+        ans=max(ans, dp[i]);
+    }
+    --ans;
+    cout<<ans;
 
     return 0;
 }
