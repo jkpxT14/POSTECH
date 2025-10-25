@@ -21,3 +21,5 @@ INF = INFinity
 cmp = compare
 ptr = pointer
 ret = return
+
+snippet
