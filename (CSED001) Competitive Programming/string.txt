@@ -1,3 +1,13 @@
+pos~~idx, iter
+
+string a;
+a.insert(pos, str);
+a.insert(pos, str, subpos, cnt);
+
+a.replace(pos, str);
+a.erase(pos_1, pos_2);
+a.clear();
+
 string a, b;
 b.swap(a);
 
