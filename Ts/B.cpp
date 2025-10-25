@@ -1,4 +1,4 @@
-//
+// jkpxt14@postech.ac.kr
 
 // #include <bits/stdc++.h>
 
@@ -53,7 +53,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 
 #define elif else if
 
-// const int INF(INT_MAX/4);
+// const int INF(INT_MAX/2);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
@@ -61,7 +61,7 @@ int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    
+
     cout<<fixed;
     cout.precision(10);
 
