@@ -1,4 +1,4 @@
-// jkpxt14@postech.ac.kr
+// BOJ 2294: 동전 2
 
 // #include <bits/stdc++.h>
 
@@ -53,7 +53,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 
 #define elif else if
 
-// const int INF(INT_MAX/2);
+const int INF(INT_MAX/2);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
@@ -64,6 +64,17 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
+
+    int n, k;
+    cin>>n>>k;
+    vi v(n);
+    for(int i=0; i<n; ++i) cin>>v[i];
+    vi dp(k+1, INF);
+    dp[0]=0;
+    for(int i=0; i<n; ++i){
+        for(int j=v[i]; j<=k; ++j) dp[j]=min(dp[j], dp[j-v[i]]+1);
+    }
+    cout<<((dp[k]==INF)?-1:dp[k]);
 
     return 0;
 }
