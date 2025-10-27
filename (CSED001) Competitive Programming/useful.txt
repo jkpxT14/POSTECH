@@ -27,7 +27,7 @@ int _(accumulate(v.begin(), v.end(), 0, [](int x, iny y){
 // 0b(2), 0(8), 0x(16)
 // 0-based index vs 1-based index
 // ++i vs i++
-// start&finish vs begin&end
+// start&finish vs begin&end vs front&back
 // lvalue(locator value, left(-hand) value) vs rvalue(right(-hand) value)
 // auto vs decltype
 // previous>current>next
@@ -51,3 +51,7 @@ vector<int> v(10);
 iota(v.begin(), v.end(), 0);
 
 // pos ~~ index vs iterator
+
+//
+lower_bound(vec.begin(), vec.end(), target)-vec.begin();
+upper_bound(vec.begin(), vec.end(), target)-vec.begin();
