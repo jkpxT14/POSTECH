@@ -57,15 +57,6 @@ using vvpii=vector<vector<pair<int, int>>>;
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
-int binary_search(vi vec, int top, int bottom, int target){
-    while(top<bottom){
-        int mid=(top+bottom)/2;
-        if(vec[mid]<target) top=mid+1;
-        else bottom=mid;
-    }
-    return bottom;
-}
-
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -81,8 +72,9 @@ int main(){
     vi B;
     B.push_back(A[1]);
     for(int i=2; i<=N; ++i){
-        if(A[i]>B.back()) B.push_back(A[i]);
-        else B[binary_search(B, 0, B.size(), A[i])]=A[i];
+        auto it=lower_bound(B.begin(), B.end(), A[i]);
+        if(it==B.end()) B.push_back(A[i]);
+        else *it=A[i];
     }
     cout<<B.size();
 
