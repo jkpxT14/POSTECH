@@ -67,6 +67,25 @@ int main(){
 
     int N, K;
     cin>>N>>K;
+    vll kettle(N);
+    ll left(0), right(0);
+    for(int i=0; i<N; ++i){
+        cin>>kettle[i];
+        right=max(right, kettle[i]);
+    }
+    ++right;
+    ll ans(0);
+    while(left<=right){
+        ll mid((left+right)/2), cnt(0);
+        if(mid==0) break; // (0, 0), (0, 1)
+        for(int i=0; i<N; ++i) cnt+=kettle[i]/mid;
+        if(cnt<K) right=mid-1;
+        else{
+            ans=max(ans, mid);
+            left=mid+1;
+        }
+    }
+    cout<<ans;
 
     return 0;
 }
