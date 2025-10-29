@@ -65,10 +65,5 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    int T;
-    while(T--){
-        int K;
-    }
-
     return 0;
 }
