@@ -43,12 +43,13 @@ using pii=pair<int, int>;
 using ppiii=pair<pair<int, int>, int>;
 using pipii=pair<int, pair<int, int>>;
 using pci=pair<char, int>;
-using vvi=vector<vector<int>>;
 using vpii=vector<pair<int, int>>;
 using vpci=vector<pair<char, int>>;
 using vppiii=vector<pair<pair<int, int>, int>>;
 using vpipii=vector<pair<int, pair<int, int>>>;
 using dqpii=deque<pair<int, int>>;
+using vvi=vector<vector<int>>;
+using vvll=vector<vector<long long>>;
 using vvpii=vector<vector<pair<int, int>>>;
 
 #define elif else if
@@ -64,6 +65,6 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
-
+    
     return 0;
 }
