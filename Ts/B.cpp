@@ -54,7 +54,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 
 #define elif else if
 
-// const int INF(INT_MAX/2);
+// const int INF(INT_MAX);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 

@@ -54,7 +54,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 
 #define elif else if
 
-// const int INF(INT_MAX/2);
+const int INF(INT_MAX);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
@@ -65,6 +65,28 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
+
+    int T;
+    cin>>T;
+    while(T--){
+        int K;
+        cin>>K;
+        vi C(K+1), sum(K+1, 0);
+        for(int i=1; i<=K; ++i){
+            cin>>C[i];
+            sum[i]=sum[i-1]+C[i];
+        }
+        vvi dp(K+1, vi(K+1, INF));
+        for(int i=1; i<=K; ++i) dp[i][i]=0;
+        for(int i=1; i<=K-1; ++i){
+            for(int j=1; j<=K-i; ++j){
+                for(int k=j; k<=i+j-1; ++k){
+                    dp[j][i+j]=min(dp[j][i+j], dp[j][k]+dp[k+1][i+j]+sum[i+j]-sum[j-1]);
+                }
+            }
+        }
+        cout<<dp[1][K]<<"\n";
+    }
     
     return 0;
 }
