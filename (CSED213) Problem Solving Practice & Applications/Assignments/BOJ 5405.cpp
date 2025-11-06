@@ -1,4 +1,4 @@
-// BOJ 1780: 종이의 개수
+// BOJ 5405: Fractal Streets(프랙탈 거리)
 
 // #include <bits/stdc++.h>
 
@@ -60,26 +60,6 @@ using mii=map<int, int>;
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
-int N;
-vvi paper;
-mii cnt;
-
-void f(int x, int y, int size){
-    for(int i(x); i<x+size; ++i){
-        for(int j(y); j<y+size; ++j){
-            if(paper[i][j]!=paper[x][y]){
-                for(int k(0); k<3; ++k){
-                    for(int l(0); l<3; ++l){
-                        f(x+(size/3*k), y+(size/3*l), size/3);
-                    }
-                }
-                return;
-            }
-        }
-    }
-    ++cnt[paper[x][y]];
-}
-
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -87,17 +67,6 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
-
-    cin>>N;
-    paper.resize(N, vi(N));
-    for(int i(0); i<N; ++i){
-        for(int j(0); j<N; ++j){
-            cin>>paper[i][j];
-        }
-    }
-    cnt[-1]=0; cnt[0]=0; cnt[1]=0;
-    f(0, 0, N);
-    cout<<cnt[-1]<<"\n"<<cnt[0]<<"\n"<<cnt[1];
     
     return 0;
 }
