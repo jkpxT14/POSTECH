@@ -1,4 +1,4 @@
-// jkpxt14@postech.ac.kr
+// jkpxT14
 
 // #include <bits/stdc++.h>
 
@@ -51,6 +51,8 @@ using dqpii=deque<pair<int, int>>;
 using vvi=vector<vector<int>>;
 using vvll=vector<vector<long long>>;
 using vvpii=vector<vector<pair<int, int>>>;
+
+using mii=map<int, int>;
 
 #define elif else if
 
