@@ -55,3 +55,33 @@ iota(v.begin(), v.end(), 0);
 //
 lower_bound(vec.begin(), vec.end(), target)-vec.begin();
 upper_bound(vec.begin(), vec.end(), target)-vec.begin();
+
+// structured binding(s)
+auto [c, d]={a, b};
+
+pair<int, int> p{a, b};
+auto& [c, d]=p;
+const auto& [c, d]=p;
+
+map<string, int> m;
+for(auto& [k, v]: m){
+    ;
+}
+
+//
+void f(int a)
+    pass-by-value
+    int, long long, double, ...
+
+void f(int& a)
+    pass-by-reference
+    only lvalue
+
+void f(const int a)
+    not usually used
+
+void f(const int& a)
+    both rvalue and lvalue
+    string, vector, map, ...
+
+//
