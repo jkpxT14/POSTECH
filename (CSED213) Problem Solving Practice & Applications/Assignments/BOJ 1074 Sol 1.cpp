@@ -67,6 +67,30 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
-    
+
+    int N, r, c;
+    cin>>N>>r>>c;
+    int len(1<<N), ans(0);
+    while(len>1){
+        len/=2;
+        int area(len*len);
+        if(r<len && c<len){
+            continue;
+        }
+        elif(r<len && c>=len){
+            c-=len;
+            ans+=area;
+        }
+        elif(r>=len && c<len){
+            r-=len;
+            ans+=2*area;
+        }
+        else{
+            r-=len; c-=len;
+            ans+=3*area;
+        }
+    }
+    cout<<ans;
+
     return 0;
 }
