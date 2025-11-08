@@ -1,4 +1,4 @@
-// jkpxT14
+// BOJ 1074: Z
 
 // #include <bits/stdc++.h>
 
@@ -60,12 +60,34 @@ using mii=map<int, int>;
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
+int N, r, c, ans(0);
+
+void Z(int row, int column, int len){
+    if(row==r && column==c){
+        cout<<ans;
+        return;
+    }
+    elif(row<=r && r<row+len && column<=c && c<column+len){
+        Z(row, column, len/2);
+        Z(row, column+len/2, len/2);
+        Z(row+len/2, column, len/2);
+        Z(row+len/2, column+len/2, len/2);
+    }
+    else{
+        ans+=len*len;
+    }
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
-    cin.tie(nullptr); cout.tie(nullptr);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
 
     cout<<fixed;
     cout.precision(10);
-    
+
+    cin>>N>>r>>c;
+    Z(0, 0, 1<<N);
+
     return 0;
 }
