@@ -1,25 +1,36 @@
-vector = vec = v
-stack = sta = st // string = str( = st)
-queue = que = q
+character = char = ch
+string = str
+
+vector = vec (= v)
+stack = sta = st
+queue = que (= q)
 priority queue = pq
 deque = dq
-sol = solution
-ans = answer
+
+solution = sol
+answer = ans
 result = res
-cur = current
+return = ret
+
+previous = prev
+current = cur
+next
+
 coordinate = coord
-val = value
-pos = position
+value = val
+position = pos
 count = cnt
 index = idx
-iterator = iter = it
-adjacency matrix = adj_mat
-character = char = ch
+adjacency matrix = adj_mat = adj
 factorial = fact
 level = lv
-INF = INFinity
-cmp = compare
-ptr = pointer
-ret = return
+INFinity = INF
+compare = cmp
+pointer = ptr
+iterator = iter = it
+degree = deg
+
+Longest Increasing Subsequence = LIS
+Directed Acyclic Graph = DAG
 
 snippet
