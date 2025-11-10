@@ -1,4 +1,4 @@
-//
+// BOJ 2252: 줄 세우기
 
 // #include <bits/stdc++.h>
 
@@ -66,6 +66,40 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
+
+    int N, M;
+    cin>>N>>M;
+    vvi DAG(N+1);
+    vi in_deg(N+1, 0), out_deg(N+1, 0);
+    for(int i(0); i<M; ++i){
+        int A, B;
+        cin>>A>>B;
+        DAG[A].push_back(B);
+        ++in_deg[B];
+        ++out_deg[A];
+    }
+    dqi q;
+    for(int i(1); i<=N; ++i){
+        if(in_deg[i]==0){
+            q.push_back(i);
+        }
+    }
+    for(int i(0); i<N; ++i){
+        assert(!q.empty());
+        // if(q.empty()){
+        //     cout<<"cycle";
+        //     return 0;
+        // }
+        int cur(q.front());
+        cout<<cur<<" ";
+        q.pop_front();
+        for(int j(0); j<DAG[cur].size(); ++j){
+            int next(DAG[cur][j]);
+            if(--in_deg[next]==0){
+                q.push_back(next);
+            }
+        }
+    }
     
     return 0;
 }

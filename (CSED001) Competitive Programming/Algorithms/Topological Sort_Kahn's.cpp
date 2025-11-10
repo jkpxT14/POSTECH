@@ -66,6 +66,40 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
+
+    int V, E;
+    cin>>V>>E;
+    vvi DAG(V+1);
+    vi in_deg(V+1, 0), out_deg(V+1, 0);
+    for(int i(0); i<E; ++i){
+        int from, to;
+        cin>>from>>to;
+        DAG[from].push_back(to);
+        ++in_deg[to];
+        ++out_deg[from];
+    }
+    dqi q;
+    for(int i(1); i<=V; ++i){
+        if(in_deg[i]==0){
+            q.push_back(i);
+        }
+    }
+    for(int i(0); i<V; ++i){
+        // assert(!q.empty());
+        if(q.empty()){
+            cout<<"cycle";
+            return 0;
+        }
+        int cur(q.front());
+        cout<<cur<<" ";
+        q.pop_front();
+        for(int j(0); j<DAG[cur].size(); ++j){
+            int next(DAG[cur][j]);
+            if(--in_deg[next]==0){
+                q.push_back(next);
+            }
+        }
+    }
     
     return 0;
 }
