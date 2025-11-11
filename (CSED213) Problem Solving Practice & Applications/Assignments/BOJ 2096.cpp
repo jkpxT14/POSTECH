@@ -1,4 +1,4 @@
-// BOJ 11055: 가장 큰 증가하는 부분 수열
+// BOJ 2096: 내려가기
 
 // #include <bits/stdc++.h>
 
@@ -66,20 +66,6 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
-
-    int N;
-    cin>>N;
-    vi A(N+1);
-    for(int i(1); i<=N; ++i) cin>>A[i];
-    vi dp(A);
-    int ans(0);
-    for(int i(1); i<=N; ++i){
-        for(int j(1); j<i; ++j){
-            if(A[i]>A[j]) dp[i]=max(dp[i], dp[j]+A[i]);
-        }
-        ans=max(ans, dp[i]);
-    }
-    cout<<ans;
     
     return 0;
 }
