@@ -85,3 +85,13 @@ void f(const int& a)
     string, vector, map, ...
 
 //
+vector<int> v;
+max_element(v.begin(), v.end())
+*max_element(v.begin(), v.end())
+min_element(v.begin(), v.end())
+*min_element(v.begin(), v.end())
+
+bool cmp(const int& x, const int& y){
+    return abs(x)<abs(y);
+}
+max_element(v.begin(), v.end(), cmp)

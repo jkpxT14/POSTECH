@@ -44,3 +44,21 @@ v.reserve(N);
 
 sort(v.begin(), v.end())
 iter_swap(v.begin(), v.begin()+2)
+
+vector<int> v1{1, 2, 3, 4};
+
+vector<int> v2;
+v2=v1;
+
+vector<int> v2(v1);
+
+// vector<int> v2;
+// copy(v1.begin(), v1.end(), v2.begin());
+
+// vector<int> v2;
+// copy(v1.begin(), v1.end(), back_inserter(v2));
+
+// copy, copy_n, copy_if
+
+vector<int> v2;
+v2.assign(v1.begin(), v1.end());
