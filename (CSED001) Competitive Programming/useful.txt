@@ -97,3 +97,14 @@ bool cmp(const int& x, const int& y){
 max_element(v.begin(), v.end(), cmp)
 
 //
+'\n'
+"\n"={'\n', '\0'}
+"\n"[0]
+"\n"[1]
+
+cout<<'A'<<'\n'<<'A';
+cout<<'B'<<"\n"[0]<<'B';
+cout<<'C'<<"\n"[1]<<'C';
+cout<<'D'<<"\n"<<'D';
+
+//
