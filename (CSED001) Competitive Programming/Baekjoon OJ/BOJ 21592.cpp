@@ -1,4 +1,4 @@
-// BOJ 9251: LCS
+// BOJ 21592: Longest Common Substring
 
 // #include <bits/stdc++.h>
 
@@ -43,42 +43,29 @@ using pii=pair<int, int>;
 using ppiii=pair<pair<int, int>, int>;
 using pipii=pair<int, pair<int, int>>;
 using pci=pair<char, int>;
-using vvi=vector<vector<int>>;
 using vpii=vector<pair<int, int>>;
 using vpci=vector<pair<char, int>>;
 using vppiii=vector<pair<pair<int, int>, int>>;
 using vpipii=vector<pair<int, pair<int, int>>>;
 using dqpii=deque<pair<int, int>>;
+using vvi=vector<vector<int>>;
+using vvll=vector<vector<long long>>;
 using vvpii=vector<vector<pair<int, int>>>;
+
+using mii=map<int, int>;
 
 #define elif else if
 
-// const int INF(INT_MAX/4);
+// const int INF(INT_MAX);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
 int main(){
     ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    
+    cin.tie(nullptr); cout.tie(nullptr);
+
     cout<<fixed;
     cout.precision(10);
-
-    string s_1, s_2;
-    cin>>s_1>>s_2;
-    int M((int)s_1.size()), N((int)s_2.size());
-    s_1.insert(0, " ");
-    s_2.insert(0, " ");
-    vvi dp(M+1, vi(N+1));
-    for(int i=0; i<=M; ++i) dp[i][0]=0;
-    for(int j=0; j<=N; ++j) dp[0][j]=0;
-    for(int i=1; i<=M; ++i){
-        for(int j=1; j<=N; ++j){
-            dp[i][j]=(s_1[i]==s_2[j])?dp[i-1][j-1]+1:max(dp[i-1][j], dp[i][j-1]);
-        }
-    }
-    cout<<dp[M][N];
-
+    
     return 0;
 }
