@@ -55,6 +55,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 using mii=map<int, int>;
 
 #define elif else if
+const auto strnpos=string::npos;
 
 // const int INF(INT_MAX);
 // const ll mod(1000000007); // 10^9+7

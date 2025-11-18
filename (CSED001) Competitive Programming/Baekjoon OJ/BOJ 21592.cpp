@@ -55,6 +55,7 @@ using vvpii=vector<vector<pair<int, int>>>;
 using mii=map<int, int>;
 
 #define elif else if
+const auto strnpos=string::npos;
 
 // const int INF(INT_MAX);
 // const ll mod(1000000007); // 10^9+7
@@ -66,6 +67,29 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
+
+    int n;
+    cin>>n;
+    vstr s(n);
+    for(int i(0); i<n; ++i) cin>>s[i];
+    sort(s.begin(), s.end(), [](string x, string y){
+        return (int)x.size()<(int)y.size();
+    });
+    int ans(0);
+    for(int i(0); i<(int)s[0].size(); ++i){
+        for(int j(1); j<=(int)s[0].size()-i; ++j){
+            string cur(s[0].substr(i, j));
+            bool flag(true);
+            for(int k(1); k<n; ++k){
+                if(s[k].find(cur)==strnpos){
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag) ans=max(ans, (int)cur.size());
+        }
+    }
+    cout<<ans;
     
     return 0;
 }
