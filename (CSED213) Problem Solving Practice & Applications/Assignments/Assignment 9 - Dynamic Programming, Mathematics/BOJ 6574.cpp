@@ -70,8 +70,6 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
-
     
-
     return 0;
 }
