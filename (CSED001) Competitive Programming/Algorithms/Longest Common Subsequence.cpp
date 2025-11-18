@@ -40,45 +40,48 @@ using pqig=priority_queue<int, vector<int>, greater<int>>;
 using pqll=priority_queue<long long>;
 using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
 using pii=pair<int, int>;
+using pll=pair<long long, long long>;
 using ppiii=pair<pair<int, int>, int>;
 using pipii=pair<int, pair<int, int>>;
 using pci=pair<char, int>;
-using vvi=vector<vector<int>>;
 using vpii=vector<pair<int, int>>;
 using vpci=vector<pair<char, int>>;
 using vppiii=vector<pair<pair<int, int>, int>>;
 using vpipii=vector<pair<int, pair<int, int>>>;
 using dqpii=deque<pair<int, int>>;
+using vvi=vector<vector<int>>;
+using vvvi=vector<vector<vector<int>>>;
+using vvll=vector<vector<long long>>;
+using vvvll=vector<vector<vector<long long>>>;
 using vvpii=vector<vector<pair<int, int>>>;
 
-#define elif else if
+using mii=map<int, int>;
 
-// const int INF(INT_MAX/4);
+#define elif else if
+const auto strnpos=string::npos;
+
+// const int INF(INT_MAX);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
 int main(){
     ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    
+    cin.tie(nullptr); cout.tie(nullptr);
+
     cout<<fixed;
     cout.precision(10);
 
-    string s_1, s_2;
-    cin>>s_1>>s_2;
-    int M((int)s_1.size()), N((int)s_2.size());
-    s_1.insert(0, " ");
-    s_2.insert(0, " ");
-    vvi dp(M+1, vi(N+1));
-    for(int i=0; i<=M; ++i) dp[i][0]=0;
-    for(int j=0; j<=N; ++j) dp[0][j]=0;
-    for(int i=1; i<=M; ++i){
-        for(int j=1; j<=N; ++j){
-            dp[i][j]=(s_1[i]==s_2[j])?dp[i-1][j-1]+1:max(dp[i-1][j], dp[i][j-1]);
+    string s1, s2;
+    cin>>s1>>s2;
+    int l1((int)s1.size()), l2((int)s2.size());
+    s1.insert(0, " "); s2.insert(0, " ");
+    vvi dp(l1+1, vi(l2+1, 0));
+    for(int i(1); i<=l1; ++i){
+        for(int j(1); j<=l2; ++j){
+            dp[i][j]=(s1[i]==s2[j])?(dp[i-1][j-1]+1):max(dp[i-1][j], dp[i][j-1]);
         }
     }
-    cout<<dp[M][N];
-
+    cout<<dp[l1][l2];
+    
     return 0;
 }
