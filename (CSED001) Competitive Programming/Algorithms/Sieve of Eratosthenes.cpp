@@ -1,4 +1,4 @@
-// BOJ 6574: Advanced Fruits(새로운 과일)
+//
 
 // #include <bits/stdc++.h>
 
@@ -71,7 +71,22 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
+    int N;
+    cin>>N;
+    vb prime(N+1, true);
+    prime[1]=false;
+    for(int i(2); i*i<=N; ++i){
+        if(prime[i]){
+            for(int j(i*i); j<=N; j+=i){
+                prime[j]=false;
+            }
+        }
+    }
+    for(int i=1; i<=N; ++i){
+        if(prime[i]){
+            cout<<i<<" ";
+        }
+    }
     
-
     return 0;
 }

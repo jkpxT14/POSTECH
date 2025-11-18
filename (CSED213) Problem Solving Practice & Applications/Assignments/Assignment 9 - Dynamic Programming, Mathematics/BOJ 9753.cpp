@@ -1,1 +1,0 @@
-// BOJ 9753: Multiplying Pairs(짝 곱)

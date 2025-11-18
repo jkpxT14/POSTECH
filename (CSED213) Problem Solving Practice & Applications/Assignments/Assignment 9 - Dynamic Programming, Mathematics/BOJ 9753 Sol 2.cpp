@@ -1,4 +1,4 @@
-// BOJ 6574: Advanced Fruits(새로운 과일)
+// BOJ 9753: Multiplying Pairs(짝 곱)
 
 // #include <bits/stdc++.h>
 
@@ -71,7 +71,52 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    
+    vb prime_check(100001, true);
+    prime_check[1]=false;
+    for(int i(2); i*i<=100000; ++i){
+        if(prime_check[i]){
+            for(int j(i*i); j<=100000; j+=i){
+                prime_check[j]=false;
+            }
+        }
+    }
 
+    vi prime;
+    for(int i(2); i<=100000; ++i){
+        if(prime_check[i]){
+            prime.push_back(i);
+        }
+    }
+
+    vi multiplied;
+    for(int i(0); i<(int)prime.size(); ++i){
+        for(int j(i+1); j<(int)prime.size(); ++j){
+            if((ll)prime[i]*(ll)prime[j]<=100001LL){
+                multiplied.push_back(prime[i]*prime[j]);
+            }
+        }
+    }
+    sort(multiplied.begin(), multiplied.end());
+
+    int T;
+    cin>>T;
+    while(T--){
+        int K;
+        cin>>K;
+        int left(0), mid, right((int)multiplied.size()-1);
+        int ans;
+        while(left<=right){
+            mid=(left+right)/2;
+            if(multiplied[mid]>=K){
+                ans=mid;
+                right=mid-1;
+            }
+            else{
+                left=mid+1;
+            }
+        }
+        cout<<multiplied[ans]<<'\n';
+    }
+    
     return 0;
 }
