@@ -1,4 +1,4 @@
-// BOJ 27919: UDPC 파티
+// BOJ 27920: 카드 뒤집기
 
 // #include <bits/stdc++.h>
 
@@ -70,34 +70,6 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
-
-    string V;
-    cin>>V;
-    int U(0), D(0), P(0);
-    for(char v: V){
-        switch(v){
-            case 'U':
-                ++U;
-                break;
-            case 'D':
-                ++D;
-                ++P;
-                break;
-            case 'P':
-                ++D;
-                ++P;
-                break;
-            case 'C':
-                ++U;
-                break;
-        }
-    }
-    string ans("");
-    if(U>(((V.size()-U)%2==0)?((V.size()-U)/2):((V.size()-U)/2+1))) ans+='U';
-    if(D>0) ans+='D';
-    if(P>0) ans+='P';
-    if(ans=="") ans+='C';
-    cout<<ans;
     
     return 0;
 }
