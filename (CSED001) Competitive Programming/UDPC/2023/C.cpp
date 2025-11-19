@@ -70,6 +70,32 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
+
+    cout<<"YES"<<'\n';
+    int N;
+    cin>>N;
+    dqi b;
+    b.push_front(N);
+    for(int i(1); i<=N-1; ++i){
+        (i%2==0)?(b.push_front(i)):(b.push_back(i));
+    }
+    b.push_front(0);
+    vi d(N+1);
+    for(int i(1); i<=N; ++i){
+        d[b[i]]=i;
+    }
+    vi c(N+1);
+    for(int i(1); i<=N-1; ++i){
+        c[i]=d[N-i];
+    }
+    c[N]=d[N];
+    for(int i(1); i<=N; ++i){
+        cout<<b[i]<<' ';
+    }
+    cout<<'\n';
+    for(int i(1); i<=N; ++i){
+        cout<<c[i]<<' ';
+    }
     
     return 0;
 }

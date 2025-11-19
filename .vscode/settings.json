@@ -6,5 +6,6 @@
         "tuple": "cpp",
         "utility": "cpp",
         "limits": "cpp"
-    }
+    },
+    "terminal.integrated.scrollback": 100000
 }
