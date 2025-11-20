@@ -110,3 +110,14 @@ cout<<'D'<<"\n"<<'D';
 //
 floor((x+y-1)/y)=ceil(x/y)
 floor((x-1)/y+1)=ceil(x/y)
+
+//
+vector<int> v;
+sort(v.begin(), v.end(), greater<int>());
+
+sort(v.begin(), v.end(), [](int x, int y){
+    return x>y;
+});
+
+sort(v.begin(), v.end());
+reverse(v.begin(), v.end());
