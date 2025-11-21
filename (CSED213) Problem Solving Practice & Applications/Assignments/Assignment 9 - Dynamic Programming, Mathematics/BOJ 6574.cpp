@@ -69,6 +69,11 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
+
+    string f1, f2;
+    while(cin>>f1>>f2){
+        
+    }
     
     return 0;
 }
