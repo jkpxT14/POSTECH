@@ -1,7 +1,0 @@
-cd
-g++ A.cpp -std=c++20 -o A.exe
-g++ "BOJ 0000.cpp" -std=c++20 -o "BOJ 0000.exe"
-g++ "BOJ 0000.cpp" -std=c++20
-g++ "BOJ 0000.cpp"
-
-cmd /c ".\C.exe <..\input.txt"
