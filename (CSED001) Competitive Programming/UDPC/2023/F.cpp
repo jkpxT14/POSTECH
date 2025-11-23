@@ -1,26 +1,6 @@
 // BOJ 27923: 햄버거최대 몇개드실수있나요?
 
-// #include <bits/stdc++.h>
-
-#include <iostream>
-#include <string>
-#include <vector>
-#include <stack>
-#include <queue>
-#include <deque>
-#include <list>
-#include <set>
-#include <map>
-#include <algorithm>
-#include <numeric>
-#include <utility>
-#include <tuple>
-#include <climits>
-#include <limits>
-#include <cmath>
-#include <bitset>
-#include <functional>
-#include <cassert>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -69,9 +49,6 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
-
-    int N, K, L;
-    cin>>N>>K>>L;
-
+    
     return 0;
 }
