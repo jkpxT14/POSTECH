@@ -1,6 +1,26 @@
-// BOJ 6574: Advanced Fruits(새로운 과일)
+// Reference: BOJ 6574: Advanced Fruits(새로운 과일)
 
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+#include <queue>
+#include <deque>
+#include <list>
+#include <set>
+#include <map>
+#include <algorithm>
+#include <numeric>
+#include <utility>
+#include <tuple>
+#include <climits>
+#include <limits>
+#include <cmath>
+#include <bitset>
+#include <functional>
+#include <cassert>
 
 using namespace std;
 
@@ -50,48 +70,45 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    string f1, f2;
-    while(cin>>f1>>f2){
-        int l1((int)f1.size()), l2((int)f2.size());
-
+    string s1, s2;
+    while(cin>>s1>>s2){
+        int l1((int)s1.size()), l2((int)s2.size());
+        
         vvi dp(l1+1, vi(l2+1, 0));
-        for(int i(l1-1); i>=0; --i){
-            for(int j(l2-1); j>=0; --j){
-                if(f1[i]==f2[j]){
-                    dp[i][j]=dp[i+1][j+1]+1;
-                }
-                else{
-                    dp[i][j]=max(dp[i+1][j], dp[i][j+1]);
-                }
+        for(int i(1); i<=l1; ++i){
+            for(int j(1); j<=l2; ++j){
+                dp[i][j]=(s1[i-1]==s2[j-1])?(dp[i-1][j-1]+1):max(dp[i-1][j], dp[i][j-1]);
             }
         }
 
-        string SCS;
-        int i(0), j(0);
-        while(i<=l1-1 && j<=l2-1){
-            if(f1[i]==f2[j]){
-                SCS+=f1[i];
-                ++i;
-                ++j;
+        string SCS("");
+        int i(l1), j(l2);
+        while(i>=1 && j>=1){
+            if(s1[i-1]==s2[j-1]){
+                SCS+=s1[i-1];
+                --i;
+                --j;
             }
-            elif(dp[i+1][j]>=dp[i][j+1]){
-                SCS+=f1[i];
-                ++i;
+            elif(dp[i-1][j]>=dp[i][j-1]){
+                SCS+=s1[i-1];
+                --i;
             }
             else{
-                SCS+=f2[j];
-                ++j;
+                SCS+=s2[j-1];
+                --j;
             }
         }
-        while(i<=l1-1){
-            SCS+=f1[i++];
+        while(i>=1){
+            SCS+=s1[i-1];
+            --i;
         }
-        while(j<=l2-1){
-            SCS+=f2[j++];
+        while(j>=1){
+            SCS+=s2[j-1];
+            --j;
         }
-
+        reverse(SCS.begin(), SCS.end());
         cout<<SCS<<'\n';
     }
-    
+
     return 0;
 }
