@@ -1,4 +1,4 @@
-// BOJ 27923: 햄버거최대 몇개드실수있나요?
+//
 
 #include <bits/stdc++.h>
 
@@ -50,34 +50,15 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    int N, K, L;
-    cin>>N>>K>>L;
-    vll m(N+1), t(K+1);
-    for(int i(1); i<=N; ++i) cin>>m[i];
-    for(int i(1); i<=K; ++i) cin>>t[i];
-    vll C(N+1, 0);
-    for(int i(1); i<=K; ++i) ++C[t[i]];
-    // for(int i(1); i<=N-L+1; ++i){
-    //     for(int j(1); j<=L-1; ++j){
-    //         C[i+j]+=C[i];
-    //     }
-    // }
-    vll D(N+1);
-    ll cur(0);
+    int N;
+    cin>>N;
+    vi A(N+1);
+    for(int i(1); i<=N; ++i) cin>>A[i];
+    vll P(N+1, 0);
     for(int i(1); i<=N; ++i){
-        cur+=C[i];
-        if(i>=L+1){
-            cur-=C[i-L];
-        }
-        D[i]=cur;
+        P[i]=P[i-1]+(ll)A[i];
     }
-    sort(m.begin()+1, m.end(), greater<ll>());
-    sort(D.begin()+1, D.end(), greater<ll>());
-    ll ans(0);
-    for(int i(1); i<=N; ++i){
-        ans+=(ll)(m[i]/(ll)pow(2, D[i]));
-    }
-    cout<<ans;
-    
+    for(int i(0); i<=N; ++i) cout<<P[i]<<' ';
+
     return 0;
 }
