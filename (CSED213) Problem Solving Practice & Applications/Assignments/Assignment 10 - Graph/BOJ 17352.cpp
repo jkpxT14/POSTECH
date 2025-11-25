@@ -43,12 +43,50 @@ const auto strnpos=string::npos;
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
 
+int N;
+vi parent;
+
+int find(int x){
+    if(x==parent[x]){
+        return x;
+    }
+    else{
+        return parent[x]=find(parent[x]);
+    }
+}
+
+void union0(int x, int y){
+    x=find(x);
+    y=find(y);
+    if(x==y){
+        return;
+    }
+    else{
+        parent[y]=x;
+    }
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed;
     cout.precision(10);
+
+    cin>>N;
+    parent.resize(N+1);
+    iota(parent.begin()+1, parent.end(), 1);
+    for(int i(0); i<N-2; ++i){
+        int a, b;
+        cin>>a>>b;
+        union0(a, b);
+    }
+    for(int i(2); i<=N; ++i){
+        if(find(1)!=find(i)){
+            cout<<"1 "<<i;
+            return 0;
+        }
+    }
     
     return 0;
 }
