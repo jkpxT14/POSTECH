@@ -23,6 +23,7 @@ using vpipii=vector<pair<int, pair<int, int>>>;
 using vppiii=vector<pair<pair<int, int>, int>>;
 using vvi=vector<vector<int>>;
 using vvll=vector<vector<long long>>;
+using vvb=vector<vector<bool>>;
 using vvc=vector<vector<char>>;
 using vvpii=vector<vector<pair<int, int>>>;
 using vvvi=vector<vector<vector<int>>>;
@@ -42,6 +43,20 @@ const auto strnpos=string::npos;
 // const int INF(INT_MAX);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
+const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+int N;
+vvb safe, visited;
+
+void dfs(int x, int y){
+    visited[x][y]=true;
+    for(int i(0); i<4; ++i){
+        int nx(x+delta[i].first), ny(y+delta[i].second);
+        if(0<=nx && nx<N && 0<=ny && ny<N && safe[nx][ny] && !visited[nx][ny]){
+            dfs(nx, ny);
+        }
+    }
+}
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -50,8 +65,49 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    int N;
     cin>>N;
+    vvi height(N, vi(N));
+    int h_min(101), h_Max(0);
+    for(int i(0); i<N; ++i){
+        for(int j(0); j<N; ++j){
+            cin>>height[i][j];
+            h_min=min(h_min, height[i][j]);
+            h_Max=max(h_Max, height[i][j]);
+        }
+    }
+    safe.resize(N, vb(N));
+    visited.resize(N, vb(N));
+    int ans(1);
+    for(int r(h_min); r<=h_Max; ++r){
+        safe.assign(N, vb(N));
+        visited.assign(N, vb(N, false));
+        for(int i(0); i<N; ++i){
+            for(int j(0); j<N; ++j){
+                safe[i][j]=(height[i][j]>r)?(true):(false);
+            }
+        }
+
+        // for(int i(0); i<N; ++i){
+        //     for(int j(0); j<N; ++j){
+        //         cout<<safe[i][j]<<' ';
+        //     }
+        //     cout<<'\n';
+        // }
+
+        int cnt(0);
+        for(int i(0); i<N; ++i){
+            for(int j(0); j<N; ++j){
+                if(safe[i][j] && !visited[i][j]){
+                    // cout<<i<<' '<<j<<'\n';
+
+                    dfs(i, j);
+                    ++cnt;
+                }
+            }
+        }
+        ans=max(ans, cnt);
+    }
+    cout<<ans;
     
     return 0;
 }

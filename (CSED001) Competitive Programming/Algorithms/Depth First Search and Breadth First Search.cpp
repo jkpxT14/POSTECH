@@ -1,5 +1,8 @@
 // Reference: BOJ 1260: DFS와 BFS
 
+// DFS ~~ stack and recursion
+// BFS ~~ queue
+
 #include <bits/stdc++.h>
 
 using namespace std;

@@ -23,6 +23,7 @@ using vpipii=vector<pair<int, pair<int, int>>>;
 using vppiii=vector<pair<pair<int, int>, int>>;
 using vvi=vector<vector<int>>;
 using vvll=vector<vector<long long>>;
+using vvb=vector<vector<bool>>;
 using vvc=vector<vector<char>>;
 using vvpii=vector<vector<pair<int, int>>>;
 using vvvi=vector<vector<vector<int>>>;
@@ -42,6 +43,7 @@ const auto strnpos=string::npos;
 // const int INF(INT_MAX);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
+// const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
 int main(){
     ios_base::sync_with_stdio(false);
