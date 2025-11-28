@@ -34,3 +34,8 @@ Longest Increasing Subsequence = LIS
 Directed Acyclic Graph = DAG
 
 snippet
+
+length
+height
+width
+depth

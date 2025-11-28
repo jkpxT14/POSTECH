@@ -43,7 +43,57 @@ const auto strnpos=string::npos;
 // const int INF(INT_MAX);
 // const ll mod(1000000007); // 10^9+7
 // const int offset(500000);
-// const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+int H, W;
+vvi brightness;
+vpipii v;
+int ans(0);
+
+bool bfs(){
+    dqpii q;
+    vvb visited(H, vb(W, false));
+    for(pipii w: v){
+        if(visited[w.second.first][w.second.second]){
+            continue;
+        }
+        ++ans;
+        if(w.first==1){
+            continue;
+        }
+        q.push_back(w.second);
+        while(!q.empty()){
+            pii cur(q.front());
+            q.pop_front();
+            if(brightness[cur.first][cur.second]==1){
+                continue;
+            }
+            for(pii d: delta){
+                pii next{cur.first+d.first, cur.second+d.second};
+                if(next.first<0 || next.first>=H || next.second<0 || next.second>=W){
+                    continue;
+                }
+                if(brightness[next.first][next.second]==-1){
+                    continue;
+                }
+                int diff(brightness[cur.first][cur.second]-brightness[next.first][next.second]);
+                if(diff==0){
+                    continue;
+                }
+                elif(diff==1){
+                    if(!visited[next.first][next.second]){
+                        q.push_back(next);
+                        visited[next.first][next.second]=true;
+                    }
+                }
+                elif(diff>1){
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -51,6 +101,20 @@ int main(){
 
     cout<<fixed;
     cout.precision(10);
+
+    cin>>H>>W;
+    brightness.resize(H, vi(W));
+    for(int i(0); i<H; ++i){
+        for(int j(0); j<W; ++j){
+            cin>>brightness[i][j];
+            if(brightness[i][j]>=1){
+                v.push_back({brightness[i][j], {i, j}});
+            }
+        }
+    }
+    sort(v.begin(), v.end(), greater<pipii>());
+    // cout<<bfs()?ans:-1;
+    cout<<(bfs()?ans:-1);
     
     return 0;
 }
