@@ -62,3 +62,13 @@ vector<int> v2(v1);
 
 vector<int> v2;
 v2.assign(v1.begin(), v1.end());
+
+// resize vs assign
+resize => 현재 요소를 최대한 유지한 채 크기만 N으로 맞추기
+assign => 갈아 엎기
+
+vector<int> v{1, 2, 3, 4, 5};
+vector<int> w{6, 7, 8};
+
+v.assign({6, 7, 8});
+v.assign(w.begin(), v.end());
