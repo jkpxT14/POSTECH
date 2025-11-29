@@ -46,20 +46,65 @@ const auto strnpos=string::npos;
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
+int N;
+vvi adj;
+vi deg;
+vi d(3);
+vvi dist(3);
+
+void bfs(int id){
+    dqi q;
+    dist[id][d[id]]=0;
+    q.push_back(d[id]);
+    while(!q.empty()){
+        int cur(q.front());
+        q.pop_front();
+        for(int next: adj[cur]){
+            if(dist[id][next]!=-1){
+                continue;
+            }
+            dist[id][next]=dist[id][cur]+1;
+            q.push_back(next);
+        }
+    }
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
 
-    int N;
     cin>>N;
+    adj.resize(N+1);
+    deg.resize(N+1, 0);
     for(int i(0); i<N-1; ++i){
         int u, v;
         cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+        ++deg[u];
+        ++deg[v];
     }
-    int a, b, c;
-    cin>>a>>b>>c;
+    for(int i(0); i<3; ++i){
+        cin>>d[i];
+    }
+    dist.assign(3, vi(N+1, -1));
+
+    bfs(0);
+    bfs(1);
+    bfs(2);
+
+    bool escape(false);
+    for(int node(1); node<=N; ++node){
+        if(deg[node]==1){
+            if(dist[0][node]<dist[1][node] && dist[0][node]<dist[2][node]){
+                escape=true;
+                break;
+            }
+        }
+    }
+    cout<<(escape?"YES":"NO");
 
     return 0;
 }
