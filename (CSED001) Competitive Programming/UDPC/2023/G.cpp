@@ -38,10 +38,11 @@ using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
 using mii=map<int, int>;
 
 #define elif else if
+
 const auto strnpos=string::npos;
 
 // const int INF(INT_MAX);
-// const ll mod(1000000007); // 10^9+7
+// const ll mod(1000000007);
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
@@ -49,8 +50,16 @@ int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
-    cout<<fixed;
-    cout.precision(10);
-    
+    cout<<fixed<<setprecision(10);
+
+    int N;
+    cin>>N;
+    for(int i(0); i<N-1; ++i){
+        int u, v;
+        cin>>u>>v;
+    }
+    int a, b, c;
+    cin>>a>>b>>c;
+
     return 0;
 }
