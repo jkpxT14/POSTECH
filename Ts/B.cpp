@@ -1,4 +1,4 @@
-// Last Update on 20251130
+// Last Update on 20251201
 
 #include <bits/stdc++.h>
 
@@ -37,11 +37,14 @@ using pqll=priority_queue<long long>;
 using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
 using mii=map<int, int>;
 
+using vvvb=vector<vector<vector<bool>>>;
+using vvvvb=vector<vector<vector<vector<bool>>>>;
+
 #define elif else if
 
 const auto strnpos=string::npos;
 
-// const int INF(INT_MAX);
+// const int INF(INT_MAX/4);
 // const ll mod(1000000007);
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
