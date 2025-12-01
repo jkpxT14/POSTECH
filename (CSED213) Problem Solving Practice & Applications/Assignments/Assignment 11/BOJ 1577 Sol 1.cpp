@@ -1,0 +1,140 @@
+// BOJ 1577: 도로의 개수
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll=long long;
+using pii=pair<int, int>;
+using pll=pair<long long, long long>;
+using pci=pair<char, int>;
+using pipii=pair<int, pair<int, int>>;
+using ppiii=pair<pair<int, int>, int>;
+using vi=vector<int>;
+using vll=vector<long long>;
+using vd=vector<double>;
+using vb=vector<bool>;
+using vc=vector<char>;
+using vstr=vector<string>;
+using vpii=vector<pair<int, int>>;
+using vpll=vector<pair<long long, long long>>;
+using vpci=vector<pair<char, int>>;
+using vpipii=vector<pair<int, pair<int, int>>>;
+using vppiii=vector<pair<pair<int, int>, int>>;
+using vvi=vector<vector<int>>;
+using vvll=vector<vector<long long>>;
+using vvb=vector<vector<bool>>;
+using vvc=vector<vector<char>>;
+using vvpii=vector<vector<pair<int, int>>>;
+using vvvi=vector<vector<vector<int>>>;
+using vvvll=vector<vector<vector<long long>>>;
+using dqi=deque<int>;
+using dqll=deque<long long>;
+using dqpii=deque<pair<int, int>>;
+using pqi=priority_queue<int>;
+using pqig=priority_queue<int, vector<int>, greater<int>>;
+using pqll=priority_queue<long long>;
+using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
+using mii=map<int, int>;
+
+using vvvb=vector<vector<vector<bool>>>;
+using vvvvb=vector<vector<vector<vector<bool>>>>;
+
+#define elif else if
+
+const auto strnpos=string::npos;
+
+const int INF(INT_MAX/4);
+// const ll mod(1000000007);
+// const int offset(500000);
+// const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr); cout.tie(nullptr);
+
+    cout<<fixed<<setprecision(10);
+
+    int N, M;
+    cin>>N>>M;
+    int K;
+    cin>>K;
+    vi a(K), b(K), c(K), d(K);
+    for(int i(0); i<K; ++i){
+        cin>>a[i]>>b[i]>>c[i]>>d[i];
+        if(a[i]>c[i]){
+            swap(a[i], c[i]);
+        }
+        if(b[i]>d[i]){
+            swap(b[i], d[i]);
+        }
+    }
+    vvll dp(N+1, vll(M+1, 0));
+    dp[0][0]=1;
+    for(int i(1); i<=N; ++i){
+        bool flag1(false);
+        for(int j(0); j<K; ++j){
+            if(i-1==a[j] && 0==b[j] && i==c[j] && 0==d[j]){
+                flag1=true;
+                break;
+            }
+        }
+        if(flag1){
+            continue;
+        }
+        else{
+            dp[i][0]=dp[i-1][0];
+        }
+    }
+    for(int i(1); i<=M; ++i){
+        bool flag2(false);
+        for(int j(0); j<K; ++j){
+            if(0==a[j] && i-1==b[j] && 0==c[j] && i==d[j]){
+                flag2=true;
+                break;
+            }
+        }
+        if(flag2){
+            continue;
+        }
+        else{
+            dp[0][i]=dp[0][i-1];
+        }
+    }
+    for(int i(2); i<=N+M; ++i){
+        for(int j(max(1, i-M)); j<=min(i-1, N); ++j){
+            bool flag1(false), flag2(false);
+            for(int k(0); k<K; ++k){
+                if(j-1==a[k] && i-j==b[k] && j==c[k] && i-j==d[k]){
+                    flag1=true;
+                }
+                elif(j==a[k] && i-j-1==b[k] && j==c[k] && i-j==d[k]){
+                    flag2=true;
+                }
+            }
+            if(flag1 && flag2){
+                continue;
+            }
+            elif(flag1){
+                dp[j][i-j]=dp[j][i-j-1];
+            }
+            elif(flag2){
+                dp[j][i-j]=dp[j-1][i-j];
+            }
+            else{
+                dp[j][i-j]=dp[j-1][i-j]+dp[j][i-j-1];
+            }
+        }
+    }
+
+    // for(int i(0); i<=N; ++i){
+    //     for(int j(0); j<=M; ++j){
+    //         cout<<dp[i][j]<<' ';
+    //     }
+    //     cout<<'\n';
+    // }
+
+    cout<<dp[N][M];
+
+    return 0;
+}
