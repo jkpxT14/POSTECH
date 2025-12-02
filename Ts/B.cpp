@@ -1,4 +1,4 @@
-// Last Update on 20251201
+// Last Update on 20251203
 
 #include <bits/stdc++.h>
 
@@ -49,13 +49,20 @@ const auto strnpos=string::npos;
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
+void print_2D(const vvi &v, int type, int M, int N){
+    for(int i(type); i<M+type; ++i){
+        for(int j(type); j<N+type; ++j){
+            cout<<v[i][j]<<' ';
+        }
+        cout<<'\n';
+    }
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
-
-    cout<<4;
 
     return 0;
 }

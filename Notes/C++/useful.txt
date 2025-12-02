@@ -133,3 +133,54 @@ vector<int> v{0, 1, 2, 3, 4};
 vector<int> w{5, 6, 7, 8, 9};
 
 v.swap(w);
+
+// Block Scope
+{
+    int x(10);
+    {
+        int x(20);
+        cout<<x<<'\n'; // 20
+    }
+    cout<<x<<'\n'; // 10
+}
+
+// Name Shadowing(=Hiding)
+{
+    int N(10);
+    void f(){
+        cout<<N<<'\n'; // 10
+
+        int N(20);
+        cout<<N<<'\n'; // 20
+    }
+}
+
+{
+    int N(10);
+    
+    void f(int N){
+        cout<<N<<'\n'; // f(5)=>5
+    }
+}
+
+{
+    int N(10);
+
+    void f(){
+        {
+            int N(20);
+            cout<<N<<'\n'; // 20
+        }
+        cout<<N<<'\n'; // 10
+    }
+}
+
+{
+    int N(10);
+
+    void f(){
+        int N(20);
+        cout<<N<<'\n'; // 20
+        cout<<::N<<"\n'; // 10
+    }
+}

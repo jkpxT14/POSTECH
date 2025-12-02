@@ -49,12 +49,28 @@ const auto strnpos=string::npos;
 // const int offset(500000);
 const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
-void dfs(int x, int y){
-
+void print_2D(const vvi &v, int type, int M, int N){
+    for(int i(type); i<M+type; ++i){
+        for(int j(type); j<N+type; ++j){
+            cout<<v[i][j]<<' ';
+        }
+        cout<<'\n';
+    }
 }
 
-void update_max_h(){
-    ;
+int N, M;
+vvi iceberg, sea;
+vvb vst;
+int max_h(0);
+
+void dfs(int x, int y){
+    vst[x][y]=true;
+    for(int i(0); i<4; ++i){
+        int nx(x+delta[i].first), ny(y+delta[i].second);
+        if(0<=nx && nx<N && 0<=ny && ny<M && iceberg[nx][ny] && !vst[nx][ny]){
+            dfs(nx, ny);
+        }
+    }
 }
 
 int main(){
@@ -63,25 +79,39 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int N, M;
     cin>>N>>M;
-    vvi iceberg(N, vi(M));
-    vvi sea(N, vi(M));
-    int max_h(0);
+    iceberg.resize(N, vi(M));
+    sea.resize(N, vi(M, 0));
+    vst.resize(N, vb(M, false));
     for(int i(0); i<N; ++i){
-        for(int j(0); j<N; ++j){
+        for(int j(0); j<M; ++j){
             cin>>iceberg[i][j];
             max_h=max(max_h, iceberg[i][j]);
         }
     }
+    for(int i(0); i<N; ++i){
+        for(int j(0); j<M; ++j){
+            if(!iceberg[i][j]){
+                for(int k(0); k<4; ++k){
+                    int ni(i+delta[k].first), nj(j+delta[k].second);
+                    if(0<=ni && ni<N && 0<=nj && nj<M){
+                        ++sea[ni][nj];
+                    }
+                }
+            }
+        }
+    }
+
     int t(0);
     while(max_h>0){
+        vst.assign(N, vb(M, false));
         bool flag(false);
         for(int i(0); i<N; ++i){
             for(int j(0); j<M; ++j){
-                if(iceberg[i][j]){
+                if(iceberg[i][j] && !vst[i][j]){
                     if(!flag){
-                        dfs(i, j);;
+                        dfs(i, j);
+                        flag=true;
                     }
                     else{
                         cout<<t;
@@ -90,7 +120,33 @@ int main(){
                 }
             }
         }
-        // update max_h
+        for(int i(0); i<N; ++i){
+            for(int j(0); j<M; ++j){
+                iceberg[i][j]-=sea[i][j];
+                if(iceberg[i][j]<0){
+                    iceberg[i][j]=0;
+                }
+            }
+        }
+        sea.assign(N, vi(M, 0));
+        for(int i(0); i<N; ++i){
+            for(int j(0); j<M; ++j){
+                if(!iceberg[i][j]){
+                    for(int k(0); k<4; ++k){
+                        int ni(i+delta[k].first), nj(j+delta[k].second);
+                        if(0<=ni && ni<N && 0<=nj && nj<M){
+                            ++sea[ni][nj];
+                        }
+                    }
+                }
+            }
+        }
+        max_h=0;
+        for(int i(0); i<N; ++i){
+            for(int j(0); j<M; ++j){
+                max_h=max(max_h, iceberg[i][j]);
+            }
+        }
         ++t;
     }
     cout<<0;
