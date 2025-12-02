@@ -47,13 +47,53 @@ const auto strnpos=string::npos;
 // const int INF(INT_MAX/4);
 // const ll mod(1000000007);
 // const int offset(500000);
-// const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+void dfs(int x, int y){
+
+}
+
+void update_max_h(){
+    ;
+}
 
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    int N, M;
+    cin>>N>>M;
+    vvi iceberg(N, vi(M));
+    vvi sea(N, vi(M));
+    int max_h(0);
+    for(int i(0); i<N; ++i){
+        for(int j(0); j<N; ++j){
+            cin>>iceberg[i][j];
+            max_h=max(max_h, iceberg[i][j]);
+        }
+    }
+    int t(0);
+    while(max_h>0){
+        bool flag(false);
+        for(int i(0); i<N; ++i){
+            for(int j(0); j<M; ++j){
+                if(iceberg[i][j]){
+                    if(!flag){
+                        dfs(i, j);;
+                    }
+                    else{
+                        cout<<t;
+                        return 0;
+                    }
+                }
+            }
+        }
+        // update max_h
+        ++t;
+    }
+    cout<<0;
 
     return 0;
 }
