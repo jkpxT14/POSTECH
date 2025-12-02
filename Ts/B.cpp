@@ -55,5 +55,7 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    cout<<4;
+
     return 0;
 }
