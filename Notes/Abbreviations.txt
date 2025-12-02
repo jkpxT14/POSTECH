@@ -12,9 +12,9 @@ answer = ans
 result = res
 return = ret
 
-previous = prev
+previous = prev = prv
 current = cur
-next
+next = nxt
 
 coordinate = coord
 value = val
@@ -35,7 +35,7 @@ Directed Acyclic Graph = DAG
 
 snippet
 
-length
+length = len
 height
 width
 depth
