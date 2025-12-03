@@ -49,7 +49,8 @@ const auto strnpos=string::npos;
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
-void print_2D(const vvi &v, int type, int M, int N){
+template <typename TN>
+void print_2D(const vector<vector<TN>> &v, int type, int M, int N){
     for(int i(type); i<M+type; ++i){
         for(int j(type); j<N+type; ++j){
             cout<<v[i][j]<<' ';
@@ -58,11 +59,50 @@ void print_2D(const vvi &v, int type, int M, int N){
     }
 }
 
+int M;
+vi counterweight;
+int sum(0);
+vvb dp;
+
+void f(int cnt, int weight){
+    if(dp[cnt][weight]){
+        return;
+    }
+    dp[cnt][weight]=true;
+    if(cnt==M){
+        return;
+    }
+    f(cnt+1, weight);
+    f(cnt+1, weight+counterweight[cnt]);
+    f(cnt+1, abs(weight-counterweight[cnt]));
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    cin>>M;
+    counterweight.resize(M);
+    for(int i(0); i<M; ++i){
+        cin>>counterweight[i];
+        sum+=counterweight[i];
+    }
+    dp.resize(M+1, vb(sum+1, false));
+    f(0, 0);
+    int N;
+    cin>>N;
+    for(int i(0); i<N; ++i){
+        int target;
+        cin>>target;
+        if(target>sum || !dp[M][target]){
+            cout<<"N ";
+        }
+        else{
+            cout<<"Y ";
+        }
+    }
 
     return 0;
 }
