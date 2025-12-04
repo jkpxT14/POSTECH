@@ -65,5 +65,25 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int N, M, D;
+    cin>>N>>M>>D;
+    vvi h;
+    for(int i(0); i<N; ++i){
+        vi g(M);
+        for(int j(0); j<M; ++j){
+            cin>>g[j];
+        }
+        sort(g.begin(), g.end());
+        h.push_back(g);
+    }
+    for(int j(0); j<M; ++j){
+        for(int i(0); i<N-1; ++i){
+            if(h[i+1][j]+D-h[i][j]<=0){
+                cout<<"NO";
+                return 0;
+            }
+        }
+    }
+    cout<<"YES";
     return 0;
 }
