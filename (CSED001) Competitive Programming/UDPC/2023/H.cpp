@@ -39,6 +39,7 @@ using mii=map<int, int>;
 
 using vvvb=vector<vector<vector<bool>>>;
 using vvvvb=vector<vector<vector<vector<bool>>>>;
+using vvvvi=vector<vector<vector<vector<int>>>>;
 
 #define elif else if
 
@@ -59,11 +60,45 @@ void print_2D(const vector<vector<TN>> &v, int type, int M, int N){
     }
 }
 
+int mod(int x, int modulus){ // modulo
+    return ((x%modulus)+modulus)%modulus;
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    int N;
+    cin>>N;
+    vi t(N+1);
+    for(int i(1); i<=N; ++i){
+        cin>>t[i];
+    }
+
+    vvvvi dp(N+1, vvvi(10, vvi(10, vi(10, 25000))));
+    dp[0][0][0][0]=0;
+    for(int i(1); i<=N; ++i){
+        for(int j(0); j<=9; ++j){
+            for(int k(0); k<=9; ++k){
+                for(int l(0); l<=9; ++l){
+                    dp[i][t[i]][k][l]=min(dp[i][t[i]][k][l], dp[i-1][j][k][l]+min(mod(t[i]-j, 10), mod(j-t[i], 10)));
+                    dp[i][j][t[i]][l]=min(dp[i][j][t[i]][l], dp[i-1][j][k][l]+min(mod(t[i]-k, 10), mod(k-t[i], 10)));
+                    dp[i][j][k][t[i]]=min(dp[i][j][k][t[i]], dp[i-1][j][k][l]+min(mod(t[i]-l, 10), mod(l-t[i], 10)));
+                }
+            }
+        }
+    }
+    int ans(25000);
+    for(int j(0); j<=9; ++j){
+        for(int k(0); k<=9; ++k){
+            for(int l(0); l<=9; ++l){
+                ans=min(ans, dp[N][j][k][l]);
+            }
+        }
+    }
+    cout<<ans;
 
     return 0;
 }

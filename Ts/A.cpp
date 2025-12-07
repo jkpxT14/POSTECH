@@ -1,4 +1,4 @@
-// Last Update on 20251204
+// Last Update on 20251207
 
 #include <bits/stdc++.h>
 
@@ -39,6 +39,7 @@ using mii=map<int, int>;
 
 using vvvb=vector<vector<vector<bool>>>;
 using vvvvb=vector<vector<vector<vector<bool>>>>;
+using vvvvi=vector<vector<vector<vector<int>>>>;
 
 #define elif else if
 
@@ -57,6 +58,10 @@ void print_2D(const vector<vector<TN>> &v, int type, int M, int N){
         }
         cout<<'\n';
     }
+}
+
+int mod(int x, int modulus){ // modulo
+    return ((x%modulus)+modulus)%modulus;
 }
 
 int main(){

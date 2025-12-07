@@ -1,4 +1,4 @@
-// BOJ 1577: 도로의 개수
+// BOJ 1009: 분산처리
 
 #include <bits/stdc++.h>
 
@@ -64,6 +64,24 @@ int main(){
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    int T;
+    cin>>T;
+    while(T--){
+        int a, b;
+        cin>>a>>b;
+        int c(1);
+        for(int i(0); i<b; ++i){
+            c*=a;
+            c%=10;
+        }
+        if(c==0){
+            cout<<10<<'\n';
+        }
+        else{
+            cout<<c<<'\n';
+        }
+    }
 
     return 0;
 }
