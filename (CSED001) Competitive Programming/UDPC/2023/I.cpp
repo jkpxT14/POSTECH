@@ -70,5 +70,9 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int N, M;
+    cin>>N>>M;
+    vi u, v, d;
+
     return 0;
 }
