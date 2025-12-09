@@ -1,4 +1,4 @@
-// BOJ 27926: Quartet
+// BOJ 20303: 할로윈의 양아치
 
 #include <bits/stdc++.h>
 
@@ -80,11 +80,72 @@ int mod(int x, int modulus){ // modulo
     return ((x%modulus)+modulus)%modulus;
 }
 
+int N, M, K;
+vi c;
+vvi adj;
+vb vst;
+int cnt, sum;
+vpii d;
+
+void dfs(int x){
+    vst[x]=true;
+    ++cnt;
+    sum+=c[x];
+    for(int nx: adj[x]){
+        if(!vst[nx]){
+            dfs(nx);
+        }
+    }
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    cin>>N>>M>>K;
+    --K;
+    c.resize(N+1);
+    for(int i(1); i<=N; ++i){
+        cin>>c[i];
+    }
+    adj.resize(N+1);
+    for(int i(0); i<M; ++i){
+        int a, b;
+        cin>>a>>b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+    }
+    vst.assign(N+1, false);
+    for(int i(1); i<=N; ++i){
+        if(!vst[i]){
+            cnt=0;
+            sum=0;
+            dfs(i);
+            d.push_back({cnt, sum});
+        }
+    }
+    int D((int)d.size());
+    d.insert(d.begin(), {0, 0});
+    vvi dp(D+1, vi(K+1));
+    for(int i(0); i<=D; ++i){
+        dp[i][0]=0;
+    }
+    for(int j(0); j<=K; ++j){
+        dp[0][j]=0;
+    }
+    for(int i(1); i<=D; ++i){
+        for(int j(1); j<=K; ++j){
+            if(d[i].first<=j){
+                dp[i][j]=max(dp[i-1][j-d[i].first]+d[i].second, dp[i-1][j]);
+            }
+            else{
+                dp[i][j]=dp[i-1][j];
+            }
+        }
+    }
+    cout<<dp[D][K];
 
     return 0;
 }

@@ -1,4 +1,4 @@
-// BOJ 27926: Quartet
+// BOJ 1010: 다리 놓기
 
 #include <bits/stdc++.h>
 
@@ -51,22 +51,6 @@ const auto strnpos=string::npos;
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
 template <typename TN>
-void print_1D(const vector<TN> &v, int type, int N){
-    for(int i(type); i<N+type; ++i){
-        cout<<v[i]<<' ';
-    }
-    cout<<'\n';
-}
-
-template <typename TN1, typename TN2>
-void print_1D(const vector<pair<TN1, TN2>> &v, int type, int N){
-    for(int i(type); i<N+type; ++i){
-        cout<<'('<<v[i].first<<", "<<v[i].second<<") ";
-    }
-    cout<<'\n';
-}
-
-template <typename TN>
 void print_2D(const vector<vector<TN>> &v, int type, int M, int N){
     for(int i(type); i<M+type; ++i){
         for(int j(type); j<N+type; ++j){
@@ -85,6 +69,29 @@ int main(){
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    int T;
+    cin>>T;
+    while(T--){
+        int N, M;
+        cin>>N>>M;
+        vvi dp(M+1, vi(M+1));
+        dp[0][0]=1;
+        for(int i(1); i<=M; ++i){
+            dp[i][0]=1;
+            dp[i][1]=i;
+        }
+        for(int i(2); i<=M; ++i){
+            for(int j(2); j<=i; ++j){
+                if(i==j){
+                    dp[i][j]=1;
+                    continue;
+                }
+                dp[i][j]=dp[i-1][j-1]+dp[i-1][j];
+            }
+        }
+        cout<<dp[M][N]<<'\n';
+    }
 
     return 0;
 }

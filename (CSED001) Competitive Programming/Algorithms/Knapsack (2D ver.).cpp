@@ -1,4 +1,4 @@
-// BOJ 12865: 평범한 배낭
+// Reference: BOJ 12865: 평범한 배낭
 
 // #include <bits/stdc++.h>
 
