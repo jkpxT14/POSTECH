@@ -1,4 +1,4 @@
-// BOJ 27926: Quartet
+// BOJ 23817: 포항항
 
 #include <bits/stdc++.h>
 

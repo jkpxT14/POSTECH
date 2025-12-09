@@ -1,4 +1,4 @@
-// BOJ 27926: Quartet
+// BOJ 24460: 특별상이라도 받고 싶어
 
 #include <bits/stdc++.h>
 
@@ -51,22 +51,6 @@ const auto strnpos=string::npos;
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
 template <typename TN>
-void print_1D(const vector<TN> &v, int type, int N){
-    for(int i(type); i<N+type; ++i){
-        cout<<v[i]<<' ';
-    }
-    cout<<'\n';
-}
-
-template <typename TN1, typename TN2>
-void print_1D(const vector<pair<TN1, TN2>> &v, int type, int N){
-    for(int i(type); i<N+type; ++i){
-        cout<<'('<<v[i].first<<", "<<v[i].second<<") ";
-    }
-    cout<<'\n';
-}
-
-template <typename TN>
 void print_2D(const vector<vector<TN>> &v, int type, int M, int N){
     for(int i(type); i<M+type; ++i){
         for(int j(type); j<N+type; ++j){
@@ -80,11 +64,39 @@ int mod(int x, int modulus){ // modulo
     return ((x%modulus)+modulus)%modulus;
 }
 
+int N;
+vvi lottery;
+
+int g(int a, int b, int c, int d){
+    vi v{a, b, c, d};
+    sort(v.begin(), v.end());
+    return v[1];
+}
+
+int f(int x, int y, int n){
+    if(n==1){
+        return lottery[x][y];
+    }
+    if(n==2){
+        return g(lottery[x][y], lottery[x][y+1], lottery[x+1][y], lottery[x+1][y+1]);
+    }
+    return g(f(x, y, n/2), f(x, y+n/2, n/2), f(x+n/2, y, n/2), f(x+n/2, y+n/2, n/2));
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    cin>>N;
+    lottery.resize(N, vi(N));
+    for(int i(0); i<N; ++i){
+        for(int j(0); j<N; ++j){
+            cin>>lottery[i][j];
+        }
+    }
+    cout<<f(0, 0, N);
 
     return 0;
 }

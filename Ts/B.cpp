@@ -1,4 +1,4 @@
-// Last Update on 20251207
+// Last Update on 20251209
 
 #include <bits/stdc++.h>
 
@@ -49,6 +49,22 @@ const auto strnpos=string::npos;
 // const ll mod(1000000007);
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+template <typename TN>
+void print_1D(const vector<TN> &v, int type, int N){
+    for(int i(type); i<N+type; ++i){
+        cout<<v[i]<<' ';
+    }
+    cout<<'\n';
+}
+
+template <typename TN1, typename TN2>
+void print_1D(const vector<pair<TN1, TN2>> &v, int type, int N){
+    for(int i(type); i<N+type; ++i){
+        cout<<'('<<v[i].first<<", "<<v[i].second<<") ";
+    }
+    cout<<'\n';
+}
 
 template <typename TN>
 void print_2D(const vector<vector<TN>> &v, int type, int M, int N){
