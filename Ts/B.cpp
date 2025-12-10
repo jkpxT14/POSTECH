@@ -1,4 +1,4 @@
-// Last Update on 20251209
+// Last Update on 20251211
 
 #include <bits/stdc++.h>
 
@@ -45,10 +45,17 @@ using vvvvi=vector<vector<vector<vector<int>>>>;
 
 const auto strnpos=string::npos;
 
-// const int INF(INT_MAX/4);
-// const ll mod(1000000007);
-// const int offset(500000);
-// const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+template <typename TN1, typename TN2>
+pair<TN1, TN2> operator+(const pair<TN1, TN2> &x, const pair<TN1, TN2> &y){
+    return {x.first+y.first, x.second+y.second};
+}
+
+template <typename TN1, typename TN2>
+pair<TN1, TN2> & operator+=(pair<TN1, TN2> &x, const pair<TN1, TN2> &y){
+    x.first+=y.first;
+    x.second+=y.second;
+    return x;
+}
 
 template <typename TN>
 void print_1D(const vector<TN> &v, int type, int N){
@@ -79,6 +86,11 @@ void print_2D(const vector<vector<TN>> &v, int type, int M, int N){
 int mod(int x, int modulus){ // modulo
     return ((x%modulus)+modulus)%modulus;
 }
+
+// const int INF(INT_MAX/4);
+// const ll mod(1000000007);
+// const int offset(500000);
+// const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
 int main(){
     ios_base::sync_with_stdio(false);
