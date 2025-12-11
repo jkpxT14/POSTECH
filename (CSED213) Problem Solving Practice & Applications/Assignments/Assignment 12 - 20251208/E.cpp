@@ -1,0 +1,1 @@
+// https://github.com/jkpxT14/POSTECH/blob/main/(CSED001)%20Competitive%20Programming/IOI/2010/Quality%20of%20Living.cpp
