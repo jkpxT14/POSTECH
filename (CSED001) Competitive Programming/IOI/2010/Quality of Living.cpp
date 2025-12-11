@@ -98,5 +98,72 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int R, C, H, W;
+    cin>>R>>C>>H>>W;
+    vvi Q(R, vi(C));
+    for(int i(0); i<R; ++i){
+        for(int j(0); j<C; ++j){
+            cin>>Q[i][j];
+        }
+    }
+
+    int left(1), right(R*C);
+    while(left<=right){
+        int mid((left+right)>>1);
+
+        vvi check(R, vi(C));
+        for(int i(0); i<R; ++i){
+            for(int j(0); j<C; ++j){
+                if(Q[i][j]<mid){
+                    check[i][j]=-1;
+                }
+                elif(Q[i][j]==mid){
+                    check[i][j]=0;
+                }
+                else{
+                    check[i][j]=1;
+                }
+            }
+        }
+
+        vvi P(R, vi(C));
+        P[0][0]=check[0][0];
+        for(int i(1); i<R; ++i){
+            P[i][0]=check[i][0]+P[i-1][0];
+        }
+        for(int j(1); j<C; ++j){
+            P[0][j]=check[0][j]+P[0][j-1];
+        }
+        for(int i(1); i<R; ++i){
+            for(int j(1); j<C; ++j){
+                P[i][j]=check[i][j]+P[i][j-1]+P[i-1][j]-P[i-1][j-1];
+            }
+        }
+
+        int flag(INT_MAX);
+        flag=min(flag, P[H-1][W-1]);
+        for(int i(H); i<R; ++i){
+            flag=min(flag, P[i][W-1]-P[i-H][W-1]);
+        }
+        for(int j(W); j<C; ++j){
+            flag=min(flag, P[H-1][j]-P[H-1][j-W]);
+        }
+        for(int i(H); i<R; ++i){
+            for(int j(W); j<C; ++j){
+                flag=min(flag, P[i][j]-P[i-H][j]-P[i][j-W]+P[i-H][j-W]);
+            }
+        }
+        if(flag>0){
+            left=mid+1;
+        }
+        elif(flag==0){
+            cout<<mid;
+            return 0;
+        }
+        else{
+            right=mid-1;
+        }
+    }
+
     return 0;
 }
