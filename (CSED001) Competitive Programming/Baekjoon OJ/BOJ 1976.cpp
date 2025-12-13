@@ -1,4 +1,4 @@
-// Last Update on 20251213
+// BOJ 1967: 트리의 지름
 
 #include <bits/stdc++.h>
 
@@ -92,11 +92,48 @@ int mod(int x, int modulus){ // modulo
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
+int n;
+vvpii tree;
+vb vst;
+int dia_nd; // dia_nd=diameter_node
+int ans;
+
+void dfs(int cur, int dist){
+    vst[cur]=true;
+    if(dist>ans){
+        dia_nd=cur;
+        ans=dist;
+    }
+    for(auto [nxt, weight]: tree[cur]){
+        if(!vst[nxt]){
+            dfs(nxt, dist+weight);
+        }
+    }
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    cin>>n;
+    tree.resize(n+1);
+    for(int i(0); i<n-1; ++i){
+        int a, b, c;
+        cin>>a>>b>>c;
+        tree[a].push_back({b, c});
+        tree[b].push_back({a, c});
+    }
+
+    vst.assign(n+1, false);
+    ans=0;
+    dfs(1, 0);
+    vst.assign(n+1, false);
+    ans=0;
+    dfs(dia_nd, 0);
+
+    cout<<ans;
 
     return 0;
 }
