@@ -1,4 +1,4 @@
-// Last Update on 20251213
+// Last Update on 20251214
 
 #include <bits/stdc++.h>
 
@@ -36,6 +36,7 @@ using pqig=priority_queue<int, vector<int>, greater<int>>;
 using pqll=priority_queue<long long>;
 using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
 using mii=map<int, int>;
+using umii=unordered_map<int, int>;
 
 using vvvb=vector<vector<vector<bool>>>;
 using vvvvb=vector<vector<vector<vector<bool>>>>;
