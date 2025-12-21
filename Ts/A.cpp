@@ -1,5 +1,3 @@
-// Last Update on 20251214
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -89,7 +87,7 @@ int mod(int x, int modulus){ // modulo
 }
 
 // const int INF(INT_MAX/4);
-// const ll mdls(1000000007);
+// const ll mdls(1000000007LL);
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 

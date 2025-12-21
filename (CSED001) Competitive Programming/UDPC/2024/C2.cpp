@@ -89,7 +89,7 @@ int mod(int x, int modulus){ // modulo
 }
 
 // const int INF(INT_MAX/4);
-// const ll mdls(1000000007);
+const ll mdls(1000000007LL);
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
@@ -98,6 +98,37 @@ int main(){
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    int N, M, D;
+    cin>>N>>M>>D;
+    vvi h(N+1, vi(M+1));
+    for(int i(1); i<N+1; ++i){
+        for(int j(1); j<M+1; ++j){
+            cin>>h[i][j];
+            h[i][j]+=D*i;
+        }
+        sort(h[i].begin()+1, h[i].end());
+    }
+    ll ans(1);
+    for(int i(1); i<M+1; ++i){
+        ans*=((ll)i%mdls);
+        ans%=mdls;
+    }
+    for(int i(2); i<N+1; ++i){
+        for(int j(1); j<M+1; ++j){
+            int cnt(0);
+            while(h[i-1][cnt+1]<h[i][j] && cnt<M){
+                ++cnt;
+            }
+            cnt-=(j-1);
+            if(cnt<0){
+                cnt=0;
+            }
+            ans*=((ll)cnt%mdls);
+            ans%=mdls;
+        }
+    }
+    cout<<ans;
 
     return 0;
 }
