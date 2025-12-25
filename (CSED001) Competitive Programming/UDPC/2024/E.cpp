@@ -99,5 +99,57 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int T;
+    cin>>T;
+    while(T--){
+        int N;
+        cin>>N;
+        vi A(N+1);
+        for(int i(1); i<N+1; ++i){
+            cin>>A[i];
+        }
+        int u(0), df(0), db(0), pf(0), pb(0);
+        bool flag(false);
+        for(int i(1); i<N+1; ++i){
+            if(A[i]==u+1){
+                ++u;
+                while(u+1==df || u+1==pf){
+                    if(u+1==df){
+                        u=db;
+                        df=0;
+                        db=0;
+                    }
+                    if(u+1==pf){
+                        u=pb;
+                        pf=0;
+                        pb=0;
+                    }
+                }
+            }
+            elif(A[i]==db+1){
+                ++db;
+            }
+            elif(A[i]==pb+1){
+                ++pb;
+            }
+            elif(!df){
+                df=A[i];
+                db=A[i];
+            }
+            elif(!pf){
+                pf=A[i];
+                pb=A[i];
+            }
+            else{
+                cout<<"NO\n";
+                flag=true;
+                break;
+            }
+        }
+        if(!flag){
+            cout<<"YES\n";
+        }
+    }
+
     return 0;
 }
