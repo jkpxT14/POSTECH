@@ -99,5 +99,48 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int N, K;
+    cin>>N>>K;
+    vstr S(2);
+    cin>>S[0]>>S[1];
+
+    for(int i(0); i<N; ++i){
+        if((S[0][i]=='#' && S[1][i]=='#') || (i+1<N && S[0][i]=='#' && S[1][i+1]=='#') || (i+1<N && S[1][i]=='#' && S[0][i+1]=='#')){
+            cout<<-1;
+            return 0;
+        }
+    }
+    if(K>1 && ((S[0][N-1]=='#' && S[1][0]=='#') || (S[1][N-1]=='#' && S[0][0]=='#'))){
+        cout<<-1;
+        return 0;
+    }
+    
+    vi obstacle;
+    for(int i(0); i<N; ++i){
+        if(S[0][i]=='#'){
+            obstacle.push_back(0);
+        }
+        elif(S[1][i]=='#'){
+            obstacle.push_back(1);
+        }
+    }
+    int O((int)obstacle.size());
+    if(O==0 || O==1){
+        cout<<(ll)((ll)N*(ll)K-1LL);
+        return 0;
+    }
+
+    ll ans(0);
+    for(int i(0); i<O-1; ++i){
+        if(obstacle[i]!=obstacle[i+1]){
+            ++ans;
+        }
+    }
+    ans*=(ll)K;
+    if(obstacle[O-1]!=obstacle[0]){
+        ans+=(ll)(K-1);
+    }
+    ans+=(ll)((ll)N*(ll)K-1LL);
+    cout<<ans;
     return 0;
 }
