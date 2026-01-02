@@ -41,6 +41,8 @@ using umii=unordered_map<int, int>;
 using vvvb=vector<vector<vector<bool>>>;
 using vvvvb=vector<vector<vector<vector<bool>>>>;
 using vvvvi=vector<vector<vector<vector<int>>>>;
+using vvstr=vector<vector<string>>;
+using vpvii=vector<pair<vector<int>, int>>;
 
 #define elif else if
 
@@ -99,5 +101,76 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int M, K;
+    cin>>M>>K;
+    vi A(K);
+    for(int i(0); i<K; ++i){
+        cin>>A[i]; --A[i];
+    }
+    vvstr S(M, vstr(2));
+    vi N(M);
+    for(int i(0); i<M; ++i){
+        cin>>S[i][0]>>S[i][1];
+        N[i]=S[i][0].size();
+    }
+
+    vb ok(M, true);
+    for(int i(0); i<M; ++i){
+        for(int j(0); j<N[i]; ++j){
+            if((S[i][0][j]=='#' && S[i][1][j]=='#') || (j+1<N[i] && S[i][0][j]=='#' && S[i][1][j+1]=='#') || (j+1<N[i] && S[i][0][j+1]=='#' && S[i][1][j]=='#')){
+                ok[i]=false;
+            }
+        }
+    }
+    for(int i(0); i<K; ++i){
+        if(!ok[A[i]]){
+            cout<<-1;
+            return 0;
+        }
+    }
+    for(int i(0); i<K-1; ++i){
+        if((S[A[i]][0][N[A[i]]-1]=='#' && S[A[i+1]][1][0]=='#') || (S[A[i]][1][N[A[i]]-1]=='#' && S[A[i+1]][0][0]=='#')){
+            cout<<-1;
+            return 0;
+        }
+    }
+
+    vpvii ob(M, {vi(0), 0}); // ob = obstacle
+    for(int i(0); i<M; ++i){
+        for(int j(0); j<N[i]; ++j){
+            if(S[i][0][j]=='#'){
+                if(!ob[i].first.empty() && ob[i].first.back()==1){
+                    ++ob[i].second;
+                }
+                ob[i].first.push_back(0);
+            }
+            elif(S[i][1][j]=='#'){
+                if(!ob[i].first.empty() && ob[i].first.back()==0){
+                    ++ob[i].second;
+                }
+                ob[i].first.push_back(1);
+            }
+        }
+    }
+
+    ll ans(0);
+    int prv(-1);
+    for(int i(0); i<K; ++i){
+        ans+=(ll)ob[A[i]].second;
+        if(prv==-1 && !ob[A[i]].first.empty()){
+            prv=ob[A[i]].first.back();
+        }
+        elif(!ob[A[i]].first.empty()){
+            if(prv!=ob[A[i]].first.front()){
+                ++ans;
+            }
+            prv=ob[A[i]].first.back();
+        }
+    }
+    for(int i(0); i<K; ++i){
+        ans+=(ll)N[A[i]];
+    }
+    --ans;
+    cout<<ans;
     return 0;
 }
