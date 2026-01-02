@@ -39,6 +39,8 @@ using umii=unordered_map<int, int>;
 using vvvb=vector<vector<vector<bool>>>;
 using vvvvb=vector<vector<vector<vector<bool>>>>;
 using vvvvi=vector<vector<vector<vector<int>>>>;
+using vvstr=vector<vector<string>>;
+using vpvii=vector<pair<vector<int>, int>>;
 
 #define elif else if
 
