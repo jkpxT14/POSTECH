@@ -43,6 +43,8 @@ using vvvvb=vector<vector<vector<vector<bool>>>>;
 using vvvvi=vector<vector<vector<vector<int>>>>;
 using vvstr=vector<vector<string>>;
 using vpvii=vector<pair<vector<int>, int>>;
+using tiiii=tuple<int, int, int, int>;
+using dqtiiii=deque<tuple<int, int, int, int>>;
 
 #define elif else if
 
@@ -94,6 +96,7 @@ int mod(int x, int modulus){ // modulo
 // const ll mdls(1000000007LL);
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+const vpii UDLR{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -101,5 +104,101 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int N;
+    cin>>N;
+    vvc maze(N, vc(N));
+    pii start, end;
+    for(int i(0); i<N; ++i){
+        for(int j(0); j<N; ++j){
+            cin>>maze[i][j];
+            if(maze[i][j]=='S'){
+                start={i, j};
+            }
+            elif(maze[i][j]=='E'){
+                end={i, j};
+            }
+        }
+    }
+    string cD1, cP1;
+    cin>>cD1>>cP1;
+    cD1.insert(0, "N"); cP1.insert(0, "N");
+    vi cD2, cP2;
+    for(int i(0); i<cD1.size(); ++i){
+        if(cD1[i]=='N'){
+            cD2.push_back(-1);
+        }
+        elif(cD1[i]=='U'){
+            cD2.push_back(0);
+        }
+        elif(cD1[i]=='D'){
+            cD2.push_back(1);
+        }
+        elif(cD1[i]=='L'){
+            cD2.push_back(2);
+        }
+        elif(cD1[i]=='R'){
+            cD2.push_back(3);
+        }
+    }
+    for(int i(0); i<cP1.size(); ++i){
+        if(cP1[i]=='N'){
+            cP2.push_back(-1);
+        }
+        elif(cP1[i]=='U'){
+            cP2.push_back(0);
+        }
+        elif(cP1[i]=='D'){
+            cP2.push_back(1);
+        }
+        elif(cP1[i]=='L'){
+            cP2.push_back(2);
+        }
+        elif(cP1[i]=='R'){
+            cP2.push_back(3);
+        }
+    }
+
+    dqtiiii q;
+    vvvvb vst(cD2.size(), vvvb(cP2.size(), vvb(N, vb(N, false))));
+    q.push_back({0, 0, start.first, start.second});
+    vst[0][0][start.first][start.second]=true;
+    while(!q.empty()){
+        tiiii cur(q.front());
+        q.pop_front();
+        if(get<2>(cur)==end.first && get<3>(cur)==end.second){
+            cout<<get<0>(cur)+get<1>(cur);
+            return 0;
+        }
+        tiiii nxt;
+        if(get<0>(cur)<cD2.size()-1){
+            nxt={get<0>(cur)+1, get<1>(cur), get<2>(cur)+UDLR[cD2[get<0>(cur)+1]].first, get<3>(cur)+UDLR[cD2[get<0>(cur)+1]].second};
+            if(!(0<=get<2>(nxt) && get<2>(nxt)<N && 0<=get<3>(nxt) && get<3>(nxt)<N && maze[get<2>(nxt)][get<3>(nxt)]!='#')){
+                nxt={get<0>(cur)+1, get<1>(cur), get<2>(cur), get<3>(cur)};
+                if(!vst[get<0>(nxt)][get<1>(nxt)][get<2>(nxt)][get<3>(nxt)]){
+                    q.push_back(nxt);
+                    vst[get<0>(nxt)][get<1>(nxt)][get<2>(nxt)][get<3>(nxt)]=true;
+                }
+            }
+            elif(!vst[get<0>(nxt)][get<1>(nxt)][get<2>(nxt)][get<3>(nxt)]){
+                q.push_back(nxt);
+                vst[get<0>(nxt)][get<1>(nxt)][get<2>(nxt)][get<3>(nxt)]=true;
+            }
+        }
+        if(get<1>(cur)<cP2.size()-1){
+            nxt={get<0>(cur), get<1>(cur)+1, get<2>(cur)+UDLR[cP2[get<1>(cur)+1]].first, get<3>(cur)+UDLR[cP2[get<1>(cur)+1]].second};
+            if(!(0<=get<2>(nxt) && get<2>(nxt)<N && 0<=get<3>(nxt) && get<3>(nxt)<N && maze[get<2>(nxt)][get<3>(nxt)]!='#')){
+                nxt={get<0>(cur), get<1>(cur)+1, get<2>(cur), get<3>(cur)};
+                if(!vst[get<0>(nxt)][get<1>(nxt)][get<2>(nxt)][get<3>(nxt)]){
+                    q.push_back(nxt);
+                    vst[get<0>(nxt)][get<1>(nxt)][get<2>(nxt)][get<3>(nxt)]=true;
+                }
+            }
+            elif(!vst[get<0>(nxt)][get<1>(nxt)][get<2>(nxt)][get<3>(nxt)]){
+                q.push_back(nxt);
+                vst[get<0>(nxt)][get<1>(nxt)][get<2>(nxt)][get<3>(nxt)]=true;
+            }
+        }
+    }
+    cout<<-1;
     return 0;
 }

@@ -41,6 +41,8 @@ using vvvvb=vector<vector<vector<vector<bool>>>>;
 using vvvvi=vector<vector<vector<vector<int>>>>;
 using vvstr=vector<vector<string>>;
 using vpvii=vector<pair<vector<int>, int>>;
+using tiiii=tuple<int, int, int, int>;
+using dqtiiii=deque<tuple<int, int, int, int>>;
 
 #define elif else if
 
@@ -92,6 +94,7 @@ int mod(int x, int modulus){ // modulo
 // const ll mdls(1000000007LL);
 // const int offset(500000);
 // const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+// const vpii UDLR{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
 int main(){
     ios_base::sync_with_stdio(false);
