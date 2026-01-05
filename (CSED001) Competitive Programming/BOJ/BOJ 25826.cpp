@@ -1,4 +1,4 @@
-// BOJ 31722: 산수화
+// BOJ 25826: 2차원 배열 다중 업데이트 단일 합
 
 #include <bits/stdc++.h>
 
@@ -103,6 +103,49 @@ int main(){
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    int n, m;
+    cin>>n>>m;
+    vvll A(n, vll(n));
+    for(int i(0); i<n; ++i){
+        for(int j(0); j<n; ++j){
+            cin>>A[i][j];
+        }
+    }
+    vvll IMOS(n+1, vll(n+1, 0));
+    for(int i(0); i<m-1; ++i){
+        int temp, i1, j1, i2, j2;
+        ll k;
+        cin>>temp>>i1>>j1>>i2>>j2>>k;
+        IMOS[i1][j1]+=k;
+        IMOS[i2+1][j2+1]+=k;
+        IMOS[i1][j2+1]-=k;
+        IMOS[i2+1][j1]-=k;
+    }
+    for(int i(1); i<n+1; ++i){
+        for(int j(0); j<n+1; ++j){
+            IMOS[i][j]+=IMOS[i-1][j];
+        }
+    }
+    for(int i(0); i<n+1; ++i){
+        for(int j(1); j<n+1; ++j){
+            IMOS[i][j]+=IMOS[i][j-1];
+        }
+    }
+    for(int i(0); i<n; ++i){
+        for(int j(0); j<n; ++j){
+            A[i][j]+=IMOS[i][j];
+        }
+    }
+    int temp, i1, j1, i2, j2;
+    cin>>temp>>i1>>j1>>i2>>j2;
+    ll ans(0);
+    for(int i(i1); i<=i2; ++i){
+        for(int j(j1); j<=j2; ++j){
+            ans+=A[i][j];
+        }
+    }
+    cout<<ans;
 
     return 0;
 }

@@ -102,5 +102,34 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int N;
+    cin>>N;
+    vvi IMOS(11, vi(11, 0));
+    for(int i(0); i<N; ++i){
+        int x1, y1, x2, y2, c;
+        cin>>x1>>y1>>x2>>y2>>c;
+        IMOS[x1][y1]+=c;
+        IMOS[x2][y2]+=c;
+        IMOS[x1][y2]-=c;
+        IMOS[x2][y1]-=c;
+    }
+    // for(int i(1); i<11; ++i){
+    //     for(int j(0); j<11; ++j){
+    //         IMOS[i][j]+=IMOS[i-1][j];
+    //     }
+    // }
+    // for(int i(0); i<11; ++i){
+    //     for(int j(1); j<11; ++j){
+    //         IMOS[i][j]+=IMOS[i][j-1];
+    //     }
+    // }
+    for(int i(0); i<11; ++i){
+        for(int j(0); j<11; ++j){
+            int up(i>0?IMOS[i-1][j]:0), left(j>0?IMOS[i][j-1]:0), diag((i>0 && j>0)?IMOS[i-1][j-1]:0);
+            IMOS[i][j]+=up+left-diag;
+        }
+    }
+    print_2D(IMOS, 0, 11, 11);
+
     return 0;
 }
