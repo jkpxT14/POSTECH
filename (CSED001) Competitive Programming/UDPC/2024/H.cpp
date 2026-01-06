@@ -63,25 +63,25 @@ pair<TN1, TN2> & operator+=(pair<TN1, TN2> &x, const pair<TN1, TN2> &y){
 }
 
 template <typename TN>
-void print_1D(const vector<TN> &v, int type, int N){
-    for(int i(type); i<N+type; ++i){
+void print_1D(const vector<TN> &v, int i1, int i2){
+    for(int i(i1); i<=i2; ++i){
         cout<<v[i]<<' ';
     }
     cout<<'\n';
 }
 
 template <typename TN1, typename TN2>
-void print_1D(const vector<pair<TN1, TN2>> &v, int type, int N){
-    for(int i(type); i<N+type; ++i){
+void print_1D(const vector<pair<TN1, TN2>> &v, int i1, int i2){
+    for(int i(i1); i<=i2; ++i){
         cout<<'('<<v[i].first<<", "<<v[i].second<<") ";
     }
     cout<<'\n';
 }
 
 template <typename TN>
-void print_2D(const vector<vector<TN>> &v, int type, int M, int N){
-    for(int i(type); i<M+type; ++i){
-        for(int j(type); j<N+type; ++j){
+void print_2D(const vector<vector<TN>> &v, int i1, int i2, int j1, int j2){
+    for(int i(i1); i<=i2; ++i){
+        for(int j(j1); j<=j2; ++j){
             cout<<v[i][j]<<' ';
         }
         cout<<'\n';
@@ -103,6 +103,49 @@ int main(){
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    int N, M;
+    cin>>N>>M;
+    vvc lp(N+1, vc(M+1)); // lp = landscape painting
+    for(int i(1); i<=N; ++i){
+        for(int j(1); j<=M; ++j){
+            cin>>lp[i][j];
+        }
+    }
+
+    vvi MT(N+1, vi(M+1)), LK(N+1, vi(M+1)); // MT = MounTain, LK = LaKe
+    for(int i(N); i>=1; --i){
+        for(int j(1); j<=M; ++j){
+            if(lp[i][j]=='#'){
+                MT[i][j]=min(((i+1<=N && j-1>=1)?MT[i+1][j-1]:0), min((i+1<=N?MT[i+1][j]:0), ((i+1<=N && j+1<=M)?MT[i+1][j+1]:0)))+1;
+            } else{
+                MT[i][j]=0;
+            }
+        }
+    }
+    for(int i(1); i<=N; ++i){
+        for(int j(1); j<=M; ++j){
+            if(lp[i][j]=='.'){
+                LK[i][j]=min(((i-1>=1 && j-1>=1)?LK[i-1][j-1]:0), min((i-1>=1?LK[i-1][j]:0), (j-1>=1?LK[i][j-1]:0)))+1;
+            } else{
+                LK[i][j]=0;
+            }
+        }
+    }
+
+    vi A(N+2, 0), B(N+2, 0);
+    for(int i(1); i<=N; ++i){
+        for(int j(1); j<=M; ++j){
+            ++A[0]; --A[MT[i][j]+1];
+            ++B[0]; --B[LK[i][j]+1];
+        }
+    }
+    for(int i(1); i<=N+1; ++i){
+        A[i]+=A[i-1];
+        B[i]+=B[i-1];
+    }
+    print_1D(A, 1, N);
+    print_1D(B, 1, N);
 
     return 0;
 }
