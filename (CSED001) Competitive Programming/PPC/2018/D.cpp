@@ -104,5 +104,32 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int a, b;
+    cin>>a>>b;
+
+    vvb dp(a+1, vb(b+1, false));
+    for(int i(0); i<=a; ++i){
+        for(int j(0); j<=b; ++j){
+            if(i-1>=0 && !dp[i-1][j]){
+                dp[i][j]=true;
+            }
+            if(j-1>=0 && !dp[i][j-1]){
+                dp[i][j]=true;
+            }
+            if(i-3>=0 && j-1>=0 && !dp[i-3][j-1]){
+                dp[i][j]=true;
+            }
+            if(i-1>=0 && j-3>=0 && !dp[i-1][j-3]){
+                dp[i][j]=true;
+            }
+        }
+    }
+
+    if(dp[a][b]){
+        cout<<"Alice";
+    } else{
+        cout<<"Bob";
+    }
+
     return 0;
 }
