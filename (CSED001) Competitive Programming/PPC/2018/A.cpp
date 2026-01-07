@@ -104,5 +104,25 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
+    int k, l;
+    cin>>k>>l;
+    k%=26;
+    string s1, s2;
+    cin.ignore();
+    getline(cin, s1);
+
+    assert(s1.size()==l);
+
+    for(int i(0); i<l; ++i){
+        if(65<=int(s1[i]) && int(s1[i])<=90){
+            s2.push_back(char((65<=(int(s1[i])+k) && (int(s1[i])+k)<=90)?(int(s1[i])+k):(int(s1[i])+k-26)));
+        } elif(97<=int(s1[i]) && int(s1[i])<=122){
+            s2.push_back(char((97<=(int(s1[i])+k) && (int(s1[i])+k)<=122)?(int(s1[i])+k):(int(s1[i])+k-26)));
+        } else{
+            s2.push_back(s1[i]);
+        }
+    }
+    cout<<s2;
+
     return 0;
 }
