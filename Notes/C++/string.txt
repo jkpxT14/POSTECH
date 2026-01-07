@@ -26,3 +26,6 @@ b.find(a, pos)
 b.find(a)!=string::npos
 
 string::npos // no position
+
+cin.ignore();
+getline(cin, s);
