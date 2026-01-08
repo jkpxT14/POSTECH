@@ -2,7 +2,7 @@ vector<int> v;
 vector<int> v(N);
 vector<int> v(N, val);
 vector<int> v{1, 2, 3, ...};
-vector<int> v({1, 2, 3, ...});
+// vector<int> v({1, 2, 3, ...});
 vector<int> v2(v1);
 
 list<int> l{1, 2, 3, ...};

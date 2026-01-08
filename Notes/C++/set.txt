@@ -1,0 +1,23 @@
+set<int> s;
+
+vector<int> v{1, 2, 3};
+set<int> s(v.begin(), v.end());
+
+s.begin()
+s.end()
+s.rbegin()
+s.rend()
+
+s.empty()
+s.size()
+
+s.insert()
+s.erase()
+s.clear()
+s.swap()
+
+s.find()
+s.count()
+// s.lower_bound()
+// s.upper_bound()
+// s.equal_range()
