@@ -43,6 +43,7 @@ using vvstr=vector<vector<string>>;
 using vpvii=vector<pair<vector<int>, int>>;
 using tiiii=tuple<int, int, int, int>;
 using dqtiiii=deque<tuple<int, int, int, int>>;
+using si=set<int>;
 
 #define elif else if
 

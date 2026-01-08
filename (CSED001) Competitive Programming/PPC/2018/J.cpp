@@ -45,6 +45,7 @@ using vvstr=vector<vector<string>>;
 using vpvii=vector<pair<vector<int>, int>>;
 using tiiii=tuple<int, int, int, int>;
 using dqtiiii=deque<tuple<int, int, int, int>>;
+using si=set<int>;
 
 #define elif else if
 
@@ -103,6 +104,47 @@ int main(){
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    int L, I, T, F, O, A, C, K;
+    const int S(1);
+    for(L=2; L<=15; ++L){
+        for(I=0; I<=15; ++I){
+            for(T=0; T<=15; ++T){
+                for(F=2; F<=15; ++F){
+                    for(O=0; O<=15; ++O){
+                        si used;
+                        used.insert(S);
+                        used.insert(L);
+                        used.insert(I);
+                        used.insert(T);
+                        used.insert(F);
+                        used.insert(O);
+                        if(used.size()<6){
+                            continue;
+                        }
+                        int sum((16*16*16*L+16*16*I+16*S+T)+(16*16*16*F+16*16*I+16*L+O));
+                        if(sum<16*16*16*16){
+                            continue;
+                        }
+                        K=sum%16; sum/=16;
+                        C=sum%16; sum/=16;
+                        A=sum%16; sum/=16;
+                        if(T!=sum%16) continue;
+                        sum/=16;
+                        if(S!=sum%16) continue;
+                        sum/=16;
+                        used.insert(K);
+                        used.insert(C);
+                        used.insert(A);
+                        if(used.size()<9){
+                            continue;
+                        }
+                        cout<<hex<<L<<I<<S<<T<<" + "<<F<<I<<L<<O<<" = "<<S<<T<<A<<C<<K<<dec<<'\n';
+                    }
+                }
+            }
+        }
+    }
 
     return 0;
 }
