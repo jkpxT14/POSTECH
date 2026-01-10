@@ -1,0 +1,1 @@
+// BOJ 33957: Golden Section Search
