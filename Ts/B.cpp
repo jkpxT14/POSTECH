@@ -4,7 +4,7 @@ using namespace std;
 
 using ll=long long;
 using pii=pair<int, int>;
-using pll=pair<long long, long long>;
+using pllll=pair<long long, long long>;
 using pci=pair<char, int>;
 using pipii=pair<int, pair<int, int>>;
 using ppiii=pair<pair<int, int>, int>;
@@ -15,7 +15,7 @@ using vb=vector<bool>;
 using vc=vector<char>;
 using vstr=vector<string>;
 using vpii=vector<pair<int, int>>;
-using vpll=vector<pair<long long, long long>>;
+using vpllll=vector<pair<long long, long long>>;
 using vpci=vector<pair<char, int>>;
 using vpipii=vector<pair<int, pair<int, int>>>;
 using vppiii=vector<pair<pair<int, int>, int>>;
