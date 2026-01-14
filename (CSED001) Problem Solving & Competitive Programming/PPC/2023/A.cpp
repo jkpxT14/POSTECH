@@ -105,7 +105,16 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    
+    int N;
+    cin>>N;
+    int T(0);
+    for(int i(1); i<=N; ++i){
+        int t;
+        cin>>t;
+        T+=t;
+    }
+    T+=8*(N-1);
+    cout<<T/24<<' '<<T%24;
 
     return 0;
 }
