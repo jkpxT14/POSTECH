@@ -39,3 +39,5 @@ length = len
 height
 width
 depth
+
+Binary Indexed Tree = BIT
