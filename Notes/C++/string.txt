@@ -22,7 +22,8 @@ a.substr(pos, len)
 
 string a, b;
 b.find(a)
-b.find(a, pos)
+b.find(a, pos) // pos부터 검색
+b.find(a, pos, num)
 b.find(a)!=string::npos
 
 string::npos // no position
