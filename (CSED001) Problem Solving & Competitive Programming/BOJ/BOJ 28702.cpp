@@ -1,4 +1,4 @@
-// BOJ 25083: 새싹
+// BOJ 28702: FizzBuzz
 
 #include <bits/stdc++.h>
 
@@ -64,17 +64,25 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    cout<<"         ,r'\"7";
-    cout<<'\n';
-    cout<<"r`-_   ,'  ,/";
-    cout<<'\n';
-    cout<<" \\. \". L_r'";
-    cout<<'\n';
-    cout<<"   `~\\/";
-    cout<<'\n';
-    cout<<"      |";
-    cout<<'\n';
-    cout<<"      |";
-
-    return 0;
+    set<string> FB{"FizzBuzz", "Fizz", "Buzz"};
+    vector<string> s(3);
+    cin>>s[0]>>s[1]>>s[2];
+    for(int i(2); i>=0; --i){
+        if(FB.find(s[i])==FB.end()){
+            int nxt(stoi(s[i])+3-i);
+            if(nxt%15==0){
+                cout<<"FizzBuzz";
+                return 0;
+            } elif(nxt%3==0){
+                cout<<"Fizz";
+                return 0;
+            } elif(nxt%5==0){
+                cout<<"Buzz";
+                return 0;
+            } else{
+                cout<<nxt;
+                return 0;
+            }
+        }
+    }
 }

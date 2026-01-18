@@ -1,4 +1,4 @@
-// BOJ 25083: 새싹
+// BOJ 15829: Hashing
 
 #include <bits/stdc++.h>
 
@@ -64,17 +64,24 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    cout<<"         ,r'\"7";
-    cout<<'\n';
-    cout<<"r`-_   ,'  ,/";
-    cout<<'\n';
-    cout<<" \\. \". L_r'";
-    cout<<'\n';
-    cout<<"   `~\\/";
-    cout<<'\n';
-    cout<<"      |";
-    cout<<'\n';
-    cout<<"      |";
+    const ll r(31), M(1234567891);
+    vector<ll> p(51, 1);
+    for(int i(0); i<=50; ++i){
+        for(int j(0); j<i; ++j){
+            p[i]*=r;
+            p[i]%=M;
+        }
+    }
+    int L;
+    cin>>L;
+    ll H(0);
+    for(int i(0); i<L; ++i){
+        char c;
+        cin>>c;
+        H+=(ll(c)-ll('a')+1)*p[i];
+        H%=M;
+    }
+    cout<<H;
 
     return 0;
 }

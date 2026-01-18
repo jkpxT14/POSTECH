@@ -1,4 +1,4 @@
-// BOJ 25083: 새싹
+// BOJ 2231: Digit Generator
 
 #include <bits/stdc++.h>
 
@@ -64,17 +64,22 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    cout<<"         ,r'\"7";
-    cout<<'\n';
-    cout<<"r`-_   ,'  ,/";
-    cout<<'\n';
-    cout<<" \\. \". L_r'";
-    cout<<'\n';
-    cout<<"   `~\\/";
-    cout<<'\n';
-    cout<<"      |";
-    cout<<'\n';
-    cout<<"      |";
-
+    auto digit_sum=[](int N) -> int {
+        int sum(N);
+        while(N){
+            sum+=N%10;
+            N/=10;
+        }
+        return sum;
+    };
+    int N;
+    cin>>N;
+    for(int i(1); i<=N; ++i){
+        if(digit_sum(i)==N){
+            cout<<i;
+            return 0;
+        }
+    }
+    cout<<0;
     return 0;
 }
