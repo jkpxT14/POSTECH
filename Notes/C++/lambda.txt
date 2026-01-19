@@ -14,7 +14,21 @@ auto f=[](){
 
 };
 
-[x]
-[&x]
-[=]
-[&]
+// capture
+[x]: capture by value ~~ mutable
+[&x]: capture by reference
+[=]: capture by value ~~ mutable
+[&]: capture by reference
+
+[x, &y]
+[=, &y]
+[&, x]
+
+vector<pair<int, int>> v;
+sort(v.begin(), v.end(), [](pair<int, int> x, pair<int, int> y){
+    if(x.first!=y.first){
+        return x.first<y.first;
+    } else{
+        return x.second<y.second;
+    }
+});

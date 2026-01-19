@@ -14,3 +14,7 @@ struct Student{
 }
 
 <Iterator>
+//
+auto it1;
+auto it2(next(it1));
+auto it3(next(it1, 3));

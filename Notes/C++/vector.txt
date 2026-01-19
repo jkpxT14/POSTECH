@@ -72,3 +72,24 @@ vector<int> w{6, 7, 8};
 
 v.assign({6, 7, 8});
 v.assign(w.begin(), v.end());
+
+//
+vector<string> v{"PohangBoy", "Hyeong", "Fish", "Jake", "Jake", "Leader"};
+
+sort(v.begin(), v.end());
+v.erase(unique(v.begin(), v.end()), v.end()); // auto it(unique(word.begin(), word.end())); word.erase(it, word.end());
+
+or
+
+unordered_set<string> uos;
+vector<string> res;
+for(const string &s: v){
+    if(uos.insert(s).second){ // uos.insert(s) == pair<iterator, bool>
+        res.push_back(s);
+    }
+}
+v=move(res); // v=res;
+
+//
+vector<int> v{6, 2, 4, 3, 5};
+auto it(find(v.begin(), v.end(), 3));
