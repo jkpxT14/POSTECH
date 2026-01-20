@@ -4,20 +4,21 @@ struct Student{
     string name;
     int id;
 
+    Student()=default;
     Student(string n, int i): name(n), id(i) {}
 
-    static bool cmp(const Student& a, const Student& b){
+    static bool cmp(const Student &a, const Student &b){
         return a.id<b.id;
     }
-    bool operator<(const Student& other) const {
+    bool operator<(const Student &other) const {
         return this->id<other.id;
     }
 };
 
-struct cmp{
+struct Cmp{
     bool operator()(Student A, Student B) const {
         return A.id<B.id;
     }
-}
+};
 
 // class
