@@ -184,3 +184,10 @@ v.swap(w);
         cout<<::N<<"\n'; // 10
     }
 }
+
+//
+sort ~~ object (instance), (function)
+priority_queue ~~ type
+
+//
+stable_sort
