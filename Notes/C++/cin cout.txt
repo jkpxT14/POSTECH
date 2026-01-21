@@ -1,0 +1,20 @@
+//
+string s;
+getline(cin, s);
+getline(cin, s, ',');
+getline(cin, s, '.');
+
+//
+cin.ignore(); // cin.ignore(1);
+cin.ignore(3);
+cin.ignore(3, '\n');
+cin.ignore(3, ',');
+cin.ignore(3, '.');
+
+// dec(10), hex(16), oct(8)
+N=17;
+cout<<dec<<N;
+cout<<hex<<N;
+cout<<uppercase<<hex<<N;
+cout<<showbase<<hex<<N;
+cout<<hex<<N<<dec;

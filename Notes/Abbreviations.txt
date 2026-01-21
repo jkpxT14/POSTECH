@@ -2,7 +2,7 @@ character = char = ch
 string = str
 
 vector = vec (= v)
-stack = sta = st
+stack = stk = st
 queue = que (= q)
 priority queue = pq
 deque = dq

@@ -1,8 +1,10 @@
+//
 set<int> s;
 
 vector<int> v{1, 2, 3};
 set<int> s(v.begin(), v.end());
 
+//
 s.begin()
 s.end()
 s.rbegin()
@@ -11,8 +13,18 @@ s.rend()
 s.empty()
 s.size()
 
-s.insert()
-s.erase()
+// s.insert()
+s.insert() ~> pair<iterator, bool>
+
+auto [it, inserted]=s.insert(10);
+
+// s.erase()
+it=s.erase(it);
+it=s.erase(it1, it2);
+
+erased=s.erase(10); // erased:=#erased=0 or 1
+
+//
 s.clear()
 s.swap()
 
@@ -22,6 +34,7 @@ s.count()
 // s.upper_bound()
 // s.equal_range()
 
+//
 set<int> s;
 iter=s.find(N);
 iter!=s.end() vs iter==s.end()
