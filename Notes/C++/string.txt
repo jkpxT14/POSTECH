@@ -30,3 +30,9 @@ string::npos // no position
 
 cin.ignore();
 getline(cin, s);
+
+//
+char c;
+if(isdigit(c)){
+    ;
+}
