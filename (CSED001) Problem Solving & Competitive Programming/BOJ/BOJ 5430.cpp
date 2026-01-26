@@ -1,4 +1,4 @@
-// BOJ 1004: 어린 왕자
+// BOJ 5430: Integer Lists
 
 #include <bits/stdc++.h>
 
@@ -66,19 +66,59 @@ int main(){
 
     int T; cin>>T;
     while(T--){
-        int x1, y1, x2, y2; cin>>x1>>y1>>x2>>y2;
+        string p; cin>>p;
         int n; cin>>n;
-        int ingress(0), egress(0);
-        while(n--){
-            int cx, cy, r; cin>>cx>>cy>>r;
-            if((((cx-x1)*(cx-x1))+((cy-y1)*(cy-y1)))>r*r && (((cx-x2)*(cx-x2))+((cy-y2)*(cy-y2)))<r*r){
-                ++ingress;
-            }
-            if((((cx-x1)*(cx-x1))+((cy-y1)*(cy-y1)))<r*r && (((cx-x2)*(cx-x2))+((cy-y2)*(cy-y2)))>r*r){
-                ++egress;
+        deque<int> dq;
+        if(!n){
+            string s; cin>>s;
+        } else{
+            for(int i(0); i<2*n+1; ++i){
+                if(i%2==0){
+                    char c; cin>>c;
+                } else{
+                    int d; cin>>d;
+                    dq.push_back(d);
+                }
             }
         }
-        cout<<ingress+egress<<'\n';
+        bool reversed(false), err(false);
+        for(int i(0); i<p.size(); ++i){
+            if(p[i]=='R'){
+                reversed=!reversed;
+            } elif(p[i]=='D'){
+                if(dq.empty()){
+                    err=true;
+                    break;
+                } else{
+                    if(!reversed){
+                        dq.pop_front();
+                    } else{
+                        dq.pop_back();
+                    }
+                }
+            }
+        }
+        if(err){
+            cout<<"error\n";
+        } else{
+            cout<<'[';
+            if(!reversed){
+                for(int i(0); i<dq.size(); ++i){
+                    cout<<dq[i];
+                    if(i!=dq.size()-1){
+                        cout<<',';
+                    }
+                }
+            } else{
+                for(int i(dq.size()-1); i>=0; --i){
+                    cout<<dq[i];
+                    if(i!=0){
+                        cout<<',';
+                    }
+                }
+            }
+            cout<<"]\n";
+        }
     }
 
     return 0;
