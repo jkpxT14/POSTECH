@@ -20,35 +20,8 @@ pair<TN1, TN2> operator+(const pair<TN1, TN2> &x, const pair<TN1, TN2> &y){
 
 template <typename TN1, typename TN2>
 pair<TN1, TN2> & operator+=(pair<TN1, TN2> &x, const pair<TN1, TN2> &y){
-    x.first+=y.first;
-    x.second+=y.second;
+    x.first+=y.first; x.second+=y.second;
     return x;
-}
-
-template <typename TN>
-void print_1D(const vector<TN> &v, int i1, int i2){
-    for(int i(i1); i<=i2; ++i){
-        cout<<v[i]<<' ';
-    }
-    cout<<'\n';
-}
-
-template <typename TN1, typename TN2>
-void print_1D(const vector<pair<TN1, TN2>> &v, int i1, int i2){
-    for(int i(i1); i<=i2; ++i){
-        cout<<'('<<v[i].first<<", "<<v[i].second<<") ";
-    }
-    cout<<'\n';
-}
-
-template <typename TN>
-void print_2D(const vector<vector<TN>> &v, int i1, int i2, int j1, int j2){
-    for(int i(i1); i<=i2; ++i){
-        for(int j(j1); j<=j2; ++j){
-            cout<<v[i][j]<<' ';
-        }
-        cout<<'\n';
-    }
 }
 
 // const ll mdls(1000000007LL);
