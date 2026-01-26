@@ -44,3 +44,9 @@ depth
 Binary Indexed Tree = BIT
 
 error = err
+
+constructor = ctor
+destructor = dtor
+
+lhs = left hand side
+rhs = right hand side
