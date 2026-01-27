@@ -26,3 +26,6 @@ powershell '' vs ""
 cmd '' vs ""
     ""만 인용으로 취급
     경로에 반드시 ""
+
+//
+cmd /c "g++ Snippet_Generator.cpp -o Snippet_Generator.exe && Snippet_Generator.exe < input.txt > output.txt"
