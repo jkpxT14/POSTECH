@@ -6,8 +6,6 @@ using ll=long long;
 
 using pqig=priority_queue<int, vector<int>, greater<int>>;
 using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
-using mii=map<int, int>;
-using umii=unordered_map<int, int>;
 
 #define elif else if
 
