@@ -1,0 +1,94 @@
+//
+set<int> s;
+
+vector<int> v{1, 2, 3};
+set<int> s(v.begin(), v.end());
+
+//
+s.begin()
+s.end()
+s.rbegin()
+s.rend()
+
+s.empty()
+s.size()
+
+// s.insert()
+s.insert() ~> pair<iterator, bool>
+
+auto [it, inserted]=s.insert(10);
+
+// s.erase()
+it=s.erase(it);
+it=s.erase(it1, it2);
+
+erased=s.erase(10); // erased:=#erased=0 or 1
+
+//
+s.clear()
+s.swap()
+
+s.find()
+s.count()
+// s.lower_bound()
+// s.upper_bound()
+// s.equal_range()
+
+//
+set<int> s;
+iter=s.find(N);
+iter!=s.end() vs iter==s.end()
+
+// multiset
+multiset<int> ms;
+
+ms.insert(x);
+
+auto it(ms.insert(x));
+
+vector<int> v{1, 2, 3, 3, 4};
+ms.insert(v.begin(), v.end());
+
+ms.erase(x)
+int removed(ms.erase(x));
+
+ms.erase(it)
+it=ms.erase(it);
+auto it(ms.erase(ms.begin(), ms.lower_bound(x)));
+
+auto it(ms.find(x));
+if(it!=ms.end()){
+    ms.erase(it);
+}
+
+ms.size()
+ms.empty()
+ms.clear()
+
+ms.count(x);
+
+auto it=ms.find(x);
+it!=ms.end()
+
+auto lb(ms.lower_bound(x));
+auto ub(ms.upper_bound(x));
+auto [lb, ub]=ms.equal_range(x)
+
+//
+auto [lb, ub]=ms.equal_range(x);
+ms.erase(lb, ub);
+
+//
+multiset<int, less<int>> ms;
+multiset<int, greater<int>> ms;
+
+struct Cmp{
+    bool operator()(int x, int y) const {
+        if(abs(x)!=abs(y)){
+            return abs(x)<abs(y);
+        } else{
+            return x<y;
+        }
+    }
+};
+multiset<int, Cmp> ms;

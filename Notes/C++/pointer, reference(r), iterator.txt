@@ -24,3 +24,8 @@ auto it5(next(it1, 3));
 //
 advance(it, -3); ~~ prev(it, 3)
 advance(it, 3); ~~ next(it, 3)
+
+//
+vector, deque, string, ...
+vs
+set, multiset, map, multimap, list, ...
