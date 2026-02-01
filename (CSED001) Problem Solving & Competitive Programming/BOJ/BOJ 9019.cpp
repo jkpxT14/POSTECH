@@ -1,3 +1,5 @@
+// BOJ 9019: DSLR
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -32,6 +34,8 @@ int main(){
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    ;
 
     return 0;
 }
