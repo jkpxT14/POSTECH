@@ -1,0 +1,11 @@
+//
+array<int, 4> a{{2, 3, 5, 7}};
+vector<int> v{2, 3, 5, 7};
+
+array<pair<int, int> 4> a{{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}};
+vector<pair<int, int>> v{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+//
+array<int, 8> a;
+
+a.fill(1);
