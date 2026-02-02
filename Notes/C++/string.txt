@@ -47,7 +47,14 @@ string s;
 cin>>s; => leaves the delimiter(whitespace) character in the input buffer / automatically skips leading delimiter(whitespace) but leaves trailing delimiter(whitespace) in the input buffer
 getline(cin, s); => reads and consumes the newline character, but does not store it in the resulting string
 
+※
+"literal" is a value written directly in the source code.
+
 //
 '' ~~ char
 "" ~~ char[] ~~ char*
    ~~ string
+
+single quotes denote a single character literal, whose type is usually <char>.
+double quotes denote a string literal, whose type is an array of characters(<char[]>). In most expressions, this character array automatically decays to a pointer to its first element(<char*>).
+therefore, a string literal is not a string itself. if you want string behavior, you need to explicitly/implicitly construct/convert it to string.
