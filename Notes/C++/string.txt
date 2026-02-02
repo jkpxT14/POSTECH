@@ -46,3 +46,8 @@ newline: '\n'
 string s;
 cin>>s; => leaves the delimiter(whitespace) character in the input buffer / automatically skips leading delimiter(whitespace) but leaves trailing delimiter(whitespace) in the input buffer
 getline(cin, s); => reads and consumes the newline character, but does not store it in the resulting string
+
+//
+'' ~~ char
+"" ~~ char[] ~~ char*
+   ~~ string
