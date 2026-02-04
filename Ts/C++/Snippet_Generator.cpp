@@ -1,3 +1,6 @@
+// Last Update on 20260204
+// cmd /c "g++ Snippet_Generator.cpp -o Snippet_Generator.exe && Snippet_Generator.exe < input.txt > output.txt"
+
 #include <bits/stdc++.h>
 
 using namespace std;
