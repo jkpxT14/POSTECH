@@ -1,4 +1,4 @@
-// Last Update on 20260205
+// BOJ 2268: 수들의 합 7
 
 #include <bits/stdc++.h>
 
@@ -40,13 +40,6 @@ struct Fenwick_Tree{
     }
 
     void build(){
-        // for(int i(1); i<=N; ++i){
-        //     int j(i);
-        //     while(j<=N){
-        //         tree[j]+=vec[i];
-        //         j+=(j&(-j));
-        //     }
-        // }
         for(int i(1); i<=N; ++i){
             tree[i]+=vec[i];
             int j(i+(i&(-i)));
@@ -84,21 +77,19 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int N; cin>>N;
+    int N, M; cin>>N>>M;
     Fenwick_Tree fwtr(N);
-    for(int i(1); i<=N; ++i){
-        cin>>fwtr.vec[i];
-    }
-    fwtr.build();
-    int Q; cin>>Q;
-    while(Q--){
+    while(M--){
         int type; cin>>type;
-        if(type==1){
-            int ql, qr; cin>>ql>>qr;
-            cout<<fwtr.query_range(ql, qr)<<'\n';
-        } elif(type==2){
-            int idx; ll val; cin>>idx>>val;
-            fwtr.update_set(idx, val);
+        if(type==0){
+            int i, j; cin>>i>>j;
+            if(i>j){
+                swap(i, j);
+            }
+            cout<<fwtr.query_range(i, j)<<'\n';
+        } elif(type==1){
+            int i; ll k; cin>>i>>k;
+            fwtr.update_set(i, k);
         }
     }
 

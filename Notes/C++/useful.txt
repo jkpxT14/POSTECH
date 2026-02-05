@@ -202,3 +202,7 @@ y=round(x);
 y=ceil(x);
 y=floor(x);
 y=trunc(x);
+
+// swap
+T a, b;
+swap(a, b);

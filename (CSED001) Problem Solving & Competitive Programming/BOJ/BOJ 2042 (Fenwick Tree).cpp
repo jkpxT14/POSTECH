@@ -1,4 +1,4 @@
-// Last Update on 20260205
+// BOJ 2042: 구간 합 구하기
 
 #include <bits/stdc++.h>
 
@@ -40,13 +40,6 @@ struct Fenwick_Tree{
     }
 
     void build(){
-        // for(int i(1); i<=N; ++i){
-        //     int j(i);
-        //     while(j<=N){
-        //         tree[j]+=vec[i];
-        //         j+=(j&(-j));
-        //     }
-        // }
         for(int i(1); i<=N; ++i){
             tree[i]+=vec[i];
             int j(i+(i&(-i)));
@@ -84,21 +77,18 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int N; cin>>N;
+    int N, M, K; cin>>N>>M>>K;
     Fenwick_Tree fwtr(N);
     for(int i(1); i<=N; ++i){
         cin>>fwtr.vec[i];
     }
     fwtr.build();
-    int Q; cin>>Q;
-    while(Q--){
-        int type; cin>>type;
-        if(type==1){
-            int ql, qr; cin>>ql>>qr;
-            cout<<fwtr.query_range(ql, qr)<<'\n';
-        } elif(type==2){
-            int idx; ll val; cin>>idx>>val;
-            fwtr.update_set(idx, val);
+    for(int i(1); i<=M+K; ++i){
+        ll a, b, c; cin>>a>>b>>c;
+        if(int(a)==1){
+            fwtr.update_set(int(b), c);
+        } elif(int(a)==2){
+            cout<<fwtr.query_range(int(b), int(c))<<'\n';
         }
     }
 

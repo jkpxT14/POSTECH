@@ -1,4 +1,4 @@
-// Last Update on 20260204
+// Last Update on 20260205
 
 #include <bits/stdc++.h>
 
@@ -30,21 +30,23 @@ pair<TN1, TN2> & operator+=(pair<TN1, TN2> &x, const pair<TN1, TN2> &y){
 // const array<pair<int, int>, 4> delta{{{1, 0}, {0, 1}, {-1, 0}, {0, -1}}};
 
 struct Segment_Tree{
-    int n;
+    int N;
+    vector<ll> vec;
     vector<ll> tree;
 
-    Segment_Tree(int n): n(n){
-        tree.resize(1<<(int(ceil(log2(n)))+1), 0LL);
+    Segment_Tree(int N): N(N){
+        vec.resize(N+1, 0LL);
+        tree.resize(1<<(int(ceil(log2(N)))+1), 0LL);
     }
 
-    void build(const vector<ll> &vec, int node, int left, int right){
+    void build(int node, int left, int right){
         if(left==right){
             tree[node]=vec[left];
             return;
         }
         int mid((left+right)>>1);
-        build(vec, 2*node, left, mid);
-        build(vec, 2*node+1, mid+1, right);
+        build(2*node, left, mid);
+        build(2*node+1, mid+1, right);
         tree[node]=tree[2*node]+tree[2*node+1];
         return;
     }
@@ -59,6 +61,7 @@ struct Segment_Tree{
         return query(2*node, left, mid, qleft, qright)+query(2*node+1, mid+1, right, qleft, qright);
     }
     void update(int node, int left, int right, int index, ll value){
+        vec[index]=value;
         if(left==right){
             tree[node]=value;
             return;
@@ -72,14 +75,14 @@ struct Segment_Tree{
         tree[node]=tree[2*node]+tree[2*node+1];
         return;
     }
-    void build(const vector<ll> &vec){
-        build(vec, 1, 1, n);
+    void build(){
+        build(1, 1, N);
     }
     ll query(int qleft, int qright){
-        return query(1, 1, n, qleft, qright);
+        return query(1, 1, N, qleft, qright);
     }
     void update(int index, ll value){
-        update(1, 1, n, index, value);
+        update(1, 1, N, index, value);
     }
 };
 
@@ -90,12 +93,11 @@ int main(){
     cout<<fixed<<setprecision(10);
 
     int N; cin>>N;
-    vector<ll> a(N+1);
-    for(int i(1); i<=N; ++i){
-        cin>>a[i];
-    }
     Segment_Tree sgtr(N);
-    sgtr.build(a);
+    for(int i(1); i<=N; ++i){
+        cin>>sgtr.vec[i];
+    }
+    sgtr.build();
     int Q; cin>>Q;
     while(Q--){
         int type; cin>>type;
