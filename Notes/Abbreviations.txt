@@ -38,6 +38,8 @@ degree = deg
 Longest Increasing Subsequence = LIS
 Directed Acyclic Graph = DAG
 
+Lowest Common Ancestor = LCA
+
 snippet
 
 length = len
