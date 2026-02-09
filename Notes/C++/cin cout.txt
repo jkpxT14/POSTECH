@@ -18,3 +18,12 @@ cout<<hex<<N;
 cout<<uppercase<<hex<<N;
 cout<<showbase<<hex<<N;
 cout<<hex<<N<<dec;
+
+//
+cout<<setfill('0')<<setw(2)<<x;
+cout(<<right)<<setfill('0')<<setw(2)<<x;
+cout<<left<<setfill('0')<<setw(2)<<x;
+setfill persists until changed
+setfill(' ')
+setw applies to the next output only
+setw(0)
