@@ -1,4 +1,4 @@
-// Last Update on 20260213
+// BOJ 2150: Strongly Connected Component
 
 #include <bits/stdc++.h>
 
@@ -89,7 +89,7 @@ int main(){
         for(int v: scc){
             cout<<v<<' ';
         }
-        cout<<'\n';
+        cout<<"-1\n";
     }
 
     return 0;
