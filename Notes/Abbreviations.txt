@@ -55,6 +55,8 @@ depth
 
 Binary Indexed Tree = BIT
 
+Knuth-Morris-Pratt = KMP
+
 error = err
 
 constructor = ctor
@@ -64,3 +66,5 @@ left hand side = lhs
 right hand side = rhs
 
 check = chk
+
+sequence = sq
