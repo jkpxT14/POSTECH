@@ -1,4 +1,4 @@
-// Last Update on 20260220
+// BOJ 11659: 구간 합 구하기 4
 
 #include <bits/stdc++.h>
 
@@ -35,10 +35,13 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int N; cin>>N;
+    int N, M; cin>>N>>M;
     vector<ll> A(N+1); for(int i(1); i<=N; ++i) cin>>A[i];
     vector<ll> P(N+1, 0); for(int i(1); i<=N; ++i) P[i]=P[i-1]+A[i];
-    for(int i(0); i<=N; ++i) cout<<P[i]<<' ';
+    while(M--){
+        int i, j; cin>>i>>j;
+        cout<<P[j]-P[i-1]<<'\n';
+    }
 
     return 0;
 }
