@@ -1,45 +1,13 @@
-//
+// Last Update on 20260220
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
 using ll=long long;
-using pii=pair<int, int>;
-using pll=pair<long long, long long>;
-using pci=pair<char, int>;
-using pipii=pair<int, pair<int, int>>;
-using ppiii=pair<pair<int, int>, int>;
-using vi=vector<int>;
-using vll=vector<long long>;
-using vd=vector<double>;
-using vb=vector<bool>;
-using vc=vector<char>;
-using vstr=vector<string>;
-using vpii=vector<pair<int, int>>;
-using vpll=vector<pair<long long, long long>>;
-using vpci=vector<pair<char, int>>;
-using vpipii=vector<pair<int, pair<int, int>>>;
-using vppiii=vector<pair<pair<int, int>, int>>;
-using vvi=vector<vector<int>>;
-using vvll=vector<vector<long long>>;
-using vvb=vector<vector<bool>>;
-using vvc=vector<vector<char>>;
-using vvpii=vector<vector<pair<int, int>>>;
-using vvvi=vector<vector<vector<int>>>;
-using vvvll=vector<vector<vector<long long>>>;
-using dqi=deque<int>;
-using dqll=deque<long long>;
-using dqpii=deque<pair<int, int>>;
-using pqi=priority_queue<int>;
-using pqig=priority_queue<int, vector<int>, greater<int>>;
-using pqll=priority_queue<long long>;
-using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
-using mii=map<int, int>;
 
-using vvvb=vector<vector<vector<bool>>>;
-using vvvvb=vector<vector<vector<vector<bool>>>>;
-using vvvvi=vector<vector<vector<vector<int>>>>;
+using pqig=priority_queue<int, vector<int>, greater<int>>;
+using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
 
 #define elif else if
 
@@ -52,45 +20,14 @@ pair<TN1, TN2> operator+(const pair<TN1, TN2> &x, const pair<TN1, TN2> &y){
 
 template <typename TN1, typename TN2>
 pair<TN1, TN2> & operator+=(pair<TN1, TN2> &x, const pair<TN1, TN2> &y){
-    x.first+=y.first;
-    x.second+=y.second;
+    x.first+=y.first; x.second+=y.second;
     return x;
 }
 
-template <typename TN>
-void print_1D(const vector<TN> &v, int type, int N){
-    for(int i(type); i<N+type; ++i){
-        cout<<v[i]<<' ';
-    }
-    cout<<'\n';
-}
-
-template <typename TN1, typename TN2>
-void print_1D(const vector<pair<TN1, TN2>> &v, int type, int N){
-    for(int i(type); i<N+type; ++i){
-        cout<<'('<<v[i].first<<", "<<v[i].second<<") ";
-    }
-    cout<<'\n';
-}
-
-template <typename TN>
-void print_2D(const vector<vector<TN>> &v, int type, int M, int N){
-    for(int i(type); i<M+type; ++i){
-        for(int j(type); j<N+type; ++j){
-            cout<<v[i][j]<<' ';
-        }
-        cout<<'\n';
-    }
-}
-
-int mod(int x, int modulus){ // modulo
-    return ((x%modulus)+modulus)%modulus;
-}
-
+// const ll mdls(1000000007LL);
 // const int INF(INT_MAX/4);
-// const ll mod(1000000007);
 // const int offset(500000);
-// const vpii delta{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+// const array<pair<int, int>, 4> delta{{{1, 0}, {0, 1}, {-1, 0}, {0, -1}}};
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -98,28 +35,24 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int M, N;
-    cin>>M>>N;
-    vvi A(M, vi(N));
-    for(int i(0); i<M; ++i){
-        for(int j(0); j<N; ++j){
+    int M, N; cin>>M>>N;
+    vector<vector<ll>> A(M+1, vector<ll>(N+1));
+    for(int i(1); i<=M; ++i){
+        for(int j(1); j<=N; ++j){
             cin>>A[i][j];
         }
     }
-    vvi P(M, vi(N));
-    P[0][0]=A[0][0];
-    for(int i(1); i<M; ++i){
-        P[i][0]=A[i][0]+P[i-1][0];
-    }
-    for(int j(1); j<N; ++j){
-        P[0][j]=A[0][j]+P[0][j-1];
-    }
-    for(int i(1); i<M; ++i){
-        for(int j(1); j<N; ++j){
+    vector<vector<ll>> P(M+1, vector<ll>(N+1, 0));
+    for(int i(1); i<=M; ++i){
+        for(int j(1); j<=N; ++j){
             P[i][j]=A[i][j]+P[i][j-1]+P[i-1][j]-P[i-1][j-1];
         }
     }
-    print_2D(P, 0, M, N);
+    for(int i(1); i<=M; ++i){
+        for(int j(1); j<=N; ++j){
+            cout<<P[i][j]<<" \n"[j==N];
+        }
+    }
 
     return 0;
 }
