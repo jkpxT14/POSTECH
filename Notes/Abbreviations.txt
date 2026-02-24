@@ -68,3 +68,6 @@ right hand side = rhs
 check = chk
 
 sequence = sq
+
+identifier = id
+password = pw
