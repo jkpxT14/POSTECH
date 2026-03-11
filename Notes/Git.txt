@@ -1,0 +1,15 @@
+git fetch origin
+git pull origin master
+git status
+git diff
+git add [file]
+git restore --staged [file] // git restore [file]
+git commit -m "..." -m "..."
+git push origin master // git push [remote] [branch]
+
+git remote -v
+git remote remove upstream // git remote remove [remote]
+git branch -vv
+
+git log
+git log --oneline
