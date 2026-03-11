@@ -16,3 +16,8 @@ order // ordering
 flag, ok
 
 visited = vst
+
+//
+C++
+Python: hello_world, Hello_World
+Java: helloWorld, HelloWorld
