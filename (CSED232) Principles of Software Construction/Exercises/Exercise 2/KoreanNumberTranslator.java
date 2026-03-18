@@ -40,9 +40,7 @@ public class KoreanNumberTranslator extends AbstractNumberTranslator{
             if(digit==0){
                 continue;
             }
-            if(i==3){
-                builder.append(digits[digit]);
-            } else if(i==2 && digit==1){
+            if(i==2 && digit==1){
                 builder.append("십");
             } else{
                 builder.append(digits[digit]).append(smallUnits[i]);
