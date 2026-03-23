@@ -1,0 +1,11 @@
+//
+__builtin_clz() // count leading zeros, unsigned int
+__builtin_ctz() // count trailing zeros, unsigned int
+__builtin_clzll() // count leading zeros, unsigned long long
+__builtin_ctzll() // count trailing zeros, unsigned long long
+
+// ~ vs -
+x = 5 = 00000101
+~x = 11111010
+
+~x = -x -1
