@@ -1,11 +1,13 @@
-// BOJ 33692: 해밍 거리
+// BOJ 27323: 長方形 (Rectangle, 직사각형)
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
 using ll=long long;
-using ull=unsigned long long;
+
+using pqig=priority_queue<int, vector<int>, greater<int>>;
+using pqllg=priority_queue<long long, vector<long long>, greater<long long>>;
 
 #define elif else if
 
@@ -33,15 +35,9 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    ull A, B; cin>>A>>B;
-    ull C(A^B);
-    int k(63-__builtin_clzll(C));
-    ull mask((1ULL<<k)-1);
-    ull prefix(A&(~((1ULL<<(k+1))-1)));
-    ull a(A&mask), b(B&mask);
-    ull u(max(a, b^mask)), v(u^mask);
-    ull x(prefix|u), y(prefix|(1ULL<<k)|v);
-    cout<<x<<' '<<y;
+    ll A; cin>>A;
+    ll B; cin>>B;
+    cout<<A*B;
 
     return 0;
 }
