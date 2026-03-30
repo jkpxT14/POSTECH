@@ -1,4 +1,4 @@
-// BOJ 31776: 예비 소집 결과 보고서
+// BOJ 35466: 대회 장소 정하기
 
 #include <bits/stdc++.h>
 
@@ -34,29 +34,21 @@ int main(){
     cout<<fixed<<setprecision(10);
 
     int N; cin>>N;
-    vector<array<int, 4>> T(N+1);
-    int ans(0);
-    for(int i(1); i<=N; ++i){
-        for(int j(1); j<=3; ++j){
-            cin>>T[i][j];
+    int a, b, c; cin>>a>>b>>c;
+    int p, q; cin>>p>>q;
+
+    auto dist = [N](int x, int y) -> int {
+        if(x>y){
+            swap(x, y);
         }
-        if(T[i][1]==-1){
-            continue;
-        }
-        int prv(T[i][1]);
-        bool diligent(true);
-        for(int j(2); j<=3; ++j){
-            if((prv==-1 && T[i][j]!=-1) || (prv!=-1 && T[i][j]!=-1 && prv>T[i][j])){
-                diligent=false;
-                break;
-            }
-            prv=T[i][j];
-        }
-        if(diligent){
-            ++ans;
+        return min(y-x, N-(y-x));
+    };
+
+    int U(0), D(a), P((dist(D+b, 0)==c)?(D+b):((D-b+N)%N));
+    for(int i(0); i<=N-1; ++i){
+        if(dist(i, U)==p && dist(i, D)==q){
+            cout<<dist(i, P);
+            return 0;
         }
     }
-    cout<<ans;
-
-    return 0;
 }
