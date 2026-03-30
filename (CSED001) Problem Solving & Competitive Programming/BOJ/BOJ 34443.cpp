@@ -1,4 +1,4 @@
-// BOJ 31776: 예비 소집 결과 보고서
+// BOJ 34443: Hack-a-Holics
 
 #include <bits/stdc++.h>
 
@@ -34,29 +34,9 @@ int main(){
     cout<<fixed<<setprecision(10);
 
     int N; cin>>N;
-    vector<array<int, 4>> T(N+1);
-    int ans(0);
-    for(int i(1); i<=N; ++i){
-        for(int j(1); j<=3; ++j){
-            cin>>T[i][j];
-        }
-        if(T[i][1]==-1){
-            continue;
-        }
-        int prv(T[i][1]);
-        bool diligent(true);
-        for(int j(2); j<=3; ++j){
-            if((prv==-1 && T[i][j]!=-1) || (prv!=-1 && T[i][j]!=-1 && prv>T[i][j])){
-                diligent=false;
-                break;
-            }
-            prv=T[i][j];
-        }
-        if(diligent){
-            ++ans;
-        }
-    }
-    cout<<ans;
+    int C; cin>>C;
+    int P; cin>>P;
+    cout<<N*P;
 
     return 0;
 }
