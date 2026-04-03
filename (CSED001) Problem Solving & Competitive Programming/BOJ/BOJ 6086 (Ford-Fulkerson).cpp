@@ -1,4 +1,4 @@
-// Last Update on 20260403
+// BOJ 6086: Total Flow(최대 유량)
 
 #include <bits/stdc++.h>
 
@@ -36,6 +36,7 @@ struct FordFulkerson{
         adj[u].push_back(v);
         adj[v].push_back(u);
         capacity[u][v]+=cap;
+        capacity[v][u]+=cap;
     }
 
     int DFS(int current, int t, int limit){
@@ -80,14 +81,21 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int N, M; cin>>N>>M;
-    FordFulkerson ff(N);
-    for(int i(1); i<=M; ++i){
-        int u, v, c; cin>>u>>v>>c;
-        ff.add_edge(u, v, c);
+    auto convert = [](char c) -> int {
+        if('A'<=c && c<='Z') return c-'A'+1;
+        if('a'<=c && c<='z') return c-'a'+27;
+        return 0;
+    };
+
+    int N; cin>>N;
+    FordFulkerson ff(52);
+    for(int i(1); i<=N; ++i){
+        char u, v;
+        int c;
+        cin>>u>>v>>c;
+        ff.add_edge(convert(u), convert(v), c);
     }
-    int s, t; cin>>s>>t;
-    cout<<ff.get_max_flow(s, t);
+    cout<<ff.get_max_flow(1, 26);
 
     return 0;
 }
