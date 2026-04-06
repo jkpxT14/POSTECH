@@ -1,4 +1,4 @@
-// Last Update on 20260406
+// BOJ 35370: Memories of Passport Control
 
 #include <bits/stdc++.h>
 
@@ -32,6 +32,9 @@ int main(){
     cin.tie(nullptr); cout.tie(nullptr);
 
     cout<<fixed<<setprecision(10);
+
+    int k, s; cin>>k>>s;
+    cout<<(s/k)+(s%k);
 
     return 0;
 }
