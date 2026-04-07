@@ -1,0 +1,27 @@
+g++ -std=c++11 -o pa2.exe pa2.cpp utils.cpp tree.cpp heap.cpp
+./pa2.exe
+g++ -std=c++11 -o evaluate.exe evaluate.cpp
+./evaluate.exe
+
+./pa2.exe 1 "C(H(O)())(I) 0"
+./pa2.exe 1 "N(O(Y)())(G) 1"
+./pa2.exe 1 "K(A(B)())(E) 2"
+./pa2.exe 1 "Y(U(J)())(I()(N)) 0"
+
+./pa2.exe 2 "1(2)(3)"
+./pa2.exe 2 "1(2(4)(5))(3)"
+
+./pa2.exe 3 "1(2)(3)"
+./pa2.exe 3 "1(2(4(7))(5))(3(6))"
+
+./pa2.exe 4 "[('insert',5),('insert',1),('insert',9),('remove',1)]"
+./pa2.exe 4 "[('insert',4),('insert',2),('insert',9),('replaceMax',6)]"
+./pa2.exe 4 "[('delete',NULL),('insert',3),('getMax',NULL)]"
+./pa2.exe 4 "[('isEmpty',NULL),('insert',8),('isEmpty',NULL),('replaceMax',1)]"
+./pa2.exe 4 "[('insert',10),('insert',7),('insert',3),('remove',10)]"
+./pa2.exe 4 "[('insert',20),('insert',7),('insert',35),('insert',12),('getMax',NULL),('remove',7),('insert',40),('replaceMax',15),('isEmpty',NULL),('getMax',NULL)]"
+./pa2.exe 4 "[('delete',NULL),('insert',9),('insert',14),('insert',3),('replaceMax',8),('getMax',NULL),('remove',14),('delete',NULL),('isEmpty',NULL)]"
+
+./pa2.exe 5 "[('A(B(D)(E))(C(F)(G))',NULL),('D',NULL),('G',NULL)]"
+./pa2.exe 5 "[('A(B(D)(E))(C(F)(G))',NULL),('D',NULL),('E',NULL)]"
+./pa2.exe 5 "[('A(B(D(H)(I))(E))(C(F)(G))',NULL),('H',NULL),('I',NULL)]"
