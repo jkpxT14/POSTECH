@@ -1,0 +1,5 @@
+.\gradlew.bat test
+.\gradlew.bat jacocoTestReport
+
+exercise-3-jkpxT14/app/build/reports/tests/test/index.html
+exercise-3-jkpxT14/app/build/reports/jacoco/test/html/index.html
