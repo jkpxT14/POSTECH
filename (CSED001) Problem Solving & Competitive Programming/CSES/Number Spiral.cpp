@@ -33,8 +33,22 @@ int main(){
 
     int t; cin>>t;
     while(t--){
-        int x, y; cin>>x>>y;
-        ;
+        ll x, y; cin>>x>>y;
+        ll n(max(x, y));
+        if(n%2LL==1LL){
+            if(x==n){
+                cout<<(n-1LL)*(n-1LL)+y;
+            } else{
+                cout<<n*n-x+1LL;
+            }
+        } else{
+            if(x==n){
+                cout<<n*n-y+1LL;
+            } else{
+                cout<<(n-1LL)*(n-1LL)+x;
+            }
+        }
+        cout<<'\n';
     }
 
     return 0;
