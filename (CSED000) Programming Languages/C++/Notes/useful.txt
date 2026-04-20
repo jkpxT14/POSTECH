@@ -157,7 +157,7 @@ v.swap(w);
 
 {
     int N(10);
-    
+
     void f(int N){
         cout<<N<<'\n'; // f(5)=>5
     }
@@ -206,3 +206,6 @@ y=trunc(x);
 // swap
 T a, b;
 swap(a, b);
+
+// format
+format("{} {}", a, b)

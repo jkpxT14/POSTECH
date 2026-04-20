@@ -1,5 +1,13 @@
 pos~~idx, iter
 
+string s(cnt, 'A');
+string s(2, 'a');
+string s(3, 'b');
+
+string s;
+s.insert(0, cnt, 'A');
+s.append(cnt, 'A');
+
 string a;
 a.insert(pos, str);
 a.insert(pos, str, subpos, cnt);

@@ -33,8 +33,7 @@ int main(){
 
     int t; cin>>t;
     while(t--){
-        int x, y; cin>>x>>y;
-        ;
+        int a, b; cin>>a>>b;
     }
 
     return 0;

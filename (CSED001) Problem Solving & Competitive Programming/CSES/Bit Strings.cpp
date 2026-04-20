@@ -20,7 +20,7 @@ pair<TN1, TN2> & operator+=(pair<TN1, TN2> &x, const pair<TN1, TN2> &y){
     return x;
 }
 
-// const ll mdls(1000000007LL);
+const ll mdls(1000000007LL);
 // const int INF(INT_MAX/4);
 // const int offset(500000);
 // const array<pair<int, int>, 4> delta{{{1, 0}, {0, 1}, {-1, 0}, {0, -1}}};
@@ -31,11 +31,13 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int t; cin>>t;
-    while(t--){
-        int x, y; cin>>x>>y;
-        ;
+    int n; cin>>n;
+    ll ans(1);
+    for(int i(1); i<=n; ++i){
+        ans*=2LL;
+        ans%=mdls;
     }
+    cout<<ans;
 
     return 0;
 }
