@@ -31,11 +31,31 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int t; cin>>t;
-    while(t--){
-        int x, y; cin>>x>>y;
-        ;
+    string s1; cin>>s1;
+    vector<int> cnt(26, 0);
+    for(int i(0); i<=s1.size()-1; ++i){
+        ++cnt[s1[i]-'A'];
     }
-
+    int odd_idx(-1);
+    int no_solution(0);
+    for(int i(0); i<=25; ++i){
+        if(cnt[i]%2==1){
+            if(no_solution==0){
+                odd_idx=i;
+                ++no_solution;
+            } else{
+                cout<<"NO SOLUTION";
+                return 0;
+            }
+        }
+    }
+    string s2((odd_idx==-1?"":string(cnt[odd_idx], 'A'+odd_idx)));
+    for(int i(0); i<=25; ++i){
+        if(i!=odd_idx){
+            s2.insert(0, cnt[i]/2, 'A'+i);
+            s2.append(cnt[i]/2, 'A'+i);
+        }
+    }
+    cout<<s2;
     return 0;
 }

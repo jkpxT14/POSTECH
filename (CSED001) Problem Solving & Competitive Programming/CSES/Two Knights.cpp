@@ -31,11 +31,7 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int t; cin>>t;
-    while(t--){
-        int x, y; cin>>x>>y;
-        ;
-    }
+    int n; cin>>n;
 
     return 0;
 }

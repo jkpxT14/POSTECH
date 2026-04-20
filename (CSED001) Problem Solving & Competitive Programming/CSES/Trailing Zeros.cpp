@@ -31,11 +31,14 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int t; cin>>t;
-    while(t--){
-        int x, y; cin>>x>>y;
-        ;
+    ll n; cin>>n;
+    ll cur(5LL);
+    ll ans(0);
+    while(n/cur){
+        ans+=n/cur;
+        cur*=5LL;
     }
+    cout<<ans;
 
     return 0;
 }
