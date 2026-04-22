@@ -1,5 +1,3 @@
-// BOJ 17243: Almost-K Increasing Subsequence
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -33,30 +31,7 @@ int main(){
 
     cout<<fixed<<setprecision(10);
 
-    int n, K; cin>>n>>K;
-    vector<int> a(n+1); for(int i(1); i<=n; ++i) cin>>a[i];
-    vector<vector<int>> LIS(n+1, vector<int>(n+1, 0));
-    vector<vector<int>> DP(n+1, vector<int>(K+2, 0));
-    for(int i(1); i<=n; ++i){
-        vector<int> tmp;
-        for(int j(i); j<=n; ++j){
-            auto it(upper_bound(tmp.begin(), tmp.end(), a[j]));
-            if(it==tmp.end()){
-                tmp.push_back(a[j]);
-            } else{
-                *it=a[j];
-            }
-            LIS[i][j]=tmp.size();
-        }
-    }
-    for(int i(1); i<=K+1; ++i){
-        for(int j(1); j<=n; ++j){
-            for(int k(j); k<=n; ++k){
-                DP[j][i]=max(DP[j][i], (k==n?0:DP[k+1][i-1])+LIS[j][k]);
-            }
-        }
-    }
-    cout<<DP[1][K+1];
+    cout<<__cplusplus;
 
     return 0;
 }

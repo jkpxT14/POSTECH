@@ -1,11 +1,6 @@
 {
-    "files.associations": {
-        "iostream": "cpp",
-        "vector": "cpp",
-        "cmath": "cpp",
-        "tuple": "cpp",
-        "utility": "cpp",
-        "limits": "cpp"
-    },
-    "terminal.integrated.scrollback": 100000
+    "terminal.integrated.scrollback": 100000,
+
+    "terminal.integrated.enablePersistentSessions": false,
+    "terminal.integrated.persistentSessionReviveProcess": false
 }

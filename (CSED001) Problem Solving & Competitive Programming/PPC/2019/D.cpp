@@ -34,7 +34,16 @@ int main(){
     cout<<fixed<<setprecision(10);
 
     int n; cin>>n;
-    vector<int> d(n); for(int i(0); i<=n-1; ++i) cin>>d[i];
+    vector<int> cnt(21, 0);
+    vector<int> d(n);
+    for(int i(0); i<=n-1; ++i){
+        cin>>d[i];
+        ++cnt[d[i]];
+    }
+    for(int i(20); i>=1; --i){
+        cnt[i-1]+=cnt[i]/2;
+    }
+    cout<<(cnt[0]>=1?'A':'B');
 
     return 0;
 }
