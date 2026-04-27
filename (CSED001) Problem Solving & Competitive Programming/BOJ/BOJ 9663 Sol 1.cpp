@@ -10,6 +10,7 @@
 #include <tuple>
 // #include <limits>
 #include <cmath>
+#include <bitset>
 
 using namespace std;
 
@@ -29,11 +30,13 @@ using vpipii=vector<pair<int, pair<int, int>>>;
 using dqpii=deque<pair<int, int>>;
 using vvpii=vector<vector<pair<int, int>>>;
 
-#define INT_MAX 2147483647
+#define INT_MAX 2147483647 // = 2^31-1
 #define INT_MIN -2147483648
-#define LLONG_MAX 9223372036854775807
+#define LLONG_MAX 9223372036854775807 // = 2^63-1
 #define LLONG_MIN -9223372036854775808
 
+// 0b(2), 0(8), 0x(16)
+// 0-based index vs 1-based index
 // vector = vec = v
 // stack = sta = st
 // queue = que = q
@@ -45,6 +48,30 @@ using vvpii=vector<vector<pair<int, int>>>;
 
 // const int INF=INT_MAX/4; // INF = INFinity
 
+// Promising
+// Pruning
+
+int N, cnt=0;
+vi board;
+
+bool promising(int cur){
+    for(int i=1; i<cur; i++){
+        if(board[cur]==board[i] || cur-i==abs(board[cur]-board[i])) return false;
+    }
+    return true;
+}
+
+void N_Queen(int cur){
+    if(cur==N+1){
+        cnt++;
+        return;
+    }
+    for(int i=1; i<=N; i++){
+        board[cur]=i;
+        if(promising(cur)) N_Queen(cur+1);
+    }
+}
+
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -53,20 +80,11 @@ int main(){
     cout<<fixed;
     cout.precision(10);
 
-    int N, L;
-    cin>>N>>L;
-    vi A(N+1);
-    dqpii dq;
-    for(int i=1; i<=N; i++){
-        cin>>A[i];
-    }
+    cin>>N;
+    board.resize(N+1);
 
-    for(int i=1; i<=N; i++){
-        if(!dq.empty() && i>dq.front().second+L-1) dq.pop_front();
-        while(!dq.empty() && dq.back().first>=A[i]) dq.pop_back();
-        dq.push_back({A[i], i});
-        cout<<dq.front().first<<" ";
-    }
+    N_Queen(1);
+    cout<<cnt;
 
     return 0;
 }
