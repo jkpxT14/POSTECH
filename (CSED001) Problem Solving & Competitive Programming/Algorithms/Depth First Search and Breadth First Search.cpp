@@ -117,6 +117,6 @@ int main(){
     cout<<"\n";
     visited.assign(N+1, false);
     BFS();
-    
+
     return 0;
 }
