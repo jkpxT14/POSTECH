@@ -71,3 +71,8 @@ sequence = sq
 
 identifier = id
 password = pw
+
+distance = dist
+
+source = src
+destination = dst
