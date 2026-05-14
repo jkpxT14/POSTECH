@@ -1,0 +1,25 @@
+g++ -std=c++11 -o pa3.exe pa3.cpp utils.cpp sort.cpp tree.cpp bst.cpp avl.cpp closed_hash_function.cpp closed_hash_table.cpp
+./pa3.exe
+g++ -std=c++11 -o evaluate.exe evaluate.cpp
+./evaluate.exe
+
+./pa3.exe 1 "[('insertion',42), ('insertion',20), ('insertion',17), ('insertion',13), ('insertion',28), ('insertion',14), ('bubbleSort',NULL)]"
+./pa3.exe 1 "[('insertion',17), ('insertion',20), ('insertion',2), ('insertion',21), ('insertion',4), ('bubbleSort',NULL)]"
+./pa3.exe 1 "[('insertion',7), ('insertion',6),('insertion',5), ('insertion',4),('insertion',3), ('insertion',2), ('insertion',1), ('bubbleSort',NULL)]"
+
+./pa3.exe 2 "17 20 17 33 15 2 21 14"
+./pa3.exe 2 "36 20 17 13 14 28 15 23 32"
+./pa3.exe 2 "5 1 4 2 8 3 7"
+
+./pa3.exe 3 "[('insertion',4), ('insertion',6), ('insertion',6), ('insertion',7), ('deletion',7), ('print', NULL)]"
+./pa3.exe 3 "[('insertion',5), ('insertion',3), ('insertion',7), ('kth',1), ('kth',2), ('kth',3)]"
+./pa3.exe 3 "[('kth',1), ('insertion',10), ('kth',0), ('kth',2), ('kth',1)]"
+./pa3.exe 3 "[('insertion',40), ('insertion',20), ('insertion',60), ('insertion',10), ('insertion',30), ('kth',3), ('deletion',20), ('kth',3), ('print', NULL)]"
+
+./pa3.exe 4 "aabbb"
+./pa3.exe 4 "a"
+./pa3.exe 4 "aAbbbcccc"
+
+./pa3.exe 5 "[('M',4), ('k',3), ('d',2), ('insertion',32615), ('insertion',315), ('insertion',6468), ('insertion',94833)]"
+./pa3.exe 5 "[('M',4), ('k',3), ('d',2), ('insertion',32615), ('insertion',315), ('insertion',6468), ('insertion',94833), ('insertion',22)]"
+./pa3.exe 5 "[('M',5), ('k',3), ('d',2), ('insertion',2), ('insertion',7), ('insertion',11), ('insertion',20), ('insertion',18)]"
