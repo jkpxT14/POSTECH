@@ -89,6 +89,10 @@
 % General calculus and analysis notation
 \newcommand{\dd}{\,d}
 \newcommand{\eps}{\varepsilon}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\divergence}{div}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\Jac}{Jac}
 
 % Linear algebra operators
 \DeclareMathOperator{\rk}{rk}
@@ -151,6 +155,7 @@
     \end{titlepage}
 
     \chapter*{Preface}
+    \markboth{Preface}{Preface}
     \addcontentsline{toc}{chapter}{Preface}
 
     This book is devoted to the Mathematics section of Science Quiz in the
@@ -170,6 +175,7 @@
     \tableofcontents
 
     \chapter*{Notation and Conventions}
+    \markboth{Notation and Conventions}{Notation and Conventions}
     \addcontentsline{toc}{chapter}{Notation and Conventions}
 
     Throughout this book, we use standard mathematical notation whenever possible.
@@ -222,11 +228,10 @@
     \end{longtable}
     }
 
-    \section*{Calculus, Analysis, and Topology}
+    \section*{Calculus and Vector Calculus}
 
-    Calculus notation is used for derivatives, integrals, and elementary limits.
-    Analysis and topology notation is used mainly for sequences, sets in metric
-    spaces, compactness, connectedness, and continuous maps.
+    Calculus notation includes one-variable calculus, multivariable calculus,
+    and vector calculus. The symbol $\nabla$ is read as ``nabla'' or ``del.''
 
     \vspace{0.5em}
 
@@ -252,30 +257,16 @@
         $\displaystyle \int_a^b f(x)\dd x$ & the definite integral of $f$ from $a$ to $b$ \\
         $C^k(I)$ & the set of $k$ times continuously differentiable functions on $I$ \\
         $C^\infty(I)$ & the set of smooth functions on $I$ \\
-        $(a_n)$ & a sequence \\
-        $a_n\to a$ & the sequence $(a_n)$ converges to $a$ \\
-        $\limsup_{n\to\infty}a_n$ & the limit superior of $(a_n)$ \\
-        $\liminf_{n\to\infty}a_n$ & the limit inferior of $(a_n)$ \\
-        $\overline{E}$ & the closure of a set $E$ \\
-        $E^\circ$ & the interior of a set $E$ \\
-        $\partial E$ & the boundary of a set $E$ \\
-        $E'$ & the derived set, or the set of limit points of $E$ \\
-        $B(p,r)$ & the open ball centered at $p$ with radius $r$ \\
-        $X,Y$ & usually topological spaces or metric spaces \\
-        $U,V$ & usually open sets \\
-        $K$ & often a compact set \\
-        $f:X\to Y$ & a function from $X$ to $Y$ \\
-        $f^{-1}(E)$ & the inverse image of $E$ under $f$ \\
-        $f(E)$ & the image of $E$ under $f$ \\
-        $X\simeq Y$ & $X$ and $Y$ are homeomorphic, when used in topology \\
+        $\nabla f$ or $\grad f$ & the gradient of a scalar-valued function $f$ \\
+        $\nabla\cdot\mathbf{F}$ or $\divergence\mathbf{F}$ & the divergence of a vector field $\mathbf{F}$ \\
+        $\nabla\times\mathbf{F}$ or $\curl\mathbf{F}$ & the curl of a vector field $\mathbf{F}$ \\
+        $\Delta f$ & the Laplacian of $f$, usually $\nabla\cdot\nabla f$ \\
+        $D\mathbf{F}$ & the derivative matrix, or Jacobian matrix, of a map $\mathbf{F}$ \\
+        $\Jac(\mathbf{F})$ & the Jacobian determinant of $\mathbf{F}$, when defined \\
+        $\displaystyle \int_C \mathbf{F}\cdot\dd\mathbf{r}$ & a line integral of a vector field along a curve $C$ \\
+        $\displaystyle \iint_S \mathbf{F}\cdot\mathbf{n}\dd S$ & a flux integral across a surface $S$ \\
     \end{longtable}
     }
-
-    We write intervals in the usual way:
-    \[
-        (a,b),\qquad [a,b],\qquad [a,b),\qquad (a,b].
-    \]
-    In particular, the distinction between open and closed endpoints matters.
 
     \section*{Linear Algebra}
 
@@ -337,27 +328,6 @@
         \R^n=\Col(\mathbf{A}^{\mathsf T})\oplus\Null(\mathbf{A}).
     \]
 
-    A projection matrix is denoted by $\mathbf{P}$ and satisfies
-    \[
-        \mathbf{P}^2=\mathbf{P}.
-    \]
-    An orthogonal projection additionally satisfies
-    \[
-        \mathbf{P}^{\mathsf T}=\mathbf{P}.
-    \]
-
-    When a matrix is written as a product
-    \[
-        \mathbf{A}=\mathbf{U}\mathbf{V},
-    \]
-    the sizes of $\mathbf{U}$ and $\mathbf{V}$ should be inferred from context.
-    Rank-one decompositions may be written as
-    \[
-        \mathbf{A}
-        =
-        \sum_{i=1}^{r}\mathbf{u}_i\mathbf{v}_i^{\mathsf T}.
-    \]
-
     For cofactors, we write $A_{ij}$ for the scalar cofactor of the entry
     $a_{ij}$ of $\mathbf{A}$. The cofactor matrix is denoted by
     \[
@@ -366,10 +336,6 @@
     and the adjugate matrix is
     \[
         \adj(\mathbf{A})=\mathbf{C}^{\mathsf T}.
-    \]
-    Thus
-    \[
-        \bigl(\adj(\mathbf{A})\bigr)_{ij}=A_{ji}.
     \]
     We avoid using $\mathbf{A}^{*}$ for the adjugate, since $\mathbf{A}^{*}$
     often denotes the conjugate transpose in other contexts.
@@ -404,6 +370,7 @@
         $y_h$ & the homogeneous part of a solution \\
         $y_p$ & a particular solution \\
         $c_1,c_2,\dots$ & arbitrary constants in a general solution \\
+        $\mathcal{L}\{f(t)\}(s)$ & the Laplace transform of $f(t)$ \\
     \end{longtable}
     }
 
@@ -570,12 +537,14 @@
 
     \chapter{Calculus}
 
-    This chapter collects the calculus results that are most likely to be useful
-    in Science Quiz: standard limits, continuity theorems, differentiation
-    principles, integration tools, Taylor expansions, and a few famous special
-    formulas.
+    This chapter collects quiz-friendly results from one-variable calculus,
+    multivariable calculus, and vector calculus. The emphasis is on named
+    theorems, memorable formulas, and geometric ideas that are easy to ask and
+    useful to recognize quickly.
 
-    \begin{formula}[Standard Limits]
+    \section*{One-Variable Calculus}
+
+    \begin{formula}[Standard Trigonometric and Exponential Limits]
         The following limits are fundamental:
         \[
             \lim_{x\to 0}\frac{\sin x}{x}=1,
@@ -599,35 +568,6 @@
         $(1+x)^{1/x}$ are strong signals for these standard patterns.
     \end{strategy}
 
-    \begin{theorem}[Squeeze Theorem]
-        Suppose that
-        \[
-            f(x)\leq g(x)\leq h(x)
-        \]
-        for all $x$ sufficiently close to $a$, except possibly at $a$ itself.
-        If
-        \[
-            \lim_{x\to a}f(x)
-            =
-            \lim_{x\to a}h(x)
-            =
-            L,
-        \]
-        then
-        \[
-            \lim_{x\to a}g(x)=L.
-        \]
-    \end{theorem}
-
-    \begin{definition}[Continuity]
-        A function $f$ is continuous at $a$ if
-        \[
-            \lim_{x\to a}f(x)=f(a).
-        \]
-        We say that $f$ is continuous on an interval if it is continuous at
-        every point of that interval.
-    \end{definition}
-
     \begin{theorem}[Intermediate Value Theorem]
         Let $f$ be continuous on $[a,b]$. If $N$ is any number between
         $f(a)$ and $f(b)$, then there exists $c\in[a,b]$ such that
@@ -639,72 +579,18 @@
     \begin{strategy}
         The Intermediate Value Theorem is the theorem behind many existence
         arguments. To show that an equation has a solution, define a continuous
-        function and show that its values have opposite signs at two endpoints.
+        function and show that its values cross the desired level.
     \end{strategy}
 
     \begin{theorem}[Extreme Value Theorem]
         Let $f$ be continuous on $[a,b]$. Then $f$ attains both a maximum and
-        a minimum on $[a,b]$. That is, there exist $c,d\in[a,b]$ such that
-        \[
-            f(c)\leq f(x)\leq f(d)
-        \]
-        for all $x\in[a,b]$.
+        a minimum on $[a,b]$.
     \end{theorem}
 
     \begin{remark}
         The closed interval condition is important. A continuous function on an
         open interval need not attain a maximum or a minimum.
     \end{remark}
-
-    \begin{definition}[Derivative]
-        Let $f$ be a real-valued function. The derivative of $f$ at $a$ is
-        defined by
-        \[
-            f'(a)
-            =
-            \lim_{h\to 0}\frac{f(a+h)-f(a)}{h},
-        \]
-        provided that this limit exists.
-    \end{definition}
-
-    \begin{proposition}[Basic Differentiation Rules]
-        If $f$ and $g$ are differentiable, then
-        \[
-            (f+g)'=f'+g',
-            \qquad
-            (fg)'=f'g+fg',
-        \]
-        and, where $g\neq 0$,
-        \[
-            \left(\frac{f}{g}\right)'
-            =
-            \frac{f'g-fg'}{g^2}.
-        \]
-        If $g$ is differentiable at $x$ and $f$ is differentiable at $g(x)$,
-        then
-        \[
-            (f\circ g)'(x)=f'(g(x))g'(x).
-        \]
-    \end{proposition}
-
-    \begin{theorem}[Fermat's Theorem on Stationary Points]
-        Suppose that $f$ has a local maximum or local minimum at an interior
-        point $c$ of its domain. If $f$ is differentiable at $c$, then
-        \[
-            f'(c)=0.
-        \]
-    \end{theorem}
-
-    \begin{theorem}[Rolle's Theorem]
-        Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. If
-        \[
-            f(a)=f(b),
-        \]
-        then there exists $c\in(a,b)$ such that
-        \[
-            f'(c)=0.
-        \]
-    \end{theorem}
 
     \begin{theorem}[Mean Value Theorem]
         Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then
@@ -720,112 +606,6 @@
         The Mean Value Theorem says that somewhere on the interval, the
         instantaneous rate of change equals the average rate of change.
     \end{idea}
-
-    \begin{corollary}[Monotonicity Test]
-        Let $f$ be differentiable on an interval $I$. If
-        \[
-            f'(x)>0
-        \]
-        for all $x\in I$, then $f$ is strictly increasing on $I$. If
-        \[
-            f'(x)<0
-        \]
-        for all $x\in I$, then $f$ is strictly decreasing on $I$.
-    \end{corollary}
-
-    \begin{strategy}
-        For one-variable optimization problems, check endpoints and then check
-        interior critical points. Interior extrema usually come from solving
-        $f'(x)=0$.
-    \end{strategy}
-
-    \begin{theorem}[L'Hopital's Rule]
-        Suppose that $f$ and $g$ are differentiable near $a$, and that
-        \[
-            \lim_{x\to a}f(x)=0,
-            \qquad
-            \lim_{x\to a}g(x)=0.
-        \]
-        If $g'(x)\neq 0$ near $a$ and
-        \[
-            \lim_{x\to a}\frac{f'(x)}{g'(x)}=L,
-        \]
-        then
-        \[
-            \lim_{x\to a}\frac{f(x)}{g(x)}=L.
-        \]
-        The same principle also applies to many $\infty/\infty$ indeterminate
-        forms.
-    \end{theorem}
-
-    \begin{theorem}[Fundamental Theorem of Calculus]
-        Let $f$ be continuous on $[a,b]$ and define
-        \[
-            F(x)=\int_a^x f(t)\dd t.
-        \]
-        Then $F$ is differentiable on $(a,b)$ and
-        \[
-            F'(x)=f(x).
-        \]
-        Also, if $G$ is any antiderivative of $f$ on $[a,b]$, then
-        \[
-            \int_a^b f(x)\dd x
-            =
-            G(b)-G(a).
-        \]
-    \end{theorem}
-
-    \begin{formula}[Substitution Rule]
-        If $u=g(x)$, then
-        \[
-            \int f(g(x))g'(x)\dd x
-            =
-            \int f(u)\dd u.
-        \]
-        In definite-integral form,
-        \[
-            \int_a^b f(g(x))g'(x)\dd x
-            =
-            \int_{g(a)}^{g(b)}f(u)\dd u.
-        \]
-    \end{formula}
-
-    \begin{formula}[Integration by Parts]
-        If $u$ and $v$ are differentiable functions, then
-        \[
-            \int u\dd v
-            =
-            uv-\int v\dd u.
-        \]
-        Equivalently,
-        \[
-            \int_a^b u(x)v'(x)\dd x
-            =
-            \left[u(x)v(x)\right]_a^b
-            -
-            \int_a^b u'(x)v(x)\dd x.
-        \]
-    \end{formula}
-
-    \begin{formula}[Gaussian Integral]
-        The Gaussian integral is
-        \[
-            \int_{-\infty}^{\infty}e^{-x^2}\dd x
-            =
-            \sqrt{\pi}.
-        \]
-        Equivalently,
-        \[
-            \int_0^\infty e^{-x^2}\dd x
-            =
-            \frac{\sqrt{\pi}}{2}.
-        \]
-    \end{formula}
-
-    \begin{remark}
-        The Gaussian integral is one of the most famous integrals in calculus.
-        It is closely connected to the normal distribution in probability.
-    \end{remark}
 
     \begin{theorem}[Taylor's Theorem]
         Suppose that $f$ is $n+1$ times differentiable near $a$. Then
@@ -889,22 +669,6 @@
         \]
     \end{formula}
 
-    \begin{formula}[Binomial Series]
-        For any real number $\alpha$,
-        \[
-            (1+x)^\alpha
-            =
-            \sum_{n=0}^{\infty}\binom{\alpha}{n}x^n
-            \qquad (|x|<1),
-        \]
-        where
-        \[
-            \binom{\alpha}{n}
-            =
-            \frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}.
-        \]
-    \end{formula}
-
     \begin{formula}[Euler's Formula]
         For every real number $x$,
         \[
@@ -921,6 +685,26 @@
     \begin{remark}
         The identity $e^{i\pi}+1=0$ is called Euler's identity. It connects
         the constants $e$, $i$, $\pi$, $1$, and $0$ in a single formula.
+    \end{remark}
+
+    \begin{formula}[Gaussian Integral]
+        The Gaussian integral is
+        \[
+            \int_{-\infty}^{\infty}e^{-x^2}\dd x
+            =
+            \sqrt{\pi}.
+        \]
+        Equivalently,
+        \[
+            \int_0^\infty e^{-x^2}\dd x
+            =
+            \frac{\sqrt{\pi}}{2}.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The Gaussian integral is one of the most famous integrals in calculus.
+        It is closely connected to the normal distribution in probability.
     \end{remark}
 
     \begin{formula}[Wallis Product]
@@ -975,44 +759,179 @@
         It often appears in counting, probability, and asymptotic estimation.
     \end{remark}
 
-    \chapter{Linear Algebra}
+    \section*{Multivariable Calculus and Vector Calculus}
 
-    \begin{definition}[Vector Space]
-        A vector space over a field $F$ is a set $V$ equipped with vector
-        addition and scalar multiplication satisfying the usual vector space
-        axioms. Elements of $V$ are called vectors, and elements of $F$ are
-        called scalars.
+    \begin{definition}[Gradient, Divergence, Curl, and Laplacian]
+        For a scalar-valued function $f(x,y,z)$ and a vector field
+        $\mathbf{F}=(P,Q,R)$, we write
+        \[
+            \nabla f
+            =
+            \left(\frac{\partial f}{\partial x},
+                  \frac{\partial f}{\partial y},
+                  \frac{\partial f}{\partial z}\right),
+        \]
+        \[
+            \nabla\cdot\mathbf{F}
+            =
+            \frac{\partial P}{\partial x}
+            +
+            \frac{\partial Q}{\partial y}
+            +
+            \frac{\partial R}{\partial z},
+        \]
+        \[
+            \nabla\times\mathbf{F}
+            =
+            \begin{vmatrix}
+                \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+                \partial/\partial x & \partial/\partial y & \partial/\partial z \\
+                P & Q & R
+            \end{vmatrix},
+        \]
+        and
+        \[
+            \Delta f
+            =
+            \nabla\cdot\nabla f
+            =
+            f_{xx}+f_{yy}+f_{zz}.
+        \]
     \end{definition}
+
+    \begin{idea}
+        The gradient points in the direction of steepest increase. Divergence
+        measures source or sink behavior. Curl measures local rotation. The
+        Laplacian measures how a value differs from its surrounding average.
+    \end{idea}
+
+    \begin{theorem}[Clairaut's Theorem]
+        If $f$ has continuous second partial derivatives near a point, then the
+        mixed partial derivatives agree at that point:
+        \[
+            \frac{\partial^2 f}{\partial x\partial y}
+            =
+            \frac{\partial^2 f}{\partial y\partial x}.
+        \]
+    \end{theorem}
+
+    \begin{definition}[Jacobian]
+        For a map
+        \[
+            \mathbf{F}(u_1,\dots,u_n)
+            =
+            (x_1(u_1,\dots,u_n),\dots,x_n(u_1,\dots,u_n)),
+        \]
+        the Jacobian matrix is
+        \[
+            D\mathbf{F}
+            =
+            \left(\frac{\partial x_i}{\partial u_j}\right)_{i,j=1}^{n}.
+        \]
+        Its determinant
+        \[
+            \Jac(\mathbf{F})
+            =
+            \det(D\mathbf{F})
+        \]
+        is called the Jacobian determinant.
+    \end{definition}
+
+    \begin{theorem}[Change of Variables Formula]
+        Under suitable regularity and one-to-one assumptions,
+        \[
+            \int_{\mathbf{F}(D)} f(\mathbf{x})\dd\mathbf{x}
+            =
+            \int_D f(\mathbf{F}(\mathbf{u}))
+            \left|\det D\mathbf{F}(\mathbf{u})\right|\dd\mathbf{u}.
+        \]
+    \end{theorem}
 
     \begin{remark}
-        In this book, the most common examples are $\R^n$, $\C^n$, spaces of
-        polynomials, and spaces of functions.
+        The Jacobian determinant is the local area or volume scaling factor of
+        a change of variables.
     \end{remark}
 
-    \begin{definition}[Linear Independence, Span, and Basis]
-        Let $\mathbf{v}_1,\dots,\mathbf{v}_k$ be vectors in a vector space $V$.
-        They are linearly independent if
+    \begin{theorem}[Lagrange Multipliers]
+        Suppose that $f$ has a local maximum or minimum subject to the constraint
         \[
-            c_1\mathbf{v}_1+\cdots+c_k\mathbf{v}_k=\mathbf{0}
+            g(x_1,\dots,x_n)=0
         \]
-        implies
+        at a point where $\nabla g\neq\mathbf{0}$. Then there exists a scalar
+        $\lambda$ such that
         \[
-            c_1=\cdots=c_k=0.
+            \nabla f=\lambda\nabla g.
         \]
-        Their span is
-        \[
-            \Span(\mathbf{v}_1,\dots,\mathbf{v}_k)
-            =
-            \{c_1\mathbf{v}_1+\cdots+c_k\mathbf{v}_k:c_1,\dots,c_k\in F\}.
-        \]
-        A basis of $V$ is a linearly independent spanning set of $V$.
-    \end{definition}
+    \end{theorem}
 
-    \begin{definition}[Dimension]
-        If a vector space $V$ has a finite basis, then all bases of $V$ have
-        the same number of vectors. This number is called the dimension of $V$
-        and is denoted by $\dim V$.
-    \end{definition}
+    \begin{idea}
+        At a constrained optimum, the level surface of $f$ is tangent to the
+        constraint surface. Thus their normal vectors are parallel.
+    \end{idea}
+
+    \begin{theorem}[Green's Theorem]
+        Let $C$ be a positively oriented, simple closed curve in the plane, and
+        let $D$ be the region enclosed by $C$. Then
+        \[
+            \oint_C P\dd x+Q\dd y
+            =
+            \iint_D
+            \left(
+                \frac{\partial Q}{\partial x}
+                -
+                \frac{\partial P}{\partial y}
+            \right)
+            \dd A.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        Green's Theorem converts circulation along a boundary curve into curl
+        over the region inside. It is the two-dimensional ancestor of Stokes'
+        Theorem.
+    \end{idea}
+
+    \begin{theorem}[Stokes' Theorem]
+        Let $S$ be an oriented smooth surface with positively oriented boundary
+        curve $\partial S$. Then
+        \[
+            \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
+            =
+            \iint_S (\nabla\times\mathbf{F})\cdot\mathbf{n}\dd S.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        Stokes' Theorem says that circulation around the boundary equals total
+        curl through the surface. It turns a boundary integral into an interior
+        integral.
+    \end{idea}
+
+    \begin{theorem}[Divergence Theorem]
+        Let $E$ be a solid region in $\R^3$ with outward-oriented boundary
+        surface $\partial E$. Then
+        \[
+            \iint_{\partial E}\mathbf{F}\cdot\mathbf{n}\dd S
+            =
+            \iiint_E \nabla\cdot\mathbf{F}\dd V.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        The Divergence Theorem says that outward flux through the boundary
+        equals total source strength inside the region.
+    \end{idea}
+
+    \begin{remark}
+        Green's Theorem, Stokes' Theorem, and the Divergence Theorem share the
+        same philosophy: a boundary integral is equal to an interior integral.
+        This is the geometric heart of vector calculus.
+    \end{remark}
+
+    \chapter{Linear Algebra}
+
+    This chapter focuses on named theorems, matrix invariants, and geometric
+    principles that are especially likely to appear in quiz-style questions.
 
     \begin{theorem}[Rank--Nullity Theorem]
         Let $T:V\to W$ be a linear map between finite-dimensional vector spaces.
@@ -1029,8 +948,9 @@
     \end{theorem}
 
     \begin{strategy}
-        Rank--Nullity is the fastest way to connect the number of variables,
-        the number of pivots, and the number of free variables.
+        Rank--Nullity connects variables, pivots, and free variables. It is the
+        linear algebra version of accounting: nothing disappears; dimensions
+        are redistributed.
     \end{strategy}
 
     \begin{theorem}[Invertible Matrix Theorem]
@@ -1038,11 +958,9 @@
         statements are equivalent:
         \[
             \mathbf{A}\text{ is invertible},
-        \]
-        \[
+            \qquad
             \det(\mathbf{A})\neq 0,
-        \]
-        \[
+            \qquad
             \rk(\mathbf{A})=n,
         \]
         \[
@@ -1056,17 +974,16 @@
     \end{theorem}
 
     \begin{remark}
-        This theorem is not one single trick, but a dictionary. It lets us
-        translate between determinants, rank, null spaces, and solvability of
-        linear systems.
+        This theorem is a dictionary. It translates between determinants, rank,
+        null spaces, and solvability of linear systems.
     \end{remark}
 
     \begin{definition}[Determinant]
         The determinant is a scalar associated to a square matrix
         $\mathbf{A}\in F^{n\times n}$, denoted by $\det(\mathbf{A})$.
         Geometrically, for real matrices, $|\det(\mathbf{A})|$ is the volume
-        scaling factor of the linear transformation $\mathbf{x}\mapsto
-        \mathbf{A}\mathbf{x}$.
+        scaling factor of the linear transformation
+        $\mathbf{x}\mapsto\mathbf{A}\mathbf{x}$.
     \end{definition}
 
     \begin{proposition}[Basic Properties of Determinants]
@@ -1097,65 +1014,6 @@
         \]
     \end{formula}
 
-    \begin{definition}[Trace]
-        The trace of a square matrix $\mathbf{A}=(a_{ij})\in F^{n\times n}$ is
-        \[
-            \tr(\mathbf{A})
-            =
-            a_{11}+a_{22}+\cdots+a_{nn}.
-        \]
-    \end{definition}
-
-    \begin{proposition}[Trace Identities]
-        If $\mathbf{A}$ and $\mathbf{B}$ are matrices of compatible sizes, then
-        \[
-            \tr(\mathbf{A}\mathbf{B})
-            =
-            \tr(\mathbf{B}\mathbf{A}).
-        \]
-        In particular, similar matrices have the same trace.
-    \end{proposition}
-
-    \begin{definition}[Eigenvalue and Eigenvector]
-        Let $\mathbf{A}\in F^{n\times n}$. A scalar $\lambda\in F$ is an
-        eigenvalue of $\mathbf{A}$ if there exists a nonzero vector
-        $\mathbf{v}\in F^n$ such that
-        \[
-            \mathbf{A}\mathbf{v}
-            =
-            \lambda\mathbf{v}.
-        \]
-        Such a nonzero vector $\mathbf{v}$ is called an eigenvector
-        corresponding to $\lambda$.
-    \end{definition}
-
-    \begin{definition}[Characteristic Polynomial]
-        For a square matrix $\mathbf{A}\in F^{n\times n}$, the polynomial
-        \[
-            p_{\mathbf{A}}(\lambda)
-            =
-            \det(\lambda\mathbf{I}_n-\mathbf{A})
-        \]
-        is called the characteristic polynomial of $\mathbf{A}$.
-    \end{definition}
-
-    \begin{proposition}[Eigenvalues and the Characteristic Polynomial]
-        A scalar $\lambda$ is an eigenvalue of $\mathbf{A}$ if and only if
-        \[
-            \det(\lambda\mathbf{I}_n-\mathbf{A})=0.
-        \]
-        Equivalently, the eigenvalues of $\mathbf{A}$ are the roots of the
-        characteristic polynomial $p_{\mathbf{A}}(\lambda)$.
-    \end{proposition}
-
-    \begin{strategy}
-        When a quiz problem asks for eigenvalues, first compute the
-        characteristic polynomial. When it asks for eigenvectors, solve
-        \[
-            (\mathbf{A}-\lambda\mathbf{I}_n)\mathbf{x}=\mathbf{0}.
-        \]
-    \end{strategy}
-
     \begin{proposition}[Trace, Determinant, and Eigenvalues]
         Let $\mathbf{A}\in\C^{n\times n}$ have eigenvalues
         $\lambda_1,\dots,\lambda_n$, counted with algebraic multiplicity. Then
@@ -1170,6 +1028,30 @@
             =
             \lambda_1\lambda_2\cdots\lambda_n.
         \]
+    \end{proposition}
+
+    \begin{definition}[Eigenvalue and Characteristic Polynomial]
+        Let $\mathbf{A}\in F^{n\times n}$. A scalar $\lambda\in F$ is an
+        eigenvalue of $\mathbf{A}$ if there exists a nonzero vector
+        $\mathbf{v}\in F^n$ such that
+        \[
+            \mathbf{A}\mathbf{v}=\lambda\mathbf{v}.
+        \]
+        The characteristic polynomial of $\mathbf{A}$ is
+        \[
+            p_{\mathbf{A}}(\lambda)
+            =
+            \det(\lambda\mathbf{I}_n-\mathbf{A}).
+        \]
+    \end{definition}
+
+    \begin{proposition}[Eigenvalues and the Characteristic Polynomial]
+        A scalar $\lambda$ is an eigenvalue of $\mathbf{A}$ if and only if
+        \[
+            \det(\lambda\mathbf{I}_n-\mathbf{A})=0.
+        \]
+        Equivalently, the eigenvalues of $\mathbf{A}$ are the roots of the
+        characteristic polynomial $p_{\mathbf{A}}(\lambda)$.
     \end{proposition}
 
     \begin{theorem}[Cayley--Hamilton Theorem]
@@ -1190,17 +1072,6 @@
         Cayley--Hamilton is a famous named theorem. It is especially useful for
         reducing high powers of a matrix to lower powers.
     \end{remark}
-
-    \begin{definition}[Diagonalizable Matrix]
-        A matrix $\mathbf{A}\in F^{n\times n}$ is diagonalizable over $F$ if
-        there exist an invertible matrix $\mathbf{P}$ and a diagonal matrix
-        $\mathbf{D}$ such that
-        \[
-            \mathbf{A}
-            =
-            \mathbf{P}\mathbf{D}\mathbf{P}^{-1}.
-        \]
-    \end{definition}
 
     \begin{theorem}[Diagonalization Criterion]
         A matrix $\mathbf{A}\in F^{n\times n}$ is diagonalizable over $F$ if
@@ -1233,28 +1104,9 @@
     \end{theorem}
 
     \begin{remark}
-        The Spectral Theorem is one of the most important theorems in linear
-        algebra. In quiz settings, the words ``real symmetric matrix'' are a
-        strong signal for real eigenvalues and orthogonal diagonalization.
+        In quiz settings, the words ``real symmetric matrix'' are a strong
+        signal for real eigenvalues and orthogonal diagonalization.
     \end{remark}
-
-    \begin{definition}[Inner Product and Norm]
-        In $\R^n$, the standard inner product of
-        $\mathbf{u},\mathbf{v}\in\R^n$ is
-        \[
-            \langle\mathbf{u},\mathbf{v}\rangle
-            =
-            \mathbf{u}\cdot\mathbf{v}
-            =
-            \sum_{i=1}^{n}u_i v_i.
-        \]
-        The associated norm is
-        \[
-            \|\mathbf{v}\|
-            =
-            \sqrt{\langle\mathbf{v},\mathbf{v}\rangle}.
-        \]
-    \end{definition}
 
     \begin{theorem}[Cauchy--Schwarz Inequality]
         For vectors $\mathbf{u},\mathbf{v}\in\R^n$, we have
@@ -1274,9 +1126,8 @@
     \end{theorem}
 
     \begin{strategy}
-        In a quiz setting, the expression $\sum a_i b_i$ is a strong signal for
-        Cauchy--Schwarz. The vector form is often the fastest way to recognize
-        the inequality.
+        The expression $\sum a_i b_i$ is a strong signal for Cauchy--Schwarz.
+        The vector form is often the fastest way to recognize the inequality.
     \end{strategy}
 
     \begin{corollary}[Triangle Inequality]
@@ -1287,37 +1138,6 @@
             \|\mathbf{u}\|+\|\mathbf{v}\|.
         \]
     \end{corollary}
-
-    \begin{definition}[Orthogonal Matrix]
-        A real square matrix $\mathbf{Q}$ is orthogonal if
-        \[
-            \mathbf{Q}^{\mathsf T}\mathbf{Q}
-            =
-            \mathbf{I}.
-        \]
-        Equivalently,
-        \[
-            \mathbf{Q}^{-1}=\mathbf{Q}^{\mathsf T}.
-        \]
-    \end{definition}
-
-    \begin{proposition}[Properties of Orthogonal Matrices]
-        If $\mathbf{Q}$ is orthogonal, then it preserves inner products and
-        norms:
-        \[
-            \langle\mathbf{Q}\mathbf{u},\mathbf{Q}\mathbf{v}\rangle
-            =
-            \langle\mathbf{u},\mathbf{v}\rangle,
-        \]
-        and
-        \[
-            \|\mathbf{Q}\mathbf{v}\|=\|\mathbf{v}\|.
-        \]
-        Also,
-        \[
-            \det(\mathbf{Q})=\pm 1.
-        \]
-    \end{proposition}
 
     \begin{theorem}[Gram--Schmidt Process]
         From any linearly independent list
@@ -1340,28 +1160,6 @@
         Gram--Schmidt is the standard procedure for turning an arbitrary basis
         into an orthonormal basis.
     \end{remark}
-
-    \begin{definition}[Orthogonal Projection]
-        Let $W$ be a subspace of $\R^n$. The orthogonal projection of
-        $\mathbf{v}\in\R^n$ onto $W$ is the unique vector
-        $\operatorname{proj}_W(\mathbf{v})\in W$ such that
-        \[
-            \mathbf{v}-\operatorname{proj}_W(\mathbf{v})
-            \perp W.
-        \]
-    \end{definition}
-
-    \begin{formula}[Projection onto a Line]
-        If $\mathbf{u}\neq\mathbf{0}$, then the projection of $\mathbf{v}$ onto
-        the line spanned by $\mathbf{u}$ is
-        \[
-            \operatorname{proj}_{\mathbf{u}}(\mathbf{v})
-            =
-            \frac{\langle\mathbf{v},\mathbf{u}\rangle}
-                 {\langle\mathbf{u},\mathbf{u}\rangle}
-            \mathbf{u}.
-        \]
-    \end{formula}
 
     \begin{formula}[Projection Matrix]
         If the columns of $\mathbf{Q}\in\R^{n\times k}$ are orthonormal, then
@@ -1437,41 +1235,10 @@
 
     \chapter{Differential Equations}
 
-    \begin{definition}[Differential Equation]
-        A differential equation is an equation involving an unknown function and
-        one or more of its derivatives. An ordinary differential equation, or
-        ODE, involves derivatives with respect to one independent variable. A
-        partial differential equation, or PDE, involves partial derivatives with
-        respect to several independent variables.
-    \end{definition}
+    This chapter collects named principles and famous model equations from
+    ordinary and partial differential equations.
 
-    \begin{definition}[Order of a Differential Equation]
-        The order of a differential equation is the highest order of derivative
-        appearing in the equation. For example,
-        \[
-            y''+3y'-2y=0
-        \]
-        is a second-order differential equation.
-    \end{definition}
-
-    \begin{definition}[Linear Differential Equation]
-        A differential equation is linear if the unknown function and its
-        derivatives appear only linearly. For example,
-        \[
-            a_n(x)y^{(n)}+a_{n-1}(x)y^{(n-1)}+\cdots+a_1(x)y'+a_0(x)y
-            =
-            g(x)
-        \]
-        is a linear differential equation.
-    \end{definition}
-
-    \begin{remark}
-        Linearity is a major dividing line. Linear equations have a powerful
-        superposition principle, while nonlinear equations may behave much more
-        unpredictably.
-    \end{remark}
-
-    \begin{theorem}[Existence and Uniqueness Theorem]
+    \begin{theorem}[Picard--Lindelof Existence and Uniqueness Theorem]
         Consider the initial value problem
         \[
             y'=f(t,y),
@@ -1486,57 +1253,6 @@
         In a quiz setting, the important phrase is ``existence and uniqueness.''
         It tells us when an initial condition determines exactly one solution.
     \end{remark}
-
-    \begin{formula}[Separable Equation]
-        A first-order differential equation of the form
-        \[
-            \frac{\dd y}{\dd t}=g(t)h(y)
-        \]
-        is called separable. It can be solved by writing
-        \[
-            \frac{1}{h(y)}\dd y=g(t)\dd t
-        \]
-        and integrating both sides.
-    \end{formula}
-
-    \begin{strategy}
-        If the variables can be separated so that all $y$-terms are on one side
-        and all $t$-terms are on the other, try separation of variables first.
-    \end{strategy}
-
-    \begin{formula}[First-Order Linear Equation]
-        A first-order linear equation has the form
-        \[
-            y'+p(t)y=q(t).
-        \]
-        Its integrating factor is
-        \[
-            \mu(t)=e^{\int p(t)\dd t}.
-        \]
-        Multiplying by $\mu(t)$ gives
-        \[
-            \bigl(\mu(t)y(t)\bigr)'=\mu(t)q(t),
-        \]
-        so
-        \[
-            y(t)
-            =
-            \frac{1}{\mu(t)}
-            \left(
-                \int \mu(t)q(t)\dd t+C
-            \right).
-        \]
-    \end{formula}
-
-    \begin{definition}[Homogeneous Linear Equation]
-        A linear differential equation is homogeneous if its forcing term is
-        zero. For example,
-        \[
-            a_n(t)y^{(n)}+\cdots+a_1(t)y'+a_0(t)y=0
-        \]
-        is homogeneous. If the right-hand side is not zero, the equation is
-        nonhomogeneous.
-    \end{definition}
 
     \begin{theorem}[Superposition Principle]
         If $y_1,\dots,y_k$ are solutions of a homogeneous linear differential
@@ -1563,17 +1279,6 @@
         equation and $y_p$ is one particular solution of the nonhomogeneous
         equation.
     \end{proposition}
-
-    \begin{strategy}
-        For linear nonhomogeneous equations, remember the phrase
-        \[
-            \text{general solution}
-            =
-            \text{homogeneous solution}
-            +
-            \text{particular solution}.
-        \]
-    \end{strategy}
 
     \begin{formula}[Second-Order Constant-Coefficient Equation]
         Consider the homogeneous equation
@@ -1629,23 +1334,6 @@
         \]
         for some $t_0$, then $y_1$ and $y_2$ are linearly independent.
     \end{proposition}
-
-    \begin{definition}[Equilibrium Solution]
-        For an autonomous equation
-        \[
-            y'=f(y),
-        \]
-        an equilibrium solution is a constant solution $y(t)=y_0$ satisfying
-        \[
-            f(y_0)=0.
-        \]
-    \end{definition}
-
-    \begin{strategy}
-        For autonomous equations, equilibrium solutions come from setting the
-        derivative equal to zero. Then the sign of $f(y)$ tells us whether
-        nearby solutions move upward or downward.
-    \end{strategy}
 
     \begin{formula}[Exponential Growth and Decay]
         The equation
@@ -1822,11 +1510,799 @@
 
     \chapter{Combinatorics and Discrete Mathematics}
 
+    This chapter collects high-yield results from combinatorics and discrete
+    mathematics. The emphasis is on named principles, memorable formulas, and
+    results with clear quiz-style answers.
+
+    \begin{formula}[Binomial Theorem; Newton's Binomial Formula]
+        For every nonnegative integer $n$,
+        \[
+            (x+y)^n
+            =
+            \sum_{k=0}^{n}\binom{n}{k}x^{n-k}y^k.
+        \]
+        In particular,
+        \[
+            (1+x)^n
+            =
+            \sum_{k=0}^{n}\binom{n}{k}x^k.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The coefficients $\binom{n}{k}$ are the entries of Pascal's triangle.
+        This is one of the most recognizable bridges between algebra and
+        counting.
+    \end{remark}
+
+    \begin{theorem}[Pigeonhole Principle; Dirichlet's Box Principle]
+        If $n+1$ objects are placed into $n$ boxes, then at least one box
+        contains at least two objects.
+        More generally, if $N$ objects are placed into $k$ boxes, then at least
+        one box contains at least
+        \[
+            \left\lceil\frac{N}{k}\right\rceil
+        \]
+        objects.
+    \end{theorem}
+
+    \begin{strategy}
+        The Pigeonhole Principle is often hidden in problems asking us to prove
+        that two objects must share a property. The hard part is usually
+        choosing the right ``boxes.''
+    \end{strategy}
+
+    \begin{theorem}[Inclusion--Exclusion Principle; Sieve Formula]
+        For finite sets $A_1,\dots,A_n$,
+        \[
+            \left|\bigcup_{i=1}^{n}A_i\right|
+            =
+            \sum_i |A_i|
+            -
+            \sum_{i<j}|A_i\cap A_j|
+            +
+            \sum_{i<j<k}|A_i\cap A_j\cap A_k|
+            -\cdots
+            +(-1)^{n+1}|A_1\cap\cdots\cap A_n|.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Inclusion--Exclusion is the standard correction mechanism for
+        overcounting. It is also historically connected to sieve methods.
+    \end{remark}
+
+    \begin{formula}[Derangement Formula]
+        Let $D_n$ be the number of derangements of $n$ objects, that is,
+        permutations with no fixed points. Then
+        \[
+            D_n
+            =
+            n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}.
+        \]
+        Moreover,
+        \[
+            D_n
+            =
+            \left\lfloor \frac{n!}{e}+\frac12\right\rfloor.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The approximation $D_n\approx n!/e$ is very memorable. In probability
+        language, a random permutation has no fixed point with probability
+        approximately $1/e$.
+    \end{remark}
+
+    \begin{formula}[Catalan Numbers]
+        The $n$th Catalan number is
+        \[
+            C_n
+            =
+            \frac{1}{n+1}\binom{2n}{n}.
+        \]
+        It begins as
+        \[
+            1,\ 1,\ 2,\ 5,\ 14,\ 42,\ 132,\dots.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        Catalan numbers count many different objects, including correct
+        parenthesizations, Dyck paths, triangulations of a polygon, and rooted
+        full binary trees. The number $42$ is a classic giveaway.
+    \end{remark}
+
+    \begin{theorem}[Cayley's Formula]
+        The number of labeled trees on $n$ vertices is
+        \[
+            n^{n-2}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Cayley's formula is a perfect Science Quiz result: the statement is
+        short, the answer is surprising, and the name is famous.
+    \end{remark}
+
+    \begin{theorem}[Burnside's Lemma; Cauchy--Frobenius Lemma]
+        Suppose a finite group $G$ acts on a finite set $X$. The number of
+        orbits is
+        \[
+            \frac{1}{|G|}
+            \sum_{g\in G}|\operatorname{Fix}(g)|,
+        \]
+        where
+        \[
+            \operatorname{Fix}(g)
+            =
+            \{x\in X:g\cdot x=x\}.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        Burnside's Lemma says that the number of essentially different objects
+        is the average number of objects fixed by a symmetry.
+    \end{idea}
+
+    \begin{lemma}[Handshaking Lemma]
+        For a finite undirected graph $G=(V,E)$,
+        \[
+            \sum_{v\in V}\deg(v)=2|E|.
+        \]
+        In particular, the number of vertices of odd degree is even.
+    \end{lemma}
+
+    \begin{remark}
+        The name comes from the idea that every handshake contributes $2$ to
+        the total count of hands shaken.
+    \end{remark}
+
+    \begin{theorem}[Euler's Formula for Planar Graphs]
+        If a connected planar graph has $V$ vertices, $E$ edges, and $F$ faces,
+        then
+        \[
+            V-E+F=2.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        This is the graph-theoretic version of Euler's polyhedron formula.
+        It is one of the most famous formulas involving planar graphs.
+    \end{remark}
+
+    \begin{theorem}[Eulerian Trail Criterion]
+        A connected finite graph has an Eulerian circuit if and only if every
+        vertex has even degree. It has an Eulerian trail but not an Eulerian
+        circuit if and only if exactly two vertices have odd degree.
+    \end{theorem}
+
+    \begin{remark}
+        This theorem is historically connected to Euler's solution of the
+        Seven Bridges of Konigsberg problem.
+    \end{remark}
+
+    \begin{theorem}[Hall's Marriage Theorem]
+        Let $G=(X\cup Y,E)$ be a bipartite graph. There is a matching that
+        covers every vertex of $X$ if and only if, for every subset
+        $S\subseteq X$,
+        \[
+            |N(S)|\geq |S|,
+        \]
+        where $N(S)$ is the set of neighbors of vertices in $S$.
+    \end{theorem}
+
+    \begin{strategy}
+        Hall's Marriage Theorem is the standard named theorem for proving that
+        a perfect assignment or matching exists.
+    \end{strategy}
+
+    \begin{theorem}[Ramsey's Theorem]
+        For any positive integers $r$ and $s$, there exists an integer
+        $R(r,s)$ such that every red-blue coloring of the edges of a sufficiently
+        large complete graph contains either a red $K_r$ or a blue $K_s$.
+    \end{theorem}
+
+    \begin{formula}[The Party Problem]
+        The classical Ramsey number
+        \[
+            R(3,3)=6
+        \]
+        says that among any six people, there are either three mutual
+        acquaintances or three mutual strangers.
+    \end{formula}
+
+    \begin{remark}
+        Ramsey theory is the mathematics of unavoidable structure. Its slogan
+        is that complete disorder is impossible in a large enough system.
+    \end{remark}
+
+    \begin{theorem}[Erdos--Szekeres Theorem]
+        Any sequence of
+        \[
+            (r-1)(s-1)+1
+        \]
+        distinct real numbers contains either an increasing subsequence of
+        length $r$ or a decreasing subsequence of length $s$.
+    \end{theorem}
+
+    \begin{remark}
+        This is a beautiful pigeonhole-style result. It is often remembered as
+        the monotone subsequence theorem.
+    \end{remark}
+
     \chapter{Probability and Statistics}
+
+    This chapter focuses on probability results that are easy to ask in a quiz:
+    named theorems, famous distributions, memorable approximations, and
+    inequalities with clear meanings.
+
+    \begin{theorem}[Law of Total Probability]
+        If $B_1,\dots,B_n$ form a partition of the sample space and
+        $\Prob(B_i)>0$ for all $i$, then
+        \[
+            \Prob(A)
+            =
+            \sum_{i=1}^{n}\Prob(A\mid B_i)\Prob(B_i).
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Bayes' Theorem]
+        If $B_1,\dots,B_n$ form a partition of the sample space and
+        $\Prob(A)>0$, then
+        \[
+            \Prob(B_j\mid A)
+            =
+            \frac{\Prob(A\mid B_j)\Prob(B_j)}
+                 {\sum_{i=1}^{n}\Prob(A\mid B_i)\Prob(B_i)}.
+        \]
+        In the two-event form,
+        \[
+            \Prob(B\mid A)
+            =
+            \frac{\Prob(A\mid B)\Prob(B)}{\Prob(A)}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Bayes' Theorem is the standard formula for reversing conditional
+        probability. It updates a prior probability after observing evidence.
+    \end{remark}
+
+    \begin{proposition}[Linearity of Expectation]
+        For random variables $X_1,\dots,X_n$,
+        \[
+            \Exp[X_1+\cdots+X_n]
+            =
+            \Exp[X_1]+\cdots+\Exp[X_n].
+        \]
+        This holds even when the random variables are not independent.
+    \end{proposition}
+
+    \begin{strategy}
+        Linearity of expectation is often the fastest way to count an expected
+        number of objects. Introduce indicator random variables and add their
+        expectations.
+    \end{strategy}
+
+    \begin{formula}[Variance and Covariance Identities]
+        For a random variable $X$,
+        \[
+            \Var(X)
+            =
+            \Exp[X^2]-(\Exp[X])^2.
+        \]
+        For random variables $X$ and $Y$,
+        \[
+            \Var(X+Y)
+            =
+            \Var(X)+\Var(Y)+2\Cov(X,Y).
+        \]
+        If $X$ and $Y$ are independent, then
+        \[
+            \Var(X+Y)=\Var(X)+\Var(Y).
+        \]
+    \end{formula}
+
+    \begin{formula}[Binomial Distribution]
+        If $X\sim\Bin(n,p)$, then
+        \[
+            \Prob(X=k)
+            =
+            \binom{n}{k}p^k(1-p)^{n-k},
+            \qquad
+            k=0,1,\dots,n.
+        \]
+        Its mean and variance are
+        \[
+            \Exp[X]=np,
+            \qquad
+            \Var(X)=np(1-p).
+        \]
+    \end{formula}
+
+    \begin{formula}[Poisson Distribution]
+        If $X\sim\Poi(\lambda)$, then
+        \[
+            \Prob(X=k)
+            =
+            e^{-\lambda}\frac{\lambda^k}{k!},
+            \qquad
+            k=0,1,2,\dots.
+        \]
+        Its mean and variance are
+        \[
+            \Exp[X]=\lambda,
+            \qquad
+            \Var(X)=\lambda.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Poisson Limit Theorem; Law of Small Numbers]
+        If $n\to\infty$, $p\to 0$, and $np\to\lambda$, then
+        \[
+            \binom{n}{k}p^k(1-p)^{n-k}
+            \to
+            e^{-\lambda}\frac{\lambda^k}{k!}
+        \]
+        for each fixed $k\geq 0$.
+    \end{theorem}
+
+    \begin{remark}
+        This theorem explains why the Poisson distribution models rare events:
+        many trials, small success probability, and finite expected count.
+    \end{remark}
+
+    \begin{formula}[Normal Distribution; Gaussian Distribution]
+        A random variable $X\sim\Normal(\mu,\sigma^2)$ has density
+        \[
+            f(x)
+            =
+            \frac{1}{\sigma\sqrt{2\pi}}
+            \exp\left(
+                -\frac{(x-\mu)^2}{2\sigma^2}
+            \right).
+        \]
+        The standard normal distribution is $\Normal(0,1)$.
+    \end{formula}
+
+    \begin{formula}[Empirical Rule; 68--95--99.7 Rule]
+        For a normal distribution, approximately
+        \[
+            68\%
+        \]
+        of the mass lies within one standard deviation of the mean,
+        \[
+            95\%
+        \]
+        lies within two standard deviations, and
+        \[
+            99.7\%
+        \]
+        lies within three standard deviations.
+    \end{formula}
+
+    \begin{theorem}[Weak Law of Large Numbers]
+        Let $X_1,X_2,\dots$ be independent identically distributed random
+        variables with mean $\mu$. Then, for every $\eps>0$,
+        \[
+            \Prob\left(
+                \left|
+                    \frac{X_1+\cdots+X_n}{n}-\mu
+                \right|
+                >
+                \eps
+            \right)
+            \to 0
+        \]
+        as $n\to\infty$.
+    \end{theorem}
+
+    \begin{idea}
+        The Law of Large Numbers says that the sample average stabilizes near
+        the true mean when the number of trials becomes large.
+    \end{idea}
+
+    \begin{theorem}[Central Limit Theorem]
+        Let $X_1,X_2,\dots$ be independent identically distributed random
+        variables with mean $\mu$ and variance $\sigma^2>0$. Then
+        \[
+            \frac{X_1+\cdots+X_n-n\mu}{\sigma\sqrt n}
+        \]
+        converges in distribution to the standard normal distribution
+        $\Normal(0,1)$.
+    \end{theorem}
+
+    \begin{remark}
+        The Central Limit Theorem explains why the normal distribution appears
+        so often in nature and statistics.
+    \end{remark}
+
+    \begin{theorem}[Markov's Inequality]
+        If $X$ is a nonnegative random variable and $a>0$, then
+        \[
+            \Prob(X\geq a)
+            \leq
+            \frac{\Exp[X]}{a}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Chebyshev's Inequality]
+        If $X$ has mean $\mu$ and variance $\sigma^2$, then for every $k>0$,
+        \[
+            \Prob(|X-\mu|\geq k\sigma)
+            \leq
+            \frac{1}{k^2}.
+        \]
+        Equivalently, for every $\eps>0$,
+        \[
+            \Prob(|X-\mu|\geq \eps)
+            \leq
+            \frac{\Var(X)}{\eps^2}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Markov's inequality uses only the mean, while Chebyshev's inequality
+        uses the variance. Both are probability bounds that work without
+        assuming a normal distribution.
+    \end{remark}
+
+    \begin{theorem}[Jensen's Inequality]
+        If $\varphi$ is convex, then
+        \[
+            \varphi(\Exp[X])
+            \leq
+            \Exp[\varphi(X)].
+        \]
+        If $\varphi$ is concave, the inequality is reversed.
+    \end{theorem}
+
+    \begin{idea}
+        Jensen's inequality says that, for a convex function, applying the
+        function after averaging gives a value no larger than averaging after
+        applying the function.
+    \end{idea}
+
+    \begin{formula}[Birthday Problem Approximation]
+        In a group of $n$ people, assuming $365$ equally likely birthdays, the
+        probability that at least two people share a birthday is approximately
+        \[
+            1-\exp\left(-\frac{n(n-1)}{730}\right).
+        \]
+        For $n=23$, this probability is already greater than $1/2$.
+    \end{formula}
+
+    \begin{remark}
+        The birthday problem is famous because the answer is surprisingly
+        small: only $23$ people are needed for a better-than-even chance of a
+        shared birthday.
+    \end{remark}
+
+    \begin{formula}[Gambler's Ruin]
+        Suppose a gambler starts with $i$ dollars and stops when reaching
+        either $0$ dollars or $N$ dollars. If the probability of winning each
+        round is $p$ and $q=1-p$, then the probability of reaching $N$ before
+        $0$ is
+        \[
+            \frac{1-(q/p)^i}{1-(q/p)^N}
+            \qquad
+            (p\neq q).
+        \]
+        In the fair case $p=q=1/2$, the probability is
+        \[
+            \frac{i}{N}.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        Gambler's ruin is a classic random walk result. It is a good example
+        where the fair case has a very simple answer.
+    \end{remark}
 
     \chapter{Geometry}
 
     \chapter{Number Theory}
+
+    This chapter collects famous number-theoretic results with strong quiz
+    value: primes, congruences, reciprocity, sums of squares, and the
+    distribution of primes.
+
+    \begin{theorem}[Fundamental Theorem of Arithmetic]
+        Every integer $n>1$ can be written as a product of prime numbers.
+        Moreover, this factorization is unique up to the order of the factors.
+        Equivalently,
+        \[
+            n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k},
+        \]
+        where $p_1,\dots,p_k$ are distinct primes and
+        $\alpha_1,\dots,\alpha_k$ are positive integers, and this expression is
+        unique up to reordering.
+    \end{theorem}
+
+    \begin{remark}
+        This theorem is often called unique prime factorization. It is the
+        reason prime numbers are treated as the basic building blocks of
+        integers.
+    \end{remark}
+
+    \begin{theorem}[Euclid's Theorem; Infinitude of Primes]
+        There are infinitely many prime numbers.
+    \end{theorem}
+
+    \begin{idea}
+        If $p_1,\dots,p_n$ are finitely many primes, consider
+        \[
+            p_1p_2\cdots p_n+1.
+        \]
+        This number is not divisible by any prime on the list.
+    \end{idea}
+
+    \begin{theorem}[Bezout's Identity]
+        Let $a,b\in\Z$, not both zero. Then there exist integers $x,y\in\Z$
+        such that
+        \[
+            ax+by=\gcd(a,b).
+        \]
+        In particular, if $\gcd(a,b)=1$, then there exist integers $x,y\in\Z$
+        such that
+        \[
+            ax+by=1.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Bezout's identity is the algebraic heart of the Euclidean algorithm and
+        modular inverses.
+    \end{remark}
+
+    \begin{theorem}[Chinese Remainder Theorem; CRT]
+        Let $m_1,\dots,m_k$ be pairwise relatively prime positive integers.
+        Then the system
+        \[
+            x\equiv a_1\pmod {m_1},
+            \qquad
+            x\equiv a_2\pmod {m_2},
+            \qquad
+            \dots,
+            \qquad
+            x\equiv a_k\pmod {m_k}
+        \]
+        has a solution. Moreover, the solution is unique modulo
+        \[
+            M=m_1m_2\cdots m_k.
+        \]
+    \end{theorem}
+
+    \begin{strategy}
+        CRT is the standard theorem for combining several congruence conditions
+        into one congruence.
+    \end{strategy}
+
+    \begin{formula}[Euler's Phi Function Formula]
+        If
+        \[
+            n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}
+        \]
+        is the prime factorization of $n$, then
+        \[
+            \varphi(n)
+            =
+            n\prod_{i=1}^{k}\left(1-\frac{1}{p_i}\right).
+        \]
+        In particular, for a prime power,
+        \[
+            \varphi(p^\alpha)=p^\alpha-p^{\alpha-1}
+            =
+            p^{\alpha-1}(p-1).
+        \]
+    \end{formula}
+
+    \begin{theorem}[Fermat's Little Theorem]
+        Let $p$ be a prime number. If $p\nmid a$, then
+        \[
+            a^{p-1}\equiv 1\pmod p.
+        \]
+        Equivalently, for every integer $a$,
+        \[
+            a^p\equiv a\pmod p.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Euler's Theorem]
+        If $\gcd(a,n)=1$, then
+        \[
+            a^{\varphi(n)}\equiv 1\pmod n.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Fermat's Little Theorem is the special case of Euler's Theorem when
+        $n=p$ is prime, since $\varphi(p)=p-1$.
+    \end{remark}
+
+    \begin{theorem}[Wilson's Theorem]
+        A positive integer $p>1$ is prime if and only if
+        \[
+            (p-1)!\equiv -1\pmod p.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Wilson's theorem is famous because it gives a clean factorial
+        characterization of primes, even though it is not efficient as a
+        primality test.
+    \end{remark}
+
+    \begin{definition}[Legendre Symbol]
+        Let $p$ be an odd prime. The Legendre symbol is defined by
+        \[
+            \left(\frac{a}{p}\right)
+            =
+            \begin{cases}
+                1, & \text{if }a\text{ is a quadratic residue modulo }p, \\
+                -1, & \text{if }a\text{ is a quadratic nonresidue modulo }p, \\
+                0, & \text{if }p\mid a.
+            \end{cases}
+        \]
+    \end{definition}
+
+    \begin{theorem}[Euler's Criterion]
+        Let $p$ be an odd prime. For any integer $a$,
+        \[
+            \left(\frac{a}{p}\right)
+            \equiv
+            a^{(p-1)/2}
+            \pmod p.
+        \]
+        Equivalently, if $p\nmid a$, then
+        \[
+            a^{(p-1)/2}
+            \equiv
+            \begin{cases}
+                1\pmod p, & \text{if }a\text{ is a quadratic residue modulo }p, \\
+                -1\pmod p, & \text{if }a\text{ is a quadratic nonresidue modulo }p.
+            \end{cases}
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Law of Quadratic Reciprocity; Gauss's Theorem of Quadratic Reciprocity]
+        Let $p$ and $q$ be distinct odd primes. Then
+        \[
+            \left(\frac{p}{q}\right)
+            \left(\frac{q}{p}\right)
+            =
+            (-1)^{\frac{p-1}{2}\frac{q-1}{2}}.
+        \]
+        Equivalently,
+        \[
+            \left(\frac{p}{q}\right)
+            =
+            \left(\frac{q}{p}\right)
+        \]
+        unless both $p$ and $q$ are congruent to $3$ modulo $4$.
+    \end{theorem}
+
+    \begin{remark}
+        Quadratic reciprocity is one of the crown jewels of elementary number
+        theory. Gauss called it the golden theorem.
+    \end{remark}
+
+    \begin{theorem}[Fermat's Two-Square Theorem]
+        An odd prime $p$ can be written as a sum of two squares,
+        \[
+            p=a^2+b^2
+        \]
+        for some integers $a,b\in\Z$, if and only if
+        \[
+            p\equiv 1\pmod 4.
+        \]
+        Also,
+        \[
+            2=1^2+1^2.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Lagrange's Four-Square Theorem]
+        Every nonnegative integer can be written as a sum of four integer
+        squares. That is, for every $n\in\Nzero$, there exist integers
+        $a,b,c,d\in\Z$ such that
+        \[
+            n=a^2+b^2+c^2+d^2.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        The two-square theorem has a congruence condition. The four-square
+        theorem has no exception at all.
+    \end{remark}
+
+    \begin{theorem}[Dirichlet's Theorem on Arithmetic Progressions]
+        If $a$ and $d$ are relatively prime positive integers, then the
+        arithmetic progression
+        \[
+            a,\ a+d,\ a+2d,\ a+3d,\dots
+        \]
+        contains infinitely many primes.
+    \end{theorem}
+
+    \begin{remark}
+        Dirichlet's theorem is a major result connecting primes and arithmetic
+        progressions. The condition $\gcd(a,d)=1$ is necessary.
+    \end{remark}
+
+    \begin{theorem}[Bertrand's Postulate; Chebyshev's Theorem]
+        For every integer $n>1$, there exists a prime $p$ such that
+        \[
+            n<p<2n.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Prime Number Theorem]
+        Let $\pi(x)$ be the number of primes less than or equal to $x$. Then
+        \[
+            \pi(x)\sim \frac{x}{\log x}
+            \qquad
+            \text{as }x\to\infty.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        The Prime Number Theorem says that the ``probability'' that a large
+        integer near $x$ is prime is roughly $1/\log x$. This is a mental model,
+        not a literal probability statement.
+    \end{idea}
+
+    \begin{definition}[Riemann Zeta Function]
+        For $\operatorname{Re}(s)>1$, the Riemann zeta function is defined by
+        \[
+            \zeta(s)
+            =
+            \sum_{n=1}^{\infty}\frac{1}{n^s}.
+        \]
+        It also has the Euler product
+        \[
+            \zeta(s)
+            =
+            \prod_{p\text{ prime}}
+            \frac{1}{1-p^{-s}}.
+        \]
+    \end{definition}
+
+    \begin{remark}
+        The Euler product is the bridge between the zeta function and prime
+        numbers. The Riemann Hypothesis asserts that the nontrivial zeros of
+        $\zeta(s)$ all have real part $1/2$.
+    \end{remark}
+
+    \begin{theorem}[Euclid--Euler Theorem on Perfect Numbers]
+        An even positive integer $N$ is perfect if and only if
+        \[
+            N=2^{p-1}(2^p-1),
+        \]
+        where $2^p-1$ is a Mersenne prime.
+    \end{theorem}
+
+    \begin{remark}
+        A perfect number is a positive integer equal to the sum of its positive
+        proper divisors. For example,
+        \[
+            6=1+2+3.
+        \]
+    \end{remark}
+
+    \begin{theorem}[Fermat's Last Theorem]
+        For every integer $n\geq 3$, there do not exist positive integers
+        $a,b,c$ such that
+        \[
+            a^n+b^n=c^n.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Fermat's Last Theorem was proved by Andrew Wiles. It is one of the most
+        famous theorems in the history of mathematics.
+    \end{remark}
 
     \chapter{Algebra}
 
@@ -1835,6 +2311,8 @@
     \chapter{Topology}
 
     \chapter{Miscellaneous Topics}
+
+    \section*{Classical Infinite Series}
 
     \begin{formula}[Mercator Series for $\ln 2$]
         The alternating harmonic series satisfies
@@ -1857,7 +2335,7 @@
         by substituting $x=1$.
     \end{remark}
 
-    \begin{formula}[Basel Sum]
+    \begin{formula}[Basel Sum; Euler's Basel Formula]
         The Basel sum is
         \[
             \sum_{n=1}^{\infty}\frac{1}{n^2}
@@ -1906,7 +2384,7 @@
         \]
     \end{idea}
 
-    \begin{formula}[Alternating Basel Series]
+    \begin{formula}[Alternating Basel Series; Dirichlet Eta Value at $2$]
         The alternating Basel series satisfies
         \[
             \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{n^2}
@@ -1938,7 +2416,7 @@
         \]
     \end{idea}
 
-    \begin{formula}[Gregory--Leibniz Series]
+    \begin{formula}[Gregory--Leibniz Series; Leibniz Formula for $\pi$]
         The Gregory--Leibniz series is
         \[
             \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{2n-1}
@@ -1946,6 +2424,14 @@
             1-\frac13+\frac15-\frac17+\cdots
             =
             \frac{\pi}{4}.
+        \]
+        Equivalently,
+        \[
+            \pi
+            =
+            4\left(
+                1-\frac13+\frac15-\frac17+\cdots
+            \right).
         \]
     \end{formula}
 
@@ -2230,6 +2716,496 @@
         \[
             \boxed{8}.
         \]
+    \end{solution}
+
+    \begin{problem}{2018.3}
+        Find the sum of the following infinite series:
+        \[
+            \frac{1}{2}-\frac{1}{4}+\frac{1}{6}-\frac{1}{8}
+            +\frac{1}{10}-\frac{1}{12}+\cdots.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The given series is one half of the alternating harmonic series:
+        \[
+            \frac{1}{2}-\frac{1}{4}+\frac{1}{6}-\frac{1}{8}+\cdots
+            =
+            \frac{1}{2}
+            \left(
+                1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots
+            \right).
+        \]
+        Recall the Taylor expansion
+        \[
+            \ln(1+x)
+            =
+            x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.
+        \]
+        Substituting $x=1$, we obtain
+        \[
+            \ln 2
+            =
+            1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots.
+        \]
+        Therefore,
+        \[
+            \frac{1}{2}-\frac{1}{4}+\frac{1}{6}-\frac{1}{8}+\cdots
+            =
+            \frac{\ln 2}{2}.
+        \]
+        Thus the answer is $\boxed{\dfrac{\ln 2}{2}}$.
+    \end{solution}
+
+    \begin{problem}{2018.4}
+        Among the following five Fields Medalists, which one does not have a Korean doctoral student?
+        \[
+            \begin{array}{ll}
+                (1) & \text{William Thurston} \\
+                (2) & \text{Maxim Kontsevich} \\
+                (3) & \text{Grigory Margulis} \\
+                (4) & \text{Terence Tao} \\
+                (5) & \text{Efim Zelmanov}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Maxim Kontsevich
+    \end{solution}
+
+    \begin{problem}{2020.1}
+        The International Congress of Mathematicians, abbreviated as ICM, is a congress for mathematicians from around the world. It is organized every four years by the International Mathematical Union and may be thought of as a kind of Olympic Games for mathematicians. The 2014 ICM was held in South Korea, and the 2018 ICM was held in Brazil. As of 2019, in which country was the 2022 ICM scheduled to be held?
+    \end{problem}
+
+    \begin{solution}
+        ICM stands for the International Congress of Mathematicians. It is the main international congress in mathematics and is organized every four years by the International Mathematical Union.
+
+        The 2014 ICM was held in Seoul, South Korea, and the 2018 ICM was held in Rio de Janeiro, Brazil. At the time this problem was asked in 2019, the 2022 ICM was scheduled to be held in Saint Petersburg, Russia. Therefore, the answer is $\boxed{\text{Russia}}$.
+
+        In reality, after Russia's invasion of Ukraine in 2022, the 2022 ICM was not held in Saint Petersburg. It was eventually held as a virtual event, with the award ceremony taking place in Helsinki, Finland. Thus, the answer to this problem should be understood according to the planned host country at the time of the 2019 competition.
+    \end{solution}
+
+    \begin{problem}{2020.2}
+        A fair six-sided die has the numbers $-2,0,2,3,4,5$ written on its faces. The die is rolled $10$ times, and $X$ is defined to be the product of the $10$ numbers obtained. What is the expected value of $X$?
+    \end{problem}
+
+    \begin{solution}
+        Let $Y$ be the number obtained from one roll of the die. Since all six faces are equally likely,
+        \[
+            \mathbb{E}[Y]
+            =
+            \frac{-2+0+2+3+4+5}{6}
+            =
+            2.
+        \]
+        Now let $Y_1,Y_2,\dots,Y_{10}$ be the numbers obtained from the $10$ rolls. Then
+        \[
+            X=Y_1Y_2\cdots Y_{10}.
+        \]
+        Since the rolls are independent, the random variables $Y_1,Y_2,\dots,Y_{10}$ are independent. Therefore,
+        \[
+            \mathbb{E}[X]
+            =
+            \mathbb{E}[Y_1Y_2\cdots Y_{10}]
+            =
+            \mathbb{E}[Y_1]\mathbb{E}[Y_2]\cdots\mathbb{E}[Y_{10}].
+        \]
+        All the $Y_i$ have the same distribution as $Y$, so
+        \[
+            \mathbb{E}[X]
+            =
+            \left(\mathbb{E}[Y]\right)^{10}
+            =
+            2^{10}
+            =
+            1024.
+        \]
+        Thus the answer is $\boxed{1024}$.
+    \end{solution}
+
+    \begin{problem}{2020.3}
+        Which of the following Fields Medalists was not serving as a professor at the time?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Cédric Villani} \\
+                (2) & \text{Elon Lindenstrauss} \\
+                (3) & \text{Peter Scholze} \\
+                (4) & \text{Martin Hairer} \\
+                (5) & \text{Terence Tao}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        At the time this problem was asked, Cédric Villani was active as a politician in France rather than serving as a professor.
+
+        The other choices were mathematicians holding professorial positions. Therefore, the answer is $\boxed{(1)\ \text{Cédric Villani}}$.
+    \end{solution}
+
+    \begin{problem}{2020.4}
+        In a three-dimensional gravitational field, when an object moves from a point $\mathbf{a}$ to another point $\mathbf{b}$, the change in its potential energy is independent of the path taken from $\mathbf{a}$ to $\mathbf{b}$. Which of the following mathematical facts is least directly related to this physical phenomenon?
+        \[
+            \begin{array}{ll}
+                (1) & \text{A curl-free vector field is the gradient of some potential function.} \\
+                (2) & \text{Stokes' theorem} \\
+                (3) & \text{The Laplacian of } \dfrac{1}{|\mathbf{x}|} \text{ is a delta function, up to a constant factor.} \\
+                (4) & \text{The curl of a gradient is identically zero.}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The statement that the change in potential energy is independent of the path means that the gravitational field is a conservative vector field.
+
+        Let $\mathbf{F}$ be the force field. The change in potential energy from $\mathbf{a}$ to $\mathbf{b}$ is given by
+        \[
+            \Delta U
+            =
+            -\int_{\mathbf{a}}^{\mathbf{b}} \mathbf{F}\cdot d\mathbf{r}.
+        \]
+        For this quantity to be independent of the path, the force field should be expressible as the negative gradient of a potential function:
+        \[
+            \mathbf{F}=-\nabla U.
+        \]
+        Thus choice (1) is directly related to the phenomenon.
+
+        Also, the curl of a gradient is always zero:
+        \[
+            \nabla \times \nabla U=\mathbf{0}.
+        \]
+        Hence choice (4) is also directly related. Stokes' theorem says that
+        \[
+            \oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}
+            =
+            \iint_S (\nabla\times \mathbf{F})\cdot \mathbf{n}\,dS.
+        \]
+        Therefore, if $\nabla\times\mathbf{F}=\mathbf{0}$, then the line integral around a closed curve is zero, which is another way to understand path independence. Thus choice (2) is also related.
+
+        On the other hand,
+        \[
+            \Delta\left(\frac{1}{|\mathbf{x}|}\right)
+            =
+            -4\pi\delta(\mathbf{x})
+        \]
+        is related to the fundamental solution of the Laplacian and to Poisson's equation for gravitational potential. Although it is related to gravity, it is not the main mathematical reason why the potential energy change is independent of path. Therefore, the answer is $\boxed{(3)}$.
+    \end{solution}
+
+    \begin{problem}{2020.5}
+        Among the following mathematics-related academic institutions, which one is actually a degree-granting school?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Institut des Hautes Études Scientifiques, IHES} \\
+                (2) & \text{École normale supérieure} \\
+                (3) & \text{Mathematical Sciences Research Institute, MSRI} \\
+                (4) & \text{Institute for Advanced Study, IAS} \\
+                (5) & \text{Collège de France}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        École normale supérieure is one of France's most prestigious higher education institutions. It operates educational programs and is naturally regarded as a degree-granting school.
+
+        By contrast, IHES, MSRI, and IAS are research institutes rather than degree-granting schools. Collège de France is also a famous academic institution that offers public lectures, but it does not grant degrees.
+
+        Therefore, the answer is $\boxed{(2)\ \text{École normale supérieure}}$.
+    \end{solution}
+
+    \begin{problem}{2021.1}
+        Which is larger, $A$ or $B$, where
+        \[
+            A
+            =
+            1+\frac{1}{1+\frac{1}{1-\frac{1}{1+4}}},
+            \qquad
+            B
+            =
+            1+\frac{1}{1+\frac{1}{1+\frac{1}{1+3}}}?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        First, we compute $A$:
+        \[
+            A
+            =
+            1+\frac{1}{1+\frac{1}{1-\frac{1}{5}}}
+            =
+            1+\frac{1}{1+\frac{1}{\frac{4}{5}}}
+            =
+            1+\frac{1}{1+\frac{5}{4}}
+            =
+            1+\frac{1}{\frac{9}{4}}
+            =
+            1+\frac{4}{9}
+            =
+            \frac{13}{9}.
+        \]
+        Next, we compute $B$:
+        \[
+            B
+            =
+            1+\frac{1}{1+\frac{1}{1+\frac{1}{4}}}
+            =
+            1+\frac{1}{1+\frac{1}{\frac{5}{4}}}
+            =
+            1+\frac{1}{1+\frac{4}{5}}
+            =
+            1+\frac{1}{\frac{9}{5}}
+            =
+            1+\frac{5}{9}
+            =
+            \frac{14}{9}.
+        \]
+        Since
+        \[
+            \frac{13}{9}<\frac{14}{9},
+        \]
+        we have $A<B$. Therefore, the answer is $\boxed{B}$.
+    \end{solution}
+
+    \begin{problem}{2021.2}
+        Let
+        \[
+            A(n)
+            =
+            \frac{1}{\sqrt{5}}
+            \left(
+                \frac{1+\sqrt{5}}{2}
+            \right)^{n+1}.
+        \]
+        What is the integer closest to $A(7)$?
+    \end{problem}
+
+    \begin{solution}
+        Recall Binet's formula for the Fibonacci sequence:
+        \[
+            F_n
+            =
+            \frac{\varphi^n-\psi^n}{\sqrt{5}},
+            \qquad
+            \varphi=\frac{1+\sqrt{5}}{2},
+            \qquad
+            \psi=\frac{1-\sqrt{5}}{2}.
+        \]
+        Here
+        \[
+            A(7)
+            =
+            \frac{\varphi^8}{\sqrt{5}}.
+        \]
+        By Binet's formula,
+        \[
+            F_8
+            =
+            \frac{\varphi^8-\psi^8}{\sqrt{5}}.
+        \]
+        Since $|\psi|<1$, the term $\dfrac{\psi^8}{\sqrt{5}}$ is very small. Thus
+        \[
+            A(7)
+            =
+            \frac{\varphi^8}{\sqrt{5}}
+            =
+            F_8+\frac{\psi^8}{\sqrt{5}}
+        \]
+        is very close to $F_8$.
+
+        The Fibonacci numbers are
+        \[
+            F_0=0,\quad F_1=1,\quad F_2=1,\quad F_3=2,\quad F_4=3,\quad
+            F_5=5,\quad F_6=8,\quad F_7=13,\quad F_8=21.
+        \]
+        Therefore, the integer closest to $A(7)$ is $\boxed{21}$.
+    \end{solution}
+
+    \begin{problem}{2021.3}
+        Choose all groups among the following that are not finitely generated:
+        \[
+            \begin{array}{ll}
+                (1) & \text{The fundamental group of an open unit disk with finitely many punctures.} \\
+                (2) & \mathrm{SL}_2(\mathbb{Z}), \text{ the group of } 2\times 2 \text{ integer matrices with determinant } 1. \\
+                (3) & \mathbb{C}^{\times}, \text{ the group of nonzero complex numbers under multiplication.} \\
+                (4) & \text{The Monster group, the largest sporadic finite simple group.}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        First, consider an open unit disk with finitely many punctures. If the removed points are $p_1,\dots,p_n$, then the fundamental group is isomorphic to the free group on $n$ generators:
+        \[
+            \pi_1\left(D\setminus\{p_1,\dots,p_n\}\right)\cong F_n.
+        \]
+        Hence the group in choice (1) is finitely generated.
+
+        The group $\mathrm{SL}_2(\mathbb{Z})$ is also finitely generated. For example, it is generated by the two matrices
+        \[
+            S=
+            \begin{pmatrix}
+                0 & -1 \\
+                1 & 0
+            \end{pmatrix},
+            \qquad
+            T=
+            \begin{pmatrix}
+                1 & 1 \\
+                0 & 1
+            \end{pmatrix}.
+        \]
+        Thus choice (2) is finitely generated.
+
+        On the other hand, $\mathbb{C}^{\times}$ is an uncountable abelian group. Every finitely generated group is countable, so $\mathbb{C}^{\times}$ cannot be finitely generated. Therefore, choice (3) is not finitely generated.
+
+        Finally, the Monster group is a finite group. Every finite group is finitely generated, since one may simply take all of its elements as generators. Hence choice (4) is finitely generated.
+
+        Therefore, the only group in the list that is not finitely generated is $\boxed{(3)\ \mathbb{C}^{\times}}$.
+    \end{solution}
+
+    \begin{problem}{2021.4}
+        Let
+        \[
+            \mathbf{A}
+            =
+            \begin{pmatrix}
+                1 & 2 & 3 \\
+                1 & 2 & 3 \\
+                1 & 2 & 3
+            \end{pmatrix}.
+        \]
+        Find all eigenvalues of $\mathbf{A}$ together with their multiplicities. Also determine whether $\mathbf{A}$ is diagonalizable.
+    \end{problem}
+
+    \begin{solution}
+        We can write $\mathbf{A}$ as
+        \[
+            \mathbf{A}
+            =
+            \begin{pmatrix}
+                1 \\
+                1 \\
+                1
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 2 & 3
+            \end{pmatrix}.
+        \]
+        Thus $\mathbf{A}$ is a rank-one matrix.
+
+        First, let
+        \[
+            \mathbf{v}
+            =
+            \begin{pmatrix}
+                1 \\
+                1 \\
+                1
+            \end{pmatrix}.
+        \]
+        Then
+        \[
+            \mathbf{A}\mathbf{v}
+            =
+            \begin{pmatrix}
+                6 \\
+                6 \\
+                6
+            \end{pmatrix}
+            =
+            6\mathbf{v}.
+        \]
+        Hence $6$ is an eigenvalue of $\mathbf{A}$.
+
+        Since $\mathbf{A}$ has rank $1$, its nullity is $2$. Therefore, the eigenspace corresponding to the eigenvalue $0$ has dimension $2$. Indeed,
+        \[
+            \mathbf{A}
+            \begin{pmatrix}
+                x \\
+                y \\
+                z
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                x+2y+3z \\
+                x+2y+3z \\
+                x+2y+3z
+            \end{pmatrix},
+        \]
+        so
+        \[
+            E_0
+            =
+            \left\{
+                \begin{pmatrix}
+                    x \\
+                    y \\
+                    z
+                \end{pmatrix}
+                \in \R^3
+                :
+                x+2y+3z=0
+            \right\}.
+        \]
+        Thus the geometric multiplicity of $0$ is $2$.
+
+        Now
+        \[
+            \operatorname{tr}(\mathbf{A})=1+2+3=6.
+        \]
+        Since the sum of the eigenvalues, counted with algebraic multiplicity, is equal to the trace, the eigenvalues are
+        \[
+            6,\quad 0,\quad 0.
+        \]
+        Hence the algebraic multiplicities are
+        \[
+            6:1,
+            \qquad
+            0:2.
+        \]
+
+        Finally, the eigenspace for $6$ has dimension $1$, and the eigenspace for $0$ has dimension $2$. The total dimension of the eigenspaces is therefore
+        \[
+            1+2=3.
+        \]
+        Hence there exists a basis of $\R^3$ consisting of eigenvectors of $\mathbf{A}$. Therefore, $\mathbf{A}$ is diagonalizable.
+
+        Thus the eigenvalues are $\boxed{6,0,0}$, with algebraic multiplicities $1$ and $2$ respectively, and $\boxed{\mathbf{A}\text{ is diagonalizable}}$.
+    \end{solution}
+
+    \begin{problem}{2022.1}
+        Which of the following numbers is the largest?
+        \[
+            \begin{array}{ll}
+                (1) & e^\pi \\
+                (2) & \pi^e \\
+                (3) & 7\pi \\
+                (4) & \binom{7}{2} \\
+                (5) & 4!
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        We compare the values directly:
+        \[
+            e^\pi \approx 23.1407,
+            \qquad
+            \pi^e \approx 22.4592,
+            \qquad
+            7\pi \approx 21.9911.
+        \]
+        Also,
+        \[
+            \binom{7}{2}
+            =
+            \frac{7\cdot 6}{2}
+            =
+            21,
+            \qquad
+            4!
+            =
+            24.
+        \]
+        Therefore, the largest number among the choices is $\boxed{(5)\ 4!}$.
     \end{solution}
 
     \part{Expected Problems}
