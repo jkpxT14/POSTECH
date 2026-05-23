@@ -48,7 +48,7 @@
     {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
 
 \renewenvironment{proof}[1][Proof]
-    {\par\noindent\textit{#1.}\ }
+    {\par\noindent\textit{#1.}\par\nobreak\noindent}
     {\hfill$\square$\par}
 
 \theoremstyle{breakdefinition}
@@ -61,21 +61,26 @@
 \newtheorem{proposition}[definition]{Proposition}
 \newtheorem{lemma}[definition]{Lemma}
 \newtheorem{corollary}[definition]{Corollary}
+\newtheorem{conjecture}[definition]{Conjecture}
+\newtheorem{hypothesis}[definition]{Hypothesis}
 
 \theoremstyle{breakdefinition}
 \newtheorem{formula}[definition]{Formula}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{openproblem}[definition]{Open Problem}
 
 \theoremstyle{sameline}
 \newtheorem*{remark}{Remark}
 \newtheorem*{idea}{Idea}
 \newtheorem*{strategy}{Strategy}
+\newtheorem*{tactic}{Tactic}
 
 \newenvironment{problem}[1]
-    {\par\vspace{6pt}\noindent\textbf{Problem #1.}\ }
+    {\par\vspace{6pt}\noindent\textbf{Problem #1.}\hspace{0.5em}\ignorespaces}
     {\par\vspace{6pt}}
 
 \newenvironment{solution}
-    {\par\vspace{6pt}\noindent\textit{Solution.}\ }
+    {\par\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
     {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
 
 % Standard number systems
@@ -93,6 +98,9 @@
 \DeclareMathOperator{\divergence}{div}
 \DeclareMathOperator{\curl}{curl}
 \DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\area}{area}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\sgn}{sgn}
 
 % Linear algebra operators
 \DeclareMathOperator{\rk}{rk}
@@ -147,7 +155,10 @@
         \vfill
 
         {\large
-        \textcolor{postechred}{POSTECH}--\textcolor{kaistblue}{KAIST} Science War
+        \textcolor{postechred}{POSTECH}--\textcolor{kaistblue}{KAIST} Science War\\[0.7em]
+        \textcolor{postechred}{Pohang University of Science and Technology}\\
+        vs\\
+        \textcolor{kaistblue}{Korea Advanced Institute of Science and Technology}
         \par}
 
         \vspace{0.3cm}
@@ -180,7 +191,9 @@
 
     Throughout this book, we use standard mathematical notation whenever possible.
     The conventions below are arranged to keep the exposition readable,
-    unified, and consistent with the chapter structure of Part I.
+    unified, and consistent with the chapter structure of Part I. The guiding
+    principle is simple: use official, standard notation first, and introduce
+    special notation only when it makes a quiz solution faster or clearer.
 
     \section*{General Conventions}
 
@@ -188,7 +201,8 @@
     Vectors are written in bold lowercase letters, such as
     $\mathbf{u},\mathbf{v},\mathbf{x}$. Matrices are written in bold uppercase
     letters, such as $\mathbf{A},\mathbf{B},\mathbf{P}$. Unless otherwise stated,
-    vectors are regarded as column vectors.
+    vectors are regarded as column vectors. Named theorems, standard English
+    terminology, and conventional symbols are preferred over ad hoc notation.
 
     \vspace{0.5em}
 
@@ -225,6 +239,51 @@
         $O(\cdot)$ & Big-O notation \\
         $o(\cdot)$ & little-o notation \\
         $\square$ & end of a proof or solution \\
+    \end{longtable}
+    }
+
+    \section*{Theorem-like Environments}
+
+    Part I uses theorem-like labels according to the mathematical role of each
+    item. This is especially useful for Science Quiz preparation: a player should
+    be able to tell at a glance whether an item is a definition, a named result,
+    a formula to memorize, or an open problem. Statement-type environments such
+    as Definition and Theorem put the heading on its own line, while short
+    guide-type environments such as Idea, Strategy, Tactic, and Remark continue
+    on the same line after the label.
+
+    \vspace{0.5em}
+
+    {\small
+    \renewcommand{\arraystretch}{1.18}
+    \begin{longtable}{@{}L{0.24\textwidth}L{0.68\textwidth}@{}}
+        \toprule
+        Label & Usage \\
+        \midrule
+        \endfirsthead
+
+        \toprule
+        Label & Usage \\
+        \midrule
+        \endhead
+
+        \bottomrule
+        \endlastfoot
+
+        Definition & a precise meaning of a term or object \\
+        Theorem & a major named result, usually worth memorizing by name \\
+        Proposition & a useful standard result that is less central than a theorem \\
+        Lemma & a supporting result or technical tool \\
+        Corollary & a result that follows quickly from a theorem or proposition \\
+        Formula & a computational identity or closed form that should be recognized quickly \\
+        Fact & a memorization-oriented mathematical or historical fact \\
+        Conjecture & a statement believed to be true but not proved in full generality \\
+        Hypothesis & a named assumption or guiding claim, often attached to a major open problem \\
+        Open Problem & a famous unsolved problem or a problem whose general form remains open \\
+        Idea & a short conceptual explanation of why a result is true or useful \\
+        Strategy & a fast quiz-solving method or recognition trick \\
+        Tactic & a local, immediately usable trick for a particular type of question \\
+        Remark & supplementary context, caution, or memorable information \\
     \end{longtable}
     }
 
@@ -530,6 +589,8 @@
         $\lfloor x\rfloor$ & the floor of $x$ \\
         $\lceil x\rceil$ & the ceiling of $x$ \\
         $\{x\}$ & the fractional part of $x$, usually $x-\lfloor x\rfloor$ \\
+        RH & the Riemann Hypothesis, after it has been introduced \\
+        P vs NP & the P versus NP problem, after it has been introduced \\
     \end{longtable}
     }
 
@@ -2002,6 +2063,479 @@
 
     \chapter{Geometry}
 
+    This chapter collects quiz-friendly results from Euclidean synthetic
+    geometry and analytic geometry. The emphasis is on named theorems, elegant
+    geometric configurations, and formulas with clear memorable answers.
+
+    \section*{Synthetic Geometry}
+
+    \begin{definition}[Classical Triangle Centers]
+        For a triangle $\triangle ABC$, the most important classical centers
+        are:
+        \[
+            O=\text{circumcenter},
+            \qquad
+            I=\text{incenter},
+            \qquad
+            H=\text{orthocenter},
+            \qquad
+            G=\text{centroid}.
+        \]
+        Here $O$ is the center of the circumcircle, $I$ is the center of the
+        incircle, $H$ is the intersection of the altitudes, and $G$ is the
+        intersection of the medians.
+    \end{definition}
+
+    \begin{remark}
+        Triangle centers are extremely common in olympiad-style geometry.
+        The symbols $O,I,H,G$ are standard and should be recognized quickly.
+    \end{remark}
+
+    \begin{formula}[Extended Law of Sines]
+        For a triangle $\triangle ABC$ with side lengths
+        \[
+            a=BC,\qquad b=CA,\qquad c=AB,
+        \]
+        and circumradius $R$, we have
+        \[
+            \frac{a}{\sin A}
+            =
+            \frac{b}{\sin B}
+            =
+            \frac{c}{\sin C}
+            =
+            2R.
+        \]
+    \end{formula}
+
+    \begin{formula}[Heron's Formula]
+        Let $\triangle ABC$ have side lengths $a,b,c$ and semiperimeter
+        \[
+            s=\frac{a+b+c}{2}.
+        \]
+        Then its area $K$ is
+        \[
+            K
+            =
+            \sqrt{s(s-a)(s-b)(s-c)}.
+        \]
+        Also,
+        \[
+            K=rs
+            \qquad\text{and}\qquad
+            K=\frac{abc}{4R},
+        \]
+        where $r$ is the inradius and $R$ is the circumradius.
+    \end{formula}
+
+    \begin{strategy}
+        The formulas
+        \[
+            K=rs,
+            \qquad
+            K=\frac{abc}{4R}
+        \]
+        are often more useful than Heron's formula when incircles or
+        circumcircles appear.
+    \end{strategy}
+
+    \begin{theorem}[Angle Bisector Theorem]
+        In a triangle $\triangle ABC$, suppose the internal angle bisector of
+        $\angle A$ meets $BC$ at $D$. Then
+        \[
+            \frac{BD}{DC}
+            =
+            \frac{AB}{AC}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Ceva's Theorem]
+        Let $D,E,F$ lie on the lines $BC,CA,AB$, respectively. Then the cevians
+        $AD,BE,CF$ are concurrent if and only if
+        \[
+            \frac{BD}{DC}
+            \cdot
+            \frac{CE}{EA}
+            \cdot
+            \frac{AF}{FB}
+            =
+            1,
+        \]
+        using directed lengths.
+    \end{theorem}
+
+    \begin{remark}
+        Ceva's Theorem is the standard theorem for proving concurrence of three
+        lines in a triangle.
+    \end{remark}
+
+    \begin{theorem}[Menelaus' Theorem]
+        Let $D,E,F$ lie on the lines $BC,CA,AB$, respectively. Then the points
+        $D,E,F$ are collinear if and only if
+        \[
+            \frac{BD}{DC}
+            \cdot
+            \frac{CE}{EA}
+            \cdot
+            \frac{AF}{FB}
+            =
+            -1,
+        \]
+        using directed lengths.
+    \end{theorem}
+
+    \begin{remark}
+        Ceva is for concurrence, while Menelaus is for collinearity. This pair
+        is one of the most important toolkits in olympiad geometry.
+    \end{remark}
+
+    \begin{theorem}[Euler Line Theorem]
+        In any non-equilateral triangle, the circumcenter $O$, centroid $G$,
+        and orthocenter $H$ are collinear. Moreover,
+        \[
+            OG:GH=1:2.
+        \]
+        The line passing through these points is called the Euler line.
+    \end{theorem}
+
+    \begin{theorem}[Nine-Point Circle Theorem; Euler Circle]
+        In any triangle, the following nine points lie on one circle:
+        the three side midpoints, the three feet of the altitudes, and the
+        three midpoints between the orthocenter and the vertices. This circle
+        is called the nine-point circle.
+    \end{theorem}
+
+    \begin{remark}
+        The center of the nine-point circle is the midpoint of the segment
+        joining the circumcenter $O$ and the orthocenter $H$.
+    \end{remark}
+
+    \begin{theorem}[Euler's Formula for the Incenter and Circumcenter]
+        For a triangle with circumradius $R$, inradius $r$, circumcenter $O$,
+        and incenter $I$, we have
+        \[
+            OI^2=R^2-2Rr.
+        \]
+        In particular,
+        \[
+            R\geq 2r.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        The inequality $R\geq 2r$ is called Euler's inequality for triangles.
+        Equality holds exactly for an equilateral triangle.
+    \end{remark}
+
+    \begin{theorem}[Power of a Point Theorem]
+        Let $P$ be a point and let a line through $P$ meet a circle at
+        $A$ and $B$. The product
+        \[
+            PA\cdot PB
+        \]
+        is independent of the choice of the line through $P$. It is called the
+        power of $P$ with respect to the circle.
+    \end{theorem}
+
+    \begin{formula}[Tangent--Secant Theorem]
+        If $PT$ is tangent to a circle at $T$ and a secant through $P$ meets
+        the circle at $A$ and $B$, then
+        \[
+            PT^2=PA\cdot PB.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Radical Axis Theorem]
+        For two nonconcentric circles, the set of points having equal powers
+        with respect to the two circles is a line. This line is called the
+        radical axis of the two circles.
+    \end{theorem}
+
+    \begin{remark}
+        Radical axes are powerful because they turn circle configurations into
+        collinearity statements.
+    \end{remark}
+
+    \begin{theorem}[Ptolemy's Theorem]
+        A quadrilateral $ABCD$ is cyclic if and only if
+        \[
+            AC\cdot BD
+            =
+            AB\cdot CD+BC\cdot DA
+        \]
+        for the appropriate cyclic order of the vertices.
+    \end{theorem}
+
+    \begin{remark}
+        Ptolemy's Theorem is one of the most recognizable formulas for cyclic
+        quadrilaterals.
+    \end{remark}
+
+    \begin{theorem}[Simson Line Theorem]
+        Let $P$ be a point on the circumcircle of $\triangle ABC$. The feet of
+        the perpendiculars from $P$ to the three lines $AB,BC,CA$ are collinear.
+        This line is called the Simson line of $P$ with respect to
+        $\triangle ABC$.
+    \end{theorem}
+
+    \begin{theorem}[Miquel's Theorem]
+        In a complete quadrilateral, the circumcircles of the four triangles
+        formed by choosing three of the four lines pass through a common point.
+        This point is called the Miquel point.
+    \end{theorem}
+
+    \begin{remark}
+        Miquel's Theorem is a standard source of hidden cyclic quadrilaterals
+        in olympiad geometry.
+    \end{remark}
+
+    \begin{theorem}[Butterfly Theorem]
+        Let $M$ be the midpoint of a chord $PQ$ of a circle. Through $M$, draw
+        two other chords $AB$ and $CD$, and let $AD$ and $BC$ meet $PQ$ at
+        $X$ and $Y$, respectively. Then $M$ is also the midpoint of $XY$.
+    \end{theorem}
+
+    \begin{theorem}[Morley's Trisector Theorem]
+        In any triangle, the adjacent trisectors of the three angles intersect
+        in three points that form an equilateral triangle.
+    \end{theorem}
+
+    \begin{remark}
+        Morley's theorem is famous because the conclusion is surprisingly
+        simple: angle trisectors always create an equilateral triangle.
+    \end{remark}
+
+    \begin{theorem}[Napoleon's Theorem]
+        Construct equilateral triangles externally on the three sides of any
+        triangle. Then the centers of these three equilateral triangles form an
+        equilateral triangle.
+    \end{theorem}
+
+    \begin{theorem}[Classification of Platonic Solids]
+        There are exactly five Platonic solids:
+        \[
+            \text{tetrahedron},\quad
+            \text{cube},\quad
+            \text{octahedron},\quad
+            \text{dodecahedron},\quad
+            \text{icosahedron}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        The classification of Platonic solids is a classic result in Euclidean
+        geometry and a very natural quiz fact.
+    \end{remark}
+
+    \section*{Analytic Geometry}
+
+    \begin{formula}[Shoelace Formula; Gauss's Area Formula]
+        For a polygon with vertices
+        \[
+            (x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)
+        \]
+        in cyclic order, its area is
+        \[
+            \frac12
+            \left|
+            \sum_{i=1}^{n}
+            (x_i y_{i+1}-x_{i+1}y_i)
+            \right|,
+        \]
+        where
+        \[
+            (x_{n+1},y_{n+1})=(x_1,y_1).
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The Shoelace Formula is one of the cleanest examples of analytic
+        geometry: a geometric area becomes a determinant-like coordinate
+        calculation.
+    \end{remark}
+
+    \begin{definition}[Conic Section]
+        A conic section is a curve obtained by intersecting a plane with a
+        double cone. The nondegenerate conics are:
+        \[
+            \text{ellipse},\qquad
+            \text{parabola},\qquad
+            \text{hyperbola}.
+        \]
+        Equivalently, a conic can be described using a focus, a directrix, and
+        an eccentricity $e$.
+    \end{definition}
+
+    \begin{formula}[Focus--Directrix Definition of Conics]
+        A conic is the set of points $P$ satisfying
+        \[
+            \frac{\operatorname{dist}(P,\text{focus})}
+                 {\operatorname{dist}(P,\text{directrix})}
+            =
+            e.
+        \]
+        It is an ellipse if
+        \[
+            0<e<1,
+        \]
+        a parabola if
+        \[
+            e=1,
+        \]
+        and a hyperbola if
+        \[
+            e>1.
+        \]
+    \end{formula}
+
+    \begin{formula}[Standard Forms of Conics]
+        The standard form of an ellipse is
+        \[
+            \frac{x^2}{a^2}+\frac{y^2}{b^2}=1.
+        \]
+        The standard form of a hyperbola is
+        \[
+            \frac{x^2}{a^2}-\frac{y^2}{b^2}=1.
+        \]
+        The standard form of a parabola opening to the right is
+        \[
+            y^2=4px.
+        \]
+    \end{formula}
+
+    \begin{formula}[Eccentricity of an Ellipse and a Hyperbola]
+        For an ellipse
+        \[
+            \frac{x^2}{a^2}+\frac{y^2}{b^2}=1
+            \qquad (a\geq b>0),
+        \]
+        the eccentricity is
+        \[
+            e=\frac{c}{a},
+            \qquad
+            c^2=a^2-b^2.
+        \]
+        For a hyperbola
+        \[
+            \frac{x^2}{a^2}-\frac{y^2}{b^2}=1,
+        \]
+        the eccentricity is
+        \[
+            e=\frac{c}{a},
+            \qquad
+            c^2=a^2+b^2.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Reflection Property of Conics]
+        An ellipse reflects a ray from one focus to the other focus. A parabola
+        reflects rays parallel to its axis through its focus. A hyperbola has
+        the analogous reflection property involving its two foci and branches.
+    \end{theorem}
+
+    \begin{remark}
+        The reflection property gives a geometric reason why conics appear in
+        optics, satellite dishes, whispering galleries, and orbital mechanics.
+    \end{remark}
+
+    \begin{theorem}[Quadratic Classification of Conics]
+        Consider a real quadratic equation
+        \[
+            Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+        \]
+        The discriminant
+        \[
+            B^2-4AC
+        \]
+        determines the type of the nondegenerate conic:
+        \[
+            B^2-4AC<0
+            \quad\Rightarrow\quad
+            \text{ellipse-type},
+        \]
+        \[
+            B^2-4AC=0
+            \quad\Rightarrow\quad
+            \text{parabola-type},
+        \]
+        and
+        \[
+            B^2-4AC>0
+            \quad\Rightarrow\quad
+            \text{hyperbola-type}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        This is the analytic-geometry counterpart of classifying conic sections
+        by their shapes.
+    \end{remark}
+
+    \begin{formula}[Polar Equation of a Conic]
+        With a focus at the pole, a conic has polar equation
+        \[
+            r
+            =
+            \frac{\ell}{1+e\cos\theta}
+        \]
+        after choosing a suitable axis. Here $e$ is the eccentricity and
+        $\ell$ is the semi-latus rectum.
+    \end{formula}
+
+    \begin{remark}
+        The same equation describes ellipses, parabolas, and hyperbolas
+        depending on whether $e<1$, $e=1$, or $e>1$.
+    \end{remark}
+
+    \begin{definition}[Apollonius Circle]
+        Given two fixed points $A$ and $B$ and a positive constant
+        $k\neq 1$, the locus of points $P$ satisfying
+        \[
+            \frac{PA}{PB}=k
+        \]
+        is a circle. This circle is called an Apollonius circle.
+    \end{definition}
+
+    \begin{remark}
+        Apollonius circles turn a ratio of distances into a concrete circle,
+        which is a common hidden structure in geometry problems.
+    \end{remark}
+
+    \begin{theorem}[Descartes' Circle Theorem; Soddy Circle Theorem]
+        Suppose four circles are mutually tangent, and let their curvatures be
+        \[
+            k_1,k_2,k_3,k_4,
+        \]
+        where curvature means the reciprocal of the radius, with sign convention
+        for an enclosing circle. Then
+        \[
+            (k_1+k_2+k_3+k_4)^2
+            =
+            2(k_1^2+k_2^2+k_3^2+k_4^2).
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Descartes' Circle Theorem is a striking formula: tangency of four
+        circles becomes one quadratic equation in their curvatures.
+    \end{remark}
+
+    \begin{theorem}[Pick's Theorem]
+        Let $P$ be a simple polygon whose vertices lie on lattice points in the
+        plane. If $I$ is the number of lattice points strictly inside $P$ and
+        $B$ is the number of lattice points on the boundary of $P$, then
+        \[
+            \operatorname{Area}(P)
+            =
+            I+\frac{B}{2}-1.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Pick's Theorem is a beautiful bridge between geometry and arithmetic:
+        area is determined by counting lattice points.
+    \end{remark}
+
     \chapter{Number Theory}
 
     This chapter collects famous number-theoretic results with strong quiz
@@ -2306,13 +2840,405 @@
 
     \chapter{Algebra}
 
+    This chapter collects algebraic structures and named theorems that are likely
+    to appear as terminology or quick-recognition questions. The emphasis is on
+    groups, rings, fields, and polynomial equations, not on long abstract proofs.
+
+
+    \begin{definition}[Group]
+        A group is a set $G$ together with a binary operation satisfying closure,
+        associativity, the existence of an identity element, and the existence of
+        inverses. If the operation is commutative, then $G$ is called an abelian
+        group.
+    \end{definition}
+
+    \begin{definition}[Cyclic Group]
+        A group $G$ is cyclic if there exists an element $g\in G$ such that every
+        element of $G$ is a power of $g$. In this case, we write
+        \[
+            G=\langle g\rangle.
+        \]
+    \end{definition}
+
+    \begin{theorem}[Lagrange's Theorem]
+        If $G$ is a finite group and $H\leq G$, then
+        \[
+            |H|\mid |G|.
+        \]
+        Equivalently, the order of every subgroup divides the order of the group.
+    \end{theorem}
+
+    \begin{corollary}[Order of an Element]
+        If $G$ is a finite group and $g\in G$, then the order of $g$ divides
+        $|G|$. In particular,
+        \[
+            g^{|G|}=e.
+        \]
+    \end{corollary}
+
+    \begin{theorem}[Cauchy's Theorem]
+        If $G$ is a finite group and a prime $p$ divides $|G|$, then $G$ contains
+        an element of order $p$.
+    \end{theorem}
+
+    \begin{theorem}[First Isomorphism Theorem for Groups]
+        If $\varphi:G\to H$ is a group homomorphism, then
+        \[
+            G/\Ker(\varphi)\cong \Image(\varphi).
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Cayley's Theorem]
+        Every group is isomorphic to a subgroup of a symmetric group. In
+        particular, every finite group of order $n$ is isomorphic to a subgroup
+        of $S_n$.
+    \end{theorem}
+
+    \begin{theorem}[Sylow Theorems]
+        Let $G$ be a finite group and suppose
+        \[
+            |G|=p^k m,
+            \qquad
+            p\nmid m,
+        \]
+        where $p$ is prime. Then $G$ has a subgroup of order $p^k$, called a
+        Sylow $p$-subgroup. Moreover, all Sylow $p$-subgroups are conjugate, and
+        the number $n_p$ of Sylow $p$-subgroups satisfies
+        \[
+            n_p\equiv 1\pmod p,
+            \qquad
+            n_p\mid m.
+        \]
+    \end{theorem}
+
+    \begin{strategy}
+        For Science Quiz, the most common finite-group quick check is divisibility:
+        subgroup orders and element orders must divide the group order. When a
+        prime divides $|G|$, Cauchy's theorem guarantees an element of that prime
+        order.
+    \end{strategy}
+
+
+    \begin{definition}[Ring and Field]
+        A ring is a set equipped with addition and multiplication satisfying the
+        usual distributive laws. A field is a commutative ring in which every
+        nonzero element has a multiplicative inverse.
+    \end{definition}
+
+    \begin{definition}[Integral Domain]
+        An integral domain is a commutative ring with identity in which there are
+        no zero divisors. In other words, if $ab=0$, then $a=0$ or $b=0$.
+    \end{definition}
+
+    \begin{theorem}[Polynomial Division Algorithm]
+        Let $F$ be a field. If $f(x),g(x)\in F[x]$ and $g(x)\neq 0$, then there
+        exist unique polynomials $q(x),r(x)\in F[x]$ such that
+        \[
+            f(x)=q(x)g(x)+r(x),
+            \qquad
+            r(x)=0\quad\text{or}\quad \deg r<\deg g.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Factor Theorem]
+        For a polynomial $f(x)\in F[x]$ and an element $a\in F$,
+        \[
+            f(a)=0
+            \quad\Longleftrightarrow\quad
+            x-a \text{ divides } f(x).
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Fundamental Theorem of Algebra]
+        Every nonconstant complex polynomial has at least one complex root.
+        Equivalently, every polynomial of degree $n\geq 1$ over $\C$ splits into
+        $n$ linear factors over $\C$, counted with multiplicity.
+    \end{theorem}
+
+    \begin{definition}[Algebraically Closed Field]
+        A field $F$ is algebraically closed if every nonconstant polynomial in
+        $F[x]$ has a root in $F$.
+    \end{definition}
+
+    \begin{theorem}[Galois Correspondence]
+        For a finite Galois extension $L/K$, there is an inclusion-reversing
+        correspondence between intermediate fields $K\subseteq E\subseteq L$ and
+        subgroups $H\leq \Gal(L/K)$, given by
+        \[
+            E\longmapsto \Gal(L/E),
+            \qquad
+            H\longmapsto L^H.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Abel--Ruffini Theorem]
+        There is no formula for the roots of a general polynomial of degree $5$
+        or higher using only the field operations and radicals.
+    \end{theorem}
+
+    \begin{remark}
+        The Abel--Ruffini theorem does not say that every quintic equation is
+        unsolvable. It says that no universal radical formula exists for the
+        general quintic.
+    \end{remark}
+
     \chapter{Analysis}
+
+    This chapter collects foundational results from real analysis that often
+    appear behind rigorous calculus, limits, compactness, and convergence. The
+    statements are kept theorem-oriented so that they can be recognized quickly
+    in a quiz setting.
+
+
+    \begin{definition}[Limit Superior and Limit Inferior]
+        For a real sequence $(a_n)$, define
+        \[
+            \limsup_{n\to\infty} a_n
+            =
+            \lim_{n\to\infty}\sup_{k\geq n} a_k,
+            \qquad
+            \liminf_{n\to\infty} a_n
+            =
+            \lim_{n\to\infty}\inf_{k\geq n} a_k,
+        \]
+        whenever these extended real limits are allowed.
+    \end{definition}
+
+    \begin{theorem}[Monotone Convergence Theorem for Sequences]
+        Every bounded monotone real sequence converges. More precisely, every
+        increasing sequence bounded above converges to its supremum, and every
+        decreasing sequence bounded below converges to its infimum.
+    \end{theorem}
+
+    \begin{theorem}[Bolzano--Weierstrass Theorem]
+        Every bounded sequence in $\R^n$ has a convergent subsequence.
+    \end{theorem}
+
+    \begin{theorem}[Heine--Borel Theorem]
+        A subset of $\R^n$ is compact if and only if it is closed and bounded.
+    \end{theorem}
+
+    \begin{theorem}[Uniform Continuity on Compact Sets]
+        If $K\subseteq\R^n$ is compact and $f:K\to\R^m$ is continuous, then $f$
+        is uniformly continuous on $K$.
+    \end{theorem}
+
+    \begin{theorem}[Weierstrass Extreme Value Theorem]
+        If $K\subseteq\R^n$ is compact and $f:K\to\R$ is continuous, then $f$
+        attains both a maximum and a minimum on $K$.
+    \end{theorem}
+
+    \begin{strategy}
+        In analysis questions, compactness usually means that one may extract a
+        convergent subsequence or that a continuous function attains extrema.
+        In $\R^n$, the fast recognition phrase is ``closed and bounded.''
+    \end{strategy}
+
+
+    \begin{theorem}[Cauchy Criterion]
+        A sequence $(a_n)$ in $\R$ or $\C$ converges if and only if it is Cauchy:
+        for every $\eps>0$, there exists $N$ such that
+        \[
+            m,n\geq N
+            \quad\Longrightarrow\quad
+            |a_m-a_n|<\eps.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Weierstrass M-Test]
+        Let $(f_n)$ be a sequence of functions on a set $E$. If
+        \[
+            |f_n(x)|\leq M_n
+            \quad\text{for all }x\in E
+        \]
+        and
+        \[
+            \sum_{n=1}^{\infty}M_n
+        \]
+        converges, then the series
+        \[
+            \sum_{n=1}^{\infty} f_n(x)
+        \]
+        converges uniformly on $E$.
+    \end{theorem}
+
+    \begin{theorem}[Uniform Limit Theorem]
+        If $(f_n)$ is a sequence of continuous functions on a set $E$ and
+        $f_n\to f$ uniformly on $E$, then $f$ is continuous on $E$.
+    \end{theorem}
+
+    \begin{theorem}[Term-by-Term Differentiation]
+        Suppose $f_n$ are continuously differentiable on an interval and $f_n$
+        converges at one point. If $f_n'$ converges uniformly, then $f_n$
+        converges uniformly to a differentiable function $f$, and
+        \[
+            f'=\lim_{n\to\infty} f_n'.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Arzelà--Ascoli Theorem]
+        A uniformly bounded and equicontinuous family of real-valued continuous
+        functions on a compact metric space has a uniformly convergent
+        subsequence.
+    \end{theorem}
+
+
+    \begin{theorem}[Banach Fixed-Point Theorem; Contraction Mapping Theorem]
+        Let $(X,d)$ be a complete metric space, and let $T:X\to X$ be a
+        contraction. Then $T$ has a unique fixed point $x^\ast\in X$, and the
+        iteration $x_{n+1}=T(x_n)$ converges to $x^\ast$ for every initial point
+        $x_0\in X$.
+    \end{theorem}
+
+    \begin{theorem}[Baire Category Theorem]
+        A complete metric space cannot be written as a countable union of nowhere
+        dense closed sets. Equivalently, a countable intersection of open dense
+        subsets of a complete metric space is dense.
+    \end{theorem}
+
+    \begin{theorem}[Lebesgue Dominated Convergence Theorem]
+        If $f_n\to f$ almost everywhere and there exists an integrable function
+        $g$ such that $|f_n|\leq g$ for all $n$, then
+        \[
+            \lim_{n\to\infty}\int f_n\dd\mu
+            =
+            \int f\dd\mu.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Fubini's Theorem]
+        Under suitable integrability assumptions, an iterated integral may be
+        computed in either order:
+        \[
+            \int_X\left(\int_Y f(x,y)\dd y\right)\dd x
+            =
+            \int_Y\left(\int_X f(x,y)\dd x\right)\dd y.
+        \]
+    \end{theorem}
 
     \chapter{Topology}
 
+    This chapter records topology terms and theorems that are famous enough to
+    appear in mathematical culture and Science Quiz questions. The goal is not to
+    develop topology from scratch, but to make the names and meanings recognizable.
+
+
+    \begin{definition}[Topology]
+        A topology on a set $X$ is a collection $\mathcal{T}$ of subsets of $X$
+        whose elements are called open sets, satisfying:
+        \begin{enumerate}
+            \item[(i)] $\varnothing,X\in\mathcal{T}$;
+            \item[(ii)] arbitrary unions of sets in $\mathcal{T}$ belong to
+            $\mathcal{T}$;
+            \item[(iii)] finite intersections of sets in $\mathcal{T}$ belong to
+            $\mathcal{T}$.
+        \end{enumerate}
+    \end{definition}
+
+    \begin{definition}[Compactness]
+        A topological space $X$ is compact if every open cover of $X$ has a finite
+        subcover.
+    \end{definition}
+
+    \begin{definition}[Connectedness]
+        A topological space $X$ is connected if it cannot be written as the union
+        of two disjoint nonempty open sets. Equivalently, the only subsets of
+        $X$ that are both open and closed are $\varnothing$ and $X$.
+    \end{definition}
+
+    \begin{definition}[Homeomorphism]
+        A homeomorphism is a bijective continuous map whose inverse is also
+        continuous. Two spaces are homeomorphic if they are the same from the
+        viewpoint of topology.
+    \end{definition}
+
+    \begin{theorem}[Brouwer Fixed-Point Theorem]
+        Every continuous map from a closed ball in $\R^n$ to itself has at least
+        one fixed point.
+    \end{theorem}
+
+    \begin{theorem}[Invariance of Domain]
+        If $U\subseteq\R^n$ is open and $f:U\to\R^n$ is continuous and injective,
+        then $f(U)$ is open and $f$ is a homeomorphism from $U$ onto $f(U)$.
+    \end{theorem}
+
+
+    \begin{definition}[Manifold]
+        An $n$-dimensional topological manifold is a space that locally looks like
+        $\R^n$. More precisely, each point has a neighborhood homeomorphic to an
+        open subset of $\R^n$.
+    \end{definition}
+
+    \begin{definition}[Fundamental Group]
+        The fundamental group $\pi_1(X,x_0)$ records loops in $X$ based at
+        $x_0$, up to continuous deformation. It is one of the basic algebraic
+        invariants of a topological space.
+    \end{definition}
+
+    \begin{fact}[Fundamental Groups of Familiar Spaces]
+        The following basic examples are worth recognizing:
+        \[
+            \pi_1(S^1)\cong\Z,
+            \qquad
+            \pi_1(S^n)\cong 0\quad(n\geq 2),
+            \qquad
+            \pi_1(\mathbb{T}^2)\cong\Z^2.
+        \]
+    \end{fact}
+
+    \begin{formula}[Euler Characteristic of a Surface]
+        For a triangulated closed surface, the Euler characteristic is
+        \[
+            \chi=V-E+F.
+        \]
+        For an orientable closed surface of genus $g$,
+        \[
+            \chi=2-2g.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Classification of Closed Surfaces]
+        Every connected closed surface is homeomorphic to either an orientable
+        surface of genus $g\geq 0$ or a nonorientable surface obtained as a
+        connected sum of $k\geq 1$ projective planes.
+    \end{theorem}
+
+    \begin{theorem}[Poincaré Conjecture]
+        Every closed simply connected $3$-manifold is homeomorphic to the
+        $3$-sphere $S^3$.
+    \end{theorem}
+
+    \begin{remark}
+        The Poincaré conjecture was proved by Grigori Perelman using Ricci flow.
+        In a quiz setting, the key association is usually
+        \[
+            \text{Poincaré conjecture} \longleftrightarrow
+            \text{Perelman} \longleftrightarrow
+            \text{Ricci flow}.
+        \]
+    \end{remark}
+
+    \begin{theorem}[Thurston Geometrization Theorem]
+        Every closed orientable $3$-manifold can be decomposed into pieces that
+        admit one of the eight Thurston geometries.
+    \end{theorem}
+
+    \begin{fact}[The Eight Thurston Geometries]
+        The eight model geometries are
+        \[
+            S^3,
+            \quad \mathbb{E}^3,
+            \quad \mathbb{H}^3,
+            \quad S^2\times\R,
+            \quad \mathbb{H}^2\times\R,
+            \quad \widetilde{\mathrm{SL}_2(\R)},
+            \quad \mathrm{Nil},
+            \quad \mathrm{Sol}.
+        \]
+    \end{fact}
+
     \chapter{Miscellaneous Topics}
 
-    \section*{Classical Infinite Series}
 
     \begin{formula}[Mercator Series for $\ln 2$]
         The alternating harmonic series satisfies
@@ -2475,7 +3401,7 @@
 
     {\small
     \renewcommand{\arraystretch}{1.18}
-    \begin{longtable}{@{}L{0.075\textwidth}L{0.16\textwidth}L{0.53\textwidth}L{0.19\textwidth}@{}}
+    \begin{longtable}{@{}L{0.07\textwidth}L{0.15\textwidth}L{0.51\textwidth}L{0.18\textwidth}@{}}
         \toprule
         Year & ICM location & Medalists and areas & Notes \\
         \midrule
@@ -2514,12 +3440,12 @@
         1958
         & Edinburgh, UK
         & Klaus Roth --- number theory, Diophantine approximation;
-          Rene Thom --- cobordism, differential topology
+          René Thom --- cobordism, differential topology
         &  \\
 
         1962
         & Stockholm, Sweden
-        & Lars Hormander --- partial differential equations;
+        & Lars Hörmander --- partial differential equations;
           John Milnor --- differential topology, exotic spheres
         &  \\
 
@@ -2528,7 +3454,7 @@
         & Michael Atiyah --- K-theory, index theorem;
           Paul Cohen --- set theory, forcing, continuum hypothesis;
           Alexander Grothendieck --- algebraic geometry, homological algebra;
-          Stephen Smale --- differential topology, generalized Poincare conjecture
+          Stephen Smale --- differential topology, generalized Poincaré conjecture
         & First year with four medalists. \\
 
         1970
@@ -2564,7 +3490,7 @@
         & Berkeley, USA
         & Simon Donaldson --- four-manifold topology, gauge theory;
           Gerd Faltings --- arithmetic algebraic geometry, Mordell conjecture;
-          Michael Freedman --- four-manifold topology, four-dimensional Poincare conjecture
+          Michael Freedman --- four-manifold topology, four-dimensional Poincaré conjecture
         &  \\
 
         1990
@@ -2600,7 +3526,7 @@
         2006
         & Madrid, Spain
         & Andrei Okounkov --- probability, representation theory, algebraic geometry;
-          Grigori Perelman --- Ricci flow, Poincare conjecture;
+          Grigori Perelman --- Ricci flow, Poincaré conjecture;
           Terence Tao --- PDE, harmonic analysis, additive combinatorics;
           Wendelin Werner --- probability, SLE, Brownian motion
         & Perelman declined the medal. \\
@@ -2610,7 +3536,7 @@
         & Elon Lindenstrauss --- ergodic theory, number theory;
           Ngo Bao Chau --- automorphic forms, Fundamental Lemma;
           Stanislav Smirnov --- probability, statistical physics, conformal invariance;
-          Cedric Villani --- kinetic theory, Boltzmann equation, optimal transport
+          Cédric Villani --- kinetic theory, Boltzmann equation, optimal transport
         &  \\
 
         2014
@@ -2657,7 +3583,7 @@
         \item Andrew Wiles received a special IMU silver plaque in 1998 for his
               proof of Fermat's Last Theorem.
         \item Grigori Perelman declined the Fields Medal in 2006 after proving
-              the Poincare conjecture.
+              the Poincaré conjecture.
         \item Maryam Mirzakhani was the first woman Fields Medalist.
         \item Maryna Viazovska was the second woman Fields Medalist.
         \item The 2026 ICM is scheduled to be held in Philadelphia, USA.
@@ -2666,7 +3592,7 @@
     \part{Past Problems}
 
     \begin{problem}{2018.1}
-        The following are this year's Fields Medalists. Excluding choice (5), who is the second oldest among them?
+        The following people are this year's Fields Medalists. Excluding choice (5), who is the second oldest among them?
         \[
             \begin{array}{ll}
                 (1) & \text{Caucher Birkar} \\
@@ -2704,11 +3630,11 @@
         The $3$-dimensional geometric structures appearing in Thurston's geometrization conjecture are the eight Thurston geometries:
         \[
             S^3,\quad
-            \mathbb{E}^3,\quad
+            \Exp^3,\quad
             \mathbb{H}^3,\quad
-            S^2 \times \mathbb{R},\quad
-            \mathbb{H}^2 \times \mathbb{R},\quad
-            \widetilde{\mathrm{SL}_2(\mathbb{R})},\quad
+            S^2 \times \R,\quad
+            \mathbb{H}^2 \times \R,\quad
+            \widetilde{\mathrm{SL}_2(\R)},\quad
             \mathrm{Nil},\quad
             \mathrm{Sol}.
         \]
@@ -2771,7 +3697,16 @@
     \end{problem}
 
     \begin{solution}
-        Maxim Kontsevich
+        The intended answer is Maxim Kontsevich.
+
+        This problem is not asking for a theorem but for advisor--student data
+        about Fields Medalists and Korean mathematicians. In a Science Quiz
+        setting, it is best treated as a memorization-style question: among the
+        five listed Fields Medalists, the exceptional name in the intended answer
+        key is
+        \[
+            \boxed{(2)\ \text{Maxim Kontsevich}}.
+        \]
     \end{solution}
 
     \begin{problem}{2020.1}
@@ -2793,7 +3728,7 @@
     \begin{solution}
         Let $Y$ be the number obtained from one roll of the die. Since all six faces are equally likely,
         \[
-            \mathbb{E}[Y]
+            \Exp[Y]
             =
             \frac{-2+0+2+3+4+5}{6}
             =
@@ -2805,17 +3740,17 @@
         \]
         Since the rolls are independent, the random variables $Y_1,Y_2,\dots,Y_{10}$ are independent. Therefore,
         \[
-            \mathbb{E}[X]
+            \Exp[X]
             =
-            \mathbb{E}[Y_1Y_2\cdots Y_{10}]
+            \Exp[Y_1Y_2\cdots Y_{10}]
             =
-            \mathbb{E}[Y_1]\mathbb{E}[Y_2]\cdots\mathbb{E}[Y_{10}].
+            \Exp[Y_1]\Exp[Y_2]\cdots\Exp[Y_{10}].
         \]
         All the $Y_i$ have the same distribution as $Y$, so
         \[
-            \mathbb{E}[X]
+            \Exp[X]
             =
-            \left(\mathbb{E}[Y]\right)^{10}
+            \left(\Exp[Y]\right)^{10}
             =
             2^{10}
             =
@@ -2862,7 +3797,7 @@
         \[
             \Delta U
             =
-            -\int_{\mathbf{a}}^{\mathbf{b}} \mathbf{F}\cdot d\mathbf{r}.
+            -\int_{\mathbf{a}}^{\mathbf{b}} \mathbf{F}\cdot\dd\mathbf{r}.
         \]
         For this quantity to be independent of the path, the force field should be expressible as the negative gradient of a potential function:
         \[
@@ -2876,9 +3811,9 @@
         \]
         Hence choice (4) is also directly related. Stokes' theorem says that
         \[
-            \oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}
+            \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
             =
-            \iint_S (\nabla\times \mathbf{F})\cdot \mathbf{n}\,dS.
+            \iint_S (\nabla\times \mathbf{F})\cdot \mathbf{n}\dd S.
         \]
         Therefore, if $\nabla\times\mathbf{F}=\mathbf{0}$, then the line integral around a closed curve is zero, which is another way to understand path independence. Thus choice (2) is also related.
 
@@ -3024,8 +3959,8 @@
         \[
             \begin{array}{ll}
                 (1) & \text{The fundamental group of an open unit disk with finitely many punctures.} \\
-                (2) & \mathrm{SL}_2(\mathbb{Z}), \text{ the group of } 2\times 2 \text{ integer matrices with determinant } 1. \\
-                (3) & \mathbb{C}^{\times}, \text{ the group of nonzero complex numbers under multiplication.} \\
+                (2) & \mathrm{SL}_2(\Z), \text{ the group of } 2\times 2 \text{ integer matrices with determinant } 1. \\
+                (3) & \C^{\times}, \text{ the group of nonzero complex numbers under multiplication.} \\
                 (4) & \text{The Monster group, the largest sporadic finite simple group.}
             \end{array}
         \]
@@ -3038,7 +3973,7 @@
         \]
         Hence the group in choice (1) is finitely generated.
 
-        The group $\mathrm{SL}_2(\mathbb{Z})$ is also finitely generated. For example, it is generated by the two matrices
+        The group $\mathrm{SL}_2(\Z)$ is also finitely generated. For example, it is generated by the two matrices
         \[
             S=
             \begin{pmatrix}
@@ -3054,11 +3989,11 @@
         \]
         Thus choice (2) is finitely generated.
 
-        On the other hand, $\mathbb{C}^{\times}$ is an uncountable abelian group. Every finitely generated group is countable, so $\mathbb{C}^{\times}$ cannot be finitely generated. Therefore, choice (3) is not finitely generated.
+        On the other hand, $\C^{\times}$ is an uncountable abelian group. Every finitely generated group is countable, so $\C^{\times}$ cannot be finitely generated. Therefore, choice (3) is not finitely generated.
 
         Finally, the Monster group is a finite group. Every finite group is finitely generated, since one may simply take all of its elements as generators. Hence choice (4) is finitely generated.
 
-        Therefore, the only group in the list that is not finitely generated is $\boxed{(3)\ \mathbb{C}^{\times}}$.
+        Therefore, the only group in the list that is not finitely generated is $\boxed{(3)\ \C^{\times}}$.
     \end{solution}
 
     \begin{problem}{2021.4}
@@ -3206,6 +4141,663 @@
             24.
         \]
         Therefore, the largest number among the choices is $\boxed{(5)\ 4!}$.
+    \end{solution}
+
+    \begin{problem}{2022.2}
+        Three people store a jointly owned treasure in a safe and want to lock it. They want no single person to be able to open the safe alone, but any two or more people should always be able to open it together. This can be done by putting $n$ locks on the safe, making $m$ copies of the key for each lock, and distributing the keys appropriately among the three people. Find $n$ and $m$ so that the number of locks $n$ is minimized.
+    \end{problem}
+
+    \begin{solution}
+        Let the three people be $A$, $B$, and $C$.
+
+        Since any two people should be able to open the safe, the key to each lock must be given to at least two people. If a certain lock had its key given to only one person, then the other two people would not be able to open that lock together.
+
+        Thus, for each lock, exactly one of the three people should not receive the key. On the other hand, no single person should be able to open the safe alone. Therefore, each person must be missing the key to at least one lock.
+
+        Hence we need at least three locks: one lock whose key is not given to $A$, one lock whose key is not given to $B$, and one lock whose key is not given to $C$. This lower bound is achievable by distributing the keys as follows:
+        \[
+            \begin{array}{c|ccc}
+                & A & B & C \\
+                \hline
+                L_A & \times & \checkmark & \checkmark \\
+                L_B & \checkmark & \times & \checkmark \\
+                L_C & \checkmark & \checkmark & \times
+            \end{array}
+        \]
+        That is, the key to $L_A$ is given to $B$ and $C$, the key to $L_B$ is given to $A$ and $C$, and the key to $L_C$ is given to $A$ and $B$.
+
+        Then each person is unable to open one of the locks, so no one can open the safe alone. However, any two people together can open all three locks. Therefore, the minimum is achieved by $\boxed{n=3,\ m=2}$.
+    \end{solution}
+
+    \begin{problem}{2022.3}
+        Evaluate the integral
+        \[
+            \int_{-\infty}^{\infty}
+            \frac{3}{(x-2)^2+7}\,dx.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Let
+        \[
+            u=x-2.
+        \]
+        Then the limits of integration remain $-\infty$ and $\infty$, so
+        \[
+            \int_{-\infty}^{\infty}
+            \frac{3}{(x-2)^2+7}\,dx
+            =
+            3\int_{-\infty}^{\infty}
+            \frac{1}{u^2+7}\,du.
+        \]
+        We use the standard formula
+        \[
+            \int_{-\infty}^{\infty}
+            \frac{1}{u^2+a^2}\,du
+            =
+            \frac{\pi}{a}.
+        \]
+        Here $a=\sqrt{7}$, and therefore
+        \[
+            3\int_{-\infty}^{\infty}
+            \frac{1}{u^2+7}\,du
+            =
+            3\cdot\frac{\pi}{\sqrt{7}}
+            =
+            \frac{3\pi}{\sqrt{7}}.
+        \]
+        Thus the answer is $\boxed{\dfrac{3\pi}{\sqrt{7}}}$.
+    \end{solution}
+
+    \begin{problem}{2022.4}
+        A couple has two children.
+        \begin{enumerate}
+            \item[(a)] Given that one of the children is a daughter, what is the probability that the other child is also a daughter?
+            \item[(b)] Given that one of the children is a daughter named Youngmi, what is the probability that the other child is also a daughter?
+        \end{enumerate}
+    \end{problem}
+
+    \begin{solution}
+        Let $G$ denote a girl and $B$ denote a boy. If we distinguish the two children by birth order, then the possible gender combinations are
+        \[
+            GG,\quad GB,\quad BG,\quad BB.
+        \]
+
+        For part (a), the condition that one child is a daughter means that at least one child is a girl. Thus the possible cases are
+        \[
+            GG,\quad GB,\quad BG.
+        \]
+        Among these three cases, only $GG$ has the property that the other child is also a daughter. Therefore,
+        \[
+            \Prob(\text{both are daughters}\mid \text{at least one is a daughter})
+            =
+            \frac{1}{3}.
+        \]
+
+        For part (b), the information that one child is a daughter named Youngmi is more specific. In the intended interpretation of the problem, this information identifies one particular child. Then the gender of the other child is still equally likely to be $G$ or $B$. Hence
+        \[
+            \Prob(\text{the other child is a daughter})
+            =
+            \frac{1}{2}.
+        \]
+
+        Therefore, the answers are $\boxed{\text{(a) } \dfrac{1}{3},\ \text{(b) } \dfrac{1}{2}}$.
+    \end{solution}
+
+    \begin{problem}{2022.5}
+        Which of the following conjectures was not solved by Professor June Huh?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Read's conjecture} \\
+                (2) & \text{Brylawski's conjecture} \\
+                (3) & \text{Poincaré conjecture} \\
+                (4) & \text{Rota's conjecture} \\
+                (5) & \text{Okounkov's conjecture}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Professor June Huh is known for connecting combinatorics with algebraic geometry and using these ideas to solve several major conjectures in combinatorics. His work is related to conjectures such as Read's conjecture, Brylawski's conjecture, Rota's conjecture, and Okounkov's conjecture.
+
+        On the other hand, the Poincaré conjecture is a famous problem in $3$-dimensional topology. It was proved by Grigori Perelman using Ricci flow, not by June Huh.
+
+        Therefore, the conjecture in the list that was not solved by June Huh is
+        \[
+            \boxed{(3)\ \text{Poincaré conjecture}}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2022.6}
+        This mathematician, often called the father of linear programming, is famous for solving difficult problems while he was a doctoral student. One day, while studying at UC Berkeley, he arrived late to a class. The statistics professor Jerzy Neyman had written two famous unsolved problems on the blackboard, but the student thought they were homework problems. He took them home, solved them, and submitted complete solutions a few days later, thinking only that he had turned in the homework late. Who was this mathematician?
+    \end{problem}
+
+    \begin{solution}
+        The mathematician described in the problem is George Dantzig.
+
+        George Dantzig is known as one of the founders of linear programming and as the creator of the simplex method. For this reason, he is often called the father of linear programming.
+
+        The anecdote in the problem is also a famous story about Dantzig. While he was a doctoral student at UC Berkeley, he arrived late to Jerzy Neyman's statistics class and copied down two problems written on the blackboard, believing that they were homework problems. He later submitted solutions, not realizing that the problems were actually open problems in statistics.
+
+        Therefore, the answer is $\boxed{\text{George Dantzig}}$.
+    \end{solution}
+
+    \begin{problem}{2022.7}
+        Two different coins are each tossed three times. Let $X$ and $Y$ be the numbers of heads obtained from the two coins, respectively. What is the probability that $X=Y$?
+    \end{problem}
+
+    \begin{solution}
+        For each coin, the number of heads obtained in three tosses follows the binomial distribution
+        \[
+            X,Y\sim \Bin\left(3,\frac{1}{2}\right).
+        \]
+        Also, $X$ and $Y$ are independent. Therefore,
+        \[
+            \Prob(X=Y)
+            =
+            \sum_{k=0}^{3}\Prob(X=k)\Prob(Y=k).
+        \]
+        For each $k=0,1,2,3$, we have
+        \[
+            \Prob(X=k)
+            =
+            \binom{3}{k}\left(\frac{1}{2}\right)^3,
+        \]
+        and the same formula holds for $Y$. Hence
+        \[
+            \Prob(X=Y)
+            =
+            \sum_{k=0}^{3}
+            \left(
+                \binom{3}{k}\left(\frac{1}{2}\right)^3
+            \right)^2
+            =
+            \frac{1}{64}
+            \sum_{k=0}^{3}
+            \binom{3}{k}^2.
+        \]
+        Thus
+        \[
+            \Prob(X=Y)
+            =
+            \frac{1}{64}
+            \left(
+                \binom{3}{0}^2+
+                \binom{3}{1}^2+
+                \binom{3}{2}^2+
+                \binom{3}{3}^2
+            \right)
+            =
+            \frac{1+9+9+1}{64}
+            =
+            \frac{20}{64}
+            =
+            \frac{5}{16}.
+        \]
+        Therefore, the answer is $\boxed{\dfrac{5}{16}}$.
+    \end{solution}
+
+    \begin{problem}{2023.1}
+        In which year was the Fields Medal, won by Professor June Huh, first awarded?
+    \end{problem}
+
+    \begin{solution}
+        The Fields Medal is one of the most prestigious awards in mathematics, and it is awarded by the International Mathematical Union. Professor June Huh received the Fields Medal in 2022.
+
+        The Fields Medal was first awarded in 1936. The first two recipients were Lars Ahlfors and Jesse Douglas.
+
+        Therefore, the answer is $\boxed{1936}$.
+    \end{solution}
+
+    \begin{problem}{2023.2}
+        Consider the $6\times 6$ square grid with vertices $(0,0)$, $(6,0)$, $(0,6)$, and $(6,6)$. A path starts at $(0,0)$ and ends at $(6,6)$, moving only one unit to the right or one unit upward at each step. How many such paths never go above the line $x=y$? Equivalently, how many such paths stay in the region
+        \[
+            \{(x,y)\in\R^2:y\leq x\}?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        To go from $(0,0)$ to $(6,6)$, a path must consist of $6$ right steps and $6$ upward steps. Without the condition $y\leq x$, the total number of such paths is
+        \[
+            \binom{12}{6}.
+        \]
+
+        We now count the paths that do go above the line $y=x$. By the reflection principle, the number of paths from $(0,0)$ to $(6,6)$ that at some point satisfy $y>x$ is
+        \[
+            \binom{12}{5}.
+        \]
+        Therefore, the number of paths that always stay in the region $y\leq x$ is
+        \[
+            \binom{12}{6}-\binom{12}{5}.
+        \]
+        Computing this gives
+        \[
+            \binom{12}{6}-\binom{12}{5}
+            =
+            924-792
+            =
+            132.
+        \]
+        Thus the answer is $\boxed{132}$.
+    \end{solution}
+
+    \begin{problem}{2023.3}
+        A point on the surface of the Earth has the following property: starting from that point, one moves $5\mathrm{km}$ south, then $5\mathrm{km}$ east, and then $5\mathrm{km}$ north, and returns to the original point. How many such points are there on the surface of the Earth?
+
+        Assume that the surface of the Earth is a perfect two-dimensional sphere, and that the North Pole and the South Pole are antipodal points. At the North Pole, the directions north, east, and west are not defined, and at the South Pole, the directions south, east, and west are not defined. Starting points for which one of these undefined directions occurs during the movement are excluded.
+    \end{problem}
+
+    \begin{solution}
+        The North Pole is one such point. If we start at the North Pole, move $5\mathrm{km}$ south, then move $5\mathrm{km}$ east along a latitude circle, and finally move $5\mathrm{km}$ north, we return to the North Pole.
+
+        There are also many such points near the South Pole. Let $Q$ be the point reached after moving $5\mathrm{km}$ south from the starting point. Suppose that the latitude circle passing through $Q$ has circumference
+        \[
+            \frac{5}{n}\mathrm{km}
+        \]
+        for some positive integer $n$. Then moving $5\mathrm{km}$ east from $Q$ goes exactly $n$ full times around that latitude circle and returns to $Q$. After that, moving $5\mathrm{km}$ north returns to the original starting point.
+
+        Near the South Pole, the circumferences of latitude circles approach $0$. Hence, for every positive integer $n$, there is a latitude circle near the South Pole whose circumference is exactly $\dfrac{5}{n}\mathrm{km}$. For each such latitude circle, every point lying $5\mathrm{km}$ north of it gives a valid starting point.
+
+        Therefore, there are not just one but infinitely many such points on the Earth's surface. In fact, this construction gives entire latitude circles of valid starting points, so there are uncountably many such points. For the usual quiz answer, the essential conclusion is
+        \[
+            \boxed{\text{infinitely many}}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2023.4}
+        Let $f:(-1,1)\to\R$ be a continuous function. For each $\lambda>0$, define
+        \[
+            f_\lambda(x)
+            :=
+            \lambda f\left(\frac{x}{\lambda}\right),
+        \]
+        where $f_\lambda$ is defined for $x\in(-\lambda,\lambda)$.
+
+        Suppose that for every sequence $\lambda_i\to\infty$, the functions $f_{\lambda_i}$ converge locally uniformly to $0$ on $\R$. Determine whether the following statement is true or false:
+        \[
+            f \text{ is differentiable at } 0 \text{ and } f'(0)=0.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        We prove that the statement is true.
+
+        First, evaluate at $x=0$. For every sequence $\lambda_i\to\infty$, we have
+        \[
+            f_{\lambda_i}(0)
+            =
+            \lambda_i f(0).
+        \]
+        Since $f_{\lambda_i}$ converges locally uniformly to $0$, in particular it converges pointwise to $0$ at $x=0$. Hence
+        \[
+            \lambda_i f(0)\to 0.
+        \]
+        This is possible for all sequences $\lambda_i\to\infty$ only if
+        \[
+            f(0)=0.
+        \]
+
+        Now we show that $f'(0)=0$. Let $h_i\to 0$ be any sequence with $h_i\neq 0$. For all sufficiently large $i$, we have $h_i\in(-1,1)$. Define
+        \[
+            \lambda_i=\frac{1}{|h_i|}.
+        \]
+        Then $\lambda_i\to\infty$, and
+        \[
+            h_i=\frac{\sgn(h_i)}{\lambda_i}.
+        \]
+        By the assumption, $f_{\lambda_i}\to 0$ locally uniformly on $\R$. In particular, this convergence is uniform on the compact set $\{-1,1\}$. Therefore,
+        \[
+            f_{\lambda_i}(\sgn(h_i))\to 0.
+        \]
+        But
+        \[
+            f_{\lambda_i}(\sgn(h_i))
+            =
+            \lambda_i
+            f\left(
+                \frac{\sgn(h_i)}{\lambda_i}
+            \right)
+            =
+            \lambda_i f(h_i).
+        \]
+        Hence
+        \[
+            \lambda_i f(h_i)\to 0.
+        \]
+        Since $f(0)=0$, we get
+        \[
+            \left|
+                \frac{f(h_i)-f(0)}{h_i}
+            \right|
+            =
+            \left|
+                \frac{f(h_i)}{h_i}
+            \right|
+            =
+            \lambda_i |f(h_i)|
+            \to 0.
+        \]
+        Thus
+        \[
+            \frac{f(h_i)-f(0)}{h_i}\to 0
+        \]
+        for every sequence $h_i\to 0$ with $h_i\neq 0$. Therefore, $f$ is differentiable at $0$ and
+        \[
+            f'(0)=0.
+        \]
+
+        Thus the answer is $\boxed{\text{True}}$.
+    \end{solution}
+
+    \begin{problem}{2024.1}
+        When all natural numbers from $100$ to $999$ are written in a row, how many times does the digit $0$ appear?
+    \end{problem}
+
+    \begin{solution}
+        Every natural number from $100$ to $999$ is a three-digit number.
+
+        In a three-digit number, the hundreds digit cannot be $0$. Therefore, the digit $0$ can appear only in the tens digit or the units digit.
+
+        First, count the numbers whose tens digit is $0$. The hundreds digit can be one of $1,2,\dots,9$, and the units digit can be one of $0,1,\dots,9$. Hence there are
+        \[
+            9\cdot 10=90
+        \]
+        such numbers.
+
+        Next, count the numbers whose units digit is $0$. The hundreds digit can be one of $1,2,\dots,9$, and the tens digit can be one of $0,1,\dots,9$. Hence there are again
+        \[
+            9\cdot 10=90
+        \]
+        such numbers.
+
+        Therefore, the total number of appearances of the digit $0$ is
+        \[
+            90+90=180.
+        \]
+        Thus the answer is $\boxed{180}$.
+    \end{solution}
+
+    \begin{problem}{2024.2}
+        Which of the following people was born the latest?
+        \[
+            \begin{array}{ll}
+                (1) & \text{John von Neumann} \\
+                (2) & \text{Alan Turing} \\
+                (3) & \text{John Nash} \\
+                (4) & \text{Pierre de Fermat}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        We compare their years of birth:
+        \[
+            \begin{array}{ll}
+                (1) & \text{John von Neumann: born in } 1903, \\
+                (2) & \text{Alan Turing: born in } 1912, \\
+                (3) & \text{John Nash: born in } 1928, \\
+                (4) & \text{Pierre de Fermat: born in } 1607.
+            \end{array}
+        \]
+        Among these four, the person born the latest is John Nash.
+
+        Therefore, the answer is $\boxed{(3)\ \text{John Nash}}$.
+    \end{solution}
+
+    \begin{problem}{2024.4}
+        Let $C$ be a convex subset of $\R^3$. Here convex means that for any two points $\mathbf{p},\mathbf{q}\in C$, the line segment joining $\mathbf{p}$ and $\mathbf{q}$ is also contained in $C$.
+
+        Suppose that the following two facts are known:
+        \begin{enumerate}
+            \item[(i)] The intersection of $C$ with the $xy$-plane is
+            \[
+                C\cap\{z=0\}
+                =
+                \{(x,y,0):x^2+4y^2\leq 1\}.
+            \]
+            \item[(ii)] The set $C$ contains the $z$-axis.
+        \end{enumerate}
+        Can the volume of $C$ in the region $-1\leq z\leq 1$ be determined?
+        \[
+            \begin{array}{ll}
+                (1) & \text{This cannot be determined.} \\
+                (2) & \pi \\
+                (3) & 2\pi \\
+                (4) & 4\pi
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Let
+        \[
+            E=\{(x,y)\in\R^2:x^2+4y^2\leq 1\}.
+        \]
+        By condition (i),
+        \[
+            C\cap\{z=0\}=E\times\{0\}.
+        \]
+        The ellipse $E$ has semiaxes $1$ and $\dfrac{1}{2}$, so its area is
+        \[
+            \area(E)
+            =
+            \pi\cdot 1\cdot \frac{1}{2}
+            =
+            \frac{\pi}{2}.
+        \]
+
+        For each height $z$, define the horizontal cross-section
+        \[
+            C_z
+            =
+            \{(x,y)\in\R^2:(x,y,z)\in C\}.
+        \]
+        We claim that $C_z$ has the same area as $E$ for every $z$.
+
+        First, we show that $C_z\subseteq E$. Suppose that $(x,y,z)\in C$ and
+        \[
+            x^2+4y^2>1.
+        \]
+        Since $C$ contains the $z$-axis, the point $(0,0,t)$ belongs to $C$ for every $t\in\R$. By convexity, the line segment joining $(x,y,z)$ and $(0,0,t)$ is contained in $C$.
+
+        For any $\alpha\in(0,1)$, we may choose
+        \[
+            t=-\frac{\alpha z}{1-\alpha}
+        \]
+        so that this segment intersects the $xy$-plane at the point
+        \[
+            (\alpha x,\alpha y,0).
+        \]
+        Since $\alpha$ can be chosen sufficiently close to $1$, we may arrange that
+        \[
+            (\alpha x)^2+4(\alpha y)^2>1.
+        \]
+        This would give a point of $C\cap\{z=0\}$ lying outside $E\times\{0\}$, contradicting condition (i). Therefore,
+        \[
+            C_z\subseteq E
+        \]
+        for every $z$.
+
+        Conversely, we show that the interior of $E$ is contained in every $C_z$. Take $(x,y)$ with
+        \[
+            x^2+4y^2<1.
+        \]
+        Choose $\alpha\in(0,1)$ sufficiently close to $1$ so that
+        \[
+            \left(\frac{x}{\alpha}\right)^2
+            +
+            4\left(\frac{y}{\alpha}\right)^2
+            \leq 1.
+        \]
+        Then
+        \[
+            \left(\frac{x}{\alpha},\frac{y}{\alpha},0\right)\in C.
+        \]
+        Also, since $C$ contains the $z$-axis,
+        \[
+            \left(0,0,\frac{z}{1-\alpha}\right)\in C.
+        \]
+        By convexity, their convex combination also belongs to $C$, and
+        \[
+            \alpha
+            \left(\frac{x}{\alpha},\frac{y}{\alpha},0\right)
+            +
+            (1-\alpha)
+            \left(0,0,\frac{z}{1-\alpha}\right)
+            =
+            (x,y,z).
+        \]
+        Hence $(x,y)\in C_z$.
+
+        Thus, for every $z$,
+        \[
+            \operatorname{int}(E)\subseteq C_z\subseteq E.
+        \]
+        Since the boundary of the ellipse has area $0$, we have
+        \[
+            \area(C_z)=\area(E)=\frac{\pi}{2}
+        \]
+        for every $z$. Therefore, the volume of $C$ in the region $-1\leq z\leq 1$ is
+        \[
+            \int_{-1}^{1}\area(C_z)\dd z
+            =
+            \int_{-1}^{1}\frac{\pi}{2}\dd z
+            =
+            \pi.
+        \]
+
+        Therefore, the answer is $\boxed{(2)\ \pi}$.
+    \end{solution}
+
+    \begin{problem}{2025.1}
+        A fair coin is tossed repeatedly until either two heads in a row or two tails in a row appear. On average, how many tosses are needed before the process stops?
+    \end{problem}
+
+    \begin{solution}
+        On the first toss, it is impossible to have two consecutive equal outcomes. After the first toss, the process stops exactly when the next toss gives the same result as the previous toss.
+
+        Since the coin is fair, from the second toss onward we have
+        \[
+            \Prob(\text{the new toss matches the previous toss})
+            =
+            \frac{1}{2}.
+        \]
+        Therefore, after the first toss, the number of additional tosses needed until the process stops follows a geometric distribution with success probability $\dfrac{1}{2}$. Its expected value is
+        \[
+            \frac{1}{1/2}=2.
+        \]
+        Since the first toss is always made, the expected total number of tosses is
+        \[
+            1+2=3.
+        \]
+        Thus the answer is $\boxed{3}$.
+    \end{solution}
+
+    \begin{problem}{2025.2}
+        The nineteenth-century mathematicians Cauchy and Weierstrass established rigorous definitions of limits. Who was the first mathematician to prove that the sum of the reciprocals of the squares of all positive integers is
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+            =
+            \frac{\pi^2}{6}?
+        \]
+        \[
+            \begin{array}{ll}
+                (1) & \text{David Hilbert} \\
+                (2) & \text{Georg Cantor} \\
+                (3) & \text{Bernhard Riemann} \\
+                (4) & \text{Leonhard Euler}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The problem of finding the exact value of the infinite series
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+        \]
+        is known as the Basel problem.
+
+        This problem had been known since the seventeenth century, and it was Leonhard Euler who first found and proved the famous identity
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+            =
+            \frac{\pi^2}{6}.
+        \]
+        Therefore, the answer is $\boxed{(4)\ \text{Leonhard Euler}}$.
+    \end{solution}
+
+    \begin{problem}{2025.3}
+        Find the equation of the smallest sphere tangent to all four planes
+        \[
+            x=0,\qquad y=0,\qquad z=0,\qquad x+y+z=3.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Since the sphere is tangent to the three coordinate planes
+        \[
+            x=0,\qquad y=0,\qquad z=0,
+        \]
+        and we are looking for the smallest such sphere, its center must lie in the first octant and have the form
+        \[
+            \mathbf{c}=(a,a,a)
+        \]
+        by symmetry. The distance from $\mathbf{c}$ to each coordinate plane is $a$, so the radius of the sphere is
+        \[
+            r=a.
+        \]
+
+        The sphere must also be tangent to the plane
+        \[
+            x+y+z=3.
+        \]
+        The distance from $(a,a,a)$ to this plane is
+        \[
+            \frac{|a+a+a-3|}{\sqrt{1^2+1^2+1^2}}
+            =
+            \frac{3-3a}{\sqrt{3}},
+        \]
+        since the smallest sphere lies between the coordinate planes and the plane $x+y+z=3$. This distance must equal the radius $a$, so
+        \[
+            \frac{3-3a}{\sqrt{3}}=a.
+        \]
+        Hence
+        \[
+            3-3a=\sqrt{3}a,
+        \]
+        and therefore
+        \[
+            a
+            =
+            \frac{3}{3+\sqrt{3}}
+            =
+            \frac{3-\sqrt{3}}{2}.
+        \]
+
+        Thus the center is
+        \[
+            \left(
+                \frac{3-\sqrt{3}}{2},
+                \frac{3-\sqrt{3}}{2},
+                \frac{3-\sqrt{3}}{2}
+            \right),
+        \]
+        and the radius is
+        \[
+            \frac{3-\sqrt{3}}{2}.
+        \]
+        Therefore, the equation of the sphere is
+        \[
+            \boxed{
+            \left(x-\frac{3-\sqrt{3}}{2}\right)^2
+            +
+            \left(y-\frac{3-\sqrt{3}}{2}\right)^2
+            +
+            \left(z-\frac{3-\sqrt{3}}{2}\right)^2
+            =
+            \left(\frac{3-\sqrt{3}}{2}\right)^2
+            }.
+        \]
     \end{solution}
 
     \part{Expected Problems}
