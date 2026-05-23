@@ -3591,6 +3591,173 @@
 
     \part{Past Problems}
 
+    \begin{problem}{2014.1}
+        This twentieth-century German mathematician is well known for a theorem stating that symmetries of Hamiltonian dynamical systems correspond to conservation laws. What is the name of this mathematician?
+    \end{problem}
+
+    \begin{solution}
+        The theorem described in the problem is Noether's theorem. It states, roughly speaking, that continuous symmetries of a physical system correspond to conserved quantities. For example, time-translation symmetry corresponds to conservation of energy, and spatial-translation symmetry corresponds to conservation of momentum.
+
+        The mathematician associated with this theorem is Emmy Noether, one of the most important algebraists of the twentieth century.
+
+        Therefore, the answer is $\boxed{\text{Emmy Noether}}$.
+    \end{solution}
+
+    \begin{problem}{2014.2}
+        In the famous Chinese mathematical classic \textit{The Nine Chapters on the Mathematical Art}, often compared with Euclid's \textit{Elements} as a foundational mathematical classic, the value of $\pi$ appears as $3$. Later, Liu Hui, who wrote a commentary on \textit{The Nine Chapters}, obtained the approximation $3.14$ by refining the method of inscribed polygons. Which ancient Chinese mathematician further refined this method and obtained the approximations
+        \[
+            \frac{355}{113}
+            \qquad\text{and}\qquad
+            \frac{22}{7}
+        \]
+        for $\pi$?
+    \end{problem}
+
+    \begin{solution}
+        The mathematician described in the problem is Zu Chongzhi.
+
+        Liu Hui improved the approximation of $\pi$ by using polygons with many sides. Zu Chongzhi later obtained the very accurate bounds
+        \[
+            3.1415926<\pi<3.1415927,
+        \]
+        and gave two famous rational approximations:
+        \[
+            \frac{22}{7}
+            \qquad\text{and}\qquad
+            \frac{355}{113}.
+        \]
+        The approximation $\dfrac{355}{113}$ is especially accurate and is traditionally known as the Milü, or ``accurate ratio.''
+
+        Therefore, the answer is $\boxed{\text{Zu Chongzhi}}$.
+    \end{solution}
+
+    \begin{problem}{2014.3}
+        Consider the $2014\times 2014$ matrix whose diagonal entries are all $0$ and whose off-diagonal entries are all $1$. Find all eigenvalues of this matrix.
+    \end{problem}
+
+    \begin{solution}
+        Let $\mathbf{A}$ be the given matrix, and let $\mathbf{J}$ be the $2014\times 2014$ matrix whose entries are all $1$. Then
+        \[
+            \mathbf{A}=\mathbf{J}-\mathbf{I}.
+        \]
+
+        The matrix $\mathbf{J}$ has eigenvalue $2014$ for the vector
+        \[
+            \mathbf{1}=(1,1,\dots,1)^T,
+        \]
+        since
+        \[
+            \mathbf{J}\mathbf{1}=2014\mathbf{1}.
+        \]
+        Therefore,
+        \[
+            \mathbf{A}\mathbf{1}
+            =
+            (\mathbf{J}-\mathbf{I})\mathbf{1}
+            =
+            2014\mathbf{1}-\mathbf{1}
+            =
+            2013\mathbf{1}.
+        \]
+        Hence $2013$ is an eigenvalue of $\mathbf{A}$.
+
+        Now take any vector $\mathbf{v}=(v_1,\dots,v_{2014})^T$ such that
+        \[
+            v_1+\cdots+v_{2014}=0.
+        \]
+        Then $\mathbf{J}\mathbf{v}=\mathbf{0}$, so
+        \[
+            \mathbf{A}\mathbf{v}
+            =
+            (\mathbf{J}-\mathbf{I})\mathbf{v}
+            =
+            -\mathbf{v}.
+        \]
+        Thus $-1$ is an eigenvalue. The subspace of vectors whose coordinates sum to $0$ has dimension $2013$, so the multiplicity of $-1$ is $2013$.
+
+        Therefore, the eigenvalues are
+        \[
+            \boxed{2013 \text{ with multiplicity } 1,\qquad -1 \text{ with multiplicity } 2013}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2014.4}
+        Let $m\geq 3$ and $n\geq 3$. Suppose that
+        \[
+            \{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}\subseteq \mathbb{R}^m,
+            \qquad
+            \{\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3\}\subseteq \mathbb{R}^n.
+        \]
+        Assume that
+        \[
+            V=\operatorname{span}\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}
+        \]
+        is a $2$-dimensional subspace of $\mathbb{R}^m$, and that
+        \[
+            W=\operatorname{span}\{\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3\}
+        \]
+        is a $3$-dimensional subspace of $\mathbb{R}^n$. What is the rank of the $m\times n$ matrix
+        \[
+            \mathbf{A}
+            =
+            \mathbf{v}_1\mathbf{w}_1^T
+            +
+            \mathbf{v}_2\mathbf{w}_2^T
+            +
+            \mathbf{v}_3\mathbf{w}_3^T?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Let
+        \[
+            \mathbf{P}
+            =
+            \begin{pmatrix}
+                \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3
+            \end{pmatrix},
+            \qquad
+            \mathbf{Q}
+            =
+            \begin{pmatrix}
+                \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
+            \end{pmatrix}.
+        \]
+        Then
+        \[
+            \mathbf{A}
+            =
+            \mathbf{P}\mathbf{Q}^T.
+        \]
+
+        Since $\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3$ span a $2$-dimensional subspace, we have
+        \[
+            \operatorname{rank}(\mathbf{P})=2.
+        \]
+        Since $\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3$ span a $3$-dimensional subspace, they are linearly independent, and hence
+        \[
+            \operatorname{rank}(\mathbf{Q})=3.
+        \]
+        Therefore, the linear map $\mathbf{Q}^T:\mathbb{R}^n\to\mathbb{R}^3$ is surjective.
+
+        It follows that the image of $\mathbf{A}=\mathbf{P}\mathbf{Q}^T$ is
+        \[
+            \operatorname{Im}(\mathbf{A})
+            =
+            \mathbf{P}(\operatorname{Im}(\mathbf{Q}^T))
+            =
+            \mathbf{P}(\mathbb{R}^3)
+            =
+            \operatorname{span}\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}.
+        \]
+        This space has dimension $2$. Hence
+        \[
+            \operatorname{rank}(\mathbf{A})=2.
+        \]
+
+        Therefore, the answer is $\boxed{2}$.
+    \end{solution}
+
     \begin{problem}{2018.1}
         The following people are this year's Fields Medalists. Excluding choice (5), who is the second oldest among them?
         \[
