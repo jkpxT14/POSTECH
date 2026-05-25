@@ -1,0 +1,1375 @@
+    \begin{problem}{2014.1}
+        This twentieth-century German mathematician is well known for a theorem stating that symmetries of Hamiltonian dynamical systems correspond to conservation laws. What is the name of this mathematician?
+    \end{problem}
+
+    \begin{solution}
+        The theorem described in the problem is Noether's theorem. It states, roughly speaking, that continuous symmetries of a physical system correspond to conserved quantities. For example, time-translation symmetry corresponds to conservation of energy, and spatial-translation symmetry corresponds to conservation of momentum.
+
+        The mathematician associated with this theorem is Emmy Noether, one of the most important algebraists of the twentieth century.
+
+        Therefore, the answer is $\boxed{\text{Emmy Noether}}$.
+    \end{solution}
+
+    \begin{problem}{2014.2}
+        In the famous Chinese mathematical classic \textit{The Nine Chapters on the Mathematical Art}, often compared with Euclid's \textit{Elements} as a foundational mathematical classic, the value of $\pi$ appears as $3$. Later, Liu Hui, who wrote a commentary on \textit{The Nine Chapters}, obtained the approximation $3.14$ by refining the method of inscribed polygons. Which ancient Chinese mathematician further refined this method and obtained the approximations
+        \[
+            \frac{355}{113}
+            \qquad\text{and}\qquad
+            \frac{22}{7}
+        \]
+        for $\pi$?
+    \end{problem}
+
+    \begin{solution}
+        The mathematician described in the problem is Zu Chongzhi.
+
+        Liu Hui improved the approximation of $\pi$ by using polygons with many sides. Zu Chongzhi later obtained the very accurate bounds
+        \[
+            3.1415926<\pi<3.1415927,
+        \]
+        and gave two famous rational approximations:
+        \[
+            \frac{22}{7}
+            \qquad\text{and}\qquad
+            \frac{355}{113}.
+        \]
+        The approximation $\dfrac{355}{113}$ is especially accurate and is traditionally known as the Milü, or ``accurate ratio.''
+
+        Therefore, the answer is $\boxed{\text{Zu Chongzhi}}$.
+    \end{solution}
+
+    \begin{problem}{2014.3}
+        Consider the $2014\times 2014$ matrix whose diagonal entries are all $0$ and whose off-diagonal entries are all $1$. Find all eigenvalues of this matrix.
+    \end{problem}
+
+    \begin{solution}
+        Let $\mathbf{A}$ be the given matrix, and let $\mathbf{J}$ be the $2014\times 2014$ matrix whose entries are all $1$. Then
+        \[
+            \mathbf{A}=\mathbf{J}-\mathbf{I}.
+        \]
+
+        The matrix $\mathbf{J}$ has eigenvalue $2014$ for the vector
+        \[
+            \mathbf{1}=(1,1,\dots,1)^T,
+        \]
+        since
+        \[
+            \mathbf{J}\mathbf{1}=2014\mathbf{1}.
+        \]
+        Therefore,
+        \[
+            \mathbf{A}\mathbf{1}
+            =
+            (\mathbf{J}-\mathbf{I})\mathbf{1}
+            =
+            2014\mathbf{1}-\mathbf{1}
+            =
+            2013\mathbf{1}.
+        \]
+        Hence $2013$ is an eigenvalue of $\mathbf{A}$.
+
+        Now take any vector $\mathbf{v}=(v_1,\dots,v_{2014})^T$ such that
+        \[
+            v_1+\cdots+v_{2014}=0.
+        \]
+        Then $\mathbf{J}\mathbf{v}=\mathbf{0}$, so
+        \[
+            \mathbf{A}\mathbf{v}
+            =
+            (\mathbf{J}-\mathbf{I})\mathbf{v}
+            =
+            -\mathbf{v}.
+        \]
+        Thus $-1$ is an eigenvalue. The subspace of vectors whose coordinates sum to $0$ has dimension $2013$, so the multiplicity of $-1$ is $2013$.
+
+        Therefore, the eigenvalues are
+        \[
+            \boxed{2013 \text{ with multiplicity } 1,\qquad -1 \text{ with multiplicity } 2013}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2014.4}
+        Let $m\geq 3$ and $n\geq 3$. Suppose that
+        \[
+            \{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}\subseteq \mathbb{R}^m,
+            \qquad
+            \{\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3\}\subseteq \mathbb{R}^n.
+        \]
+        Assume that
+        \[
+            V=\operatorname{span}\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}
+        \]
+        is a $2$-dimensional subspace of $\mathbb{R}^m$, and that
+        \[
+            W=\operatorname{span}\{\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3\}
+        \]
+        is a $3$-dimensional subspace of $\mathbb{R}^n$. What is the rank of the $m\times n$ matrix
+        \[
+            \mathbf{A}
+            =
+            \mathbf{v}_1\mathbf{w}_1^T
+            +
+            \mathbf{v}_2\mathbf{w}_2^T
+            +
+            \mathbf{v}_3\mathbf{w}_3^T?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Let
+        \[
+            \mathbf{P}
+            =
+            \begin{pmatrix}
+                \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3
+            \end{pmatrix},
+            \qquad
+            \mathbf{Q}
+            =
+            \begin{pmatrix}
+                \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
+            \end{pmatrix}.
+        \]
+        Then
+        \[
+            \mathbf{A}
+            =
+            \mathbf{P}\mathbf{Q}^T.
+        \]
+
+        Since $\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3$ span a $2$-dimensional subspace, we have
+        \[
+            \operatorname{rank}(\mathbf{P})=2.
+        \]
+        Since $\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3$ span a $3$-dimensional subspace, they are linearly independent, and hence
+        \[
+            \operatorname{rank}(\mathbf{Q})=3.
+        \]
+        Therefore, the linear map $\mathbf{Q}^T:\mathbb{R}^n\to\mathbb{R}^3$ is surjective.
+
+        It follows that the image of $\mathbf{A}=\mathbf{P}\mathbf{Q}^T$ is
+        \[
+            \operatorname{Im}(\mathbf{A})
+            =
+            \mathbf{P}(\operatorname{Im}(\mathbf{Q}^T))
+            =
+            \mathbf{P}(\mathbb{R}^3)
+            =
+            \operatorname{span}\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}.
+        \]
+        This space has dimension $2$. Hence
+        \[
+            \operatorname{rank}(\mathbf{A})=2.
+        \]
+
+        Therefore, the answer is $\boxed{2}$.
+    \end{solution}
+
+    \begin{problem}{2018.1}
+        The following people are this year's Fields Medalists. Excluding choice (5), who is the second oldest among them?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Caucher Birkar} \\
+                (2) & \text{Alessio Figalli} \\
+                (3) & \text{Peter Scholze} \\
+                (4) & \text{Akshay Venkatesh} \\
+                (5) & \text{The person who stole Birkar's medal}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The 2018 Fields Medalists were
+        \[
+            \begin{array}{lll}
+                (1) & \text{Caucher Birkar} & \text{born in 1978}, \\
+                (2) & \text{Alessio Figalli} & \text{born in 1984}, \\
+                (3) & \text{Peter Scholze} & \text{born in 1987}, \\
+                (4) & \text{Akshay Venkatesh} & \text{born in 1981}.
+            \end{array}
+        \]
+        Among these four, the second oldest is Akshay Venkatesh. Therefore, the answer is
+        \[
+            \boxed{(4)}.
+        \]
+
+        Choice (5) is a joke referring to the incident in which Caucher Birkar's Fields Medal was stolen shortly after the 2018 Fields Medal ceremony. Birkar later received a replacement medal.
+    \end{solution}
+
+    \begin{problem}{2018.2}
+        According to William Thurston's geometrization conjecture, a $3$-dimensional manifold can be cut along spheres and tori so that each resulting piece has one of $n$ possible geometric structures. What is $n$?
+    \end{problem}
+
+    \begin{solution}
+        The $3$-dimensional geometric structures appearing in Thurston's geometrization conjecture are the eight Thurston geometries:
+        \[
+            S^3,\quad
+            \Exp^3,\quad
+            \mathbb{H}^3,\quad
+            S^2 \times \R,\quad
+            \mathbb{H}^2 \times \R,\quad
+            \widetilde{\mathrm{SL}_2(\R)},\quad
+            \mathrm{Nil},\quad
+            \mathrm{Sol}.
+        \]
+        Hence $n=8$, so the answer is
+        \[
+            \boxed{8}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2018.3}
+        Find the sum of the following infinite series:
+        \[
+            \frac{1}{2}-\frac{1}{4}+\frac{1}{6}-\frac{1}{8}
+            +\frac{1}{10}-\frac{1}{12}+\cdots.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The given series is one half of the alternating harmonic series:
+        \[
+            \frac{1}{2}-\frac{1}{4}+\frac{1}{6}-\frac{1}{8}+\cdots
+            =
+            \frac{1}{2}
+            \left(
+                1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots
+            \right).
+        \]
+        Recall the Taylor expansion
+        \[
+            \ln(1+x)
+            =
+            x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.
+        \]
+        Substituting $x=1$, we obtain
+        \[
+            \ln 2
+            =
+            1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots.
+        \]
+        Therefore,
+        \[
+            \frac{1}{2}-\frac{1}{4}+\frac{1}{6}-\frac{1}{8}+\cdots
+            =
+            \frac{\ln 2}{2}.
+        \]
+        Thus the answer is $\boxed{\dfrac{\ln 2}{2}}$.
+    \end{solution}
+
+    \begin{problem}{2018.4}
+        Among the following five Fields Medalists, which one does not have a Korean doctoral student?
+        \[
+            \begin{array}{ll}
+                (1) & \text{William Thurston} \\
+                (2) & \text{Maxim Kontsevich} \\
+                (3) & \text{Grigory Margulis} \\
+                (4) & \text{Terence Tao} \\
+                (5) & \text{Efim Zelmanov}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The intended answer is Maxim Kontsevich.
+
+        This problem is not asking for a theorem but for advisor--student data
+        about Fields Medalists and Korean mathematicians. In a Science Quiz
+        setting, it is best treated as a memorization-style question: among the
+        five listed Fields Medalists, the exceptional name in the intended answer
+        key is
+        \[
+            \boxed{(2)\ \text{Maxim Kontsevich}}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2020.1}
+        The International Congress of Mathematicians, abbreviated as ICM, is a congress for mathematicians from around the world. It is organized every four years by the International Mathematical Union and may be thought of as a kind of Olympic Games for mathematicians. The 2014 ICM was held in South Korea, and the 2018 ICM was held in Brazil. As of 2019, in which country was the 2022 ICM scheduled to be held?
+    \end{problem}
+
+    \begin{solution}
+        ICM stands for the International Congress of Mathematicians. It is the main international congress in mathematics and is organized every four years by the International Mathematical Union.
+
+        The 2014 ICM was held in Seoul, South Korea, and the 2018 ICM was held in Rio de Janeiro, Brazil. At the time this problem was asked in 2019, the 2022 ICM was scheduled to be held in Saint Petersburg, Russia. Therefore, the answer is $\boxed{\text{Russia}}$.
+
+        In reality, after Russia's invasion of Ukraine in 2022, the 2022 ICM was not held in Saint Petersburg. It was eventually held as a virtual event, with the award ceremony taking place in Helsinki, Finland. Thus, the answer to this problem should be understood according to the planned host country at the time of the 2019 competition.
+    \end{solution}
+
+    \begin{problem}{2020.2}
+        A fair six-sided die has the numbers $-2,0,2,3,4,5$ written on its faces. The die is rolled $10$ times, and $X$ is defined to be the product of the $10$ numbers obtained. What is the expected value of $X$?
+    \end{problem}
+
+    \begin{solution}
+        Let $Y$ be the number obtained from one roll of the die. Since all six faces are equally likely,
+        \[
+            \Exp[Y]
+            =
+            \frac{-2+0+2+3+4+5}{6}
+            =
+            2.
+        \]
+        Now let $Y_1,Y_2,\dots,Y_{10}$ be the numbers obtained from the $10$ rolls. Then
+        \[
+            X=Y_1Y_2\cdots Y_{10}.
+        \]
+        Since the rolls are independent, the random variables $Y_1,Y_2,\dots,Y_{10}$ are independent. Therefore,
+        \[
+            \Exp[X]
+            =
+            \Exp[Y_1Y_2\cdots Y_{10}]
+            =
+            \Exp[Y_1]\Exp[Y_2]\cdots\Exp[Y_{10}].
+        \]
+        All the $Y_i$ have the same distribution as $Y$, so
+        \[
+            \Exp[X]
+            =
+            \left(\Exp[Y]\right)^{10}
+            =
+            2^{10}
+            =
+            1024.
+        \]
+        Thus the answer is $\boxed{1024}$.
+    \end{solution}
+
+    \begin{problem}{2020.3}
+        Which of the following Fields Medalists was not serving as a professor at the time?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Cédric Villani} \\
+                (2) & \text{Elon Lindenstrauss} \\
+                (3) & \text{Peter Scholze} \\
+                (4) & \text{Martin Hairer} \\
+                (5) & \text{Terence Tao}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        At the time this problem was asked, Cédric Villani was active as a politician in France rather than serving as a professor.
+
+        The other choices were mathematicians holding professorial positions. Therefore, the answer is $\boxed{(1)\ \text{Cédric Villani}}$.
+    \end{solution}
+
+    \begin{problem}{2020.4}
+        In a three-dimensional gravitational field, when an object moves from a point $\mathbf{a}$ to another point $\mathbf{b}$, the change in its potential energy is independent of the path taken from $\mathbf{a}$ to $\mathbf{b}$. Which of the following mathematical facts is least directly related to this physical phenomenon?
+        \[
+            \begin{array}{ll}
+                (1) & \text{A curl-free vector field is the gradient of some potential function.} \\
+                (2) & \text{Stokes' theorem} \\
+                (3) & \text{The Laplacian of } \dfrac{1}{|\mathbf{x}|} \text{ is a delta function, up to a constant factor.} \\
+                (4) & \text{The curl of a gradient is identically zero.}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The statement that the change in potential energy is independent of the path means that the gravitational field is a conservative vector field.
+
+        Let $\mathbf{F}$ be the force field. The change in potential energy from $\mathbf{a}$ to $\mathbf{b}$ is given by
+        \[
+            \Delta U
+            =
+            -\int_{\mathbf{a}}^{\mathbf{b}} \mathbf{F}\cdot\dd\mathbf{r}.
+        \]
+        For this quantity to be independent of the path, the force field should be expressible as the negative gradient of a potential function:
+        \[
+            \mathbf{F}=-\nabla U.
+        \]
+        Thus choice (1) is directly related to the phenomenon.
+
+        Also, the curl of a gradient is always zero:
+        \[
+            \nabla \times \nabla U=\mathbf{0}.
+        \]
+        Hence choice (4) is also directly related. Stokes' theorem says that
+        \[
+            \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
+            =
+            \iint_S (\nabla\times \mathbf{F})\cdot \mathbf{n}\dd S.
+        \]
+        Therefore, if $\nabla\times\mathbf{F}=\mathbf{0}$, then the line integral around a closed curve is zero, which is another way to understand path independence. Thus choice (2) is also related.
+
+        On the other hand,
+        \[
+            \Delta\left(\frac{1}{|\mathbf{x}|}\right)
+            =
+            -4\pi\delta(\mathbf{x})
+        \]
+        is related to the fundamental solution of the Laplacian and to Poisson's equation for gravitational potential. Although it is related to gravity, it is not the main mathematical reason why the potential energy change is independent of path. Therefore, the answer is $\boxed{(3)}$.
+    \end{solution}
+
+    \begin{problem}{2020.5}
+        Among the following mathematics-related academic institutions, which one is actually a degree-granting school?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Institut des Hautes Études Scientifiques, IHES} \\
+                (2) & \text{École normale supérieure} \\
+                (3) & \text{Mathematical Sciences Research Institute, MSRI} \\
+                (4) & \text{Institute for Advanced Study, IAS} \\
+                (5) & \text{Collège de France}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        École normale supérieure is one of France's most prestigious higher education institutions. It operates educational programs and is naturally regarded as a degree-granting school.
+
+        By contrast, IHES, MSRI, and IAS are research institutes rather than degree-granting schools. Collège de France is also a famous academic institution that offers public lectures, but it does not grant degrees.
+
+        Therefore, the answer is $\boxed{(2)\ \text{École normale supérieure}}$.
+    \end{solution}
+
+    \begin{problem}{2021.1}
+        Which is larger, $A$ or $B$, where
+        \[
+            A
+            =
+            1+\frac{1}{1+\frac{1}{1-\frac{1}{1+4}}},
+            \qquad
+            B
+            =
+            1+\frac{1}{1+\frac{1}{1+\frac{1}{1+3}}}?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        First, we compute $A$:
+        \[
+            A
+            =
+            1+\frac{1}{1+\frac{1}{1-\frac{1}{5}}}
+            =
+            1+\frac{1}{1+\frac{1}{\frac{4}{5}}}
+            =
+            1+\frac{1}{1+\frac{5}{4}}
+            =
+            1+\frac{1}{\frac{9}{4}}
+            =
+            1+\frac{4}{9}
+            =
+            \frac{13}{9}.
+        \]
+        Next, we compute $B$:
+        \[
+            B
+            =
+            1+\frac{1}{1+\frac{1}{1+\frac{1}{4}}}
+            =
+            1+\frac{1}{1+\frac{1}{\frac{5}{4}}}
+            =
+            1+\frac{1}{1+\frac{4}{5}}
+            =
+            1+\frac{1}{\frac{9}{5}}
+            =
+            1+\frac{5}{9}
+            =
+            \frac{14}{9}.
+        \]
+        Since
+        \[
+            \frac{13}{9}<\frac{14}{9},
+        \]
+        we have $A<B$. Therefore, the answer is $\boxed{B}$.
+    \end{solution}
+
+    \begin{problem}{2021.2}
+        Let
+        \[
+            A(n)
+            =
+            \frac{1}{\sqrt{5}}
+            \left(
+                \frac{1+\sqrt{5}}{2}
+            \right)^{n+1}.
+        \]
+        What is the integer closest to $A(7)$?
+    \end{problem}
+
+    \begin{solution}
+        Recall Binet's formula for the Fibonacci sequence:
+        \[
+            F_n
+            =
+            \frac{\varphi^n-\psi^n}{\sqrt{5}},
+            \qquad
+            \varphi=\frac{1+\sqrt{5}}{2},
+            \qquad
+            \psi=\frac{1-\sqrt{5}}{2}.
+        \]
+        Here
+        \[
+            A(7)
+            =
+            \frac{\varphi^8}{\sqrt{5}}.
+        \]
+        By Binet's formula,
+        \[
+            F_8
+            =
+            \frac{\varphi^8-\psi^8}{\sqrt{5}}.
+        \]
+        Since $|\psi|<1$, the term $\dfrac{\psi^8}{\sqrt{5}}$ is very small. Thus
+        \[
+            A(7)
+            =
+            \frac{\varphi^8}{\sqrt{5}}
+            =
+            F_8+\frac{\psi^8}{\sqrt{5}}
+        \]
+        is very close to $F_8$.
+
+        The Fibonacci numbers are
+        \[
+            F_0=0,\quad F_1=1,\quad F_2=1,\quad F_3=2,\quad F_4=3,\quad
+            F_5=5,\quad F_6=8,\quad F_7=13,\quad F_8=21.
+        \]
+        Therefore, the integer closest to $A(7)$ is $\boxed{21}$.
+    \end{solution}
+
+    \begin{problem}{2021.3}
+        Choose all groups among the following that are not finitely generated:
+        \[
+            \begin{array}{ll}
+                (1) & \text{The fundamental group of an open unit disk with finitely many punctures.} \\
+                (2) & \mathrm{SL}_2(\Z), \text{ the group of } 2\times 2 \text{ integer matrices with determinant } 1. \\
+                (3) & \C^{\times}, \text{ the group of nonzero complex numbers under multiplication.} \\
+                (4) & \text{The Monster group, the largest sporadic finite simple group.}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        First, consider an open unit disk with finitely many punctures. If the removed points are $p_1,\dots,p_n$, then the fundamental group is isomorphic to the free group on $n$ generators:
+        \[
+            \pi_1\left(D\setminus\{p_1,\dots,p_n\}\right)\cong F_n.
+        \]
+        Hence the group in choice (1) is finitely generated.
+
+        The group $\mathrm{SL}_2(\Z)$ is also finitely generated. For example, it is generated by the two matrices
+        \[
+            S=
+            \begin{pmatrix}
+                0 & -1 \\
+                1 & 0
+            \end{pmatrix},
+            \qquad
+            T=
+            \begin{pmatrix}
+                1 & 1 \\
+                0 & 1
+            \end{pmatrix}.
+        \]
+        Thus choice (2) is finitely generated.
+
+        On the other hand, $\C^{\times}$ is an uncountable abelian group. Every finitely generated group is countable, so $\C^{\times}$ cannot be finitely generated. Therefore, choice (3) is not finitely generated.
+
+        Finally, the Monster group is a finite group. Every finite group is finitely generated, since one may simply take all of its elements as generators. Hence choice (4) is finitely generated.
+
+        Therefore, the only group in the list that is not finitely generated is $\boxed{(3)\ \C^{\times}}$.
+    \end{solution}
+
+    \begin{problem}{2021.4}
+        Let
+        \[
+            \mathbf{A}
+            =
+            \begin{pmatrix}
+                1 & 2 & 3 \\
+                1 & 2 & 3 \\
+                1 & 2 & 3
+            \end{pmatrix}.
+        \]
+        Find all eigenvalues of $\mathbf{A}$ together with their multiplicities. Also determine whether $\mathbf{A}$ is diagonalizable.
+    \end{problem}
+
+    \begin{solution}
+        We can write $\mathbf{A}$ as
+        \[
+            \mathbf{A}
+            =
+            \begin{pmatrix}
+                1 \\
+                1 \\
+                1
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 2 & 3
+            \end{pmatrix}.
+        \]
+        Thus $\mathbf{A}$ is a rank-one matrix.
+
+        First, let
+        \[
+            \mathbf{v}
+            =
+            \begin{pmatrix}
+                1 \\
+                1 \\
+                1
+            \end{pmatrix}.
+        \]
+        Then
+        \[
+            \mathbf{A}\mathbf{v}
+            =
+            \begin{pmatrix}
+                6 \\
+                6 \\
+                6
+            \end{pmatrix}
+            =
+            6\mathbf{v}.
+        \]
+        Hence $6$ is an eigenvalue of $\mathbf{A}$.
+
+        Since $\mathbf{A}$ has rank $1$, its nullity is $2$. Therefore, the eigenspace corresponding to the eigenvalue $0$ has dimension $2$. Indeed,
+        \[
+            \mathbf{A}
+            \begin{pmatrix}
+                x \\
+                y \\
+                z
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                x+2y+3z \\
+                x+2y+3z \\
+                x+2y+3z
+            \end{pmatrix},
+        \]
+        so
+        \[
+            E_0
+            =
+            \left\{
+                \begin{pmatrix}
+                    x \\
+                    y \\
+                    z
+                \end{pmatrix}
+                \in \R^3
+                :
+                x+2y+3z=0
+            \right\}.
+        \]
+        Thus the geometric multiplicity of $0$ is $2$.
+
+        Now
+        \[
+            \operatorname{tr}(\mathbf{A})=1+2+3=6.
+        \]
+        Since the sum of the eigenvalues, counted with algebraic multiplicity, is equal to the trace, the eigenvalues are
+        \[
+            6,\quad 0,\quad 0.
+        \]
+        Hence the algebraic multiplicities are
+        \[
+            6:1,
+            \qquad
+            0:2.
+        \]
+
+        Finally, the eigenspace for $6$ has dimension $1$, and the eigenspace for $0$ has dimension $2$. The total dimension of the eigenspaces is therefore
+        \[
+            1+2=3.
+        \]
+        Hence there exists a basis of $\R^3$ consisting of eigenvectors of $\mathbf{A}$. Therefore, $\mathbf{A}$ is diagonalizable.
+
+        Thus the eigenvalues are $\boxed{6,0,0}$, with algebraic multiplicities $1$ and $2$ respectively, and $\boxed{\mathbf{A}\text{ is diagonalizable}}$.
+    \end{solution}
+
+    \begin{problem}{2022.1}
+        Which of the following numbers is the largest?
+        \[
+            \begin{array}{ll}
+                (1) & e^\pi \\
+                (2) & \pi^e \\
+                (3) & 7\pi \\
+                (4) & \binom{7}{2} \\
+                (5) & 4!
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        We compare the values directly:
+        \[
+            e^\pi \approx 23.1407,
+            \qquad
+            \pi^e \approx 22.4592,
+            \qquad
+            7\pi \approx 21.9911.
+        \]
+        Also,
+        \[
+            \binom{7}{2}
+            =
+            \frac{7\cdot 6}{2}
+            =
+            21,
+            \qquad
+            4!
+            =
+            24.
+        \]
+        Therefore, the largest number among the choices is $\boxed{(5)\ 4!}$.
+    \end{solution}
+
+    \begin{problem}{2022.2}
+        Three people store a jointly owned treasure in a safe and want to lock it. They want no single person to be able to open the safe alone, but any two or more people should always be able to open it together. This can be done by putting $n$ locks on the safe, making $m$ copies of the key for each lock, and distributing the keys appropriately among the three people. Find $n$ and $m$ so that the number of locks $n$ is minimized.
+    \end{problem}
+
+    \begin{solution}
+        Let the three people be $A$, $B$, and $C$.
+
+        Since any two people should be able to open the safe, the key to each lock must be given to at least two people. If a certain lock had its key given to only one person, then the other two people would not be able to open that lock together.
+
+        Thus, for each lock, exactly one of the three people should not receive the key. On the other hand, no single person should be able to open the safe alone. Therefore, each person must be missing the key to at least one lock.
+
+        Hence we need at least three locks: one lock whose key is not given to $A$, one lock whose key is not given to $B$, and one lock whose key is not given to $C$. This lower bound is achievable by distributing the keys as follows:
+        \[
+            \begin{array}{c|ccc}
+                & A & B & C \\
+                \hline
+                L_A & \times & \checkmark & \checkmark \\
+                L_B & \checkmark & \times & \checkmark \\
+                L_C & \checkmark & \checkmark & \times
+            \end{array}
+        \]
+        That is, the key to $L_A$ is given to $B$ and $C$, the key to $L_B$ is given to $A$ and $C$, and the key to $L_C$ is given to $A$ and $B$.
+
+        Then each person is unable to open one of the locks, so no one can open the safe alone. However, any two people together can open all three locks. Therefore, the minimum is achieved by $\boxed{n=3,\ m=2}$.
+    \end{solution}
+
+    \begin{problem}{2022.3}
+        Evaluate the integral
+        \[
+            \int_{-\infty}^{\infty}
+            \frac{3}{(x-2)^2+7}\,dx.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Let
+        \[
+            u=x-2.
+        \]
+        Then the limits of integration remain $-\infty$ and $\infty$, so
+        \[
+            \int_{-\infty}^{\infty}
+            \frac{3}{(x-2)^2+7}\,dx
+            =
+            3\int_{-\infty}^{\infty}
+            \frac{1}{u^2+7}\,du.
+        \]
+        We use the standard formula
+        \[
+            \int_{-\infty}^{\infty}
+            \frac{1}{u^2+a^2}\,du
+            =
+            \frac{\pi}{a}.
+        \]
+        Here $a=\sqrt{7}$, and therefore
+        \[
+            3\int_{-\infty}^{\infty}
+            \frac{1}{u^2+7}\,du
+            =
+            3\cdot\frac{\pi}{\sqrt{7}}
+            =
+            \frac{3\pi}{\sqrt{7}}.
+        \]
+        Thus the answer is $\boxed{\dfrac{3\pi}{\sqrt{7}}}$.
+    \end{solution}
+
+    \begin{problem}{2022.4}
+        A couple has two children.
+        \begin{enumerate}
+            \item[(a)] Given that one of the children is a daughter, what is the probability that the other child is also a daughter?
+            \item[(b)] Given that one of the children is a daughter named Youngmi, what is the probability that the other child is also a daughter?
+        \end{enumerate}
+    \end{problem}
+
+    \begin{solution}
+        Let $G$ denote a girl and $B$ denote a boy. If we distinguish the two children by birth order, then the possible gender combinations are
+        \[
+            GG,\quad GB,\quad BG,\quad BB.
+        \]
+
+        For part (a), the condition that one child is a daughter means that at least one child is a girl. Thus the possible cases are
+        \[
+            GG,\quad GB,\quad BG.
+        \]
+        Among these three cases, only $GG$ has the property that the other child is also a daughter. Therefore,
+        \[
+            \Prob(\text{both are daughters}\mid \text{at least one is a daughter})
+            =
+            \frac{1}{3}.
+        \]
+
+        For part (b), the information that one child is a daughter named Youngmi is more specific. In the intended interpretation of the problem, this information identifies one particular child. Then the gender of the other child is still equally likely to be $G$ or $B$. Hence
+        \[
+            \Prob(\text{the other child is a daughter})
+            =
+            \frac{1}{2}.
+        \]
+
+        Therefore, the answers are $\boxed{\text{(a) } \dfrac{1}{3},\ \text{(b) } \dfrac{1}{2}}$.
+    \end{solution}
+
+    \begin{problem}{2022.5}
+        Which of the following conjectures was not solved by Professor June Huh?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Read's conjecture} \\
+                (2) & \text{Brylawski's conjecture} \\
+                (3) & \text{Poincaré conjecture} \\
+                (4) & \text{Rota's conjecture} \\
+                (5) & \text{Okounkov's conjecture}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Professor June Huh is known for connecting combinatorics with algebraic geometry and using these ideas to solve several major conjectures in combinatorics. His work is related to conjectures such as Read's conjecture, Brylawski's conjecture, Rota's conjecture, and Okounkov's conjecture.
+
+        On the other hand, the Poincaré conjecture is a famous problem in $3$-dimensional topology. It was proved by Grigori Perelman using Ricci flow, not by June Huh.
+
+        Therefore, the conjecture in the list that was not solved by June Huh is
+        \[
+            \boxed{(3)\ \text{Poincaré conjecture}}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2022.6}
+        This mathematician, often called the father of linear programming, is famous for solving difficult problems while he was a doctoral student. One day, while studying at UC Berkeley, he arrived late to a class. The statistics professor Jerzy Neyman had written two famous unsolved problems on the blackboard, but the student thought they were homework problems. He took them home, solved them, and submitted complete solutions a few days later, thinking only that he had turned in the homework late. Who was this mathematician?
+    \end{problem}
+
+    \begin{solution}
+        The mathematician described in the problem is George Dantzig.
+
+        George Dantzig is known as one of the founders of linear programming and as the creator of the simplex method. For this reason, he is often called the father of linear programming.
+
+        The anecdote in the problem is also a famous story about Dantzig. While he was a doctoral student at UC Berkeley, he arrived late to Jerzy Neyman's statistics class and copied down two problems written on the blackboard, believing that they were homework problems. He later submitted solutions, not realizing that the problems were actually open problems in statistics.
+
+        Therefore, the answer is $\boxed{\text{George Dantzig}}$.
+    \end{solution}
+
+    \begin{problem}{2022.7}
+        Two different coins are each tossed three times. Let $X$ and $Y$ be the numbers of heads obtained from the two coins, respectively. What is the probability that $X=Y$?
+    \end{problem}
+
+    \begin{solution}
+        For each coin, the number of heads obtained in three tosses follows the binomial distribution
+        \[
+            X,Y\sim \Bin\left(3,\frac{1}{2}\right).
+        \]
+        Also, $X$ and $Y$ are independent. Therefore,
+        \[
+            \Prob(X=Y)
+            =
+            \sum_{k=0}^{3}\Prob(X=k)\Prob(Y=k).
+        \]
+        For each $k=0,1,2,3$, we have
+        \[
+            \Prob(X=k)
+            =
+            \binom{3}{k}\left(\frac{1}{2}\right)^3,
+        \]
+        and the same formula holds for $Y$. Hence
+        \[
+            \Prob(X=Y)
+            =
+            \sum_{k=0}^{3}
+            \left(
+                \binom{3}{k}\left(\frac{1}{2}\right)^3
+            \right)^2
+            =
+            \frac{1}{64}
+            \sum_{k=0}^{3}
+            \binom{3}{k}^2.
+        \]
+        Thus
+        \[
+            \Prob(X=Y)
+            =
+            \frac{1}{64}
+            \left(
+                \binom{3}{0}^2+
+                \binom{3}{1}^2+
+                \binom{3}{2}^2+
+                \binom{3}{3}^2
+            \right)
+            =
+            \frac{1+9+9+1}{64}
+            =
+            \frac{20}{64}
+            =
+            \frac{5}{16}.
+        \]
+        Therefore, the answer is $\boxed{\dfrac{5}{16}}$.
+    \end{solution}
+
+    \begin{problem}{2023.1}
+        In which year was the Fields Medal, won by Professor June Huh, first awarded?
+    \end{problem}
+
+    \begin{solution}
+        The Fields Medal is one of the most prestigious awards in mathematics, and it is awarded by the International Mathematical Union. Professor June Huh received the Fields Medal in 2022.
+
+        The Fields Medal was first awarded in 1936. The first two recipients were Lars Ahlfors and Jesse Douglas.
+
+        Therefore, the answer is $\boxed{1936}$.
+    \end{solution}
+
+    \begin{problem}{2023.2}
+        Consider the $6\times 6$ square grid with vertices $(0,0)$, $(6,0)$, $(0,6)$, and $(6,6)$. A path starts at $(0,0)$ and ends at $(6,6)$, moving only one unit to the right or one unit upward at each step. How many such paths never go above the line $x=y$? Equivalently, how many such paths stay in the region
+        \[
+            \{(x,y)\in\R^2:y\leq x\}?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        To go from $(0,0)$ to $(6,6)$, a path must consist of $6$ right steps and $6$ upward steps. Without the condition $y\leq x$, the total number of such paths is
+        \[
+            \binom{12}{6}.
+        \]
+
+        We now count the paths that do go above the line $y=x$. By the reflection principle, the number of paths from $(0,0)$ to $(6,6)$ that at some point satisfy $y>x$ is
+        \[
+            \binom{12}{5}.
+        \]
+        Therefore, the number of paths that always stay in the region $y\leq x$ is
+        \[
+            \binom{12}{6}-\binom{12}{5}.
+        \]
+        Computing this gives
+        \[
+            \binom{12}{6}-\binom{12}{5}
+            =
+            924-792
+            =
+            132.
+        \]
+        Thus the answer is $\boxed{132}$.
+    \end{solution}
+
+    \begin{problem}{2023.3}
+        A point on the surface of the Earth has the following property: starting from that point, one moves $5\mathrm{km}$ south, then $5\mathrm{km}$ east, and then $5\mathrm{km}$ north, and returns to the original point. How many such points are there on the surface of the Earth?
+
+        Assume that the surface of the Earth is a perfect two-dimensional sphere, and that the North Pole and the South Pole are antipodal points. At the North Pole, the directions north, east, and west are not defined, and at the South Pole, the directions south, east, and west are not defined. Starting points for which one of these undefined directions occurs during the movement are excluded.
+    \end{problem}
+
+    \begin{solution}
+        The North Pole is one such point. If we start at the North Pole, move $5\mathrm{km}$ south, then move $5\mathrm{km}$ east along a latitude circle, and finally move $5\mathrm{km}$ north, we return to the North Pole.
+
+        There are also many such points near the South Pole. Let $Q$ be the point reached after moving $5\mathrm{km}$ south from the starting point. Suppose that the latitude circle passing through $Q$ has circumference
+        \[
+            \frac{5}{n}\mathrm{km}
+        \]
+        for some positive integer $n$. Then moving $5\mathrm{km}$ east from $Q$ goes exactly $n$ full times around that latitude circle and returns to $Q$. After that, moving $5\mathrm{km}$ north returns to the original starting point.
+
+        Near the South Pole, the circumferences of latitude circles approach $0$. Hence, for every positive integer $n$, there is a latitude circle near the South Pole whose circumference is exactly $\dfrac{5}{n}\mathrm{km}$. For each such latitude circle, every point lying $5\mathrm{km}$ north of it gives a valid starting point.
+
+        Therefore, there are not just one but infinitely many such points on the Earth's surface. In fact, this construction gives entire latitude circles of valid starting points, so there are uncountably many such points. For the usual quiz answer, the essential conclusion is
+        \[
+            \boxed{\text{infinitely many}}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2023.4}
+        Let $f:(-1,1)\to\R$ be a continuous function. For each $\lambda>0$, define
+        \[
+            f_\lambda(x)
+            :=
+            \lambda f\left(\frac{x}{\lambda}\right),
+        \]
+        where $f_\lambda$ is defined for $x\in(-\lambda,\lambda)$.
+
+        Suppose that for every sequence $\lambda_i\to\infty$, the functions $f_{\lambda_i}$ converge locally uniformly to $0$ on $\R$. Determine whether the following statement is true or false:
+        \[
+            f \text{ is differentiable at } 0 \text{ and } f'(0)=0.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        We prove that the statement is true.
+
+        First, evaluate at $x=0$. For every sequence $\lambda_i\to\infty$, we have
+        \[
+            f_{\lambda_i}(0)
+            =
+            \lambda_i f(0).
+        \]
+        Since $f_{\lambda_i}$ converges locally uniformly to $0$, in particular it converges pointwise to $0$ at $x=0$. Hence
+        \[
+            \lambda_i f(0)\to 0.
+        \]
+        This is possible for all sequences $\lambda_i\to\infty$ only if
+        \[
+            f(0)=0.
+        \]
+
+        Now we show that $f'(0)=0$. Let $h_i\to 0$ be any sequence with $h_i\neq 0$. For all sufficiently large $i$, we have $h_i\in(-1,1)$. Define
+        \[
+            \lambda_i=\frac{1}{|h_i|}.
+        \]
+        Then $\lambda_i\to\infty$, and
+        \[
+            h_i=\frac{\sgn(h_i)}{\lambda_i}.
+        \]
+        By the assumption, $f_{\lambda_i}\to 0$ locally uniformly on $\R$. In particular, this convergence is uniform on the compact set $\{-1,1\}$. Therefore,
+        \[
+            f_{\lambda_i}(\sgn(h_i))\to 0.
+        \]
+        But
+        \[
+            f_{\lambda_i}(\sgn(h_i))
+            =
+            \lambda_i
+            f\left(
+                \frac{\sgn(h_i)}{\lambda_i}
+            \right)
+            =
+            \lambda_i f(h_i).
+        \]
+        Hence
+        \[
+            \lambda_i f(h_i)\to 0.
+        \]
+        Since $f(0)=0$, we get
+        \[
+            \left|
+                \frac{f(h_i)-f(0)}{h_i}
+            \right|
+            =
+            \left|
+                \frac{f(h_i)}{h_i}
+            \right|
+            =
+            \lambda_i |f(h_i)|
+            \to 0.
+        \]
+        Thus
+        \[
+            \frac{f(h_i)-f(0)}{h_i}\to 0
+        \]
+        for every sequence $h_i\to 0$ with $h_i\neq 0$. Therefore, $f$ is differentiable at $0$ and
+        \[
+            f'(0)=0.
+        \]
+
+        Thus the answer is $\boxed{\text{True}}$.
+    \end{solution}
+
+    \begin{problem}{2024.1}
+        When all natural numbers from $100$ to $999$ are written in a row, how many times does the digit $0$ appear?
+    \end{problem}
+
+    \begin{solution}
+        Every natural number from $100$ to $999$ is a three-digit number.
+
+        In a three-digit number, the hundreds digit cannot be $0$. Therefore, the digit $0$ can appear only in the tens digit or the units digit.
+
+        First, count the numbers whose tens digit is $0$. The hundreds digit can be one of $1,2,\dots,9$, and the units digit can be one of $0,1,\dots,9$. Hence there are
+        \[
+            9\cdot 10=90
+        \]
+        such numbers.
+
+        Next, count the numbers whose units digit is $0$. The hundreds digit can be one of $1,2,\dots,9$, and the tens digit can be one of $0,1,\dots,9$. Hence there are again
+        \[
+            9\cdot 10=90
+        \]
+        such numbers.
+
+        Therefore, the total number of appearances of the digit $0$ is
+        \[
+            90+90=180.
+        \]
+        Thus the answer is $\boxed{180}$.
+    \end{solution}
+
+    \begin{problem}{2024.2}
+        Which of the following people was born the latest?
+        \[
+            \begin{array}{ll}
+                (1) & \text{John von Neumann} \\
+                (2) & \text{Alan Turing} \\
+                (3) & \text{John Nash} \\
+                (4) & \text{Pierre de Fermat}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        We compare their years of birth:
+        \[
+            \begin{array}{ll}
+                (1) & \text{John von Neumann: born in } 1903, \\
+                (2) & \text{Alan Turing: born in } 1912, \\
+                (3) & \text{John Nash: born in } 1928, \\
+                (4) & \text{Pierre de Fermat: born in } 1607.
+            \end{array}
+        \]
+        Among these four, the person born the latest is John Nash.
+
+        Therefore, the answer is $\boxed{(3)\ \text{John Nash}}$.
+    \end{solution}
+
+    \begin{problem}{2024.4}
+        Let $C$ be a convex subset of $\R^3$. Here convex means that for any two points $\mathbf{p},\mathbf{q}\in C$, the line segment joining $\mathbf{p}$ and $\mathbf{q}$ is also contained in $C$.
+
+        Suppose that the following two facts are known:
+        \begin{enumerate}
+            \item[(i)] The intersection of $C$ with the $xy$-plane is
+            \[
+                C\cap\{z=0\}
+                =
+                \{(x,y,0):x^2+4y^2\leq 1\}.
+            \]
+            \item[(ii)] The set $C$ contains the $z$-axis.
+        \end{enumerate}
+        Can the volume of $C$ in the region $-1\leq z\leq 1$ be determined?
+        \[
+            \begin{array}{ll}
+                (1) & \text{This cannot be determined.} \\
+                (2) & \pi \\
+                (3) & 2\pi \\
+                (4) & 4\pi
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Let
+        \[
+            E=\{(x,y)\in\R^2:x^2+4y^2\leq 1\}.
+        \]
+        By condition (i),
+        \[
+            C\cap\{z=0\}=E\times\{0\}.
+        \]
+        The ellipse $E$ has semiaxes $1$ and $\dfrac{1}{2}$, so its area is
+        \[
+            \area(E)
+            =
+            \pi\cdot 1\cdot \frac{1}{2}
+            =
+            \frac{\pi}{2}.
+        \]
+
+        For each height $z$, define the horizontal cross-section
+        \[
+            C_z
+            =
+            \{(x,y)\in\R^2:(x,y,z)\in C\}.
+        \]
+        We claim that $C_z$ has the same area as $E$ for every $z$.
+
+        First, we show that $C_z\subseteq E$. Suppose that $(x,y,z)\in C$ and
+        \[
+            x^2+4y^2>1.
+        \]
+        Since $C$ contains the $z$-axis, the point $(0,0,t)$ belongs to $C$ for every $t\in\R$. By convexity, the line segment joining $(x,y,z)$ and $(0,0,t)$ is contained in $C$.
+
+        For any $\alpha\in(0,1)$, we may choose
+        \[
+            t=-\frac{\alpha z}{1-\alpha}
+        \]
+        so that this segment intersects the $xy$-plane at the point
+        \[
+            (\alpha x,\alpha y,0).
+        \]
+        Since $\alpha$ can be chosen sufficiently close to $1$, we may arrange that
+        \[
+            (\alpha x)^2+4(\alpha y)^2>1.
+        \]
+        This would give a point of $C\cap\{z=0\}$ lying outside $E\times\{0\}$, contradicting condition (i). Therefore,
+        \[
+            C_z\subseteq E
+        \]
+        for every $z$.
+
+        Conversely, we show that the interior of $E$ is contained in every $C_z$. Take $(x,y)$ with
+        \[
+            x^2+4y^2<1.
+        \]
+        Choose $\alpha\in(0,1)$ sufficiently close to $1$ so that
+        \[
+            \left(\frac{x}{\alpha}\right)^2
+            +
+            4\left(\frac{y}{\alpha}\right)^2
+            \leq 1.
+        \]
+        Then
+        \[
+            \left(\frac{x}{\alpha},\frac{y}{\alpha},0\right)\in C.
+        \]
+        Also, since $C$ contains the $z$-axis,
+        \[
+            \left(0,0,\frac{z}{1-\alpha}\right)\in C.
+        \]
+        By convexity, their convex combination also belongs to $C$, and
+        \[
+            \alpha
+            \left(\frac{x}{\alpha},\frac{y}{\alpha},0\right)
+            +
+            (1-\alpha)
+            \left(0,0,\frac{z}{1-\alpha}\right)
+            =
+            (x,y,z).
+        \]
+        Hence $(x,y)\in C_z$.
+
+        Thus, for every $z$,
+        \[
+            \operatorname{int}(E)\subseteq C_z\subseteq E.
+        \]
+        Since the boundary of the ellipse has area $0$, we have
+        \[
+            \area(C_z)=\area(E)=\frac{\pi}{2}
+        \]
+        for every $z$. Therefore, the volume of $C$ in the region $-1\leq z\leq 1$ is
+        \[
+            \int_{-1}^{1}\area(C_z)\dd z
+            =
+            \int_{-1}^{1}\frac{\pi}{2}\dd z
+            =
+            \pi.
+        \]
+
+        Therefore, the answer is $\boxed{(2)\ \pi}$.
+    \end{solution}
+
+    \begin{problem}{2025.1}
+        A fair coin is tossed repeatedly until either two heads in a row or two tails in a row appear. On average, how many tosses are needed before the process stops?
+    \end{problem}
+
+    \begin{solution}
+        On the first toss, it is impossible to have two consecutive equal outcomes. After the first toss, the process stops exactly when the next toss gives the same result as the previous toss.
+
+        Since the coin is fair, from the second toss onward we have
+        \[
+            \Prob(\text{the new toss matches the previous toss})
+            =
+            \frac{1}{2}.
+        \]
+        Therefore, after the first toss, the number of additional tosses needed until the process stops follows a geometric distribution with success probability $\dfrac{1}{2}$. Its expected value is
+        \[
+            \frac{1}{1/2}=2.
+        \]
+        Since the first toss is always made, the expected total number of tosses is
+        \[
+            1+2=3.
+        \]
+        Thus the answer is $\boxed{3}$.
+    \end{solution}
+
+    \begin{problem}{2025.2}
+        The nineteenth-century mathematicians Cauchy and Weierstrass established rigorous definitions of limits. Who was the first mathematician to prove that the sum of the reciprocals of the squares of all positive integers is
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+            =
+            \frac{\pi^2}{6}?
+        \]
+        \[
+            \begin{array}{ll}
+                (1) & \text{David Hilbert} \\
+                (2) & \text{Georg Cantor} \\
+                (3) & \text{Bernhard Riemann} \\
+                (4) & \text{Leonhard Euler}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The problem of finding the exact value of the infinite series
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+        \]
+        is known as the Basel problem.
+
+        This problem had been known since the seventeenth century, and it was Leonhard Euler who first found and proved the famous identity
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+            =
+            \frac{\pi^2}{6}.
+        \]
+        Therefore, the answer is $\boxed{(4)\ \text{Leonhard Euler}}$.
+    \end{solution}
+
+    \begin{problem}{2025.3}
+        Find the equation of the smallest sphere tangent to all four planes
+        \[
+            x=0,\qquad y=0,\qquad z=0,\qquad x+y+z=3.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Since the sphere is tangent to the three coordinate planes
+        \[
+            x=0,\qquad y=0,\qquad z=0,
+        \]
+        and we are looking for the smallest such sphere, its center must lie in the first octant and have the form
+        \[
+            \mathbf{c}=(a,a,a)
+        \]
+        by symmetry. The distance from $\mathbf{c}$ to each coordinate plane is $a$, so the radius of the sphere is
+        \[
+            r=a.
+        \]
+
+        The sphere must also be tangent to the plane
+        \[
+            x+y+z=3.
+        \]
+        The distance from $(a,a,a)$ to this plane is
+        \[
+            \frac{|a+a+a-3|}{\sqrt{1^2+1^2+1^2}}
+            =
+            \frac{3-3a}{\sqrt{3}},
+        \]
+        since the smallest sphere lies between the coordinate planes and the plane $x+y+z=3$. This distance must equal the radius $a$, so
+        \[
+            \frac{3-3a}{\sqrt{3}}=a.
+        \]
+        Hence
+        \[
+            3-3a=\sqrt{3}a,
+        \]
+        and therefore
+        \[
+            a
+            =
+            \frac{3}{3+\sqrt{3}}
+            =
+            \frac{3-\sqrt{3}}{2}.
+        \]
+
+        Thus the center is
+        \[
+            \left(
+                \frac{3-\sqrt{3}}{2},
+                \frac{3-\sqrt{3}}{2},
+                \frac{3-\sqrt{3}}{2}
+            \right),
+        \]
+        and the radius is
+        \[
+            \frac{3-\sqrt{3}}{2}.
+        \]
+        Therefore, the equation of the sphere is
+        \[
+            \boxed{
+            \left(x-\frac{3-\sqrt{3}}{2}\right)^2
+            +
+            \left(y-\frac{3-\sqrt{3}}{2}\right)^2
+            +
+            \left(z-\frac{3-\sqrt{3}}{2}\right)^2
+            =
+            \left(\frac{3-\sqrt{3}}{2}\right)^2
+            }.
+        \]
+    \end{solution}
