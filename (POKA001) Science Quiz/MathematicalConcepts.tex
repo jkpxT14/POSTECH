@@ -1,0 +1,2799 @@
+    \chapter{Calculus}
+
+    This chapter collects quiz-friendly results from one-variable calculus,
+    multivariable calculus, and vector calculus. The emphasis is on named
+    theorems, memorable formulas, and geometric ideas that are easy to ask and
+    useful to recognize quickly.
+
+    \section*{One-Variable Calculus}
+
+    \begin{formula}[Standard Trigonometric and Exponential Limits]
+        The following limits are fundamental:
+        \[
+            \lim_{x\to 0}\frac{\sin x}{x}=1,
+            \qquad
+            \lim_{x\to 0}\frac{1-\cos x}{x^2}=\frac12,
+        \]
+        \[
+            \lim_{x\to 0}\frac{e^x-1}{x}=1,
+            \qquad
+            \lim_{x\to 0}\frac{\log(1+x)}{x}=1,
+        \]
+        and
+        \[
+            \lim_{x\to 0}(1+x)^{1/x}=e.
+        \]
+    \end{formula}
+
+    \begin{strategy}
+        These limits are often faster than L'Hopital's Rule. In a quiz, the
+        expressions $\sin x$, $1-\cos x$, $e^x-1$, $\log(1+x)$, and
+        $(1+x)^{1/x}$ are strong signals for these standard patterns.
+    \end{strategy}
+
+    \begin{theorem}[Intermediate Value Theorem]
+        Let $f$ be continuous on $[a,b]$. If $N$ is any number between
+        $f(a)$ and $f(b)$, then there exists $c\in[a,b]$ such that
+        \[
+            f(c)=N.
+        \]
+    \end{theorem}
+
+    \begin{strategy}
+        The Intermediate Value Theorem is the theorem behind many existence
+        arguments. To show that an equation has a solution, define a continuous
+        function and show that its values cross the desired level.
+    \end{strategy}
+
+    \begin{theorem}[Extreme Value Theorem]
+        Let $f$ be continuous on $[a,b]$. Then $f$ attains both a maximum and
+        a minimum on $[a,b]$.
+    \end{theorem}
+
+    \begin{remark}
+        The closed interval condition is important. A continuous function on an
+        open interval need not attain a maximum or a minimum.
+    \end{remark}
+
+    \begin{theorem}[Mean Value Theorem]
+        Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then
+        there exists $c\in(a,b)$ such that
+        \[
+            f'(c)
+            =
+            \frac{f(b)-f(a)}{b-a}.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        The Mean Value Theorem says that somewhere on the interval, the
+        instantaneous rate of change equals the average rate of change.
+    \end{idea}
+
+    \begin{theorem}[Taylor's Theorem]
+        Suppose that $f$ is $n+1$ times differentiable near $a$. Then
+        \[
+            f(x)
+            =
+            f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2
+            +\cdots
+            +\frac{f^{(n)}(a)}{n!}(x-a)^n
+            +R_n(x),
+        \]
+        where, in Lagrange's form of the remainder,
+        \[
+            R_n(x)
+            =
+            \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}
+        \]
+        for some $c$ between $a$ and $x$.
+    \end{theorem}
+
+    \begin{strategy}
+        Taylor expansion is one of the fastest tools for limits, approximations,
+        and hidden series evaluations. Expressions involving $e^x$, $\sin x$,
+        $\cos x$, $\log(1+x)$, or $\arctan x$ often invite Taylor expansion.
+    \end{strategy}
+
+    \begin{formula}[Maclaurin Series]
+        The most important Maclaurin series are
+        \[
+            e^x
+            =
+            \sum_{n=0}^{\infty}\frac{x^n}{n!},
+        \]
+        \[
+            \sin x
+            =
+            \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!},
+            \qquad
+            \cos x
+            =
+            \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n}}{(2n)!},
+        \]
+        \[
+            \frac{1}{1-x}
+            =
+            \sum_{n=0}^{\infty}x^n
+            \qquad (|x|<1),
+        \]
+        \[
+            \log(1+x)
+            =
+            \sum_{n=1}^{\infty}(-1)^{n+1}\frac{x^n}{n}
+            \qquad (-1<x\leq 1),
+        \]
+        and
+        \[
+            \arctan x
+            =
+            \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{2n+1}
+            \qquad (|x|\leq 1).
+        \]
+    \end{formula}
+
+    \begin{formula}[Euler's Formula]
+        For every real number $x$,
+        \[
+            e^{ix}
+            =
+            \cos x+i\sin x.
+        \]
+        In particular,
+        \[
+            e^{i\pi}+1=0.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The identity $e^{i\pi}+1=0$ is called Euler's identity. It connects
+        the constants $e$, $i$, $\pi$, $1$, and $0$ in a single formula.
+    \end{remark}
+
+    \begin{formula}[Gaussian Integral]
+        The Gaussian integral is
+        \[
+            \int_{-\infty}^{\infty}e^{-x^2}\dd x
+            =
+            \sqrt{\pi}.
+        \]
+        Equivalently,
+        \[
+            \int_0^\infty e^{-x^2}\dd x
+            =
+            \frac{\sqrt{\pi}}{2}.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The Gaussian integral is one of the most famous integrals in calculus.
+        It is closely connected to the normal distribution in probability.
+    \end{remark}
+
+    \begin{formula}[Wallis Product]
+        The Wallis product is
+        \[
+            \frac{\pi}{2}
+            =
+            \prod_{n=1}^{\infty}
+            \frac{(2n)(2n)}{(2n-1)(2n+1)}
+            =
+            \frac{2}{1}\cdot\frac{2}{3}\cdot
+            \frac{4}{3}\cdot\frac{4}{5}\cdot
+            \frac{6}{5}\cdot\frac{6}{7}\cdots.
+        \]
+    \end{formula}
+
+    \begin{definition}[Gamma Function]
+        For $x>0$, the Gamma function is defined by
+        \[
+            \Gamma(x)
+            =
+            \int_0^\infty t^{x-1}e^{-t}\dd t.
+        \]
+    \end{definition}
+
+    \begin{proposition}[Gamma Function and Factorials]
+        The Gamma function satisfies
+        \[
+            \Gamma(x+1)=x\Gamma(x).
+        \]
+        In particular, for every positive integer $n$,
+        \[
+            \Gamma(n)=(n-1)!.
+        \]
+        Also,
+        \[
+            \Gamma\left(\frac12\right)=\sqrt{\pi}.
+        \]
+    \end{proposition}
+
+    \begin{formula}[Stirling's Formula]
+        As $n\to\infty$,
+        \[
+            n!
+            \sim
+            \sqrt{2\pi n}\left(\frac{n}{e}\right)^n.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        Stirling's formula is the standard approximation for large factorials.
+        It often appears in counting, probability, and asymptotic estimation.
+    \end{remark}
+
+    \section*{Multivariable Calculus and Vector Calculus}
+
+    \begin{definition}[Gradient, Divergence, Curl, and Laplacian]
+        For a scalar-valued function $f(x,y,z)$ and a vector field
+        $\mathbf{F}=(P,Q,R)$, we write
+        \[
+            \nabla f
+            =
+            \left(\frac{\partial f}{\partial x},
+                  \frac{\partial f}{\partial y},
+                  \frac{\partial f}{\partial z}\right),
+        \]
+        \[
+            \nabla\cdot\mathbf{F}
+            =
+            \frac{\partial P}{\partial x}
+            +
+            \frac{\partial Q}{\partial y}
+            +
+            \frac{\partial R}{\partial z},
+        \]
+        \[
+            \nabla\times\mathbf{F}
+            =
+            \begin{vmatrix}
+                \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+                \partial/\partial x & \partial/\partial y & \partial/\partial z \\
+                P & Q & R
+            \end{vmatrix},
+        \]
+        and
+        \[
+            \Delta f
+            =
+            \nabla\cdot\nabla f
+            =
+            f_{xx}+f_{yy}+f_{zz}.
+        \]
+    \end{definition}
+
+    \begin{idea}
+        The gradient points in the direction of steepest increase. Divergence
+        measures source or sink behavior. Curl measures local rotation. The
+        Laplacian measures how a value differs from its surrounding average.
+    \end{idea}
+
+    \begin{theorem}[Clairaut's Theorem]
+        If $f$ has continuous second partial derivatives near a point, then the
+        mixed partial derivatives agree at that point:
+        \[
+            \frac{\partial^2 f}{\partial x\partial y}
+            =
+            \frac{\partial^2 f}{\partial y\partial x}.
+        \]
+    \end{theorem}
+
+    \begin{definition}[Jacobian]
+        For a map
+        \[
+            \mathbf{F}(u_1,\dots,u_n)
+            =
+            (x_1(u_1,\dots,u_n),\dots,x_n(u_1,\dots,u_n)),
+        \]
+        the Jacobian matrix is
+        \[
+            D\mathbf{F}
+            =
+            \left(\frac{\partial x_i}{\partial u_j}\right)_{i,j=1}^{n}.
+        \]
+        Its determinant
+        \[
+            \Jac(\mathbf{F})
+            =
+            \det(D\mathbf{F})
+        \]
+        is called the Jacobian determinant.
+    \end{definition}
+
+    \begin{theorem}[Change of Variables Formula]
+        Under suitable regularity and one-to-one assumptions,
+        \[
+            \int_{\mathbf{F}(D)} f(\mathbf{x})\dd\mathbf{x}
+            =
+            \int_D f(\mathbf{F}(\mathbf{u}))
+            \left|\det D\mathbf{F}(\mathbf{u})\right|\dd\mathbf{u}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        The Jacobian determinant is the local area or volume scaling factor of
+        a change of variables.
+    \end{remark}
+
+    \begin{theorem}[Lagrange Multipliers]
+        Suppose that $f$ has a local maximum or minimum subject to the constraint
+        \[
+            g(x_1,\dots,x_n)=0
+        \]
+        at a point where $\nabla g\neq\mathbf{0}$. Then there exists a scalar
+        $\lambda$ such that
+        \[
+            \nabla f=\lambda\nabla g.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        At a constrained optimum, the level surface of $f$ is tangent to the
+        constraint surface. Thus their normal vectors are parallel.
+    \end{idea}
+
+    \begin{theorem}[Green's Theorem]
+        Let $C$ be a positively oriented, simple closed curve in the plane, and
+        let $D$ be the region enclosed by $C$. Then
+        \[
+            \oint_C P\dd x+Q\dd y
+            =
+            \iint_D
+            \left(
+                \frac{\partial Q}{\partial x}
+                -
+                \frac{\partial P}{\partial y}
+            \right)
+            \dd A.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        Green's Theorem converts circulation along a boundary curve into curl
+        over the region inside. It is the two-dimensional ancestor of Stokes'
+        Theorem.
+    \end{idea}
+
+    \begin{theorem}[Stokes' Theorem]
+        Let $S$ be an oriented smooth surface with positively oriented boundary
+        curve $\partial S$. Then
+        \[
+            \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
+            =
+            \iint_S (\nabla\times\mathbf{F})\cdot\mathbf{n}\dd S.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        Stokes' Theorem says that circulation around the boundary equals total
+        curl through the surface. It turns a boundary integral into an interior
+        integral.
+    \end{idea}
+
+    \begin{theorem}[Divergence Theorem]
+        Let $E$ be a solid region in $\R^3$ with outward-oriented boundary
+        surface $\partial E$. Then
+        \[
+            \iint_{\partial E}\mathbf{F}\cdot\mathbf{n}\dd S
+            =
+            \iiint_E \nabla\cdot\mathbf{F}\dd V.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        The Divergence Theorem says that outward flux through the boundary
+        equals total source strength inside the region.
+    \end{idea}
+
+    \begin{remark}
+        Green's Theorem, Stokes' Theorem, and the Divergence Theorem share the
+        same philosophy: a boundary integral is equal to an interior integral.
+        This is the geometric heart of vector calculus.
+    \end{remark}
+
+    \chapter{Linear Algebra}
+
+    This chapter focuses on named theorems, matrix invariants, and geometric
+    principles that are especially likely to appear in quiz-style questions.
+
+    \begin{theorem}[Rank--Nullity Theorem]
+        Let $T:V\to W$ be a linear map between finite-dimensional vector spaces.
+        Then
+        \[
+            \dim V
+            =
+            \dim\Ker(T)+\dim\Image(T).
+        \]
+        For a matrix $\mathbf{A}\in F^{m\times n}$, this becomes
+        \[
+            n=\rk(\mathbf{A})+\dim\Null(\mathbf{A}).
+        \]
+    \end{theorem}
+
+    \begin{strategy}
+        Rank--Nullity connects variables, pivots, and free variables. It is the
+        linear algebra version of accounting: nothing disappears; dimensions
+        are redistributed.
+    \end{strategy}
+
+    \begin{theorem}[Invertible Matrix Theorem]
+        For a square matrix $\mathbf{A}\in F^{n\times n}$, the following
+        statements are equivalent:
+        \[
+            \mathbf{A}\text{ is invertible},
+            \qquad
+            \det(\mathbf{A})\neq 0,
+            \qquad
+            \rk(\mathbf{A})=n,
+        \]
+        \[
+            \Null(\mathbf{A})=\{\mathbf{0}\},
+        \]
+        and
+        \[
+            \mathbf{A}\mathbf{x}=\mathbf{b}
+        \]
+        has a unique solution for every $\mathbf{b}\in F^n$.
+    \end{theorem}
+
+    \begin{remark}
+        This theorem is a dictionary. It translates between determinants, rank,
+        null spaces, and solvability of linear systems.
+    \end{remark}
+
+    \begin{definition}[Determinant]
+        The determinant is a scalar associated to a square matrix
+        $\mathbf{A}\in F^{n\times n}$, denoted by $\det(\mathbf{A})$.
+        Geometrically, for real matrices, $|\det(\mathbf{A})|$ is the volume
+        scaling factor of the linear transformation
+        $\mathbf{x}\mapsto\mathbf{A}\mathbf{x}$.
+    \end{definition}
+
+    \begin{proposition}[Basic Properties of Determinants]
+        For square matrices $\mathbf{A},\mathbf{B}\in F^{n\times n}$, we have
+        \[
+            \det(\mathbf{A}\mathbf{B})
+            =
+            \det(\mathbf{A})\det(\mathbf{B}),
+        \]
+        \[
+            \det(\mathbf{A}^{\mathsf T})=\det(\mathbf{A}),
+        \]
+        and, if $\mathbf{A}$ is invertible,
+        \[
+            \det(\mathbf{A}^{-1})
+            =
+            \frac{1}{\det(\mathbf{A})}.
+        \]
+    \end{proposition}
+
+    \begin{formula}[Determinant of a Triangular Matrix]
+        If $\mathbf{A}$ is upper triangular or lower triangular with diagonal
+        entries $a_{11},a_{22},\dots,a_{nn}$, then
+        \[
+            \det(\mathbf{A})
+            =
+            a_{11}a_{22}\cdots a_{nn}.
+        \]
+    \end{formula}
+
+    \begin{proposition}[Trace, Determinant, and Eigenvalues]
+        Let $\mathbf{A}\in\C^{n\times n}$ have eigenvalues
+        $\lambda_1,\dots,\lambda_n$, counted with algebraic multiplicity. Then
+        \[
+            \tr(\mathbf{A})
+            =
+            \lambda_1+\cdots+\lambda_n
+        \]
+        and
+        \[
+            \det(\mathbf{A})
+            =
+            \lambda_1\lambda_2\cdots\lambda_n.
+        \]
+    \end{proposition}
+
+    \begin{definition}[Eigenvalue and Characteristic Polynomial]
+        Let $\mathbf{A}\in F^{n\times n}$. A scalar $\lambda\in F$ is an
+        eigenvalue of $\mathbf{A}$ if there exists a nonzero vector
+        $\mathbf{v}\in F^n$ such that
+        \[
+            \mathbf{A}\mathbf{v}=\lambda\mathbf{v}.
+        \]
+        The characteristic polynomial of $\mathbf{A}$ is
+        \[
+            p_{\mathbf{A}}(\lambda)
+            =
+            \det(\lambda\mathbf{I}_n-\mathbf{A}).
+        \]
+    \end{definition}
+
+    \begin{proposition}[Eigenvalues and the Characteristic Polynomial]
+        A scalar $\lambda$ is an eigenvalue of $\mathbf{A}$ if and only if
+        \[
+            \det(\lambda\mathbf{I}_n-\mathbf{A})=0.
+        \]
+        Equivalently, the eigenvalues of $\mathbf{A}$ are the roots of the
+        characteristic polynomial $p_{\mathbf{A}}(\lambda)$.
+    \end{proposition}
+
+    \begin{theorem}[Cayley--Hamilton Theorem]
+        Every square matrix satisfies its own characteristic polynomial. That
+        is, if
+        \[
+            p_{\mathbf{A}}(\lambda)
+            =
+            \det(\lambda\mathbf{I}_n-\mathbf{A}),
+        \]
+        then
+        \[
+            p_{\mathbf{A}}(\mathbf{A})=\mathbf{0}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Cayley--Hamilton is a famous named theorem. It is especially useful for
+        reducing high powers of a matrix to lower powers.
+    \end{remark}
+
+    \begin{theorem}[Diagonalization Criterion]
+        A matrix $\mathbf{A}\in F^{n\times n}$ is diagonalizable over $F$ if
+        and only if $F^n$ has a basis consisting of eigenvectors of
+        $\mathbf{A}$.
+    \end{theorem}
+
+    \begin{corollary}[Distinct Eigenvalues Imply Diagonalizability]
+        If an $n\times n$ matrix $\mathbf{A}$ has $n$ distinct eigenvalues in
+        $F$, then $\mathbf{A}$ is diagonalizable over $F$.
+    \end{corollary}
+
+    \begin{strategy}
+        Distinct eigenvalues are an easy sufficient condition for
+        diagonalizability. They are not necessary: a matrix can be
+        diagonalizable even when some eigenvalues are repeated.
+    \end{strategy}
+
+    \begin{theorem}[Spectral Theorem for Real Symmetric Matrices]
+        If $\mathbf{A}\in\R^{n\times n}$ is symmetric, then all eigenvalues of
+        $\mathbf{A}$ are real, and there exists an orthogonal matrix
+        $\mathbf{Q}$ and a diagonal matrix $\mathbf{D}$ such that
+        \[
+            \mathbf{A}
+            =
+            \mathbf{Q}\mathbf{D}\mathbf{Q}^{\mathsf T}.
+        \]
+        Equivalently, $\R^n$ has an orthonormal basis consisting of eigenvectors
+        of $\mathbf{A}$.
+    \end{theorem}
+
+    \begin{remark}
+        In quiz settings, the words ``real symmetric matrix'' are a strong
+        signal for real eigenvalues and orthogonal diagonalization.
+    \end{remark}
+
+    \begin{theorem}[Cauchy--Schwarz Inequality]
+        For vectors $\mathbf{u},\mathbf{v}\in\R^n$, we have
+        \[
+            |\langle\mathbf{u},\mathbf{v}\rangle|
+            \leq
+            \|\mathbf{u}\|\,\|\mathbf{v}\|.
+        \]
+        Equivalently, for real numbers $a_1,\dots,a_n$ and
+        $b_1,\dots,b_n$,
+        \[
+            \left(\sum_{i=1}^{n}a_i b_i\right)^2
+            \leq
+            \left(\sum_{i=1}^{n}a_i^2\right)
+            \left(\sum_{i=1}^{n}b_i^2\right).
+        \]
+    \end{theorem}
+
+    \begin{strategy}
+        The expression $\sum a_i b_i$ is a strong signal for Cauchy--Schwarz.
+        The vector form is often the fastest way to recognize the inequality.
+    \end{strategy}
+
+    \begin{corollary}[Triangle Inequality]
+        For vectors $\mathbf{u},\mathbf{v}\in\R^n$, we have
+        \[
+            \|\mathbf{u}+\mathbf{v}\|
+            \leq
+            \|\mathbf{u}\|+\|\mathbf{v}\|.
+        \]
+    \end{corollary}
+
+    \begin{algorithm}[Gram--Schmidt Process]
+        From any linearly independent list
+        \[
+            \mathbf{v}_1,\dots,\mathbf{v}_k
+        \]
+        in an inner product space, one can construct an orthonormal list
+        \[
+            \mathbf{q}_1,\dots,\mathbf{q}_k
+        \]
+        with the same span:
+        \[
+            \Span(\mathbf{q}_1,\dots,\mathbf{q}_k)
+            =
+            \Span(\mathbf{v}_1,\dots,\mathbf{v}_k).
+        \]
+    \end{algorithm}
+
+    \begin{remark}
+        Gram--Schmidt is the standard procedure for turning an arbitrary basis
+        into an orthonormal basis.
+    \end{remark}
+
+    \begin{formula}[Projection Matrix]
+        If the columns of $\mathbf{Q}\in\R^{n\times k}$ are orthonormal, then
+        the orthogonal projection matrix onto $\Col(\mathbf{Q})$ is
+        \[
+            \mathbf{P}
+            =
+            \mathbf{Q}\mathbf{Q}^{\mathsf T}.
+        \]
+        More generally, if the columns of $\mathbf{A}\in\R^{n\times k}$ are
+        linearly independent, then the orthogonal projection matrix onto
+        $\Col(\mathbf{A})$ is
+        \[
+            \mathbf{P}
+            =
+            \mathbf{A}(\mathbf{A}^{\mathsf T}\mathbf{A})^{-1}
+            \mathbf{A}^{\mathsf T}.
+        \]
+    \end{formula}
+
+    \begin{proposition}[Projection Matrix Criterion]
+        A matrix $\mathbf{P}$ is a projection matrix if
+        \[
+            \mathbf{P}^2=\mathbf{P}.
+        \]
+        It is an orthogonal projection matrix if, in addition,
+        \[
+            \mathbf{P}^{\mathsf T}=\mathbf{P}.
+        \]
+    \end{proposition}
+
+    \begin{definition}[Singular Values]
+        Let $\mathbf{A}\in\R^{m\times n}$. The singular values of
+        $\mathbf{A}$ are the nonnegative square roots of the eigenvalues of
+        \[
+            \mathbf{A}^{\mathsf T}\mathbf{A}.
+        \]
+    \end{definition}
+
+    \begin{theorem}[Singular Value Decomposition]
+        Every real matrix $\mathbf{A}\in\R^{m\times n}$ can be written as
+        \[
+            \mathbf{A}
+            =
+            \mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\mathsf T},
+        \]
+        where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal matrices and
+        $\boldsymbol{\Sigma}$ is a rectangular diagonal matrix whose diagonal
+        entries are the singular values of $\mathbf{A}$.
+    \end{theorem}
+
+    \begin{remark}
+        Singular Value Decomposition, or SVD, is one of the most powerful
+        decompositions in linear algebra. It applies to every real matrix, not
+        only to square or diagonalizable matrices.
+    \end{remark}
+
+    \begin{theorem}[Jordan Canonical Form]
+        Over the complex numbers, every square matrix is similar to a Jordan
+        matrix. That is, for every $\mathbf{A}\in\C^{n\times n}$, there exists
+        an invertible matrix $\mathbf{P}$ such that
+        \[
+            \mathbf{P}^{-1}\mathbf{A}\mathbf{P}
+        \]
+        is in Jordan canonical form.
+    \end{theorem}
+
+    \begin{remark}
+        Jordan canonical form is usually more important as a named concept than
+        as a computational tool in Science Quiz. It describes what remains when
+        a matrix cannot be fully diagonalized.
+    \end{remark}
+
+    \chapter{Differential Equations}
+
+    This chapter collects named principles and famous model equations from
+    ordinary and partial differential equations.
+
+    \begin{theorem}[Picard--Lindelof Existence and Uniqueness Theorem]
+        Consider the initial value problem
+        \[
+            y'=f(t,y),
+            \qquad
+            y(t_0)=y_0.
+        \]
+        If $f$ and $\partial f/\partial y$ are continuous near
+        $(t_0,y_0)$, then there exists a unique solution near $t=t_0$.
+    \end{theorem}
+
+    \begin{remark}
+        In a quiz setting, the important phrase is ``existence and uniqueness.''
+        It tells us when an initial condition determines exactly one solution.
+    \end{remark}
+
+    \begin{theorem}[Superposition Principle]
+        If $y_1,\dots,y_k$ are solutions of a homogeneous linear differential
+        equation, then any linear combination
+        \[
+            c_1y_1+\cdots+c_ky_k
+        \]
+        is also a solution.
+    \end{theorem}
+
+    \begin{remark}
+        The Superposition Principle is the differential-equation version of
+        linear algebra. It is one of the main reasons linear equations are much
+        easier to handle than nonlinear equations.
+    \end{remark}
+
+    \begin{proposition}[General Solution of a Nonhomogeneous Linear Equation]
+        For a nonhomogeneous linear differential equation, the general solution
+        has the form
+        \[
+            y=y_h+y_p,
+        \]
+        where $y_h$ is the general solution of the associated homogeneous
+        equation and $y_p$ is one particular solution of the nonhomogeneous
+        equation.
+    \end{proposition}
+
+    \begin{formula}[Second-Order Constant-Coefficient Equation]
+        Consider the homogeneous equation
+        \[
+            ay''+by'+cy=0,
+            \qquad
+            a\neq 0.
+        \]
+        Its characteristic equation is
+        \[
+            ar^2+br+c=0.
+        \]
+        If the roots are distinct real numbers $r_1,r_2$, then
+        \[
+            y_h=c_1e^{r_1t}+c_2e^{r_2t}.
+        \]
+        If the equation has a repeated real root $r$, then
+        \[
+            y_h=(c_1+c_2t)e^{rt}.
+        \]
+        If the roots are $\alpha\pm i\beta$ with $\beta\neq 0$, then
+        \[
+            y_h=e^{\alpha t}
+            \left(
+                c_1\cos \beta t+c_2\sin \beta t
+            \right).
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The characteristic equation converts a constant-coefficient linear ODE
+        into an algebraic equation. This is the key trick.
+    \end{remark}
+
+    \begin{definition}[Wronskian]
+        For two differentiable functions $y_1$ and $y_2$, their Wronskian is
+        \[
+            W(y_1,y_2)(t)
+            =
+            \begin{vmatrix}
+                y_1(t) & y_2(t) \\
+                y_1'(t) & y_2'(t)
+            \end{vmatrix}
+            =
+            y_1(t)y_2'(t)-y_1'(t)y_2(t).
+        \]
+    \end{definition}
+
+    \begin{proposition}[Wronskian and Linear Independence]
+        If
+        \[
+            W(y_1,y_2)(t_0)\neq 0
+        \]
+        for some $t_0$, then $y_1$ and $y_2$ are linearly independent.
+    \end{proposition}
+
+    \begin{formula}[Exponential Growth and Decay]
+        The equation
+        \[
+            y'=ky
+        \]
+        has solution
+        \[
+            y(t)=Ce^{kt}.
+        \]
+        If $k>0$, this models exponential growth. If $k<0$, this models
+        exponential decay.
+    \end{formula}
+
+    \begin{formula}[Logistic Equation]
+        The logistic equation is
+        \[
+            y'=ky\left(1-\frac{y}{K}\right),
+        \]
+        where $k>0$ is the growth rate and $K>0$ is the carrying capacity.
+        Its equilibrium solutions are
+        \[
+            y=0
+            \qquad\text{and}\qquad
+            y=K.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The logistic equation is the standard model for population growth with
+        limited resources. The parameter $K$ represents the limiting population.
+    \end{remark}
+
+    \begin{formula}[Simple Harmonic Oscillator]
+        The equation
+        \[
+            x''+\omega^2x=0
+        \]
+        has general solution
+        \[
+            x(t)=c_1\cos \omega t+c_2\sin \omega t.
+        \]
+        Equivalently,
+        \[
+            x(t)=A\cos(\omega t-\phi)
+        \]
+        for suitable constants $A$ and $\phi$.
+    \end{formula}
+
+    \begin{remark}
+        This is the equation behind ideal mass--spring motion and many small
+        oscillation models in physics.
+    \end{remark}
+
+    \begin{formula}[Damped Harmonic Oscillator]
+        The equation
+        \[
+            mx''+cx'+kx=0
+        \]
+        models a damped harmonic oscillator. Its characteristic equation is
+        \[
+            mr^2+cr+k=0.
+        \]
+        The motion is underdamped, critically damped, or overdamped according
+        as
+        \[
+            c^2-4mk<0,
+            \qquad
+            c^2-4mk=0,
+            \qquad
+            c^2-4mk>0.
+        \]
+    \end{formula}
+
+    \begin{definition}[Laplace Transform]
+        The Laplace transform of a function $f(t)$ is
+        \[
+            \mathcal{L}\{f(t)\}(s)
+            =
+            \int_0^\infty e^{-st}f(t)\dd t.
+        \]
+    \end{definition}
+
+    \begin{proposition}[Basic Laplace Transforms]
+        The most common Laplace transforms are
+        \[
+            \mathcal{L}\{1\}(s)=\frac{1}{s},
+            \qquad
+            \mathcal{L}\{e^{at}\}(s)=\frac{1}{s-a},
+        \]
+        \[
+            \mathcal{L}\{\sin at\}(s)=\frac{a}{s^2+a^2},
+            \qquad
+            \mathcal{L}\{\cos at\}(s)=\frac{s}{s^2+a^2}.
+        \]
+    \end{proposition}
+
+    \begin{remark}
+        The Laplace transform turns many differential equations into algebraic
+        equations. This is its main computational advantage.
+    \end{remark}
+
+    \begin{definition}[Heat Equation]
+        The heat equation is the partial differential equation
+        \[
+            u_t=\alpha u_{xx},
+            \qquad
+            \alpha>0.
+        \]
+        It models diffusion, especially the flow of heat in a one-dimensional
+        medium.
+    \end{definition}
+
+    \begin{definition}[Wave Equation]
+        The one-dimensional wave equation is
+        \[
+            u_{tt}=c^2u_{xx}.
+        \]
+        It models waves traveling with speed $c$.
+    \end{definition}
+
+    \begin{theorem}[d'Alembert's Formula]
+        The solution of the wave equation
+        \[
+            u_{tt}=c^2u_{xx}
+        \]
+        on the real line with initial conditions
+        \[
+            u(x,0)=f(x),
+            \qquad
+            u_t(x,0)=g(x),
+        \]
+        is
+        \[
+            u(x,t)
+            =
+            \frac{f(x-ct)+f(x+ct)}{2}
+            +
+            \frac{1}{2c}
+            \int_{x-ct}^{x+ct}g(s)\dd s.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        d'Alembert's formula shows that waves move along the characteristic
+        lines $x-ct=\text{constant}$ and $x+ct=\text{constant}$.
+    \end{remark}
+
+    \begin{definition}[Laplace Equation]
+        Laplace's equation is
+        \[
+            \Delta u=0.
+        \]
+        In two variables, this means
+        \[
+            u_{xx}+u_{yy}=0.
+        \]
+        A function satisfying Laplace's equation is called harmonic.
+    \end{definition}
+
+    \begin{definition}[Poisson Equation]
+        Poisson's equation is
+        \[
+            \Delta u=f.
+        \]
+        It is an inhomogeneous version of Laplace's equation.
+    \end{definition}
+
+    \begin{remark}
+        The heat equation, wave equation, and Laplace equation are three of the
+        most famous PDEs. A quiz problem may ask for their names, forms, or
+        physical interpretations.
+    \end{remark}
+
+    \chapter{Combinatorics and Discrete Mathematics}
+
+    This chapter collects high-yield results from combinatorics and discrete
+    mathematics. The emphasis is on named principles, memorable formulas, and
+    results with clear quiz-style answers.
+
+    \begin{formula}[Binomial Theorem; Newton's Binomial Formula]
+        For every nonnegative integer $n$,
+        \[
+            (x+y)^n
+            =
+            \sum_{k=0}^{n}\binom{n}{k}x^{n-k}y^k.
+        \]
+        In particular,
+        \[
+            (1+x)^n
+            =
+            \sum_{k=0}^{n}\binom{n}{k}x^k.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The coefficients $\binom{n}{k}$ are the entries of Pascal's triangle.
+        This is one of the most recognizable bridges between algebra and
+        counting.
+    \end{remark}
+
+    \begin{theorem}[Pigeonhole Principle; Dirichlet's Box Principle]
+        If $n+1$ objects are placed into $n$ boxes, then at least one box
+        contains at least two objects.
+        More generally, if $N$ objects are placed into $k$ boxes, then at least
+        one box contains at least
+        \[
+            \left\lceil\frac{N}{k}\right\rceil
+        \]
+        objects.
+    \end{theorem}
+
+    \begin{strategy}
+        The Pigeonhole Principle is often hidden in problems asking us to prove
+        that two objects must share a property. The hard part is usually
+        choosing the right ``boxes.''
+    \end{strategy}
+
+    \begin{theorem}[Inclusion--Exclusion Principle; Sieve Formula]
+        For finite sets $A_1,\dots,A_n$,
+        \[
+            \left|\bigcup_{i=1}^{n}A_i\right|
+            =
+            \sum_i |A_i|
+            -
+            \sum_{i<j}|A_i\cap A_j|
+            +
+            \sum_{i<j<k}|A_i\cap A_j\cap A_k|
+            -\cdots
+            +(-1)^{n+1}|A_1\cap\cdots\cap A_n|.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Inclusion--Exclusion is the standard correction mechanism for
+        overcounting. It is also historically connected to sieve methods.
+    \end{remark}
+
+    \begin{formula}[Derangement Formula]
+        Let $D_n$ be the number of derangements of $n$ objects, that is,
+        permutations with no fixed points. Then
+        \[
+            D_n
+            =
+            n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}.
+        \]
+        Moreover,
+        \[
+            D_n
+            =
+            \left\lfloor \frac{n!}{e}+\frac12\right\rfloor.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The approximation $D_n\approx n!/e$ is very memorable. In probability
+        language, a random permutation has no fixed point with probability
+        approximately $1/e$.
+    \end{remark}
+
+    \begin{formula}[Catalan Numbers]
+        The $n$th Catalan number is
+        \[
+            C_n
+            =
+            \frac{1}{n+1}\binom{2n}{n}.
+        \]
+        It begins as
+        \[
+            1,\ 1,\ 2,\ 5,\ 14,\ 42,\ 132,\dots.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        Catalan numbers count many different objects, including correct
+        parenthesizations, Dyck paths, triangulations of a polygon, and rooted
+        full binary trees. The number $42$ is a classic giveaway.
+    \end{remark}
+
+    \begin{theorem}[Cayley's Formula]
+        The number of labeled trees on $n$ vertices is
+        \[
+            n^{n-2}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Cayley's formula is a perfect Science Quiz result: the statement is
+        short, the answer is surprising, and the name is famous.
+    \end{remark}
+
+    \begin{theorem}[Burnside's Lemma; Cauchy--Frobenius Lemma]
+        Suppose a finite group $G$ acts on a finite set $X$. The number of
+        orbits is
+        \[
+            \frac{1}{|G|}
+            \sum_{g\in G}|\operatorname{Fix}(g)|,
+        \]
+        where
+        \[
+            \operatorname{Fix}(g)
+            =
+            \{x\in X:g\cdot x=x\}.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        Burnside's Lemma says that the number of essentially different objects
+        is the average number of objects fixed by a symmetry.
+    \end{idea}
+
+    \begin{lemma}[Handshaking Lemma]
+        For a finite undirected graph $G=(V,E)$,
+        \[
+            \sum_{v\in V}\deg(v)=2|E|.
+        \]
+        In particular, the number of vertices of odd degree is even.
+    \end{lemma}
+
+    \begin{remark}
+        The name comes from the idea that every handshake contributes $2$ to
+        the total count of hands shaken.
+    \end{remark}
+
+    \begin{theorem}[Euler's Formula for Planar Graphs]
+        If a connected planar graph has $V$ vertices, $E$ edges, and $F$ faces,
+        then
+        \[
+            V-E+F=2.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        This is the graph-theoretic version of Euler's polyhedron formula.
+        It is one of the most famous formulas involving planar graphs.
+    \end{remark}
+
+    \begin{theorem}[Eulerian Trail Criterion]
+        A connected finite graph has an Eulerian circuit if and only if every
+        vertex has even degree. It has an Eulerian trail but not an Eulerian
+        circuit if and only if exactly two vertices have odd degree.
+    \end{theorem}
+
+    \begin{remark}
+        This theorem is historically connected to Euler's solution of the
+        Seven Bridges of Konigsberg problem.
+    \end{remark}
+
+    \begin{theorem}[Hall's Marriage Theorem]
+        Let $G=(X\cup Y,E)$ be a bipartite graph. There is a matching that
+        covers every vertex of $X$ if and only if, for every subset
+        $S\subseteq X$,
+        \[
+            |N(S)|\geq |S|,
+        \]
+        where $N(S)$ is the set of neighbors of vertices in $S$.
+    \end{theorem}
+
+    \begin{strategy}
+        Hall's Marriage Theorem is the standard named theorem for proving that
+        a perfect assignment or matching exists.
+    \end{strategy}
+
+    \begin{theorem}[Ramsey's Theorem]
+        For any positive integers $r$ and $s$, there exists an integer
+        $R(r,s)$ such that every red-blue coloring of the edges of a sufficiently
+        large complete graph contains either a red $K_r$ or a blue $K_s$.
+    \end{theorem}
+
+    \begin{formula}[The Party Problem]
+        The classical Ramsey number
+        \[
+            R(3,3)=6
+        \]
+        says that among any six people, there are either three mutual
+        acquaintances or three mutual strangers.
+    \end{formula}
+
+    \begin{remark}
+        Ramsey theory is the mathematics of unavoidable structure. Its slogan
+        is that complete disorder is impossible in a large enough system.
+    \end{remark}
+
+    \begin{theorem}[Erdos--Szekeres Theorem]
+        Any sequence of
+        \[
+            (r-1)(s-1)+1
+        \]
+        distinct real numbers contains either an increasing subsequence of
+        length $r$ or a decreasing subsequence of length $s$.
+    \end{theorem}
+
+    \begin{remark}
+        This is a beautiful pigeonhole-style result. It is often remembered as
+        the monotone subsequence theorem.
+    \end{remark}
+
+    \chapter{Probability and Statistics}
+
+    This chapter focuses on probability results that are easy to ask in a quiz:
+    named theorems, famous distributions, memorable approximations, and
+    inequalities with clear meanings.
+
+    \begin{theorem}[Law of Total Probability]
+        If $B_1,\dots,B_n$ form a partition of the sample space and
+        $\Prob(B_i)>0$ for all $i$, then
+        \[
+            \Prob(A)
+            =
+            \sum_{i=1}^{n}\Prob(A\mid B_i)\Prob(B_i).
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Bayes' Theorem]
+        If $B_1,\dots,B_n$ form a partition of the sample space and
+        $\Prob(A)>0$, then
+        \[
+            \Prob(B_j\mid A)
+            =
+            \frac{\Prob(A\mid B_j)\Prob(B_j)}
+                 {\sum_{i=1}^{n}\Prob(A\mid B_i)\Prob(B_i)}.
+        \]
+        In the two-event form,
+        \[
+            \Prob(B\mid A)
+            =
+            \frac{\Prob(A\mid B)\Prob(B)}{\Prob(A)}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Bayes' Theorem is the standard formula for reversing conditional
+        probability. It updates a prior probability after observing evidence.
+    \end{remark}
+
+    \begin{proposition}[Linearity of Expectation]
+        For random variables $X_1,\dots,X_n$,
+        \[
+            \Exp[X_1+\cdots+X_n]
+            =
+            \Exp[X_1]+\cdots+\Exp[X_n].
+        \]
+        This holds even when the random variables are not independent.
+    \end{proposition}
+
+    \begin{strategy}
+        Linearity of expectation is often the fastest way to count an expected
+        number of objects. Introduce indicator random variables and add their
+        expectations.
+    \end{strategy}
+
+    \begin{formula}[Variance and Covariance Identities]
+        For a random variable $X$,
+        \[
+            \Var(X)
+            =
+            \Exp[X^2]-(\Exp[X])^2.
+        \]
+        For random variables $X$ and $Y$,
+        \[
+            \Var(X+Y)
+            =
+            \Var(X)+\Var(Y)+2\Cov(X,Y).
+        \]
+        If $X$ and $Y$ are independent, then
+        \[
+            \Var(X+Y)=\Var(X)+\Var(Y).
+        \]
+    \end{formula}
+
+    \begin{formula}[Binomial Distribution]
+        If $X\sim\Bin(n,p)$, then
+        \[
+            \Prob(X=k)
+            =
+            \binom{n}{k}p^k(1-p)^{n-k},
+            \qquad
+            k=0,1,\dots,n.
+        \]
+        Its mean and variance are
+        \[
+            \Exp[X]=np,
+            \qquad
+            \Var(X)=np(1-p).
+        \]
+    \end{formula}
+
+    \begin{formula}[Poisson Distribution]
+        If $X\sim\Poi(\lambda)$, then
+        \[
+            \Prob(X=k)
+            =
+            e^{-\lambda}\frac{\lambda^k}{k!},
+            \qquad
+            k=0,1,2,\dots.
+        \]
+        Its mean and variance are
+        \[
+            \Exp[X]=\lambda,
+            \qquad
+            \Var(X)=\lambda.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Poisson Limit Theorem; Law of Small Numbers]
+        If $n\to\infty$, $p\to 0$, and $np\to\lambda$, then
+        \[
+            \binom{n}{k}p^k(1-p)^{n-k}
+            \to
+            e^{-\lambda}\frac{\lambda^k}{k!}
+        \]
+        for each fixed $k\geq 0$.
+    \end{theorem}
+
+    \begin{remark}
+        This theorem explains why the Poisson distribution models rare events:
+        many trials, small success probability, and finite expected count.
+    \end{remark}
+
+    \begin{formula}[Normal Distribution; Gaussian Distribution]
+        A random variable $X\sim\Normal(\mu,\sigma^2)$ has density
+        \[
+            f(x)
+            =
+            \frac{1}{\sigma\sqrt{2\pi}}
+            \exp\left(
+                -\frac{(x-\mu)^2}{2\sigma^2}
+            \right).
+        \]
+        The standard normal distribution is $\Normal(0,1)$.
+    \end{formula}
+
+    \begin{formula}[Empirical Rule; 68--95--99.7 Rule]
+        For a normal distribution, approximately
+        \[
+            68\%
+        \]
+        of the mass lies within one standard deviation of the mean,
+        \[
+            95\%
+        \]
+        lies within two standard deviations, and
+        \[
+            99.7\%
+        \]
+        lies within three standard deviations.
+    \end{formula}
+
+    \begin{theorem}[Weak Law of Large Numbers]
+        Let $X_1,X_2,\dots$ be independent identically distributed random
+        variables with mean $\mu$. Then, for every $\eps>0$,
+        \[
+            \Prob\left(
+                \left|
+                    \frac{X_1+\cdots+X_n}{n}-\mu
+                \right|
+                >
+                \eps
+            \right)
+            \to 0
+        \]
+        as $n\to\infty$.
+    \end{theorem}
+
+    \begin{idea}
+        The Law of Large Numbers says that the sample average stabilizes near
+        the true mean when the number of trials becomes large.
+    \end{idea}
+
+    \begin{theorem}[Central Limit Theorem]
+        Let $X_1,X_2,\dots$ be independent identically distributed random
+        variables with mean $\mu$ and variance $\sigma^2>0$. Then
+        \[
+            \frac{X_1+\cdots+X_n-n\mu}{\sigma\sqrt n}
+        \]
+        converges in distribution to the standard normal distribution
+        $\Normal(0,1)$.
+    \end{theorem}
+
+    \begin{remark}
+        The Central Limit Theorem explains why the normal distribution appears
+        so often in nature and statistics.
+    \end{remark}
+
+    \begin{theorem}[Markov's Inequality]
+        If $X$ is a nonnegative random variable and $a>0$, then
+        \[
+            \Prob(X\geq a)
+            \leq
+            \frac{\Exp[X]}{a}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Chebyshev's Inequality]
+        If $X$ has mean $\mu$ and variance $\sigma^2$, then for every $k>0$,
+        \[
+            \Prob(|X-\mu|\geq k\sigma)
+            \leq
+            \frac{1}{k^2}.
+        \]
+        Equivalently, for every $\eps>0$,
+        \[
+            \Prob(|X-\mu|\geq \eps)
+            \leq
+            \frac{\Var(X)}{\eps^2}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Markov's inequality uses only the mean, while Chebyshev's inequality
+        uses the variance. Both are probability bounds that work without
+        assuming a normal distribution.
+    \end{remark}
+
+    \begin{theorem}[Jensen's Inequality]
+        If $\varphi$ is convex, then
+        \[
+            \varphi(\Exp[X])
+            \leq
+            \Exp[\varphi(X)].
+        \]
+        If $\varphi$ is concave, the inequality is reversed.
+    \end{theorem}
+
+    \begin{idea}
+        Jensen's inequality says that, for a convex function, applying the
+        function after averaging gives a value no larger than averaging after
+        applying the function.
+    \end{idea}
+
+    \begin{formula}[Birthday Problem Approximation]
+        In a group of $n$ people, assuming $365$ equally likely birthdays, the
+        probability that at least two people share a birthday is approximately
+        \[
+            1-\exp\left(-\frac{n(n-1)}{730}\right).
+        \]
+        For $n=23$, this probability is already greater than $1/2$.
+    \end{formula}
+
+    \begin{remark}
+        The birthday problem is famous because the answer is surprisingly
+        small: only $23$ people are needed for a better-than-even chance of a
+        shared birthday.
+    \end{remark}
+
+    \begin{formula}[Gambler's Ruin]
+        Suppose a gambler starts with $i$ dollars and stops when reaching
+        either $0$ dollars or $N$ dollars. If the probability of winning each
+        round is $p$ and $q=1-p$, then the probability of reaching $N$ before
+        $0$ is
+        \[
+            \frac{1-(q/p)^i}{1-(q/p)^N}
+            \qquad
+            (p\neq q).
+        \]
+        In the fair case $p=q=1/2$, the probability is
+        \[
+            \frac{i}{N}.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        Gambler's ruin is a classic random walk result. It is a good example
+        where the fair case has a very simple answer.
+    \end{remark}
+
+    \chapter{Geometry}
+
+    This chapter collects quiz-friendly results from Euclidean synthetic
+    geometry and analytic geometry. The emphasis is on named theorems, elegant
+    geometric configurations, and formulas with clear memorable answers.
+
+    \section*{Synthetic Geometry}
+
+    \begin{definition}[Classical Triangle Centers]
+        For a triangle $\triangle ABC$, the most important classical centers
+        are:
+        \[
+            O=\text{circumcenter},
+            \qquad
+            I=\text{incenter},
+            \qquad
+            H=\text{orthocenter},
+            \qquad
+            G=\text{centroid}.
+        \]
+        Here $O$ is the center of the circumcircle, $I$ is the center of the
+        incircle, $H$ is the intersection of the altitudes, and $G$ is the
+        intersection of the medians.
+    \end{definition}
+
+    \begin{remark}
+        Triangle centers are extremely common in olympiad-style geometry.
+        The symbols $O,I,H,G$ are standard and should be recognized quickly.
+    \end{remark}
+
+    \begin{formula}[Extended Law of Sines]
+        For a triangle $\triangle ABC$ with side lengths
+        \[
+            a=BC,\qquad b=CA,\qquad c=AB,
+        \]
+        and circumradius $R$, we have
+        \[
+            \frac{a}{\sin A}
+            =
+            \frac{b}{\sin B}
+            =
+            \frac{c}{\sin C}
+            =
+            2R.
+        \]
+    \end{formula}
+
+    \begin{formula}[Heron's Formula]
+        Let $\triangle ABC$ have side lengths $a,b,c$ and semiperimeter
+        \[
+            s=\frac{a+b+c}{2}.
+        \]
+        Then its area $K$ is
+        \[
+            K
+            =
+            \sqrt{s(s-a)(s-b)(s-c)}.
+        \]
+        Also,
+        \[
+            K=rs
+            \qquad\text{and}\qquad
+            K=\frac{abc}{4R},
+        \]
+        where $r$ is the inradius and $R$ is the circumradius.
+    \end{formula}
+
+    \begin{strategy}
+        The formulas
+        \[
+            K=rs,
+            \qquad
+            K=\frac{abc}{4R}
+        \]
+        are often more useful than Heron's formula when incircles or
+        circumcircles appear.
+    \end{strategy}
+
+    \begin{theorem}[Angle Bisector Theorem]
+        In a triangle $\triangle ABC$, suppose the internal angle bisector of
+        $\angle A$ meets $BC$ at $D$. Then
+        \[
+            \frac{BD}{DC}
+            =
+            \frac{AB}{AC}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Ceva's Theorem]
+        Let $D,E,F$ lie on the lines $BC,CA,AB$, respectively. Then the cevians
+        $AD,BE,CF$ are concurrent if and only if
+        \[
+            \frac{BD}{DC}
+            \cdot
+            \frac{CE}{EA}
+            \cdot
+            \frac{AF}{FB}
+            =
+            1,
+        \]
+        using directed lengths.
+    \end{theorem}
+
+    \begin{remark}
+        Ceva's Theorem is the standard theorem for proving concurrence of three
+        lines in a triangle.
+    \end{remark}
+
+    \begin{theorem}[Menelaus' Theorem]
+        Let $D,E,F$ lie on the lines $BC,CA,AB$, respectively. Then the points
+        $D,E,F$ are collinear if and only if
+        \[
+            \frac{BD}{DC}
+            \cdot
+            \frac{CE}{EA}
+            \cdot
+            \frac{AF}{FB}
+            =
+            -1,
+        \]
+        using directed lengths.
+    \end{theorem}
+
+    \begin{remark}
+        Ceva is for concurrence, while Menelaus is for collinearity. This pair
+        is one of the most important toolkits in olympiad geometry.
+    \end{remark}
+
+    \begin{theorem}[Euler Line Theorem]
+        In any non-equilateral triangle, the circumcenter $O$, centroid $G$,
+        and orthocenter $H$ are collinear. Moreover,
+        \[
+            OG:GH=1:2.
+        \]
+        The line passing through these points is called the Euler line.
+    \end{theorem}
+
+    \begin{theorem}[Nine-Point Circle Theorem; Euler Circle]
+        In any triangle, the following nine points lie on one circle:
+        the three side midpoints, the three feet of the altitudes, and the
+        three midpoints between the orthocenter and the vertices. This circle
+        is called the nine-point circle.
+    \end{theorem}
+
+    \begin{remark}
+        The center of the nine-point circle is the midpoint of the segment
+        joining the circumcenter $O$ and the orthocenter $H$.
+    \end{remark}
+
+    \begin{theorem}[Euler's Formula for the Incenter and Circumcenter]
+        For a triangle with circumradius $R$, inradius $r$, circumcenter $O$,
+        and incenter $I$, we have
+        \[
+            OI^2=R^2-2Rr.
+        \]
+        In particular,
+        \[
+            R\geq 2r.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        The inequality $R\geq 2r$ is called Euler's inequality for triangles.
+        Equality holds exactly for an equilateral triangle.
+    \end{remark}
+
+    \begin{theorem}[Power of a Point Theorem]
+        Let $P$ be a point and let a line through $P$ meet a circle at
+        $A$ and $B$. The product
+        \[
+            PA\cdot PB
+        \]
+        is independent of the choice of the line through $P$. It is called the
+        power of $P$ with respect to the circle.
+    \end{theorem}
+
+    \begin{formula}[Tangent--Secant Theorem]
+        If $PT$ is tangent to a circle at $T$ and a secant through $P$ meets
+        the circle at $A$ and $B$, then
+        \[
+            PT^2=PA\cdot PB.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Radical Axis Theorem]
+        For two nonconcentric circles, the set of points having equal powers
+        with respect to the two circles is a line. This line is called the
+        radical axis of the two circles.
+    \end{theorem}
+
+    \begin{remark}
+        Radical axes are powerful because they turn circle configurations into
+        collinearity statements.
+    \end{remark}
+
+    \begin{theorem}[Ptolemy's Theorem]
+        A quadrilateral $ABCD$ is cyclic if and only if
+        \[
+            AC\cdot BD
+            =
+            AB\cdot CD+BC\cdot DA
+        \]
+        for the appropriate cyclic order of the vertices.
+    \end{theorem}
+
+    \begin{remark}
+        Ptolemy's Theorem is one of the most recognizable formulas for cyclic
+        quadrilaterals.
+    \end{remark}
+
+    \begin{theorem}[Simson Line Theorem]
+        Let $P$ be a point on the circumcircle of $\triangle ABC$. The feet of
+        the perpendiculars from $P$ to the three lines $AB,BC,CA$ are collinear.
+        This line is called the Simson line of $P$ with respect to
+        $\triangle ABC$.
+    \end{theorem}
+
+    \begin{theorem}[Miquel's Theorem]
+        In a complete quadrilateral, the circumcircles of the four triangles
+        formed by choosing three of the four lines pass through a common point.
+        This point is called the Miquel point.
+    \end{theorem}
+
+    \begin{remark}
+        Miquel's Theorem is a standard source of hidden cyclic quadrilaterals
+        in olympiad geometry.
+    \end{remark}
+
+    \begin{theorem}[Butterfly Theorem]
+        Let $M$ be the midpoint of a chord $PQ$ of a circle. Through $M$, draw
+        two other chords $AB$ and $CD$, and let $AD$ and $BC$ meet $PQ$ at
+        $X$ and $Y$, respectively. Then $M$ is also the midpoint of $XY$.
+    \end{theorem}
+
+    \begin{theorem}[Morley's Trisector Theorem]
+        In any triangle, the adjacent trisectors of the three angles intersect
+        in three points that form an equilateral triangle.
+    \end{theorem}
+
+    \begin{remark}
+        Morley's theorem is famous because the conclusion is surprisingly
+        simple: angle trisectors always create an equilateral triangle.
+    \end{remark}
+
+    \begin{theorem}[Napoleon's Theorem]
+        Construct equilateral triangles externally on the three sides of any
+        triangle. Then the centers of these three equilateral triangles form an
+        equilateral triangle.
+    \end{theorem}
+
+    \begin{theorem}[Classification of Platonic Solids]
+        There are exactly five Platonic solids:
+        \[
+            \text{tetrahedron},\quad
+            \text{cube},\quad
+            \text{octahedron},\quad
+            \text{dodecahedron},\quad
+            \text{icosahedron}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        The classification of Platonic solids is a classic result in Euclidean
+        geometry and a very natural quiz fact.
+    \end{remark}
+
+    \section*{Analytic Geometry}
+
+    \begin{formula}[Shoelace Formula; Gauss's Area Formula]
+        For a polygon with vertices
+        \[
+            (x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)
+        \]
+        in cyclic order, its area is
+        \[
+            \frac12
+            \left|
+            \sum_{i=1}^{n}
+            (x_i y_{i+1}-x_{i+1}y_i)
+            \right|,
+        \]
+        where
+        \[
+            (x_{n+1},y_{n+1})=(x_1,y_1).
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The Shoelace Formula is one of the cleanest examples of analytic
+        geometry: a geometric area becomes a determinant-like coordinate
+        calculation.
+    \end{remark}
+
+    \begin{definition}[Conic Section]
+        A conic section is a curve obtained by intersecting a plane with a
+        double cone. The nondegenerate conics are:
+        \[
+            \text{ellipse},\qquad
+            \text{parabola},\qquad
+            \text{hyperbola}.
+        \]
+        Equivalently, a conic can be described using a focus, a directrix, and
+        an eccentricity $e$.
+    \end{definition}
+
+    \begin{formula}[Focus--Directrix Definition of Conics]
+        A conic is the set of points $P$ satisfying
+        \[
+            \frac{\operatorname{dist}(P,\text{focus})}
+                 {\operatorname{dist}(P,\text{directrix})}
+            =
+            e.
+        \]
+        It is an ellipse if
+        \[
+            0<e<1,
+        \]
+        a parabola if
+        \[
+            e=1,
+        \]
+        and a hyperbola if
+        \[
+            e>1.
+        \]
+    \end{formula}
+
+    \begin{formula}[Standard Forms of Conics]
+        The standard form of an ellipse is
+        \[
+            \frac{x^2}{a^2}+\frac{y^2}{b^2}=1.
+        \]
+        The standard form of a hyperbola is
+        \[
+            \frac{x^2}{a^2}-\frac{y^2}{b^2}=1.
+        \]
+        The standard form of a parabola opening to the right is
+        \[
+            y^2=4px.
+        \]
+    \end{formula}
+
+    \begin{formula}[Eccentricity of an Ellipse and a Hyperbola]
+        For an ellipse
+        \[
+            \frac{x^2}{a^2}+\frac{y^2}{b^2}=1
+            \qquad (a\geq b>0),
+        \]
+        the eccentricity is
+        \[
+            e=\frac{c}{a},
+            \qquad
+            c^2=a^2-b^2.
+        \]
+        For a hyperbola
+        \[
+            \frac{x^2}{a^2}-\frac{y^2}{b^2}=1,
+        \]
+        the eccentricity is
+        \[
+            e=\frac{c}{a},
+            \qquad
+            c^2=a^2+b^2.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Reflection Property of Conics]
+        An ellipse reflects a ray from one focus to the other focus. A parabola
+        reflects rays parallel to its axis through its focus. A hyperbola has
+        the analogous reflection property involving its two foci and branches.
+    \end{theorem}
+
+    \begin{remark}
+        The reflection property gives a geometric reason why conics appear in
+        optics, satellite dishes, whispering galleries, and orbital mechanics.
+    \end{remark}
+
+    \begin{theorem}[Quadratic Classification of Conics]
+        Consider a real quadratic equation
+        \[
+            Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+        \]
+        The discriminant
+        \[
+            B^2-4AC
+        \]
+        determines the type of the nondegenerate conic:
+        \[
+            B^2-4AC<0
+            \quad\Rightarrow\quad
+            \text{ellipse-type},
+        \]
+        \[
+            B^2-4AC=0
+            \quad\Rightarrow\quad
+            \text{parabola-type},
+        \]
+        and
+        \[
+            B^2-4AC>0
+            \quad\Rightarrow\quad
+            \text{hyperbola-type}.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        This is the analytic-geometry counterpart of classifying conic sections
+        by their shapes.
+    \end{remark}
+
+    \begin{formula}[Polar Equation of a Conic]
+        With a focus at the pole, a conic has polar equation
+        \[
+            r
+            =
+            \frac{\ell}{1+e\cos\theta}
+        \]
+        after choosing a suitable axis. Here $e$ is the eccentricity and
+        $\ell$ is the semi-latus rectum.
+    \end{formula}
+
+    \begin{remark}
+        The same equation describes ellipses, parabolas, and hyperbolas
+        depending on whether $e<1$, $e=1$, or $e>1$.
+    \end{remark}
+
+    \begin{definition}[Apollonius Circle]
+        Given two fixed points $A$ and $B$ and a positive constant
+        $k\neq 1$, the locus of points $P$ satisfying
+        \[
+            \frac{PA}{PB}=k
+        \]
+        is a circle. This circle is called an Apollonius circle.
+    \end{definition}
+
+    \begin{remark}
+        Apollonius circles turn a ratio of distances into a concrete circle,
+        which is a common hidden structure in geometry problems.
+    \end{remark}
+
+    \begin{theorem}[Descartes' Circle Theorem; Soddy Circle Theorem]
+        Suppose four circles are mutually tangent, and let their curvatures be
+        \[
+            k_1,k_2,k_3,k_4,
+        \]
+        where curvature means the reciprocal of the radius, with sign convention
+        for an enclosing circle. Then
+        \[
+            (k_1+k_2+k_3+k_4)^2
+            =
+            2(k_1^2+k_2^2+k_3^2+k_4^2).
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Descartes' Circle Theorem is a striking formula: tangency of four
+        circles becomes one quadratic equation in their curvatures.
+    \end{remark}
+
+    \begin{theorem}[Pick's Theorem]
+        Let $P$ be a simple polygon whose vertices lie on lattice points in the
+        plane. If $I$ is the number of lattice points strictly inside $P$ and
+        $B$ is the number of lattice points on the boundary of $P$, then
+        \[
+            \operatorname{Area}(P)
+            =
+            I+\frac{B}{2}-1.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Pick's Theorem is a beautiful bridge between geometry and arithmetic:
+        area is determined by counting lattice points.
+    \end{remark}
+
+    \chapter{Number Theory}
+
+    This chapter collects famous number-theoretic results with strong quiz
+    value: primes, congruences, reciprocity, sums of squares, and the
+    distribution of primes.
+
+    \begin{theorem}[Fundamental Theorem of Arithmetic]
+        Every integer $n>1$ can be written as a product of prime numbers.
+        Moreover, this factorization is unique up to the order of the factors.
+        Equivalently,
+        \[
+            n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k},
+        \]
+        where $p_1,\dots,p_k$ are distinct primes and
+        $\alpha_1,\dots,\alpha_k$ are positive integers, and this expression is
+        unique up to reordering.
+    \end{theorem}
+
+    \begin{remark}
+        This theorem is often called unique prime factorization. It is the
+        reason prime numbers are treated as the basic building blocks of
+        integers.
+    \end{remark}
+
+    \begin{theorem}[Euclid's Theorem; Infinitude of Primes]
+        There are infinitely many prime numbers.
+    \end{theorem}
+
+    \begin{idea}
+        If $p_1,\dots,p_n$ are finitely many primes, consider
+        \[
+            p_1p_2\cdots p_n+1.
+        \]
+        This number is not divisible by any prime on the list.
+    \end{idea}
+
+    \begin{theorem}[Bezout's Identity]
+        Let $a,b\in\Z$, not both zero. Then there exist integers $x,y\in\Z$
+        such that
+        \[
+            ax+by=\gcd(a,b).
+        \]
+        In particular, if $\gcd(a,b)=1$, then there exist integers $x,y\in\Z$
+        such that
+        \[
+            ax+by=1.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Bezout's identity is the algebraic heart of the Euclidean algorithm and
+        modular inverses.
+    \end{remark}
+
+    \begin{algorithm}[Euclidean Algorithm]
+        To compute $\gcd(a,b)$ for integers $a,b\in\Z$, repeatedly divide the
+        larger number by the smaller number and replace the pair by
+        \[
+            (b,r),
+        \]
+        where $r$ is the remainder. Continue until the remainder becomes $0$.
+        The last nonzero remainder is $\gcd(a,b)$.
+    \end{algorithm}
+
+    \begin{theorem}[Chinese Remainder Theorem; CRT]
+        Let $m_1,\dots,m_k$ be pairwise relatively prime positive integers.
+        Then the system
+        \[
+            x\equiv a_1\pmod {m_1},
+            \qquad
+            x\equiv a_2\pmod {m_2},
+            \qquad
+            \dots,
+            \qquad
+            x\equiv a_k\pmod {m_k}
+        \]
+        has a solution. Moreover, the solution is unique modulo
+        \[
+            M=m_1m_2\cdots m_k.
+        \]
+    \end{theorem}
+
+    \begin{strategy}
+        CRT is the standard theorem for combining several congruence conditions
+        into one congruence.
+    \end{strategy}
+
+    \begin{formula}[Euler's Phi Function Formula]
+        If
+        \[
+            n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}
+        \]
+        is the prime factorization of $n$, then
+        \[
+            \varphi(n)
+            =
+            n\prod_{i=1}^{k}\left(1-\frac{1}{p_i}\right).
+        \]
+        In particular, for a prime power,
+        \[
+            \varphi(p^\alpha)=p^\alpha-p^{\alpha-1}
+            =
+            p^{\alpha-1}(p-1).
+        \]
+    \end{formula}
+
+    \begin{theorem}[Fermat's Little Theorem]
+        Let $p$ be a prime number. If $p\nmid a$, then
+        \[
+            a^{p-1}\equiv 1\pmod p.
+        \]
+        Equivalently, for every integer $a$,
+        \[
+            a^p\equiv a\pmod p.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Euler's Theorem]
+        If $\gcd(a,n)=1$, then
+        \[
+            a^{\varphi(n)}\equiv 1\pmod n.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Fermat's Little Theorem is the special case of Euler's Theorem when
+        $n=p$ is prime, since $\varphi(p)=p-1$.
+    \end{remark}
+
+    \begin{theorem}[Wilson's Theorem]
+        A positive integer $p>1$ is prime if and only if
+        \[
+            (p-1)!\equiv -1\pmod p.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Wilson's theorem is famous because it gives a clean factorial
+        characterization of primes, even though it is not efficient as a
+        primality test.
+    \end{remark}
+
+    \begin{definition}[Legendre Symbol]
+        Let $p$ be an odd prime. The Legendre symbol is defined by
+        \[
+            \left(\frac{a}{p}\right)
+            =
+            \begin{cases}
+                1, & \text{if }a\text{ is a quadratic residue modulo }p, \\
+                -1, & \text{if }a\text{ is a quadratic nonresidue modulo }p, \\
+                0, & \text{if }p\mid a.
+            \end{cases}
+        \]
+    \end{definition}
+
+    \begin{theorem}[Euler's Criterion]
+        Let $p$ be an odd prime. For any integer $a$,
+        \[
+            \left(\frac{a}{p}\right)
+            \equiv
+            a^{(p-1)/2}
+            \pmod p.
+        \]
+        Equivalently, if $p\nmid a$, then
+        \[
+            a^{(p-1)/2}
+            \equiv
+            \begin{cases}
+                1\pmod p, & \text{if }a\text{ is a quadratic residue modulo }p, \\
+                -1\pmod p, & \text{if }a\text{ is a quadratic nonresidue modulo }p.
+            \end{cases}
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Law of Quadratic Reciprocity; Gauss's Theorem of Quadratic Reciprocity]
+        Let $p$ and $q$ be distinct odd primes. Then
+        \[
+            \left(\frac{p}{q}\right)
+            \left(\frac{q}{p}\right)
+            =
+            (-1)^{\frac{p-1}{2}\frac{q-1}{2}}.
+        \]
+        Equivalently,
+        \[
+            \left(\frac{p}{q}\right)
+            =
+            \left(\frac{q}{p}\right)
+        \]
+        unless both $p$ and $q$ are congruent to $3$ modulo $4$.
+    \end{theorem}
+
+    \begin{remark}
+        Quadratic reciprocity is one of the crown jewels of elementary number
+        theory. Gauss called it the golden theorem.
+    \end{remark}
+
+    \begin{theorem}[Fermat's Two-Square Theorem]
+        An odd prime $p$ can be written as a sum of two squares,
+        \[
+            p=a^2+b^2
+        \]
+        for some integers $a,b\in\Z$, if and only if
+        \[
+            p\equiv 1\pmod 4.
+        \]
+        Also,
+        \[
+            2=1^2+1^2.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Lagrange's Four-Square Theorem]
+        Every nonnegative integer can be written as a sum of four integer
+        squares. That is, for every $n\in\Nzero$, there exist integers
+        $a,b,c,d\in\Z$ such that
+        \[
+            n=a^2+b^2+c^2+d^2.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        The two-square theorem has a congruence condition. The four-square
+        theorem has no exception at all.
+    \end{remark}
+
+    \begin{theorem}[Dirichlet's Theorem on Arithmetic Progressions]
+        If $a$ and $d$ are relatively prime positive integers, then the
+        arithmetic progression
+        \[
+            a,\ a+d,\ a+2d,\ a+3d,\dots
+        \]
+        contains infinitely many primes.
+    \end{theorem}
+
+    \begin{remark}
+        Dirichlet's theorem is a major result connecting primes and arithmetic
+        progressions. The condition $\gcd(a,d)=1$ is necessary.
+    \end{remark}
+
+    \begin{theorem}[Bertrand's Postulate; Chebyshev's Theorem]
+        For every integer $n>1$, there exists a prime $p$ such that
+        \[
+            n<p<2n.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Prime Number Theorem]
+        Let $\pi(x)$ be the number of primes less than or equal to $x$. Then
+        \[
+            \pi(x)\sim \frac{x}{\log x}
+            \qquad
+            \text{as }x\to\infty.
+        \]
+    \end{theorem}
+
+    \begin{idea}
+        The Prime Number Theorem says that the ``probability'' that a large
+        integer near $x$ is prime is roughly $1/\log x$. This is a mental model,
+        not a literal probability statement.
+    \end{idea}
+
+    \begin{definition}[Riemann Zeta Function]
+        For $\operatorname{Re}(s)>1$, the Riemann zeta function is defined by
+        \[
+            \zeta(s)
+            =
+            \sum_{n=1}^{\infty}\frac{1}{n^s}.
+        \]
+        It also has the Euler product
+        \[
+            \zeta(s)
+            =
+            \prod_{p\text{ prime}}
+            \frac{1}{1-p^{-s}}.
+        \]
+    \end{definition}
+
+    \begin{remark}
+        The Euler product is the bridge between the zeta function and prime
+        numbers. The Riemann Hypothesis asserts that the nontrivial zeros of
+        $\zeta(s)$ all have real part $1/2$.
+    \end{remark}
+
+    \begin{theorem}[Euclid--Euler Theorem on Perfect Numbers]
+        An even positive integer $N$ is perfect if and only if
+        \[
+            N=2^{p-1}(2^p-1),
+        \]
+        where $2^p-1$ is a Mersenne prime.
+    \end{theorem}
+
+    \begin{remark}
+        A perfect number is a positive integer equal to the sum of its positive
+        proper divisors. For example,
+        \[
+            6=1+2+3.
+        \]
+    \end{remark}
+
+    \begin{theorem}[Fermat's Last Theorem]
+        For every integer $n\geq 3$, there do not exist positive integers
+        $a,b,c$ such that
+        \[
+            a^n+b^n=c^n.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Fermat's Last Theorem was proved by Andrew Wiles. It is one of the most
+        famous theorems in the history of mathematics.
+    \end{remark}
+
+    \chapter{Algebra}
+
+    This chapter collects algebraic structures and named theorems that are likely
+    to appear as terminology or quick-recognition questions. The emphasis is on
+    groups, rings, fields, and polynomial equations, not on long abstract proofs.
+
+
+    \begin{definition}[Group]
+        A group is a set $G$ together with a binary operation satisfying closure,
+        associativity, the existence of an identity element, and the existence of
+        inverses. If the operation is commutative, then $G$ is called an abelian
+        group.
+    \end{definition}
+
+    \begin{definition}[Cyclic Group]
+        A group $G$ is cyclic if there exists an element $g\in G$ such that every
+        element of $G$ is a power of $g$. In this case, we write
+        \[
+            G=\langle g\rangle.
+        \]
+    \end{definition}
+
+    \begin{theorem}[Lagrange's Theorem]
+        If $G$ is a finite group and $H\leq G$, then
+        \[
+            |H|\mid |G|.
+        \]
+        Equivalently, the order of every subgroup divides the order of the group.
+    \end{theorem}
+
+    \begin{corollary}[Order of an Element]
+        If $G$ is a finite group and $g\in G$, then the order of $g$ divides
+        $|G|$. In particular,
+        \[
+            g^{|G|}=e.
+        \]
+    \end{corollary}
+
+    \begin{theorem}[Cauchy's Theorem]
+        If $G$ is a finite group and a prime $p$ divides $|G|$, then $G$ contains
+        an element of order $p$.
+    \end{theorem}
+
+    \begin{theorem}[First Isomorphism Theorem for Groups]
+        If $\varphi:G\to H$ is a group homomorphism, then
+        \[
+            G/\Ker(\varphi)\cong \Image(\varphi).
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Cayley's Theorem]
+        Every group is isomorphic to a subgroup of a symmetric group. In
+        particular, every finite group of order $n$ is isomorphic to a subgroup
+        of $S_n$.
+    \end{theorem}
+
+    \begin{theorem}[Sylow Theorems]
+        Let $G$ be a finite group and suppose
+        \[
+            |G|=p^k m,
+            \qquad
+            p\nmid m,
+        \]
+        where $p$ is prime. Then $G$ has a subgroup of order $p^k$, called a
+        Sylow $p$-subgroup. Moreover, all Sylow $p$-subgroups are conjugate, and
+        the number $n_p$ of Sylow $p$-subgroups satisfies
+        \[
+            n_p\equiv 1\pmod p,
+            \qquad
+            n_p\mid m.
+        \]
+    \end{theorem}
+
+    \begin{strategy}
+        For Science Quiz, the most common finite-group quick check is divisibility:
+        subgroup orders and element orders must divide the group order. When a
+        prime divides $|G|$, Cauchy's theorem guarantees an element of that prime
+        order.
+    \end{strategy}
+
+
+    \begin{definition}[Ring and Field]
+        A ring is a set equipped with addition and multiplication satisfying the
+        usual distributive laws. A field is a commutative ring in which every
+        nonzero element has a multiplicative inverse.
+    \end{definition}
+
+    \begin{definition}[Integral Domain]
+        An integral domain is a commutative ring with identity in which there are
+        no zero divisors. In other words, if $ab=0$, then $a=0$ or $b=0$.
+    \end{definition}
+
+    \begin{algorithm}[Polynomial Division Algorithm]
+        Let $F$ be a field. If $f(x),g(x)\in F[x]$ and $g(x)\neq 0$, then there
+        exist unique polynomials $q(x),r(x)\in F[x]$ such that
+        \[
+            f(x)=q(x)g(x)+r(x),
+            \qquad
+            r(x)=0\quad\text{or}\quad \deg r<\deg g.
+        \]
+    \end{algorithm}
+
+    \begin{theorem}[Factor Theorem]
+        For a polynomial $f(x)\in F[x]$ and an element $a\in F$,
+        \[
+            f(a)=0
+            \quad\Longleftrightarrow\quad
+            x-a \text{ divides } f(x).
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Fundamental Theorem of Algebra]
+        Every nonconstant complex polynomial has at least one complex root.
+        Equivalently, every polynomial of degree $n\geq 1$ over $\C$ splits into
+        $n$ linear factors over $\C$, counted with multiplicity.
+    \end{theorem}
+
+    \begin{definition}[Algebraically Closed Field]
+        A field $F$ is algebraically closed if every nonconstant polynomial in
+        $F[x]$ has a root in $F$.
+    \end{definition}
+
+    \begin{theorem}[Galois Correspondence]
+        For a finite Galois extension $L/K$, there is an inclusion-reversing
+        correspondence between intermediate fields $K\subseteq E\subseteq L$ and
+        subgroups $H\leq \Gal(L/K)$, given by
+        \[
+            E\longmapsto \Gal(L/E),
+            \qquad
+            H\longmapsto L^H.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Abel--Ruffini Theorem]
+        There is no formula for the roots of a general polynomial of degree $5$
+        or higher using only the field operations and radicals.
+    \end{theorem}
+
+    \begin{remark}
+        The Abel--Ruffini theorem does not say that every quintic equation is
+        unsolvable. It says that no universal radical formula exists for the
+        general quintic.
+    \end{remark}
+
+    \chapter{Analysis}
+
+    This chapter collects foundational results from real analysis that often
+    appear behind rigorous calculus, limits, compactness, and convergence. The
+    statements are kept theorem-oriented so that they can be recognized quickly
+    in a quiz setting.
+
+
+    \begin{definition}[Limit Superior and Limit Inferior]
+        For a real sequence $(a_n)$, define
+        \[
+            \limsup_{n\to\infty} a_n
+            =
+            \lim_{n\to\infty}\sup_{k\geq n} a_k,
+            \qquad
+            \liminf_{n\to\infty} a_n
+            =
+            \lim_{n\to\infty}\inf_{k\geq n} a_k,
+        \]
+        whenever these extended real limits are allowed.
+    \end{definition}
+
+    \begin{theorem}[Monotone Convergence Theorem for Sequences]
+        Every bounded monotone real sequence converges. More precisely, every
+        increasing sequence bounded above converges to its supremum, and every
+        decreasing sequence bounded below converges to its infimum.
+    \end{theorem}
+
+    \begin{theorem}[Bolzano--Weierstrass Theorem]
+        Every bounded sequence in $\R^n$ has a convergent subsequence.
+    \end{theorem}
+
+    \begin{theorem}[Heine--Borel Theorem]
+        A subset of $\R^n$ is compact if and only if it is closed and bounded.
+    \end{theorem}
+
+    \begin{theorem}[Uniform Continuity on Compact Sets]
+        If $K\subseteq\R^n$ is compact and $f:K\to\R^m$ is continuous, then $f$
+        is uniformly continuous on $K$.
+    \end{theorem}
+
+    \begin{theorem}[Weierstrass Extreme Value Theorem]
+        If $K\subseteq\R^n$ is compact and $f:K\to\R$ is continuous, then $f$
+        attains both a maximum and a minimum on $K$.
+    \end{theorem}
+
+    \begin{strategy}
+        In analysis questions, compactness usually means that one may extract a
+        convergent subsequence or that a continuous function attains extrema.
+        In $\R^n$, the fast recognition phrase is ``closed and bounded.''
+    \end{strategy}
+
+
+    \begin{theorem}[Cauchy Criterion]
+        A sequence $(a_n)$ in $\R$ or $\C$ converges if and only if it is Cauchy:
+        for every $\eps>0$, there exists $N$ such that
+        \[
+            m,n\geq N
+            \quad\Longrightarrow\quad
+            |a_m-a_n|<\eps.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Weierstrass M-Test]
+        Let $(f_n)$ be a sequence of functions on a set $E$. If
+        \[
+            |f_n(x)|\leq M_n
+            \quad\text{for all }x\in E
+        \]
+        and
+        \[
+            \sum_{n=1}^{\infty}M_n
+        \]
+        converges, then the series
+        \[
+            \sum_{n=1}^{\infty} f_n(x)
+        \]
+        converges uniformly on $E$.
+    \end{theorem}
+
+    \begin{theorem}[Uniform Limit Theorem]
+        If $(f_n)$ is a sequence of continuous functions on a set $E$ and
+        $f_n\to f$ uniformly on $E$, then $f$ is continuous on $E$.
+    \end{theorem}
+
+    \begin{theorem}[Term-by-Term Differentiation]
+        Suppose $f_n$ are continuously differentiable on an interval and $f_n$
+        converges at one point. If $f_n'$ converges uniformly, then $f_n$
+        converges uniformly to a differentiable function $f$, and
+        \[
+            f'=\lim_{n\to\infty} f_n'.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Arzelà--Ascoli Theorem]
+        A uniformly bounded and equicontinuous family of real-valued continuous
+        functions on a compact metric space has a uniformly convergent
+        subsequence.
+    \end{theorem}
+
+
+    \begin{theorem}[Banach Fixed-Point Theorem; Contraction Mapping Theorem]
+        Let $(X,d)$ be a complete metric space, and let $T:X\to X$ be a
+        contraction. Then $T$ has a unique fixed point $x^\ast\in X$, and the
+        iteration $x_{n+1}=T(x_n)$ converges to $x^\ast$ for every initial point
+        $x_0\in X$.
+    \end{theorem}
+
+    \begin{theorem}[Baire Category Theorem]
+        A complete metric space cannot be written as a countable union of nowhere
+        dense closed sets. Equivalently, a countable intersection of open dense
+        subsets of a complete metric space is dense.
+    \end{theorem}
+
+    \begin{theorem}[Lebesgue Dominated Convergence Theorem]
+        If $f_n\to f$ almost everywhere and there exists an integrable function
+        $g$ such that $|f_n|\leq g$ for all $n$, then
+        \[
+            \lim_{n\to\infty}\int f_n\dd\mu
+            =
+            \int f\dd\mu.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Fubini's Theorem]
+        Under suitable integrability assumptions, an iterated integral may be
+        computed in either order:
+        \[
+            \int_X\left(\int_Y f(x,y)\dd y\right)\dd x
+            =
+            \int_Y\left(\int_X f(x,y)\dd x\right)\dd y.
+        \]
+    \end{theorem}
+
+    \chapter{Topology}
+
+    This chapter records topology terms and theorems that are famous enough to
+    appear in mathematical culture and Science Quiz questions. The goal is not to
+    develop topology from scratch, but to make the names and meanings recognizable.
+
+
+    \begin{definition}[Topology]
+        A topology on a set $X$ is a collection $\mathcal{T}$ of subsets of $X$
+        whose elements are called open sets, satisfying:
+        \begin{enumerate}
+            \item[(i)] $\varnothing,X\in\mathcal{T}$;
+            \item[(ii)] arbitrary unions of sets in $\mathcal{T}$ belong to
+            $\mathcal{T}$;
+            \item[(iii)] finite intersections of sets in $\mathcal{T}$ belong to
+            $\mathcal{T}$.
+        \end{enumerate}
+    \end{definition}
+
+    \begin{definition}[Compactness]
+        A topological space $X$ is compact if every open cover of $X$ has a finite
+        subcover.
+    \end{definition}
+
+    \begin{definition}[Connectedness]
+        A topological space $X$ is connected if it cannot be written as the union
+        of two disjoint nonempty open sets. Equivalently, the only subsets of
+        $X$ that are both open and closed are $\varnothing$ and $X$.
+    \end{definition}
+
+    \begin{definition}[Homeomorphism]
+        A homeomorphism is a bijective continuous map whose inverse is also
+        continuous. Two spaces are homeomorphic if they are the same from the
+        viewpoint of topology.
+    \end{definition}
+
+    \begin{theorem}[Brouwer Fixed-Point Theorem]
+        Every continuous map from a closed ball in $\R^n$ to itself has at least
+        one fixed point.
+    \end{theorem}
+
+    \begin{theorem}[Invariance of Domain]
+        If $U\subseteq\R^n$ is open and $f:U\to\R^n$ is continuous and injective,
+        then $f(U)$ is open and $f$ is a homeomorphism from $U$ onto $f(U)$.
+    \end{theorem}
+
+
+    \begin{definition}[Manifold]
+        An $n$-dimensional topological manifold is a space that locally looks like
+        $\R^n$. More precisely, each point has a neighborhood homeomorphic to an
+        open subset of $\R^n$.
+    \end{definition}
+
+    \begin{definition}[Fundamental Group]
+        The fundamental group $\pi_1(X,x_0)$ records loops in $X$ based at
+        $x_0$, up to continuous deformation. It is one of the basic algebraic
+        invariants of a topological space.
+    \end{definition}
+
+    \begin{fact}[Fundamental Groups of Familiar Spaces]
+        The following basic examples are worth recognizing:
+        \[
+            \pi_1(S^1)\cong\Z,
+            \qquad
+            \pi_1(S^n)\cong 0\quad(n\geq 2),
+            \qquad
+            \pi_1(\mathbb{T}^2)\cong\Z^2.
+        \]
+    \end{fact}
+
+    \begin{formula}[Euler Characteristic of a Surface]
+        For a triangulated closed surface, the Euler characteristic is
+        \[
+            \chi=V-E+F.
+        \]
+        For an orientable closed surface of genus $g$,
+        \[
+            \chi=2-2g.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Classification of Closed Surfaces]
+        Every connected closed surface is homeomorphic to either an orientable
+        surface of genus $g\geq 0$ or a nonorientable surface obtained as a
+        connected sum of $k\geq 1$ projective planes.
+    \end{theorem}
+
+    \begin{theorem}[Poincaré Conjecture]
+        Every closed simply connected $3$-manifold is homeomorphic to the
+        $3$-sphere $S^3$.
+    \end{theorem}
+
+    \begin{remark}
+        The Poincaré conjecture was proved by Grigori Perelman using Ricci flow.
+        In a quiz setting, the key association is usually
+        \[
+            \text{Poincaré conjecture} \longleftrightarrow
+            \text{Perelman} \longleftrightarrow
+            \text{Ricci flow}.
+        \]
+    \end{remark}
+
+    \begin{theorem}[Thurston Geometrization Theorem]
+        Every closed orientable $3$-manifold can be decomposed into pieces that
+        admit one of the eight Thurston geometries.
+    \end{theorem}
+
+    \begin{fact}[The Eight Thurston Geometries]
+        The eight model geometries are
+        \[
+            S^3,
+            \quad \mathbb{E}^3,
+            \quad \mathbb{H}^3,
+            \quad S^2\times\R,
+            \quad \mathbb{H}^2\times\R,
+            \quad \widetilde{\mathrm{SL}_2(\R)},
+            \quad \mathrm{Nil},
+            \quad \mathrm{Sol}.
+        \]
+    \end{fact}
+
+    \chapter{Miscellaneous Topics}
+
+
+    \begin{formula}[Mercator Series for $\ln 2$]
+        The alternating harmonic series satisfies
+        \[
+            \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{n}
+            =
+            1-\frac12+\frac13-\frac14+\cdots
+            =
+            \ln 2.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        This follows from the Mercator series
+        \[
+            \ln(1+x)
+            =
+            x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots
+        \]
+        by substituting $x=1$.
+    \end{remark}
+
+    \begin{formula}[Basel Sum; Euler's Basel Formula]
+        The Basel sum is
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+            =
+            1+\frac{1}{2^2}+\frac{1}{3^2}+\cdots
+            =
+            \frac{\pi^2}{6}.
+        \]
+        Equivalently,
+        \[
+            \zeta(2)=\frac{\pi^2}{6}.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The problem of evaluating
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+        \]
+        is called the Basel problem. Its famous solution was found by Euler.
+    \end{remark}
+
+    \begin{formula}[Odd Part of the Basel Sum]
+        The sum of reciprocal squares over odd positive integers is
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^2}
+            =
+            1+\frac{1}{3^2}+\frac{1}{5^2}+\cdots
+            =
+            \frac{\pi^2}{8}.
+        \]
+    \end{formula}
+
+    \begin{idea}
+        This is obtained by subtracting the even part from the Basel sum:
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^2}
+            =
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+            -
+            \sum_{n=1}^{\infty}\frac{1}{(2n)^2}
+            =
+            \left(1-\frac14\right)\frac{\pi^2}{6}
+            =
+            \frac{\pi^2}{8}.
+        \]
+    \end{idea}
+
+    \begin{formula}[Alternating Basel Series; Dirichlet Eta Value at $2$]
+        The alternating Basel series satisfies
+        \[
+            \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{n^2}
+            =
+            1-\frac{1}{2^2}+\frac{1}{3^2}-\frac{1}{4^2}+\cdots
+            =
+            \frac{\pi^2}{12}.
+        \]
+        Equivalently,
+        \[
+            \eta(2)=\frac{\pi^2}{12},
+        \]
+        where $\eta(s)$ is the Dirichlet eta function.
+    \end{formula}
+
+    \begin{idea}
+        The positive terms are the odd reciprocal squares and the negative
+        terms are the even reciprocal squares. Hence
+        \[
+            \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{n^2}
+            =
+            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^2}
+            -
+            \sum_{n=1}^{\infty}\frac{1}{(2n)^2}
+            =
+            \frac{\pi^2}{8}-\frac{\pi^2}{24}
+            =
+            \frac{\pi^2}{12}.
+        \]
+    \end{idea}
+
+    \begin{formula}[Gregory--Leibniz Series; Leibniz Formula for $\pi$]
+        The Gregory--Leibniz series is
+        \[
+            \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{2n-1}
+            =
+            1-\frac13+\frac15-\frac17+\cdots
+            =
+            \frac{\pi}{4}.
+        \]
+        Equivalently,
+        \[
+            \pi
+            =
+            4\left(
+                1-\frac13+\frac15-\frac17+\cdots
+            \right).
+        \]
+    \end{formula}
+
+    \begin{remark}
+        This follows from the Taylor series
+        \[
+            \arctan x
+            =
+            x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots
+        \]
+        by substituting $x=1$, since $\arctan 1=\pi/4$.
+    \end{remark}
+
+    \begin{strategy}
+        These values are useful because Science Quiz problems often hide them
+        behind a simple transformation. For example,
+        \[
+            \frac12-\frac14+\frac16-\frac18+\cdots
+            =
+            \frac12
+            \left(
+                1-\frac12+\frac13-\frac14+\cdots
+            \right)
+            =
+            \frac{\ln 2}{2}.
+        \]
+    \end{strategy}
