@@ -130,6 +130,79 @@
         \]
     \end{formula}
 
+    \begin{formula}[Vi\`ete's Formula]
+        For real $x\neq 0$, we have
+        \[
+            \frac{\sin x}{x}
+            =
+            \prod_{k=1}^{\infty}
+            \cos\left(\frac{x}{2^k}\right).
+        \]
+        In particular, taking $x=\dfrac{\pi}{2}$ gives
+        \[
+            \frac{2}{\pi}
+            =
+            \cos\frac{\pi}{4}
+            \cdot
+            \cos\frac{\pi}{8}
+            \cdot
+            \cos\frac{\pi}{16}
+            \cdots.
+        \]
+    \end{formula}
+
+    \begin{idea}
+        The key is to repeatedly use the double-angle formula
+        \[
+            \sin(2x)=2\sin x\cos x.
+        \]
+        Applying this identity $n$ times gives
+        \[
+            \sin x
+            =
+            2^n
+            \sin\left(\frac{x}{2^n}\right)
+            \prod_{k=1}^{n}
+            \cos\left(\frac{x}{2^k}\right).
+        \]
+        Hence
+        \[
+            \prod_{k=1}^{n}
+            \cos\left(\frac{x}{2^k}\right)
+            =
+            \frac{\sin x}
+            {2^n\sin\left(\frac{x}{2^n}\right)}.
+        \]
+        Since
+        \[
+            2^n\sin\left(\frac{x}{2^n}\right)
+            =
+            x\cdot
+            \frac{\sin\left(\frac{x}{2^n}\right)}
+            {\frac{x}{2^n}}
+            \to x,
+        \]
+        we obtain
+        \[
+            \prod_{k=1}^{\infty}
+            \cos\left(\frac{x}{2^k}\right)
+            =
+            \frac{\sin x}{x}.
+        \]
+        Substituting $x=\dfrac{\pi}{2}$ gives Vi\`ete's formula.
+    \end{idea}
+
+    \begin{strategy}
+        In a quiz setting, a product of the form
+        \[
+            \cos\frac{\pi}{4}
+            \cos\frac{\pi}{8}
+            \cos\frac{\pi}{16}
+            \cdots
+        \]
+        should immediately suggest repeated use of the double-angle formula for sine.
+    \end{strategy}
+
     \begin{formula}[Euler's Formula]
         For every real number $x$,
         \[
@@ -544,6 +617,44 @@
         If an $n\times n$ matrix $\mathbf{A}$ has $n$ distinct eigenvalues in
         $F$, then $\mathbf{A}$ is diagonalizable over $F$.
     \end{corollary}
+
+    \begin{proposition}[Polynomials of a Diagonalizable Matrix]
+        Let $\mathbf{A}\in F^{n\times n}$ be diagonalizable over $F$, and suppose
+        \[
+            \mathbf{A}
+            =
+            \mathbf{S}\mathbf{D}\mathbf{S}^{-1},
+            \qquad
+            \mathbf{D}
+            =
+            \operatorname{diag}(\lambda_1,\dots,\lambda_n).
+        \]
+        For a polynomial $p(x)\in F[x]$, we have
+        \[
+            p(\mathbf{A})
+            =
+            \mathbf{S}p(\mathbf{D})\mathbf{S}^{-1},
+        \]
+        where
+        \[
+            p(\mathbf{D})
+            =
+            \operatorname{diag}\bigl(p(\lambda_1),\dots,p(\lambda_n)\bigr).
+        \]
+        In particular,
+        \[
+            \det(p(\mathbf{A}))
+            =
+            p(\lambda_1)p(\lambda_2)\cdots p(\lambda_n).
+        \]
+    \end{proposition}
+
+    \begin{idea}
+        Similar matrices represent the same linear transformation in different
+        bases. Therefore, applying a polynomial to a diagonalizable matrix is
+        the same as applying that polynomial to each diagonal entry after
+        diagonalization.
+    \end{idea}
 
     \begin{strategy}
         Distinct eigenvalues are an easy sufficient condition for
