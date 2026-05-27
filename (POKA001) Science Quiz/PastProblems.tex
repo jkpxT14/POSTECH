@@ -1,3 +1,368 @@
+    \begin{problem}{2011.1}
+        What is the name of the international mathematical congress, held in South Korea in 2014, at which the Fields Medal is awarded?
+    \end{problem}
+
+    \begin{solution}
+        The Fields Medal is awarded at the International Congress of Mathematicians, commonly abbreviated as ICM. The 2014 ICM was held in Seoul, South Korea.
+
+        Therefore, the answer is $\boxed{\text{International Congress of Mathematicians, or ICM}}$.
+    \end{solution}
+
+    \begin{problem}{2011.2}
+        Let $\mathbf{A}$ and $\mathbf{B}$ be $n\times n$ matrices. If
+        \[
+            \mathbf{A}\mathbf{B}-\mathbf{I}=\mathbf{0},
+        \]
+        where $\mathbf{I}$ is the identity matrix, what is the value of
+        \[
+            \mathbf{B}\mathbf{A}-\mathbf{I}?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The condition
+        \[
+            \mathbf{A}\mathbf{B}-\mathbf{I}=\mathbf{0}
+        \]
+        means that
+        \[
+            \mathbf{A}\mathbf{B}=\mathbf{I}.
+        \]
+        Since $\mathbf{A}$ and $\mathbf{B}$ are square matrices, this implies that $\mathbf{B}$ is the inverse of $\mathbf{A}$. Hence
+        \[
+            \mathbf{B}\mathbf{A}=\mathbf{I}.
+        \]
+        Therefore,
+        \[
+            \mathbf{B}\mathbf{A}-\mathbf{I}
+            =
+            \mathbf{I}-\mathbf{I}
+            =
+            \mathbf{0}.
+        \]
+
+        Thus the answer is $\boxed{\mathbf{0}}$.
+    \end{solution}
+
+    \begin{problem}{2011.3}
+        What is the value obtained by differentiating $(1+x)^{10}$ three times and then substituting $x=0$?
+    \end{problem}
+
+    \begin{solution}
+        We compute the third derivative:
+        \[
+            \frac{d^3}{dx^3}(1+x)^{10}
+            =
+            10\cdot 9\cdot 8(1+x)^7.
+        \]
+        Substituting $x=0$, we get
+        \[
+            10\cdot 9\cdot 8(1+0)^7
+            =
+            720.
+        \]
+        Therefore, the answer is $\boxed{720}$.
+    \end{solution}
+
+    \begin{problem}{2011.4}
+        Give at least two real-valued functions defined on $\mathbb{R}$ that remain unchanged after being differentiated twice. In other words, give at least two functions $f:\mathbb{R}\to\mathbb{R}$ satisfying
+        \[
+            f''=f.
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Two simple examples are
+        \[
+            f(x)=e^x
+            \qquad\text{and}\qquad
+            g(x)=e^{-x}.
+        \]
+        Indeed,
+        \[
+            \frac{d^2}{dx^2}e^x=e^x
+        \]
+        and
+        \[
+            \frac{d^2}{dx^2}e^{-x}=e^{-x}.
+        \]
+        Therefore, both functions remain unchanged after being differentiated twice.
+
+        Thus two possible answers are $\boxed{e^x\text{ and }e^{-x}}$.
+    \end{solution}
+
+    \begin{problem}{2011.5}
+        Let $\mathbf{A}$ be a $5\times 5$ matrix such that every entry in the $i$-th row is equal to $i$. Find the sum of the five eigenvalues of $\mathbf{A}$, counted with multiplicity.
+    \end{problem}
+
+    \begin{solution}
+        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal to its trace.
+
+        In this matrix, the diagonal entries are
+        \[
+            1,\quad 2,\quad 3,\quad 4,\quad 5.
+        \]
+        Therefore,
+        \[
+            \operatorname{tr}(\mathbf{A})
+            =
+            1+2+3+4+5
+            =
+            15.
+        \]
+        Hence the sum of the five eigenvalues of $\mathbf{A}$, counted with multiplicity, is $\boxed{15}$.
+    \end{solution}
+
+    \begin{problem}{2011.6}
+        A train takes $22$ seconds to completely cross an $82\mathrm{m}$ bridge. When its speed is doubled, it takes $50$ seconds to completely cross a $706\mathrm{m}$ bridge. What is the length of the train?
+    \end{problem}
+
+    \begin{solution}
+        Let $L$ be the length of the train, and let $v$ be its original speed in meters per second.
+
+        To completely cross a bridge, the train must travel the length of the bridge plus its own length. Hence
+        \[
+            \frac{L+82}{v}=22.
+        \]
+        When the speed is doubled, the train takes $50$ seconds to completely cross a $706\mathrm{m}$ bridge, so
+        \[
+            \frac{L+706}{2v}=50.
+        \]
+        Equivalently,
+        \[
+            L+82=22v,
+            \qquad
+            L+706=100v.
+        \]
+        Subtracting the first equation from the second gives
+        \[
+            624=78v,
+        \]
+        so
+        \[
+            v=8.
+        \]
+        Therefore,
+        \[
+            L+82=22\cdot 8=176,
+        \]
+        and hence
+        \[
+            L=94.
+        \]
+
+        Thus the length of the train is $\boxed{94\mathrm{m}}$.
+    \end{solution}
+
+    \begin{problem}{2011.7}
+        Form an integer using the digits
+        \[
+            1,2,3,4,6,7,8,9.
+        \]
+        Each of these digits must be used at least once, and digits may be repeated. What is the smallest such integer that is divisible by all of
+        \[
+            1,2,3,4,6,7,8,9?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The number must be divisible by
+        \[
+            \lcm(1,2,3,4,6,7,8,9)=504.
+        \]
+        Thus it must be divisible by $7$, $8$, and $9$.
+
+        If each digit is used exactly once, then the sum of the digits is
+        \[
+            1+2+3+4+6+7+8+9=40,
+        \]
+        which is not divisible by $9$. Hence no $8$-digit number works.
+
+        If we use exactly one extra digit $d$, then the digit sum becomes $40+d$. For divisibility by $9$, we need
+        \[
+            40+d\equiv 0\pmod{9},
+        \]
+        so
+        \[
+            d\equiv 5\pmod{9}.
+        \]
+        But the digit $5$ is not allowed. Hence no $9$-digit number works.
+
+        Therefore, the answer must have at least $10$ digits. For a $10$-digit number, we need to add two extra digits. Their sum must be congruent to $5$ modulo $9$. Among the allowed digits, the possible extra pairs are
+        \[
+            (1,4),\qquad (2,3),\qquad (6,8),\qquad (7,7).
+        \]
+        To make the number as small as possible, we should try the lexicographically smallest multiset first, namely
+        \[
+            1,1,2,3,4,4,6,7,8,9.
+        \]
+
+        With these digits, the smallest possible beginning is
+        \[
+            112344.
+        \]
+        It remains to arrange the last four digits $6,7,8,9$ so that the whole number is divisible by $504$.
+
+        Since the digit sum is already divisible by $9$, it remains to check divisibility by $7$ and $8$. The last three digits must be divisible by $8$. Among the permutations of three of the digits $6,7,8,9$, the possible last three digits divisible by $8$ are
+        \[
+            768,\qquad 896,\qquad 968,\qquad 976.
+        \]
+        Hence the only candidates with prefix $112344$ are
+        \[
+            1123449768,\qquad
+            1123447896,\qquad
+            1123447968,\qquad
+            1123448976.
+        \]
+        Checking divisibility by $7$, only
+        \[
+            1123449768
+        \]
+        is divisible by $7$. Indeed,
+        \[
+            1123449768=504\cdot 2229067.
+        \]
+        Therefore it is divisible by all of
+        \[
+            1,2,3,4,6,7,8,9.
+        \]
+
+        Thus the smallest possible integer is $\boxed{1123449768}$.
+    \end{solution}
+
+    \begin{problem}{2011.8}
+        What is the greatest integer less than or equal to
+        \[
+            -\frac{1}{\ln\left(\frac{365}{366}\right)}?
+        \]
+        Use the Taylor approximation of $\ln(1-x)$.
+    \end{problem}
+
+    \begin{solution}
+        We write
+        \[
+            \frac{365}{366}=1-\frac{1}{366}.
+        \]
+        Using
+        \[
+            \ln(1-x)
+            =
+            -x-\frac{x^2}{2}-\frac{x^3}{3}-\cdots,
+        \]
+        with $x=\dfrac{1}{366}$, we get
+        \[
+            -\ln\left(\frac{365}{366}\right)
+            =
+            \frac{1}{366}
+            +
+            \frac{1}{2\cdot 366^2}
+            +
+            \frac{1}{3\cdot 366^3}
+            +
+            \cdots.
+        \]
+        Hence
+        \[
+            \frac{1}{366}
+            <
+            -\ln\left(\frac{365}{366}\right)
+            <
+            \frac{1}{365}.
+        \]
+        Taking reciprocals gives
+        \[
+            365
+            <
+            -\frac{1}{\ln\left(\frac{365}{366}\right)}
+            <
+            366.
+        \]
+        Therefore, the greatest integer less than or equal to the given number is $\boxed{365}$.
+    \end{solution}
+
+    \begin{problem}{2011.9}
+        Evaluate the integral
+        \[
+            \int_0^{\pi/2}
+            \frac{1}{1+\tan^{\sqrt{2}}t}\,dt.
+        \]
+        Use the substitution $x=\dfrac{\pi}{2}-t$.
+    \end{problem}
+
+    \begin{solution}
+        Let
+        \[
+            I
+            =
+            \int_0^{\pi/2}
+            \frac{1}{1+\tan^{\sqrt{2}}t}\,dt.
+        \]
+        Use the substitution
+        \[
+            x=\frac{\pi}{2}-t.
+        \]
+        Then
+        \[
+            \tan t
+            =
+            \tan\left(\frac{\pi}{2}-x\right)
+            =
+            \cot x
+            =
+            \frac{1}{\tan x}.
+        \]
+        Hence
+        \[
+            I
+            =
+            \int_0^{\pi/2}
+            \frac{1}{1+\cot^{\sqrt{2}}x}\,dx
+            =
+            \int_0^{\pi/2}
+            \frac{\tan^{\sqrt{2}}x}{1+\tan^{\sqrt{2}}x}\,dx.
+        \]
+        Adding this expression to the original expression for $I$, we obtain
+        \[
+            2I
+            =
+            \int_0^{\pi/2}
+            \left(
+                \frac{1}{1+\tan^{\sqrt{2}}x}
+                +
+                \frac{\tan^{\sqrt{2}}x}{1+\tan^{\sqrt{2}}x}
+            \right)\,dx
+            =
+            \int_0^{\pi/2}1\,dx
+            =
+            \frac{\pi}{2}.
+        \]
+        Therefore,
+        \[
+            I=\frac{\pi}{4}.
+        \]
+        Thus the answer is $\boxed{\dfrac{\pi}{4}}$.
+    \end{solution}
+
+    \begin{problem}{2011.10}
+        This French mathematician was born on December 8, 1865, and died on October 17, 1963, living to the age of $97$. He is well known for his proof of the prime number theorem, which states that the number of primes less than or equal to $x$ is asymptotically approximated by $\dfrac{x}{\ln x}$ for large $x$. He was also personally connected to the Dreyfus affair and became a strong supporter of Zionism.
+
+        Who is this mathematician?
+
+        \textit{Hint.}
+        \begin{enumerate}
+            \item[(a)] The Cauchy--\underline{\hspace{2cm}} theorem gives the radius of convergence of a power series.
+            \item[(b)] A \underline{\hspace{2cm}} matrix is a square matrix whose entries are all $+1$ or $-1$, and such matrices are also used in error-correcting codes.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{solution}
+        The mathematician described in the problem is Jacques Hadamard.
+
+        The first hint refers to the Cauchy--Hadamard theorem, which gives the radius of convergence of a power series. The second hint refers to a Hadamard matrix, a square matrix whose entries are all $+1$ or $-1$ and whose rows are mutually orthogonal.
+
+        Hadamard is also famous for proving the prime number theorem in 1896, independently of Charles Jean de la Vallée Poussin. Therefore, the answer is $\boxed{\text{Jacques Hadamard}}$.
+    \end{solution}
+
     \begin{problem}{2014.1}
         This twentieth-century German mathematician is well known for a theorem stating that symmetries of Hamiltonian dynamical systems correspond to conservation laws. What is the name of this mathematician?
     \end{problem}
