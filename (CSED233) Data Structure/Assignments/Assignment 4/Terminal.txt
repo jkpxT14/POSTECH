@@ -1,0 +1,94 @@
+g++ -std=c++11 -o pa4.exe pa4.cpp graph.cpp utils.cpp
+./pa4.exe
+g++ -std=c++11 -o evaluate.exe evaluate.cpp
+./evaluate.exe
+
+in: ./pa4.exe 1 "[('A','B'),('A','C'),('B','Z'),('C','D'),('D','Z')]"
+out: 2
+
+in: ./pa4.exe 1 "[('A','B'),('A','C'),('B','C'),('B','Z'),('C','Z')]"
+out: 4
+
+in: ./pa4.exe 1 "[('A','B'),('B','C'),('D','Z')]"
+out: 0
+
+in: ./pa4.exe 2 "[('A','B'),('A','C'),('B','D'),('C','D'),('C','E'),('D','F'),('E','F')]"
+out: A | B C | D E | F
+
+in: ./pa4.exe 2 "[('A','B'),('C','D'),('B','E'),('D','E')]"
+out: A C | B D | E
+
+in: ./pa4.exe 2 "[('A','B'),('A','B'),('B','C'),('D','E')]"
+out: A D | B E | C
+
+in: ./pa4.exe 2 "[('B','C'),('C','D'),('D','B')]"
+out: ERROR
+
+in: ./pa4.exe 3 "[('A','B'),('C','A'),('B','C'),('D','B'),('D','E'),('E','G'),('G','F'),('F','E')]"
+out:
+SCC
+A B C
+D
+E F G
+WCC
+A B C D E F G
+
+in: ./pa4.exe 3 "[('A','B'),('B','C'),('C','A')]"
+out:
+SCC
+A B C
+WCC
+A B C
+
+in: ./pa4.exe 3 "[('A','B'),('B','C'),('A','C'),('D','E'),('E','F'),('F','D')]"
+out:
+SCC
+A
+B
+C
+D E F
+WCC
+A B C
+D E F
+
+in: ./pa4.exe 4 "[('A-B',10),('A-C',3),('B-D',5),('C-B',2), ('C-E',15),('A-D',20),('D-E',11),('A',11)]"
+out:
+B 5
+C 3
+D 10
+A C B D 10
+
+in: ./pa4.exe 4 "[('A-B',10),('A-C',3),('B-D',5),('C-B',2), ('C-E',15),('A-D',20),('D-E',11),('A',1)]"
+out:
+
+
+in: ./pa4.exe 4 "[('A-B',10),('A-C',3),('B-D',5),('C-B',2), ('C-E',15),('A-D',20),('D-E',11),('A',20)]"
+out:
+B 5
+C 3
+D 10
+E 18
+A C B D 10
+
+in: ./pa4.exe 4 "[('A-B',10),('A-C',3),('B-D',5),('C-B',2), ('C-E',15),('A-D',20),('D-E',11),('D',12)]"
+out:
+E 11
+D E 11
+
+in: ./pa4.exe 5 "[('A-B',10),('A-C',8),('B-C',7),('B-D',6),('C-D',2),('C-Z',5),('D-Z',1),('B-Z',3),('MST',NULL)]"
+out:
+A B 10
+B C 7
+B D 6
+C Z 5
+28
+
+in: ./pa4.exe 5 "[('A-B',5),('B-C',4),('C-Z',3),('MST',NULL)]"
+out: NO SECOND TREE
+
+in: ./pa4.exe 5 "[('A-B',10),('A-C',9),('B-Z',8),('C-Z',8),('B-C',7),('MST',NULL)]"
+out:
+A B 10
+B Z 8
+C Z 8
+26
