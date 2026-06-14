@@ -1,6 +1,6 @@
     \chapter{Calculus}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH101) Calculus I, (MATH102) Calculus II\\
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH101) Calculus I, (MATH102) Calculus II, (MATH210) Applied Complex Variables\\
     Related Books:
 
     \section*{One-Variable Calculus}
@@ -43,7 +43,7 @@
         function and show that its values cross the desired level.
     \end{strategy}
 
-    \begin{theorem}[Extreme Value Theorem]
+    \begin{theorem}[Extreme Value Theorem; Weierstrass Extreme Value Theorem]
         Let $f$ be continuous on $[a,b]$. Then $f$ attains both a maximum and
         a minimum on $[a,b]$.
     \end{theorem}
@@ -53,7 +53,7 @@
         open interval need not attain a maximum or a minimum.
     \end{remark}
 
-    \begin{theorem}[Mean Value Theorem]
+    \begin{theorem}[Mean Value Theorem; Lagrange Mean Value Theorem]
         Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then
         there exists $c\in(a,b)$ such that
         \[
@@ -130,6 +130,39 @@
         \]
     \end{formula}
 
+    \begin{formula}[Integration by Parts]
+        If $u$ and $v$ are differentiable functions, then
+        \[
+            \int u\dd v
+            =
+            uv-\int v\dd u.
+        \]
+        Equivalently,
+        \[
+            \int_a^b u(x)v'(x)\dd x
+            =
+            \left[u(x)v(x)\right]_a^b
+            -
+            \int_a^b u'(x)v(x)\dd x.
+        \]
+    \end{formula}
+
+    \begin{formula}[Arc Length Formula]
+        The length of the graph $y=f(x)$ on $[a,b]$ is
+        \[
+            L
+            =
+            \int_a^b \sqrt{1+(f'(x))^2}\dd x.
+        \]
+        More generally, if a curve is parametrized by
+        $\mathbf{r}(t)=(x(t),y(t),z(t))$, then
+        \[
+            L
+            =
+            \int_a^b \|\mathbf{r}'(t)\|\dd t.
+        \]
+    \end{formula}
+
     \begin{formula}[Vi\`ete's Formula]
         For real $x\neq 0$, we have
         \[
@@ -138,7 +171,7 @@
             \prod_{k=1}^{\infty}
             \cos\left(\frac{x}{2^k}\right).
         \]
-        In particular, taking $x=\dfrac{\pi}{2}$ gives
+        In particular,
         \[
             \frac{2}{\pi}
             =
@@ -152,56 +185,12 @@
     \end{formula}
 
     \begin{idea}
-        The key is to repeatedly use the double-angle formula
+        Vi\`ete's formula is a product formula for $\pi$. The key identity is
+        the double-angle formula
         \[
             \sin(2x)=2\sin x\cos x.
         \]
-        Applying this identity $n$ times gives
-        \[
-            \sin x
-            =
-            2^n
-            \sin\left(\frac{x}{2^n}\right)
-            \prod_{k=1}^{n}
-            \cos\left(\frac{x}{2^k}\right).
-        \]
-        Hence
-        \[
-            \prod_{k=1}^{n}
-            \cos\left(\frac{x}{2^k}\right)
-            =
-            \frac{\sin x}
-            {2^n\sin\left(\frac{x}{2^n}\right)}.
-        \]
-        Since
-        \[
-            2^n\sin\left(\frac{x}{2^n}\right)
-            =
-            x\cdot
-            \frac{\sin\left(\frac{x}{2^n}\right)}
-            {\frac{x}{2^n}}
-            \to x,
-        \]
-        we obtain
-        \[
-            \prod_{k=1}^{\infty}
-            \cos\left(\frac{x}{2^k}\right)
-            =
-            \frac{\sin x}{x}.
-        \]
-        Substituting $x=\dfrac{\pi}{2}$ gives Vi\`ete's formula.
     \end{idea}
-
-    \begin{strategy}
-        In a quiz setting, a product of the form
-        \[
-            \cos\frac{\pi}{4}
-            \cos\frac{\pi}{8}
-            \cos\frac{\pi}{16}
-            \cdots
-        \]
-        should immediately suggest repeated use of the double-angle formula for sine.
-    \end{strategy}
 
     \begin{formula}[Euler's Formula]
         For every real number $x$,
@@ -240,6 +229,38 @@
         The Gaussian integral is one of the most famous integrals in calculus.
         It is closely connected to the normal distribution in probability.
     \end{remark}
+
+    \begin{formula}[Fresnel Integrals]
+        The Fresnel integrals satisfy
+        \[
+            \int_0^{\infty}\cos(x^2)\dd x
+            =
+            \int_0^{\infty}\sin(x^2)\dd x
+            =
+            \sqrt{\frac{\pi}{8}}.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        Fresnel integrals appear in wave optics, diffraction, and the Cornu
+        spiral. They are memorable examples of non-elementary definite
+        integrals with clean values.
+    \end{remark}
+
+    \begin{formula}[Sine Integral; Dirichlet Integral]
+        The sine integral is
+        \[
+            \operatorname{Si}(x)
+            =
+            \int_0^x \frac{\sin t}{t}\dd t.
+        \]
+        The classical Dirichlet integral is
+        \[
+            \int_0^{\infty}\frac{\sin x}{x}\dd x
+            =
+            \frac{\pi}{2}.
+        \]
+    \end{formula}
 
     \begin{formula}[Wallis Product]
         The Wallis product is
@@ -293,6 +314,100 @@
         It often appears in counting, probability, and asymptotic estimation.
     \end{remark}
 
+    \begin{formula}[Trapezoidal Rule]
+        The trapezoidal approximation is
+        \[
+            \int_a^b f(x)\dd x
+            \approx
+            \frac{b-a}{2}\bigl(f(a)+f(b)\bigr).
+        \]
+        It has degree of precision $1$.
+    \end{formula}
+
+    \begin{formula}[Simpson's Rule]
+        Simpson's rule is
+        \[
+            \int_a^b f(x)\dd x
+            \approx
+            \frac{b-a}{6}
+            \left(
+                f(a)+4f\left(\frac{a+b}{2}\right)+f(b)
+            \right).
+        \]
+        It has degree of precision $3$.
+    \end{formula}
+
+    \begin{remark}
+        Simpson's rule uses quadratic interpolation, but the resulting formula
+        is exact for every polynomial of degree at most $3$.
+    \end{remark}
+
+    \section*{Series Tests}
+
+    \begin{theorem}[Integral Test]
+        Suppose $f$ is positive, continuous, and decreasing on $[1,\infty)$,
+        and let $a_n=f(n)$. Then
+        \[
+            \sum_{n=1}^{\infty}a_n
+        \]
+        and
+        \[
+            \int_1^{\infty}f(x)\dd x
+        \]
+        either both converge or both diverge.
+    \end{theorem}
+
+    \begin{theorem}[Limit Comparison Test]
+        Let $a_n,b_n>0$. If
+        \[
+            \lim_{n\to\infty}\frac{a_n}{b_n}=c
+        \]
+        for some finite number $c>0$, then
+        \[
+            \sum_{n=1}^{\infty}a_n
+            \qquad\text{and}\qquad
+            \sum_{n=1}^{\infty}b_n
+        \]
+        converge or diverge together.
+    \end{theorem}
+
+    \begin{theorem}[Ratio Test; d'Alembert's Ratio Test]
+        Let $a_n>0$ and suppose
+        \[
+            L=\lim_{n\to\infty}\frac{a_{n+1}}{a_n}
+        \]
+        exists. If $L<1$, then $\sum a_n$ converges. If $L>1$, then
+        $\sum a_n$ diverges. If $L=1$, the test is inconclusive.
+    \end{theorem}
+
+    \begin{theorem}[Root Test; Cauchy's Root Test]
+        Let $a_n\geq 0$ and suppose
+        \[
+            L=\lim_{n\to\infty}\sqrt[n]{a_n}
+        \]
+        exists. If $L<1$, then $\sum a_n$ converges. If $L>1$, then
+        $\sum a_n$ diverges. If $L=1$, the test is inconclusive.
+    \end{theorem}
+
+    \begin{theorem}[Alternating Series Test; Leibniz Test]
+        If
+        \[
+            a_1\geq a_2\geq a_3\geq\cdots\geq 0
+        \]
+        and $a_n\to 0$, then the alternating series
+        \[
+            \sum_{n=1}^{\infty}(-1)^{n+1}a_n
+        \]
+        converges.
+    \end{theorem}
+
+    \begin{strategy}
+        For Science Quiz, the test names matter. Factorials and powers often
+        suggest the Ratio Test, $n$th powers suggest the Root Test, and
+        alternating signs with decreasing terms suggest the Alternating Series
+        Test.
+    \end{strategy}
+
     \section*{Multivariable Calculus and Vector Calculus}
 
     \begin{definition}[Gradient, Divergence, Curl, and Laplacian]
@@ -339,13 +454,28 @@
         Laplacian measures how a value differs from its surrounding average.
     \end{idea}
 
-    \begin{theorem}[Clairaut's Theorem]
+    \begin{theorem}[Clairaut's Theorem; Mixed Partial Derivative Theorem]
         If $f$ has continuous second partial derivatives near a point, then the
         mixed partial derivatives agree at that point:
         \[
             \frac{\partial^2 f}{\partial x\partial y}
             =
             \frac{\partial^2 f}{\partial y\partial x}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Fubini's Theorem]
+        Under suitable continuity or integrability assumptions, an iterated
+        integral over a plane region may be computed in either order. For
+        example, if
+        \[
+            R=\{(x,y):a\leq x\leq b,\ g_1(x)\leq y\leq g_2(x)\},
+        \]
+        then
+        \[
+            \iint_R f(x,y)\dd A
+            =
+            \int_a^b\int_{g_1(x)}^{g_2(x)}f(x,y)\dd y\dd x.
         \]
     \end{theorem}
 
@@ -386,6 +516,23 @@
         a change of variables.
     \end{remark}
 
+    \begin{formula}[Polar Coordinates]
+        In polar coordinates,
+        \[
+            x=r\cos\theta,
+            \qquad
+            y=r\sin\theta,
+            \qquad
+            \dd A=r\dd r\dd\theta.
+        \]
+        The area enclosed by a polar curve $r=r(\theta)$ is
+        \[
+            A
+            =
+            \frac12\int_{\alpha}^{\beta}r(\theta)^2\dd\theta.
+        \]
+    \end{formula}
+
     \begin{theorem}[Lagrange Multipliers]
         Suppose that $f$ has a local maximum or minimum subject to the constraint
         \[
@@ -402,6 +549,16 @@
         At a constrained optimum, the level surface of $f$ is tangent to the
         constraint surface. Thus their normal vectors are parallel.
     \end{idea}
+
+    \begin{definition}[Line Integral]
+        If a curve $C$ is parametrized by $\mathbf{r}(t)$ for $a\leq t\leq b$,
+        then the line integral of a vector field $\mathbf{F}$ along $C$ is
+        \[
+            \int_C \mathbf{F}\cdot\dd\mathbf{r}
+            =
+            \int_a^b \mathbf{F}(\mathbf{r}(t))\cdot\mathbf{r}'(t)\dd t.
+        \]
+    \end{definition}
 
     \begin{theorem}[Green's Theorem]
         Let $C$ be a positively oriented, simple closed curve in the plane, and
@@ -441,7 +598,7 @@
         integral.
     \end{idea}
 
-    \begin{theorem}[Divergence Theorem]
+    \begin{theorem}[Divergence Theorem; Gauss's Theorem]
         Let $E$ be a solid region in $\R^3$ with outward-oriented boundary
         surface $\partial E$. Then
         \[
@@ -487,6 +644,17 @@
         are redistributed.
     \end{strategy}
 
+    \begin{theorem}[Row Rank Equals Column Rank]
+        For every matrix $\mathbf{A}$,
+        \[
+            \dim\Row(\mathbf{A})
+            =
+            \dim\Col(\mathbf{A}).
+        \]
+        This common dimension is called the rank of $\mathbf{A}$ and is denoted
+        by $\rk(\mathbf{A})$.
+    \end{theorem}
+
     \begin{theorem}[Invertible Matrix Theorem]
         For a square matrix $\mathbf{A}\in F^{n\times n}$, the following
         statements are equivalent:
@@ -520,6 +688,23 @@
         $\mathbf{x}\mapsto\mathbf{A}\mathbf{x}$.
     \end{definition}
 
+    \begin{formula}[Determinant as Volume]
+        If $\mathbf{v}_1,\dots,\mathbf{v}_n\in\R^n$, then the $n$-dimensional
+        volume of the parallelepiped spanned by these vectors is
+        \[
+            \left|
+            \det
+            \begin{bmatrix}
+                \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n
+            \end{bmatrix}
+            \right|.
+        \]
+        In $\R^3$, this is the absolute value of the scalar triple product
+        \[
+            |(\mathbf{a}\times\mathbf{b})\cdot\mathbf{c}|.
+        \]
+    \end{formula}
+
     \begin{proposition}[Basic Properties of Determinants]
         For square matrices $\mathbf{A},\mathbf{B}\in F^{n\times n}$, we have
         \[
@@ -545,6 +730,48 @@
             \det(\mathbf{A})
             =
             a_{11}a_{22}\cdots a_{nn}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Inverse of a $2\times 2$ Matrix]
+        If
+        \[
+            \mathbf{A}
+            =
+            \begin{bmatrix}
+                a & b \\
+                c & d
+            \end{bmatrix}
+            \qquad\text{and}\qquad
+            ad-bc\neq 0,
+        \]
+        then
+        \[
+            \mathbf{A}^{-1}
+            =
+            \frac{1}{ad-bc}
+            \begin{bmatrix}
+                d & -b \\
+                -c & a
+            \end{bmatrix}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Rotation and Reflection Matrices]
+        Rotation by angle $\theta$ in the plane is represented by
+        \[
+            \begin{bmatrix}
+                \cos\theta & -\sin\theta \\
+                \sin\theta & \cos\theta
+            \end{bmatrix}.
+        \]
+        Reflection across the line making angle $\theta$ with the positive
+        $x$-axis is represented by
+        \[
+            \begin{bmatrix}
+                \cos 2\theta & \sin 2\theta \\
+                \sin 2\theta & -\cos 2\theta
+            \end{bmatrix}.
         \]
     \end{formula}
 
@@ -627,7 +854,7 @@
             \qquad
             \mathbf{D}
             =
-            \operatorname{diag}(\lambda_1,\dots,\lambda_n).
+            \diag(\lambda_1,\dots,\lambda_n).
         \]
         For a polynomial $p(x)\in F[x]$, we have
         \[
@@ -639,7 +866,7 @@
         \[
             p(\mathbf{D})
             =
-            \operatorname{diag}\bigl(p(\lambda_1),\dots,p(\lambda_n)\bigr).
+            \diag\bigl(p(\lambda_1),\dots,p(\lambda_n)\bigr).
         \]
         In particular,
         \[
@@ -680,6 +907,40 @@
         signal for real eigenvalues and orthogonal diagonalization.
     \end{remark}
 
+    \begin{theorem}[Spectral Theorem for Hermitian Matrices]
+        If $\mathbf{A}\in\C^{n\times n}$ is Hermitian, meaning
+        \[
+            \mathbf{A}^{*}=\mathbf{A},
+        \]
+        where $\mathbf{A}^{*}$ is the conjugate transpose, then all eigenvalues
+        of $\mathbf{A}$ are real and there exists a unitary matrix $\mathbf{U}$
+        such that
+        \[
+            \mathbf{A}
+            =
+            \mathbf{U}\mathbf{D}\mathbf{U}^{*}
+        \]
+        for a real diagonal matrix $\mathbf{D}$.
+    \end{theorem}
+
+    \begin{definition}[Markov Matrix; Stochastic Matrix]
+        A column-stochastic Markov matrix is a matrix whose entries are
+        nonnegative and whose columns each sum to $1$.
+        For such a matrix $\mathbf{A}$,
+        \[
+            \begin{bmatrix}1&1&\cdots&1\end{bmatrix}\mathbf{A}
+            =
+            \begin{bmatrix}1&1&\cdots&1\end{bmatrix}.
+        \]
+        Hence $1$ is an eigenvalue of $\mathbf{A}$.
+    \end{definition}
+
+    \begin{remark}
+        Markov matrices are linear algebra objects behind finite-state Markov
+        chains. A stationary distribution is an eigenvector corresponding to the
+        eigenvalue $1$.
+    \end{remark}
+
     \begin{theorem}[Cauchy--Schwarz Inequality]
         For vectors $\mathbf{u},\mathbf{v}\in\R^n$, we have
         \[
@@ -711,7 +972,41 @@
         \]
     \end{corollary}
 
-    \begin{algorithm}[Gram--Schmidt Process]
+    \begin{proposition}[Properties of Orthogonal Matrices]
+        A real square matrix $\mathbf{Q}$ is orthogonal if
+        \[
+            \mathbf{Q}^{\mathsf T}\mathbf{Q}=\mathbf{I}.
+        \]
+        If $\mathbf{Q}$ is orthogonal, then
+        \[
+            \|\mathbf{Q}\mathbf{v}\|=\|\mathbf{v}\|,
+            \qquad
+            \langle\mathbf{Q}\mathbf{u},\mathbf{Q}\mathbf{v}\rangle
+            =
+            \langle\mathbf{u},\mathbf{v}\rangle,
+            \qquad
+            \det(\mathbf{Q})=\pm 1.
+        \]
+    \end{proposition}
+
+    \begin{algorithm}[Gaussian Elimination]
+        Gaussian elimination uses elementary row operations to transform a
+        matrix into an upper triangular or row echelon form. It is the standard
+        computational method for solving linear systems, finding ranks, and
+        computing inverses.
+    \end{algorithm}
+
+    \begin{theorem}[LU Decomposition]
+        When Gaussian elimination can be performed without row exchanges, a
+        square matrix $\mathbf{A}$ can be written as
+        \[
+            \mathbf{A}=\mathbf{L}\mathbf{U},
+        \]
+        where $\mathbf{L}$ is lower triangular and $\mathbf{U}$ is upper
+        triangular.
+    \end{theorem}
+
+    \begin{theorem}[Gram--Schmidt Process; QR Decomposition]
         From any linearly independent list
         \[
             \mathbf{v}_1,\dots,\mathbf{v}_k
@@ -720,13 +1015,13 @@
         \[
             \mathbf{q}_1,\dots,\mathbf{q}_k
         \]
-        with the same span:
+        with the same span. In matrix form, this leads to the QR decomposition
         \[
-            \Span(\mathbf{q}_1,\dots,\mathbf{q}_k)
-            =
-            \Span(\mathbf{v}_1,\dots,\mathbf{v}_k).
+            \mathbf{A}=\mathbf{Q}\mathbf{R},
         \]
-    \end{algorithm}
+        where the columns of $\mathbf{Q}$ are orthonormal and $\mathbf{R}$ is
+        upper triangular.
+    \end{theorem}
 
     \begin{remark}
         Gram--Schmidt is the standard procedure for turning an arbitrary basis
@@ -763,6 +1058,19 @@
         \]
     \end{proposition}
 
+    \begin{definition}[Positive Definite Matrix]
+        A real symmetric matrix $\mathbf{A}$ is positive definite if
+        \[
+            \mathbf{x}^{\mathsf T}\mathbf{A}\mathbf{x}>0
+        \]
+        for every nonzero vector $\mathbf{x}$.
+    \end{definition}
+
+    \begin{theorem}[Sylvester's Criterion]
+        A real symmetric matrix is positive definite if and only if all of its
+        leading principal minors are positive.
+    \end{theorem}
+
     \begin{definition}[Singular Values]
         Let $\mathbf{A}\in\R^{m\times n}$. The singular values of
         $\mathbf{A}$ are the nonnegative square roots of the eigenvalues of
@@ -771,7 +1079,7 @@
         \]
     \end{definition}
 
-    \begin{theorem}[Singular Value Decomposition]
+    \begin{theorem}[Singular Value Decomposition; SVD]
         Every real matrix $\mathbf{A}\in\R^{m\times n}$ can be written as
         \[
             \mathbf{A}
@@ -784,9 +1092,9 @@
     \end{theorem}
 
     \begin{remark}
-        Singular Value Decomposition, or SVD, is one of the most powerful
-        decompositions in linear algebra. It applies to every real matrix, not
-        only to square or diagonalizable matrices.
+        Singular Value Decomposition applies to every real matrix, not only to
+        square or diagonalizable matrices. This is why SVD is one of the most
+        useful decompositions in applied linear algebra.
     \end{remark}
 
     \begin{theorem}[Jordan Canonical Form]

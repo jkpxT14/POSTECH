@@ -1334,6 +1334,214 @@
         Thus the answer is $\boxed{1}$.
     \end{solution}
 
+    \begin{problem}{2017.1}
+        What are all possible positive integers that can occur as the number of faces of a regular polyhedron, that is, a Platonic solid?
+    \end{problem}
+
+    \begin{solution}
+        There are exactly five Platonic solids:
+        \[
+            \begin{array}{c|c}
+                \text{Solid} & \text{Number of faces} \\
+                \hline
+                \text{Tetrahedron} & 4 \\
+                \text{Cube} & 6 \\
+                \text{Octahedron} & 8 \\
+                \text{Dodecahedron} & 12 \\
+                \text{Icosahedron} & 20
+            \end{array}
+        \]
+        Therefore, the possible numbers of faces of a regular polyhedron are
+        \[
+            \boxed{4,\ 6,\ 8,\ 12,\ 20}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2017.2}
+        Let $F_n$ be the $n$-th Fibonacci number. What is
+        \[
+            \lim_{n\to\infty}\frac{F_{n+1}}{F_n}?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The Fibonacci numbers satisfy
+        \[
+            F_{n+1}=F_n+F_{n-1}.
+        \]
+        Suppose
+        \[
+            L=\lim_{n\to\infty}\frac{F_{n+1}}{F_n}.
+        \]
+        Then
+        \[
+            \frac{F_{n+1}}{F_n}
+            =
+            1+\frac{F_{n-1}}{F_n}.
+        \]
+        Taking limits gives
+        \[
+            L=1+\frac{1}{L}.
+        \]
+        Hence
+        \[
+            L^2=L+1,
+        \]
+        so
+        \[
+            L=\frac{1\pm\sqrt{5}}{2}.
+        \]
+        Since the Fibonacci numbers are positive for large \(n\), the limit must be positive. Therefore,
+        \[
+            L=\frac{1+\sqrt{5}}{2}.
+        \]
+
+        Thus the answer is $\boxed{\dfrac{1+\sqrt{5}}{2}}$.
+    \end{solution}
+
+    \begin{problem}{2017.3}
+        For a positive integer $n$, define the $n\times n$ matrix $\mathbf{C}$ by
+        \[
+            C_{ij}
+            =
+            \binom{i+j-2}{i-1}
+            \qquad
+            (1\leq i,j\leq n).
+        \]
+        Now define another $n\times n$ matrix $\mathbf{B}$ by
+        \[
+            B_{ij}
+            =
+            \begin{cases}
+                C_{ij}, & (i,j)\neq (n,n), \\
+                C_{ij}+2016, & (i,j)=(n,n).
+            \end{cases}
+        \]
+        Find $\det \mathbf{B}$.
+    \end{problem}
+
+    \begin{solution}
+        We first compute the determinant of $\mathbf{C}$. By Vandermonde's identity,
+        \[
+            \binom{i+j-2}{i-1}
+            =
+            \sum_{k=1}^{\min(i,j)}
+            \binom{i-1}{k-1}
+            \binom{j-1}{k-1}.
+        \]
+        Hence
+        \[
+            \mathbf{C}=\mathbf{L}\mathbf{L}^T,
+        \]
+        where
+        \[
+            L_{ik}
+            =
+            \begin{cases}
+                \binom{i-1}{k-1}, & k\leq i, \\
+                0, & k>i.
+            \end{cases}
+        \]
+        The matrix $\mathbf{L}$ is lower triangular and all of its diagonal entries are $1$. Therefore,
+        \[
+            \det \mathbf{L}=1,
+        \]
+        and so
+        \[
+            \det \mathbf{C}
+            =
+            \det(\mathbf{L}\mathbf{L}^T)
+            =
+            (\det \mathbf{L})^2
+            =
+            1.
+        \]
+
+        The matrix $\mathbf{B}$ differs from $\mathbf{C}$ only in the $(n,n)$-entry. Since the determinant is linear in each entry, we have
+        \[
+            \det \mathbf{B}
+            =
+            \det \mathbf{C}
+            +
+            2016\cdot M_{nn},
+        \]
+        where $M_{nn}$ is the $(n,n)$-minor of $\mathbf{C}$.
+
+        This minor is the determinant of the upper-left $(n-1)\times(n-1)$ submatrix of $\mathbf{C}$, which has the same form as $\mathbf{C}$ with size $n-1$. Therefore,
+        \[
+            M_{nn}=1.
+        \]
+        Hence
+        \[
+            \det \mathbf{B}
+            =
+            1+2016\cdot 1
+            =
+            2017.
+        \]
+
+        Thus the answer is $\boxed{2017}$.
+    \end{solution}
+
+    \begin{problem}{2017.4}
+        In 2017, this prize was awarded to the French mathematician Yves Meyer. The Norwegian Academy of Science and Letters announced on March 21 that Meyer would receive the prize, worth six million Norwegian kroner, in recognition of his decisive contributions to the development of wavelet theory, which is used in areas ranging from gravitational wave detection to movie file compression.
+
+        Often called the Nobel Prize of mathematics, what is this prize?
+    \end{problem}
+
+    \begin{solution}
+        The prize described in the problem is the Abel Prize.
+
+        The Abel Prize is awarded by the Norwegian Academy of Science and Letters and is often described as one of the most prestigious prizes in mathematics. In 2017, it was awarded to Yves Meyer for his fundamental contributions to the mathematical theory of wavelets.
+
+        Therefore, the answer is $\boxed{\text{Abel Prize}}$.
+    \end{solution}
+
+    \begin{problem}{2017.5}
+        Express the integral
+        \[
+            \int_0^1 x^m(1-x)^n\,dx
+        \]
+        in terms of a binomial coefficient closely related to the positive integers $m$ and $n$.
+    \end{problem}
+
+    \begin{solution}
+        This integral is a beta integral. For positive integers $m$ and $n$, we have
+        \[
+            \int_0^1 x^m(1-x)^n\,dx
+            =
+            \frac{m!n!}{(m+n+1)!}.
+        \]
+        This is the factorial form of the answer.
+
+        To express it using a binomial coefficient, recall that
+        \[
+            \binom{m+n}{m}
+            =
+            \frac{(m+n)!}{m!n!}.
+        \]
+        Hence
+        \[
+            \frac{m!n!}{(m+n+1)!}
+            =
+            \frac{1}{m+n+1}\cdot\frac{m!n!}{(m+n)!}
+            =
+            \frac{1}{(m+n+1)\binom{m+n}{m}}.
+        \]
+        Therefore,
+        \[
+            \int_0^1 x^m(1-x)^n\,dx
+            =
+            \frac{m!n!}{(m+n+1)!}
+            =
+            \frac{1}{(m+n+1)\binom{m+n}{m}}.
+        \]
+
+        Thus the answer is $\boxed{\dfrac{m!n!}{(m+n+1)!}
+        =
+        \dfrac{1}{(m+n+1)\binom{m+n}{m}}}$.
+    \end{solution}
+
     \begin{problem}{2018.1}
         The following people are this year's Fields Medalists. Excluding choice (5), who is the second oldest among them?
         \[
