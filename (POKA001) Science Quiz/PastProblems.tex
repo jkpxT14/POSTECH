@@ -1,3 +1,108 @@
+    \begin{problem}{2010.1}
+        Do there exist positive integers $x$ and $y$ such that
+        \[
+            x^2+y^2=963?
+        \]
+    \end{problem}
+
+    \begin{solution}
+        No such positive integers exist. For any integer $a$, we have
+        \[
+            a^2\equiv 0 \text{ or } 1\pmod{4}.
+        \]
+        Hence the sum of two integer squares can be congruent only to
+        \[
+            0,\quad 1,\quad \text{or}\quad 2\pmod{4}.
+        \]
+        However,
+        \[
+            963\equiv 3\pmod{4}.
+        \]
+        Therefore $963$ cannot be written as the sum of two integer squares.
+
+        Thus the answer is $\boxed{\text{no}}$.
+    \end{solution}
+
+    \begin{problem}{2010.2}
+        Who became famous for refusing the Fields Medal after solving the Poincar\'e conjecture?
+    \end{problem}
+
+    \begin{solution}
+        Grigori Perelman proved the Poincar\'e conjecture using Ricci flow. He was awarded the Fields Medal in 2006, but declined it.
+
+        Therefore, the answer is $\boxed{\text{Grigori Perelman}}$.
+    \end{solution}
+
+    \begin{problem}{2010.3}
+        John Charles Fields, after whom the Fields Medal is named, was from which country?
+    \end{problem}
+
+    \begin{solution}
+        John Charles Fields was a Canadian mathematician. The Fields Medal is named after him.
+
+        Therefore, the answer is $\boxed{\text{Canada}}$.
+    \end{solution}
+
+    \begin{problem}{2010.4}
+        At most how many eigenvalues can a $5\times 5$ matrix have?
+    \end{problem}
+
+    \begin{solution}
+        The eigenvalues of a $5\times 5$ matrix $\mathbf{A}$ are the roots of its characteristic polynomial
+        \[
+            p_{\mathbf{A}}(\lambda)=\det(\lambda\mathbf{I}_5-\mathbf{A}).
+        \]
+        This polynomial has degree $5$. Therefore it can have at most $5$ distinct roots, and hence $\mathbf{A}$ can have at most $5$ distinct eigenvalues.
+
+        Thus the answer is $\boxed{5}$.
+    \end{solution}
+
+    \begin{problem}{2010.5}
+        In 1742, a Prussian mathematician wrote to Euler and proposed a conjecture. Euler later stated it in the following form:
+        \[
+            \text{Every even integer greater than }2\text{ can be expressed as the sum of two primes.}
+        \]
+        This is an old unsolved problem in number theory. It has been verified for very large numbers, but it has not been proved in general. What is this conjecture called?
+    \end{problem}
+
+    \begin{solution}
+        The statement that every even integer greater than $2$ can be expressed as the sum of two primes is known as Goldbach's conjecture.
+
+        Therefore, the answer is $\boxed{\text{Goldbach's conjecture}}$.
+    \end{solution}
+
+    \begin{problem}{2010.6}
+        Brownian motion is mathematically modeled by a random process named after the American mathematician who developed its mathematical model. This mathematician also founded cybernetics.
+
+        The process has increments that are independent Gaussian random variables with mean $0$. The mathematician studied real analysis, harmonic analysis, series, and probability theory. Who is this mathematician?
+    \end{problem}
+
+    \begin{solution}
+        The random process described in the problem is the Wiener process, the standard mathematical model of Brownian motion. It is named after Norbert Wiener.
+
+        Therefore, the answer is $\boxed{\text{Norbert Wiener}}$.
+    \end{solution}
+
+    \begin{problem}{2010.7}
+        This set is a closed uncountable set and is also perfect. Although it is uncountable, it has Lebesgue measure $0$. It is self-similar and is often used in the construction of fractals. It is obtained from the closed interval $[0,1]$ by repeatedly removing the open middle third, then doing the same to the remaining intervals. It is named after the mathematician widely known as the founder of set theory. What is this set?
+    \end{problem}
+
+    \begin{solution}
+        The set obtained by repeatedly removing the open middle third from $[0,1]$ is the Cantor set. It is closed, perfect, uncountable, self-similar, and has Lebesgue measure $0$.
+
+        Therefore, the answer is $\boxed{\text{Cantor set}}$.
+    \end{solution}
+
+    \begin{problem}{2010.8}
+        In which year did Terence Tao receive the Fields Medal?
+    \end{problem}
+
+    \begin{solution}
+        Terence Tao received the Fields Medal at the 2006 International Congress of Mathematicians.
+
+        Therefore, the answer is $\boxed{2006}$.
+    \end{solution}
+
     \begin{problem}{2011.1}
         What is the name of the international mathematical congress, held in South Korea in 2014, at which the Fields Medal is awarded?
     \end{problem}
@@ -2869,3 +2974,37 @@
             }.
         \]
     \end{solution}
+
+    \begin{problem}{2025.4}
+        There are $200$ cards numbered from $1$ to $200$, all initially facing up. For each integer from $1$ to $200$, we call out that integer and flip every card whose number is a multiple of it. After all $200$ calls, how many cards are facing up?
+        \[
+            \begin{array}{ll}
+                (1) & 142 \\
+                (2) & 153 \\
+                (3) & 164 \\
+                (4) & 175 \\
+                (5) & 186
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        A card numbered $n$ is flipped once for each positive divisor of $n$. Hence it is flipped $d(n)$ times, where $d(n)$ is the number of positive divisors of $n$.
+
+        A positive integer has an odd number of positive divisors if and only if it is a perfect square. Therefore, exactly the cards numbered
+        \[
+            1^2,\quad 2^2,\quad 3^2,\quad \ldots,\quad 14^2
+        \]
+        are flipped an odd number of times, since
+        \[
+            14^2=196\leq 200<225=15^2.
+        \]
+        These $14$ cards end up facing down. The remaining
+        \[
+            200-14=186
+        \]
+        cards are facing up.
+
+        Therefore, the answer is $\boxed{(5)\ 186}$.
+    \end{solution}
+
