@@ -51,7 +51,7 @@
     \begin{solution}
         We compute the third derivative:
         \[
-            \frac{d^3}{dx^3}(1+x)^{10}
+            \frac{\dd^3}{\dd x^3}(1+x)^{10}
             =
             10\cdot 9\cdot 8(1+x)^7.
         \]
@@ -65,7 +65,7 @@
     \end{solution}
 
     \begin{problem}{2011.4}
-        Give at least two real-valued functions defined on $\mathbb{R}$ that remain unchanged after being differentiated twice. In other words, give at least two functions $f:\mathbb{R}\to\mathbb{R}$ satisfying
+        Give at least two real-valued functions defined on $\R$ that remain unchanged after being differentiated twice. In other words, give at least two functions $f:\R\to\R$ satisfying
         \[
             f''=f.
         \]
@@ -80,11 +80,11 @@
         \]
         Indeed,
         \[
-            \frac{d^2}{dx^2}e^x=e^x
+            \frac{\dd^2}{\dd x^2}e^x=e^x
         \]
         and
         \[
-            \frac{d^2}{dx^2}e^{-x}=e^{-x}.
+            \frac{\dd^2}{\dd x^2}e^{-x}=e^{-x}.
         \]
         Therefore, both functions remain unchanged after being differentiated twice.
 
@@ -96,7 +96,7 @@
     \end{problem}
 
     \begin{solution}
-        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal to its trace.
+        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal to $\tr(\mathbf{A})$.
 
         In this matrix, the diagonal entries are
         \[
@@ -104,7 +104,7 @@
         \]
         Therefore,
         \[
-            \operatorname{tr}(\mathbf{A})
+            \tr(\mathbf{A})
             =
             1+2+3+4+5
             =
@@ -287,7 +287,7 @@
         Evaluate the integral
         \[
             \int_0^{\pi/2}
-            \frac{1}{1+\tan^{\sqrt{2}}t}\,dt.
+            \frac{1}{1+\tan^{\sqrt{2}}t}\dd t.
         \]
 
         \begin{hint}
@@ -301,7 +301,7 @@
             I
             =
             \int_0^{\pi/2}
-            \frac{1}{1+\tan^{\sqrt{2}}t}\,dt.
+            \frac{1}{1+\tan^{\sqrt{2}}t}\dd t.
         \]
         Use the substitution
         \[
@@ -322,10 +322,10 @@
             I
             =
             \int_0^{\pi/2}
-            \frac{1}{1+\cot^{\sqrt{2}}x}\,dx
+            \frac{1}{1+\cot^{\sqrt{2}}x}\dd x
             =
             \int_0^{\pi/2}
-            \frac{\tan^{\sqrt{2}}x}{1+\tan^{\sqrt{2}}x}\,dx.
+            \frac{\tan^{\sqrt{2}}x}{1+\tan^{\sqrt{2}}x}\dd x.
         \]
         Adding this expression to the original expression for $I$, we obtain
         \[
@@ -336,9 +336,9 @@
                 \frac{1}{1+\tan^{\sqrt{2}}x}
                 +
                 \frac{\tan^{\sqrt{2}}x}{1+\tan^{\sqrt{2}}x}
-            \right)\,dx
+            \right)\dd x
             =
-            \int_0^{\pi/2}1\,dx
+            \int_0^{\pi/2}1\dd x
             =
             \frac{\pi}{2}.
         \]
@@ -429,7 +429,7 @@
     \end{problem}
 
     \begin{solution}
-        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal to its trace.
+        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal to $\tr(\mathbf{A})$.
 
         In this matrix, the diagonal entries are
         \[
@@ -437,7 +437,7 @@
         \]
         Therefore,
         \[
-            \operatorname{tr}(\mathbf{A})
+            \tr(\mathbf{A})
             =
             1+2+3+\cdots+10
             =
@@ -462,14 +462,6 @@
         Later, in works such as \textit{Philosophical Investigations}, Wittgenstein emphasized the importance of ordinary language and argued that the meaning of a word is closely connected to its use in language.
 
         Therefore, the answer is $\boxed{\text{Ludwig Wittgenstein}}$.
-    \end{solution}
-
-    \begin{problem}{2012.6}
-        Re
-    \end{problem}
-
-    \begin{solution}
-        Re
     \end{solution}
 
     \begin{problem}{2014.1}
@@ -524,7 +516,7 @@
 
         The matrix $\mathbf{J}$ has eigenvalue $2014$ for the vector
         \[
-            \mathbf{1}=(1,1,\dots,1)^T,
+            \mathbf{1}=(1,1,\dots,1)^{\mathsf T},
         \]
         since
         \[
@@ -542,7 +534,7 @@
         \]
         Hence $2013$ is an eigenvalue of $\mathbf{A}$.
 
-        Now take any vector $\mathbf{v}=(v_1,\dots,v_{2014})^T$ such that
+        Now take any vector $\mathbf{v}=(v_1,\dots,v_{2014})^{\mathsf T}$ such that
         \[
             v_1+\cdots+v_{2014}=0.
         \]
@@ -565,27 +557,27 @@
     \begin{problem}{2014.4}
         Let $m\geq 3$ and $n\geq 3$. Suppose that
         \[
-            \{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}\subseteq \mathbb{R}^m,
+            \{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}\subseteq \R^m,
             \qquad
-            \{\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3\}\subseteq \mathbb{R}^n.
+            \{\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3\}\subseteq \R^n.
         \]
         Assume that
         \[
             V=\Span\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}
         \]
-        is a $2$-dimensional subspace of $\mathbb{R}^m$, and that
+        is a $2$-dimensional subspace of $\R^m$, and that
         \[
             W=\Span\{\mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3\}
         \]
-        is a $3$-dimensional subspace of $\mathbb{R}^n$. What is the rank of the $m\times n$ matrix
+        is a $3$-dimensional subspace of $\R^n$. What is $\rk(\mathbf{A})$ for the $m\times n$ matrix
         \[
             \mathbf{A}
             =
-            \mathbf{v}_1\mathbf{w}_1^T
+            \mathbf{v}_1\mathbf{w}_1^{\mathsf T}
             +
-            \mathbf{v}_2\mathbf{w}_2^T
+            \mathbf{v}_2\mathbf{w}_2^{\mathsf T}
             +
-            \mathbf{v}_3\mathbf{w}_3^T?
+            \mathbf{v}_3\mathbf{w}_3^{\mathsf T}?
         \]
     \end{problem}
 
@@ -758,7 +750,7 @@
     \end{solution}
 
     \begin{problem}{2015.3}
-        In $\mathbb{R}^2$, the so-called Mercedes-Benz system is defined by
+        In $\R^2$, the so-called Mercedes-Benz system is defined by
         \[
             \{\mathbf{v}_0,\mathbf{v}_1,\mathbf{v}_2\},
             \qquad
@@ -771,13 +763,13 @@
             \quad
             (k=0,1,2).
         \]
-        Find vectors $\mathbf{w}_0,\mathbf{w}_1,\mathbf{w}_2\in\mathbb{R}^3$ such that they have the same length, are mutually orthogonal, have positive $z$-coordinates, and satisfy
+        Find vectors $\mathbf{w}_0,\mathbf{w}_1,\mathbf{w}_2\in\R^3$ such that they have the same length, are mutually orthogonal, have positive $z$-coordinates, and satisfy
         \[
             \mathbf{v}_k=P_{xy}(\mathbf{w}_k)
             \qquad
             (k=0,1,2),
         \]
-        where $P_{xy}$ denotes the projection onto the $xy$-plane. Here $\mathbb{R}^2$ is regarded as the subspace of $\mathbb{R}^3$ with $z$-coordinate equal to $0$.
+        where $P_{xy}$ denotes the projection onto the $xy$-plane. Here $\R^2$ is regarded as the subspace of $\R^3$ with $z$-coordinate equal to $0$.
     \end{problem}
 
     \begin{solution}
@@ -893,7 +885,7 @@
     \end{solution}
 
     \begin{problem}{2015.6}
-        Let $f:\mathbb{R}\to\mathbb{R}$ be a periodic function with period $2\pi$. For $x\in(0,2\pi]$, define
+        Let $f:\R\to\R$ be a periodic function with period $2\pi$. For $x\in(0,2\pi]$, define
         \[
             f(x)
             =
@@ -905,7 +897,7 @@
         \[
             f(x+2\pi)=f(x)
         \]
-        for all $x\in\mathbb{R}$. Determine whether the following limit converges:
+        for all $x\in\R$. Determine whether the following limit converges:
         \[
             \lim_{n\to\infty} f(n).
         \]
@@ -1091,7 +1083,7 @@
     \end{problem}
 
     \begin{solution}
-        A rotation in $\mathbb{R}^3$ around an axis fixes every vector lying on the rotation axis. Therefore, the direction vector
+        A rotation in $\R^3$ around an axis fixes every vector lying on the rotation axis. Therefore, the direction vector
         \[
             \mathbf{v}
             =
@@ -1247,7 +1239,7 @@
         \]
         be row vectors. Consider the $4\times 4$ matrix obtained as the product
         \[
-            \mathbf{v}^T\mathbf{w}.
+            \mathbf{v}^{\mathsf T}\mathbf{w}.
         \]
         Find the sum and the product of the eigenvalues of this matrix.
     \end{problem}
@@ -1255,7 +1247,7 @@
     \begin{solution}
         The matrix is
         \[
-            \mathbf{v}^T\mathbf{w}
+            \mathbf{v}^{\mathsf T}\mathbf{w}
             =
             \begin{pmatrix}
                 1 \\
@@ -1267,20 +1259,20 @@
                 1 & 2 & 3 & 4
             \end{pmatrix}.
         \]
-        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal to its trace. Therefore,
+        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal to the trace of the matrix. Therefore,
         \[
             \sum \lambda_i
             =
-            \operatorname{tr}(\mathbf{v}^T\mathbf{w})
+            \tr(\mathbf{v}^{\mathsf T}\mathbf{w})
             =
             1^2+2^2+3^2+4^2
             =
             30.
         \]
 
-        The product of the eigenvalues is equal to the determinant. Since $\mathbf{v}^T\mathbf{w}$ is an outer product of two vectors, it has rank $1$. In particular, as a $4\times 4$ matrix, it is not invertible, so
+        The product of the eigenvalues is equal to the determinant. Since $\mathbf{v}^{\mathsf T}\mathbf{w}$ is an outer product of two vectors, we have $\rk(\mathbf{v}^{\mathsf T}\mathbf{w})=1$. In particular, as a $4\times 4$ matrix, it is not invertible, so
         \[
-            \det(\mathbf{v}^T\mathbf{w})=0.
+            \det(\mathbf{v}^{\mathsf T}\mathbf{w})=0.
         \]
         Hence the product of the eigenvalues is
         \[
@@ -1431,7 +1423,7 @@
         \]
         Hence
         \[
-            \mathbf{C}=\mathbf{L}\mathbf{L}^T,
+            \mathbf{C}=\mathbf{L}\mathbf{L}^{\mathsf T},
         \]
         where
         \[
@@ -1444,15 +1436,15 @@
         \]
         The matrix $\mathbf{L}$ is lower triangular and all of its diagonal entries are $1$. Therefore,
         \[
-            \det \mathbf{L}=1,
+            \det(\mathbf{L})=1,
         \]
         and so
         \[
             \det \mathbf{C}
             =
-            \det(\mathbf{L}\mathbf{L}^T)
+            \det(\mathbf{L}\mathbf{L}^{\mathsf T})
             =
-            (\det \mathbf{L})^2
+            (\det(\mathbf{L}))^2
             =
             1.
         \]
@@ -1500,7 +1492,7 @@
     \begin{problem}{2017.5}
         Express the integral
         \[
-            \int_0^1 x^m(1-x)^n\,dx
+            \int_0^1 x^m(1-x)^n\dd x
         \]
         in terms of a binomial coefficient closely related to the positive integers $m$ and $n$.
     \end{problem}
@@ -1508,7 +1500,7 @@
     \begin{solution}
         This integral is a beta integral. For positive integers $m$ and $n$, we have
         \[
-            \int_0^1 x^m(1-x)^n\,dx
+            \int_0^1 x^m(1-x)^n\dd x
             =
             \frac{m!n!}{(m+n+1)!}.
         \]
@@ -1530,7 +1522,7 @@
         \]
         Therefore,
         \[
-            \int_0^1 x^m(1-x)^n\,dx
+            \int_0^1 x^m(1-x)^n\dd x
             =
             \frac{m!n!}{(m+n+1)!}
             =
@@ -1581,7 +1573,7 @@
         The $3$-dimensional geometric structures appearing in Thurston's geometrization conjecture are the eight Thurston geometries:
         \[
             S^3,\quad
-            \Exp^3,\quad
+            \mathrm{E}^3,\quad
             \mathbb{H}^3,\quad
             S^2 \times \R,\quad
             \mathbb{H}^2 \times \R,\quad
@@ -1672,7 +1664,7 @@
 
         First, consider the vector
         \[
-            \mathbf{1}=(1,1,\dots,1)^T.
+            \mathbf{1}=(1,1,\dots,1)^{\mathsf T}.
         \]
         Since
         \[
@@ -1690,7 +1682,7 @@
         \]
         Hence $2018$ is an eigenvalue.
 
-        Now take any vector $\mathbf{v}=(v_1,\dots,v_{2019})^T$ satisfying
+        Now take any vector $\mathbf{v}=(v_1,\dots,v_{2019})^{\mathsf T}$ satisfying
         \[
             v_1+\cdots+v_{2019}=0.
         \]
@@ -1718,7 +1710,7 @@
         Evaluate the integral
         \[
             \int_{-\infty}^{\infty}
-            \frac{8}{1+4x^2}\,dx.
+            \frac{8}{1+4x^2}\dd x.
         \]
     \end{problem}
 
@@ -1729,30 +1721,30 @@
         \]
         Then
         \[
-            dx=\frac{1}{2}\,du.
+            \dd x=\frac{1}{2}\dd u.
         \]
         Therefore,
         \[
             \int_{-\infty}^{\infty}
-            \frac{8}{1+4x^2}\,dx
+            \frac{8}{1+4x^2}\dd x
             =
             \int_{-\infty}^{\infty}
-            \frac{8}{1+u^2}\cdot\frac{1}{2}\,du
+            \frac{8}{1+u^2}\cdot\frac{1}{2}\dd u
             =
             4\int_{-\infty}^{\infty}
-            \frac{1}{1+u^2}\,du.
+            \frac{1}{1+u^2}\dd u.
         \]
         Since
         \[
             \int_{-\infty}^{\infty}
-            \frac{1}{1+u^2}\,du
+            \frac{1}{1+u^2}\dd u
             =
             \pi,
         \]
         we obtain
         \[
             \int_{-\infty}^{\infty}
-            \frac{8}{1+4x^2}\,dx
+            \frac{8}{1+4x^2}\dd x
             =
             4\pi.
         \]
@@ -2102,7 +2094,7 @@
                 1 & 2 & 3
             \end{pmatrix}.
         \]
-        Thus $\mathbf{A}$ is a rank-one matrix.
+        Thus $\rk(\mathbf{A})=1$.
 
         First, let
         \[
@@ -2128,7 +2120,7 @@
         \]
         Hence $6$ is an eigenvalue of $\mathbf{A}$.
 
-        Since $\mathbf{A}$ has rank $1$, its nullity is $2$. Therefore, the eigenspace corresponding to the eigenvalue $0$ has dimension $2$. Indeed,
+        Since $\rk(\mathbf{A})=1$, its nullity is $2$. Therefore, the eigenspace corresponding to the eigenvalue $0$ has dimension $2$. Indeed,
         \[
             \mathbf{A}
             \begin{pmatrix}

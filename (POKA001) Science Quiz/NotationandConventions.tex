@@ -16,6 +16,8 @@
     letters, such as $\mathbf{A},\mathbf{B},\mathbf{P}$. Unless otherwise stated,
     vectors are regarded as column vectors. Named theorems, standard English
     terminology, and conventional symbols are preferred over ad hoc notation.
+    When two standard notations are both common, we choose the one that is less
+    ambiguous in fast quiz solutions.
 
     \vspace{0.5em}
 
@@ -63,9 +65,11 @@
     item. This is especially useful for Science Quiz preparation: a player should
     be able to tell at a glance whether an item is a definition, a named result,
     a formula to memorize, or an open problem. Statement-type environments such
-    as Definition, Theorem, Formula, and Algorithm put the heading on its own
-    line, while short guide-type environments such as Idea, Strategy, Tactic,
-    and Remark continue on the same line after the label.
+    as Definition, Theorem, Proposition, Lemma, Corollary, Formula, Fact,
+    Conjecture, Hypothesis, Open Problem, and Algorithm put the heading on its
+    own line. Short guide-type environments such as Idea, Strategy, Tactic, and
+    Remark continue on the same line after the label. Problem, Solution, Proof,
+    and Hint also continue on the same line after the label.
 
     \vspace{0.5em}
 
@@ -279,6 +283,7 @@
 
         $n!$ & factorial \\
         $\binom{n}{k}$ & the number of $k$-element subsets of an $n$-element set \\
+        $\multichoose{n}{k}$ & the number of multisets of size $k$ chosen from an $n$-element set, equal to $\binom{n+k-1}{k}$ \\
         $P(n,k)$ & the number of $k$-permutations of an $n$-element set \\
         $a_n$ & the $n$th term of a sequence \\
         $G=(V,E)$ & a graph with vertex set $V$ and edge set $E$ \\

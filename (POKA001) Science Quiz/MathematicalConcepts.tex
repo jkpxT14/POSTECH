@@ -24,7 +24,7 @@
     \end{formula}
 
     \begin{strategy}
-        These limits are often faster than L'Hopital's Rule. In a quiz, the
+        These limits are often faster than L'H\^opital's Rule. In a quiz, the
         expressions $\sin x$, $1-\cos x$, $e^x-1$, $\log(1+x)$, and
         $(1+x)^{1/x}$ are strong signals for these standard patterns.
     \end{strategy}
@@ -262,6 +262,57 @@
         \]
     \end{formula}
 
+    \begin{formula}[Arctangent Integral]
+        For $a>0$,
+        \[
+            \int_{-\infty}^{\infty}\frac{1}{x^2+a^2}\dd x
+            =
+            \frac{\pi}{a},
+            \qquad
+            \int_0^{\infty}\frac{1}{x^2+a^2}\dd x
+            =
+            \frac{\pi}{2a}.
+        \]
+        More generally,
+        \[
+            \int_{-\infty}^{\infty}\frac{c}{(x-b)^2+a^2}\dd x
+            =
+            \frac{c\pi}{a}.
+        \]
+    \end{formula}
+
+    \begin{strategy}
+        Many fast integral problems reduce to this formula after completing a
+        square or translating the variable. A shift such as $u=x-b$ does not
+        change the infinite limits.
+    \end{strategy}
+
+    \begin{formula}[Symmetry Trick for Definite Integrals]
+        If $f$ is integrable on $[a,b]$, then
+        \[
+            \int_a^b f(x)\dd x
+            =
+            \int_a^b f(a+b-x)\dd x.
+        \]
+        Hence, if
+        \[
+            f(x)+f(a+b-x)=C
+        \]
+        is constant, then
+        \[
+            \int_a^b f(x)\dd x
+            =
+            \frac{C(b-a)}{2}.
+        \]
+    \end{formula}
+
+    \begin{strategy}
+        This is one of the most useful Integration-Bee-style tricks. Typical
+        signals are intervals such as $[0,\pi/2]$, expressions involving
+        $\tan x$ and $\cot x$, or a denominator that becomes complementary after
+        the substitution $x\mapsto a+b-x$.
+    \end{strategy}
+
     \begin{formula}[Wallis Product]
         The Wallis product is
         \[
@@ -299,6 +350,34 @@
             \Gamma\left(\frac12\right)=\sqrt{\pi}.
         \]
     \end{proposition}
+
+    \begin{definition}[Beta Function; Euler Beta Integral]
+        For $x,y>0$, the Beta function is defined by
+        \[
+            B(x,y)
+            =
+            \int_0^1 t^{x-1}(1-t)^{y-1}\dd t.
+        \]
+    \end{definition}
+
+    \begin{formula}[Beta--Gamma Identity]
+        The Beta and Gamma functions are related by
+        \[
+            B(x,y)
+            =
+            \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}.
+        \]
+        In particular, for nonnegative integers $m,n$,
+        \[
+            \int_0^1 x^m(1-x)^n\dd x
+            =
+            B(m+1,n+1)
+            =
+            \frac{m!n!}{(m+n+1)!}
+            =
+            \frac{1}{(m+n+1)\binom{m+n}{m}}.
+        \]
+    \end{formula}
 
     \begin{formula}[Stirling's Formula]
         As $n\to\infty$,
@@ -341,8 +420,6 @@
         Simpson's rule uses quadratic interpolation, but the resulting formula
         is exact for every polynomial of degree at most $3$.
     \end{remark}
-
-    \section*{Series Tests}
 
     \begin{theorem}[Integral Test]
         Suppose $f$ is positive, continuous, and decreasing on $[1,\infty)$,
@@ -388,6 +465,27 @@
         exists. If $L<1$, then $\sum a_n$ converges. If $L>1$, then
         $\sum a_n$ diverges. If $L=1$, the test is inconclusive.
     \end{theorem}
+
+    \begin{theorem}[Cauchy--Hadamard Theorem]
+        For a power series
+        \[
+            \sum_{n=0}^{\infty}a_n(x-a)^n,
+        \]
+        the radius of convergence $R$ is given by
+        \[
+            \frac{1}{R}
+            =
+            \limsup_{n\to\infty}\sqrt[n]{|a_n|}.
+        \]
+        Equivalently, the series converges absolutely for $|x-a|<R$ and
+        diverges for $|x-a|>R$.
+    \end{theorem}
+
+    \begin{remark}
+        This is the standard theorem behind the phrase ``radius of convergence''
+        for a power series. It is also the source of the name
+        Cauchy--Hadamard.
+    \end{remark}
 
     \begin{theorem}[Alternating Series Test; Leibniz Test]
         If
@@ -694,9 +792,9 @@
         \[
             \left|
             \det
-            \begin{bmatrix}
+            \begin{pmatrix}
                 \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n
-            \end{bmatrix}
+            \end{pmatrix}
             \right|.
         \]
         In $\R^3$, this is the absolute value of the scalar triple product
@@ -733,15 +831,115 @@
         \]
     \end{formula}
 
+    \begin{proposition}[Multilinearity and Alternation of the Determinant]
+        The determinant is linear in each row separately and also linear in each
+        column separately. If two rows or two columns are interchanged, the sign
+        of the determinant changes. In particular, if the rows or columns of
+        $\mathbf{A}$ are linearly dependent, then
+        \[
+            \det(\mathbf{A})=0.
+        \]
+    \end{proposition}
+
+    \begin{strategy}
+        In one-minute determinant questions, first look for dependent rows or
+        columns, row or column sums, repeated patterns, triangular form, and
+        easy row operations. Direct expansion should usually be the last resort,
+        except for $2\times 2$ and $3\times 3$ matrices.
+    \end{strategy}
+
+    \begin{formula}[Laplace Expansion; Cofactor Expansion]
+        Let $\mathbf{A}=(a_{ij})\in F^{n\times n}$, and let $A_{ij}$ be the
+        cofactor of $a_{ij}$. Expanding along row $i$ gives
+        \[
+            \det(\mathbf{A})
+            =
+            \sum_{j=1}^{n}a_{ij}A_{ij}.
+        \]
+        Expanding along column $j$ gives
+        \[
+            \det(\mathbf{A})
+            =
+            \sum_{i=1}^{n}a_{ij}A_{ij}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Sarrus' Rule]
+        For a $3\times 3$ matrix,
+        \[
+            \det
+            \begin{pmatrix}
+                a & b & c \\
+                d & e & f \\
+                g & h & i
+            \end{pmatrix}
+            =
+            aei+bfg+cdh-ceg-bdi-afh.
+        \]
+    \end{formula}
+
+    \begin{formula}[Determinant and Elementary Row Operations]
+        The determinant changes under elementary row operations as follows.
+        \begin{itemize}
+            \item Swapping two rows multiplies the determinant by $-1$.
+            \item Multiplying one row by $c$ multiplies the determinant by $c$.
+            \item Adding a multiple of one row to another row does not change
+                  the determinant.
+        \end{itemize}
+        The same rules hold for columns.
+    \end{formula}
+
+    \begin{formula}[Vandermonde Determinant]
+        For scalars $x_1,x_2,\dots,x_n$,
+        \[
+            \det
+            \begin{pmatrix}
+                1 & x_1 & x_1^2 & \cdots & x_1^{n-1} \\
+                1 & x_2 & x_2^2 & \cdots & x_2^{n-1} \\
+                \vdots & \vdots & \vdots & \ddots & \vdots \\
+                1 & x_n & x_n^2 & \cdots & x_n^{n-1}
+            \end{pmatrix}
+            =
+            \prod_{1\leq i<j\leq n}(x_j-x_i).
+        \]
+    \end{formula}
+
+    \begin{fact}[Pascal Matrices]
+        The lower triangular Pascal matrix
+        \[
+            \mathbf{P}_n
+            =
+            \left(\binom{i}{j}\right)_{0\leq i,j\leq n},
+            \qquad
+            \binom{i}{j}=0\text{ for }j>i,
+        \]
+        has diagonal entries all equal to $1$, and hence
+        \[
+            \det(\mathbf{P}_n)=1.
+        \]
+        The symmetric Pascal matrix
+        \[
+            \mathbf{S}_n
+            =
+            \left(\binom{i+j}{i}\right)_{0\leq i,j\leq n}
+        \]
+        also has determinant $1$.
+    \end{fact}
+
+    \begin{remark}
+        Pascal matrices are useful quiz examples because their entries look
+        complicated while their determinants are extremely simple.
+    \end{remark}
+
     \begin{formula}[Inverse of a $2\times 2$ Matrix]
         If
         \[
             \mathbf{A}
             =
-            \begin{bmatrix}
+            \begin{pmatrix}
                 a & b \\
                 c & d
-            \end{bmatrix}
+            \end{pmatrix}
             \qquad\text{and}\qquad
             ad-bc\neq 0,
         \]
@@ -750,29 +948,44 @@
             \mathbf{A}^{-1}
             =
             \frac{1}{ad-bc}
-            \begin{bmatrix}
+            \begin{pmatrix}
                 d & -b \\
                 -c & a
-            \end{bmatrix}.
+            \end{pmatrix}.
         \]
     \end{formula}
 
     \begin{formula}[Rotation and Reflection Matrices]
         Rotation by angle $\theta$ in the plane is represented by
         \[
-            \begin{bmatrix}
+            \begin{pmatrix}
                 \cos\theta & -\sin\theta \\
                 \sin\theta & \cos\theta
-            \end{bmatrix}.
+            \end{pmatrix}.
         \]
         Reflection across the line making angle $\theta$ with the positive
         $x$-axis is represented by
         \[
-            \begin{bmatrix}
+            \begin{pmatrix}
                 \cos 2\theta & \sin 2\theta \\
                 \sin 2\theta & -\cos 2\theta
-            \end{bmatrix}.
+            \end{pmatrix}.
         \]
+    \end{formula}
+
+    \begin{formula}[Eigenvalues of a Three-Dimensional Rotation Matrix]
+        A rotation of $\R^3$ by angle $\theta$ around an axis through the
+        origin has eigenvalues
+        \[
+            1,
+            \qquad
+            e^{i\theta},
+            \qquad
+            e^{-i\theta}.
+        \]
+        The eigenvalue $1$ corresponds to the rotation axis. Therefore, if
+        $\theta\not\equiv 0,\pi\pmod{2\pi}$, the rotation matrix has exactly one
+        real eigenvalue.
     \end{formula}
 
     \begin{proposition}[Trace, Determinant, and Eigenvalues]
@@ -814,6 +1027,41 @@
         Equivalently, the eigenvalues of $\mathbf{A}$ are the roots of the
         characteristic polynomial $p_{\mathbf{A}}(\lambda)$.
     \end{proposition}
+
+    \begin{formula}[All-Ones Matrix]
+        Let $\mathbf{J}_n$ be the $n\times n$ matrix whose entries are all $1$.
+        Then
+        \[
+            \mathbf{J}_n\mathbf{1}=n\mathbf{1},
+            \qquad
+            \mathbf{J}_n\mathbf{v}=\mathbf{0}
+            \quad\text{if}\quad
+            v_1+\cdots+v_n=0.
+        \]
+        Hence the eigenvalues of $\mathbf{J}_n$ are $n$ with multiplicity $1$
+        and $0$ with multiplicity $n-1$. The matrix $\mathbf{J}_n-\mathbf{I}_n$
+        has eigenvalues $n-1$ with multiplicity $1$ and $-1$ with multiplicity
+        $n-1$.
+    \end{formula}
+
+    \begin{formula}[Rank-One Outer Product]
+        If $\mathbf{v},\mathbf{w}\in F^n$ are nonzero column vectors, then
+        \[
+            \mathbf{v}\mathbf{w}^{\mathsf T}
+        \]
+        has
+        \[
+            \rk(\mathbf{v}\mathbf{w}^{\mathsf T})=1.
+        \]
+        Its trace is
+        \[
+            \tr(\mathbf{v}\mathbf{w}^{\mathsf T})
+            =
+            \mathbf{w}^{\mathsf T}\mathbf{v},
+        \]
+        so its nonzero eigenvalue is $\mathbf{w}^{\mathsf T}\mathbf{v}$, and
+        all remaining eigenvalues are $0$.
+    \end{formula}
 
     \begin{theorem}[Cayley--Hamilton Theorem]
         Every square matrix satisfies its own characteristic polynomial. That
@@ -928,9 +1176,9 @@
         nonnegative and whose columns each sum to $1$.
         For such a matrix $\mathbf{A}$,
         \[
-            \begin{bmatrix}1&1&\cdots&1\end{bmatrix}\mathbf{A}
+            \begin{pmatrix}1&1&\cdots&1\end{pmatrix}\mathbf{A}
             =
-            \begin{bmatrix}1&1&\cdots&1\end{bmatrix}.
+            \begin{pmatrix}1&1&\cdots&1\end{pmatrix}.
         \]
         Hence $1$ is an eigenvalue of $\mathbf{A}$.
     \end{definition}
@@ -1118,7 +1366,7 @@
     Related \textcolor{postechred}{POSTECH} Courses: (MATH200) Differential Equations\\
     Related Books:
 
-    \begin{theorem}[Picard--Lindelof Existence and Uniqueness Theorem]
+    \begin{theorem}[Picard--Lindel\"of Existence and Uniqueness Theorem]
         Consider the initial value problem
         \[
             y'=f(t,y),
@@ -1414,6 +1662,51 @@
         counting.
     \end{remark}
 
+    \begin{formula}[Stars and Bars]
+        The number of nonnegative integer solutions of
+        \[
+            x_1+x_2+\cdots+x_n=k
+        \]
+        is
+        \[
+            \binom{n+k-1}{k}
+            =
+            \multichoose{n}{k}.
+        \]
+        Equivalently, the expansion of $(x_1+x_2+\cdots+x_n)^k$ has
+        \[
+            \binom{n+k-1}{k}
+        \]
+        distinct monomial terms.
+    \end{formula}
+
+    \begin{formula}[Lattice Path Counting]
+        The number of shortest lattice paths from $(0,0)$ to $(m,n)$ using only
+        unit steps to the right and upward is
+        \[
+            \binom{m+n}{m}
+            =
+            \binom{m+n}{n}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Fibonacci Numbers; Binet's Formula]
+        If $F_0=0$, $F_1=1$, and $F_{n+1}=F_n+F_{n-1}$, then
+        \[
+            F_n
+            =
+            \frac{\phi^n-\psi^n}{\sqrt{5}},
+            \qquad
+            \phi=\frac{1+\sqrt{5}}{2},
+            \qquad
+            \psi=\frac{1-\sqrt{5}}{2}.
+        \]
+        In particular,
+        \[
+            \lim_{n\to\infty}\frac{F_{n+1}}{F_n}=\phi.
+        \]
+    \end{formula}
+
     \begin{theorem}[Pigeonhole Principle; Dirichlet's Box Principle]
         If $n+1$ objects are placed into $n$ boxes, then at least one box
         contains at least two objects.
@@ -1596,7 +1889,7 @@
         is that complete disorder is impossible in a large enough system.
     \end{remark}
 
-    \begin{theorem}[Erdos--Szekeres Theorem]
+    \begin{theorem}[Erd\H{o}s--Szekeres Theorem]
         Any sequence of
         \[
             (r-1)(s-1)+1
@@ -1662,6 +1955,22 @@
         number of objects. Introduce indicator random variables and add their
         expectations.
     \end{strategy}
+
+    \begin{proposition}[Expectation of a Product of Independent Random Variables]
+        If $X_1,X_2,\dots,X_n$ are independent random variables, then
+        \[
+            \Exp[X_1X_2\cdots X_n]
+            =
+            \Exp[X_1]\Exp[X_2]\cdots\Exp[X_n].
+        \]
+        In particular, if $X_1,\dots,X_n$ are independent and identically
+        distributed, then
+        \[
+            \Exp[X_1X_2\cdots X_n]
+            =
+            (\Exp[X_1])^n.
+        \]
+    \end{proposition}
 
     \begin{formula}[Variance and Covariance Identities]
         For a random variable $X$,
@@ -2170,6 +2479,72 @@
         calculation.
     \end{remark}
 
+    \begin{formula}[Vector Projection]
+        If $\mathbf{u}\neq\mathbf{0}$, then the projection of $\mathbf{v}$ onto
+        the line spanned by $\mathbf{u}$ is
+        \[
+            \operatorname{proj}_{\mathbf{u}}\mathbf{v}
+            =
+            \frac{\mathbf{v}\cdot\mathbf{u}}{\mathbf{u}\cdot\mathbf{u}}
+            \mathbf{u}.
+        \]
+        The scalar component of $\mathbf{v}$ in the direction of $\mathbf{u}$ is
+        \[
+            \frac{\mathbf{v}\cdot\mathbf{u}}{\|\mathbf{u}\|}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Vector Equations of Lines and Planes]
+        A line through a point $\mathbf{p}$ with direction vector
+        $\mathbf{v}\neq\mathbf{0}$ is
+        \[
+            \mathbf{x}=\mathbf{p}+t\mathbf{v}
+            \qquad (t\in\R).
+        \]
+        A plane through a point $\mathbf{p}$ with normal vector
+        $\mathbf{n}\neq\mathbf{0}$ is
+        \[
+            (\mathbf{x}-\mathbf{p})\cdot\mathbf{n}=0.
+        \]
+    \end{formula}
+
+    \begin{formula}[Distance from a Point to a Line]
+        In $\R^3$, the distance from a point $\mathbf{p}_0$ to the line
+        \[
+            \mathbf{x}=\mathbf{p}+t\mathbf{v}
+        \]
+        is
+        \[
+            \frac{\|(\mathbf{p}_0-\mathbf{p})\times\mathbf{v}\|}{\|\mathbf{v}\|}.
+        \]
+        In $\R^2$, the distance from $(x_0,y_0)$ to the line $ax+by+c=0$ is
+        \[
+            \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Distance from a Point to a Plane]
+        The distance from a point $\mathbf{p}_0=(x_0,y_0,z_0)$ to the plane
+        \[
+            ax+by+cz+d=0
+        \]
+        is
+        \[
+            \frac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Sphere Equation]
+        A sphere with center $\mathbf{c}=(a,b,c)$ and radius $r$ has equation
+        \[
+            (x-a)^2+(y-b)^2+(z-c)^2=r^2.
+        \]
+        Equivalently,
+        \[
+            \|\mathbf{x}-\mathbf{c}\|=r.
+        \]
+    \end{formula}
+
     \begin{definition}[Conic Section]
         A conic section is a curve obtained by intersecting a plane with a
         double cone. The nondegenerate conics are:
@@ -2387,7 +2762,7 @@
         This number is not divisible by any prime on the list.
     \end{idea}
 
-    \begin{theorem}[Bezout's Identity]
+    \begin{theorem}[B\'ezout's Identity]
         Let $a,b\in\Z$, not both zero. Then there exist integers $x,y\in\Z$
         such that
         \[
@@ -2401,7 +2776,7 @@
     \end{theorem}
 
     \begin{remark}
-        Bezout's identity is the algebraic heart of the Euclidean algorithm and
+        B\'ezout's identity is the algebraic heart of the Euclidean algorithm and
         modular inverses.
     \end{remark}
 
@@ -2414,6 +2789,42 @@
         where $r$ is the remainder. Continue until the remainder becomes $0$.
         The last nonzero remainder is $\gcd(a,b)$.
     \end{algorithm}
+
+    \begin{formula}[Least Common Multiple from Prime Factorization]
+        If
+        \[
+            a=\prod_p p^{\alpha_p},
+            \qquad
+            b=\prod_p p^{\beta_p},
+        \]
+        then
+        \[
+            \gcd(a,b)=\prod_p p^{\min(\alpha_p,\beta_p)},
+            \qquad
+            \lcm(a,b)=\prod_p p^{\max(\alpha_p,\beta_p)}.
+        \]
+        More generally, the least common multiple of several integers is found
+        by taking the largest exponent of each prime appearing in the list.
+    \end{formula}
+
+    \begin{formula}[Basic Divisibility Tests]
+        For a decimal integer $N$, the following tests are useful.
+        \begin{itemize}
+            \item Divisibility by $2$, $4$, and $8$ depends on the last $1$, $2$,
+                  and $3$ digits, respectively.
+            \item Divisibility by $3$ and $9$ depends on the digit sum.
+            \item Divisibility by $5$ depends on the last digit.
+            \item Divisibility by $11$ depends on the alternating sum of the
+                  digits.
+        \end{itemize}
+    \end{formula}
+
+    \begin{strategy}
+        Digit problems often combine an lcm condition, a digit-sum condition,
+        and a last-digits condition. First minimize the number of digits, then
+        arrange the final few digits to satisfy the strongest divisibility
+        conditions.
+    \end{strategy}
 
     \begin{theorem}[Chinese Remainder Theorem; CRT]
         Let $m_1,\dots,m_k$ be pairwise relatively prime positive integers.
@@ -2742,6 +3153,24 @@
     \end{strategy}
 
 
+    \begin{fact}[Quaternion Group]
+        The quaternion group is
+        \[
+            Q_8=\{\pm 1,\pm i,\pm j,\pm k\},
+        \]
+        with
+        \[
+            i^2=j^2=k^2=ijk=-1.
+        \]
+        It is nonabelian, but every subgroup of $Q_8$ is normal.
+    \end{fact}
+
+    \begin{remark}
+        The quaternion group is a standard small group with behavior that is
+        less intuitive than cyclic or dihedral groups, so it is a natural
+        source of quick algebra questions.
+    \end{remark}
+
     \begin{definition}[Ring and Field]
         A ring is a set equipped with addition and multiplication satisfying the
         usual distributive laws. A field is a commutative ring in which every
@@ -3004,6 +3433,14 @@
         \]
     \end{fact}
 
+    \begin{strategy}
+        For introductory topology questions, the most common quick checks are:
+        compactness means every open cover has a finite subcover, connectedness
+        means the space cannot be separated into two disjoint nonempty open
+        sets, and a homeomorphism is a continuous bijection with continuous
+        inverse.
+    \end{strategy}
+
     \begin{formula}[Euler Characteristic of a Surface]
         For a triangulated closed surface, the Euler characteristic is
         \[
@@ -3045,7 +3482,7 @@
         The eight model geometries are
         \[
             S^3,
-            \quad \mathbb{E}^3,
+            \quad \mathrm{E}^3,
             \quad \mathbb{H}^3,
             \quad S^2\times\R,
             \quad \mathbb{H}^2\times\R,
