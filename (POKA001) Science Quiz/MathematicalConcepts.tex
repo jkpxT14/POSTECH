@@ -506,6 +506,25 @@
         Test.
     \end{strategy}
 
+    \begin{theorem}[Divergence Test; Term Test]
+        If the series
+        \[
+            \sum_{n=1}^{\infty}a_n
+        \]
+        converges, then
+        \[
+            \lim_{n\to\infty}a_n=0.
+        \]
+        Equivalently, if $\lim_{n\to\infty}a_n$ does not exist or is not $0$,
+        then $\sum_{n=1}^{\infty}a_n$ diverges.
+    \end{theorem}
+
+    \begin{strategy}
+        Before trying a sophisticated convergence test, first check whether the
+        terms go to $0$. If the terms do not tend to $0$, the series diverges
+        immediately.
+    \end{strategy}
+
     \section*{Multivariable Calculus and Vector Calculus}
 
     \begin{definition}[Gradient, Divergence, Curl, and Laplacian]
@@ -1707,6 +1726,25 @@
         \]
     \end{formula}
 
+    \begin{formula}[Tower of Hanoi]
+        Let $T_n$ be the minimum number of moves needed to move $n$ disks in the
+        Tower of Hanoi puzzle. Then
+        \[
+            T_n=2T_{n-1}+1,
+            \qquad
+            T_1=1,
+        \]
+        and hence
+        \[
+            T_n=2^n-1.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The recurrence comes from moving the top $n-1$ disks away, moving the
+        largest disk once, and then moving the $n-1$ disks back on top of it.
+    \end{remark}
+
     \begin{theorem}[Pigeonhole Principle; Dirichlet's Box Principle]
         If $n+1$ objects are placed into $n$ boxes, then at least one box
         contains at least two objects.
@@ -1851,7 +1889,9 @@
 
     \begin{remark}
         This theorem is historically connected to Euler's solution of the
-        Seven Bridges of Konigsberg problem.
+        Seven Bridges of K\"onigsberg problem, which marks the beginning of
+        graph theory and topology. The historical city K\"onigsberg is now
+        Kaliningrad, Russia.
     \end{remark}
 
     \begin{theorem}[Hall's Marriage Theorem]
@@ -1971,6 +2011,27 @@
             (\Exp[X_1])^n.
         \]
     \end{proposition}
+
+    \begin{formula}[Geometric Distribution and Waiting Time]
+        If $T$ is the number of independent trials needed to obtain the first
+        success, and each trial has success probability $p$, then
+        \[
+            \Prob(T=k)=(1-p)^{k-1}p,
+            \qquad
+            k=1,2,3,\dots,
+        \]
+        and
+        \[
+            \Exp[T]=\frac{1}{p}.
+        \]
+    \end{formula}
+
+    \begin{strategy}
+        Waiting-until questions usually start with a geometric distribution. If
+        a running sum is also involved, combine the expected number of trials
+        with the expected contribution per trial, or condition on the first
+        step.
+    \end{strategy}
 
     \begin{formula}[Variance and Covariance Identities]
         For a random variable $X$,
@@ -2151,6 +2212,23 @@
         applying the function.
     \end{idea}
 
+    \begin{formula}[Exact Birthday Problem]
+        In a group of $n$ people, assuming $365$ equally likely birthdays and
+        ignoring leap years, the probability that at least two people share a
+        birthday is
+        \[
+            1-
+            \frac{365\cdot 364\cdot 363\cdots(365-n+1)}{365^n}
+            =
+            1-
+            \prod_{k=0}^{n-1}\frac{365-k}{365}.
+        \]
+        Equivalently, the probability that all birthdays are distinct is
+        \[
+            \prod_{k=0}^{n-1}\frac{365-k}{365}.
+        \]
+    \end{formula}
+
     \begin{formula}[Birthday Problem Approximation]
         In a group of $n$ people, assuming $365$ equally likely birthdays, the
         probability that at least two people share a birthday is approximately
@@ -2165,6 +2243,59 @@
         small: only $23$ people are needed for a better-than-even chance of a
         shared birthday.
     \end{remark}
+
+    \begin{formula}[Expected Number of Runs in Coin Tosses]
+        In $n$ tosses of a fair coin, a run is a maximal consecutive block of
+        identical outcomes. If $R_n$ is the number of runs, then
+        \[
+            \Exp[R_n]
+            =
+            1+\frac{n-1}{2}
+            =
+            \frac{n+1}{2}.
+        \]
+    \end{formula}
+
+    \begin{idea}
+        The first toss starts one run. For each of the remaining $n-1$ positions,
+        a new run begins exactly when the current toss differs from the previous
+        toss, which has probability $1/2$.
+    \end{idea}
+
+    \begin{formula}[Monty Hall Problem]
+        In the standard three-door Monty Hall problem, the probability of
+        winning by staying with the original choice is
+        \[
+            \frac{1}{3},
+        \]
+        while the probability of winning by switching is
+        \[
+            \frac{2}{3}.
+        \]
+    \end{formula}
+
+    \begin{remark}
+        The host's action is not random information: the host always reveals a
+        losing door. This is why the original $2/3$ probability of having chosen
+        incorrectly transfers to the remaining unopened door.
+    \end{remark}
+
+    \begin{formula}[Coupon Collector]
+        If there are $n$ equally likely coupon types, the expected number of
+        trials needed to see all $n$ types is
+        \[
+            nH_n
+            =
+            n\left(1+\frac12+\cdots+\frac1n\right).
+        \]
+    \end{formula}
+
+    \begin{strategy}
+        For a fair die, the expected number of rolls needed to see all six faces
+        is $6H_6$. If a question asks about the order in which the first
+        appearances occur, ignore repeated rolls and look only at the random
+        ordering of the six faces.
+    \end{strategy}
 
     \begin{formula}[Gambler's Ruin]
         Suppose a gambler starts with $i$ dollars and stops when reaching
@@ -2891,6 +3022,22 @@
         $n=p$ is prime, since $\varphi(p)=p-1$.
     \end{remark}
 
+    \begin{algorithm}[Modular Exponentiation by Period Reduction]
+        To find the last digits of $a^n$, compute $a^n$ modulo a suitable power
+        of $10$. Look for a short period in the powers of $a$ modulo that
+        modulus. For example,
+        \[
+            7^4=2401\equiv 1\pmod {100},
+        \]
+        so exponents of $7$ may be reduced modulo $4$ when finding the last two
+        digits.
+    \end{algorithm}
+
+    \begin{strategy}
+        Last-digit and last-two-digit questions are modular arithmetic problems.
+        Work modulo $10$ or $100$, not with the full number.
+    \end{strategy}
+
     \begin{theorem}[Wilson's Theorem]
         A positive integer $p>1$ is prime if and only if
         \[
@@ -3493,6 +3640,19 @@
     \end{fact}
 
     \chapter{Miscellaneous Topics}
+
+    \begin{strategy}[Comparing Powers by Logarithms]
+        To compare two positive numbers such as $a^b$ and $b^a$, take logarithms:
+        \[
+            a^b>b^a
+            \quad\Longleftrightarrow\quad
+            b\log a>a\log b
+            \quad\Longleftrightarrow\quad
+            \frac{\log a}{a}>\frac{\log b}{b}.
+        \]
+        The function $\log x/x$ is decreasing for $x>e$. This quickly handles
+        comparisons such as $11^9$ versus $9^{11}$ or $e^\pi$ versus $\pi^e$.
+    \end{strategy}
 
     \begin{formula}[Mercator Series for $\ln 2$]
         The alternating harmonic series satisfies

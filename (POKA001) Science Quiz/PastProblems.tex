@@ -3008,3 +3008,407 @@
         Therefore, the answer is $\boxed{(5)\ 186}$.
     \end{solution}
 
+
+    \begin{problem}{2025.5}
+        Which number is larger, $11^9$ or $9^{11}$?
+    \end{problem}
+
+    \begin{solution}
+        Taking logarithms, it is enough to compare
+        \[
+            9\log 11
+            \qquad\text{and}\qquad
+            11\log 9.
+        \]
+        Equivalently, compare
+        \[
+            \frac{\log 11}{11}
+            \qquad\text{and}\qquad
+            \frac{\log 9}{9}.
+        \]
+        The function $f(x)=\log x/x$ is decreasing for $x>e$. Since $9<11$ and both are greater than $e$, we have
+        \[
+            \frac{\log 9}{9}
+            >
+            \frac{\log 11}{11}.
+        \]
+        Hence
+        \[
+            11\log 9>9\log 11,
+        \]
+        so
+        \[
+            9^{11}>11^9.
+        \]
+        Therefore, the larger number is $\boxed{9^{11}}$.
+    \end{solution}
+
+    \begin{problem}{2025.6}
+        Roll a fair $6$-sided die repeatedly until a $6$ appears. What is the expected sum of all the rolls, including the final $6$?
+    \end{problem}
+
+    \begin{solution}
+        Let $E$ be the desired expected sum. On the first roll, if the result is $6$, the process stops and contributes $6$. If the result is one of $1,2,3,4,5$, then the process returns to the same situation after contributing that roll.
+
+        Therefore,
+        \[
+            E
+            =
+            \frac16\cdot 6
+            +
+            \frac16\sum_{k=1}^{5}(k+E).
+        \]
+        Hence
+        \[
+            E
+            =
+            1+\frac{15+5E}{6}
+            =
+            \frac72+\frac56E.
+        \]
+        Thus
+        \[
+            \frac16E=\frac72,
+            \qquad
+            E=21.
+        \]
+        Therefore, the answer is $\boxed{21}$.
+    \end{solution}
+
+    \begin{problem}{2025.7}
+        In a group of $10$ people, what is the probability that at least two people share the same birthday? Assume a $365$-day year and that each day is equally likely.
+    \end{problem}
+
+    \begin{solution}
+        It is easier to compute the complementary probability that all $10$ birthdays are distinct. The first person may have any birthday, the second must avoid that birthday, the third must avoid the first two birthdays, and so on. Hence
+        \[
+            \Prob(\text{all birthdays are distinct})
+            =
+            \frac{365}{365}\cdot\frac{364}{365}\cdot\frac{363}{365}\cdots\frac{356}{365}.
+        \]
+        Therefore,
+        \[
+            \Prob(\text{at least two people share a birthday})
+            =
+            1-\frac{365}{365}\cdot\frac{364}{365}\cdot\frac{363}{365}\cdots\frac{356}{365}.
+        \]
+        Thus the answer is
+        \[
+            \boxed{1-\frac{364}{365}\cdot\frac{363}{365}\cdots\frac{356}{365}}.
+        \]
+    \end{solution}
+
+    \begin{problem}{2025.8}
+        Find the largest of the following numbers:
+        \[
+            \begin{array}{ll}
+                (1) & e^\pi \\
+                (2) & \pi^e \\
+                (3) & \sqrt{500} \\
+                (4) & 7\pi
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Using the standard approximations
+        \[
+            e\approx 2.718,
+            \qquad
+            \pi\approx 3.142,
+        \]
+        we get
+        \[
+            e^\pi \approx 23.14,
+            \qquad
+            \pi^e \approx 22.46,
+            \qquad
+            \sqrt{500} \approx 22.36,
+            \qquad
+            7\pi \approx 21.99.
+        \]
+        Therefore the largest number is $e^\pi$.
+
+        Thus the answer is $\boxed{(1)\ e^\pi}$.
+    \end{solution}
+
+    \begin{problem}{2025.9}
+        There are three doors. Behind one door is a car, and behind the other two doors are goats. After you choose one door, the host opens one of the remaining doors and shows a goat. You are then given a chance either to keep your original choice or to switch to the other unopened door. Which choice gives a higher probability of winning the car?
+        \[
+            \begin{array}{ll}
+                (1) & \text{The probabilities are the same.} \\
+                (2) & \text{It is better not to switch.} \\
+                (3) & \text{It cannot be determined.} \\
+                (4) & \text{It is better to switch.}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The initial choice has probability $1/3$ of being correct and probability $2/3$ of being wrong.
+
+        If the initial choice is correct, switching loses. If the initial choice is wrong, the host must reveal the other wrong door, so switching wins. Therefore switching wins exactly when the initial choice was wrong, which has probability
+        \[
+            \frac23.
+        \]
+        Thus switching is better.
+
+        Therefore, the answer is $\boxed{(4)\ \text{It is better to switch}}$.
+    \end{solution}
+
+    \begin{problem}{2025.10}
+        The original statement of this problem is uncertain. The source file indicates that this was a question about a real sequence and an infinite series, but the essential mathematical formulas are missing from the available text. This problem should be updated after the exact original statement is recovered.
+    \end{problem}
+
+    \begin{solution}
+        The exact original statement is not currently available, so a mathematically reliable solution cannot be written yet. This entry is intentionally preserved as a placeholder rather than replacing the missing problem by an inferred one.
+    \end{solution}
+
+    \begin{problem}{2025.11}
+        Which of the following Fields Medalists majored in history, not mathematics, as an undergraduate?
+        \[
+            \begin{array}{ll}
+                (1) & \text{June Huh} \\
+                (2) & \text{Caucher Birkar} \\
+                (3) & \text{Edward Witten} \\
+                (4) & \text{Simon Donaldson} \\
+                (5) & \text{William Thurston}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Edward Witten is famous as a mathematical physicist and was the first physicist to receive the Fields Medal. As an undergraduate, he majored in history rather than mathematics.
+
+        Therefore, the answer is $\boxed{(3)\ \text{Edward Witten}}$.
+    \end{solution}
+
+    \begin{problem}{2025.12}
+        Which of the following mathematicians was not alive during the twentieth century?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Sophus Lie} \\
+                (2) & \text{Wilhelm Killing} \\
+                (3) & \text{Alfred Young} \\
+                (4) & \text{Hans Fitting} \\
+                (5) & \text{Botong Wang}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Sophus Lie lived from $1842$ to $1899$, so he died before the twentieth century began. The other listed mathematicians were alive at some point during the twentieth century.
+
+        Therefore, the answer is $\boxed{(1)\ \text{Sophus Lie}}$.
+    \end{solution}
+
+    \begin{problem}{2025.13}
+        K\"onigsberg was the capital of East Prussia and a major center of European scholarship for many years. It was also the hometown of Immanuel Kant, David Hilbert, and J\"urgen Moser. The famous Seven Bridges of K\"onigsberg problem, in which Leonhard Euler proved that no solution exists, marked the beginning of both topology and graph theory. Today, K\"onigsberg belongs to which country?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Germany} \\
+                (2) & \text{Poland} \\
+                (3) & \text{Lithuania} \\
+                (4) & \text{Russia} \\
+                (5) & \text{Korea}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The historical city K\"onigsberg is now Kaliningrad. Kaliningrad is a city in Russia.
+
+        Therefore, the answer is $\boxed{(4)\ \text{Russia}}$.
+    \end{solution}
+
+    \begin{problem}{2025.14}
+        You flip a fair coin $50$ times, recording each outcome as either heads $(H)$ or tails $(T)$. A run is a consecutive sequence of the same outcome. For example, if the result is $HHTTTH$, there are $3$ runs: $HH$, $TTT$, and $H$. What is the expected number of runs?
+        \[
+            \begin{array}{ll}
+                (1) & 24.5 \\
+                (2) & 25 \\
+                (3) & 25.5 \\
+                (4) & 26
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The first toss always starts one run. For each position from the second toss onward, a new run begins exactly when the current toss differs from the previous toss.
+
+        For a fair coin,
+        \[
+            \Prob(\text{current toss differs from previous toss})=\frac12.
+        \]
+        Let $I_i$ be the indicator that a new run starts at position $i$, for $2\leq i\leq 50$. Then
+        \[
+            R=1+\sum_{i=2}^{50}I_i.
+        \]
+        By linearity of expectation,
+        \[
+            \Exp[R]
+            =
+            1+\sum_{i=2}^{50}\Exp[I_i]
+            =
+            1+49\cdot\frac12
+            =
+            25.5.
+        \]
+        Therefore, the answer is $\boxed{(3)\ 25.5}$.
+    \end{solution}
+
+    \begin{problem}{2025.15}
+        Which of the following theorems was published first?
+        \[
+            \begin{array}{ll}
+                (1) & \text{Bayes' Theorem} \\
+                (2) & \text{Intermediate Value Theorem} \\
+                (3) & \text{Cauchy--Schwarz Inequality} \\
+                (4) & \text{Fundamental Theorem of Calculus}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The Fundamental Theorem of Calculus is associated with Newton and Leibniz in the seventeenth century, while Bayes' Theorem, the Intermediate Value Theorem in its modern rigorous form, and the Cauchy--Schwarz Inequality were published later.
+
+        Therefore, the earliest among the choices is the Fundamental Theorem of Calculus.
+
+        Thus the answer is $\boxed{(4)\ \text{Fundamental Theorem of Calculus}}$.
+    \end{solution}
+
+    \begin{problem}{2025.16}
+        Which is closest to the prize money awarded for the Abel Prize?
+        \[
+            \begin{array}{ll}
+                (1) & \text{None} \\
+                (2) & \text{About }\$1{,}000{,}000 \\
+                (3) & \text{About }\$1{,}500{,}000 \\
+                (4) & \text{About }\$2{,}000{,}000
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        The Abel Prize is a major international mathematics prize awarded by the Norwegian Academy of Science and Letters. Its prize money is commonly described, at quiz-level precision, as being closest to about one million US dollars among the listed options.
+
+        Therefore, the answer is $\boxed{(2)\ \text{About }\$1{,}000{,}000}$.
+    \end{solution}
+
+    \begin{problem}{2025.17}
+        Which of the following mathematicians has received both the Fields Medal and the Abel Prize?
+        \[
+            \begin{array}{ll}
+                (1) & \text{John Milnor} \\
+                (2) & \text{Terence Tao} \\
+                (3) & \text{June Huh} \\
+                (4) & \text{No one}
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        John Milnor received the Fields Medal in $1962$ and the Abel Prize in $2011$. Therefore he has received both prizes.
+
+        Thus the answer is $\boxed{(1)\ \text{John Milnor}}$.
+    \end{solution}
+
+    \begin{problem}{2025.18}
+        Suppose you roll a fair $6$-sided die until you have seen all $6$ faces. What is the probability that you do not see an odd-numbered face before you have seen all even-numbered faces?
+        \[
+            \begin{array}{ll}
+                (1) & 20\% \\
+                (2) & 15\% \\
+                (3) & 10\% \\
+                (4) & 5\%
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Ignore repeated rolls and look only at the order in which new faces appear. The condition is that the first three distinct faces to appear are exactly the even faces $2,4,6$ in some order.
+
+        The probability that the first new face is even is $3/6$. Given that one even face has appeared, the probability that the next new face is also even is $2/5$. Given that two even faces have appeared, the probability that the next new face is the remaining even face is $1/4$. Therefore the desired probability is
+        \[
+            \frac36\cdot\frac25\cdot\frac14
+            =
+            \frac1{20}
+            =
+            5\%.
+        \]
+        Therefore, the answer is $\boxed{(4)\ 5\%}$.
+    \end{solution}
+
+    \begin{problem}{2025.19}
+        In the Tower of Hanoi puzzle, $5$ disks are stacked on peg $A$ from largest to smallest. We want to move all disks to peg $C$ using auxiliary peg $B$, subject to the following rules:
+        \begin{itemize}
+            \item Only one disk may be moved at a time.
+            \item A larger disk may not be placed on a smaller disk.
+            \item Peg $B$ may be used freely.
+        \end{itemize}
+        What is the minimum number of moves needed?
+        \[
+            \begin{array}{ll}
+                (1) & 25 \\
+                (2) & 31 \\
+                (3) & 32 \\
+                (4) & 63 \\
+                (5) & 120
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Let $T(n)$ be the minimum number of moves needed for $n$ disks. To move $n$ disks, first move the top $n-1$ disks to the auxiliary peg, then move the largest disk once, and finally move the $n-1$ disks onto the largest disk. Hence
+        \[
+            T(n)=2T(n-1)+1,
+            \qquad
+            T(1)=1.
+        \]
+        Solving this recurrence gives
+        \[
+            T(n)=2^n-1.
+        \]
+        Therefore,
+        \[
+            T(5)=2^5-1=31.
+        \]
+        Thus the answer is $\boxed{(2)\ 31}$.
+    \end{solution}
+
+    \begin{problem}{2025.20}
+        What are the last two digits of $7^{123}$? Give the answer as a two-digit number.
+        \[
+            \begin{array}{ll}
+                (1) & 37 \\
+                (2) & 41 \\
+                (3) & 43 \\
+                (4) & 49
+            \end{array}
+        \]
+    \end{problem}
+
+    \begin{solution}
+        Work modulo $100$. Since
+        \[
+            7^4=2401\equiv 1\pmod{100},
+        \]
+        and
+        \[
+            123=4\cdot 30+3,
+        \]
+        we have
+        \[
+            7^{123}
+            =
+            (7^4)^{30}7^3
+            \equiv
+            1^{30}\cdot 343
+            \equiv
+            43
+            \pmod{100}.
+        \]
+        Therefore, the last two digits are $43$.
+
+        Thus the answer is $\boxed{(3)\ 43}$.
+    \end{solution}
