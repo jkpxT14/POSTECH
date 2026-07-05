@@ -1,9 +1,180 @@
+    \chapter{Set Theory and Logic}
+
+    Related \textcolor{postechred}{POSTECH} Courses:
+
+    \noindent Related Books:
+
+    \section*{Sets, Logic, and Functions}
+
+    \begin{definition}[Set and Element]
+        A set is a collection of objects, called its elements. We write
+        $x\in A$ if $x$ is an element of $A$, and $x\notin A$ otherwise.
+        If every element of $A$ is also an element of $B$, then
+        $A\subseteq B$.
+    \end{definition}
+
+    \begin{formula}[Basic Set Operations]
+        For sets $A$ and $B$ inside an ambient set $U$, we use
+        \[
+            A\cup B=\{x\in U\mid x\in A\text{ or }x\in B\},
+        \]
+        \[
+            A\cap B=\{x\in U\mid x\in A\text{ and }x\in B\},
+        \]
+        and
+        \[
+            A\setminus B=\{x\in A\mid x\notin B\}.
+        \]
+    \end{formula}
+
+    \begin{formula}[De Morgan's Laws]
+        For subsets $A,B\subseteq U$, we have
+        \[
+            (A\cup B)^{\mathsf c}=A^{\mathsf c}\cap B^{\mathsf c},
+            \qquad
+            (A\cap B)^{\mathsf c}=A^{\mathsf c}\cup B^{\mathsf c}.
+        \]
+        More generally,
+        \[
+            \left(\bigcup_{i\in I}A_i\right)^{\mathsf c}
+            =
+            \bigcap_{i\in I}A_i^{\mathsf c},
+            \qquad
+            \left(\bigcap_{i\in I}A_i\right)^{\mathsf c}
+            =
+            \bigcup_{i\in I}A_i^{\mathsf c}.
+        \]
+    \end{formula}
+
+    \begin{definition}[Power Set]
+        The power set of a set $A$ is
+        \[
+            \Pow(A)=\{B\mid B\subseteq A\}.
+        \]
+        If $|A|=n<\infty$, then
+        \[
+            |\Pow(A)|=2^n.
+        \]
+    \end{definition}
+
+    \begin{definition}[Function]
+        A function $f:X\to Y$ assigns to each element $x\in X$ a unique element
+        $f(x)\in Y$. The set $X$ is the domain, and $Y$ is the codomain. The
+        notation $x\mapsto f(x)$ describes the rule on elements.
+    \end{definition}
+
+    \begin{definition}[Injection, Surjection, and Bijection]
+        A function $f:X\to Y$ is injective if distinct elements of $X$ have
+        distinct images. It is surjective if for every $y\in Y$, there exists
+        $x\in X$ such that $f(x)=y$. It is bijective if it is both injective and
+        surjective.
+    \end{definition}
+
+    \begin{proposition}[Inverse Image Preserves Set Operations]
+        If $f:X\to Y$ and $A,B\subseteq Y$, then
+        \[
+            f^{-1}(A\cup B)=f^{-1}(A)\cup f^{-1}(B),
+        \]
+        \[
+            f^{-1}(A\cap B)=f^{-1}(A)\cap f^{-1}(B),
+        \]
+        and
+        \[
+            f^{-1}(Y\setminus A)=X\setminus f^{-1}(A).
+        \]
+    \end{proposition}
+
+    \begin{definition}[Relation and Equivalence Relation]
+        A binary relation on a set $A$ is a subset $R\subseteq A\times A$.
+        An equivalence relation is a relation that is reflexive, symmetric, and
+        transitive. The equivalence class of $a\in A$ is
+        \[
+            [a]=\{x\in A\mid x\sim a\}.
+        \]
+    \end{definition}
+
+    \begin{proposition}[Equivalence Relations and Partitions]
+        Equivalence relations on a set $A$ are the same structure as partitions
+        of $A$: each equivalence relation partitions $A$ into equivalence
+        classes, and each partition of $A$ determines an equivalence relation.
+    \end{proposition}
+
+    \section*{Cardinality and Foundations}
+
+    \begin{definition}[Countability]
+        A set $A$ is countable if it is finite or if there exists a bijection
+        $A\to\N$. A set is uncountable if it is not countable.
+    \end{definition}
+
+    \begin{theorem}[Cantor's Diagonal Argument]
+        The set $\R$ of real numbers is uncountable. In particular,
+        \[
+            |\N|<|\R|.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Cantor's Theorem]
+        For every set $A$, there is no surjection from $A$ onto $\Pow(A)$.
+        Equivalently,
+        \[
+            |A|<|\Pow(A)|.
+        \]
+    \end{theorem}
+
+    \begin{algorithm}[Mathematical Induction]
+        To prove a statement $P(n)$ for all integers $n\geq n_0$:
+        \begin{enumerate}
+            \item Prove the base case $P(n_0)$.
+            \item Prove the induction step: for every $k\geq n_0$, show that
+                  $P(k)$ implies $P(k+1)$.
+        \end{enumerate}
+        Then $P(n)$ holds for all integers $n\geq n_0$.
+    \end{algorithm}
+
+    \begin{theorem}[Well-Ordering Principle]
+        Every nonempty subset of $\N$ has a least element.
+    \end{theorem}
+
+    \begin{fact}[Russell's Paradox]
+        The expression ``the set of all sets that do not contain themselves''
+        leads to a contradiction in naive set theory. This is one reason modern
+        set theory is formulated axiomatically.
+    \end{fact}
+
+    \begin{fact}[Axiom of Choice and Zorn's Lemma]
+        The Axiom of Choice, Zorn's Lemma, and the Well-Ordering Theorem are
+        equivalent over the usual Zermelo--Fraenkel axioms. They are standard
+        foundational tools in advanced algebra, analysis, and topology.
+    \end{fact}
+
     \chapter{Calculus}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH101) Calculus I, (MATH102) Calculus II, (MATH210) Applied Complex Variables\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH101) Calculus I, (MATH102) Calculus II, (MATH210) Applied Complex Variables
+
+    \noindent Related Books:
 
     \section*{One-Variable Calculus}
+
+    \begin{formula}[Arithmetic and Geometric Progressions]
+        For an arithmetic progression with first term $a$ and common difference
+        $d$, we have
+        \[
+            a_n=a+(n-1)d,
+            \qquad
+            \sum_{k=1}^{n}a_k=\frac{n}{2}(a_1+a_n).
+        \]
+        For a geometric progression with first term $a$ and common ratio $r$, we
+        have
+        \[
+            a_n=ar^{n-1},
+            \qquad
+            \sum_{k=0}^{n-1}ar^k=a\frac{1-r^n}{1-r}\quad(r\neq 1).
+        \]
+        If $|r|<1$, then
+        \[
+            \sum_{k=0}^{\infty}ar^k=\frac{a}{1-r}.
+        \]
+    \end{formula}
 
     \begin{formula}[Standard Trigonometric and Exponential Limits]
         The following limits are fundamental:
@@ -129,6 +300,80 @@
             \qquad (|x|\leq 1).
         \]
     \end{formula}
+
+    \begin{formula}[Binomial Series]
+        For any real or complex number $\beta$,
+        \[
+            (1+x)^\beta
+            =
+            \sum_{n=0}^{\infty}\binom{\beta}{n}x^n
+            \qquad (|x|<1),
+        \]
+        where
+        \[
+            \binom{\beta}{n}
+            =
+            \frac{\beta(\beta-1)\cdots(\beta-n+1)}{n!}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Classical Series Values]
+        The following series values are worth memorizing:
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^2}
+            =
+            \frac{\pi^2}{6},
+            \qquad
+            \sum_{n=1}^{\infty}\frac{1}{n^4}
+            =
+            \frac{\pi^4}{90},
+        \]
+        \[
+            \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}
+            =
+            \log 2,
+            \qquad
+            \sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}
+            =
+            \frac{\pi}{4}.
+        \]
+        More generally, the $p$-series
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^p}
+        \]
+        converges if and only if $p>1$.
+    \end{formula}
+
+    \begin{formula}[Geometric-Series Differentiation]
+        Starting from
+        \[
+            \frac{1}{1-x}
+            =
+            \sum_{n=0}^{\infty}x^n
+            \qquad (|x|<1),
+        \]
+        term-by-term differentiation gives
+        \[
+            \frac{1}{(1-x)^2}
+            =
+            \sum_{n=1}^{\infty}nx^{n-1}
+            \qquad (|x|<1),
+        \]
+        and hence
+        \[
+            \sum_{n=1}^{\infty}nx^n
+            =
+            \frac{x}{(1-x)^2}
+            \qquad (|x|<1).
+        \]
+    \end{formula}
+
+    \begin{strategy}
+        For fast series calculations, first try to reduce the expression to a
+        geometric series, a differentiated geometric series, a Maclaurin series,
+        or a known special value such as $\pi^2/6$, $\pi^4/90$, $\log 2$, or
+        $\pi/4$.
+    \end{strategy}
 
     \begin{formula}[Integration by Parts]
         If $u$ and $v$ are differentiable functions, then
@@ -278,6 +523,34 @@
             \int_{-\infty}^{\infty}\frac{c}{(x-b)^2+a^2}\dd x
             =
             \frac{c\pi}{a}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Gamma-Type Exponential Integrals]
+        For $a>0$ and every nonnegative integer $n$,
+        \[
+            \int_0^{\infty}x^n e^{-ax}\dd x
+            =
+            \frac{n!}{a^{n+1}}.
+        \]
+        More generally, for $s>0$,
+        \[
+            \int_0^{\infty}x^{s-1}e^{-ax}\dd x
+            =
+            \frac{\Gamma(s)}{a^s}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Damped Sine and Cosine Integrals]
+        For $a>0$,
+        \[
+            \int_0^{\infty}e^{-ax}\cos bx\dd x
+            =
+            \frac{a}{a^2+b^2},
+            \qquad
+            \int_0^{\infty}e^{-ax}\sin bx\dd x
+            =
+            \frac{b}{a^2+b^2}.
         \]
     \end{formula}
 
@@ -738,8 +1011,9 @@
 
     \chapter{Linear Algebra}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH203) Applied Linear Algebra\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH203) Applied Linear Algebra
+
+    \noindent Related Books:
 
     \begin{theorem}[Rank--Nullity Theorem]
         Let $T:V\to W$ be a linear map between finite-dimensional vector spaces.
@@ -796,6 +1070,40 @@
         This theorem is a dictionary. It translates between determinants, rank,
         null spaces, and solvability of linear systems.
     \end{remark}
+
+    \begin{formula}[Inverse of a $2\times 2$ Matrix]
+        If
+        \[
+            \mathbf{A}
+            =
+            \begin{pmatrix}
+                a & b \\
+                c & d
+            \end{pmatrix}
+        \]
+        and $ad-bc\neq 0$, then
+        \[
+            \mathbf{A}^{-1}
+            =
+            \frac{1}{ad-bc}
+            \begin{pmatrix}
+                d & -b \\
+                -c & a
+            \end{pmatrix}.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Cramer's Rule]
+        Let $\mathbf{A}\in F^{n\times n}$ be invertible. The unique solution of
+        $\mathbf{A}\mathbf{x}=\mathbf{b}$ is given by
+        \[
+            x_i
+            =
+            \frac{\det(\mathbf{A}_i)}{\det(\mathbf{A})},
+        \]
+        where $\mathbf{A}_i$ is obtained from $\mathbf{A}$ by replacing its
+        $i$-th column with $\mathbf{b}$.
+    \end{theorem}
 
     \begin{definition}[Determinant]
         The determinant is a scalar associated to a square matrix
@@ -908,6 +1216,23 @@
         The same rules hold for columns.
     \end{formula}
 
+    \begin{formula}[Matrix Determinant Lemma]
+        If $\mathbf{A}\in F^{n\times n}$ is invertible and
+        $\mathbf{u},\mathbf{v}\in F^n$, then
+        \[
+            \det(\mathbf{A}+\mathbf{u}\mathbf{v}^{\mathsf T})
+            =
+            \det(\mathbf{A})
+            \left(1+\mathbf{v}^{\mathsf T}\mathbf{A}^{-1}\mathbf{u}\right).
+        \]
+        In particular,
+        \[
+            \det(\mathbf{I}_n+\mathbf{u}\mathbf{v}^{\mathsf T})
+            =
+            1+\mathbf{v}^{\mathsf T}\mathbf{u}.
+        \]
+    \end{formula}
+
     \begin{formula}[Vandermonde Determinant]
         For scalars $x_1,x_2,\dots,x_n$,
         \[
@@ -947,32 +1272,27 @@
 
     \begin{remark}
         Pascal matrices are useful quiz examples because their entries look
-        complicated while their determinants are extremely simple.
+        complicated while their determinants have simple closed forms.
     \end{remark}
 
-    \begin{formula}[Inverse of a $2\times 2$ Matrix]
-        If
+    \begin{definition}[Hadamard Matrix]
+        A Hadamard matrix of order $n$ is an $n\times n$ matrix
+        $\mathbf{H}$ whose entries are all $+1$ or $-1$ and whose rows are
+        mutually orthogonal. Equivalently,
         \[
-            \mathbf{A}
-            =
-            \begin{pmatrix}
-                a & b \\
-                c & d
-            \end{pmatrix}
-            \qquad\text{and}\qquad
-            ad-bc\neq 0,
+            \mathbf{H}\mathbf{H}^{\mathsf T}=n\mathbf{I}_n.
         \]
-        then
+    \end{definition}
+
+    \begin{formula}[Hadamard Determinant]
+        If $\mathbf{H}$ is a Hadamard matrix of order $n$, then
         \[
-            \mathbf{A}^{-1}
+            |\det(\mathbf{H})|
             =
-            \frac{1}{ad-bc}
-            \begin{pmatrix}
-                d & -b \\
-                -c & a
-            \end{pmatrix}.
+            n^{n/2}.
         \]
     \end{formula}
+
 
     \begin{formula}[Rotation and Reflection Matrices]
         Rotation by angle $\theta$ in the plane is represented by
@@ -1382,8 +1702,9 @@
 
     \chapter{Differential Equations}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH200) Differential Equations\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH200) Differential Equations
+
+    \noindent Related Books:
 
     \begin{theorem}[Picard--Lindel\"of Existence and Uniqueness Theorem]
         Consider the initial value problem
@@ -1657,8 +1978,9 @@
 
     \chapter{Combinatorics and Discrete Mathematics}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH261) Discrete Mathematics\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH261) Discrete Mathematics
+
+    \noindent Related Books:
 
     \begin{formula}[Binomial Theorem; Newton's Binomial Formula]
         For every nonnegative integer $n$,
@@ -1945,8 +2267,9 @@
 
     \chapter{Probability and Statistics}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH230) Probability \& Statistics\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH230) Probability \& Statistics
+
+    \noindent Related Books:
 
     \begin{theorem}[Law of Total Probability]
         If $B_1,\dots,B_n$ form a partition of the sample space and
@@ -2320,8 +2643,9 @@
 
     \chapter{Geometry}
 
-    Related \textcolor{postechred}{POSTECH} Courses:\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses:
+
+    \noindent Related Books:
 
     \section*{Synthetic Geometry}
 
@@ -2362,6 +2686,18 @@
             =
             2R.
         \]
+    \end{formula}
+
+    \begin{formula}[Law of Cosines]
+        For a triangle $\triangle ABC$ with side lengths
+        \[
+            a=BC,\qquad b=CA,\qquad c=AB,
+        \]
+        we have
+        \[
+            c^2=a^2+b^2-2ab\cos C.
+        \]
+        The analogous formulas hold after cyclic permutation of $a,b,c$.
     \end{formula}
 
     \begin{formula}[Heron's Formula]
@@ -2860,8 +3196,9 @@
 
     \chapter{Number Theory}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH304) Introduction to Number Theory\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH304) Introduction to Number Theory
+
+    \noindent Related Books:
 
     \begin{theorem}[Fundamental Theorem of Arithmetic]
         Every integer $n>1$ can be written as a product of prime numbers.
@@ -3223,8 +3560,9 @@
 
     \chapter{Algebra}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH301) Modern Algebra I, (MATH302) Modern Algebra II\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH301) Modern Algebra I, (MATH302) Modern Algebra II
+
+    \noindent Related Books:
 
     \begin{definition}[Group]
         A group is a set $G$ together with a binary operation satisfying closure,
@@ -3298,7 +3636,6 @@
         prime divides $|G|$, Cauchy's theorem guarantees an element of that prime
         order.
     \end{strategy}
-
 
     \begin{fact}[Quaternion Group]
         The quaternion group is
@@ -3383,8 +3720,9 @@
 
     \chapter{Analysis}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH311) Analysis I, (MATH312) Analysis II\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH311) Analysis I, (MATH312) Analysis II
+
+    \noindent Related Books:
 
     \begin{definition}[Limit Superior and Limit Inferior]
         For a real sequence $(a_n)$, define
@@ -3419,17 +3757,11 @@
         is uniformly continuous on $K$.
     \end{theorem}
 
-    \begin{theorem}[Weierstrass Extreme Value Theorem]
-        If $K\subseteq\R^n$ is compact and $f:K\to\R$ is continuous, then $f$
-        attains both a maximum and a minimum on $K$.
-    \end{theorem}
-
     \begin{strategy}
         In analysis questions, compactness usually means that one may extract a
         convergent subsequence or that a continuous function attains extrema.
         In $\R^n$, the fast recognition phrase is ``closed and bounded.''
     \end{strategy}
-
 
     \begin{theorem}[Cauchy Criterion]
         A sequence $(a_n)$ in $\R$ or $\C$ converges if and only if it is Cauchy:
@@ -3478,7 +3810,6 @@
         subsequence.
     \end{theorem}
 
-
     \begin{theorem}[Banach Fixed-Point Theorem; Contraction Mapping Theorem]
         Let $(X,d)$ be a complete metric space, and let $T:X\to X$ be a
         contraction. Then $T$ has a unique fixed point $x^\ast\in X$, and the
@@ -3502,20 +3833,12 @@
         \]
     \end{theorem}
 
-    \begin{theorem}[Fubini's Theorem]
-        Under suitable integrability assumptions, an iterated integral may be
-        computed in either order:
-        \[
-            \int_X\left(\int_Y f(x,y)\dd y\right)\dd x
-            =
-            \int_Y\left(\int_X f(x,y)\dd x\right)\dd y.
-        \]
-    \end{theorem}
 
     \chapter{Topology}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH321) General Topology\\
-    Related Books:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH321) General Topology
+
+    \noindent Related Books:
 
     \begin{definition}[Topology]
         A topology on a set $X$ is a collection $\mathcal{T}$ of subsets of $X$
@@ -3555,7 +3878,6 @@
         If $U\subseteq\R^n$ is open and $f:U\to\R^n$ is continuous and injective,
         then $f(U)$ is open and $f$ is a homeomorphism from $U$ onto $f(U)$.
     \end{theorem}
-
 
     \begin{definition}[Manifold]
         An $n$-dimensional topological manifold is a space that locally looks like
@@ -3640,6 +3962,10 @@
     \end{fact}
 
     \chapter{Miscellaneous Topics}
+
+    Related \textcolor{postechred}{POSTECH} Courses:
+
+    \noindent Related Books:
 
     \begin{strategy}[Comparing Powers by Logarithms]
         To compare two positive numbers such as $a^b$ and $b^a$, take logarithms:

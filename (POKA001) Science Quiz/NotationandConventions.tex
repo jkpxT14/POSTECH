@@ -5,8 +5,8 @@
     Throughout this book, we use standard mathematical notation whenever possible.
     The conventions below are arranged to keep the exposition readable,
     unified, and consistent with the chapter structure of Part I. The guiding
-    principle is simple: use official, standard notation first, and introduce
-    special notation only when it makes a quiz solution faster or clearer.
+    principle is to use the author's notation first, standard mathematical
+    notation second, and source-specific notation only when necessary.
 
     \section*{General Conventions}
 
@@ -17,9 +17,7 @@
     vectors are regarded as column vectors. Named theorems, standard English
     terminology, and conventional symbols are preferred over ad hoc notation.
     When two standard notations are both common, we choose the one that is less
-    ambiguous in fast quiz solutions. We distinguish function arrows carefully:
-    $f:X\to Y$ specifies the domain and codomain of a function, while
-    $x\mapsto f(x)$ specifies the rule assigning an element to its image.
+    ambiguous in fast quiz solutions.
 
     \vspace{0.5em}
 
@@ -45,13 +43,6 @@
         $\Q$ & the set of rational numbers \\
         $\R$ & the set of real numbers \\
         $\C$ & the set of complex numbers \\
-        $f:X\to Y$ & a function from domain $X$ to codomain $Y$ \\
-        $x\mapsto f(x)$ & the rule sending an element $x$ to its image $f(x)$ \\
-        $A\subseteq B$ & $A$ is a subset of $B$ \\
-        $A\subsetneq B$ & $A$ is a proper subset of $B$ \\
-        $A\setminus B$ & the set difference of $A$ and $B$ \\
-        $|A|$ & the cardinality of a finite set $A$ \\
-        $\varnothing$ & the empty set \\
         $\lambda$ & usually a scalar, eigenvalue, or parameter, depending on context \\
         $\eps$ & a small positive real number, especially in analysis \\
         $\Real z$ & the real part of a complex number $z$ \\
@@ -66,14 +57,12 @@
     \section*{Theorem-like Environments}
 
     Part I uses theorem-like labels according to the mathematical role of each
-    item. This is especially useful for Science Quiz preparation: a player should
-    be able to tell at a glance whether an item is a definition, a named result,
-    a formula to memorize, or an open problem. Statement-type environments such
-    as Definition, Theorem, Proposition, Lemma, Corollary, Formula, Fact,
-    Conjecture, Hypothesis, Open Problem, and Algorithm put the heading on its
-    own line. Short guide-type environments such as Idea, Strategy, Tactic, and
-    Remark continue on the same line after the label. Problem, Solution, Proof,
-    and Hint also continue on the same line after the label.
+    item. Statement-type environments such as Definition, Theorem, Proposition,
+    Lemma, Corollary, Formula, Fact, Conjecture, Hypothesis, Open Problem, and
+    Algorithm put the heading on its own line. Short guide-type environments
+    such as Idea, Strategy, Tactic, and Remark continue on the same line after
+    the label. Problem, Solution, Proof, and Hint also continue on the same line
+    after the label.
 
     \vspace{0.5em}
 
@@ -108,6 +97,62 @@
         Strategy & a fast quiz-solving method or recognition trick \\
         Tactic & a local, immediately usable trick for a particular type of question \\
         Remark & supplementary context, caution, or memorable information \\
+    \end{longtable}
+    }
+
+    \section*{Set Theory and Logic}
+
+    Set theory notation includes basic set operations, logical symbols, relations,
+    functions, and cardinality. The arrow $f:X\to Y$ specifies the domain and
+    codomain of a function, while $x\mapsto f(x)$ specifies the rule assigning an
+    element to its image.
+
+    \vspace{0.5em}
+
+    {\small
+    \renewcommand{\arraystretch}{1.18}
+    \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}
+        \toprule
+        Notation & Meaning \\
+        \midrule
+        \endfirsthead
+
+        \toprule
+        Notation & Meaning \\
+        \midrule
+        \endhead
+
+        \bottomrule
+        \endlastfoot
+
+        $x\in A$ & $x$ is an element of $A$ \\
+        $x\notin A$ & $x$ is not an element of $A$ \\
+        $A\subseteq B$ & $A$ is a subset of $B$ \\
+        $A\subsetneq B$ & $A$ is a proper subset of $B$ \\
+        $A\cup B$ & the union of $A$ and $B$ \\
+        $A\cap B$ & the intersection of $A$ and $B$ \\
+        $A\setminus B$ & the set difference of $A$ and $B$ \\
+        $A^{\mathsf c}$ & the complement of $A$, when the ambient set is clear \\
+        $\varnothing$ & the empty set \\
+        $\Pow(A)$ & the power set of $A$, the set of all subsets of $A$ \\
+        $A\times B$ & the Cartesian product of $A$ and $B$ \\
+        $|A|$ & the cardinality of a finite set $A$ \\
+        $\{x\in A\mid P(x)\}$ & the set of elements $x\in A$ satisfying $P(x)$ \\
+        $\forall x\in A$ & for every $x\in A$ \\
+        $\exists x\in A$ & there exists $x\in A$ \\
+        $\exists!x\in A$ & there exists a unique $x\in A$ \\
+        $P\Rightarrow Q$ & $P$ implies $Q$ \\
+        $P\Leftrightarrow Q$ & $P$ if and only if $Q$ \\
+        $P\land Q$ & $P$ and $Q$ \\
+        $P\lor Q$ & $P$ or $Q$ \\
+        $\neg P$ & not $P$ \\
+        $f:X\to Y$ & a function from domain $X$ to codomain $Y$ \\
+        $x\mapsto f(x)$ & the rule sending an element $x$ to its image $f(x)$ \\
+        $f(A)$ & the image of $A$ under $f$ \\
+        $f^{-1}(B)$ & the inverse image, or preimage, of $B$ under $f$ \\
+        $A/\sim$ & the set of equivalence classes of $A$ under $\sim$ \\
+        $\aleph_0$ & the cardinality of a countably infinite set \\
+        $\mathfrak{c}$ & the cardinality of the continuum, $|\R|$ \\
     \end{longtable}
     }
 
@@ -307,7 +352,8 @@
     }
 
     Random variables are usually denoted by uppercase letters such as $X,Y,Z$.
-    Events are denoted by uppercase letters such as $A,B,E$.
+    Events are denoted by uppercase letters such as $A,B,E$. Probability and
+    expectation are written as $\Prob$ and $\Exp$, not as ordinary italic letters.
     In graph-theoretic contexts, $\deg(v)$ denotes the degree of a vertex.
 
     \section*{Geometry}

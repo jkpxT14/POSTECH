@@ -8,8 +8,18 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
 
+\hypersetup{
+    pdftitle={Mathematics for Science Quiz},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Mathematics preparation handbook for Science Quiz},
+    pdfcreator={LaTeX}
+}
+
 \definecolor{postechred}{RGB}{166,25,85}
 \definecolor{kaistblue}{RGB}{0,65,145}
+
+\newcommand{\POSTECH}{\textcolor{postechred}{POSTECH}}
+\newcommand{\KAIST}{\textcolor{kaistblue}{KAIST}}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -96,6 +106,12 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 
+% Set theory and logic notation
+\newcommand{\Pow}{\mathcal{P}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\id}{id}
+
 % General calculus and analysis notation
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \newcommand{\diff}[2]{\frac{\dd #1}{\dd #2}}
@@ -141,14 +157,16 @@
 
 \begin{document}
 
+    \pagenumbering{gobble}
+
     \begin{titlepage}
         \centering
 
         \vspace*{2.4cm}
 
         {\Huge\bfseries Story of\\[0.35em]
-        How \textcolor{postechred}{POSTECH}\\[0.35em]
-        Defeats \textcolor{kaistblue}{KAIST}\par}
+        How \POSTECH\\[0.35em]
+        Defeats \KAIST\par}
 
         \vspace{0.7cm}
 
@@ -165,7 +183,7 @@
         \vfill
 
         {\large
-        \textcolor{postechred}{POSTECH}--\textcolor{kaistblue}{KAIST} Science War\\[0.7em]
+        \POSTECH--\KAIST{} Science War\\[0.7em]
         \textcolor{postechred}{Pohang University of Science and Technology}\\
         vs\\
         \textcolor{kaistblue}{Korea Advanced Institute of Science and Technology}
@@ -175,7 +193,11 @@
 
     \end{titlepage}
 
+    \pagenumbering{arabic}
+
     \input{Preface}
+
+    \input{Acknowledgements}
 
     \tableofcontents
 
