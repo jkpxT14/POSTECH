@@ -4,7 +4,6 @@
 
     \noindent Related Books:
 
-    \section*{Sets, Logic, and Functions}
 
     \begin{definition}[Set and Element]
         A set is a collection of objects, called its elements. We write
@@ -99,7 +98,6 @@
         classes, and each partition of $A$ determines an equivalence relation.
     \end{proposition}
 
-    \section*{Cardinality and Foundations}
 
     \begin{definition}[Countability]
         A set $A$ is countable if it is finite or if there exists a bijection
@@ -199,6 +197,96 @@
         expressions $\sin x$, $1-\cos x$, $e^x-1$, $\log(1+x)$, and
         $(1+x)^{1/x}$ are strong signals for these standard patterns.
     \end{strategy}
+
+
+    \begin{formula}[Derivative and Antiderivative Table: Elementary Functions]
+        The following table collects the most common one-variable derivative and
+        antiderivative patterns. The constant of integration is omitted from the
+        right column.
+        \[
+        \begin{array}{c|c|c}
+            f(x) & f'(x) & \displaystyle\int f(x)\dd x \\
+            \hline
+            c & 0 & cx \\
+            x^a & ax^{a-1} & \displaystyle\frac{x^{a+1}}{a+1}\quad(a\neq -1) \\
+            \displaystyle\frac1x & \displaystyle -\frac1{x^2} & \log|x| \\
+            e^x & e^x & e^x \\
+            a^x & a^x\log a & \displaystyle\frac{a^x}{\log a}\quad(a>0,\ a\neq 1) \\
+            \log x & \displaystyle\frac1x & x\log x-x \\
+            \log_a x & \displaystyle\frac{1}{x\log a} & \displaystyle\frac{x\log x-x}{\log a}
+        \end{array}
+        \]
+    \end{formula}
+
+    \begin{formula}[Derivative and Antiderivative Table: Trigonometric Functions]
+        The following trigonometric entries are especially useful for fast
+        calculus and Integration Bee style problems:
+        \[
+        \begin{array}{c|c|c}
+            f(x) & f'(x) & \displaystyle\int f(x)\dd x \\
+            \hline
+            \sin x & \cos x & -\cos x \\
+            \cos x & -\sin x & \sin x \\
+            \tan x & \sec^2 x & -\log|\cos x| \\
+            \cot x & -\csc^2 x & \log|\sin x| \\
+            \sec x & \sec x\tan x & \log|\sec x+\tan x| \\
+            \csc x & -\csc x\cot x & \log|\csc x-\cot x| \\
+            \sec^2 x & 2\sec^2 x\tan x & \tan x \\
+            \csc^2 x & -2\csc^2 x\cot x & -\cot x \\
+            \sec x\tan x & \sec x\tan^2x+\sec^3x & \sec x \\
+            \csc x\cot x & -\csc x\cot^2x-\csc^3x & -\csc x
+        \end{array}
+        \]
+    \end{formula}
+
+    \begin{formula}[Derivative and Antiderivative Table: Inverse and Hyperbolic Functions]
+        The following entries are less elementary but appear often enough to be
+        worth recognizing:
+        \[
+        \begin{array}{c|c|c}
+            f(x) & f'(x) & \displaystyle\int f(x)\dd x \\
+            \hline
+            \arcsin x & \displaystyle\frac{1}{\sqrt{1-x^2}} & x\arcsin x+\sqrt{1-x^2} \\
+            \arccos x & \displaystyle -\frac{1}{\sqrt{1-x^2}} & x\arccos x-\sqrt{1-x^2} \\
+            \arctan x & \displaystyle\frac{1}{1+x^2} & x\arctan x-\frac12\log(1+x^2) \\
+            \sinh x & \cosh x & \cosh x \\
+            \cosh x & \sinh x & \sinh x \\
+            \tanh x & \operatorname{sech}^2x & \log(\cosh x) \\
+            \coth x & -\operatorname{csch}^2x & \log|\sinh x| \\
+            \operatorname{sech}x & -\operatorname{sech}x\tanh x & \arctan(\sinh x) \\
+            \operatorname{csch}x & -\operatorname{csch}x\coth x & \log\left|\tanh\frac{x}{2}\right|
+        \end{array}
+        \]
+    \end{formula}
+
+    \begin{formula}[Standard Antiderivative Forms]
+        The following forms often appear after completing the square or making a
+        simple substitution:
+        \[
+            \int\frac{1}{x^2+a^2}\dd x
+            =
+            \frac1a\arctan\frac{x}{a},
+            \qquad
+            \int\frac{1}{\sqrt{a^2-x^2}}\dd x
+            =
+            \arcsin\frac{x}{a},
+        \]
+        \[
+            \int\frac{1}{x^2-a^2}\dd x
+            =
+            \frac{1}{2a}\log\left|\frac{x-a}{x+a}\right|,
+            \qquad
+            \int\frac{1}{\sqrt{x^2+a^2}}\dd x
+            =
+            \log\left|x+\sqrt{x^2+a^2}\right|.
+        \]
+    \end{formula}
+
+    \begin{tactic}
+        In a $150$-second quiz problem, the antiderivative is usually hidden by
+        a simple substitution, symmetry, completing the square, or integration by
+        parts. Try those before expanding into a long calculation.
+    \end{tactic}
 
     \begin{theorem}[Intermediate Value Theorem]
         Let $f$ be continuous on $[a,b]$. If $N$ is any number between
@@ -1494,21 +1582,79 @@
         signal for real eigenvalues and orthogonal diagonalization.
     \end{remark}
 
-    \begin{theorem}[Spectral Theorem for Hermitian Matrices]
-        If $\mathbf{A}\in\C^{n\times n}$ is Hermitian, meaning
+    \begin{definition}[Conjugate Transpose; Hermitian Transpose]
+        For a complex matrix $\mathbf{A}=(a_{ij})$, its conjugate transpose, or
+        Hermitian transpose, is
         \[
-            \mathbf{A}^{*}=\mathbf{A},
+            \mathbf{A}^{\mathsf H}
+            =
+            \overline{\mathbf{A}}^{\mathsf T}
+            =
+            (\overline{a_{ji}}).
         \]
-        where $\mathbf{A}^{*}$ is the conjugate transpose, then all eigenvalues
-        of $\mathbf{A}$ are real and there exists a unitary matrix $\mathbf{U}$
-        such that
+        A complex square matrix is Hermitian if
+        \[
+            \mathbf{A}^{\mathsf H}=\mathbf{A},
+        \]
+        and unitary if
+        \[
+            \mathbf{A}^{\mathsf H}\mathbf{A}
+            =
+            \mathbf{A}\mathbf{A}^{\mathsf H}
+            =
+            \mathbf{I}.
+        \]
+    \end{definition}
+
+    \begin{proposition}[Basic Rules for the Hermitian Transpose]
+        For complex matrices of compatible sizes,
+        \[
+            (\mathbf{A}+\mathbf{B})^{\mathsf H}
+            =
+            \mathbf{A}^{\mathsf H}+\mathbf{B}^{\mathsf H},
+            \qquad
+            (c\mathbf{A})^{\mathsf H}
+            =
+            \overline{c}\,\mathbf{A}^{\mathsf H},
+        \]
+        \[
+            (\mathbf{A}\mathbf{B})^{\mathsf H}
+            =
+            \mathbf{B}^{\mathsf H}\mathbf{A}^{\mathsf H},
+            \qquad
+            (\mathbf{A}^{\mathsf H})^{\mathsf H}
+            =
+            \mathbf{A}.
+        \]
+        If $\mathbf{A}$ is real, then $\mathbf{A}^{\mathsf H}=\mathbf{A}^{\mathsf T}$.
+    \end{proposition}
+
+    \begin{proposition}[Hermitian Matrix Quick Facts]
+        If $\mathbf{A}$ is Hermitian, then
+        \[
+            \mathbf{x}^{\mathsf H}\mathbf{A}\mathbf{x}\in\R
+        \]
+        for every $\mathbf{x}\in\C^n$. All eigenvalues of $\mathbf{A}$ are real,
+        and eigenvectors corresponding to distinct eigenvalues are orthogonal.
+    \end{proposition}
+
+    \begin{theorem}[Spectral Theorem for Hermitian Matrices]
+        If $\mathbf{A}\in\C^{n\times n}$ is Hermitian, then there exists a
+        unitary matrix $\mathbf{U}$ and a real diagonal matrix $\mathbf{D}$ such
+        that
         \[
             \mathbf{A}
             =
-            \mathbf{U}\mathbf{D}\mathbf{U}^{*}
+            \mathbf{U}\mathbf{D}\mathbf{U}^{\mathsf H}.
         \]
-        for a real diagonal matrix $\mathbf{D}$.
+        Equivalently, $\C^n$ has an orthonormal basis consisting of eigenvectors
+        of $\mathbf{A}$.
     \end{theorem}
+
+    \begin{remark}
+        The real analogue of a Hermitian matrix is a real symmetric matrix.
+        The real analogue of a unitary matrix is an orthogonal matrix.
+    \end{remark}
 
     \begin{definition}[Markov Matrix; Stochastic Matrix]
         A column-stochastic Markov matrix is a matrix whose entries are
@@ -1748,6 +1894,82 @@
         equation.
     \end{proposition}
 
+
+    \begin{formula}[Separable First-Order Equation]
+        A first-order equation of the form
+        \[
+            \frac{\dd y}{\dd x}=g(x)h(y)
+        \]
+        is separable. When $h(y)\neq 0$, rewrite it as
+        \[
+            \frac{1}{h(y)}\dd y=g(x)\dd x
+        \]
+        and integrate both sides.
+    \end{formula}
+
+    \begin{formula}[First-Order Linear Equation; Integrating Factor]
+        The equation
+        \[
+            y'+p(t)y=q(t)
+        \]
+        has integrating factor
+        \[
+            \mu(t)=e^{\int p(t)\dd t}.
+        \]
+        Then
+        \[
+            (\mu y)'=\mu q,
+        \]
+        so
+        \[
+            y(t)=\frac{1}{\mu(t)}
+            \left(
+                \int \mu(t)q(t)\dd t+C
+            \right).
+        \]
+    \end{formula}
+
+    \begin{formula}[Exact Differential Equation]
+        An equation
+        \[
+            M(x,y)\dd x+N(x,y)\dd y=0
+        \]
+        is exact if
+        \[
+            \frac{\partial M}{\partial y}
+            =
+            \frac{\partial N}{\partial x}.
+        \]
+        Then there is a potential function $F(x,y)$ such that
+        \[
+            F_x=M,
+            \qquad
+            F_y=N,
+        \]
+        and the solution is given implicitly by
+        \[
+            F(x,y)=C.
+        \]
+    \end{formula}
+
+    \begin{formula}[Bernoulli Equation]
+        The Bernoulli equation
+        \[
+            y'+p(t)y=q(t)y^n
+            \qquad(n\neq 0,1)
+        \]
+        becomes a first-order linear equation after the substitution
+        \[
+            u=y^{1-n}.
+        \]
+    \end{formula}
+
+    \begin{tactic}
+        For a first-order ODE, first check whether it is separable, linear,
+        exact, or Bernoulli. These four patterns cover many quick undergraduate
+        differential-equation questions.
+    \end{tactic}
+
     \begin{formula}[Second-Order Constant-Coefficient Equation]
         Consider the homogeneous equation
         \[
@@ -1802,6 +2024,58 @@
         \]
         for some $t_0$, then $y_1$ and $y_2$ are linearly independent.
     \end{proposition}
+
+
+    \begin{formula}[Abel's Identity]
+        For
+        \[
+            y''+p(t)y'+q(t)y=0,
+        \]
+        the Wronskian of two solutions satisfies
+        \[
+            W(t)=Ce^{-\int p(t)\dd t}.
+        \]
+        In particular, the Wronskian is either always zero or never zero on an
+        interval where $p$ is continuous.
+    \end{formula}
+
+    \begin{formula}[Euler--Cauchy Equation]
+        The equation
+        \[
+            ax^2y''+bxy'+cy=0
+        \]
+        suggests the trial solution $y=x^r$. This gives the indicial equation
+        \[
+            ar(r-1)+br+c=0.
+        \]
+    \end{formula}
+
+    \begin{algorithm}[Undetermined Coefficients]
+        For a constant-coefficient equation with forcing term made from
+        polynomials, exponentials, sines, or cosines, guess a particular solution
+        of the same type. If the guess overlaps with $y_h$, multiply the guess
+        by the smallest power of $t$ that removes the overlap.
+    \end{algorithm}
+
+    \begin{formula}[Variation of Parameters]
+        For
+        \[
+            y''+p(t)y'+q(t)y=g(t)
+        \]
+        with fundamental solutions $y_1,y_2$ of the homogeneous equation, a
+        particular solution is
+        \[
+            y_p
+            =
+            -y_1\int\frac{y_2g}{W}\dd t
+            +
+            y_2\int\frac{y_1g}{W}\dd t,
+        \]
+        where
+        \[
+            W=y_1y_2'-y_1'y_2.
+        \]
+    \end{formula}
 
     \begin{formula}[Exponential Growth and Decay]
         The equation
@@ -1890,14 +2164,66 @@
         \[
             \mathcal{L}\{1\}(s)=\frac{1}{s},
             \qquad
-            \mathcal{L}\{e^{at}\}(s)=\frac{1}{s-a},
+            \mathcal{L}\{t^n\}(s)=\frac{n!}{s^{n+1}},
         \]
         \[
+            \mathcal{L}\{e^{at}\}(s)=\frac{1}{s-a},
+            \qquad
             \mathcal{L}\{\sin at\}(s)=\frac{a}{s^2+a^2},
             \qquad
             \mathcal{L}\{\cos at\}(s)=\frac{s}{s^2+a^2}.
         \]
+        Also,
+        \[
+            \mathcal{L}\{y'\}=sY(s)-y(0),
+            \qquad
+            \mathcal{L}\{y''\}=s^2Y(s)-sy(0)-y'(0).
+        \]
     \end{proposition}
+
+    \begin{proposition}[Laplace Shift and Convolution]
+        If $F(s)=\mathcal{L}\{f(t)\}(s)$, then
+        \[
+            \mathcal{L}\{e^{at}f(t)\}(s)=F(s-a).
+        \]
+        If
+        \[
+            (f*g)(t)=\int_0^t f(\tau)g(t-\tau)\dd\tau,
+        \]
+        then
+        \[
+            \mathcal{L}\{f*g\}=\mathcal{L}\{f\}\mathcal{L}\{g\}.
+        \]
+    \end{proposition}
+
+    \begin{formula}[Linear Systems and Matrix Exponential]
+        The homogeneous linear system
+        \[
+            \mathbf{x}'=\mathbf{A}\mathbf{x}
+        \]
+        has solution
+        \[
+            \mathbf{x}(t)=e^{t\mathbf{A}}\mathbf{x}(0).
+        \]
+        If $\mathbf{A}$ is diagonalizable as
+        $\mathbf{A}=\mathbf{S}\mathbf{D}\mathbf{S}^{-1}$, then
+        \[
+            e^{t\mathbf{A}}
+            =
+            \mathbf{S}e^{t\mathbf{D}}\mathbf{S}^{-1},
+            \qquad
+            e^{t\mathbf{D}}
+            =
+            \diag(e^{\lambda_1t},\dots,e^{\lambda_nt}).
+        \]
+    \end{formula}
+
+    \begin{strategy}
+        For a constant-coefficient linear system, the eigenvalues of
+        $\mathbf{A}$ control the qualitative behavior. Negative real parts
+        indicate decay, positive real parts indicate growth, and nonzero
+        imaginary parts indicate rotation or oscillation.
+    \end{strategy}
 
     \begin{remark}
         The Laplace transform turns many differential equations into algebraic
@@ -2003,6 +2329,39 @@
         counting.
     \end{remark}
 
+
+    \begin{formula}[Pascal's Identity and Vandermonde's Identity]
+        Pascal's identity is
+        \[
+            \binom{n}{k}
+            =
+            \binom{n-1}{k-1}+\binom{n-1}{k}.
+        \]
+        Vandermonde's identity is
+        \[
+            \sum_{k=0}^{r}\binom{m}{k}\binom{n}{r-k}
+            =
+            \binom{m+n}{r}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Multinomial Theorem]
+        For nonnegative integers $k_1,\dots,k_m$ with
+        $k_1+\cdots+k_m=n$,
+        \[
+            (x_1+\cdots+x_m)^n
+            =
+            \sum_{k_1+\cdots+k_m=n}
+            \frac{n!}{k_1!\cdots k_m!}
+            x_1^{k_1}\cdots x_m^{k_m}.
+        \]
+        The coefficient
+        \[
+            \frac{n!}{k_1!\cdots k_m!}
+        \]
+        is called a multinomial coefficient.
+    \end{formula}
+
     \begin{formula}[Stars and Bars]
         The number of nonnegative integer solutions of
         \[
@@ -2030,6 +2389,28 @@
             \binom{m+n}{n}.
         \]
     \end{formula}
+
+
+    \begin{formula}[Ordinary Generating Functions]
+        For a sequence $(a_n)_{n\geq 0}$, its ordinary generating function is
+        \[
+            A(x)=\sum_{n=0}^{\infty}a_nx^n.
+        \]
+        The most useful basic examples are
+        \[
+            \sum_{n=0}^{\infty}x^n=\frac{1}{1-x},
+            \qquad
+            \sum_{n=0}^{\infty}\binom{n+r}{r}x^n
+            =
+            \frac{1}{(1-x)^{r+1}}.
+        \]
+    \end{formula}
+
+    \begin{tactic}
+        Generating functions are useful when a recurrence or counting problem
+        has a repeated structure. In a fast quiz problem, the answer is often a
+        known generating function rather than a long derivation.
+    \end{tactic}
 
     \begin{formula}[Fibonacci Numbers; Binet's Formula]
         If $F_0=0$, $F_1=1$, and $F_{n+1}=F_n+F_{n-1}$, then
@@ -2303,6 +2684,39 @@
         probability. It updates a prior probability after observing evidence.
     \end{remark}
 
+
+    \begin{definition}[Independence]
+        Events $A$ and $B$ are independent if
+        \[
+            \Prob(A\cap B)=\Prob(A)\Prob(B).
+        \]
+        Equivalently, if $\Prob(B)>0$, then
+        \[
+            \Prob(A\mid B)=\Prob(A).
+        \]
+        Random variables $X$ and $Y$ are independent if events determined by
+        $X$ and events determined by $Y$ are independent.
+    \end{definition}
+
+    \begin{tactic}
+        ``Disjoint'' and ``independent'' are different. If two nonempty events
+        are disjoint, then knowing that one occurred makes the other impossible;
+        they are usually not independent.
+    \end{tactic}
+
+    \begin{formula}[Complement Rule and Inclusion--Exclusion for Probability]
+        The complement rule is
+        \[
+            \Prob(A^{\mathsf c})=1-\Prob(A).
+        \]
+        For two events,
+        \[
+            \Prob(A\cup B)
+            =
+            \Prob(A)+\Prob(B)-\Prob(A\cap B).
+        \]
+    \end{formula}
+
     \begin{proposition}[Linearity of Expectation]
         For random variables $X_1,\dots,X_n$,
         \[
@@ -2389,6 +2803,22 @@
             \Exp[X]=np,
             \qquad
             \Var(X)=np(1-p).
+        \]
+    \end{formula}
+
+
+    \begin{formula}[Hypergeometric Distribution]
+        Suppose a population has $N$ objects, of which $K$ are successes. If
+        $n$ objects are chosen without replacement and $X$ is the number of
+        successes chosen, then
+        \[
+            \Prob(X=k)
+            =
+            \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}}.
+        \]
+        Its mean is
+        \[
+            \Exp[X]=n\frac{K}{N}.
         \]
     \end{formula}
 
@@ -2731,6 +3161,38 @@
         circumcircles appear.
     \end{strategy}
 
+
+    \begin{formula}[Triangle Area Formulas]
+        For a triangle with side lengths $a,b,c$, angles $A,B,C$, circumradius
+        $R$, and inradius $r$,
+        \[
+            [ABC]
+            =
+            \frac12bc\sin A
+            =
+            \frac12ca\sin B
+            =
+            \frac12ab\sin C,
+        \]
+        and
+        \[
+            [ABC]=rs=\frac{abc}{4R}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Median Length Formula; Apollonius' Theorem]
+        If $m_a$ is the median from $A$ to side $a=BC$, then
+        \[
+            m_a^2
+            =
+            \frac{2b^2+2c^2-a^2}{4}.
+        \]
+        Equivalently, if $M$ is the midpoint of $BC$, then
+        \[
+            AB^2+AC^2=2(AM^2+BM^2).
+        \]
+    \end{formula}
+
     \begin{theorem}[Angle Bisector Theorem]
         In a triangle $\triangle ABC$, suppose the internal angle bisector of
         $\angle A$ meets $BC$ at $D$. Then
@@ -3012,6 +3474,33 @@
         \]
     \end{formula}
 
+
+    \begin{formula}[Circle Equation]
+        The circle with center $(a,b)$ and radius $r$ has equation
+        \[
+            (x-a)^2+(y-b)^2=r^2.
+        \]
+        The general equation
+        \[
+            x^2+y^2+Dx+Ey+F=0
+        \]
+        can be converted to center-radius form by completing the square.
+    \end{formula}
+
+    \begin{theorem}[Three Perpendiculars Theorem]
+        Let a line $\ell$ lie in a plane $\Pi$, and let $P$ be a point outside
+        $\Pi$. If $H$ is the foot of the perpendicular from $P$ to $\Pi$, and if
+        the line $m$ in $\Pi$ through $H$ is perpendicular to $\ell$, then the
+        line through $P$ and the intersection point of $m$ with $\ell$ is also
+        perpendicular to $\ell$.
+    \end{theorem}
+
+    \begin{remark}
+        In coordinate geometry, the three perpendiculars theorem is often
+        replaced by dot products and projections. Still, it is a standard
+        spatial-geometry fact from the classical school curriculum.
+    \end{remark}
+
     \begin{definition}[Conic Section]
         A conic section is a curve obtained by intersecting a plane with a
         double cone. The nondegenerate conics are:
@@ -3258,6 +3747,41 @@
         The last nonzero remainder is $\gcd(a,b)$.
     \end{algorithm}
 
+
+    \begin{proposition}[Basic Rules of Congruences]
+        If
+        \[
+            a\equiv b\pmod n,
+            \qquad
+            c\equiv d\pmod n,
+        \]
+        then
+        \[
+            a+c\equiv b+d\pmod n,
+            \qquad
+            ac\equiv bd\pmod n.
+        \]
+        If $\gcd(c,n)=1$, then
+        \[
+            ac\equiv bc\pmod n
+            \quad\Longrightarrow\quad
+            a\equiv b\pmod n.
+        \]
+    \end{proposition}
+
+    \begin{theorem}[Linear Congruence Criterion]
+        The congruence
+        \[
+            ax\equiv b\pmod n
+        \]
+        has a solution if and only if
+        \[
+            \gcd(a,n)\mid b.
+        \]
+        If $d=\gcd(a,n)$ and $d\mid b$, then there are exactly $d$ solutions
+        modulo $n$.
+    \end{theorem}
+
     \begin{formula}[Least Common Multiple from Prime Factorization]
         If
         \[
@@ -3336,6 +3860,24 @@
         \]
     \end{formula}
 
+
+    \begin{formula}[Sum-of-Divisors Function]
+        If
+        \[
+            n=p_1^{\alpha_1}\cdots p_k^{\alpha_k},
+        \]
+        then the number of positive divisors of $n$ is
+        \[
+            d(n)=(\alpha_1+1)\cdots(\alpha_k+1),
+        \]
+        and the sum of positive divisors of $n$ is
+        \[
+            \sigma(n)
+            =
+            \prod_{i=1}^{k}\frac{p_i^{\alpha_i+1}-1}{p_i-1}.
+        \]
+    \end{formula}
+
     \begin{theorem}[Fermat's Little Theorem]
         Let $p$ be a prime number. If $p\nmid a$, then
         \[
@@ -3387,6 +3929,25 @@
         characterization of primes, even though it is not efficient as a
         primality test.
     \end{remark}
+
+
+    \begin{fact}[Quadratic Residues Modulo Small Moduli]
+        Squares have very restricted residues modulo small integers:
+        \[
+            x^2\equiv 0,1\pmod 4,
+            \qquad
+            x^2\equiv 0,1,4\pmod 8.
+        \]
+        In particular, an integer congruent to $2$ or $3$ modulo $4$ cannot be a
+        square, and an integer congruent to $2,3,5,6,7$ modulo $8$ cannot be a
+        square.
+    \end{fact}
+
+    \begin{tactic}
+        For Diophantine equations in a fast quiz setting, first reduce modulo
+        $4$, $8$, $3$, $5$, or $9$. Many impossible equations are eliminated by
+        the small list of possible square residues.
+    \end{tactic}
 
     \begin{definition}[Legendre Symbol]
         Let $p$ be an odd prime. The Legendre symbol is defined by
@@ -3654,6 +4215,19 @@
         less intuitive than cyclic or dihedral groups, so it is a natural
         source of quick algebra questions.
     \end{remark}
+
+
+    \begin{theorem}[Fundamental Theorem of Finite Abelian Groups]
+        Every finite abelian group is isomorphic to a direct product of cyclic
+        groups of prime-power order. In particular, finite abelian groups are
+        built from cyclic groups.
+    \end{theorem}
+
+    \begin{fact}[Finite Fields]
+        A finite field has $p^n$ elements for some prime $p$ and positive
+        integer $n$. Conversely, for every prime power $p^n$, there exists a
+        finite field with $p^n$ elements, unique up to isomorphism.
+    \end{fact}
 
     \begin{definition}[Ring and Field]
         A ring is a set equipped with addition and multiplication satisfying the
@@ -4110,6 +4684,36 @@
         \]
         by substituting $x=1$, since $\arctan 1=\pi/4$.
     \end{remark}
+
+
+    \begin{formula}[More Useful Series Values]
+        The following values are common in fast calculation problems:
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n(n+1)}=1,
+            \qquad
+            \sum_{n=1}^{\infty}\frac{1}{n(n+2)}=\frac34,
+        \]
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^4}=\frac{\pi^4}{90},
+            \qquad
+            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^4}=\frac{\pi^4}{96}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Power-Series Sums]
+        For $|x|<1$,
+        \[
+            \sum_{n=0}^{\infty}x^n=\frac{1}{1-x},
+            \qquad
+            \sum_{n=1}^{\infty}nx^{n}=\frac{x}{(1-x)^2},
+        \]
+        and
+        \[
+            \sum_{n=1}^{\infty}n^2x^{n}
+            =
+            \frac{x(1+x)}{(1-x)^3}.
+        \]
+    \end{formula}
 
     \begin{strategy}
         These values are useful because Science Quiz problems often hide them

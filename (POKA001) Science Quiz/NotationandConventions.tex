@@ -225,6 +225,7 @@
         \endlastfoot
 
         $\mathbf{A}^{\mathsf T}$ & the transpose of $\mathbf{A}$ \\
+        $\mathbf{A}^{\mathsf H}$ & the conjugate transpose, or Hermitian transpose, of a complex matrix $\mathbf{A}$ \\
         $\mathbf{I}_n$ & the $n\times n$ identity matrix \\
         $\mathbf{0}$ & the zero vector or zero matrix, depending on context \\
         $\det(\mathbf{A})$ & the determinant of $\mathbf{A}$ \\
@@ -233,7 +234,8 @@
         $\adj(\mathbf{A})$ & the adjugate of $\mathbf{A}$ \\
         $\Col(\mathbf{A})$ & the column space of $\mathbf{A}$ \\
         $\Null(\mathbf{A})$ & the null space of $\mathbf{A}$ \\
-        $\Col(\mathbf{A}^{\mathsf T})$ & the row space of $\mathbf{A}$ \\
+        $\Col(\mathbf{A}^{\mathsf T})$ & the row space of a real matrix $\mathbf{A}$ \\
+        $\Col(\mathbf{A}^{\mathsf H})$ & the row space of a complex matrix $\mathbf{A}$ \\
         $\Row(\mathbf{A})$ & another notation for the row space, used only when convenient \\
         $\ker T$ & the kernel of a linear map $T$ \\
         $\image T$ & the image of a linear map $T$ \\
@@ -258,6 +260,14 @@
         \qquad
         \R^n=\Col(\mathbf{A}^{\mathsf T})\oplus\Null(\mathbf{A}).
     \]
+    For a complex matrix $\mathbf{A}\in\C^{m\times n}$, the corresponding
+    transpose operation is the Hermitian transpose $\mathbf{A}^{\mathsf H}$,
+    and the orthogonal decompositions are
+    \[
+        \C^m=\Col(\mathbf{A})\oplus\Null(\mathbf{A}^{\mathsf H}),
+        \qquad
+        \C^n=\Col(\mathbf{A}^{\mathsf H})\oplus\Null(\mathbf{A}).
+    \]
 
     For cofactors, we write $A_{ij}$ for the scalar cofactor of the entry
     $a_{ij}$ of $\mathbf{A}$. The cofactor matrix is denoted by
@@ -268,8 +278,8 @@
     \[
         \adj(\mathbf{A})=\mathbf{C}^{\mathsf T}.
     \]
-    We avoid using $\mathbf{A}^{*}$ for the adjugate, since $\mathbf{A}^{*}$
-    often denotes the conjugate transpose in other contexts.
+    We avoid using $\mathbf{A}^{*}$ for the adjugate. In this book, the
+    conjugate transpose is written as $\mathbf{A}^{\mathsf H}$.
 
     \section*{Differential Equations}
 
