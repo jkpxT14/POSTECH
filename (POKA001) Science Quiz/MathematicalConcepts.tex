@@ -1,8 +1,8 @@
     \chapter{Set Theory and Logic}
 
-    Related \textcolor{postechred}{POSTECH} Courses:
+    Related \textcolor{postechred}{POSTECH} Courses: (MATH202) Set Theory
 
-    \noindent Related Books:
+    \noindent Related Books: Introduction to Set Theory (Karel Hrbacek, Thomas Jech)
 
 
     \begin{definition}[Set and Element]
@@ -149,7 +149,7 @@
 
     Related \textcolor{postechred}{POSTECH} Courses: (MATH101) Calculus I, (MATH102) Calculus II, (MATH210) Applied Complex Variables
 
-    \noindent Related Books:
+    \noindent Related Books: Calculus With Applications (Peter D. Lax, Maria Shea Terrell), Multivariable Calculus with Applications (Peter D. Lax, Maria Shea Terrell)
 
     \section*{One-Variable Calculus}
 
@@ -184,7 +184,7 @@
         \[
             \lim_{x\to 0}\frac{e^x-1}{x}=1,
             \qquad
-            \lim_{x\to 0}\frac{\log(1+x)}{x}=1,
+            \lim_{x\to 0}\frac{\ln(1+x)}{x}=1,
         \]
         and
         \[
@@ -194,92 +194,84 @@
 
     \begin{strategy}
         These limits are often faster than L'H\^opital's Rule. In a quiz, the
-        expressions $\sin x$, $1-\cos x$, $e^x-1$, $\log(1+x)$, and
+        expressions $\sin x$, $1-\cos x$, $e^x-1$, $\ln(1+x)$, and
         $(1+x)^{1/x}$ are strong signals for these standard patterns.
     \end{strategy}
 
 
-    \begin{formula}[Derivative and Antiderivative Table: Elementary Functions]
-        The following table collects the most common one-variable derivative and
-        antiderivative patterns. The constant of integration is omitted from the
-        right column.
-        \[
-        \begin{array}{c|c|c}
-            f(x) & f'(x) & \displaystyle\int f(x)\dd x \\
-            \hline
-            c & 0 & cx \\
-            x^a & ax^{a-1} & \displaystyle\frac{x^{a+1}}{a+1}\quad(a\neq -1) \\
-            \displaystyle\frac1x & \displaystyle -\frac1{x^2} & \log|x| \\
-            e^x & e^x & e^x \\
-            a^x & a^x\log a & \displaystyle\frac{a^x}{\log a}\quad(a>0,\ a\neq 1) \\
-            \log x & \displaystyle\frac1x & x\log x-x \\
-            \log_a x & \displaystyle\frac{1}{x\log a} & \displaystyle\frac{x\log x-x}{\log a}
-        \end{array}
-        \]
-    \end{formula}
+    \begin{formula}[Derivative and Antiderivative Table]
+        The following table collects the one-variable derivative and
+        antiderivative patterns most useful for Science Quiz and
+        Integration Bee style calculations. The constant of integration is
+        omitted from the right column.
 
-    \begin{formula}[Derivative and Antiderivative Table: Trigonometric Functions]
-        The following trigonometric entries are especially useful for fast
-        calculus and Integration Bee style problems:
-        \[
-        \begin{array}{c|c|c}
-            f(x) & f'(x) & \displaystyle\int f(x)\dd x \\
-            \hline
-            \sin x & \cos x & -\cos x \\
-            \cos x & -\sin x & \sin x \\
-            \tan x & \sec^2 x & -\log|\cos x| \\
-            \cot x & -\csc^2 x & \log|\sin x| \\
-            \sec x & \sec x\tan x & \log|\sec x+\tan x| \\
-            \csc x & -\csc x\cot x & \log|\csc x-\cot x| \\
-            \sec^2 x & 2\sec^2 x\tan x & \tan x \\
-            \csc^2 x & -2\csc^2 x\cot x & -\cot x \\
-            \sec x\tan x & \sec x\tan^2x+\sec^3x & \sec x \\
-            \csc x\cot x & -\csc x\cot^2x-\csc^3x & -\csc x
-        \end{array}
-        \]
-    \end{formula}
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.26\textwidth}L{0.29\textwidth}L{0.35\textwidth}@{}}
+            \toprule
+            $f(x)$ & $f'(x)$ & $\displaystyle\int f(x)\dd x$ \\
+            \midrule
+            \endfirsthead
 
-    \begin{formula}[Derivative and Antiderivative Table: Inverse and Hyperbolic Functions]
-        The following entries are less elementary but appear often enough to be
-        worth recognizing:
-        \[
-        \begin{array}{c|c|c}
-            f(x) & f'(x) & \displaystyle\int f(x)\dd x \\
-            \hline
-            \arcsin x & \displaystyle\frac{1}{\sqrt{1-x^2}} & x\arcsin x+\sqrt{1-x^2} \\
-            \arccos x & \displaystyle -\frac{1}{\sqrt{1-x^2}} & x\arccos x-\sqrt{1-x^2} \\
-            \arctan x & \displaystyle\frac{1}{1+x^2} & x\arctan x-\frac12\log(1+x^2) \\
-            \sinh x & \cosh x & \cosh x \\
-            \cosh x & \sinh x & \sinh x \\
-            \tanh x & \operatorname{sech}^2x & \log(\cosh x) \\
-            \coth x & -\operatorname{csch}^2x & \log|\sinh x| \\
-            \operatorname{sech}x & -\operatorname{sech}x\tanh x & \arctan(\sinh x) \\
-            \operatorname{csch}x & -\operatorname{csch}x\coth x & \log\left|\tanh\frac{x}{2}\right|
-        \end{array}
-        \]
-    \end{formula}
+            \toprule
+            $f(x)$ & $f'(x)$ & $\displaystyle\int f(x)\dd x$ \\
+            \midrule
+            \endhead
 
-    \begin{formula}[Standard Antiderivative Forms]
-        The following forms often appear after completing the square or making a
-        simple substitution:
-        \[
-            \int\frac{1}{x^2+a^2}\dd x
-            =
-            \frac1a\arctan\frac{x}{a},
-            \qquad
-            \int\frac{1}{\sqrt{a^2-x^2}}\dd x
-            =
-            \arcsin\frac{x}{a},
-        \]
-        \[
-            \int\frac{1}{x^2-a^2}\dd x
-            =
-            \frac{1}{2a}\log\left|\frac{x-a}{x+a}\right|,
-            \qquad
-            \int\frac{1}{\sqrt{x^2+a^2}}\dd x
-            =
-            \log\left|x+\sqrt{x^2+a^2}\right|.
-        \]
+            \bottomrule
+            \endlastfoot
+
+            $c$ & $0$ & $cx$ \\
+            $x$ & $1$ & $\displaystyle\frac{x^2}{2}$ \\
+            $x^a$ & $ax^{a-1}$ & $\displaystyle\frac{x^{a+1}}{a+1}\quad(a\neq -1)$ \\
+            $\displaystyle\frac{1}{x}$ & $\displaystyle -\frac{1}{x^2}$ & $\ln|x|$ \\
+            $\displaystyle\frac{1}{ax+b}$ & $\displaystyle -\frac{a}{(ax+b)^2}$ & $\displaystyle\frac{1}{a}\ln|ax+b|\quad(a\neq 0)$ \\
+            $e^x$ & $e^x$ & $e^x$ \\
+            $e^{ax+b}$ & $ae^{ax+b}$ & $\displaystyle\frac{1}{a}e^{ax+b}\quad(a\neq 0)$ \\
+            $a^x$ & $a^x\ln a$ & $\displaystyle\frac{a^x}{\ln a}\quad(a>0,\ a\neq 1)$ \\
+            $\ln x$ & $\displaystyle\frac{1}{x}$ & $x\ln x-x$ \\
+            $\lg x$ & $\displaystyle\frac{1}{x\ln 10}$ & $\displaystyle\frac{x\ln x-x}{\ln 10}$ \\
+            $\lb x$ & $\displaystyle\frac{1}{x\ln 2}$ & $\displaystyle\frac{x\ln x-x}{\ln 2}$ \\
+            $\log_a x$ & $\displaystyle\frac{1}{x\ln a}$ & $\displaystyle\frac{x\ln x-x}{\ln a}\quad(a>0,\ a\neq 1)$ \\
+            $x\ln x$ & $\ln x+1$ & $\displaystyle\frac{x^2}{2}\ln x-\frac{x^2}{4}$ \\
+            $\sin x$ & $\cos x$ & $-\cos x$ \\
+            $\cos x$ & $-\sin x$ & $\sin x$ \\
+            $\tan x$ & $\sec^2 x$ & $-\ln|\cos x|$ \\
+            $\cot x$ & $-\csc^2 x$ & $\ln|\sin x|$ \\
+            $\sec x$ & $\sec x\tan x$ & $\ln|\sec x+\tan x|$ \\
+            $\csc x$ & $-\csc x\cot x$ & $\ln|\csc x-\cot x|$ \\
+            $\sin(ax+b)$ & $a\cos(ax+b)$ & $\displaystyle -\frac{1}{a}\cos(ax+b)\quad(a\neq 0)$ \\
+            $\cos(ax+b)$ & $-a\sin(ax+b)$ & $\displaystyle\frac{1}{a}\sin(ax+b)\quad(a\neq 0)$ \\
+            $\tan(ax+b)$ & $a\sec^2(ax+b)$ & $\displaystyle -\frac{1}{a}\ln|\cos(ax+b)|\quad(a\neq 0)$ \\
+            $\sec^2(ax+b)$ & $2a\sec^2(ax+b)\tan(ax+b)$ & $\displaystyle\frac{1}{a}\tan(ax+b)\quad(a\neq 0)$ \\
+            $\csc^2(ax+b)$ & $-2a\csc^2(ax+b)\cot(ax+b)$ & $\displaystyle -\frac{1}{a}\cot(ax+b)\quad(a\neq 0)$ \\
+            $\sec x\tan x$ & $\sec x\tan^2x+\sec^3x$ & $\sec x$ \\
+            $\csc x\cot x$ & $-\csc x\cot^2x-\csc^3x$ & $-\csc x$ \\
+            $\arcsin x$ & $\displaystyle\frac{1}{\sqrt{1-x^2}}$ & $x\arcsin x+\sqrt{1-x^2}$ \\
+            $\arccos x$ & $\displaystyle -\frac{1}{\sqrt{1-x^2}}$ & $x\arccos x-\sqrt{1-x^2}$ \\
+            $\arctan x$ & $\displaystyle\frac{1}{1+x^2}$ & $x\arctan x-\displaystyle\frac{1}{2}\ln(1+x^2)$ \\
+            $\sinh x$ & $\cosh x$ & $\cosh x$ \\
+            $\cosh x$ & $\sinh x$ & $\sinh x$ \\
+            $\tanh x$ & $\operatorname{sech}^2x$ & $\ln(\cosh x)$ \\
+            $\coth x$ & $-\operatorname{csch}^2x$ & $\ln|\sinh x|$ \\
+            $\operatorname{sech}x$ & $-\operatorname{sech}x\tanh x$ & $\arctan(\sinh x)$ \\
+            $\operatorname{csch}x$ & $-\operatorname{csch}x\coth x$ & $\ln\left|\tanh\frac{x}{2}\right|$ \\
+            $\operatorname{arsinh}x$ & $\displaystyle\frac{1}{\sqrt{x^2+1}}$ & $x\operatorname{arsinh}x-\sqrt{x^2+1}$ \\
+            $\operatorname{artanh}x$ & $\displaystyle\frac{1}{1-x^2}$ & $x\operatorname{artanh}x+\displaystyle\frac{1}{2}\ln(1-x^2)$ \\
+            $\displaystyle\frac{1}{x^2+a^2}$ & $\displaystyle -\frac{2x}{(x^2+a^2)^2}$ & $\displaystyle\frac{1}{a}\arctan\frac{x}{a}\quad(a>0)$ \\
+            $\displaystyle\frac{1}{x^2-a^2}$ & $\displaystyle -\frac{2x}{(x^2-a^2)^2}$ & $\displaystyle\frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|\quad(a>0)$ \\
+            $\displaystyle\frac{1}{a^2-x^2}$ & $\displaystyle\frac{2x}{(a^2-x^2)^2}$ & $\displaystyle\frac{1}{2a}\ln\left|\frac{a+x}{a-x}\right|\quad(a>0)$ \\
+            $\displaystyle\frac{1}{\sqrt{a^2-x^2}}$ & $\displaystyle\frac{x}{(a^2-x^2)^{3/2}}$ & $\displaystyle\arcsin\frac{x}{a}\quad(a>0)$ \\
+            $\displaystyle\frac{1}{\sqrt{x^2+a^2}}$ & $\displaystyle -\frac{x}{(x^2+a^2)^{3/2}}$ & $\ln\left|x+\sqrt{x^2+a^2}\right|$ \\
+            $\displaystyle\frac{1}{\sqrt{x^2-a^2}}$ & $\displaystyle -\frac{x}{(x^2-a^2)^{3/2}}$ & $\ln\left|x+\sqrt{x^2-a^2}\right|\quad(a>0)$ \\
+            $\displaystyle\frac{x}{\sqrt{x^2+a^2}}$ & $\displaystyle\frac{a^2}{(x^2+a^2)^{3/2}}$ & $\sqrt{x^2+a^2}$ \\
+            $\displaystyle\frac{x}{\sqrt{a^2-x^2}}$ & $\displaystyle\frac{a^2}{(a^2-x^2)^{3/2}}$ & $-\sqrt{a^2-x^2}$ \\
+            $\displaystyle\frac{1}{1+x^2}$ & $\displaystyle -\frac{2x}{(1+x^2)^2}$ & $\arctan x$ \\
+            $\displaystyle\frac{1}{1-x^2}$ & $\displaystyle\frac{2x}{(1-x^2)^2}$ & $\operatorname{artanh}x$ \\
+            $\displaystyle\frac{1}{\sqrt{1-x^2}}$ & $\displaystyle\frac{x}{(1-x^2)^{3/2}}$ & $\arcsin x$ \\
+            $\displaystyle\frac{\ln x}{x}$ & $\displaystyle\frac{1-\ln x}{x^2}$ & $\displaystyle\frac{1}{2}(\ln x)^2$ \\
+        \end{longtable}
+        }
     \end{formula}
 
     \begin{tactic}
@@ -349,7 +341,7 @@
     \begin{strategy}
         Taylor expansion is one of the fastest tools for limits, approximations,
         and hidden series evaluations. Expressions involving $e^x$, $\sin x$,
-        $\cos x$, $\log(1+x)$, or $\arctan x$ often invite Taylor expansion.
+        $\cos x$, $\ln(1+x)$, or $\arctan x$ often invite Taylor expansion.
     \end{strategy}
 
     \begin{formula}[Maclaurin Series]
@@ -375,7 +367,7 @@
             \qquad (|x|<1),
         \]
         \[
-            \log(1+x)
+            \ln(1+x)
             =
             \sum_{n=1}^{\infty}(-1)^{n+1}\frac{x^n}{n}
             \qquad (-1<x\leq 1),
@@ -419,7 +411,7 @@
         \[
             \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}
             =
-            \log 2,
+            \ln 2,
             \qquad
             \sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}
             =
@@ -459,7 +451,7 @@
     \begin{strategy}
         For fast series calculations, first try to reduce the expression to a
         geometric series, a differentiated geometric series, a Maclaurin series,
-        or a known special value such as $\pi^2/6$, $\pi^4/90$, $\log 2$, or
+        or a known special value such as $\pi^2/6$, $\pi^4/90$, $\ln 2$, or
         $\pi/4$.
     \end{strategy}
 
@@ -1101,7 +1093,7 @@
 
     Related \textcolor{postechred}{POSTECH} Courses: (MATH203) Applied Linear Algebra
 
-    \noindent Related Books:
+    \noindent Related Books: Linear Algebra and Its Applications (Gilbert Strang)
 
     \begin{theorem}[Rank--Nullity Theorem]
         Let $T:V\to W$ be a linear map between finite-dimensional vector spaces.
@@ -1850,7 +1842,7 @@
 
     Related \textcolor{postechred}{POSTECH} Courses: (MATH200) Differential Equations
 
-    \noindent Related Books:
+    \noindent Related Books: Elementary Differential Equations and Boundary Value Problems (William E. Boyce, Richard C. Diprima, Douglas B. Meade)
 
     \begin{theorem}[Picard--Lindel\"of Existence and Uniqueness Theorem]
         Consider the initial value problem
@@ -3687,7 +3679,7 @@
 
     Related \textcolor{postechred}{POSTECH} Courses: (MATH304) Introduction to Number Theory
 
-    \noindent Related Books:
+    \noindent Related Books: Introduction to Number Theory (William W. Adams, Larry Joel Goldstein)
 
     \begin{theorem}[Fundamental Theorem of Arithmetic]
         Every integer $n>1$ can be written as a product of prime numbers.
@@ -4056,7 +4048,7 @@
     \begin{theorem}[Prime Number Theorem]
         Let $\pi(x)$ be the number of primes less than or equal to $x$. Then
         \[
-            \pi(x)\sim \frac{x}{\log x}
+            \pi(x)\sim \frac{x}{\ln x}
             \qquad
             \text{as }x\to\infty.
         \]
@@ -4064,7 +4056,7 @@
 
     \begin{idea}
         The Prime Number Theorem says that the ``probability'' that a large
-        integer near $x$ is prime is roughly $1/\log x$. This is a mental model,
+        integer near $x$ is prime is roughly $1/\ln x$. This is a mental model,
         not a literal probability statement.
     \end{idea}
 
@@ -4123,7 +4115,7 @@
 
     Related \textcolor{postechred}{POSTECH} Courses: (MATH301) Modern Algebra I, (MATH302) Modern Algebra II
 
-    \noindent Related Books:
+    \noindent Related Books: Abstract Algebra (David S. Dummit, Richard M. Foote)
 
     \begin{definition}[Group]
         A group is a set $G$ together with a binary operation satisfying closure,
@@ -4296,7 +4288,7 @@
 
     Related \textcolor{postechred}{POSTECH} Courses: (MATH311) Analysis I, (MATH312) Analysis II
 
-    \noindent Related Books:
+    \noindent Related Books: Principles of Mathematical Analysis (Walter Rudin)
 
     \begin{definition}[Limit Superior and Limit Inferior]
         For a real sequence $(a_n)$, define
@@ -4412,7 +4404,7 @@
 
     Related \textcolor{postechred}{POSTECH} Courses: (MATH321) General Topology
 
-    \noindent Related Books:
+    \noindent Related Books: Topology (James R. Munkres)
 
     \begin{definition}[Topology]
         A topology on a set $X$ is a collection $\mathcal{T}$ of subsets of $X$
@@ -4546,11 +4538,11 @@
         \[
             a^b>b^a
             \quad\Longleftrightarrow\quad
-            b\log a>a\log b
+            b\ln a>a\ln b
             \quad\Longleftrightarrow\quad
-            \frac{\log a}{a}>\frac{\log b}{b}.
+            \frac{\ln a}{a}>\frac{\ln b}{b}.
         \]
-        The function $\log x/x$ is decreasing for $x>e$. This quickly handles
+        The function $\ln x/x$ is decreasing for $x>e$. This quickly handles
         comparisons such as $11^9$ versus $9^{11}$ or $e^\pi$ versus $\pi^e$.
     \end{strategy}
 
