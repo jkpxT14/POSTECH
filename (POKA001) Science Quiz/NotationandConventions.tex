@@ -4,9 +4,7 @@
 
     Throughout this book, we use standard mathematical notation whenever possible.
     The conventions below are arranged to keep the exposition readable,
-    unified, and consistent with the chapter structure of Part I. The guiding
-    principle is to use the author's notation first, standard mathematical
-    notation second, and source-specific notation only when necessary.
+    unified, and consistent with the chapter structure of Part I.
 
     \section*{General Conventions}
 
@@ -14,10 +12,7 @@
     Vectors are written in bold lowercase letters, such as
     $\mathbf{u},\mathbf{v},\mathbf{x}$. Matrices are written in bold uppercase
     letters, such as $\mathbf{A},\mathbf{B},\mathbf{P}$. Unless otherwise stated,
-    vectors are regarded as column vectors. Named theorems, standard English
-    terminology, and conventional symbols are preferred over ad hoc notation.
-    When two standard notations are both common, we choose the one that is less
-    ambiguous in fast quiz solutions.
+    vectors are regarded as column vectors.
 
     \vspace{0.5em}
 
@@ -45,6 +40,8 @@
         $\C$ & the set of complex numbers \\
         $\lambda$ & usually a scalar, eigenvalue, or parameter, depending on context \\
         $\eps$ & a small positive real number, especially in analysis \\
+        $a\coloneqq b$ & $a$ is defined to be $b$ \\
+        $:=$ & another common symbol for ``is defined to be'' \\
         $\Real z$ or $\Re z$ & the real part of a complex number $z$ \\
         $\Imag z$ or $\Im z$ & the imaginary part of a complex number $z$ \\
         $\sim$ & may mean asymptotic equivalence, distribution, or an equivalence relation \\
@@ -57,12 +54,7 @@
     \section*{Theorem-like Environments}
 
     Part I uses theorem-like labels according to the mathematical role of each
-    item. Statement-type environments such as Definition, Theorem, Proposition,
-    Lemma, Corollary, Formula, Fact, Conjecture, Hypothesis, Open Problem, and
-    Algorithm put the heading on its own line. Short guide-type environments
-    such as Idea, Strategy, Tactic, and Remark continue on the same line after
-    the label. Problem, Solution, Proof, and Hint also continue on the same line
-    after the label.
+    item.
 
     \vspace{0.5em}
 
@@ -129,6 +121,8 @@
         $x\notin A$ & $x$ is not an element of $A$ \\
         $A\subseteq B$ & $A$ is a subset of $B$ \\
         $A\subsetneq B$ & $A$ is a proper subset of $B$ \\
+        $A\supseteq B$ & $A$ is a superset of $B$ \\
+        $A\supsetneq B$ & $A$ is a proper superset of $B$ \\
         $A\cup B$ & the union of $A$ and $B$ \\
         $A\cap B$ & the intersection of $A$ and $B$ \\
         $A\setminus B$ & the set difference of $A$ and $B$ \\
@@ -136,17 +130,21 @@
         $\varnothing$ & the empty set \\
         $\Pow(A)$ & the power set of $A$, the set of all subsets of $A$ \\
         $A\times B$ & the Cartesian product of $A$ and $B$ \\
+        $A\sqcup B$ & the disjoint union of $A$ and $B$ \\
         $|A|$ & the cardinality of a finite set $A$ \\
         $\{x\in A\mid P(x)\}$ & the set of elements $x\in A$ satisfying $P(x)$ \\
         $\forall x\in A$ & for every $x\in A$ \\
         $\exists x\in A$ & there exists $x\in A$ \\
         $\exists!x\in A$ & there exists a unique $x\in A$ \\
         $P\Rightarrow Q$ & $P$ implies $Q$ \\
+        $P\Leftarrow Q$ & $Q$ implies $P$ \\
         $P\Leftrightarrow Q$ & $P$ if and only if $Q$ \\
         $P\land Q$ & $P$ and $Q$ \\
         $P\lor Q$ & $P$ or $Q$ \\
         $\neg P$ & not $P$ \\
         $f:X\to Y$ & a function from domain $X$ to codomain $Y$ \\
+        $X\hookrightarrow Y$ & an injective map from $X$ to $Y$, when explicitly stated \\
+        $X\twoheadrightarrow Y$ & a surjective map from $X$ to $Y$, when explicitly stated \\
         $x\mapsto f(x)$ & the rule sending an element $x$ to its image $f(x)$ \\
         $f(A)$ & the image of $A$ under $f$ \\
         $f^{-1}(B)$ & the inverse image, or preimage, of $B$ under $f$ \\
@@ -232,6 +230,7 @@
 
         $\mathbf{A}^{\mathsf T}$ & the transpose of $\mathbf{A}$ \\
         $\mathbf{A}^{\mathsf H}$ & the conjugate transpose, or Hermitian transpose, of a complex matrix $\mathbf{A}$ \\
+        $\mathbf{A}=(a_{ij})$ & the matrix whose $(i,j)$-entry is $a_{ij}$ \\
         $\mathbf{I}_n$ & the $n\times n$ identity matrix \\
         $\mathbf{0}$ & the zero vector or zero matrix, depending on context \\
         $\det(\mathbf{A})$ & the determinant of $\mathbf{A}$ \\
@@ -326,7 +325,8 @@
 
     Combinatorics and discrete mathematics provide the notation for counting,
     recurrence relations, and graphs. Probability and statistics use this
-    notation frequently, especially in finite probability spaces.
+    notation frequently, especially in finite probability spaces. The symbol
+    $\multichoose{n}{k}$ is reserved for combinations with repetition.
 
     \vspace{0.5em}
 
@@ -346,6 +346,7 @@
         \bottomrule
         \endlastfoot
 
+        $[n]$ & the set $\{1,2,\dots,n\}$, when used in combinatorics \\
         $n!$ & factorial \\
         $\binom{n}{k}$ & the number of $k$-element subsets of an $n$-element set \\
         $\multichoose{n}{k}$ & the number of multisets of size $k$ chosen from an $n$-element set, equal to $\binom{n+k-1}{k}$ \\

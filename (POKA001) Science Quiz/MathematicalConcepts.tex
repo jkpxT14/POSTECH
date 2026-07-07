@@ -26,6 +26,65 @@
         \]
     \end{formula}
 
+
+    \begin{formula}[Set Algebra]
+        For subsets $A,B,C\subseteq U$, the following identities are often useful:
+        \[
+            A\cup\varnothing=A,
+            \qquad
+            A\cap U=A,
+            \qquad
+            A\cup A=A,
+            \qquad
+            A\cap A=A.
+        \]
+        The distributive laws are
+        \[
+            A\cap(B\cup C)=(A\cap B)\cup(A\cap C),
+        \]
+        \[
+            A\cup(B\cap C)=(A\cup B)\cap(A\cup C).
+        \]
+        The absorption laws are
+        \[
+            A\cup(A\cap B)=A,
+            \qquad
+            A\cap(A\cup B)=A.
+        \]
+    \end{formula}
+
+    \begin{formula}[Basic Logical Equivalences]
+        The most useful logical equivalences are
+        \[
+            (P\Rightarrow Q)\Longleftrightarrow(\neg Q\Rightarrow\neg P),
+        \]
+        \[
+            \neg(P\Rightarrow Q)\Longleftrightarrow P\land\neg Q,
+        \]
+        \[
+            \neg(P\land Q)\Longleftrightarrow(\neg P)\lor(\neg Q),
+            \qquad
+            \neg(P\lor Q)\Longleftrightarrow(\neg P)\land(\neg Q),
+        \]
+        and
+        \[
+            \neg(\forall x\in A,\ P(x))
+            \Longleftrightarrow
+            \exists x\in A\text{ such that }\neg P(x),
+        \]
+        \[
+            \neg(\exists x\in A\text{ such that }P(x))
+            \Longleftrightarrow
+            \forall x\in A,\ \neg P(x).
+        \]
+    \end{formula}
+
+    \begin{strategy}
+        To prove $P\Rightarrow Q$, it is often enough to prove the contrapositive
+        $\neg Q\Rightarrow\neg P$. To disprove a universal statement, find a
+        counterexample.
+    \end{strategy}
+
     \begin{formula}[De Morgan's Laws]
         For subsets $A,B\subseteq U$, we have
         \[
@@ -68,6 +127,19 @@
         $x\in X$ such that $f(x)=y$. It is bijective if it is both injective and
         surjective.
     \end{definition}
+
+
+    \begin{proposition}[Finite Injective-Surjective Criterion]
+        If $X$ and $Y$ are finite sets with $|X|=|Y|$, then for a function
+        $f:X\to Y$, the following are equivalent:
+        \[
+            f\text{ is injective}
+            \quad\Longleftrightarrow\quad
+            f\text{ is surjective}
+            \quad\Longleftrightarrow\quad
+            f\text{ is bijective}.
+        \]
+    \end{proposition}
 
     \begin{proposition}[Inverse Image Preserves Set Operations]
         If $f:X\to Y$ and $A,B\subseteq Y$, then
@@ -200,10 +272,9 @@
 
 
     \begin{formula}[Derivative and Antiderivative Table]
-        The following table collects the one-variable derivative and
-        antiderivative patterns most useful for Science Quiz and
-        Integration Bee style calculations. The constant of integration is
-        omitted from the right column.
+        The following table records the basic one-variable forms. Affine changes
+        of variable are handled by the chain rule and substitution. The constant
+        of integration is omitted from the right column.
 
         {\small
         \renewcommand{\arraystretch}{1.18}
@@ -225,31 +296,31 @@
             $x$ & $1$ & $\displaystyle\frac{x^2}{2}$ \\
             $x^a$ & $ax^{a-1}$ & $\displaystyle\frac{x^{a+1}}{a+1}\quad(a\neq -1)$ \\
             $\displaystyle\frac{1}{x}$ & $\displaystyle -\frac{1}{x^2}$ & $\ln|x|$ \\
-            $\displaystyle\frac{1}{ax+b}$ & $\displaystyle -\frac{a}{(ax+b)^2}$ & $\displaystyle\frac{1}{a}\ln|ax+b|\quad(a\neq 0)$ \\
             $e^x$ & $e^x$ & $e^x$ \\
-            $e^{ax+b}$ & $ae^{ax+b}$ & $\displaystyle\frac{1}{a}e^{ax+b}\quad(a\neq 0)$ \\
             $a^x$ & $a^x\ln a$ & $\displaystyle\frac{a^x}{\ln a}\quad(a>0,\ a\neq 1)$ \\
             $\ln x$ & $\displaystyle\frac{1}{x}$ & $x\ln x-x$ \\
             $\lg x$ & $\displaystyle\frac{1}{x\ln 10}$ & $\displaystyle\frac{x\ln x-x}{\ln 10}$ \\
             $\lb x$ & $\displaystyle\frac{1}{x\ln 2}$ & $\displaystyle\frac{x\ln x-x}{\ln 2}$ \\
             $\log_a x$ & $\displaystyle\frac{1}{x\ln a}$ & $\displaystyle\frac{x\ln x-x}{\ln a}\quad(a>0,\ a\neq 1)$ \\
             $x\ln x$ & $\ln x+1$ & $\displaystyle\frac{x^2}{2}\ln x-\frac{x^2}{4}$ \\
+            $\displaystyle\frac{\ln x}{x}$ & $\displaystyle\frac{1-\ln x}{x^2}$ & $\displaystyle\frac{1}{2}(\ln x)^2$ \\
+            $\displaystyle\frac{1}{x\ln x}$ & $\displaystyle-\frac{\ln x+1}{x^2(\ln x)^2}$ & $\ln|\ln x|$ \\
             $\sin x$ & $\cos x$ & $-\cos x$ \\
             $\cos x$ & $-\sin x$ & $\sin x$ \\
-            $\tan x$ & $\sec^2 x$ & $-\ln|\cos x|$ \\
-            $\cot x$ & $-\csc^2 x$ & $\ln|\sin x|$ \\
+            $\tan x$ & $\sec^2x$ & $-\ln|\cos x|$ \\
+            $\cot x$ & $-\csc^2x$ & $\ln|\sin x|$ \\
             $\sec x$ & $\sec x\tan x$ & $\ln|\sec x+\tan x|$ \\
             $\csc x$ & $-\csc x\cot x$ & $\ln|\csc x-\cot x|$ \\
-            $\sin(ax+b)$ & $a\cos(ax+b)$ & $\displaystyle -\frac{1}{a}\cos(ax+b)\quad(a\neq 0)$ \\
-            $\cos(ax+b)$ & $-a\sin(ax+b)$ & $\displaystyle\frac{1}{a}\sin(ax+b)\quad(a\neq 0)$ \\
-            $\tan(ax+b)$ & $a\sec^2(ax+b)$ & $\displaystyle -\frac{1}{a}\ln|\cos(ax+b)|\quad(a\neq 0)$ \\
-            $\sec^2(ax+b)$ & $2a\sec^2(ax+b)\tan(ax+b)$ & $\displaystyle\frac{1}{a}\tan(ax+b)\quad(a\neq 0)$ \\
-            $\csc^2(ax+b)$ & $-2a\csc^2(ax+b)\cot(ax+b)$ & $\displaystyle -\frac{1}{a}\cot(ax+b)\quad(a\neq 0)$ \\
+            $\sec^2x$ & $2\sec^2x\tan x$ & $\tan x$ \\
+            $\csc^2x$ & $-2\csc^2x\cot x$ & $-\cot x$ \\
             $\sec x\tan x$ & $\sec x\tan^2x+\sec^3x$ & $\sec x$ \\
             $\csc x\cot x$ & $-\csc x\cot^2x-\csc^3x$ & $-\csc x$ \\
             $\arcsin x$ & $\displaystyle\frac{1}{\sqrt{1-x^2}}$ & $x\arcsin x+\sqrt{1-x^2}$ \\
-            $\arccos x$ & $\displaystyle -\frac{1}{\sqrt{1-x^2}}$ & $x\arccos x-\sqrt{1-x^2}$ \\
+            $\arccos x$ & $\displaystyle-\frac{1}{\sqrt{1-x^2}}$ & $x\arccos x-\sqrt{1-x^2}$ \\
             $\arctan x$ & $\displaystyle\frac{1}{1+x^2}$ & $x\arctan x-\displaystyle\frac{1}{2}\ln(1+x^2)$ \\
+            $\operatorname{arccot}x$ & $\displaystyle-\frac{1}{1+x^2}$ & $x\operatorname{arccot}x+\displaystyle\frac{1}{2}\ln(1+x^2)$ \\
+            $\operatorname{arcsec}x$ & $\displaystyle\frac{1}{|x|\sqrt{x^2-1}}$ & $x\operatorname{arcsec}x-\ln\left|x+\sqrt{x^2-1}\right|$ \\
+            $\operatorname{arccsc}x$ & $\displaystyle-\frac{1}{|x|\sqrt{x^2-1}}$ & $x\operatorname{arccsc}x+\ln\left|x+\sqrt{x^2-1}\right|$ \\
             $\sinh x$ & $\cosh x$ & $\cosh x$ \\
             $\cosh x$ & $\sinh x$ & $\sinh x$ \\
             $\tanh x$ & $\operatorname{sech}^2x$ & $\ln(\cosh x)$ \\
@@ -257,19 +328,19 @@
             $\operatorname{sech}x$ & $-\operatorname{sech}x\tanh x$ & $\arctan(\sinh x)$ \\
             $\operatorname{csch}x$ & $-\operatorname{csch}x\coth x$ & $\ln\left|\tanh\frac{x}{2}\right|$ \\
             $\operatorname{arsinh}x$ & $\displaystyle\frac{1}{\sqrt{x^2+1}}$ & $x\operatorname{arsinh}x-\sqrt{x^2+1}$ \\
+            $\operatorname{arcosh}x$ & $\displaystyle\frac{1}{\sqrt{x-1}\sqrt{x+1}}$ & $x\operatorname{arcosh}x-\sqrt{x^2-1}$ \\
             $\operatorname{artanh}x$ & $\displaystyle\frac{1}{1-x^2}$ & $x\operatorname{artanh}x+\displaystyle\frac{1}{2}\ln(1-x^2)$ \\
-            $\displaystyle\frac{1}{x^2+a^2}$ & $\displaystyle -\frac{2x}{(x^2+a^2)^2}$ & $\displaystyle\frac{1}{a}\arctan\frac{x}{a}\quad(a>0)$ \\
-            $\displaystyle\frac{1}{x^2-a^2}$ & $\displaystyle -\frac{2x}{(x^2-a^2)^2}$ & $\displaystyle\frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|\quad(a>0)$ \\
+            $\displaystyle\frac{1}{x^2+a^2}$ & $\displaystyle-\frac{2x}{(x^2+a^2)^2}$ & $\displaystyle\frac{1}{a}\arctan\frac{x}{a}\quad(a>0)$ \\
+            $\displaystyle\frac{1}{x^2-a^2}$ & $\displaystyle-\frac{2x}{(x^2-a^2)^2}$ & $\displaystyle\frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|\quad(a>0)$ \\
             $\displaystyle\frac{1}{a^2-x^2}$ & $\displaystyle\frac{2x}{(a^2-x^2)^2}$ & $\displaystyle\frac{1}{2a}\ln\left|\frac{a+x}{a-x}\right|\quad(a>0)$ \\
             $\displaystyle\frac{1}{\sqrt{a^2-x^2}}$ & $\displaystyle\frac{x}{(a^2-x^2)^{3/2}}$ & $\displaystyle\arcsin\frac{x}{a}\quad(a>0)$ \\
-            $\displaystyle\frac{1}{\sqrt{x^2+a^2}}$ & $\displaystyle -\frac{x}{(x^2+a^2)^{3/2}}$ & $\ln\left|x+\sqrt{x^2+a^2}\right|$ \\
-            $\displaystyle\frac{1}{\sqrt{x^2-a^2}}$ & $\displaystyle -\frac{x}{(x^2-a^2)^{3/2}}$ & $\ln\left|x+\sqrt{x^2-a^2}\right|\quad(a>0)$ \\
+            $\displaystyle\frac{1}{\sqrt{x^2+a^2}}$ & $\displaystyle-\frac{x}{(x^2+a^2)^{3/2}}$ & $\ln\left|x+\sqrt{x^2+a^2}\right|$ \\
+            $\displaystyle\frac{1}{\sqrt{x^2-a^2}}$ & $\displaystyle-\frac{x}{(x^2-a^2)^{3/2}}$ & $\ln\left|x+\sqrt{x^2-a^2}\right|\quad(a>0)$ \\
             $\displaystyle\frac{x}{\sqrt{x^2+a^2}}$ & $\displaystyle\frac{a^2}{(x^2+a^2)^{3/2}}$ & $\sqrt{x^2+a^2}$ \\
             $\displaystyle\frac{x}{\sqrt{a^2-x^2}}$ & $\displaystyle\frac{a^2}{(a^2-x^2)^{3/2}}$ & $-\sqrt{a^2-x^2}$ \\
-            $\displaystyle\frac{1}{1+x^2}$ & $\displaystyle -\frac{2x}{(1+x^2)^2}$ & $\arctan x$ \\
-            $\displaystyle\frac{1}{1-x^2}$ & $\displaystyle\frac{2x}{(1-x^2)^2}$ & $\operatorname{artanh}x$ \\
-            $\displaystyle\frac{1}{\sqrt{1-x^2}}$ & $\displaystyle\frac{x}{(1-x^2)^{3/2}}$ & $\arcsin x$ \\
-            $\displaystyle\frac{\ln x}{x}$ & $\displaystyle\frac{1-\ln x}{x^2}$ & $\displaystyle\frac{1}{2}(\ln x)^2$ \\
+            $\sqrt{a^2-x^2}$ & $\displaystyle-\frac{x}{\sqrt{a^2-x^2}}$ & $\displaystyle\frac{x}{2}\sqrt{a^2-x^2}+\frac{a^2}{2}\arcsin\frac{x}{a}$ \\
+            $\sqrt{x^2+a^2}$ & $\displaystyle\frac{x}{\sqrt{x^2+a^2}}$ & $\displaystyle\frac{x}{2}\sqrt{x^2+a^2}+\frac{a^2}{2}\ln\left|x+\sqrt{x^2+a^2}\right|$ \\
+            $\sqrt{x^2-a^2}$ & $\displaystyle\frac{x}{\sqrt{x^2-a^2}}$ & $\displaystyle\frac{x}{2}\sqrt{x^2-a^2}-\frac{a^2}{2}\ln\left|x+\sqrt{x^2-a^2}\right|$ \\
         \end{longtable}
         }
     \end{formula}
@@ -1329,25 +1400,28 @@
     \end{formula}
 
     \begin{fact}[Pascal Matrices]
-        The lower triangular Pascal matrix
+        Define the lower triangular Pascal matrix by
         \[
-            \mathbf{P}_n
-            =
-            \left(\binom{i}{j}\right)_{0\leq i,j\leq n},
+            \mathbf{P}_n=(p_{ij})_{0\leq i,j\leq n},
             \qquad
-            \binom{i}{j}=0\text{ for }j>i,
+            p_{ij}
+            =
+            \begin{cases}
+                \binom{i}{j}, & j\leq i, \\
+                0, & j>i.
+            \end{cases}
         \]
-        has diagonal entries all equal to $1$, and hence
+        Since all diagonal entries are equal to $1$, we have
         \[
             \det(\mathbf{P}_n)=1.
         \]
-        The symmetric Pascal matrix
+        Define the symmetric Pascal matrix by
         \[
-            \mathbf{S}_n
-            =
-            \left(\binom{i+j}{i}\right)_{0\leq i,j\leq n}
+            \mathbf{S}_n=(s_{ij})_{0\leq i,j\leq n},
+            \qquad
+            s_{ij}=\binom{i+j}{i}.
         \]
-        also has determinant $1$.
+        This matrix also has determinant $1$.
     \end{fact}
 
     \begin{remark}
