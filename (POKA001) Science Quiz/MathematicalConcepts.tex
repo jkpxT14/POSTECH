@@ -271,6 +271,38 @@
     \end{strategy}
 
 
+    \begin{theorem}[L'H\^opital's Rule]
+        Let $f$ and $g$ be differentiable on a deleted neighborhood of $a$, and
+        suppose that $g'(x)\neq 0$ there. Assume either
+        \[
+            f(x)\to 0,
+            \qquad
+            g(x)\to 0,
+        \]
+        or
+        \[
+            |f(x)|\to\infty,
+            \qquad
+            |g(x)|\to\infty,
+        \]
+        as $x\to a$. If
+        \[
+            \lim_{x\to a}\frac{f'(x)}{g'(x)}=L
+        \]
+        exists in the extended real numbers, then
+        \[
+            \lim_{x\to a}\frac{f(x)}{g(x)}=L.
+        \]
+    \end{theorem}
+
+    \begin{strategy}
+        Apply L'H\^opital's Rule only after identifying a $0/0$ or
+        $\infty/\infty$ form. Rewrite $0\cdot\infty$ and $\infty-\infty$ as a
+        quotient first. For $0^0$, $1^\infty$, or $\infty^0$, take logarithms
+        before differentiating.
+    \end{strategy}
+
+
     \begin{formula}[Derivative and Antiderivative Table]
         The following table records the basic one-variable forms. Affine changes
         of variable are handled by the chain rule and substitution. The constant
@@ -390,6 +422,16 @@
         instantaneous rate of change equals the average rate of change.
     \end{idea}
 
+    \begin{theorem}[Derivative of an Inverse Function]
+        Let $f$ be one-to-one and differentiable near $x_0$, with
+        $f'(x_0)\neq 0$. If $g=f^{-1}$ and $y_0=f(x_0)$, then
+        \[
+            g'(y_0)
+            =
+            \frac{1}{f'(x_0)}.
+        \]
+    \end{theorem}
+
     \begin{theorem}[Taylor's Theorem]
         Suppose that $f$ is $n+1$ times differentiable near $a$. Then
         \[
@@ -408,6 +450,19 @@
         \]
         for some $c$ between $a$ and $x$.
     \end{theorem}
+
+    \begin{corollary}[Taylor Error Bound]
+        If
+        \[
+            |f^{(n+1)}(t)|\leq M
+        \]
+        for every $t$ between $a$ and $x$, then the Taylor remainder satisfies
+        \[
+            |R_n(x)|
+            \leq
+            \frac{M}{(n+1)!}|x-a|^{n+1}.
+        \]
+    \end{corollary}
 
     \begin{strategy}
         Taylor expansion is one of the fastest tools for limits, approximations,
@@ -449,6 +504,29 @@
             =
             \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{2n+1}
             \qquad (|x|\leq 1).
+        \]
+        Also,
+        \[
+            -\ln(1-x)
+            =
+            \sum_{n=1}^{\infty}\frac{x^n}{n}
+            \qquad (-1\leq x<1),
+        \]
+        \[
+            \sinh x
+            =
+            \sum_{n=0}^{\infty}\frac{x^{2n+1}}{(2n+1)!},
+            \qquad
+            \cosh x
+            =
+            \sum_{n=0}^{\infty}\frac{x^{2n}}{(2n)!},
+        \]
+        and
+        \[
+            \operatorname{artanh}x
+            =
+            \sum_{n=0}^{\infty}\frac{x^{2n+1}}{2n+1}
+            \qquad (|x|<1).
         \]
     \end{formula}
 
@@ -516,6 +594,36 @@
             =
             \frac{x}{(1-x)^2}
             \qquad (|x|<1).
+        \]
+    \end{formula}
+
+    \begin{formula}[Telescoping Series]
+        If
+        \[
+            a_n=b_n-b_{n+1},
+        \]
+        then the partial sums satisfy
+        \[
+            \sum_{n=1}^{N}a_n
+            =
+            b_1-b_{N+1}.
+        \]
+        Hence, if $b_n\to L$, then
+        \[
+            \sum_{n=1}^{\infty}a_n=b_1-L.
+        \]
+    \end{formula}
+
+    \begin{formula}[Asymptotic Growth Hierarchy]
+        For fixed $p,q>0$ and $c>1$, as $n\to\infty$,
+        \[
+            (\ln n)^p=o(n^q),
+            \qquad
+            n^q=o(c^n),
+            \qquad
+            c^n=o(n!),
+            \qquad
+            n!=o(n^n).
         \]
     \end{formula}
 
@@ -911,6 +1019,28 @@
         Cauchy--Hadamard.
     \end{remark}
 
+    \begin{theorem}[Termwise Differentiation and Integration of Power Series]
+        Suppose
+        \[
+            f(x)=\sum_{n=0}^{\infty}a_n(x-a)^n
+        \]
+        has radius of convergence $R>0$. For $|x-a|<R$,
+        \[
+            f'(x)
+            =
+            \sum_{n=1}^{\infty}n a_n(x-a)^{n-1},
+        \]
+        and
+        \[
+            \int_a^x f(t)\dd t
+            =
+            \sum_{n=0}^{\infty}\frac{a_n}{n+1}(x-a)^{n+1}.
+        \]
+        The differentiated and integrated series have the same radius of
+        convergence $R$. Convergence at the endpoints must be checked
+        separately.
+    \end{theorem}
+
     \begin{theorem}[Alternating Series Test; Leibniz Test]
         If
         \[
@@ -922,6 +1052,19 @@
         \]
         converges.
     \end{theorem}
+
+    \begin{formula}[Alternating Series Error Estimate]
+        Under the hypotheses of the Alternating Series Test, if
+        \[
+            S=\sum_{n=1}^{\infty}(-1)^{n+1}a_n,
+            \qquad
+            S_N=\sum_{n=1}^{N}(-1)^{n+1}a_n,
+        \]
+        then
+        \[
+            |S-S_N|\leq a_{N+1}.
+        \]
+    \end{formula}
 
     \begin{strategy}
         For Science Quiz, the test names matter. Factorials and powers often
@@ -948,6 +1091,21 @@
         terms go to $0$. If the terms do not tend to $0$, the series diverges
         immediately.
     \end{strategy}
+
+    \begin{algorithm}[Fast Series Checklist]
+        For a convergence or summation problem:
+        \begin{enumerate}
+            \item Check the term limit first.
+            \item Look for telescoping, a geometric series, or a known power
+                  series.
+            \item For positive terms, compare only the dominant asymptotic
+                  factors.
+            \item Use the Ratio Test for factorials and exponentials, and the
+                  Root Test for expressions raised to the $n$th power.
+            \item For alternating terms, check monotonicity and use the first
+                  omitted term to control the error.
+        \end{enumerate}
+    \end{algorithm}
 
     \section*{Multivariable Calculus and Vector Calculus}
 
@@ -1072,6 +1230,40 @@
             =
             \frac12\int_{\alpha}^{\beta}r(\theta)^2\dd\theta.
         \]
+        Its arc length is
+        \[
+            L
+            =
+            \int_{\alpha}^{\beta}
+            \sqrt{r(\theta)^2+\left(r'(\theta)\right)^2}\dd\theta.
+        \]
+    \end{formula}
+
+    \begin{formula}[Cylindrical and Spherical Coordinates]
+        Cylindrical coordinates are
+        \[
+            x=r\cos\theta,
+            \qquad
+            y=r\sin\theta,
+            \qquad
+            \dd V=r\dd r\dd\theta\dd z.
+        \]
+        Spherical coordinates are
+        \[
+            x=\rho\sin\phi\cos\theta,
+            \qquad
+            y=\rho\sin\phi\sin\theta,
+            \qquad
+            z=\rho\cos\phi,
+        \]
+        with
+        \[
+            \dd V
+            =
+            \rho^2\sin\phi\dd\rho\dd\phi\dd\theta.
+        \]
+        Here $\theta$ is the azimuthal angle in the $xy$-plane and $\phi$ is
+        measured from the positive $z$-axis.
     \end{formula}
 
     \begin{theorem}[Lagrange Multipliers]
@@ -1090,6 +1282,39 @@
         At a constrained optimum, the level surface of $f$ is tangent to the
         constraint surface. Thus their normal vectors are parallel.
     \end{idea}
+
+    \begin{formula}[Parametrized Curves]
+        Let $\mathbf{r}(t)$ be a twice differentiable curve. Its velocity,
+        speed, and acceleration are
+        \[
+            \mathbf{v}(t)=\mathbf{r}'(t),
+            \qquad
+            \|\mathbf{v}(t)\|=\|\mathbf{r}'(t)\|,
+            \qquad
+            \mathbf{a}(t)=\mathbf{r}''(t).
+        \]
+        If $\mathbf{r}'(t_0)\neq\mathbf{0}$, the tangent line at $t_0$ is
+        \[
+            \mathbf{r}(t_0)+s\mathbf{r}'(t_0),
+            \qquad
+            s\in\R.
+        \]
+        The speed is constant if and only if
+        \[
+            \mathbf{r}'(t)\cdot\mathbf{r}''(t)=0.
+        \]
+    \end{formula}
+
+    \begin{definition}[Scalar Line Integral]
+        If a curve $C$ is parametrized by $\mathbf{r}(t)$ for $a\leq t\leq b$,
+        then
+        \[
+            \int_C f\dd s
+            =
+            \int_a^b f(\mathbf{r}(t))\|\mathbf{r}'(t)\|\dd t.
+        \]
+        The value is unchanged by any regular reparametrization.
+    \end{definition}
 
     \begin{definition}[Line Integral]
         If a curve $C$ is parametrized by $\mathbf{r}(t)$ for $a\leq t\leq b$,
@@ -1166,6 +1391,68 @@
 
     \noindent Related Books: Linear Algebra and Its Applications (Gilbert Strang)
 
+    \begin{definition}[Linear Combination, Span, and Linear Independence]
+        A vector of the form
+        \[
+            c_1\mathbf{v}_1+\cdots+c_k\mathbf{v}_k
+        \]
+        is a linear combination of $\mathbf{v}_1,\dots,\mathbf{v}_k$. Their
+        span is
+        \[
+            \Span(\mathbf{v}_1,\dots,\mathbf{v}_k)
+            =
+            \left\{
+                c_1\mathbf{v}_1+\cdots+c_k\mathbf{v}_k
+                :c_1,\dots,c_k\in F
+            \right\}.
+        \]
+        The vectors are linearly independent if
+        \[
+            c_1\mathbf{v}_1+\cdots+c_k\mathbf{v}_k=\mathbf{0}
+        \]
+        implies $c_1=\cdots=c_k=0$.
+    \end{definition}
+
+    \begin{fact}[Translation Is Affine, Not Linear]
+        For a fixed vector $\mathbf{v}\in\R^n$, the translation
+        \[
+            T_{\mathbf{v}}(\mathbf{x})
+            =
+            \mathbf{x}+\mathbf{v}
+        \]
+        is bijective, with inverse $T_{-\mathbf{v}}$. It is a linear map if and
+        only if $\mathbf{v}=\mathbf{0}$.
+    \end{fact}
+
+    \begin{formula}[Inner Product and Adjoint Transfer]
+        For real column vectors,
+        \[
+            \langle\mathbf{u},\mathbf{v}\rangle
+            =
+            \mathbf{u}^{\mathsf T}\mathbf{v}.
+        \]
+        For a real matrix $\mathbf{A}$ of compatible size,
+        \[
+            \langle\mathbf{x},\mathbf{A}\mathbf{y}\rangle
+            =
+            \langle\mathbf{A}^{\mathsf T}\mathbf{x},\mathbf{y}\rangle.
+        \]
+        Hence, if $\mathbf{A}$ is symmetric,
+        \[
+            \langle\mathbf{x},\mathbf{A}\mathbf{y}\rangle
+            =
+            \langle\mathbf{A}\mathbf{x},\mathbf{y}\rangle.
+        \]
+        Over $\C$, use
+        \[
+            \langle\mathbf{u},\mathbf{v}\rangle
+            =
+            \mathbf{u}^{\mathsf H}\mathbf{v}
+        \]
+        and replace $\mathbf{A}^{\mathsf T}$ by
+        $\mathbf{A}^{\mathsf H}$.
+    \end{formula}
+
     \begin{theorem}[Rank--Nullity Theorem]
         Let $T:V\to W$ be a linear map between finite-dimensional vector spaces.
         Then
@@ -1221,6 +1508,19 @@
         This theorem is a dictionary. It translates between determinants, rank,
         null spaces, and solvability of linear systems.
     \end{remark}
+
+    \begin{proposition}[One-Sided Inverse for Square Matrices]
+        If $\mathbf{A},\mathbf{B}\in F^{n\times n}$ satisfy
+        \[
+            \mathbf{A}\mathbf{B}=\mathbf{I}_n,
+        \]
+        then both matrices are invertible and
+        \[
+            \mathbf{B}\mathbf{A}=\mathbf{I}_n.
+        \]
+        Thus, for square matrices, a right inverse is automatically a left
+        inverse, and conversely.
+    \end{proposition}
 
     \begin{formula}[Inverse of a $2\times 2$ Matrix]
         If
@@ -1281,6 +1581,57 @@
         \]
     \end{formula}
 
+    \begin{formula}[Scalar and Vector Triple Products]
+        For $\mathbf{a},\mathbf{b},\mathbf{c}\in\R^3$,
+        \[
+            \mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})
+            =
+            \mathbf{b}\cdot(\mathbf{c}\times\mathbf{a})
+            =
+            \mathbf{c}\cdot(\mathbf{a}\times\mathbf{b})
+            =
+            \det(\mathbf{a},\mathbf{b},\mathbf{c}).
+        \]
+        The vector triple-product identities are
+        \[
+            \mathbf{a}\times(\mathbf{b}\times\mathbf{c})
+            =
+            (\mathbf{a}\cdot\mathbf{c})\mathbf{b}
+            -
+            (\mathbf{a}\cdot\mathbf{b})\mathbf{c},
+        \]
+        \[
+            (\mathbf{a}\times\mathbf{b})\times\mathbf{c}
+            =
+            (\mathbf{a}\cdot\mathbf{c})\mathbf{b}
+            -
+            (\mathbf{b}\cdot\mathbf{c})\mathbf{a}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Cross-Product Determinant Identity]
+        For $\mathbf{a},\mathbf{b},\mathbf{c}\in\R^3$,
+        \[
+            \det(
+                \mathbf{a}\times\mathbf{b},
+                \mathbf{b}\times\mathbf{c},
+                \mathbf{c}\times\mathbf{a}
+            )
+            =
+            \det(\mathbf{a},\mathbf{b},\mathbf{c})^2.
+        \]
+        Therefore, if $\mathbf{a},\mathbf{b},\mathbf{c}$ are linearly
+        independent, then
+        \[
+            \mathbf{a}\times\mathbf{b},
+            \qquad
+            \mathbf{b}\times\mathbf{c},
+            \qquad
+            \mathbf{c}\times\mathbf{a}
+        \]
+        are also linearly independent.
+    \end{formula}
+
     \begin{proposition}[Basic Properties of Determinants]
         For square matrices $\mathbf{A},\mathbf{B}\in F^{n\times n}$, we have
         \[
@@ -1325,6 +1676,28 @@
         easy row operations. Direct expansion should usually be the last resort,
         except for $2\times 2$ and $3\times 3$ matrices.
     \end{strategy}
+
+    \begin{proposition}[Characterization of the Determinant]
+        Let
+        \[
+            f:(F^n)^n\to F
+        \]
+        be alternating and multilinear. Then
+        \[
+            f(\mathbf{v}_1,\dots,\mathbf{v}_n)
+            =
+            f(\mathbf{e}_1,\dots,\mathbf{e}_n)
+            \det
+            \begin{pmatrix}
+                \mathbf{v}_1 & \cdots & \mathbf{v}_n
+            \end{pmatrix}.
+        \]
+        In particular, the determinant is the unique alternating multilinear
+        function satisfying
+        \[
+            \det(\mathbf{I}_n)=1.
+        \]
+    \end{proposition}
 
     \begin{formula}[Laplace Expansion; Cofactor Expansion]
         Let $\mathbf{A}=(a_{ij})\in F^{n\times n}$, and let $A_{ij}$ be the
@@ -1827,7 +2200,31 @@
         into an orthonormal basis.
     \end{remark}
 
-    \begin{formula}[Projection Matrix]
+    \begin{formula}[Orthogonal Projection Matrices]
+        For a nonzero vector $\mathbf{v}\in\R^n$,
+        \[
+            \proj_{\mathbf{v}}\mathbf{x}
+            =
+            \frac{\mathbf{v}^{\mathsf T}\mathbf{x}}
+                 {\mathbf{v}^{\mathsf T}\mathbf{v}}\mathbf{v},
+        \]
+        and the projection matrix onto $\Span(\mathbf{v})$ is
+        \[
+            \mathbf{P}_{\mathbf{v}}
+            =
+            \frac{\mathbf{v}\mathbf{v}^{\mathsf T}}
+                 {\mathbf{v}^{\mathsf T}\mathbf{v}}.
+        \]
+        If $\|\mathbf{v}\|=1$, then
+        \[
+            \mathbf{P}_{\mathbf{v}}
+            =
+            \mathbf{v}\mathbf{v}^{\mathsf T},
+            \qquad
+            \mathbf{I}_n-\mathbf{v}\mathbf{v}^{\mathsf T}
+        \]
+        projects onto the hyperplane $\mathbf{v}^{\perp}$.
+
         If the columns of $\mathbf{Q}\in\R^{n\times k}$ are orthonormal, then
         the orthogonal projection matrix onto $\Col(\mathbf{Q})$ is
         \[
@@ -1836,14 +2233,14 @@
             \mathbf{Q}\mathbf{Q}^{\mathsf T}.
         \]
         More generally, if the columns of $\mathbf{A}\in\R^{n\times k}$ are
-        linearly independent, then the orthogonal projection matrix onto
-        $\Col(\mathbf{A})$ is
+        linearly independent, then
         \[
             \mathbf{P}
             =
             \mathbf{A}(\mathbf{A}^{\mathsf T}\mathbf{A})^{-1}
             \mathbf{A}^{\mathsf T}.
         \]
+        Over $\C$, replace every transpose by the Hermitian transpose.
     \end{formula}
 
     \begin{proposition}[Projection Matrix Criterion]
@@ -1851,9 +2248,13 @@
         \[
             \mathbf{P}^2=\mathbf{P}.
         \]
-        It is an orthogonal projection matrix if, in addition,
+        Over $\R$, it is an orthogonal projection matrix if, in addition,
         \[
             \mathbf{P}^{\mathsf T}=\mathbf{P}.
+        \]
+        Over $\C$, the corresponding condition is
+        \[
+            \mathbf{P}^{\mathsf H}=\mathbf{P}.
         \]
     \end{proposition}
 
