@@ -96,8 +96,11 @@
 
     Set theory notation includes basic set operations, logical symbols, relations,
     functions, and cardinality. The arrow $f:X\to Y$ specifies the domain and
-    codomain of a function, while $x\mapsto f(x)$ specifies the rule assigning an
-    element to its image.
+    codomain of a general function, while $x\mapsto f(x)$ specifies the rule
+    assigning an element to its image. The arrows $\hookrightarrow$ and
+    $\twoheadrightarrow$ are standard annotations for injective and surjective
+    maps, respectively; they are used only after the corresponding property has
+    been stated or is part of the notation.
 
     \vspace{0.5em}
 
@@ -136,15 +139,18 @@
         $\forall x\in A$ & for every $x\in A$ \\
         $\exists x\in A$ & there exists $x\in A$ \\
         $\exists!x\in A$ & there exists a unique $x\in A$ \\
-        $P\Rightarrow Q$ & $P$ implies $Q$ \\
-        $P\Leftarrow Q$ & $Q$ implies $P$ \\
-        $P\Leftrightarrow Q$ & $P$ if and only if $Q$ \\
+        $\nexists x\in A$ & there exists no $x\in A$ \\
+        $P\Rightarrow Q$ or $P\implies Q$ & $P$ implies $Q$ \\
+        $P\Leftarrow Q$ or $P\impliedby Q$ & $Q$ implies $P$ \\
+        $P\Leftrightarrow Q$ or $P\iff Q$ & $P$ if and only if $Q$ \\
         $P\land Q$ & $P$ and $Q$ \\
         $P\lor Q$ & $P$ or $Q$ \\
         $\neg P$ & not $P$ \\
         $f:X\to Y$ & a function from domain $X$ to codomain $Y$ \\
-        $X\hookrightarrow Y$ & an injective map from $X$ to $Y$, when explicitly stated \\
-        $X\twoheadrightarrow Y$ & a surjective map from $X$ to $Y$, when explicitly stated \\
+        $f:X\hookrightarrow Y$ & an injective map from $X$ to $Y$ \\
+        $f:X\twoheadrightarrow Y$ & a surjective map from $X$ onto $Y$ \\
+        $f:X\xrightarrow{\sim}Y$ & an isomorphism, when the relevant algebraic or topological structure is clear \\
+        $X\cong Y$ & $X$ and $Y$ are isomorphic \\
         $x\mapsto f(x)$ & the rule sending an element $x$ to its image $f(x)$ \\
         $f(A)$ & the image of $A$ under $f$ \\
         $f^{-1}(B)$ & the inverse image, or preimage, of $B$ under $f$ \\
@@ -202,13 +208,27 @@
         $\dd s$ & the element of arc length along a curve \\
         $\displaystyle \int_C \mathbf{F}\cdot\dd\mathbf{r}$ & a line integral of a vector field along a curve $C$ \\
         $\displaystyle \iint_S \mathbf{F}\cdot\mathbf{n}\dd S$ & a flux integral across a surface $S$ \\
-        $a_n\to L$ & the sequence $(a_n)$ converges to $L$ \\
+        $B_r(x)=\{y:d(x,y)<r\}$ & the open ball of radius $r$ centered at $x$ in a metric space \\
+        $\overline{B}_r(x)=\{y:d(x,y)\leq r\}$ & the closed ball of radius $r$ centered at $x$ \\
+        $x_n\to x$ & convergence of a sequence to $x$ \\
+        $a_n\nearrow L$ & an increasing sequence converging to $L$ \\
+        $a_n\searrow L$ & a decreasing sequence converging to $L$ \\
         $\limsup a_n$, $\liminf a_n$ & the limit superior and limit inferior of a sequence \\
-        $f_n\to f$ & pointwise convergence, unless another mode of convergence is stated \\
-        $f_n\rightrightarrows f$ & uniform convergence \\
+        $f_n\ptwto f$ & pointwise convergence of functions \\
+        $f_n\rightrightarrows f$ & uniform convergence of functions \\
+        $f_n\unifto f$ & an explicitly labeled alternative for uniform convergence \\
+        $f_n\aeto f$ & convergence almost everywhere \\
         $\|f\|_\infty$ & the supremum norm of $f$ \\
     \end{longtable}
     }
+
+    The ordinary arrow $\to$ is used for sequence limits and for functions when
+    no special property is being encoded. There is no single universal special
+    arrow for pointwise convergence, so this book uses the explicit label
+    $\ptwto$. The double arrow $\rightrightarrows$ is a common, though not
+    universal, convention for uniform convergence; it is adopted consistently in
+    this book. The labeled alternative $\unifto$ may be used when several modes
+    of convergence occur in the same passage.
 
     \section*{Linear Algebra}
 
@@ -386,6 +406,10 @@
         $X\sim\Bin(n,p)$ & $X$ follows a binomial distribution with parameters $n$ and $p$ \\
         $X\sim\Poi(\lambda)$ & $X$ follows a Poisson distribution with parameter $\lambda$ \\
         $X\sim\Normal(\mu,\sigma^2)$ & $X$ follows a normal distribution with mean $\mu$ and variance $\sigma^2$ \\
+        $X_n\asto X$ & almost-sure convergence \\
+        $X_n\xrightarrow{\Prob}X$ & convergence in probability \\
+        $X_n\Lpto{p}X$ & convergence in $L^p$ \\
+        $X_n\distto X$ & convergence in distribution \\
     \end{longtable}
     }
 

@@ -123,9 +123,24 @@
 
     \begin{definition}[Injection, Surjection, and Bijection]
         A function $f:X\to Y$ is injective if distinct elements of $X$ have
-        distinct images. It is surjective if for every $y\in Y$, there exists
-        $x\in X$ such that $f(x)=y$. It is bijective if it is both injective and
-        surjective.
+        distinct images. Equivalently,
+        \[
+            \forall x_1,x_2\in X,
+            \qquad
+            f(x_1)=f(x_2)\implies x_1=x_2.
+        \]
+        Once injectivity has been established, one may write
+        $f:X\hookrightarrow Y$.
+
+        The function is surjective if every element of $Y$ has a preimage:
+        \[
+            \forall y\in Y,
+            \qquad
+            \exists x\in X\text{ such that }f(x)=y.
+        \]
+        Once surjectivity has been established, one may write
+        $f:X\twoheadrightarrow Y$. The function is bijective if it is both
+        injective and surjective.
     \end{definition}
 
 
@@ -157,8 +172,23 @@
 
     \begin{definition}[Relation and Equivalence Relation]
         A binary relation on a set $A$ is a subset $R\subseteq A\times A$.
-        An equivalence relation is a relation that is reflexive, symmetric, and
-        transitive. The equivalence class of $a\in A$ is
+        An equivalence relation $\sim$ is reflexive, symmetric, and transitive;
+        explicitly,
+        \[
+            \forall x\in A,
+            \qquad x\sim x,
+        \]
+        \[
+            \forall x,y\in A,
+            \qquad x\sim y\implies y\sim x,
+        \]
+        and
+        \[
+            \forall x,y,z\in A,
+            \qquad
+            (x\sim y\land y\sim z)\implies x\sim z.
+        \]
+        The equivalence class of $a\in A$ is
         \[
             [a]=\{x\in A\mid x\sim a\}.
         \]
@@ -173,7 +203,13 @@
 
     \begin{definition}[Countability]
         A set $A$ is countable if it is finite or if there exists a bijection
-        $A\to\N$. A set is uncountable if it is not countable.
+        $f:A\to\N$. In the countably infinite case,
+        \[
+            \exists f:A\xrightarrow{\sim}\N,
+            \qquad
+            |A|=|\N|=\aleph_0.
+        \]
+        A set is uncountable if it is not countable.
     \end{definition}
 
     \begin{theorem}[Cantor's Diagonal Argument]
@@ -245,6 +281,127 @@
             \sum_{k=0}^{\infty}ar^k=\frac{a}{1-r}.
         \]
     \end{formula}
+
+    \begin{definition}[Limit of a Function; Epsilon--Delta Definition]
+        Let $D\subseteq\R$, let $a$ be an accumulation point of $D$, and let
+        $f:D\to\R$. The statement
+        \[
+            \lim_{x\to a}f(x)=L
+        \]
+        means that $f(x)$ can be made arbitrarily close to $L$ by taking $x$
+        sufficiently close to, but different from, $a$. Formally,
+        \[
+            \forall\eps>0,
+            \quad
+            \exists\delta>0,
+            \quad
+            \forall x\in D,
+            \qquad
+            0<|x-a|<\delta
+            \implies
+            |f(x)-L|<\eps.
+        \]
+    \end{definition}
+
+    \begin{definition}[One-Sided Limits and Limits at Infinity]
+        The right-hand limit $\lim_{x\to a^+}f(x)=L$ is defined by
+        \[
+            \forall\eps>0,
+            \quad
+            \exists\delta>0,
+            \quad
+            \forall x\in D,
+            \qquad
+            0<x-a<\delta
+            \implies
+            |f(x)-L|<\eps.
+        \]
+        The left-hand definition is analogous, with $0<a-x<\delta$.
+        Moreover,
+        \[
+            \lim_{x\to\infty}f(x)=L
+        \]
+        means
+        \[
+            \forall\eps>0,
+            \quad
+            \exists M>0,
+            \quad
+            \forall x\in D,
+            \qquad
+            x>M\implies |f(x)-L|<\eps.
+        \]
+        Finally, $\lim_{x\to a}f(x)=\infty$ means
+        \[
+            \forall M>0,
+            \quad
+            \exists\delta>0,
+            \quad
+            \forall x\in D,
+            \qquad
+            0<|x-a|<\delta\implies f(x)>M.
+        \]
+    \end{definition}
+
+    \begin{theorem}[Squeeze Theorem; Sandwich Theorem]
+        Suppose that $g(x)\leq f(x)\leq h(x)$ for all $x$ sufficiently close
+        to $a$, except possibly at $a$, and that
+        \[
+            \lim_{x\to a}g(x)
+            =
+            \lim_{x\to a}h(x)
+            =L.
+        \]
+        Then
+        \[
+            \lim_{x\to a}f(x)=L.
+        \]
+    \end{theorem}
+
+    \begin{definition}[Continuity at a Point]
+        Let $f:D\to\R$ and $a\in D$. The function $f$ is continuous at $a$ if
+        \[
+            \lim_{x\to a}f(x)=f(a).
+        \]
+        Equivalently,
+        \[
+            \forall\eps>0,
+            \quad
+            \exists\delta>0,
+            \quad
+            \forall x\in D,
+            \qquad
+            |x-a|<\delta
+            \implies
+            |f(x)-f(a)|<\eps.
+        \]
+        The function is continuous on $D$ if it is continuous at every point of
+        $D$.
+    \end{definition}
+
+    \begin{definition}[Derivative]
+        Let $f$ be defined near $a$. The derivative of $f$ at $a$ is
+        \[
+            f'(a)
+            =
+            \lim_{h\to 0}\frac{f(a+h)-f(a)}{h},
+        \]
+        provided this limit exists as a finite real number. Thus $f'(a)=L$ if
+        and only if
+        \[
+            \forall\eps>0,
+            \quad
+            \exists\delta>0,
+            \quad
+            \forall h\in\R,
+            \qquad
+            0<|h|<\delta
+            \implies
+            \left|
+                \frac{f(a+h)-f(a)}{h}-L
+            \right|<\eps.
+        \]
+    \end{definition}
 
     \begin{formula}[Standard Trigonometric and Exponential Limits]
         The following limits are fundamental:
@@ -1255,6 +1412,49 @@
         \]
     \end{theorem}
 
+    \begin{definition}[Differentiability; Total Derivative; Fr\'echet Derivative]
+        Let $\mathbf{F}:U\subseteq\R^n\to\R^m$, where $U$ is open, and
+        let $\mathbf{a}\in U$. The map $\mathbf{F}$ is differentiable at
+        $\mathbf{a}$ if there exists a linear map
+        $D\mathbf{F}(\mathbf{a}):\R^n\to\R^m$ such that
+        \[
+            \mathbf{F}(\mathbf{a}+\mathbf{h})
+            =
+            \mathbf{F}(\mathbf{a})
+            +D\mathbf{F}(\mathbf{a})\mathbf{h}
+            +\mathbf{r}(\mathbf{h}),
+        \]
+        where
+        \[
+            \lim_{\mathbf{h}\to\mathbf{0}}
+            \frac{\|\mathbf{r}(\mathbf{h})\|}{\|\mathbf{h}\|}
+            =0.
+        \]
+        Equivalently,
+        \[
+            \begin{aligned}
+                &\forall\eps>0,
+                \quad
+                \exists\delta>0,
+                \quad
+                \forall\mathbf{h}\in\R^n,\\
+                &\mathbf{a}+\mathbf{h}\in U
+                \text{ and }
+                0<\|\mathbf{h}\|<\delta
+                \implies\\
+                &\qquad
+                \frac{
+                    \|\mathbf{F}(\mathbf{a}+\mathbf{h})
+                    -\mathbf{F}(\mathbf{a})
+                    -D\mathbf{F}(\mathbf{a})\mathbf{h}\|
+                }{\|\mathbf{h}\|}
+                <\eps.
+            \end{aligned}
+        \]
+        The linear map $D\mathbf{F}(\mathbf{a})$ is the total derivative;
+        in standard coordinates, its matrix is the Jacobian matrix.
+    \end{definition}
+
     \begin{theorem}[Multivariable Chain Rule]
         Let $\mathbf{F}:\R^n\to\R^m$ and $\mathbf{G}:\R^m\to\R^k$ be
         differentiable. Then
@@ -1550,6 +1750,195 @@
     completeness, and integration that are less computational but still
     valuable for high-level Science Quiz questions.
 
+    \begin{definition}[Metric Space and Open Ball]
+        A metric space is a pair $(X,d)$ in which $d:X\times X\to\R$ satisfies,
+        for all $x,y,z\in X$,
+        \[
+            d(x,y)\geq 0,
+            \qquad
+            d(x,y)=0\iff x=y,
+        \]
+        \[
+            d(x,y)=d(y,x),
+            \qquad
+            d(x,z)\leq d(x,y)+d(y,z).
+        \]
+        The open ball of radius $r>0$ centered at $x$ is
+        \[
+            B_r(x)=\{y\in X:d(x,y)<r\}.
+        \]
+    \end{definition}
+
+    \begin{definition}[Open and Closed Sets in a Metric Space]
+        A subset $U\subseteq X$ is open if
+        \[
+            \forall x\in U,
+            \quad
+            \exists r>0,
+            \qquad
+            B_r(x)\subseteq U.
+        \]
+        A subset $F\subseteq X$ is closed if $X\setminus F$ is open.
+    \end{definition}
+
+    \begin{definition}[Limit of a Map Between Metric Spaces]
+        Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $D\subseteq X$, let
+        $a$ be an accumulation point of $D$, and let $f:D\to Y$. The statement
+        \[
+            \lim_{x\to a}f(x)=L
+        \]
+        means
+        \[
+            \forall\eps>0,
+            \quad
+            \exists\delta>0,
+            \quad
+            \forall x\in D,
+            \qquad
+            0<d_X(x,a)<\delta
+            \implies
+            d_Y\bigl(f(x),L\bigr)<\eps.
+        \]
+    \end{definition}
+
+    \begin{definition}[Convergence of a Sequence]
+        A sequence $(x_n)$ in a metric space $(X,d)$ converges to $x\in X$,
+        written $x_n\to x$, if
+        \[
+            \forall\eps>0,
+            \quad
+            \exists N\in\N,
+            \quad
+            \forall n\geq N,
+            \qquad
+            d(x_n,x)<\eps.
+        \]
+    \end{definition}
+
+    \begin{definition}[Cauchy Sequence and Complete Metric Space]
+        A sequence $(x_n)$ in $(X,d)$ is Cauchy if
+        \[
+            \forall\eps>0,
+            \quad
+            \exists N\in\N,
+            \quad
+            \forall m,n\geq N,
+            \qquad
+            d(x_m,x_n)<\eps.
+        \]
+        The metric space is complete if every Cauchy sequence in $X$ converges
+        to a point of $X$.
+    \end{definition}
+
+    \begin{definition}[Continuity in Metric Spaces]
+        Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A map $f:X\to Y$ is
+        continuous at $x_0\in X$ if
+        \[
+            \forall\eps>0,
+            \quad
+            \exists\delta>0,
+            \quad
+            \forall x\in X,
+            \qquad
+            d_X(x,x_0)<\delta
+            \implies
+            d_Y\bigl(f(x),f(x_0)\bigr)<\eps.
+        \]
+        It is continuous on $X$ if it is continuous at every $x_0\in X$.
+    \end{definition}
+
+    \begin{theorem}[Sequential Criterion for Continuity]
+        A map $f:X\to Y$ between metric spaces is continuous at $x\in X$ if
+        and only if
+        \[
+            x_n\to x
+            \implies
+            f(x_n)\to f(x)
+        \]
+        for every sequence $(x_n)$ in $X$.
+    \end{theorem}
+
+    \begin{definition}[Uniform Continuity]
+        A map $f:(X,d_X)\to(Y,d_Y)$ is uniformly continuous if
+        \[
+            \forall\eps>0,
+            \quad
+            \exists\delta>0,
+            \quad
+            \forall x,y\in X,
+            \qquad
+            d_X(x,y)<\delta
+            \implies
+            d_Y\bigl(f(x),f(y)\bigr)<\eps.
+        \]
+        Unlike ordinary continuity, the same $\delta$ must work for every pair
+        $x,y\in X$.
+    \end{definition}
+
+    \begin{definition}[Pointwise and Uniform Convergence]
+        Let $f_n:E\to Y$ and $f:E\to Y$, where $(Y,d)$ is a metric space. The
+        sequence $(f_n)$ converges pointwise to $f$, written
+        $f_n\ptwto f$, if
+        \[
+            \forall x\in E,
+            \quad
+            \forall\eps>0,
+            \quad
+            \exists N=N(x,\eps)\in\N,
+            \quad
+            \forall n\geq N,
+            \qquad
+            d\bigl(f_n(x),f(x)\bigr)<\eps.
+        \]
+        It converges uniformly to $f$, written $f_n\rightrightarrows f$, if
+        \[
+            \forall\eps>0,
+            \quad
+            \exists N=N(\eps)\in\N,
+            \quad
+            \forall n\geq N,
+            \quad
+            \forall x\in E,
+            \qquad
+            d\bigl(f_n(x),f(x)\bigr)<\eps.
+        \]
+        For real- or complex-valued functions, this is equivalent to
+        \[
+            \|f_n-f\|_\infty
+            =
+            \sup_{x\in E}|f_n(x)-f(x)|
+            \longrightarrow 0.
+        \]
+    \end{definition}
+
+    \begin{definition}[Equicontinuity and Uniform Boundedness]
+        A family $\mathcal{F}$ of maps from $(X,d_X)$ to $(Y,d_Y)$ is
+        equicontinuous at $x_0\in X$ if
+        \[
+            \forall\eps>0,
+            \quad
+            \exists\delta>0,
+            \quad
+            \forall f\in\mathcal{F},
+            \quad
+            \forall x\in X,
+            \qquad
+            d_X(x,x_0)<\delta
+            \implies
+            d_Y\bigl(f(x),f(x_0)\bigr)<\eps.
+        \]
+        A sequence of real-valued functions $(f_n)$ is uniformly bounded if
+        \[
+            \exists M>0,
+            \quad
+            \forall n\in\N,
+            \quad
+            \forall x\in X,
+            \qquad
+            |f_n(x)|\leq M.
+        \]
+    \end{definition}
+
     \begin{theorem}[Least Upper Bound Property; Completeness Axiom of $\R$]
         Every nonempty subset of $\R$ that is bounded above has a least upper
         bound in $\R$. Equivalently, every nonempty subset bounded below has a
@@ -1595,13 +1984,32 @@
         In $\R^n$, the fast recognition phrase is ``closed and bounded.''
     \end{strategy}
 
-    \begin{theorem}[Cauchy Convergence Criterion]
-        A sequence $(a_n)$ in $\R$ or $\C$ converges if and only if it is Cauchy:
-        for every $\eps>0$, there exists $N$ such that
+    \begin{theorem}[Cauchy Criterion for Convergence]
+        In a complete metric space, a sequence converges if and only if it is
+        Cauchy. In particular, for $(a_n)$ in $\R$ or $\C$,
         \[
-            m,n\geq N
-            \quad\Longrightarrow\quad
-            |a_m-a_n|<\eps.
+            (a_n)\text{ converges}
+            \iff
+            \forall\eps>0,
+            \ \exists N\in\N,
+            \ \forall m,n\geq N,
+            \ |a_m-a_n|<\eps.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Uniform Cauchy Criterion]
+        Let $(Y,d)$ be complete and let $f_n:E\to Y$. Then $(f_n)$ converges
+        uniformly on $E$ if and only if
+        \[
+            \forall\eps>0,
+            \quad
+            \exists N\in\N,
+            \quad
+            \forall m,n\geq N,
+            \quad
+            \forall x\in E,
+            \qquad
+            d\bigl(f_m(x),f_n(x)\bigr)<\eps.
         \]
     \end{theorem}
 
@@ -1624,17 +2032,17 @@
 
     \begin{theorem}[Uniform Limit Theorem]
         If $(f_n)$ is a sequence of continuous functions on a set $E$ and
-        $f_n\to f$ uniformly on $E$, then $f$ is continuous on $E$.
+        $f_n\rightrightarrows f$ on $E$, then $f$ is continuous on $E$.
     \end{theorem}
 
     \begin{theorem}[Term-by-Term Differentiation]
         Suppose $(f_n)$ is a sequence of continuously differentiable functions
         on a closed bounded interval $[a,b]$, and suppose $(f_n(x_0))$
-        converges for some $x_0\in[a,b]$. If $(f_n')$ converges uniformly on
-        $[a,b]$, then $(f_n)$ converges uniformly to a differentiable function
+        converges for some $x_0\in[a,b]$. If $f_n'\rightrightarrows g$ on
+        $[a,b]$, then $f_n\rightrightarrows f$ for a differentiable function
         $f$, and
         \[
-            f'=\lim_{n\to\infty} f_n'.
+            f'=g=\lim_{n\to\infty} f_n'.
         \]
     \end{theorem}
 
@@ -1651,10 +2059,15 @@
     \end{theorem}
 
     \begin{theorem}[Banach Fixed-Point Theorem; Contraction Mapping Theorem]
-        Let $(X,d)$ be a complete metric space, and let $T:X\to X$ be a
-        contraction. Then $T$ has a unique fixed point $x^\ast\in X$, and the
-        iteration $x_{n+1}=T(x_n)$ converges to $x^\ast$ for every initial point
-        $x_0\in X$.
+        Let $(X,d)$ be a nonempty complete metric space, and suppose that
+        $T:X\to X$ is a contraction: there exists $q\in[0,1)$ such that
+        \[
+            \forall x,y\in X,
+            \qquad
+            d\bigl(T(x),T(y)\bigr)\leq qd(x,y).
+        \]
+        Then $T$ has a unique fixed point $x^\ast\in X$, and the iteration
+        $x_{n+1}=T(x_n)$ converges to $x^\ast$ for every initial point $x_0\in X$.
     \end{theorem}
 
     \begin{theorem}[Baire Category Theorem]
@@ -1673,7 +2086,7 @@
     \end{theorem}
 
     \begin{theorem}[Lebesgue Monotone Convergence Theorem; Beppo Levi Theorem]
-        If $0\leq f_1\leq f_2\leq\cdots$ and $f_n\to f$ almost everywhere,
+        If $0\leq f_1\leq f_2\leq\cdots$ and $f_n\aeto f$,
         then
         \[
             \lim_{n\to\infty}\int f_n\dd\mu
@@ -1683,7 +2096,7 @@
     \end{theorem}
 
     \begin{theorem}[Lebesgue Dominated Convergence Theorem]
-        If $f_n\to f$ almost everywhere and there exists an integrable function
+        If $f_n\aeto f$ and there exists an integrable function
         $g$ such that $|f_n|\leq g$ for all $n$, then
         \[
             \lim_{n\to\infty}\int f_n\dd\mu
@@ -1718,6 +2131,27 @@
             c_1\mathbf{v}_1+\cdots+c_k\mathbf{v}_k=\mathbf{0}
         \]
         implies $c_1=\cdots=c_k=0$.
+    \end{definition}
+
+    \begin{definition}[Linear Map; Linear Transformation]
+        Let $V$ and $W$ be vector spaces over the same field $F$. A map
+        $T:V\to W$ is linear if
+        \[
+            \forall\alpha,\beta\in F,
+            \quad
+            \forall\mathbf{u},\mathbf{v}\in V,
+            \qquad
+            T(\alpha\mathbf{u}+\beta\mathbf{v})
+            =
+            \alpha T(\mathbf{u})+\beta T(\mathbf{v}).
+        \]
+        Equivalently, $T$ preserves vector addition and scalar
+        multiplication. Its kernel and image are
+        \[
+            \ker T=\{\mathbf{v}\in V:T(\mathbf{v})=\mathbf{0}\},
+            \qquad
+            \image T=\{T(\mathbf{v}):\mathbf{v}\in V\}.
+        \]
     \end{definition}
 
     \begin{fact}[Translation Is Affine, Not Linear]
@@ -3725,6 +4159,34 @@
         lies within three standard deviations.
     \end{formula}
 
+    \begin{definition}[Modes of Convergence for Random Variables]
+        Let $X_n$ and $X$ be random variables on the same probability space.
+        The principal modes of convergence used in probability are:
+        \begin{enumerate}
+            \item[(i)] $X_n\asto X$ if
+            \[
+                \Prob\bigl(\{\omega:X_n(\omega)\to X(\omega)\}\bigr)=1;
+            \]
+            \item[(ii)] $X_n\xrightarrow{\Prob}X$ if
+            \[
+                \forall\eps>0,
+                \qquad
+                \Prob\bigl(|X_n-X|>\eps\bigr)\to 0;
+            \]
+            \item[(iii)] $X_n\Lpto{p}X$ for $p\geq 1$ if
+            \[
+                \Exp\bigl[|X_n-X|^p\bigr]\to 0;
+            \]
+            \item[(iv)] $X_n\distto X$ if
+            \[
+                F_{X_n}(x)\to F_X(x)
+            \]
+            at every continuity point $x$ of the distribution function $F_X$.
+        \end{enumerate}
+        Almost-sure convergence implies convergence in probability, and
+        convergence in probability implies convergence in distribution.
+    \end{definition}
+
     \begin{theorem}[Weak Law of Large Numbers]
         Let $X_1,X_2,\dots$ be independent identically distributed random
         variables with mean $\mu$. Then, for every $\eps>0$,
@@ -3751,9 +4213,13 @@
         variables with mean $\mu$ and variance $\sigma^2>0$. Then
         \[
             \frac{X_1+\cdots+X_n-n\mu}{\sigma\sqrt n}
+            \distto
+            Z,
+            \qquad
+            Z\sim\Normal(0,1).
         \]
-        converges in distribution to the standard normal distribution
-        $\Normal(0,1)$.
+        Thus the standardized sum converges in distribution to the standard
+        normal distribution.
     \end{theorem}
 
     \begin{remark}
@@ -4787,7 +5253,7 @@
         \]
     \end{proposition}
 
-    \begin{theorem}[Primitive Root Theorem, or Gauss's Theorem on Primitive Roots]
+    \begin{theorem}[Primitive Root Theorem; Gauss's Theorem on Primitive Roots]
         The multiplicative group $(\Z/n\Z)^\times$ is cyclic if and only if
         \[
             n\in\{1,2,4,p^k,2p^k\},
@@ -5299,9 +5765,22 @@
         \end{enumerate}
     \end{definition}
 
+    \begin{definition}[Open and Closed Sets]
+        If $(X,\mathcal{T})$ is a topological space, a subset $U\subseteq X$ is
+        open if $U\in\mathcal{T}$. A subset $F\subseteq X$ is closed if
+        $X\setminus F\in\mathcal{T}$.
+    \end{definition}
+
     \begin{definition}[Compactness]
-        A topological space $X$ is compact if every open cover of $X$ has a finite
-        subcover.
+        A topological space $X$ is compact if every open cover has a finite
+        subcover. Equivalently, for every family $\mathcal{U}\subseteq\mathcal{T}$,
+        \[
+            X\subseteq\bigcup_{U\in\mathcal{U}}U
+            \implies
+            \exists U_1,\dots,U_n\in\mathcal{U}
+            \text{ such that }
+            X\subseteq U_1\cup\cdots\cup U_n.
+        \]
     \end{definition}
 
     \begin{definition}[Connectedness]
@@ -5310,10 +5789,21 @@
         $X$ that are both open and closed are $\varnothing$ and $X$.
     \end{definition}
 
+    \begin{definition}[Continuity in Topological Spaces]
+        A map $f:(X,\mathcal{T}_X)\to(Y,\mathcal{T}_Y)$ is continuous if the
+        inverse image of every open set is open:
+        \[
+            \forall V\in\mathcal{T}_Y,
+            \qquad
+            f^{-1}(V)\in\mathcal{T}_X.
+        \]
+    \end{definition}
+
     \begin{definition}[Homeomorphism]
         A homeomorphism is a bijective continuous map whose inverse is also
-        continuous. Two spaces are homeomorphic if they are the same from the
-        viewpoint of topology.
+        continuous. Equivalently, $f:X\xrightarrow{\sim}Y$ is a homeomorphism
+        if $f$ and $f^{-1}$ are continuous. Two spaces are homeomorphic, written
+        $X\cong Y$, if such a map exists.
     \end{definition}
 
     \begin{theorem}[Brouwer Fixed-Point Theorem]
