@@ -42,8 +42,8 @@
         $\eps$ & a small positive real number, especially in analysis \\
         $a\coloneqq b$ & $a$ is defined to be $b$ \\
         $:=$ & another common symbol for ``is defined to be'' \\
-        $\Real z$ or $\Re z$ & the real part of a complex number $z$ \\
-        $\Imag z$ or $\Im z$ & the imaginary part of a complex number $z$ \\
+        $\Real z$ & the real part of a complex number $z$ \\
+        $\Imag z$ & the imaginary part of a complex number $z$ \\
         $\sim$ & may mean asymptotic equivalence, distribution, or an equivalence relation \\
         $O(\cdot)$ & Big-O notation \\
         $o(\cdot)$ & little-o notation \\
@@ -154,11 +154,12 @@
     \end{longtable}
     }
 
-    \section*{Calculus, Analysis}
+    \section*{Calculus and Analysis}
 
-    Calculus notation includes one-variable calculus, multivariable calculus,
-    and vector calculus. The symbol $\nabla$ is read as ``nabla'' or ``del.''
-    For logarithms, this book uses $\ln x$, $\lg x$, and $\lb x$ for bases
+    This section collects notation for one-variable calculus, multivariable
+    calculus, vector calculus, and the deeper analytic material used later in
+    Part I. The symbol $\nabla$ is read as ``nabla'' or ``del.'' For
+    logarithms, this book uses $\ln x$, $\lg x$, and $\lb x$ for bases
     $e$, $10$, and $2$, respectively.
 
     \vspace{0.5em}
@@ -182,6 +183,7 @@
         $f'(a)$ & the derivative of $f$ at $a$ \\
         $f^{(n)}(a)$ & the $n$th derivative of $f$ at $a$ \\
         $\displaystyle \frac{\dd y}{\dd x}$ & the derivative of $y$ with respect to $x$ \\
+        $\displaystyle \frac{\partial f}{\partial x_i}$ & the partial derivative of $f$ with respect to $x_i$ \\
         $\displaystyle \int_a^b f(x)\dd x$ & the definite integral of $f$ from $a$ to $b$ \\
         $\ln x$ & the natural logarithm, the logarithm with base $e$ \\
         $\lg x$ & the common logarithm, the logarithm with base $10$ \\
@@ -193,12 +195,18 @@
         $\nabla\cdot\mathbf{F}$ or $\divergence\mathbf{F}$ & the divergence of a vector field $\mathbf{F}$ \\
         $\nabla\times\mathbf{F}$ or $\curl\mathbf{F}$ & the curl of a vector field $\mathbf{F}$ \\
         $\Delta f$ & the Laplacian of $f$, usually $\nabla\cdot\nabla f$ \\
-        $D\mathbf{F}$ & the derivative matrix, or Jacobian matrix, of a map $\mathbf{F}$ \\
+        $D\mathbf{F}(\mathbf{a})$ & the derivative matrix, or Jacobian matrix, of a map $\mathbf{F}$ at $\mathbf{a}$ \\
         $\Jac(\mathbf{F})$ & the Jacobian determinant of $\mathbf{F}$, when defined \\
+        $\Hess f$ & the Hessian matrix of a scalar-valued function $f$ \\
         $\mathbf{r}(t)$ & a parametrized curve \\
         $\dd s$ & the element of arc length along a curve \\
         $\displaystyle \int_C \mathbf{F}\cdot\dd\mathbf{r}$ & a line integral of a vector field along a curve $C$ \\
         $\displaystyle \iint_S \mathbf{F}\cdot\mathbf{n}\dd S$ & a flux integral across a surface $S$ \\
+        $a_n\to L$ & the sequence $(a_n)$ converges to $L$ \\
+        $\limsup a_n$, $\liminf a_n$ & the limit superior and limit inferior of a sequence \\
+        $f_n\to f$ & pointwise convergence, unless another mode of convergence is stated \\
+        $f_n\rightrightarrows f$ & uniform convergence \\
+        $\|f\|_\infty$ & the supremum norm of $f$ \\
     \end{longtable}
     }
 
@@ -239,6 +247,9 @@
         $\rk(\mathbf{A})$ & the rank of $\mathbf{A}$ \\
         $\tr(\mathbf{A})$ & the trace of $\mathbf{A}$ \\
         $\adj(\mathbf{A})$ & the adjugate of $\mathbf{A}$ \\
+        $M_{ij}$ & the minor of the entry $a_{ij}$ of $\mathbf{A}$ \\
+        $C_{ij}=(-1)^{i+j}M_{ij}$ & the cofactor of the entry $a_{ij}$ of $\mathbf{A}$ \\
+        $\mathbf{C}=(C_{ij})$ & the cofactor matrix of $\mathbf{A}$ \\
         $\Col(\mathbf{A})$ & the column space of $\mathbf{A}$ \\
         $\Null(\mathbf{A})$ & the null space of $\mathbf{A}$ \\
         $\Col(\mathbf{A}^{\mathsf T})$ & the row space of a real matrix $\mathbf{A}$ \\
@@ -280,10 +291,14 @@
         \C^n=\Col(\mathbf{A}^{\mathsf H})\oplus\Null(\mathbf{A}).
     \]
 
-    For cofactors, we write $A_{ij}$ for the scalar cofactor of the entry
-    $a_{ij}$ of $\mathbf{A}$. The cofactor matrix is denoted by
+    For the entry $a_{ij}$ of $\mathbf{A}$, we write $M_{ij}$ for its
+    minor and
     \[
-        \mathbf{C}=(A_{ij}),
+        C_{ij}=(-1)^{i+j}M_{ij}
+    \]
+    for its cofactor. The cofactor matrix is
+    \[
+        \mathbf{C}=(C_{ij}),
     \]
     and the adjugate matrix is
     \[
@@ -411,11 +426,14 @@
     \end{longtable}
     }
 
-    \section*{Number Theory, Algebra}
+    \section*{Number Theory}
 
-    Unless otherwise stated, divisibility and congruence statements are made in
-    $\Z$. In algebra, the notation is kept standard and lightweight, since
-    Science Quiz rarely requires highly specialized algebraic formalism.
+    Number theory and algebra are closely connected. In this book, notation
+    belonging directly to divisibility, congruences, arithmetic functions,
+    groups of residues, and finite fields is placed here first. Algebraic
+    notation with no primary number-theoretic role is reserved for the next
+    section. Unless otherwise stated, divisibility and congruence statements
+    are made in $\Z$.
 
     \vspace{0.5em}
 
@@ -440,26 +458,81 @@
         $\gcd(a,b)$ & the greatest common divisor of $a$ and $b$ \\
         $\lcm(a,b)$ & the least common multiple of $a$ and $b$ \\
         $a\equiv b\pmod n$ & $a$ is congruent to $b$ modulo $n$ \\
+        $[a]_n$ & the residue class of $a$ modulo $n$ \\
+        $\Z/n\Z$ & the ring of residue classes modulo $n$ \\
+        $(\Z/n\Z)^\times$ & the multiplicative group of units modulo $n$ \\
+        $a^{-1}\pmod n$ & the multiplicative inverse of $a$ modulo $n$, when it exists \\
         $\varphi(n)$ & Euler's phi function, or Euler's totient function \\
-        $\ord_n(a)$ & the order of $a$ modulo $n$ \\
-        $p$ & usually a prime number, when used in number-theoretic contexts \\
-        $G$ & usually a group \\
-        $e$ & the identity element of a group, when the context is clear \\
-        $H\leq G$ & $H$ is a subgroup of $G$ \\
-        $H\trianglelefteq G$ & $H$ is a normal subgroup of $G$ \\
-        $G/H$ & the quotient group of $G$ by $H$ \\
-        $R$ & usually a ring \\
-        $F$ or $K$ & usually a field \\
-        $F[x]$ & the polynomial ring over a field $F$ \\
-        $\deg f$ & the degree of a polynomial $f$ \\
-        $\Aut(G)$ & the automorphism group of $G$ \\
-        $\Gal(L/K)$ & the Galois group of a field extension $L/K$ \\
+        $\ord_n(a)$ & the multiplicative order of $a$ modulo $n$ \\
+        $\nu_p(n)$ & the exponent of the prime $p$ in the prime factorization of $n$ \\
+        $\tau(n)$ & the number of positive divisors of $n$ \\
+        $\sigma(n)$ & the sum of the positive divisors of $n$ \\
+        $\mu(n)$ & the M\"obius function \\
+        $p$ & usually a prime number in number-theoretic contexts \\
+        $\mathbb{F}_q$ & the finite field with $q$ elements, where $q$ is a prime power \\
     \end{longtable}
     }
 
     The Chinese Remainder Theorem may be abbreviated as CRT after it is first
-    introduced. In algebraic contexts, $\deg f$ denotes the degree of a polynomial
-    $f$; in graph-theoretic contexts, $\deg(v)$ denotes the degree of a vertex.
+    introduced. When a group or field appears specifically as an arithmetic
+    object, such as $(\Z/n\Z)^\times$ or $\mathbb{F}_q$, it remains part of the
+    number-theory notation of this book.
+
+    \section*{Algebra}
+
+    This section records notation for algebraic structures and constructions
+    whose principal role in the book is not number-theoretic. Capital letters
+    such as $G,H$ denote groups, $R,S$ denote rings, and $F,K,L$ denote fields;
+    lowercase letters denote their elements unless the context requires
+    otherwise.
+
+    \vspace{0.5em}
+
+    {\small
+    \renewcommand{\arraystretch}{1.18}
+    \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}
+        \toprule
+        Notation & Meaning \\
+        \midrule
+        \endfirsthead
+
+        \toprule
+        Notation & Meaning \\
+        \midrule
+        \endhead
+
+        \bottomrule
+        \endlastfoot
+
+        $G$ & usually a group \\
+        $e$ & the identity element of a group, when the context is clear \\
+        $|G|$ & the order of a finite group $G$ \\
+        $\langle S\rangle$ & the subgroup generated by a subset $S$ \\
+        $H\leq G$ & $H$ is a subgroup of $G$ \\
+        $H\trianglelefteq G$ & $H$ is a normal subgroup of $G$ \\
+        $G/H$ & the quotient group of $G$ by $H$ \\
+        $\ker\varphi$ & the kernel of a homomorphism $\varphi$ \\
+        $\image\varphi$ & the image of a homomorphism $\varphi$ \\
+        $\Aut(G)$ & the automorphism group of $G$ \\
+        $G\cdot x$ & the orbit of $x$ under a group action of $G$ \\
+        $G_x$ & the stabilizer of $x$ under a group action of $G$ \\
+        $Z(G)$ & the center of $G$ \\
+        $C_G(x)$ & the centralizer of $x$ in $G$ \\
+        $\GL_n(F)$ & the general linear group of invertible $n\times n$ matrices over $F$ \\
+        $\SL_n(F)$ & the special linear group of determinant-one matrices over $F$ \\
+        $R$ & usually a ring \\
+        $I\trianglelefteq R$ & $I$ is an ideal of the ring $R$ \\
+        $R/I$ & the quotient ring of $R$ by the ideal $I$ \\
+        $F$ or $K$ & usually a field \\
+        $F[x]$ & the polynomial ring over a field $F$ \\
+        $\deg f$ & the degree of a polynomial $f$ \\
+        $\operatorname{char}F$ & the characteristic of a field $F$ \\
+        $\Gal(L/K)$ & the Galois group of a field extension $L/K$ \\
+    \end{longtable}
+    }
+
+    In algebraic contexts, $\deg f$ denotes the degree of a polynomial $f$; in
+    graph-theoretic contexts, $\deg(v)$ denotes the degree of a vertex.
 
     \section*{Miscellaneous Topics}
 

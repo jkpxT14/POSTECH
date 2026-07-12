@@ -1,6 +1,6 @@
     \chapter{Set Theory and Logic}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH202) Set Theory
+    Related \POSTECH{} Courses: (MATH202) Set Theory
 
     \noindent Related Books: Introduction to Set Theory (Karel Hrbacek, Thomas Jech)
 
@@ -217,11 +217,11 @@
         foundational tools in advanced algebra, analysis, and topology.
     \end{fact}
 
-    \chapter{Calculus}
+    \chapter{Calculus and Analysis}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH101) Calculus I, (MATH102) Calculus II, (MATH210) Applied Complex Variables
+    Related \POSTECH{} Courses: (MATH101) Calculus I, (MATH102) Calculus II, (MATH210) Applied Complex Variables, (MATH311) Analysis I, (MATH312) Analysis II
 
-    \noindent Related Books: Calculus With Applications (Peter D. Lax, Maria Shea Terrell), Multivariable Calculus with Applications (Peter D. Lax, Maria Shea Terrell)
+    \noindent Related Books: Calculus With Applications (Peter D. Lax, Maria Shea Terrell), Multivariable Calculus with Applications (Peter D. Lax, Maria Shea Terrell), Principles of Mathematical Analysis (Walter Rudin)
 
     \section*{One-Variable Calculus}
 
@@ -407,6 +407,14 @@
         open interval need not attain a maximum or a minimum.
     \end{remark}
 
+    \begin{theorem}[Rolle's Theorem]
+        Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. If
+        $f(a)=f(b)$, then there exists $c\in(a,b)$ such that
+        \[
+            f'(c)=0.
+        \]
+    \end{theorem}
+
     \begin{theorem}[Mean Value Theorem; Lagrange Mean Value Theorem]
         Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then
         there exists $c\in(a,b)$ such that
@@ -422,6 +430,23 @@
         instantaneous rate of change equals the average rate of change.
     \end{idea}
 
+    \begin{theorem}[Cauchy's Mean Value Theorem; Extended Mean Value Theorem]
+        Let $f$ and $g$ be continuous on $[a,b]$ and differentiable on
+        $(a,b)$. Then there exists $c\in(a,b)$ such that
+        \[
+            \bigl(f(b)-f(a)\bigr)g'(c)
+            =
+            \bigl(g(b)-g(a)\bigr)f'(c).
+        \]
+        If $g'(x)\neq 0$ for every $x\in(a,b)$, then $g(b)\neq g(a)$
+        and the result may be written as
+        \[
+            \frac{f'(c)}{g'(c)}
+            =
+            \frac{f(b)-f(a)}{g(b)-g(a)}.
+        \]
+    \end{theorem}
+
     \begin{theorem}[Derivative of an Inverse Function]
         Let $f$ be one-to-one and differentiable near $x_0$, with
         $f'(x_0)\neq 0$. If $g=f^{-1}$ and $y_0=f(x_0)$, then
@@ -429,6 +454,17 @@
             g'(y_0)
             =
             \frac{1}{f'(x_0)}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Fundamental Theorem of Calculus]
+        If $f$ is continuous on $[a,b]$ and
+        \[
+            F(x)=\int_a^x f(t)\dd t,
+        \]
+        then $F'(x)=f(x)$. Conversely, if $F'=f$ on $[a,b]$, then
+        \[
+            \int_a^b f(x)\dd x=F(b)-F(a).
         \]
     \end{theorem}
 
@@ -651,6 +687,40 @@
         \]
     \end{formula}
 
+    \begin{theorem}[Leibniz Integral Rule; Differentiation under the Integral Sign]
+        Under suitable continuity and domination assumptions,
+        \[
+            \diff{}{t}\int_{a(t)}^{b(t)} f(x,t)\dd x
+            =
+            f(b(t),t)b'(t)-f(a(t),t)a'(t)
+            +
+            \int_{a(t)}^{b(t)}\frac{\partial f}{\partial t}(x,t)\dd x.
+        \]
+        When the endpoints are constant, only the integral term remains.
+    \end{theorem}
+
+    \begin{tactic}
+        Introducing a parameter and differentiating under the integral sign is
+        often called Feynman's trick. It is especially effective when direct
+        integration is difficult but the parameter derivative is elementary.
+    \end{tactic}
+
+    \begin{formula}[Frullani's Integral]
+        If $f$ is continuous on $(0,\infty)$ and the endpoint limits exist under
+        conditions ensuring convergence, then for $a,b>0$,
+        \[
+            \int_0^\infty \frac{f(ax)-f(bx)}{x}\dd x
+            =
+            \bigl(f(0^+)-f(\infty)\bigr)\ln\frac{b}{a}.
+        \]
+        A standard special case is
+        \[
+            \int_0^\infty \frac{e^{-ax}-e^{-bx}}{x}\dd x
+            =
+            \ln\frac{b}{a}.
+        \]
+    \end{formula}
+
     \begin{formula}[Arc Length Formula]
         The length of the graph $y=f(x)$ on $[a,b]$ is
         \[
@@ -667,7 +737,7 @@
         \]
     \end{formula}
 
-    \begin{formula}[Vi\`ete's Formula]
+    \begin{formula}[Vi\`ete's Infinite Product]
         For real $x\neq 0$, we have
         \[
             \frac{\sin x}{x}
@@ -953,6 +1023,28 @@
         is exact for every polynomial of degree at most $3$.
     \end{remark}
 
+    \begin{theorem}[$p$-Series Test]
+        The series
+        \[
+            \sum_{n=1}^{\infty}\frac{1}{n^p}
+        \]
+        converges if and only if $p>1$.
+    \end{theorem}
+
+    \begin{theorem}[Direct Comparison Test]
+        Let $0\leq a_n\leq b_n$ for all sufficiently large $n$. If
+        $\sum b_n$ converges, then $\sum a_n$ converges. If $\sum a_n$
+        diverges, then $\sum b_n$ diverges.
+    \end{theorem}
+
+    \begin{proposition}[Absolute Convergence Implies Convergence]
+        If
+        \[
+            \sum_{n=1}^{\infty}|a_n|
+        \]
+        converges, then $\sum_{n=1}^{\infty}a_n$ converges.
+    \end{proposition}
+
     \begin{theorem}[Integral Test]
         Suppose $f$ is positive, continuous, and decreasing on $[1,\infty)$,
         and let $a_n=f(n)$. Then
@@ -1107,7 +1199,7 @@
         \end{enumerate}
     \end{algorithm}
 
-    \section*{Multivariable Calculus and Vector Calculus}
+    \section*{Multivariable Calculus}
 
     \begin{definition}[Gradient, Divergence, Curl, and Laplacian]
         For a scalar-valued function $f(x,y,z)$ and a vector field
@@ -1163,6 +1255,16 @@
         \]
     \end{theorem}
 
+    \begin{theorem}[Multivariable Chain Rule]
+        Let $\mathbf{F}:\R^n\to\R^m$ and $\mathbf{G}:\R^m\to\R^k$ be
+        differentiable. Then
+        \[
+            D(\mathbf{G}\circ\mathbf{F})(\mathbf{x})
+            =
+            D\mathbf{G}(\mathbf{F}(\mathbf{x}))D\mathbf{F}(\mathbf{x}).
+        \]
+    \end{theorem}
+
     \begin{theorem}[Fubini's Theorem]
         Under suitable continuity or integrability assumptions, an iterated
         integral over a plane region may be computed in either order. For
@@ -1187,7 +1289,7 @@
         \]
         the Jacobian matrix is
         \[
-            D\mathbf{F}
+            D\mathbf{F}(\mathbf{u})
             =
             \left(\frac{\partial x_i}{\partial u_j}\right)_{i,j=1}^{n}.
         \]
@@ -1266,6 +1368,46 @@
         measured from the positive $z$-axis.
     \end{formula}
 
+    \begin{theorem}[Inverse Function Theorem]
+        Let $\mathbf{F}:\R^n\to\R^n$ be continuously differentiable near
+        $\mathbf{a}$. If
+        \[
+            \det D\mathbf{F}(\mathbf{a})\neq 0,
+        \]
+        then $\mathbf{F}$ has a continuously differentiable local inverse near
+        $\mathbf{a}$.
+    \end{theorem}
+
+    \begin{theorem}[Implicit Function Theorem]
+        Let $F(x,y)$ be continuously differentiable near $(a,b)$, with
+        \[
+            F(a,b)=0,
+            \qquad
+            \frac{\partial F}{\partial y}(a,b)\neq 0.
+        \]
+        Then, near $(a,b)$, the equation $F(x,y)=0$ determines $y$ as a
+        differentiable function of $x$, and
+        \[
+            \diff{y}{x}
+            =
+            -\frac{F_x}{F_y}.
+        \]
+    \end{theorem}
+
+    \begin{formula}[Second Derivative Test and Hessian]
+        At a critical point $(a,b)$ of a twice differentiable function
+        $f(x,y)$, let
+        \[
+            \Delta_H
+            =
+            f_{xx}(a,b)f_{yy}(a,b)-f_{xy}(a,b)^2.
+        \]
+        If $\Delta_H>0$ and $f_{xx}(a,b)>0$, the point is a local minimum. If
+        $\Delta_H>0$ and $f_{xx}(a,b)<0$, it is a local maximum. If
+        $\Delta_H<0$, it is a saddle point. If $\Delta_H=0$, the test is
+        inconclusive.
+    \end{formula}
+
     \begin{theorem}[Lagrange Multipliers]
         Suppose that $f$ has a local maximum or minimum subject to the constraint
         \[
@@ -1326,6 +1468,22 @@
         \]
     \end{definition}
 
+    \begin{theorem}[Fundamental Theorem for Line Integrals; Gradient Theorem]
+        If $\mathbf{F}=\nabla f$ and $C$ is a smooth curve from $\mathbf{a}$ to
+        $\mathbf{b}$, then
+        \[
+            \int_C \mathbf{F}\cdot\dd\mathbf{r}
+            =
+            f(\mathbf{b})-f(\mathbf{a}).
+        \]
+        Hence the integral is path independent.
+    \end{theorem}
+
+    \begin{proposition}[Conservative-Field Test]
+        On a simply connected open region, a continuously differentiable vector
+        field is conservative if and only if its curl is zero.
+    \end{proposition}
+
     \begin{theorem}[Green's Theorem]
         Let $C$ be a positively oriented, simple closed curve in the plane, and
         let $D$ be the region enclosed by $C$. Then
@@ -1385,9 +1543,158 @@
         This is the geometric heart of vector calculus.
     \end{remark}
 
+    \section*{Analysis}
+
+    The preceding sections collect the computational core of calculus. This
+    section records deeper results about convergence, compactness, uniformity,
+    completeness, and integration that are less computational but still
+    valuable for high-level Science Quiz questions.
+
+    \begin{theorem}[Least Upper Bound Property; Completeness Axiom of $\R$]
+        Every nonempty subset of $\R$ that is bounded above has a least upper
+        bound in $\R$. Equivalently, every nonempty subset bounded below has a
+        greatest lower bound.
+    \end{theorem}
+
+    \begin{definition}[Limit Superior and Limit Inferior]
+        For a real sequence $(a_n)$, define
+        \[
+            \limsup_{n\to\infty} a_n
+            =
+            \lim_{n\to\infty}\sup_{k\geq n} a_k,
+            \qquad
+            \liminf_{n\to\infty} a_n
+            =
+            \lim_{n\to\infty}\inf_{k\geq n} a_k,
+        \]
+        whenever these extended real limits are allowed.
+    \end{definition}
+
+    \begin{theorem}[Monotone Convergence Theorem for Sequences]
+        Every bounded monotone real sequence converges. More precisely, every
+        increasing sequence bounded above converges to its supremum, and every
+        decreasing sequence bounded below converges to its infimum.
+    \end{theorem}
+
+    \begin{theorem}[Bolzano--Weierstrass Theorem]
+        Every bounded sequence in $\R^n$ has a convergent subsequence.
+    \end{theorem}
+
+    \begin{theorem}[Heine--Borel Theorem]
+        A subset of $\R^n$ is compact if and only if it is closed and bounded.
+    \end{theorem}
+
+    \begin{theorem}[Heine--Cantor Theorem; Uniform Continuity on Compact Sets]
+        If $K\subseteq\R^n$ is compact and $f:K\to\R^m$ is continuous, then $f$
+        is uniformly continuous on $K$.
+    \end{theorem}
+
+    \begin{strategy}
+        In analysis questions, compactness usually means that one may extract a
+        convergent subsequence or that a continuous function attains extrema.
+        In $\R^n$, the fast recognition phrase is ``closed and bounded.''
+    \end{strategy}
+
+    \begin{theorem}[Cauchy Convergence Criterion]
+        A sequence $(a_n)$ in $\R$ or $\C$ converges if and only if it is Cauchy:
+        for every $\eps>0$, there exists $N$ such that
+        \[
+            m,n\geq N
+            \quad\Longrightarrow\quad
+            |a_m-a_n|<\eps.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Weierstrass M-Test]
+        Let $(f_n)$ be a sequence of functions on a set $E$. If
+        \[
+            |f_n(x)|\leq M_n
+            \quad\text{for all }x\in E
+        \]
+        and
+        \[
+            \sum_{n=1}^{\infty}M_n
+        \]
+        converges, then the series
+        \[
+            \sum_{n=1}^{\infty} f_n(x)
+        \]
+        converges uniformly on $E$.
+    \end{theorem}
+
+    \begin{theorem}[Uniform Limit Theorem]
+        If $(f_n)$ is a sequence of continuous functions on a set $E$ and
+        $f_n\to f$ uniformly on $E$, then $f$ is continuous on $E$.
+    \end{theorem}
+
+    \begin{theorem}[Term-by-Term Differentiation]
+        Suppose $(f_n)$ is a sequence of continuously differentiable functions
+        on a closed bounded interval $[a,b]$, and suppose $(f_n(x_0))$
+        converges for some $x_0\in[a,b]$. If $(f_n')$ converges uniformly on
+        $[a,b]$, then $(f_n)$ converges uniformly to a differentiable function
+        $f$, and
+        \[
+            f'=\lim_{n\to\infty} f_n'.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Arzelà--Ascoli Theorem]
+        Every uniformly bounded and equicontinuous sequence of real-valued
+        continuous functions on a compact metric space has a uniformly
+        convergent subsequence.
+    \end{theorem}
+
+    \begin{theorem}[Stone--Weierstrass Theorem]
+        A subalgebra of $C(K,\R)$ that contains the constants and separates
+        points is dense in $C(K,\R)$ under the supremum norm, provided $K$ is
+        compact.
+    \end{theorem}
+
+    \begin{theorem}[Banach Fixed-Point Theorem; Contraction Mapping Theorem]
+        Let $(X,d)$ be a complete metric space, and let $T:X\to X$ be a
+        contraction. Then $T$ has a unique fixed point $x^\ast\in X$, and the
+        iteration $x_{n+1}=T(x_n)$ converges to $x^\ast$ for every initial point
+        $x_0\in X$.
+    \end{theorem}
+
+    \begin{theorem}[Baire Category Theorem]
+        A nonempty complete metric space cannot be written as a countable union
+        of nowhere dense closed sets. Equivalently, a countable intersection of
+        open dense subsets of a complete metric space is dense.
+    \end{theorem}
+
+    \begin{theorem}[Fatou's Lemma]
+        If $f_n\geq 0$ are measurable, then
+        \[
+            \int \liminf_{n\to\infty}f_n\dd\mu
+            \leq
+            \liminf_{n\to\infty}\int f_n\dd\mu.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Lebesgue Monotone Convergence Theorem; Beppo Levi Theorem]
+        If $0\leq f_1\leq f_2\leq\cdots$ and $f_n\to f$ almost everywhere,
+        then
+        \[
+            \lim_{n\to\infty}\int f_n\dd\mu
+            =
+            \int f\dd\mu.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Lebesgue Dominated Convergence Theorem]
+        If $f_n\to f$ almost everywhere and there exists an integrable function
+        $g$ such that $|f_n|\leq g$ for all $n$, then
+        \[
+            \lim_{n\to\infty}\int f_n\dd\mu
+            =
+            \int f\dd\mu.
+        \]
+    \end{theorem}
+
     \chapter{Linear Algebra}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH203) Applied Linear Algebra
+    Related \POSTECH{} Courses: (MATH203) Applied Linear Algebra
 
     \noindent Related Books: Linear Algebra and Its Applications (Gilbert Strang)
 
@@ -1556,6 +1863,23 @@
         $i$-th column with $\mathbf{b}$.
     \end{theorem}
 
+    \begin{formula}[Adjugate Formula for the Inverse]
+        For every square matrix $\mathbf{A}$,
+        \[
+            \mathbf{A}\adj(\mathbf{A})
+            =
+            \adj(\mathbf{A})\mathbf{A}
+            =
+            \det(\mathbf{A})\mathbf{I}_n.
+        \]
+        Hence, if $\det(\mathbf{A})\neq 0$, then
+        \[
+            \mathbf{A}^{-1}
+            =
+            \frac{1}{\det(\mathbf{A})}\adj(\mathbf{A}).
+        \]
+    \end{formula}
+
     \begin{definition}[Determinant]
         The determinant is a scalar associated to a square matrix
         $\mathbf{A}\in F^{n\times n}$, denoted by $\det(\mathbf{A})$.
@@ -1660,6 +1984,20 @@
         \]
     \end{formula}
 
+    \begin{formula}[Determinant of a Block Triangular Matrix]
+        If the diagonal blocks are square, then
+        \[
+            \det
+            \begin{pmatrix}
+                \mathbf{A} & \mathbf{B} \\
+                \mathbf{0} & \mathbf{D}
+            \end{pmatrix}
+            =
+            \det(\mathbf{A})\det(\mathbf{D}),
+        \]
+        and the same formula holds for a lower block triangular matrix.
+    \end{formula}
+
     \begin{proposition}[Multilinearity and Alternation of the Determinant]
         The determinant is linear in each row separately and also linear in each
         column separately. If two rows or two columns are interchanged, the sign
@@ -1700,18 +2038,18 @@
     \end{proposition}
 
     \begin{formula}[Laplace Expansion; Cofactor Expansion]
-        Let $\mathbf{A}=(a_{ij})\in F^{n\times n}$, and let $A_{ij}$ be the
+        Let $\mathbf{A}=(a_{ij})\in F^{n\times n}$, and let $C_{ij}$ be the
         cofactor of $a_{ij}$. Expanding along row $i$ gives
         \[
             \det(\mathbf{A})
             =
-            \sum_{j=1}^{n}a_{ij}A_{ij}.
+            \sum_{j=1}^{n}a_{ij}C_{ij}.
         \]
         Expanding along column $j$ gives
         \[
             \det(\mathbf{A})
             =
-            \sum_{i=1}^{n}a_{ij}A_{ij}.
+            \sum_{i=1}^{n}a_{ij}C_{ij}.
         \]
     \end{formula}
 
@@ -1870,6 +2208,25 @@
         \]
     \end{proposition}
 
+    \begin{proposition}[Cyclic Property of the Trace]
+        Whenever the products are defined and square,
+        \[
+            \tr(\mathbf{A}\mathbf{B})
+            =
+            \tr(\mathbf{B}\mathbf{A}).
+        \]
+        More generally,
+        \[
+            \tr(\mathbf{A}\mathbf{B}\mathbf{C})
+            =
+            \tr(\mathbf{B}\mathbf{C}\mathbf{A})
+            =
+            \tr(\mathbf{C}\mathbf{A}\mathbf{B}).
+        \]
+        The factors may be cyclically permuted, but they may not in general be
+        rearranged arbitrarily.
+    \end{proposition}
+
     \begin{definition}[Eigenvalue and Characteristic Polynomial]
         Let $\mathbf{A}\in F^{n\times n}$. A scalar $\lambda\in F$ is an
         eigenvalue of $\mathbf{A}$ if there exists a nonzero vector
@@ -1908,6 +2265,24 @@
         and $0$ with multiplicity $n-1$. The matrix $\mathbf{J}_n-\mathbf{I}_n$
         has eigenvalues $n-1$ with multiplicity $1$ and $-1$ with multiplicity
         $n-1$.
+    \end{formula}
+
+    \begin{formula}[Constant Diagonal and Off-Diagonal Matrix]
+        Let $\mathbf{A}\in F^{n\times n}$ have diagonal entries $a$ and
+        off-diagonal entries $b$. Then
+        \[
+            \mathbf{A}=(a-b)\mathbf{I}_n+b\mathbf{J}_n.
+        \]
+        Counting algebraic multiplicity, its eigenvalues consist of
+        \[
+            a+(n-1)b
+        \]
+        once and
+        \[
+            a-b
+        \]
+        $n-1$ times. If these two values coincide, they together give the single
+        eigenvalue of multiplicity $n$.
     \end{formula}
 
     \begin{formula}[Rank-One Outer Product]
@@ -2315,7 +2690,7 @@
 
     \chapter{Differential Equations}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH200) Differential Equations
+    Related \POSTECH{} Courses: (MATH200) Differential Equations
 
     \noindent Related Books: Elementary Differential Equations and Boundary Value Problems (William E. Boyce, Richard C. Diprima, Douglas B. Meade)
 
@@ -2771,7 +3146,7 @@
 
     \chapter{Combinatorics and Discrete Mathematics}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH261) Discrete Mathematics
+    Related \POSTECH{} Courses: (MATH261) Discrete Mathematics
 
     \noindent Related Books:
 
@@ -3005,7 +3380,7 @@
         short, the answer is surprising, and the name is famous.
     \end{remark}
 
-    \begin{theorem}[Burnside's Lemma; Cauchy--Frobenius Lemma]
+    \begin{theorem}[Burnside's Lemma; Cauchy--Frobenius--Burnside Lemma]
         Suppose a finite group $G$ acts on a finite set $X$. The number of
         orbits is
         \[
@@ -3115,7 +3490,7 @@
 
     \chapter{Probability and Statistics}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH230) Probability \& Statistics
+    Related \POSTECH{} Courses: (MATH230) Probability \& Statistics
 
     \noindent Related Books:
 
@@ -3540,7 +3915,7 @@
 
     \chapter{Geometry}
 
-    Related \textcolor{postechred}{POSTECH} Courses:
+    Related \POSTECH{} Courses:
 
     \noindent Related Books:
 
@@ -4152,9 +4527,15 @@
 
     \chapter{Number Theory}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH304) Introduction to Number Theory
+    Related \POSTECH{} Courses: (MATH304) Introduction to Number Theory
 
     \noindent Related Books: Introduction to Number Theory (William W. Adams, Larry Joel Goldstein)
+
+    As stated in Notation and Conventions, this chapter gives priority to
+    number-theoretic use. Thus, algebraic structures that arise naturally from
+    congruences, residues, and arithmetic---such as groups of units and finite
+    fields---are treated here. The Algebra chapter is reserved for algebraic
+    ideas whose main role is not specifically number-theoretic.
 
     \begin{theorem}[Fundamental Theorem of Arithmetic]
         Every integer $n>1$ can be written as a product of prime numbers.
@@ -4186,7 +4567,7 @@
         This number is not divisible by any prime on the list.
     \end{idea}
 
-    \begin{theorem}[B\'ezout's Identity]
+    \begin{theorem}[B\'ezout's Identity; B\'ezout's Lemma]
         Let $a,b\in\Z$, not both zero. Then there exist integers $x,y\in\Z$
         such that
         \[
@@ -4335,7 +4716,7 @@
         \]
         then the number of positive divisors of $n$ is
         \[
-            d(n)=(\alpha_1+1)\cdots(\alpha_k+1),
+            \tau(n)=(\alpha_1+1)\cdots(\alpha_k+1),
         \]
         and the sum of positive divisors of $n$ is
         \[
@@ -4344,6 +4725,30 @@
             \prod_{i=1}^{k}\frac{p_i^{\alpha_i+1}-1}{p_i-1}.
         \]
     \end{formula}
+
+    \begin{formula}[$p$-Adic Valuation of a Factorial; Legendre's Formula]
+        For a prime $p$ and a positive integer $n$,
+        \[
+            \nu_p(n!)
+            =
+            \sum_{k=1}^{\infty}
+            \left\lfloor\frac{n}{p^k}\right\rfloor.
+        \]
+        Only finitely many terms are nonzero. This formula gives the exponent
+        of $p$ in $n!$ and is especially useful for trailing-zero and
+        divisibility questions.
+    \end{formula}
+
+    \begin{theorem}[M\"obius Inversion Formula]
+        If arithmetic functions $f$ and $g$ satisfy
+        \[
+            g(n)=\sum_{d\mid n}f(d),
+        \]
+        then
+        \[
+            f(n)=\sum_{d\mid n}\mu(d)g\!\left(\frac{n}{d}\right).
+        \]
+    \end{theorem}
 
     \begin{theorem}[Fermat's Little Theorem]
         Let $p$ be a prime number. If $p\nmid a$, then
@@ -4356,7 +4761,7 @@
         \]
     \end{theorem}
 
-    \begin{theorem}[Euler's Theorem]
+    \begin{theorem}[Euler's Theorem; Euler--Fermat Theorem]
         If $\gcd(a,n)=1$, then
         \[
             a^{\varphi(n)}\equiv 1\pmod n.
@@ -4367,6 +4772,35 @@
         Fermat's Little Theorem is the special case of Euler's Theorem when
         $n=p$ is prime, since $\varphi(p)=p-1$.
     \end{remark}
+
+    \begin{proposition}[Multiplicative Order]
+        If $\gcd(a,n)=1$, then $[a]_n$ lies in the finite group
+        $(\Z/n\Z)^\times$. Its multiplicative order $\ord_n(a)$ divides
+        \[
+            |(\Z/n\Z)^\times|=\varphi(n).
+        \]
+        Consequently, for every positive integer $k$,
+        \[
+            a^k\equiv 1\pmod n
+            \quad\Longleftrightarrow\quad
+            \ord_n(a)\mid k.
+        \]
+    \end{proposition}
+
+    \begin{theorem}[Primitive Root Theorem, or Gauss's Theorem on Primitive Roots]
+        The multiplicative group $(\Z/n\Z)^\times$ is cyclic if and only if
+        \[
+            n\in\{1,2,4,p^k,2p^k\},
+        \]
+        where $p$ is an odd prime and $k\geq 1$.
+    \end{theorem}
+
+    \begin{theorem}[Existence and Uniqueness of Finite Fields]
+        Every finite field has $q=p^n$ elements for some prime $p$ and positive
+        integer $n$. Conversely, for each prime power $q=p^n$, there exists a
+        field $\mathbb{F}_q$ with $q$ elements, unique up to isomorphism. Its
+        multiplicative group $\mathbb{F}_q^\times$ is cyclic of order $q-1$.
+    \end{theorem}
 
     \begin{algorithm}[Modular Exponentiation by Period Reduction]
         To find the last digits of $a^n$, compute $a^n$ modulo a suitable power
@@ -4397,6 +4831,23 @@
         primality test.
     \end{remark}
 
+
+    \begin{theorem}[Lifting the Exponent Lemma; LTE]
+        Let $p$ be an odd prime, and suppose that $p\mid x-y$ while
+        $p\nmid xy$. Then, for every positive integer $n$,
+        \[
+            \nu_p(x^n-y^n)
+            =
+            \nu_p(x-y)+\nu_p(n).
+        \]
+        A standard companion form is: if $n$ is odd, $p\mid x+y$, and
+        $p\nmid xy$, then
+        \[
+            \nu_p(x^n+y^n)
+            =
+            \nu_p(x+y)+\nu_p(n).
+        \]
+    \end{theorem}
 
     \begin{fact}[Quadratic Residues Modulo Small Moduli]
         Squares have very restricted residues modulo small integers:
@@ -4470,7 +4921,7 @@
         theory. Gauss called it the golden theorem.
     \end{remark}
 
-    \begin{theorem}[Fermat's Two-Square Theorem]
+    \begin{theorem}[Fermat's Two-Square Theorem; Fermat's Theorem on Sums of Two Squares]
         An odd prime $p$ can be written as a sum of two squares,
         \[
             p=a^2+b^2
@@ -4588,9 +5039,15 @@
 
     \chapter{Algebra}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH301) Modern Algebra I, (MATH302) Modern Algebra II
+    Related \POSTECH{} Courses: (MATH301) Modern Algebra I, (MATH302) Modern Algebra II
 
     \noindent Related Books: Abstract Algebra (David S. Dummit, Richard M. Foote)
+
+    The Number Theory chapter already covers algebraic structures whose main
+    purpose here is arithmetic, including residue-class groups and finite
+    fields. This chapter focuses on algebra in its own right and on algebraic
+    ideas that connect more directly with linear algebra, geometry, and the
+    general theory of equations.
 
     \begin{definition}[Group]
         A group is a set $G$ together with a binary operation satisfying closure,
@@ -4641,6 +5098,30 @@
         of $S_n$.
     \end{theorem}
 
+    \begin{theorem}[Orbit--Stabilizer Theorem]
+        If a finite group $G$ acts on a set $X$ and $x\in X$, then
+        \[
+            |G\cdot x|
+            =
+            [G:G_x]
+            =
+            \frac{|G|}{|G_x|},
+        \]
+        where $G\cdot x$ is the orbit of $x$ and $G_x$ is its stabilizer.
+    \end{theorem}
+
+    \begin{theorem}[Class Equation]
+        Let $G$ be a finite group, and choose one representative $x_i$ from
+        each conjugacy class not contained in the center $Z(G)$. Then
+        \[
+            |G|
+            =
+            |Z(G)|
+            +
+            \sum_i [G:C_G(x_i)].
+        \]
+    \end{theorem}
+
     \begin{theorem}[Sylow Theorems]
         Let $G$ be a finite group and suppose
         \[
@@ -4684,17 +5165,12 @@
     \end{remark}
 
 
-    \begin{theorem}[Fundamental Theorem of Finite Abelian Groups]
+    \begin{theorem}[Fundamental Theorem of Finite Abelian Groups; Classification Theorem for Finite Abelian Groups]
         Every finite abelian group is isomorphic to a direct product of cyclic
         groups of prime-power order. In particular, finite abelian groups are
         built from cyclic groups.
     \end{theorem}
 
-    \begin{fact}[Finite Fields]
-        A finite field has $p^n$ elements for some prime $p$ and positive
-        integer $n$. Conversely, for every prime power $p^n$, there exists a
-        finite field with $p^n$ elements, unique up to isomorphism.
-    \end{fact}
 
     \begin{definition}[Ring and Field]
         A ring is a set equipped with addition and multiplication satisfying the
@@ -4726,6 +5202,52 @@
         \]
     \end{theorem}
 
+    \begin{formula}[Vi\`ete's Formulas]
+        If
+        \[
+            a_nx^n+a_{n-1}x^{n-1}+\cdots+a_0
+            =
+            a_n\prod_{i=1}^{n}(x-r_i),
+        \]
+        where the roots are counted with multiplicity, then
+        \[
+            \sum_{i=1}^{n}r_i=-\frac{a_{n-1}}{a_n},
+            \qquad
+            \prod_{i=1}^{n}r_i=(-1)^n\frac{a_0}{a_n}.
+        \]
+        More generally, the elementary symmetric sums of the roots are the
+        coefficients with alternating signs, divided by $a_n$.
+    \end{formula}
+
+    \begin{theorem}[Rational Root Theorem]
+        Let
+        \[
+            f(x)=a_nx^n+\cdots+a_0\in\Z[x].
+        \]
+        If a rational number $p/q$ in lowest terms is a root of $f$, then
+        \[
+            p\mid a_0,
+            \qquad
+            q\mid a_n.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Eisenstein's Irreducibility Criterion]
+        Let
+        \[
+            f(x)=a_nx^n+\cdots+a_0\in\Z[x].
+        \]
+        If there exists a prime $p$ such that
+        \[
+            p\nmid a_n,
+            \qquad
+            p\mid a_i\quad(0\leq i<n),
+            \qquad
+            p^2\nmid a_0,
+        \]
+        then $f$ is irreducible over $\Q$.
+    \end{theorem}
+
     \begin{theorem}[Fundamental Theorem of Algebra]
         Every nonconstant complex polynomial has at least one complex root.
         Equivalently, every polynomial of degree $n\geq 1$ over $\C$ splits into
@@ -4737,7 +5259,7 @@
         $F[x]$ has a root in $F$.
     \end{definition}
 
-    \begin{theorem}[Galois Correspondence]
+    \begin{theorem}[Fundamental Theorem of Galois Theory; Galois Correspondence]
         For a finite Galois extension $L/K$, there is an inclusion-reversing
         correspondence between intermediate fields $K\subseteq E\subseteq L$ and
         subgroups $H\leq \Gal(L/K)$, given by
@@ -4759,125 +5281,9 @@
         general quintic.
     \end{remark}
 
-    \chapter{Analysis}
-
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH311) Analysis I, (MATH312) Analysis II
-
-    \noindent Related Books: Principles of Mathematical Analysis (Walter Rudin)
-
-    \begin{definition}[Limit Superior and Limit Inferior]
-        For a real sequence $(a_n)$, define
-        \[
-            \limsup_{n\to\infty} a_n
-            =
-            \lim_{n\to\infty}\sup_{k\geq n} a_k,
-            \qquad
-            \liminf_{n\to\infty} a_n
-            =
-            \lim_{n\to\infty}\inf_{k\geq n} a_k,
-        \]
-        whenever these extended real limits are allowed.
-    \end{definition}
-
-    \begin{theorem}[Monotone Convergence Theorem for Sequences]
-        Every bounded monotone real sequence converges. More precisely, every
-        increasing sequence bounded above converges to its supremum, and every
-        decreasing sequence bounded below converges to its infimum.
-    \end{theorem}
-
-    \begin{theorem}[Bolzano--Weierstrass Theorem]
-        Every bounded sequence in $\R^n$ has a convergent subsequence.
-    \end{theorem}
-
-    \begin{theorem}[Heine--Borel Theorem]
-        A subset of $\R^n$ is compact if and only if it is closed and bounded.
-    \end{theorem}
-
-    \begin{theorem}[Uniform Continuity on Compact Sets]
-        If $K\subseteq\R^n$ is compact and $f:K\to\R^m$ is continuous, then $f$
-        is uniformly continuous on $K$.
-    \end{theorem}
-
-    \begin{strategy}
-        In analysis questions, compactness usually means that one may extract a
-        convergent subsequence or that a continuous function attains extrema.
-        In $\R^n$, the fast recognition phrase is ``closed and bounded.''
-    \end{strategy}
-
-    \begin{theorem}[Cauchy Criterion]
-        A sequence $(a_n)$ in $\R$ or $\C$ converges if and only if it is Cauchy:
-        for every $\eps>0$, there exists $N$ such that
-        \[
-            m,n\geq N
-            \quad\Longrightarrow\quad
-            |a_m-a_n|<\eps.
-        \]
-    \end{theorem}
-
-    \begin{theorem}[Weierstrass M-Test]
-        Let $(f_n)$ be a sequence of functions on a set $E$. If
-        \[
-            |f_n(x)|\leq M_n
-            \quad\text{for all }x\in E
-        \]
-        and
-        \[
-            \sum_{n=1}^{\infty}M_n
-        \]
-        converges, then the series
-        \[
-            \sum_{n=1}^{\infty} f_n(x)
-        \]
-        converges uniformly on $E$.
-    \end{theorem}
-
-    \begin{theorem}[Uniform Limit Theorem]
-        If $(f_n)$ is a sequence of continuous functions on a set $E$ and
-        $f_n\to f$ uniformly on $E$, then $f$ is continuous on $E$.
-    \end{theorem}
-
-    \begin{theorem}[Term-by-Term Differentiation]
-        Suppose $f_n$ are continuously differentiable on an interval and $f_n$
-        converges at one point. If $f_n'$ converges uniformly, then $f_n$
-        converges uniformly to a differentiable function $f$, and
-        \[
-            f'=\lim_{n\to\infty} f_n'.
-        \]
-    \end{theorem}
-
-    \begin{theorem}[Arzelà--Ascoli Theorem]
-        A uniformly bounded and equicontinuous family of real-valued continuous
-        functions on a compact metric space has a uniformly convergent
-        subsequence.
-    \end{theorem}
-
-    \begin{theorem}[Banach Fixed-Point Theorem; Contraction Mapping Theorem]
-        Let $(X,d)$ be a complete metric space, and let $T:X\to X$ be a
-        contraction. Then $T$ has a unique fixed point $x^\ast\in X$, and the
-        iteration $x_{n+1}=T(x_n)$ converges to $x^\ast$ for every initial point
-        $x_0\in X$.
-    \end{theorem}
-
-    \begin{theorem}[Baire Category Theorem]
-        A complete metric space cannot be written as a countable union of nowhere
-        dense closed sets. Equivalently, a countable intersection of open dense
-        subsets of a complete metric space is dense.
-    \end{theorem}
-
-    \begin{theorem}[Lebesgue Dominated Convergence Theorem]
-        If $f_n\to f$ almost everywhere and there exists an integrable function
-        $g$ such that $|f_n|\leq g$ for all $n$, then
-        \[
-            \lim_{n\to\infty}\int f_n\dd\mu
-            =
-            \int f\dd\mu.
-        \]
-    \end{theorem}
-
-
     \chapter{Topology}
 
-    Related \textcolor{postechred}{POSTECH} Courses: (MATH321) General Topology
+    Related \POSTECH{} Courses: (MATH321) General Topology
 
     \noindent Related Books: Topology (James R. Munkres)
 
@@ -4996,7 +5402,7 @@
             \quad \mathbb{H}^3,
             \quad S^2\times\R,
             \quad \mathbb{H}^2\times\R,
-            \quad \widetilde{\mathrm{SL}_2(\R)},
+            \quad \widetilde{\SL}_2(\R),
             \quad \mathrm{Nil},
             \quad \mathrm{Sol}.
         \]
@@ -5004,7 +5410,7 @@
 
     \chapter{Miscellaneous Topics}
 
-    Related \textcolor{postechred}{POSTECH} Courses:
+    Related \POSTECH{} Courses:
 
     \noindent Related Books:
 

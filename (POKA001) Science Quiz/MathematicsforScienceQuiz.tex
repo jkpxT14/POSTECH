@@ -15,11 +15,41 @@
     pdfcreator={LaTeX}
 }
 
+% University colors
+% Add each new institution by defining its color once and then adding the
+% corresponding name commands through \institutionname.
 \definecolor{postechred}{RGB}{166,25,85}
 \definecolor{kaistblue}{RGB}{0,65,145}
+\definecolor{snublue}{RGB}{15,15,112}
+\definecolor{koreacrimson}{RGB}{140,0,40}
+\definecolor{yonseiblue}{RGB}{0,55,120}
+\definecolor{utokyoyellow}{RGB}{255,205,0}
+\definecolor{kyotoublue}{RGB}{0,32,91}
+\definecolor{scienceblue}{RGB}{28,49,119}
+\definecolor{mitred}{RGB}{117,0,20}
+\definecolor{cambridgeblue}{RGB}{142,232,216}
 
-\newcommand{\POSTECH}{\textcolor{postechred}{POSTECH}}
-\newcommand{\KAIST}{\textcolor{kaistblue}{KAIST}}
+\newcommand{\institutionname}[2]{\textcolor{#1}{#2}}
+
+\newcommand{\POSTECH}{\institutionname{postechred}{POSTECH}}
+\newcommand{\POSTECHFull}{\institutionname{postechred}{Pohang University of Science and Technology}}
+\newcommand{\KAIST}{\institutionname{kaistblue}{KAIST}}
+\newcommand{\KAISTFull}{\institutionname{kaistblue}{Korea Advanced Institute of Science and Technology}}
+\newcommand{\SNU}{\institutionname{snublue}{SNU}}
+\newcommand{\SNUFull}{\institutionname{snublue}{Seoul National University}}
+\newcommand{\KoreaUniversity}{\institutionname{koreacrimson}{Korea University}}
+\newcommand{\YonseiUniversity}{\institutionname{yonseiblue}{Yonsei University}}
+\newcommand{\UTokyo}{\institutionname{utokyoyellow}{UTokyo}}
+\newcommand{\UTokyoFull}{\institutionname{utokyoyellow}{The University of Tokyo}}
+\newcommand{\KyotoU}{\institutionname{kyotoublue}{KyotoU}}
+\newcommand{\KyotoUFull}{\institutionname{kyotoublue}{Kyoto University}}
+\newcommand{\TokyoTech}{\institutionname{scienceblue}{Tokyo Tech}}
+\newcommand{\TokyoTechFull}{\institutionname{scienceblue}{Tokyo Institute of Technology}}
+\newcommand{\ScienceTokyo}{\institutionname{scienceblue}{Science Tokyo}}
+\newcommand{\ScienceTokyoFull}{\institutionname{scienceblue}{Institute of Science Tokyo}}
+\newcommand{\MIT}{\institutionname{mitred}{MIT}}
+\newcommand{\MITFull}{\institutionname{mitred}{Massachusetts Institute of Technology}}
+\newcommand{\CambridgeUniversity}{\institutionname{cambridgeblue}{University of Cambridge}}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -120,6 +150,7 @@
 \DeclareMathOperator{\divergence}{div}
 \DeclareMathOperator{\curl}{curl}
 \DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Hess}{Hess}
 \DeclareMathOperator{\Real}{Re}
 \DeclareMathOperator{\Imag}{Im}
 \DeclareMathOperator{\lb}{lb}
@@ -144,6 +175,8 @@
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
 
 % Combinatorics notation
 \newcommand{\multichoose}[2]{\left(\!\binom{#1}{#2}\!\right)}
@@ -179,18 +212,18 @@
         {\large
         Jungwoo Kim\\
         Department of Mathematics\\
-        \textcolor{postechred}{Pohang University of Science and Technology}\\
+        \POSTECHFull\\
         (2026 Science Quiz Representative)\\
-        jkpxt14@\textcolor{postechred}{postech}.ac.kr
+        jkpxt14@postech.ac.kr
         \par}
 
         \vfill
 
         {\large
         \POSTECH--\KAIST{} Science War\\[0.7em]
-        \textcolor{postechred}{Pohang University of Science and Technology}\\
+        \POSTECHFull\\
         vs\\
-        \textcolor{kaistblue}{Korea Advanced Institute of Science and Technology}
+        \KAISTFull
         \par}
 
         \vspace{0.3cm}
