@@ -50,6 +50,11 @@
 \newcommand{\MIT}{\institutionname{mitred}{MIT}}
 \newcommand{\MITFull}{\institutionname{mitred}{Massachusetts Institute of Technology}}
 \newcommand{\CambridgeUniversity}{\institutionname{cambridgeblue}{University of Cambridge}}
+\newcommand{\Cambridge}{\institutionname{cambridgeblue}{Cambridge}}
+\newcommand{\KoreaU}{\institutionname{koreacrimson}{Korea University}}
+\newcommand{\Yonsei}{\institutionname{yonseiblue}{Yonsei}}
+\newcommand{\TokyoUniversity}{\institutionname{utokyoyellow}{The University of Tokyo}}
+\newcommand{\KyotoUniversity}{\institutionname{kyotoublue}{Kyoto University}}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -157,6 +162,9 @@
 \DeclareMathOperator{\area}{area}
 \DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\inv}{inv}
 
 % Convergence arrows
 % Labeled arrows are used when the mode of convergence should be explicit.
@@ -166,6 +174,7 @@
 \newcommand{\asto}{\xrightarrow{\mathrm{a.s.}}}
 \newcommand{\distto}{\xrightarrow{\mathrm{d}}}
 \newcommand{\Lpto}[1]{\xrightarrow{L^{#1}}}
+\newcommand{\probto}{\xrightarrow{\Prob}}
 
 % Linear algebra operators
 \DeclareMathOperator{\rk}{rk}
@@ -189,6 +198,7 @@
 
 % Combinatorics notation
 \newcommand{\multichoose}[2]{\left(\!\binom{#1}{#2}\!\right)}
+\newcommand{\indicator}[1]{\mathbf{1}_{#1}}
 
 % Probability and statistics notation
 \newcommand{\Prob}{\mathbb{P}}

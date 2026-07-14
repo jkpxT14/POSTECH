@@ -261,6 +261,11 @@
 
     \section*{One-Variable Calculus}
 
+    One-variable calculus is presented here together with fast sequence,
+    recurrence, limit, series, and integration techniques. The emphasis is on
+    recognizing a standard structure quickly enough to use it in a short contest
+    or Science Quiz calculation.
+
     \begin{formula}[Arithmetic and Geometric Progressions]
         For an arithmetic progression with first term $a$ and common difference
         $d$, we have
@@ -280,6 +285,54 @@
         \[
             \sum_{k=0}^{\infty}ar^k=\frac{a}{1-r}.
         \]
+    \end{formula}
+
+    \begin{formula}[Finite Differences; Newton's Forward Difference Formula]
+        For a sequence $(a_n)$, define the forward difference by
+        \[
+            \Delta a_n=a_{n+1}-a_n.
+        \]
+        If $a_n=P(n)$ for a polynomial $P$ of degree $d$ with leading
+        coefficient $c$, then
+        \[
+            \Delta^d a_n=d!c,
+            \qquad
+            \Delta^{d+1}a_n=0.
+        \]
+        Conversely, a sequence with constant $d$th differences is polynomial
+        in $n$ of degree at most $d$. For every polynomial $P$ of degree at most
+        $d$,
+        \[
+            P(n)
+            =
+            \sum_{k=0}^{d}\binom{n}{k}\Delta^kP(0).
+        \]
+    \end{formula}
+
+    \begin{strategy}
+        A table of successive differences is one of the fastest ways to detect a
+        hidden polynomial sequence. Constant first, second, and third differences
+        indicate linear, quadratic, and cubic behavior, respectively.
+    \end{strategy}
+
+    \begin{formula}[Linear Recurrences with Constant Coefficients]
+        Consider
+        \[
+            a_n=c_1a_{n-1}+c_2a_{n-2}+\cdots+c_ma_{n-m}.
+        \]
+        Its characteristic polynomial is
+        \[
+            r^m-c_1r^{m-1}-c_2r^{m-2}-\cdots-c_m.
+        \]
+        If the roots $r_1,\dots,r_m$ are distinct, then
+        \[
+            a_n=A_1r_1^n+\cdots+A_mr_m^n.
+        \]
+        A root $r$ of multiplicity $q$ contributes terms
+        \[
+            r^n,\ nr^n,\ \dots,\ n^{q-1}r^n.
+        \]
+        The constants are determined from the initial values.
     \end{formula}
 
     \begin{definition}[Limit of a Function; Epsilon--Delta Definition]
@@ -739,6 +792,26 @@
         \]
     \end{formula}
 
+    \begin{formula}[Chebyshev Polynomials]
+        The Chebyshev polynomials of the first kind are characterized by
+        \[
+            T_n(\cos\theta)=\cos(n\theta).
+        \]
+        They satisfy
+        \[
+            T_0(x)=1,
+            \qquad
+            T_1(x)=x,
+            \qquad
+            T_{n+1}(x)=2xT_n(x)-T_{n-1}(x).
+        \]
+        Hence multiple-angle trigonometric expressions can be converted into
+        polynomial calculations almost immediately; for example,
+        \[
+            \cos(3\theta)=4\cos^3\theta-3\cos\theta.
+        \]
+    \end{formula}
+
     \begin{formula}[Classical Series Values]
         The following series values are worth memorizing:
         \[
@@ -805,6 +878,23 @@
         \[
             \sum_{n=1}^{\infty}a_n=b_1-L.
         \]
+    \end{formula}
+
+    \begin{formula}[Abel's Summation Formula; Summation by Parts]
+        Let
+        \[
+            A_k=\sum_{j=m}^{k}a_j.
+        \]
+        Then
+        \[
+            \sum_{k=m}^{n}a_kb_k
+            =
+            A_nb_n
+            +
+            \sum_{k=m}^{n-1}A_k(b_k-b_{k+1}).
+        \]
+        This is the discrete analogue of integration by parts and is useful when
+        one factor has simple partial sums while the other changes slowly.
     \end{formula}
 
     \begin{formula}[Asymptotic Growth Hierarchy]
@@ -1071,6 +1161,79 @@
         $\tan x$ and $\cot x$, or a denominator that becomes complementary after
         the substitution $x\mapsto a+b-x$.
     \end{strategy}
+
+    \begin{formula}[Parity and Periodicity Shortcuts for Integrals]
+        If $f$ is integrable on $[-a,a]$, then
+        \[
+            f(-x)=-f(x)
+            \quad\Longrightarrow\quad
+            \int_{-a}^{a}f(x)\dd x=0,
+        \]
+        and
+        \[
+            f(-x)=f(x)
+            \quad\Longrightarrow\quad
+            \int_{-a}^{a}f(x)\dd x
+            =
+            2\int_{0}^{a}f(x)\dd x.
+        \]
+        If $f$ has period $T$, then for every $c$,
+        \[
+            \int_c^{c+T}f(x)\dd x
+            =
+            \int_0^T f(x)\dd x.
+        \]
+    \end{formula}
+
+    \begin{formula}[Reciprocal-Substitution Identity]
+        If the improper integrals converge, the substitution $x=1/t$ gives
+        \[
+            \int_0^\infty f(x)\dd x
+            =
+            \int_0^\infty \frac{f(1/x)}{x^2}\dd x.
+        \]
+        Therefore,
+        \[
+            \int_0^\infty f(x)\dd x
+            =
+            \frac12
+            \int_0^\infty
+            \left(f(x)+\frac{f(1/x)}{x^2}\right)\dd x.
+        \]
+        This often reveals a cancellation or symmetry hidden in an integral on
+        $(0,\infty)$.
+    \end{formula}
+
+    \begin{formula}[Weierstrass Substitution; Tangent Half-Angle Substitution]
+        The substitution
+        \[
+            t=\tan\frac{x}{2}
+        \]
+        converts rational expressions in $\sin x$ and $\cos x$ into rational
+        functions of $t$:
+        \[
+            \sin x=\frac{2t}{1+t^2},
+            \qquad
+            \cos x=\frac{1-t^2}{1+t^2},
+            \qquad
+            \dd x=\frac{2\dd t}{1+t^2}.
+        \]
+    \end{formula}
+
+    \begin{algorithm}[Fast Integral Recognition Checklist]
+        Before expanding or integrating directly, check in this order:
+        \begin{enumerate}
+            \item parity, periodicity, and interval symmetry;
+            \item the substitutions $x\mapsto a-x$, $x\mapsto 1/x$, or
+                  $x\mapsto a/x$;
+            \item a hidden derivative for substitution or integration by parts;
+            \item a parameter that permits differentiation under the integral sign;
+            \item Beta--Gamma, Gaussian, Wallis, or a standard trigonometric
+                  integral;
+            \item the tangent half-angle substitution for rational trigonometric
+                  expressions.
+        \end{enumerate}
+    \end{algorithm}
 
     \begin{formula}[Wallis Product]
         The Wallis product is
@@ -1624,6 +1787,22 @@
         At a constrained optimum, the level surface of $f$ is tangent to the
         constraint surface. Thus their normal vectors are parallel.
     \end{idea}
+
+    \begin{theorem}[Euler's Homogeneous Function Theorem]
+        Suppose $f:\R^n\to\R$ is differentiable and homogeneous of degree
+        $k$, meaning
+        \[
+            f(t\mathbf{x})=t^k f(\mathbf{x})
+        \]
+        for $t>0$. Then
+        \[
+            \mathbf{x}\cdot\nabla f(\mathbf{x})=k f(\mathbf{x}).
+        \]
+        In coordinates,
+        \[
+            \sum_{i=1}^{n}x_i\frac{\partial f}{\partial x_i}=kf.
+        \]
+    \end{theorem}
 
     \begin{formula}[Parametrized Curves]
         Let $\mathbf{r}(t)$ be a twice differentiable curve. Its velocity,
@@ -2529,6 +2708,51 @@
         \]
     \end{formula}
 
+    \begin{theorem}[Sylvester's Determinant Theorem]
+        If $\mathbf{A}\in F^{m\times n}$ and
+        $\mathbf{B}\in F^{n\times m}$, then
+        \[
+            \det(\mathbf{I}_m+\mathbf{A}\mathbf{B})
+            =
+            \det(\mathbf{I}_n+\mathbf{B}\mathbf{A}).
+        \]
+        This allows a determinant involving a large product to be replaced by a
+        determinant of the smaller dimension.
+    \end{theorem}
+
+    \begin{formula}[Sherman--Morrison Formula]
+        If $\mathbf{A}$ is invertible and
+        $1+\mathbf{v}^{\mathsf T}\mathbf{A}^{-1}\mathbf{u}\neq0$, then
+        \[
+            (\mathbf{A}+\mathbf{u}\mathbf{v}^{\mathsf T})^{-1}
+            =
+            \mathbf{A}^{-1}
+            -
+            \frac{
+                \mathbf{A}^{-1}\mathbf{u}\mathbf{v}^{\mathsf T}\mathbf{A}^{-1}
+            }{
+                1+\mathbf{v}^{\mathsf T}\mathbf{A}^{-1}\mathbf{u}
+            }.
+        \]
+        It is the inverse counterpart of the Matrix Determinant Lemma.
+    \end{formula}
+
+    \begin{formula}[Schur Complement Determinant Formula]
+        If $\mathbf{A}$ is invertible, then
+        \[
+            \det
+            \begin{pmatrix}
+                \mathbf{A} & \mathbf{B} \\
+                \mathbf{C} & \mathbf{D}
+            \end{pmatrix}
+            =
+            \det(\mathbf{A})
+            \det(\mathbf{D}-\mathbf{C}\mathbf{A}^{-1}\mathbf{B}).
+        \]
+        The matrix $\mathbf{D}-\mathbf{C}\mathbf{A}^{-1}\mathbf{B}$ is the
+        Schur complement of $\mathbf{A}$.
+    \end{formula}
+
     \begin{formula}[Vandermonde Determinant]
         For scalars $x_1,x_2,\dots,x_n$,
         \[
@@ -2574,6 +2798,27 @@
         complicated while their determinants have simple closed forms.
     \end{remark}
 
+    \begin{formula}[Cauchy Determinant]
+        Let
+        \[
+            c_{ij}=\frac{1}{x_i+y_j},
+        \]
+        where every denominator is nonzero and the $x_i$ and $y_j$ are pairwise
+        distinct within their respective families. Then
+        \[
+            \det(c_{ij})_{1\leq i,j\leq n}
+            =
+            \frac{
+                \displaystyle
+                \prod_{1\leq i<j\leq n}(x_j-x_i)(y_j-y_i)
+            }{
+                \displaystyle
+                \prod_{i=1}^{n}\prod_{j=1}^{n}(x_i+y_j)
+            }.
+        \]
+        The Hilbert matrix is a famous special case of a Cauchy matrix.
+    \end{formula}
+
     \begin{definition}[Hadamard Matrix]
         A Hadamard matrix of order $n$ is an $n\times n$ matrix
         $\mathbf{H}$ whose entries are all $+1$ or $-1$ and whose rows are
@@ -2592,6 +2837,85 @@
         \]
     \end{formula}
 
+
+    \begin{formula}[Permutation Matrices]
+        A permutation matrix $\mathbf{P}_\sigma$ has exactly one entry equal
+        to $1$ in each row and each column. It satisfies
+        \[
+            \mathbf{P}_\sigma^{-1}
+            =
+            \mathbf{P}_\sigma^{\mathsf T},
+            \qquad
+            \det(\mathbf{P}_\sigma)=\sgn(\sigma).
+        \]
+        Its powers are determined by the cycle structure of $\sigma$.
+    \end{formula}
+
+    \begin{formula}[Idempotent, Involutory, and Nilpotent Matrices]
+        If $\mathbf{P}^2=\mathbf{P}$, then $\mathbf{P}$ is idempotent and its
+        eigenvalues belong to $\{0,1\}$. If $\mathbf{A}^2=\mathbf{I}$, then
+        $\mathbf{A}$ is involutory and its eigenvalues belong to
+        $\{-1,1\}$. If $\mathbf{N}^k=\mathbf{0}$ for some $k$, then
+        $\mathbf{N}$ is nilpotent and every eigenvalue is $0$.
+    \end{formula}
+
+    \begin{formula}[Eigenvalues of a Circulant Matrix]
+        Let $\mathbf{C}$ be the circulant matrix whose first row is
+        \[
+            (c_0,c_1,\dots,c_{n-1}).
+        \]
+        With $\omega_n=e^{-2\pi i/n}$, its eigenvalues are
+        \[
+            \lambda_j
+            =
+            \sum_{k=0}^{n-1}c_k\omega_n^{jk},
+            \qquad
+            j=0,1,\dots,n-1.
+        \]
+        Hence $\det(\mathbf{C})=\prod_{j=0}^{n-1}\lambda_j$.
+    \end{formula}
+
+    \begin{formula}[Symmetric Tridiagonal Toeplitz Matrix]
+        For
+        \[
+            \mathbf{T}_n
+            =
+            \begin{pmatrix}
+                a & b & 0 & \cdots & 0 \\
+                b & a & b & \ddots & \vdots \\
+                0 & b & a & \ddots & 0 \\
+                \vdots & \ddots & \ddots & \ddots & b \\
+                0 & \cdots & 0 & b & a
+            \end{pmatrix},
+        \]
+        the eigenvalues are
+        \[
+            a+2b\cos\frac{k\pi}{n+1},
+            \qquad
+            k=1,2,\dots,n.
+        \]
+    \end{formula}
+
+    \begin{formula}[Householder Reflection]
+        For a nonzero vector $\mathbf{v}$,
+        \[
+            \mathbf{H}
+            =
+            \mathbf{I}
+            -2\frac{\mathbf{v}\mathbf{v}^{\mathsf T}}
+                     {\mathbf{v}^{\mathsf T}\mathbf{v}}
+        \]
+        is symmetric, orthogonal, and involutory:
+        \[
+            \mathbf{H}^{\mathsf T}=\mathbf{H},
+            \qquad
+            \mathbf{H}^{\mathsf T}\mathbf{H}=\mathbf{I},
+            \qquad
+            \mathbf{H}^2=\mathbf{I}.
+        \]
+        It reflects vectors across the hyperplane perpendicular to
+        $\mathbf{v}$.
+    \end{formula}
 
     \begin{formula}[Rotation and Reflection Matrices]
         Rotation by angle $\theta$ in the plane is represented by
@@ -2756,6 +3080,29 @@
         Cayley--Hamilton is a famous named theorem. It is especially useful for
         reducing high powers of a matrix to lower powers.
     \end{remark}
+
+    \begin{formula}[Matrix Geometric Series]
+        If $\mathbf{I}-\mathbf{A}$ is invertible, then
+        \[
+            \sum_{k=0}^{N-1}\mathbf{A}^k
+            =
+            (\mathbf{I}-\mathbf{A}^N)(\mathbf{I}-\mathbf{A})^{-1}.
+        \]
+        If the spectral radius of $\mathbf{A}$ is less than $1$, then
+        \[
+            \sum_{k=0}^{\infty}\mathbf{A}^k
+            =
+            (\mathbf{I}-\mathbf{A})^{-1}.
+        \]
+    \end{formula}
+
+    \begin{strategy}[Fast Matrix Powers]
+        To compute a large power $\mathbf{A}^N$, first look for one of the
+        following: diagonalization, a short minimal polynomial, idempotence,
+        involution, nilpotence, rank one, a circulant structure, or a decomposition
+        into $a\mathbf{I}+b\mathbf{J}$. Cayley--Hamilton then reduces every
+        sufficiently high power to a linear combination of lower powers.
+    \end{strategy}
 
     \begin{theorem}[Diagonalization Criterion]
         A matrix $\mathbf{A}\in F^{n\times n}$ is diagonalizable over $F$ if
@@ -3667,6 +4014,29 @@
     \end{formula}
 
 
+    \begin{theorem}[Reflection Principle and Ballot-Path Formula]
+        The reflection principle converts a path that first crosses a boundary
+        into an unrestricted reflected path. In particular, for integers
+        $a\geq b\geq0$, the number of paths from $(0,0)$ to $(a,b)$ using right
+        and up steps and never entering the region $y>x$ is
+        \[
+            \binom{a+b}{b}-\binom{a+b}{b-1}
+            =
+            \frac{a-b+1}{a+1}\binom{a+b}{b}.
+        \]
+        When $a=b=n$, this becomes the Catalan number
+        \[
+            \frac{1}{n+1}\binom{2n}{n}.
+        \]
+    \end{theorem}
+
+    \begin{strategy}[Tail Switching for Intersecting Paths]
+        When two directed lattice paths meet, exchange their tails after the
+        first intersection. This produces a bijection with a pair of paths whose
+        endpoints have been crossed. The method is a standard way to count or
+        cancel intersecting path pairs.
+    \end{strategy}
+
     \begin{formula}[Ordinary Generating Functions]
         For a sequence $(a_n)_{n\geq 0}$, its ordinary generating function is
         \[
@@ -3705,6 +4075,25 @@
         \]
     \end{formula}
 
+    \begin{formula}[Roots-of-Unity Filter]
+        Let $\omega_m=e^{2\pi i/m}$. Then
+        \[
+            \frac{1}{m}\sum_{j=0}^{m-1}\omega_m^{j(n-r)}
+            =
+            \begin{cases}
+                1, & n\equiv r\pmod m, \\
+                0, & n\not\equiv r\pmod m.
+            \end{cases}
+        \]
+        Consequently, if $A(x)=\sum_{n\geq0}a_nx^n$, then the terms with
+        indices congruent to $r$ modulo $m$ are extracted by
+        \[
+            \sum_{n\equiv r\, (\mathrm{mod}\,m)}a_nx^n
+            =
+            \frac1m\sum_{j=0}^{m-1}\omega_m^{-rj}A(\omega_m^j x).
+        \]
+    \end{formula}
+
     \begin{formula}[Tower of Hanoi]
         Let $T_n$ be the minimum number of moves needed to move $n$ disks in the
         Tower of Hanoi puzzle. Then
@@ -3739,6 +4128,28 @@
         The Pigeonhole Principle is often hidden in problems asking us to prove
         that two objects must share a property. The hard part is usually
         choosing the right ``boxes.''
+    \end{strategy}
+
+    \begin{theorem}[Consecutive-Sum Divisibility Lemma]
+        For any integers $a_1,\dots,a_n$, there exists a nonempty consecutive
+        block whose sum is divisible by $n$. Define prefix sums
+        \[
+            S_0=0,
+            \qquad
+            S_k=\sum_{i=1}^{k}a_i.
+        \]
+        If some $S_k\equiv0\pmod n$, use the first $k$ terms. Otherwise, two
+        of $S_1,\dots,S_n$ have the same residue modulo $n$, and their difference
+        is the required block sum.
+    \end{theorem}
+
+    \begin{strategy}[Coloring, Parity, and Bipartite Obstructions]
+        Colorings convert geometric or movement constraints into parity data.
+        On a bipartite graph, every path alternates colors. Thus a Hamiltonian
+        path can exist only if the two color classes differ in size by at most
+        $1$, and a Hamiltonian cycle requires the two classes to have equal size.
+        Checkerboard colorings are especially effective for tiling and movement
+        problems.
     \end{strategy}
 
     \begin{theorem}[Inclusion--Exclusion Principle; Sieve Formula]
@@ -3819,11 +4230,11 @@
         orbits is
         \[
             \frac{1}{|G|}
-            \sum_{g\in G}|\operatorname{Fix}(g)|,
+            \sum_{g\in G}|\Fix(g)|,
         \]
         where
         \[
-            \operatorname{Fix}(g)
+            \Fix(g)
             =
             \{x\in X:g\cdot x=x\}.
         \]
@@ -3859,6 +4270,67 @@
         This is the graph-theoretic version of Euler's polyhedron formula.
         It is one of the most famous formulas involving planar graphs.
     \end{remark}
+
+    \begin{formula}[Regions Cut by Hyperplanes in General Position]
+        The maximum number of regions into which $n$ hyperplanes in general
+        position divide $d$-dimensional space is
+        \[
+            R_d(n)=\sum_{k=0}^{d}\binom{n}{k}.
+        \]
+        In particular, $n$ lines divide the plane into at most
+        \[
+            1+n+\binom{n}{2}
+        \]
+        regions, and $n$ planes divide $\R^3$ into at most
+        \[
+            1+n+\binom{n}{2}+\binom{n}{3}
+        \]
+        regions.
+    \end{formula}
+
+    \begin{formula}[Chords and Diagonals in Convex Position]
+        If $n$ points lie on a circle and no three interior chords are concurrent,
+        drawing every chord divides the disk into
+        \[
+            1+\binom{n}{2}+\binom{n}{4}
+        \]
+        regions. A convex $n$-gon has at most
+        \[
+            \binom{n}{4}
+        \]
+        interior intersection points of diagonals.
+    \end{formula}
+
+    \begin{formula}[Triangles in a Complete Diagonal Drawing]
+        For $n$ vertices in convex position with no three diagonals concurrent,
+        the number of triangles whose sides lie on sides or diagonals of the
+        complete drawing is
+        \[
+            \binom{n}{3}
+            +4\binom{n}{4}
+            +5\binom{n}{5}
+            +\binom{n}{6}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Triangulation with Interior Vertices]
+        Suppose a polygonal disk is triangulated using $V$ vertices in total,
+        of which $b$ lie on the boundary. Then the number of edges and triangular
+        faces are
+        \[
+            E=3V-b-3,
+            \qquad
+            F_{\triangle}=2V-b-2.
+        \]
+        These values follow from Euler's formula and double counting the
+        triangle-edge incidences.
+    \end{formula}
+
+    \begin{strategy}[Double Counting with Euler's Formula]
+        In a planar subdivision, count edge-face incidences first and then use
+        $V-E+F=2$. Interior edges are counted twice and boundary edges once.
+        This is often faster and safer than trying to enumerate faces directly.
+    \end{strategy}
 
     \begin{theorem}[Eulerian Trail Criterion]
         A connected finite graph has an Eulerian circuit if and only if every
@@ -4167,7 +4639,7 @@
             \[
                 \Prob\bigl(\{\omega:X_n(\omega)\to X(\omega)\}\bigr)=1;
             \]
-            \item[(ii)] $X_n\xrightarrow{\Prob}X$ if
+            \item[(ii)] $X_n\probto X$ if
             \[
                 \forall\eps>0,
                 \qquad
@@ -4386,6 +4858,14 @@
     \noindent Related Books:
 
     \section*{Synthetic Geometry}
+
+    \begin{strategy}[Reverse Engineering in Geometric Constructions]
+        First draw a completed configuration satisfying the desired conditions.
+        Then identify which points, perpendiculars, parallels, angle bisectors,
+        circles, or reflections in the completed picture can be constructed from
+        the original data. Familiar configurations involving triangle centers,
+        similar triangles, and power of a point are especially useful targets.
+    \end{strategy}
 
     \begin{definition}[Classical Triangle Centers]
         For a triangle $\triangle ABC$, the most important classical centers
@@ -4673,6 +5153,52 @@
         equilateral triangle.
     \end{theorem}
 
+    \begin{formula}[Regular Polygon Tiling Angle Condition]
+        If $q$ regular $p$-gons meet edge-to-edge at each vertex of a Euclidean
+        tiling, then
+        \[
+            q\left(1-\frac{2}{p}\right)\pi=2\pi,
+        \]
+        equivalently,
+        \[
+            (p-2)(q-2)=4.
+        \]
+        Thus the only tilings by one type of regular polygon are
+        \[
+            (p,q)=(3,6),(4,4),(6,3).
+        \]
+    \end{formula}
+
+    \begin{formula}[Obtuse Triangles from Equally Spaced Points]
+        Let $N$ equally spaced points lie on a circle. The number of obtuse
+        triangles determined by three of the points is
+        \[
+            N\binom{k-1}{2}
+            \quad\text{if }N=2k,
+        \]
+        and
+        \[
+            N\binom{k}{2}
+            \quad\text{if }N=2k+1.
+        \]
+        For even $N$, triangles containing a diameter are right rather than
+        obtuse.
+    \end{formula}
+
+    \begin{fact}[Alternating-Area Invariant in a Regular Even-Gon]
+        Let $V_1,\dots,V_{2m}$ be the vertices of a regular $2m$-gon in cyclic
+        order, and let $P$ be any point inside it. Then
+        \[
+            [PV_1V_2]+[PV_3V_4]+\cdots+[PV_{2m-1}V_{2m}]
+        \]
+        equals
+        \[
+            [PV_2V_3]+[PV_4V_5]+\cdots+[PV_{2m}V_1].
+        \]
+        The equality follows from the cancellation of alternating directed edge
+        vectors.
+    \end{fact}
+
     \begin{theorem}[Classification of Platonic Solids]
         There are exactly five Platonic solids:
         \[
@@ -4715,6 +5241,52 @@
         geometry: a geometric area becomes a determinant-like coordinate
         calculation.
     \end{remark}
+
+    \begin{theorem}[Cavalieri's Principle]
+        If two plane regions lie between the same pair of parallel lines and
+        every line parallel to them cuts the regions in segments whose lengths
+        have a constant ratio $c$, then their areas have ratio $c$. The
+        three-dimensional analogue replaces segment lengths by cross-sectional
+        areas and concludes the same ratio for volumes.
+    \end{theorem}
+
+    \begin{strategy}[Unfolding Method for Reflection Problems]
+        A broken path reflecting from a line or face becomes a straight segment
+        after reflecting the region across each boundary in succession. Thus a
+        shortest reflected path is found by measuring a straight-line distance in
+        the unfolded picture and then folding the path back.
+    \end{strategy}
+
+    \begin{formula}[Lattice Segment and Cell Counts]
+        A segment from $(0,0)$ to $(m,n)$, where $m,n\in\N$, passes through
+        \[
+            m+n-\gcd(m,n)
+        \]
+        unit squares. The number of lattice points on the segment, including its
+        endpoints, is
+        \[
+            \gcd(m,n)+1.
+        \]
+        In three dimensions, a segment from $(0,0,0)$ to $(a,b,c)$ passes through
+        \[
+            a+b+c
+            -\gcd(a,b)-\gcd(a,c)-\gcd(b,c)
+            +\gcd(a,b,c)
+        \]
+        unit cubes.
+    \end{formula}
+
+    \begin{formula}[Vector Test for Parallel Segments]
+        Directed segments $AB$ and $CD$ are parallel if and only if
+        \[
+            \mathbf{b}-\mathbf{a}
+            =
+            \lambda(\mathbf{d}-\mathbf{c})
+        \]
+        for some scalar $\lambda$. Equality with $\lambda=1$ identifies
+        equal directed segments and is often the fastest way to detect a hidden
+        parallelogram.
+    \end{formula}
 
     \begin{formula}[Vector Projection]
         If $\mathbf{u}\neq\mathbf{0}$, then the projection of $\mathbf{v}$ onto
@@ -4975,6 +5547,16 @@
         circles becomes one quadratic equation in their curvatures.
     \end{remark}
 
+    \begin{formula}[Boundary Lattice Points on a Segment]
+        If a lattice segment has displacement $(\Delta x,\Delta y)$, then the
+        number of lattice points on it, including both endpoints, is
+        \[
+            \gcd(|\Delta x|,|\Delta y|)+1.
+        \]
+        Summing the gcd contributions over polygon edges gives the number $B$ of
+        boundary lattice points without double-counting vertices.
+    \end{formula}
+
     \begin{theorem}[Pick's Theorem]
         Let $P$ be a simple polygon whose vertices lie on lattice points in the
         plane. If $I$ is the number of lattice points strictly inside $P$ and
@@ -5130,6 +5712,25 @@
         and a last-digits condition. First minimize the number of digits, then
         arrange the final few digits to satisfy the strongest divisibility
         conditions.
+    \end{strategy}
+
+    \begin{definition}[Complete Residue System]
+        A set of $n$ integers is a complete residue system modulo $n$ if its
+        elements represent every residue class modulo $n$ exactly once. To prove
+        that $a_0,\dots,a_{n-1}$ form such a system, it is enough to prove
+        \[
+            a_i\equiv a_j\pmod n
+            \quad\Longrightarrow\quad
+            i=j.
+        \]
+    \end{definition}
+
+    \begin{strategy}[Modular Casework and Base Representation]
+        When a problem repeats division by $N$, rewrite the integer in base $N$.
+        The quotient deletes the final digit and the remainder reveals it. For
+        divisibility or existence problems, first split integers into residue
+        classes and look for a complete residue system rather than checking
+        values individually.
     \end{strategy}
 
     \begin{theorem}[Chinese Remainder Theorem; CRT]
@@ -5416,6 +6017,26 @@
         theorem has no exception at all.
     \end{remark}
 
+    \begin{theorem}[Continued-Fraction Best Approximation Theorem]
+        Let $p_k/q_k$ be a convergent of the simple continued fraction of an
+        irrational number $\alpha$. Then
+        \[
+            \left|\alpha-\frac{p_k}{q_k}\right|
+            <
+            \frac{1}{q_kq_{k+1}}
+            <
+            \frac{1}{q_k^2}.
+        \]
+        Moreover, convergents provide best rational approximations in the sense
+        that a fraction with a smaller denominator cannot improve the error in
+        the standard best-approximation comparison.
+    \end{theorem}
+
+    \begin{strategy}
+        Problems asking for an unusually accurate fraction with the smallest
+        possible denominator often signal a continued-fraction expansion.
+    \end{strategy}
+
     \begin{theorem}[Dirichlet's Theorem on Arithmetic Progressions]
         If $a$ and $d$ are relatively prime positive integers, then the
         arithmetic progression
@@ -5521,6 +6142,54 @@
         inverses. If the operation is commutative, then $G$ is called an abelian
         group.
     \end{definition}
+
+    \begin{theorem}[Disjoint-Cycle Decomposition of a Permutation]
+        Every permutation $\sigma\in S_n$ can be written as a product of
+        disjoint cycles, uniquely up to the order of the cycles and cyclic
+        rotation within each cycle. If $c(\sigma)$ is the number of cycles,
+        including fixed points, then the minimum number of transpositions needed
+        to express $\sigma$ is
+        \[
+            n-c(\sigma).
+        \]
+    \end{theorem}
+
+    \begin{formula}[Inversions and the Sign of a Permutation]
+        The inversion number is
+        \[
+            \inv(\sigma)
+            =
+            \left|
+                \{(i,j):i<j,\ \sigma(i)>\sigma(j)\}
+            \right|.
+        \]
+        The sign satisfies
+        \[
+            \sgn(\sigma)
+            =
+            (-1)^{\inv(\sigma)}
+            =
+            (-1)^{n-c(\sigma)}.
+        \]
+        Thus any transposition reverses parity.
+    \end{formula}
+
+    \begin{fact}[Dihedral Group]
+        The symmetries of a regular $n$-gon form the dihedral group
+        \[
+            D_{2n}
+            =
+            \langle r,s\mid r^n=e,\ s^2=e,\ srs=r^{-1}\rangle.
+        \]
+        Its elements are
+        \[
+            e,r,r^2,\dots,r^{n-1},
+            \qquad
+            s,rs,r^2s,\dots,r^{n-1}s.
+        \]
+        This presentation is the standard algebraic model for rotation and
+        reflection counting with Burnside's Lemma.
+    \end{fact}
 
     \begin{definition}[Cyclic Group]
         A group $G$ is cyclic if there exists an element $g\in G$ such that every
@@ -5903,6 +6572,42 @@
     Related \POSTECH{} Courses:
 
     \noindent Related Books:
+
+    This chapter collects cross-disciplinary ideas that are especially useful
+    when a short problem does not announce which subject or theorem should be
+    used.
+
+    \begin{strategy}[Transform the Given Objects]
+        Replace the original configuration by an equivalent one whose structure
+        is easier to see: partition a region, introduce prefix sums, encode a
+        movement by vectors, pass to residues, diagonalize a matrix, or complete
+        a partial object. The transformed problem should preserve the quantity or
+        property being asked about.
+    \end{strategy}
+
+    \begin{strategy}[Invariant, Monovariant, and Extremal Principles]
+        An invariant remains unchanged under every allowed move. A monovariant
+        moves strictly in one direction and therefore prevents cycles or proves
+        termination. The extremal principle chooses a largest, smallest, first,
+        or last object and exploits the extra restrictions forced by extremality.
+        These are among the most common contest ideas hidden behind elementary
+        statements.
+    \end{strategy}
+
+    \begin{strategy}[Complete the Configuration and Work Backward]
+        First imagine a completed solution, then determine which parts are forced
+        and which choices remain free. This is effective in geometric
+        constructions, permutation completions, lattice paths, tilings, and
+        assignment problems. Fixing one object under a symmetry often removes
+        redundant cases before the remaining count begins.
+    \end{strategy}
+
+    \begin{strategy}[Rotate, Reflect, and Superimpose]
+        A rotation, reflection, or translated copy can convert a broken path into
+        a straight one, expose equal vectors, pair terms, or turn a local pattern
+        into a global invariant. When two configurations overlap, compare what
+        cancels and what remains rather than recomputing each separately.
+    \end{strategy}
 
     \begin{strategy}[Comparing Powers by Logarithms]
         To compare two positive numbers such as $a^b$ and $b^a$, take logarithms:

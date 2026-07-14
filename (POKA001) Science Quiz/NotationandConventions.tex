@@ -42,14 +42,26 @@
         $\eps$ & a small positive real number, especially in analysis \\
         $a\coloneqq b$ & $a$ is defined to be $b$ \\
         $:=$ & another common symbol for ``is defined to be'' \\
-        $\Real z$ & the real part of a complex number $z$ \\
-        $\Imag z$ & the imaginary part of a complex number $z$ \\
+        $\Real z$ or $\Re z$ & the real part of a complex number $z$ \\
+        $\Imag z$ or $\Im z$ & the imaginary part of a complex number $z$ \\
         $\sim$ & may mean asymptotic equivalence, distribution, or an equivalence relation \\
         $O(\cdot)$ & Big-O notation \\
         $o(\cdot)$ & little-o notation \\
         $\square$ & end of a proof or solution \\
     \end{longtable}
     }
+
+    Round parentheses are used for ordered tuples and matrix delimiters.
+    Square brackets are used for closed intervals and, in geometry, for area
+    notation such as $[ABC]$. Braces are used for sets; $\{x\}$ denotes the
+    fractional part only when the numerical context is explicit.
+
+    In displayed formulas, the limits of operators such as $\lim$, $\sum$,
+    $\prod$, $\bigcup$, and $\bigcap$ are placed below and above the operator
+    whenever this improves readability. In inline mathematics, side placement is
+    retained when forcing vertical placement would disrupt line spacing. Thus the
+    typographical rule is readability first, with displayed formulas preferred for
+    substantial limits and indexed operations.
 
     \section*{Theorem-like Environments}
 
@@ -154,6 +166,7 @@
         $x\mapsto f(x)$ & the rule sending an element $x$ to its image $f(x)$ \\
         $f(A)$ & the image of $A$ under $f$ \\
         $f^{-1}(B)$ & the inverse image, or preimage, of $B$ under $f$ \\
+        $\indicator{A}(x)$ & the indicator function of $A$, equal to $1$ on $A$ and $0$ outside $A$ \\
         $A/\sim$ & the set of equivalence classes of $A$ under $\sim$ \\
         $\aleph_0$ & the cardinality of a countably infinite set \\
         $\mathfrak{c}$ & the cardinality of the continuum, $|\R|$ \\
@@ -214,21 +227,21 @@
         $a_n\nearrow L$ & an increasing sequence converging to $L$ \\
         $a_n\searrow L$ & a decreasing sequence converging to $L$ \\
         $\limsup a_n$, $\liminf a_n$ & the limit superior and limit inferior of a sequence \\
-        $f_n\ptwto f$ & pointwise convergence of functions \\
-        $f_n\rightrightarrows f$ & uniform convergence of functions \\
-        $f_n\unifto f$ & an explicitly labeled alternative for uniform convergence \\
+        $f_n\to f$ or $f_n\ptwto f$ & pointwise convergence, when this mode has been stated explicitly \\
+        $f_n\rightrightarrows f$ or $f_n\unifto f$ & uniform convergence of functions \\
         $f_n\aeto f$ & convergence almost everywhere \\
         $\|f\|_\infty$ & the supremum norm of $f$ \\
     \end{longtable}
     }
 
-    The ordinary arrow $\to$ is used for sequence limits and for functions when
-    no special property is being encoded. There is no single universal special
-    arrow for pointwise convergence, so this book uses the explicit label
-    $\ptwto$. The double arrow $\rightrightarrows$ is a common, though not
-    universal, convention for uniform convergence; it is adopted consistently in
-    this book. The labeled alternative $\unifto$ may be used when several modes
-    of convergence occur in the same passage.
+    The ordinary arrow $\to$ is standard for sequence convergence and is also
+    used for pointwise convergence once that meaning has been declared. Because no
+    single special arrow for pointwise convergence is universal, $\ptwto$ is used
+    when the mode should be visible directly on the arrow. The double arrow
+    $\rightrightarrows$ is a common, though not universal, convention for uniform
+    convergence; $\unifto$ is the explicit alternative. These equivalent forms
+    are listed on the same line above, and the book uses one-arrow versus
+    two-arrow notation consistently whenever no ambiguity is possible.
 
     \section*{Linear Algebra}
 
@@ -285,6 +298,8 @@
         $\mathbf{u}\perp\mathbf{v}$ & $\mathbf{u}$ and $\mathbf{v}$ are orthogonal \\
         $\mathbf{u}\times\mathbf{v}$ & the cross product of vectors in $\R^3$ \\
         $\det(\mathbf{u},\mathbf{v},\mathbf{w})$ & the determinant of the matrix with columns $\mathbf{u},\mathbf{v},\mathbf{w}$ \\
+        $\mathbf{J}_n$ & the $n\times n$ all-ones matrix \\
+        $\mathbf{P}_\sigma$ & the permutation matrix associated with a permutation $\sigma$ \\
         $U\oplus V$ & the direct sum of subspaces $U$ and $V$ \\
     \end{longtable}
     }
@@ -393,6 +408,12 @@
         $\multichoose{n}{k}$ & the number of multisets of size $k$ chosen from an $n$-element set, equal to $\binom{n+k-1}{k}$ \\
         $P(n,k)$ & the number of $k$-permutations of an $n$-element set \\
         $a_n$ & the $n$th term of a sequence \\
+        $\Delta a_n=a_{n+1}-a_n$ & the forward difference of a sequence \\
+        $S_n=\displaystyle\sum_{k=1}^{n}a_k$ & the $n$th partial sum, or prefix sum \\
+        $\omega_n=e^{2\pi i/n}$ & a primitive $n$th root of unity \\
+        $\sigma=(a_1\ a_2\ \cdots\ a_k)$ & cycle notation for a permutation \\
+        $\inv(\sigma)$ & the inversion number of a permutation $\sigma$ \\
+        $\Fix(g)$ & the set of objects fixed by a symmetry $g$ \\
         $G=(V,E)$ & a graph with vertex set $V$ and edge set $E$ \\
         $\deg(v)$ & the degree of a vertex $v$ in a graph \\
         $K_n$ & the complete graph on $n$ vertices \\
@@ -407,11 +428,16 @@
         $X\sim\Poi(\lambda)$ & $X$ follows a Poisson distribution with parameter $\lambda$ \\
         $X\sim\Normal(\mu,\sigma^2)$ & $X$ follows a normal distribution with mean $\mu$ and variance $\sigma^2$ \\
         $X_n\asto X$ & almost-sure convergence \\
-        $X_n\xrightarrow{\Prob}X$ & convergence in probability \\
+        $X_n\probto X$ & convergence in probability \\
         $X_n\Lpto{p}X$ & convergence in $L^p$ \\
         $X_n\distto X$ & convergence in distribution \\
     \end{longtable}
     }
+
+    The labels $\mathrm{a.s.}$, $\Prob$, $L^p$, and $\mathrm{d}$ above are
+    standard and widely used in probability theory. On a convergence arrow,
+    $\mathrm{d}$ means ``in distribution'' and is distinct from the upright
+    differential symbol $\dd$.
 
     Random variables are usually denoted by uppercase letters such as $X,Y,Z$.
     Events are denoted by uppercase letters such as $A,B,E$. Probability and
@@ -445,6 +471,7 @@
         $\overline{AB}$ & the line segment joining $A$ and $B$ \\
         $AB$ & the length of the segment $\overline{AB}$, when no confusion is possible \\
         $[ABC]$ & the area of triangle $ABC$, when used in geometry problems \\
+        $I$ and $B$ & the numbers of interior and boundary lattice points in Pick's Theorem \\
         $\parallel$ & parallel \\
         $\perp$ & perpendicular \\
     \end{longtable}
@@ -529,6 +556,8 @@
         \endlastfoot
 
         $G$ & usually a group \\
+        $S_n$ and $A_n$ & the symmetric and alternating groups on $n$ symbols \\
+        $D_{2n}$ & the dihedral group of order $2n$ \\
         $e$ & the identity element of a group, when the context is clear \\
         $|G|$ & the order of a finite group $G$ \\
         $\langle S\rangle$ & the subgroup generated by a subset $S$ \\
