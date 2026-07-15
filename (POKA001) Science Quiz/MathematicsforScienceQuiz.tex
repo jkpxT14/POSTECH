@@ -1,12 +1,24 @@
 \documentclass[11pt,oneside]{book}
 
+% Page layout and typography
 \usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% Mathematics
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
-\usepackage{microtype}
-\usepackage{lmodern}
-\usepackage[hidelinks]{hyperref}
+\usepackage{bbm}
+
+% Tables
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+
+% Color and PDF metadata
 \usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
 
 \hypersetup{
     pdftitle={Mathematics for Science Quiz},
@@ -15,54 +27,105 @@
     pdfcreator={LaTeX}
 }
 
-% University colors
-% Add each new institution by defining its color once and then adding the
-% corresponding name commands through \institutionname.
-\definecolor{postechred}{RGB}{166,25,85}
-\definecolor{kaistblue}{RGB}{0,65,145}
-\definecolor{snublue}{RGB}{15,15,112}
-\definecolor{koreacrimson}{RGB}{140,0,40}
-\definecolor{yonseiblue}{RGB}{0,55,120}
-\definecolor{utokyoyellow}{RGB}{255,205,0}
-\definecolor{kyotoublue}{RGB}{0,32,91}
-\definecolor{scienceblue}{RGB}{28,49,119}
-\definecolor{mitred}{RGB}{117,0,20}
-\definecolor{cambridgeblue}{RGB}{142,232,216}
+% Institution colors
+% Full-name commands reproduce official English names exactly. Short-name
+% commands are reserved for established abbreviations or institutional brands.
+% To add an institution, define its color here and declare its official names
+% below through \institutiontext.
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\definecolor{KoreaCrimson}{RGB}{140,0,40}
+\definecolor{YonseiBlue}{RGB}{0,55,120}
+\definecolor{UTokyoYellow}{RGB}{255,205,0}
+\definecolor{KyotoUBlue}{RGB}{0,32,91}
+\definecolor{ScienceBlue}{RGB}{28,49,119}
+\definecolor{MITRed}{RGB}{117,0,20}
+\definecolor{CambridgeBlue}{RGB}{142,232,216}
 
-\newcommand{\institutionname}[2]{\textcolor{#1}{#2}}
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
 
-\newcommand{\POSTECH}{\institutionname{postechred}{POSTECH}}
-\newcommand{\POSTECHFull}{\institutionname{postechred}{Pohang University of Science and Technology}}
-\newcommand{\KAIST}{\institutionname{kaistblue}{KAIST}}
-\newcommand{\KAISTFull}{\institutionname{kaistblue}{Korea Advanced Institute of Science and Technology}}
-\newcommand{\SNU}{\institutionname{snublue}{SNU}}
-\newcommand{\SNUFull}{\institutionname{snublue}{Seoul National University}}
-\newcommand{\KoreaUniversity}{\institutionname{koreacrimson}{Korea University}}
-\newcommand{\YonseiUniversity}{\institutionname{yonseiblue}{Yonsei University}}
-\newcommand{\UTokyo}{\institutionname{utokyoyellow}{UTokyo}}
-\newcommand{\UTokyoFull}{\institutionname{utokyoyellow}{The University of Tokyo}}
-\newcommand{\KyotoU}{\institutionname{kyotoublue}{KyotoU}}
-\newcommand{\KyotoUFull}{\institutionname{kyotoublue}{Kyoto University}}
-\newcommand{\TokyoTech}{\institutionname{scienceblue}{Tokyo Tech}}
-\newcommand{\TokyoTechFull}{\institutionname{scienceblue}{Tokyo Institute of Technology}}
-\newcommand{\ScienceTokyo}{\institutionname{scienceblue}{Science Tokyo}}
-\newcommand{\ScienceTokyoFull}{\institutionname{scienceblue}{Institute of Science Tokyo}}
-\newcommand{\MIT}{\institutionname{mitred}{MIT}}
-\newcommand{\MITFull}{\institutionname{mitred}{Massachusetts Institute of Technology}}
-\newcommand{\CambridgeUniversity}{\institutionname{cambridgeblue}{University of Cambridge}}
-\newcommand{\Cambridge}{\institutionname{cambridgeblue}{Cambridge}}
-\newcommand{\KoreaU}{\institutionname{koreacrimson}{Korea University}}
-\newcommand{\Yonsei}{\institutionname{yonseiblue}{Yonsei}}
-\newcommand{\TokyoUniversity}{\institutionname{utokyoyellow}{The University of Tokyo}}
-\newcommand{\KyotoUniversity}{\institutionname{kyotoublue}{Kyoto University}}
+% Institution names
+% POSTECH
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
 
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{array}
+% KAIST
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{%
+    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
+}
 
+% Seoul National University
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{%
+    \institutiontext{SNUBlue}{Seoul National University}%
+}
+
+% Korea University
+\DeclareRobustCommand{\KU}{\institutiontext{KoreaCrimson}{KU}}
+\DeclareRobustCommand{\KoreaUniversity}{%
+    \institutiontext{KoreaCrimson}{Korea University}%
+}
+
+% Yonsei University
+\DeclareRobustCommand{\Yonsei}{\institutiontext{YonseiBlue}{Yonsei}}
+\DeclareRobustCommand{\YonseiUniversity}{%
+    \institutiontext{YonseiBlue}{Yonsei University}%
+}
+
+% The University of Tokyo
+\DeclareRobustCommand{\UTokyo}{\institutiontext{UTokyoYellow}{UTokyo}}
+\DeclareRobustCommand{\TheUniversityOfTokyo}{%
+    \institutiontext{UTokyoYellow}{The University of Tokyo}%
+}
+
+% Kyoto University
+\DeclareRobustCommand{\KyotoU}{\institutiontext{KyotoUBlue}{KyotoU}}
+\DeclareRobustCommand{\KyotoUniversity}{%
+    \institutiontext{KyotoUBlue}{Kyoto University}%
+}
+
+% Tokyo Institute of Technology (historical name and brand)
+\DeclareRobustCommand{\TokyoTech}{\institutiontext{ScienceBlue}{Tokyo Tech}}
+\DeclareRobustCommand{\TokyoInstituteOfTechnology}{%
+    \institutiontext{ScienceBlue}{Tokyo Institute of Technology}%
+}
+
+% Institute of Science Tokyo (current name and brand)
+\DeclareRobustCommand{\ScienceTokyo}{\institutiontext{ScienceBlue}{Science Tokyo}}
+\DeclareRobustCommand{\InstituteOfScienceTokyo}{%
+    \institutiontext{ScienceBlue}{Institute of Science Tokyo}%
+}
+
+% Massachusetts Institute of Technology
+\DeclareRobustCommand{\MIT}{\institutiontext{MITRed}{MIT}}
+\DeclareRobustCommand{\MassachusettsInstituteOfTechnology}{%
+    \institutiontext{MITRed}{Massachusetts Institute of Technology}%
+}
+
+% University of Cambridge
+\DeclareRobustCommand{\UniversityOfCambridge}{%
+    \institutiontext{CambridgeBlue}{University of Cambridge}%
+}
+
+% Table columns
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
-\newtheoremstyle{breakplain}
+% Chapter metadata
+\newcommand{\relatedcourses}[1]{%
+    \noindent Related \POSTECH{} Courses: #1\par
+}
+\newcommand{\relatedbooks}[1]{%
+    \noindent Related Books: #1\par
+}
+
+% Theorem styles
+\newtheoremstyle{sciencequizplain}
     {6pt}
     {6pt}
     {\itshape}
@@ -72,7 +135,7 @@
     {\newline}
     {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
 
-\newtheoremstyle{breakdefinition}
+\newtheoremstyle{sciencequizdefinition}
     {6pt}
     {6pt}
     {}
@@ -82,7 +145,7 @@
     {\newline}
     {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
 
-\newtheoremstyle{sameline}
+\newtheoremstyle{sciencequizsameline}
     {6pt}
     {6pt}
     {}
@@ -96,31 +159,30 @@
     {\par\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}
     {\hfill$\square$\par}
 
-\theoremstyle{breakdefinition}
+\theoremstyle{sciencequizdefinition}
 \newtheorem{definition}{Definition}[chapter]
 
-\theoremstyle{breakplain}
+\theoremstyle{sciencequizplain}
 \newtheorem{theorem}[definition]{Theorem}
-
-\theoremstyle{breakplain}
 \newtheorem{proposition}[definition]{Proposition}
 \newtheorem{lemma}[definition]{Lemma}
 \newtheorem{corollary}[definition]{Corollary}
 \newtheorem{conjecture}[definition]{Conjecture}
 \newtheorem{hypothesis}[definition]{Hypothesis}
 
-\theoremstyle{breakdefinition}
+\theoremstyle{sciencequizdefinition}
 \newtheorem{formula}[definition]{Formula}
 \newtheorem{fact}[definition]{Fact}
 \newtheorem{openproblem}[definition]{Open Problem}
 \newtheorem{algorithm}[definition]{Algorithm}
 
-\theoremstyle{sameline}
+\theoremstyle{sciencequizsameline}
 \newtheorem*{remark}{Remark}
 \newtheorem*{idea}{Idea}
 \newtheorem*{strategy}{Strategy}
 \newtheorem*{tactic}{Tactic}
 
+% Problem environments
 \newenvironment{problem}[1]
     {\par\vspace{6pt}\noindent\textbf{Problem #1.}\hspace{0.5em}\ignorespaces}
     {\par\vspace{6pt}}
@@ -146,8 +208,9 @@
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\codom}{codom}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\interior}{int}
 
-% General calculus and analysis notation
+% Calculus and analysis notation
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \newcommand{\diff}[2]{\frac{\dd #1}{\dd #2}}
 \newcommand{\eps}{\varepsilon}
@@ -161,13 +224,23 @@
 \DeclareMathOperator{\lb}{lb}
 \DeclareMathOperator{\area}{area}
 \DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\sinc}{sinc}
 \DeclareMathOperator{\Fix}{Fix}
 \DeclareMathOperator{\inv}{inv}
 
+% Probability and statistics notation
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Exp}{\mathbb{E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Poi}{Poi}
+\DeclareMathOperator{\Normal}{N}
+
 % Convergence arrows
-% Labeled arrows are used when the mode of convergence should be explicit.
+% Labeled arrows are used only when the mode of convergence should be explicit.
 \newcommand{\ptwto}{\xrightarrow{\mathrm{ptw}}}
 \newcommand{\unifto}{\xrightarrow{\mathrm{unif}}}
 \newcommand{\aeto}{\xrightarrow{\mathrm{a.e.}}}
@@ -191,6 +264,8 @@
 % Number theory and algebra operators
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\characteristic}{char}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\GL}{GL}
@@ -198,16 +273,8 @@
 
 % Combinatorics notation
 \newcommand{\multichoose}[2]{\left(\!\binom{#1}{#2}\!\right)}
-\newcommand{\indicator}[1]{\mathbf{1}_{#1}}
-
-% Probability and statistics notation
-\newcommand{\Prob}{\mathbb{P}}
-\newcommand{\Exp}{\mathbb{E}}
-\DeclareMathOperator{\Var}{Var}
-\DeclareMathOperator{\Cov}{Cov}
-\DeclareMathOperator{\Bin}{Bin}
-\DeclareMathOperator{\Poi}{Poi}
-\DeclareMathOperator{\Normal}{N}
+\newcommand{\indicator}[1]{\mathbbm{1}_{#1}}
+\newcommand{\ones}{\mathbf{1}}
 
 \begin{document}
 
@@ -231,7 +298,7 @@
         {\large
         Jungwoo Kim\\
         Department of Mathematics\\
-        \POSTECHFull\\
+        \PohangUniversityOfScienceAndTechnology\\
         (2026 Science Quiz Representative)\\
         jkpxt14@postech.ac.kr
         \par}
@@ -240,9 +307,9 @@
 
         {\large
         \POSTECH--\KAIST{} Science War\\[0.7em]
-        \POSTECHFull\\
+        \PohangUniversityOfScienceAndTechnology\\
         vs\\
-        \KAISTFull
+        \KoreaAdvancedInstituteOfScienceAndTechnology
         \par}
 
         \vspace{0.3cm}
@@ -278,5 +345,4 @@
     \part{Expected Problems}
 
     \input{ExpectedProblems}
-
 \end{document}

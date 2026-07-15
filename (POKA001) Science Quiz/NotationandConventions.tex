@@ -11,8 +11,10 @@
     Scalars are written in ordinary italic letters, such as $a,b,c,\lambda,t$.
     Vectors are written in bold lowercase letters, such as
     $\mathbf{u},\mathbf{v},\mathbf{x}$. Matrices are written in bold uppercase
-    letters, such as $\mathbf{A},\mathbf{B},\mathbf{P}$. Unless otherwise stated,
-    vectors are regarded as column vectors.
+    letters, such as $\mathbf{A},\mathbf{B},\mathbf{P}$. This convention applies
+    to every matrix, including the identity matrix $\mathbf{I}_n$ and diagonal
+    matrices such as $\mathbf{D}$. Unless otherwise stated, vectors are regarded
+    as column vectors.
 
     \vspace{0.5em}
 
@@ -173,6 +175,11 @@
     \end{longtable}
     }
 
+    The indicator function is written as $\indicator{A}$, using a blackboard-bold
+    numeral rather than a bold numeral. Thus $\indicator{A}$ is not confused with
+    the all-ones vector $\ones$ or with a matrix. In mathematical notation,
+    boldface is reserved for vectors and matrices throughout this book.
+
     \section*{Calculus and Analysis}
 
     This section collects notation for one-variable calculus, multivariable
@@ -275,7 +282,10 @@
         $\mathbf{A}^{\mathsf H}$ & the conjugate transpose, or Hermitian transpose, of a complex matrix $\mathbf{A}$ \\
         $\mathbf{A}=(a_{ij})$ & the matrix whose $(i,j)$-entry is $a_{ij}$ \\
         $\mathbf{I}_n$ & the $n\times n$ identity matrix \\
+        $\mathbf{D}$ & a diagonal matrix, when the diagonalization context is clear \\
         $\mathbf{0}$ & the zero vector or zero matrix, depending on context \\
+        $\ones$ & the all-ones vector, when its dimension is clear \\
+        $\mathbf{J}_{m,n}$ & the $m\times n$ all-ones matrix \\
         $\det(\mathbf{A})$ & the determinant of $\mathbf{A}$ \\
         $\rk(\mathbf{A})$ & the rank of $\mathbf{A}$ \\
         $\tr(\mathbf{A})$ & the trace of $\mathbf{A}$ \\
@@ -579,7 +589,7 @@
         $F$ or $K$ & usually a field \\
         $F[x]$ & the polynomial ring over a field $F$ \\
         $\deg f$ & the degree of a polynomial $f$ \\
-        $\operatorname{char}F$ & the characteristic of a field $F$ \\
+        $\characteristic F$ & the characteristic of a field $F$ \\
         $\Gal(L/K)$ & the Galois group of a field extension $L/K$ \\
     \end{longtable}
     }

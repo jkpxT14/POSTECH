@@ -1,9 +1,8 @@
     \chapter{Set Theory and Logic}
 
-    Related \POSTECH{} Courses: (MATH202) Set Theory
+    \relatedcourses{(MATH202) Set Theory}
 
-    \noindent Related Books: Introduction to Set Theory (Karel Hrbacek, Thomas Jech)
-
+    \relatedbooks{Introduction to Set Theory (Karel Hrbacek, Thomas Jech)}
 
     \begin{definition}[Set and Element]
         A set is a collection of objects, called its elements. We write
@@ -25,7 +24,6 @@
             A\setminus B=\{x\in A\mid x\notin B\}.
         \]
     \end{formula}
-
 
     \begin{formula}[Set Algebra]
         For subsets $A,B,C\subseteq U$, the following identities are often useful:
@@ -143,7 +141,6 @@
         injective and surjective.
     \end{definition}
 
-
     \begin{proposition}[Finite Injective-Surjective Criterion]
         If $X$ and $Y$ are finite sets with $|X|=|Y|$, then for a function
         $f:X\to Y$, the following are equivalent:
@@ -200,7 +197,6 @@
         classes, and each partition of $A$ determines an equivalence relation.
     \end{proposition}
 
-
     \begin{definition}[Countability]
         A set $A$ is countable if it is finite or if there exists a bijection
         $f:A\to\N$. In the countably infinite case,
@@ -255,9 +251,13 @@
 
     \chapter{Calculus and Analysis}
 
-    Related \POSTECH{} Courses: (MATH101) Calculus I, (MATH102) Calculus II, (MATH210) Applied Complex Variables, (MATH311) Analysis I, (MATH312) Analysis II
+    \relatedcourses{(MATH101) Calculus I, (MATH102) Calculus II,
+        (MATH210) Applied Complex Variables, (MATH311) Analysis I,
+        (MATH312) Analysis II}
 
-    \noindent Related Books: Calculus With Applications (Peter D. Lax, Maria Shea Terrell), Multivariable Calculus with Applications (Peter D. Lax, Maria Shea Terrell), Principles of Mathematical Analysis (Walter Rudin)
+    \relatedbooks{Calculus With Applications (Peter D. Lax, Maria Shea Terrell),
+        Multivariable Calculus with Applications (Peter D. Lax, Maria Shea Terrell),
+        Principles of Mathematical Analysis (Walter Rudin)}
 
     \section*{One-Variable Calculus}
 
@@ -480,7 +480,6 @@
         $(1+x)^{1/x}$ are strong signals for these standard patterns.
     \end{strategy}
 
-
     \begin{theorem}[L'H\^opital's Rule]
         Let $f$ and $g$ be differentiable on a deleted neighborhood of $a$, and
         suppose that $g'(x)\neq 0$ there. Assume either
@@ -511,7 +510,6 @@
         quotient first. For $0^0$, $1^\infty$, or $\infty^0$, take logarithms
         before differentiating.
     \end{strategy}
-
 
     \begin{formula}[Derivative and Antiderivative Table]
         The following table records the basic one-variable forms. Affine changes
@@ -2286,9 +2284,9 @@
 
     \chapter{Linear Algebra}
 
-    Related \POSTECH{} Courses: (MATH203) Applied Linear Algebra
+    \relatedcourses{(MATH203) Applied Linear Algebra}
 
-    \noindent Related Books: Linear Algebra and Its Applications (Gilbert Strang)
+    \relatedbooks{Linear Algebra and Its Applications (Gilbert Strang)}
 
     \begin{definition}[Linear Combination, Span, and Linear Independence]
         A vector of the form
@@ -2837,7 +2835,6 @@
         \]
     \end{formula}
 
-
     \begin{formula}[Permutation Matrices]
         A permutation matrix $\mathbf{P}_\sigma$ has exactly one entry equal
         to $1$ in each row and each column. It satisfies
@@ -3013,7 +3010,7 @@
         Let $\mathbf{J}_n$ be the $n\times n$ matrix whose entries are all $1$.
         Then
         \[
-            \mathbf{J}_n\mathbf{1}=n\mathbf{1},
+            \mathbf{J}_n\ones=n\ones,
             \qquad
             \mathbf{J}_n\mathbf{v}=\mathbf{0}
             \quad\text{if}\quad
@@ -3100,7 +3097,7 @@
         To compute a large power $\mathbf{A}^N$, first look for one of the
         following: diagonalization, a short minimal polynomial, idempotence,
         involution, nilpotence, rank one, a circulant structure, or a decomposition
-        into $a\mathbf{I}+b\mathbf{J}$. Cayley--Hamilton then reduces every
+        into $aI+b\mathbf{J}$. Cayley--Hamilton then reduces every
         sufficiently high power to a linear combination of lower powers.
     \end{strategy}
 
@@ -3471,9 +3468,10 @@
 
     \chapter{Differential Equations}
 
-    Related \POSTECH{} Courses: (MATH200) Differential Equations
+    \relatedcourses{(MATH200) Differential Equations}
 
-    \noindent Related Books: Elementary Differential Equations and Boundary Value Problems (William E. Boyce, Richard C. Diprima, Douglas B. Meade)
+    \relatedbooks{Elementary Differential Equations and Boundary Value Problems
+        (William E. Boyce, Richard C. DiPrima, Douglas B. Meade)}
 
     \begin{theorem}[Picard--Lindel\"of Existence and Uniqueness Theorem]
         Consider the initial value problem
@@ -3516,7 +3514,6 @@
         equation and $y_p$ is one particular solution of the nonhomogeneous
         equation.
     \end{proposition}
-
 
     \begin{formula}[Separable First-Order Equation]
         A first-order equation of the form
@@ -3647,7 +3644,6 @@
         \]
         for some $t_0$, then $y_1$ and $y_2$ are linearly independent.
     \end{proposition}
-
 
     \begin{formula}[Abel's Identity]
         For
@@ -3833,9 +3829,9 @@
         \[
             e^{t\mathbf{A}}
             =
-            \mathbf{S}e^{t\mathbf{D}}\mathbf{S}^{-1},
+            \mathbf{S}e^{tD}\mathbf{S}^{-1},
             \qquad
-            e^{t\mathbf{D}}
+            e^{tD}
             =
             \diag(e^{\lambda_1t},\dots,e^{\lambda_nt}).
         \]
@@ -3927,9 +3923,9 @@
 
     \chapter{Combinatorics and Discrete Mathematics}
 
-    Related \POSTECH{} Courses: (MATH261) Discrete Mathematics
+    \relatedcourses{(MATH261) Discrete Mathematics}
 
-    \noindent Related Books:
+    \relatedbooks{}
 
     \begin{formula}[Binomial Theorem; Newton's Binomial Formula]
         For every nonnegative integer $n$,
@@ -3951,7 +3947,6 @@
         This is one of the most recognizable bridges between algebra and
         counting.
     \end{remark}
-
 
     \begin{formula}[Pascal's Identity and Vandermonde's Identity]
         Pascal's identity is
@@ -4012,7 +4007,6 @@
             \binom{m+n}{n}.
         \]
     \end{formula}
-
 
     \begin{theorem}[Reflection Principle and Ballot-Path Formula]
         The reflection principle converts a path that first crosses a boundary
@@ -4396,9 +4390,9 @@
 
     \chapter{Probability and Statistics}
 
-    Related \POSTECH{} Courses: (MATH230) Probability \& Statistics
+    \relatedcourses{(MATH230) Probability \& Statistics}
 
-    \noindent Related Books:
+    \relatedbooks{}
 
     \begin{theorem}[Law of Total Probability]
         If $B_1,\dots,B_n$ form a partition of the sample space and
@@ -4431,7 +4425,6 @@
         Bayes' Theorem is the standard formula for reversing conditional
         probability. It updates a prior probability after observing evidence.
     \end{remark}
-
 
     \begin{definition}[Independence]
         Events $A$ and $B$ are independent if
@@ -4553,7 +4546,6 @@
             \Var(X)=np(1-p).
         \]
     \end{formula}
-
 
     \begin{formula}[Hypergeometric Distribution]
         Suppose a population has $N$ objects, of which $K$ are successes. If
@@ -4853,9 +4845,9 @@
 
     \chapter{Geometry}
 
-    Related \POSTECH{} Courses:
+    \relatedcourses{}
 
-    \noindent Related Books:
+    \relatedbooks{}
 
     \section*{Synthetic Geometry}
 
@@ -4949,7 +4941,6 @@
         circumcircles appear.
     \end{strategy}
 
-
     \begin{formula}[Triangle Area Formulas]
         For a triangle with side lengths $a,b,c$, angles $A,B,C$, circumradius
         $R$, and inradius $r$,
@@ -4968,6 +4959,21 @@
         \]
     \end{formula}
 
+    \begin{formula}[Inradius and Exradii]
+        For a triangle of area $K$ and semiperimeter $s$, the inradius is
+        \[
+            r=\frac{K}{s}.
+        \]
+        If $r_a,r_b,r_c$ are the exradii opposite $A,B,C$, respectively, then
+        \[
+            r_a=\frac{K}{s-a},
+            \qquad
+            r_b=\frac{K}{s-b},
+            \qquad
+            r_c=\frac{K}{s-c}.
+        \]
+    \end{formula}
+
     \begin{formula}[Median Length Formula; Apollonius' Theorem]
         If $m_a$ is the median from $A$ to side $a=BC$, then
         \[
@@ -4979,6 +4985,61 @@
         \[
             AB^2+AC^2=2(AM^2+BM^2).
         \]
+    \end{formula}
+
+    \begin{theorem}[Stewart's Theorem]
+        Let $D$ lie on side $BC$ of a triangle $\triangle ABC$. Write
+        \[
+            a=BC,
+            \qquad
+            b=CA,
+            \qquad
+            c=AB,
+            \qquad
+            m=BD,
+            \qquad
+            n=DC,
+            \qquad
+            d=AD,
+        \]
+        so that $a=m+n$. Then
+        \[
+            b^2m+c^2n
+            =
+            a(d^2+mn).
+        \]
+        Equivalently,
+        \[
+            d^2
+            =
+            \frac{b^2m+c^2n}{a}-mn.
+        \]
+    \end{theorem}
+
+    \begin{remark}
+        Stewart's Theorem is the standard general formula for the length of a
+        cevian. The median-length formula is the special case $m=n=a/2$.
+    \end{remark}
+
+    \begin{formula}[Internal Angle-Bisector Length]
+        Let the internal angle bisector from $A$ meet $BC$ at $D$, and denote
+        its length by $\ell_a=AD$. For
+        \[
+            a=BC,
+            \qquad
+            b=CA,
+            \qquad
+            c=AB,
+        \]
+        we have
+        \[
+            \ell_a^2
+            =
+            bc\left(1-\frac{a^2}{(b+c)^2}\right)
+            =
+            \frac{4bc\,s(s-a)}{(b+c)^2},
+        \]
+        where $s=(a+b+c)/2$.
     \end{formula}
 
     \begin{theorem}[Angle Bisector Theorem]
@@ -5010,6 +5071,32 @@
         Ceva's Theorem is the standard theorem for proving concurrence of three
         lines in a triangle.
     \end{remark}
+
+    \begin{theorem}[Trigonometric Form of Ceva's Theorem]
+        Let $D,E,F$ lie on the lines $BC,CA,AB$, respectively. The cevians
+        $AD,BE,CF$ are concurrent if and only if
+        \[
+            \frac{\sin\angle BAD}{\sin\angle DAC}
+            \cdot
+            \frac{\sin\angle CBE}{\sin\angle EBA}
+            \cdot
+            \frac{\sin\angle ACF}{\sin\angle FCB}
+            =1,
+        \]
+        with the usual directed-angle convention when points lie on extended
+        sides.
+    \end{theorem}
+
+    \begin{strategy}[Mass Points]
+        In a cevian configuration, assign masses to vertices so that a point
+        dividing a segment balances the endpoint masses inversely to the segment
+        lengths. For example, if $D\in BC$, then
+        \[
+            \frac{BD}{DC}=\frac{m_C}{m_B}.
+        \]
+        Consistent masses convert several ratio computations into weighted
+        averages and often recover Ceva-type relations immediately.
+    \end{strategy}
 
     \begin{theorem}[Menelaus' Theorem]
         Let $D,E,F$ lie on the lines $BC,CA,AB$, respectively. Then the points
@@ -5069,6 +5156,33 @@
         Equality holds exactly for an equilateral triangle.
     \end{remark}
 
+    \begin{theorem}[Inscribed Angle Theorem]
+        An inscribed angle equals half the central angle subtending the same arc.
+        Consequently, angles subtending the same chord are equal.
+    \end{theorem}
+
+    \begin{theorem}[Cyclic Quadrilateral Criteria]
+        For four distinct points $A,B,C,D$ in the plane, the following standard
+        conditions are equivalent whenever the expressions are defined:
+        \[
+            A,B,C,D\text{ are concyclic},
+        \]
+        \[
+            \angle ABC+\angle ADC=\pi,
+        \]
+        and
+        \[
+            \angle BAC=\angle BDC.
+        \]
+        Directed angles modulo $\pi$ remove case distinctions.
+    \end{theorem}
+
+    \begin{theorem}[Tangent--Chord Theorem; Alternate Segment Theorem]
+        The angle between a tangent to a circle and a chord through the point of
+        tangency equals the inscribed angle subtending that chord in the opposite
+        arc.
+    \end{theorem}
+
     \begin{theorem}[Power of a Point Theorem]
         Let $P$ be a point and let a line through $P$ meet a circle at
         $A$ and $B$. The product
@@ -5113,6 +5227,20 @@
         quadrilaterals.
     \end{remark}
 
+    \begin{formula}[Brahmagupta's Formula]
+        If a cyclic quadrilateral has side lengths $a,b,c,d$ and semiperimeter
+        \[
+            s=\frac{a+b+c+d}{2},
+        \]
+        then its area $K$ is
+        \[
+            K
+            =
+            \sqrt{(s-a)(s-b)(s-c)(s-d)}.
+        \]
+        Heron's formula is the limiting triangular case.
+    \end{formula}
+
     \begin{theorem}[Simson Line Theorem]
         Let $P$ be a point on the circumcircle of $\triangle ABC$. The feet of
         the perpendiculars from $P$ to the three lines $AB,BC,CA$ are collinear.
@@ -5152,6 +5280,25 @@
         triangle. Then the centers of these three equilateral triangles form an
         equilateral triangle.
     \end{theorem}
+
+    \begin{theorem}[Homothety Centers of Two Circles]
+        For two nonconcentric circles, the two external common tangents meet at
+        the external homothety center, and the two internal common tangents meet
+        at the internal homothety center, when these intersections exist. Each
+        homothety center lies on the line joining the two circle centers.
+    \end{theorem}
+
+    \begin{strategy}[Inversion]
+        An inversion with center $O$ and radius $\rho$ sends a point
+        $P\neq O$ to the point $P'$ on ray $OP$ satisfying
+        \[
+            OP\cdot OP'=\rho^2.
+        \]
+        It sends a line not through $O$ to a circle through $O$, a circle
+        through $O$ to a line not through $O$, and a circle not through $O$ to
+        another circle. Inversion is especially effective when many circles are
+        tangent or pass through one common point.
+    \end{strategy}
 
     \begin{formula}[Regular Polygon Tiling Angle Condition]
         If $q$ regular $p$-gons meet edge-to-edge at each vertex of a Euclidean
@@ -5242,6 +5389,63 @@
         calculation.
     \end{remark}
 
+    \begin{formula}[Oriented Area and Collinearity Test]
+        For points $A=(x_1,y_1)$, $B=(x_2,y_2)$, and $C=(x_3,y_3)$, the
+        oriented double area is
+        \[
+            2[ABC]_{\mathrm{or}}
+            =
+            \det
+            \begin{pmatrix}
+                x_1 & y_1 & 1 \\
+                x_2 & y_2 & 1 \\
+                x_3 & y_3 & 1
+            \end{pmatrix}.
+        \]
+        Hence $A,B,C$ are collinear if and only if this determinant is $0$.
+    \end{formula}
+
+    \begin{formula}[Plane Rotation]
+        Counterclockwise rotation through angle $\theta$ about the origin sends
+        \[
+            \begin{pmatrix}x\\y\end{pmatrix}
+            \longmapsto
+            \begin{pmatrix}
+                \cos\theta & -\sin\theta \\
+                \sin\theta & \cos\theta
+            \end{pmatrix}
+            \begin{pmatrix}x\\y\end{pmatrix}.
+        \]
+        In complex notation, the same transformation is simply
+        \[
+            z\longmapsto e^{i\theta}z.
+        \]
+    \end{formula}
+
+    \begin{formula}[Reflection across a Line through the Origin]
+        If a line through the origin makes angle $\theta$ with the positive
+        $x$-axis, reflection across that line is
+        \[
+            z\longmapsto e^{2i\theta}\overline{z}
+        \]
+        in complex notation.
+    \end{formula}
+
+    \begin{strategy}[Affine Normalization]
+        Affine transformations preserve collinearity, parallelism, ratios along
+        one line, concurrence, and ratios of areas. Therefore, when a problem
+        depends only on these properties, one may send a triangle to convenient
+        coordinates such as
+        \[
+            A=(0,0),
+            \qquad
+            B=(1,0),
+            \qquad
+            C=(0,1).
+        \]
+        Angles, lengths, and circles are not generally preserved.
+    \end{strategy}
+
     \begin{theorem}[Cavalieri's Principle]
         If two plane regions lie between the same pair of parallel lines and
         every line parallel to them cuts the regions in segments whose lengths
@@ -5292,7 +5496,7 @@
         If $\mathbf{u}\neq\mathbf{0}$, then the projection of $\mathbf{v}$ onto
         the line spanned by $\mathbf{u}$ is
         \[
-            \operatorname{proj}_{\mathbf{u}}\mathbf{v}
+            \proj_{\mathbf{u}}\mathbf{v}
             =
             \frac{\mathbf{v}\cdot\mathbf{u}}{\mathbf{u}\cdot\mathbf{u}}
             \mathbf{u}.
@@ -5354,6 +5558,12 @@
         \]
     \end{formula}
 
+    \begin{strategy}[Line--Circle Intersection by a Discriminant]
+        Substitute a parametric line into a circle equation. The resulting
+        quadratic equation has two, one, or no real solutions according as its
+        discriminant is positive, zero, or negative. The zero-discriminant case
+        is the tangency condition.
+    \end{strategy}
 
     \begin{formula}[Circle Equation]
         The circle with center $(a,b)$ and radius $r$ has equation
@@ -5396,8 +5606,8 @@
     \begin{formula}[Focus--Directrix Definition of Conics]
         A conic is the set of points $P$ satisfying
         \[
-            \frac{\operatorname{dist}(P,\text{focus})}
-                 {\operatorname{dist}(P,\text{directrix})}
+            \frac{\dist(P,\text{focus})}
+                 {\dist(P,\text{directrix})}
             =
             e.
         \]
@@ -5562,7 +5772,7 @@
         plane. If $I$ is the number of lattice points strictly inside $P$ and
         $B$ is the number of lattice points on the boundary of $P$, then
         \[
-            \operatorname{Area}(P)
+            \area(P)
             =
             I+\frac{B}{2}-1.
         \]
@@ -5575,9 +5785,10 @@
 
     \chapter{Number Theory}
 
-    Related \POSTECH{} Courses: (MATH304) Introduction to Number Theory
+    \relatedcourses{(MATH304) Introduction to Number Theory}
 
-    \noindent Related Books: Introduction to Number Theory (William W. Adams, Larry Joel Goldstein)
+    \relatedbooks{Introduction to Number Theory
+        (William W. Adams, Larry Joel Goldstein)}
 
     As stated in Notation and Conventions, this chapter gives priority to
     number-theoretic use. Thus, algebraic structures that arise naturally from
@@ -5642,7 +5853,6 @@
         where $r$ is the remainder. Continue until the remainder becomes $0$.
         The last nonzero remainder is $\gcd(a,b)$.
     \end{algorithm}
-
 
     \begin{proposition}[Basic Rules of Congruences]
         If
@@ -5775,7 +5985,6 @@
         \]
     \end{formula}
 
-
     \begin{formula}[Sum-of-Divisors Function]
         If
         \[
@@ -5897,7 +6106,6 @@
         characterization of primes, even though it is not efficient as a
         primality test.
     \end{remark}
-
 
     \begin{theorem}[Lifting the Exponent Lemma; LTE]
         Let $p$ be an odd prime, and suppose that $p\mid x-y$ while
@@ -6126,9 +6334,9 @@
 
     \chapter{Algebra}
 
-    Related \POSTECH{} Courses: (MATH301) Modern Algebra I, (MATH302) Modern Algebra II
+    \relatedcourses{(MATH301) Modern Algebra I, (MATH302) Modern Algebra II}
 
-    \noindent Related Books: Abstract Algebra (David S. Dummit, Richard M. Foote)
+    \relatedbooks{Abstract Algebra (David S. Dummit, Richard M. Foote)}
 
     The Number Theory chapter already covers algebraic structures whose main
     purpose here is arithmetic, including residue-class groups and finite
@@ -6299,13 +6507,11 @@
         source of quick algebra questions.
     \end{remark}
 
-
     \begin{theorem}[Fundamental Theorem of Finite Abelian Groups; Classification Theorem for Finite Abelian Groups]
         Every finite abelian group is isomorphic to a direct product of cyclic
         groups of prime-power order. In particular, finite abelian groups are
         built from cyclic groups.
     \end{theorem}
-
 
     \begin{definition}[Ring and Field]
         A ring is a set equipped with addition and multiplication satisfying the
@@ -6418,9 +6624,9 @@
 
     \chapter{Topology}
 
-    Related \POSTECH{} Courses: (MATH321) General Topology
+    \relatedcourses{(MATH321) General Topology}
 
-    \noindent Related Books: Topology (James R. Munkres)
+    \relatedbooks{Topology (James R. Munkres)}
 
     \begin{definition}[Topology]
         A topology on a set $X$ is a collection $\mathcal{T}$ of subsets of $X$
@@ -6569,9 +6775,9 @@
 
     \chapter{Miscellaneous Topics}
 
-    Related \POSTECH{} Courses:
+    \relatedcourses{}
 
-    \noindent Related Books:
+    \relatedbooks{}
 
     This chapter collects cross-disciplinary ideas that are especially useful
     when a short problem does not announce which subject or theorem should be
@@ -6752,7 +6958,6 @@
         \]
         by substituting $x=1$, since $\arctan 1=\pi/4$.
     \end{remark}
-
 
     \begin{formula}[More Useful Series Values]
         The following values are common in fast calculation problems:
