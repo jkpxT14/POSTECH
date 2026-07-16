@@ -118,10 +118,16 @@
 
 % Chapter metadata
 \newcommand{\relatedcourses}[1]{%
-    \noindent Related \POSTECH{} Courses: #1\par
+    \if\relax\detokenize{#1}\relax
+    \else
+        \noindent Related \POSTECH{} Courses: #1\par
+    \fi
 }
 \newcommand{\relatedbooks}[1]{%
-    \noindent Related Books: #1\par
+    \if\relax\detokenize{#1}\relax
+    \else
+        \noindent Related Books: #1\par
+    \fi
 }
 
 % Theorem styles
@@ -221,6 +227,7 @@
 \DeclareMathOperator{\Hess}{Hess}
 \DeclareMathOperator{\Real}{Re}
 \DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator*{\Res}{Res}
 \DeclareMathOperator{\lb}{lb}
 \DeclareMathOperator{\area}{area}
 \DeclareMathOperator{\vol}{vol}

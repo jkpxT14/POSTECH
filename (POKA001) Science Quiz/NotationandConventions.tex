@@ -42,8 +42,7 @@
         $\C$ & the set of complex numbers \\
         $\lambda$ & usually a scalar, eigenvalue, or parameter, depending on context \\
         $\eps$ & a small positive real number, especially in analysis \\
-        $a\coloneqq b$ & $a$ is defined to be $b$ \\
-        $:=$ & another common symbol for ``is defined to be'' \\
+        $a\coloneqq b$ or $a:=b$ & $a$ is defined to be $b$; this book prefers $\coloneqq$, while $:=$ is a common equivalent notation \\
         $\Real z$ or $\Re z$ & the real part of a complex number $z$ \\
         $\Imag z$ or $\Im z$ & the imaginary part of a complex number $z$ \\
         $\sim$ & may mean asymptotic equivalence, distribution, or an equivalence relation \\
@@ -56,7 +55,11 @@
     Round parentheses are used for ordered tuples and matrix delimiters.
     Square brackets are used for closed intervals and, in geometry, for area
     notation such as $[ABC]$. Braces are used for sets; $\{x\}$ denotes the
-    fractional part only when the numerical context is explicit.
+    fractional part only when the numerical context is explicit. In set-builder
+    notation, the condition is separated by $\mid$, as in
+    $\{x\in A\mid P(x)\}$, rather than by a colon. Determinants may still be
+    enclosed by vertical bars; these bars denote a scalar determinant, not a
+    matrix delimiter.
 
     In displayed formulas, the limits of operators such as $\lim$, $\sum$,
     $\prod$, $\bigcup$, and $\bigcap$ are placed below and above the operator
@@ -215,6 +218,10 @@
         $\lg x$ & the common logarithm, the logarithm with base $10$ \\
         $\lb x$ & the binary logarithm, the logarithm with base $2$ \\
         $\log_a x$ & the logarithm with explicitly specified base $a$ \\
+        $\arcsin x$, $\arccos x$, $\arctan x$ & the principal inverse trigonometric functions; the ambiguous forms $\sin^{-1}x$, $\cos^{-1}x$, and $\tan^{-1}x$ are avoided \\
+        $z=x+iy$ & a complex number with real part $x$ and imaginary part $y$ \\
+        $\overline{z}$, $|z|$, $\arg z$ & the complex conjugate, modulus, and argument of $z$ \\
+        $\Res(f;a)$ & the residue of $f$ at the isolated singularity $a$ \\
         $C^k(I)$ & the set of $k$ times continuously differentiable functions on $I$ \\
         $C^\infty(I)$ & the set of smooth functions on $I$ \\
         $\nabla f$ or $\grad f$ & the gradient of a scalar-valued function $f$ \\
@@ -228,8 +235,8 @@
         $\dd s$ & the element of arc length along a curve \\
         $\displaystyle \int_C \mathbf{F}\cdot\dd\mathbf{r}$ & a line integral of a vector field along a curve $C$ \\
         $\displaystyle \iint_S \mathbf{F}\cdot\mathbf{n}\dd S$ & a flux integral across a surface $S$ \\
-        $B_r(x)=\{y:d(x,y)<r\}$ & the open ball of radius $r$ centered at $x$ in a metric space \\
-        $\overline{B}_r(x)=\{y:d(x,y)\leq r\}$ & the closed ball of radius $r$ centered at $x$ \\
+        $B_r(x)=\{y\mid d(x,y)<r\}$ & the open ball of radius $r$ centered at $x$ in a metric space \\
+        $\overline{B}_r(x)=\{y\mid d(x,y)\leq r\}$ & the closed ball of radius $r$ centered at $x$ \\
         $x_n\to x$ & convergence of a sequence to $x$ \\
         $a_n\nearrow L$ & an increasing sequence converging to $L$ \\
         $a_n\searrow L$ & a decreasing sequence converging to $L$ \\

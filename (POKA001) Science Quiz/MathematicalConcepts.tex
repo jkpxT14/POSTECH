@@ -1631,7 +1631,7 @@
         integral over a plane region may be computed in either order. For
         example, if
         \[
-            R=\{(x,y):a\leq x\leq b,\ g_1(x)\leq y\leq g_2(x)\},
+            R=\{(x,y)\mid a\leq x\leq b,\ g_1(x)\leq y\leq g_2(x)\},
         \]
         then
         \[
@@ -1920,7 +1920,7 @@
         This is the geometric heart of vector calculus.
     \end{remark}
 
-    \section*{Analysis}
+    \section*{Real Analysis}
 
     The preceding sections collect the computational core of calculus. This
     section records deeper results about convergence, compactness, uniformity,
@@ -1942,7 +1942,7 @@
         \]
         The open ball of radius $r>0$ centered at $x$ is
         \[
-            B_r(x)=\{y\in X:d(x,y)<r\}.
+            B_r(x)=\{y\in X\mid d(x,y)<r\}.
         \]
     \end{definition}
 
@@ -2282,6 +2282,256 @@
         \]
     \end{theorem}
 
+    \section*{Complex Analysis}
+
+    Complex analysis extends differentiation and integration from real variables
+    to functions of a complex variable. Its central results are unusually strong:
+    complex differentiability on an open set forces a power-series expansion,
+    and contour integrals can evaluate both complex and real integrals rapidly.
+
+    \begin{definition}[Complex Differentiability; Holomorphic and Entire Functions]
+        Let $U\subseteq\C$ be open and let $f:U\to\C$. The complex derivative of
+        $f$ at $z_0\in U$ is
+        \[
+            f'(z_0)
+            =
+            \lim_{z\to z_0}
+            \frac{f(z)-f(z_0)}{z-z_0},
+        \]
+        provided the limit exists independently of the direction of approach.
+        The function is holomorphic on $U$ if it is complex differentiable at
+        every point of $U$, and entire if it is holomorphic on all of $\C$.
+    \end{definition}
+
+    \begin{theorem}[Cauchy--Riemann Equations]
+        Write
+        \[
+            f(z)=u(x,y)+iv(x,y),
+            \qquad
+            z=x+iy.
+        \]
+        If $f$ is complex differentiable at $z_0=(x_0,y_0)$ and the first partial
+        derivatives exist there, then
+        \[
+            \frac{\partial u}{\partial x}(x_0,y_0)
+            =
+            \frac{\partial v}{\partial y}(x_0,y_0),
+            \qquad
+            \frac{\partial u}{\partial y}(x_0,y_0)
+            =
+            -\frac{\partial v}{\partial x}(x_0,y_0).
+        \]
+        Conversely, if these partial derivatives are continuous near $z_0$ and
+        satisfy the equations there, then $f$ is complex differentiable at
+        $z_0$.
+    \end{theorem}
+
+    \begin{strategy}
+        To test whether a given $f(z)=u(x,y)+iv(x,y)$ can be holomorphic, compute
+        the four first partial derivatives and check the Cauchy--Riemann equations.
+        Failure at one point immediately rules out holomorphicity there.
+    \end{strategy}
+
+    \begin{proposition}[Holomorphic Functions Have Harmonic Components]
+        If $f=u+iv$ is holomorphic and $u,v$ have continuous second partial
+        derivatives, then
+        \[
+            \Delta u=0,
+            \qquad
+            \Delta v=0.
+        \]
+        Thus the real and imaginary parts of a holomorphic function are harmonic
+        conjugates locally.
+    \end{proposition}
+
+    \begin{theorem}[Cauchy--Goursat Integral Theorem]
+        If $f$ is holomorphic on a simply connected domain $U\subseteq\C$, then
+        for every closed piecewise smooth curve $\gamma$ in $U$,
+        \[
+            \oint_{\gamma}f(z)\dd z=0.
+        \]
+        Equivalently, contour integrals of $f$ in $U$ are path-independent.
+    \end{theorem}
+
+    \begin{theorem}[Cauchy Integral Formula]
+        Let $f$ be holomorphic on an open set containing a positively oriented
+        simple closed contour $\gamma$ and its interior. If $a$ lies inside
+        $\gamma$, then
+        \[
+            f(a)
+            =
+            \frac{1}{2\pi i}
+            \oint_{\gamma}\frac{f(z)}{z-a}\dd z.
+        \]
+        More generally, for every integer $n\geq 0$,
+        \[
+            f^{(n)}(a)
+            =
+            \frac{n!}{2\pi i}
+            \oint_{\gamma}
+            \frac{f(z)}{(z-a)^{n+1}}\dd z.
+        \]
+    \end{theorem}
+
+    \begin{strategy}
+        When a contour integral contains $(z-a)^{-m}$ and the remaining factor
+        is holomorphic, compare it directly with Cauchy's integral formula before
+        attempting a parametrization of the contour.
+    \end{strategy}
+
+    \begin{theorem}[Maximum Modulus Principle]
+        A nonconstant holomorphic function on a connected open set cannot attain
+        a maximum of $|f|$ at an interior point. Consequently, if $f$ is
+        holomorphic on a bounded domain and continuous on its closure, then the
+        maximum of $|f|$ occurs on the boundary.
+    \end{theorem}
+
+    \begin{theorem}[Liouville's Theorem]
+        Every bounded entire function is constant.
+    \end{theorem}
+
+    \begin{remark}
+        Liouville's Theorem gives a short proof of the Fundamental Theorem of
+        Algebra: if a nonconstant complex polynomial had no zero, then its
+        reciprocal would be a bounded entire function.
+    \end{remark}
+
+    \begin{theorem}[Taylor Series for Holomorphic Functions]
+        If $f$ is holomorphic on the open disk $|z-a|<R$, then
+        \[
+            f(z)
+            =
+            \sum_{n=0}^{\infty}
+            \frac{f^{(n)}(a)}{n!}(z-a)^n,
+            \qquad
+            |z-a|<R.
+        \]
+        Thus a holomorphic function is analytic: complex differentiability implies
+        local representability by a convergent power series.
+    \end{theorem}
+
+    \begin{theorem}[Laurent Series]
+        If $f$ is holomorphic on an annulus
+        \[
+            r<|z-a|<R,
+        \]
+        then it has a unique Laurent expansion
+        \[
+            f(z)
+            =
+            \sum_{n=-\infty}^{\infty}c_n(z-a)^n
+        \]
+        converging throughout the annulus. The coefficient $c_{-1}$ is the residue
+        of $f$ at $a$.
+    \end{theorem}
+
+    \begin{definition}[Isolated Singularities and Residues]
+        Let $a$ be an isolated singularity of $f$. In the Laurent expansion about
+        $a$, the residue is
+        \[
+            \Res(f;a)=c_{-1}.
+        \]
+        The singularity is removable if every negative-power coefficient is zero,
+        a pole if only finitely many negative-power coefficients are nonzero, and
+        essential if infinitely many are nonzero.
+    \end{definition}
+
+    \begin{formula}[Residues at Poles]
+        If $a$ is a simple pole of $f$, then
+        \[
+            \Res(f;a)
+            =
+            \lim_{z\to a}(z-a)f(z).
+        \]
+        More generally, if $a$ is a pole of order $m$, then
+        \[
+            \Res(f;a)
+            =
+            \frac{1}{(m-1)!}
+            \lim_{z\to a}
+            \frac{\dd^{m-1}}{\dd z^{m-1}}
+            \left((z-a)^m f(z)\right).
+        \]
+        If $f(z)=g(z)/h(z)$, where $g$ and $h$ are holomorphic,
+        $h(a)=0$, and $h'(a)\neq 0$, then
+        \[
+            \Res(f;a)=\frac{g(a)}{h'(a)}.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Residue Theorem]
+        Let $f$ be holomorphic inside and on a positively oriented simple closed
+        contour $\gamma$, except for isolated singularities
+        $a_1,\dots,a_m$ inside $\gamma$. Then
+        \[
+            \oint_{\gamma}f(z)\dd z
+            =
+            2\pi i
+            \sum_{k=1}^{m}\Res(f;a_k).
+        \]
+    \end{theorem}
+
+    \begin{strategy}[Real Integrals by Residues]
+        For a rational integral over $\R$, extend the integrand to a complex
+        rational function, choose a semicircular contour, sum the residues in the
+        appropriate half-plane, and verify that the contribution from the large
+        arc vanishes. Trigonometric integrals over $[0,2\pi]$ often become contour
+        integrals under the substitution $z=e^{i\theta}$ and
+        \[
+            \dd\theta=\frac{\dd z}{iz}.
+        \]
+    \end{strategy}
+
+    \begin{theorem}[Rouch\'e's Theorem]
+        Let $f$ and $g$ be holomorphic inside and on a simple closed contour
+        $\gamma$. If
+        \[
+            |g(z)|<|f(z)|
+            \qquad
+            \text{for every }z\in\gamma,
+        \]
+        then $f$ and $f+g$ have the same number of zeros inside $\gamma$, counted
+        with multiplicity.
+    \end{theorem}
+
+    \begin{definition}[Conformal Map]
+        A holomorphic function $f$ is conformal at $z_0$ if $f'(z_0)\neq 0$.
+        At such a point, $f$ preserves oriented angles and infinitesimal shapes,
+        although it may change scale.
+    \end{definition}
+
+    \begin{definition}[M\"obius Transformation; Linear Fractional Transformation]
+        A M\"obius transformation is a map of the extended complex plane of the
+        form
+        \[
+            T(z)=\frac{az+b}{cz+d},
+            \qquad
+            ad-bc\neq 0.
+        \]
+        It is conformal wherever its derivative is finite and nonzero, and it maps
+        generalized circles---circles and lines---to generalized circles.
+    \end{definition}
+
+    \begin{formula}[Standard Conformal Maps]
+        The following transformations are useful to recognize quickly:
+        \[
+            z\mapsto az+b
+            \quad\text{(rotation, dilation, and translation)},
+        \]
+        \[
+            z\mapsto \frac{1}{z}
+            \quad\text{(inversion)},
+            \qquad
+            z\mapsto z^n
+            \quad\text{(angle multiplication)},
+        \]
+        and
+        \[
+            z\mapsto \frac{z-i}{z+i},
+        \]
+        which maps the upper half-plane conformally onto the unit disk.
+    \end{formula}
+
     \chapter{Linear Algebra}
 
     \relatedcourses{(MATH203) Applied Linear Algebra}
@@ -2325,9 +2575,9 @@
         Equivalently, $T$ preserves vector addition and scalar
         multiplication. Its kernel and image are
         \[
-            \ker T=\{\mathbf{v}\in V:T(\mathbf{v})=\mathbf{0}\},
+            \ker T=\{\mathbf{v}\in V\mid T(\mathbf{v})=\mathbf{0}\},
             \qquad
-            \image T=\{T(\mathbf{v}):\mathbf{v}\in V\}.
+            \image T=\{T(\mathbf{v})\mid\mathbf{v}\in V\}.
         \]
     \end{definition}
 
@@ -2850,7 +3100,7 @@
 
     \begin{formula}[Idempotent, Involutory, and Nilpotent Matrices]
         If $\mathbf{P}^2=\mathbf{P}$, then $\mathbf{P}$ is idempotent and its
-        eigenvalues belong to $\{0,1\}$. If $\mathbf{A}^2=\mathbf{I}$, then
+        eigenvalues belong to $\{0,1\}$. If $\mathbf{A}^2=\mathbf{I}_n$, then
         $\mathbf{A}$ is involutory and its eigenvalues belong to
         $\{-1,1\}$. If $\mathbf{N}^k=\mathbf{0}$ for some $k$, then
         $\mathbf{N}$ is nilpotent and every eigenvalue is $0$.
@@ -2898,7 +3148,7 @@
         \[
             \mathbf{H}
             =
-            \mathbf{I}
+            \mathbf{I}_n
             -2\frac{\mathbf{v}\mathbf{v}^{\mathsf T}}
                      {\mathbf{v}^{\mathsf T}\mathbf{v}}
         \]
@@ -2906,9 +3156,9 @@
         \[
             \mathbf{H}^{\mathsf T}=\mathbf{H},
             \qquad
-            \mathbf{H}^{\mathsf T}\mathbf{H}=\mathbf{I},
+            \mathbf{H}^{\mathsf T}\mathbf{H}=\mathbf{I}_n,
             \qquad
-            \mathbf{H}^2=\mathbf{I}.
+            \mathbf{H}^2=\mathbf{I}_n.
         \]
         It reflects vectors across the hyperplane perpendicular to
         $\mathbf{v}$.
@@ -3079,17 +3329,18 @@
     \end{remark}
 
     \begin{formula}[Matrix Geometric Series]
-        If $\mathbf{I}-\mathbf{A}$ is invertible, then
+        Let $\mathbf{A}$ be an $n\times n$ matrix. If
+        $\mathbf{I}_n-\mathbf{A}$ is invertible, then
         \[
             \sum_{k=0}^{N-1}\mathbf{A}^k
             =
-            (\mathbf{I}-\mathbf{A}^N)(\mathbf{I}-\mathbf{A})^{-1}.
+            (\mathbf{I}_n-\mathbf{A}^N)(\mathbf{I}_n-\mathbf{A})^{-1}.
         \]
         If the spectral radius of $\mathbf{A}$ is less than $1$, then
         \[
             \sum_{k=0}^{\infty}\mathbf{A}^k
             =
-            (\mathbf{I}-\mathbf{A})^{-1}.
+            (\mathbf{I}_n-\mathbf{A})^{-1}.
         \]
     \end{formula}
 
@@ -3097,7 +3348,7 @@
         To compute a large power $\mathbf{A}^N$, first look for one of the
         following: diagonalization, a short minimal polynomial, idempotence,
         involution, nilpotence, rank one, a circulant structure, or a decomposition
-        into $aI+b\mathbf{J}$. Cayley--Hamilton then reduces every
+        into $a\mathbf{I}_n+b\mathbf{J}_n$. Cayley--Hamilton then reduces every
         sufficiently high power to a linear combination of lower powers.
     \end{strategy}
 
@@ -3194,7 +3445,7 @@
             =
             \mathbf{A}\mathbf{A}^{\mathsf H}
             =
-            \mathbf{I}.
+            \mathbf{I}_n.
         \]
     \end{definition}
 
@@ -3300,7 +3551,7 @@
     \begin{proposition}[Properties of Orthogonal Matrices]
         A real square matrix $\mathbf{Q}$ is orthogonal if
         \[
-            \mathbf{Q}^{\mathsf T}\mathbf{Q}=\mathbf{I}.
+            \mathbf{Q}^{\mathsf T}\mathbf{Q}=\mathbf{I}_n.
         \]
         If $\mathbf{Q}$ is orthogonal, then
         \[
@@ -3829,9 +4080,9 @@
         \[
             e^{t\mathbf{A}}
             =
-            \mathbf{S}e^{tD}\mathbf{S}^{-1},
+            \mathbf{S}e^{t\mathbf{D}}\mathbf{S}^{-1},
             \qquad
-            e^{tD}
+            e^{t\mathbf{D}}
             =
             \diag(e^{\lambda_1t},\dots,e^{\lambda_nt}).
         \]
@@ -4230,7 +4481,7 @@
         \[
             \Fix(g)
             =
-            \{x\in X:g\cdot x=x\}.
+            \{x\in X\mid g\cdot x=x\}.
         \]
     \end{theorem}
 
@@ -4629,7 +4880,7 @@
         \begin{enumerate}
             \item[(i)] $X_n\asto X$ if
             \[
-                \Prob\bigl(\{\omega:X_n(\omega)\to X(\omega)\}\bigr)=1;
+                \Prob\bigl(\{\omega\mid X_n(\omega)\to X(\omega)\}\bigr)=1;
             \]
             \item[(ii)] $X_n\probto X$ if
             \[
@@ -6368,7 +6619,7 @@
             \inv(\sigma)
             =
             \left|
-                \{(i,j):i<j,\ \sigma(i)>\sigma(j)\}
+                \{(i,j)\mid i<j,\ \sigma(i)>\sigma(j)\}
             \right|.
         \]
         The sign satisfies
