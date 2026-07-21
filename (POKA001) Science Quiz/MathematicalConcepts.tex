@@ -223,6 +223,16 @@
         \]
     \end{theorem}
 
+    \begin{theorem}[Schr\"oder--Bernstein Theorem; Cantor--Bernstein Theorem]
+        If there exists an injection $f:A\hookrightarrow B$ and an injection
+        $g:B\hookrightarrow A$, then there exists a bijection
+        \[
+            h:A\xrightarrow{\sim}B.
+        \]
+        Thus two sets have the same cardinality once each can be embedded into
+        the other.
+    \end{theorem}
+
     \begin{algorithm}[Mathematical Induction]
         To prove a statement $P(n)$ for all integers $n\geq n_0$:
         \begin{enumerate}
@@ -287,6 +297,36 @@
         \]
     \end{formula}
 
+    \begin{formula}[Sums of Powers; Faulhaber's Formulas]
+        The first power sums are
+        \[
+            \sum_{k=1}^{n}k
+            =
+            \frac{n(n+1)}{2},
+        \]
+        \[
+            \sum_{k=1}^{n}k^2
+            =
+            \frac{n(n+1)(2n+1)}{6},
+            \qquad
+            \sum_{k=1}^{n}k^3
+            =
+            \left(\frac{n(n+1)}{2}\right)^2,
+        \]
+        and
+        \[
+            \sum_{k=1}^{n}k^4
+            =
+            \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}.
+        \]
+        More generally, for each fixed nonnegative integer $m$,
+        \[
+            \sum_{k=1}^{n}k^m
+        \]
+        is a polynomial in $n$ of degree $m+1$ with leading coefficient
+        $1/(m+1)$.
+    \end{formula}
+
     \begin{formula}[Finite Differences; Newton's Forward Difference Formula]
         For a sequence $(a_n)$, define the forward difference by
         \[
@@ -334,6 +374,53 @@
         \]
         The constants are determined from the initial values.
     \end{formula}
+
+    \begin{formula}[First-Order Linear Recurrence]
+        If
+        \[
+            a_n=ra_{n-1}+b_n
+            \qquad(n\geq 1),
+        \]
+        then iteration gives
+        \[
+            a_n
+            =
+            r^na_0
+            +
+            \sum_{j=1}^{n}r^{\,n-j}b_j.
+        \]
+        In particular, if $b_n=b$ and $r\neq 1$, then
+        \[
+            a_n
+            =
+            r^na_0+b\frac{r^n-1}{r-1}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Nonhomogeneous Linear Recurrences]
+        For a linear recurrence with constant coefficients, the general solution
+        is
+        \[
+            a_n=a_n^{(h)}+a_n^{(p)},
+        \]
+        where $a_n^{(h)}$ solves the associated homogeneous recurrence and
+        $a_n^{(p)}$ is one particular solution. If the forcing term has the form
+        \[
+            P(n)\alpha^n,
+        \]
+        try a particular solution of the form
+        \[
+            n^sQ(n)\alpha^n,
+        \]
+        where $\deg Q=\deg P$ and $s$ is the multiplicity of $\alpha$ as a root
+        of the characteristic polynomial.
+    \end{formula}
+
+    \begin{strategy}
+        For recurrences, first identify whether the quickest language is
+        characteristic roots, generating functions, a transfer matrix, or
+        telescoping after a suitable normalization.
+    \end{strategy}
 
     \begin{definition}[Limit of a Function; Epsilon--Delta Definition]
         Let $D\subseteq\R$, let $a$ be an accumulation point of $D$, and let
@@ -893,6 +980,32 @@
         \]
         This is the discrete analogue of integration by parts and is useful when
         one factor has simple partial sums while the other changes slowly.
+    \end{formula}
+
+    \begin{formula}[Euler--Maclaurin Summation Formula]
+        For a sufficiently smooth function $f$,
+        \[
+            \sum_{k=m}^{n}f(k)
+            =
+            \int_m^n f(x)\dd x
+            +
+            \frac{f(m)+f(n)}{2}
+            +
+            \sum_{r=1}^{p}
+            \frac{B_{2r}}{(2r)!}
+            \left(
+                f^{(2r-1)}(n)-f^{(2r-1)}(m)
+            \right)
+            +
+            R_p,
+        \]
+        where $B_{2r}$ are Bernoulli numbers. The first correction
+        \[
+            \sum_{k=m}^{n}f(k)
+            \approx
+            \int_m^n f(x)\dd x+\frac{f(m)+f(n)}{2}
+        \]
+        is often enough for a rapid asymptotic estimate.
     \end{formula}
 
     \begin{formula}[Asymptotic Growth Hierarchy]
@@ -3067,6 +3180,23 @@
         The Hilbert matrix is a famous special case of a Cauchy matrix.
     \end{formula}
 
+
+    \begin{formula}[Hilbert Matrix Determinant]
+        The $n\times n$ Hilbert matrix is
+        \[
+            \mathbf{H}_n
+            =
+            \left(\frac{1}{i+j-1}\right)_{1\leq i,j\leq n}.
+        \]
+        As a special Cauchy matrix, it satisfies
+        \[
+            \det(\mathbf{H}_n)
+            =
+            \frac{\displaystyle\prod_{k=1}^{n-1}(k!)^4}
+                 {\displaystyle\prod_{k=1}^{2n-1}k!}.
+        \]
+    \end{formula}
+
     \begin{definition}[Hadamard Matrix]
         A Hadamard matrix of order $n$ is an $n\times n$ matrix
         $\mathbf{H}$ whose entries are all $+1$ or $-1$ and whose rows are
@@ -3122,6 +3252,22 @@
         Hence $\det(\mathbf{C})=\prod_{j=0}^{n-1}\lambda_j$.
     \end{formula}
 
+
+    \begin{formula}[Discrete Fourier Matrix]
+        Let $\omega_n=e^{2\pi i/n}$. The normalized discrete Fourier matrix is
+        \[
+            \mathbf{F}_n
+            =
+            \frac{1}{\sqrt{n}}
+            \left(\omega_n^{-jk}\right)_{0\leq j,k\leq n-1}.
+        \]
+        It is unitary:
+        \[
+            \mathbf{F}_n^{\mathsf H}\mathbf{F}_n=\mathbf{I}_n.
+        \]
+        Every circulant matrix is diagonalized by $\mathbf{F}_n$.
+    \end{formula}
+
     \begin{formula}[Symmetric Tridiagonal Toeplitz Matrix]
         For
         \[
@@ -3140,6 +3286,30 @@
             a+2b\cos\frac{k\pi}{n+1},
             \qquad
             k=1,2,\dots,n.
+        \]
+    \end{formula}
+
+
+    \begin{formula}[Continuant Recurrence for Tridiagonal Determinants]
+        Let
+        \[
+            \mathbf{T}_n
+            =
+            \begin{pmatrix}
+                a_1 & b_1 & 0 & \cdots & 0 \\
+                c_1 & a_2 & b_2 & \ddots & \vdots \\
+                0 & c_2 & a_3 & \ddots & 0 \\
+                \vdots & \ddots & \ddots & \ddots & b_{n-1} \\
+                0 & \cdots & 0 & c_{n-1} & a_n
+            \end{pmatrix}.
+        \]
+        If $D_n=\det(\mathbf{T}_n)$, then
+        \[
+            D_0=1,
+            \qquad
+            D_1=a_1,
+            \qquad
+            D_n=a_nD_{n-1}-b_{n-1}c_{n-1}D_{n-2}.
         \]
     \end{formula}
 
@@ -3328,6 +3498,58 @@
         reducing high powers of a matrix to lower powers.
     \end{remark}
 
+
+    \begin{formula}[Companion Matrix and Linear Recurrences]
+        For
+        \[
+            p(x)=x^m-c_1x^{m-1}-\cdots-c_m,
+        \]
+        the companion matrix
+        \[
+            \mathbf{C}
+            =
+            \begin{pmatrix}
+                c_1 & c_2 & \cdots & c_{m-1} & c_m \\
+                1 & 0 & \cdots & 0 & 0 \\
+                0 & 1 & \ddots & 0 & 0 \\
+                \vdots & \ddots & \ddots & \vdots & \vdots \\
+                0 & 0 & \cdots & 1 & 0
+            \end{pmatrix}
+        \]
+        has characteristic polynomial $p$. The recurrence
+        \[
+            a_n=c_1a_{n-1}+\cdots+c_ma_{n-m}
+        \]
+        is encoded by multiplication by $\mathbf{C}$, so fast matrix
+        exponentiation computes distant terms efficiently.
+    \end{formula}
+
+    \begin{formula}[Fibonacci $Q$-Matrix]
+        For
+        \[
+            \mathbf{Q}
+            =
+            \begin{pmatrix}
+                1 & 1 \\
+                1 & 0
+            \end{pmatrix},
+        \]
+        we have
+        \[
+            \mathbf{Q}^n
+            =
+            \begin{pmatrix}
+                F_{n+1} & F_n \\
+                F_n & F_{n-1}
+            \end{pmatrix}
+            \qquad(n\geq1).
+        \]
+        Taking determinants gives Cassini's identity
+        \[
+            F_{n+1}F_{n-1}-F_n^2=(-1)^n.
+        \]
+    \end{formula}
+
     \begin{formula}[Matrix Geometric Series]
         Let $\mathbf{A}$ be an $n\times n$ matrix. If
         $\mathbf{I}_n-\mathbf{A}$ is invertible, then
@@ -3406,6 +3628,26 @@
         diagonalizability. They are not necessary: a matrix can be
         diagonalizable even when some eigenvalues are repeated.
     \end{strategy}
+
+
+    \begin{theorem}[Gershgorin Circle Theorem]
+        Let $\mathbf{A}=(a_{ij})\in\C^{n\times n}$. Every eigenvalue of
+        $\mathbf{A}$ lies in at least one disk
+        \[
+            \left\{z\in\C\mid
+            |z-a_{ii}|\leq\sum_{j\neq i}|a_{ij}|
+            \right\}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Perron--Frobenius Theorem, Positive-Matrix Form]
+        If every entry of a real square matrix $\mathbf{A}$ is positive, then
+        $\rho(\mathbf{A})$ is a positive simple eigenvalue with a positive
+        eigenvector, and every other eigenvalue $\lambda$ satisfies
+        \[
+            |\lambda|<\rho(\mathbf{A}).
+        \]
+    \end{theorem}
 
     \begin{theorem}[Spectral Theorem for Real Symmetric Matrices]
         If $\mathbf{A}\in\R^{n\times n}$ is symmetric, then all eigenvalues of
@@ -4176,7 +4418,7 @@
 
     \relatedcourses{(MATH261) Discrete Mathematics}
 
-    \relatedbooks{}
+    \relatedbooks{Introductory Combinatorics (Richard A. Brualdi)}
 
     \begin{formula}[Binomial Theorem; Newton's Binomial Formula]
         For every nonnegative integer $n$,
@@ -4198,6 +4440,25 @@
         This is one of the most recognizable bridges between algebra and
         counting.
     \end{remark}
+
+
+    \begin{strategy}[Bijection, Double Counting, and Complementary Counting]
+        Before expanding a complicated sum, try to count the same objects in a
+        second way. Bijections, double counting, and counting the complement
+        are among the fastest and most reusable contest methods.
+    \end{strategy}
+
+    \begin{formula}[Binomial Inversion]
+        The relations
+        \[
+            b_n=\sum_{k=0}^{n}\binom{n}{k}a_k
+        \]
+        and
+        \[
+            a_n=\sum_{k=0}^{n}(-1)^{n-k}\binom{n}{k}b_k
+        \]
+        are equivalent.
+    \end{formula}
 
     \begin{formula}[Pascal's Identity and Vandermonde's Identity]
         Pascal's identity is
@@ -4303,6 +4564,28 @@
         known generating function rather than a long derivation.
     \end{tactic}
 
+
+    \begin{formula}[Stirling Numbers and Bell Numbers]
+        The Stirling number of the second kind
+        \[
+            \stirlingsecond{n}{k}
+        \]
+        counts partitions of an $n$-element set into $k$ nonempty blocks and
+        satisfies
+        \[
+            \stirlingsecond{n}{k}
+            =
+            k\stirlingsecond{n-1}{k}
+            +
+            \stirlingsecond{n-1}{k-1}.
+        \]
+        The Bell number
+        \[
+            B_n=\sum_{k=0}^{n}\stirlingsecond{n}{k}
+        \]
+        counts all set partitions of an $n$-element set.
+    \end{formula}
+
     \begin{formula}[Fibonacci Numbers; Binet's Formula]
         If $F_0=0$, $F_1=1$, and $F_{n+1}=F_n+F_{n-1}$, then
         \[
@@ -4357,6 +4640,18 @@
         The recurrence comes from moving the top $n-1$ disks away, moving the
         largest disk once, and then moving the $n-1$ disks back on top of it.
     \end{remark}
+
+
+    \begin{strategy}[State Compression and Transfer Matrices]
+        When a counting process depends only on finitely many recent states,
+        place the transition counts in a matrix $\mathbf{T}$. Counts of length
+        $n$ then have the form
+        \[
+            \mathbf{u}^{\mathsf T}\mathbf{T}^n\mathbf{v}.
+        \]
+        This is effective for forbidden substrings, tilings, walks, and finite
+        automata.
+    \end{strategy}
 
     \begin{theorem}[Pigeonhole Principle; Dirichlet's Box Principle]
         If $n+1$ objects are placed into $n$ boxes, then at least one box
@@ -4605,6 +4900,62 @@
         a perfect assignment or matching exists.
     \end{strategy}
 
+
+    \begin{theorem}[K\H{o}nig's Theorem]
+        In every finite bipartite graph, the size of a maximum matching equals
+        the size of a minimum vertex cover.
+    \end{theorem}
+
+    \begin{theorem}[Max-Flow Min-Cut Theorem]
+        In a finite capacitated network, the maximum value of a source--sink
+        flow equals the minimum capacity of a source--sink cut.
+    \end{theorem}
+
+    \begin{theorem}[Menger's Theorem, Vertex Form]
+        For nonadjacent vertices $u$ and $v$, the maximum number of pairwise
+        internally vertex-disjoint $u$--$v$ paths equals the minimum number of
+        vertices whose deletion separates $u$ from $v$.
+    \end{theorem}
+
+    \begin{theorem}[Kirchhoff's Matrix--Tree Theorem]
+        Let
+        \[
+            \mathbf{L}=\mathbf{D}-\mathbf{A}
+        \]
+        be the Laplacian matrix of a finite graph. The number of spanning trees
+        equals any cofactor of $\mathbf{L}$ obtained by deleting the same row
+        and column.
+    \end{theorem}
+
+    \begin{theorem}[Sperner's Theorem]
+        The largest family of subsets of $[n]$ in which no member contains
+        another has size
+        \[
+            \binom{n}{\lfloor n/2\rfloor}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Dilworth's Theorem]
+        In a finite partially ordered set, the maximum size of an antichain
+        equals the minimum number of chains covering the poset.
+    \end{theorem}
+
+    \begin{theorem}[Tur\'an's Theorem]
+        Among all $n$-vertex graphs containing no $K_{r+1}$, the maximum number
+        of edges is attained by the complete $r$-partite graph whose part sizes
+        differ by at most $1$.
+    \end{theorem}
+
+    \begin{theorem}[Dirac's and Ore's Hamiltonian Criteria]
+        Let $G$ be a simple graph on $n\geq3$ vertices. If every vertex has
+        degree at least $n/2$, then $G$ is Hamiltonian. More generally, it is
+        enough that
+        \[
+            \deg(u)+\deg(v)\geq n
+        \]
+        for every pair of nonadjacent vertices $u,v$.
+    \end{theorem}
+
     \begin{theorem}[Ramsey's Theorem]
         For any positive integers $r$ and $s$, there exists an integer
         $R(r,s)$ such that every red-blue coloring of the edges of a sufficiently
@@ -4654,6 +5005,28 @@
             \sum_{i=1}^{n}\Prob(A\mid B_i)\Prob(B_i).
         \]
     \end{theorem}
+
+
+    \begin{theorem}[Law of Total Expectation; Tower Property]
+        For a discrete random variable $Y$,
+        \[
+            \Exp[X]
+            =
+            \sum_y\Exp[X\mid Y=y]\Prob(Y=y)
+            =
+            \Exp\!\left[\Exp[X\mid Y]\right].
+        \]
+    \end{theorem}
+
+    \begin{formula}[Law of Total Variance]
+        \[
+            \Var(X)
+            =
+            \Exp\!\left[\Var(X\mid Y)\right]
+            +
+            \Var\!\left(\Exp[X\mid Y]\right).
+        \]
+    \end{formula}
 
     \begin{theorem}[Bayes' Theorem]
         If $B_1,\dots,B_n$ form a partition of the sample space and
@@ -4902,6 +5275,19 @@
         convergence in probability implies convergence in distribution.
     \end{definition}
 
+
+    \begin{theorem}[Borel--Cantelli Lemmas]
+        If
+        \[
+            \sum_{n=1}^{\infty}\Prob(A_n)<\infty,
+        \]
+        then $\Prob(A_n\text{ infinitely often})=0$. If the $A_n$ are
+        independent and the series diverges, then
+        \[
+            \Prob(A_n\text{ infinitely often})=1.
+        \]
+    \end{theorem}
+
     \begin{theorem}[Weak Law of Large Numbers]
         Let $X_1,X_2,\dots$ be independent identically distributed random
         variables with mean $\mu$. Then, for every $\eps>0$,
@@ -4971,6 +5357,22 @@
         uses the variance. Both are probability bounds that work without
         assuming a normal distribution.
     \end{remark}
+
+
+    \begin{theorem}[Chernoff Bound for a Binomial Random Variable]
+        If $X\sim\Bin(n,p)$ and $\mu=np$, then for $\delta>0$,
+        \[
+            \Prob\bigl(X\geq(1+\delta)\mu\bigr)
+            \leq
+            \left(\frac{e^\delta}{(1+\delta)^{1+\delta}}\right)^\mu.
+        \]
+        For $0<\delta<1$,
+        \[
+            \Prob\bigl(|X-\mu|\geq\delta\mu\bigr)
+            \leq
+            2e^{-\delta^2\mu/3}.
+        \]
+    \end{theorem}
 
     \begin{theorem}[Jensen's Inequality]
         If $\varphi$ is convex, then
@@ -5110,6 +5512,18 @@
         similar triangles, and power of a point are especially useful targets.
     \end{strategy}
 
+
+    \begin{theorem}[Happy Ending Problem, Five-Point Case]
+        Among any five points in the plane, no three collinear, there are four
+        points that are the vertices of a convex quadrilateral.
+    \end{theorem}
+
+    \begin{idea}
+        Examine the convex hull. If it has at least four vertices, choose four
+        of them. If it is a triangle, use the line through the two interior
+        points and choose two hull vertices lying on the same side of that line.
+    \end{idea}
+
     \begin{definition}[Classical Triangle Centers]
         For a triangle $\triangle ABC$, the most important classical centers
         are:
@@ -5209,6 +5623,15 @@
             [ABC]=rs=\frac{abc}{4R}.
         \]
     \end{formula}
+
+
+    \begin{theorem}[Weitzenb\"ock's Inequality]
+        For a triangle with side lengths $a,b,c$ and area $\Delta$,
+        \[
+            a^2+b^2+c^2\geq4\sqrt{3}\,\Delta,
+        \]
+        with equality if and only if the triangle is equilateral.
+    \end{theorem}
 
     \begin{formula}[Inradius and Exradii]
         For a triangle of area $K$ and semiperimeter $s$, the inradius is
@@ -5407,6 +5830,13 @@
         Equality holds exactly for an equilateral triangle.
     \end{remark}
 
+
+    \begin{strategy}[Spiral Similarity]
+        When two segments must be compared through both an angle and a ratio,
+        look for a center of spiral similarity. It often reveals the required
+        similar triangles immediately.
+    \end{strategy}
+
     \begin{theorem}[Inscribed Angle Theorem]
         An inscribed angle equals half the central angle subtending the same arc.
         Consequently, angles subtending the same chord are equal.
@@ -5478,6 +5908,18 @@
         quadrilaterals.
     \end{remark}
 
+
+    \begin{theorem}[Ptolemy's Inequality]
+        For any four points $A,B,C,D$ in the Euclidean plane,
+        \[
+            AC\cdot BD
+            \leq
+            AB\cdot CD+BC\cdot DA.
+        \]
+        Equality holds in the cyclic convex case and in the corresponding
+        degenerate collinear case.
+    \end{theorem}
+
     \begin{formula}[Brahmagupta's Formula]
         If a cyclic quadrilateral has side lengths $a,b,c,d$ and semiperimeter
         \[
@@ -5532,6 +5974,20 @@
         equilateral triangle.
     \end{theorem}
 
+
+    \begin{theorem}[British Flag Theorem]
+        For any point $P$ in the plane of a rectangle $ABCD$,
+        \[
+            PA^2+PC^2=PB^2+PD^2.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Van Aubel's Theorem]
+        Construct squares externally on the four sides of a quadrilateral. The
+        segments joining the centers of opposite squares are equal in length
+        and perpendicular.
+    \end{theorem}
+
     \begin{theorem}[Homothety Centers of Two Circles]
         For two nonconcentric circles, the two external common tangents meet at
         the external homothety center, and the two internal common tangents meet
@@ -5550,6 +6006,17 @@
         another circle. Inversion is especially effective when many circles are
         tangent or pass through one common point.
     \end{strategy}
+
+
+    \begin{formula}[Circle Inversion]
+        Under inversion with center $O$ and radius $\rho$, a point $P\neq O$
+        is sent to the point $P'$ on the ray $OP$ satisfying
+        \[
+            OP\cdot OP'=\rho^2.
+        \]
+        Inversion preserves angles in magnitude, sends circles through $O$ to
+        lines not through $O$, and sends such lines back to circles through $O$.
+    \end{formula}
 
     \begin{formula}[Regular Polygon Tiling Angle Condition]
         If $q$ regular $p$-gons meet edge-to-edge at each vertex of a Euclidean
@@ -5614,6 +6081,27 @@
     \end{remark}
 
     \section*{Analytic Geometry}
+
+
+    \begin{formula}[Barycentric Coordinates]
+        Let $A,B,C$ be noncollinear. Every point $P$ in their affine plane has
+        unique coordinates $(\alpha,\beta,\gamma)$ satisfying
+        \[
+            \alpha+\beta+\gamma=1,
+            \qquad
+            \mathbf{p}
+            =
+            \alpha\mathbf{a}+\beta\mathbf{b}+\gamma\mathbf{c}.
+        \]
+        For $P$ inside $\triangle ABC$,
+        \[
+            \alpha=\frac{[PBC]}{[ABC]},
+            \qquad
+            \beta=\frac{[PCA]}{[ABC]},
+            \qquad
+            \gamma=\frac{[PAB]}{[ABC]}.
+        \]
+    \end{formula}
 
     \begin{formula}[Shoelace Formula; Gauss's Area Formula]
         For a polygon with vertices
@@ -6194,6 +6682,35 @@
         values individually.
     \end{strategy}
 
+
+    \begin{strategy}[Infinite Descent]
+        Assume a positive-integer solution exists and choose one minimizing a
+        natural positive quantity. Construct a strictly smaller solution of the
+        same type, contradicting well-ordering.
+    \end{strategy}
+
+    \begin{strategy}[Vieta Jumping]
+        If an integer equation is quadratic in one variable, regard that
+        variable as one root of a monic quadratic. Vi\`ete's formulas give the
+        other integral root. Prove that it yields a smaller positive solution
+        and apply infinite descent.
+    \end{strategy}
+
+    \begin{theorem}[Frobenius Coin Theorem for Two Denominations]
+        If $a$ and $b$ are coprime positive integers, the largest integer not
+        representable as
+        \[
+            ax+by,
+            \qquad
+            x,y\in\Nzero,
+        \]
+        is $ab-a-b$. Exactly
+        \[
+            \frac{(a-1)(b-1)}{2}
+        \]
+        positive integers are not representable.
+    \end{theorem}
+
     \begin{theorem}[Chinese Remainder Theorem; CRT]
         Let $m_1,\dots,m_k$ be pairwise relatively prime positive integers.
         Then the system
@@ -6358,6 +6875,31 @@
         primality test.
     \end{remark}
 
+
+    \begin{theorem}[Lucas's Theorem]
+        Let $p$ be prime and write
+        \[
+            n=\sum_{i=0}^{r}n_ip^i,
+            \qquad
+            k=\sum_{i=0}^{r}k_ip^i
+        \]
+        in base $p$. Then
+        \[
+            \binom{n}{k}
+            \equiv
+            \prod_{i=0}^{r}\binom{n_i}{k_i}
+            \pmod p.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Kummer's Theorem]
+        The valuation
+        \[
+            \nu_p\!\left(\binom{n}{k}\right)
+        \]
+        equals the number of carries when $k$ and $n-k$ are added in base $p$.
+    \end{theorem}
+
     \begin{theorem}[Lifting the Exponent Lemma; LTE]
         Let $p$ be an odd prime, and suppose that $p\mid x-y$ while
         $p\nmid xy$. Then, for every positive integer $n$,
@@ -6462,6 +7004,25 @@
         \]
     \end{theorem}
 
+
+    \begin{formula}[Brahmagupta--Fibonacci Identity]
+        \[
+            (a^2+b^2)(c^2+d^2)
+            =
+            (ac-bd)^2+(ad+bc)^2
+            =
+            (ac+bd)^2+(ad-bc)^2.
+        \]
+    \end{formula}
+
+    \begin{formula}[Sophie Germain's Identity]
+        \[
+            a^4+4b^4
+            =
+            (a^2-2ab+2b^2)(a^2+2ab+2b^2).
+        \]
+    \end{formula}
+
     \begin{theorem}[Lagrange's Four-Square Theorem]
         Every nonnegative integer can be written as a sum of four integer
         squares. That is, for every $n\in\Nzero$, there exist integers
@@ -6495,6 +7056,22 @@
         Problems asking for an unusually accurate fraction with the smallest
         possible denominator often signal a continued-fraction expansion.
     \end{strategy}
+
+
+    \begin{definition}[Pell Equation]
+        A Pell equation has the form
+        \[
+            x^2-Dy^2=1,
+        \]
+        where $D$ is a positive nonsquare integer. If $(x_1,y_1)$ is the
+        fundamental positive solution, then all positive solutions satisfy
+        \[
+            x_n+y_n\sqrt{D}
+            =
+            (x_1+y_1\sqrt{D})^n.
+        \]
+        Continued fractions of $\sqrt{D}$ produce the fundamental solution.
+    \end{definition}
 
     \begin{theorem}[Dirichlet's Theorem on Arithmetic Progressions]
         If $a$ and $d$ are relatively prime positive integers, then the
@@ -6794,6 +7371,25 @@
         \]
     \end{theorem}
 
+
+    \begin{proposition}[Root-Counting Principle for Polynomials]
+        A nonzero polynomial of degree $n$ over a field has at most $n$ roots.
+        Hence two polynomials of degree at most $n$ that agree at $n+1$
+        distinct points are identical.
+    \end{proposition}
+
+    \begin{formula}[Lagrange Interpolation Formula]
+        For distinct $x_0,\dots,x_n$, the unique polynomial of degree at most
+        $n$ satisfying $P(x_i)=y_i$ is
+        \[
+            P(x)
+            =
+            \sum_{i=0}^{n}y_i
+            \prod_{\substack{0\leq j\leq n\\j\neq i}}
+            \frac{x-x_j}{x_i-x_j}.
+        \]
+    \end{formula}
+
     \begin{formula}[Vi\`ete's Formulas]
         If
         \[
@@ -6809,6 +7405,34 @@
         \]
         More generally, the elementary symmetric sums of the roots are the
         coefficients with alternating signs, divided by $a_n$.
+    \end{formula}
+
+
+    \begin{formula}[Newton's Identities; Newton--Girard Formulas]
+        Let $e_k$ be the elementary symmetric polynomials in roots
+        $r_1,\dots,r_n$, and let
+        \[
+            p_k=r_1^k+\cdots+r_n^k.
+        \]
+        With $e_0=1$, for $1\leq k\leq n$,
+        \[
+            p_k-e_1p_{k-1}+e_2p_{k-2}-\cdots
+            +(-1)^{k-1}e_{k-1}p_1+(-1)^kke_k=0.
+        \]
+    \end{formula}
+
+    \begin{formula}[Polynomial Discriminant]
+        If
+        \[
+            f(x)=a_n\prod_{i=1}^{n}(x-r_i),
+        \]
+        then
+        \[
+            \Disc(f)
+            =
+            a_n^{2n-2}\prod_{1\leq i<j\leq n}(r_i-r_j)^2.
+        \]
+        It vanishes if and only if $f$ has a repeated root.
     \end{formula}
 
     \begin{theorem}[Rational Root Theorem]
@@ -6839,6 +7463,32 @@
         \]
         then $f$ is irreducible over $\Q$.
     \end{theorem}
+
+
+    \begin{theorem}[Fundamental Theorem of Symmetric Polynomials]
+        Every symmetric polynomial can be expressed uniquely as a polynomial in
+        the elementary symmetric polynomials.
+    \end{theorem}
+
+    \begin{theorem}[Combinatorial Nullstellensatz, Coefficient Form]
+        Let $P\in F[x_1,\dots,x_n]$ have total degree
+        $t_1+\cdots+t_n$, and suppose the coefficient of
+        $x_1^{t_1}\cdots x_n^{t_n}$ is nonzero. If
+        \[
+            |S_i|>t_i
+        \]
+        for every finite set $S_i\subseteq F$, then some
+        $(s_1,\dots,s_n)\in S_1\times\cdots\times S_n$ satisfies
+        \[
+            P(s_1,\dots,s_n)\neq0.
+        \]
+    \end{theorem}
+
+    \begin{strategy}[Polynomial Method]
+        Encode a forbidden configuration as zeros of a polynomial, then use a
+        degree bound, interpolation, factorization, or a nonzero coefficient to
+        prove that the polynomial cannot vanish everywhere.
+    \end{strategy}
 
     \begin{theorem}[Fundamental Theorem of Algebra]
         Every nonconstant complex polynomial has at least one complex root.
@@ -6915,6 +7565,13 @@
         $X$ that are both open and closed are $\varnothing$ and $X$.
     \end{definition}
 
+
+    \begin{theorem}[Jordan Curve Theorem]
+        Every simple closed curve in the plane separates the plane into exactly
+        two connected components, an interior and an exterior, and is the
+        common boundary of both.
+    \end{theorem}
+
     \begin{definition}[Continuity in Topological Spaces]
         A map $f:(X,\mathcal{T}_X)\to(Y,\mathcal{T}_Y)$ is continuous if the
         inverse image of every open set is open:
@@ -6935,6 +7592,25 @@
     \begin{theorem}[Brouwer Fixed-Point Theorem]
         Every continuous map from a closed ball in $\R^n$ to itself has at least
         one fixed point.
+    \end{theorem}
+
+
+    \begin{theorem}[Borsuk--Ulam Theorem]
+        Every continuous map
+        \[
+            f:S^n\to\R^n
+        \]
+        takes some pair of antipodal points to the same value.
+    \end{theorem}
+
+    \begin{corollary}[Ham Sandwich Theorem]
+        Any $n$ bounded measurable subsets of $\R^n$ can be bisected
+        simultaneously by one hyperplane.
+    \end{corollary}
+
+    \begin{theorem}[Hairy Ball Theorem]
+        Every continuous tangent vector field on an even-dimensional sphere
+        $S^{2m}$ vanishes at some point.
     \end{theorem}
 
     \begin{theorem}[Invariance of Domain]
@@ -7065,6 +7741,108 @@
         into a global invariant. When two configurations overlap, compare what
         cancels and what remains rather than recomputing each separately.
     \end{strategy}
+
+
+    \begin{strategy}[Homogenization and Normalization]
+        If an inequality is homogeneous, scale the variables to impose a simple
+        condition such as $a+b+c=1$, $abc=1$, or $x^2+y^2=1$.
+    \end{strategy}
+
+    \begin{strategy}[Equality Cases and Smoothing]
+        Identify the expected equality case before selecting an inequality.
+        For a symmetric expression, replacing two variables by their average
+        often reveals the extremal configuration.
+    \end{strategy}
+
+    \begin{theorem}[AM--GM--HM Inequalities]
+        For positive $x_1,\dots,x_n$,
+        \[
+            \frac{x_1+\cdots+x_n}{n}
+            \geq
+            \sqrt[n]{x_1\cdots x_n}
+            \geq
+            \frac{n}{\frac1{x_1}+\cdots+\frac1{x_n}}.
+        \]
+        Equality holds if and only if all variables are equal.
+    \end{theorem}
+
+    \begin{theorem}[Weighted AM--GM Inequality]
+        If $w_i\geq0$, $\sum w_i=1$, and $x_i>0$, then
+        \[
+            \sum_{i=1}^{n}w_ix_i
+            \geq
+            \prod_{i=1}^{n}x_i^{w_i}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Cauchy--Schwarz Inequality, Engel Form]
+        For real $a_i$ and positive $b_i$,
+        \[
+            \sum_{i=1}^{n}\frac{a_i^2}{b_i}
+            \geq
+            \frac{(a_1+\cdots+a_n)^2}{b_1+\cdots+b_n}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[H\"older's Inequality]
+        If $p,q>1$ and $1/p+1/q=1$, then
+        \[
+            \sum_{i=1}^{n}|a_ib_i|
+            \leq
+            \left(\sum_{i=1}^{n}|a_i|^p\right)^{1/p}
+            \left(\sum_{i=1}^{n}|b_i|^q\right)^{1/q}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Minkowski's Inequality]
+        For $p\geq1$,
+        \[
+            \left(\sum_{i=1}^{n}|a_i+b_i|^p\right)^{1/p}
+            \leq
+            \left(\sum_{i=1}^{n}|a_i|^p\right)^{1/p}
+            +
+            \left(\sum_{i=1}^{n}|b_i|^p\right)^{1/p}.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Rearrangement Inequality]
+        For two increasing real sequences, pairing terms in the same order
+        maximizes the sum of products, while pairing them in opposite order
+        minimizes it.
+    \end{theorem}
+
+    \begin{theorem}[Chebyshev's Sum Inequality]
+        If $a_1\leq\cdots\leq a_n$ and $b_1\leq\cdots\leq b_n$, then
+        \[
+            \frac1n\sum_{i=1}^{n}a_ib_i
+            \geq
+            \left(\frac1n\sum_{i=1}^{n}a_i\right)
+            \left(\frac1n\sum_{i=1}^{n}b_i\right).
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Schur's Inequality]
+        For $a,b,c\geq0$ and $r\geq0$,
+        \[
+            \sum_{\mathrm{cyc}}a^r(a-b)(a-c)\geq0.
+        \]
+    \end{theorem}
+
+    \begin{formula}[Nesbitt's Inequality]
+        For positive $a,b,c$,
+        \[
+            \frac{a}{b+c}+\frac{b}{c+a}+\frac{c}{a+b}
+            \geq
+            \frac32.
+        \]
+    \end{formula}
+
+    \begin{theorem}[Bernoulli's Inequality]
+        If $x\geq-1$ and $r\geq1$, then
+        \[
+            (1+x)^r\geq1+rx.
+        \]
+    \end{theorem}
 
     \begin{strategy}[Comparing Powers by Logarithms]
         To compare two positive numbers such as $a^b$ and $b^a$, take logarithms:

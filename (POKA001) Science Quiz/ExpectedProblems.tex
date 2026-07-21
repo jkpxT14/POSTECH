@@ -1,7 +1,103 @@
     \section*{Standard Mathematical Problems}
 
+    \begin{problem}{1.\ (1988 IMO)}
+        Let $a$ and $b$ be positive integers such that $ab+1$ divides
+        $a^2+b^2$. Show that
+        \[
+            \frac{a^2+b^2}{ab+1}
+        \]
+        is the square of an integer.
+    \end{problem}
+
+    \begin{solution}
+        Let
+        \[
+            k=\frac{a^2+b^2}{ab+1}\in\N.
+        \]
+        Suppose, for contradiction, that $k$ is not a perfect square. Among all
+        positive integer solutions of
+        \[
+            a^2+b^2=k(ab+1),
+        \]
+        choose one for which $a+b$ is minimal, and assume without loss of
+        generality that $a\geq b$.
+
+        If $a=b$, then
+        \[
+            k=\frac{2a^2}{a^2+1}<2,
+        \]
+        so $k=1$, a contradiction. Hence $a>b$. Regard the equation as a
+        quadratic equation in $a$:
+        \[
+            x^2-kbx+b^2-k=0.
+        \]
+        One root is $a$, so the other root is
+        \[
+            c=kb-a\in\Z.
+        \]
+        We claim that $c>0$. From
+        \[
+            a(a-kb)=k-b^2,
+        \]
+        if $a=kb$, then $k=b^2$, contrary to the assumption. If $a>kb$, then
+        the left-hand side is at least $a\geq kb\geq k$, whereas the
+        right-hand side is less than $k$, which is impossible. Therefore
+        $a<kb$, and hence $c>0$.
+
+        Since $k$ is a positive integer that is not a perfect square, we have
+        $k\geq2$. Let
+        \[
+            f(x)=x^2-kbx+b^2-k.
+        \]
+        Since
+        \[
+            f(b)=(2-k)b^2-k<0
+        \]
+        and the two roots are $c$ and $a$ with $a>b$, it follows that
+        \[
+            0<c<b.
+        \]
+        By Vi\`ete's formulas, $c$ is the other root, and therefore
+        \[
+            c^2+b^2=k(cb+1).
+        \]
+        Thus $(c,b)$ is another positive integer solution with
+        \[
+            c+b<a+b,
+        \]
+        contradicting the minimality of $a+b$. Hence $k$ must be a perfect
+        square.
+    \end{solution}
+
     \section*{Direct Calculation Problems}
 
     \section*{Memorization Problems}
 
     \section*{Reasoning and Puzzle Problems}
+
+    \begin{problem}{2.\ (Happy Ending Problem)}
+        Five points are given in the plane, no three of which are collinear.
+        Prove that four of the points are the vertices of a convex
+        quadrilateral.
+    \end{problem}
+
+    \begin{solution}
+        Consider the convex hull of the five points. If the convex hull has at
+        least four vertices, any four of its vertices, taken in cyclic order,
+        form a convex quadrilateral.
+
+        It remains to consider the case in which the convex hull is a triangle
+        with vertices $A,B,C$. Let the remaining two points be $P$ and $Q$;
+        both lie in the interior of $\triangle ABC$. The line $PQ$ contains none
+        of $A,B,C$, so two of the three vertices lie in the same open half-plane
+        determined by $PQ$. Relabel them as $A$ and $B$.
+
+        The triangle $\triangle ABQ$ meets the line $PQ$ only at $Q$, because
+        $A$ and $B$ lie strictly on the same side of that line. Hence
+        $P\notin\triangle ABQ$. Similarly, $Q\notin\triangle ABP$. Since
+        $A$ and $B$ are
+        vertices of the convex hull of all five points, neither lies in the
+        triangle determined by the other three points. Consequently, all four
+        points $A,B,P,Q$ are vertices of their convex hull, which is a convex
+        quadrilateral.
+    \end{solution}
