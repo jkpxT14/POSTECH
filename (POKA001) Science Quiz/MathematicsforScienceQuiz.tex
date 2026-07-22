@@ -189,8 +189,10 @@
 \newtheorem*{tactic}{Tactic}
 
 % Problem environments
-% Past Problems keep explicit historical labels. Expected Problems use an
-% automatic counter that is reset independently in each problem category.
+% Past Problems keep explicit historical labels. Expected Problems are numbered
+% automatically and independently inside each of the four problem categories.
+% The optional argument of expectedproblem contains source and/or standard name,
+% for example [1988 IMO] or [KMO 1999, Legend Problem].
 \newcommand{\problemheading}[1]{%
     \par\vspace{6pt}\noindent
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
@@ -316,6 +318,7 @@
 % Combinatorics notation
 \newcommand{\multichoose}[2]{\left(\!\binom{#1}{#2}\!\right)}
 \newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+\newcommand{\indicatorbb}[1]{\mathbbm{1}_{#1}}
 \newcommand{\indicator}[1]{\chi_{#1}}
 \newcommand{\ones}{\mathbf{1}}
 

@@ -564,7 +564,75 @@
         $(1+x)^{1/x}$ are strong signals for these standard patterns.
     \end{strategy}
 
-    \begin{formula}[Trigonometric Identity Table]
+    \begin{formula}[Elementary Function Reference Table]
+        The following domains, ranges, symmetries, and periods are standard.
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.17\textwidth}L{0.24\textwidth}L{0.20\textwidth}L{0.13\textwidth}L{0.12\textwidth}@{}}
+            \toprule
+            Function & Domain & Range & Symmetry & Period \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Function & Domain & Range & Symmetry & Period \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            $e^x$ & $\R$ & $(0,\infty)$ & neither & none \\
+            $\ln x$ & $(0,\infty)$ & $\R$ & neither & none \\
+            $\sin x$ & $\R$ & $[-1,1]$ & odd & $2\pi$ \\
+            $\cos x$ & $\R$ & $[-1,1]$ & even & $2\pi$ \\
+            $\tan x$ & $\R\setminus\{\frac{\pi}{2}+k\pi\mid k\in\Z\}$ & $\R$ & odd & $\pi$ \\
+            $\arcsin x$ & $[-1,1]$ & $[-\frac{\pi}{2},\frac{\pi}{2}]$ & odd & none \\
+            $\arccos x$ & $[-1,1]$ & $[0,\pi]$ & neither & none \\
+            $\arctan x$ & $\R$ & $(-\frac{\pi}{2},\frac{\pi}{2})$ & odd & none \\
+            $\sinh x$ & $\R$ & $\R$ & odd & none \\
+            $\cosh x$ & $\R$ & $[1,\infty)$ & even & none \\
+            $\tanh x$ & $\R$ & $(-1,1)$ & odd & none \\
+        \end{longtable}
+        }
+    \end{formula}
+
+    \begin{formula}[Exact Trigonometric Values Table]
+        For the standard first-quadrant angles,
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.16\textwidth}L{0.16\textwidth}L{0.16\textwidth}L{0.16\textwidth}L{0.16\textwidth}@{}}
+            \toprule
+            $x$ & $0$ & $\frac{\pi}{6}$ & $\frac{\pi}{4}$ & $\frac{\pi}{3}$ \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            $x$ & $0$ & $\frac{\pi}{6}$ & $\frac{\pi}{4}$ & $\frac{\pi}{3}$ \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            $\sin x$ & $0$ & $\frac12$ & $\frac{\sqrt2}{2}$ & $\frac{\sqrt3}{2}$ \\
+            $\cos x$ & $1$ & $\frac{\sqrt3}{2}$ & $\frac{\sqrt2}{2}$ & $\frac12$ \\
+            $\tan x$ & $0$ & $\frac{\sqrt3}{3}$ & $1$ & $\sqrt3$ \\
+        \end{longtable}
+        }
+        Moreover,
+        \[
+            \sin\frac{\pi}{2}=1,
+            \qquad
+            \cos\frac{\pi}{2}=0,
+        \]
+        and the remaining exact values follow from parity, periodicity, and
+        reference-angle identities.
+    \end{formula}
+
+    \begin{formula}[Trigonometric Identity and Synthesis Table]
         The principal trigonometric identities are
 
         {\small
@@ -621,6 +689,18 @@
             Sum-to-product &
             $\displaystyle\cos x+\cos y=
             2\cos\frac{x+y}{2}\cos\frac{x-y}{2}$ \\
+            Sum-to-product &
+            $\displaystyle\sin x-\sin y=
+            2\cos\frac{x+y}{2}\sin\frac{x-y}{2}$ \\
+            Sum-to-product &
+            $\displaystyle\cos x-\cos y=
+            -2\sin\frac{x+y}{2}\sin\frac{x-y}{2}$ \\
+            Synthesis &
+            $\displaystyle a\cos x+b\sin x
+            =R\cos(x-\alpha),\quad
+            R=\sqrt{a^2+b^2},\quad
+            \cos\alpha=\frac{a}{R},\quad
+            \sin\alpha=\frac{b}{R}\quad(R>0)$ \\
         \end{longtable}
         }
     \end{formula}
@@ -1768,9 +1848,9 @@
                 \exists\delta>0,
                 \quad
                 \forall\mathbf{h}\in\R^n,\\
-                &\mathbf{a}+\mathbf{h}\in U
-                \text{ and }
-                0<\|\mathbf{h}\|<\delta
+                &\bigl(\mathbf{a}+\mathbf{h}\in U\bigr)
+                \land
+                \bigl(0<\|\mathbf{h}\|<\delta\bigr)
                 \implies\\
                 &\qquad
                 \frac{
@@ -3249,6 +3329,57 @@
         Schur complement of $\mathbf{A}$.
     \end{formula}
 
+    \begin{formula}[Special Matrix Recognition Table]
+        For real or complex square matrices, the following implications permit
+        rapid determinant, inverse, and eigenvalue calculations.
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.25\textwidth}L{0.28\textwidth}L{0.39\textwidth}@{}}
+            \toprule
+            Matrix type & Defining relation & Immediate consequences \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Matrix type & Defining relation & Immediate consequences \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Diagonal &
+            $\mathbf{D}=\diag(d_1,\dots,d_n)$ &
+            eigenvalues $d_i$; $\det(\mathbf{D})=\prod_i d_i$ \\
+            Triangular &
+            $a_{ij}=0$ for $i>j$ or for $i<j$ &
+            eigenvalues are diagonal entries; determinant is their product \\
+            Orthogonal &
+            $\mathbf{Q}^{\mathsf T}\mathbf{Q}=\mathbf{I}_n$ &
+            $\mathbf{Q}^{-1}=\mathbf{Q}^{\mathsf T}$; $|\det(\mathbf{Q})|=1$ \\
+            Unitary &
+            $\mathbf{U}^{\mathsf H}\mathbf{U}=\mathbf{I}_n$ &
+            $\mathbf{U}^{-1}=\mathbf{U}^{\mathsf H}$; every eigenvalue has modulus $1$ \\
+            Idempotent &
+            $\mathbf{P}^2=\mathbf{P}$ &
+            eigenvalues belong to $\{0,1\}$; $\rk(\mathbf{P})=\tr(\mathbf{P})$ \\
+            Involutory &
+            $\mathbf{A}^2=\mathbf{I}_n$ &
+            $\mathbf{A}^{-1}=\mathbf{A}$; eigenvalues belong to $\{-1,1\}$ \\
+            Nilpotent &
+            $\mathbf{N}^k=\mathbf{0}$ for some $k$ &
+            every eigenvalue is $0$; $\det(\mathbf{N})=0$ \\
+            Permutation &
+            one $1$ in each row and column &
+            $\mathbf{P}^{-1}=\mathbf{P}^{\mathsf T}$; determinant is $\pm1$ \\
+            Orthogonal projection &
+            $\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathsf T}$ &
+            $\R^n=\Col(\mathbf{P})\oplus\Null(\mathbf{P})$ \\
+        \end{longtable}
+        }
+    \end{formula}
+
     \begin{formula}[Vandermonde Determinant]
         For scalars $x_1,x_2,\dots,x_n$,
         \[
@@ -4366,9 +4497,9 @@
         \]
         Equivalently,
         \[
-            x(t)=A\cos(\omega t-\phi)
+            x(t)=A\cos(\omega t-\delta)
         \]
-        for suitable constants $A$ and $\phi$.
+        for suitable constants $A$ and $\delta$.
     \end{formula}
 
     \begin{remark}
@@ -4427,8 +4558,11 @@
             $1$ & $\displaystyle\frac{1}{s}$ & $s>0$ \\
             $t^n$ & $\displaystyle\frac{n!}{s^{n+1}}$ & $n\in\Nzero$ \\
             $e^{at}$ & $\displaystyle\frac{1}{s-a}$ & $s>a$ \\
+            $t^ne^{at}$ & $\displaystyle\frac{n!}{(s-a)^{n+1}}$ & $n\in\Nzero,\ s>a$ \\
             $\sin at$ & $\displaystyle\frac{a}{s^2+a^2}$ & $s>0$ \\
             $\cos at$ & $\displaystyle\frac{s}{s^2+a^2}$ & $s>0$ \\
+            $e^{at}\sin bt$ & $\displaystyle\frac{b}{(s-a)^2+b^2}$ & $s>a$ \\
+            $e^{at}\cos bt$ & $\displaystyle\frac{s-a}{(s-a)^2+b^2}$ & $s>a$ \\
             $\sinh at$ & $\displaystyle\frac{a}{s^2-a^2}$ & $s>|a|$ \\
             $\cosh at$ & $\displaystyle\frac{s}{s^2-a^2}$ & $s>|a|$ \\
             $f'(t)$ & $sF(s)-f(0)$ & \\
@@ -4436,6 +4570,9 @@
             $t f(t)$ & $-F'(s)$ & \\
             $\displaystyle\int_0^t f(\tau)\dd\tau$ & $\displaystyle\frac{F(s)}{s}$ & \\
             $u(t-a)f(t-a)$ & $e^{-as}F(s)$ & $a>0$ \\
+            $f(t+T)=f(t)$ &
+            $\displaystyle\frac{\int_0^T e^{-st}f(t)\dd t}{1-e^{-sT}}$ &
+            $T>0,\ s>0$ \\
         \end{longtable}
         }
     \end{formula}
@@ -4798,27 +4935,36 @@
 
         {\small
         \renewcommand{\arraystretch}{1.18}
-        \begin{longtable}{@{}L{0.38\textwidth}L{0.50\textwidth}@{}}
+        \begin{longtable}{@{}L{0.31\textwidth}L{0.43\textwidth}L{0.18\textwidth}@{}}
             \toprule
-            Sequence $a_n$ & Ordinary generating function $A(x)$ \\
+            Sequence $a_n$ & Ordinary generating function $A(x)$ & Conditions \\
             \midrule
             \endfirsthead
 
             \toprule
-            Sequence $a_n$ & Ordinary generating function $A(x)$ \\
+            Sequence $a_n$ & Ordinary generating function $A(x)$ & Conditions \\
             \midrule
             \endhead
 
             \bottomrule
             \endlastfoot
 
-            $1$ & $\displaystyle\frac{1}{1-x}$ \\
-            $n$ & $\displaystyle\frac{x}{(1-x)^2}$ \\
-            $n^2$ & $\displaystyle\frac{x(1+x)}{(1-x)^3}$ \\
-            $\displaystyle\binom{n+r}{r}$ & $\displaystyle\frac{1}{(1-x)^{r+1}}$ \\
-            $F_n$, where $F_0=0$ and $F_1=1$ & $\displaystyle\frac{x}{1-x-x^2}$ \\
+            $1$ & $\displaystyle\frac{1}{1-x}$ & $|x|<1$ \\
+            $r^n$ & $\displaystyle\frac{1}{1-rx}$ & $|rx|<1$ \\
+            $n$ & $\displaystyle\frac{x}{(1-x)^2}$ & $|x|<1$ \\
+            $n^2$ & $\displaystyle\frac{x(1+x)}{(1-x)^3}$ & $|x|<1$ \\
+            $\displaystyle\binom{n}{k}$ &
+            $\displaystyle\frac{x^k}{(1-x)^{k+1}}$ &
+            $k\in\Nzero,\ |x|<1$ \\
+            $\displaystyle\binom{n+r}{r}$ &
+            $\displaystyle\frac{1}{(1-x)^{r+1}}$ &
+            $r\in\Nzero,\ |x|<1$ \\
+            $F_n$, where $F_0=0$ and $F_1=1$ &
+            $\displaystyle\frac{x}{1-x-x^2}$ &
+            $|x|<\frac{\sqrt{5}-1}{2}$ \\
             $\displaystyle\frac{1}{n+1}\binom{2n}{n}$ &
-            $\displaystyle\frac{1-\sqrt{1-4x}}{2x}$ \\
+            $\displaystyle\frac{1-\sqrt{1-4x}}{2x}$ &
+            $|x|<\frac14$ \\
         \end{longtable}
         }
     \end{formula}
@@ -4856,15 +5002,15 @@
         \[
             F_n
             =
-            \frac{\phi^n-\psi^n}{\sqrt{5}},
+            \frac{\varphi^n-\psi^n}{\sqrt{5}},
             \qquad
-            \phi=\frac{1+\sqrt{5}}{2},
+            \varphi=\frac{1+\sqrt{5}}{2},
             \qquad
             \psi=\frac{1-\sqrt{5}}{2}.
         \]
         In particular,
         \[
-            \lim_{n\to\infty}\frac{F_{n+1}}{F_n}=\phi.
+            \lim_{n\to\infty}\frac{F_{n+1}}{F_n}=\varphi.
         \]
     \end{formula}
 
@@ -5259,8 +5405,7 @@
 
     \relatedcourses{(MATH230) Probability \& Statistics}
 
-    \relatedbooks{Introduction to Probability
-        (Dimitri P. Bertsekas, John N. Tsitsiklis)}
+    \relatedbooks{}
 
     \begin{theorem}[Law of Total Probability]
         If $B_1,\dots,B_n$ form a partition of the sample space and
@@ -5809,11 +5954,9 @@
 
     \chapter{Geometry}
 
-    \relatedcourses{(MATH428) Modern Geometry,
-        (MATH570/CSED508) Discrete and Computational Geometry}
+    \relatedcourses{}
 
-    \relatedbooks{Geometry Revisited (H. S. M. Coxeter, Samuel L. Greitzer),
-        Euclidean Geometry in Mathematical Olympiads (Evan Chen)}
+    \relatedbooks{}
 
     \section*{Synthetic Geometry}
 
@@ -8119,7 +8262,7 @@
             X\subseteq\bigcup_{U\in\mathcal{U}}U
             \implies
             \exists U_1,\dots,U_n\in\mathcal{U}
-            \text{ such that }
+            \ \text{s.t.}\
             X\subseteq U_1\cup\cdots\cup U_n.
         \]
     \end{definition}
@@ -8267,11 +8410,34 @@
 
     \chapter{Miscellaneous Topics}
 
-    \relatedcourses{(MATH201) Introduction to Mathematics,
-        (MATH261) Discrete Mathematics}
+    \relatedcourses{}
 
-    \relatedbooks{Problem-Solving Strategies (Arthur Engel),
-        The Art and Craft of Problem Solving (Paul Zeitz)}
+    \relatedbooks{}
+
+    \begin{strategy}[Iterated Knowledge Elimination]
+        Let $\Omega_0$ be a finite set of possible states. For each agent $i$ and
+        state $\omega\in\Omega$, let
+        \[
+            \mathcal{I}_i^\Omega(\omega)
+            =
+            \{\omega'\in\Omega\mid
+              \omega'\text{ gives agent }i\text{ the same information as }\omega\}.
+        \]
+        Relative to the current state space $\Omega$, agent $i$ knows the state
+        precisely when
+        \[
+            \bigl|\mathcal{I}_i^\Omega(\omega)\bigr|=1.
+        \]
+        A truthful public announcement restricts $\Omega$ to exactly the states
+        at which that announcement is true. Repeating this restriction models
+        successive statements about knowledge or ignorance. In particular, the
+        statement ``I knew that $Q$'' means
+        \[
+            \forall\omega'\in\mathcal{I}_i^\Omega(\omega),
+            \qquad
+            Q(\omega').
+        \]
+    \end{strategy}
 
     \begin{strategy}[Transform the Given Objects]
         Replace the original configuration by an equivalent one whose structure

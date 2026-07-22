@@ -93,8 +93,108 @@
 
         The triangle $\triangle ABQ$ meets the line $PQ$ only at $Q$, because
         $A$ and $B$ lie strictly on the same side of that line. Hence
-        $P\notin\triangle ABQ$. Similarly, $Q\notin\triangle ABP$. Since $A$ and $B$ are vertices of the convex hull of all five points, neither lies in the
-        triangle determined by the other three points. Consequently, all four
-        points $A,B,P,Q$ are vertices of their convex hull, which is a convex
-        quadrilateral.
+        $P\notin\triangle ABQ$. Similarly, $Q\notin\triangle ABP$. Since
+        $A$ and $B$ are vertices of the convex hull of all five points, neither
+        lies in the triangle determined by the other three points. Consequently,
+        all four points $A,B,P,Q$ are vertices of their convex hull, which is a
+        convex quadrilateral.
+    \end{solution}
+
+    \begin{expectedproblem}[Freudenthal's Sum-and-Product Problem, Impossible Puzzle]
+        Two integers $x$ and $y$ satisfy
+        \[
+            1<x<y,
+            \qquad
+            x+y\leq100.
+        \]
+        The sum $x+y$ is disclosed privately to $S$, and the product $xy$ is
+        disclosed privately to $P$. The preceding information is common
+        knowledge. The following conversation then takes place:
+        \begin{enumerate}
+            \item[(i)] $P$: ``I do not know the pair.''
+            \item[(ii)] $S$: ``I knew that you did not know the pair.''
+            \item[(iii)] $P$: ``Now I know the pair.''
+            \item[(iv)] $S$: ``Now I also know the pair.''
+        \end{enumerate}
+        Determine $(x,y)$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let
+        \[
+            \Omega_0
+            =
+            \{(x,y)\in\N^2\mid (1<x<y)\land(x+y\leq100)\}.
+        \]
+        For $\Omega\subseteq\Omega_0$ and $\omega=(x,y)\in\Omega$, define the
+        information sets
+        \[
+            \mathcal{I}_S^\Omega(\omega)
+            =
+            \{(u,v)\in\Omega\mid u+v=x+y\},
+        \]
+        \[
+            \mathcal{I}_P^\Omega(\omega)
+            =
+            \{(u,v)\in\Omega\mid uv=xy\}.
+        \]
+        The four announcements successively restrict the state space as follows:
+        \[
+            \Omega_1
+            =
+            \{\omega\in\Omega_0\mid
+              |\mathcal{I}_P^{\Omega_0}(\omega)|>1\},
+        \]
+        \[
+            \Omega_2
+            =
+            \{\omega\in\Omega_1\mid
+              \mathcal{I}_S^{\Omega_0}(\omega)\subseteq\Omega_1\},
+        \]
+        \[
+            \Omega_3
+            =
+            \{\omega\in\Omega_2\mid
+              |\mathcal{I}_P^{\Omega_2}(\omega)|=1\},
+        \]
+        and
+        \[
+            \Omega_4
+            =
+            \{\omega\in\Omega_3\mid
+              |\mathcal{I}_S^{\Omega_3}(\omega)|=1\}.
+        \]
+
+        The finite elimination is summarized by
+        \[
+            \begin{array}{c|l|c}
+                \text{stage} & \text{public information retained} &
+                \text{number of states}\\
+                \hline
+                0 & (1<x<y)\land(x+y\leq100) & 2352\\
+                1 & P\text{ does not know the pair} & 1747\\
+                2 & S\text{ knew that }P\text{ did not know} & 145\\
+                3 & P\text{ now knows the pair} & 86\\
+                4 & S\text{ now knows the pair} & 1
+            \end{array}
+        \]
+        At the second stage, the possible sums are exactly
+        \[
+            11,\ 17,\ 23,\ 27,\ 29,\ 35,\ 37,\ 41,\ 47,\ 53.
+        \]
+        These values follow by checking, for each admissible sum, whether every
+        compatible factorization has at least two representations in
+        $\Omega_0$. After the third announcement, the only sum-information set
+        of cardinality $1$ is
+        \[
+            \mathcal{I}_S^{\Omega_3}(4,13)=\{(4,13)\}.
+        \]
+        Therefore,
+        \[
+            \Omega_4=\{(4,13)\},
+        \]
+        and the unique pair is
+        \[
+            \boxed{(x,y)=(4,13)}.
+        \]
     \end{solution}

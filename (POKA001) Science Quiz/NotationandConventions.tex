@@ -42,7 +42,8 @@
         $a\coloneqq b$ or $a:=b$ & $a$ is defined to be $b$; this book normally uses $\coloneqq$ \\
         $\text{s.t.}$ & such that \\
         $\text{N.t.}$ & Note that \\
-        $\eps$ & a positive real number used in analysis, usually arbitrarily small \\
+        $\eps=\varepsilon$ & a positive real number used in analysis, usually arbitrarily small \\
+        $\epsilon_{ijk}$ & the Levi--Civita symbol; the glyph $\epsilon$ is reserved for this use \\
         $O(g(x))$ & Big-O notation \\
         $o(g(x))$ & little-o notation \\
         $\square$ & the end of a proof or solution \\
@@ -57,7 +58,10 @@
 
     In symbolic statements, logical conjunction, disjunction, and negation are
     written as $\land$, $\lor$, and $\neg$. The words ``and'' and ``or'' remain
-    in ordinary prose when a logical formula is not being displayed.
+    in ordinary prose when a logical formula is not being displayed. The symbol
+    $\eps=\varepsilon$ denotes a small positive quantity in analysis, whereas
+    $\epsilon_{ijk}$ denotes the Levi--Civita symbol; these two glyphs are not
+    interchanged.
 
     \section*{Theorem-like Environments}
 
@@ -159,14 +163,16 @@
         $X\cong Y$ & $X$ and $Y$ are isomorphic \\
         $f(A)$ & the image of $A$ under $f$ \\
         $f^{-1}(B)$ & the inverse image, or preimage, of $B$ \\
-        $\indicator{A}(x)$ & the indicator function, or characteristic function, of $A$ \\
+        $\indicatorbb{A}(x)$ or $\indicator{A}(x)$ & the indicator function, or characteristic function, of $A$ \\
         $\aleph_0$ & the cardinality of a countably infinite set \\
         $\mathfrak{c}$ & the cardinality of the continuum \\
     \end{longtable}
     }
 
-    The indicator function is written as $\indicator{A}$; the all-ones vector is
-    $\ones$. Boldface is reserved for vectors and matrices.
+    The indicator function may be written as $\indicatorbb{A}$ or
+    $\indicator{A}$. The symbol $\indicatorbb{A}$ is blackboard bold, not vector
+    boldface. The all-ones vector is $\ones$. Boldface is reserved for vectors
+    and matrices.
 
     \section*{Calculus and Analysis}
 
@@ -185,7 +191,10 @@
     In polar, cylindrical, and spherical coordinates, $\theta$ is the azimuthal
     angle measured counterclockwise from the positive $x$-axis in the
     $xy$-plane. In spherical coordinates, $\phi$ is the polar angle measured
-    from the positive $z$-axis.
+    from the positive $z$-axis. Throughout this book, $\phi$ is reserved for
+    this spherical polar angle. The variant $\varphi$ is used for functions,
+    homomorphisms, Euler's totient function, and the golden ratio when it is
+    explicitly defined.
 
     \vspace{0.5em}
 
@@ -246,7 +255,8 @@
         $f_n\aeto f$ & convergence almost everywhere \\
         $\|f\|_\infty$ & the supremum norm of $f$ \\
         $z=x+iy$ & a complex number with real part $x$ and imaginary part $y$ \\
-        $\Real z$ or $\Re z$, $\Imag z$ or $\Im z$ & the real and imaginary parts of $z$ \\
+        $\Real z$ or $\Re z$ & the real part of $z$ \\
+        $\Imag z$ or $\Im z$ & the imaginary part of $z$ \\
         $\overline{z}$ & the complex conjugate of $z$ \\
         $|z|$ & the modulus of $z$ \\
         $\arg z$ & an argument of $z$ \\

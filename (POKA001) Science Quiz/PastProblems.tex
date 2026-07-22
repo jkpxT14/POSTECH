@@ -8,7 +8,7 @@
     \begin{solution}
         No such positive integers exist. For any integer $a$, we have
         \[
-            a^2\equiv 0 \text{ or } 1\pmod{4}.
+            (a^2\equiv 0\pmod{4})\lor(a^2\equiv 1\pmod{4}).
         \]
         Hence the sum of two integer squares can be congruent only to
         \[
@@ -2884,7 +2884,9 @@
         locally uniformly to $0$ on $\R$. Determine whether the following statement is true or
         false:
         \[
-            f \text{ is differentiable at } 0 \text{ and } f'(0)=0.
+            \bigl(f\text{ is differentiable at }0\bigr)
+            \land
+            \bigl(f'(0)=0\bigr).
         \]
     \end{pastproblem}
 
@@ -3593,7 +3595,13 @@
         \[
             \Prob(\text{current toss differs from previous toss})=\frac12.
         \]
-        Let $I_i$ be the indicator that a new run starts at position $i$, for $2\leq i\leq 50$. Then
+        For $2\leq i\leq50$, let
+        \[
+            I_i
+            =
+            \indicator{\{\text{a new run starts at position }i\}}.
+        \]
+        Then
         \[
             R=1+\sum_{i=2}^{50}I_i.
         \]
