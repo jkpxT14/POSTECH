@@ -2,19 +2,18 @@
     \markboth{Notation and Conventions}{Notation and Conventions}
     \addcontentsline{toc}{chapter}{Notation and Conventions}
 
-    Throughout this book, we use standard mathematical notation whenever possible.
-    The conventions below are arranged to keep the exposition readable,
-    unified, and consistent with the chapter structure of Part I.
+    Throughout this book, standard mathematical notation is used whenever
+    possible. The conventions below apply to every part of the book.
 
     \section*{General Conventions}
 
     Scalars are written in ordinary italic letters, such as $a,b,c,\lambda,t$.
     Vectors are written in bold lowercase letters, such as
     $\mathbf{u},\mathbf{v},\mathbf{x}$. Matrices are written in bold uppercase
-    letters, such as $\mathbf{A},\mathbf{B},\mathbf{P}$. This convention applies
-    to every matrix, including the identity matrix $\mathbf{I}_n$ and diagonal
-    matrices such as $\mathbf{D}$. Unless otherwise stated, vectors are regarded
-    as column vectors.
+    letters, such as $\mathbf{A},\mathbf{B},\mathbf{P}$. In particular, the
+    identity matrix, a diagonal matrix, and a projection matrix are written as
+    $\mathbf{I}_n$, $\mathbf{D}$, and $\mathbf{P}$, respectively. Unless
+    otherwise stated, vectors are column vectors.
 
     \vspace{0.5em}
 
@@ -40,38 +39,27 @@
         $\Q$ & the set of rational numbers \\
         $\R$ & the set of real numbers \\
         $\C$ & the set of complex numbers \\
-        $a\coloneqq b$ or $a:=b$ & $a$ is defined to be $b$; this book prefers $\coloneqq$, while $:=$ is a common equivalent notation \\
-        $\lambda$ & usually a scalar, eigenvalue, or parameter, depending on context \\
-        $\eps$ & a small positive real number, especially in analysis \\
-        $\sim$ & an equivalence relation, asymptotic equivalence, or equality in distribution, depending on context \\
-        $O(\cdot)$ & Big-O notation \\
-        $o(\cdot)$ & little-o notation \\
+        $a\coloneqq b$ or $a:=b$ & $a$ is defined to be $b$; this book normally uses $\coloneqq$ \\
+        $\text{s.t.}$ & such that \\
+        $\text{N.t.}$ & Note that \\
+        $\eps$ & a positive real number used in analysis, usually arbitrarily small \\
+        $O(g(x))$ & Big-O notation \\
+        $o(g(x))$ & little-o notation \\
         $\square$ & the end of a proof or solution \\
     \end{longtable}
     }
 
-    Round parentheses are used for ordered tuples and matrix delimiters.
-    Square brackets are used for closed intervals and, in geometry, for area
-    notation such as $[ABC]$. Braces are used for sets; $\{x\}$ denotes the
-    fractional part only when the numerical context is explicit. In set-builder
-    notation, the condition is separated by $\mid$, as in
-    $\{x\in A\mid P(x)\}$, rather than by a colon. Determinants may still be
-    enclosed by vertical bars; these bars denote a scalar determinant, not a
-    matrix delimiter.
+    Round parentheses are used for ordered tuples and matrix delimiters. Square
+    brackets are used for closed intervals and for area notation such as
+    $[ABC]$. Braces are used for sets. In set-builder notation, the condition is
+    separated by $\mid$, as in $\{x\in A\mid P(x)\}$. Determinants may be
+    enclosed by vertical bars because a determinant is a scalar.
 
-    In displayed formulas, the limits of operators such as $\lim$, $\sum$,
-    $\prod$, $\bigcup$, and $\bigcap$ are placed below and above the operator
-    whenever this improves readability. In inline mathematics, side placement is
-    retained when forcing vertical placement would disrupt line spacing. Thus the
-    typographical rule is readability first, with displayed formulas preferred for
-    substantial limits and indexed operations.
+    In symbolic statements, logical conjunction, disjunction, and negation are
+    written as $\land$, $\lor$, and $\neg$. The words ``and'' and ``or'' remain
+    in ordinary prose when a logical formula is not being displayed.
 
     \section*{Theorem-like Environments}
-
-    Part I uses theorem-like labels according to the mathematical role of each
-    item.
-
-    \vspace{0.5em}
 
     {\small
     \renewcommand{\arraystretch}{1.18}
@@ -90,32 +78,27 @@
         \endlastfoot
 
         Definition & a precise meaning of a term or object \\
-        Theorem & a major named result, usually worth memorizing by name \\
-        Proposition & a useful standard result that is less central than a theorem \\
+        Theorem & a major named result \\
+        Proposition & a useful standard result \\
         Lemma & a supporting result or technical tool \\
-        Corollary & a result that follows quickly from a theorem or proposition \\
-        Formula & a computational identity or closed form that should be recognized quickly \\
-        Algorithm & a step-by-step procedure or named computational method \\
-        Fact & a memorization-oriented mathematical or historical fact \\
+        Corollary & a result that follows quickly from another result \\
+        Formula & a computational identity or closed form \\
+        Algorithm & a step-by-step computational procedure \\
+        Fact & a mathematical or historical fact \\
         Conjecture & a statement believed to be true but not proved in full generality \\
-        Hypothesis & a named assumption or guiding claim, often attached to a major open problem \\
-        Open Problem & a famous unsolved problem or a problem whose general form remains open \\
-        Idea & a short conceptual explanation of why a result is true or useful \\
-        Strategy & a fast quiz-solving method or recognition trick \\
-        Tactic & a local, immediately usable trick for a particular type of question \\
-        Remark & supplementary context, caution, or memorable information \\
+        Hypothesis & a named assumption or guiding claim \\
+        Open Problem & a problem whose general form remains unsolved \\
+        Idea & a short explanation of a decisive mathematical idea \\
+        Strategy & a broadly useful problem-solving method \\
+        Tactic & a local, immediately usable trick \\
+        Remark & supplementary context or a caution \\
     \end{longtable}
     }
 
     \section*{Set Theory and Logic}
 
-    Set-theoretic notation is arranged from elements and sets to logic,
-    relations, functions, and cardinality. The arrow $f:X\to Y$ specifies the
-    domain and codomain of a function, while $x\mapsto f(x)$ specifies the
-    rule on individual elements. The arrows $\hookrightarrow$ and
-    $\twoheadrightarrow$ indicate injective and surjective maps, respectively,
-    only when that property has already been established or is part of the
-    statement.
+    The arrow $f:X\to Y$ specifies the domain and codomain of a function, while
+    $x\mapsto f(x)$ specifies its action on an element.
 
     \vspace{0.5em}
 
@@ -135,58 +118,74 @@
         \bottomrule
         \endlastfoot
 
-        $x\in A$ and $x\notin A$ & $x$ is, or is not, an element of $A$ \\
-        $A\subseteq B$ and $A\subsetneq B$ & $A$ is a subset, or a proper subset, of $B$ \\
-        $A\supseteq B$ and $A\supsetneq B$ & $A$ is a superset, or a proper superset, of $B$ \\
-        $A\cup B$ and $A\cap B$ & the union and intersection of $A$ and $B$ \\
+        $x\in A$ & $x$ is an element of $A$ \\
+        $x\notin A$ & $x$ is not an element of $A$ \\
+        $A\subseteq B$ & $A$ is a subset of $B$ \\
+        $A\subsetneq B$ & $A$ is a proper subset of $B$ \\
+        $A\supseteq B$ & $A$ is a superset of $B$ \\
+        $A\supsetneq B$ & $A$ is a proper superset of $B$ \\
+        $A\cup B$ & the union of $A$ and $B$ \\
+        $A\cap B$ & the intersection of $A$ and $B$ \\
         $A\setminus B$ & the set difference of $A$ and $B$ \\
-        $A^{\mathsf c}$ & the complement of $A$, when the ambient set is clear \\
+        $A^{\mathsf c}$ & the complement of $A$ in the understood ambient set \\
         $\varnothing$ & the empty set \\
         $\Pow(A)$ & the power set of $A$ \\
-        $A\times B$ and $A\sqcup B$ & the Cartesian product and disjoint union of $A$ and $B$ \\
+        $A\times B$ & the Cartesian product of $A$ and $B$ \\
+        $A\sqcup B$ & the disjoint union of $A$ and $B$ \\
         $|A|$ & the cardinality of a finite set $A$ \\
-        $\{x\in A\mid P(x)\}$ & the set of elements $x\in A$ satisfying $P(x)$ \\
-        $x\sim y$ and $A/\sim$ & an equivalence relation and the corresponding set of equivalence classes \\
+        $\{x\in A\mid P(x)\}$ & the set of $x\in A$ s.t. $P(x)$ holds \\
+        $x\sim y$ & $x$ and $y$ are equivalent under an understood equivalence relation \\
+        $A/\sim$ & the set of equivalence classes of $A$ under $\sim$ \\
         $\forall x\in A$ & for every $x\in A$ \\
-        $\exists x\in A$, $\exists!x\in A$, and $\nexists x\in A$ & existence, unique existence, and nonexistence in $A$ \\
+        $\exists x\in A$ & there exists $x\in A$ \\
+        $\exists!x\in A$ & there exists a unique $x\in A$ \\
+        $\nexists x\in A$ & there does not exist $x\in A$ \\
         $P\Rightarrow Q$ or $P\implies Q$ & $P$ implies $Q$ \\
         $P\Leftarrow Q$ or $P\impliedby Q$ & $Q$ implies $P$ \\
         $P\Leftrightarrow Q$ or $P\iff Q$ & $P$ if and only if $Q$ \\
-        $P\land Q$, $P\lor Q$, and $\neg P$ & logical and, or, and not \\
-        $f:X\to Y$ & a function from domain $X$ to codomain $Y$ \\
-        $x\mapsto f(x)$ & the rule sending $x$ to $f(x)$ \\
-        $\dom f$, $\codom f$, and $\id_X$ & the domain, codomain, and identity map on $X$ \\
-        $g\circ f$ and $f|_A$ & composition and restriction of a function \\
-        $f:X\hookrightarrow Y$ and $f:X\twoheadrightarrow Y$ & an injective and a surjective map \\
-        $f:X\xrightarrow{\sim}Y$ & an isomorphism, when the relevant structure is clear \\
+        $P\land Q$ & logical conjunction \\
+        $P\lor Q$ & logical disjunction \\
+        $\neg P$ & logical negation \\
+        $f:X\to Y$ & a function from $X$ to $Y$ \\
+        $x\mapsto f(x)$ & the elementwise rule of a function \\
+        $\dom f$ & the domain of $f$ \\
+        $\codom f$ & the codomain of $f$ \\
+        $\id_X$ & the identity map on $X$ \\
+        $g\circ f$ & composition of functions \\
+        $f|_A$ & restriction of $f$ to $A$ \\
+        $f:X\hookrightarrow Y$ & an injective map \\
+        $f:X\twoheadrightarrow Y$ & a surjective map \\
+        $f:X\xrightarrow{\sim}Y$ & an isomorphism \\
         $X\cong Y$ & $X$ and $Y$ are isomorphic \\
-        $f(A)$ and $f^{-1}(B)$ & the image of $A$ and the inverse image, or preimage, of $B$ \\
-        $\indicator{A}(x)$ & the indicator function of $A$, equal to $1$ on $A$ and $0$ outside $A$ \\
-        $\aleph_0$ and $\mathfrak{c}$ & the cardinalities of a countably infinite set and of the continuum, respectively \\
+        $f(A)$ & the image of $A$ under $f$ \\
+        $f^{-1}(B)$ & the inverse image, or preimage, of $B$ \\
+        $\indicator{A}(x)$ & the indicator function, or characteristic function, of $A$ \\
+        $\aleph_0$ & the cardinality of a countably infinite set \\
+        $\mathfrak{c}$ & the cardinality of the continuum \\
     \end{longtable}
     }
 
-    The indicator function is written as $\indicator{A}$, using a blackboard-bold
-    numeral rather than a bold numeral. Thus $\indicator{A}$ is not confused with
-    the all-ones vector $\ones$ or with a matrix. Boldface is reserved for vectors
-    and matrices throughout this book.
+    The indicator function is written as $\indicator{A}$; the all-ones vector is
+    $\ones$. Boldface is reserved for vectors and matrices.
 
     \section*{Calculus and Analysis}
 
-    The notation below follows the order of the four major parts of the chapter:
-    one-variable calculus, multivariable calculus, real analysis, and complex
-    analysis. The symbol $\nabla$ is read as ``nabla'' or ``del.'' For
-    logarithms, this book uses $\ln x$, $\lg x$, and $\lb x$ for bases
-    $e$, $10$, and $2$, respectively.
+    Logarithms to bases $e$, $10$, and $2$ are written as $\ln x$, $\lg x$,
+    and $\lb x$, respectively.
 
-    Coordinate symbols are fixed throughout the book. Cartesian coordinates are
-    $(x,y)$ in the plane and $(x,y,z)$ in space; polar coordinates are
-    $(r,\theta)$; cylindrical coordinates are $(r,\theta,z)$; and spherical
-    coordinates are $(\rho,\theta,\phi)$. Here $\theta$ is the azimuthal
-    angle measured counterclockwise from the positive $x$-axis in the $xy$-plane,
-    while $\phi$ is the polar angle measured from the positive $z$-axis.
-    Some references interchange the roles of $\theta$ and $\phi$; this book
-    never does so.
+    The coordinate conventions are
+    \[
+        \begin{aligned}
+            &\text{Cartesian:} &&(x,y),\quad(x,y,z),\\
+            &\text{polar:} &&(r,\theta),\\
+            &\text{cylindrical:} &&(r,\theta,z),\\
+            &\text{spherical:} &&(\rho,\theta,\phi).
+        \end{aligned}
+    \]
+    In polar, cylindrical, and spherical coordinates, $\theta$ is the azimuthal
+    angle measured counterclockwise from the positive $x$-axis in the
+    $xy$-plane. In spherical coordinates, $\phi$ is the polar angle measured
+    from the positive $z$-axis.
 
     \vspace{0.5em}
 
@@ -206,60 +205,59 @@
         \bottomrule
         \endlastfoot
 
-        $f'(a)$ and $f^{(n)}(a)$ & the first and $n$th derivatives of $f$ at $a$ \\
-        $\displaystyle \frac{\dd y}{\dd x}$ & the derivative of $y$ with respect to $x$, with upright differential $\dd$ \\
-        $\displaystyle \int_a^b f(x)\dd x$ & the definite integral of $f$ from $a$ to $b$ \\
-        $\ln x$, $\lg x$, and $\lb x$ & logarithms with bases $e$, $10$, and $2$, respectively \\
-        $\log_a x$ & the logarithm with explicitly specified base $a$ \\
-        $\arcsin x$, $\arccos x$, and $\arctan x$ & the principal inverse trigonometric functions; ambiguous powers such as $\sin^{-1}x$ are avoided \\
-        $C^k(I)$ and $C^\infty(I)$ & the $k$ times continuously differentiable and smooth functions on $I$ \\
-        $\displaystyle \frac{\partial f}{\partial x_i}$ & the partial derivative of $f$ with respect to $x_i$ \\
-        $(x,y)$ and $(x,y,z)$ & Cartesian coordinates in the plane and in space \\
-        $(r,\theta)$ & polar coordinates, with $r\geq0$ and azimuth $\theta$ \\
+        $f'(a)$ & the first derivative of $f$ at $a$ \\
+        $f^{(n)}(a)$ & the $n$th derivative of $f$ at $a$ \\
+        $\displaystyle\frac{\dd y}{\dd x}$ & the derivative of $y$ with respect to $x$, with upright $\dd$ \\
+        $\displaystyle\int_a^b f(x)\dd x$ & the definite integral of $f$ over $[a,b]$ \\
+        $\ln x$ & the logarithm to base $e$ \\
+        $\lg x$ & the logarithm to base $10$ \\
+        $\lb x$ & the logarithm to base $2$ \\
+        $\log_a x$ & the logarithm to the explicitly specified base $a$ \\
+        $\arcsin x$ & the principal inverse sine \\
+        $\arccos x$ & the principal inverse cosine \\
+        $\arctan x$ & the principal inverse tangent \\
+        $C^k(I)$ & the space of $k$ times continuously differentiable functions on $I$ \\
+        $C^\infty(I)$ & the space of smooth functions on $I$ \\
+        $\displaystyle\frac{\partial f}{\partial x_i}$ & the partial derivative of $f$ with respect to $x_i$ \\
+        $(x,y)$, $(x,y,z)$ & Cartesian coordinates \\
+        $(r,\theta)$ & polar coordinates \\
         $(r,\theta,z)$ & cylindrical coordinates \\
-        $(\rho,\theta,\phi)$ & spherical coordinates, with radius $\rho$, azimuth $\theta$, and polar angle $\phi$ \\
-        $\nabla f$ or $\grad f$ & the gradient of a scalar-valued function $f$ \\
-        $\nabla\cdot\mathbf{F}$ or $\divergence\mathbf{F}$ & the divergence of a vector field $\mathbf{F}$ \\
-        $\nabla\times\mathbf{F}$ or $\curl\mathbf{F}$ & the curl of a vector field $\mathbf{F}$ \\
-        $\Delta f$ & the Laplacian of $f$, usually $\nabla\cdot\nabla f$ \\
+        $(\rho,\theta,\phi)$ & spherical coordinates \\
+        $\nabla f$ or $\grad f$ & the gradient of $f$ \\
+        $\nabla\cdot\mathbf{F}$ or $\divergence\mathbf{F}$ & the divergence of $\mathbf{F}$ \\
+        $\nabla\times\mathbf{F}$ or $\curl\mathbf{F}$ & the curl of $\mathbf{F}$ \\
+        $\Delta f$ & the Laplacian of $f$ \\
         $D\mathbf{F}(\mathbf{a})$ & the total derivative, or Jacobian matrix, of $\mathbf{F}$ at $\mathbf{a}$ \\
-        $\Jac(\mathbf{F})$ & the Jacobian determinant of $\mathbf{F}$, when defined \\
-        $\Hess f$ & the Hessian matrix of a scalar-valued function $f$ \\
-        $\mathbf{r}(t)$ and $\dd s$ & a parametrized curve and its element of arc length \\
-        $\displaystyle \int_C \mathbf{F}\cdot\dd\mathbf{r}$ & a line integral of a vector field along $C$ \\
-        $\displaystyle \iint_S \mathbf{F}\cdot\mathbf{n}\dd S$ & a flux integral across $S$ \\
-        $B_r(x)$ and $\overline{B}_r(x)$ & the open and closed balls of radius $r$ centered at $x$ \\
-        $x_n\to x$, $a_n\nearrow L$, and $a_n\searrow L$ & ordinary, monotone increasing, and monotone decreasing convergence \\
-        $\limsup a_n$ and $\liminf a_n$ & the limit superior and limit inferior of a sequence \\
-        $f_n\to f$ or $f_n\ptwto f$ & pointwise convergence, once the mode has been declared \\
-        $f_n\rightrightarrows f$ or $f_n\unifto f$ & uniform convergence of functions \\
+        $\Jac(\mathbf{F})$ & the Jacobian determinant of $\mathbf{F}$ \\
+        $\Hess f$ & the Hessian matrix of $f$ \\
+        $\mathbf{r}(t)$ & a parametrized curve \\
+        $\dd s$ & an element of arc length \\
+        $\displaystyle\int_C\mathbf{F}\cdot\dd\mathbf{r}$ & a line integral along $C$ \\
+        $\displaystyle\iint_S\mathbf{F}\cdot\mathbf{n}\dd S$ & a flux integral across $S$ \\
+        $B_r(x)$ & the open ball of radius $r$ centered at $x$ \\
+        $\overline{B}_r(x)$ & the closed ball of radius $r$ centered at $x$ \\
+        $x_n\to x$ & convergence of a sequence \\
+        $a_n\nearrow L$ & monotone increasing convergence to $L$ \\
+        $a_n\searrow L$ & monotone decreasing convergence to $L$ \\
+        $\limsup a_n$ & the limit superior of $(a_n)$ \\
+        $\liminf a_n$ & the limit inferior of $(a_n)$ \\
+        $f_n\to f$ or $f_n\ptwto f$ & pointwise convergence \\
+        $f_n\rightrightarrows f$ or $f_n\unifto f$ & uniform convergence \\
         $f_n\aeto f$ & convergence almost everywhere \\
         $\|f\|_\infty$ & the supremum norm of $f$ \\
         $z=x+iy$ & a complex number with real part $x$ and imaginary part $y$ \\
-        $\Real z$ or $\Re z$ & the real part of $z$ \\
-        $\Imag z$ or $\Im z$ & the imaginary part of $z$ \\
-        $\overline{z}$, $|z|$, and $\arg z$ & the conjugate, modulus, and argument of $z$ \\
-        $\displaystyle \oint_C f(z)\dd z$ & a contour integral around a closed curve $C$ \\
-        $\Res(f;a)$ & the residue of $f$ at the isolated singularity $a$ \\
+        $\Real z$ or $\Re z$, $\Imag z$ or $\Im z$ & the real and imaginary parts of $z$ \\
+        $\overline{z}$ & the complex conjugate of $z$ \\
+        $|z|$ & the modulus of $z$ \\
+        $\arg z$ & an argument of $z$ \\
+        $\displaystyle\oint_C f(z)\dd z$ & a contour integral around a closed curve $C$ \\
+        $\Res(f;a)$ & the residue of $f$ at $a$ \\
     \end{longtable}
     }
 
-    The ordinary arrow $\to$ is standard for sequence convergence and is also
-    used for pointwise convergence once that meaning has been declared. Because no
-    single special arrow for pointwise convergence is universal, $\ptwto$ is used
-    when the mode should be visible directly on the arrow. The double arrow
-    $\rightrightarrows$ is a common, though not universal, convention for uniform
-    convergence; $\unifto$ is the explicit alternative. Equivalent forms are
-    listed on the same line, and the book uses them consistently whenever no
-    ambiguity is possible.
-
     \section*{Linear Algebra}
 
-    Vectors and matrices are always bold, while scalars and linear maps remain
-    ordinary italic letters. Thus $\mathbf{v}\in\R^n$ is a vector,
-    $\mathbf{A}\in\R^{m\times n}$ is a matrix, $\lambda$ is a scalar eigenvalue,
-    and $T:V\to W$ is a linear map. The notation $\Imag z$ remains reserved for
-    the imaginary part of a complex number.
+    Vectors and matrices are bold; scalars and linear maps are ordinary italic.
 
     \vspace{0.5em}
 
@@ -280,65 +278,46 @@
         \endlastfoot
 
         $\mathbf{A}=(a_{ij})$ & the matrix whose $(i,j)$-entry is $a_{ij}$ \\
-        $\mathbf{A}^{\mathsf T}$ and $\mathbf{A}^{\mathsf H}$ & the transpose and Hermitian transpose of $\mathbf{A}$ \\
-        $\mathbf{A}^{-1}$ & the inverse of an invertible matrix $\mathbf{A}$ \\
-        $\mathbf{I}_n$, $\mathbf{0}$, and $\mathbf{D}$ & the identity matrix, a zero vector or matrix, and a diagonal matrix \\
-        $\ones$ & the all-ones vector, when its dimension is clear \\
-        $\mathbf{J}_{m,n}$ and $\mathbf{J}_n$ & the $m\times n$ and $n\times n$ all-ones matrices \\
+        $\mathbf{A}^{\mathsf T}$ & the transpose of $\mathbf{A}$ \\
+        $\mathbf{A}^{\mathsf H}$ & the Hermitian transpose of $\mathbf{A}$ \\
+        $\mathbf{A}^{-1}$ & the inverse of $\mathbf{A}$ \\
+        $\mathbf{I}_n$ & the $n\times n$ identity matrix \\
+        $\mathbf{0}$ & a zero vector or zero matrix, with dimension clear from context \\
+        $\mathbf{D}$ & a diagonal matrix \\
+        $\ones$ & the all-ones vector \\
+        $\mathbf{J}_{m,n}$, $\mathbf{J}_n$ & the $m\times n$ and $n\times n$ all-ones matrices \\
         $\mathbf{P}_\sigma$ & the permutation matrix associated with $\sigma$ \\
-        $\det(\mathbf{A})$, $\rk(\mathbf{A})$, and $\tr(\mathbf{A})$ & the determinant, rank, and trace of $\mathbf{A}$ \\
-        $p_{\mathbf{A}}(\lambda)$ and $m_{\mathbf{A}}(\lambda)$ & the characteristic and minimal polynomials of $\mathbf{A}$ \\
-        $\rho(\mathbf{A})$ and $\sigma_i(\mathbf{A})$ & the spectral radius and the $i$th singular value of $\mathbf{A}$ \\
-        $M_{ij}$ and $C_{ij}=(-1)^{i+j}M_{ij}$ & the minor and cofactor of the entry $a_{ij}$ \\
-        $\mathbf{C}=(C_{ij})$ and $\adj(\mathbf{A})=\mathbf{C}^{\mathsf T}$ & the cofactor matrix and adjugate of $\mathbf{A}$ \\
-        $\Col(\mathbf{A})$ and $\Null(\mathbf{A})$ & the column space and null space of $\mathbf{A}$ \\
-        $\Col(\mathbf{A}^{\mathsf T})$ or $\Row(\mathbf{A})$ & the row space of a real matrix $\mathbf{A}$ \\
-        $\Col(\mathbf{A}^{\mathsf H})$ & the row space of a complex matrix $\mathbf{A}$ \\
-        $\ker T$ and $\image T$ & the kernel and image of a linear map $T$ \\
+        $\det(\mathbf{A})$ & the determinant of $\mathbf{A}$ \\
+        $\rk(\mathbf{A})$ & the rank of $\mathbf{A}$ \\
+        $\tr(\mathbf{A})$ & the trace of $\mathbf{A}$ \\
+        $p_{\mathbf{A}}(\lambda)$ & the characteristic polynomial of $\mathbf{A}$ \\
+        $m_{\mathbf{A}}(\lambda)$ & the minimal polynomial of $\mathbf{A}$ \\
+        $\rho(\mathbf{A})$ & the spectral radius of $\mathbf{A}$ \\
+        $\sigma_i(\mathbf{A})$ & the $i$th singular value of $\mathbf{A}$ \\
+        $M_{ij}$ & the minor of the entry $a_{ij}$ \\
+        $C_{ij}=(-1)^{i+j}M_{ij}$ & the cofactor of the entry $a_{ij}$ \\
+        $\adj(\mathbf{A})$ & the adjugate of $\mathbf{A}$ \\
+        $\Col(\mathbf{A})$ & the column space of $\mathbf{A}$ \\
+        $\Null(\mathbf{A})$ & the null space of $\mathbf{A}$ \\
+        $\Row(\mathbf{A})$ & the row space of $\mathbf{A}$ \\
+        $\ker T$ & the kernel of a linear map $T$ \\
+        $\image T$ & the image of a linear map $T$ \\
         $\mathbf{e}_i$ & the $i$th standard basis vector \\
-        $\Span(\mathbf{v}_1,\dots,\mathbf{v}_k)$ & the span of $\mathbf{v}_1,\dots,\mathbf{v}_k$ \\
+        $\Span(\mathbf{v}_1,\dots,\mathbf{v}_k)$ & the span of the listed vectors \\
         $U\oplus V$ & the direct sum of subspaces $U$ and $V$ \\
-        $\langle\mathbf{u},\mathbf{v}\rangle$ and $\|\mathbf{v}\|$ & the inner product and norm \\
+        $\langle\mathbf{u},\mathbf{v}\rangle$ & the inner product of $\mathbf{u}$ and $\mathbf{v}$ \\
+        $\|\mathbf{v}\|$ & the norm of $\mathbf{v}$ \\
         $\proj_{\mathbf{v}}\mathbf{x}$ & the orthogonal projection of $\mathbf{x}$ onto $\Span(\mathbf{v})$ \\
-        $\mathbf{u}\perp\mathbf{v}$ and $\mathbf{u}\times\mathbf{v}$ & orthogonality and the cross product in $\R^3$ \\
-        $\det(\mathbf{u},\mathbf{v},\mathbf{w})$ & the determinant of the matrix with columns $\mathbf{u},\mathbf{v},\mathbf{w}$ \\
+        $\mathbf{u}\perp\mathbf{v}$ & $\mathbf{u}$ and $\mathbf{v}$ are orthogonal \\
+        $\mathbf{u}\times\mathbf{v}$ & the cross product in $\R^3$ \\
     \end{longtable}
     }
 
-    The four fundamental subspaces of $\mathbf{A}\in\R^{m\times n}$ are
-    \[
-        \Col(\mathbf{A}),\qquad
-        \Null(\mathbf{A}),\qquad
-        \Col(\mathbf{A}^{\mathsf T}),\qquad
-        \Null(\mathbf{A}^{\mathsf T}).
-    \]
-    Their standard orthogonal decompositions are
-    \[
-        \R^m=\Col(\mathbf{A})\oplus\Null(\mathbf{A}^{\mathsf T}),
-        \qquad
-        \R^n=\Col(\mathbf{A}^{\mathsf T})\oplus\Null(\mathbf{A}).
-    \]
-    For $\mathbf{A}\in\C^{m\times n}$, replace the transpose by the Hermitian
-    transpose:
-    \[
-        \C^m=\Col(\mathbf{A})\oplus\Null(\mathbf{A}^{\mathsf H}),
-        \qquad
-        \C^n=\Col(\mathbf{A}^{\mathsf H})\oplus\Null(\mathbf{A}).
-    \]
-    The symbol $\mathbf{A}^{*}$ is not used for the adjugate or the Hermitian
-    transpose; this book writes $\adj(\mathbf{A})$ and
-    $\mathbf{A}^{\mathsf H}$ explicitly.
-
     \section*{Differential Equations}
-
-    Differential equations are written using standard derivative notation.
-    The independent variable is usually $t$ or $x$, depending on the context.
-
-    \vspace{0.5em}
 
     {\small
     \renewcommand{\arraystretch}{1.18}
-    \begin{longtable}{@{}L{0.24\textwidth}L{0.68\textwidth}@{}}
+    \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}
         \toprule
         Notation & Meaning \\
         \midrule
@@ -352,23 +331,23 @@
         \bottomrule
         \endlastfoot
 
-        $y'$ & the first derivative of $y$ with respect to the relevant variable \\
-        $y''$ & the second derivative of $y$ with respect to the relevant variable \\
-        $\dot{x}$ & the derivative of $x$ with respect to time $t$ \\
+        $y'$ & the first derivative of $y$ with respect to the independent variable \\
+        $y''$ & the second derivative of $y$ \\
+        $\dot{x}$ & the first derivative of $x$ with respect to time $t$ \\
         $\ddot{x}$ & the second derivative of $x$ with respect to time $t$ \\
         $y_h$ & the homogeneous part of a solution \\
         $y_p$ & a particular solution \\
         $c_1,c_2,\dots$ & arbitrary constants in a general solution \\
         $W(y_1,y_2)(t)$ & the Wronskian of $y_1$ and $y_2$ \\
         $\mathcal{L}\{f(t)\}(s)$ & the Laplace transform of $f(t)$ \\
+        $\widehat{f}(\omega)$ & the Fourier transform of $f$ under the convention stated in the text \\
     \end{longtable}
     }
 
-    \section*{Combinatorics and Discrete Mathematics, Probability and Statistics}
+    \section*{Combinatorics and Discrete Mathematics}
 
-    Combinatorial notation is arranged from finite counting to sequences,
-    permutations, graphs, and probability. The symbol $\multichoose{n}{k}$ is
-    reserved for combinations with repetition.
+    The symbol $\multichoose{n}{k}$ is reserved for combinations with
+    repetition.
 
     \vspace{0.5em}
 
@@ -391,36 +370,67 @@
         $[n]$ & the set $\{1,2,\dots,n\}$ \\
         $n!$ & factorial \\
         $\binom{n}{k}$ & the number of $k$-element subsets of an $n$-element set \\
-        $\multichoose{n}{k}$ & the number of size-$k$ multisets chosen from an $n$-element set, equal to $\binom{n+k-1}{k}$ \\
+        $\multichoose{n}{k}$ & the number of size-$k$ multisets chosen from an $n$-element set \\
         $P(n,k)$ & the number of $k$-permutations of an $n$-element set \\
         $\stirlingsecond{n}{k}$ & the Stirling number of the second kind \\
-        $a_n$, $\Delta a_n$, and $S_n=\displaystyle\sum_{k=1}^{n}a_k$ & a sequence term, forward difference, and partial sum \\
-        $A(x)=\displaystyle\sum_{n\geq 0}a_nx^n$ and $[x^n]A(x)$ & an ordinary generating function and coefficient extraction \\
+        $a_n$ & the $n$th term of a sequence \\
+        $\Delta a_n$ & the forward difference $a_{n+1}-a_n$ \\
+        $S_n=\displaystyle\sum_{k=1}^{n}a_k$ & the $n$th partial sum \\
+        $A(x)=\displaystyle\sum_{n\geq0}a_nx^n$ & an ordinary generating function \\
+        $[x^n]A(x)$ & the coefficient of $x^n$ in $A(x)$ \\
         $\omega_n=e^{2\pi i/n}$ & a primitive $n$th root of unity \\
-        $\sigma=(a_1\ a_2\ \cdots\ a_k)$ and $\inv(\sigma)$ & cycle notation and inversion number \\
-        $\Fix(g)$ & the set of objects fixed by a symmetry $g$ \\
+        $\sigma=(a_1\ a_2\ \cdots\ a_k)$ & cycle notation for a permutation \\
+        $\inv(\sigma)$ & the inversion number of $\sigma$ \\
+        $\Fix(g)$ & the set of objects fixed by $g$ \\
         $G=(V,E)$ & a graph with vertex set $V$ and edge set $E$ \\
-        $\deg(v)$ & the degree of a vertex $v$ \\
-        $K_n$, $C_n$, and $P_n$ & the complete, cycle, and path graphs on $n$ vertices \\
-        $\Prob(A)$ and $\Prob(A\mid B)$ & probability and conditional probability \\
-        $\Exp[X]$, $\Var(X)$, and $\Cov(X,Y)$ & expectation, variance, and covariance \\
-        $X\sim\Bin(n,p)$ & a binomial distribution \\
-        $X\sim\Poi(\lambda)$ & a Poisson distribution \\
-        $X\sim\Normal(\mu,\sigma^2)$ & a normal distribution with mean $\mu$ and variance $\sigma^2$ \\
-        $X_n\asto X$, $X_n\probto X$, $X_n\Lpto{p}X$, and $X_n\distto X$ & almost-sure, probability, $L^p$, and distributional convergence \\
+        $\deg(v)$ & the degree of the vertex $v$ \\
+        $K_n$ & the complete graph on $n$ vertices \\
+        $C_n$ & the cycle graph on $n$ vertices \\
+        $P_n$ & the path graph on $n$ vertices \\
     \end{longtable}
     }
 
-    The labels $\mathrm{a.s.}$, $\Prob$, $L^p$, and $\mathrm{d}$ on convergence
-    arrows are standard. On such an arrow, $\mathrm{d}$ means ``in
-    distribution'' and is distinct from the upright differential $\dd$.
+    \section*{Probability and Statistics}
+
     Random variables are usually denoted by uppercase letters such as $X,Y,Z$;
     events are denoted by uppercase letters such as $A,B,E$.
 
+    \vspace{0.5em}
+
+    {\small
+    \renewcommand{\arraystretch}{1.18}
+    \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}
+        \toprule
+        Notation & Meaning \\
+        \midrule
+        \endfirsthead
+
+        \toprule
+        Notation & Meaning \\
+        \midrule
+        \endhead
+
+        \bottomrule
+        \endlastfoot
+
+        $\Prob(A)$ & the probability of the event $A$ \\
+        $\Prob(A\mid B)$ & the conditional probability of $A$ given $B$ \\
+        $\Exp[X]$ & the expectation of $X$ \\
+        $\Var(X)$ & the variance of $X$ \\
+        $\Cov(X,Y)$ & the covariance of $X$ and $Y$ \\
+        $X\sim\Bin(n,p)$ & a binomial distribution \\
+        $X\sim\Poi(\lambda)$ & a Poisson distribution \\
+        $X\sim\Normal(\mu,\sigma^2)$ & a normal distribution with mean $\mu$ and variance $\sigma^2$ \\
+        $X_n\asto X$ & almost-sure convergence \\
+        $X_n\probto X$ & convergence in probability \\
+        $X_n\Lpto{p}X$ & convergence in $L^p$ \\
+        $X_n\distto X$ & convergence in distribution \\
+    \end{longtable}
+    }
+
     \section*{Geometry}
 
-    We use standard geometric notation unless otherwise stated. In a triangle,
-    $R$, $r$, $s$, and $\Delta$ conventionally denote the circumradius,
+    For a triangle, $R$, $r$, $s$, and $\Delta$ denote the circumradius,
     inradius, semiperimeter, and area.
 
     \vspace{0.5em}
@@ -441,24 +451,26 @@
         \bottomrule
         \endlastfoot
 
-        $\triangle ABC$ and $\angle ABC$ & the triangle with vertices $A,B,C$ and the angle with vertex $B$ \\
-        $\overline{AB}$ and $AB$ & the segment joining $A$ and $B$, and its length \\
-        $[ABC]$ or $\Delta$ & the area of triangle $ABC$ \\
-        $\conv(S)$ & the convex hull of a point set $S$ \\
-        $R$, $r$, and $s$ & the circumradius, inradius, and semiperimeter of a triangle \\
-        $I$ and $B$ & the numbers of interior and boundary lattice points in Pick's Theorem \\
-        $\parallel$ and $\perp$ & parallel and perpendicular \\
+        $\triangle ABC$ & the triangle with vertices $A,B,C$ \\
+        $\angle ABC$ & the angle with vertex $B$ \\
+        $\overline{AB}$ & the segment joining $A$ and $B$ \\
+        $AB$ & the length of $\overline{AB}$ \\
+        $[ABC]$ or $\Delta$ & the area of $\triangle ABC$ \\
+        $\conv(S)$ & the convex hull of $S$ \\
+        $R$ & the circumradius of a triangle \\
+        $r$ & the inradius of a triangle \\
+        $s$ & the semiperimeter of a triangle \\
+        $I$ & the number of interior lattice points in Pick's Theorem \\
+        $B$ & the number of boundary lattice points in Pick's Theorem \\
+        $\parallel$ & parallel \\
+        $\perp$ & perpendicular \\
     \end{longtable}
     }
 
     \section*{Number Theory}
 
-    Number theory and algebra are closely connected. In this book, notation
-    belonging directly to divisibility, congruences, arithmetic functions,
-    groups of residues, and finite fields is placed here first. Algebraic
-    notation with no primary number-theoretic role is reserved for the next
-    section. Unless otherwise stated, divisibility and congruence statements
-    are made in $\Z$.
+    Unless otherwise stated, divisibility and congruence statements are made in
+    $\Z$.
 
     \vspace{0.5em}
 
@@ -486,31 +498,24 @@
         $[a]_n$ & the residue class of $a$ modulo $n$ \\
         $\Z/n\Z$ & the ring of residue classes modulo $n$ \\
         $(\Z/n\Z)^\times$ & the multiplicative group of units modulo $n$ \\
-        $a^{-1}\pmod n$ & the multiplicative inverse of $a$ modulo $n$, when it exists \\
-        $\left(\frac{a}{p}\right)$ & the Legendre symbol, for an odd prime $p$ \\
+        $a^{-1}\pmod n$ & the multiplicative inverse of $a$ modulo $n$ \\
+        $\left(\frac{a}{p}\right)$ & the Legendre symbol \\
         $\varphi(n)$ & Euler's phi function, or Euler's totient function \\
         $\ord_n(a)$ & the multiplicative order of $a$ modulo $n$ \\
-        $\nu_p(n)$ & the exponent of the prime $p$ in the prime factorization of $n$ \\
+        $\nu_p(n)$ & the exponent of $p$ in the prime factorization of $n$ \\
         $\tau(n)$ & the number of positive divisors of $n$ \\
         $\sigma(n)$ & the sum of the positive divisors of $n$ \\
         $\mu(n)$ & the M\"obius function \\
         $p$ & usually a prime number in number-theoretic contexts \\
-        $\mathbb{F}_q$ & the finite field with $q$ elements, where $q$ is a prime power \\
+        $\mathbb{F}_q$ & the finite field with $q$ elements \\
     \end{longtable}
     }
 
-    The Chinese Remainder Theorem may be abbreviated as CRT after it is first
-    introduced. When a group or field appears specifically as an arithmetic
-    object, such as $(\Z/n\Z)^\times$ or $\mathbb{F}_q$, it remains part of the
-    number-theory notation of this book.
-
     \section*{Algebra}
 
-    This section records notation for algebraic structures and constructions
-    whose principal role in the book is not number-theoretic. Capital letters
-    such as $G,H$ denote groups, $R,S$ denote rings, and $F,K,L$ denote fields;
-    lowercase letters denote their elements unless the context requires
-    otherwise.
+    Capital letters such as $G,H$ denote groups, $R,S$ denote rings, and
+    $F,K,L$ denote fields; lowercase letters denote their elements unless the
+    context requires otherwise.
 
     \vspace{0.5em}
 
@@ -531,43 +536,65 @@
         \endlastfoot
 
         $G$ & usually a group \\
-        $S_n$ and $A_n$ & the symmetric and alternating groups on $n$ symbols \\
+        $S_n$ & the symmetric group on $n$ symbols \\
+        $A_n$ & the alternating group on $n$ symbols \\
         $D_{2n}$ & the dihedral group of order $2n$ \\
-        $e$ & the identity element of a group, when the context is clear \\
+        $e$ & the identity element of a group \\
         $|G|$ & the order of a finite group $G$ \\
-        $\langle S\rangle$ & the subgroup generated by a subset $S$ \\
+        $\langle S\rangle$ & the subgroup generated by $S$ \\
         $H\leq G$ & $H$ is a subgroup of $G$ \\
         $H\trianglelefteq G$ & $H$ is a normal subgroup of $G$ \\
         $G/H$ & the quotient group of $G$ by $H$ \\
         $\ker\varphi$ & the kernel of a homomorphism $\varphi$ \\
         $\image\varphi$ & the image of a homomorphism $\varphi$ \\
         $\Aut(G)$ & the automorphism group of $G$ \\
-        $G\cdot x$ & the orbit of $x$ under a group action of $G$ \\
-        $G_x$ & the stabilizer of $x$ under a group action of $G$ \\
+        $G\cdot x$ & the orbit of $x$ under a group action \\
+        $G_x$ & the stabilizer of $x$ under a group action \\
         $Z(G)$ & the center of $G$ \\
         $C_G(x)$ & the centralizer of $x$ in $G$ \\
-        $\GL_n(F)$ & the general linear group of invertible $n\times n$ matrices over $F$ \\
-        $\SL_n(F)$ & the special linear group of determinant-one matrices over $F$ \\
+        $\GL_n(F)$ & the general linear group over $F$ \\
+        $\SL_n(F)$ & the special linear group over $F$ \\
         $R$ & usually a ring \\
-        $I\trianglelefteq R$ & $I$ is an ideal of the ring $R$ \\
-        $R/I$ & the quotient ring of $R$ by the ideal $I$ \\
+        $I\trianglelefteq R$ & $I$ is an ideal of $R$ \\
+        $R/I$ & the quotient ring of $R$ by $I$ \\
         $F$ or $K$ & usually a field \\
-        $F[x]$ & the polynomial ring over a field $F$ \\
+        $F[x]$ & the polynomial ring over $F$ \\
         $\deg f$ & the degree of a polynomial $f$ \\
-        $\characteristic F$ & the characteristic of a field $F$ \\
-        $\Gal(L/K)$ & the Galois group of a field extension $L/K$ \\
+        $\Disc(f)$ & the discriminant of a polynomial $f$ \\
+        $\characteristic F$ & the characteristic of $F$ \\
+        $\Gal(L/K)$ & the Galois group of the extension $L/K$ \\
     \end{longtable}
     }
 
-    In algebraic contexts, $\deg f$ denotes the degree of a polynomial $f$; in
-    graph-theoretic contexts, $\deg(v)$ denotes the degree of a vertex.
+    \section*{Topology}
+
+    {\small
+    \renewcommand{\arraystretch}{1.18}
+    \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}
+        \toprule
+        Notation & Meaning \\
+        \midrule
+        \endfirsthead
+
+        \toprule
+        Notation & Meaning \\
+        \midrule
+        \endhead
+
+        \bottomrule
+        \endlastfoot
+
+        $(X,\mathcal{T})$ & a topological space \\
+        $\interior A$ & the interior of $A$ \\
+        $\overline{A}$ & the closure of $A$ \\
+        $\partial A$ & the boundary of $A$ \\
+        $X\cong Y$ & homeomorphic spaces when the context is topological \\
+        $\pi_1(X,x_0)$ & the fundamental group of $X$ based at $x_0$ \\
+        $\chi(X)$ & the Euler characteristic of $X$ \\
+    \end{longtable}
+    }
 
     \section*{Miscellaneous Topics}
-
-    Some symbols have different meanings in different areas. In this book, the
-    intended meaning should always be clear from context.
-
-    \vspace{0.5em}
 
     {\small
     \renewcommand{\arraystretch}{1.18}
@@ -587,7 +614,7 @@
 
         $\lfloor x\rfloor$ & the floor of $x$ \\
         $\lceil x\rceil$ & the ceiling of $x$ \\
-        $\{x\}$ & the fractional part of $x$, usually $x-\lfloor x\rfloor$ \\
+        $\{x\}$ & the fractional part $x-\lfloor x\rfloor$ \\
         RH & the Riemann Hypothesis, after it has been introduced \\
         P vs NP & the P versus NP problem, after it has been introduced \\
     \end{longtable}

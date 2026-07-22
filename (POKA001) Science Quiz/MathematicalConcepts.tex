@@ -7,17 +7,19 @@
     \begin{definition}[Set and Element]
         A set is a collection of objects, called its elements. We write
         $x\in A$ if $x$ is an element of $A$, and $x\notin A$ otherwise.
-        If every element of $A$ is also an element of $B$, then
-        $A\subseteq B$.
+        The relation $A\subseteq B$ means
+        \[
+            \forall x,\qquad x\in A\Rightarrow x\in B.
+        \]
     \end{definition}
 
     \begin{formula}[Basic Set Operations]
         For sets $A$ and $B$ inside an ambient set $U$, we use
         \[
-            A\cup B=\{x\in U\mid x\in A\text{ or }x\in B\},
+            A\cup B=\{x\in U\mid (x\in A)\lor(x\in B)\},
         \]
         \[
-            A\cap B=\{x\in U\mid x\in A\text{ and }x\in B\},
+            A\cap B=\{x\in U\mid (x\in A)\land(x\in B)\},
         \]
         and
         \[
@@ -68,10 +70,10 @@
         \[
             \neg(\forall x\in A,\ P(x))
             \Longleftrightarrow
-            \exists x\in A\text{ such that }\neg P(x),
+            \exists x\in A\ \text{s.t.}\ \neg P(x),
         \]
         \[
-            \neg(\exists x\in A\text{ such that }P(x))
+            \neg(\exists x\in A\ \text{s.t.}\ P(x))
             \Longleftrightarrow
             \forall x\in A,\ \neg P(x).
         \]
@@ -134,7 +136,7 @@
         \[
             \forall y\in Y,
             \qquad
-            \exists x\in X\text{ such that }f(x)=y.
+            \exists x\in X\ \text{s.t.}\ f(x)=y.
         \]
         Once surjectivity has been established, one may write
         $f:X\twoheadrightarrow Y$. The function is bijective if it is both
@@ -270,11 +272,6 @@
         Principles of Mathematical Analysis (Walter Rudin)}
 
     \section*{One-Variable Calculus}
-
-    One-variable calculus is presented here together with fast sequence,
-    recurrence, limit, series, and integration techniques. The emphasis is on
-    recognizing a standard structure quickly enough to use it in a short contest
-    or Science Quiz calculation.
 
     \begin{formula}[Arithmetic and Geometric Progressions]
         For an arithmetic progression with first term $a$ and common difference
@@ -562,10 +559,71 @@
     \end{formula}
 
     \begin{strategy}
-        These limits are often faster than L'H\^opital's Rule. In a quiz, the
+        These limits are often faster than L'H\^opital's Rule. The
         expressions $\sin x$, $1-\cos x$, $e^x-1$, $\ln(1+x)$, and
         $(1+x)^{1/x}$ are strong signals for these standard patterns.
     \end{strategy}
+
+    \begin{formula}[Trigonometric Identity Table]
+        The principal trigonometric identities are
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.25\textwidth}L{0.67\textwidth}@{}}
+            \toprule
+            Type & Identities \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Type & Identities \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Reciprocal &
+            $\displaystyle \sec x=\frac{1}{\cos x},\quad
+            \csc x=\frac{1}{\sin x},\quad
+            \cot x=\frac{1}{\tan x}$ \\
+            Quotient &
+            $\displaystyle \tan x=\frac{\sin x}{\cos x},\quad
+            \cot x=\frac{\cos x}{\sin x}$ \\
+            Pythagorean &
+            $\sin^2x+\cos^2x=1$, $1+\tan^2x=\sec^2x$,
+            $1+\cot^2x=\csc^2x$ \\
+            Angle addition &
+            $\sin(x\pm y)=\sin x\cos y\pm\cos x\sin y$ \\
+            Angle addition &
+            $\cos(x\pm y)=\cos x\cos y\mp\sin x\sin y$ \\
+            Angle addition &
+            $\displaystyle\tan(x\pm y)=
+            \frac{\tan x\pm\tan y}{1\mp\tan x\tan y}$ \\
+            Double angle &
+            $\sin 2x=2\sin x\cos x$ \\
+            Double angle &
+            $\cos 2x=\cos^2x-\sin^2x=2\cos^2x-1=1-2\sin^2x$ \\
+            Double angle &
+            $\displaystyle\tan 2x=\frac{2\tan x}{1-\tan^2x}$ \\
+            Half angle &
+            $\displaystyle\sin^2\frac{x}{2}=\frac{1-\cos x}{2},\quad
+            \cos^2\frac{x}{2}=\frac{1+\cos x}{2}$ \\
+            Product-to-sum &
+            $\displaystyle2\sin x\sin y=\cos(x-y)-\cos(x+y)$ \\
+            Product-to-sum &
+            $\displaystyle2\cos x\cos y=\cos(x-y)+\cos(x+y)$ \\
+            Product-to-sum &
+            $\displaystyle2\sin x\cos y=\sin(x+y)+\sin(x-y)$ \\
+            Sum-to-product &
+            $\displaystyle\sin x+\sin y=
+            2\sin\frac{x+y}{2}\cos\frac{x-y}{2}$ \\
+            Sum-to-product &
+            $\displaystyle\cos x+\cos y=
+            2\cos\frac{x+y}{2}\cos\frac{x-y}{2}$ \\
+        \end{longtable}
+        }
+    \end{formula}
 
     \begin{theorem}[L'H\^opital's Rule]
         Let $f$ and $g$ be differentiable on a deleted neighborhood of $a$, and
@@ -673,9 +731,8 @@
     \end{formula}
 
     \begin{tactic}
-        In a $150$-second quiz problem, the antiderivative is usually hidden by
-        a simple substitution, symmetry, completing the square, or integration by
-        parts. Try those before expanding into a long calculation.
+        An antiderivative is often exposed by a simple substitution, symmetry,
+        completing the square, or integration by parts. Try those before expanding into a long calculation.
     \end{tactic}
 
     \begin{theorem}[Intermediate Value Theorem]
@@ -898,7 +955,7 @@
     \end{formula}
 
     \begin{formula}[Classical Series Values]
-        The following series values are worth memorizing:
+        The following standard series values are useful in computation:
         \[
             \sum_{n=1}^{\infty}\frac{1}{n^2}
             =
@@ -1590,8 +1647,7 @@
     \end{formula}
 
     \begin{strategy}
-        For Science Quiz, the test names matter. Factorials and powers often
-        suggest the Ratio Test, $n$th powers suggest the Root Test, and
+        Factorials and powers often suggest the Ratio Test, $n$th powers suggest the Root Test, and
         alternating signs with decreasing terms suggest the Alternating Series
         Test.
     \end{strategy}
@@ -1861,6 +1917,76 @@
         the positive $z$-axis.
     \end{formula}
 
+    \begin{formula}[Differential Operators in Standard Coordinates]
+        Let
+        \[
+            \mathbf{F}
+            =F_r\mathbf{e}_r+F_\theta\mathbf{e}_\theta+F_z\mathbf{e}_z
+        \]
+        in cylindrical coordinates. Then
+        \[
+            \nabla f
+            =
+            \frac{\partial f}{\partial r}\mathbf{e}_r
+            +\frac{1}{r}\frac{\partial f}{\partial\theta}\mathbf{e}_\theta
+            +\frac{\partial f}{\partial z}\mathbf{e}_z,
+        \]
+        \[
+            \nabla\cdot\mathbf{F}
+            =
+            \frac{1}{r}\frac{\partial}{\partial r}(rF_r)
+            +\frac{1}{r}\frac{\partial F_\theta}{\partial\theta}
+            +\frac{\partial F_z}{\partial z},
+        \]
+        and
+        \[
+            \Delta f
+            =
+            \frac{1}{r}\frac{\partial}{\partial r}
+            \left(r\frac{\partial f}{\partial r}\right)
+            +\frac{1}{r^2}\frac{\partial^2f}{\partial\theta^2}
+            +\frac{\partial^2f}{\partial z^2}.
+        \]
+
+        In spherical coordinates $(\rho,\theta,\phi)$, where $\theta$ is the
+        azimuthal angle and $\phi$ is the polar angle, write
+        \[
+            \mathbf{F}
+            =F_\rho\mathbf{e}_\rho
+            +F_\theta\mathbf{e}_\theta
+            +F_\phi\mathbf{e}_\phi.
+        \]
+        Then
+        \[
+            \nabla f
+            =
+            \frac{\partial f}{\partial\rho}\mathbf{e}_\rho
+            +\frac{1}{\rho\sin\phi}
+             \frac{\partial f}{\partial\theta}\mathbf{e}_\theta
+            +\frac{1}{\rho}
+             \frac{\partial f}{\partial\phi}\mathbf{e}_\phi,
+        \]
+        \[
+            \nabla\cdot\mathbf{F}
+            =
+            \frac{1}{\rho^2}\frac{\partial}{\partial\rho}(\rho^2F_\rho)
+            +\frac{1}{\rho\sin\phi}\frac{\partial F_\theta}{\partial\theta}
+            +\frac{1}{\rho\sin\phi}
+             \frac{\partial}{\partial\phi}(\sin\phi\,F_\phi),
+        \]
+        and
+        \[
+            \Delta f
+            =
+            \frac{1}{\rho^2}\frac{\partial}{\partial\rho}
+            \left(\rho^2\frac{\partial f}{\partial\rho}\right)
+            +\frac{1}{\rho^2\sin^2\phi}
+             \frac{\partial^2f}{\partial\theta^2}
+            +\frac{1}{\rho^2\sin\phi}\frac{\partial}{\partial\phi}
+            \left(\sin\phi\frac{\partial f}{\partial\phi}\right).
+        \]
+    \end{formula}
+
     \begin{theorem}[Inverse Function Theorem]
         Let $\mathbf{F}:\R^n\to\R^n$ be continuously differentiable near
         $\mathbf{a}$. If
@@ -2053,11 +2179,6 @@
     \end{remark}
 
     \section*{Real Analysis}
-
-    The preceding sections collect the computational core of calculus. This
-    section records deeper results about convergence, compactness, uniformity,
-    completeness, and integration that are less computational but still
-    valuable for high-level Science Quiz questions.
 
     \begin{definition}[Metric Space and Open Ball]
         A metric space is a pair $(X,d)$ in which $d:X\times X\to\R$ satisfies,
@@ -2415,11 +2536,6 @@
     \end{theorem}
 
     \section*{Complex Analysis}
-
-    Complex analysis extends differentiation and integration from real variables
-    to functions of a complex variable. Its central results are unusually strong:
-    complex differentiability on an open set forces a power-series expansion,
-    and contour integrals can evaluate both complex and real integrals rapidly.
 
     \begin{definition}[Complex Differentiability; Holomorphic and Entire Functions]
         Let $U\subseteq\C$ be open and let $f:U\to\C$. The complex derivative of
@@ -2853,7 +2969,7 @@
             \frac{\det(\mathbf{A}_i)}{\det(\mathbf{A})},
         \]
         where $\mathbf{A}_i$ is obtained from $\mathbf{A}$ by replacing its
-        $i$-th column with $\mathbf{b}$.
+        $i$th column with $\mathbf{b}$.
     \end{theorem}
 
     \begin{formula}[Adjugate Formula for the Inverse]
@@ -3174,8 +3290,8 @@
     \end{fact}
 
     \begin{remark}
-        Pascal matrices are useful quiz examples because their entries look
-        complicated while their determinants have simple closed forms.
+        Pascal matrices have combinatorial entries while their determinants admit
+        simple closed forms.
     \end{remark}
 
     \begin{formula}[Cauchy Determinant]
@@ -3682,8 +3798,8 @@
     \end{theorem}
 
     \begin{remark}
-        In quiz settings, the words ``real symmetric matrix'' are a strong
-        signal for real eigenvalues and orthogonal diagonalization.
+        A real symmetric matrix has real eigenvalues and admits orthogonal
+        diagonalization.
     \end{remark}
 
     \begin{definition}[Conjugate Transpose; Hermitian Transpose]
@@ -3973,9 +4089,8 @@
     \end{theorem}
 
     \begin{remark}
-        Jordan canonical form is usually more important as a named concept than
-        as a computational tool in Science Quiz. It describes what remains when
-        a matrix cannot be fully diagonalized.
+        Jordan canonical form describes the structure that remains when a matrix
+        cannot be diagonalized.
     \end{remark}
 
     \chapter{Differential Equations}
@@ -3997,7 +4112,7 @@
     \end{theorem}
 
     \begin{remark}
-        In a quiz setting, the important phrase is ``existence and uniqueness.''
+        The decisive conclusion is existence and uniqueness.
         It tells us when an initial condition determines exactly one solution.
     \end{remark}
 
@@ -4290,27 +4405,40 @@
         \]
     \end{definition}
 
-    \begin{proposition}[Basic Laplace Transforms]
-        The most common Laplace transforms are
-        \[
-            \mathcal{L}\{1\}(s)=\frac{1}{s},
-            \qquad
-            \mathcal{L}\{t^n\}(s)=\frac{n!}{s^{n+1}},
-        \]
-        \[
-            \mathcal{L}\{e^{at}\}(s)=\frac{1}{s-a},
-            \qquad
-            \mathcal{L}\{\sin at\}(s)=\frac{a}{s^2+a^2},
-            \qquad
-            \mathcal{L}\{\cos at\}(s)=\frac{s}{s^2+a^2}.
-        \]
-        Also,
-        \[
-            \mathcal{L}\{y'\}=sY(s)-y(0),
-            \qquad
-            \mathcal{L}\{y''\}=s^2Y(s)-sy(0)-y'(0).
-        \]
-    \end{proposition}
+    \begin{formula}[Laplace Transform Table]
+        Let $F(s)=\mathcal{L}\{f(t)\}(s)$. The basic transforms are
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.38\textwidth}L{0.42\textwidth}L{0.12\textwidth}@{}}
+            \toprule
+            $f(t)$ & $\mathcal{L}\{f(t)\}(s)$ & Conditions \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            $f(t)$ & $\mathcal{L}\{f(t)\}(s)$ & Conditions \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            $1$ & $\displaystyle\frac{1}{s}$ & $s>0$ \\
+            $t^n$ & $\displaystyle\frac{n!}{s^{n+1}}$ & $n\in\Nzero$ \\
+            $e^{at}$ & $\displaystyle\frac{1}{s-a}$ & $s>a$ \\
+            $\sin at$ & $\displaystyle\frac{a}{s^2+a^2}$ & $s>0$ \\
+            $\cos at$ & $\displaystyle\frac{s}{s^2+a^2}$ & $s>0$ \\
+            $\sinh at$ & $\displaystyle\frac{a}{s^2-a^2}$ & $s>|a|$ \\
+            $\cosh at$ & $\displaystyle\frac{s}{s^2-a^2}$ & $s>|a|$ \\
+            $f'(t)$ & $sF(s)-f(0)$ & \\
+            $f''(t)$ & $s^2F(s)-sf(0)-f'(0)$ & \\
+            $t f(t)$ & $-F'(s)$ & \\
+            $\displaystyle\int_0^t f(\tau)\dd\tau$ & $\displaystyle\frac{F(s)}{s}$ & \\
+            $u(t-a)f(t-a)$ & $e^{-as}F(s)$ & $a>0$ \\
+        \end{longtable}
+        }
+    \end{formula}
 
     \begin{proposition}[Laplace Shift and Convolution]
         If $F(s)=\mathcal{L}\{f(t)\}(s)$, then
@@ -4326,6 +4454,106 @@
             \mathcal{L}\{f*g\}=\mathcal{L}\{f\}\mathcal{L}\{g\}.
         \]
     \end{proposition}
+
+    \begin{formula}[Fourier Series]
+        For a piecewise smooth function $f$ on $[-L,L]$,
+        \[
+            f(x)
+            \sim
+            \frac{a_0}{2}
+            +\sum_{n=1}^{\infty}
+            \left(
+                a_n\cos\frac{n\pi x}{L}
+                +b_n\sin\frac{n\pi x}{L}
+            \right),
+        \]
+        where
+        \[
+            a_n
+            =
+            \frac{1}{L}\int_{-L}^{L}
+            f(x)\cos\frac{n\pi x}{L}\dd x,
+            \qquad
+            b_n
+            =
+            \frac{1}{L}\int_{-L}^{L}
+            f(x)\sin\frac{n\pi x}{L}\dd x.
+        \]
+        If $f$ is even, then $b_n=0$; if $f$ is odd, then $a_n=0$.
+        At a jump discontinuity, the series converges to the midpoint of the
+        left and right limits.
+    \end{formula}
+
+    \begin{formula}[Classical Fourier Series]
+        For $-\pi<x<\pi$,
+        \[
+            x
+            =
+            2\sum_{n=1}^{\infty}
+            \frac{(-1)^{n+1}}{n}\sin(nx),
+        \]
+        \[
+            x^2
+            =
+            \frac{\pi^2}{3}
+            +4\sum_{n=1}^{\infty}
+            \frac{(-1)^n}{n^2}\cos(nx),
+        \]
+        and, for $0<x<\pi$,
+        \[
+            1
+            =
+            \frac{4}{\pi}
+            \sum_{k=0}^{\infty}
+            \frac{\sin((2k+1)x)}{2k+1}.
+        \]
+    \end{formula}
+
+    \begin{definition}[Fourier Transform]
+        For an integrable function $f:\R\to\C$, define
+        \[
+            \widehat{f}(\omega)
+            =
+            \int_{-\infty}^{\infty}f(t)e^{-i\omega t}\dd t.
+        \]
+        Under suitable hypotheses, the inversion formula is
+        \[
+            f(t)
+            =
+            \frac{1}{2\pi}
+            \int_{-\infty}^{\infty}\widehat{f}(\omega)e^{i\omega t}\dd\omega.
+        \]
+    \end{definition}
+
+    \begin{formula}[Fourier Transform Table]
+        With the convention above, the standard identities are
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.42\textwidth}L{0.46\textwidth}@{}}
+            \toprule
+            Function or operation & Fourier transform \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Function or operation & Fourier transform \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            $f'(t)$ & $i\omega\widehat{f}(\omega)$ \\
+            $f(t-a)$ & $e^{-i\omega a}\widehat{f}(\omega)$ \\
+            $e^{iat}f(t)$ & $\widehat{f}(\omega-a)$ \\
+            $f(at)$, $a\neq0$ & $\displaystyle\frac{1}{|a|}\widehat{f}\left(\frac{\omega}{a}\right)$ \\
+            $t f(t)$ & $\displaystyle i\frac{\dd}{\dd\omega}\widehat{f}(\omega)$ \\
+            $(f*g)(t)$ & $\widehat{f}(\omega)\widehat{g}(\omega)$ \\
+            $e^{-at^2}$, $a>0$ & $\displaystyle\sqrt{\frac{\pi}{a}}e^{-\omega^2/(4a)}$ \\
+        \end{longtable}
+        }
+    \end{formula}
 
     \begin{formula}[Linear Systems and Matrix Exponential]
         The homogeneous linear system
@@ -4428,9 +4656,8 @@
     \end{definition}
 
     \begin{remark}
-        The heat equation, wave equation, and Laplace equation are three of the
-        most famous PDEs. A quiz problem may ask for their names, forms, or
-        physical interpretations.
+        The heat equation, wave equation, and Laplace equation are three fundamental
+        partial differential equations with distinct physical interpretations.
     \end{remark}
 
     \chapter{Combinatorics and Discrete Mathematics}
@@ -4562,25 +4789,44 @@
         cancel intersecting path pairs.
     \end{strategy}
 
-    \begin{formula}[Ordinary Generating Functions]
+    \begin{formula}[Ordinary Generating Function Table]
         For a sequence $(a_n)_{n\geq 0}$, its ordinary generating function is
         \[
             A(x)=\sum_{n=0}^{\infty}a_nx^n.
         \]
-        The most useful basic examples are
-        \[
-            \sum_{n=0}^{\infty}x^n=\frac{1}{1-x},
-            \qquad
-            \sum_{n=0}^{\infty}\binom{n+r}{r}x^n
-            =
-            \frac{1}{(1-x)^{r+1}}.
-        \]
+        The basic examples are
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.38\textwidth}L{0.50\textwidth}@{}}
+            \toprule
+            Sequence $a_n$ & Ordinary generating function $A(x)$ \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Sequence $a_n$ & Ordinary generating function $A(x)$ \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            $1$ & $\displaystyle\frac{1}{1-x}$ \\
+            $n$ & $\displaystyle\frac{x}{(1-x)^2}$ \\
+            $n^2$ & $\displaystyle\frac{x(1+x)}{(1-x)^3}$ \\
+            $\displaystyle\binom{n+r}{r}$ & $\displaystyle\frac{1}{(1-x)^{r+1}}$ \\
+            $F_n$, where $F_0=0$ and $F_1=1$ & $\displaystyle\frac{x}{1-x-x^2}$ \\
+            $\displaystyle\frac{1}{n+1}\binom{2n}{n}$ &
+            $\displaystyle\frac{1-\sqrt{1-4x}}{2x}$ \\
+        \end{longtable}
+        }
     \end{formula}
 
     \begin{tactic}
-        Generating functions are useful when a recurrence or counting problem
-        has a repeated structure. In a fast quiz problem, the answer is often a
-        known generating function rather than a long derivation.
+        Generating functions are useful when a recurrence or counting problem has a
+        repeated structure; a known generating function can replace a long
+        derivation.
     \end{tactic}
 
 
@@ -4780,8 +5026,8 @@
     \end{theorem}
 
     \begin{remark}
-        Cayley's formula is a perfect Science Quiz result: the statement is
-        short, the answer is surprising, and the name is famous.
+        Cayley's formula gives a compact and surprising enumeration of labeled
+        trees.
     \end{remark}
 
     \begin{theorem}[Burnside's Lemma; Cauchy--Frobenius--Burnside Lemma]
@@ -5013,7 +5259,8 @@
 
     \relatedcourses{(MATH230) Probability \& Statistics}
 
-    \relatedbooks{}
+    \relatedbooks{Introduction to Probability
+        (Dimitri P. Bertsekas, John N. Tsitsiklis)}
 
     \begin{theorem}[Law of Total Probability]
         If $B_1,\dots,B_n$ form a partition of the sample space and
@@ -5132,6 +5379,51 @@
             (\Exp[X_1])^n.
         \]
     \end{proposition}
+
+    \begin{formula}[Common Probability Distributions]
+        The most frequently used distributions are summarized below.
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.19\textwidth}L{0.35\textwidth}L{0.17\textwidth}L{0.17\textwidth}@{}}
+            \toprule
+            Distribution & Mass or density function & Mean & Variance \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Distribution & Mass or density function & Mean & Variance \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Bernoulli$(p)$ &
+            $\Prob(X=x)=p^x(1-p)^{1-x}$, $x\in\{0,1\}$ &
+            $p$ & $p(1-p)$ \\
+            Binomial$(n,p)$ &
+            $\displaystyle\Prob(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$ &
+            $np$ & $np(1-p)$ \\
+            Geometric$(p)$ &
+            $\Prob(X=k)=(1-p)^{k-1}p$, $k\geq1$ &
+            $\displaystyle\frac1p$ & $\displaystyle\frac{1-p}{p^2}$ \\
+            Poisson$(\lambda)$ &
+            $\displaystyle\Prob(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}$ &
+            $\lambda$ & $\lambda$ \\
+            Uniform$(a,b)$ &
+            $\displaystyle f(x)=\frac{1}{b-a}$, $a\leq x\leq b$ &
+            $\displaystyle\frac{a+b}{2}$ & $\displaystyle\frac{(b-a)^2}{12}$ \\
+            Exponential$(\lambda)$ &
+            $f(x)=\lambda e^{-\lambda x}$, $x\geq0$ &
+            $\displaystyle\frac1\lambda$ & $\displaystyle\frac1{\lambda^2}$ \\
+            Normal$(\mu,\sigma^2)$ &
+            $\displaystyle f(x)=\frac{1}{\sigma\sqrt{2\pi}}
+            e^{-(x-\mu)^2/(2\sigma^2)}$ &
+            $\mu$ & $\sigma^2$ \\
+        \end{longtable}
+        }
+    \end{formula}
 
     \begin{formula}[Geometric Distribution and Waiting Time]
         If $T$ is the number of independent trials needed to obtain the first
@@ -5517,11 +5809,80 @@
 
     \chapter{Geometry}
 
-    \relatedcourses{}
+    \relatedcourses{(MATH428) Modern Geometry,
+        (MATH570/CSED508) Discrete and Computational Geometry}
 
-    \relatedbooks{}
+    \relatedbooks{Geometry Revisited (H. S. M. Coxeter, Samuel L. Greitzer),
+        Euclidean Geometry in Mathematical Olympiads (Evan Chen)}
 
     \section*{Synthetic Geometry}
+
+    \begin{formula}[Basic Plane and Solid Geometry Table]
+        The basic measurement formulas are
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.27\textwidth}L{0.28\textwidth}L{0.35\textwidth}@{}}
+            \toprule
+            Figure & Perimeter or surface area & Area or volume \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Figure & Perimeter or surface area & Area or volume \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Triangle & $a+b+c$ & $\displaystyle\frac12 bh$ \\
+            Parallelogram & $2(a+b)$ & $bh$ \\
+            Trapezoid & $a+b+c+d$ & $\displaystyle\frac12(a+c)h$ \\
+            Regular $n$-gon & $na$ & $\displaystyle\frac12(na)r=\frac{na^2}{4\tan(\pi/n)}$ \\
+            Circle & $2\pi r$ & $\pi r^2$ \\
+            Circular sector & $r\theta$ & $\displaystyle\frac12r^2\theta$ \\
+            Rectangular box & $2(ab+bc+ca)$ & $abc$ \\
+            Right circular cylinder & $2\pi r(r+h)$ & $\pi r^2h$ \\
+            Right circular cone & $\pi r(r+\ell)$ & $\displaystyle\frac13\pi r^2h$ \\
+            Sphere & $4\pi r^2$ & $\displaystyle\frac43\pi r^3$ \\
+        \end{longtable}
+        }
+        In the regular-polygon row, $r$ is the apothem; in the cone row,
+        $\ell=\sqrt{r^2+h^2}$ is the slant height. Sector angles are measured in
+        radians.
+    \end{formula}
+
+    \begin{theorem}[Triangle Angle Sum and Exterior Angle Theorem]
+        For every triangle $\triangle ABC$,
+        \[
+            \angle A+\angle B+\angle C=\pi.
+        \]
+        An exterior angle equals the sum of the two nonadjacent interior angles.
+    \end{theorem}
+
+    \begin{proposition}[Triangle Congruence and Similarity Criteria]
+        Two triangles are congruent under any of the criteria
+        \[
+            \mathrm{SSS},\qquad \mathrm{SAS},\qquad \mathrm{ASA},
+            \qquad \mathrm{AAS},\qquad \mathrm{RHS}.
+        \]
+        They are similar under any of the criteria
+        \[
+            \mathrm{AA},\qquad \mathrm{SAS},\qquad \mathrm{SSS},
+        \]
+        where the latter two use proportional corresponding side lengths.
+    \end{proposition}
+
+    \begin{theorem}[Midpoint Theorem and Centroid Ratio]
+        The segment joining the midpoints of two sides of a triangle is parallel
+        to the third side and has half its length. The three medians are
+        concurrent at the centroid $G$, and $G$ divides every median in the ratio
+        \[
+            2:1
+        \]
+        measured from the vertex.
+    \end{theorem}
 
     \begin{strategy}[Reverse Engineering in Geometric Constructions]
         First draw a completed configuration satisfying the desired conditions.
@@ -5560,10 +5921,34 @@
         intersection of the medians.
     \end{definition}
 
-    \begin{remark}
-        Triangle centers are extremely common in olympiad-style geometry.
-        The symbols $O,I,H,G$ are standard and should be recognized quickly.
-    \end{remark}
+    \begin{theorem}[Gergonne Point and Nagel Point]
+        The cevians joining the vertices of a triangle to the contact points of
+        its incircle with the opposite sides are concurrent at the Gergonne point.
+        The cevians joining the vertices to the contact points of the opposite
+        excircles are concurrent at the Nagel point.
+    \end{theorem}
+
+    \begin{theorem}[Symmedian Lemma and Lemoine Point]
+        Let the $A$-symmedian of $\triangle ABC$ meet $BC$ at $K$. Then
+        \[
+            \frac{BK}{KC}=\frac{AB^2}{AC^2}.
+        \]
+        The three symmedians are concurrent at the Lemoine point, also called
+        the symmedian point.
+    \end{theorem}
+
+    \begin{theorem}[Fermat Point; Torricelli Point]
+        If every angle of $\triangle ABC$ is less than $120^\circ$, there is a
+        unique point $P$ minimizing
+        \[
+            PA+PB+PC.
+        \]
+        It satisfies
+        \[
+            \angle APB=\angle BPC=\angle CPA=120^\circ.
+        \]
+        If one angle is at least $120^\circ$, the minimizing point is that vertex.
+    \end{theorem}
 
     \begin{formula}[Extended Law of Sines]
         For a triangle $\triangle ABC$ with side lengths
@@ -5832,6 +6217,11 @@
         joining the circumcenter $O$ and the orthocenter $H$.
     \end{remark}
 
+    \begin{theorem}[Feuerbach's Theorem]
+        The nine-point circle of a triangle is internally tangent to the incircle
+        and externally tangent to each of the three excircles.
+    \end{theorem}
+
     \begin{theorem}[Euler's Formula for the Incenter and Circumcenter]
         For a triangle with circumradius $R$, inradius $r$, circumcenter $O$,
         and incenter $I$, we have
@@ -5922,11 +6312,6 @@
         for the appropriate cyclic order of the vertices.
     \end{theorem}
 
-    \begin{remark}
-        Ptolemy's Theorem is one of the most recognizable formulas for cyclic
-        quadrilaterals.
-    \end{remark}
-
 
     \begin{theorem}[Ptolemy's Inequality]
         For any four points $A,B,C,D$ in the Euclidean plane,
@@ -5953,6 +6338,28 @@
         Heron's formula is the limiting triangular case.
     \end{formula}
 
+    \begin{theorem}[Varignon's Theorem]
+        The midpoints of the four sides of any quadrilateral form a
+        parallelogram. Its area is half the area of the original quadrilateral.
+    \end{theorem}
+
+    \begin{theorem}[Pitot's Theorem]
+        If a convex quadrilateral with consecutive side lengths $a,b,c,d$ has an
+        incircle tangent to all four sides, then
+        \[
+            a+c=b+d.
+        \]
+    \end{theorem}
+
+    \begin{theorem}[Euler's Quadrilateral Theorem]
+        If $M$ and $N$ are the midpoints of the diagonals of a quadrilateral with
+        side lengths $a,b,c,d$ and diagonal lengths $p,q$, then
+        \[
+            a^2+b^2+c^2+d^2=p^2+q^2+4MN^2.
+        \]
+        The parallelogram law is the case $M=N$.
+    \end{theorem}
+
     \begin{theorem}[Simson Line Theorem]
         Let $P$ be a point on the circumcircle of $\triangle ABC$. The feet of
         the perpendiculars from $P$ to the three lines $AB,BC,CA$ are collinear.
@@ -5966,11 +6373,6 @@
         This point is called the Miquel point.
     \end{theorem}
 
-    \begin{remark}
-        Miquel's Theorem is a standard source of hidden cyclic quadrilaterals
-        in olympiad geometry.
-    \end{remark}
-
     \begin{theorem}[Butterfly Theorem]
         Let $M$ be the midpoint of a chord $PQ$ of a circle. Through $M$, draw
         two other chords $AB$ and $CD$, and let $AD$ and $BC$ meet $PQ$ at
@@ -5981,11 +6383,6 @@
         In any triangle, the adjacent trisectors of the three angles intersect
         in three points that form an equilateral triangle.
     \end{theorem}
-
-    \begin{remark}
-        Morley's theorem is famous because the conclusion is surprisingly
-        simple: angle trisectors always create an equilateral triangle.
-    \end{remark}
 
     \begin{theorem}[Napoleon's Theorem]
         Construct equilateral triangles externally on the three sides of any
@@ -6005,6 +6402,31 @@
         Construct squares externally on the four sides of a quadrilateral. The
         segments joining the centers of opposite squares are equal in length
         and perpendicular.
+    \end{theorem}
+
+    \begin{theorem}[Viviani's Theorem]
+        For any point $P$ inside an equilateral triangle of altitude $h$, the sum
+        of the perpendicular distances from $P$ to the three sides is $h$.
+    \end{theorem}
+
+    \begin{theorem}[Desargues' Theorem]
+        If two triangles are perspective from a point, then the three
+        intersections of corresponding sides are collinear. Conversely, in the
+        projective plane, collinearity of those intersections implies concurrence
+        of the three lines joining corresponding vertices.
+    \end{theorem}
+
+    \begin{theorem}[Pappus' Hexagon Theorem]
+        Let $A,B,C$ lie on one line and $A',B',C'$ lie on another. Then the three
+        points
+        \[
+            AB'\cap A'B,
+            \qquad
+            AC'\cap A'C,
+            \qquad
+            BC'\cap B'C
+        \]
+        are collinear.
     \end{theorem}
 
     \begin{theorem}[Homothety Centers of Two Circles]
@@ -6094,13 +6516,60 @@
         \]
     \end{theorem}
 
-    \begin{remark}
-        The classification of Platonic solids is a classic result in Euclidean
-        geometry and a very natural quiz fact.
-    \end{remark}
-
     \section*{Analytic Geometry}
 
+
+    \begin{formula}[Coordinate Geometry Table]
+        For points $A=(x_1,y_1)$ and $B=(x_2,y_2)$,
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.27\textwidth}L{0.63\textwidth}@{}}
+            \toprule
+            Quantity & Formula \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Quantity & Formula \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Distance & $\displaystyle AB=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$ \\
+            Midpoint & $\displaystyle\left(\frac{x_1+x_2}{2},\frac{y_1+y_2}{2}\right)$ \\
+            Internal division $AP:PB=m:n$ &
+            $\displaystyle\left(\frac{nx_1+mx_2}{m+n},
+            \frac{ny_1+my_2}{m+n}\right)$ \\
+            Slope & $\displaystyle\frac{y_2-y_1}{x_2-x_1}$, when $x_1\neq x_2$ \\
+            Point-slope line & $y-y_1=m(x-x_1)$ \\
+            General line & $ax+by+c=0$ \\
+            Distance from $(x_0,y_0)$ to $ax+by+c=0$ &
+            $\displaystyle\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}$ \\
+        \end{longtable}
+        }
+    \end{formula}
+
+    \begin{formula}[Triangle Centers in Coordinates]
+        For $A=(x_1,y_1)$, $B=(x_2,y_2)$, and $C=(x_3,y_3)$, the centroid is
+        \[
+            G
+            =
+            \left(
+                \frac{x_1+x_2+x_3}{3},
+                \frac{y_1+y_2+y_3}{3}
+            \right).
+        \]
+        If the side lengths opposite $A,B,C$ are $a,b,c$, respectively, then the
+        incenter is
+        \[
+            I
+            =
+            \frac{aA+bB+cC}{a+b+c}.
+        \]
+    \end{formula}
 
     \begin{formula}[Barycentric Coordinates]
         Let $A,B,C$ be noncollinear. Every point $P$ in their affine plane has
@@ -6422,6 +6891,31 @@
         \]
     \end{formula}
 
+    \begin{formula}[Tangent Lines to Standard Conics]
+        At a point $(x_1,y_1)$ on the indicated conic, the tangent line is
+        \[
+            xx_1+yy_1=r^2
+            \qquad
+            \text{for }x^2+y^2=r^2,
+        \]
+        \[
+            yy_1=2a(x+x_1)
+            \qquad
+            \text{for }y^2=4ax,
+        \]
+        \[
+            \frac{xx_1}{a^2}+\frac{yy_1}{b^2}=1
+            \qquad
+            \text{for }\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,
+        \]
+        and
+        \[
+            \frac{xx_1}{a^2}-\frac{yy_1}{b^2}=1
+            \qquad
+            \text{for }\frac{x^2}{a^2}-\frac{y^2}{b^2}=1.
+        \]
+    \end{formula}
+
     \begin{theorem}[Reflection Property of Conics]
         An ellipse reflects a ray from one focus to the other focus. A parabola
         reflects rays parallel to its axis through its focus. A hyperbola has
@@ -6547,12 +7041,6 @@
 
     \relatedbooks{Introduction to Number Theory
         (William W. Adams, Larry Joel Goldstein)}
-
-    As stated in Notation and Conventions, this chapter gives priority to
-    number-theoretic use. Thus, algebraic structures that arise naturally from
-    congruences, residues, and arithmetic---such as groups of units and finite
-    fields---are treated here. The Algebra chapter is reserved for algebraic
-    ideas whose main role is not specifically number-theoretic.
 
     \begin{theorem}[Fundamental Theorem of Arithmetic]
         Every integer $n>1$ can be written as a product of prime numbers.
@@ -6949,8 +7437,7 @@
     \end{fact}
 
     \begin{tactic}
-        For Diophantine equations in a fast quiz setting, first reduce modulo
-        $4$, $8$, $3$, $5$, or $9$. Many impossible equations are eliminated by
+        For Diophantine equations, first reduce modulo $4$, $8$, $3$, $5$, or $9$. Many impossible equations are eliminated by
         the small list of possible square residues.
     \end{tactic}
 
@@ -7185,17 +7672,32 @@
 
     \relatedbooks{Abstract Algebra (David S. Dummit, Richard M. Foote)}
 
-    The Number Theory chapter already covers algebraic structures whose main
-    purpose here is arithmetic, including residue-class groups and finite
-    fields. This chapter focuses on algebra in its own right and on algebraic
-    ideas that connect more directly with linear algebra, geometry, and the
-    general theory of equations.
-
     \begin{definition}[Group]
-        A group is a set $G$ together with a binary operation satisfying closure,
-        associativity, the existence of an identity element, and the existence of
-        inverses. If the operation is commutative, then $G$ is called an abelian
-        group.
+        A group is a set $G$ with a binary operation $\ast:G\times G\to G$ s.t.
+        \[
+            \forall a,b,c\in G,
+            \qquad
+            (a\ast b)\ast c=a\ast(b\ast c),
+        \]
+        \[
+            \exists e\in G\ \text{s.t.}\quad
+            \forall a\in G,
+            \qquad
+            e\ast a=a\ast e=a,
+        \]
+        and
+        \[
+            \forall a\in G,
+            \qquad
+            \exists a^{-1}\in G\ \text{s.t.}\quad
+            a\ast a^{-1}=a^{-1}\ast a=e.
+        \]
+        The group is abelian if
+        \[
+            \forall a,b\in G,
+            \qquad
+            a\ast b=b\ast a.
+        \]
     \end{definition}
 
     \begin{theorem}[Disjoint-Cycle Decomposition of a Permutation]
@@ -7330,8 +7832,8 @@
     \end{theorem}
 
     \begin{strategy}
-        For Science Quiz, the most common finite-group quick check is divisibility:
-        subgroup orders and element orders must divide the group order. When a
+        For a finite group, subgroup orders and element orders must divide the group
+        order. When a
         prime divides $|G|$, Cauchy's theorem guarantees an element of that prime
         order.
     \end{strategy}
@@ -7421,7 +7923,7 @@
         \[
             f(x)=q(x)g(x)+r(x),
             \qquad
-            r(x)=0\quad\text{or}\quad \deg r<\deg g.
+            r(x)=0\lor \deg r<\deg g.
         \]
     \end{algorithm}
 
@@ -7736,7 +8238,7 @@
 
     \begin{remark}
         The Poincaré conjecture was proved by Grigori Perelman using Ricci flow.
-        In a quiz setting, the key association is usually
+        The fundamental correspondence is
         \[
             \text{Poincaré conjecture} \longleftrightarrow
             \text{Perelman} \longleftrightarrow
@@ -7765,13 +8267,11 @@
 
     \chapter{Miscellaneous Topics}
 
-    \relatedcourses{}
+    \relatedcourses{(MATH201) Introduction to Mathematics,
+        (MATH261) Discrete Mathematics}
 
-    \relatedbooks{}
-
-    This chapter collects cross-disciplinary ideas that are especially useful
-    when a short problem does not announce which subject or theorem should be
-    used.
+    \relatedbooks{Problem-Solving Strategies (Arthur Engel),
+        The Art and Craft of Problem Solving (Paul Zeitz)}
 
     \begin{strategy}[Transform the Given Objects]
         Replace the original configuration by an equivalent one whose structure
@@ -8187,8 +8687,7 @@
     \end{formula}
 
     \begin{strategy}
-        These values are useful because Science Quiz problems often hide them
-        behind a simple transformation. For example,
+        These values often appear after a simple transformation. For example,
         \[
             \frac12-\frac14+\frac16-\frac18+\cdots
             =

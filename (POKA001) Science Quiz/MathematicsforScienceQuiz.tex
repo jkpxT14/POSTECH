@@ -189,9 +189,8 @@
 \newtheorem*{tactic}{Tactic}
 
 % Problem environments
-% Past Problems keep explicit historical labels, while Expected Problems use an
-% automatic counter so that adding, deleting, or moving a problem renumbers the
-% collection without manual edits.
+% Past Problems keep explicit historical labels. Expected Problems use an
+% automatic counter that is reset independently in each problem category.
 \newcommand{\problemheading}[1]{%
     \par\vspace{6pt}\noindent
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
@@ -205,7 +204,11 @@
     {\problemheading{#1}}
     {\par\vspace{6pt}}
 
+\newcounter{expectedproblemsection}
 \newcounter{expectedproblem}
+\renewcommand{\theHexpectedproblem}{%
+    \arabic{expectedproblemsection}.\arabic{expectedproblem}%
+}
 \newenvironment{expectedproblem}[1][]
     {%
         \refstepcounter{expectedproblem}%
@@ -216,6 +219,12 @@
         \fi
     }
     {\par\vspace{6pt}}
+
+\newcommand{\expectedproblemsection}[1]{%
+    \section*{#1}%
+    \stepcounter{expectedproblemsection}%
+    \setcounter{expectedproblem}{0}%
+}
 
 \newenvironment{solution}
     {\par\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
@@ -307,7 +316,7 @@
 % Combinatorics notation
 \newcommand{\multichoose}[2]{\left(\!\binom{#1}{#2}\!\right)}
 \newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
-\newcommand{\indicator}[1]{\mathbbm{1}_{#1}}
+\newcommand{\indicator}[1]{\chi_{#1}}
 \newcommand{\ones}{\mathbf{1}}
 
 \begin{document}
