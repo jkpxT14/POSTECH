@@ -189,8 +189,32 @@
 \newtheorem*{tactic}{Tactic}
 
 % Problem environments
+% Past Problems keep explicit historical labels, while Expected Problems use an
+% automatic counter so that adding, deleting, or moving a problem renumbers the
+% collection without manual edits.
+\newcommand{\problemheading}[1]{%
+    \par\vspace{6pt}\noindent
+    \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
+}
+
 \newenvironment{problem}[1]
-    {\par\vspace{6pt}\noindent\textbf{Problem #1.}\hspace{0.5em}\ignorespaces}
+    {\problemheading{#1}}
+    {\par\vspace{6pt}}
+
+\newenvironment{pastproblem}[1]
+    {\problemheading{#1}}
+    {\par\vspace{6pt}}
+
+\newcounter{expectedproblem}
+\newenvironment{expectedproblem}[1][]
+    {%
+        \refstepcounter{expectedproblem}%
+        \if\relax\detokenize{#1}\relax
+            \problemheading{\theexpectedproblem}%
+        \else
+            \problemheading{\theexpectedproblem.\ (#1)}%
+        \fi
+    }
     {\par\vspace{6pt}}
 
 \newenvironment{solution}

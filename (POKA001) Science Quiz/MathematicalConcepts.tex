@@ -1792,12 +1792,18 @@
     \end{remark}
 
     \begin{formula}[Polar Coordinates]
-        In polar coordinates,
+        For polar coordinates $(r,\theta)$,
         \[
             x=r\cos\theta,
             \qquad
             y=r\sin\theta,
             \qquad
+            r\geq0,
+            \qquad
+            0\leq\theta<2\pi.
+        \]
+        The area element is
+        \[
             \dd A=r\dd r\dd\theta.
         \]
         The area enclosed by a polar curve $r=r(\theta)$ is
@@ -1816,15 +1822,19 @@
     \end{formula}
 
     \begin{formula}[Cylindrical and Spherical Coordinates]
-        Cylindrical coordinates are
+        Cylindrical coordinates $(r,\theta,z)$ satisfy
         \[
             x=r\cos\theta,
             \qquad
             y=r\sin\theta,
             \qquad
+            z=z,
+        \]
+        with volume element
+        \[
             \dd V=r\dd r\dd\theta\dd z.
         \]
-        Spherical coordinates are
+        Spherical coordinates $(\rho,\theta,\phi)$ satisfy
         \[
             x=\rho\sin\phi\cos\theta,
             \qquad
@@ -1832,14 +1842,23 @@
             \qquad
             z=\rho\cos\phi,
         \]
-        with
+        where
+        \[
+            \rho\geq0,
+            \qquad
+            0\leq\theta<2\pi,
+            \qquad
+            0\leq\phi\leq\pi.
+        \]
+        The volume element is
         \[
             \dd V
             =
-            \rho^2\sin\phi\dd\rho\dd\phi\dd\theta.
+            \rho^2\sin\phi\dd\rho\dd\theta\dd\phi.
         \]
-        Here $\theta$ is the azimuthal angle in the $xy$-plane and $\phi$ is
-        measured from the positive $z$-axis.
+        Here $\theta$ is the azimuthal angle measured from the positive
+        $x$-axis in the $xy$-plane, and $\phi$ is the polar angle measured from
+        the positive $z$-axis.
     \end{formula}
 
     \begin{theorem}[Inverse Function Theorem]
@@ -7352,6 +7371,50 @@
         no zero divisors. In other words, if $ab=0$, then $a=0$ or $b=0$.
     \end{definition}
 
+    \begin{formula}[Basic Factorization Identities]
+        The most frequently used polynomial factorizations include
+        \[
+            a^2-b^2=(a-b)(a+b),
+        \]
+        \[
+            a^3-b^3=(a-b)(a^2+ab+b^2),
+            \qquad
+            a^3+b^3=(a+b)(a^2-ab+b^2).
+        \]
+        More generally,
+        \[
+            a^n-b^n
+            =
+            (a-b)\sum_{k=0}^{n-1}a^{n-1-k}b^k,
+        \]
+        and, when $n$ is odd,
+        \[
+            a^n+b^n
+            =
+            (a+b)\sum_{k=0}^{n-1}(-1)^k a^{n-1-k}b^k.
+        \]
+    \end{formula}
+
+    \begin{formula}[Cubic Factorization Identity]
+        For all $a,b,c$,
+        \[
+            a^3+b^3+c^3-3abc
+            =
+            (a+b+c)(a^2+b^2+c^2-ab-bc-ca),
+        \]
+        or equivalently,
+        \[
+            a^3+b^3+c^3-3abc
+            =
+            \frac12(a+b+c)
+            \left((a-b)^2+(b-c)^2+(c-a)^2\right).
+        \]
+        In particular, if $a+b+c=0$, then
+        \[
+            a^3+b^3+c^3=3abc.
+        \]
+    \end{formula}
+
     \begin{algorithm}[Polynomial Division Algorithm]
         Let $F$ be a field. If $f(x),g(x)\in F[x]$ and $g(x)\neq 0$, then there
         exist unique polynomials $q(x),r(x)\in F[x]$ such that
@@ -7754,9 +7817,75 @@
         often reveals the extremal configuration.
     \end{strategy}
 
-    \begin{theorem}[AM--GM--HM Inequalities]
+    \begin{theorem}[Triangle and Reverse Triangle Inequalities]
+        For real or complex numbers $x,y$,
+        \[
+            \bigl||x|-|y|\bigr|
+            \leq
+            |x-y|
+            \leq
+            |x|+|y|.
+        \]
+        More generally, every norm satisfies
+        \[
+            \|\mathbf{x}+\mathbf{y}\|
+            \leq
+            \|\mathbf{x}\|+\|\mathbf{y}\|.
+        \]
+    \end{theorem}
+
+    \begin{formula}[Basic Sum-of-Squares Identities]
+        For real $a,b,c$,
+        \[
+            a^2+b^2+c^2-ab-bc-ca
+            =
+            \frac12\left((a-b)^2+(b-c)^2+(c-a)^2\right)
+            \geq0.
+        \]
+        Consequently,
+        \[
+            a^2+b^2+c^2\geq ab+bc+ca
+        \]
+        and
+        \[
+            (a+b+c)^2\leq3(a^2+b^2+c^2).
+        \]
+    \end{formula}
+
+    \begin{formula}[Frequently Used Two-Variable Inequalities]
+        For real $x,y$,
+        \[
+            x^2+y^2\geq2xy.
+        \]
+        For positive $x,y$,
+        \[
+            \frac{x}{y}+\frac{y}{x}\geq2,
+            \qquad
+            x+\frac1x\geq2.
+        \]
+        Equality holds exactly when the two compared positive quantities are
+        equal.
+    \end{formula}
+
+    \begin{theorem}[Lagrange's Identity]
+        For real numbers $a_1,\dots,a_n$ and $b_1,\dots,b_n$,
+        \[
+            \left(\sum_{i=1}^{n}a_i^2\right)
+            \left(\sum_{i=1}^{n}b_i^2\right)
+            -
+            \left(\sum_{i=1}^{n}a_ib_i\right)^2
+            =
+            \sum_{1\leq i<j\leq n}(a_ib_j-a_jb_i)^2.
+        \]
+        The nonnegativity of the right-hand side gives the
+        Cauchy--Schwarz inequality immediately.
+    \end{theorem}
+
+    \begin{theorem}[QM--AM--GM--HM Inequalities]
         For positive $x_1,\dots,x_n$,
         \[
+            \sqrt{\frac{x_1^2+\cdots+x_n^2}{n}}
+            \geq
             \frac{x_1+\cdots+x_n}{n}
             \geq
             \sqrt[n]{x_1\cdots x_n}
@@ -7767,11 +7896,40 @@
     \end{theorem}
 
     \begin{theorem}[Weighted AM--GM Inequality]
-        If $w_i\geq0$, $\sum w_i=1$, and $x_i>0$, then
+        If $w_i\geq0$, $\sum_{i=1}^{n}w_i=1$, and $x_i>0$, then
         \[
             \sum_{i=1}^{n}w_ix_i
             \geq
             \prod_{i=1}^{n}x_i^{w_i}.
+        \]
+        Equality holds when all $x_i$ with positive weight are equal.
+    \end{theorem}
+
+    \begin{theorem}[Power Mean Inequality]
+        For positive $x_1,\dots,x_n$ and real $r\neq0$, define
+        \[
+            M_r
+            =
+            \left(
+                \frac{x_1^r+\cdots+x_n^r}{n}
+            \right)^{1/r},
+        \]
+        and define $M_0=(x_1\cdots x_n)^{1/n}$. If $r<s$, then
+        \[
+            M_r\leq M_s.
+        \]
+        The harmonic, geometric, arithmetic, and quadratic means correspond to
+        $r=-1,0,1,2$, respectively.
+    \end{theorem}
+
+    \begin{theorem}[Young's Inequality]
+        If $x,y\geq0$, $p,q>1$, and
+        \[
+            \frac1p+\frac1q=1,
+        \]
+        then
+        \[
+            xy\leq\frac{x^p}{p}+\frac{y^q}{q}.
         \]
     \end{theorem}
 
@@ -7806,9 +7964,20 @@
     \end{theorem}
 
     \begin{theorem}[Rearrangement Inequality]
-        For two increasing real sequences, pairing terms in the same order
-        maximizes the sum of products, while pairing them in opposite order
-        minimizes it.
+        If
+        \[
+            a_1\leq\cdots\leq a_n,
+            \qquad
+            b_1\leq\cdots\leq b_n,
+        \]
+        then for every permutation $\sigma\in S_n$,
+        \[
+            \sum_{i=1}^{n}a_ib_{n+1-i}
+            \leq
+            \sum_{i=1}^{n}a_ib_{\sigma(i)}
+            \leq
+            \sum_{i=1}^{n}a_ib_i.
+        \]
     \end{theorem}
 
     \begin{theorem}[Chebyshev's Sum Inequality]
