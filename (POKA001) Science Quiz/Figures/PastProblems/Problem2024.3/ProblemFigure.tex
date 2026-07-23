@@ -1,0 +1,57 @@
+\documentclass[tikz,border=4pt]{standalone}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usetikzlibrary{angles,calc,positioning,quotes}
+
+% Compile this file from the project root.
+\input{Figures/Styles/TikZ.tex}
+
+\begin{document}
+    \begin{tikzpicture}[science quiz figure]
+        \def\s{2.25}
+
+        \coordinate (A) at (-\s,0);
+        \coordinate (D) at (0,0);
+        \coordinate (B) at (\s,0);
+        \coordinate (C) at
+            ({-\s*(sqrt(3)+1)/2},{\s*(sqrt(3)+1)/2});
+
+        \draw[science quiz main] (A)--(B)--(C)--cycle;
+        \draw[science quiz auxiliary] (C)--(D);
+
+        \draw[science quiz tick]
+            ($(A)!0.5!(D)+(0,-0.10)$)--($(A)!0.5!(D)+(0,0.10)$);
+        \draw[science quiz tick]
+            ($(D)!0.5!(B)+(0,-0.10)$)--($(D)!0.5!(B)+(0,0.10)$);
+
+        \pic[
+            science quiz angle,
+            angle radius=7.5mm,
+            angle eccentricity=1.42,
+            "$45^\circ$" {font=\small}
+        ] {angle=C--D--A};
+
+        \pic[
+            science quiz angle,
+            angle radius=8.5mm,
+            angle eccentricity=1.42,
+            "$\theta$" {font=\small}
+        ] {angle=A--C--D};
+
+        \pic[
+            science quiz angle,
+            angle radius=13mm,
+            angle eccentricity=1.25,
+            "$15^\circ$" {font=\small}
+        ] {angle=D--C--B};
+
+        \foreach \P in {A,B,C,D}
+            \node[science quiz point] at (\P) {};
+
+        \node[science quiz label,below left=1pt and 2pt of A] {$A$};
+        \node[science quiz label,below right=1pt and 2pt of B] {$B$};
+        \node[science quiz label,above left=1pt and 2pt of C] {$C$};
+        \node[science quiz label,below=2pt of D] {$D$};
+    \end{tikzpicture}
+\end{document}

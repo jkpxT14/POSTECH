@@ -1,6 +1,6 @@
     \expectedproblemsection{Standard Mathematical Problems}
 
-    \begin{expectedproblem}[1988 IMO]
+    \begin{expectedproblem}[1988 IMO, Vieta Jumping]
         Let $a$ and $b$ be positive integers such that $ab+1$ divides
         $a^2+b^2$. Show that
         \[
@@ -100,7 +100,7 @@
         convex quadrilateral.
     \end{solution}
 
-    \begin{expectedproblem}[Freudenthal's Sum-and-Product Problem, Impossible Puzzle]
+    \begin{expectedproblem}[Sum-and-Product Problem, Impossible Puzzle]
         Two integers $x$ and $y$ satisfy
         \[
             1<x<y,
@@ -197,4 +197,55 @@
         \[
             \boxed{(x,y)=(4,13)}.
         \]
+    \end{solution}
+
+    \begin{expectedproblem}[Sylvester--Gallai Theorem]
+        Let $S$ be a finite set of points in the plane, not all collinear. Prove
+        that there exists a line containing exactly two points of $S$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Call a line determined by points of $S$ \emph{ordinary} if it contains
+        exactly two points of $S$. Consider all pairs $(P,\ell)$ such that
+        $P\in S$, the line $\ell$ is determined by at least two points of $S$,
+        and $P\notin\ell$. Since $S$ is finite and not collinear, the set of
+        positive distances arising in this way is finite and nonempty. Choose
+        $(P,\ell)$ so that
+        \[
+            h=\dist(P,\ell)>0
+        \]
+        is as small as possible, and let $H$ be the foot of the perpendicular
+        from $P$ to $\ell$.
+
+        Suppose, for contradiction, that $\ell$ contains at least three points
+        of $S$. We can choose distinct points $A,B\in S\cap\ell$ so that either
+        $A=H$, or $A$ and $B$ lie on the same side of $H$ with $A$ closer to
+        $H$. In either case,
+        \[
+            AB<PB.
+        \]
+        Indeed, if $A=H$, then $AB=HB<PB$; otherwise,
+        $AB=HB-HA<HB<PB$.
+
+        Computing the area of $\triangle PAB$ with bases $AB$ and $PB$ gives
+        \[
+            \frac12 AB\,h
+            =
+            [PAB]
+            =
+            \frac12 PB\,\dist(A,PB).
+        \]
+        Hence
+        \[
+            \dist(A,PB)
+            =
+            \frac{AB}{PB}h
+            <
+            h.
+        \]
+        However, the line $PB$ is determined by two points of $S$, and
+        $A\notin PB$. This contradicts the minimality of $h$.
+
+        Therefore, $\ell$ contains exactly two points of $S$, so $\ell$ is the
+        required ordinary line.
     \end{solution}

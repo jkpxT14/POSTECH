@@ -2574,9 +2574,9 @@
             \begin{array}{c|ccc}
                 & A & B & C \\
                 \hline
-                L_A & \times & \checkmark & \checkmark \\
-                L_B & \checkmark & \times & \checkmark \\
-                L_C & \checkmark & \checkmark & \times
+                L_A & \mathrm{X} & \mathrm{O} & \mathrm{O} \\
+                L_B & \mathrm{O} & \mathrm{X} & \mathrm{O} \\
+                L_C & \mathrm{O} & \mathrm{O} & \mathrm{X}
             \end{array}
         \]
         That is, the key to $L_A$ is given to $B$ and $C$, the key to $L_B$ is given to $A$ and $C$,
@@ -3023,13 +3023,94 @@
     \end{solution}
 
     \begin{pastproblem}{2024.3}
-        This was a geometry problem. The original statement and accompanying figure
-        have not yet been recovered.
+        In triangle $ABC$, the point $D$ is the midpoint of $\overline{AB}$.
+        Suppose that
+        \[
+            \angle BCD=15^\circ
+            \qquad\text{and}\qquad
+            \angle ADC=45^\circ.
+        \]
+        Determine
+        \[
+            \theta=\angle ACD.
+        \]
+
+        \begin{center}
+            \includegraphics[
+                width=0.52\textwidth
+            ]{Figures/PastProblems/Problem2024.3/ProblemFigure.pdf}
+        \end{center}
     \end{pastproblem}
 
     \begin{solution}
-        The original statement and accompanying figure have not yet been recovered;
-        therefore, no solution is included.
+        Since $A,D,B$ are collinear,
+        \[
+            \angle BDC
+            =
+            180^\circ-\angle ADC
+            =
+            135^\circ.
+        \]
+        Therefore, in $\triangle BCD$,
+        \[
+            \angle CBD
+            =
+            180^\circ-135^\circ-15^\circ
+            =
+            30^\circ.
+        \]
+        By the Sine Rule,
+        \[
+            \frac{DB}{CD}
+            =
+            \frac{\sin 15^\circ}{\sin 30^\circ}
+            =
+            2\sin 15^\circ.
+        \]
+
+        Let $\theta=\angle ACD$. In $\triangle ACD$,
+        \[
+            \angle CAD
+            =
+            180^\circ-45^\circ-\theta
+            =
+            135^\circ-\theta.
+        \]
+        Again by the Sine Rule,
+        \[
+            \frac{AD}{CD}
+            =
+            \frac{\sin\theta}{\sin(135^\circ-\theta)}.
+        \]
+        Since $AD=DB$, we obtain
+        \[
+            \frac{\sin\theta}{\sin(135^\circ-\theta)}
+            =
+            2\sin 15^\circ.
+        \]
+        Expanding the denominator gives
+        \[
+            \sin\theta
+            =
+            \sqrt{2}\sin 15^\circ
+            (\sin\theta+\cos\theta).
+        \]
+        Since
+        \[
+            \sqrt{2}\sin 15^\circ
+            =
+            \frac{\sqrt{3}-1}{2},
+        \]
+        it follows that
+        \[
+            \tan\theta
+            =
+            \frac{1}{\sqrt{3}}.
+        \]
+        As $\theta$ is an interior angle of the triangle, we conclude that
+        \[
+            \boxed{\theta=30^\circ}.
+        \]
     \end{solution}
 
     \begin{pastproblem}{2024.4}
