@@ -133,6 +133,11 @@
     \fi
 }
 
+% Typography follows standard mathematical conventions throughout the book:
+% theorem statements are italic, definitions and expository statements are
+% upright, proof and solution labels are italic, and problem/source headings
+% are bold upright. In running text, italics are reserved for titles and terms
+% being defined, while bold is reserved for genuine structural headings.
 % Theorem styles
 \newtheoremstyle{sciencequizplain}
     {6pt}
@@ -239,12 +244,12 @@
     {%
         \refstepcounter{expectedsubproblem}%
         \par\vspace{4pt}\noindent
-        \textbf{\theexpectedsubproblem.}%
         \if\relax\detokenize{#1}\relax
+            \textbf{\theexpectedsubproblem.}%
         \else
-            \hspace{0.5em}{\small\textit{(#1)}}%
+            \textbf{\theexpectedsubproblem.\ (#1).}%
         \fi
-        \par\nobreak\vspace{-2pt}\ignorespaces
+        \hspace{0.5em}\ignorespaces
     }
     {\par\vspace{4pt}}
 
