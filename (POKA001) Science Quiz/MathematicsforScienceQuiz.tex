@@ -225,6 +225,46 @@
     }
     {\par\vspace{6pt}}
 
+
+% Subproblems and corresponding solutions inside an Expected Problem
+\newcounter{expectedsubproblem}[expectedproblem]
+\renewcommand{\theexpectedsubproblem}{%
+    \theexpectedproblem.\arabic{expectedsubproblem}%
+}
+\renewcommand{\theHexpectedsubproblem}{%
+    \arabic{expectedproblemsection}.\arabic{expectedproblem}.%
+    \arabic{expectedsubproblem}%
+}
+\newenvironment{expectedsubproblem}[1][]
+    {%
+        \refstepcounter{expectedsubproblem}%
+        \par\vspace{4pt}\noindent
+        \textbf{\theexpectedsubproblem.}%
+        \if\relax\detokenize{#1}\relax
+        \else
+            \hspace{0.5em}{\small\textit{(#1)}}%
+        \fi
+        \par\nobreak\vspace{-2pt}\ignorespaces
+    }
+    {\par\vspace{4pt}}
+
+\newcounter{expectedsubsolution}[expectedproblem]
+\renewcommand{\theexpectedsubsolution}{%
+    \theexpectedproblem.\arabic{expectedsubsolution}%
+}
+\renewcommand{\theHexpectedsubsolution}{%
+    \arabic{expectedproblemsection}.\arabic{expectedproblem}.%
+    \arabic{expectedsubsolution}%
+}
+\newenvironment{expectedsubsolution}
+    {%
+        \refstepcounter{expectedsubsolution}%
+        \par\vspace{6pt}\noindent
+        \textit{Solution \theexpectedsubsolution.}%
+        \hspace{0.5em}\ignorespaces
+    }
+    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+
 \newcommand{\expectedproblemsection}[1]{%
     \section*{#1}%
     \stepcounter{expectedproblemsection}%
