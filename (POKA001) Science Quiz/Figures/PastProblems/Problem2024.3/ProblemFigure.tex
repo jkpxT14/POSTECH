@@ -9,40 +9,39 @@
 
 \begin{document}
     \begin{tikzpicture}[science quiz figure]
-        \def\s{2.25}
+        \def\s{2.35}
 
         \coordinate (A) at (-\s,0);
         \coordinate (D) at (0,0);
         \coordinate (B) at (\s,0);
-        \coordinate (C) at
-            ({-\s*(sqrt(3)+1)/2},{\s*(sqrt(3)+1)/2});
+        \coordinate (C) at ({-\s*(sqrt(3)+1)/2},{\s*(sqrt(3)+1)/2});
 
         \draw[science quiz main] (A)--(B)--(C)--cycle;
         \draw[science quiz auxiliary] (C)--(D);
 
         \draw[science quiz tick]
-            ($(A)!0.5!(D)+(0,-0.10)$)--($(A)!0.5!(D)+(0,0.10)$);
+            ($(A)!0.5!(D)+(0,-0.11)$)--($(A)!0.5!(D)+(0,0.11)$);
         \draw[science quiz tick]
-            ($(D)!0.5!(B)+(0,-0.10)$)--($(D)!0.5!(B)+(0,0.10)$);
+            ($(D)!0.5!(B)+(0,-0.11)$)--($(D)!0.5!(B)+(0,0.11)$);
 
         \pic[
             science quiz angle,
-            angle radius=7.5mm,
-            angle eccentricity=1.42,
+            angle radius=8.0mm,
+            angle eccentricity=1.33,
             "$45^\circ$" {font=\small}
         ] {angle=C--D--A};
 
         \pic[
             science quiz angle,
-            angle radius=8.5mm,
-            angle eccentricity=1.42,
+            angle radius=9.6mm,
+            angle eccentricity=1.22,
             "$\theta$" {font=\small}
         ] {angle=A--C--D};
 
         \pic[
             science quiz angle,
-            angle radius=13mm,
-            angle eccentricity=1.25,
+            angle radius=12.2mm,
+            angle eccentricity=1.18,
             "$15^\circ$" {font=\small}
         ] {angle=D--C--B};
 
@@ -51,7 +50,7 @@
 
         \node[science quiz label,below left=1pt and 2pt of A] {$A$};
         \node[science quiz label,below right=1pt and 2pt of B] {$B$};
-        \node[science quiz label,above left=1pt and 2pt of C] {$C$};
+        \node[science quiz label,above left=1pt and 1pt of C] {$C$};
         \node[science quiz label,below=2pt of D] {$D$};
     \end{tikzpicture}
 \end{document}

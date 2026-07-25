@@ -1,0 +1,33 @@
+\documentclass[tikz,border=4pt]{standalone}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usetikzlibrary{calc,positioning}
+
+% Compile this file from the project root.
+\input{Figures/Styles/TikZ.tex}
+
+\begin{document}
+    \begin{tikzpicture}[science quiz figure]
+        \coordinate (A) at (0,1.9);
+        \coordinate (B) at (0,-1.9);
+        \coordinate (C) at (3.1,1.0);
+        \coordinate (D) at (3.1,-1.0);
+
+        \draw[science quiz main] (A) to[bend left=18] (B);
+        \draw[science quiz main] (A) to[bend right=18] (B);
+        \draw[science quiz main] (A) to[bend left=12] (C);
+        \draw[science quiz main] (A) to[bend right=10] (C);
+        \draw[science quiz main] (B) to[bend left=10] (D);
+        \draw[science quiz main] (B) to[bend right=12] (D);
+        \draw[science quiz main] (C) -- (D);
+
+        \foreach \P in {A,B,C,D}
+            \node[science quiz point] at (\P) {};
+
+        \node[science quiz label,left=4pt of A] {$A$};
+        \node[science quiz label,left=4pt of B] {$B$};
+        \node[science quiz label,right=4pt of C] {$C$};
+        \node[science quiz label,right=4pt of D] {$D$};
+    \end{tikzpicture}
+\end{document}
