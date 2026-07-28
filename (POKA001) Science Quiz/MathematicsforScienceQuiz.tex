@@ -198,9 +198,10 @@
 
 % Problem environments
 % Past Problems keep explicit historical labels. Expected Problems are numbered
-% automatically and independently inside each of the four problem categories.
-% The optional argument of expectedproblem contains source and/or standard name,
-% for example [1988 IMO] or [KMO 1999, Legend Problem].
+% automatically, restarting from 1 in each section of Part V.
+% The optional argument of expectedproblem contains only a compact source and/or
+% a standard problem name, for example [1988 IMO, Vieta Jumping], [1982 IMO],
+% or [Chomp]. Omit it when neither is useful.
 \newcommand{\problemheading}[1]{%
     \par\vspace{6pt}\noindent
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces

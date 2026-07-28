@@ -1,3 +1,6 @@
+    % Each problem--solution pair below is a self-contained movable unit.
+    % To add, delete, or reorder problems, move the complete pair within its
+    % category; numbering restarts from 1 in each category automatically.
     \expectedproblemsection{Standard Mathematical Problems}
 
     \begin{expectedproblem}[1988 IMO, Vieta Jumping]
@@ -67,6 +70,123 @@
         \]
         contradicting the minimality of $a+b$. Hence $k$ must be a perfect
         square.
+    \end{solution}
+
+    \begin{expectedproblem}[Sophomore's Dream]
+        Prove the identity
+        \[
+            \int_0^1 x^{-x}\dd x
+            =
+            \sum_{n=1}^{\infty}\frac{1}{n^n}.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        For $0<x\leq1$, we have $-\ln x\geq0$, and hence
+        \[
+            x^{-x}
+            =
+            e^{-x\ln x}
+            =
+            \sum_{n=0}^{\infty}
+            \frac{x^n(-\ln x)^n}{n!}.
+        \]
+        Every term is nonnegative, so Tonelli's theorem allows us to integrate
+        term by term:
+        \[
+            \int_0^1x^{-x}\dd x
+            =
+            \sum_{n=0}^{\infty}
+            \frac{1}{n!}
+            \int_0^1x^n(-\ln x)^n\dd x.
+        \]
+        In the $n$th integral, let $t=-(n+1)\ln x$. Then
+        \[
+            \int_0^1x^n(-\ln x)^n\dd x
+            =
+            \frac{1}{(n+1)^{n+1}}
+            \int_0^\infty t^ne^{-t}\dd t
+            =
+            \frac{n!}{(n+1)^{n+1}}.
+        \]
+        Therefore
+        \[
+            \int_0^1x^{-x}\dd x
+            =
+            \sum_{n=0}^{\infty}\frac{1}{(n+1)^{n+1}}
+            =
+            \boxed{\sum_{n=1}^{\infty}\frac{1}{n^n}}.
+        \]
+        Numerically, the common value is approximately
+        \[
+            1.291285997\ldots.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1982 IMO]
+        A function
+        \[
+            f:\Z_{>0}\to\Z_{\geq0}
+        \]
+        satisfies
+        \[
+            f(m+n)-f(m)-f(n)\in\{0,1\}
+        \]
+        for all positive integers $m$ and $n$. Moreover,
+        \[
+            f(2)=0,
+            \qquad
+            f(3)>0,
+            \qquad
+            f(9999)=3333.
+        \]
+        Determine $f(1982)$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Repeatedly applying the given condition shows that, for all positive
+        integers $r$ and $t$,
+        \[
+            r f(t)
+            \leq
+            f(rt)
+            \leq
+            r f(t)+r-1.
+        \]
+        Apply this estimate to
+        \[
+            N=9999\cdot1982
+        \]
+        in two different ways. Using $t=1982$ and then $t=9999$ gives
+        \[
+            9999f(1982)
+            \leq
+            f(N)
+            \leq
+            9999f(1982)+9998
+        \]
+        and
+        \[
+            1982\cdot3333
+            \leq
+            f(N)
+            \leq
+            1982\cdot3333+1981.
+        \]
+        Consequently,
+        \[
+            \frac{1982\cdot3333-9998}{9999}
+            \leq
+            f(1982)
+            \leq
+            \frac{1982\cdot3333+1981}{9999}.
+        \]
+        The left endpoint lies strictly between $659$ and $660$, whereas the
+        right endpoint lies strictly between $660$ and $661$. Since
+        $f(1982)$ is an integer, it follows that
+        \[
+            \boxed{f(1982)=660}.
+        \]
     \end{solution}
 
     \expectedproblemsection{Direct Calculation Problems}
@@ -483,6 +603,48 @@
 
     \expectedproblemsection{Memorization Problems}
 
+    \begin{expectedproblem}[Yang--Mills Existence and Mass Gap]
+        The Clay Mathematics Institute's Yang--Mills Existence and Mass Gap
+        problem asks for a nontrivial quantum Yang--Mills theory on
+        $\R^d$ with a positive mass gap. Determine $d$, and state whether this
+        case has been solved.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The Millennium Prize Problem is posed on four-dimensional Euclidean
+        space:
+        \[
+            \boxed{d=4}.
+        \]
+        As of 2026, the required rigorous construction and proof of a positive
+        mass gap in this dimension remain open.
+    \end{solution}
+
+    \begin{expectedproblem}[Exotic Spheres]
+        John Milnor first exhibited exotic spheres in dimension $n$: smooth
+        manifolds homeomorphic, but not diffeomorphic, to the standard sphere
+        $S^n$. Later work showed that the group $\Theta_n$ of oriented
+        diffeomorphism classes of homotopy $n$-spheres has exactly $k$
+        elements in this dimension. Determine
+        \[
+            n+k.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        Milnor's first exotic spheres were seven-dimensional, and
+        Kervaire--Milnor theory gives
+        \[
+            \Theta_7\cong\Z/28\Z.
+        \]
+        Thus, with orientation taken into account, there are $28$ classes in
+        total: one standard class and $27$ exotic classes. Therefore $n=7$
+        and $k=28$, so
+        \[
+            \boxed{n+k=35}.
+        \]
+    \end{solution}
+
     \expectedproblemsection{Reasoning and Puzzle Problems}
 
     \begin{expectedproblem}[Happy Ending Problem]
@@ -510,7 +672,7 @@
         convex quadrilateral.
     \end{solution}
 
-    \begin{expectedproblem}[Sum-and-Product Problem, Impossible Puzzle]
+    \begin{expectedproblem}[Sum-and-Product Puzzle]
         Two integers $x$ and $y$ satisfy
         \[
             1<x<y,
@@ -796,7 +958,7 @@
         once.
     \end{solution}
 
-    \begin{expectedproblem}[Fifteen Puzzle, 14--15 Challenge]
+    \begin{expectedproblem}[15 Puzzle]
         In the standard fifteen puzzle, a legal move consists of sliding one
         tile adjacent to the blank square into the blank square. Starting from
         the solved position on the left, determine whether one can reach the
@@ -853,3 +1015,90 @@
 
         Therefore the 14--15 challenge is impossible.
     \end{solution}
+
+    \begin{expectedproblem}[Chomp]
+        An $m\times n$ rectangular chocolate bar consists of unit-square
+        pieces. The lower-left piece is poisoned.
+
+        On each turn, a player chooses one remaining piece and eats that piece
+        together with every remaining piece weakly above it and weakly to its
+        right. The player who eats the poisoned piece loses.
+
+        Prove that whenever the initial bar contains more than the poisoned
+        piece alone, the first player has a winning strategy.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Since the game is finite and has no draws, one of the two players has a
+        winning strategy. Suppose, for contradiction, that the second player
+        has one.
+
+        Let the first player eat only the upper-right corner piece. According
+        to the supposed winning strategy, the second player must have a
+        non-poisoned response; otherwise the second player is forced to eat the
+        poisoned piece and loses. Let that response be a remaining piece $C$.
+        Eating $C$ also removes the upper-right corner, because that corner
+        lies above and to the right of $C$. Hence the position obtained after
+        these two moves is exactly the position that would have resulted had
+        the first player chosen $C$ on the very first move.
+
+        After the original two-move sequence, this position is losing for the
+        player whose turn it is, namely the first player. The first player
+        could instead begin by choosing $C$ and hand the identical losing
+        position to the second player. This contradicts the assumption that
+        the second player has a winning strategy.
+
+        Therefore the first player has a winning strategy. The argument proves
+        its existence without identifying the winning first move in general.
+    \end{solution}
+
+    \begin{expectedproblem}[100 Prisoners and 100 Boxes]
+        One hundred prisoners and one hundred boxes are labeled
+        $1,2,\ldots,100$. The prisoners' labels are placed in the boxes
+        according to a uniformly random permutation.
+
+        The prisoners enter the room one at a time. Each prisoner may open at
+        most $50$ boxes and must restore them before leaving. They may agree on
+        a strategy beforehand but may not communicate after the process
+        begins. They all survive if and only if every prisoner finds their own
+        label.
+
+        Find a strategy whose probability of saving all the prisoners is
+        greater than $30\%$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Regard the contents of the boxes as a permutation $\pi$ of
+        $\{1,2,\ldots,100\}$, where box $i$ contains the label $\pi(i)$.
+        Prisoner $i$ first opens box $i$. If it contains label $j$, the
+        prisoner next opens box $j$, and continues following the labels in
+        this way for at most $50$ boxes.
+
+        This procedure follows the cycle of $\pi$ containing $i$. Therefore
+        every prisoner finds their own label if and only if every cycle of
+        $\pi$ has length at most $50$.
+
+        For $51\leq k\leq100$, the probability that a uniformly random
+        permutation contains a $k$-cycle is $1/k$. Moreover, two cycles of
+        lengths greater than $50$ cannot occur simultaneously. Hence the
+        probability that some cycle is too long is
+        \[
+            \sum_{k=51}^{100}\frac{1}{k}.
+        \]
+        The probability that all prisoners survive is therefore
+        \[
+            1-\sum_{k=51}^{100}\frac{1}{k}
+            =
+            1-\bigl(H_{100}-H_{50}\bigr)
+            \approx
+            0.3118278207.
+        \]
+        Thus the cycle-following strategy saves all the prisoners with
+        probability approximately
+        \[
+            \boxed{31.18\%},
+        \]
+        which is greater than $30\%$.
+    \end{solution}
+
+    \expectedproblemsection{Mathematical Intuition Problems}
