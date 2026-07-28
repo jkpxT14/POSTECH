@@ -265,6 +265,135 @@
         required ordinary line.
     \end{solution}
 
+    \begin{expectedproblem}[Moser's Circle Problem]
+        Place $n$ points on a circle and join every pair of points by a chord.
+        Assume that no three chords meet at a common point in the interior of
+        the circle. Determine, with proof, the maximum number of regions into
+        which the chords divide the circle.
+    \end{expectedproblem}
+
+    \begin{solution}
+        There are
+        \[
+            \binom{n}{2}
+        \]
+        chords. Draw them one at a time. If a new chord contains $r$ existing
+        interior intersection points, those points divide it into $r+1$
+        segments, and each segment splits one existing region into two.
+        Therefore the new chord creates $r+1$ new regions.
+
+        It follows that the final number of regions is
+        \[
+            1
+            +
+            \#\{\text{chords}\}
+            +
+            \#\{\text{interior intersections}\}.
+        \]
+        Every interior intersection is determined by four boundary points:
+        among the six chords joining those four points, exactly the two
+        diagonals of their cyclic quadrilateral intersect in the interior.
+        Conversely, every choice of four boundary points produces one such
+        intersection. The assumption that no three chords are concurrent
+        ensures that all these intersections are distinct. Hence there are
+        \[
+            \binom{n}{4}
+        \]
+        interior intersections.
+
+        Thus the maximum number of regions is
+        \[
+            \boxed{
+                1+\binom{n}{2}+\binom{n}{4}
+            }.
+        \]
+        In particular, the first values are
+        \[
+            1,\ 2,\ 4,\ 8,\ 16,\ 31,\ldots,
+        \]
+        so the apparent pattern $2^{n-1}$ fails when $n=6$.
+    \end{solution}
+
+    \begin{expectedproblem}[1976 IMO]
+        Determine, with proof, the largest number that can be written as the
+        product of positive integers whose sum is $1976$. The number of
+        factors is not prescribed.
+    \end{expectedproblem}
+
+    \begin{solution}
+        A maximizing product contains no factor $1$, since replacing a pair
+        $1,a$ by $a+1$ preserves the sum and increases the product. It also
+        contains no factor $k\geq5$, because replacing $k$ by $3$ and $k-3$
+        preserves the sum and increases the product:
+        \[
+            3(k-3)>k.
+        \]
+        A factor $4$ may be replaced by $2,2$ without changing the product.
+        Thus it suffices to use only $2$ and $3$.
+
+        Three factors equal to $2$ should be replaced by two factors equal to
+        $3$, since
+        \[
+            2+2+2=3+3
+            \qquad\text{and}\qquad
+            2^3<3^2.
+        \]
+        Hence at most two factors equal to $2$ occur. Since
+        \[
+            1976=3\cdot658+2,
+        \]
+        the only optimal remainder pattern is one factor equal to $2$ and
+        $658$ factors equal to $3$.
+
+        Therefore, the largest possible product is
+        \[
+            \boxed{2\cdot3^{658}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2021 Putnam]
+        A grasshopper starts at the origin in the coordinate plane and makes a
+        sequence of hops. Each hop has length $5$, and after every hop the
+        grasshopper is at a point whose coordinates are both integers.
+        Determine the smallest number of hops needed to reach
+        \[
+            (2021,2021).
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        If a hop has displacement vector $(p,q)$, then
+        \[
+            p^2+q^2=25.
+        \]
+        Thus the possible absolute coordinate pairs are $(5,0)$ and $(4,3)$,
+        in either order. In particular, a single hop can increase the sum of
+        the two coordinates by at most
+        \[
+            4+3=7.
+        \]
+        Since
+        \[
+            2021+2021=4042=7\cdot577+3,
+        \]
+        at least $578$ hops are necessary.
+
+        This bound is attained because
+        \[
+            (2021,2021)
+            =
+            288(3,4)+288(4,3)+(5,0)+(0,5).
+        \]
+        The right-hand side is a sum of
+        \[
+            288+288+1+1=578
+        \]
+        legal hop vectors. Therefore, the minimum number of hops is
+        \[
+            \boxed{578}.
+        \]
+    \end{solution}
+
     \expectedproblemsection{Direct Calculation Problems}
 
     \begin{expectedproblem}
@@ -677,6 +806,55 @@
         \]
     \end{expectedsubsolution}
 
+    \begin{expectedproblem}[Buffon's Needle]
+        Infinitely many parallel lines are drawn in the plane, with distance
+        $d$ between consecutive lines. A needle of length $\ell$, where
+        \[
+            0<\ell\leq d,
+        \]
+        is dropped at random. Assume that its midpoint is uniformly
+        distributed modulo one strip and, independently, that its direction is
+        uniformly distributed. Determine the probability that the needle
+        intersects one of the parallel lines.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let $X$ be the distance from the midpoint of the needle to the nearest
+        parallel line, and let $\Theta$ be the acute angle between the needle
+        and the lines. Then
+        \[
+            0\leq X\leq\frac{d}{2},
+            \qquad
+            0\leq\Theta\leq\frac{\pi}{2},
+        \]
+        and $X$ and $\Theta$ are independent and uniform on these intervals.
+
+        For a fixed angle $\theta$, the needle intersects a line exactly when
+        its perpendicular half-length reaches the nearest line, that is, when
+        \[
+            X\leq\frac{\ell}{2}\sin\theta.
+        \]
+        Since $\ell\leq d$, the right-hand side never exceeds $d/2$.
+        Therefore,
+        \[
+            \begin{aligned}
+                \Prob(\text{intersection})
+                &=
+                \frac{2}{\pi}
+                \int_0^{\pi/2}
+                \Prob\left(
+                    X\leq\frac{\ell}{2}\sin\theta
+                \right)\dd\theta\\
+                &=
+                \frac{2}{\pi}
+                \int_0^{\pi/2}
+                \frac{\ell\sin\theta}{d}\dd\theta\\
+                &=
+                \boxed{\frac{2\ell}{\pi d}}.
+            \end{aligned}
+        \]
+    \end{solution}
+
     \expectedproblemsection{Memorization Problems}
 
     \begin{expectedproblem}[Yang--Mills Existence and Mass Gap]
@@ -820,6 +998,101 @@
         \[
             \boxed{(x,y)=(4,13)}.
         \]
+    \end{solution}
+
+    \begin{expectedproblem}[Bertrand's Box Paradox]
+        Three boxes contain coins as follows:
+        \[
+            GG,\qquad GS,\qquad SS,
+        \]
+        where $G$ denotes a gold coin and $S$ denotes a silver coin. A box is
+        chosen uniformly at random, and then one of its two coins is chosen
+        uniformly at random. The chosen coin is gold. Determine the
+        conditional probability that the other coin in the same box is also
+        gold.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let $B_{GG}$ be the event that the chosen box is $GG$, and let $G$ be
+        the event that the observed coin is gold. Then
+        \[
+            \Prob(G\mid B_{GG})=1,
+            \qquad
+            \Prob(G\mid B_{GS})=\frac12,
+            \qquad
+            \Prob(G\mid B_{SS})=0.
+        \]
+        Since the three boxes are initially equally likely, Bayes' theorem
+        gives
+        \[
+            \begin{aligned}
+                \Prob(B_{GG}\mid G)
+                &=
+                \frac{
+                    \Prob(G\mid B_{GG})\Prob(B_{GG})
+                }{
+                    \Prob(G\mid B_{GG})\Prob(B_{GG})
+                    +
+                    \Prob(G\mid B_{GS})\Prob(B_{GS})
+                }\\
+                &=
+                \frac{1\cdot(1/3)}
+                {1\cdot(1/3)+(1/2)\cdot(1/3)}
+                =
+                \boxed{\frac23}.
+            \end{aligned}
+        \]
+        Equivalently, after observing gold, the selected coin is equally
+        likely to be any of the three gold coins present among the boxes.
+        Two of those three coins lie in the $GG$ box.
+    \end{solution}
+
+    \begin{expectedproblem}[Josephus Problem]
+        The people numbered
+        \[
+            1,2,\ldots,n
+        \]
+        stand in a circle. Starting with person $1$, count repeatedly around
+        the circle and eliminate every second person. After each elimination,
+        resume counting with the next remaining person. Determine the number
+        of the last survivor.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let $J(n)$ denote the number of the survivor. If $n=2m$, the first
+        circuit eliminates all even-numbered people. Relabeling the survivors
+        \[
+            1,3,\ldots,2m-1
+        \]
+        as $1,2,\ldots,m$ gives
+        \[
+            J(2m)=2J(m)-1.
+        \]
+        A similar relabeling when $n=2m+1$ gives
+        \[
+            J(2m+1)=2J(m)+1.
+        \]
+
+        Write
+        \[
+            n=2^r+\ell,
+            \qquad
+            0\leq\ell<2^r.
+        \]
+        Starting from $J(2^r)=1$, a strong induction using these recurrences
+        yields
+        \[
+            \boxed{J(n)=2\ell+1}.
+        \]
+        In binary notation this has a particularly simple interpretation. If
+        \[
+            n=(1b_{r-1}b_{r-2}\cdots b_0)_2,
+        \]
+        then
+        \[
+            J(n)=(b_{r-1}b_{r-2}\cdots b_0 1)_2;
+        \]
+        the leading binary digit of $n$ is moved to the end.
     \end{solution}
 
     \begin{expectedproblem}[Conway's Soldiers]
@@ -1099,6 +1372,47 @@
             \boxed{31.18\%},
         \]
         which is greater than $30\%$.
+    \end{solution}
+
+    \begin{expectedproblem}[St.\ Petersburg Paradox]
+        A fair coin is tossed until heads appears for the first time. If the
+        first head appears on the $n$th toss, the player receives
+        \[
+            2^n
+        \]
+        units of money. Compute the expected payoff. If decisions are based
+        only on expected monetary value, determine how large an entry fee it
+        would be rational to pay, and explain why the conclusion is regarded
+        as paradoxical.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The probability that the first head appears on the $n$th toss is
+        \[
+            \left(\frac12\right)^n.
+        \]
+        Therefore the expected payoff is
+        \[
+            \Exp[X]
+            =
+            \sum_{n=1}^{\infty}
+            2^n\left(\frac12\right)^n
+            =
+            \sum_{n=1}^{\infty}1
+            =
+            \boxed{\infty}.
+        \]
+        Under the rule of maximizing expected monetary value alone, subtracting
+        any finite entry fee still leaves an infinite expected net payoff.
+        Thus there is no finite upper bound on the fee that this rule recommends.
+
+        The conclusion conflicts sharply with ordinary judgment. For example,
+        the payoff is at most $2$ with probability $1/2$ and at most $4$ with
+        probability $3/4$, so most outcomes are small. The infinite expectation
+        is driven by extremely rare but extremely large prizes. This mismatch
+        shows that expected monetary value alone is not always an adequate
+        decision criterion; finite resources, risk, and diminishing marginal
+        utility of money can all change a rational valuation.
     \end{solution}
 
     \expectedproblemsection{Mathematical Intuition Problems}
