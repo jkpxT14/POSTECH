@@ -189,6 +189,82 @@
         \]
     \end{solution}
 
+    \begin{expectedproblem}[Happy Ending Problem]
+        Five points are given in the plane, no three of which are collinear.
+        Prove that four of them are the vertices of a convex quadrilateral.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Consider the convex hull of the five points. If the convex hull has at
+        least four vertices, any four of its vertices, taken in cyclic order,
+        form a convex quadrilateral.
+
+        It remains to consider the case in which the convex hull is a triangle
+        with vertices $A,B,C$. Let the remaining two points be $P$ and $Q$;
+        both lie in the interior of $\triangle ABC$. The line $PQ$ contains none
+        of $A,B,C$, so two of the three vertices lie in the same open half-plane
+        determined by $PQ$. Relabel them as $A$ and $B$.
+
+        The triangle $\triangle ABQ$ meets the line $PQ$ only at $Q$, because
+        $A$ and $B$ lie strictly on the same side of that line. Hence
+        $P\notin\triangle ABQ$. Similarly, $Q\notin\triangle ABP$. Since
+        $A$ and $B$ are vertices of the convex hull of all five points, neither
+        lies in the triangle determined by the other three points. Consequently,
+        all four points $A,B,P,Q$ are vertices of their convex hull, which is a
+        convex quadrilateral.
+    \end{solution}
+
+    \begin{expectedproblem}[Sylvester--Gallai Theorem]
+        Let $S$ be a finite set of points in the plane, not all collinear. Prove
+        that there exists a line containing exactly two points of $S$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Call a line determined by points of $S$ \emph{ordinary} if it contains
+        exactly two points of $S$. Consider all pairs $(P,\ell)$ such that
+        $P\in S$, the line $\ell$ is determined by at least two points of $S$,
+        and $P\notin\ell$. Since $S$ is finite and not collinear, the set of
+        positive distances arising in this way is finite and nonempty. Choose
+        $(P,\ell)$ so that
+        \[
+            h=\dist(P,\ell)>0
+        \]
+        is as small as possible, and let $H$ be the foot of the perpendicular
+        from $P$ to $\ell$.
+
+        Suppose, for contradiction, that $\ell$ contains at least three points
+        of $S$. We can choose distinct points $A,B\in S\cap\ell$ so that either
+        $A=H$, or $A$ and $B$ lie on the same side of $H$ with $A$ closer to
+        $H$. In either case,
+        \[
+            AB<PB.
+        \]
+        Indeed, if $A=H$, then $AB=HB<PB$; otherwise,
+        $AB=HB-HA<HB<PB$.
+
+        Computing the area of $\triangle PAB$ with bases $AB$ and $PB$ gives
+        \[
+            \frac12 AB\,h
+            =
+            [PAB]
+            =
+            \frac12 PB\,\dist(A,PB).
+        \]
+        Hence
+        \[
+            \dist(A,PB)
+            =
+            \frac{AB}{PB}h
+            <
+            h.
+        \]
+        However, the line $PB$ is determined by two points of $S$, and
+        $A\notin PB$. This contradicts the minimality of $h$.
+
+        Therefore, $\ell$ contains exactly two points of $S$, so $\ell$ is the
+        required ordinary line.
+    \end{solution}
+
     \expectedproblemsection{Direct Calculation Problems}
 
     \begin{expectedproblem}
@@ -647,31 +723,6 @@
 
     \expectedproblemsection{Reasoning and Puzzle Problems}
 
-    \begin{expectedproblem}[Happy Ending Problem]
-        Five points are given in the plane, no three of which are collinear.
-        Prove that four of them are the vertices of a convex quadrilateral.
-    \end{expectedproblem}
-
-    \begin{solution}
-        Consider the convex hull of the five points. If the convex hull has at
-        least four vertices, any four of its vertices, taken in cyclic order,
-        form a convex quadrilateral.
-
-        It remains to consider the case in which the convex hull is a triangle
-        with vertices $A,B,C$. Let the remaining two points be $P$ and $Q$;
-        both lie in the interior of $\triangle ABC$. The line $PQ$ contains none
-        of $A,B,C$, so two of the three vertices lie in the same open half-plane
-        determined by $PQ$. Relabel them as $A$ and $B$.
-
-        The triangle $\triangle ABQ$ meets the line $PQ$ only at $Q$, because
-        $A$ and $B$ lie strictly on the same side of that line. Hence
-        $P\notin\triangle ABQ$. Similarly, $Q\notin\triangle ABP$. Since
-        $A$ and $B$ are vertices of the convex hull of all five points, neither
-        lies in the triangle determined by the other three points. Consequently,
-        all four points $A,B,P,Q$ are vertices of their convex hull, which is a
-        convex quadrilateral.
-    \end{solution}
-
     \begin{expectedproblem}[Sum-and-Product Puzzle]
         Two integers $x$ and $y$ satisfy
         \[
@@ -769,57 +820,6 @@
         \[
             \boxed{(x,y)=(4,13)}.
         \]
-    \end{solution}
-
-    \begin{expectedproblem}[Sylvester--Gallai Theorem]
-        Let $S$ be a finite set of points in the plane, not all collinear. Prove
-        that there exists a line containing exactly two points of $S$.
-    \end{expectedproblem}
-
-    \begin{solution}
-        Call a line determined by points of $S$ \emph{ordinary} if it contains
-        exactly two points of $S$. Consider all pairs $(P,\ell)$ such that
-        $P\in S$, the line $\ell$ is determined by at least two points of $S$,
-        and $P\notin\ell$. Since $S$ is finite and not collinear, the set of
-        positive distances arising in this way is finite and nonempty. Choose
-        $(P,\ell)$ so that
-        \[
-            h=\dist(P,\ell)>0
-        \]
-        is as small as possible, and let $H$ be the foot of the perpendicular
-        from $P$ to $\ell$.
-
-        Suppose, for contradiction, that $\ell$ contains at least three points
-        of $S$. We can choose distinct points $A,B\in S\cap\ell$ so that either
-        $A=H$, or $A$ and $B$ lie on the same side of $H$ with $A$ closer to
-        $H$. In either case,
-        \[
-            AB<PB.
-        \]
-        Indeed, if $A=H$, then $AB=HB<PB$; otherwise,
-        $AB=HB-HA<HB<PB$.
-
-        Computing the area of $\triangle PAB$ with bases $AB$ and $PB$ gives
-        \[
-            \frac12 AB\,h
-            =
-            [PAB]
-            =
-            \frac12 PB\,\dist(A,PB).
-        \]
-        Hence
-        \[
-            \dist(A,PB)
-            =
-            \frac{AB}{PB}h
-            <
-            h.
-        \]
-        However, the line $PB$ is determined by two points of $S$, and
-        $A\notin PB$. This contradicts the minimality of $h$.
-
-        Therefore, $\ell$ contains exactly two points of $S$, so $\ell$ is the
-        required ordinary line.
     \end{solution}
 
     \begin{expectedproblem}[Conway's Soldiers]
