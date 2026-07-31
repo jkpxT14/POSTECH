@@ -2,9 +2,8 @@
     \markboth{Notation and Conventions}{Notation and Conventions}
     \addcontentsline{toc}{chapter}{Notation and Conventions}
 
-    The notation specified below is used throughout this book. When several
-    typographic variants of the same letter exist, each variant is assigned a
-    distinct role and the variants are not interchanged.
+    Throughout this book, standard mathematical notation is used whenever
+    possible. The conventions below apply to every part of the book.
 
     \section*{General Conventions}
 
@@ -15,16 +14,6 @@
     identity matrix, a diagonal matrix, and a projection matrix are written as
     $\mathbf{I}_n$, $\mathbf{D}$, and $\mathbf{P}$, respectively. Unless
     otherwise stated, vectors are column vectors.
-
-    Round parentheses are used for ordered tuples and matrix delimiters. Square
-    brackets are used for closed intervals and for area notation such as
-    $[ABC]$. Braces are used for sets. In set-builder notation, the condition is
-    separated by $\mid$, as in $\{x\in A\mid P(x)\}$. Determinants may be
-    enclosed by vertical bars because a determinant is a scalar.
-
-    In symbolic statements, logical conjunction, disjunction, and negation are
-    written as $\land$, $\lor$, and $\neg$. The words ``and'' and ``or'' are
-    used in ordinary prose.
 
     \vspace{0.5em}
 
@@ -50,14 +39,29 @@
         $\Q$ & the set of rational numbers \\
         $\R$ & the set of real numbers \\
         $\C$ & the set of complex numbers \\
-        $a\coloneqq b$ & $a$ is defined to be $b$ \\
-        $\varepsilon$ & a positive quantity in analysis, usually arbitrary \\
+        $a\coloneqq b$ or $a:=b$ & $a$ is defined to be $b$; this book normally uses $\coloneqq$ \\
+        $\text{s.t.}$ & such that \\
+        $\text{N.t.}$ & Note that \\
+        $\eps=\varepsilon$ & a positive real number used in analysis, usually arbitrarily small \\
         $\epsilon_{ijk}$ & the Levi--Civita symbol; the glyph $\epsilon$ is reserved for this use \\
         $O(g(x))$ & Big-O notation \\
         $o(g(x))$ & little-o notation \\
         $\square$ & the end of a proof or solution \\
     \end{longtable}
     }
+
+    Round parentheses are used for ordered tuples and matrix delimiters. Square
+    brackets are used for closed intervals and for area notation such as
+    $[ABC]$. Braces are used for sets. In set-builder notation, the condition is
+    separated by $\mid$, as in $\{x\in A\mid P(x)\}$. Determinants may be
+    enclosed by vertical bars because a determinant is a scalar.
+
+    In symbolic statements, logical conjunction, disjunction, and negation are
+    written as $\land$, $\lor$, and $\neg$. The words ``and'' and ``or'' remain
+    in ordinary prose when a logical formula is not being displayed. The symbol
+    $\eps=\varepsilon$ denotes a small positive quantity in analysis, whereas
+    $\epsilon_{ijk}$ denotes the Levi--Civita symbol; these two glyphs are not
+    interchanged.
 
     \section*{Theorem-like Environments}
 
@@ -78,19 +82,19 @@
         \endlastfoot
 
         Definition & a precise meaning of a term or object \\
-        Theorem & a major mathematical result \\
-        Proposition & a useful result of more limited scope \\
+        Theorem & a major named result \\
+        Proposition & a useful standard result \\
         Lemma & a supporting result or technical tool \\
-        Corollary & a result that follows directly from another result \\
+        Corollary & a result that follows quickly from another result \\
         Formula & a computational identity or closed form \\
         Algorithm & a step-by-step computational procedure \\
-        Fact & a verified mathematical or historical fact \\
+        Fact & a mathematical or historical fact \\
         Conjecture & a statement believed to be true but not proved in full generality \\
-        Hypothesis & a named assumption or proposed statement \\
-        Open Problem & a problem whose stated form remains unsolved \\
-        Idea & a concise account of a decisive mathematical idea \\
+        Hypothesis & a named assumption or guiding claim \\
+        Open Problem & a problem whose general form remains unsolved \\
+        Idea & a short explanation of a decisive mathematical idea \\
         Strategy & a broadly useful problem-solving method \\
-        Tactic & a local, immediately applicable device \\
+        Tactic & a local, immediately usable trick \\
         Remark & supplementary context or a caution \\
     \end{longtable}
     }
@@ -99,9 +103,9 @@
 
     Uppercase letters such as $A,B,X,Y$ usually denote sets, while lowercase
     letters such as $a,b,x,y$ usually denote their elements unless the context
-    indicates another meaning. The arrow $f:X\to Y$ specifies the domain and
-    codomain of a function, while $x\mapsto f(x)$ specifies its action on an
-    element.
+    clearly indicates another meaning. The arrow $f:X\to Y$ specifies the
+    domain and codomain of a function, while $x\mapsto f(x)$ specifies its
+    action on an element.
 
     \vspace{0.5em}
 
@@ -136,16 +140,16 @@
         $A\times B$ & the Cartesian product of $A$ and $B$ \\
         $A\sqcup B$ & the disjoint union of $A$ and $B$ \\
         $|A|$ & the cardinality of a finite set $A$ \\
-        $\{x\in A\mid P(x)\}$ & the set of all $x\in A$ for which $P(x)$ holds \\
+        $\{x\in A\mid P(x)\}$ & the set of $x\in A$ s.t. $P(x)$ holds \\
         $x\sim y$ & $x$ and $y$ are equivalent under an understood equivalence relation \\
         $A/\sim$ & the set of equivalence classes of $A$ under $\sim$ \\
         $\forall x\in A$ & for every $x\in A$ \\
         $\exists x\in A$ & there exists $x\in A$ \\
         $\exists!x\in A$ & there exists a unique $x\in A$ \\
         $\nexists x\in A$ & there does not exist $x\in A$ \\
-        $P\Rightarrow Q$ & $P$ implies $Q$ \\
-        $P\Leftarrow Q$ & $Q$ implies $P$ \\
-        $P\Leftrightarrow Q$ & $P$ if and only if $Q$ \\
+        $P\Rightarrow Q$ or $P\implies Q$ & $P$ implies $Q$ \\
+        $P\Leftarrow Q$ or $P\impliedby Q$ & $Q$ implies $P$ \\
+        $P\Leftrightarrow Q$ or $P\iff Q$ & $P$ if and only if $Q$ \\
         $P\land Q$ & logical conjunction \\
         $P\lor Q$ & logical disjunction \\
         $\neg P$ & logical negation \\
@@ -162,15 +166,16 @@
         $X\cong Y$ & $X$ and $Y$ are isomorphic \\
         $f(A)$ & the image of $A$ under $f$ \\
         $f^{-1}(B)$ & the inverse image, or preimage, of $B$ \\
-        $\indicatorbb{A}(x)$ & the indicator function of $A$ \\
+        $\indicatorbb{A}(x)$ or $\indicator{A}(x)$ & the indicator function, or characteristic function, of $A$ \\
         $\aleph_0$ & the cardinality of a countably infinite set \\
         $\mathfrak{c}$ & the cardinality of the continuum \\
     \end{longtable}
     }
 
-    The symbol $\indicatorbb{A}$ is blackboard bold and does not denote a
-    vector. The all-ones vector is $\ones$. Boldface is otherwise reserved for
-    vectors and matrices.
+    The indicator function may be written as $\indicatorbb{A}$ or
+    $\indicator{A}$. The symbol $\indicatorbb{A}$ is blackboard bold, not vector
+    boldface. The all-ones vector is $\ones$. Boldface is reserved for vectors
+    and matrices.
 
     \section*{Calculus and Analysis}
 
@@ -189,10 +194,10 @@
     In polar, cylindrical, and spherical coordinates, $\theta$ is the azimuthal
     angle measured counterclockwise from the positive $x$-axis in the
     $xy$-plane. In spherical coordinates, $\phi$ is the polar angle measured
-    from the positive $z$-axis. The glyph $\phi$ is reserved for this spherical
-    polar angle. The glyph $\varphi$ is used for functions, homomorphisms,
-    Euler's totient function, and the golden ratio whenever one of these objects
-    is introduced.
+    from the positive $z$-axis. Throughout this book, $\phi$ is reserved for
+    this spherical polar angle. The variant $\varphi$ is used for functions,
+    homomorphisms, Euler's totient function, and the golden ratio when it is
+    explicitly defined.
 
     \vspace{0.5em}
 
@@ -220,9 +225,9 @@
         $\lg x$ & the logarithm to base $10$ \\
         $\lb x$ & the logarithm to base $2$ \\
         $\log_a x$ & the logarithm to the explicitly specified base $a$ \\
-        $\arcsin x$ & the principal inverse sine, with values in $[-\pi/2,\pi/2]$ \\
-        $\arccos x$ & the principal inverse cosine, with values in $[0,\pi]$ \\
-        $\arctan x$ & the principal inverse tangent, with values in $(-\pi/2,\pi/2)$ \\
+        $\arcsin x$ & the principal inverse sine \\
+        $\arccos x$ & the principal inverse cosine \\
+        $\arctan x$ & the principal inverse tangent \\
         $C^k(I)$ & the space of $k$ times continuously differentiable functions on $I$ \\
         $C^\infty(I)$ & the space of smooth functions on $I$ \\
         $\displaystyle\frac{\partial f}{\partial x_i}$ & the partial derivative of $f$ with respect to $x_i$ \\
@@ -230,9 +235,9 @@
         $(r,\theta)$ & polar coordinates \\
         $(r,\theta,z)$ & cylindrical coordinates \\
         $(\rho,\theta,\phi)$ & spherical coordinates \\
-        $\nabla f$ & the gradient of $f$ \\
-        $\nabla\cdot\mathbf{F}$ & the divergence of $\mathbf{F}$ \\
-        $\nabla\times\mathbf{F}$ & the curl of $\mathbf{F}$ \\
+        $\nabla f$ or $\grad f$ & the gradient of $f$ \\
+        $\nabla\cdot\mathbf{F}$ or $\divergence\mathbf{F}$ & the divergence of $\mathbf{F}$ \\
+        $\nabla\times\mathbf{F}$ or $\curl\mathbf{F}$ & the curl of $\mathbf{F}$ \\
         $\Delta f$ & the Laplacian of $f$ \\
         $D\mathbf{F}(\mathbf{a})$ & the total derivative, or Jacobian matrix, of $\mathbf{F}$ at $\mathbf{a}$ \\
         $\Jac(\mathbf{F})$ & the Jacobian determinant of $\mathbf{F}$ \\
@@ -248,13 +253,13 @@
         $a_n\searrow L$ & monotone decreasing convergence to $L$ \\
         $\limsup a_n$ & the limit superior of $(a_n)$ \\
         $\liminf a_n$ & the limit inferior of $(a_n)$ \\
-        $f_n\to f$ & pointwise convergence when no other mode is specified \\
-        $f_n\rightrightarrows f$ & uniform convergence \\
+        $f_n\to f$ or $f_n\ptwto f$ & pointwise convergence \\
+        $f_n\rightrightarrows f$ or $f_n\unifto f$ & uniform convergence \\
         $f_n\aeto f$ & convergence almost everywhere \\
         $\|f\|_\infty$ & the supremum norm of $f$ \\
         $z=x+iy$ & a complex number with real part $x$ and imaginary part $y$ \\
-        $\Real z$ & the real part of $z$ \\
-        $\Imag z$ & the imaginary part of $z$ \\
+        $\Real z$ or $\Re z$ & the real part of $z$ \\
+        $\Imag z$ or $\Im z$ & the imaginary part of $z$ \\
         $\overline{z}$ & the complex conjugate of $z$ \\
         $|z|$ & the modulus of $z$ \\
         $\arg z$ & an argument of $z$ \\
@@ -287,7 +292,7 @@
 
         $\mathbf{A}=(a_{ij})$ & the matrix whose $(i,j)$-entry is $a_{ij}$ \\
         $\mathbf{A}^{\mathsf T}$ & the transpose of $\mathbf{A}$ \\
-        $\mathbf{A}^{\mathsf H}$ & the conjugate transpose of $\mathbf{A}$ \\
+        $\mathbf{A}^{\mathsf H}$ & the Hermitian transpose of $\mathbf{A}$ \\
         $\mathbf{A}^{-1}$ & the inverse of $\mathbf{A}$ \\
         $\mathbf{I}_n$ & the $n\times n$ identity matrix \\
         $\mathbf{0}$ & a zero vector or zero matrix, with dimension clear from context \\
@@ -348,7 +353,7 @@
         $c_1,c_2,\dots$ & arbitrary constants in a general solution \\
         $W(y_1,y_2)(t)$ & the Wronskian of $y_1$ and $y_2$ \\
         $\mathcal{L}\{f(t)\}(s)$ & the Laplace transform of $f(t)$ \\
-        $\widehat{f}(\omega)$ & the Fourier transform under the convention stated where it is used \\
+        $\widehat{f}(\omega)$ & the Fourier transform of $f$ under the convention stated in the text \\
     \end{longtable}
     }
 
@@ -510,7 +515,7 @@
         $(\Z/n\Z)^\times$ & the multiplicative group of units modulo $n$ \\
         $a^{-1}\pmod n$ & the multiplicative inverse of $a$ modulo $n$ \\
         $\left(\frac{a}{p}\right)$ & the Legendre symbol \\
-        $\varphi(n)$ & Euler's totient function \\
+        $\varphi(n)$ & Euler's phi function, or Euler's totient function \\
         $\ord_n(a)$ & the multiplicative order of $a$ modulo $n$ \\
         $\nu_p(n)$ & the exponent of $p$ in the prime factorization of $n$ \\
         $\tau(n)$ & the number of positive divisors of $n$ \\
@@ -610,24 +615,28 @@
 
     \vspace{0.5em}
 
-    The table contains constants that occur frequently across several areas of
-    mathematics. A defining expression is used whenever a single-letter symbol
-    is not needed elsewhere in the book.
+    The symbols below are the standard ones most often used in mathematics.
+    When a named constant has no completely universal single-letter symbol, its
+    defining expression is preferred.
 
     \vspace{0.5em}
 
     {\small
     \renewcommand{\arraystretch}{1.18}
-    \begin{longtable}{@{}L{0.12\textwidth}L{0.22\textwidth}L{0.38\textwidth}L{0.20\textwidth}@{}}
+    \begin{longtable}{@{}L{0.12\textwidth}L{0.21\textwidth}L{0.37\textwidth}L{0.22\textwidth}@{}}
         \toprule
-        Symbol & Name & Meaning or definition & Exact value or approximation \\
+        Symbol & Name & Meaning or definition & Exact value or decimal approximation \\
         \midrule
         \endfirsthead
 
         \toprule
-        Symbol & Name & Meaning or definition & Exact value or approximation \\
+        Symbol & Name & Meaning or definition & Exact value or decimal approximation \\
         \midrule
         \endhead
+
+        \midrule
+        \multicolumn{4}{r}{Continued on the next page.} \\
+        \endfoot
 
         \bottomrule
         \endlastfoot
@@ -640,42 +649,108 @@
         $\sqrt{2}$
         & Pythagoras constant
         & The positive length of the diagonal of a unit square.
-        & $1.41421356237\ldots$ \\
+        & $1.414213562373095\ldots$ \\
 
         $e$
         & Euler's number
         & The base of the natural logarithm:
           $e=\sum_{n=0}^{\infty}1/n!$.
-        & $2.71828182846\ldots$ \\
+        & $2.718281828459045\ldots$ \\
 
         $\pi$
         & Pi
         & The ratio of the circumference of a Euclidean circle to its diameter.
-        & $3.14159265359\ldots$ \\
+        & $3.141592653589793\ldots$ \\
+
+        $\pi+e$
+        & Sum of pi and Euler's number
+        & A useful quiz combination of the two most familiar transcendental
+          constants.
+        & $5.859874482048838\ldots$ \\
 
         $\varphi$
         & Golden ratio
         & The positive solution of $x^2=x+1$.
-        & $\dfrac{1+\sqrt{5}}{2}\approx 1.61803398875\ldots$ \\
+        & $\dfrac{1+\sqrt{5}}{2}=1.618033988749895\ldots$ \\
 
         $\gamma$
         & Euler--Mascheroni constant
         & $\displaystyle
           \gamma=\lim_{n\to\infty}
-          \left(\sum_{k=1}^{n}\frac{1}{k}-\ln n\right)$.
-        & $0.577215664902\ldots$ \\
+          \left(\sum_{k=1}^{n}\frac{1}{k}-\log n\right)$.
+        & $0.577215664901533\ldots$ \\
 
         $\zeta(3)$
         & Apéry's constant
         & The value of the Riemann zeta function at $3$:
           $\displaystyle \sum_{n=1}^{\infty}1/n^3$.
-        & $1.20205690316\ldots$ \\
+        & $1.202056903159594\ldots$ \\
 
         $G$
         & Catalan's constant
         & $\displaystyle
           G=\sum_{n=0}^{\infty}\frac{(-1)^n}{(2n+1)^2}$.
-        & $0.915965594177\ldots$ \\
+        & $0.915965594177219\ldots$ \\
+
+        $K$
+        & Khinchin's constant
+        & The almost-sure limiting geometric mean of the partial quotients in
+          the continued fraction of a real number.
+        & $2.685452001065306\ldots$ \\
+
+        $A$
+        & Glaisher--Kinkelin constant
+        & A constant arising in products of powers and in values of the
+          derivative of the Riemann zeta function.
+        & $1.282427129100623\ldots$ \\
+
+        $\Omega$
+        & Omega constant
+        & The real solution of $x e^x=1$, so
+          $\Omega=W(1)$ for the Lambert $W$ function.
+        & $0.567143290409784\ldots$ \\
+
+        $\rho$
+        & Plastic constant
+        & The unique real solution of $x^3=x+1$.
+        & $1.324717957244746\ldots$ \\
+
+        $\delta$
+        & Feigenbaum delta
+        & The universal limiting ratio of parameter intervals in
+          period-doubling bifurcations.
+        & $4.669201609102990\ldots$ \\
+
+        $|\alpha|$
+        & Feigenbaum alpha magnitude
+        & The universal spatial scaling magnitude in period-doubling
+          bifurcations.
+        & $2.502907875095893\ldots$ \\
+
+        $B_1$
+        & Meissel--Mertens constant
+        & $\displaystyle
+          B_1=\lim_{x\to\infty}
+          \left(\sum_{p\leq x}\frac{1}{p}-\log\log x\right)$.
+        & $0.261497212847643\ldots$ \\
+
+        $C_2$
+        & Twin-prime constant
+        & $\displaystyle
+          C_2=\prod_{p>2}\frac{p(p-2)}{(p-1)^2}$.
+        & $0.660161815846870\ldots$ \\
+
+        $B_2$
+        & Brun's constant
+        & The convergent sum of reciprocals over twin-prime pairs:
+          $\displaystyle \sum_{p,\,p+2\ \mathrm{prime}}
+          \left(1/p+1/(p+2)\right)$.
+        & $1.902160583104\ldots$ \\
+
+        $C_{10}$
+        & Champernowne constant
+        & The base-$10$ number formed by concatenating the positive integers.
+        & $0.123456789101112\ldots$ \\
     \end{longtable}
     }
 
