@@ -6,7 +6,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        No such positive integers exist. For any integer $a$, we have
+        No such positive integers exist. By the quadratic-residue criterion modulo $4$ from Mathematical Concepts, for any integer $a$, we have
         \[
             (a^2\equiv 0\pmod{4})\lor(a^2\equiv 1\pmod{4}).
         \]
@@ -80,20 +80,19 @@
     \end{solution}
 
     \begin{pastproblem}{2010.6}
-        Brownian motion is mathematically modeled by a random process named after the American
-        mathematician who developed its mathematical model. This mathematician also founded
-        cybernetics.
-
-        The process has increments that are independent Gaussian random variables with mean $0$. The
-        mathematician studied real analysis, harmonic analysis, series, and probability theory.
-        Identify this mathematician.
+        Brownian motion is modeled by a stochastic process named after the
+        American mathematician who developed its mathematical theory and later
+        founded cybernetics. For this process, increments over disjoint time
+        intervals are independent, and an increment over an interval of length
+        $t$ is Gaussian with mean $0$ and variance $t$. Identify the
+        mathematician.
     \end{pastproblem}
 
     \begin{solution}
-        The random process described in the problem is the Wiener process, the standard mathematical
+        The process described is the Wiener process, the standard mathematical
         model of Brownian motion. It is named after Norbert Wiener.
 
-        Therefore, the answer is $\boxed{\text{Norbert Wiener}}$.
+        Hence the mathematician is $\boxed{\text{Norbert Wiener}}$.
     \end{solution}
 
     \begin{pastproblem}{2010.7}
@@ -224,7 +223,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
+        By the trace--eigenvalue identity in Mathematical Concepts, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
         to $\tr(\mathbf{A})$.
 
         In this matrix, the diagonal entries are
@@ -591,7 +590,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
+        By the trace--eigenvalue identity in Mathematical Concepts, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
         to $\tr(\mathbf{A})$.
 
         In this matrix, the diagonal entries are
@@ -1593,7 +1592,7 @@
                 1 & 2 & 3 & 4
             \end{pmatrix}.
         \]
-        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
+        By the trace--eigenvalue identity in Mathematical Concepts, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
         to its trace. Therefore,
         \[
             \sum_{i=1}^{4}\lambda_i
@@ -1689,46 +1688,40 @@
     \end{solution}
 
     \begin{pastproblem}{2017.2}
-        Let $F_n$ be the $n$th Fibonacci number. Evaluate
+        Let $(F_n)$ be the Fibonacci sequence defined by
+        \[
+            F_0=0,\qquad F_1=1,\qquad F_{n+1}=F_n+F_{n-1}.
+        \]
+        Determine
         \[
             \lim_{n\to\infty}\frac{F_{n+1}}{F_n}.
         \]
     \end{pastproblem}
 
     \begin{solution}
-        The Fibonacci numbers satisfy
+        By the linear-recurrence method developed in Mathematical Concepts,
+        Binet's formula is
         \[
-            F_{n+1}=F_n+F_{n-1}.
+            F_n=\frac{\varphi^n-\psi^n}{\sqrt5},
+            \qquad
+            \varphi=\frac{1+\sqrt5}{2},
+            \qquad
+            \psi=\frac{1-\sqrt5}{2}.
         \]
-        Suppose
-        \[
-            L=\lim_{n\to\infty}\frac{F_{n+1}}{F_n}.
-        \]
-        Then
+        Since $|\psi/\varphi|<1$,
         \[
             \frac{F_{n+1}}{F_n}
             =
-            1+\frac{F_{n-1}}{F_n}.
+            \varphi\,
+            \frac{1-(\psi/\varphi)^{n+1}}
+                 {1-(\psi/\varphi)^n}
+            \longrightarrow
+            \varphi.
         \]
-        Taking limits gives
-        \[
-            L=1+\frac{1}{L}.
-        \]
-        Hence
-        \[
-            L^2=L+1,
-        \]
-        so
-        \[
-            L=\frac{1\pm\sqrt{5}}{2}.
-        \]
-        Since the Fibonacci numbers are positive for large $n$, the limit must be positive.
         Therefore,
         \[
-            L=\frac{1+\sqrt{5}}{2}.
+            \boxed{\frac{1+\sqrt5}{2}}.
         \]
-
-        Therefore, the answer is $\boxed{\dfrac{1+\sqrt{5}}{2}}$.
     \end{solution}
 
     \begin{pastproblem}{2017.3}
@@ -2220,63 +2213,25 @@
     \end{solution}
 
     \begin{pastproblem}{2020.4}
-        In a three-dimensional gravitational field, when an object moves from a point $\mathbf{a}$
-        to another point $\mathbf{b}$, the change in its potential energy is independent of the path
-        taken from $\mathbf{a}$ to $\mathbf{b}$. Determine which of the following mathematical facts
-        is least directly related to this physical phenomenon.
-        \[
-            \begin{array}{ll}
-                (1) & \text{A curl-free vector field is the gradient of some potential function.} \\
-                (2) & \text{Stokes' theorem} \\
-                (3) & \text{The Laplacian of } \dfrac{1}{|\mathbf{x}|} \text{ is a delta function,
-                up to a constant factor.} \\
-                (4) & \text{The curl of a gradient is identically zero.}
-            \end{array}
-        \]
+        Which of the following statements is correct?
+        \begin{enumerate}
+            \item On a simply connected open subset of $\R^3$, every
+                  continuously differentiable vector field with zero curl is a
+                  gradient field.
+            \item Every differentiable function is twice differentiable.
+            \item Every square matrix is diagonalizable.
+            \item Every bounded sequence converges.
+        \end{enumerate}
     \end{pastproblem}
 
     \begin{solution}
-        The statement that the change in potential energy is independent of the path means that the
-        gravitational field is a conservative vector field.
+        Statement (1) is the conservative-field criterion from Mathematical
+        Concepts. The assumptions of continuous differentiability and simple
+        connectedness are essential. The other statements are false in
+        general: differentiability need not iterate, matrices may be defective,
+        and bounded sequences need not converge.
 
-        Let $\mathbf{F}$ be the force field. The change in potential energy from $\mathbf{a}$ to
-        $\mathbf{b}$ is given by
-        \[
-            \Delta U
-            =
-            -\int_{\mathbf{a}}^{\mathbf{b}} \mathbf{F}\cdot\dd\mathbf{r}.
-        \]
-        For this quantity to be independent of the path, the force field should be expressible as
-        the negative gradient of a potential function:
-        \[
-            \mathbf{F}=-\nabla U.
-        \]
-        Thus choice (1) is directly related to the phenomenon.
-
-        Also, the curl of a gradient is always zero:
-        \[
-            \nabla \times \nabla U=\mathbf{0}.
-        \]
-        Hence choice (4) is also directly related. Stokes' theorem says that
-        \[
-            \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
-            =
-            \iint_S (\nabla\times \mathbf{F})\cdot \mathbf{n}\dd S.
-        \]
-        Therefore, if $\nabla\times\mathbf{F}=\mathbf{0}$, then the line integral around a closed
-        curve is zero, which is another way to understand path independence. Thus choice (2) is also
-        related.
-
-        On the other hand,
-        \[
-            \Delta\left(\frac{1}{|\mathbf{x}|}\right)
-            =
-            -4\pi\delta(\mathbf{x})
-        \]
-        is related to the fundamental solution of the Laplacian and to Poisson's equation for
-        gravitational potential. Although it is related to gravity, it is not the main mathematical
-        reason why the potential energy change is independent of path. Therefore, the answer is
-        $\boxed{(3)}$.
+        Hence the correct choice is $\boxed{(1)}$.
     \end{solution}
 
     \begin{pastproblem}{2020.5}
@@ -2359,57 +2314,37 @@
     \end{solution}
 
     \begin{pastproblem}{2021.2}
-        Let
+        Determine the nearest integer to
         \[
-            A(n)
-            =
-            \frac{1}{\sqrt{5}}
-            \left(
-                \frac{1+\sqrt{5}}{2}
-            \right)^{n+1}.
+            \frac{1}{\sqrt5}
+            \left(\frac{1+\sqrt5}{2}\right)^8.
         \]
-        Determine the integer closest to $A(7)$.
     \end{pastproblem}
 
     \begin{solution}
-        Recall Binet's formula for the Fibonacci sequence:
-        \[
-            F_n
-            =
-            \frac{\varphi^n-\psi^n}{\sqrt{5}},
-            \qquad
-            \varphi=\frac{1+\sqrt{5}}{2},
-            \qquad
-            \psi=\frac{1-\sqrt{5}}{2}.
-        \]
-        Here
-        \[
-            A(7)
-            =
-            \frac{\varphi^8}{\sqrt{5}}.
-        \]
-        By Binet's formula,
+        Binet's formula gives
         \[
             F_8
             =
-            \frac{\varphi^8-\psi^8}{\sqrt{5}}.
+            \frac{\varphi^8-\psi^8}{\sqrt5},
+            \qquad
+            \varphi=\frac{1+\sqrt5}{2},
+            \qquad
+            \psi=\frac{1-\sqrt5}{2}.
         \]
-        Since $|\psi|<1$, the term $\dfrac{\psi^8}{\sqrt{5}}$ is very small. Thus
+        Thus
         \[
-            A(7)
-            =
-            \frac{\varphi^8}{\sqrt{5}}
-            =
-            F_8+\frac{\psi^8}{\sqrt{5}}
+            \frac{\varphi^8}{\sqrt5}
+            =F_8+\frac{\psi^8}{\sqrt5}.
         \]
-        is very close to $F_8$.
-
-        The Fibonacci numbers are
+        Since $|\psi|<1$,
         \[
-            F_0=0,\quad F_1=1,\quad F_2=1,\quad F_3=2,\quad F_4=3,\quad
-            F_5=5,\quad F_6=8,\quad F_7=13,\quad F_8=21.
+            0<\frac{|\psi|^8}{\sqrt5}<\frac12.
         \]
-        Therefore, the integer closest to $A(7)$ is $\boxed{21}$.
+        Therefore the nearest integer is $F_8=21$, so the answer is
+        \[
+            \boxed{21}.
+        \]
     \end{solution}
 
     \begin{pastproblem}{2021.3}
@@ -2793,60 +2728,21 @@
     \end{solution}
 
     \begin{pastproblem}{2022.7}
-        Two different coins are each tossed three times. Let $X$ and $Y$ be the numbers of heads
-        obtained from the two coins, respectively. Determine $\Prob(X=Y)$.
+        Two fair coins are tossed independently. Determine the probability that
+        at least one head appears.
     \end{pastproblem}
 
     \begin{solution}
-        For each coin, the number of heads obtained in three tosses follows the binomial
-        distribution
+        The complement event is that both coins show tails. By independence,
         \[
-            X,Y\sim \Bin\left(3,\frac{1}{2}\right).
+            \Prob(\text{both tails})=\frac12\cdot\frac12=\frac14.
         \]
-        Also, $X$ and $Y$ are independent. Therefore,
+        Hence
         \[
-            \Prob(X=Y)
-            =
-            \sum_{k=0}^{3}\Prob(X=k)\Prob(Y=k).
+            \Prob(\text{at least one head})
+            =1-\frac14
+            =\boxed{\frac34}.
         \]
-        For each $k=0,1,2,3$, we have
-        \[
-            \Prob(X=k)
-            =
-            \binom{3}{k}\left(\frac{1}{2}\right)^3,
-        \]
-        and the same formula holds for $Y$. Hence
-        \[
-            \Prob(X=Y)
-            =
-            \sum_{k=0}^{3}
-            \left(
-                \binom{3}{k}\left(\frac{1}{2}\right)^3
-            \right)^2
-            =
-            \frac{1}{64}
-            \sum_{k=0}^{3}
-            \binom{3}{k}^2.
-        \]
-        Thus
-        \[
-            \Prob(X=Y)
-            =
-            \frac{1}{64}
-            \left(
-                \binom{3}{0}^2+
-                \binom{3}{1}^2+
-                \binom{3}{2}^2+
-                \binom{3}{3}^2
-            \right)
-            =
-            \frac{1+9+9+1}{64}
-            =
-            \frac{20}{64}
-            =
-            \frac{5}{16}.
-        \]
-        Therefore, the answer is $\boxed{\dfrac{5}{16}}$.
     \end{solution}
 
     \begin{pastproblem}{2023.1}
@@ -2881,7 +2777,7 @@
             \binom{12}{6}.
         \]
 
-        We now count the paths that do go above the line $y=x$. By the reflection principle, the
+        We now count the paths that do go above the line $y=x$. By the reflection principle stated in Mathematical Concepts, the
         number of paths from $(0,0)$ to $(6,6)$ that at some point satisfy $y>x$ is
         \[
             \binom{12}{5}.
@@ -3622,43 +3518,25 @@
     \end{solution}
 
     \begin{pastproblem}{2025.9}
-        There are three doors. Behind one door is a car, and behind the other two doors are goats.
-        After a contestant chooses one door, the host opens one of the remaining doors and reveals
-        a goat. The contestant may then keep the original choice or switch to the other unopened
-        door. Determine which choice gives the higher probability of winning the car.
-        \[
-            \begin{array}{ll}
-                (1) & \text{The probabilities are the same.} \\
-                (2) & \text{It is better not to switch.} \\
-                (3) & \text{It cannot be determined.} \\
-                (4) & \text{It is better to switch.}
-            \end{array}
-        \]
+        In the Monty Hall problem, a contestant chooses one of three doors,
+        exactly one of which hides a prize. A host who knows the prize location
+        must open an unchosen door that hides no prize; when two such doors are
+        available, the host follows a rule independent of the prize location.
+        The contestant may then stay or switch to the only other unopened door.
+        Which strategy has the greater winning probability?
     \end{pastproblem}
 
     \begin{solution}
-        The initial choice has probability $1/3$ of being correct and probability $2/3$ of being
-        wrong.
+        The original choice contains the prize with probability $1/3$ and is
+        wrong with probability $2/3$. Under the stated host protocol, whenever
+        the original choice is wrong the only other unopened door contains the
+        prize. Thus staying wins with probability $1/3$, while switching wins
+        with probability $2/3$.
 
-        If the initial choice is correct, switching loses. If the initial choice is wrong, the host
-        must reveal the other wrong door, so switching wins. Therefore switching wins exactly when
-        the initial choice was wrong, which has probability
-        \[
-            \frac23.
-        \]
-        Thus switching is better.
-
-        Therefore, the answer is $\boxed{(4)\ \text{It is better to switch}}$.
+        Therefore, $\boxed{\text{switching}}$ is optimal.
     \end{solution}
 
-    \begin{pastproblem}{2025.10}
-        The original problem statement could not be found.
-    \end{pastproblem}
 
-    \begin{solution}
-        The original problem statement could not be found; therefore, no solution is
-        included.
-    \end{solution}
 
     \begin{pastproblem}{2025.11}
         Determine which of the following Fields Medalists majored in history rather than mathematics
@@ -3751,7 +3629,7 @@
         \[
             I_i
             =
-            \indicator{\{\text{a new run starts at position }i\}}.
+            \indicatorbb{\{\text{a new run starts at position }i\}}.
         \]
         Then
         \[

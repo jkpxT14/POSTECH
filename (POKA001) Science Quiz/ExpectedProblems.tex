@@ -91,7 +91,7 @@
             \sum_{n=0}^{\infty}
             \frac{x^n(-\ln x)^n}{n!}.
         \]
-        Every term is nonnegative, so Tonelli's theorem allows us to integrate
+        Every term is nonnegative, so Tonelli's theorem from Mathematical Concepts allows us to integrate
         term by term:
         \[
             \int_0^1x^{-x}\dd x
@@ -626,19 +626,27 @@
     \end{expectedsubsolution}
 
     \begin{expectedsubsolution}
-        Let
+        For $x\in[0,1]$, define the finite truncations
         \[
-            R(x)=\sqrt{1+x\sqrt{1+x\sqrt{1+\cdots}}}.
+            R_1(x)=1,
+            \qquad
+            R_{n+1}(x)=\sqrt{1+xR_n(x)}.
         \]
-        Self-similarity gives
+        The map $y\mapsto\sqrt{1+xy}$ is increasing. Induction gives
+        \[
+            1\leq R_n(x)\leq\frac{1+\sqrt5}{2}
+        \]
+        and $R_n(x)\leq R_{n+1}(x)$. Hence $R_n(x)$ converges pointwise to a
+        positive limit $R(x)$. Passing to the limit in the recurrence gives
         \[
             R(x)^2=1+xR(x),
         \]
-        so, since $R(x)>0$,
+        and therefore
         \[
             R(x)=\frac{x+\sqrt{x^2+4}}{2}.
         \]
-        Hence
+        The uniform bound above permits integration by dominated convergence,
+        so
         \[
             \int_0^1R(x)\dd x
             =
@@ -646,7 +654,7 @@
             +
             \frac{1}{2}\int_0^1\sqrt{x^2+4}\dd x.
         \]
-        Evaluating the second integral yields
+        Evaluating the elementary integral yields
         \[
             \boxed{
                 \frac{1+\sqrt5}{4}
@@ -1096,106 +1104,41 @@
     \end{solution}
 
     \begin{expectedproblem}[Conway's Soldiers]
-        Consider the infinite square grid. Initially every square on or below a
-        fixed horizontal line is occupied by a soldier, and every square
-        strictly above the line is empty. A legal move consists of jumping one
-        soldier horizontally or vertically over an adjacent soldier into the
-        next empty square; the jumped-over soldier is then removed. Prove that
-        no sequence of legal moves can move a soldier to the fifth row above
-        the initial line.
+        On an infinite checkerboard, every square on or below a horizontal line
+        initially contains a soldier. A legal move jumps one soldier
+        horizontally or vertically over an adjacent soldier into the next
+        square, which must be empty; the jumped soldier is removed. Prove that
+        no soldier can reach the fifth row above the initial line.
     \end{expectedproblem}
 
     \begin{solution}
-        We use a standard pagoda function. Fix a target square $T$ in the fifth
-        row above the initial line, and let
+        Let
         \[
-            \sigma=\frac{\sqrt5-1}{2},
+            \varphi=\frac{1+\sqrt5}{2},
+            \qquad
+            q=\varphi^{-1},
         \]
-        so that
+        so that $q+q^2=1$. Assign to a square the weight
         \[
-            \sigma^2+\sigma=1.
+            q^{d},
         \]
-        For each square $Q$ of the board, let $d(Q)$ be the Manhattan distance
-        from $Q$ to $T$, and assign to $Q$ the weight
+        where $d$ is its Manhattan distance from a fixed target square in the
+        fifth row. A jump toward the target replaces weights
         \[
-            w(Q)=\sigma^{d(Q)}.
+            q^{d+2}+q^{d+1}
         \]
-        For any position of the soldiers, let $W$ be the sum of the weights of
-        all occupied squares.
+        by $q^d$. Since $q+q^2=1$, this jump preserves total weight; every other
+        legal jump does not increase it.
 
-        We claim that a legal move never increases $W$. Indeed, suppose a move
-        replaces occupied squares $Q_1,Q_2$ by the square $Q_3$, where $Q_2$ is
-        jumped over. If the three squares lie on a shortest lattice path toward
-        $T$, then for some integer $m\geq0$ their weights are
-        \[
-            \sigma^{m+2},\quad \sigma^{m+1},\quad \sigma^m,
-        \]
-        and the change in total weight is
-        \[
-            \sigma^m-\sigma^{m+1}-\sigma^{m+2}
-            =
-            \sigma^m(1-\sigma-\sigma^2)
-            =
-            0.
-        \]
-        In every other case the destination square is farther from $T$, or one
-        of the two removed squares is at least as close to $T$ as in the
-        equality case, so the total weight strictly decreases. Hence every
-        legal move satisfies
-        \[
-            W_{\mathrm{after}}\leq W_{\mathrm{before}}.
-        \]
+        Summing the geometric series over the initially occupied half-plane
+        gives total weight exactly $1$ for a target in the fifth row. Any finite
+        play moves only finitely many soldiers, so infinitely many initially
+        occupied squares remain occupied and retain strictly positive total
+        weight. If the target were occupied, it alone would contribute weight
+        $1$, and the untouched soldiers would make the total strictly greater
+        than $1$. This contradicts the nonincrease of total weight.
 
-        We now compute the initial total weight. If the initial line is the row
-        $y=0$ and the target square is $(0,5)$, then every initially occupied
-        square has the form $(k,-m)$ with $k\in\Z$ and $m\geq0$, and its weight
-        is
-        \[
-            \sigma^{|k|+m+5}.
-        \]
-        Therefore
-        \[
-            W_0
-            =
-            \sum_{m\geq0}\sum_{k\in\Z}\sigma^{|k|+m+5}
-            =
-            \sigma^5
-            \left(1+2\sum_{k\geq1}\sigma^k\right)
-            \left(\sum_{m\geq0}\sigma^m\right).
-        \]
-        Using
-        \[
-            \sum_{k\geq1}\sigma^k=\frac{\sigma}{1-\sigma}
-            \qquad\text{and}\qquad
-            1-\sigma=\sigma^2,
-        \]
-        we obtain
-        \[
-            W_0
-            =
-            \sigma^5\left(1+\frac{2\sigma}{1-\sigma}\right)\frac{1}{1-\sigma}
-            =
-            \sigma^3+2\sigma^2
-            =
-            1.
-        \]
-
-        If a soldier ever reaches the target square $T$, then the resulting
-        position has total weight at least $1$, because $w(T)=1$ and every
-        occupied square has positive weight. Since the initial total weight is
-        exactly $1$ and $W$ never increases, every move along such a successful
-        sequence would have to preserve $W$. Consequently every move would have
-        to be one of the equality-case moves described above, that is, a jump
-        straight toward $T$ along a shortest lattice path.
-
-        But the initial position fills an entire half-plane. Any attempt to
-        discard all soldiers except those on one such path necessarily uses a
-        move that strictly decreases $W$, after which the total weight becomes
-        less than $1$ and can never return to $1$. This contradiction shows that
-        no soldier can ever reach $T$.
-
-        Therefore no sequence of legal moves can move a soldier to the fifth
-        row above the initial line.
+        Therefore the fifth row cannot be reached.
     \end{solution}
 
     \begin{expectedproblem}[Seven Bridges of K\"onigsberg]

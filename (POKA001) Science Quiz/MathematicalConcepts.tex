@@ -70,10 +70,10 @@
         \[
             \neg(\forall x\in A,\ P(x))
             \Longleftrightarrow
-            \exists x\in A\ \text{s.t.}\ \neg P(x),
+            \exists x\in A\ \text{such that}\ \neg P(x),
         \]
         \[
-            \neg(\exists x\in A\ \text{s.t.}\ P(x))
+            \neg(\exists x\in A\ \text{such that}\ P(x))
             \Longleftrightarrow
             \forall x\in A,\ \neg P(x).
         \]
@@ -136,7 +136,7 @@
         \[
             \forall y\in Y,
             \qquad
-            \exists x\in X\ \text{s.t.}\ f(x)=y.
+            \exists x\in X\ \text{such that}\ f(x)=y.
         \]
         Once surjectivity has been established, one may write
         $f:X\twoheadrightarrow Y$. The function is bijective if it is both
@@ -347,7 +347,7 @@
     \end{formula}
 
     \begin{strategy}
-        A table of successive differences is one of the fastest ways to detect a
+        A table of successive differences is one of the most efficient methods to detect a
         hidden polynomial sequence. Constant first, second, and third differences
         indicate linear, quadratic, and cubic behavior, respectively.
     \end{strategy}
@@ -428,7 +428,7 @@
         means that $f(x)$ can be made arbitrarily close to $L$ by taking $x$
         sufficiently close to, but different from, $a$. Formally,
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists\delta>0,
             \quad
@@ -436,14 +436,14 @@
             \qquad
             0<|x-a|<\delta
             \implies
-            |f(x)-L|<\eps.
+            |f(x)-L|<\varepsilon.
         \]
     \end{definition}
 
     \begin{definition}[One-Sided Limits and Limits at Infinity]
         The right-hand limit $\lim_{x\to a^+}f(x)=L$ is defined by
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists\delta>0,
             \quad
@@ -451,7 +451,7 @@
             \qquad
             0<x-a<\delta
             \implies
-            |f(x)-L|<\eps.
+            |f(x)-L|<\varepsilon.
         \]
         The left-hand definition is analogous, with $0<a-x<\delta$.
         Moreover,
@@ -460,13 +460,13 @@
         \]
         means
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists M>0,
             \quad
             \forall x\in D,
             \qquad
-            x>M\implies |f(x)-L|<\eps.
+            x>M\implies |f(x)-L|<\varepsilon.
         \]
         Finally, $\lim_{x\to a}f(x)=\infty$ means
         \[
@@ -502,7 +502,7 @@
         \]
         Equivalently,
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists\delta>0,
             \quad
@@ -510,7 +510,7 @@
             \qquad
             |x-a|<\delta
             \implies
-            |f(x)-f(a)|<\eps.
+            |f(x)-f(a)|<\varepsilon.
         \]
         The function is continuous on $D$ if it is continuous at every point of
         $D$.
@@ -526,7 +526,7 @@
         provided this limit exists as a finite real number. Thus $f'(a)=L$ if
         and only if
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists\delta>0,
             \quad
@@ -536,7 +536,7 @@
             \implies
             \left|
                 \frac{f(a+h)-f(a)}{h}-L
-            \right|<\eps.
+            \right|<\varepsilon.
         \]
     \end{definition}
 
@@ -783,9 +783,6 @@
             $\arcsin x$ & $\displaystyle\frac{1}{\sqrt{1-x^2}}$ & $x\arcsin x+\sqrt{1-x^2}$ \\
             $\arccos x$ & $\displaystyle-\frac{1}{\sqrt{1-x^2}}$ & $x\arccos x-\sqrt{1-x^2}$ \\
             $\arctan x$ & $\displaystyle\frac{1}{1+x^2}$ & $x\arctan x-\displaystyle\frac{1}{2}\ln(1+x^2)$ \\
-            $\operatorname{arccot}x$ & $\displaystyle-\frac{1}{1+x^2}$ & $x\operatorname{arccot}x+\displaystyle\frac{1}{2}\ln(1+x^2)$ \\
-            $\operatorname{arcsec}x$ & $\displaystyle\frac{1}{|x|\sqrt{x^2-1}}$ & $x\operatorname{arcsec}x-\ln\left|x+\sqrt{x^2-1}\right|$ \\
-            $\operatorname{arccsc}x$ & $\displaystyle-\frac{1}{|x|\sqrt{x^2-1}}$ & $x\operatorname{arccsc}x+\ln\left|x+\sqrt{x^2-1}\right|$ \\
             $\sinh x$ & $\cosh x$ & $\cosh x$ \\
             $\cosh x$ & $\sinh x$ & $\sinh x$ \\
             $\tanh x$ & $\operatorname{sech}^2x$ & $\ln(\cosh x)$ \\
@@ -880,13 +877,15 @@
     \end{theorem}
 
     \begin{theorem}[Derivative of an Inverse Function]
-        Let $f$ be one-to-one and differentiable near $x_0$, with
-        $f'(x_0)\neq 0$. If $g=f^{-1}$ and $y_0=f(x_0)$, then
+        Let $I\subseteq\R$ be an interval, let $f:I\to\R$ be one-to-one, and
+        suppose that $f$ is differentiable at an interior point $x_0\in I$ with
+        $f'(x_0)\neq0$. If the inverse $g=f^{-1}$ is continuous at
+        $y_0=f(x_0)$, then $g$ is differentiable at $y_0$ and
         \[
-            g'(y_0)
-            =
-            \frac{1}{f'(x_0)}.
+            g'(y_0)=\frac{1}{f'(x_0)}.
         \]
+        In particular, the continuity hypothesis is automatic when $f$ is
+        continuous and strictly monotone on an interval.
     \end{theorem}
 
     \begin{theorem}[Fundamental Theorem of Calculus]
@@ -901,22 +900,17 @@
     \end{theorem}
 
     \begin{theorem}[Taylor's Theorem]
-        Suppose that $f$ is $n+1$ times differentiable near $a$. Then
+        Let $f$ be $(n+1)$ times differentiable on an open interval containing
+        the closed interval with endpoints $a$ and $x$. Then there exists a
+        point $\xi$ strictly between $a$ and $x$ such that
         \[
             f(x)
             =
-            f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2
-            +\cdots
-            +\frac{f^{(n)}(a)}{n!}(x-a)^n
-            +R_n(x),
+            \sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k
+            +
+            \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}.
         \]
-        where, in Lagrange's form of the remainder,
-        \[
-            R_n(x)
-            =
-            \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}
-        \]
-        for some $c$ between $a$ and $x$.
+        The final term is the Lagrange remainder.
     \end{theorem}
 
     \begin{corollary}[Taylor Error Bound]
@@ -1120,7 +1114,8 @@
     \end{formula}
 
     \begin{formula}[Euler--Maclaurin Summation Formula]
-        For a sufficiently smooth function $f$,
+        Let $p\geq1$ and let $f\in C^{2p}([m,n])$, where $m<n$ are integers.
+        Then
         \[
             \sum_{k=m}^{n}f(k)
             =
@@ -1128,21 +1123,20 @@
             +
             \frac{f(m)+f(n)}{2}
             +
-            \sum_{r=1}^{p}
+            \sum_{r=1}^{p-1}
             \frac{B_{2r}}{(2r)!}
-            \left(
-                f^{(2r-1)}(n)-f^{(2r-1)}(m)
-            \right)
-            +
-            R_p,
+            \left(f^{(2r-1)}(n)-f^{(2r-1)}(m)\right)
+            +R_p,
         \]
-        where $B_{2r}$ are Bernoulli numbers. The first correction
+        where $B_{2r}$ are the Bernoulli numbers and
         \[
-            \sum_{k=m}^{n}f(k)
-            \approx
-            \int_m^n f(x)\dd x+\frac{f(m)+f(n)}{2}
+            |R_p|
+            \leq
+            \frac{2\zeta(2p)}{(2\pi)^{2p}}
+            \int_m^n|f^{(2p)}(x)|\dd x.
         \]
-        is often enough for a rapid asymptotic estimate.
+        The case $p=1$ gives the trapezoidal approximation together with a
+        rigorous error bound.
     \end{formula}
 
     \begin{formula}[Asymptotic Growth Hierarchy]
@@ -1183,15 +1177,24 @@
     \end{formula}
 
     \begin{theorem}[Leibniz Integral Rule; Differentiation under the Integral Sign]
-        Under suitable continuity and domination assumptions,
+        Let $I$ be an open interval, let $a,b:I\to\R$ be continuously
+        differentiable, and suppose that $f$ and $\partial f/\partial t$ are
+        continuous on
         \[
-            \diff{}{t}\int_{a(t)}^{b(t)} f(x,t)\dd x
+            \{(x,t)\mid t\in I,\ a(t)\leq x\leq b(t)\}.
+        \]
+        Then
+        \[
+            \frac{\dd}{\dd t}
+            \int_{a(t)}^{b(t)}f(x,t)\dd x
             =
             f(b(t),t)b'(t)-f(a(t),t)a'(t)
             +
-            \int_{a(t)}^{b(t)}\frac{\partial f}{\partial t}(x,t)\dd x.
+            \int_{a(t)}^{b(t)}
+            \frac{\partial f}{\partial t}(x,t)\dd x.
         \]
-        When the endpoints are constant, only the integral term remains.
+        In particular, if the endpoints are constant, only the integral of the
+        partial derivative remains.
     \end{theorem}
 
     \begin{tactic}
@@ -1201,19 +1204,16 @@
     \end{tactic}
 
     \begin{formula}[Frullani's Integral]
-        If $f$ is continuous on $(0,\infty)$ and the endpoint limits exist under
-        conditions ensuring convergence, then for $a,b>0$,
+        Let $f:[0,\infty)\to\R$ be continuous, suppose that the finite limits
+        $f(0)$ and $f(\infty)\coloneqq\lim_{x\to\infty}f(x)$ exist, and assume
+        that the improper integral below converges. For $a,b>0$,
         \[
-            \int_0^\infty \frac{f(ax)-f(bx)}{x}\dd x
+            \int_0^\infty\frac{f(ax)-f(bx)}{x}\dd x
             =
-            \bigl(f(0^+)-f(\infty)\bigr)\ln\frac{b}{a}.
+            \bigl(f(0)-f(\infty)\bigr)\ln\frac{b}{a}.
         \]
-        A standard special case is
-        \[
-            \int_0^\infty \frac{e^{-ax}-e^{-bx}}{x}\dd x
-            =
-            \ln\frac{b}{a}.
-        \]
+        A standard sufficient hypothesis is that $f$ is continuously
+        differentiable and $f'\in L^1(0,\infty)$.
     \end{formula}
 
     \begin{formula}[Arc Length Formula]
@@ -1233,24 +1233,15 @@
     \end{formula}
 
     \begin{formula}[Vi\`ete's Infinite Product]
-        For real $x\neq 0$, we have
+        For every real $x$,
         \[
             \frac{\sin x}{x}
             =
             \prod_{k=1}^{\infty}
-            \cos\left(\frac{x}{2^k}\right).
+            \cos\left(\frac{x}{2^k}\right),
         \]
-        In particular,
-        \[
-            \frac{2}{\pi}
-            =
-            \cos\frac{\pi}{4}
-            \cdot
-            \cos\frac{\pi}{8}
-            \cdot
-            \cos\frac{\pi}{16}
-            \cdots.
-        \]
+        where the value at $x=0$ is interpreted by continuity. Setting
+        $x=\pi/2$ gives Vi\`ete's classical product for $2/\pi$.
     \end{formula}
 
     \begin{idea}
@@ -1357,7 +1348,7 @@
             =
             \frac{n!}{a^{n+1}}.
         \]
-        More generally, for $s>0$,
+        More generally, for $\Real(s)>0$,
         \[
             \int_0^{\infty}x^{s-1}e^{-ax}\dd x
             =
@@ -1843,7 +1834,7 @@
         Equivalently,
         \[
             \begin{aligned}
-                &\forall\eps>0,
+                &\forall\varepsilon>0,
                 \quad
                 \exists\delta>0,
                 \quad
@@ -1858,7 +1849,7 @@
                     -\mathbf{F}(\mathbf{a})
                     -D\mathbf{F}(\mathbf{a})\mathbf{h}\|
                 }{\|\mathbf{h}\|}
-                <\eps.
+                <\varepsilon.
             \end{aligned}
         \]
         The linear map $D\mathbf{F}(\mathbf{a})$ is the total derivative;
@@ -1876,18 +1867,24 @@
     \end{theorem}
 
     \begin{theorem}[Fubini's Theorem]
-        Under suitable continuity or integrability assumptions, an iterated
-        integral over a plane region may be computed in either order. For
-        example, if
+        Let $R\subseteq\R^2$ be a bounded region of the form
         \[
             R=\{(x,y)\mid a\leq x\leq b,\ g_1(x)\leq y\leq g_2(x)\},
         \]
-        then
+        where $g_1$ and $g_2$ are continuous and $g_1\leq g_2$. If $f$ is
+        continuous on $R$, then
         \[
             \iint_R f(x,y)\dd A
             =
             \int_a^b\int_{g_1(x)}^{g_2(x)}f(x,y)\dd y\dd x.
         \]
+        If the same region is also described as
+        \[
+            R=\{(x,y)\mid c\leq y\leq d,\ h_1(y)\leq x\leq h_2(y)\},
+        \]
+        then the integral may equally be evaluated in the reverse order. More
+        generally, for an integrable function on a product measure space, the
+        two iterated integrals agree with the product-space integral.
     \end{theorem}
 
     \begin{definition}[Jacobian]
@@ -1913,13 +1910,17 @@
     \end{definition}
 
     \begin{theorem}[Change of Variables Formula]
-        Under suitable regularity and one-to-one assumptions,
+        Let $U,V\subseteq\R^n$ be open, and let
+        $\mathbf{F}:U\to V$ be a $C^1$ diffeomorphism. If $D\subseteq U$ is
+        measurable and $f$ is integrable on $\mathbf{F}(D)$, then
         \[
-            \int_{\mathbf{F}(D)} f(\mathbf{x})\dd\mathbf{x}
+            \int_{\mathbf{F}(D)}f(\mathbf{x})\dd\mathbf{x}
             =
             \int_D f(\mathbf{F}(\mathbf{u}))
             \left|\det D\mathbf{F}(\mathbf{u})\right|\dd\mathbf{u}.
         \]
+        The absolute value is essential because the integral measures unsigned
+        volume, independently of orientation.
     \end{theorem}
 
     \begin{remark}
@@ -2195,13 +2196,25 @@
     \end{theorem}
 
     \begin{proposition}[Conservative-Field Test]
-        On a simply connected open region, a continuously differentiable vector
-        field is conservative if and only if its curl is zero.
+        Let $U\subseteq\R^n$ be open and simply connected, and let
+        $\mathbf{F}:U\to\R^n$ be continuously differentiable. Then
+        $\mathbf{F}$ is conservative if and only if its Jacobian matrix is
+        symmetric:
+        \[
+            \frac{\partial F_i}{\partial x_j}
+            =
+            \frac{\partial F_j}{\partial x_i}
+            \qquad(1\leq i,j\leq n).
+        \]
+        In $\R^3$, this is equivalent to $\curl\mathbf{F}=\mathbf{0}$.
+        Simple connectedness cannot in general be omitted.
     \end{proposition}
 
     \begin{theorem}[Green's Theorem]
-        Let $C$ be a positively oriented, simple closed curve in the plane, and
-        let $D$ be the region enclosed by $C$. Then
+        Let $D\subseteq\R^2$ be a bounded region whose positively oriented
+        boundary $C=\partial D$ is piecewise smooth, and let $P,Q$ have
+        continuous first partial derivatives on an open set containing $D$.
+        Then
         \[
             \oint_C P\dd x+Q\dd y
             =
@@ -2210,8 +2223,7 @@
                 \frac{\partial Q}{\partial x}
                 -
                 \frac{\partial P}{\partial y}
-            \right)
-            \dd A.
+            \right)\dd A.
         \]
     \end{theorem}
 
@@ -2222,13 +2234,16 @@
     \end{idea}
 
     \begin{theorem}[Stokes' Theorem]
-        Let $S$ be an oriented smooth surface with positively oriented boundary
-        curve $\partial S$. Then
+        Let $S$ be an oriented piecewise smooth surface with positively oriented
+        piecewise smooth boundary $\partial S$, and let $\mathbf{F}$ be
+        continuously differentiable on an open set containing $S$. Then
         \[
             \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
             =
-            \iint_S (\nabla\times\mathbf{F})\cdot\mathbf{n}\dd S.
+            \iint_S(\curl\mathbf{F})\cdot\mathbf{n}\dd S.
         \]
+        The orientation of $\partial S$ is determined from that of $S$ by the
+        right-hand rule.
     \end{theorem}
 
     \begin{idea}
@@ -2238,12 +2253,14 @@
     \end{idea}
 
     \begin{theorem}[Divergence Theorem; Gauss's Theorem]
-        Let $E$ be a solid region in $\R^3$ with outward-oriented boundary
-        surface $\partial E$. Then
+        Let $V\subseteq\R^3$ be a bounded solid whose boundary
+        $S=\partial V$ is piecewise smooth and oriented outward. If
+        $\mathbf{F}$ is continuously differentiable on an open set containing
+        $V$, then
         \[
-            \iint_{\partial E}\mathbf{F}\cdot\mathbf{n}\dd S
+            \iint_S\mathbf{F}\cdot\mathbf{n}\dd S
             =
-            \iiint_E \nabla\cdot\mathbf{F}\dd V.
+            \iiint_V\divergence\mathbf{F}\dd V.
         \]
     \end{theorem}
 
@@ -2299,7 +2316,7 @@
         \]
         means
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists\delta>0,
             \quad
@@ -2307,7 +2324,7 @@
             \qquad
             0<d_X(x,a)<\delta
             \implies
-            d_Y\bigl(f(x),L\bigr)<\eps.
+            d_Y\bigl(f(x),L\bigr)<\varepsilon.
         \]
     \end{definition}
 
@@ -2315,26 +2332,26 @@
         A sequence $(x_n)$ in a metric space $(X,d)$ converges to $x\in X$,
         written $x_n\to x$, if
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists N\in\N,
             \quad
             \forall n\geq N,
             \qquad
-            d(x_n,x)<\eps.
+            d(x_n,x)<\varepsilon.
         \]
     \end{definition}
 
     \begin{definition}[Cauchy Sequence and Complete Metric Space]
         A sequence $(x_n)$ in $(X,d)$ is Cauchy if
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists N\in\N,
             \quad
             \forall m,n\geq N,
             \qquad
-            d(x_m,x_n)<\eps.
+            d(x_m,x_n)<\varepsilon.
         \]
         The metric space is complete if every Cauchy sequence in $X$ converges
         to a point of $X$.
@@ -2344,7 +2361,7 @@
         Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A map $f:X\to Y$ is
         continuous at $x_0\in X$ if
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists\delta>0,
             \quad
@@ -2352,7 +2369,7 @@
             \qquad
             d_X(x,x_0)<\delta
             \implies
-            d_Y\bigl(f(x),f(x_0)\bigr)<\eps.
+            d_Y\bigl(f(x),f(x_0)\bigr)<\varepsilon.
         \]
         It is continuous on $X$ if it is continuous at every $x_0\in X$.
     \end{definition}
@@ -2371,7 +2388,7 @@
     \begin{definition}[Uniform Continuity]
         A map $f:(X,d_X)\to(Y,d_Y)$ is uniformly continuous if
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists\delta>0,
             \quad
@@ -2379,7 +2396,7 @@
             \qquad
             d_X(x,y)<\delta
             \implies
-            d_Y\bigl(f(x),f(y)\bigr)<\eps.
+            d_Y\bigl(f(x),f(y)\bigr)<\varepsilon.
         \]
         Unlike ordinary continuity, the same $\delta$ must work for every pair
         $x,y\in X$.
@@ -2392,25 +2409,25 @@
         \[
             \forall x\in E,
             \quad
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
-            \exists N=N(x,\eps)\in\N,
+            \exists N=N(x,\varepsilon)\in\N,
             \quad
             \forall n\geq N,
             \qquad
-            d\bigl(f_n(x),f(x)\bigr)<\eps.
+            d\bigl(f_n(x),f(x)\bigr)<\varepsilon.
         \]
         It converges uniformly to $f$, written $f_n\rightrightarrows f$, if
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
-            \exists N=N(\eps)\in\N,
+            \exists N=N(\varepsilon)\in\N,
             \quad
             \forall n\geq N,
             \quad
             \forall x\in E,
             \qquad
-            d\bigl(f_n(x),f(x)\bigr)<\eps.
+            d\bigl(f_n(x),f(x)\bigr)<\varepsilon.
         \]
         For real- or complex-valued functions, this is equivalent to
         \[
@@ -2425,7 +2442,7 @@
         A family $\mathcal{F}$ of maps from $(X,d_X)$ to $(Y,d_Y)$ is
         equicontinuous at $x_0\in X$ if
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists\delta>0,
             \quad
@@ -2435,7 +2452,7 @@
             \qquad
             d_X(x,x_0)<\delta
             \implies
-            d_Y\bigl(f(x),f(x_0)\bigr)<\eps.
+            d_Y\bigl(f(x),f(x_0)\bigr)<\varepsilon.
         \]
         A sequence of real-valued functions $(f_n)$ is uniformly bounded if
         \[
@@ -2500,10 +2517,10 @@
         \[
             (a_n)\text{ converges}
             \iff
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \ \exists N\in\N,
             \ \forall m,n\geq N,
-            \ |a_m-a_n|<\eps.
+            \ |a_m-a_n|<\varepsilon.
         \]
     \end{theorem}
 
@@ -2511,7 +2528,7 @@
         Let $(Y,d)$ be complete and let $f_n:E\to Y$. Then $(f_n)$ converges
         uniformly on $E$ if and only if
         \[
-            \forall\eps>0,
+            \forall\varepsilon>0,
             \quad
             \exists N\in\N,
             \quad
@@ -2519,7 +2536,7 @@
             \quad
             \forall x\in E,
             \qquad
-            d\bigl(f_m(x),f_n(x)\bigr)<\eps.
+            d\bigl(f_m(x),f_n(x)\bigr)<\varepsilon.
         \]
     \end{theorem}
 
@@ -2586,6 +2603,20 @@
         open dense subsets of a complete metric space is dense.
     \end{theorem}
 
+    \begin{theorem}[Tonelli's Theorem]
+        Let $(X,\mu)$ and $(Y,\nu)$ be $\sigma$-finite measure spaces, and let
+        $f:X\times Y\to[0,\infty]$ be measurable. Then the iterated integrals
+        and the product-space integral agree, possibly with value $+\infty$:
+        \[
+            \int_{X\times Y}f\dd(\mu\times\nu)
+            =
+            \int_X\left(\int_Y f(x,y)\dd\nu(y)\right)\dd\mu(x)
+            =
+            \int_Y\left(\int_X f(x,y)\dd\mu(x)\right)\dd\nu(y).
+        \]
+        In particular, a nonnegative series may be integrated term by term.
+    \end{theorem}
+
     \begin{theorem}[Fatou's Lemma]
         If $f_n\geq 0$ are measurable, then
         \[
@@ -2614,6 +2645,23 @@
             \int f\dd\mu.
         \]
     \end{theorem}
+
+    \begin{theorem}[Density of Irrational Rotations]
+        If $\alpha\in\R\setminus\Q$, then the sequence of fractional parts
+        \[
+            \{n\alpha\},\qquad n=0,1,2,\dots,
+        \]
+        is dense in $[0,1]$. Equivalently, the orbit of any point under rotation
+        of the circle through an irrational multiple of $2\pi$ is dense in the
+        circle.
+    \end{theorem}
+
+    \begin{idea}
+        Divide $[0,1)$ into $N$ equal intervals and apply the pigeonhole
+        principle to $0,\{\alpha\},\dots,\{N\alpha\}$. Two points differ by
+        less than $1/N$ modulo $1$, producing an arbitrarily small positive
+        rotation step whose multiples approach every point of the circle.
+    \end{idea}
 
     \section*{Complex Analysis}
 
@@ -3198,7 +3246,7 @@
     \end{proposition}
 
     \begin{strategy}
-        In one-minute determinant questions, first look for dependent rows or
+        In short determinant problems, first look for dependent rows or
         columns, row or column sums, repeated patterns, triangular form, and
         easy row operations. Direct expansion should usually be the last resort,
         except for $2\times 2$ and $3\times 3$ matrices.
@@ -3727,22 +3775,25 @@
     \end{formula}
 
     \begin{formula}[Rank-One Outer Product]
-        If $\mathbf{v},\mathbf{w}\in F^n$ are nonzero column vectors, then
+        Let $\mathbf{v},\mathbf{w}\in\R^n$ be nonzero and set
         \[
-            \mathbf{v}\mathbf{w}^{\mathsf T}
+            \mathbf{A}=\mathbf{v}\mathbf{w}^{\mathsf T}.
         \]
-        has
+        Then $\rk(\mathbf{A})=1$ and
         \[
-            \rk(\mathbf{v}\mathbf{w}^{\mathsf T})=1.
-        \]
-        Its trace is
-        \[
-            \tr(\mathbf{v}\mathbf{w}^{\mathsf T})
+            \mathbf{A}\mathbf{v}
             =
-            \mathbf{w}^{\mathsf T}\mathbf{v},
+            (\mathbf{w}^{\mathsf T}\mathbf{v})\mathbf{v}.
         \]
-        so its nonzero eigenvalue is $\mathbf{w}^{\mathsf T}\mathbf{v}$, and
-        all remaining eigenvalues are $0$.
+        The characteristic polynomial is
+        \[
+            \lambda^{n-1}
+            \bigl(\lambda-\mathbf{w}^{\mathsf T}\mathbf{v}\bigr).
+        \]
+        Thus the eigenvalues, counted with algebraic multiplicity, are
+        $\mathbf{w}^{\mathsf T}\mathbf{v}$ and $0$ repeated $n-1$ times. If
+        $\mathbf{w}^{\mathsf T}\mathbf{v}=0$, every eigenvalue is $0$ and
+        $\mathbf{A}^2=\mathbf{0}$.
     \end{formula}
 
     \begin{theorem}[Cayley--Hamilton Theorem]
@@ -4008,15 +4059,18 @@
     \end{remark}
 
     \begin{definition}[Markov Matrix; Stochastic Matrix]
-        A column-stochastic Markov matrix is a matrix whose entries are
-        nonnegative and whose columns each sum to $1$.
-        For such a matrix $\mathbf{A}$,
+        A column-stochastic matrix is a square matrix with nonnegative entries
+        whose columns each sum to $1$. Thus
         \[
-            \begin{pmatrix}1&1&\cdots&1\end{pmatrix}\mathbf{A}
-            =
-            \begin{pmatrix}1&1&\cdots&1\end{pmatrix}.
+            \ones^{\mathsf T}\mathbf{A}=\ones^{\mathsf T}.
         \]
-        Hence $1$ is an eigenvalue of $\mathbf{A}$.
+        Consequently, $1$ is an eigenvalue of $\mathbf{A}^{\mathsf T}$ and
+        therefore also of $\mathbf{A}$. A probability column vector evolves by
+        \[
+            \mathbf{p}_{k+1}=\mathbf{A}\mathbf{p}_k.
+        \]
+        A stationary distribution is a probability vector satisfying
+        $\mathbf{A}\mathbf{p}=\mathbf{p}$.
     \end{definition}
 
     \begin{remark}
@@ -4044,7 +4098,7 @@
 
     \begin{strategy}
         The expression $\sum a_i b_i$ is a strong signal for Cauchy--Schwarz.
-        The vector form is often the fastest way to recognize the inequality.
+        The vector form is often the most efficient method to recognize the inequality.
     \end{strategy}
 
     \begin{corollary}[Triangle Inequality]
@@ -4555,16 +4609,16 @@
             \bottomrule
             \endlastfoot
 
-            $1$ & $\displaystyle\frac{1}{s}$ & $s>0$ \\
+            $1$ & $\displaystyle\frac{1}{s}$ & $\Real(s)>0$ \\
             $t^n$ & $\displaystyle\frac{n!}{s^{n+1}}$ & $n\in\Nzero$ \\
-            $e^{at}$ & $\displaystyle\frac{1}{s-a}$ & $s>a$ \\
+            $e^{at}$ & $\displaystyle\frac{1}{s-a}$ & $\Real(s)>a$ \\
             $t^ne^{at}$ & $\displaystyle\frac{n!}{(s-a)^{n+1}}$ & $n\in\Nzero,\ s>a$ \\
-            $\sin at$ & $\displaystyle\frac{a}{s^2+a^2}$ & $s>0$ \\
-            $\cos at$ & $\displaystyle\frac{s}{s^2+a^2}$ & $s>0$ \\
-            $e^{at}\sin bt$ & $\displaystyle\frac{b}{(s-a)^2+b^2}$ & $s>a$ \\
-            $e^{at}\cos bt$ & $\displaystyle\frac{s-a}{(s-a)^2+b^2}$ & $s>a$ \\
-            $\sinh at$ & $\displaystyle\frac{a}{s^2-a^2}$ & $s>|a|$ \\
-            $\cosh at$ & $\displaystyle\frac{s}{s^2-a^2}$ & $s>|a|$ \\
+            $\sin at$ & $\displaystyle\frac{a}{s^2+a^2}$ & $\Real(s)>0$ \\
+            $\cos at$ & $\displaystyle\frac{s}{s^2+a^2}$ & $\Real(s)>0$ \\
+            $e^{at}\sin bt$ & $\displaystyle\frac{b}{(s-a)^2+b^2}$ & $\Real(s)>a$ \\
+            $e^{at}\cos bt$ & $\displaystyle\frac{s-a}{(s-a)^2+b^2}$ & $\Real(s)>a$ \\
+            $\sinh at$ & $\displaystyle\frac{a}{s^2-a^2}$ & $\Real(s)>|a|$ \\
+            $\cosh at$ & $\displaystyle\frac{s}{s^2-a^2}$ & $\Real(s)>|a|$ \\
             $f'(t)$ & $sF(s)-f(0)$ & \\
             $f''(t)$ & $s^2F(s)-sf(0)-f'(0)$ & \\
             $t f(t)$ & $-F'(s)$ & \\
@@ -4746,12 +4800,11 @@
     \end{definition}
 
     \begin{theorem}[d'Alembert's Formula]
-        The solution of the wave equation
+        Let $c>0$, let $f\in C^2(\R)$, and let $g\in C^1(\R)$. The classical
+        solution of
         \[
-            u_{tt}=c^2u_{xx}
-        \]
-        on the real line with initial conditions
-        \[
+            u_{tt}=c^2u_{xx},
+            \qquad
             u(x,0)=f(x),
             \qquad
             u_t(x,0)=g(x),
@@ -4762,8 +4815,7 @@
             =
             \frac{f(x-ct)+f(x+ct)}{2}
             +
-            \frac{1}{2c}
-            \int_{x-ct}^{x+ct}g(s)\dd s.
+            \frac{1}{2c}\int_{x-ct}^{x+ct}g(s)\dd s.
         \]
     \end{theorem}
 
@@ -5161,7 +5213,7 @@
     \begin{remark}
         Catalan numbers count many different objects, including correct
         parenthesizations, Dyck paths, triangulations of a polygon, and rooted
-        full binary trees. The number $42$ is a classic giveaway.
+        full binary trees. The number $42$ is a standard recognition item.
     \end{remark}
 
     \begin{theorem}[Cayley's Formula]
@@ -5419,14 +5471,17 @@
 
 
     \begin{theorem}[Law of Total Expectation; Tower Property]
-        For a discrete random variable $Y$,
+        If $X$ is integrable and $Y$ is a random variable, then
+        \[
+            \Exp[X]=\Exp\!\left[\Exp[X\mid Y]\right].
+        \]
+        When $Y$ is discrete, this becomes
         \[
             \Exp[X]
             =
-            \sum_y\Exp[X\mid Y=y]\Prob(Y=y)
-            =
-            \Exp\!\left[\Exp[X\mid Y]\right].
+            \sum_y\Exp[X\mid Y=y]\Prob(Y=y),
         \]
+        where the sum is taken over values $y$ with positive probability.
     \end{theorem}
 
     \begin{formula}[Law of Total Variance]
@@ -5494,35 +5549,32 @@
     \end{formula}
 
     \begin{proposition}[Linearity of Expectation]
-        For random variables $X_1,\dots,X_n$,
+        If $X_1,\dots,X_n$ are integrable random variables and
+        $a_1,\dots,a_n$ are scalars, then
         \[
-            \Exp[X_1+\cdots+X_n]
+            \Exp\left[\sum_{i=1}^{n}a_iX_i\right]
             =
-            \Exp[X_1]+\cdots+\Exp[X_n].
+            \sum_{i=1}^{n}a_i\Exp[X_i].
         \]
-        This holds even when the random variables are not independent.
+        Independence is not required.
     \end{proposition}
 
     \begin{strategy}
-        Linearity of expectation is often the fastest way to count an expected
+        Linearity of expectation is often the most efficient method to count an expected
         number of objects. Introduce indicator random variables and add their
         expectations.
     \end{strategy}
 
     \begin{proposition}[Expectation of a Product of Independent Random Variables]
-        If $X_1,X_2,\dots,X_n$ are independent random variables, then
+        If $X_1,\dots,X_n$ are independent integrable random variables, then
+        their product is integrable and
         \[
-            \Exp[X_1X_2\cdots X_n]
+            \Exp[X_1\cdots X_n]
             =
-            \Exp[X_1]\Exp[X_2]\cdots\Exp[X_n].
+            \Exp[X_1]\cdots\Exp[X_n].
         \]
-        In particular, if $X_1,\dots,X_n$ are independent and identically
-        distributed, then
-        \[
-            \Exp[X_1X_2\cdots X_n]
-            =
-            (\Exp[X_1])^n.
-        \]
+        In particular, if they are also identically distributed, the right-hand
+        side is $(\Exp[X_1])^n$.
     \end{proposition}
 
     \begin{formula}[Common Probability Distributions]
@@ -5570,19 +5622,7 @@
         }
     \end{formula}
 
-    \begin{formula}[Geometric Distribution and Waiting Time]
-        If $T$ is the number of independent trials needed to obtain the first
-        success, and each trial has success probability $p$, then
-        \[
-            \Prob(T=k)=(1-p)^{k-1}p,
-            \qquad
-            k=1,2,3,\dots,
-        \]
-        and
-        \[
-            \Exp[T]=\frac{1}{p}.
-        \]
-    \end{formula}
+
 
     \begin{strategy}
         Waiting-until questions usually start with a geometric distribution. If
@@ -5592,40 +5632,21 @@
     \end{strategy}
 
     \begin{formula}[Variance and Covariance Identities]
-        For a random variable $X$,
+        For random variables with finite second moments,
         \[
-            \Var(X)
-            =
-            \Exp[X^2]-(\Exp[X])^2.
+            \Var(X)=\Exp[X^2]-(\Exp[X])^2,
         \]
-        For random variables $X$ and $Y$,
+        and
         \[
             \Var(X+Y)
             =
             \Var(X)+\Var(Y)+2\Cov(X,Y).
         \]
-        If $X$ and $Y$ are independent, then
-        \[
-            \Var(X+Y)=\Var(X)+\Var(Y).
-        \]
+        If $X$ and $Y$ are independent, then $\Cov(X,Y)=0$, so their variances
+        add. The converse need not hold.
     \end{formula}
 
-    \begin{formula}[Binomial Distribution]
-        If $X\sim\Bin(n,p)$, then
-        \[
-            \Prob(X=k)
-            =
-            \binom{n}{k}p^k(1-p)^{n-k},
-            \qquad
-            k=0,1,\dots,n.
-        \]
-        Its mean and variance are
-        \[
-            \Exp[X]=np,
-            \qquad
-            \Var(X)=np(1-p).
-        \]
-    \end{formula}
+
 
     \begin{formula}[Hypergeometric Distribution]
         Suppose a population has $N$ objects, of which $K$ are successes. If
@@ -5642,31 +5663,18 @@
         \]
     \end{formula}
 
-    \begin{formula}[Poisson Distribution]
-        If $X\sim\Poi(\lambda)$, then
-        \[
-            \Prob(X=k)
-            =
-            e^{-\lambda}\frac{\lambda^k}{k!},
-            \qquad
-            k=0,1,2,\dots.
-        \]
-        Its mean and variance are
-        \[
-            \Exp[X]=\lambda,
-            \qquad
-            \Var(X)=\lambda.
-        \]
-    \end{formula}
+
 
     \begin{theorem}[Poisson Limit Theorem; Law of Small Numbers]
-        If $n\to\infty$, $p\to 0$, and $np\to\lambda$, then
+        Let $p_n\in[0,1]$ satisfy $np_n\to\lambda>0$. For each fixed
+        nonnegative integer $k$,
         \[
-            \binom{n}{k}p^k(1-p)^{n-k}
-            \to
-            e^{-\lambda}\frac{\lambda^k}{k!}
+            \binom{n}{k}p_n^k(1-p_n)^{n-k}
+            \longrightarrow
+            e^{-\lambda}\frac{\lambda^k}{k!}.
         \]
-        for each fixed $k\geq 0$.
+        Thus $\Bin(n,p_n)$ converges in distribution to
+        $\Poi(\lambda)$.
     \end{theorem}
 
     \begin{remark}
@@ -5674,18 +5682,7 @@
         many trials, small success probability, and finite expected count.
     \end{remark}
 
-    \begin{formula}[Normal Distribution; Gaussian Distribution]
-        A random variable $X\sim\Normal(\mu,\sigma^2)$ has density
-        \[
-            f(x)
-            =
-            \frac{1}{\sigma\sqrt{2\pi}}
-            \exp\left(
-                -\frac{(x-\mu)^2}{2\sigma^2}
-            \right).
-        \]
-        The standard normal distribution is $\Normal(0,1)$.
-    \end{formula}
+
 
     \begin{formula}[Empirical Rule; 68--95--99.7 Rule]
         For a normal distribution, approximately
@@ -5713,9 +5710,9 @@
             \]
             \item[(ii)] $X_n\probto X$ if
             \[
-                \forall\eps>0,
+                \forall\varepsilon>0,
                 \qquad
-                \Prob\bigl(|X_n-X|>\eps\bigr)\to 0;
+                \Prob\bigl(|X_n-X|>\varepsilon\bigr)\to 0;
             \]
             \item[(iii)] $X_n\Lpto{p}X$ for $p\geq 1$ if
             \[
@@ -5745,19 +5742,15 @@
     \end{theorem}
 
     \begin{theorem}[Weak Law of Large Numbers]
-        Let $X_1,X_2,\dots$ be independent identically distributed random
-        variables with mean $\mu$. Then, for every $\eps>0$,
+        Let $X_1,X_2,\dots$ be independent and identically distributed random
+        variables with finite mean $\mu$ and finite variance $\sigma^2$. Then
         \[
-            \Prob\left(
-                \left|
-                    \frac{X_1+\cdots+X_n}{n}-\mu
-                \right|
-                >
-                \eps
-            \right)
-            \to 0
+            \frac{X_1+\cdots+X_n}{n}
+            \xrightarrow{\Prob}
+            \mu.
         \]
-        as $n\to\infty$.
+        This follows directly from Chebyshev's inequality because the variance
+        of the sample mean is $\sigma^2/n$.
     \end{theorem}
 
     \begin{idea}
@@ -5800,11 +5793,11 @@
             \leq
             \frac{1}{k^2}.
         \]
-        Equivalently, for every $\eps>0$,
+        Equivalently, for every $\varepsilon>0$,
         \[
-            \Prob(|X-\mu|\geq \eps)
+            \Prob(|X-\mu|\geq \varepsilon)
             \leq
-            \frac{\Var(X)}{\eps^2}.
+            \frac{\Var(X)}{\varepsilon^2}.
         \]
     \end{theorem}
 
@@ -5847,20 +5840,15 @@
     \end{idea}
 
     \begin{formula}[Exact Birthday Problem]
-        In a group of $n$ people, assuming $365$ equally likely birthdays and
-        ignoring leap years, the probability that at least two people share a
-        birthday is
+        Under the standard model of $365$ equally likely birthdays and no leap
+        day, the probability that at least two people among $n$ share a birthday
+        is
         \[
             1-
-            \frac{365\cdot 364\cdot 363\cdots(365-n+1)}{365^n}
-            =
-            1-
-            \prod_{k=0}^{n-1}\frac{365-k}{365}.
+            \frac{365\cdot364\cdots(365-n+1)}{365^n}
+            \qquad(0\leq n\leq365).
         \]
-        Equivalently, the probability that all birthdays are distinct is
-        \[
-            \prod_{k=0}^{n-1}\frac{365-k}{365}.
-        \]
+        For $n\geq366$, the probability is $1$ by the pigeonhole principle.
     \end{formula}
 
     \begin{formula}[Birthday Problem Approximation]
@@ -5897,15 +5885,13 @@
     \end{idea}
 
     \begin{formula}[Monty Hall Problem]
-        In the standard three-door Monty Hall problem, the probability of
-        winning by staying with the original choice is
-        \[
-            \frac{1}{3},
-        \]
-        while the probability of winning by switching is
-        \[
-            \frac{2}{3}.
-        \]
+        There are three doors, exactly one of which hides a prize. The contestant
+        first chooses a door. A host who knows the prize location must then open
+        one of the other doors that hides no prize; whenever two such doors are
+        available, the host chooses between them by a rule independent of the
+        prize location. The contestant is then offered the unopened door.
+        Under this protocol, staying wins with probability $1/3$, whereas
+        switching wins with probability $2/3$.
     \end{formula}
 
     \begin{remark}
@@ -6395,19 +6381,16 @@
     \end{theorem}
 
     \begin{theorem}[Cyclic Quadrilateral Criteria]
-        For four distinct points $A,B,C,D$ in the plane, the following standard
-        conditions are equivalent whenever the expressions are defined:
+        Let $A,B,C,D$ be four distinct points with no three collinear. Using
+        directed angles modulo $\pi$, the points are concyclic if and only if
         \[
-            A,B,C,D\text{ are concyclic},
+            \angle BAC\equiv\angle BDC\pmod\pi.
         \]
+        If $ABCD$ is a convex quadrilateral in cyclic order, this is equivalent
+        to
         \[
-            \angle ABC+\angle ADC=\pi,
+            \angle ABC+\angle ADC=\pi.
         \]
-        and
-        \[
-            \angle BAC=\angle BDC.
-        \]
-        Directed angles modulo $\pi$ remove case distinctions.
     \end{theorem}
 
     \begin{theorem}[Tangent--Chord Theorem; Alternate Segment Theorem]
@@ -6446,13 +6429,15 @@
     \end{remark}
 
     \begin{theorem}[Ptolemy's Theorem]
-        A quadrilateral $ABCD$ is cyclic if and only if
+        Let $A,B,C,D$ be the vertices of a convex cyclic quadrilateral in this
+        cyclic order. Then
         \[
             AC\cdot BD
             =
-            AB\cdot CD+BC\cdot DA
+            AB\cdot CD+BC\cdot DA.
         \]
-        for the appropriate cyclic order of the vertices.
+        Conversely, equality in Ptolemy's inequality for a convex
+        quadrilateral characterizes cyclicity.
     \end{theorem}
 
 
@@ -6579,17 +6564,7 @@
         homothety center lies on the line joining the two circle centers.
     \end{theorem}
 
-    \begin{strategy}[Inversion]
-        An inversion with center $O$ and radius $\rho$ sends a point
-        $P\neq O$ to the point $P'$ on ray $OP$ satisfying
-        \[
-            OP\cdot OP'=\rho^2.
-        \]
-        It sends a line not through $O$ to a circle through $O$, a circle
-        through $O$ to a line not through $O$, and a circle not through $O$ to
-        another circle. Inversion is especially effective when many circles are
-        tangent or pass through one common point.
-    \end{strategy}
+
 
 
     \begin{formula}[Circle Inversion]
@@ -6858,7 +6833,7 @@
             \lambda(\mathbf{d}-\mathbf{c})
         \]
         for some scalar $\lambda$. Equality with $\lambda=1$ identifies
-        equal directed segments and is often the fastest way to detect a hidden
+        equal directed segments and is often the most efficient method to detect a hidden
         parallelogram.
     \end{formula}
 
@@ -6948,11 +6923,15 @@
     \end{formula}
 
     \begin{theorem}[Three Perpendiculars Theorem]
-        Let a line $\ell$ lie in a plane $\Pi$, and let $P$ be a point outside
-        $\Pi$. If $H$ is the foot of the perpendicular from $P$ to $\Pi$, and if
-        the line $m$ in $\Pi$ through $H$ is perpendicular to $\ell$, then the
-        line through $P$ and the intersection point of $m$ with $\ell$ is also
-        perpendicular to $\ell$.
+        Let $\Pi$ be a plane, let $P\notin\Pi$, and let $H$ be the orthogonal
+        projection of $P$ onto $\Pi$. Let $\ell\subseteq\Pi$ pass through a point
+        $Q$, and suppose that $HQ\perp\ell$. Then
+        \[
+            PQ\perp\ell.
+        \]
+        Equivalently, a line in a plane that is perpendicular to the orthogonal
+        projection of an oblique line is perpendicular to the oblique line
+        itself.
     \end{theorem}
 
     \begin{remark}
@@ -7060,9 +7039,12 @@
     \end{formula}
 
     \begin{theorem}[Reflection Property of Conics]
-        An ellipse reflects a ray from one focus to the other focus. A parabola
-        reflects rays parallel to its axis through its focus. A hyperbola has
-        the analogous reflection property involving its two foci and branches.
+        At a point of a nondegenerate conic, the tangent makes equal angles with
+        the two relevant focal directions. Consequently, a ray emitted from one
+        focus of an ellipse reflects toward the other focus; a ray parallel to
+        the axis of a parabola reflects through its focus; and a ray directed
+        toward one focus of a hyperbola reflects along a ray whose backward
+        extension passes through the other focus.
     \end{theorem}
 
     \begin{remark}
@@ -7654,6 +7636,16 @@
     \end{theorem}
 
 
+    \begin{theorem}[Sum of Two Squares Criterion]
+        A positive integer
+        \[
+            n=2^a\prod_{p\equiv1\ (\mathrm{mod}\ 4)}p^{\alpha_p}
+              \prod_{q\equiv3\ (\mathrm{mod}\ 4)}q^{\beta_q}
+        \]
+        is representable as $n=x^2+y^2$ with integers $x,y$ if and only if every
+        exponent $\beta_q$ is even.
+    \end{theorem}
+
     \begin{formula}[Brahmagupta--Fibonacci Identity]
         \[
             (a^2+b^2)(c^2+d^2)
@@ -7687,18 +7679,18 @@
     \end{remark}
 
     \begin{theorem}[Continued-Fraction Best Approximation Theorem]
-        Let $p_k/q_k$ be a convergent of the simple continued fraction of an
+        Let $p_k/q_k$ be the convergents of the simple continued fraction of an
         irrational number $\alpha$. Then
         \[
             \left|\alpha-\frac{p_k}{q_k}\right|
             <
-            \frac{1}{q_kq_{k+1}}
-            <
-            \frac{1}{q_k^2}.
+            \frac{1}{q_kq_{k+1}}.
         \]
-        Moreover, convergents provide best rational approximations in the sense
-        that a fraction with a smaller denominator cannot improve the error in
-        the standard best-approximation comparison.
+        Moreover, the convergents are best approximations of the second kind:
+        if $p,q\in\Z$, $0<q<q_{k+1}$, and $p/q\neq p_k/q_k$, then
+        \[
+            |q_k\alpha-p_k|<|q\alpha-p|.
+        \]
     \end{theorem}
 
     \begin{strategy}
@@ -7823,7 +7815,7 @@
             (a\ast b)\ast c=a\ast(b\ast c),
         \]
         \[
-            \exists e\in G\ \text{s.t.}\quad
+            \exists e\in G\ \text{such that}\quad
             \forall a\in G,
             \qquad
             e\ast a=a\ast e=a,
@@ -7832,7 +7824,7 @@
         \[
             \forall a\in G,
             \qquad
-            \exists a^{-1}\in G\ \text{s.t.}\quad
+            \exists a^{-1}\in G\ \text{such that}\quad
             a\ast a^{-1}=a^{-1}\ast a=e.
         \]
         The group is abelian if
@@ -7999,16 +7991,31 @@
         source of quick algebra questions.
     \end{remark}
 
-    \begin{theorem}[Fundamental Theorem of Finite Abelian Groups; Classification Theorem for Finite Abelian Groups]
+    \begin{theorem}[Fundamental Theorem of Finite Abelian Groups]
         Every finite abelian group is isomorphic to a direct product of cyclic
-        groups of prime-power order. In particular, finite abelian groups are
-        built from cyclic groups.
+        groups of prime-power order:
+        \[
+            G\cong
+            \Z_{p_1^{a_1}}\times\cdots\times\Z_{p_r^{a_r}}.
+        \]
+        The multiset of prime powers is uniquely determined by $G$, up to
+        reordering. Equivalently, $G$ admits a unique invariant-factor
+        decomposition
+        \[
+            G\cong\Z_{n_1}\times\cdots\times\Z_{n_k},
+            \qquad
+            n_1\mid n_2\mid\cdots\mid n_k,
+        \]
+        up to isomorphism.
     \end{theorem}
 
     \begin{definition}[Ring and Field]
-        A ring is a set equipped with addition and multiplication satisfying the
-        usual distributive laws. A field is a commutative ring in which every
-        nonzero element has a multiplicative inverse.
+        A ring is a set $R$ with operations $+$ and $\cdot$ such that
+        $(R,+)$ is an abelian group, multiplication is associative, and
+        multiplication distributes over addition on both sides. Throughout this
+        book, rings are assumed to have a multiplicative identity $1_R$ unless
+        stated otherwise. A field is a commutative ring in which $1_R\neq0_R$
+        and every nonzero element has a multiplicative inverse.
     \end{definition}
 
     \begin{definition}[Integral Domain]
@@ -8262,7 +8269,7 @@
             X\subseteq\bigcup_{U\in\mathcal{U}}U
             \implies
             \exists U_1,\dots,U_n\in\mathcal{U}
-            \ \text{s.t.}\
+            \ \text{such that}\
             X\subseteq U_1\cup\cdots\cup U_n.
         \]
     \end{definition}
@@ -8343,7 +8350,7 @@
         \[
             \pi_1(S^1)\cong\Z,
             \qquad
-            \pi_1(S^n)\cong 0\quad(n\geq 2),
+            \pi_1(S^n)\cong\{e\}\quad(n\geq 2),
             \qquad
             \pi_1(\mathbb{T}^2)\cong\Z^2.
         \]
@@ -8390,8 +8397,15 @@
     \end{remark}
 
     \begin{theorem}[Thurston Geometrization Theorem]
-        Every closed orientable $3$-manifold can be decomposed into pieces that
-        admit one of the eight Thurston geometries.
+        Every closed orientable $3$-manifold first decomposes as a connected sum
+        of prime $3$-manifolds. After cutting each irreducible prime summand
+        along a canonical family of incompressible tori, every resulting piece
+        admits a complete locally homogeneous metric modeled on one of the eight
+        Thurston geometries:
+        \[
+            S^3,\ E^3,\ H^3,\ S^2\times\R,\ H^2\times\R,
+            \ \widetilde{\SL}_2(\R),\ \mathrm{Nil},\ \mathrm{Sol}.
+        \]
     \end{theorem}
 
     \begin{fact}[The Eight Thurston Geometries]
@@ -8692,136 +8706,10 @@
         comparisons such as $11^9$ versus $9^{11}$ or $e^\pi$ versus $\pi^e$.
     \end{strategy}
 
-    \begin{formula}[Mercator Series for $\ln 2$]
-        The alternating harmonic series satisfies
-        \[
-            \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{n}
-            =
-            1-\frac12+\frac13-\frac14+\cdots
-            =
-            \ln 2.
-        \]
-    \end{formula}
 
-    \begin{remark}
-        This follows from the Mercator series
-        \[
-            \ln(1+x)
-            =
-            x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots
-        \]
-        by substituting $x=1$.
-    \end{remark}
 
-    \begin{formula}[Basel Sum; Euler's Basel Formula]
-        The Basel sum is
-        \[
-            \sum_{n=1}^{\infty}\frac{1}{n^2}
-            =
-            1+\frac{1}{2^2}+\frac{1}{3^2}+\cdots
-            =
-            \frac{\pi^2}{6}.
-        \]
-        Equivalently,
-        \[
-            \zeta(2)=\frac{\pi^2}{6}.
-        \]
-    \end{formula}
 
-    \begin{remark}
-        The problem of evaluating
-        \[
-            \sum_{n=1}^{\infty}\frac{1}{n^2}
-        \]
-        is called the Basel problem. Its famous solution was found by Euler.
-    \end{remark}
 
-    \begin{formula}[Odd Part of the Basel Sum]
-        The sum of reciprocal squares over odd positive integers is
-        \[
-            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^2}
-            =
-            1+\frac{1}{3^2}+\frac{1}{5^2}+\cdots
-            =
-            \frac{\pi^2}{8}.
-        \]
-    \end{formula}
-
-    \begin{idea}
-        This is obtained by subtracting the even part from the Basel sum:
-        \[
-            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^2}
-            =
-            \sum_{n=1}^{\infty}\frac{1}{n^2}
-            -
-            \sum_{n=1}^{\infty}\frac{1}{(2n)^2}
-            =
-            \left(1-\frac14\right)\frac{\pi^2}{6}
-            =
-            \frac{\pi^2}{8}.
-        \]
-    \end{idea}
-
-    \begin{formula}[Alternating Basel Series; Dirichlet Eta Value at $2$]
-        The alternating Basel series satisfies
-        \[
-            \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{n^2}
-            =
-            1-\frac{1}{2^2}+\frac{1}{3^2}-\frac{1}{4^2}+\cdots
-            =
-            \frac{\pi^2}{12}.
-        \]
-        Equivalently,
-        \[
-            \eta(2)=\frac{\pi^2}{12},
-        \]
-        where $\eta(s)$ is the Dirichlet eta function.
-    \end{formula}
-
-    \begin{idea}
-        The positive terms are the odd reciprocal squares and the negative
-        terms are the even reciprocal squares. Hence
-        \[
-            \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{n^2}
-            =
-            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^2}
-            -
-            \sum_{n=1}^{\infty}\frac{1}{(2n)^2}
-            =
-            \frac{\pi^2}{8}-\frac{\pi^2}{24}
-            =
-            \frac{\pi^2}{12}.
-        \]
-    \end{idea}
-
-    \begin{formula}[Gregory--Leibniz Series; Leibniz Formula for $\pi$]
-        The Gregory--Leibniz series is
-        \[
-            \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{2n-1}
-            =
-            1-\frac13+\frac15-\frac17+\cdots
-            =
-            \frac{\pi}{4}.
-        \]
-        Equivalently,
-        \[
-            \pi
-            =
-            4\left(
-                1-\frac13+\frac15-\frac17+\cdots
-            \right).
-        \]
-    \end{formula}
-
-    \begin{remark}
-        This follows from the Taylor series
-        \[
-            \arctan x
-            =
-            x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots
-        \]
-        by substituting $x=1$, since $\arctan 1=\pi/4$.
-    \end{remark}
 
     \begin{formula}[More Useful Series Values]
         The following values are common in fast calculation problems:
@@ -8837,20 +8725,6 @@
         \]
     \end{formula}
 
-    \begin{formula}[Power-Series Sums]
-        For $|x|<1$,
-        \[
-            \sum_{n=0}^{\infty}x^n=\frac{1}{1-x},
-            \qquad
-            \sum_{n=1}^{\infty}nx^{n}=\frac{x}{(1-x)^2},
-        \]
-        and
-        \[
-            \sum_{n=1}^{\infty}n^2x^{n}
-            =
-            \frac{x(1+x)}{(1-x)^3}.
-        \]
-    \end{formula}
 
     \begin{strategy}
         These values often appear after a simple transformation. For example,
