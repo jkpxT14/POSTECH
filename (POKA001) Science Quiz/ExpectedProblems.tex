@@ -91,8 +91,8 @@
             \sum_{n=0}^{\infty}
             \frac{x^n(-\ln x)^n}{n!}.
         \]
-        Every term is nonnegative, so Tonelli's theorem allows us to integrate
-        term by term:
+        Every term is nonnegative, so Tonelli's theorem from Mathematical
+        Concepts permits term-by-term integration:
         \[
             \int_0^1x^{-x}\dd x
             =
@@ -266,7 +266,8 @@
     \end{solution}
 
     \begin{expectedproblem}[Moser's Circle Problem]
-        Place $n$ points on a circle and join every pair of points by a chord.
+        Let $n$ be a positive integer. Place $n$ points on a circle and join
+        every pair of points by a chord.
         Assume that no three chords meet at a common point in the interior of
         the circle. Determine, with proof, the maximum number of regions into
         which the chords divide the circle.
@@ -458,49 +459,51 @@
     \end{expectedproblem}
 
     \begin{solution}
-        Give the rotating line an orientation and call its two open sides the
-        left side and the right side. When the pivot changes from $T$ to $U$,
-        keep the orientation of the line unchanged. Immediately after the
-        change, the old pivot $T$ lies on the same side on which $U$ lay
-        immediately before the change. Consequently, except at the instants
-        when the line contains two points of $S$, the number of points on each
-        side of the oriented line is invariant throughout the process.
+        Orient the rotating line and call its two open sides the left and right
+        sides. When the pivot changes from $T$ to $U$, retain the orientation of
+        the line. Immediately after the change, the old pivot $T$ lies on the
+        same side on which $U$ lay immediately before the change. Hence the
+        ordered numbers of points on the two sides are invariant throughout the
+        process, except at the instants when the line contains two points of
+        $S$.
 
         First suppose that
         \[
             |S|=2m+1.
         \]
-        Through every point $T\in S$ there is an oriented line having exactly
-        $m$ points of $S$ on each side. Indeed, rotate any line through $T$
-        through an angle $\pi$. The number of points on its left side changes
-        by one whenever the line passes through a point of $S$, and its initial
-        and final values add to $2m$; hence the value $m$ occurs.
+        For every $T\in S$, there is an oriented line through $T$ with exactly
+        $m$ points of $S$ on each side. To see this, rotate a line through $T$
+        by an angle $\pi$. The number of points on its left changes by one at
+        each encounter with another point of $S$, and its initial and final
+        values sum to $2m$; therefore the value $m$ occurs.
 
-        Choose such a line through any point $P$ as the initial state. The
-        side counts remain $(m,m)$. For any fixed direction, there is a unique
-        translate through a point of $S$ that has $m$ points on each side: it
-        is the median line in that direction. Hence, whenever the windmill
-        reaches the direction of a balanced line through a prescribed point
-        $T$, it must pass through $T$, so $T$ is used as a pivot. Thus every
-        point is visited during each rotation of the line through an angle
-        $\pi$.
+        Choose such a balanced line through any point as the initial state. The
+        side counts remain $(m,m)$. Fix $T\in S$ and choose a balanced line
+        $r$ through $T$. Among all lines parallel to $r$, the line $r$ is the
+        unique one that contains a point of $S$ and has $m$ points on each
+        side: translating it in either direction changes the balance at the
+        first point crossed. Consequently, when the windmill becomes parallel
+        to $r$, it must coincide with $r$, so $T$ is a pivot. Thus every point
+        is visited during each half-turn of the windmill line.
 
         Now suppose that
         \[
             |S|=2m.
         \]
-        Through every point $T\in S$ there is an oriented line with $m-1$
-        points on its left side and $m$ points on its right side. The same
-        half-turn argument proves this. Choose one such line as the initial
-        state. Its ordered side counts remain $(m-1,m)$. For each oriented
-        direction, the line through a point of $S$ with these side counts is
-        unique. Therefore, during a full rotation through $2\pi$, the windmill
-        passes through every point of $S$.
+        For every $T\in S$, the same half-turn argument gives an oriented line
+        through $T$ with $m-1$ points on its left and $m$ points on its right.
+        Start the windmill from one such line. Its ordered side counts remain
+        $(m-1,m)$. For any prescribed $T$, choose an oriented line $r$ through
+        $T$ with these counts. It is the unique oriented translate in its
+        direction with these counts, so the windmill must pass through $T$ when
+        it reaches that oriented direction. Hence every point is visited during
+        each full turn.
 
-        The set of directions determined by pairs of points of $S$ is finite,
-        and successive pivot changes advance the line by a positive angle.
-        Hence the total angle of rotation tends to infinity. Repeating the
-        preceding argument over successive half-turns or full turns shows that
+        Only finitely many line directions are determined by pairs of points of
+        $S$. Therefore the positive angular increments between successive pivot
+        changes have a positive minimum. Since the process continues
+        indefinitely, the total angle of rotation tends to infinity. The
+        preceding half-turn or full-turn argument then applies repeatedly, and
         every point of $S$ is used as a pivot infinitely many times.
     \end{solution}
 
@@ -508,7 +511,7 @@
         A museum has the shape of a simple polygon with $n$ vertices. A guard
         must stand at a vertex of the polygon and can see a point whenever the
         entire line segment joining the guard to that point lies in the
-        polygon. Prove that the entire museum can always be guarded by
+        polygon. Prove that the entire museum can always be guarded by at most
         \[
             \left\lfloor\frac{n}{3}\right\rfloor
         \]
@@ -1015,33 +1018,45 @@
     \end{expectedsubsolution}
 
     \begin{expectedsubsolution}
-        Let
+        For $x\in[0,1]$, define the finite truncations by
         \[
-            R(x)=\sqrt{1+x\sqrt{1+x\sqrt{1+\cdots}}}.
+            R_1(x)=1,
+            \qquad
+            R_{n+1}(x)=\sqrt{1+xR_n(x)}.
         \]
-        Self-similarity gives
+        Since $y\mapsto\sqrt{1+xy}$ is increasing for $x\in[0,1]$, induction
+        gives
+        \[
+            1\leq R_n(x)\leq\varphi
+            \qquad\text{and}\qquad
+            R_n(x)\leq R_{n+1}(x),
+        \]
+        where $\varphi=(1+\sqrt5)/2$ and $\varphi^2=1+\varphi$. Hence
+        $R_n(x)$ converges pointwise to a limit $R(x)$. Passing to the limit in
+        the recurrence gives
         \[
             R(x)^2=1+xR(x),
         \]
-        so, since $R(x)>0$,
+        so positivity yields
         \[
             R(x)=\frac{x+\sqrt{x^2+4}}{2}.
         \]
-        Hence
+        The uniform bound $0\leq R_n(x)\leq\varphi$ permits integration by the
+        dominated convergence theorem. Therefore,
         \[
-            \int_0^1R(x)\dd x
-            =
-            \frac{1}{2}\int_0^1x\dd x
-            +
-            \frac{1}{2}\int_0^1\sqrt{x^2+4}\dd x.
-        \]
-        Evaluating the second integral yields
-        \[
-            \boxed{
-                \frac{1+\sqrt5}{4}
+            \begin{aligned}
+                \int_0^1R(x)\dd x
+                &=
+                \frac12\int_0^1x\dd x
                 +
-                \ln\left(\frac{1+\sqrt5}{2}\right)
-            }.
+                \frac12\int_0^1\sqrt{x^2+4}\dd x\\
+                &=
+                \boxed{
+                    \frac{1+\sqrt5}{4}
+                    +
+                    \ln\left(\frac{1+\sqrt5}{2}\right)
+                }.
+            \end{aligned}
         \]
     \end{expectedsubsolution}
 
@@ -1579,106 +1594,68 @@
     \end{solution}
 
     \begin{expectedproblem}[Conway's Soldiers]
-        Consider the infinite square grid. Initially every square on or below a
-        fixed horizontal line is occupied by a soldier, and every square
-        strictly above the line is empty. A legal move consists of jumping one
-        soldier horizontally or vertically over an adjacent soldier into the
-        next empty square; the jumped-over soldier is then removed. Prove that
-        no sequence of legal moves can move a soldier to the fifth row above
-        the initial line.
+        On an infinite square grid, every square on or below a fixed horizontal
+        line initially contains a soldier, and every square strictly above the
+        line is empty. A legal move jumps one soldier horizontally or
+        vertically over an adjacent soldier into the next square, which must be
+        empty; the jumped soldier is removed. Prove that no soldier can reach
+        the fifth row above the initial line.
     \end{expectedproblem}
 
     \begin{solution}
-        We use a standard pagoda function. Fix a target square $T$ in the fifth
-        row above the initial line, and let
+        Fix a target square $T$ in the fifth row and put
         \[
-            \sigma=\frac{\sqrt5-1}{2},
+            q=\frac{\sqrt5-1}{2},
+            \qquad
+            q+q^2=1.
         \]
-        so that
+        Give each square $Q$ the weight
         \[
-            \sigma^2+\sigma=1.
+            w(Q)=q^{d(Q,T)},
         \]
-        For each square $Q$ of the board, let $d(Q)$ be the Manhattan distance
-        from $Q$ to $T$, and assign to $Q$ the weight
-        \[
-            w(Q)=\sigma^{d(Q)}.
-        \]
-        For any position of the soldiers, let $W$ be the sum of the weights of
-        all occupied squares.
+        where $d$ is the Manhattan distance, and let $W$ be the sum of the
+        weights of all occupied squares.
 
-        We claim that a legal move never increases $W$. Indeed, suppose a move
-        replaces occupied squares $Q_1,Q_2$ by the square $Q_3$, where $Q_2$ is
-        jumped over. If the three squares lie on a shortest lattice path toward
-        $T$, then for some integer $m\geq0$ their weights are
+        Consider three consecutive squares in the direction of a legal jump.
+        Their distances from $T$ have one of the forms
         \[
-            \sigma^{m+2},\quad \sigma^{m+1},\quad \sigma^m,
+            (m+2,m+1,m),
+            \qquad
+            (m,m+1,m+2),
+            \qquad
+            (m+1,m,m+1).
         \]
-        and the change in total weight is
+        In the first case, the jump moves toward $T$ and
         \[
-            \sigma^m-\sigma^{m+1}-\sigma^{m+2}
-            =
-            \sigma^m(1-\sigma-\sigma^2)
-            =
-            0.
+            q^{m+2}+q^{m+1}=q^m
         \]
-        In every other case the destination square is farther from $T$, or one
-        of the two removed squares is at least as close to $T$ as in the
-        equality case, so the total weight strictly decreases. Hence every
-        legal move satisfies
-        \[
-            W_{\mathrm{after}}\leq W_{\mathrm{before}}.
-        \]
+        because $q+q^2=1$. In the second case,
+        $q^m+q^{m+1}>q^{m+2}$, and in the third case,
+        $q^{m+1}+q^m>q^{m+1}$. Thus no legal move increases $W$.
 
-        We now compute the initial total weight. If the initial line is the row
-        $y=0$ and the target square is $(0,5)$, then every initially occupied
-        square has the form $(k,-m)$ with $k\in\Z$ and $m\geq0$, and its weight
+        Take the initial boundary to be $y=0$ and $T=(0,5)$. The initial weight
         is
         \[
-            \sigma^{|k|+m+5}.
-        \]
-        Therefore
-        \[
-            W_0
-            =
-            \sum_{m\geq0}\sum_{k\in\Z}\sigma^{|k|+m+5}
-            =
-            \sigma^5
-            \left(1+2\sum_{k\geq1}\sigma^k\right)
-            \left(\sum_{m\geq0}\sigma^m\right).
-        \]
-        Using
-        \[
-            \sum_{k\geq1}\sigma^k=\frac{\sigma}{1-\sigma}
-            \qquad\text{and}\qquad
-            1-\sigma=\sigma^2,
-        \]
-        we obtain
-        \[
-            W_0
-            =
-            \sigma^5\left(1+\frac{2\sigma}{1-\sigma}\right)\frac{1}{1-\sigma}
-            =
-            \sigma^3+2\sigma^2
-            =
-            1.
+            \begin{aligned}
+                W_0
+                &=
+                \sum_{m=0}^{\infty}\sum_{k\in\Z}q^{|k|+m+5}\\
+                &=
+                q^5
+                \left(1+2\sum_{k=1}^{\infty}q^k\right)
+                \left(\sum_{m=0}^{\infty}q^m\right)
+                =1.
+            \end{aligned}
         \]
 
-        If a soldier ever reaches the target square $T$, then the resulting
-        position has total weight at least $1$, because $w(T)=1$ and every
-        occupied square has positive weight. Since the initial total weight is
-        exactly $1$ and $W$ never increases, every move along such a successful
-        sequence would have to preserve $W$. Consequently every move would have
-        to be one of the equality-case moves described above, that is, a jump
-        straight toward $T$ along a shortest lattice path.
+        Before a soldier could first reach $T$, only finitely many moves would
+        have occurred. Hence only finitely many initially occupied squares
+        could have been altered, so at least one untouched soldier of positive
+        weight would remain. If $T$ were occupied, it alone would contribute
+        weight $1$, and the untouched soldier would contribute an additional
+        positive amount. This would give $W>1$, contradicting $W\leq W_0=1$.
 
-        But the initial position fills an entire half-plane. Any attempt to
-        discard all soldiers except those on one such path necessarily uses a
-        move that strictly decreases $W$, after which the total weight becomes
-        less than $1$ and can never return to $1$. This contradiction shows that
-        no soldier can ever reach $T$.
-
-        Therefore no sequence of legal moves can move a soldier to the fifth
-        row above the initial line.
+        Therefore no soldier can reach the fifth row.
     \end{solution}
 
     \begin{expectedproblem}[Seven Bridges of K\"onigsberg]

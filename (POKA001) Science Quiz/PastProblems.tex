@@ -6,7 +6,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        No such positive integers exist. For any integer $a$, we have
+        No such positive integers exist. By the quadratic-residue criterion modulo $4$ from Mathematical Concepts, for any integer $a$, we have
         \[
             (a^2\equiv 0\pmod{4})\lor(a^2\equiv 1\pmod{4}).
         \]
@@ -80,20 +80,19 @@
     \end{solution}
 
     \begin{pastproblem}{2010.6}
-        Brownian motion is mathematically modeled by a random process named after the American
-        mathematician who developed its mathematical model. This mathematician also founded
-        cybernetics.
-
-        The process has increments that are independent Gaussian random variables with mean $0$. The
-        mathematician studied real analysis, harmonic analysis, series, and probability theory.
-        Identify this mathematician.
+        Brownian motion is modeled by a stochastic process named after the
+        American mathematician who developed its mathematical theory and later
+        founded cybernetics. For this process, increments over disjoint time
+        intervals are independent, and an increment over an interval of length
+        $t$ is Gaussian with mean $0$ and variance $t$. Identify the
+        mathematician.
     \end{pastproblem}
 
     \begin{solution}
-        The random process described in the problem is the Wiener process, the standard mathematical
+        The process described is the Wiener process, the standard mathematical
         model of Brownian motion. It is named after Norbert Wiener.
 
-        Therefore, the answer is $\boxed{\text{Norbert Wiener}}$.
+        Hence the mathematician is $\boxed{\text{Norbert Wiener}}$.
     \end{solution}
 
     \begin{pastproblem}{2010.7}
@@ -224,7 +223,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
+        By the trace--eigenvalue identity in Mathematical Concepts, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
         to $\tr(\mathbf{A})$.
 
         In this matrix, the diagonal entries are
@@ -591,7 +590,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
+        By the trace--eigenvalue identity in Mathematical Concepts, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
         to $\tr(\mathbf{A})$.
 
         In this matrix, the diagonal entries are
@@ -1593,7 +1592,7 @@
                 1 & 2 & 3 & 4
             \end{pmatrix}.
         \]
-        The sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
+        By the trace--eigenvalue identity in Mathematical Concepts, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
         to its trace. Therefore,
         \[
             \sum_{i=1}^{4}\lambda_i
@@ -1689,46 +1688,40 @@
     \end{solution}
 
     \begin{pastproblem}{2017.2}
-        Let $F_n$ be the $n$th Fibonacci number. Evaluate
+        Let $(F_n)$ be the Fibonacci sequence defined by
+        \[
+            F_0=0,\qquad F_1=1,\qquad F_{n+1}=F_n+F_{n-1}\quad(n\geq1).
+        \]
+        Determine
         \[
             \lim_{n\to\infty}\frac{F_{n+1}}{F_n}.
         \]
     \end{pastproblem}
 
     \begin{solution}
-        The Fibonacci numbers satisfy
+        By the linear-recurrence method developed in Mathematical Concepts,
+        Binet's formula is
         \[
-            F_{n+1}=F_n+F_{n-1}.
+            F_n=\frac{\varphi^n-\psi^n}{\sqrt5},
+            \qquad
+            \varphi=\frac{1+\sqrt5}{2},
+            \qquad
+            \psi=\frac{1-\sqrt5}{2}.
         \]
-        Suppose
-        \[
-            L=\lim_{n\to\infty}\frac{F_{n+1}}{F_n}.
-        \]
-        Then
+        Since $|\psi/\varphi|<1$,
         \[
             \frac{F_{n+1}}{F_n}
             =
-            1+\frac{F_{n-1}}{F_n}.
+            \varphi\,
+            \frac{1-(\psi/\varphi)^{n+1}}
+                 {1-(\psi/\varphi)^n}
+            \longrightarrow
+            \varphi.
         \]
-        Taking limits gives
-        \[
-            L=1+\frac{1}{L}.
-        \]
-        Hence
-        \[
-            L^2=L+1,
-        \]
-        so
-        \[
-            L=\frac{1\pm\sqrt{5}}{2}.
-        \]
-        Since the Fibonacci numbers are positive for large $n$, the limit must be positive.
         Therefore,
         \[
-            L=\frac{1+\sqrt{5}}{2}.
+            \boxed{\frac{1+\sqrt5}{2}}.
         \]
-
-        Therefore, the answer is $\boxed{\dfrac{1+\sqrt{5}}{2}}$.
     \end{solution}
 
     \begin{pastproblem}{2017.3}
@@ -1982,8 +1975,9 @@
     \end{solution}
 
     \begin{pastproblem}{2018.4}
-        Determine which of the following five Fields Medalists does not have a Korean doctoral
-        student.
+        According to the information used in the original 2018 Science Quiz,
+        determine which of the following five Fields Medalists did not have a
+        Korean doctoral student at that time.
         \[
             \begin{array}{ll}
                 (1) & \text{William Thurston} \\
@@ -1996,8 +1990,8 @@
     \end{pastproblem}
 
     \begin{solution}
-        According to the original answer key, the exceptional mathematician among the five listed
-        Fields Medalists is
+        The original answer key identifies the exceptional mathematician among
+        the five listed Fields Medalists as
         \[
             \boxed{(2)\ \text{Maxim Kontsevich}}.
         \]
@@ -2198,8 +2192,8 @@
     \end{solution}
 
     \begin{pastproblem}{2020.3}
-        Determine which of the following Fields Medalists was not serving as a professor at the
-        time.
+        At the time of the original 2020 Science Quiz, which of the following
+        Fields Medalists was identified as not serving as a professor?
         \[
             \begin{array}{ll}
                 (1) & \text{Cédric Villani} \\
@@ -2212,71 +2206,61 @@
     \end{pastproblem}
 
     \begin{solution}
-        According to the original answer key and the temporal context of the problem, Cédric Villani
-        was then serving in French politics rather than in a professorial position. The other
-        choices were serving as professors.
+        The original answer key identifies Cédric Villani. At the time relevant
+        to the question, he was serving in French politics; the item is therefore
+        interpreted according to its original temporal context rather than as a
+        statement about the mathematicians' present positions.
 
         Therefore, the answer is $\boxed{(1)\ \text{Cédric Villani}}$.
     \end{solution}
 
     \begin{pastproblem}{2020.4}
-        In a three-dimensional gravitational field, when an object moves from a point $\mathbf{a}$
-        to another point $\mathbf{b}$, the change in its potential energy is independent of the path
-        taken from $\mathbf{a}$ to $\mathbf{b}$. Determine which of the following mathematical facts
-        is least directly related to this physical phenomenon.
+        In a three-dimensional gravitational field, when an object moves from a
+        point $\mathbf{a}$ to another point $\mathbf{b}$, the change in its
+        potential energy is independent of the path taken from $\mathbf{a}$ to
+        $\mathbf{b}$. Determine which of the following mathematical facts is
+        least directly related to this physical phenomenon.
         \[
             \begin{array}{ll}
-                (1) & \text{A curl-free vector field is the gradient of some potential function.} \\
+                (1) & \text{On a simply connected domain, a continuously differentiable} \\
+                    & \text{curl-free vector field is the gradient of a potential function.} \\
                 (2) & \text{Stokes' theorem} \\
-                (3) & \text{The Laplacian of } \dfrac{1}{|\mathbf{x}|} \text{ is a delta function,
-                up to a constant factor.} \\
+                (3) & \text{The Laplacian of } \dfrac{1}{\lVert\mathbf{x}\rVert}
+                      \text{ is a delta distribution, up to a constant factor.} \\
                 (4) & \text{The curl of a gradient is identically zero.}
             \end{array}
         \]
     \end{pastproblem}
 
     \begin{solution}
-        The statement that the change in potential energy is independent of the path means that the
-        gravitational field is a conservative vector field.
-
-        Let $\mathbf{F}$ be the force field. The change in potential energy from $\mathbf{a}$ to
-        $\mathbf{b}$ is given by
+        Path independence means that the gravitational force field is
+        conservative. If $\mathbf{F}=-\nabla U$, then
         \[
             \Delta U
             =
-            -\int_{\mathbf{a}}^{\mathbf{b}} \mathbf{F}\cdot\dd\mathbf{r}.
+            -\int_{\mathbf{a}}^{\mathbf{b}}\mathbf{F}\cdot\dd\mathbf{r}
         \]
-        For this quantity to be independent of the path, the force field should be expressible as
-        the negative gradient of a potential function:
+        depends only on the endpoints. The conservative-field criterion from
+        Mathematical Concepts connects this statement with choice (1), while
         \[
-            \mathbf{F}=-\nabla U.
+            \nabla\times\nabla U=\mathbf{0}
         \]
-        Thus choice (1) is directly related to the phenomenon.
+        gives choice (4). Stokes' theorem relates zero curl to vanishing
+        circulation around closed curves, so choice (2) is also directly tied
+        to path independence.
 
-        Also, the curl of a gradient is always zero:
+        The distributional identity
         \[
-            \nabla \times \nabla U=\mathbf{0}.
-        \]
-        Hence choice (4) is also directly related. Stokes' theorem says that
-        \[
-            \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
+            \Delta\left(\frac{1}{\lVert\mathbf{x}\rVert}\right)
             =
-            \iint_S (\nabla\times \mathbf{F})\cdot \mathbf{n}\dd S.
+            -4\pi\delta_0
         \]
-        Therefore, if $\nabla\times\mathbf{F}=\mathbf{0}$, then the line integral around a closed
-        curve is zero, which is another way to understand path independence. Thus choice (2) is also
-        related.
-
-        On the other hand,
+        is fundamental in Newtonian gravitation and Poisson's equation, but it
+        is not the direct reason that line integrals of a conservative field are
+        path-independent. Therefore, the intended answer is
         \[
-            \Delta\left(\frac{1}{|\mathbf{x}|}\right)
-            =
-            -4\pi\delta(\mathbf{x})
+            \boxed{(3)}.
         \]
-        is related to the fundamental solution of the Laplacian and to Poisson's equation for
-        gravitational potential. Although it is related to gravity, it is not the main mathematical
-        reason why the potential energy change is independent of path. Therefore, the answer is
-        $\boxed{(3)}$.
     \end{solution}
 
     \begin{pastproblem}{2020.5}
@@ -2363,53 +2347,36 @@
         \[
             A(n)
             =
-            \frac{1}{\sqrt{5}}
-            \left(
-                \frac{1+\sqrt{5}}{2}
-            \right)^{n+1}.
+            \frac{1}{\sqrt5}
+            \left(\frac{1+\sqrt5}{2}\right)^{n+1}.
         \]
         Determine the integer closest to $A(7)$.
     \end{pastproblem}
 
     \begin{solution}
-        Recall Binet's formula for the Fibonacci sequence:
-        \[
-            F_n
-            =
-            \frac{\varphi^n-\psi^n}{\sqrt{5}},
-            \qquad
-            \varphi=\frac{1+\sqrt{5}}{2},
-            \qquad
-            \psi=\frac{1-\sqrt{5}}{2}.
-        \]
-        Here
-        \[
-            A(7)
-            =
-            \frac{\varphi^8}{\sqrt{5}}.
-        \]
         By Binet's formula,
         \[
             F_8
             =
-            \frac{\varphi^8-\psi^8}{\sqrt{5}}.
+            \frac{\varphi^8-\psi^8}{\sqrt5},
+            \qquad
+            \varphi=\frac{1+\sqrt5}{2},
+            \qquad
+            \psi=\frac{1-\sqrt5}{2}.
         \]
-        Since $|\psi|<1$, the term $\dfrac{\psi^8}{\sqrt{5}}$ is very small. Thus
+        Hence
         \[
-            A(7)
-            =
-            \frac{\varphi^8}{\sqrt{5}}
-            =
-            F_8+\frac{\psi^8}{\sqrt{5}}
+            A(7)=\frac{\varphi^8}{\sqrt5}
+            =F_8+\frac{\psi^8}{\sqrt5}.
         \]
-        is very close to $F_8$.
-
-        The Fibonacci numbers are
+        Since $|\psi|<1$,
         \[
-            F_0=0,\quad F_1=1,\quad F_2=1,\quad F_3=2,\quad F_4=3,\quad
-            F_5=5,\quad F_6=8,\quad F_7=13,\quad F_8=21.
+            0<\frac{|\psi|^8}{\sqrt5}<\frac12.
         \]
-        Therefore, the integer closest to $A(7)$ is $\boxed{21}$.
+        Thus the nearest integer is $F_8=21$, and therefore
+        \[
+            \boxed{21}.
+        \]
     \end{solution}
 
     \begin{pastproblem}{2021.3}
@@ -2793,60 +2760,30 @@
     \end{solution}
 
     \begin{pastproblem}{2022.7}
-        Two different coins are each tossed three times. Let $X$ and $Y$ be the numbers of heads
-        obtained from the two coins, respectively. Determine $\Prob(X=Y)$.
+        Two fair coins are each tossed three times, with all six tosses
+        independent. Let $X$ and $Y$ be the numbers of heads obtained from the
+        two coins, respectively. Determine $\Prob(X=Y)$.
     \end{pastproblem}
 
     \begin{solution}
-        For each coin, the number of heads obtained in three tosses follows the binomial
-        distribution
+        We have
         \[
-            X,Y\sim \Bin\left(3,\frac{1}{2}\right).
+            X,Y\sim\Bin\left(3,\frac12\right),
         \]
-        Also, $X$ and $Y$ are independent. Therefore,
+        and $X$ and $Y$ are independent. Therefore,
         \[
-            \Prob(X=Y)
-            =
-            \sum_{k=0}^{3}\Prob(X=k)\Prob(Y=k).
+            \begin{aligned}
+                \Prob(X=Y)
+                &=
+                \sum_{k=0}^{3}\Prob(X=k)\Prob(Y=k)\\
+                &=
+                \frac{1}{64}\sum_{k=0}^{3}\binom{3}{k}^2\\
+                &=
+                \frac{1+9+9+1}{64}
+                =
+                \boxed{\frac{5}{16}}.
+            \end{aligned}
         \]
-        For each $k=0,1,2,3$, we have
-        \[
-            \Prob(X=k)
-            =
-            \binom{3}{k}\left(\frac{1}{2}\right)^3,
-        \]
-        and the same formula holds for $Y$. Hence
-        \[
-            \Prob(X=Y)
-            =
-            \sum_{k=0}^{3}
-            \left(
-                \binom{3}{k}\left(\frac{1}{2}\right)^3
-            \right)^2
-            =
-            \frac{1}{64}
-            \sum_{k=0}^{3}
-            \binom{3}{k}^2.
-        \]
-        Thus
-        \[
-            \Prob(X=Y)
-            =
-            \frac{1}{64}
-            \left(
-                \binom{3}{0}^2+
-                \binom{3}{1}^2+
-                \binom{3}{2}^2+
-                \binom{3}{3}^2
-            \right)
-            =
-            \frac{1+9+9+1}{64}
-            =
-            \frac{20}{64}
-            =
-            \frac{5}{16}.
-        \]
-        Therefore, the answer is $\boxed{\dfrac{5}{16}}$.
     \end{solution}
 
     \begin{pastproblem}{2023.1}
@@ -2881,7 +2818,7 @@
             \binom{12}{6}.
         \]
 
-        We now count the paths that do go above the line $y=x$. By the reflection principle, the
+        We now count the paths that do go above the line $y=x$. By the reflection principle stated in Mathematical Concepts, the
         number of paths from $(0,0)$ to $(6,6)$ that at some point satisfy $y>x$ is
         \[
             \binom{12}{5}.
@@ -3387,71 +3324,62 @@
     \end{pastproblem}
 
     \begin{solution}
-        Since the sphere is tangent to the three coordinate planes
+        If a sphere of radius $r>0$ is tangent to the three coordinate planes,
+        its center has the form
         \[
-            x=0,\qquad y=0,\qquad z=0,
+            \mathbf{c}=(\sigma_1r,\sigma_2r,\sigma_3r),
+            \qquad
+            \sigma_1,\sigma_2,\sigma_3\in\{-1,1\}.
         \]
-        and we are looking for the smallest such sphere, its center must lie in the first octant and
-        have the form
+        Put $k=\sigma_1+\sigma_2+\sigma_3$, so
         \[
-            \mathbf{c}=(a,a,a)
+            k\in\{-3,-1,1,3\}.
         \]
-        by symmetry. The distance from $\mathbf{c}$ to each coordinate plane is $a$, so the radius
-        of the sphere is
+        Tangency to $x+y+z=3$ requires
         \[
-            r=a.
-        \]
-
-        The sphere must also be tangent to the plane
-        \[
-            x+y+z=3.
-        \]
-        The distance from $(a,a,a)$ to this plane is
-        \[
-            \frac{|a+a+a-3|}{\sqrt{1^2+1^2+1^2}}
-            =
-            \frac{3-3a}{\sqrt{3}},
-        \]
-        since the smallest sphere lies between the coordinate planes and the plane $x+y+z=3$. This
-        distance must equal the radius $a$, so
-        \[
-            \frac{3-3a}{\sqrt{3}}=a.
-        \]
-        Hence
-        \[
-            3-3a=\sqrt{3}a,
-        \]
-        and therefore
-        \[
-            a
-            =
-            \frac{3}{3+\sqrt{3}}
-            =
-            \frac{3-\sqrt{3}}{2}.
+            \frac{|kr-3|}{\sqrt3}=r.
         \]
 
-        Thus the center is
+        For $k=3$, the positive solutions are
         \[
+            r=\frac{3}{3+\sqrt3}
+            \qquad\text{and}\qquad
+            r=\frac{3}{3-\sqrt3}.
+        \]
+        For $k=1$, the only positive solution is
+        \[
+            r=\frac{3}{1+\sqrt3},
+        \]
+        and for $k=-1$, the only positive solution is
+        \[
+            r=\frac{3}{\sqrt3-1}.
+        \]
+        The case $k=-3$ has no positive solution. Therefore the smallest
+        radius is
+        \[
+            r=\frac{3}{3+\sqrt3}
+            =\frac{3-\sqrt3}{2},
+        \]
+        attained when $\sigma_1=\sigma_2=\sigma_3=1$. Hence the center is
+        \[
+            \mathbf{c}
+            =
             \left(
-                \frac{3-\sqrt{3}}{2},
-                \frac{3-\sqrt{3}}{2},
-                \frac{3-\sqrt{3}}{2}
+                \frac{3-\sqrt3}{2},
+                \frac{3-\sqrt3}{2},
+                \frac{3-\sqrt3}{2}
             \right),
         \]
-        and the radius is
-        \[
-            \frac{3-\sqrt{3}}{2}.
-        \]
-        Therefore, the equation of the sphere is
+        and the required sphere is
         \[
             \boxed{
-            \left(x-\frac{3-\sqrt{3}}{2}\right)^2
+            \left(x-\frac{3-\sqrt3}{2}\right)^2
             +
-            \left(y-\frac{3-\sqrt{3}}{2}\right)^2
+            \left(y-\frac{3-\sqrt3}{2}\right)^2
             +
-            \left(z-\frac{3-\sqrt{3}}{2}\right)^2
+            \left(z-\frac{3-\sqrt3}{2}\right)^2
             =
-            \left(\frac{3-\sqrt{3}}{2}\right)^2
+            \left(\frac{3-\sqrt3}{2}\right)^2
             }.
         \]
     \end{solution}
@@ -3622,10 +3550,13 @@
     \end{solution}
 
     \begin{pastproblem}{2025.9}
-        There are three doors. Behind one door is a car, and behind the other two doors are goats.
-        After a contestant chooses one door, the host opens one of the remaining doors and reveals
-        a goat. The contestant may then keep the original choice or switch to the other unopened
-        door. Determine which choice gives the higher probability of winning the car.
+        There are three doors. One hides a car and the other two hide goats.
+        After the contestant chooses a door, a host who knows the car's location
+        must open an unchosen door hiding a goat; when two such doors are
+        available, the host follows a rule independent of the car's location.
+        The contestant may then keep the original choice or switch to the only
+        other unopened door. Determine which choice gives the higher probability
+        of winning the car.
         \[
             \begin{array}{ll}
                 (1) & \text{The probabilities are the same.} \\
@@ -3637,27 +3568,15 @@
     \end{pastproblem}
 
     \begin{solution}
-        The initial choice has probability $1/3$ of being correct and probability $2/3$ of being
-        wrong.
+        The original choice contains the car with probability $1/3$ and is
+        wrong with probability $2/3$. Under the stated host protocol, switching
+        wins exactly when the original choice was wrong. Hence staying wins with
+        probability $1/3$, whereas switching wins with probability $2/3$.
 
-        If the initial choice is correct, switching loses. If the initial choice is wrong, the host
-        must reveal the other wrong door, so switching wins. Therefore switching wins exactly when
-        the initial choice was wrong, which has probability
+        Therefore, the answer is
         \[
-            \frac23.
+            \boxed{(4)\ \text{It is better to switch}}.
         \]
-        Thus switching is better.
-
-        Therefore, the answer is $\boxed{(4)\ \text{It is better to switch}}$.
-    \end{solution}
-
-    \begin{pastproblem}{2025.10}
-        The original problem statement could not be found.
-    \end{pastproblem}
-
-    \begin{solution}
-        The original problem statement could not be found; therefore, no solution is
-        included.
     \end{solution}
 
     \begin{pastproblem}{2025.11}
@@ -3751,7 +3670,7 @@
         \[
             I_i
             =
-            \indicator{\{\text{a new run starts at position }i\}}.
+            \indicatorbb{\{\text{a new run starts at position }i\}}.
         \]
         Then
         \[
@@ -3771,7 +3690,7 @@
     \end{solution}
 
     \begin{pastproblem}{2025.15}
-        Determine which of the following theorems was published first.
+        Determine which of the following results appeared first historically.
         \[
             \begin{array}{ll}
                 (1) & \text{Bayes' Theorem} \\
@@ -3783,16 +3702,22 @@
     \end{pastproblem}
 
     \begin{solution}
-        The Fundamental Theorem of Calculus is associated with Newton and Leibniz in the seventeenth
-        century, while Bayes' Theorem, the Intermediate Value Theorem in its modern rigorous form,
-        and the Cauchy--Schwarz Inequality were published later.
+        Interpreting the question by the earliest recognizable form of each
+        result, the inverse relationship between differentiation and integration
+        was established in seventeenth-century work associated with Barrow,
+        Newton, and Leibniz. Bayes' theorem was published in the eighteenth
+        century, while rigorous forms of the Intermediate Value Theorem and the
+        Cauchy--Schwarz inequality appeared in the nineteenth century.
 
-        Therefore, the answer is
-        $\boxed{(4)\ \text{Fundamental Theorem of Calculus}}$.
+        Therefore, the intended answer is
+        \[
+            \boxed{(4)\ \text{Fundamental Theorem of Calculus}}.
+        \]
     \end{solution}
 
     \begin{pastproblem}{2025.16}
-        Determine which of the following amounts is closest to the Abel Prize award.
+        At the time of the original 2025 Science Quiz, determine which of the
+        following amounts was closest to the Abel Prize award.
         \[
             \begin{array}{ll}
                 (1) & \text{None} \\
@@ -3804,9 +3729,9 @@
     \end{pastproblem}
 
     \begin{solution}
-        The Abel Prize is a major international mathematics prize awarded by the Norwegian Academy
-        of Science and Letters. Among the listed options, the prize amount is closest to one million US
-        dollars.
+        In 2025, the Abel Prize amounted to NOK $7.5$ million. Under the
+        exchange rate relevant to the original question, this was closest to
+        one million US dollars among the listed choices.
 
         Therefore, the answer is $\boxed{(2)\ \text{About }\$1{,}000{,}000}$.
     \end{solution}
