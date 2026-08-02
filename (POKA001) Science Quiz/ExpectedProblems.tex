@@ -543,67 +543,6 @@
         entire museum.
     \end{solution}
 
-    \begin{expectedproblem}[Penney's Game]
-        The first player chooses a pattern of three coin tosses, such as
-        $\mathrm{HHT}$. After seeing this choice, the second player chooses a
-        different pattern of length $3$. A fair coin is then tossed repeatedly
-        until one of the two patterns first appears as three consecutive
-        outcomes; the player who chose that pattern wins.
-
-        Prove that the second player can always choose a pattern whose winning
-        probability is greater than $1/2$.
-    \end{expectedproblem}
-
-    \begin{solution}
-        For two patterns $X$ and $Y$ of length $3$, define the overlap score
-        \[
-            C(X,Y)
-            =
-            \sum_{\substack{1\leq k\leq3\\
-            \text{suffix}_k(X)=\text{prefix}_k(Y)}}2^k.
-        \]
-        A standard fair-betting argument gives the probability that $Y$ occurs
-        before $X$:
-        \[
-            \Prob(Y\text{ before }X)
-            =
-            \frac{C(X,X)-C(X,Y)}
-            {C(X,X)-C(X,Y)+C(Y,Y)-C(Y,X)}.
-        \]
-        Indeed, start a new unit-stake gambler before each toss, with one team
-        betting successively on $X$ and the other on $Y$, doubling its capital
-        after each correct fair bet. At the stopping time, the surviving
-        capital of the team betting on $Y$ is $C(X,Y)$ if $X$ wins and
-        $C(Y,Y)$ if $Y$ wins; the analogous statement holds for the other
-        team. Equality of the two expected net gains yields the displayed
-        formula.
-
-        Write the first player's pattern as
-        \[
-            X=x_1x_2x_3,
-        \]
-        and let $\overline{x_2}$ denote the opposite face of $x_2$. The second
-        player chooses
-        \[
-            Y=\overline{x_2}x_1x_2.
-        \]
-        By interchanging heads and tails if necessary, it is enough to check
-        the following four cases:
-        \[
-            \begin{array}{c|c|c}
-                X & Y & \Prob(Y\text{ before }X)\\
-                \hline
-                \mathrm{HHH} & \mathrm{THH} & 7/8\\
-                \mathrm{HHT} & \mathrm{THH} & 3/4\\
-                \mathrm{HTH} & \mathrm{HHT} & 2/3\\
-                \mathrm{HTT} & \mathrm{HHT} & 2/3
-            \end{array}
-        \]
-        These values follow immediately from the overlap formula. Each is
-        strictly greater than $1/2$, so the second player always has the
-        required choice.
-    \end{solution}
-
     \begin{expectedproblem}[Bertrand's Ballot Problem]
         In an election, candidate $A$ receives $p$ votes and candidate $B$
         receives $q$ votes, where
@@ -650,139 +589,6 @@
         Therefore the probability is
         \[
             \boxed{\frac{p-q}{p+q}}.
-        \]
-    \end{solution}
-
-    \begin{expectedproblem}[Three Utilities Problem]
-        Three houses and three utility companies---water, gas, and
-        electricity---are represented by six distinct points in the plane. Is
-        it possible to join every house to every utility company by curves so
-        that no two curves intersect and no curve passes through any of the six
-        points other than its endpoints? Prove the answer.
-    \end{expectedproblem}
-
-    \begin{solution}
-        Such a drawing would be a planar embedding of the complete bipartite
-        graph $K_{3,3}$. This graph has
-        \[
-            V=6,
-            \qquad
-            E=9.
-        \]
-
-        The graph $K_{3,3}$ is simple, bipartite, and has no bridges. Thus every
-        face boundary in a planar embedding would be a closed walk of length at
-        least $4$. If $F$ is the number of faces, double counting edge--face
-        incidences gives
-        \[
-            2E\geq4F,
-            \qquad\text{so}\qquad
-            F\leq\frac{E}{2}.
-        \]
-        Euler's formula would then give
-        \[
-            2=V-E+F
-            \leq
-            V-E+\frac{E}{2},
-        \]
-        and hence
-        \[
-            E\leq2V-4.
-        \]
-        For $K_{3,3}$ this would require
-        \[
-            9\leq2\cdot6-4=8,
-        \]
-        which is impossible. Thus the requested system of nonintersecting
-        connections cannot be drawn in the plane.
-    \end{solution}
-
-    \begin{expectedproblem}[Braess's Paradox]
-        A total traffic flow of $4000$ units travels from $S$ to $T$ in the
-        directed network with routes
-        \[
-            S\to A\to T
-            \qquad\text{and}\qquad
-            S\to B\to T.
-        \]
-        If $x$ denotes the flow on a road, its travel time is given by
-        \[
-            \begin{array}{c|cccc}
-                \text{Road}
-                & S\to A & A\to T & S\to B & B\to T\\
-                \hline
-                \text{Travel time}
-                & x/100 & 45 & 45 & x/100
-            \end{array}
-        \]
-        Each driver chooses a route of minimum travel time, taking the total
-        road flows as given.
-
-        Determine the equilibrium travel time in the original network. Then a
-        new directed road $A\to B$ with travel time $0$ is added. Determine the
-        new equilibrium travel time.
-    \end{expectedproblem}
-
-    \begin{solution}
-        Let $y$ units use the upper route $S\to A\to T$. Then $4000-y$
-        units use the lower route, and their travel times are
-        \[
-            C_U(y)=\frac{y}{100}+45,
-            \qquad
-            C_L(y)=45+\frac{4000-y}{100}.
-        \]
-        At equilibrium both routes are used and have equal travel time. Thus
-        \[
-            \frac{y}{100}+45
-            =
-            45+\frac{4000-y}{100},
-        \]
-        so $y=2000$ and
-        \[
-            C_U=C_L=65.
-        \]
-
-        After the road $A\to B$ is added, let $f$, $g$, and $h$ be the flows on
-        the routes
-        \[
-            S\to A\to T,
-            \qquad
-            S\to B\to T,
-            \qquad
-            S\to A\to B\to T,
-        \]
-        respectively. Put
-        \[
-            x=f+h,
-            \qquad
-            z=g+h,
-        \]
-        for the flows on $S\to A$ and $B\to T$. The three route costs are
-        \[
-            C_U=\frac{x}{100}+45,
-            \qquad
-            C_L=45+\frac{z}{100},
-            \qquad
-            C_M=\frac{x+z}{100}.
-        \]
-        If $f>0$, equilibrium would require $C_U\leq C_M$, which implies
-        $z\geq4500$, impossible because the total flow is $4000$. Hence
-        $f=0$. Similarly, $g=0$. Therefore
-        \[
-            h=4000,
-            \qquad
-            x=z=4000,
-        \]
-        and every driver uses the new middle route with travel time
-        \[
-            C_M=40+40=80.
-        \]
-        Thus adding the zero-time road increases the equilibrium travel time
-        from
-        \[
-            \boxed{65}
-            \qquad\text{to}\qquad
-            \boxed{80}.
         \]
     \end{solution}
 
@@ -1213,7 +1019,7 @@
 
     \expectedproblemsection{Memorization Problems}
 
-    \begin{expectedproblem}[Yang--Mills Existence and Mass Gap]
+    \begin{expectedproblem}
         The Clay Mathematics Institute's Yang--Mills Existence and Mass Gap
         problem asks for a nontrivial quantum Yang--Mills theory on
         $\R^d$ with a positive mass gap. Determine $d$, and state whether this
@@ -1230,7 +1036,7 @@
         mass gap in this dimension remain open.
     \end{solution}
 
-    \begin{expectedproblem}[Exotic Spheres]
+    \begin{expectedproblem}
         John Milnor first exhibited exotic spheres in dimension $n$: smooth
         manifolds homeomorphic, but not diffeomorphic, to the standard sphere
         $S^n$. Later work showed that the group $\Theta_n$ of oriented
@@ -1545,6 +1351,67 @@
         Two of those three coins lie in the $GG$ box.
     \end{solution}
 
+    \begin{expectedproblem}[Penney's Game]
+        The first player chooses a pattern of three coin tosses, such as
+        $\mathrm{HHT}$. After seeing this choice, the second player chooses a
+        different pattern of length $3$. A fair coin is then tossed repeatedly
+        until one of the two patterns first appears as three consecutive
+        outcomes; the player who chose that pattern wins.
+
+        Prove that the second player can always choose a pattern whose winning
+        probability is greater than $1/2$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        For two patterns $X$ and $Y$ of length $3$, define the overlap score
+        \[
+            C(X,Y)
+            =
+            \sum_{\substack{1\leq k\leq3\\
+            \text{suffix}_k(X)=\text{prefix}_k(Y)}}2^k.
+        \]
+        A standard fair-betting argument gives the probability that $Y$ occurs
+        before $X$:
+        \[
+            \Prob(Y\text{ before }X)
+            =
+            \frac{C(X,X)-C(X,Y)}
+            {C(X,X)-C(X,Y)+C(Y,Y)-C(Y,X)}.
+        \]
+        Indeed, start a new unit-stake gambler before each toss, with one team
+        betting successively on $X$ and the other on $Y$, doubling its capital
+        after each correct fair bet. At the stopping time, the surviving
+        capital of the team betting on $Y$ is $C(X,Y)$ if $X$ wins and
+        $C(Y,Y)$ if $Y$ wins; the analogous statement holds for the other
+        team. Equality of the two expected net gains yields the displayed
+        formula.
+
+        Write the first player's pattern as
+        \[
+            X=x_1x_2x_3,
+        \]
+        and let $\overline{x_2}$ denote the opposite face of $x_2$. The second
+        player chooses
+        \[
+            Y=\overline{x_2}x_1x_2.
+        \]
+        By interchanging heads and tails if necessary, it is enough to check
+        the following four cases:
+        \[
+            \begin{array}{c|c|c}
+                X & Y & \Prob(Y\text{ before }X)\\
+                \hline
+                \mathrm{HHH} & \mathrm{THH} & 7/8\\
+                \mathrm{HHT} & \mathrm{THH} & 3/4\\
+                \mathrm{HTH} & \mathrm{HHT} & 2/3\\
+                \mathrm{HTT} & \mathrm{HHT} & 2/3
+            \end{array}
+        \]
+        These values follow immediately from the overlap formula. Each is
+        strictly greater than $1/2$, so the second player always has the
+        required choice.
+    \end{solution}
+
     \begin{expectedproblem}[Josephus Problem]
         The people numbered
         \[
@@ -1656,6 +1523,50 @@
         positive amount. This would give $W>1$, contradicting $W\leq W_0=1$.
 
         Therefore no soldier can reach the fifth row.
+    \end{solution}
+
+    \begin{expectedproblem}[Three Utilities Problem]
+        Three houses and three utility companies---water, gas, and
+        electricity---are represented by six distinct points in the plane. Is
+        it possible to join every house to every utility company by curves so
+        that no two curves intersect and no curve passes through any of the six
+        points other than its endpoints? Prove the answer.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Such a drawing would be a planar embedding of the complete bipartite
+        graph $K_{3,3}$. This graph has
+        \[
+            V=6,
+            \qquad
+            E=9.
+        \]
+
+        The graph $K_{3,3}$ is simple, bipartite, and has no bridges. Thus every
+        face boundary in a planar embedding would be a closed walk of length at
+        least $4$. If $F$ is the number of faces, double counting edge--face
+        incidences gives
+        \[
+            2E\geq4F,
+            \qquad\text{so}\qquad
+            F\leq\frac{E}{2}.
+        \]
+        Euler's formula would then give
+        \[
+            2=V-E+F
+            \leq
+            V-E+\frac{E}{2},
+        \]
+        and hence
+        \[
+            E\leq2V-4.
+        \]
+        For $K_{3,3}$ this would require
+        \[
+            9\leq2\cdot6-4=8,
+        \]
+        which is impossible. Thus the requested system of nonintersecting
+        connections cannot be drawn in the plane.
     \end{solution}
 
     \begin{expectedproblem}[Seven Bridges of K\"onigsberg]
@@ -1783,6 +1694,95 @@
 
         Therefore the first player has a winning strategy. The argument proves
         its existence without identifying the winning first move in general.
+    \end{solution}
+
+    \begin{expectedproblem}[Braess's Paradox]
+        A total traffic flow of $4000$ units travels from $S$ to $T$ in the
+        directed network with routes
+        \[
+            S\to A\to T
+            \qquad\text{and}\qquad
+            S\to B\to T.
+        \]
+        If $x$ denotes the flow on a road, its travel time is given by
+        \[
+            \begin{array}{c|cccc}
+                \text{Road}
+                & S\to A & A\to T & S\to B & B\to T\\
+                \hline
+                \text{Travel time}
+                & x/100 & 45 & 45 & x/100
+            \end{array}
+        \]
+        Each driver chooses a route of minimum travel time, taking the total
+        road flows as given.
+
+        Determine the equilibrium travel time in the original network. Then a
+        new directed road $A\to B$ with travel time $0$ is added. Determine the
+        new equilibrium travel time.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let $y$ units use the upper route $S\to A\to T$. Then $4000-y$
+        units use the lower route, and their travel times are
+        \[
+            C_U(y)=\frac{y}{100}+45,
+            \qquad
+            C_L(y)=45+\frac{4000-y}{100}.
+        \]
+        At equilibrium both routes are used and have equal travel time. Thus
+        \[
+            \frac{y}{100}+45
+            =
+            45+\frac{4000-y}{100},
+        \]
+        so $y=2000$ and
+        \[
+            C_U=C_L=65.
+        \]
+
+        After the road $A\to B$ is added, let $f$, $g$, and $h$ be the flows on
+        the routes
+        \[
+            S\to A\to T,
+            \qquad
+            S\to B\to T,
+            \qquad
+            S\to A\to B\to T,
+        \]
+        respectively. Put
+        \[
+            x=f+h,
+            \qquad
+            z=g+h,
+        \]
+        for the flows on $S\to A$ and $B\to T$. The three route costs are
+        \[
+            C_U=\frac{x}{100}+45,
+            \qquad
+            C_L=45+\frac{z}{100},
+            \qquad
+            C_M=\frac{x+z}{100}.
+        \]
+        If $f>0$, equilibrium would require $C_U\leq C_M$, which implies
+        $z\geq4500$, impossible because the total flow is $4000$. Hence
+        $f=0$. Similarly, $g=0$. Therefore
+        \[
+            h=4000,
+            \qquad
+            x=z=4000,
+        \]
+        and every driver uses the new middle route with travel time
+        \[
+            C_M=40+40=80.
+        \]
+        Thus adding the zero-time road increases the equilibrium travel time
+        from
+        \[
+            \boxed{65}
+            \qquad\text{to}\qquad
+            \boxed{80}.
+        \]
     \end{solution}
 
     \begin{expectedproblem}[100 Prisoners and 100 Boxes]
