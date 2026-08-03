@@ -595,6 +595,439 @@
     \expectedproblemsection{Direct Calculation Problems}
 
     \begin{expectedproblem}
+        Evaluate each of the following limits. In parameterized problems,
+        determine the exact value for every parameter regime stated in the
+        subproblem.
+
+        \begin{expectedsubproblem}[2012 \KAIST{} Problem of the Week, A limit of a sequence involving a square root]
+            Let $a_0=3$ and
+            \[
+                a_n=a_{n-1}+\sqrt{a_{n-1}^2+3},
+                \qquad n\geq1.
+            \]
+            Determine
+            \[
+                \lim_{n\to\infty}\frac{a_n}{2^n}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2013 \KAIST{} Problem of the Week, Limit of a sequence]
+            For $a,b\in\R$, determine
+            \[
+                \lim_{n\to\infty}
+                n\left(
+                    1-\frac{a}{n}-\frac{b\ln(n+1)}{n}
+                \right)^n.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2014 \KAIST{} Problem of the Week, Limit]
+            For $x\geq0$, let
+            \[
+                f_n(x)
+                =
+                \frac{
+                    \displaystyle\prod_{k=1}^{n-1}(x+k)(x+k+1)
+                }{(n!)^2}.
+            \]
+            Determine
+            \[
+                \lim_{n\to\infty}f_n(x).
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week, Integral limit]
+            For $a\geq0$, determine
+            \[
+                \lim_{n\to\infty}
+                n\int_{-1}^{0}
+                \left(x+\frac{x^2}{2}+e^{ax}\right)^n\dd x.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2023 \KAIST{} Problem of the Week, A limit]
+            Determine
+            \[
+                \lim_{n\to\infty}
+                \left(
+                    \frac{\displaystyle\sum_{k=1}^{n+2}k^k}
+                    {\displaystyle\sum_{k=1}^{n+1}k^k}
+                    -
+                    \frac{\displaystyle\sum_{k=1}^{n+1}k^k}
+                    {\displaystyle\sum_{k=1}^{n}k^k}
+                \right).
+            \]
+        \end{expectedsubproblem}
+    \end{expectedproblem}
+
+    \begin{expectedsubsolution}
+        Write
+        \[
+            a_n=\sqrt3\cot\theta_n.
+        \]
+        Since $a_0=3$, we may take $\theta_0=\pi/6$. The half-angle identity
+        \[
+            \cot\frac{\theta}{2}=\cot\theta+\csc\theta
+        \]
+        transforms the recurrence into
+        \[
+            a_n
+            =
+            \sqrt3\left(\cot\theta_{n-1}+\csc\theta_{n-1}\right)
+            =
+            \sqrt3\cot\frac{\theta_{n-1}}{2}.
+        \]
+        Hence
+        \[
+            \theta_n=\frac{\pi}{6\cdot2^n}
+            \qquad\text{and}\qquad
+            a_n=\sqrt3\cot\left(\frac{\pi}{6\cdot2^n}\right).
+        \]
+        Using $t\cot t\to1$ as $t\to0$, we obtain
+        \[
+            \boxed{
+                \lim_{n\to\infty}\frac{a_n}{2^n}
+                =
+                \frac{6\sqrt3}{\pi}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Put
+        \[
+            c_n=a+b\ln(n+1).
+        \]
+        Since $c_n/n\to0$ and $c_n^2/n\to0$, the logarithmic expansion gives
+        \[
+            n\ln\left(1-\frac{c_n}{n}\right)
+            =
+            -c_n+o(1).
+        \]
+        Therefore,
+        \[
+            n\left(1-\frac{c_n}{n}\right)^n
+            =
+            e^{-a}n(n+1)^{-b}\bigl(1+o(1)\bigr).
+        \]
+        It follows that the limit is
+        \[
+            \boxed{
+                \begin{cases}
+                    \infty, & b<1,\\
+                    e^{-a}, & b=1,\\
+                    0, & b>1.
+                \end{cases}
+            }
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        The Gamma function gives
+        \[
+            f_n(x)
+            =
+            \frac{\Gamma(n+x)\Gamma(n+x+1)}
+            {\Gamma(x+1)\Gamma(x+2)\Gamma(n+1)^2}.
+        \]
+        Using
+        \[
+            \frac{\Gamma(n+\alpha)}{\Gamma(n+\beta)}
+            \sim n^{\alpha-\beta},
+        \]
+        we obtain
+        \[
+            f_n(x)
+            \sim
+            \frac{n^{2x-1}}{\Gamma(x+1)\Gamma(x+2)}.
+        \]
+        Consequently,
+        \[
+            \boxed{
+                \lim_{n\to\infty}f_n(x)
+                =
+                \begin{cases}
+                    0, & 0\leq x<\dfrac12,\\[4pt]
+                    \dfrac{8}{3\pi}, & x=\dfrac12,\\[6pt]
+                    \infty, & x>\dfrac12.
+                \end{cases}
+            }
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Let
+        \[
+            g(x)=x+\frac{x^2}{2}+e^{ax}.
+        \]
+        On $[-1,0]$, we have $-1/2\leq g(x)\leq1$, with equality $g(x)=1$
+        only at $x=0$. Moreover,
+        \[
+            g(0)=1
+            \qquad\text{and}\qquad
+            g'(0)=1+a.
+        \]
+        The contribution from every interval $[-1,-\delta]$ is exponentially
+        small. On the remaining interval, set $x=-t/n$. For each fixed $t\geq0$,
+        \[
+            g\left(-\frac{t}{n}\right)^n
+            \longrightarrow
+            e^{-(1+a)t}.
+        \]
+        A uniform exponential bound near the endpoint permits dominated
+        convergence, and therefore
+        \[
+            \begin{aligned}
+                \lim_{n\to\infty}
+                n\int_{-1}^{0}g(x)^n\dd x
+                &=
+                \int_0^\infty e^{-(1+a)t}\dd t\\
+                &=
+                \boxed{\frac{1}{1+a}}.
+            \end{aligned}
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Let
+        \[
+            S_n=\sum_{k=1}^{n}k^k.
+        \]
+        The final two terms dominate the sum:
+        \[
+            S_n
+            =
+            n^n\left(1+\frac{1}{en}+O\left(\frac{1}{n^2}\right)\right).
+        \]
+        Hence
+        \[
+            \begin{aligned}
+                \frac{S_{n+1}}{S_n}
+                &=
+                (n+1)\left(1+\frac{1}{n}\right)^n
+                \frac{
+                    1+\dfrac{1}{e(n+1)}+O(n^{-2})
+                }{
+                    1+\dfrac{1}{en}+O(n^{-2})
+                }\\
+                &=
+                en+\frac{e}{2}+O\left(\frac{1}{n}\right).
+            \end{aligned}
+        \]
+        Replacing $n$ by $n+1$ and subtracting gives
+        \[
+            \boxed{
+                \lim_{n\to\infty}
+                \left(
+                    \frac{S_{n+2}}{S_{n+1}}
+                    -
+                    \frac{S_{n+1}}{S_n}
+                \right)
+                =e
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedproblem}
+        Determine whether each of the following series converges. For every
+        convergent series, determine its exact sum. In parameterized problems,
+        state all parameter values for which convergence occurs.
+
+        \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week, A series]
+            Let $k$ be a positive integer, and define
+            \[
+                a_n
+                =
+                \begin{cases}
+                    1, & (k+1)\nmid n,\\
+                    -k, & (k+1)\mid n.
+                \end{cases}
+            \]
+            Determine
+            \[
+                \sum_{n=1}^{\infty}\frac{a_n}{n}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2017 \KAIST{} Problem of the Week, Convergence of a series]
+            Determine whether
+            \[
+                \sum_{n=0}^{\infty}
+                \frac{1}{4^n}\binom{2n}{n}
+            \]
+            converges.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2011 \KAIST{} Problem of the Week, A Series]
+            Determine
+            \[
+                \sum_{n=1}^{\infty}\frac{n\sin n}{1+n^2}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2014 \KAIST{} Problem of the Week, Series]
+            Determine all positive integers $\ell$ for which
+            \[
+                \sum_{n=1}^{\infty}
+                \frac{n^3}{(n+1)(n+2)\cdots(n+\ell)}
+            \]
+            converges, and compute its value whenever it converges.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2024 \KAIST{} Problem of the Week, Infinite series of reciprocals]
+            Determine
+            \[
+                \sum_{k=0}^{\infty}
+                \frac{1}{
+                    (6k+1)(6k+2)(6k+3)(6k+4)(6k+5)(6k+6)
+                }.
+            \]
+        \end{expectedsubproblem}
+    \end{expectedproblem}
+
+    \begin{expectedsubsolution}
+        At the end of the $N$th complete block of length $k+1$, the partial sum
+        is
+        \[
+            \begin{aligned}
+                \sum_{n=1}^{(k+1)N}\frac{a_n}{n}
+                &=
+                \sum_{n=1}^{(k+1)N}\frac{1}{n}
+                -(k+1)\sum_{m=1}^{N}\frac{1}{(k+1)m}\\
+                &=
+                H_{(k+1)N}-H_N.
+            \end{aligned}
+        \]
+        Since $H_N=\ln N+\gamma+o(1)$, these partial sums tend to
+        $\ln(k+1)$. The terms inside the final incomplete block tend uniformly
+        to zero, so the full series has the same limit. Therefore,
+        \[
+            \boxed{
+                \sum_{n=1}^{\infty}\frac{a_n}{n}=\ln(k+1)
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        By the central binomial coefficient asymptotic,
+        \[
+            \frac{1}{4^n}\binom{2n}{n}
+            \sim
+            \frac{1}{\sqrt{\pi n}}.
+        \]
+        Since the $p$-series $\sum n^{-1/2}$ diverges, the limit comparison
+        test gives
+        \[
+            \boxed{
+                \sum_{n=0}^{\infty}
+                \frac{1}{4^n}\binom{2n}{n}
+                \text{ diverges}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        For $a>0$ and $0<x<2\pi$, the standard Fourier expansion is
+        \[
+            \sum_{n=-\infty}^{\infty}
+            \frac{e^{inx}}{n^2+a^2}
+            =
+            \frac{\pi}{a}
+            \frac{\cosh(a(\pi-x))}{\sinh(a\pi)}.
+        \]
+        Differentiating with respect to $x$ and comparing real quantities gives
+        \[
+            \sum_{n=1}^{\infty}
+            \frac{n\sin(nx)}{n^2+a^2}
+            =
+            \frac{\pi}{2}
+            \frac{\sinh(a(\pi-x))}{\sinh(a\pi)}.
+        \]
+        Setting $a=1$ and $x=1$, we obtain
+        \[
+            \boxed{
+                \sum_{n=1}^{\infty}\frac{n\sin n}{1+n^2}
+                =
+                \frac{\pi}{2}
+                \frac{\sinh(\pi-1)}{\sinh\pi}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        The $n$th term is asymptotic to $n^{3-\ell}$, so the series converges
+        exactly when
+        \[
+            \ell\geq5.
+        \]
+        For such $\ell$, the beta-integral identity gives
+        \[
+            \frac{1}{(n+1)(n+2)\cdots(n+\ell)}
+            =
+            \frac{1}{(\ell-1)!}
+            \int_0^1x^n(1-x)^{\ell-1}\dd x.
+        \]
+        Since
+        \[
+            \sum_{n=1}^{\infty}n^3x^n
+            =
+            \frac{x(1+4x+x^2)}{(1-x)^4},
+        \]
+        term-by-term integration yields
+        \[
+            \begin{aligned}
+                \sum_{n=1}^{\infty}
+                \frac{n^3}{(n+1)\cdots(n+\ell)}
+                &=
+                \frac{1}{(\ell-1)!}
+                \int_0^1x(1+4x+x^2)(1-x)^{\ell-5}\dd x\\
+                &=
+                \boxed{
+                    \frac{\ell(\ell+5)}{
+                        (\ell-4)(\ell-3)(\ell-2)(\ell-1)(\ell-1)!
+                    }
+                }.
+            \end{aligned}
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        The beta-integral identity gives
+        \[
+            \frac{1}{(6k+1)(6k+2)\cdots(6k+6)}
+            =
+            \frac{1}{5!}\int_0^1x^{6k}(1-x)^5\dd x.
+        \]
+        Hence
+        \[
+            S
+            =
+            \frac{1}{120}
+            \int_0^1\frac{(1-x)^5}{1-x^6}\dd x.
+        \]
+        The rational function decomposes as
+        \[
+            \frac{(1-x)^5}{1-x^6}
+            =
+            -\frac{9(x+1)}{2(x^2+x+1)}
+            +
+            \frac{x+1}{6(x^2-x+1)}
+            +
+            \frac{16}{3(x+1)}.
+        \]
+        Direct integration on $[0,1]$ therefore gives
+        \[
+            \boxed{
+                S
+                =
+                \frac{2}{45}\ln2
+                -\frac{3}{160}\ln3
+                -\frac{7\sqrt3\pi}{4320}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedproblem}
         Evaluate each of the following integrals. For indefinite integrals, the
         constant of integration may be omitted; for definite integrals,
         determine the exact value.
@@ -1016,6 +1449,214 @@
         \]
     \end{expectedsubsolution}
 
+    \begin{expectedproblem}
+        Compute each of the following determinants in exact form.
+
+        \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week, Determinant of a matrix]
+            Let $\mathbf{A}=(a_{ij})$ be the $n\times n$ matrix defined by
+            \[
+                a_{ij}
+                =
+                \begin{cases}
+                    3, & i=j,\\
+                    (-1)^{|i-j|}, & i\neq j.
+                \end{cases}
+            \]
+            Determine $\det(\mathbf{A})$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week, Distances in a tree]
+            Let $T$ be a tree on the vertex set $\{1,2,\ldots,n\}$, and let
+            $d_{ij}$ be the distance between vertices $i$ and $j$. Define
+            \[
+                \mathbf{D}_T(x)=\left(x^{d_{ij}}\right)_{1\leq i,j\leq n}.
+            \]
+            Determine $\det(\mathbf{D}_T(x))$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2015 \KAIST{} Problem of the Week, Determinant]
+            Let $\mathbf{T}_n(x)=(t_{ij})$ be the $n\times n$ tridiagonal
+            matrix defined by
+            \[
+                t_{ij}
+                =
+                \begin{cases}
+                    1, & i=j,\\
+                    x, & |i-j|=1,\\
+                    0, & |i-j|\geq2.
+                \end{cases}
+            \]
+            Determine $\det(\mathbf{T}_n(x))$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2011 \KAIST{} Problem of the Week, Determinant]
+            Let $\mathbf{M}=(m_{ij})$ be the $n\times n$ matrix defined by
+            \[
+                m_{ij}=i(i+1)(i+2)\cdots(i+j-2),
+            \]
+            where the empty product $m_{i1}$ is $1$. Determine
+            $\det(\mathbf{M})$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[2012 \KAIST{} Problem of the Week, Determinant of a Huge Matrix]
+            List all nonempty subsets of $\{1,2,\ldots,n\}$ as
+            $S_1,S_2,\ldots,S_{2^n-1}$, and define the
+            $(2^n-1)\times(2^n-1)$ matrix $\mathbf{A}=(a_{ij})$ by
+            \[
+                a_{ij}
+                =
+                \begin{cases}
+                    1, & S_i\cap S_j\neq\emptyset,\\
+                    0, & S_i\cap S_j=\emptyset.
+                \end{cases}
+            \]
+            Determine $|\det(\mathbf{A})|$.
+        \end{expectedsubproblem}
+    \end{expectedproblem}
+
+    \begin{expectedsubsolution}
+        Let
+        \[
+            \mathbf{S}=\operatorname{diag}((-1)^1,(-1)^2,\ldots,(-1)^n).
+        \]
+        Then $\det(\mathbf{S})^2=1$, and
+        \[
+            \mathbf{S}\mathbf{A}\mathbf{S}
+            =
+            2\mathbf{I}_n+\mathbf{J}_n,
+        \]
+        where $\mathbf{J}_n$ is the all-ones matrix. The eigenvalues of
+        $2\mathbf{I}_n+\mathbf{J}_n$ are $n+2$ once and $2$ with multiplicity
+        $n-1$. Therefore,
+        \[
+            \boxed{\det(\mathbf{A})=2^{n-1}(n+2)}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        We use induction on $n$. The formula is immediate for $n=1$. For
+        $n\geq2$, choose a leaf $n$ whose unique neighbor is $p$. For every
+        $j\neq n$,
+        \[
+            d_{nj}=1+d_{pj}.
+        \]
+        Apply the row operation
+        \[
+            R_n\longleftarrow R_n-xR_p.
+        \]
+        The last row becomes zero except for its last entry $1-x^2$. Next apply
+        \[
+            C_n\longleftarrow C_n-xC_p.
+        \]
+        The last column also becomes zero except for the same last entry, while
+        the remaining principal block is the matrix associated with the tree
+        obtained by deleting the leaf. Thus
+        \[
+            \det(\mathbf{D}_T(x))
+            =
+            (1-x^2)\det(\mathbf{D}_{T-n}(x)).
+        \]
+        Induction gives
+        \[
+            \boxed{
+                \det(\mathbf{D}_T(x))=(1-x^2)^{n-1}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Put
+        \[
+            D_n(x)=\det(\mathbf{T}_n(x)),
+            \qquad
+            D_0(x)=1.
+        \]
+        Expansion along the final row gives
+        \[
+            D_n(x)=D_{n-1}(x)-x^2D_{n-2}(x),
+            \qquad
+            D_0(x)=D_1(x)=1.
+        \]
+        Let
+        \[
+            r_{\pm}=\frac{1\pm\sqrt{1-4x^2}}{2}.
+        \]
+        If $x\neq\pm1/2$, solving the recurrence yields
+        \[
+            \boxed{
+                D_n(x)
+                =
+                \frac{r_+^{n+1}-r_-^{n+1}}{r_+-r_-}
+            }.
+        \]
+        At the repeated-root values $x=\pm1/2$, the limiting form is
+        \[
+            \boxed{D_n(x)=\frac{n+1}{2^n}}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        For $j\geq1$, define the monic polynomial
+        \[
+            p_{j-1}(t)=t(t+1)\cdots(t+j-2),
+        \]
+        with $p_0(t)=1$. Then
+        \[
+            m_{ij}=p_{j-1}(i).
+        \]
+        Replacing the monomial basis
+        $1,t,t^2,\ldots,t^{n-1}$ by the monic basis
+        $p_0,p_1,\ldots,p_{n-1}$ uses a unit upper-triangular change-of-basis
+        matrix. Hence $\det(\mathbf{M})$ equals the Vandermonde determinant at
+        $1,2,\ldots,n$:
+        \[
+            \begin{aligned}
+                \det(\mathbf{M})
+                &=
+                \prod_{1\leq i<j\leq n}(j-i)\\
+                &=
+                \boxed{\prod_{k=1}^{n-1}k!}.
+            \end{aligned}
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Index rows and columns by the nonempty subsets of $[n]$. Define
+        \[
+            c_{S,U}
+            =
+            \begin{cases}
+                1, & U\subseteq S,\\
+                0, & U\nsubseteq S,
+            \end{cases}
+        \]
+        and let $\mathbf{C}=(c_{S,U})$. Also let $\mathbf{E}$ be diagonal with
+        \[
+            e_{U,U}=(-1)^{|U|+1}.
+        \]
+        Inclusion-exclusion gives
+        \[
+            (\mathbf{C}\mathbf{E}\mathbf{C}^{\mathsf{T}})_{S,T}
+            =
+            \sum_{\emptyset\neq U\subseteq S\cap T}(-1)^{|U|+1}
+            =
+            \begin{cases}
+                1, & S\cap T\neq\emptyset,\\
+                0, & S\cap T=\emptyset.
+            \end{cases}
+        \]
+        Thus
+        \[
+            \mathbf{A}=\mathbf{C}\mathbf{E}\mathbf{C}^{\mathsf{T}}.
+        \]
+        Order the subsets by increasing cardinality. Then $\mathbf{C}$ is
+        triangular with every diagonal entry equal to $1$, so
+        $\det(\mathbf{C})=1$. Since every diagonal entry of $\mathbf{E}$ is
+        $\pm1$,
+        \[
+            \boxed{|\det(\mathbf{A})|=1}.
+        \]
+    \end{expectedsubsolution}
 
     \expectedproblemsection{Memorization Problems}
 
