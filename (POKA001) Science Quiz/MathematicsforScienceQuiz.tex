@@ -43,7 +43,10 @@
 \definecolor{UTokyoYellow}{RGB}{255,205,0}
 \definecolor{KyotoUBlue}{RGB}{0,32,91}
 \definecolor{ScienceBlue}{RGB}{28,49,119}
+\definecolor{HitotsubashiCrimson}{RGB}{170,34,42}
 \definecolor{MITRed}{RGB}{117,0,20}
+\definecolor{OxfordBlue}{RGB}{0,33,71}
+\definecolor{WasedaRed}{RGB}{142,23,40}
 \definecolor{CambridgeBlue}{RGB}{142,232,216}
 
 \newcommand{\institutiontext}[2]{%
@@ -105,10 +108,31 @@
     \institutiontext{ScienceBlue}{Institute of Science Tokyo}%
 }
 
+% Hitotsubashi University
+% The digital color is an approximation of the official DIC 2489 school color.
+\DeclareRobustCommand{\Hitotsubashi}{%
+    \institutiontext{HitotsubashiCrimson}{Hitotsubashi}%
+}
+\DeclareRobustCommand{\HitotsubashiUniversity}{%
+    \institutiontext{HitotsubashiCrimson}{Hitotsubashi University}%
+}
+
 % Massachusetts Institute of Technology
 \DeclareRobustCommand{\MIT}{\institutiontext{MITRed}{MIT}}
 \DeclareRobustCommand{\MassachusettsInstituteOfTechnology}{%
     \institutiontext{MITRed}{Massachusetts Institute of Technology}%
+}
+
+% University of Oxford
+\DeclareRobustCommand{\Oxford}{\institutiontext{OxfordBlue}{Oxford}}
+\DeclareRobustCommand{\UniversityOfOxford}{%
+    \institutiontext{OxfordBlue}{University of Oxford}%
+}
+
+% Waseda University
+\DeclareRobustCommand{\Waseda}{\institutiontext{WasedaRed}{Waseda}}
+\DeclareRobustCommand{\WasedaUniversity}{%
+    \institutiontext{WasedaRed}{Waseda University}%
 }
 
 % University of Cambridge
@@ -198,10 +222,15 @@
 
 % Problem environments
 % Past Problems keep explicit historical labels. Expected Problems are numbered
-% automatically, restarting from 1 in each section of Part V.
-% The optional argument of expectedproblem contains only a compact source and/or
-% a standard problem name, for example [1988 IMO, Vieta Jumping], [1982 IMO],
-% or [Chomp]. Omit it when neither is useful.
+% automatically, restarting from 1 in each section of Part V. Each ordinary
+% Expected Problem is stored as one adjacent expectedproblem--solution pair.
+% In Direct Calculation Problems, each expectedsubproblem is stored immediately
+% before its matching expectedsubsolution so the pair can be moved as one unit.
+% The optional argument contains only a compact, verified source and/or the
+% standard name of the problem itself. Use established abbreviations, omit
+% original problem numbers, and do not insert the name of a theorem or method
+% merely used in the solution. Examples are [1988 IMO, Vieta Jumping],
+% [1994 CSAT], [1961 \UTokyo{} Entrance Examination], and [Chomp].
 \newcommand{\problemheading}[1]{%
     \par\vspace{6pt}\noindent
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
@@ -230,7 +259,6 @@
         \fi
     }
     {\par\vspace{6pt}}
-
 
 % Subproblems and corresponding solutions inside an Expected Problem
 \newcounter{expectedsubproblem}[expectedproblem]

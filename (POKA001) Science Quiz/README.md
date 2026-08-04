@@ -1,5 +1,7 @@
 # Mathematics for Science Quiz
 
+Package version: Expected Problems pre-v1.0-r1 (2026-08-05)
+
 Archiving materials for the POSTECH-KAIST Science War Science Quiz event.
 
 This folder includes past questions, study notes, game rules, and preparation
@@ -21,7 +23,7 @@ Conventions, Preface, and Acknowledgements.
 Compile from this folder with:
 
 ```bash
-latexmk -pdf -synctex=1 MathematicsforScienceQuiz.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error MathematicsforScienceQuiz.tex
 ```
 
 ## Figures
