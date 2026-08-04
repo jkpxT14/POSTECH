@@ -594,7 +594,353 @@
 
     \expectedproblemsection{Direct Calculation Problems}
 
-    \begin{expectedproblem}
+    \begin{expectedproblem}[Finite Sums and Products]
+        Evaluate each of the following finite sums or products exactly. State any
+        restrictions on the integer parameters that are needed for the displayed
+        expression to be defined.
+
+        \begin{expectedsubproblem}[Vandermonde's Identity]
+            For $n\in\Nzero$, determine
+            \[
+                \sum_{k=0}^{n}\binom{n}{k}^2.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            For $n\in\Nzero$, determine
+            \[
+                \sum_{k=0}^{n}
+                (-1)^k\binom{n}{k}\frac{1}{k+1}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Sine Product Formula]
+            For an integer $n\geq2$, determine
+            \[
+                \prod_{k=1}^{n-1}\sin\left(\frac{k\pi}{n}\right).
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            For an integer $n\geq2$, determine
+            \[
+                \prod_{k=2}^{n}\frac{k^3-1}{k^3+1}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Double-Angle Product]
+            For $m\in\N$ and $\sin x\neq0$, determine
+            \[
+                \prod_{k=0}^{m-1}\cos(2^k x).
+            \]
+        \end{expectedsubproblem}
+    \end{expectedproblem}
+
+    \begin{expectedsubsolution}
+        Since
+        \[
+            \binom{n}{k}=\binom{n}{n-k},
+        \]
+        the required sum is the coefficient of $x^n$ in
+        \[
+            (1+x)^n(1+x)^n=(1+x)^{2n}.
+        \]
+        Therefore,
+        \[
+            \boxed{
+                \sum_{k=0}^{n}\binom{n}{k}^2=\binom{2n}{n}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Using
+        \[
+            \frac{1}{k+1}=\int_0^1x^k\dd x,
+        \]
+        we obtain
+        \[
+            \begin{aligned}
+                \sum_{k=0}^{n}
+                (-1)^k\binom{n}{k}\frac{1}{k+1}
+                &=
+                \int_0^1
+                \sum_{k=0}^{n}\binom{n}{k}(-x)^k\dd x\\
+                &=
+                \int_0^1(1-x)^n\dd x\\
+                &=
+                \boxed{\frac{1}{n+1}}.
+            \end{aligned}
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Let $\omega_n=e^{2\pi i/n}$. Factoring $z^n-1$ and then dividing by
+        $z-1$ gives
+        \[
+            \frac{z^n-1}{z-1}
+            =
+            \prod_{k=1}^{n-1}(z-\omega_n^k).
+        \]
+        Letting $z\to1$ and taking absolute values yields
+        \[
+            n
+            =
+            \prod_{k=1}^{n-1}|1-\omega_n^k|
+            =
+            \prod_{k=1}^{n-1}
+            2\sin\left(\frac{k\pi}{n}\right).
+        \]
+        Hence
+        \[
+            \boxed{
+                \prod_{k=1}^{n-1}
+                \sin\left(\frac{k\pi}{n}\right)
+                =
+                \frac{n}{2^{n-1}}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Factor each term as
+        \[
+            \frac{k^3-1}{k^3+1}
+            =
+            \frac{k-1}{k+1}
+            \frac{k^2+k+1}{k^2-k+1}.
+        \]
+        The two products telescope separately:
+        \[
+            \prod_{k=2}^{n}\frac{k-1}{k+1}
+            =
+            \frac{2}{n(n+1)},
+        \]
+        and, since $k^2+k+1=(k+1)^2-(k+1)+1$,
+        \[
+            \prod_{k=2}^{n}
+            \frac{k^2+k+1}{k^2-k+1}
+            =
+            \frac{n^2+n+1}{3}.
+        \]
+        Therefore,
+        \[
+            \boxed{
+                \prod_{k=2}^{n}\frac{k^3-1}{k^3+1}
+                =
+                \frac{2(n^2+n+1)}{3n(n+1)}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Repeatedly apply
+        \[
+            \sin(2t)=2\sin t\cos t.
+        \]
+        This gives
+        \[
+            \sin(2^m x)
+            =
+            2^m\sin x
+            \prod_{k=0}^{m-1}\cos(2^k x).
+        \]
+        Since $\sin x\neq0$,
+        \[
+            \boxed{
+                \prod_{k=0}^{m-1}\cos(2^k x)
+                =
+                \frac{\sin(2^m x)}{2^m\sin x}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedproblem}[Recurrence Relations]
+        Determine the requested term, closed form, or residue for each of the
+        following recursively defined sequences.
+
+        \begin{expectedsubproblem}[2006 VTRMC]
+            Let $F_0=0$, $F_1=1$, and
+            \[
+                F_{n+2}=F_{n+1}+F_n.
+            \]
+            Determine the last decimal digit of $F_{2006}$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            Let
+            \[
+                a_0=2,
+                \qquad
+                a_1=\sqrt2,
+                \qquad
+                a_{n+2}=\sqrt2\,a_{n+1}-a_n.
+            \]
+            Determine $a_{2026}$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Newton's Method]
+            Let $a_0=1$ and
+            \[
+                a_{n+1}
+                =
+                \frac12\left(a_n+\frac{2}{a_n}\right).
+            \]
+            Determine a closed form for $a_n$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            Let
+            \[
+                a_0=2\cos\left(\frac{2\pi}{7}\right),
+                \qquad
+                a_{n+1}=a_n^2-2.
+            \]
+            Determine $a_{2026}$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            Let $a_0=0$ and
+            \[
+                a_{n+1}=\frac{1+a_n}{2+a_n}.
+            \]
+            Determine a closed form for $a_n$ in terms of the Fibonacci
+            sequence.
+        \end{expectedsubproblem}
+    \end{expectedproblem}
+
+    \begin{expectedsubsolution}
+        Modulo $2$, the Fibonacci sequence has period $3$:
+        \[
+            0,1,1,0,1,1,\ldots.
+        \]
+        Hence
+        \[
+            F_{2006}\equiv F_2\equiv1\pmod2.
+        \]
+        Also
+        \[
+            F_{n+5}=5F_{n+1}+3F_n,
+        \]
+        so modulo $5$,
+        \[
+            F_{n+5}\equiv3F_n.
+        \]
+        Iterating four times gives $F_{n+20}\equiv F_n\pmod5$. Therefore
+        \[
+            F_{2006}\equiv F_6=8\equiv3\pmod5.
+        \]
+        The unique decimal digit that is odd and congruent to $3$ modulo $5$ is
+        \[
+            \boxed{3}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        The sequence
+        \[
+            b_n=2\cos\left(\frac{n\pi}{4}\right)
+        \]
+        has the same initial values and satisfies
+        \[
+            b_{n+2}
+            =
+            2\cos\left(\frac{\pi}{4}\right)b_{n+1}-b_n
+            =
+            \sqrt2\,b_{n+1}-b_n.
+        \]
+        Hence $a_n=b_n$. Since $2026\equiv2\pmod8$,
+        \[
+            \boxed{
+                a_{2026}
+                =
+                2\cos\left(\frac{2026\pi}{4}\right)
+                =0
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Set
+        \[
+            r_n=\frac{a_n-\sqrt2}{a_n+\sqrt2}.
+        \]
+        Direct substitution into the recurrence gives
+        \[
+            r_{n+1}=r_n^2.
+        \]
+        Moreover,
+        \[
+            r_0
+            =
+            \frac{1-\sqrt2}{1+\sqrt2}
+            =
+            -(3-2\sqrt2).
+        \]
+        Thus
+        \[
+            r_n=\bigl(-(3-2\sqrt2)\bigr)^{2^n}.
+        \]
+        Solving the defining relation for $a_n$ yields
+        \[
+            \boxed{
+                a_n
+                =
+                \sqrt2\,
+                \frac{1+r_n}{1-r_n},
+                \qquad
+                r_n=\bigl(-(3-2\sqrt2)\bigr)^{2^n}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        The double-angle identity gives
+        \[
+            (2\cos\theta)^2-2=2\cos(2\theta).
+        \]
+        Hence induction yields
+        \[
+            a_n
+            =
+            2\cos\left(\frac{2^{n+1}\pi}{7}\right).
+        \]
+        Powers of $2$ modulo $14$ have period $3$, and
+        \[
+            2^{2027}\equiv4\pmod{14}.
+        \]
+        Therefore,
+        \[
+            \boxed{
+                a_{2026}=2\cos\left(\frac{4\pi}{7}\right)
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Let $(F_n)$ be the Fibonacci sequence with $F_0=0$ and $F_1=1$. We
+        claim that
+        \[
+            a_n=\frac{F_{2n}}{F_{2n+1}}.
+        \]
+        The formula holds for $n=0$. If it holds for $n$, then
+        \[
+            \begin{aligned}
+                a_{n+1}
+                &=
+                \frac{F_{2n}+F_{2n+1}}
+                {F_{2n}+2F_{2n+1}}\\
+                &=
+                \frac{F_{2n+2}}{F_{2n+3}}.
+            \end{aligned}
+        \]
+        Thus
+        \[
+            \boxed{a_n=\frac{F_{2n}}{F_{2n+1}}}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedproblem}[Limits]
         Evaluate each of the following limits. In parameterized problems,
         determine the exact value for every parameter regime stated in the
         subproblem.
@@ -828,7 +1174,173 @@
         \]
     \end{expectedsubsolution}
 
-    \begin{expectedproblem}
+    \begin{expectedproblem}[Derivatives]
+        Compute each requested derivative or derivative-dependent quantity
+        exactly. For high-order derivatives, a closed form involving standard
+        sequences or harmonic numbers is acceptable.
+
+        \begin{expectedsubproblem}[2006 HMMT]
+            A nonzero polynomial $f\in\R[x]$ satisfies
+            \[
+                f(x)=f'(x)f''(x).
+            \]
+            Determine the leading coefficient of $f$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[1993 VTRMC]
+            For $x>0$, define
+            \[
+                f_1(x)=x,
+                \qquad
+                f_{n+1}(x)=x^{f_n(x)}.
+            \]
+            Determine $f_{2026}''(1)$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            Let
+            \[
+                f(x)=\frac{1}{1-x-x^2}.
+            \]
+            Determine $f^{(2026)}(0)$ in terms of the Fibonacci sequence.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            Determine
+            \[
+                \left.
+                \frac{\dd^{2026}}{\dd x^{2026}}
+                \bigl(e^x\sin x\bigr)
+                \right|_{x=0}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Leibniz's Rule]
+            Let
+            \[
+                H_n=\sum_{k=1}^{n}\frac{1}{k}.
+            \]
+            Determine
+            \[
+                \left.
+                \frac{\dd^{100}}{\dd x^{100}}
+                \bigl(x^{100}\ln x\bigr)
+                \right|_{x=1}.
+            \]
+        \end{expectedsubproblem}
+    \end{expectedproblem}
+
+    \begin{expectedsubsolution}
+        Suppose that the leading term of $f$ is $cx^n$, where $c\neq0$. The
+        leading term of $f'f''$ is
+        \[
+            c^2n^2(n-1)x^{2n-3}.
+        \]
+        Comparing degrees gives
+        \[
+            n=2n-3,
+        \]
+        so $n=3$. Comparing leading coefficients then gives
+        \[
+            c=18c^2.
+        \]
+        Since $c\neq0$,
+        \[
+            \boxed{c=\frac{1}{18}}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Since $f_n(1)=1$ for every $n$, take logarithms:
+        \[
+            \ln f_{n+1}(x)=f_n(x)\ln x.
+        \]
+        Differentiating and evaluating at $x=1$ shows inductively that
+        \[
+            f_n'(1)=1.
+        \]
+        Put $g(x)=\ln f_{n+1}(x)$. Then
+        \[
+            g'(1)=1
+            \qquad\text{and}\qquad
+            g''(1)=2f_n'(1)-f_n(1)=1.
+        \]
+        Since $f_{n+1}=e^g$,
+        \[
+            f_{n+1}''(1)
+            =
+            f_{n+1}(1)\bigl(g'(1)^2+g''(1)\bigr)
+            =2.
+        \]
+        Therefore,
+        \[
+            \boxed{f_{2026}''(1)=2}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        The ordinary generating function of the Fibonacci sequence is
+        \[
+            \frac{1}{1-x-x^2}
+            =
+            \sum_{n=0}^{\infty}F_{n+1}x^n,
+        \]
+        where $F_0=0$ and $F_1=1$. Therefore the coefficient of $x^{2026}$ is
+        $F_{2027}$, and
+        \[
+            \boxed{f^{(2026)}(0)=2026!\,F_{2027}}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Since
+        \[
+            e^x\sin x
+            =
+            \Imag\bigl(e^{(1+i)x}\bigr),
+        \]
+        the required derivative is
+        \[
+            \Imag\bigl((1+i)^{2026}\bigr).
+        \]
+        Now
+        \[
+            (1+i)^{2026}
+            =
+            2^{1013}e^{i2026\pi/4}
+            =
+            2^{1013}i.
+        \]
+        Hence the value is
+        \[
+            \boxed{2^{1013}}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        For a real parameter $\alpha$,
+        \[
+            \frac{\dd^{100}}{\dd x^{100}}x^\alpha
+            =
+            \alpha(\alpha-1)\cdots(\alpha-99)x^{\alpha-100}.
+        \]
+        Differentiate both sides with respect to $\alpha$ and then set
+        $\alpha=100$ and $x=1$. Since
+        \[
+            \left.
+            \frac{\dd}{\dd\alpha}
+            \prod_{j=0}^{99}(\alpha-j)
+            \right|_{\alpha=100}
+            =
+            100!\sum_{k=1}^{100}\frac{1}{k},
+        \]
+        we obtain
+        \[
+            \boxed{100!\,H_{100}}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedproblem}[Series]
         Determine whether each of the following series converges. For every
         convergent series, determine its exact sum. In parameterized problems,
         state all parameter values for which convergence occurs.
@@ -1027,7 +1539,7 @@
         \]
     \end{expectedsubsolution}
 
-    \begin{expectedproblem}
+    \begin{expectedproblem}[Integrals]
         Evaluate each of the following integrals. For indefinite integrals, the
         constant of integration may be omitted; for definite integrals,
         determine the exact value.
@@ -1449,7 +1961,348 @@
         \]
     \end{expectedsubsolution}
 
-    \begin{expectedproblem}
+    \begin{expectedproblem}[Complex Numbers]
+        Evaluate each of the following expressions exactly. When roots of unity
+        occur, use $\omega_n=e^{2\pi i/n}$ unless another root is specified.
+
+        \begin{expectedsubproblem}[De Moivre's Theorem]
+            Determine $(1+i)^{2026}$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            Let $z\in\C\setminus\{0\}$ satisfy
+            \[
+                z+\frac{1}{z}=1.
+            \]
+            Determine
+            \[
+                z^{2026}+\frac{1}{z^{2026}}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Roots-of-Unity Filter]
+            For an integer $n\geq2$, determine
+            \[
+                \sum_{k=0}^{n-1}(1+\omega_n^k)^n.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Quadratic Gauss Sum]
+            Let $\omega=e^{2\pi i/5}$. Determine
+            \[
+                \sum_{k=0}^{4}\omega^{k^2}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            For an integer $n\geq2$, determine
+            \[
+                \sum_{k=0}^{n-1}\frac{1}{2-\omega_n^k}.
+            \]
+        \end{expectedsubproblem}
+    \end{expectedproblem}
+
+    \begin{expectedsubsolution}
+        Using polar form,
+        \[
+            1+i=\sqrt2\,e^{i\pi/4}.
+        \]
+        Hence
+        \[
+            (1+i)^{2026}
+            =
+            2^{1013}e^{i2026\pi/4}
+            =
+            \boxed{2^{1013}i}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        The equation is equivalent to
+        \[
+            z^2-z+1=0.
+        \]
+        Thus $z=e^{\pm i\pi/3}$, and therefore
+        \[
+            z^m+z^{-m}=2\cos\left(\frac{m\pi}{3}\right).
+        \]
+        Since $2026\equiv4\pmod6$,
+        \[
+            \boxed{
+                z^{2026}+z^{-2026}
+                =
+                2\cos\left(\frac{4\pi}{3}\right)
+                =-1
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Expand by the binomial theorem and interchange the finite sums:
+        \[
+            \sum_{k=0}^{n-1}(1+\omega_n^k)^n
+            =
+            \sum_{j=0}^{n}\binom{n}{j}
+            \sum_{k=0}^{n-1}\omega_n^{kj}.
+        \]
+        The inner sum is $n$ when $n\mid j$ and $0$ otherwise. For
+        $0\leq j\leq n$, only $j=0$ and $j=n$ contribute. Hence
+        \[
+            \boxed{
+                \sum_{k=0}^{n-1}(1+\omega_n^k)^n=2n
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        The quadratic residues modulo $5$ are
+        \[
+            0,1,4,4,1.
+        \]
+        Therefore,
+        \[
+            \sum_{k=0}^{4}\omega^{k^2}
+            =
+            1+2(\omega+\omega^{-1})
+            =
+            1+4\cos\left(\frac{2\pi}{5}\right).
+        \]
+        Since
+        \[
+            2\cos\left(\frac{2\pi}{5}\right)
+            =
+            \frac{\sqrt5-1}{2},
+        \]
+        the sum is
+        \[
+            \boxed{\sqrt5}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Let
+        \[
+            p(z)=z^n-1
+            =
+            \prod_{k=0}^{n-1}(z-\omega_n^k).
+        \]
+        Its logarithmic derivative is
+        \[
+            \frac{p'(z)}{p(z)}
+            =
+            \sum_{k=0}^{n-1}\frac{1}{z-\omega_n^k}.
+        \]
+        Setting $z=2$ gives
+        \[
+            \boxed{
+                \sum_{k=0}^{n-1}\frac{1}{2-\omega_n^k}
+                =
+                \frac{n2^{n-1}}{2^n-1}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedproblem}[Polynomials and Roots]
+        Use the coefficients, factorization, or symmetric functions of the roots
+        to compute each requested quantity exactly. Solving every polynomial
+        explicitly is not required unless the problem asks for the roots.
+
+        \begin{expectedsubproblem}[2006 HMMT]
+            Determine the sum of the distinct real roots of
+            \[
+                2x^6-3x^5+3x^4+x^3-3x^2+3x-1=0.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[1997 VTRMC]
+            Two roots $r_1,r_2$ of
+            \[
+                x^4-x^3+ax^2-8x-8=0
+            \]
+            satisfy $r_1r_2=2$. Determine $a$, $r_1$, and $r_2$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Newton Sums]
+            Let $\alpha_1,\ldots,\alpha_5$ be the roots of
+            \[
+                x^5-5x+3=0.
+            \]
+            Determine
+            \[
+                \sum_{j=1}^{5}
+                \left(\alpha_j^4+\alpha_j^5\right).
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Logarithmic Derivative]
+            Let $\alpha_1,\ldots,\alpha_4$ be the roots of
+            \[
+                x^4+x^3+x^2+x+1=0.
+            \]
+            Determine
+            \[
+                \sum_{j=1}^{4}\frac{1}{(1-\alpha_j)^2}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            Let $\alpha_1,\alpha_2,\alpha_3$ be the roots of
+            \[
+                x^3-x-1=0.
+            \]
+            Determine
+            \[
+                \prod_{j=1}^{3}(1+\alpha_j^2).
+            \]
+        \end{expectedsubproblem}
+    \end{expectedproblem}
+
+    \begin{expectedsubsolution}
+        The polynomial factors as
+        \[
+            2x^6-3x^5+3x^4+x^3-3x^2+3x-1
+            =
+            (x^2-x+1)^2(2x^2+x-1).
+        \]
+        The first factor has no real roots. The distinct real roots are therefore
+        the roots of
+        \[
+            2x^2+x-1=(2x-1)(x+1),
+        \]
+        namely $1/2$ and $-1$. Their sum is
+        \[
+            \boxed{-\frac12}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Since $r_1r_2=2$, their quadratic factor has the form
+        \[
+            x^2+px+2.
+        \]
+        The remaining factor must have constant term $-4$, so write
+        \[
+            x^4-x^3+ax^2-8x-8
+            =
+            (x^2+px+2)(x^2+qx-4).
+        \]
+        Comparing the coefficients of $x^3$ and $x$ gives
+        \[
+            p+q=-1,
+            \qquad
+            2q-4p=-8.
+        \]
+        Hence $p=1$ and $q=-2$. Comparing the coefficient of $x^2$ gives
+        $a=-4$. Thus
+        \[
+            r_1,r_2
+            =
+            \frac{-1\pm i\sqrt7}{2}.
+        \]
+        Therefore,
+        \[
+            \boxed{
+                a=-4,
+                \qquad
+                \{r_1,r_2\}
+                =
+                \left\{
+                    \frac{-1+i\sqrt7}{2},
+                    \frac{-1-i\sqrt7}{2}
+                \right\}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Let
+        \[
+            s_k=\sum_{j=1}^{5}\alpha_j^k.
+        \]
+        Newton's identities for
+        \[
+            x^5+0x^4+0x^3+0x^2-5x+3
+        \]
+        give
+        \[
+            s_1=s_2=s_3=0,
+        \]
+        \[
+            s_4+4(-5)=0,
+            \qquad
+            s_5+5(3)=0.
+        \]
+        Hence $s_4=20$ and $s_5=-15$, so
+        \[
+            \boxed{s_4+s_5=5}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Let
+        \[
+            p(x)=x^4+x^3+x^2+x+1
+            =
+            \prod_{j=1}^{4}(x-\alpha_j).
+        \]
+        Then
+        \[
+            \frac{p'(x)}{p(x)}
+            =
+            \sum_{j=1}^{4}\frac{1}{x-\alpha_j}.
+        \]
+        Differentiating gives
+        \[
+            \sum_{j=1}^{4}\frac{1}{(x-\alpha_j)^2}
+            =
+            \left(\frac{p'(x)}{p(x)}\right)^2
+            -
+            \frac{p''(x)}{p(x)}.
+        \]
+        Since
+        \[
+            p(1)=5,
+            \qquad
+            p'(1)=10,
+            \qquad
+            p''(1)=20,
+        \]
+        the required sum is
+        \[
+            \boxed{\left(\frac{10}{5}\right)^2-\frac{20}{5}=0}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Let
+        \[
+            p(x)=x^3-x-1
+            =
+            \prod_{j=1}^{3}(x-\alpha_j).
+        \]
+        For each root $\alpha_j$,
+        \[
+            (i-\alpha_j)(-i-\alpha_j)=1+\alpha_j^2.
+        \]
+        Therefore,
+        \[
+            \prod_{j=1}^{3}(1+\alpha_j^2)
+            =
+            p(i)p(-i).
+        \]
+        Since
+        \[
+            p(i)=-1-2i,
+            \qquad
+            p(-i)=-1+2i,
+        \]
+        we obtain
+        \[
+            \boxed{p(i)p(-i)=5}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedproblem}[Determinants]
         Compute each of the following determinants in exact form.
 
         \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week, Determinant of a matrix]
@@ -1655,6 +2508,210 @@
         $\pm1$,
         \[
             \boxed{|\det(\mathbf{A})|=1}.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedproblem}[Eigenvalues and Matrix Powers]
+        Determine the requested eigenvalues or matrix powers exactly. Use
+        diagonalization, polynomial identities, or invariant subspaces whenever
+        they make the computation shorter than direct multiplication.
+
+        \begin{expectedsubproblem}[1997 VTRMC]
+            Let
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1 & 3\\
+                    1 & 1
+                \end{pmatrix}.
+            \]
+            Determine the $(1,1)$-entry of $\mathbf{A}^{100}$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Fibonacci Q-Matrix]
+            Let
+            \[
+                \mathbf{Q}
+                =
+                \begin{pmatrix}
+                    1 & 1\\
+                    1 & 0
+                \end{pmatrix}.
+            \]
+            Determine $\mathbf{Q}^n$ for $n\in\N$ in terms of the Fibonacci
+            sequence.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Cayley--Hamilton Reduction]
+            Let $\mathbf{A}$ be a $d\times d$ matrix satisfying
+            \[
+                \mathbf{A}^2-3\mathbf{A}+2\mathbf{I}_d=\mathbf{0}.
+            \]
+            Determine $\mathbf{A}^{2026}$ as a linear combination of
+            $\mathbf{A}$ and $\mathbf{I}_d$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}[Jordan Block]
+            Let
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1 & 1 & 0\\
+                    0 & 1 & 1\\
+                    0 & 0 & 1
+                \end{pmatrix}.
+            \]
+            Determine $\mathbf{A}^n$ for $n\in\Nzero$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubproblem}
+            Let $\mathbf{J}_n$ be the $n\times n$ all-ones matrix and set
+            \[
+                \mathbf{A}=\mathbf{I}_n+\mathbf{J}_n.
+            \]
+            Determine the eigenvalues of $\mathbf{A}$ and compute
+            $\mathbf{A}^{2026}$.
+        \end{expectedsubproblem}
+    \end{expectedproblem}
+
+    \begin{expectedsubsolution}
+        The eigenvalues of $\mathbf{A}$ are
+        \[
+            \lambda_\pm=1\pm\sqrt3.
+        \]
+        The matrix is diagonalizable, and the two spectral projections have
+        equal $(1,1)$-entries $1/2$. Hence
+        \[
+            (\mathbf{A}^{100})_{11}
+            =
+            \frac{\lambda_+^{100}+\lambda_-^{100}}{2}.
+        \]
+        Therefore,
+        \[
+            \boxed{
+                (\mathbf{A}^{100})_{11}
+                =
+                \frac{(1+\sqrt3)^{100}+(1-\sqrt3)^{100}}{2}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Let $F_0=0$, $F_1=1$, and $F_{n+2}=F_{n+1}+F_n$. We claim that
+        \[
+            \mathbf{Q}^n
+            =
+            \begin{pmatrix}
+                F_{n+1} & F_n\\
+                F_n & F_{n-1}
+            \end{pmatrix}
+        \]
+        for $n\geq1$. The formula is true for $n=1$, and multiplying the
+        displayed matrix by $\mathbf{Q}$ advances every entry according to the
+        Fibonacci recurrence. Thus
+        \[
+            \boxed{
+                \mathbf{Q}^n
+                =
+                \begin{pmatrix}
+                    F_{n+1} & F_n\\
+                    F_n & F_{n-1}
+                \end{pmatrix}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Reduce the polynomial $x^{2026}$ modulo
+        \[
+            (x-1)(x-2)=x^2-3x+2.
+        \]
+        Its remainder has the form $r(x)=ux+v$ and must satisfy
+        \[
+            r(1)=1,
+            \qquad
+            r(2)=2^{2026}.
+        \]
+        Hence
+        \[
+            u=2^{2026}-1,
+            \qquad
+            v=2-2^{2026}.
+        \]
+        Substituting $\mathbf{A}$ for $x$ gives
+        \[
+            \boxed{
+                \mathbf{A}^{2026}
+                =
+                (2^{2026}-1)\mathbf{A}
+                +(2-2^{2026})\mathbf{I}_d
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        Write
+        \[
+            \mathbf{A}=\mathbf{I}_3+\mathbf{N},
+            \qquad
+            \mathbf{N}
+            =
+            \begin{pmatrix}
+                0 & 1 & 0\\
+                0 & 0 & 1\\
+                0 & 0 & 0
+            \end{pmatrix}.
+        \]
+        Since $\mathbf{N}^3=\mathbf{0}$, the binomial theorem gives
+        \[
+            \mathbf{A}^n
+            =
+            \mathbf{I}_3+n\mathbf{N}+\binom{n}{2}\mathbf{N}^2.
+        \]
+        Therefore,
+        \[
+            \boxed{
+                \mathbf{A}^n
+                =
+                \begin{pmatrix}
+                    1 & n & \binom{n}{2}\\
+                    0 & 1 & n\\
+                    0 & 0 & 1
+                \end{pmatrix}
+            }.
+        \]
+    \end{expectedsubsolution}
+
+    \begin{expectedsubsolution}
+        The vector $\ones$ is an eigenvector of $\mathbf{J}_n$ with eigenvalue
+        $n$, while every vector orthogonal to $\ones$ is an eigenvector with
+        eigenvalue $0$. Hence $\mathbf{A}$ has eigenvalues
+        \[
+            n+1
+            \quad\text{with multiplicity }1,
+            \qquad
+            1
+            \quad\text{with multiplicity }n-1.
+        \]
+        Since $\mathbf{J}_n^2=n\mathbf{J}_n$, the projection onto
+        $\Span(\ones)$ is $\mathbf{J}_n/n$. Thus
+        \[
+            \mathbf{A}^{2026}
+            =
+            \left(\mathbf{I}_n-\frac{1}{n}\mathbf{J}_n\right)
+            +(n+1)^{2026}\frac{1}{n}\mathbf{J}_n.
+        \]
+        Therefore,
+        \[
+            \boxed{
+                \mathbf{A}^{2026}
+                =
+                \mathbf{I}_n
+                +
+                \frac{(n+1)^{2026}-1}{n}\mathbf{J}_n
+            }.
         \]
     \end{expectedsubsolution}
 
