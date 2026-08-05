@@ -1546,19 +1546,22 @@
     \end{formula}
 
     \begin{definition}[Gamma Function]
-        For $x>0$, the Gamma function is defined by
+        For $\Real(z)>0$, the Gamma function is defined by
         \[
-            \Gamma(x)
+            \Gamma(z)
             =
-            \int_0^\infty t^{x-1}e^{-t}\dd t.
+            \int_0^\infty t^{z-1}e^{-t}\dd t.
         \]
+        It extends meromorphically to $\C$, with simple poles at the
+        nonpositive integers.
     \end{definition}
 
     \begin{proposition}[Gamma Function and Factorials]
         The Gamma function satisfies
         \[
-            \Gamma(x+1)=x\Gamma(x).
+            \Gamma(z+1)=z\Gamma(z)
         \]
+        wherever both sides are defined.
         In particular, for every positive integer $n$,
         \[
             \Gamma(n)=(n-1)!.
@@ -1594,6 +1597,15 @@
             \frac{m!n!}{(m+n+1)!}
             =
             \frac{1}{(m+n+1)\binom{m+n}{m}}.
+        \]
+    \end{formula}
+
+    \begin{formula}[Euler's Reflection Formula]
+        For $z\in\C\setminus\Z$,
+        \[
+            \Gamma(z)\Gamma(1-z)
+            =
+            \frac{\pi}{\sin(\pi z)}.
         \]
     \end{formula}
 
@@ -2772,8 +2784,9 @@
     \end{theorem}
 
     \begin{theorem}[Uniform Limit Theorem]
-        If $(f_n)$ is a sequence of continuous functions on a set $E$ and
-        $f_n\unifto f$ on $E$, then $f$ is continuous on $E$.
+        If $(f_n)$ is a sequence of real- or complex-valued continuous functions
+        on a metric space $E$ and $f_n\unifto f$ on $E$, then $f$ is continuous
+        on $E$.
     \end{theorem}
 
     \begin{theorem}[Term-by-Term Differentiation]
@@ -4812,23 +4825,24 @@
     \end{formula}
 
     \begin{formula}[Exact Differential Equation]
-        An equation
+        On a domain $D\subseteq\R^2$, an equation
         \[
             M(x,y)\dd x+N(x,y)\dd y=0
         \]
-        is exact if
+        is exact if there is a potential function $F\in C^1(D)$ such that
+        \[
+            F_x=M,
+            \qquad
+            F_y=N.
+        \]
+        If $M,N\in C^1(D)$ and $D$ is open and simply connected, then the
+        equation is exact if and only if
         \[
             \frac{\partial M}{\partial y}
             =
             \frac{\partial N}{\partial x}.
         \]
-        Then there is a potential function $F(x,y)$ such that
-        \[
-            F_x=M,
-            \qquad
-            F_y=N,
-        \]
-        and the solution is given implicitly by
+        In that case, the solution is given implicitly by
         \[
             F(x,y)=C.
         \]
@@ -5796,8 +5810,8 @@
     \end{remark}
 
     \begin{theorem}[Hall's Marriage Theorem]
-        Let $G=(X\cup Y,E)$ be a bipartite graph. There is a matching that
-        covers every vertex of $X$ if and only if, for every subset
+        Let $G=(X\cup Y,E)$ be a finite bipartite graph. There is a matching
+        that covers every vertex of $X$ if and only if, for every subset
         $S\subseteq X$,
         \[
             |N(S)|\geq |S|,
@@ -5821,9 +5835,9 @@
     \end{theorem}
 
     \begin{theorem}[Menger's Theorem, Vertex Form]
-        For nonadjacent vertices $u$ and $v$, the maximum number of pairwise
-        internally vertex-disjoint $u$--$v$ paths equals the minimum number of
-        vertices whose deletion separates $u$ from $v$.
+        In a finite graph, for nonadjacent vertices $u$ and $v$, the maximum
+        number of pairwise internally vertex-disjoint $u$--$v$ paths equals the
+        minimum number of vertices whose deletion separates $u$ from $v$.
     \end{theorem}
 
     \begin{theorem}[Kirchhoff's Matrix--Tree Theorem]
@@ -6492,7 +6506,7 @@
         \[
             \alpha+\beta+\gamma-\pi
             =
-            K\operatorname{Area}(\triangle ABC).
+            K\area(\triangle ABC).
         \]
         Thus positive curvature produces angle excess, zero curvature gives the
         Euclidean angle sum, and negative curvature produces angle defect.
@@ -8135,7 +8149,7 @@
             \left(\frac{a}{p}\right)
             =
             \begin{cases}
-                1, & \text{if }a\text{ is a quadratic residue modulo }p, \\
+                1, & \text{if }a\text{ is a nonzero quadratic residue modulo }p, \\
                 -1, & \text{if }a\text{ is a quadratic nonresidue modulo }p, \\
                 0, & \text{if }p\mid a.
             \end{cases}
@@ -8369,7 +8383,8 @@
     \relatedbooks{Abstract Algebra (David S. Dummit, Richard M. Foote)}
 
     \begin{definition}[Group]
-        A group is a set $G$ with a binary operation $\ast:G\times G\to G$ s.t.
+        A group is a set $G$ with a binary operation $\ast:G\times G\to G$ such
+        that
         \[
             \forall a,b,c\in G,
             \qquad
@@ -8789,7 +8804,7 @@
         With $e_0=1$, for $1\leq k\leq n$,
         \[
             p_k-e_1p_{k-1}+e_2p_{k-2}-\cdots
-            +(-1)^{k-1}e_{k-1}p_1+(-1)^kke_k=0.
+            +(-1)^{k-1}e_{k-1}p_1+(-1)^k k e_k=0.
         \]
     \end{formula}
 
@@ -8988,9 +9003,9 @@
     \end{theorem}
 
     \begin{definition}[Manifold]
-        An $n$-dimensional topological manifold is a space that locally looks like
-        $\R^n$. More precisely, each point has a neighborhood homeomorphic to an
-        open subset of $\R^n$.
+        An $n$-dimensional topological manifold is a Hausdorff, second-countable
+        topological space in which every point has a neighborhood homeomorphic
+        to an open subset of $\R^n$.
     \end{definition}
 
     \begin{definition}[Fundamental Group]

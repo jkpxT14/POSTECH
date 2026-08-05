@@ -26,23 +26,6 @@
     written as $\land$, $\lor$, and $\neg$. The words ``and'' and ``or'' are
     used in ordinary prose.
 
-    Within problems, independent choices, clues, assumptions, and ordered
-    statements are labeled $(1),\ (2),\ (3),\ldots$. Connected subparts of a
-    single problem are labeled $(a),\ (b),\ (c),\ldots$. Both kinds of lists are
-    left aligned, use identical indentation and vertical spacing throughout Past
-    Problems and Expected Problems, and align continuation lines with the text
-    rather than with the label. The decimal labels $1.1,\ 1.2,\ 1.3,\ldots$ are
-    reserved for independently movable calculation problems grouped under one
-    Direct Calculation Problems category.
-
-    A parenthetical attribution after a problem number is included only when it
-    gives an independently verifiable official source or an established
-    standard problem name. Internal preparation materials, category labels, and
-    invented source descriptions are not cited in this position; when no
-    qualifying source or standard name is known, the attribution is omitted.
-    Direct Calculation Problems category titles are printed as structural
-    headings rather than parenthetical attributions.
-
     \vspace{0.5em}
 
     {\small
@@ -73,6 +56,7 @@
         $\epsilon_{ijk}$ & the Levi--Civita symbol; the glyph $\epsilon$ is reserved for this use \\
         $O(g(x))$ & Big-O notation \\
         $o(g(x))$ & little-o notation \\
+        $\sgn(x)$ & the sign of a real number or a permutation, according to context \\
         $\square$ & the end of a proof or solution \\
     \end{longtable}
     }
@@ -222,6 +206,9 @@
         $f^{(n)}(a)$ & the $n$th derivative of $f$ at $a$ \\
         $\displaystyle\frac{\dd y}{\dd x}$ & the derivative of $y$ with respect to $x$, with upright $\dd$ \\
         $\displaystyle\int_a^b f(x)\dd x$ & the definite integral of $f$ over $[a,b]$ \\
+        $\Gamma(z)$ & the Gamma function \\
+        $B(x,y)$ & the Beta function \\
+        $\zeta(s)$ & the Riemann zeta function \\
         $\ln x$ & the logarithm to base $e$ \\
         $\lg x$ & the logarithm to base $10$ \\
         $\lb x$ & the logarithm to base $2$ \\
@@ -294,6 +281,7 @@
         $\mathbf{I}_n$ & the $n\times n$ identity matrix \\
         $\mathbf{0}$ & a zero vector or zero matrix, with dimension clear from context \\
         $\mathbf{D}$ & a diagonal matrix \\
+        $\diag(d_1,\dots,d_n)$ & the diagonal matrix with diagonal entries $d_1,\dots,d_n$ \\
         $\ones$ & the all-ones vector \\
         $\mathbf{J}_{m,n}$, $\mathbf{J}_n$ & the $m\times n$ and $n\times n$ all-ones matrices \\
         $\mathbf{P}_\sigma$ & the permutation matrix associated with $\sigma$ \\
@@ -313,6 +301,7 @@
         $\ker T$ & the kernel of a linear map $T$ \\
         $\image T$ & the image of a linear map $T$ \\
         $\mathbf{e}_i$ & the $i$th standard basis vector \\
+        $\dim V$ & the dimension of the vector space $V$ \\
         $\Span(\mathbf{v}_1,\dots,\mathbf{v}_k)$ & the span of the listed vectors \\
         $U\oplus V$ & the direct sum of subspaces $U$ and $V$ \\
         $\langle\mathbf{u},\mathbf{v}\rangle$ & the inner product of $\mathbf{u}$ and $\mathbf{v}$ \\
@@ -462,6 +451,8 @@
         $\overline{AB}$ & the segment joining $A$ and $B$ \\
         $AB$ & the length of $\overline{AB}$ \\
         $[ABC]$ & the area of $\triangle ABC$ \\
+        $\area(S)$ & the area of a planar region or surface $S$ \\
+        $\dist(P,S)$ & the distance from the point $P$ to the set or geometric object $S$ \\
         $\conv(S)$ & the convex hull of $S$ \\
         $R$ & the circumradius of a triangle \\
         $r$ & the inradius of a triangle \\
@@ -501,6 +492,7 @@
         $\gcd(a,b)$ & the greatest common divisor of $a$ and $b$ \\
         $\lcm(a,b)$ & the least common multiple of $a$ and $b$ \\
         $a\equiv b\pmod n$ & $a$ is congruent to $b$ modulo $n$ \\
+        $\pi(x)$ & the number of primes not exceeding $x$ \\
         $[a]_n$ & the residue class of $a$ modulo $n$ \\
         $\Z/n\Z$ & the ring of residue classes modulo $n$ \\
         $(\Z/n\Z)^\times$ & the multiplicative group of units modulo $n$ \\
@@ -512,6 +504,7 @@
         $\tau(n)$ & the number of positive divisors of $n$ \\
         $\sigma(n)$ & the sum of the positive divisors of $n$ \\
         $\mu(n)$ & the M\"obius function \\
+        $\rad(n)$ & the product of the distinct prime divisors of $n$ \\
         $p$ & usually a prime number in number-theoretic contexts \\
         $\mathbb{F}_q$ & the finite field with $q$ elements \\
     \end{longtable}
@@ -571,6 +564,7 @@
         $F[x]$ & the polynomial ring over $F$ \\
         $\deg f$ & the degree of a polynomial $f$ \\
         $\Disc(f)$ & the discriminant of a polynomial $f$ \\
+        $\trdeg_K L$ & the transcendence degree of $L$ over $K$ \\
         $\characteristic F$ & the characteristic of $F$ \\
         $\Gal(L/K)$ & the Galois group of the extension $L/K$ \\
     \end{longtable}
@@ -678,7 +672,7 @@
     \end{longtable}
     }
 
-    \vspace{1em}
+    \newpage
 
     \noindent\textbf{Other Notation}
 
@@ -703,7 +697,5 @@
         $\lfloor x\rfloor$ & the floor of $x$ \\
         $\lceil x\rceil$ & the ceiling of $x$ \\
         $\{x\}$ & the fractional part $x-\lfloor x\rfloor$ \\
-        RH & the Riemann Hypothesis, after it has been introduced \\
-        P vs NP & the P versus NP problem, after it has been introduced \\
     \end{longtable}
     }
