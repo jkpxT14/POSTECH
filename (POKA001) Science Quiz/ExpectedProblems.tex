@@ -2365,7 +2365,6 @@
         \]
     \end{solution}
 
-
     \begin{expectedproblem}
         The number $N$ of typhoons arriving in a given year is modeled by a
         Poisson distribution with parameter $1$. Determine the probability that
@@ -2504,7 +2503,6 @@
         \]
     \end{solution}
 
-
     \begin{expectedproblem}
         Let
         \[
@@ -2585,6 +2583,44 @@
             \text{for every }n\in\N.
         \]
         Therefore $b$ is not in the image of $f$, so $f$ is not surjective.
+    \end{solution}
+
+    \begin{expectedproblem}
+        On $\R^2$, determine which of the following functions is not a metric.
+        For $\mathbf{x}=(x_1,x_2)$ and $\mathbf{y}=(y_1,y_2)$, let
+        \begin{problemchoices}
+            \item $d(\mathbf{x},\mathbf{y})
+                  =\sqrt{(x_1-y_1)^2+(x_2-y_2)^2}$;
+            \item $d(\mathbf{x},\mathbf{y})
+                  =\min\{|x_1-y_1|,|x_2-y_2|\}$;
+            \item $d(\mathbf{x},\mathbf{y})
+                  =|x_1-y_1|+|x_2-y_2|$;
+            \item $d(\mathbf{x},\mathbf{y})=0$ if $\mathbf{x}=\mathbf{y}$ and
+                  $d(\mathbf{x},\mathbf{y})=1$ otherwise.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        Choice (2) is not a metric. For example,
+        \[
+            \mathbf{x}=(0,0),
+            \qquad
+            \mathbf{y}=(0,1)
+        \]
+        are distinct, but
+        \[
+            d(\mathbf{x},\mathbf{y})
+            =
+            \min\{0,1\}
+            =
+            0.
+        \]
+        Thus the identity-of-indiscernibles axiom fails. The other three
+        functions are, respectively, the Euclidean, taxicab, and discrete
+        metrics. Therefore, the answer is
+        \[
+            \boxed{(2)}.
+        \]
     \end{solution}
 
     \expectedproblemsection{Direct Calculation Problems}
@@ -4502,6 +4538,46 @@
             \]
         \end{expectedsubsolution}
 
+        \begin{expectedsubproblem}
+            For a real parameter $p>1$, evaluate
+            \[
+                \int_0^\infty\frac{\dd x}{1+x^p}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Set
+            \[
+                t=\frac{x^p}{1+x^p}.
+            \]
+            Then
+            \[
+                x^p=\frac{t}{1-t}
+            \]
+            and the integral becomes
+            \[
+                \frac{1}{p}
+                \int_0^1
+                t^{1/p-1}(1-t)^{-1/p}\dd t
+                =
+                \frac{1}{p}
+                B\left(\frac{1}{p},1-\frac{1}{p}\right).
+            \]
+            By the beta--gamma identity and Euler's reflection formula,
+            \[
+                \Gamma(z)\Gamma(1-z)=\frac{\pi}{\sin(\pi z)},
+            \]
+            so
+            \[
+                \boxed{
+                    \int_0^\infty\frac{\dd x}{1+x^p}
+                    =
+                    \frac{\pi}{p}
+                    \csc\left(\frac{\pi}{p}\right)
+                }.
+            \]
+        \end{expectedsubsolution}
+
     \end{expectedproblemgroup}
 
     \begin{expectedproblemgroup}{Complex Numbers}
@@ -5415,6 +5491,40 @@
             \]
         \end{expectedsubsolution}
 
+        \begin{expectedsubproblem}
+            Determine all eigenvalues of
+            \[
+                \mathbf{P}
+                =
+                \begin{pmatrix}
+                    0&1&0&0\\
+                    0&0&1&0\\
+                    0&0&0&1\\
+                    1&0&0&0
+                \end{pmatrix}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The matrix cyclically shifts the coordinates and satisfies
+            \[
+                \mathbf{P}^4=\mathbf{I}_4.
+            \]
+            Hence every eigenvalue $\lambda$ satisfies $\lambda^4=1$. The
+            characteristic polynomial is
+            \[
+                \lambda^4-1,
+            \]
+            whose roots are
+            \[
+                1,\quad -1,\quad i,\quad -i.
+            \]
+            Therefore the eigenvalues are
+            \[
+                \boxed{1,\ -1,\ i,\ -i}.
+            \]
+        \end{expectedsubsolution}
+
     \end{expectedproblemgroup}
 
     \expectedproblemsection{Memorization Problems}
@@ -5601,7 +5711,6 @@
             \boxed{\text{Hamiltonian path}}.
         \]
     \end{solution}
-
 
     \begin{expectedproblem}
         The obverse of the Fields Medal depicts a mathematician from antiquity,
@@ -5798,7 +5907,6 @@
         He had previously received the Fields Medal in 1986.
     \end{solution}
 
-
     \begin{expectedproblem}
         Which of the following mathematicians was born earliest?
         \begin{problemchoices}
@@ -5959,6 +6067,98 @@
                     \text{(4)}\;&\text{Kurt G\"odel and Paul Cohen}.
                 \end{aligned}
             }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Arrange the following classes of commutative rings from strongest to
+        weakest:
+        \begin{problemchoices}
+            \item unique factorization domain;
+            \item field;
+            \item integral domain;
+            \item principal ideal domain;
+            \item Euclidean domain.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The standard implication chain is
+        \[
+            \boxed{
+                \text{field}
+                \Longrightarrow
+                \text{Euclidean domain}
+                \Longrightarrow
+                \text{PID}
+                \Longrightarrow
+                \text{UFD}
+                \Longrightarrow
+                \text{integral domain}
+            }.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Identify the Joseon mathematician and chief state councillor who wrote
+        \textit{Gusuryak}, exhibited orthogonal Latin squares of order $9$, and
+        devised Jisuguimundo, also called the Hexagonal Tortoise Problem.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The mathematician is
+        \[
+            \boxed{\text{Choi Seok-jeong}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Identify the Oxford mathematics lecturer Charles Lutwidge Dodgson by the
+        pen name under which he wrote
+        \textit{Alice's Adventures in Wonderland}.
+    \end{expectedproblem}
+
+    \begin{solution}
+        His pen name was
+        \[
+            \boxed{\text{Lewis Carroll}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Who received the first Abel Prize, awarded in $2003$?
+    \end{expectedproblem}
+
+    \begin{solution}
+        The first Abel laureate was
+        \[
+            \boxed{\text{Jean-Pierre Serre}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Identify the mathematician associated with the modularity conjecture
+        formerly called the Taniyama--Shimura conjecture, a central ingredient
+        in the proof of Fermat's Last Theorem.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The mathematician is
+        \[
+            \boxed{\text{Goro Shimura}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        What collective pseudonym was adopted by the group of mainly French
+        mathematicians who sought a unified axiomatic presentation of modern
+        mathematics?
+    \end{expectedproblem}
+
+    \begin{solution}
+        The collective pseudonym is
+        \[
+            \boxed{\text{Nicolas Bourbaki}}.
         \]
     \end{solution}
 
@@ -7121,6 +7321,47 @@
         is
         \[
             \boxed{\frac{10}{49}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        A traditional epitaph describes the life of Diophantus as follows. He
+        spent one sixth of his life as a child, one twelfth more before growing
+        a beard, and one seventh more before marrying. Five years later his son
+        was born; the son lived half as long as Diophantus, and Diophantus died
+        four years after his son. Determine Diophantus' age at death.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let $x$ be Diophantus' age at death. The epitaph gives
+        \[
+            x
+            =
+            \frac{x}{6}
+            +
+            \frac{x}{12}
+            +
+            \frac{x}{7}
+            +
+            5
+            +
+            \frac{x}{2}
+            +
+            4.
+        \]
+        Since
+        \[
+            \frac16+\frac1{12}+\frac17+\frac12
+            =
+            \frac{25}{28},
+        \]
+        we obtain
+        \[
+            \frac{3x}{28}=9.
+        \]
+        Therefore,
+        \[
+            \boxed{x=84}.
         \]
     \end{solution}
 

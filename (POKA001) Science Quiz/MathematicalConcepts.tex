@@ -1597,6 +1597,23 @@
         \]
     \end{formula}
 
+    \begin{formula}[Euler Beta Integral on the Positive Half-Line]
+        If $p>1$, then
+        \[
+            \int_0^\infty\frac{\dd x}{1+x^p}
+            =
+            \frac{1}{p}
+            B\left(\frac{1}{p},1-\frac{1}{p}\right)
+            =
+            \frac{\pi}{p}\csc\left(\frac{\pi}{p}\right).
+        \]
+        The substitution
+        \[
+            t=\frac{x^p}{1+x^p}
+        \]
+        converts the improper integral into an Euler beta integral.
+    \end{formula}
+
     \begin{formula}[Stirling's Formula]
         As $n\to\infty$,
         \[
@@ -2431,6 +2448,43 @@
             B_r(x)=\{y\in X\mid d(x,y)<r\}.
         \]
     \end{definition}
+
+    \begin{fact}[Common Metrics and a Standard Nonexample]
+        For $\mathbf{x},\mathbf{y}\in\R^n$, each of
+        \[
+            d_1(\mathbf{x},\mathbf{y})
+            =
+            \sum_{k=1}^{n}|x_k-y_k|,
+        \]
+        \[
+            d_2(\mathbf{x},\mathbf{y})
+            =
+            \left(
+                \sum_{k=1}^{n}|x_k-y_k|^2
+            \right)^{1/2},
+            \qquad
+            d_\infty(\mathbf{x},\mathbf{y})
+            =
+            \max_{1\leq k\leq n}|x_k-y_k|
+        \]
+        is a metric. On any set $X$, the discrete metric is
+        \[
+            d_{\mathrm{disc}}(x,y)
+            =
+            \begin{cases}
+                0, & x=y,\\
+                1, & x\neq y.
+            \end{cases}
+        \]
+        By contrast,
+        \[
+            d\bigl((x_1,x_2),(y_1,y_2)\bigr)
+            =
+            \min\{|x_1-y_1|,|x_2-y_2|\}
+        \]
+        is not a metric on $\R^2$, because distinct points can have distance
+        $0$.
+    \end{fact}
 
     \begin{definition}[Open and Closed Sets in a Metric Space]
         A subset $U\subseteq X$ is open if
@@ -8549,6 +8603,83 @@
     \begin{definition}[Integral Domain]
         An integral domain is a commutative ring with identity in which there are
         no zero divisors. In other words, if $ab=0$, then $a=0$ or $b=0$.
+    \end{definition}
+
+    \begin{definition}[UFD, PID, and Euclidean Domain]
+        A unique factorization domain, abbreviated UFD, is an integral domain in
+        which every nonzero nonunit factors into irreducibles and this
+        factorization is unique up to order and multiplication by units.
+
+        A principal ideal domain, abbreviated PID, is an integral domain in
+        which every ideal has the form
+        \[
+            (a)=\{ra\mid r\in R\}
+        \]
+        for some $a\in R$.
+
+        A Euclidean domain is an integral domain equipped with a function
+        \[
+            \delta:R\setminus\{0\}\to\Nzero
+        \]
+        such that for all $a,b\in R$ with $b\neq0$, there exist $q,r\in R$
+        satisfying
+        \[
+            a=bq+r,
+            \qquad
+            r=0\lor \delta(r)<\delta(b).
+        \]
+    \end{definition}
+
+    \begin{theorem}[Factorization-Domain Hierarchy]
+        The standard implications are
+        \[
+            \text{field}
+            \Longrightarrow
+            \text{Euclidean domain}
+            \Longrightarrow
+            \text{PID}
+            \Longrightarrow
+            \text{UFD}
+            \Longrightarrow
+            \text{integral domain}.
+        \]
+        None of the reverse implications holds in general.
+    \end{theorem}
+
+    \begin{definition}[Quaternion Algebra]
+        The quaternions form the real algebra
+        \[
+            \mathbb{H}
+            =
+            \{a+bi+cj+dk\mid a,b,c,d\in\R\},
+        \]
+        where
+        \[
+            i^2=j^2=k^2=ijk=-1.
+        \]
+        Quaternion multiplication is associative but not commutative; for
+        example,
+        \[
+            ij=k,
+            \qquad
+            ji=-k.
+        \]
+        If
+        \[
+            q=a+bi+cj+dk,
+        \]
+        then
+        \[
+            \overline{q}=a-bi-cj-dk,
+            \qquad
+            |q|^2=q\overline{q}=a^2+b^2+c^2+d^2.
+        \]
+        Every nonzero quaternion has inverse
+        \[
+            q^{-1}=\frac{\overline{q}}{|q|^2}.
+        \]
+        Thus $\mathbb{H}$ is a noncommutative division ring, not a field under
+        the convention that fields are commutative.
     \end{definition}
 
     \begin{formula}[Basic Factorization Identities]
