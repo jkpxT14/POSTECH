@@ -226,11 +226,14 @@
 % Expected Problem is stored as one adjacent expectedproblem--solution pair.
 % In Direct Calculation Problems, each expectedsubproblem is stored immediately
 % before its matching expectedsubsolution so the pair can be moved as one unit.
-% The optional argument contains only a compact, verified source and/or the
-% standard name of the problem itself. Use established abbreviations, omit
-% original problem numbers, and do not insert the name of a theorem or method
-% merely used in the solution. Examples are [1988 IMO, Vieta Jumping],
-% [1994 CSAT], [1961 \UTokyo{} Entrance Examination], and [Chomp].
+% The optional argument contains only a compact, independently verifiable
+% official source and/or an established standard problem name. Internal study
+% documents, preparation slides, and invented descriptive labels are not
+% sources; omit the optional argument when no qualifying attribution is known.
+% Use established abbreviations, omit original problem numbers, and do not
+% insert the name of a theorem or method merely used in the solution. Examples
+% are [1988 IMO, Vieta Jumping], [1994 CSAT],
+% [1961 \UTokyo{} Entrance Examination], and [Chomp].
 \newcommand{\problemheading}[1]{%
     \par\vspace{6pt}\noindent
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
@@ -243,6 +246,17 @@
 \newenvironment{pastproblem}[1]
     {\problemheading{#1}}
     {\par\vspace{6pt}}
+
+% Lists inside problems use role-specific labels throughout the book.
+% Independent choices, clues, assumptions, and ordered statements use
+% (1), (2), (3), ...; connected subparts use (a), (b), (c), ....
+\newenvironment{problemchoices}
+    {\renewcommand{\labelenumi}{(\arabic{enumi})}\begin{enumerate}}
+    {\end{enumerate}}
+
+\newenvironment{problemsubparts}
+    {\renewcommand{\labelenumi}{(\alph{enumi})}\begin{enumerate}}
+    {\end{enumerate}}
 
 \newcounter{expectedproblemsection}
 \newcounter{expectedproblem}
