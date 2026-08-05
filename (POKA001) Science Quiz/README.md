@@ -1,6 +1,6 @@
 # Mathematics for Science Quiz
 
-Package version: Expected Problems pre-v1.0-r1 (2026-08-05)
+Package version: Expected Problems pre-v1.0-r3 (2026-08-05)
 
 Archiving materials for the POSTECH-KAIST Science War Science Quiz event.
 

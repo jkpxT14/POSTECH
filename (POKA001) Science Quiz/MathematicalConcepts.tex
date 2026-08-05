@@ -1856,6 +1856,30 @@
         in standard coordinates, its matrix is the Jacobian matrix.
     \end{definition}
 
+
+    \begin{definition}[Directional Derivative]
+        Let $f:U\subseteq\R^n\to\R$ be differentiable at
+        $\mathbf{a}\in U$, and let $\mathbf{u}$ be a unit vector. The
+        directional derivative of $f$ at $\mathbf{a}$ in the direction
+        $\mathbf{u}$ is
+        \[
+            D_{\mathbf{u}}f(\mathbf{a})
+            =
+            \lim_{t\to0}
+            \frac{f(\mathbf{a}+t\mathbf{u})-f(\mathbf{a})}{t}
+            =
+            \nabla f(\mathbf{a})\cdot\mathbf{u}.
+        \]
+        Consequently,
+        \[
+            |D_{\mathbf{u}}f(\mathbf{a})|
+            \leq
+            \|\nabla f(\mathbf{a})\|,
+        \]
+        with maximum increase in the direction of
+        $\nabla f(\mathbf{a})$ when the gradient is nonzero.
+    \end{definition}
+
     \begin{theorem}[Multivariable Chain Rule]
         Let $\mathbf{F}:\R^n\to\R^m$ and $\mathbf{G}:\R^m\to\R^k$ be
         differentiable. Then
@@ -2234,6 +2258,60 @@
         Theorem.
     \end{idea}
 
+
+    \begin{definition}[Surface Area, Scalar Surface Integral, and Flux]
+        Let a smooth oriented surface be parametrized by
+        \[
+            \mathbf{r}(u,v),
+            \qquad
+            (u,v)\in D.
+        \]
+        Its surface element is
+        \[
+            \dd S
+            =
+            \|\mathbf{r}_u\times\mathbf{r}_v\|\dd u\dd v.
+        \]
+        Hence
+        \[
+            \iint_S f\dd S
+            =
+            \iint_D
+            f(\mathbf{r}(u,v))
+            \|\mathbf{r}_u\times\mathbf{r}_v\|\dd u\dd v,
+        \]
+        and the flux of a vector field $\mathbf{F}$ through the chosen
+        orientation is
+        \[
+            \iint_S\mathbf{F}\cdot\mathbf{n}\dd S
+            =
+            \iint_D
+            \mathbf{F}(\mathbf{r}(u,v))
+            \cdot
+            (\mathbf{r}_u\times\mathbf{r}_v)\dd u\dd v.
+        \]
+
+        If $S$ is the graph $z=g(x,y)$ with upward orientation, then
+        \[
+            \dd S
+            =
+            \sqrt{1+g_x^2+g_y^2}\dd x\dd y,
+        \]
+        and
+        \[
+            \mathbf{n}\dd S
+            =
+            (-g_x,-g_y,1)\dd x\dd y.
+        \]
+        If instead $S$ is a regular level surface
+        $G(x,y,z)=0$, then a unit normal is
+        \[
+            \mathbf{n}
+            =
+            \pm\frac{\nabla G}{\|\nabla G\|}.
+        \]
+    \end{definition}
+
     \begin{theorem}[Stokes' Theorem]
         Let $S$ be an oriented piecewise smooth surface with positively oriented
         piecewise smooth boundary $\partial S$, and let $\mathbf{F}$ be
@@ -2308,6 +2386,30 @@
         \]
         A subset $F\subseteq X$ is closed if $X\setminus F$ is open.
     \end{definition}
+
+    \begin{definition}[Accumulation Point; Perfect Set]
+        Let $A\subseteq X$. A point $x\in X$ is an accumulation point of $A$ if
+        every open ball centered at $x$ contains a point of $A$ other than $x$:
+        \[
+            \forall r>0,
+            \qquad
+            \bigl(B_r(x)\setminus\{x\}\bigr)\cap A\neq\varnothing.
+        \]
+        A subset of a metric space is perfect if it is closed and every one of
+        its points is an accumulation point of the set.
+    \end{definition}
+
+    \begin{fact}[Standard Subsets of the Real Line]
+        In the usual topology on $\R$:
+        \begin{itemize}
+            \item $\Z$ is closed but not open;
+            \item $\Q$ is countable and is neither open nor closed;
+            \item the Cantor set is nonempty, compact, perfect, uncountable, and
+                  contains no nondegenerate interval.
+        \end{itemize}
+        These examples are standard tests of the distinctions among countability,
+        openness, closedness, and perfectness.
+    \end{fact}
 
     \begin{definition}[Limit of a Map Between Metric Spaces]
         Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $D\subseteq X$, let
@@ -2725,11 +2827,44 @@
         $z_0$.
     \end{theorem}
 
+    \begin{formula}[Cauchy--Riemann Equations in Polar Coordinates]
+        Write
+        \[
+            f(re^{i\theta})=u(r,\theta)+iv(r,\theta),
+            \qquad
+            r>0.
+        \]
+        If the relevant first partial derivatives are continuous, then the
+        Cauchy--Riemann equations become
+        \[
+            \frac{\partial u}{\partial r}
+            =
+            \frac{1}{r}\frac{\partial v}{\partial\theta},
+            \qquad
+            \frac{\partial v}{\partial r}
+            =
+            -\frac{1}{r}\frac{\partial u}{\partial\theta}.
+        \]
+    \end{formula}
+
     \begin{strategy}
         To test whether a given $f(z)=u(x,y)+iv(x,y)$ can be holomorphic, compute
         the four first partial derivatives and check the Cauchy--Riemann equations.
         Failure at one point immediately rules out holomorphicity there.
     \end{strategy}
+
+    \begin{fact}[Standard Holomorphic and Nonholomorphic Examples]
+        Every polynomial, $e^z$, $\sin z$, and $\cos z$ is entire. The function
+        $\tan z$ is meromorphic but not entire because it has poles at
+        \[
+            z=\frac{\pi}{2}+k\pi,
+            \qquad
+            k\in\Z.
+        \]
+        The function $z\mapsto\Real(z)$ is not complex differentiable at any
+        point, since its difference quotient depends on the direction of
+        approach.
+    \end{fact}
 
     \begin{proposition}[Holomorphic Functions Have Harmonic Components]
         If $f=u+iv$ is holomorphic and $u,v$ have continuous second partial
@@ -2742,6 +2877,29 @@
         Thus the real and imaginary parts of a holomorphic function are harmonic
         conjugates locally.
     \end{proposition}
+
+    \begin{formula}[Complex Exponential, Trigonometric Functions, and Logarithm]
+        For $z=x+iy$,
+        \[
+            e^z=e^x(\cos y+i\sin y).
+        \]
+        The complex sine and cosine satisfy
+        \[
+            \sin z=\frac{e^{iz}-e^{-iz}}{2i},
+            \qquad
+            \cos z=\frac{e^{iz}+e^{-iz}}{2}.
+        \]
+        For $z\neq0$, the complex logarithm is multivalued:
+        \[
+            \log z
+            =
+            \ln|z|+i\bigl(\arg z+2\pi k\bigr),
+            \qquad
+            k\in\Z.
+        \]
+        A single-valued holomorphic logarithm requires a choice of branch on a
+        domain that does not wind around the origin.
+    \end{formula}
 
     \begin{theorem}[Cauchy--Goursat Integral Theorem]
         If $f$ is holomorphic on a simply connected domain $U\subseteq\C$, then
@@ -2937,6 +3095,25 @@
 
     \relatedbooks{Linear Algebra and Its Applications (Gilbert Strang)}
 
+    \begin{definition}[Vector Space, Basis, and Dimension]
+        A vector space $V$ over a field $F$ is a set equipped with vector
+        addition and scalar multiplication satisfying the usual linearity
+        axioms. A list
+        \[
+            \mathbf{v}_1,\dots,\mathbf{v}_n
+        \]
+        is a basis of $V$ if it is linearly independent and spans $V$. If $V$
+        has a finite basis, every basis has the same number of vectors; this
+        number is the dimension of $V$, denoted by $\dim V$.
+    \end{definition}
+
+    \begin{theorem}[Basis Extension and Reduction]
+        Every linearly independent list in a finite-dimensional vector space
+        can be extended to a basis, and every spanning list contains a basis.
+        More generally, the assertion that every vector space has a basis is
+        equivalent to a standard form of the axiom of choice.
+    \end{theorem}
+
     \begin{definition}[Linear Combination, Span, and Linear Independence]
         A vector of the form
         \[
@@ -2979,6 +3156,49 @@
             \image T=\{T(\mathbf{v})\mid\mathbf{v}\in V\}.
         \]
     \end{definition}
+
+
+    \begin{formula}[Coordinate Vectors, Matrix Representation, and Change of Basis]
+        Let
+        \[
+            \mathcal{B}=(\mathbf{v}_1,\dots,\mathbf{v}_n)
+        \]
+        be an ordered basis of $V$. The coordinate vector of
+        $\mathbf{v}\in V$ relative to $\mathcal{B}$ is the unique column vector
+        $[\mathbf{v}]_{\mathcal{B}}$ satisfying
+        \[
+            \mathbf{v}
+            =
+            \begin{pmatrix}
+                \mathbf{v}_1 & \cdots & \mathbf{v}_n
+            \end{pmatrix}
+            [\mathbf{v}]_{\mathcal{B}}.
+        \]
+        If $T:V\to W$ is linear and $\mathcal{C}$ is an ordered basis of $W$,
+        then the matrix $[T]_{\mathcal{C}\leftarrow\mathcal{B}}$ is characterized by
+        \[
+            [T(\mathbf{v})]_{\mathcal{C}}
+            =
+            [T]_{\mathcal{C}\leftarrow\mathcal{B}}
+            [\mathbf{v}]_{\mathcal{B}}.
+        \]
+
+        If $\mathcal{B}$ and $\mathcal{B}'$ are ordered bases of the same
+        $n$-dimensional space and
+        \[
+            [\mathbf{v}]_{\mathcal{B}}
+            =
+            \mathbf{Q}[\mathbf{v}]_{\mathcal{B}'},
+        \]
+        then $\mathbf{Q}$ is invertible. For a linear operator $T:V\to V$,
+        \[
+            [T]_{\mathcal{B}'}
+            =
+            \mathbf{Q}^{-1}[T]_{\mathcal{B}}\mathbf{Q}.
+        \]
+        Thus matrices representing the same linear operator in different bases
+        are similar.
+    \end{formula}
 
     \begin{fact}[Translation Is Affine, Not Linear]
         For a fixed vector $\mathbf{v}\in\R^n$, the translation
@@ -3398,6 +3618,24 @@
         \]
         The matrix $\mathbf{D}-\mathbf{C}\mathbf{A}^{-1}\mathbf{B}$ is the
         Schur complement of $\mathbf{A}$.
+    \end{formula}
+
+    \begin{formula}[Symmetric Block Determinant]
+        If $\mathbf{A}$ and $\mathbf{B}$ are square matrices of the same size,
+        then
+        \[
+            \det
+            \begin{pmatrix}
+                \mathbf{A} & \mathbf{B} \\
+                \mathbf{B} & \mathbf{A}
+            \end{pmatrix}
+            =
+            \det(\mathbf{A}+\mathbf{B})
+            \det(\mathbf{A}-\mathbf{B}).
+        \]
+        This follows by changing to the invariant subspaces consisting of
+        vectors of the form $(\mathbf{x},\mathbf{x})$ and
+        $(\mathbf{x},-\mathbf{x})$.
     \end{formula}
 
     \begin{formula}[Special Matrix Recognition Table]
@@ -4049,6 +4287,29 @@
         If $\mathbf{A}$ is real, then $\mathbf{A}^{\mathsf H}=\mathbf{A}^{\mathsf T}$.
     \end{proposition}
 
+
+    \begin{definition}[Normal Matrix]
+        A complex square matrix $\mathbf{A}$ is normal if
+        \[
+            \mathbf{A}^{\mathsf H}\mathbf{A}
+            =
+            \mathbf{A}\mathbf{A}^{\mathsf H}.
+        \]
+        Hermitian, skew-Hermitian, and unitary matrices are normal.
+    \end{definition}
+
+    \begin{theorem}[Spectral Theorem for Normal Matrices]
+        A complex square matrix is normal if and only if it is unitarily
+        diagonalizable. Equivalently, $\mathbf{A}$ is normal if and only if
+        there exist a unitary matrix $\mathbf{U}$ and a diagonal matrix
+        $\mathbf{D}$ such that
+        \[
+            \mathbf{A}
+            =
+            \mathbf{U}\mathbf{D}\mathbf{U}^{\mathsf H}.
+        \]
+    \end{theorem}
+
     \begin{proposition}[Hermitian Matrix Quick Facts]
         If $\mathbf{A}$ is Hermitian, then
         \[
@@ -4227,6 +4488,43 @@
         Over $\C$, replace every transpose by the Hermitian transpose.
     \end{formula}
 
+
+    \begin{theorem}[Least-Squares Normal Equations]
+        Let $\mathbf{A}\in\R^{m\times n}$ and
+        $\mathbf{b}\in\R^m$. A vector $\widehat{\mathbf{x}}$ minimizes
+        \[
+            \|\mathbf{A}\mathbf{x}-\mathbf{b}\|^2
+        \]
+        if and only if the residual is orthogonal to
+        $\Col(\mathbf{A})$, equivalently,
+        \[
+            \mathbf{A}^{\mathsf T}\mathbf{A}\widehat{\mathbf{x}}
+            =
+            \mathbf{A}^{\mathsf T}\mathbf{b}.
+        \]
+        If the columns of $\mathbf{A}$ are linearly independent, then the
+        minimizer is unique and
+        \[
+            \widehat{\mathbf{x}}
+            =
+            (\mathbf{A}^{\mathsf T}\mathbf{A})^{-1}
+            \mathbf{A}^{\mathsf T}\mathbf{b}.
+        \]
+        The fitted vector is the orthogonal projection
+        \[
+            \widehat{\mathbf{b}}
+            =
+            \mathbf{A}\widehat{\mathbf{x}}
+            =
+            \mathbf{P}\mathbf{b},
+            \qquad
+            \mathbf{P}
+            =
+            \mathbf{A}(\mathbf{A}^{\mathsf T}\mathbf{A})^{-1}
+            \mathbf{A}^{\mathsf T}.
+        \]
+    \end{theorem}
+
     \begin{proposition}[Projection Matrix Criterion]
         A matrix $\mathbf{P}$ is a projection matrix if
         \[
@@ -4280,6 +4578,29 @@
         square or diagonalizable matrices. This is why SVD is one of the most
         useful decompositions in applied linear algebra.
     \end{remark}
+
+
+    \begin{definition}[Generalized Eigenvectors and Jordan Chains]
+        Let $\lambda$ be an eigenvalue of a square matrix $\mathbf{A}$. A
+        nonzero vector $\mathbf{v}$ is a generalized eigenvector associated
+        with $\lambda$ if
+        \[
+            (\mathbf{A}-\lambda\mathbf{I}_n)^k\mathbf{v}
+            =
+            \mathbf{0}
+        \]
+        for some positive integer $k$. A Jordan chain
+        $\mathbf{v}_1,\dots,\mathbf{v}_r$ satisfies
+        \[
+            (\mathbf{A}-\lambda\mathbf{I}_n)\mathbf{v}_1=\mathbf{0},
+            \qquad
+            (\mathbf{A}-\lambda\mathbf{I}_n)\mathbf{v}_{j+1}
+            =
+            \mathbf{v}_j.
+        \]
+        Ordinary eigenvectors are precisely the generalized eigenvectors of
+        rank $1$.
+    \end{definition}
 
     \begin{theorem}[Jordan Canonical Form]
         Over the complex numbers, every square matrix is similar to a Jordan
@@ -5542,6 +5863,26 @@
         $X$ and events determined by $Y$ are independent.
     \end{definition}
 
+    \begin{definition}[Conditional Distribution]
+        For discrete random variables $X$ and $Y$, whenever
+        $\Prob(Y=y)>0$,
+        \[
+            \Prob(X=x\mid Y=y)
+            =
+            \frac{\Prob(X=x,Y=y)}{\Prob(Y=y)}.
+        \]
+        If $(X,Y)$ has joint density $f_{X,Y}$ and $Y$ has marginal density
+        $f_Y$, then, whenever $f_Y(y)>0$, the conditional density of $X$ given
+        $Y=y$ is
+        \[
+            f_{X\mid Y}(x\mid y)
+            =
+            \frac{f_{X,Y}(x,y)}{f_Y(y)}.
+        \]
+        Conditional mass and density functions sum or integrate to $1$ in the
+        variable being conditioned.
+    \end{definition}
+
     \begin{tactic}
         ``Disjoint'' and ``independent'' are different. If two nonempty events
         are disjoint, then knowing that one occurred makes the other impossible;
@@ -5558,6 +5899,18 @@
             \Prob(A\cup B)
             =
             \Prob(A)+\Prob(B)-\Prob(A\cap B).
+        \]
+        For three events,
+        \[
+            \begin{aligned}
+                \Prob(A\cup B\cup C)
+                &=
+                \Prob(A)+\Prob(B)+\Prob(C)\\
+                &\quad
+                -\Prob(A\cap B)-\Prob(B\cap C)-\Prob(C\cap A)\\
+                &\quad
+                +\Prob(A\cap B\cap C).
+            \end{aligned}
         \]
     \end{formula}
 
@@ -5642,16 +5995,30 @@
         step.
     \end{strategy}
 
-    \begin{formula}[Variance and Covariance Identities]
+    \begin{formula}[Variance, Covariance, and Correlation]
         For random variables with finite second moments,
         \[
             \Var(X)=\Exp[X^2]-(\Exp[X])^2,
+        \]
+        \[
+            \Cov(X,Y)
+            =
+            \Exp[XY]-\Exp[X]\Exp[Y],
         \]
         and
         \[
             \Var(X+Y)
             =
             \Var(X)+\Var(Y)+2\Cov(X,Y).
+        \]
+        If $\Var(X)>0$ and $\Var(Y)>0$, their correlation coefficient is
+        \[
+            \rho_{X,Y}
+            =
+            \frac{\Cov(X,Y)}
+                 {\sqrt{\Var(X)\Var(Y)}},
+            \qquad
+            -1\leq\rho_{X,Y}\leq1.
         \]
         If $X$ and $Y$ are independent, then $\Cov(X,Y)=0$, so their variances
         add. The converse need not hold.
@@ -5666,10 +6033,19 @@
             =
             \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}}.
         \]
-        Its mean is
+        Its mean and variance are
         \[
-            \Exp[X]=n\frac{K}{N}.
+            \Exp[X]=n\frac{K}{N},
         \]
+        \[
+            \Var(X)
+            =
+            n\frac{K}{N}
+            \left(1-\frac{K}{N}\right)
+            \frac{N-n}{N-1}.
+        \]
+        The final factor is the finite-population correction caused by sampling
+        without replacement.
     \end{formula}
 
     \begin{theorem}[Poisson Limit Theorem; Law of Small Numbers]
@@ -7408,6 +7784,28 @@
         divisibility questions.
     \end{formula}
 
+    \begin{definition}[$p$-Adic Absolute Value and $p$-Adic Numbers]
+        Fix a prime $p$. For a nonzero rational number $x$, write
+        \[
+            x=p^{\nu_p(x)}\frac{a}{b},
+            \qquad
+            p\nmid ab,
+        \]
+        and define
+        \[
+            |x|_p=p^{-\nu_p(x)},
+            \qquad
+            |0|_p=0.
+        \]
+        The $p$-adic absolute value satisfies the strong triangle inequality
+        \[
+            |x+y|_p\leq\max\{|x|_p,|y|_p\}.
+        \]
+        The field $\mathbb{Q}_p$ of $p$-adic numbers is the completion of
+        $\Q$ with respect to this absolute value, just as $\R$ is a completion
+        of $\Q$ with respect to the usual absolute value.
+    \end{definition}
+
     \begin{theorem}[M\"obius Inversion Formula]
         If arithmetic functions $f$ and $g$ satisfy
         \[
@@ -7824,6 +8222,27 @@
             a\ast b=b\ast a.
         \]
     \end{definition}
+
+    \begin{definition}[Normal Subgroup and Simple Group]
+        A subgroup $N\leq G$ is normal, written $N\trianglelefteq G$, if
+        \[
+            gNg^{-1}=N
+            \qquad
+            \text{for every }g\in G.
+        \]
+        A nontrivial group $G$ is simple if its only normal subgroups are
+        $\{e\}$ and $G$.
+    \end{definition}
+
+    \begin{fact}[Smallest Nonabelian Simple Group]
+        The alternating group $A_5$ is simple and has order
+        \[
+            |A_5|=60.
+        \]
+        It is the smallest nonabelian simple group. This fact, together with the
+        Sylow theorems, is a standard shortcut in questions asking which small
+        integers can occur as the order of a simple group.
+    \end{fact}
 
     \begin{theorem}[Disjoint-Cycle Decomposition of a Permutation]
         Every permutation $\sigma\in S_n$ can be written as a product of

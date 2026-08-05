@@ -2365,6 +2365,201 @@
         \]
     \end{solution}
 
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        The number $N$ of typhoons arriving in a given year is modeled by a
+        Poisson distribution with parameter $1$. Determine the probability that
+        at least one typhoon arrives during the next year.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Since $N\sim\Poi(1)$,
+        \[
+            \Prob(N\geq1)
+            =
+            1-\Prob(N=0)
+            =
+            1-e^{-1}.
+        \]
+        Therefore, the required probability is
+        \[
+            \boxed{1-\frac{1}{e}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Adapted from 2022 \POSTECH{} Science Quiz Preparation]
+        Consider the functions
+        \[
+            z^2,
+            \qquad
+            \sin z,
+            \qquad
+            \tan z,
+            \qquad
+            \Real(z),
+            \qquad
+            e^z.
+        \]
+        Determine:
+        \begin{enumerate}
+            \item[(a)] which functions are entire;
+            \item[(b)] which function is meromorphic on $\C$ but not entire;
+            \item[(c)] which function is not holomorphic on any nonempty open
+                      subset of $\C$.
+        \end{enumerate}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The functions
+        \[
+            z^2,
+            \qquad
+            \sin z,
+            \qquad
+            e^z
+        \]
+        are entire. The function $\tan z$ is meromorphic but not entire because
+        it has poles at
+        \[
+            \frac{\pi}{2}+k\pi,
+            \qquad
+            k\in\Z.
+        \]
+        Finally, $\Real(z)$ is not complex differentiable at any point: its
+        difference quotient equals $1$ along real increments and $0$ along
+        purely imaginary increments. Thus the answers are
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{(a)}\;&z^2,\ \sin z,\ e^z,\\
+                    \text{(b)}\;&\tan z,\\
+                    \text{(c)}\;&\Real(z).
+                \end{aligned}
+            }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        In the usual topology on $\R$, determine whether each statement is true
+        or false.
+        \begin{enumerate}
+            \item[(i)] There exists a perfect subset of $\R$ containing no
+                       nondegenerate interval.
+            \item[(ii)] The set $\Z$ is open.
+            \item[(iii)] The set $\Z$ is closed.
+            \item[(iv)] There exists a countable subset of $\R$ that is neither
+                        open nor closed.
+        \end{enumerate}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The Cantor set is perfect and contains no nondegenerate interval, so
+        (i) is true. The set $\Z$ is not open, because no open interval centered
+        at an integer lies inside $\Z$, but it is closed because
+        $\R\setminus\Z$ is open. Hence (ii) is false and (iii) is true. Finally,
+        $\Q$ is countable and is neither open nor closed in $\R$, so (iv) is
+        true. Therefore,
+        \[
+            \boxed{\text{(i) T,\quad (ii) F,\quad (iii) T,\quad (iv) T}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        Which of the following integers can be the order of a nonabelian simple
+        group?
+        \[
+            60,
+            \qquad
+            48,
+            \qquad
+            30,
+            \qquad
+            77.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        The alternating group $A_5$ is simple and has order $60$, so $60$ is
+        possible.
+
+        A group of order $77=7\cdot11$ has a unique Sylow $11$-subgroup, since
+        \[
+            n_{11}\equiv1\pmod{11},
+            \qquad
+            n_{11}\mid7,
+        \]
+        so it is not simple. If a group of order $30$ were simple, then it would
+        have $6$ Sylow $5$-subgroups and $10$ Sylow $3$-subgroups. These would
+        already contain
+        \[
+            6(5-1)+10(3-1)=44
+        \]
+        nonidentity elements, impossible in a group with only $29$
+        nonidentity elements.
+
+        Finally, for a group of order $48$, the number of Sylow $2$-subgroups
+        is $1$ or $3$. The first case gives a normal subgroup. In the second
+        case, conjugation gives a homomorphism to $S_3$; it cannot be injective
+        because $48>6$, so its kernel is a nontrivial proper normal subgroup.
+        Hence the only possible order is
+        \[
+            \boxed{60}.
+        \]
+    \end{solution}
+
+
+    \begin{expectedproblem}[Adapted from 2022 \POSTECH{} Science Quiz Preparation]
+        Let
+        \[
+            \mathbf{F}(x,y,z)=(z,x,y).
+        \]
+        A plane through the origin intersects the sphere
+        \[
+            x^2+y^2+z^2=4
+        \]
+        in a great circle. Determine the plane for which the positively
+        oriented circulation of $\mathbf{F}$ around this circle is as large as
+        possible, and find the maximum circulation.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The curl is constant:
+        \[
+            \nabla\times\mathbf{F}
+            =
+            (1,1,1).
+        \]
+        Let $\mathbf{n}$ be the unit normal that determines the positive
+        orientation of the circle. The circle bounds a disk of radius $2$ and
+        area $4\pi$. By Stokes' Theorem,
+        \[
+            \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
+            =
+            \iint_S
+            (\nabla\times\mathbf{F})\cdot\mathbf{n}\dd S
+            =
+            4\pi(1,1,1)\cdot\mathbf{n}.
+        \]
+        Cauchy--Schwarz gives
+        \[
+            (1,1,1)\cdot\mathbf{n}
+            \leq
+            \sqrt{3},
+        \]
+        with equality when
+        \[
+            \mathbf{n}
+            =
+            \frac{1}{\sqrt3}(1,1,1).
+        \]
+        Therefore the required plane and maximum circulation are
+        \[
+            \boxed{x+y+z=0},
+            \qquad
+            \boxed{4\pi\sqrt3}.
+        \]
+    \end{solution}
+
     \expectedproblemsection{Direct Calculation Problems}
 
     \begin{expectedproblem}[Finite Sums and Products]
@@ -3392,6 +3587,50 @@
                 2\left(\frac{\pi}{6}\right)^2
                 =
                 \boxed{\frac{\pi^2}{18}}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2022 \POSTECH{} Science Quiz Preparation]
+            Evaluate
+            \[
+                \sum_{n=1}^{\infty}\frac{n}{(n+1)!}
+            \]
+            in two ways.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            First,
+            \[
+                \frac{n}{(n+1)!}
+                =
+                \frac{1}{n!}-\frac{1}{(n+1)!},
+            \]
+            so the series telescopes:
+            \[
+                \sum_{n=1}^{N}\frac{n}{(n+1)!}
+                =
+                1-\frac{1}{(N+1)!}
+                \longrightarrow
+                1.
+            \]
+
+            Alternatively, put $m=n+1$ and use the exponential series:
+            \[
+                \begin{aligned}
+                    \sum_{n=1}^{\infty}\frac{n}{(n+1)!}
+                    &=
+                    \sum_{m=2}^{\infty}\frac{m-1}{m!}\\
+                    &=
+                    \sum_{m=2}^{\infty}\frac{1}{(m-1)!}
+                    -
+                    \sum_{m=2}^{\infty}\frac{1}{m!}\\
+                    &=
+                    (e-1)-(e-2)=1.
+                \end{aligned}
+            \]
+            Thus both methods give
+            \[
+                \boxed{1}.
             \]
         \end{expectedsubsolution}
 
@@ -4988,6 +5227,127 @@
             \]
         \end{expectedsubsolution}
 
+        \begin{expectedsubproblem}[2022 \POSTECH{} Science Quiz Preparation]
+            Determine the eigenvalues of
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1 & 2 & 3\\
+                    1 & 2 & 3\\
+                    1 & 2 & 3
+                \end{pmatrix}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Write
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1\\1\\1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1&2&3
+                \end{pmatrix}.
+            \]
+            This is a rank-one outer product. Its only possible nonzero
+            eigenvalue is
+            \[
+                \begin{pmatrix}
+                    1&2&3
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1\\1\\1
+                \end{pmatrix}
+                =
+                6.
+            \]
+            Since the matrix has rank $1$, the remaining two eigenvalues are
+            $0$. Therefore,
+            \[
+                \boxed{6,\ 0,\ 0}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2022 \POSTECH{} Science Quiz Preparation]
+            Determine the eigenvalues of
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1 & -2 & 3 & 0\\
+                    -2 & 3 & 0 & 1\\
+                    3 & 0 & 1 & -2\\
+                    0 & 1 & -2 & 3
+                \end{pmatrix}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Reorder the coordinates as $(1,3,2,4)$. The resulting similar
+            matrix has the block form
+            \[
+                \begin{pmatrix}
+                    \mathbf{B} & -2\mathbf{I}_2\\
+                    -2\mathbf{I}_2 & \mathbf{C}
+                \end{pmatrix},
+                \qquad
+                \mathbf{B}
+                =
+                \begin{pmatrix}
+                    1&3\\3&1
+                \end{pmatrix},
+                \qquad
+                \mathbf{C}
+                =
+                \begin{pmatrix}
+                    3&1\\1&3
+                \end{pmatrix}.
+            \]
+            The vectors $(1,1)$ and $(1,-1)$ simultaneously diagonalize
+            $\mathbf{B}$ and $\mathbf{C}$. On the corresponding two-dimensional
+            invariant subspaces, the matrix reduces respectively to
+            \[
+                \begin{pmatrix}
+                    4&-2\\-2&4
+                \end{pmatrix}
+                \quad\text{and}\quad
+                \begin{pmatrix}
+                    -2&-2\\-2&2
+                \end{pmatrix}.
+            \]
+            Their eigenvalues are $6,2$ and $\pm2\sqrt2$. Hence
+            \[
+                \boxed{6,\ 2,\ 2\sqrt2,\ -2\sqrt2}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2022 \POSTECH{} Science Quiz Preparation]
+            Let $\mathbf{A}$ be the $2022\times2022$ matrix whose diagonal
+            entries are $0$ and whose off-diagonal entries are $1$. Determine
+            all eigenvalues, including multiplicities.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            We have
+            \[
+                \mathbf{A}=\mathbf{J}_{2022}-\mathbf{I}_{2022}.
+            \]
+            The all-ones vector is an eigenvector of $\mathbf{J}_{2022}$ with
+            eigenvalue $2022$, while every vector whose coordinates sum to zero
+            has eigenvalue $0$. Subtracting the identity shifts all eigenvalues
+            by $-1$. Therefore,
+            \[
+                \boxed{
+                    2021\text{ with multiplicity }1,
+                    \qquad
+                    -1\text{ with multiplicity }2021
+                }.
+            \]
+        \end{expectedsubsolution}
+
         \begin{expectedsubproblem}
             Let $\mathbf{J}_n$ be the $n\times n$ all-ones matrix and set
             \[
@@ -5212,6 +5572,316 @@
         It is called a
         \[
             \boxed{\text{Hamiltonian path}}.
+        \]
+    \end{solution}
+
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        The obverse of the Fields Medal depicts a mathematician from antiquity,
+        while the reverse depicts a sphere inscribed in a cylinder. Identify the
+        mathematician and state the volume ratio of the sphere to the
+        circumscribed cylinder.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The mathematician is Archimedes. If the sphere has radius $r$, then the
+        cylinder has radius $r$ and height $2r$, so
+        \[
+            \frac{V_{\mathrm{sphere}}}{V_{\mathrm{cylinder}}}
+            =
+            \frac{\frac43\pi r^3}{2\pi r^3}
+            =
+            \frac23.
+        \]
+        Thus the answer is
+        \[
+            \boxed{\text{Archimedes and }2:3}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        Match the four 2018 Fields Medalists with the following principal
+        mathematical anchors:
+        \[
+            \begin{array}{c}
+                p\text{-adic geometry},\\
+                \text{boundedness of Fano varieties and the BAB conjecture},\\
+                \text{optimal transport},\\
+                \text{number theory and homogeneous dynamics}.
+            \end{array}
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        The correct matching is
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{Peter Scholze}
+                    &\longleftrightarrow p\text{-adic geometry},\\
+                    \text{Caucher Birkar}
+                    &\longleftrightarrow \text{Fano varieties and BAB},\\
+                    \text{Alessio Figalli}
+                    &\longleftrightarrow \text{optimal transport},\\
+                    \text{Akshay Venkatesh}
+                    &\longleftrightarrow
+                    \text{number theory and homogeneous dynamics}.
+                \end{aligned}
+            }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        Maryna Viazovska proved optimal sphere-packing results in dimensions
+        $8$ and $24$. What is the classical three-dimensional sphere-packing
+        conjecture called, and who proved it?
+    \end{expectedproblem}
+
+    \begin{solution}
+        The three-dimensional statement is the
+        \[
+            \boxed{\text{Kepler conjecture}},
+        \]
+        proved by
+        \[
+            \boxed{\text{Thomas Hales}}.
+        \]
+        The later Flyspeck project formally verified the proof.
+    \end{solution}
+
+    \begin{expectedproblem}[Adapted from 2022 \POSTECH{} Science Quiz Preparation]
+        Which of the following is not one of the combinatorial log-concavity
+        conjectures associated with June Huh's work?
+        \[
+            \begin{array}{cc}
+                \text{Rota's conjecture},
+                &
+                \text{Mason's conjecture},
+                \\[0.3em]
+                \text{Dowling--Wilson conjecture},
+                &
+                \text{Sullivan conjecture}.
+            \end{array}
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        The first three belong to the circle of matroid and combinatorial
+        log-concavity results associated with June Huh and his collaborators.
+        The Sullivan conjecture belongs to algebraic topology. Therefore, the
+        odd one out is
+        \[
+            \boxed{\text{Sullivan conjecture}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        Identify the Abel Prize laureate or laureates for each year:
+        \[
+            2018,\quad 2019,\quad 2020,\quad 2021,\quad 2022.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        The sequence is
+        \[
+            \boxed{
+                \begin{aligned}
+                    2018&:\ \text{Robert Langlands},\\
+                    2019&:\ \text{Karen Uhlenbeck},\\
+                    2020&:\ \text{Hillel Furstenberg and Gregory Margulis},\\
+                    2021&:\ \text{L\'aszl\'o Lov\'asz and Avi Wigderson},\\
+                    2022&:\ \text{Dennis Sullivan}.
+                \end{aligned}
+            }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        Give the Fields Medalists conventionally associated with the following
+        national firsts:
+        \[
+            \text{Brazil},
+            \qquad
+            \text{Japan},
+            \qquad
+            \text{Iran},
+            \qquad
+            \text{Vietnam}.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        The standard associations are
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{Brazil}
+                    &\longleftrightarrow \text{Artur Avila},\\
+                    \text{Japan}
+                    &\longleftrightarrow \text{Kunihiko Kodaira},\\
+                    \text{Iran}
+                    &\longleftrightarrow \text{Maryam Mirzakhani},\\
+                    \text{Vietnam}
+                    &\longleftrightarrow \text{Ng\^o B\`ao Ch\^au}.
+                \end{aligned}
+            }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Inspired by 2022 \POSTECH{} Science Quiz Preparation]
+        The 2026 International Congress of Mathematicians was held in which
+        city, and who received the four Fields Medals awarded there?
+    \end{expectedproblem}
+
+    \begin{solution}
+        ICM 2026 was held in
+        \[
+            \boxed{\text{Philadelphia, United States}}.
+        \]
+        The four Fields Medalists were
+        \[
+            \boxed{
+                \text{Yu Deng,\ John Pardon,\ Jacob Tsimerman,\ and Hong Wang}
+            }.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Inspired by 2022 \POSTECH{} Science Quiz Preparation]
+        Which 2026 Fields Medalist is especially associated with harmonic
+        analysis, Furstenberg sets, and the three-dimensional Kakeya problem?
+        What historical distinction did she attain?
+    \end{expectedproblem}
+
+    \begin{solution}
+        The mathematician is
+        \[
+            \boxed{\text{Hong Wang}}.
+        \]
+        She became the
+        \[
+            \boxed{\text{third woman to receive a Fields Medal}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Inspired by 2022 \POSTECH{} Science Quiz Preparation]
+        The 2026 Abel Prize was awarded for powerful tools in arithmetic
+        geometry and for resolving long-standing Diophantine conjectures of
+        Mordell and Lang. Identify the laureate.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The 2026 Abel Prize laureate is
+        \[
+            \boxed{\text{Gerd Faltings}}.
+        \]
+        He had previously received the Fields Medal in 1986.
+    \end{solution}
+
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        Which of the following mathematicians was born earliest?
+        \[
+            \begin{array}{cc}
+                \text{Guillaume de l'H\^opital},
+                &
+                \text{Isaac Newton},
+                \\
+                \text{Gottfried Wilhelm Leibniz},
+                &
+                \text{Colin Maclaurin}.
+            \end{array}
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        Newton was born in $1643$ under the modern Gregorian calendar
+        convention, earlier than Leibniz in $1646$, l'H\^opital in $1661$, and
+        Maclaurin in $1698$. Therefore the answer is
+        \[
+            \boxed{\text{Isaac Newton}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2022 \POSTECH{} Science Quiz Preparation]
+        What is Hilbert's first problem in the list of twenty-three problems
+        presented in $1900$?
+    \end{expectedproblem}
+
+    \begin{solution}
+        Hilbert's first problem asks for the resolution of the
+        \[
+            \boxed{\text{continuum hypothesis}}.
+        \]
+        In modern set theory, Gödel and Cohen showed that the continuum
+        hypothesis is independent of ZFC, assuming ZFC is consistent.
+    \end{solution}
+
+    \begin{expectedproblem}[Adapted from 2022 \POSTECH{} Science Quiz Preparation]
+        Match each number system with the mathematician most directly
+        associated with its introduction or early systematic development:
+        \[
+            \begin{array}{c}
+                \text{quaternions},\qquad
+                p\text{-adic numbers},\qquad
+                \text{hyperreal numbers},\qquad
+                \text{surreal numbers}
+            \end{array}
+        \]
+        and
+        \[
+            \text{Hamilton},\qquad
+            \text{Hensel},\qquad
+            \text{Hewitt},\qquad
+            \text{Conway}.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        The standard associations are
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{quaternions}
+                    &\longleftrightarrow \text{Hamilton},\\
+                    p\text{-adic numbers}
+                    &\longleftrightarrow \text{Hensel},\\
+                    \text{hyperreal numbers}
+                    &\longleftrightarrow \text{Hewitt},\\
+                    \text{surreal numbers}
+                    &\longleftrightarrow \text{Conway}.
+                \end{aligned}
+            }
+        \]
+        Robinson later made hyperreal methods central to nonstandard analysis,
+        and Knuth introduced the name \emph{surreal numbers}.
+    \end{solution}
+
+    \begin{expectedproblem}[Adapted from 2022 \POSTECH{} Science Quiz Preparation]
+        Match each clue with the corresponding paradox.
+        \begin{enumerate}
+            \item[(a)] Among $23$ people, a shared birthday has probability
+                       greater than $1/2$.
+            \item[(b)] Alternating two losing games can create a winning game.
+            \item[(c)] A ball can be reassembled into two congruent copies using
+                       finitely many nonmeasurable pieces.
+            \item[(d)] Dominance reasoning and expected utility reasoning
+                       recommend different choices when a highly accurate
+                       predictor has already filled two boxes.
+        \end{enumerate}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The matching is
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{(a)}\;&\text{birthday paradox},\\
+                    \text{(b)}\;&\text{Parrondo's paradox},\\
+                    \text{(c)}\;&\text{Banach--Tarski paradox},\\
+                    \text{(d)}\;&\text{Newcomb's paradox}.
+                \end{aligned}
+            }
         \]
     \end{solution}
 
