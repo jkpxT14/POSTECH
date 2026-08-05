@@ -199,6 +199,29 @@
         classes, and each partition of $A$ determines an equivalence relation.
     \end{proposition}
 
+    \begin{definition}[Cardinality and Equinumerosity]
+        Two sets $A$ and $B$ have the same cardinality if there exists a
+        bijection between them. We write
+        \[
+            |A|=|B|
+            \qquad\text{or}\qquad
+            A\xrightarrow{\sim}B.
+        \]
+        Thus cardinality compares the sizes of finite and infinite sets through
+        one-to-one correspondences rather than through geometric containment.
+    \end{definition}
+
+    \begin{definition}[Dedekind-Infinite Set]
+        A set $A$ is Dedekind-infinite if there exists a proper subset
+        $B\subsetneq A$ such that
+        \[
+            |A|=|B|.
+        \]
+        In ZFC, a set is Dedekind-infinite if and only if it is infinite. Without
+        the Axiom of Choice, this equivalence cannot be proved in full
+        generality.
+    \end{definition}
+
     \begin{definition}[Countability]
         A set $A$ is countable if it is finite or if there exists a bijection
         $f:A\to\N$. In the countably infinite case,
@@ -209,6 +232,20 @@
         \]
         A set is uncountable if it is not countable.
     \end{definition}
+
+    \begin{theorem}[Basic Cardinalities]
+        The standard countably infinite sets satisfy
+        \[
+            |\N|=|2\N|=|\Z|=|\Q|=\aleph_0,
+        \]
+        whereas
+        \[
+            |(0,1)|=|\R|=\mathfrak{c}=2^{\aleph_0}>\aleph_0.
+        \]
+        In particular, a proper subset of an infinite set may have the same
+        cardinality as the whole set, while the real numbers cannot be listed by
+        the natural numbers.
+    \end{theorem}
 
     \begin{theorem}[Cantor's Diagonal Argument]
         The set $\R$ of real numbers is uncountable. In particular,
@@ -224,6 +261,19 @@
             |A|<|\Pow(A)|.
         \]
     \end{theorem}
+
+    \begin{definition}[Aleph Numbers and the Continuum]
+        The symbol $\aleph_0$ denotes the cardinality of a countably infinite
+        set, and $\aleph_1$ denotes the least uncountable cardinal. The
+        cardinality of the continuum is
+        \[
+            \mathfrak{c}=|\R|=2^{\aleph_0}.
+        \]
+        The Continuum Hypothesis is the assertion
+        \[
+            \mathfrak{c}=\aleph_1.
+        \]
+    \end{definition}
 
     \begin{theorem}[Schr\"oder--Bernstein Theorem; Cantor--Bernstein Theorem]
         If there exists an injection $f:A\hookrightarrow B$ and an injection
@@ -253,6 +303,13 @@
         The expression ``the set of all sets that do not contain themselves''
         leads to a contradiction in naive set theory. This is one reason modern
         set theory is formulated axiomatically.
+    \end{fact}
+
+    \begin{fact}[ZF and ZFC]
+        ZF denotes Zermelo--Fraenkel set theory, and ZFC denotes ZF together
+        with the Axiom of Choice. The axioms restrict set formation sufficiently
+        to avoid Russell's paradox while supporting the standard foundations of
+        modern mathematics.
     \end{fact}
 
     \begin{fact}[Axiom of Choice and Zorn's Lemma]
@@ -6324,6 +6381,68 @@
     \relatedbooks{}
 
     \section*{Synthetic Geometry}
+
+    \begin{fact}[Euclid's \textit{Elements} and the Axiomatic Method]
+        Euclid's \textit{Elements} consists of thirteen books and organizes
+        geometry and number theory through definitions, common notions,
+        postulates, propositions, and proofs. Book I begins with five postulates;
+        the fifth is the parallel postulate.
+    \end{fact}
+
+    \begin{fact}[Euclid's Fifth Postulate and Playfair's Axiom]
+        Euclid's fifth postulate states that if a transversal makes the two
+        interior angles on one side sum to less than two right angles, then the
+        two lines meet on that side when extended. In the usual axiomatic setting
+        for Euclidean plane geometry, this is equivalent to Playfair's axiom:
+        through a point not on a given line, there is exactly one line parallel
+        to the given line.
+    \end{fact}
+
+    \begin{theorem}[Parallel Postulate and Triangle Angle Sum]
+        Within standard neutral geometry, the Euclidean parallel postulate is
+        equivalent to the assertion that every triangle has angle sum
+        \[
+            \pi.
+        \]
+        Consequently, the familiar triangle angle-sum theorem is not a
+        consequence of Euclid's first four postulates alone.
+    \end{theorem}
+
+    \begin{definition}[Euclidean, Hyperbolic, and Elliptic Geometry]
+        The three constant-curvature geometries are distinguished by their
+        parallel behavior and triangle angle sums.
+        \begin{longtable}{@{}L{0.22\textwidth}L{0.34\textwidth}L{0.30\textwidth}@{}}
+            \toprule
+            Geometry & Lines through a point off a given line & Triangle angle sum \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Geometry & Lines through a point off a given line & Triangle angle sum \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Euclidean & Exactly one parallel & Equal to $\pi$ \\
+            Hyperbolic & Infinitely many disjoint lines & Less than $\pi$ \\
+            Elliptic / spherical & No disjoint geodesic line & Greater than $\pi$ \\
+        \end{longtable}
+    \end{definition}
+
+    \begin{formula}[Geodesic Triangle Angle Sum on Constant Curvature]
+        Let a geodesic triangle lie on a surface of constant Gaussian curvature
+        $K$. If its angles are $\alpha,\beta,\gamma$, then the Gauss--Bonnet
+        formula gives
+        \[
+            \alpha+\beta+\gamma-\pi
+            =
+            K\operatorname{Area}(\triangle ABC).
+        \]
+        Thus positive curvature produces angle excess, zero curvature gives the
+        Euclidean angle sum, and negative curvature produces angle defect.
+    \end{formula}
 
     \begin{formula}[Basic Plane and Solid Geometry Table]
         The basic measurement formulas are

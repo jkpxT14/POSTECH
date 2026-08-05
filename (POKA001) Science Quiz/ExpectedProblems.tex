@@ -870,7 +870,7 @@
         tilings cover the whole deficient board.
     \end{solution}
 
-    \begin{expectedproblem}[Integer-Side Rectangle Tiling Theorem]
+    \begin{expectedproblem}
         A rectangle is tiled by finitely many smaller rectangles whose sides
         are parallel to the sides of the large rectangle. Each small rectangle
         has at least one side of integer length. Prove that the large rectangle
@@ -2467,15 +2467,12 @@
     \begin{expectedproblem}
         Which of the following integers can be the order of a nonabelian simple
         group?
-        \[
-            60,
-            \qquad
-            48,
-            \qquad
-            30,
-            \qquad
-            77.
-        \]
+        \begin{problemchoices}
+            \item $60$;
+            \item $48$;
+            \item $30$;
+            \item $77$.
+        \end{problemchoices}
     \end{expectedproblem}
 
     \begin{solution}
@@ -2560,9 +2557,39 @@
         \]
     \end{solution}
 
+    \begin{expectedproblem}[Cantor's Diagonal Argument]
+        Let $\{0,1\}^{\N}$ be the set of all infinite binary sequences. Prove
+        that no function
+        \[
+            f:\N\to\{0,1\}^{\N}
+        \]
+        is surjective.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Write
+        \[
+            f(n)=(a_{n1},a_{n2},a_{n3},\ldots),
+            \qquad
+            a_{nk}\in\{0,1\}.
+        \]
+        Define a binary sequence $b=(b_1,b_2,\ldots)$ by
+        \[
+            b_n=1-a_{nn}.
+        \]
+        For every $n\in\N$, the sequence $b$ differs from $f(n)$ in its
+        $n$th coordinate. Hence
+        \[
+            b\neq f(n)
+            \qquad
+            \text{for every }n\in\N.
+        \]
+        Therefore $b$ is not in the image of $f$, so $f$ is not surjective.
+    \end{solution}
+
     \expectedproblemsection{Direct Calculation Problems}
 
-    \begin{expectedproblem}[Finite Sums and Products]
+    \begin{expectedproblemgroup}{Finite Sums and Products}
         Evaluate each of the following finite sums or products exactly. State any
         restrictions on the integer parameters that are needed for the displayed
         expression to be defined.
@@ -2693,7 +2720,7 @@
             \]
         \end{expectedsubsolution}
 
-        \begin{expectedsubproblem}[Double-Angle Product]
+        \begin{expectedsubproblem}
             For $m\in\N$ and $\sin x\neq0$, determine
             \[
                 \prod_{k=0}^{m-1}\cos(2^k x).
@@ -2798,9 +2825,9 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
-    \begin{expectedproblem}[Recurrence Relations]
+    \begin{expectedproblemgroup}{Recurrence Relations}
         Determine the requested term, closed form, or residue for each of the
         following recursively defined sequences.
 
@@ -2988,12 +3015,12 @@
             A bag initially contains $a+2$ white balls and one red ball, where
             $a$ is a positive integer. After each draw, perform the following
             operation:
-            \begin{itemize}
+            \begin{problemchoices}
                 \item if a white ball is drawn, replace the contents by $a$
                 white balls and one red ball;
                 \item if the red ball is drawn, remove it and leave the other
                 balls unchanged.
-            \end{itemize}
+            \end{problemchoices}
             Let $p_n$ be the probability that the red ball is drawn on the
             $n$th draw. Determine $p_n$.
         \end{expectedsubproblem}
@@ -3037,9 +3064,9 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
-    \begin{expectedproblem}[Limits]
+    \begin{expectedproblemgroup}{Limits}
         Evaluate each of the following limits. In parameterized problems,
         determine the exact value for every parameter regime stated in the
         subproblem.
@@ -3272,9 +3299,9 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
-    \begin{expectedproblem}[Derivatives]
+    \begin{expectedproblemgroup}{Derivatives}
         Compute each requested derivative or derivative-dependent quantity
         exactly. For high-order derivatives, a closed form involving standard
         sequences or harmonic numbers is acceptable.
@@ -3439,9 +3466,9 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
-    \begin{expectedproblem}[Series]
+    \begin{expectedproblemgroup}{Series}
         Determine whether each of the following series converges. For every
         convergent series, determine its exact sum. In parameterized problems,
         state all parameter values for which convergence occurs.
@@ -3558,7 +3585,7 @@
             \]
         \end{expectedsubsolution}
 
-        \begin{expectedsubproblem}[Inverse Central Binomial Sum]
+        \begin{expectedsubproblem}
             Determine
             \[
                 \sum_{n=1}^{\infty}
@@ -3677,9 +3704,9 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
-    \begin{expectedproblem}[Integrals]
+    \begin{expectedproblemgroup}{Integrals}
         Evaluate each of the following integrals. For indefinite integrals, the
         constant of integration may be omitted; for definite integrals,
         determine the exact value.
@@ -4475,9 +4502,9 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
-    \begin{expectedproblem}[Complex Numbers]
+    \begin{expectedproblemgroup}{Complex Numbers}
         Evaluate each of the following expressions exactly. When roots of unity
         occur, use $\omega_n=e^{2\pi i/n}$ unless another root is specified.
 
@@ -4617,9 +4644,9 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
-    \begin{expectedproblem}[Polynomials and Roots]
+    \begin{expectedproblemgroup}{Polynomials and Roots}
         Use the coefficients, factorization, or symmetric functions of the roots
         to compute each requested quantity exactly. Solving every polynomial
         explicitly is not required unless the problem asks for the roots.
@@ -4843,9 +4870,9 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
-    \begin{expectedproblem}[Determinants]
+    \begin{expectedproblemgroup}{Determinants}
         Compute each of the following determinants in exact form.
 
         \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week]
@@ -5062,9 +5089,9 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
-    \begin{expectedproblem}[Eigenvalues and Matrix Powers]
+    \begin{expectedproblemgroup}{Eigenvalues and Matrix Powers}
         Determine the requested eigenvalues or matrix powers exactly. Use
         diagonalization, polynomial identities, or invariant subspaces whenever
         they make the computation shorter than direct multiplication.
@@ -5388,7 +5415,7 @@
             \]
         \end{expectedsubsolution}
 
-    \end{expectedproblem}
+    \end{expectedproblemgroup}
 
     \expectedproblemsection{Memorization Problems}
 
@@ -5602,14 +5629,12 @@
     \begin{expectedproblem}
         Match the four 2018 Fields Medalists with the following principal
         mathematical anchors:
-        \[
-            \begin{array}{c}
-                p\text{-adic geometry},\\
-                \text{boundedness of Fano varieties and the BAB conjecture},\\
-                \text{optimal transport},\\
-                \text{number theory and homogeneous dynamics}.
-            \end{array}
-        \]
+        \begin{problemchoices}
+            \item $p$-adic geometry;
+            \item boundedness of Fano varieties and the BAB conjecture;
+            \item optimal transport;
+            \item number theory and homogeneous dynamics.
+        \end{problemchoices}
     \end{expectedproblem}
 
     \begin{solution}
@@ -5652,17 +5677,12 @@
     \begin{expectedproblem}
         Which of the following is not one of the combinatorial log-concavity
         conjectures associated with June Huh's work?
-        \[
-            \begin{array}{cc}
-                \text{Rota's conjecture},
-                &
-                \text{Mason's conjecture},
-                \\[0.3em]
-                \text{Dowling--Wilson conjecture},
-                &
-                \text{Sullivan conjecture}.
-            \end{array}
-        \]
+        \begin{problemchoices}
+            \item Rota's conjecture;
+            \item Mason's conjecture;
+            \item Dowling--Wilson conjecture;
+            \item Sullivan conjecture.
+        \end{problemchoices}
     \end{expectedproblem}
 
     \begin{solution}
@@ -5781,17 +5801,12 @@
 
     \begin{expectedproblem}
         Which of the following mathematicians was born earliest?
-        \[
-            \begin{array}{cc}
-                \text{Guillaume de l'H\^opital},
-                &
-                \text{Isaac Newton},
-                \\
-                \text{Gottfried Wilhelm Leibniz},
-                &
-                \text{Colin Maclaurin}.
-            \end{array}
-        \]
+        \begin{problemchoices}
+            \item Guillaume de l'H\^opital;
+            \item Isaac Newton;
+            \item Gottfried Wilhelm Leibniz;
+            \item Colin Maclaurin.
+        \end{problemchoices}
     \end{expectedproblem}
 
     \begin{solution}
@@ -5819,22 +5834,14 @@
 
     \begin{expectedproblem}
         Match each number system with the mathematician most directly
-        associated with its introduction or early systematic development:
-        \[
-            \begin{array}{c}
-                \text{quaternions},\qquad
-                p\text{-adic numbers},\qquad
-                \text{hyperreal numbers},\qquad
-                \text{surreal numbers}
-            \end{array}
-        \]
-        and
-        \[
-            \text{Hamilton},\qquad
-            \text{Hensel},\qquad
-            \text{Hewitt},\qquad
-            \text{Conway}.
-        \]
+        associated with its introduction or early systematic development. The
+        mathematicians are Hamilton, Hensel, Hewitt, and Conway.
+        \begin{problemchoices}
+            \item quaternions;
+            \item $p$-adic numbers;
+            \item hyperreal numbers;
+            \item surreal numbers.
+        \end{problemchoices}
     \end{expectedproblem}
 
     \begin{solution}
@@ -5880,6 +5887,76 @@
                     \text{(b)}\;&\text{Parrondo's paradox},\\
                     \text{(c)}\;&\text{Banach--Tarski paradox},\\
                     \text{(d)}\;&\text{Newcomb's paradox}.
+                \end{aligned}
+            }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Euclid's fifth postulate is often replaced in modern elementary
+        geometry by the statement that through a point outside a given line
+        there is exactly one parallel line. What is this equivalent statement
+        called?
+    \end{expectedproblem}
+
+    \begin{solution}
+        It is
+        \[
+            \boxed{\text{Playfair's axiom}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Match the three constant-curvature geometries with the number of
+        parallels through a point outside a given line and with the angle sum of
+        a triangle.
+        \begin{problemsubparts}
+            \item Euclidean geometry;
+            \item hyperbolic geometry;
+            \item elliptic or spherical geometry.
+        \end{problemsubparts}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The matching is
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{(a) Euclidean:}&\quad
+                    \text{exactly one parallel, angle sum }=\pi,\\
+                    \text{(b) hyperbolic:}&\quad
+                    \text{infinitely many disjoint lines, angle sum }<\pi,\\
+                    \text{(c) elliptic / spherical:}&\quad
+                    \text{no disjoint geodesic line, angle sum }>\pi.
+                \end{aligned}
+            }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Match each foundational clue with the corresponding mathematician or
+        pair of mathematicians.
+        \begin{problemchoices}
+            \item diagonal argument and the comparison of infinite
+                  cardinalities;
+            \item the paradox of the set of all sets that do not contain
+                  themselves;
+            \item the axiomatic system ZF, with ZFC obtained by adding the
+                  Axiom of Choice;
+            \item the independence of the Continuum Hypothesis from ZFC,
+                  assuming consistency.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The correct associations are
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{(1)}\;&\text{Georg Cantor},\\
+                    \text{(2)}\;&\text{Bertrand Russell},\\
+                    \text{(3)}\;&\text{Ernst Zermelo and Abraham Fraenkel},\\
+                    \text{(4)}\;&\text{Kurt G\"odel and Paul Cohen}.
                 \end{aligned}
             }
         \]
@@ -7048,6 +7125,36 @@
     \end{solution}
 
     \expectedproblemsection{Mathematical Intuition Problems}
+
+    \begin{expectedproblem}
+        A geodesic triangle is drawn on a surface of constant Gaussian
+        curvature. Predict whether its angle sum is less than, equal to, or
+        greater than $\pi$ in each case.
+        \begin{problemsubparts}
+            \item negative curvature;
+            \item zero curvature;
+            \item positive curvature.
+        \end{problemsubparts}
+    \end{expectedproblem}
+
+    \begin{solution}
+        By the Gauss--Bonnet relation
+        \[
+            \alpha+\beta+\gamma-\pi
+            =
+            K\operatorname{Area}(\triangle ABC),
+        \]
+        the sign of the angle excess is the sign of $K$. Therefore,
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{(a)}\;&\text{less than }\pi,\\
+                    \text{(b)}\;&\text{equal to }\pi,\\
+                    \text{(c)}\;&\text{greater than }\pi.
+                \end{aligned}
+            }
+        \]
+    \end{solution}
 
     \begin{expectedproblem}[1996 Putnam]
         Two circles have radii $1$ and $3$, and the distance between their
