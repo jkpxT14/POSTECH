@@ -6,7 +6,7 @@
     \expectedproblemsection{Standard Mathematical Problems}
 
     \begin{expectedproblem}[1988 IMO, Vieta Jumping]
-        Let $a$ and $b$ be positive integers such that $ab+1$ divides
+        Let $a$ and $b$ be positive integers s.t. $ab+1$ divides
         $a^2+b^2$. Show that
         \[
             \frac{a^2+b^2}{ab+1}
@@ -223,7 +223,7 @@
 
     \begin{solution}
         Call a line determined by points of $S$ \emph{ordinary} if it contains
-        exactly two points of $S$. Consider all pairs $(P,\ell)$ such that
+        exactly two points of $S$. Consider all pairs $(P,\ell)$ s.t.
         $P\in S$, the line $\ell$ is determined by at least two points of $S$,
         and $P\notin\ell$. Since $S$ is finite and not collinear, the set of
         positive distances arising in this way is finite and nonempty. Choose
@@ -596,7 +596,7 @@
     \begin{expectedproblem}[1964 IMO]
         Seventeen people correspond with one another. Every pair discusses
         exactly one of three topics in their correspondence. Prove that there
-        are three people such that every pair among them discusses the same
+        are three people s.t. every pair among them discusses the same
         topic.
     \end{expectedproblem}
 
@@ -1077,7 +1077,7 @@
         \[
             \{0,1,\ldots,2^m-1\}
         \]
-        into sets $A$ and $B$ such that
+        into sets $A$ and $B$ s.t.
         \[
             \sum_{a\in A}a^r
             =
@@ -1149,7 +1149,7 @@
 
     \begin{expectedproblem}[Tournament King Theorem]
         In a tournament, every pair of vertices is joined by exactly one
-        directed edge. Prove that there is a vertex $A$ such that every other
+        directed edge. Prove that there is a vertex $A$ s.t. every other
         vertex $B$ is either an out-neighbor of $A$ or an out-neighbor of some
         out-neighbor of $A$.
     \end{expectedproblem}
@@ -1163,8 +1163,7 @@
         \]
         contradicting the maximality of the outdegree of $A$.
 
-        Therefore, for every $B$ that defeats $A$, there is a vertex $C$ such
-        that $A$ defeats $C$ and $C$ defeats $B$. Hence $A$ is a king.
+        Therefore, for every $B$ that defeats $A$, there is a vertex $C$ s.t. $A$ defeats $C$ and $C$ defeats $B$. Hence $A$ is a king.
     \end{solution}
 
     \begin{expectedproblem}[Gale--Shapley Stable Marriage Problem]
@@ -1240,7 +1239,7 @@
         \[
             f:\Nzero\to\Nzero
         \]
-        such that
+        s.t.
         \[
             f(f(n))=n+1987
         \]
@@ -1432,7 +1431,7 @@
     \end{solution}
 
     \begin{expectedproblem}[2005 Putnam]
-        Find a nonzero polynomial $P(x,y)$ in two variables such that
+        Find a nonzero polynomial $P(x,y)$ in two variables s.t.
         \[
             P(\lfloor a\rfloor,\lfloor2a\rfloor)=0
         \]
@@ -1504,7 +1503,7 @@
     \end{solution}
 
     \begin{expectedproblem}[2002 AIME I]
-        Let $S$ be a set of distinct positive integers such that
+        Let $S$ be a set of distinct positive integers s.t.
         \[
             1\in S,
             \qquad
@@ -1996,7 +1995,7 @@
             d_1,d_2,\ldots,d_{12}
         \]
         be real numbers in the open interval $(1,12)$. Prove that there exist
-        distinct indices $i,j,k$ such that $d_i,d_j,d_k$ are the side lengths
+        distinct indices $i,j,k$ s.t. $d_i,d_j,d_k$ are the side lengths
         of an acute triangle.
     \end{expectedproblem}
 
@@ -3115,7 +3114,7 @@
             \]
             Determine
             \[
-                \lim_{n\to\infty}\frac{a_n}{2^n}.
+                \lim\limits_{n\to\infty}\frac{a_n}{2^n}.
             \]
         \end{expectedsubproblem}
 
@@ -3145,7 +3144,7 @@
             Using $t\cot t\to1$ as $t\to0$, we obtain
             \[
                 \boxed{
-                    \lim_{n\to\infty}\frac{a_n}{2^n}
+                    \lim\limits_{n\to\infty}\frac{a_n}{2^n}
                     =
                     \frac{6\sqrt3}{\pi}
                 }.
@@ -3155,7 +3154,7 @@
         \begin{expectedsubproblem}[2013 \KAIST{} Problem of the Week]
             For $a,b\in\R$, determine
             \[
-                \lim_{n\to\infty}
+                \lim\limits_{n\to\infty}
                 n\left(
                     1-\frac{a}{n}-\frac{b\ln(n+1)}{n}
                 \right)^n.
@@ -3202,7 +3201,7 @@
             \]
             Determine
             \[
-                \lim_{n\to\infty}f_n(x).
+                \lim\limits_{n\to\infty}f_n(x).
             \]
         \end{expectedsubproblem}
 
@@ -3228,7 +3227,7 @@
             Consequently,
             \[
                 \boxed{
-                    \lim_{n\to\infty}f_n(x)
+                    \lim\limits_{n\to\infty}f_n(x)
                     =
                     \begin{cases}
                         0, & 0\leq x<\dfrac12,\\[4pt]
@@ -3242,7 +3241,7 @@
         \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week]
             For $a\geq0$, determine
             \[
-                \lim_{n\to\infty}
+                \lim\limits_{n\to\infty}
                 n\int_{-1}^{0}
                 \left(x+\frac{x^2}{2}+e^{ax}\right)^n\dd x.
             \]
@@ -3271,7 +3270,7 @@
             convergence, and therefore
             \[
                 \begin{aligned}
-                    \lim_{n\to\infty}
+                    \lim\limits_{n\to\infty}
                     n\int_{-1}^{0}g(x)^n\dd x
                     &=
                     \int_0^\infty e^{-(1+a)t}\dd t\\
@@ -3284,7 +3283,7 @@
         \begin{expectedsubproblem}[2023 \KAIST{} Problem of the Week]
             Determine
             \[
-                \lim_{n\to\infty}
+                \lim\limits_{n\to\infty}
                 \left(
                     \frac{\displaystyle\sum_{k=1}^{n+2}k^k}
                     {\displaystyle\sum_{k=1}^{n+1}k^k}
@@ -3324,7 +3323,7 @@
             Replacing $n$ by $n+1$ and subtracting gives
             \[
                 \boxed{
-                    \lim_{n\to\infty}
+                    \lim\limits_{n\to\infty}
                     \left(
                         \frac{S_{n+2}}{S_{n+1}}
                         -
@@ -7194,7 +7193,7 @@
             \qquad
             S_k=\sum_{i=1}^{k}d_i.
         \]
-        Choose $j\in\{0,1,\ldots,n-1\}$ such that $S_j$ is minimal, and start
+        Choose $j\in\{0,1,\ldots,n-1\}$ s.t. $S_j$ is minimal, and start
         at station $j+1$, with indices understood cyclically.
 
         Before wrapping around the circle, the fuel after $t$ legs is
@@ -7441,7 +7440,7 @@
     \begin{expectedproblem}[1996 Putnam]
         Two squares have total area $1$. Their sides, and the sides of a
         containing rectangle, must remain parallel, and the interiors of the
-        two squares may not overlap. Determine the least number $A$ such that
+        two squares may not overlap. Determine the least number $A$ s.t.
         every such pair of squares can be packed into a rectangle of area at
         most $A$.
     \end{expectedproblem}
