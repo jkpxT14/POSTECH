@@ -52,6 +52,7 @@
         $\Z$ & the set of integers \\
         $\Q$ & the set of rational numbers \\
         $\R$ & the set of real numbers \\
+        $\Rbar=\R\cup\{-\infty,+\infty\}$ & the set of extended real numbers \\
         $\C$ & the set of complex numbers \\
         $\mathbb{H}$ & the quaternion division ring \\
         $a\coloneqq b$ & $a$ is defined to be $b$ \\
@@ -150,6 +151,7 @@
         $\exists!x\in A$ & there exists a unique $x\in A$ \\
         $\nexists x\in A$ & there does not exist $x\in A$ \\
         $P\Rightarrow Q$ & $P$ implies $Q$ \\
+        $P\nRightarrow Q$ & $P$ does not imply $Q$ \\
         $P\Leftarrow Q$ & $Q$ implies $P$ \\
         $P\Leftrightarrow Q$ & $P$ if and only if $Q$ \\
         $P\land Q$ & logical conjunction \\
@@ -164,7 +166,7 @@
         $f|_A$ & restriction of $f$ to $A$ \\
         $f:X\hookrightarrow Y$ & an injective map \\
         $f:X\twoheadrightarrow Y$ & a surjective map \\
-        $f:X\xrightarrow{\sim}Y$ & a bijective map; more generally, an isomorphism when additional structure is present \\
+        $f:X\xrightarrow{\sim}Y$ & an isomorphism; for sets without additional structure, equivalently a bijection \\
         $X\cong Y$ & $X$ and $Y$ are isomorphic; in topology, this means homeomorphic \\
         $f(A)$ & the image of $A$ under $f$ \\
         $f^{-1}(B)$ & the inverse image, or preimage, of $B$ \\
@@ -223,6 +225,11 @@
         $\arcsec x$ & the principal inverse secant, with values in $[0,\pi]\setminus\{\pi/2\}$ \\
         $\arccsc x$ & the principal inverse cosecant, with values in $[-\pi/2,\pi/2]\setminus\{0\}$ \\
         $\arccot x$ & the principal inverse cotangent, with values in $(0,\pi)$ \\
+        $\sech x$ & the hyperbolic secant $1/\cosh x$ \\
+        $\csch x$ & the hyperbolic cosecant $1/\sinh x$ \\
+        $\arcsinh x$ & the inverse hyperbolic sine \\
+        $\arccosh x$ & the principal inverse hyperbolic cosine, with values in $[0,\infty)$ \\
+        $\arctanh x$ & the inverse hyperbolic tangent on $(-1,1)$ \\
         $C^k(I)$ & the space of $k$ times continuously differentiable functions on $I$ \\
         $C^\infty(I)$ & the space of smooth functions on $I$ \\
         $\displaystyle\frac{\partial f}{\partial x_i}$ & the partial derivative of $f$ with respect to $x_i$ \\
@@ -248,8 +255,8 @@
         $a_n\searrow L$ & monotone decreasing convergence to $L$ \\
         $\limsup a_n$ & the limit superior of $(a_n)$ \\
         $\liminf a_n$ & the limit inferior of $(a_n)$ \\
-        $f_n\ptwto f$ & pointwise convergence \\
-        $f_n\unifto f$ & uniform convergence \\
+        $f_n\to f$, $f_n\ptwto f$ & pointwise convergence \\
+        $f_n\rightrightarrows f$, $f_n\unifto f$ & uniform convergence \\
         $f_n\aeto f$ & convergence almost everywhere \\
         $\|f\|_\infty$ & the supremum norm of $f$ \\
         $z=x+iy$ & a complex number with real part $x$ and imaginary part $y$ \\

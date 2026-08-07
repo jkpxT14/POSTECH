@@ -247,12 +247,6 @@
         the natural numbers.
     \end{theorem}
 
-    \begin{theorem}[Cantor's Diagonal Argument]
-        The set $\R$ of real numbers is uncountable. In particular,
-        \[
-            |\N|<|\R|.
-        \]
-    \end{theorem}
 
     \begin{theorem}[Cantor's Theorem]
         For every set $A$, there is no surjection from $A$ onto $\Pow(A)$.
@@ -326,9 +320,25 @@
 
     \relatedbooks{Calculus With Applications (Peter D. Lax, Maria Shea Terrell),
         Multivariable Calculus with Applications (Peter D. Lax, Maria Shea Terrell),
-        Principles of Mathematical Analysis (Walter Rudin)}
+        Principles of Mathematical Analysis (Walter Rudin),
+        Complex Variables and Applications (James Ward Brown, Ruel V. Churchill)}
 
     \section*{One-Variable Calculus}
+
+    \begin{definition}[Sequence, Series, and Partial Sum]
+        A sequence is a function $a:\N\to\R$ or $a:\N\to\C$, usually written
+        $(a_n)$. A series is the formal sum
+        \[
+            \sum_{n=1}^{\infty}a_n,
+        \]
+        whose $N$th partial sum is
+        \[
+            S_N=\sum_{n=1}^{N}a_n.
+        \]
+        The series converges to $S$ exactly when $S_N\to S$ as $N\to\infty$;
+        otherwise it diverges. Thus every convergence test for a series is a
+        criterion for convergence of its sequence of partial sums.
+    \end{definition}
 
     \begin{formula}[Arithmetic and Geometric Progressions]
         For an arithmetic progression with first term $a$ and common difference
@@ -657,6 +667,12 @@
             $\sinh x$ & $\R$ & $\R$ & odd & none \\
             $\cosh x$ & $\R$ & $[1,\infty)$ & even & none \\
             $\tanh x$ & $\R$ & $(-1,1)$ & odd & none \\
+            $\sech x$ & $\R$ & $(0,1]$ & even & none \\
+            $\csch x$ & $\R\setminus\{0\}$ & $\R\setminus\{0\}$ & odd & none \\
+            $\coth x$ & $\R\setminus\{0\}$ & $(-\infty,-1)\cup(1,\infty)$ & odd & none \\
+            $\arcsinh x$ & $\R$ & $\R$ & odd & none \\
+            $\arccosh x$ & $[1,\infty)$ & $[0,\infty)$ & neither & none \\
+            $\arctanh x$ & $(-1,1)$ & $\R$ & odd & none \\
         \end{longtable}
         }
     \end{formula}
@@ -761,6 +777,17 @@
             Sum-to-product &
             $\displaystyle\cos x-\cos y=
             -2\sin\frac{x+y}{2}\sin\frac{x-y}{2}$ \\
+            Hyperbolic &
+            $\cosh^2x-\sinh^2x=1$, $1-\tanh^2x=\sech^2x$ \\
+            Hyperbolic &
+            $\displaystyle\tanh x=\frac{\sinh x}{\cosh x},\quad
+            \coth x=\frac{\cosh x}{\sinh x}$ \\
+            Inverse hyperbolic &
+            $\displaystyle\arcsinh x=\ln\!\left(x+\sqrt{x^2+1}\right)$ \\
+            Inverse hyperbolic &
+            $\displaystyle\arccosh x=\ln\!\left(x+\sqrt{x^2-1}\right)\ (x\geq1)$ \\
+            Inverse hyperbolic &
+            $\displaystyle\arctanh x=\frac12\ln\!\left(\frac{1+x}{1-x}\right)\ (|x|<1)$ \\
             Synthesis &
             $\displaystyle a\cos x+b\sin x
             =R\cos(x-\alpha),\quad
@@ -851,13 +878,13 @@
             $\arctan x$ & $\displaystyle\frac{1}{1+x^2}$ & $x\arctan x-\displaystyle\frac{1}{2}\ln(1+x^2)$ \\
             $\sinh x$ & $\cosh x$ & $\cosh x$ \\
             $\cosh x$ & $\sinh x$ & $\sinh x$ \\
-            $\tanh x$ & $\operatorname{sech}^2x$ & $\ln(\cosh x)$ \\
-            $\coth x$ & $-\operatorname{csch}^2x$ & $\ln|\sinh x|$ \\
-            $\operatorname{sech}x$ & $-\operatorname{sech}x\tanh x$ & $\arctan(\sinh x)$ \\
-            $\operatorname{csch}x$ & $-\operatorname{csch}x\coth x$ & $\ln\left|\tanh\frac{x}{2}\right|$ \\
-            $\operatorname{arsinh}x$ & $\displaystyle\frac{1}{\sqrt{x^2+1}}$ & $x\operatorname{arsinh}x-\sqrt{x^2+1}$ \\
-            $\operatorname{arcosh}x$ & $\displaystyle\frac{1}{\sqrt{x-1}\sqrt{x+1}}$ & $x\operatorname{arcosh}x-\sqrt{x^2-1}$ \\
-            $\operatorname{artanh}x$ & $\displaystyle\frac{1}{1-x^2}$ & $x\operatorname{artanh}x+\displaystyle\frac{1}{2}\ln(1-x^2)$ \\
+            $\tanh x$ & $\sech^2x$ & $\ln(\cosh x)$ \\
+            $\coth x$ & $-\csch^2x$ & $\ln|\sinh x|$ \\
+            $\sech x$ & $-\sech x\tanh x$ & $\arctan(\sinh x)$ \\
+            $\csch x$ & $-\csch x\coth x$ & $\ln\left|\tanh\frac{x}{2}\right|$ \\
+            $\arcsinh x$ & $\displaystyle\frac{1}{\sqrt{x^2+1}}$ & $x\arcsinh x-\sqrt{x^2+1}$ \\
+            $\arccosh x$ & $\displaystyle\frac{1}{\sqrt{x-1}\sqrt{x+1}}$ & $x\arccosh x-\sqrt{x^2-1}$ \\
+            $\arctanh x$ & $\displaystyle\frac{1}{1-x^2}$ & $x\arctanh x+\displaystyle\frac{1}{2}\ln(1-x^2)$ \\
             $\displaystyle\frac{1}{x^2+a^2}$ & $\displaystyle-\frac{2x}{(x^2+a^2)^2}$ & $\displaystyle\frac{1}{a}\arctan\frac{x}{a}\quad(a>0)$ \\
             $\displaystyle\frac{1}{x^2-a^2}$ & $\displaystyle-\frac{2x}{(x^2-a^2)^2}$ & $\displaystyle\frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|\quad(a>0)$ \\
             $\displaystyle\frac{1}{a^2-x^2}$ & $\displaystyle\frac{2x}{(a^2-x^2)^2}$ & $\displaystyle\frac{1}{2a}\ln\left|\frac{a+x}{a-x}\right|\quad(a>0)$ \\
@@ -953,6 +980,25 @@
         In particular, the continuity hypothesis is automatic when $f$ is
         continuous and strictly monotone on an interval.
     \end{theorem}
+
+    \begin{definition}[Riemann Integral]
+        Let $f:[a,b]\to\R$ be bounded. For a partition
+        \[
+            P:\quad a=x_0<x_1<\cdots<x_n=b,
+        \]
+        choose $\xi_i\in[x_{i-1},x_i]$ and form the Riemann sum
+        \[
+            \sum_{i=1}^{n}f(\xi_i)(x_i-x_{i-1}).
+        \]
+        If these sums approach the same limit $I$ as the mesh
+        $\max_i(x_i-x_{i-1})\to0$, independently of the sample points, then
+        $f$ is Riemann integrable and
+        \[
+            I=\int_a^b f(x)\dd x.
+        \]
+        Every continuous function on a closed bounded interval is Riemann
+        integrable.
+    \end{definition}
 
     \begin{theorem}[Fundamental Theorem of Calculus]
         If $f$ is continuous on $[a,b]$ and
@@ -1051,7 +1097,7 @@
         \]
         and
         \[
-            \operatorname{artanh}x
+            \arctanh x
             =
             \sum_{n=0}^{\infty}\frac{x^{2n+1}}{2n+1}
             \qquad (|x|<1).
@@ -1114,11 +1160,6 @@
             =
             \frac{\pi}{4}.
         \]
-        More generally, the $p$-series
-        \[
-            \sum_{n=1}^{\infty}\frac{1}{n^p}
-        \]
-        converges if and only if $p>1$.
     \end{formula}
 
     \begin{formula}[Geometric-Series Differentiation]
@@ -1407,6 +1448,61 @@
         \]
     \end{formula}
 
+    \begin{definition}[Gamma Function]
+        For $\Real(z)>0$, the Gamma function is defined by
+        \[
+            \Gamma(z)
+            =
+            \int_0^\infty t^{z-1}e^{-t}\dd t.
+        \]
+        It extends meromorphically to $\C$, with simple poles at the
+        nonpositive integers.
+    \end{definition}
+
+    \begin{proposition}[Gamma Function and Factorials]
+        The Gamma function satisfies
+        \[
+            \Gamma(z+1)=z\Gamma(z)
+        \]
+        wherever both sides are defined.
+        In particular, for every positive integer $n$,
+        \[
+            \Gamma(n)=(n-1)!.
+        \]
+        Also,
+        \[
+            \Gamma\left(\frac12\right)=\sqrt{\pi}.
+        \]
+    \end{proposition}
+
+    \begin{definition}[Beta Function; Euler Beta Integral]
+        For $x,y>0$, the Beta function is defined by
+        \[
+            B(x,y)
+            =
+            \int_0^1 t^{x-1}(1-t)^{y-1}\dd t.
+        \]
+    \end{definition}
+
+    \begin{formula}[Beta--Gamma Identity]
+        The Beta and Gamma functions are related by
+        \[
+            B(x,y)
+            =
+            \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}.
+        \]
+        In particular, for nonnegative integers $m,n$,
+        \[
+            \int_0^1 x^m(1-x)^n\dd x
+            =
+            B(m+1,n+1)
+            =
+            \frac{m!n!}{(m+n+1)!}
+            =
+            \frac{1}{(m+n+1)\binom{m+n}{m}}.
+        \]
+    \end{formula}
+
     \begin{formula}[Gamma-Type Exponential Integrals]
         For $a>0$ and every nonnegative integer $n$,
         \[
@@ -1554,61 +1650,6 @@
         \]
     \end{formula}
 
-    \begin{definition}[Gamma Function]
-        For $\Real(z)>0$, the Gamma function is defined by
-        \[
-            \Gamma(z)
-            =
-            \int_0^\infty t^{z-1}e^{-t}\dd t.
-        \]
-        It extends meromorphically to $\C$, with simple poles at the
-        nonpositive integers.
-    \end{definition}
-
-    \begin{proposition}[Gamma Function and Factorials]
-        The Gamma function satisfies
-        \[
-            \Gamma(z+1)=z\Gamma(z)
-        \]
-        wherever both sides are defined.
-        In particular, for every positive integer $n$,
-        \[
-            \Gamma(n)=(n-1)!.
-        \]
-        Also,
-        \[
-            \Gamma\left(\frac12\right)=\sqrt{\pi}.
-        \]
-    \end{proposition}
-
-    \begin{definition}[Beta Function; Euler Beta Integral]
-        For $x,y>0$, the Beta function is defined by
-        \[
-            B(x,y)
-            =
-            \int_0^1 t^{x-1}(1-t)^{y-1}\dd t.
-        \]
-    \end{definition}
-
-    \begin{formula}[Beta--Gamma Identity]
-        The Beta and Gamma functions are related by
-        \[
-            B(x,y)
-            =
-            \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}.
-        \]
-        In particular, for nonnegative integers $m,n$,
-        \[
-            \int_0^1 x^m(1-x)^n\dd x
-            =
-            B(m+1,n+1)
-            =
-            \frac{m!n!}{(m+n+1)!}
-            =
-            \frac{1}{(m+n+1)\binom{m+n}{m}}.
-        \]
-    \end{formula}
-
     \begin{formula}[Euler's Reflection Formula]
         For $z\in\C\setminus\Z$,
         \[
@@ -1727,21 +1768,35 @@
     \end{theorem}
 
     \begin{theorem}[Ratio Test; d'Alembert's Ratio Test]
-        Let $a_n>0$ and suppose
+        For a series $\sum a_n$ with $a_n\neq0$ eventually, set
         \[
-            L=\lim\limits_{n\to\infty}\frac{a_{n+1}}{a_n}
+            L=\limsup_{n\to\infty}
+            \left|\frac{a_{n+1}}{a_n}\right|.
         \]
-        exists. If $L<1$, then $\sum a_n$ converges. If $L>1$, then
-        $\sum a_n$ diverges. If $L=1$, the test is inconclusive.
+        If $L<1$, then $\sum a_n$ converges absolutely. If
+        \[
+            \liminf_{n\to\infty}
+            \left|\frac{a_{n+1}}{a_n}\right|>1,
+        \]
+        then $a_n\not\to0$ and the series diverges. In the common case in which
+        the ordinary limit
+        \[
+            \lim\limits_{n\to\infty}
+            \left|\frac{a_{n+1}}{a_n}\right|=L
+        \]
+        exists, this reduces to the familiar rule: $L<1$ gives absolute
+        convergence, $L>1$ gives divergence, and $L=1$ is inconclusive.
     \end{theorem}
 
     \begin{theorem}[Root Test; Cauchy's Root Test]
-        Let $a_n\geq 0$ and suppose
+        For a series $\sum a_n$, set
         \[
-            L=\lim\limits_{n\to\infty}\sqrt[n]{a_n}
+            L=\limsup_{n\to\infty}\sqrt[n]{|a_n|}.
         \]
-        exists. If $L<1$, then $\sum a_n$ converges. If $L>1$, then
-        $\sum a_n$ diverges. If $L=1$, the test is inconclusive.
+        If $L<1$, then $\sum a_n$ converges absolutely. If $L>1$, then the
+        series diverges. If $L=1$, the test is inconclusive. When the ordinary
+        limit $\lim\limits_{n\to\infty}\sqrt[n]{|a_n|}$ exists, it equals the
+        displayed $\limsup$, giving the usual limit form of the test.
     \end{theorem}
 
     \begin{theorem}[Cauchy--Hadamard Theorem]
@@ -1856,13 +1911,15 @@
 
     \begin{definition}[Gradient, Divergence, Curl, and Laplacian]
         For a scalar-valued function $f(x,y,z)$ and a vector field
-        $\mathbf{F}=(P,Q,R)$, we write
+        $\mathbf{F}=(P,Q,R)^{\mathsf T}$, we write
         \[
             \nabla f
             =
-            \left(\frac{\partial f}{\partial x},
-                  \frac{\partial f}{\partial y},
-                  \frac{\partial f}{\partial z}\right),
+            \begin{pmatrix}
+                \partial f/\partial x\\
+                \partial f/\partial y\\
+                \partial f/\partial z
+            \end{pmatrix},
         \]
         \[
             \nabla\cdot\mathbf{F}
@@ -1880,13 +1937,21 @@
                 \mathbf{i} & \mathbf{j} & \mathbf{k} \\
                 \partial/\partial x & \partial/\partial y & \partial/\partial z \\
                 P & Q & R
-            \end{vmatrix},
+            \end{vmatrix}
+            =
+            \begin{pmatrix}
+                \partial R/\partial y-\partial Q/\partial z\\
+                \partial P/\partial z-\partial R/\partial x\\
+                \partial Q/\partial x-\partial P/\partial y
+            \end{pmatrix},
         \]
         and
         \[
             \Delta f
             =
-            \nabla\cdot\nabla f
+            \nabla^2f
+            =
+            \nabla\cdot(\nabla f)
             =
             f_{xx}+f_{yy}+f_{zz}.
         \]
@@ -1926,27 +1991,16 @@
             \frac{\|\mathbf{r}(\mathbf{h})\|}{\|\mathbf{h}\|}
             =0.
         \]
-        Equivalently,
+        Equivalently, in compact symbolic form,
+        {\small
         \[
-            \begin{aligned}
-                &\forall\varepsilon>0,
-                \quad
-                \exists\delta>0,
-                \quad
-                \forall\mathbf{h}\in\R^n,\\
-                &\bigl(\mathbf{a}+\mathbf{h}\in U\bigr)
-                \land
-                \bigl(0<\|\mathbf{h}\|<\delta\bigr)
-                \Rightarrow\\
-                &\qquad
-                \frac{
-                    \|\mathbf{F}(\mathbf{a}+\mathbf{h})
-                    -\mathbf{F}(\mathbf{a})
-                    -D\mathbf{F}(\mathbf{a})\mathbf{h}\|
-                }{\|\mathbf{h}\|}
-                <\varepsilon.
-            \end{aligned}
+            \forall\varepsilon>0\;\exists\delta>0\;\forall\mathbf{h}\in\R^n:\quad
+            \bigl(\mathbf{a}+\mathbf{h}\in U\land0<\|\mathbf{h}\|<\delta\bigr)
+            \Rightarrow
+            \|\mathbf{F}(\mathbf{a}+\mathbf{h})-\mathbf{F}(\mathbf{a})
+            -D\mathbf{F}(\mathbf{a})\mathbf{h}\|<\varepsilon\|\mathbf{h}\|.
         \]
+        }
         The linear map $D\mathbf{F}(\mathbf{a})$ is the total derivative;
         in standard coordinates, its matrix is the Jacobian matrix.
     \end{definition}
@@ -2451,6 +2505,13 @@
 
     \section*{Real Analysis}
 
+    \begin{theorem}[Least Upper Bound Property; Completeness Axiom of $\R$]
+        Every nonempty subset of $\R$ that is bounded above has a least upper
+        bound in $\R$. Equivalently, every nonempty subset bounded below has a
+        greatest lower bound. This completeness property distinguishes $\R$
+        from $\Q$ and underlies the standard convergence theorems of analysis.
+    \end{theorem}
+
     \begin{definition}[Metric Space and Open Ball]
         A metric space is a pair $(X,d)$ in which $d:X\times X\to\R$ satisfies,
         for all $x,y,z\in X$,
@@ -2470,7 +2531,7 @@
         \]
     \end{definition}
 
-    \begin{fact}[Common Metrics and a Standard Nonexample]
+    \begin{fact}[Common Metrics]
         For $\mathbf{x},\mathbf{y}\in\R^n$, each of
         \[
             d_1(\mathbf{x},\mathbf{y})
@@ -2497,14 +2558,6 @@
                 1, & x\neq y.
             \end{cases}
         \]
-        By contrast,
-        \[
-            d\bigl((x_1,x_2),(y_1,y_2)\bigr)
-            =
-            \min\{|x_1-y_1|,|x_2-y_2|\}
-        \]
-        is not a metric on $\R^2$, because distinct points can have distance
-        $0$.
     \end{fact}
 
     \begin{definition}[Open and Closed Sets in a Metric Space]
@@ -2519,16 +2572,51 @@
         A subset $F\subseteq X$ is closed if $X\setminus F$ is open.
     \end{definition}
 
-    \begin{definition}[Accumulation Point; Perfect Set]
-        Let $A\subseteq X$. A point $x\in X$ is an accumulation point of $A$ if
-        every open ball centered at $x$ contains a point of $A$ other than $x$:
-        \[
-            \forall r>0,
-            \qquad
-            \bigl(B_r(x)\setminus\{x\}\bigr)\cap A\neq\varnothing.
-        \]
-        A subset of a metric space is perfect if it is closed and every one of
-        its points is an accumulation point of the set.
+    \begin{definition}[Point and Set Taxonomy in a Metric Space]
+        Let $A\subseteq(X,d)$. The standard point types and associated sets are
+        summarized below.
+
+        {\small
+        \renewcommand{\arraystretch}{1.16}
+        \begin{longtable}{@{}L{0.22\textwidth}L{0.70\textwidth}@{}}
+            \toprule
+            Term & Criterion \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Term & Criterion \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Interior point & $x\in A$ and $\exists r>0$ s.t. $B_r(x)\subseteq A$ \\
+            Exterior point & $\exists r>0$ s.t. $B_r(x)\subseteq X\setminus A$ \\
+            Boundary point & $\forall r>0$, $B_r(x)\cap A\neq\varnothing$ and
+                $B_r(x)\cap(X\setminus A)\neq\varnothing$ \\
+            Accumulation point; limit point & $\forall r>0$,
+                $(B_r(x)\setminus\{x\})\cap A\neq\varnothing$ \\
+            Isolated point & $x\in A$ and $\exists r>0$ s.t.
+                $B_r(x)\cap A=\{x\}$ \\
+            Interior $A^\circ$ & the set of all interior points of $A$ \\
+            Closure $\overline{A}$ & $A$ together with all of its accumulation points;
+                equivalently, the smallest closed set containing $A$ \\
+            Boundary $\partial A$ & $\overline{A}\setminus A^\circ$ \\
+            Dense set & $\overline{A}=X$ \\
+            Perfect set & $A$ is closed and has no isolated points; equivalently,
+                every point of $A$ is an accumulation point of $A$ \\
+            Bounded set & $A\subseteq B_R(x_0)$ for some $x_0\in X$ and $R>0$ \\
+            Compact set & every open cover of $A$ has a finite subcover \\
+        \end{longtable}
+        }
+
+        In a metric space, $A$ is open iff every point of $A$ is interior, and
+        $A$ is closed iff it contains all of its accumulation points. In $\R^n$,
+        compactness is equivalent to being closed and bounded by the
+        Heine--Borel Theorem; this equivalence does not hold in arbitrary metric
+        spaces.
     \end{definition}
 
     \begin{fact}[Standard Subsets of the Real Line]
@@ -2640,7 +2728,7 @@
     \begin{definition}[Pointwise and Uniform Convergence]
         Let $f_n:E\to Y$ and $f:E\to Y$, where $(Y,d)$ is a metric space. The
         sequence $(f_n)$ converges pointwise to $f$, written
-        $f_n\ptwto f$, if
+        $f_n\to f$, if
         \[
             \forall x\in E,
             \quad
@@ -2652,7 +2740,7 @@
             \qquad
             d\bigl(f_n(x),f(x)\bigr)<\varepsilon.
         \]
-        It converges uniformly to $f$, written $f_n\unifto f$, if
+        It converges uniformly to $f$, written $f_n\rightrightarrows f$, if
         \[
             \forall\varepsilon>0,
             \quad
@@ -2700,12 +2788,6 @@
             |f_n(x)|\leq M.
         \]
     \end{definition}
-
-    \begin{theorem}[Least Upper Bound Property; Completeness Axiom of $\R$]
-        Every nonempty subset of $\R$ that is bounded above has a least upper
-        bound in $\R$. Equivalently, every nonempty subset bounded below has a
-        greatest lower bound.
-    \end{theorem}
 
     \begin{definition}[Limit Superior and Limit Inferior]
         For a real sequence $(a_n)$, define
@@ -2794,15 +2876,15 @@
 
     \begin{theorem}[Uniform Limit Theorem]
         If $(f_n)$ is a sequence of real- or complex-valued continuous functions
-        on a metric space $E$ and $f_n\unifto f$ on $E$, then $f$ is continuous
+        on a metric space $E$ and $f_n\rightrightarrows f$ on $E$, then $f$ is continuous
         on $E$.
     \end{theorem}
 
     \begin{theorem}[Term-by-Term Differentiation]
         Suppose $(f_n)$ is a sequence of continuously differentiable functions
         on a closed bounded interval $[a,b]$, and suppose $(f_n(x_0))$
-        converges for some $x_0\in[a,b]$. If $f_n'\unifto g$ on
-        $[a,b]$, then $f_n\unifto f$ for a differentiable function
+        converges for some $x_0\in[a,b]$. If $f_n'\rightrightarrows g$ on
+        $[a,b]$, then $f_n\rightrightarrows f$ for a differentiable function
         $f$, and
         \[
             f'=g=\lim\limits_{n\to\infty} f_n'.
@@ -3228,24 +3310,12 @@
 
     \relatedbooks{Linear Algebra and Its Applications (Gilbert Strang)}
 
-    \begin{definition}[Vector Space, Basis, and Dimension]
+    \begin{definition}[Vector Space]
         A vector space $V$ over a field $F$ is a set equipped with vector
-        addition and scalar multiplication satisfying the usual linearity
-        axioms. A list
-        \[
-            \mathbf{v}_1,\dots,\mathbf{v}_n
-        \]
-        is a basis of $V$ if it is linearly independent and spans $V$. If $V$
-        has a finite basis, every basis has the same number of vectors; this
-        number is the dimension of $V$, denoted by $\dim V$.
+        addition and scalar multiplication satisfying the standard vector-space
+        axioms. The scalars belong to $F$; in this book the principal cases are
+        $F=\R$ and $F=\C$.
     \end{definition}
-
-    \begin{theorem}[Basis Extension and Reduction]
-        Every linearly independent list in a finite-dimensional vector space
-        can be extended to a basis, and every spanning list contains a basis.
-        More generally, the assertion that every vector space has a basis is
-        equivalent to a standard form of the axiom of choice.
-    \end{theorem}
 
     \begin{definition}[Linear Combination, Span, and Linear Independence]
         A vector of the form
@@ -3268,6 +3338,23 @@
         \]
         implies $c_1=\cdots=c_k=0$.
     \end{definition}
+
+    \begin{definition}[Basis and Dimension]
+        A list
+        \[
+            \mathbf{v}_1,\dots,\mathbf{v}_n
+        \]
+        is a basis of $V$ if it is linearly independent and spans $V$. If $V$
+        has a finite basis, every basis has the same number of vectors; this
+        number is the dimension of $V$, denoted by $\dim V$.
+    \end{definition}
+
+    \begin{theorem}[Basis Extension and Reduction]
+        Every linearly independent list in a finite-dimensional vector space
+        can be extended to a basis, and every spanning list contains a basis.
+        More generally, the assertion that every vector space has a basis is
+        equivalent to a standard form of the axiom of choice.
+    \end{theorem}
 
     \begin{definition}[Linear Map; Linear Transformation]
         Let $V$ and $W$ be vector spaces over the same field $F$. A map
@@ -3404,6 +3491,29 @@
         by $\rk(\mathbf{A})$.
     \end{theorem}
 
+    \begin{definition}[Determinant]
+        The determinant is a scalar associated to a square matrix
+        $\mathbf{A}\in F^{n\times n}$, denoted by $\det(\mathbf{A})$.
+        Geometrically, for real matrices, $|\det(\mathbf{A})|$ is the volume
+        scaling factor of the linear transformation
+        $\mathbf{x}\mapsto\mathbf{A}\mathbf{x}$.
+    \end{definition}
+
+    \begin{definition}[Minor, Cofactor, and Adjugate]
+        Let $\mathbf{A}=(a_{ij})\in F^{n\times n}$. The minor $M_{ij}$ is the
+        determinant of the $(n-1)\times(n-1)$ matrix obtained by deleting row
+        $i$ and column $j$. The corresponding cofactor is
+        \[
+            C_{ij}=(-1)^{i+j}M_{ij}.
+        \]
+        The cofactor matrix is $(C_{ij})$, and the adjugate is its transpose:
+        \[
+            \adj(\mathbf{A})=(C_{ij})^{\mathsf T}.
+        \]
+        Cofactors are the coefficients in Laplace expansion and are therefore
+        the bridge between determinants and the adjugate formula for an inverse.
+    \end{definition}
+
     \begin{theorem}[Invertible Matrix Theorem]
         For a square matrix $\mathbf{A}\in F^{n\times n}$, the following
         statements are equivalent:
@@ -3492,14 +3602,6 @@
             \frac{1}{\det(\mathbf{A})}\adj(\mathbf{A}).
         \]
     \end{formula}
-
-    \begin{definition}[Determinant]
-        The determinant is a scalar associated to a square matrix
-        $\mathbf{A}\in F^{n\times n}$, denoted by $\det(\mathbf{A})$.
-        Geometrically, for real matrices, $|\det(\mathbf{A})|$ is the volume
-        scaling factor of the linear transformation
-        $\mathbf{x}\mapsto\mathbf{A}\mathbf{x}$.
-    \end{definition}
 
     \begin{formula}[Determinant as Volume]
         If $\mathbf{v}_1,\dots,\mathbf{v}_n\in\R^n$, then the $n$-dimensional
@@ -3770,6 +3872,73 @@
         vectors of the form $(\mathbf{x},\mathbf{x})$ and
         $(\mathbf{x},-\mathbf{x})$.
     \end{formula}
+
+    \begin{definition}[Eigenvalue and Characteristic Polynomial]
+        Let $\mathbf{A}\in F^{n\times n}$. A scalar $\lambda\in F$ is an
+        eigenvalue of $\mathbf{A}$ if there exists a nonzero vector
+        $\mathbf{v}\in F^n$ s.t.
+        \[
+            \mathbf{A}\mathbf{v}=\lambda\mathbf{v}.
+        \]
+        The characteristic polynomial of $\mathbf{A}$ is
+        \[
+            p_{\mathbf{A}}(\lambda)
+            =
+            \det(\lambda\mathbf{I}_n-\mathbf{A}).
+        \]
+    \end{definition}
+
+    \begin{definition}[Conjugate Transpose; Hermitian Matrix]
+        For a complex matrix $\mathbf{A}=(a_{ij})$, its conjugate transpose, or
+        Hermitian transpose, is
+        \[
+            \mathbf{A}^{\mathsf H}
+            =
+            \overline{\mathbf{A}}^{\mathsf T}
+            =
+            (\overline{a_{ji}}).
+        \]
+        A complex square matrix is Hermitian if
+        \[
+            \mathbf{A}^{\mathsf H}=\mathbf{A}.
+        \]
+        For real matrices, the Hermitian transpose is the ordinary transpose.
+    \end{definition}
+
+    \begin{proposition}[Basic Rules for the Hermitian Transpose]
+        For complex matrices of compatible sizes,
+        \[
+            (\mathbf{A}+\mathbf{B})^{\mathsf H}
+            =
+            \mathbf{A}^{\mathsf H}+\mathbf{B}^{\mathsf H},
+            \qquad
+            (c\mathbf{A})^{\mathsf H}
+            =
+            \overline{c}\,\mathbf{A}^{\mathsf H},
+        \]
+        \[
+            (\mathbf{A}\mathbf{B})^{\mathsf H}
+            =
+            \mathbf{B}^{\mathsf H}\mathbf{A}^{\mathsf H},
+            \qquad
+            (\mathbf{A}^{\mathsf H})^{\mathsf H}
+            =
+            \mathbf{A}.
+        \]
+    \end{proposition}
+
+    \begin{definition}[Orthogonal and Unitary Matrices]
+        A real square matrix $\mathbf{Q}$ is orthogonal if
+        \[
+            \mathbf{Q}^{\mathsf T}\mathbf{Q}=\mathbf{I}_n.
+        \]
+        A complex square matrix $\mathbf{U}$ is unitary if
+        \[
+            \mathbf{U}^{\mathsf H}\mathbf{U}=\mathbf{I}_n.
+        \]
+        Equivalently, their columns form orthonormal bases over $\R$ and $\C$,
+        respectively.
+    \end{definition}
 
     \begin{formula}[Special Matrix Recognition Table]
         For real or complex square matrices, the following implications permit
@@ -4107,21 +4276,6 @@
         rearranged arbitrarily.
     \end{proposition}
 
-    \begin{definition}[Eigenvalue and Characteristic Polynomial]
-        Let $\mathbf{A}\in F^{n\times n}$. A scalar $\lambda\in F$ is an
-        eigenvalue of $\mathbf{A}$ if there exists a nonzero vector
-        $\mathbf{v}\in F^n$ s.t.
-        \[
-            \mathbf{A}\mathbf{v}=\lambda\mathbf{v}.
-        \]
-        The characteristic polynomial of $\mathbf{A}$ is
-        \[
-            p_{\mathbf{A}}(\lambda)
-            =
-            \det(\lambda\mathbf{I}_n-\mathbf{A}).
-        \]
-    \end{definition}
-
     \begin{proposition}[Eigenvalues and the Characteristic Polynomial]
         A scalar $\lambda$ is an eigenvalue of $\mathbf{A}$ if and only if
         \[
@@ -4281,16 +4435,69 @@
         sufficiently high power to a linear combination of lower powers.
     \end{strategy}
 
-    \begin{theorem}[Diagonalization Criterion]
+    \begin{definition}[Algebraic and Geometric Multiplicity]
+        Let $\lambda$ be an eigenvalue of $\mathbf{A}\in F^{n\times n}$.
+        Its algebraic multiplicity $m_a(\lambda)$ is its multiplicity as a root
+        of $p_{\mathbf{A}}(t)$, while its geometric multiplicity is
+        \[
+            m_g(\lambda)
+            =
+            \dim\Null(\mathbf{A}-\lambda\mathbf{I}_n).
+        \]
+        For every eigenvalue,
+        \[
+            1\leq m_g(\lambda)\leq m_a(\lambda).
+        \]
+    \end{definition}
+
+    \begin{definition}[Diagonalizable Matrix]
         A matrix $\mathbf{A}\in F^{n\times n}$ is diagonalizable over $F$ if
-        and only if $F^n$ has a basis consisting of eigenvectors of
-        $\mathbf{A}$.
+        there exist an invertible matrix $\mathbf{P}\in F^{n\times n}$ and a
+        diagonal matrix $\mathbf{D}$ s.t.
+        \[
+            \mathbf{A}=\mathbf{P}\mathbf{D}\mathbf{P}^{-1}.
+        \]
+        Equivalently, the columns of $\mathbf{P}$ can be chosen as a basis of
+        eigenvectors of $\mathbf{A}$. Diagonalization is useful because powers
+        and polynomial functions reduce to entrywise calculations on
+        $\mathbf{D}$:
+        \[
+            \mathbf{A}^k=\mathbf{P}\mathbf{D}^k\mathbf{P}^{-1}.
+        \]
+    \end{definition}
+
+    \begin{theorem}[Diagonalization Criteria]
+        Suppose the characteristic polynomial of
+        $\mathbf{A}\in F^{n\times n}$ splits over $F$. The following are
+        equivalent:
+        \[
+            \mathbf{A}\text{ is diagonalizable over }F,
+        \]
+        \[
+            \sum_{\lambda}m_g(\lambda)=n,
+        \]
+        and
+        \[
+            m_g(\lambda)=m_a(\lambda)
+            \quad\text{for every eigenvalue }\lambda.
+        \]
+        Equivalently, the minimal polynomial of $\mathbf{A}$ splits over $F$
+        into distinct linear factors.
     \end{theorem}
 
     \begin{corollary}[Distinct Eigenvalues Imply Diagonalizability]
         If an $n\times n$ matrix $\mathbf{A}$ has $n$ distinct eigenvalues in
         $F$, then $\mathbf{A}$ is diagonalizable over $F$.
     \end{corollary}
+
+    \begin{remark}
+        The field matters. A real matrix can fail to be diagonalizable over
+        $\R$ because its characteristic polynomial has nonreal roots, while the
+        same matrix may be diagonalizable over $\C$. Over $\C$, every
+        characteristic polynomial splits, so only the multiplicity conditions
+        remain. Stronger diagonalization results for symmetric, Hermitian, and
+        normal matrices appear below.
+    \end{remark}
 
     \begin{proposition}[Polynomials of a Diagonalizable Matrix]
         Let $\mathbf{A}\in F^{n\times n}$ be diagonalizable over $F$, and suppose
@@ -4372,54 +4579,6 @@
         A real symmetric matrix has real eigenvalues and admits orthogonal
         diagonalization.
     \end{remark}
-
-    \begin{definition}[Conjugate Transpose; Hermitian Transpose]
-        For a complex matrix $\mathbf{A}=(a_{ij})$, its conjugate transpose, or
-        Hermitian transpose, is
-        \[
-            \mathbf{A}^{\mathsf H}
-            =
-            \overline{\mathbf{A}}^{\mathsf T}
-            =
-            (\overline{a_{ji}}).
-        \]
-        A complex square matrix is Hermitian if
-        \[
-            \mathbf{A}^{\mathsf H}=\mathbf{A},
-        \]
-        and unitary if
-        \[
-            \mathbf{A}^{\mathsf H}\mathbf{A}
-            =
-            \mathbf{A}\mathbf{A}^{\mathsf H}
-            =
-            \mathbf{I}_n.
-        \]
-    \end{definition}
-
-    \begin{proposition}[Basic Rules for the Hermitian Transpose]
-        For complex matrices of compatible sizes,
-        \[
-            (\mathbf{A}+\mathbf{B})^{\mathsf H}
-            =
-            \mathbf{A}^{\mathsf H}+\mathbf{B}^{\mathsf H},
-            \qquad
-            (c\mathbf{A})^{\mathsf H}
-            =
-            \overline{c}\,\mathbf{A}^{\mathsf H},
-        \]
-        \[
-            (\mathbf{A}\mathbf{B})^{\mathsf H}
-            =
-            \mathbf{B}^{\mathsf H}\mathbf{A}^{\mathsf H},
-            \qquad
-            (\mathbf{A}^{\mathsf H})^{\mathsf H}
-            =
-            \mathbf{A}.
-        \]
-        If $\mathbf{A}$ is real, then $\mathbf{A}^{\mathsf H}=\mathbf{A}^{\mathsf T}$.
-    \end{proposition}
-
 
     \begin{definition}[Normal Matrix]
         A complex square matrix $\mathbf{A}$ is normal if
@@ -4522,10 +4681,6 @@
     \end{corollary}
 
     \begin{proposition}[Properties of Orthogonal Matrices]
-        A real square matrix $\mathbf{Q}$ is orthogonal if
-        \[
-            \mathbf{Q}^{\mathsf T}\mathbf{Q}=\mathbf{I}_n.
-        \]
         If $\mathbf{Q}$ is orthogonal, then
         \[
             \|\mathbf{Q}\mathbf{v}\|=\|\mathbf{v}\|,
@@ -4537,6 +4692,81 @@
             \det(\mathbf{Q})=\pm 1.
         \]
     \end{proposition}
+
+    \begin{definition}[Positive Definite Matrix]
+        A Hermitian matrix $\mathbf{A}\in\C^{n\times n}$ is positive definite if
+        \[
+            \mathbf{x}^{\mathsf H}\mathbf{A}\mathbf{x}>0
+        \]
+        for every nonzero $\mathbf{x}\in\C^n$. Over $\R$, this is the familiar
+        condition that $\mathbf{A}$ is symmetric and
+        \[
+            \mathbf{x}^{\mathsf T}\mathbf{A}\mathbf{x}>0
+        \]
+        for every nonzero $\mathbf{x}\in\R^n$.
+    \end{definition}
+
+    \begin{definition}[Singular Values]
+        Let $\mathbf{A}\in\C^{m\times n}$. The singular values of
+        $\mathbf{A}$ are the nonnegative square roots of the eigenvalues of
+        \[
+            \mathbf{A}^{\mathsf H}\mathbf{A}.
+        \]
+        For real matrices, $\mathbf{A}^{\mathsf H}=\mathbf{A}^{\mathsf T}$.
+    \end{definition}
+
+    \begin{formula}[Matrix Decomposition Reference Table]
+        The most useful matrix decompositions are summarized by their hypotheses
+        and the computation they simplify.
+
+        {\small
+        \renewcommand{\arraystretch}{1.16}
+        \begin{longtable}{@{}L{0.20\textwidth}L{0.26\textwidth}L{0.25\textwidth}L{0.21\textwidth}@{}}
+            \toprule
+            Decomposition & Form & Typical condition & Main use \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Decomposition & Form & Typical condition & Main use \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Rank factorization & $\mathbf{A}=\mathbf{U}\mathbf{V}$ &
+                $\rk(\mathbf{A})=r$, with $\mathbf{U}\in F^{m\times r}$,
+                $\mathbf{V}\in F^{r\times n}$ of rank $r$ & expose rank and
+                column/row spaces \\
+            LU & $\mathbf{A}=\mathbf{L}\mathbf{U}$ & elimination without
+                row exchanges; with pivoting, $\mathbf{P}\mathbf{A}=\mathbf{L}\mathbf{U}$ &
+                repeated linear solves, determinants \\
+            QR & $\mathbf{A}=\mathbf{Q}\mathbf{R}$ & full column rank, with
+                orthonormal columns of $\mathbf{Q}$ & least squares,
+                orthogonalization \\
+            Cholesky & $\mathbf{A}=\mathbf{L}\mathbf{L}^{\mathsf H}$ &
+                Hermitian positive definite; over $\R$, this is
+                $\mathbf{L}\mathbf{L}^{\mathsf T}$ & fast stable linear solves \\
+            Diagonalization & $\mathbf{A}=\mathbf{P}\mathbf{D}\mathbf{P}^{-1}$ &
+                a basis of eigenvectors & powers and functions of $\mathbf{A}$ \\
+            Orthogonal spectral & $\mathbf{A}=\mathbf{Q}\mathbf{D}\mathbf{Q}^{\mathsf T}$ &
+                real symmetric & real orthonormal eigenbasis \\
+            Unitary spectral & $\mathbf{A}=\boldsymbol{\Omega}\boldsymbol{\Lambda}
+                \boldsymbol{\Omega}^{\mathsf H}$ & complex normal & orthonormal
+                eigenbasis over $\C$ \\
+            Schur & $\mathbf{A}=\mathbf{Q}\mathbf{T}\mathbf{Q}^{\mathsf H}$ &
+                every complex square matrix & triangularize without assuming
+                diagonalizability \\
+            SVD & $\mathbf{A}=\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\mathsf H}$ &
+                every real or complex matrix & rank, least squares,
+                conditioning, best low-rank approximation \\
+        \end{longtable}
+        }
+        For real matrices, $\mathbf{V}^{\mathsf H}=\mathbf{V}^{\mathsf T}$.
+        The displayed letters are matrices and therefore follow the book's
+        bold-uppercase convention.
+    \end{formula}
 
     \begin{algorithm}[Gaussian Elimination]
         Gaussian elimination uses elementary row operations to transform a
@@ -4672,43 +4902,30 @@
         \]
     \end{proposition}
 
-    \begin{definition}[Positive Definite Matrix]
-        A real symmetric matrix $\mathbf{A}$ is positive definite if
-        \[
-            \mathbf{x}^{\mathsf T}\mathbf{A}\mathbf{x}>0
-        \]
-        for every nonzero vector $\mathbf{x}$.
-    \end{definition}
-
     \begin{theorem}[Sylvester's Criterion]
         A real symmetric matrix is positive definite if and only if all of its
         leading principal minors are positive.
     \end{theorem}
 
-    \begin{definition}[Singular Values]
-        Let $\mathbf{A}\in\R^{m\times n}$. The singular values of
-        $\mathbf{A}$ are the nonnegative square roots of the eigenvalues of
-        \[
-            \mathbf{A}^{\mathsf T}\mathbf{A}.
-        \]
-    \end{definition}
-
     \begin{theorem}[Singular Value Decomposition; SVD]
-        Every real matrix $\mathbf{A}\in\R^{m\times n}$ can be written as
+        Every real or complex matrix $\mathbf{A}\in\C^{m\times n}$ can be
+        written as
         \[
             \mathbf{A}
             =
-            \mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\mathsf T},
+            \mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\mathsf H},
         \]
-        where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal matrices and
+        where $\mathbf{U}$ and $\mathbf{V}$ are unitary matrices and
         $\boldsymbol{\Sigma}$ is a rectangular diagonal matrix whose diagonal
-        entries are the singular values of $\mathbf{A}$.
+        entries are the singular values of $\mathbf{A}$. For real
+        $\mathbf{A}$, the factors may be chosen real and orthogonal, so
+        $\mathbf{V}^{\mathsf H}=\mathbf{V}^{\mathsf T}$.
     \end{theorem}
 
     \begin{remark}
-        Singular Value Decomposition applies to every real matrix, not only to
-        square or diagonalizable matrices. This is why SVD is one of the most
-        useful decompositions in applied linear algebra.
+        Singular Value Decomposition applies to every real or complex matrix,
+        not only to square or diagonalizable matrices. This is why SVD is one
+        of the most useful decompositions in applied linear algebra.
     \end{remark}
 
 
@@ -4755,6 +4972,53 @@
 
     \relatedbooks{Elementary Differential Equations and Boundary Value Problems
         (William E. Boyce, Richard C. DiPrima, Douglas B. Meade)}
+
+    \begin{definition}[Differential Equation, Order, and Initial Value Problem]
+        An ordinary differential equation (ODE) relates an unknown function of
+        one independent variable to its derivatives. Its order is the highest
+        derivative that occurs. An $n$th-order linear ODE has the form
+        \[
+            a_n(t)y^{(n)}+a_{n-1}(t)y^{(n-1)}+\cdots+a_1(t)y'+a_0(t)y=g(t),
+        \]
+        with $a_n$ not identically zero. It is homogeneous when $g=0$.
+        An initial value problem (IVP) supplements the equation with enough
+        values such as $y(t_0),y'(t_0),\dots$ to select a particular solution.
+    \end{definition}
+
+    \begin{formula}[First-Order ODE Recognition Table]
+        Before calculating, identify the structural form.
+
+        {\small
+        \renewcommand{\arraystretch}{1.16}
+        \begin{longtable}{@{}L{0.20\textwidth}L{0.31\textwidth}L{0.41\textwidth}@{}}
+            \toprule
+            Type & Equation & Reduction or solution \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Type & Equation & Reduction or solution \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Separable & $y'=g(t)h(y)$ &
+                $\displaystyle\int\frac{\dd y}{h(y)}=\int g(t)\dd t+C$ on
+                intervals where $h(y)\neq0$; also check equilibrium solutions
+                $h(y)=0$ \\
+            Linear & $y'+p(t)y=q(t)$ & integrating factor
+                $\displaystyle\mu(t)=e^{\int p(t)\dd t}$ \\
+            Exact & $M(t,y)\dd t+N(t,y)\dd y=0$ & find $F$ with
+                $F_t=M$, $F_y=N$, then $F(t,y)=C$ \\
+            Bernoulli & $y'+p(t)y=q(t)y^n$, $n\neq0,1$ & substitute
+                $u=y^{1-n}$ to obtain a linear equation \\
+            Autonomous & $y'=f(y)$ & equilibria satisfy $f(y)=0$; away from
+                equilibria the equation is separable \\
+        \end{longtable}
+        }
+    \end{formula}
 
     \begin{theorem}[Picard--Lindel\"of Existence and Uniqueness Theorem]
         Consider the initial value problem
@@ -4943,14 +5207,28 @@
     \end{formula}
 
     \begin{formula}[Euler--Cauchy Equation]
-        The equation
+        On an interval with $x>0$, the equation
         \[
-            ax^2y''+bxy'+cy=0
+            ax^2y''+bxy'+cy=0,
+            \qquad a\neq0,
         \]
-        suggests the trial solution $y=x^r$. This gives the indicial equation
+        suggests the trial solution $y=x^r$, giving the indicial equation
         \[
             ar(r-1)+br+c=0.
         \]
+        If its roots are distinct real numbers $r_1,r_2$, then
+        \[
+            y=c_1x^{r_1}+c_2x^{r_2}.
+        \]
+        For a repeated root $r$,
+        \[
+            y=x^r(c_1+c_2\ln x).
+        \]
+        For roots $\alpha\pm i\beta$ with $\beta\neq0$,
+        \[
+            y=x^\alpha\bigl(c_1\cos(\beta\ln x)+c_2\sin(\beta\ln x)\bigr).
+        \]
+        On intervals with $x<0$, the analogous real formulas use $|x|$.
     \end{formula}
 
     \begin{algorithm}[Undetermined Coefficients]
@@ -4997,14 +5275,15 @@
         The logistic equation is
         \[
             y'=ky\left(1-\frac{y}{K}\right),
+            \qquad k>0,\quad K>0.
         \]
-        where $k>0$ is the growth rate and $K>0$ is the carrying capacity.
-        Its equilibrium solutions are
+        Its equilibrium solutions are $y=0$ and $y=K$. Every non-equilibrium
+        solution on an interval on which it is defined has the form
         \[
-            y=0
-            \qquad\text{and}\qquad
-            y=K.
+            y(t)=\frac{K}{1+Ce^{-kt}},
         \]
+        where $C$ is determined by the initial condition. For
+        $0<y(0)<K$, one has $C>0$ and $y(t)\to K$ as $t\to\infty$.
     \end{formula}
 
     \begin{remark}
@@ -5034,23 +5313,36 @@
     \end{remark}
 
     \begin{formula}[Damped Harmonic Oscillator]
-        The equation
+        For $m>0$, $c\geq0$, and $k>0$, the equation
         \[
             mx''+cx'+kx=0
         \]
-        models a damped harmonic oscillator. Its characteristic equation is
+        has characteristic equation $mr^2+cr+k=0$. Put
         \[
-            mr^2+cr+k=0.
+            \alpha=\frac{c}{2m}.
         \]
-        The motion is underdamped, critically damped, or overdamped according
-        as
+        The three regimes and solution forms are
         \[
-            c^2-4mk<0,
-            \qquad
-            c^2-4mk=0,
-            \qquad
-            c^2-4mk>0.
+            c^2<4mk:
+            \quad
+            x(t)=e^{-\alpha t}
+            \bigl(c_1\cos(\omega_dt)+c_2\sin(\omega_dt)\bigr),
+            \quad
+            \omega_d=\sqrt{\frac{k}{m}-\alpha^2},
         \]
+        \[
+            c^2=4mk:
+            \quad
+            x(t)=(c_1+c_2t)e^{-\alpha t},
+        \]
+        and, if $c^2>4mk$,
+        \[
+            x(t)=c_1e^{r_1t}+c_2e^{r_2t},
+            \qquad
+            r_{1,2}=\frac{-c\pm\sqrt{c^2-4mk}}{2m}.
+        \]
+        These are called underdamped, critically damped, and overdamped,
+        respectively.
     \end{formula}
 
     \begin{definition}[Laplace Transform]
@@ -5325,7 +5617,26 @@
 
     \relatedcourses{(MATH261) Discrete Mathematics}
 
-    \relatedbooks{Introductory Combinatorics (Richard A. Brualdi)}
+    \relatedbooks{Introductory Combinatorics (Richard A. Brualdi),
+        Invitation to Discrete Mathematics (Ji\v{r}\'i Matou\v{s}ek, Jaroslav Ne\v{s}et\v{r}il)}
+
+    \begin{definition}[Permutation, Combination, and Multiset Selection]
+        An ordered selection of $k$ distinct objects from $n$ distinct objects
+        is a $k$-permutation, counted by
+        \[
+            P(n,k)=\frac{n!}{(n-k)!}.
+        \]
+        An unordered $k$-element selection is a $k$-combination, counted by
+        \[
+            \binom{n}{k}.
+        \]
+        If repetition is allowed and order is ignored, the number of size-$k$
+        multisets from $n$ types is
+        \[
+            \multichoose{n}{k}=\binom{n+k-1}{k}.
+        \]
+        These three models should be distinguished before applying a formula.
+    \end{definition}
 
     \begin{formula}[Binomial Theorem; Newton's Binomial Formula]
         For every nonnegative integer $n$,
@@ -5615,6 +5926,19 @@
         is the required block sum.
     \end{theorem}
 
+    \begin{definition}[Graph Walks, Paths, Trails, Cycles, and Trees]
+        In a graph $G=(V,E)$, a walk is a sequence of adjacent vertices. A trail
+        repeats no edge, while a path repeats no vertex. A closed trail is a
+        circuit, and a cycle is a closed path apart from its repeated initial
+        and terminal vertex. A graph is connected if every two vertices are
+        joined by a path. A tree is a connected graph containing no cycle.
+
+        An Eulerian trail uses every edge exactly once; an Eulerian circuit is
+        a closed Eulerian trail. A Hamiltonian path visits every vertex exactly
+        once; a Hamiltonian cycle returns to its starting vertex. Thus the
+        one-stroke drawing problem is an Eulerian, not a Hamiltonian, question.
+    \end{definition}
+
     \begin{strategy}[Coloring, Parity, and Bipartite Obstructions]
         Colorings convert geometric or movement constraints into parity data.
         On a bipartite graph, every path alternates colors. Thus a Hamiltonian
@@ -5644,20 +5968,25 @@
         overcounting. It is also historically connected to sieve methods.
     \end{remark}
 
-    \begin{formula}[Derangement Formula]
+    \begin{formula}[Derangement Formula and Recurrence]
         Let $D_n$ be the number of derangements of $n$ objects, that is,
         permutations with no fixed points. Then
         \[
-            D_n
-            =
-            n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}.
+            D_n=n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}
+            =\left\lfloor \frac{n!}{e}+\frac12\right\rfloor.
         \]
-        Moreover,
+        The characteristic recurrence is
         \[
-            D_n
-            =
-            \left\lfloor \frac{n!}{e}+\frac12\right\rfloor.
+            D_n=(n-1)(D_{n-1}+D_{n-2})
+            \qquad(n\geq2),
         \]
+        with $D_0=1$ and $D_1=0$. Equivalently,
+        \[
+            D_n=nD_{n-1}+(-1)^n.
+        \]
+        The first recurrence comes from choosing the image of a distinguished
+        object and separating the cases in which a resulting transposition is
+        completed or not.
     \end{formula}
 
     \begin{remark}
@@ -5685,12 +6014,6 @@
         full binary trees. The number $42$ is a standard recognition item.
     \end{remark}
 
-    \begin{theorem}[Cayley's Formula]
-        The number of labeled trees on $n$ vertices is
-        \[
-            n^{n-2}.
-        \]
-    \end{theorem}
 
     \begin{remark}
         Cayley's formula gives a compact and surprising enumeration of labeled
@@ -5717,6 +6040,28 @@
         is the average number of objects fixed by a symmetry.
     \end{idea}
 
+    \begin{theorem}[Equivalent Characterizations of a Tree]
+        For a finite graph $G$ with $n$ vertices, any two of the following
+        conditions imply the third, and in fact all three are equivalent:
+        \[
+            G\text{ is connected and acyclic},
+        \]
+        \[
+            G\text{ is connected and }|E|=n-1,
+        \]
+        and
+        \[
+            \text{every two vertices are joined by a unique path}.
+        \]
+        Equivalently, a tree is minimally connected and maximally acyclic.
+    \end{theorem}
+
+    \begin{theorem}[Bipartite Graph Criterion]
+        A graph is bipartite if and only if it contains no odd cycle. Therefore
+        a two-coloring obstruction and an odd-cycle obstruction are the same
+        phenomenon.
+    \end{theorem}
+
     \begin{lemma}[Handshaking Lemma]
         For a finite undirected graph $G=(V,E)$,
         \[
@@ -5742,6 +6087,14 @@
         This is the graph-theoretic version of Euler's polyhedron formula.
         It is one of the most famous formulas involving planar graphs.
     \end{remark}
+
+
+    \begin{theorem}[Kuratowski's Theorem]
+        A finite graph is planar if and only if it contains no subgraph that is
+        a subdivision of $K_5$ or $K_{3,3}$. Thus the two classical complete
+        graphs $K_5$ and $K_{3,3}$ are the fundamental obstructions to
+        planarity in the sense of subdivisions.
+    \end{theorem}
 
     \begin{formula}[Regions Cut by Hyperplanes in General Position]
         The maximum number of regions into which $n$ hyperplanes in general
@@ -5925,7 +6278,66 @@
 
     \relatedcourses{(MATH230) Probability \& Statistics}
 
-    \relatedbooks{}
+    \relatedbooks{Probability \& Statistics for Engineers \& Scientists
+        (Ronald E. Walpole, Raymond H. Myers, Sharon L. Myers, Keying Ye)}
+
+    \begin{definition}[Probability Space, Event, and Conditional Probability]
+        A probability space is a triple $(\Omega,\mathcal{F},\Prob)$, where
+        $\Omega$ is the sample space, $\mathcal{F}$ is a $\sigma$-algebra of
+        events, and $\Prob:\mathcal{F}\to[0,1]$ satisfies
+        \[
+            \Prob(\Omega)=1,
+            \qquad
+            \Prob\!\left(\bigsqcup_{i=1}^{\infty}A_i\right)
+            =
+            \sum_{i=1}^{\infty}\Prob(A_i)
+        \]
+        for pairwise disjoint events $A_i\in\mathcal{F}$. If
+        $\Prob(B)>0$, the conditional probability of $A$ given $B$ is
+        \[
+            \Prob(A\mid B)
+            =
+            \frac{\Prob(A\cap B)}{\Prob(B)}.
+        \]
+    \end{definition}
+
+    \begin{definition}[Random Variable, Distribution, and Distribution Function]
+        A random variable is a measurable function $X:\Omega\to\R$. Its
+        distribution is the probability law of its values. For a discrete
+        random variable, the probability mass function is
+        \[
+            p_X(x)=\Prob(X=x),
+            \qquad
+            \sum_x p_X(x)=1.
+        \]
+        For a continuous random variable with density $f_X$,
+        \[
+            \Prob(a<X\leq b)=\int_a^b f_X(x)\,\mathrm{d}x,
+            \qquad
+            \int_{-\infty}^{\infty}f_X(x)\,\mathrm{d}x=1.
+        \]
+        In either case the cumulative distribution function is
+        \[
+            F_X(x)=\Prob(X\leq x).
+        \]
+    \end{definition}
+
+    \begin{definition}[Expectation and Variance]
+        If the relevant sum or integral converges absolutely, then
+        \[
+            \Exp[X]
+            =
+            \begin{cases}
+                \displaystyle\sum_x x\,\Prob(X=x), & X\text{ discrete},\\[1mm]
+                \displaystyle\int_{-\infty}^{\infty}x f_X(x)\,\mathrm{d}x,
+                & X\text{ continuous},
+            \end{cases}
+        \]
+        and, whenever the second moment is finite,
+        \[
+            \Var(X)=\Exp\!\left[(X-\Exp[X])^2\right].
+        \]
+    \end{definition}
 
     \begin{theorem}[Law of Total Probability]
         If $B_1,\dots,B_n$ form a partition of the sample space and
@@ -5952,6 +6364,7 @@
     \end{theorem}
 
     \begin{formula}[Law of Total Variance]
+        If $X$ has finite second moment, then
         \[
             \Var(X)
             =
@@ -5983,6 +6396,16 @@
         probability. It updates a prior probability after observing evidence.
     \end{remark}
 
+    \begin{remark}
+        In general,
+        \[
+            \Prob(A\mid B)\neq\Prob(B\mid A).
+        \]
+        The two quantities reverse the roles of evidence and hypothesis.
+        Bayes' Theorem relates them; it does not permit the conditioning bar to
+        be reversed without the corresponding prior probabilities.
+    \end{remark}
+
     \begin{definition}[Independence]
         Events $A$ and $B$ are independent if
         \[
@@ -5994,6 +6417,14 @@
         \]
         Random variables $X$ and $Y$ are independent if events determined by
         $X$ and events determined by $Y$ are independent.
+        A family of events is mutually independent if every finite subfamily
+        has intersection probability equal to the product of its individual
+        probabilities. In general,
+        \[
+            \text{pairwise independence}
+            \nRightarrow
+            \text{mutual independence}.
+        \]
     \end{definition}
 
     \begin{definition}[Conditional Distribution]
@@ -6077,7 +6508,12 @@
     \end{proposition}
 
     \begin{formula}[Common Probability Distributions]
-        The most frequently used distributions are summarized below.
+        The most frequently used distributions are summarized below. Unless
+        otherwise indicated, $0<p<1$, $n,r\in\N$, $\lambda>0$,
+        $\alpha,\beta>0$, $a<b$, $\sigma>0$, and $\nu\in\N$. For the
+        negative binomial row, $X$ is the trial number on which the $r$th
+        success occurs; the Gamma distribution uses the rate parameter
+        $\lambda$.
 
         {\small
         \renewcommand{\arraystretch}{1.18}
@@ -6104,6 +6540,9 @@
             Geometric$(p)$ &
             $\Prob(X=k)=(1-p)^{k-1}p$, $k\geq1$ &
             $\displaystyle\frac1p$ & $\displaystyle\frac{1-p}{p^2}$ \\
+            Negative binomial$(r,p)$ &
+            $\displaystyle\Prob(X=k)=\binom{k-1}{r-1}p^r(1-p)^{k-r}$, $k\geq r$ &
+            $\displaystyle\frac{r}{p}$ & $\displaystyle\frac{r(1-p)}{p^2}$ \\
             Poisson$(\lambda)$ &
             $\displaystyle\Prob(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}$ &
             $\lambda$ & $\lambda$ \\
@@ -6113,12 +6552,40 @@
             Exponential$(\lambda)$ &
             $f(x)=\lambda e^{-\lambda x}$, $x\geq0$ &
             $\displaystyle\frac1\lambda$ & $\displaystyle\frac1{\lambda^2}$ \\
+            Gamma$(\alpha,\lambda)$ &
+            $\displaystyle f(x)=\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}$, $x>0$ &
+            $\displaystyle\frac{\alpha}{\lambda}$ & $\displaystyle\frac{\alpha}{\lambda^2}$ \\
+            Beta$(\alpha,\beta)$ &
+            $\displaystyle f(x)=\frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}$, $0<x<1$ &
+            $\displaystyle\frac{\alpha}{\alpha+\beta}$ &
+            {\scriptsize$\displaystyle\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$} \\
+            $\chi^2(\nu)$ &
+            $\displaystyle f(x)=\frac{x^{\nu/2-1}e^{-x/2}}{2^{\nu/2}\Gamma(\nu/2)}$, $x>0$ &
+            $\nu$ & $2\nu$ \\
             Normal$(\mu,\sigma^2)$ &
             $\displaystyle f(x)=\frac{1}{\sigma\sqrt{2\pi}}
             e^{-(x-\mu)^2/(2\sigma^2)}$ &
             $\mu$ & $\sigma^2$ \\
         \end{longtable}
         }
+    \end{formula}
+
+    \begin{formula}[Classical Sampling-Distribution Constructions]
+        Let $Z,Z_1,\dots,Z_\nu\sim N(0,1)$ be independent. Then
+        \[
+            \sum_{i=1}^{\nu}Z_i^2\sim\chi^2(\nu).
+        \]
+        If $U\sim\chi^2(\nu)$ is independent of $Z$, then
+        \[
+            \frac{Z}{\sqrt{U/\nu}}\sim t(\nu).
+        \]
+        If $U_1\sim\chi^2(d_1)$ and $U_2\sim\chi^2(d_2)$ are independent,
+        then
+        \[
+            \frac{U_1/d_1}{U_2/d_2}\sim F(d_1,d_2).
+        \]
+        These three constructions are the standard recognition rules for the
+        chi-square, Student $t$, and $F$ distributions.
     \end{formula}
 
     \begin{strategy}
@@ -6154,7 +6621,12 @@
             -1\leq\rho_{X,Y}\leq1.
         \]
         If $X$ and $Y$ are independent, then $\Cov(X,Y)=0$, so their variances
-        add. The converse need not hold.
+        add. In general,
+        \[
+            \Cov(X,Y)=0
+            \nRightarrow
+            X\text{ and }Y\text{ are independent}.
+        \]
     \end{formula}
 
     \begin{formula}[Hypergeometric Distribution]
@@ -6300,7 +6772,8 @@
     \end{theorem}
 
     \begin{theorem}[Chebyshev's Inequality]
-        If $X$ has mean $\mu$ and variance $\sigma^2$, then for every $k>0$,
+        If $X$ has finite mean $\mu$ and finite variance $\sigma^2>0$, then
+        for every $k>0$,
         \[
             \Prob(|X-\mu|\geq k\sigma)
             \leq
@@ -6336,13 +6809,15 @@
     \end{theorem}
 
     \begin{theorem}[Jensen's Inequality]
-        If $\varphi$ is convex, then
+        Let $X$ be integrable and take values in an interval $I$, and let
+        $\varphi:I\to\R$ be convex with $\varphi(X)$ integrable. Then
         \[
             \varphi(\Exp[X])
             \leq
             \Exp[\varphi(X)].
         \]
-        If $\varphi$ is concave, the inequality is reversed.
+        If $\varphi$ is concave under the analogous integrability
+        assumptions, the inequality is reversed.
     \end{theorem}
 
     \begin{idea}
@@ -6474,16 +6949,6 @@
         to the given line.
     \end{fact}
 
-    \begin{theorem}[Parallel Postulate and Triangle Angle Sum]
-        Within standard neutral geometry, the Euclidean parallel postulate is
-        equivalent to the assertion that every triangle has angle sum
-        \[
-            \pi.
-        \]
-        Consequently, the familiar triangle angle-sum theorem is not a
-        consequence of Euclid's first four postulates alone.
-    \end{theorem}
-
     \begin{definition}[Euclidean, Hyperbolic, and Elliptic Geometry]
         The three constant-curvature geometries are distinguished by their
         parallel behavior and triangle angle sums.
@@ -6506,6 +6971,16 @@
             Elliptic / spherical & No disjoint geodesic line & Greater than $\pi$ \\
         \end{longtable}
     \end{definition}
+
+    \begin{theorem}[Parallel Postulate and Triangle Angle Sum]
+        Within standard neutral geometry, the Euclidean parallel postulate is
+        equivalent to the assertion that every triangle has angle sum
+        \[
+            \pi.
+        \]
+        Consequently, the familiar triangle angle-sum theorem is not a
+        consequence of Euclid's first four postulates alone.
+    \end{theorem}
 
     \begin{formula}[Geodesic Triangle Angle Sum on Constant Curvature]
         Let a geodesic triangle lie on a surface of constant Gaussian curvature
@@ -6577,6 +7052,17 @@
         where the latter two use proportional corresponding side lengths.
     \end{proposition}
 
+
+    \begin{remark}
+        For right triangles, RHS (right angle--hypotenuse--side), also called
+        HL in some conventions, is a valid congruence criterion. A condition
+        sometimes called RHA (right angle--hypotenuse--acute angle) is also
+        sufficient, but it is already an ASA/AAS case because the two acute
+        angles of a right triangle are complementary. By contrast, SSA is not
+        a congruence criterion in general; the right-triangle hypotheses are
+        essential in the familiar hypotenuse-based special cases.
+    \end{remark}
+
     \begin{theorem}[Midpoint Theorem and Centroid Ratio]
         The segment joining the midpoints of two sides of a triangle is parallel
         to the third side and has half its length. The three medians are
@@ -6595,16 +7081,6 @@
         similar triangles, and power of a point are especially useful targets.
     \end{strategy}
 
-    \begin{theorem}[Happy Ending Problem, Five-Point Case]
-        Among any five points in the plane, no three collinear, there are four
-        points that are the vertices of a convex quadrilateral.
-    \end{theorem}
-
-    \begin{idea}
-        Examine the convex hull. If it has at least four vertices, choose four
-        of them. If it is a triangle, use the line through the two interior
-        points and choose two hull vertices lying on the same side of that line.
-    \end{idea}
 
     \begin{definition}[Classical Triangle Centers]
         For a triangle $\triangle ABC$, the most important classical centers
@@ -7071,22 +7547,8 @@
         This point is called the Miquel point.
     \end{theorem}
 
-    \begin{theorem}[Butterfly Theorem]
-        Let $M$ be the midpoint of a chord $PQ$ of a circle. Through $M$, draw
-        two other chords $AB$ and $CD$, and let $AD$ and $BC$ meet $PQ$ at
-        $X$ and $Y$, respectively. Then $M$ is also the midpoint of $XY$.
-    \end{theorem}
 
-    \begin{theorem}[Morley's Trisector Theorem]
-        In any triangle, the adjacent trisectors of the three angles intersect
-        in three points that form an equilateral triangle.
-    \end{theorem}
 
-    \begin{theorem}[Napoleon's Theorem]
-        Construct equilateral triangles externally on the three sides of any
-        triangle. Then the centers of these three equilateral triangles form an
-        equilateral triangle.
-    \end{theorem}
 
     \begin{theorem}[British Flag Theorem]
         For any point $P$ in the plane of a rectangle $ABCD$,
@@ -7431,6 +7893,52 @@
         \]
     \end{formula}
 
+
+    \begin{formula}[Angles and Volumes in $\R^3$]
+        If nonzero vectors $\mathbf{u},\mathbf{v}$ are directions of two lines,
+        their acute angle $\theta$ satisfies
+        \[
+            \cos\theta
+            =
+            \frac{|\mathbf{u}\cdot\mathbf{v}|}
+                 {\|\mathbf{u}\|\,\|\mathbf{v}\|}.
+        \]
+        If $\mathbf{n}_1,\mathbf{n}_2$ are normals to two planes, the acute
+        angle between the planes is given by the same formula with the normals.
+        If $\mathbf{v}$ is a line direction and $\mathbf{n}$ is a plane normal,
+        the acute line--plane angle $\alpha$ satisfies
+        \[
+            \sin\alpha
+            =
+            \frac{|\mathbf{v}\cdot\mathbf{n}|}
+                 {\|\mathbf{v}\|\,\|\mathbf{n}\|}.
+        \]
+        The volume of the parallelepiped spanned by
+        $\mathbf{a},\mathbf{b},\mathbf{c}$ is
+        \[
+            \bigl|\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})\bigr|,
+        \]
+        and the tetrahedron with the same three edge vectors from one vertex
+        has one sixth of this volume.
+    \end{formula}
+
+    \begin{formula}[Distance between Skew Lines]
+        Let
+        \[
+            L_1:\mathbf{x}=\mathbf{p}_1+t\mathbf{u},
+            \qquad
+            L_2:\mathbf{x}=\mathbf{p}_2+s\mathbf{v},
+        \]
+        with $\mathbf{u}\times\mathbf{v}\neq\mathbf{0}$. Then
+        \[
+            \dist(L_1,L_2)
+            =
+            \frac{|(\mathbf{p}_2-\mathbf{p}_1)\cdot
+                (\mathbf{u}\times\mathbf{v})|}
+                 {\|\mathbf{u}\times\mathbf{v}\|}.
+        \]
+    \end{formula}
+
     \begin{formula}[Distance from a Point to a Line]
         In $\R^3$, the distance from a point $\mathbf{p}_0$ to the line
         \[
@@ -7466,6 +7974,52 @@
         \[
             \|\mathbf{x}-\mathbf{c}\|=r.
         \]
+    \end{formula}
+
+
+    \begin{formula}[Standard Forms of Common Quadrics in $\R^3$]
+        With $a,b,c>0$, the principal-axis standard forms include:
+
+        {\small
+        \renewcommand{\arraystretch}{1.16}
+        \begin{longtable}{@{}L{0.23\textwidth}L{0.67\textwidth}@{}}
+            \toprule
+            Surface & Standard form \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Surface & Standard form \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Ellipsoid &
+            $\displaystyle \frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$ \\
+            Elliptic paraboloid &
+            $\displaystyle z=\frac{x^2}{a^2}+\frac{y^2}{b^2}$ \\
+            Hyperbolic paraboloid &
+            $\displaystyle z=\frac{x^2}{a^2}-\frac{y^2}{b^2}$ \\
+            One-sheet hyperboloid &
+            $\displaystyle \frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$ \\
+            Two-sheet hyperboloid &
+            $\displaystyle -\frac{x^2}{a^2}-\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$ \\
+            Elliptic cone &
+            $\displaystyle \frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=0$ \\
+            Elliptic cylinder &
+            $\displaystyle \frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ \\
+        \end{longtable}
+        }
+        More generally, a quadric can be written
+        \[
+            \mathbf{x}^{\mathsf T}\mathbf{A}\mathbf{x}
+            +\mathbf{b}^{\mathsf T}\mathbf{x}+c_0=0,
+        \]
+        with $\mathbf{A}$ real symmetric. Translation and orthogonal
+        diagonalization of $\mathbf{A}$ reduce the quadratic part to principal
+        axes, linking the geometry directly to the spectral theorem.
     \end{formula}
 
     \begin{strategy}[Line--Circle Intersection by a Discriminant]
@@ -7540,18 +8094,50 @@
     \end{formula}
 
     \begin{formula}[Standard Forms of Conics]
-        The standard form of an ellipse is
+        After translation and, when necessary, rotation of coordinates, every
+        nondegenerate real conic can be put into one of the following standard
+        forms.
+
+        {\small
+        \renewcommand{\arraystretch}{1.18}
+        \begin{longtable}{@{}L{0.16\textwidth}L{0.46\textwidth}L{0.30\textwidth}@{}}
+            \toprule
+            Conic & Standard form & Basic condition and feature \\
+            \midrule
+            \endfirsthead
+
+            \toprule
+            Conic & Standard form & Basic condition and feature \\
+            \midrule
+            \endhead
+
+            \bottomrule
+            \endlastfoot
+
+            Circle &
+            $\displaystyle (x-h)^2+(y-k)^2=r^2$ &
+            center $(h,k)$, radius $r>0$ \\
+            Ellipse &
+            $\displaystyle \frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1$,
+            $a\geq b>0$ &
+            $c^2=a^2-b^2$, foci at distance $c$ from the center \\
+            Parabola &
+            $\displaystyle (y-k)^2=4p(x-h)$ or
+            $\displaystyle (x-h)^2=4p(y-k)$ &
+            focus--directrix distance parameter $p\neq0$ \\
+            Hyperbola &
+            $\displaystyle \frac{(x-h)^2}{a^2}-\frac{(y-k)^2}{b^2}=1$
+            or with the signs reversed &
+            $c^2=a^2+b^2$, foci at distance $c$ from the center \\
+        \end{longtable}
+        }
+        The general second-degree equation
         \[
-            \frac{x^2}{a^2}+\frac{y^2}{b^2}=1.
+            Ax^2+Bxy+Cy^2+Dx+Ey+F=0
         \]
-        The standard form of a hyperbola is
-        \[
-            \frac{x^2}{a^2}-\frac{y^2}{b^2}=1.
-        \]
-        The standard form of a parabola opening to the right is
-        \[
-            y^2=4px.
-        \]
+        is classified, in the nondegenerate case, by the quadratic part; in
+        particular $B^2-4AC<0$, $=0$, and $>0$ correspond to ellipse-type,
+        parabola-type, and hyperbola-type conics, respectively.
     \end{formula}
 
     \begin{formula}[Eccentricity of an Ellipse and a Hyperbola]
@@ -7732,6 +8318,23 @@
     \relatedbooks{Introduction to Number Theory
         (William W. Adams, Larry Joel Goldstein)}
 
+    \begin{definition}[Divisibility, Prime, Greatest Common Divisor, and Congruence]
+        For $a,b\in\Z$, write $a\mid b$ if
+        \[
+            \exists k\in\Z,
+            \qquad
+            b=ak.
+        \]
+        An integer $p>1$ is prime if its only positive divisors are $1$ and
+        $p$. For integers $a,b$, not both zero, $\gcd(a,b)$ is their greatest
+        positive common divisor. For $n\in\N$,
+        \[
+            a\equiv b\pmod n
+            \quad\Longleftrightarrow\quad
+            n\mid(a-b).
+        \]
+    \end{definition}
+
     \begin{theorem}[Fundamental Theorem of Arithmetic]
         Every integer $n>1$ can be written as a product of prime numbers.
         Moreover, this factorization is unique up to the order of the factors.
@@ -7810,6 +8413,29 @@
             a\equiv b\pmod n.
         \]
     \end{proposition}
+
+
+    \begin{formula}[Fast Residue Filters for Powers]
+        The following small-modulus facts are useful impossibility tests:
+        \[
+            x^2\equiv0,1\pmod4,
+            \qquad
+            x^2\equiv0,1,4\pmod8,
+        \]
+        \[
+            x^3\equiv0,\pm1\pmod9,
+            \qquad
+            x^4\equiv0,1\pmod{16}.
+        \]
+        In particular,
+        \[
+            x\text{ odd}
+            \quad\Longrightarrow\quad
+            x^2\equiv1\pmod8.
+        \]
+        Thus a proposed square, cube, or fourth power can often be ruled out
+        before any large calculation is attempted.
+    \end{formula}
 
     \begin{theorem}[Linear Congruence Criterion]
         The congruence
@@ -7930,6 +8556,20 @@
         into one congruence.
     \end{strategy}
 
+    \begin{definition}[Arithmetic and Multiplicative Functions]
+        An arithmetic function is a function $f:\N\to\C$. It is
+        multiplicative if
+        \[
+            \gcd(m,n)=1
+            \quad\Longrightarrow\quad
+            f(mn)=f(m)f(n).
+        \]
+        Important multiplicative arithmetic functions include Euler's totient
+        $\varphi(n)$, the divisor-counting function $\tau(n)$, the
+        divisor-sum function $\sigma(n)$, and the M\"obius function $\mu(n)$.
+        Multiplicativity reduces their evaluation to prime powers.
+    \end{definition}
+
     \begin{formula}[Euler's Phi Function Formula]
         If
         \[
@@ -8001,6 +8641,28 @@
         of $\Q$ with respect to the usual absolute value.
     \end{definition}
 
+    \begin{definition}[M\"obius Function]
+        The M\"obius function is
+        \[
+            \mu(n)
+            =
+            \begin{cases}
+                1, & n=1,\\
+                0, & p^2\mid n\text{ for some prime }p,\\
+                (-1)^k, & n\text{ is a product of }k\text{ distinct primes}.
+            \end{cases}
+        \]
+        It satisfies
+        \[
+            \sum_{d\mid n}\mu(d)
+            =
+            \begin{cases}
+                1, & n=1,\\
+                0, & n>1.
+            \end{cases}
+        \]
+    \end{definition}
+
     \begin{theorem}[M\"obius Inversion Formula]
         If arithmetic functions $f$ and $g$ satisfy
         \[
@@ -8049,6 +8711,15 @@
         \]
     \end{proposition}
 
+    \begin{definition}[Primitive Root Modulo $n$]
+        If $\gcd(g,n)=1$, then $g$ is a primitive root modulo $n$ if
+        \[
+            \ord_n(g)=\varphi(n).
+        \]
+        Equivalently, the residue class $[g]_n$ generates the group
+        $(\Z/n\Z)^\times$.
+    \end{definition}
+
     \begin{theorem}[Primitive Root Theorem; Gauss's Theorem on Primitive Roots]
         The multiplicative group $(\Z/n\Z)^\times$ is cyclic if and only if
         \[
@@ -8056,6 +8727,11 @@
         \]
         where $p$ is an odd prime and $k\geq 1$.
     \end{theorem}
+
+    \begin{definition}[Finite Field]
+        A finite field is a field containing finitely many elements. Its number
+        of elements is called its order.
+    \end{definition}
 
     \begin{theorem}[Existence and Uniqueness of Finite Fields]
         Every finite field has $q=p^n$ elements for some prime $p$ and positive
@@ -8065,14 +8741,25 @@
     \end{theorem}
 
     \begin{algorithm}[Modular Exponentiation by Period Reduction]
-        To find the last digits of $a^n$, compute $a^n$ modulo a suitable power
-        of $10$. Look for a short period in the powers of $a$ modulo that
-        modulus. For example,
+        To compute $a^n\pmod m$, first reduce $a$ modulo $m$. If
+        $\gcd(a,m)=1$, determine a convenient exponent $t>0$ s.t.
         \[
-            7^4=2401\equiv 1\pmod {100},
+            a^t\equiv1\pmod m,
         \]
-        so exponents of $7$ may be reduced modulo $4$ when finding the last two
-        digits.
+        for example from the multiplicative order of $a$, Euler's theorem, or
+        Fermat's little theorem when applicable. Write
+        \[
+            n=qt+r,
+            \qquad
+            0\leq r<t,
+        \]
+        and reduce
+        \[
+            a^n\equiv a^r\pmod m.
+        \]
+        If $a$ is not a unit modulo $m$, use repeated squaring directly or
+        analyze prime-power factors separately rather than applying a unit-group
+        period without justification.
     \end{algorithm}
 
     \begin{strategy}
@@ -8355,6 +9042,19 @@
         $\zeta(s)$ all have real part $1/2$.
     \end{remark}
 
+    \begin{definition}[Perfect Number and Mersenne Prime]
+        A positive integer $N$ is perfect if it equals the sum of its positive
+        proper divisors, equivalently
+        \[
+            \sigma(N)=2N.
+        \]
+        A Mersenne prime is a prime of the form
+        \[
+            2^p-1.
+        \]
+        If $2^p-1$ is prime, then $p$ must be prime.
+    \end{definition}
+
     \begin{theorem}[Euclid--Euler Theorem on Perfect Numbers]
         An even positive integer $N$ is perfect if and only if
         \[
@@ -8362,14 +9062,6 @@
         \]
         where $2^p-1$ is a Mersenne prime.
     \end{theorem}
-
-    \begin{remark}
-        A perfect number is a positive integer equal to the sum of its positive
-        proper divisors. For example,
-        \[
-            6=1+2+3.
-        \]
-    \end{remark}
 
     \begin{theorem}[Fermat's Last Theorem]
         For every integer $n\geq 3$, there do not exist positive integers
@@ -8418,6 +9110,24 @@
         \]
     \end{definition}
 
+
+    \begin{definition}[Subgroup, Homomorphism, and Kernel]
+        A subset $H\subseteq G$ is a subgroup, written $H\leq G$, if it is a
+        group under the operation of $G$. A map $\varphi:G\to H$ is a group
+        homomorphism if
+        \[
+            \varphi(ab)=\varphi(a)\varphi(b)
+            \qquad
+            \forall a,b\in G.
+        \]
+        Its kernel and image are
+        \[
+            \ker\varphi=\{g\in G\mid\varphi(g)=e_H\},
+            \qquad
+            \image\varphi=\{\varphi(g)\mid g\in G\}.
+        \]
+    \end{definition}
+
     \begin{definition}[Normal Subgroup and Simple Group]
         A subgroup $N\leq G$ is normal, written $N\trianglelefteq G$, if
         \[
@@ -8427,6 +9137,20 @@
         \]
         A nontrivial group $G$ is simple if its only normal subgroups are
         $\{e\}$ and $G$.
+    \end{definition}
+
+
+    \begin{definition}[Quotient Group]
+        If $N\trianglelefteq G$, the quotient group $G/N$ is the set of cosets
+        \[
+            G/N=\{gN\mid g\in G\},
+        \]
+        with multiplication
+        \[
+            (gN)(hN)=ghN.
+        \]
+        Normality is exactly the condition that makes this multiplication
+        well-defined.
     \end{definition}
 
     \begin{fact}[Smallest Nonabelian Simple Group]
@@ -8522,6 +9246,23 @@
             G/\ker\varphi\cong \image\varphi.
         \]
     \end{theorem}
+
+    \begin{definition}[Group Action, Orbit, and Stabilizer]
+        A group action of $G$ on a set $X$ is a map
+        \[
+            G\times X\to X,
+            \qquad
+            (g,x)\mapsto g\cdot x,
+        \]
+        satisfying $e\cdot x=x$ and $(gh)\cdot x=g\cdot(h\cdot x)$. For
+        $x\in X$, the orbit and stabilizer are
+        \[
+            G\cdot x=\{g\cdot x\mid g\in G\},
+            \qquad
+            G_x=\{g\in G\mid g\cdot x=x\}.
+        \]
+        Group actions translate algebraic symmetry into permutations of a set.
+    \end{definition}
 
     \begin{theorem}[Cayley's Theorem]
         Every group is isomorphic to a subgroup of a symmetric group. In
@@ -8620,6 +9361,21 @@
         book, rings are assumed to have a multiplicative identity $1_R$ unless
         stated otherwise. A field is a commutative ring in which $1_R\neq0_R$
         and every nonzero element has a multiplicative inverse.
+    \end{definition}
+
+
+    \begin{definition}[Ideal, Ring Homomorphism, and Quotient Ring]
+        An ideal $I$ of a commutative ring $R$ is an additive subgroup s.t.
+        \[
+            r\in R\land a\in I
+            \quad\Longrightarrow\quad
+            ra\in I.
+        \]
+        A ring homomorphism $\varphi:R\to S$ preserves addition,
+        multiplication, and the multiplicative identity under the conventions
+        of this book. Its kernel is an ideal. If $I$ is an ideal of $R$, the
+        quotient ring $R/I$ consists of additive cosets with the induced ring
+        operations.
     \end{definition}
 
     \begin{definition}[Integral Domain]
@@ -8758,6 +9514,22 @@
         \]
     \end{algorithm}
 
+
+    \begin{algorithm}[Euclidean Algorithm for Polynomials]
+        Over a field $F$, repeatedly apply polynomial division
+        \[
+            f=qg+r,
+            \qquad
+            r=0\lor\deg r<\deg g,
+        \]
+        and replace $(f,g)$ by $(g,r)$. The last nonzero remainder, normalized
+        to be monic, is $\gcd(f,g)$. Back-substitution expresses the gcd as
+        \[
+            af+bg=\gcd(f,g)
+        \]
+        for some $a,b\in F[x]$.
+    \end{algorithm}
+
     \begin{theorem}[Factor Theorem]
         For a polynomial $f(x)\in F[x]$ and an element $a\in F$,
         \[
@@ -8842,6 +9614,25 @@
         \]
     \end{theorem}
 
+
+    \begin{theorem}[Cauchy Root Bound]
+        If
+        \[
+            f(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_0,
+            \qquad
+            a_n\neq0,
+        \]
+        then every complex root $z$ of $f$ satisfies
+        \[
+            |z|
+            \leq
+            1+
+            \max_{0\leq k<n}\left|\frac{a_k}{a_n}\right|.
+        \]
+        Thus all roots lie in an explicitly computable disk before any root is
+        solved for exactly.
+    \end{theorem}
+
     \begin{theorem}[Eisenstein's Irreducibility Criterion]
         Let
         \[
@@ -8894,6 +9685,23 @@
         $F[x]$ has a root in $F$.
     \end{definition}
 
+    \begin{definition}[Field Extension and Galois Group]
+        If $F\subseteq K$ are fields, then $K/F$ is a field extension and its
+        degree is
+        \[
+            [K:F]=\dim_F K.
+        \]
+        The extension is finite if this dimension is finite. The group
+        \[
+            \Gal(K/F)
+            =
+            \{\sigma\in\Aut(K)\mid \sigma(a)=a\ \forall a\in F\}
+        \]
+        is the Galois group. For a finite Galois extension, intermediate fields
+        and subgroups of the Galois group are related by the Galois
+        correspondence.
+    \end{definition}
+
     \begin{theorem}[Fundamental Theorem of Galois Theory; Galois Correspondence]
         For a finite Galois extension $L/K$, there is an inclusion-reversing
         correspondence between intermediate fields $K\subseteq E\subseteq L$ and
@@ -8934,6 +9742,28 @@
         \end{enumerate}
     \end{definition}
 
+
+    \begin{definition}[Basis for a Topology]
+        A collection $\mathcal{B}$ of subsets of $X$ is a basis if every
+        $x\in X$ lies in some $B\in\mathcal{B}$ and, whenever
+        $x\in B_1\cap B_2$ with $B_1,B_2\in\mathcal{B}$, there exists
+        $B_3\in\mathcal{B}$ s.t.
+        \[
+            x\in B_3\subseteq B_1\cap B_2.
+        \]
+        The topology generated by $\mathcal{B}$ consists of arbitrary unions
+        of basis elements. Open balls form the standard basis for the metric
+        topology of a metric space.
+    \end{definition}
+
+
+    \begin{definition}[First- and Second-Countability]
+        A topological space is first-countable if every point has a countable
+        local neighborhood basis. It is second-countable if its topology has a
+        countable basis. Every second-countable space is first-countable, but
+        not conversely in general.
+    \end{definition}
+
     \begin{definition}[Open and Closed Sets]
         If $(X,\mathcal{T})$ is a topological space, a subset $U\subseteq X$ is
         open if $U\in\mathcal{T}$. A subset $F\subseteq X$ is closed if
@@ -8958,11 +9788,6 @@
         $X$ that are both open and closed are $\varnothing$ and $X$.
     \end{definition}
 
-    \begin{theorem}[Jordan Curve Theorem]
-        Every simple closed curve in the plane separates the plane into exactly
-        two connected components, an interior and an exterior, and is the
-        common boundary of both.
-    \end{theorem}
 
     \begin{definition}[Continuity in Topological Spaces]
         A map $f:(X,\mathcal{T}_X)\to(Y,\mathcal{T}_Y)$ is continuous if the
@@ -8980,6 +9805,61 @@
         if $f$ and $f^{-1}$ are continuous. Two spaces are homeomorphic, written
         $X\cong Y$, if such a map exists.
     \end{definition}
+
+
+    \begin{theorem}[Basic Topological Invariants under Continuous Maps]
+        A continuous image of a compact space is compact, and a continuous
+        image of a connected space is connected. Consequently, compactness and
+        connectedness are preserved by homeomorphism.
+    \end{theorem}
+
+    \begin{definition}[Hausdorff Space]
+        A topological space $X$ is Hausdorff if distinct points can be separated
+        by disjoint open neighborhoods:
+        \[
+            x\neq y
+            \quad\Longrightarrow\quad
+            \exists U,V\text{ open s.t. }x\in U,\ y\in V,\ U\cap V=\varnothing.
+        \]
+        Every metric space is Hausdorff.
+    \end{definition}
+
+    \begin{theorem}[Compact Subsets of Hausdorff Spaces]
+        Every compact subset of a Hausdorff space is closed. In particular, a
+        continuous bijection from a compact space onto a Hausdorff space is
+        automatically a homeomorphism.
+    \end{theorem}
+
+    \begin{definition}[Path, Path-Connectedness, and Homotopy]
+        A path from $x_0$ to $x_1$ in $X$ is a continuous map
+        \[
+            \gamma:[0,1]\to X,
+            \qquad
+            \gamma(0)=x_0,
+            \quad
+            \gamma(1)=x_1.
+        \]
+        The space $X$ is path-connected if every two points can be joined by a
+        path. Two maps $f,g:X\to Y$ are homotopic, written $f\simeq g$, if
+        there exists a continuous map
+        \[
+            H:X\times[0,1]\to Y
+        \]
+        with $H(x,0)=f(x)$ and $H(x,1)=g(x)$. A loop is a path with the same
+        initial and terminal point.
+    \end{definition}
+
+    \begin{theorem}[Path-Connectedness Implies Connectedness]
+        Every path-connected space is connected. The converse is false in
+        general, so connectedness and path-connectedness should not be
+        interchanged without additional hypotheses.
+    \end{theorem}
+
+    \begin{theorem}[Jordan Curve Theorem]
+        Every simple closed curve in the plane separates the plane into exactly
+        two connected components, an interior and an exterior, and is the
+        common boundary of both.
+    \end{theorem}
 
     \begin{theorem}[Brouwer Fixed-Point Theorem]
         Every continuous map from a closed ball in $\R^n$ to itself has at least
@@ -9016,9 +9896,15 @@
     \end{definition}
 
     \begin{definition}[Fundamental Group]
-        The fundamental group $\pi_1(X,x_0)$ records loops in $X$ based at
-        $x_0$, up to continuous deformation. It is one of the basic algebraic
-        invariants of a topological space.
+        Fix a base point $x_0\in X$. The fundamental group
+        $\pi_1(X,x_0)$ is the set of endpoint-preserving homotopy classes of
+        loops based at $x_0$, with multiplication induced by concatenation of
+        loops. It is a basic algebraic invariant of a topological space. A
+        path-connected space is simply connected if
+        \[
+            \pi_1(X,x_0)\cong\{e\},
+        \]
+        equivalently, every loop can be contracted to a point.
     \end{definition}
 
     \begin{fact}[Fundamental Groups of Familiar Spaces]
@@ -9103,6 +9989,87 @@
     \relatedcourses{}
 
     \relatedbooks{}
+
+    \begin{strategy}[Symmetry and Without Loss of Generality]
+        Before splitting into cases, identify transformations that preserve the
+        problem. If several cases differ only by a permutation, reflection,
+        sign change, or cyclic relabeling, choose one representative and state
+        explicitly why the remaining cases follow by symmetry. ``Without loss
+        of generality'' is justified only after this invariance has been
+        identified.
+    \end{strategy}
+
+    \begin{strategy}[Parity and Modular Obstructions]
+        Before searching for a construction or integer solution, reduce the
+        relevant quantities modulo a small modulus. Parity, residues of powers,
+        and invariant congruence classes often rule out entire families of
+        possibilities with almost no calculation.
+    \end{strategy}
+
+    \begin{strategy}[Telescoping and Local Cancellation]
+        For a sum or product indexed consecutively, try to rewrite each term so
+        that neighboring factors cancel. Typical forms are
+        \[
+            a_k=b_k-b_{k+1}
+            \qquad\text{or}\qquad
+            a_k=\frac{b_{k+1}}{b_k}.
+        \]
+        Then
+        \[
+            \sum_{k=m}^{n}a_k=b_m-b_{n+1},
+            \qquad
+            \prod_{k=m}^{n}a_k=\frac{b_{n+1}}{b_m}.
+        \]
+    \end{strategy}
+
+    \begin{strategy}[Descent and Minimal Counterexample]
+        If a statement about positive integers or finite objects is suspected to
+        hold universally, assume a counterexample exists and choose one minimal
+        under a natural size parameter. Use the defining relations to construct
+        a strictly smaller counterexample. This contradiction is the abstract
+        form of infinite descent and is useful far beyond number theory.
+    \end{strategy}
+
+    \begin{strategy}[Complex Numbers as Plane Geometry]
+        Identify the Euclidean plane with $\C$ when rotations, similarities,
+        roots of unity, or cyclic configurations are prominent. Multiplication
+        by $e^{i\theta}$ is rotation by $\theta$, multiplication by a positive
+        scalar is dilation, and complex conjugation is reflection across the
+        real axis. Translate back to ordinary geometry only after the algebraic
+        relation has been simplified.
+    \end{strategy}
+
+    \begin{strategy}[Polynomial Encoding]
+        Encode a finite set of numbers as roots of a polynomial, or encode a
+        sequence by a generating polynomial or generating function, when sums,
+        products, symmetric expressions, or recurrence relations are involved.
+        Root--coefficient relations, interpolation, and coefficient extraction
+        can then replace case-by-case manipulation.
+    \end{strategy}
+
+    \begin{tactic}[Floor and Fractional-Part Identities]
+        For every real $x$,
+        \[
+            x=\lfloor x\rfloor+\{x\},
+            \qquad
+            0\leq\{x\}<1.
+        \]
+        Moreover,
+        \[
+            \lfloor x\rfloor+\lfloor-x\rfloor
+            =
+            \begin{cases}
+                0, & x\in\Z,\\
+                -1, & x\notin\Z,
+            \end{cases}
+        \]
+        and for $n\in\Z$,
+        \[
+            \lfloor x+n\rfloor=\lfloor x\rfloor+n.
+        \]
+        These identities convert many apparently analytic floor problems into
+        integer casework.
+    \end{tactic}
 
     \begin{strategy}[Iterated Knowledge Elimination]
         Let $\Omega_0$ be a finite set of possible states. For each agent $i$ and
