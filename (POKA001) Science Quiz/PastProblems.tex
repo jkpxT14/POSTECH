@@ -304,7 +304,11 @@
         \[
             \lcm(1,2,3,4,6,7,8,9)=504.
         \]
-        Thus it must be divisible by $7$, $8$, and $9$.
+        Since
+        \[
+            \lcm(7,8,9)=504,
+        \]
+        it is enough to enforce divisibility by $7$, $8$, and $9$ separately.
 
         If each digit is used exactly once, then the sum of the digits is
         \[
@@ -1201,57 +1205,129 @@
         \end{hint}
     \end{pastproblem}
 
-    \begin{solution}
-        For $x\in(0,2\pi]$, the function $f$ takes only the values $0$ and $1$. More precisely,
-        \[
-            f(x)=1
-        \]
-        when
-        \[
-            0<x<\pi-3
-            \qquad\text{or}\qquad
-            \pi+3<x\leq 2\pi,
-        \]
-        and
-        \[
-            f(x)=0
-        \]
-        when
-        \[
-            \pi-3\leq x\leq \pi+3.
-        \]
-        Thus $f$ is a $2\pi$-periodic function which is $1$ near multiples of $2\pi$, and
-        $0$ on the large middle interval.
+    \begin{solutions}
+        \begin{solution}
+            For $x\in(0,2\pi]$, the function $f$ takes only the values $0$ and $1$. More precisely,
+            \[
+                f(x)=1
+            \]
+            when
+            \[
+                0<x<\pi-3
+                \qquad\text{or}\qquad
+                \pi+3<x\leq 2\pi,
+            \]
+            and
+            \[
+                f(x)=0
+            \]
+            when
+            \[
+                \pi-3\leq x\leq \pi+3.
+            \]
+            Thus $f$ is a $2\pi$-periodic function which is $1$ near multiples of $2\pi$, and
+            $0$ on the large middle interval.
 
-        Since $1/(2\pi)$ is irrational, the fractional parts
-        \[
-            \left\{\frac{n}{2\pi}\right\},
-            \qquad n=1,2,3,\dots,
-        \]
-        are dense in $[0,1]$. Equivalently, the representatives of the integers
-        modulo $2\pi$ are dense in $(0,2\pi]$. Hence there are infinitely many
-        positive integers $n$ whose representatives modulo $2\pi$ lie in
-        \[
-            (0,\pi-3)\cup(\pi+3,2\pi],
-        \]
-        and for these integers we have
-        \[
-            f(n)=1.
-        \]
-        There are also infinitely many positive integers $n$ whose residues modulo $2\pi$ lie in
-        \[
-            (\pi-3,\pi+3),
-        \]
-        and for these integers we have
-        \[
-            f(n)=0.
-        \]
+            By the Density of Irrational Rotations theorem in Mathematical Concepts, since
+            $1/(2\pi)$ is irrational, the fractional parts
+            \[
+                \left\{\frac{n}{2\pi}\right\},
+                \qquad n=1,2,3,\dots,
+            \]
+            are dense in $[0,1]$. Equivalently, the representatives of the integers
+            modulo $2\pi$ are dense in $(0,2\pi]$. Hence there are infinitely many
+            positive integers $n$ whose representatives modulo $2\pi$ lie in
+            \[
+                (0,\pi-3)\cup(\pi+3,2\pi],
+            \]
+            and for these integers we have
+            \[
+                f(n)=1.
+            \]
+            There are also infinitely many positive integers $n$ whose residues modulo $2\pi$ lie in
+            \[
+                (\pi-3,\pi+3),
+            \]
+            and for these integers we have
+            \[
+                f(n)=0.
+            \]
 
-        The sequence $f(n)$ has a subsequence equal to $1$ and another
-        subsequence equal to $0$, so it does not converge as $n\to\infty$.
+            The sequence $f(n)$ therefore has a subsequence equal to $1$ and another
+            subsequence equal to $0$, so it does not converge as $n\to\infty$.
 
-        Therefore, the answer is $\boxed{\text{the limit does not exist}}$.
-    \end{solution}
+            Therefore, the answer is $\boxed{\text{the limit does not exist}}$.
+        \end{solution}
+
+        \begin{solution}
+            We follow the hint and use an elementary step-size argument. Put
+            \[
+                \alpha=\pi-3,
+                \qquad
+                \delta=19-6\pi.
+            \]
+            From $3.14<\pi<3.145$,
+            \[
+                0.14<\alpha<0.145,
+                \qquad
+                0.13<\delta<0.16,
+            \]
+            and in particular
+            \[
+                0<\delta<2\alpha.
+            \]
+            On one period, $f=1$ on
+            \[
+                (0,\alpha)\cup(2\pi-\alpha,2\pi]
+            \]
+            and $f=0$ on the complementary middle interval
+            \[
+                [\alpha,2\pi-\alpha].
+            \]
+
+            Fix any $N\in\N$ and consider the arithmetic progression
+            \[
+                n_k=N+19k,
+                \qquad k=0,1,2,\dots.
+            \]
+            Since
+            \[
+                19=3(2\pi)+\delta,
+            \]
+            passing from $n_k$ to $n_{k+1}$ advances its representative modulo
+            $2\pi$ by exactly $\delta$.
+
+            If $r_0$ is one representative of $N$ modulo $2\pi$, the unwrapped
+            quantities $r_0+k\delta$ cross multiples of $2\pi$ infinitely often.
+            During any such passage across the endpoint $2\pi\equiv0$, let $r_-$ be
+            the last representative before the passage and $r_+$ the first one after it.
+            Then
+            \[
+                (2\pi-r_-)+r_+=\delta<2\alpha.
+            \]
+            Hence at least one of $2\pi-r_-$ and $r_+$ is smaller than $\alpha$,
+            so at least one of the corresponding terms satisfies $f(n_k)=1$.
+
+            Starting from the first representative after such a passage, if it is
+            already at least $\alpha$, then it lies in the interval where $f=0$.
+            Otherwise, add steps of length $\delta$ until the representative first
+            reaches $\alpha$. That first representative is smaller than
+            \[
+                \alpha+\delta<0.305<2\pi-\alpha,
+            \]
+            so it also lies in the interval where $f=0$.
+
+            Therefore, beyond every $N$ there are integers $n_1,n_2>N$ with
+            \[
+                f(n_1)=0,
+                \qquad
+                f(n_2)=1.
+            \]
+            Thus $f(n)$ cannot converge.
+
+            Therefore, the answer is $\boxed{\text{the limit does not exist}}$.
+        \end{solution}
+    \end{solutions}
 
     \begin{pastproblem}{2015.7}
         This person is believed to have lived approximately from $624$ BCE to $546$ BCE.\@ He is
@@ -1566,7 +1642,10 @@
     \begin{pastproblem}{2015.17}
         Let
         \[
-            \mathbf{v}=\mathbf{w}=(1,2,3,4)
+            \mathbf{v}=\mathbf{w}=
+            \begin{pmatrix}
+                1 & 2 & 3 & 4
+            \end{pmatrix}
         \]
         be row vectors. Consider the $4\times 4$ matrix obtained as the product
         \[
@@ -1634,32 +1713,69 @@
         \end{hint}
     \end{pastproblem}
 
-    \begin{solution}
-        We use a simple telescoping identity:
-        \[
-            \frac{n}{(n+1)!}
-            =
-            \frac{1}{n!}-\frac{1}{(n+1)!}.
-        \]
-        Therefore,
-        \[
-            \sum_{n=1}^{N}\frac{n}{(n+1)!}
-            =
-            \sum_{n=1}^{N}
-            \left(
-                \frac{1}{n!}-\frac{1}{(n+1)!}
-            \right)
-            =
-            1-\frac{1}{(N+1)!}.
-        \]
-        Taking $N\to\infty$, we obtain
-        \[
-            \sum_{n=1}^{\infty}\frac{n}{(n+1)!}
-            =
-            1.
-        \]
-        Therefore, the answer is $\boxed{1}$.
-    \end{solution}
+    \begin{solutions}
+        \begin{solution}
+            We use the telescoping identity
+            \[
+                \frac{n}{(n+1)!}
+                =
+                \frac{1}{n!}-\frac{1}{(n+1)!}.
+            \]
+            Therefore,
+            \[
+                \sum_{n=1}^{N}\frac{n}{(n+1)!}
+                =
+                \sum_{n=1}^{N}
+                \left(
+                    \frac{1}{n!}-\frac{1}{(n+1)!}
+                \right)
+                =
+                1-\frac{1}{(N+1)!}.
+            \]
+            Taking $N\to\infty$, we obtain
+            \[
+                \sum_{n=1}^{\infty}\frac{n}{(n+1)!}
+                =
+                1.
+            \]
+            Therefore, the answer is $\boxed{1}$.
+        \end{solution}
+
+        \begin{solution}
+            We use the given power series
+            \[
+                g(x)
+                =
+                \frac{e^x-1}{x}
+                =
+                \sum_{n=0}^{\infty}\frac{x^n}{(n+1)!}.
+            \]
+            Because this power series has infinite radius of convergence, the
+            term-by-term differentiation theorem from Mathematical Concepts gives
+            \[
+                g'(x)
+                =
+                \sum_{n=1}^{\infty}\frac{n x^{n-1}}{(n+1)!}.
+            \]
+            Differentiating the closed form yields
+            \[
+                g'(x)
+                =
+                \frac{x e^x-(e^x-1)}{x^2}
+                =
+                \frac{(x-1)e^x+1}{x^2}.
+            \]
+            Substituting $x=1$ gives
+            \[
+                \sum_{n=1}^{\infty}\frac{n}{(n+1)!}
+                =
+                g'(1)
+                =
+                1.
+            \]
+            Therefore, the answer is $\boxed{1}$.
+        \end{solution}
+    \end{solutions}
 
     \begin{pastproblem}{2017.1}
         Determine all possible positive integers that can occur as the number of faces of a regular

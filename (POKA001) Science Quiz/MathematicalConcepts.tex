@@ -799,7 +799,7 @@
     \end{formula}
 
     \begin{theorem}[L'H\^opital's Rule]
-        Let $f$ and $g$ be differentiable on a deleted neighborhood of $a$, and
+        Let $f$ and $g$ be differentiable on some punctured interval around $a$, and
         suppose that $g'(x)\neq 0$ there. Assume either
         \[
             f(x)\to 0,
@@ -1909,6 +1909,21 @@
 
     \section*{Multivariable Calculus}
 
+    \begin{definition}[Scalar Field, Vector Field, and Partial Derivative]
+        A scalar field on $U\subseteq\R^n$ is a function $f:U\to\R$, while a
+        vector field is a function $\mathbf{F}:U\to\R^m$. For a scalar-valued
+        function $f(x_1,\dots,x_n)$, the partial derivative with respect to
+        $x_i$ is the one-variable derivative obtained by varying $x_i$ while
+        holding the other variables fixed:
+        \[
+            \frac{\partial f}{\partial x_i}(\mathbf{a})
+            =
+            \lim\limits_{h\to0}
+            \frac{f(\mathbf{a}+h\mathbf{e}_i)-f(\mathbf{a})}{h},
+        \]
+        whenever the limit exists.
+    \end{definition}
+
     \begin{definition}[Gradient, Divergence, Curl, and Laplacian]
         For a scalar-valued function $f(x,y,z)$ and a vector field
         $\mathbf{F}=(P,Q,R)^{\mathsf T}$, we write
@@ -1973,6 +1988,24 @@
         \]
     \end{theorem}
 
+    \begin{definition}[Jacobian Matrix and Jacobian Determinant]
+        Let $\mathbf{F}:U\subseteq\R^n\to\R^m$ have component functions
+        $F_1,\dots,F_m$. Its Jacobian matrix at $\mathbf{a}$ is
+        \[
+            \mathbf{J}_{\mathbf{F}}(\mathbf{a})
+            =
+            \left(\frac{\partial F_i}{\partial x_j}(\mathbf{a})\right)
+            _{1\leq i\leq m,\,1\leq j\leq n}.
+        \]
+        When $m=n$, its determinant
+        \[
+            \Jac(\mathbf{F})(\mathbf{a})
+            =
+            \det\!\left(\mathbf{J}_{\mathbf{F}}(\mathbf{a})\right)
+        \]
+        is the Jacobian determinant.
+    \end{definition}
+
     \begin{definition}[Differentiability; Total Derivative; Fr\'echet Derivative]
         Let $\mathbf{F}:U\subseteq\R^n\to\R^m$, where $U$ is open, and
         let $\mathbf{a}\in U$. The map $\mathbf{F}$ is differentiable at
@@ -2001,8 +2034,10 @@
             -D\mathbf{F}(\mathbf{a})\mathbf{h}\|<\varepsilon\|\mathbf{h}\|.
         \]
         }
-        The linear map $D\mathbf{F}(\mathbf{a})$ is the total derivative;
-        in standard coordinates, its matrix is the Jacobian matrix.
+        The linear map $D\mathbf{F}(\mathbf{a})$ is the total derivative, or
+        Fr\'echet derivative. Here linear means that it preserves linear
+        combinations. In standard coordinates, its matrix is precisely the
+        Jacobian matrix $\mathbf{J}_{\mathbf{F}}(\mathbf{a})$ defined above.
     \end{definition}
 
 
@@ -2055,38 +2090,17 @@
         \[
             R=\{(x,y)\mid c\leq y\leq d,\ h_1(y)\leq x\leq h_2(y)\},
         \]
-        then the integral may equally be evaluated in the reverse order. More
-        generally, if the underlying measure spaces are $\sigma$-finite and
-        the function is integrable on their product, the two iterated integrals
-        agree with the product-space integral.
+        then the integral may equally be evaluated in the reverse order.
+        Measure-theoretic extensions allow weaker hypotheses; Tonelli's Theorem
+        is introduced later in this chapter after the relevant measure concepts.
     \end{theorem}
-
-    \begin{definition}[Jacobian]
-        For a map
-        \[
-            \mathbf{F}(u_1,\dots,u_n)
-            =
-            (x_1(u_1,\dots,u_n),\dots,x_n(u_1,\dots,u_n)),
-        \]
-        the Jacobian matrix is
-        \[
-            D\mathbf{F}(\mathbf{u})
-            =
-            \left(\frac{\partial x_i}{\partial u_j}\right)_{i,j=1}^{n}.
-        \]
-        Its determinant
-        \[
-            \Jac(\mathbf{F})
-            =
-            \det(D\mathbf{F})
-        \]
-        is called the Jacobian determinant.
-    \end{definition}
 
     \begin{theorem}[Change of Variables Formula]
         Let $U,V\subseteq\R^n$ be open, and let
-        $\mathbf{F}:U\to V$ be a $C^1$ diffeomorphism. If $D\subseteq U$ is
-        measurable and $f$ is integrable on $\mathbf{F}(D)$, then
+        $\mathbf{F}:U\to V$ be a $C^1$ diffeomorphism, meaning a bijection for
+        which both $\mathbf{F}$ and $\mathbf{F}^{-1}$ are continuously
+        differentiable. If $D\subseteq U$ is a region for which the integrals
+        below exist and $f$ is integrable on $\mathbf{F}(D)$, then
         \[
             \int_{\mathbf{F}(D)}f(\mathbf{x})\dd\mathbf{x}
             =
@@ -2269,13 +2283,27 @@
     \end{theorem}
 
     \begin{formula}[Second Derivative Test and Hessian]
-        At a critical point $(a,b)$ of a twice differentiable function
-        $f(x,y)$, let
+        A critical point of a differentiable function $f$ is a point where
+        $\nabla f=\mathbf{0}$. For a twice differentiable function $f(x,y)$, the
+        Hessian matrix is
+        \[
+            \mathbf{H}_f
+            =
+            \begin{pmatrix}
+                f_{xx} & f_{xy} \\
+                f_{yx} & f_{yy}
+            \end{pmatrix}.
+        \]
+        At a critical point $(a,b)$, let
         \[
             \Delta_H
             =
-            f_{xx}(a,b)f_{yy}(a,b)-f_{xy}(a,b)^2.
+            \det\mathbf{H}_f(a,b)
+            =
+            f_{xx}(a,b)f_{yy}(a,b)-f_{xy}(a,b)^2,
         \]
+        where the last equality uses equality of the mixed partial derivatives
+        under the usual continuity hypothesis.
         If $\Delta_H>0$ and $f_{xx}(a,b)>0$, the point is a local minimum. If
         $\Delta_H>0$ and $f_{xx}(a,b)<0$, it is a local maximum. If
         $\Delta_H<0$, it is a saddle point. If $\Delta_H=0$, the test is
@@ -2573,8 +2601,9 @@
     \end{definition}
 
     \begin{definition}[Point and Set Taxonomy in a Metric Space]
-        Let $A\subseteq(X,d)$. The standard point types and associated sets are
-        summarized below.
+        Let $A\subseteq(X,d)$. An open cover of $A$ is a collection of open
+        sets whose union contains $A$. The standard point types and associated
+        sets are summarized below.
 
         {\small
         \renewcommand{\arraystretch}{1.16}
@@ -2921,6 +2950,19 @@
         open dense subsets of a complete metric space is dense.
     \end{theorem}
 
+    \begin{definition}[Sigma-Algebra, Measure, Measurability, and Almost-Everywhere Convergence]
+        A $\sigma$-algebra $\mathcal{F}$ on a set $X$ is a collection of subsets
+        containing $X$ and closed under complements and countable unions. A
+        measure is a function $\mu:\mathcal{F}\to[0,\infty]$ with
+        $\mu(\varnothing)=0$ that is countably additive on pairwise disjoint
+        sets. The triple $(X,\mathcal{F},\mu)$ is a measure space.
+
+        A function $f:X\to\R$ is measurable if the inverse image of every Borel
+        set is in $\mathcal{F}$. A property holds almost everywhere, abbreviated
+        a.e., if it fails only on a set of measure zero. Thus $f_n\aeto f$ means
+        that $f_n(x)\to f(x)$ for almost every $x$.
+    \end{definition}
+
     \begin{theorem}[Tonelli's Theorem]
         Let $(X,\mu)$ and $(Y,\nu)$ be $\sigma$-finite measure spaces, and let
         $f:X\times Y\to[0,\infty]$ be measurable. Then the iterated integrals
@@ -3193,13 +3235,14 @@
             =
             \sum_{n=-\infty}^{\infty}c_n(z-a)^n
         \]
-        converging throughout the annulus. The coefficient $c_{-1}$ is the residue
-        of $f$ at $a$.
+        converging throughout the annulus. The coefficient $c_{-1}$ is called the
+        residue of $f$ at $a$.
     \end{theorem}
 
     \begin{definition}[Isolated Singularities and Residues]
-        Let $a$ be an isolated singularity of $f$. In the Laurent expansion about
-        $a$, the residue is
+        A point $a$ is an isolated singularity of $f$ if $f$ is holomorphic on
+        some punctured disk $0<|z-a|<R$ but is not holomorphic at $a$. In the
+        Laurent expansion about $a$, the residue is
         \[
             \Res(f;a)=c_{-1}.
         \]
@@ -3431,13 +3474,29 @@
         only if $\mathbf{v}=\mathbf{0}$.
     \end{fact}
 
-    \begin{formula}[Inner Product and Adjoint Transfer]
-        For real column vectors,
+    \begin{definition}[Inner Product, Norm, Orthogonality, and Orthonormality]
+        For real column vectors, the standard inner product is
         \[
             \langle\mathbf{u},\mathbf{v}\rangle
             =
-            \mathbf{u}^{\mathsf T}\mathbf{v}.
+            \mathbf{u}^{\mathsf T}\mathbf{v},
         \]
+        while over $\C$ it is
+        \[
+            \langle\mathbf{u},\mathbf{v}\rangle
+            =
+            \mathbf{u}^{\mathsf H}\mathbf{v}.
+        \]
+        The induced norm is
+        \[
+            \|\mathbf{v}\|=\sqrt{\langle\mathbf{v},\mathbf{v}\rangle}.
+        \]
+        Vectors $\mathbf{u}$ and $\mathbf{v}$ are orthogonal if
+        $\langle\mathbf{u},\mathbf{v}\rangle=0$. A list is orthonormal if its
+        vectors are pairwise orthogonal and each has norm $1$.
+    \end{definition}
+
+    \begin{formula}[Adjoint Transfer]
         For a real matrix $\mathbf{A}$ of compatible size,
         \[
             \langle\mathbf{x},\mathbf{A}\mathbf{y}\rangle
@@ -3450,13 +3509,7 @@
             =
             \langle\mathbf{A}\mathbf{x},\mathbf{y}\rangle.
         \]
-        Over $\C$, use
-        \[
-            \langle\mathbf{u},\mathbf{v}\rangle
-            =
-            \mathbf{u}^{\mathsf H}\mathbf{v}
-        \]
-        and replace $\mathbf{A}^{\mathsf T}$ by
+        Over $\C$, replace $\mathbf{A}^{\mathsf T}$ by
         $\mathbf{A}^{\mathsf H}$.
     \end{formula}
 
@@ -3873,18 +3926,62 @@
         $(\mathbf{x},-\mathbf{x})$.
     \end{formula}
 
-    \begin{definition}[Eigenvalue and Characteristic Polynomial]
+    \begin{definition}[Eigenvalue, Eigenvector, Eigenspace, and Characteristic Polynomial]
         Let $\mathbf{A}\in F^{n\times n}$. A scalar $\lambda\in F$ is an
         eigenvalue of $\mathbf{A}$ if there exists a nonzero vector
         $\mathbf{v}\in F^n$ s.t.
         \[
             \mathbf{A}\mathbf{v}=\lambda\mathbf{v}.
         \]
+        Such a nonzero vector $\mathbf{v}$ is an eigenvector associated with
+        $\lambda$. The eigenspace is
+        \[
+            E_\lambda
+            =
+            \Null(\mathbf{A}-\lambda\mathbf{I}_n).
+        \]
         The characteristic polynomial of $\mathbf{A}$ is
         \[
             p_{\mathbf{A}}(\lambda)
             =
             \det(\lambda\mathbf{I}_n-\mathbf{A}).
+        \]
+        Regarding the eigenvalues over $\C$, the spectral radius is
+        \[
+            \rho(\mathbf{A})
+            =
+            \max\{\lvert\lambda\rvert:\lambda\text{ is an eigenvalue of }\mathbf{A}\}.
+        \]
+    \end{definition}
+
+    \begin{definition}[Algebraic and Geometric Multiplicity]
+        Let $\lambda$ be an eigenvalue of $\mathbf{A}\in F^{n\times n}$.
+        Its algebraic multiplicity $m_a(\lambda)$ is its multiplicity as a root
+        of $p_{\mathbf{A}}(t)$, while its geometric multiplicity is
+        \[
+            m_g(\lambda)
+            =
+            \dim\Null(\mathbf{A}-\lambda\mathbf{I}_n).
+        \]
+        For every eigenvalue,
+        \[
+            1\leq m_g(\lambda)\leq m_a(\lambda).
+        \]
+    \end{definition}
+
+    \begin{definition}[Diagonalizable Matrix]
+        A matrix $\mathbf{A}\in F^{n\times n}$ is diagonalizable over $F$ if
+        there exist an invertible matrix $\mathbf{P}\in F^{n\times n}$ and a
+        diagonal matrix $\mathbf{D}$ s.t.
+        \[
+            \mathbf{A}=\mathbf{P}\mathbf{D}\mathbf{P}^{-1}.
+        \]
+        Equivalently, the columns of $\mathbf{P}$ can be chosen as a basis of
+        eigenvectors of $\mathbf{A}$. Diagonalization is useful because powers
+        and polynomial functions reduce to entrywise calculations on
+        $\mathbf{D}$:
+        \[
+            \mathbf{A}^k=\mathbf{P}\mathbf{D}^k\mathbf{P}^{-1}.
         \]
     \end{definition}
 
@@ -4360,6 +4457,18 @@
         reducing high powers of a matrix to lower powers.
     \end{remark}
 
+    \begin{definition}[Minimal Polynomial]
+        The minimal polynomial $m_{\mathbf{A}}(t)$ of a square matrix
+        $\mathbf{A}$ is the unique monic polynomial of smallest positive degree
+        s.t.
+        \[
+            m_{\mathbf{A}}(\mathbf{A})=\mathbf{0}.
+        \]
+        By the Cayley--Hamilton Theorem, it divides the characteristic
+        polynomial $p_{\mathbf{A}}(t)$. A short minimal polynomial is useful
+        because it reduces high powers of $\mathbf{A}$ to lower powers.
+    \end{definition}
+
     \begin{formula}[Companion Matrix and Linear Recurrences]
         For
         \[
@@ -4435,36 +4544,7 @@
         sufficiently high power to a linear combination of lower powers.
     \end{strategy}
 
-    \begin{definition}[Algebraic and Geometric Multiplicity]
-        Let $\lambda$ be an eigenvalue of $\mathbf{A}\in F^{n\times n}$.
-        Its algebraic multiplicity $m_a(\lambda)$ is its multiplicity as a root
-        of $p_{\mathbf{A}}(t)$, while its geometric multiplicity is
-        \[
-            m_g(\lambda)
-            =
-            \dim\Null(\mathbf{A}-\lambda\mathbf{I}_n).
-        \]
-        For every eigenvalue,
-        \[
-            1\leq m_g(\lambda)\leq m_a(\lambda).
-        \]
-    \end{definition}
 
-    \begin{definition}[Diagonalizable Matrix]
-        A matrix $\mathbf{A}\in F^{n\times n}$ is diagonalizable over $F$ if
-        there exist an invertible matrix $\mathbf{P}\in F^{n\times n}$ and a
-        diagonal matrix $\mathbf{D}$ s.t.
-        \[
-            \mathbf{A}=\mathbf{P}\mathbf{D}\mathbf{P}^{-1}.
-        \]
-        Equivalently, the columns of $\mathbf{P}$ can be chosen as a basis of
-        eigenvectors of $\mathbf{A}$. Diagonalization is useful because powers
-        and polynomial functions reduce to entrywise calculations on
-        $\mathbf{D}$:
-        \[
-            \mathbf{A}^k=\mathbf{P}\mathbf{D}^k\mathbf{P}^{-1}.
-        \]
-    \end{definition}
 
     \begin{theorem}[Diagonalization Criteria]
         Suppose the characteristic polynomial of
@@ -5926,8 +6006,11 @@
         is the required block sum.
     \end{theorem}
 
-    \begin{definition}[Graph Walks, Paths, Trails, Cycles, and Trees]
-        In a graph $G=(V,E)$, a walk is a sequence of adjacent vertices. A trail
+    \begin{definition}[Graphs, Walks, Paths, Trails, Cycles, and Trees]
+        Unless stated otherwise, a graph $G=(V,E)$ here is a finite undirected
+        graph with vertex set $V$ and edge set $E$. Two vertices joined by an
+        edge are adjacent, and the degree $\deg(v)$ is the number of edges
+        incident to $v$. A walk is a sequence of adjacent vertices. A trail
         repeats no edge, while a path repeats no vertex. A closed trail is a
         circuit, and a cycle is a closed path apart from its repeated initial
         and terminal vertex. A graph is connected if every two vertices are
@@ -5935,8 +6018,14 @@
 
         An Eulerian trail uses every edge exactly once; an Eulerian circuit is
         a closed Eulerian trail. A Hamiltonian path visits every vertex exactly
-        once; a Hamiltonian cycle returns to its starting vertex. Thus the
-        one-stroke drawing problem is an Eulerian, not a Hamiltonian, question.
+        once; a Hamiltonian cycle returns to its starting vertex. A graph is
+        bipartite if its vertices can be divided into two classes with every
+        edge joining different classes. A planar graph can be drawn in the
+        plane without edge crossings except at common endpoints. The complete
+        graph $K_n$ contains every edge between distinct vertices, and the
+        complete bipartite graph $K_{m,n}$ contains every edge between its two
+        vertex classes. Thus a one-stroke drawing problem is an Eulerian, not a
+        Hamiltonian, question.
     \end{definition}
 
     \begin{strategy}[Coloring, Parity, and Bipartite Obstructions]
@@ -6015,14 +6104,23 @@
     \end{remark}
 
 
+    \begin{formula}[Cayley's Formula]
+        The number of labeled trees on $n$ vertices is
+        \[
+            n^{n-2}
+            \qquad(n\geq2).
+        \]
+    \end{formula}
+
     \begin{remark}
         Cayley's formula gives a compact and surprising enumeration of labeled
         trees.
     \end{remark}
 
     \begin{theorem}[Burnside's Lemma; Cauchy--Frobenius--Burnside Lemma]
-        Suppose a finite group $G$ acts on a finite set $X$. The number of
-        orbits is
+        Suppose a finite group $G$ acts on a finite set $X$, meaning that each
+        $g\in G$ acts as a permutation of $X$ and the action is compatible with
+        group multiplication. The number of orbits is
         \[
             \frac{1}{|G|}
             \sum_{g\in G}|\Fix(g)|,
@@ -6284,7 +6382,8 @@
     \begin{definition}[Probability Space, Event, and Conditional Probability]
         A probability space is a triple $(\Omega,\mathcal{F},\Prob)$, where
         $\Omega$ is the sample space, $\mathcal{F}$ is a $\sigma$-algebra of
-        events, and $\Prob:\mathcal{F}\to[0,1]$ satisfies
+        events (closed under complements and countable unions), and
+        $\Prob:\mathcal{F}\to[0,1]$ satisfies
         \[
             \Prob(\Omega)=1,
             \qquad
@@ -6337,6 +6436,45 @@
         \[
             \Var(X)=\Exp\!\left[(X-\Exp[X])^2\right].
         \]
+    \end{definition}
+
+    \begin{definition}[Joint, Marginal, and Conditional Distributions; Conditional Expectation]
+        For discrete random variables $X$ and $Y$, the joint probability mass
+        function is
+        \[
+            p_{X,Y}(x,y)=\Prob(X=x,Y=y),
+        \]
+        and the marginal mass functions are obtained by summing over the other
+        variable. If $\Prob(Y=y)>0$, then
+        \[
+            \Prob(X=x\mid Y=y)
+            =
+            \frac{p_{X,Y}(x,y)}{\Prob(Y=y)},
+        \]
+        and, whenever the sum converges absolutely,
+        \[
+            \Exp[X\mid Y=y]
+            =
+            \sum_x x\Prob(X=x\mid Y=y).
+        \]
+
+        If $(X,Y)$ has joint density $f_{X,Y}$, then the marginal density of
+        $Y$ is
+        \[
+            f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\dd x.
+        \]
+        Whenever $f_Y(y)>0$,
+        \[
+            f_{X\mid Y}(x\mid y)
+            =
+            \frac{f_{X,Y}(x,y)}{f_Y(y)},
+            \qquad
+            \Exp[X\mid Y=y]
+            =
+            \int_{-\infty}^{\infty}x f_{X\mid Y}(x\mid y)\dd x.
+        \]
+        The random variable $\Exp[X\mid Y]$ is obtained by evaluating this
+        conditional mean at the observed value of $Y$.
     \end{definition}
 
     \begin{theorem}[Law of Total Probability]
@@ -6425,26 +6563,6 @@
             \nRightarrow
             \text{mutual independence}.
         \]
-    \end{definition}
-
-    \begin{definition}[Conditional Distribution]
-        For discrete random variables $X$ and $Y$, whenever
-        $\Prob(Y=y)>0$,
-        \[
-            \Prob(X=x\mid Y=y)
-            =
-            \frac{\Prob(X=x,Y=y)}{\Prob(Y=y)}.
-        \]
-        If $(X,Y)$ has joint density $f_{X,Y}$ and $Y$ has marginal density
-        $f_Y$, then, whenever $f_Y(y)>0$, the conditional density of $X$ given
-        $Y=y$ is
-        \[
-            f_{X\mid Y}(x\mid y)
-            =
-            \frac{f_{X,Y}(x,y)}{f_Y(y)}.
-        \]
-        Conditional mass and density functions sum or integrate to $1$ in the
-        variable being conditioned.
     \end{definition}
 
     \begin{tactic}
@@ -8606,27 +8724,16 @@
         \]
     \end{formula}
 
-    \begin{formula}[$p$-Adic Valuation of a Factorial; Legendre's Formula]
-        For a prime $p$ and a positive integer $n$,
-        \[
-            \nu_p(n!)
-            =
-            \sum_{k=1}^{\infty}
-            \left\lfloor\frac{n}{p^k}\right\rfloor.
-        \]
-        Only finitely many terms are nonzero. This formula gives the exponent
-        of $p$ in $n!$ and is especially useful for trailing-zero and
-        divisibility questions.
-    \end{formula}
-
-    \begin{definition}[$p$-Adic Absolute Value and $p$-Adic Numbers]
-        Fix a prime $p$. For a nonzero rational number $x$, write
+    \begin{definition}[$p$-Adic Valuation, $p$-Adic Absolute Value, and $p$-Adic Numbers]
+        Fix a prime $p$. For a nonzero rational number $x$, write uniquely
         \[
             x=p^{\nu_p(x)}\frac{a}{b},
             \qquad
             p\nmid ab,
         \]
-        and define
+        where $\nu_p(x)\in\Z$ is the $p$-adic valuation of $x$. For a nonzero
+        integer, $\nu_p(n)$ is therefore the exponent of $p$ in its prime
+        factorization. Define
         \[
             |x|_p=p^{-\nu_p(x)},
             \qquad
@@ -8640,6 +8747,19 @@
         $\Q$ with respect to this absolute value, just as $\R$ is a completion
         of $\Q$ with respect to the usual absolute value.
     \end{definition}
+
+    \begin{formula}[$p$-Adic Valuation of a Factorial; Legendre's Formula]
+        For a prime $p$ and a positive integer $n$,
+        \[
+            \nu_p(n!)
+            =
+            \sum_{k=1}^{\infty}
+            \left\lfloor\frac{n}{p^k}\right\rfloor.
+        \]
+        Only finitely many terms are nonzero. This formula gives the exponent
+        of $p$ in $n!$ and is especially useful for trailing-zero and
+        divisibility questions.
+    \end{formula}
 
     \begin{definition}[M\"obius Function]
         The M\"obius function is
@@ -9141,7 +9261,11 @@
 
 
     \begin{definition}[Quotient Group]
-        If $N\trianglelefteq G$, the quotient group $G/N$ is the set of cosets
+        If $N\trianglelefteq G$, a left coset of $N$ is a set
+        \[
+            gN=\{gn\mid n\in N\}.
+        \]
+        The quotient group $G/N$ is the set of these cosets,
         \[
             G/N=\{gN\mid g\in G\},
         \]
@@ -9757,6 +9881,15 @@
     \end{definition}
 
 
+    \begin{definition}[Open Sets, Closed Sets, and Neighborhoods]
+        If $(X,\mathcal{T})$ is a topological space, a subset $U\subseteq X$ is
+        open if $U\in\mathcal{T}$. A subset $F\subseteq X$ is closed if
+        $X\setminus F\in\mathcal{T}$. A neighborhood of $x\in X$ is a set that
+        contains an open set containing $x$. A local basis at $x$ is a family
+        of neighborhoods with the property that every neighborhood of $x$
+        contains one of them.
+    \end{definition}
+
     \begin{definition}[First- and Second-Countability]
         A topological space is first-countable if every point has a countable
         local neighborhood basis. It is second-countable if its topology has a
@@ -9764,14 +9897,9 @@
         not conversely in general.
     \end{definition}
 
-    \begin{definition}[Open and Closed Sets]
-        If $(X,\mathcal{T})$ is a topological space, a subset $U\subseteq X$ is
-        open if $U\in\mathcal{T}$. A subset $F\subseteq X$ is closed if
-        $X\setminus F\in\mathcal{T}$.
-    \end{definition}
-
     \begin{definition}[Compactness]
-        A topological space $X$ is compact if every open cover has a finite
+        An open cover of $X$ is a family of open sets whose union contains
+        $X$. A topological space $X$ is compact if every open cover has a finite
         subcover. Equivalently, for every family $\mathcal{U}\subseteq\mathcal{T}$,
         \[
             X\subseteq\bigcup_{U\in\mathcal{U}}U
