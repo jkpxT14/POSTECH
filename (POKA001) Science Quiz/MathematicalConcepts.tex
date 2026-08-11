@@ -2365,6 +2365,37 @@
         \]
     \end{formula}
 
+    \begin{definition}[Frenet--Serret Apparatus]
+        Let $\mathbf{r}(s)$ be a $C^3$ regular space curve parametrized by arc
+        length, and suppose its curvature is nonzero. Define the unit tangent,
+        principal normal, and binormal vectors by
+        \[
+            \mathbf{T}=\mathbf{r}'(s),
+            \qquad
+            \kappa=\|\mathbf{T}'(s)\|,
+            \qquad
+            \mathbf{N}=\frac{\mathbf{T}'(s)}{\kappa},
+            \qquad
+            \mathbf{B}=\mathbf{T}\times\mathbf{N}.
+        \]
+        The torsion is
+        \[
+            \tau=-\mathbf{B}'(s)\cdot\mathbf{N}(s).
+        \]
+        The collection
+        \[
+            \{\mathbf{T},\mathbf{N},\mathbf{B},\kappa,\tau\}
+        \]
+        is called the Frenet--Serret apparatus. It satisfies
+        \[
+            \mathbf{T}'=\kappa\mathbf{N},
+            \qquad
+            \mathbf{N}'=-\kappa\mathbf{T}+\tau\mathbf{B},
+            \qquad
+            \mathbf{B}'=-\tau\mathbf{N}.
+        \]
+    \end{definition}
+
     \begin{definition}[Scalar Line Integral]
         If a curve $C$ is parametrized by $\mathbf{r}(t)$ for $a\leq t\leq b$,
         then
@@ -7200,6 +7231,16 @@
     \end{strategy}
 
 
+    \begin{fact}[Huzita--Hatori Origami Axioms]
+        The standard single-fold model of mathematical origami is described by
+        seven folding axioms commonly called the Huzita--Hatori axioms. They
+        specify folds determined by prescribed incidences among points and
+        lines. Unlike straightedge-and-compass constructions, single-fold
+        origami can solve certain cubic equations; in particular, it can carry
+        out classical constructions such as general angle trisection and
+        doubling the cube.
+    \end{fact}
+
     \begin{definition}[Classical Triangle Centers]
         For a triangle $\triangle ABC$, the most important classical centers
         are:
@@ -8483,6 +8524,17 @@
         This number is not divisible by any prime on the list.
     \end{idea}
 
+    \begin{theorem}[Brun's Theorem]
+        The reciprocal sum over twin-prime pairs converges:
+        \[
+            \sum_{\substack{p\text{ prime}\\p+2\text{ prime}}}
+            \left(\frac{1}{p}+\frac{1}{p+2}\right)
+            <\infty.
+        \]
+        Its value is called Brun's constant. This contrasts with Euler's
+        theorem that the sum of the reciprocals of all primes diverges.
+    \end{theorem}
+
     \begin{theorem}[B\'ezout's Identity; B\'ezout's Lemma]
         Let $a,b\in\Z$, not both zero. Then there exist integers $x,y\in\Z$
         s.t.
@@ -8510,6 +8562,26 @@
         where $r$ is the remainder. Continue until the remainder becomes $0$.
         The last nonzero remainder is $\gcd(a,b)$.
     \end{algorithm}
+
+    \begin{definition}[Gaussian Integers]
+        The Gaussian integers are
+        \[
+            \Z[i]
+            =
+            \{a+bi\mid a,b\in\Z\}.
+        \]
+        Their norm is
+        \[
+            N(a+bi)=a^2+b^2,
+        \]
+        and it is multiplicative:
+        \[
+            N(zw)=N(z)N(w).
+        \]
+        The ring $\Z[i]$ is a Euclidean domain with respect to this norm, so a
+        Euclidean algorithm, greatest common divisors, and unique factorization
+        are available in $\Z[i]$ just as they are in $\Z$.
+    \end{definition}
 
     \begin{proposition}[Basic Rules of Congruences]
         If
@@ -10117,6 +10189,48 @@
     \relatedcourses{}
 
     \relatedbooks{}
+
+    \begin{definition}[Category]
+        A category $\mathcal{C}$ consists of objects and morphisms between
+        objects. For objects $A,B,C$, morphisms can be composed,
+        \[
+            A\xrightarrow{f}B\xrightarrow{g}C
+            \quad\longmapsto\quad
+            g\circ f:A\to C,
+        \]
+        composition is associative, and every object $A$ has an identity
+        morphism $\id_A$. Category theory studies mathematical structures by
+        emphasizing objects, structure-preserving maps, and their composition.
+    \end{definition}
+
+    \begin{definition}[Nash Equilibrium]
+        In a strategic game, a strategy profile is a Nash equilibrium if no
+        player can improve their payoff by changing only their own strategy
+        while every other player's strategy is held fixed. Equivalently, every
+        player's chosen strategy is a best response to the strategies chosen by
+        the others.
+    \end{definition}
+
+    \begin{definition}[Self-Similar Dimension]
+        Suppose a self-similar set is the union of $N$ geometrically similar
+        copies of itself, each scaled by a factor $r$ with $0<r<1$, and the
+        usual separation assumptions hold. Its similarity dimension $d$ is
+        determined by
+        \[
+            Nr^d=1,
+            \qquad
+            d=\frac{\ln N}{\ln(1/r)}.
+        \]
+        This gives a standard noninteger dimension for many classical fractals.
+    \end{definition}
+
+    \begin{fact}[Menger Sponge]
+        At each stage of the Menger sponge construction, a cube is replaced by
+        $20$ copies scaled by $1/3$. Hence its similarity dimension is
+        \[
+            \boxed{\frac{\ln20}{\ln3}}.
+        \]
+    \end{fact}
 
     \begin{strategy}[Symmetry and Without Loss of Generality]
         Before splitting into cases, identify transformations that preserve the

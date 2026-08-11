@@ -2622,6 +2622,112 @@
         \]
     \end{solution}
 
+    \begin{expectedproblem}
+        Which of the following sets has cardinality different from the other
+        four?
+        \begin{problemchoices}
+            \item the Cantor set;
+            \item the set of all functions $f:\Q\to\R$;
+            \item the set $C([0,1])$ of all continuous functions
+                  $[0,1]\to\R$;
+            \item $\R$;
+            \item the set of all algebraic numbers.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The Cantor set has cardinality $|\R|=\mathfrak{c}$. Also,
+        \[
+            |\R^{\Q}|
+            =
+            \mathfrak{c}^{\aleph_0}
+            =
+            (2^{\aleph_0})^{\aleph_0}
+            =
+            \mathfrak{c}.
+        \]
+        A continuous function on $[0,1]$ is determined by its values on the
+        countable dense set $\Q\cap[0,1]$, so
+        \[
+            |C([0,1])|\leq\mathfrak{c}^{\aleph_0}=\mathfrak{c}.
+        \]
+        Constant functions give the reverse inequality, hence
+        $|C([0,1])|=\mathfrak{c}$. By contrast, the algebraic numbers are
+        countable because there are only countably many polynomials in
+        $\Z[x]$, each with finitely many roots. Therefore the answer is
+        \[
+            \boxed{\text{the set of all algebraic numbers}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Determine which of the following series converge:
+        \begin{problemchoices}
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac1n$;
+            \item $\displaystyle
+                  \sum_{\substack{p\text{ prime}\\p+2\text{ prime}}}
+                  \left(\frac1p+\frac1{p+2}\right)$;
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac1{n^2}$;
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac1{2^n}$.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The harmonic series in (1) diverges. Brun's Theorem from Mathematical
+        Concepts states that the twin-prime reciprocal sum in (2) converges.
+        The series in (3) is a $p$-series with $p=2>1$, and the series in (4)
+        is geometric with ratio $1/2$, so both converge. Hence
+        \[
+            \boxed{\text{(2), (3), and (4)}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        A Menger sponge is obtained by repeatedly replacing each cube by $20$
+        smaller cubes, each scaled by a factor of $1/3$. Determine its
+        self-similar dimension.
+    \end{expectedproblem}
+
+    \begin{solution}
+        If $d$ is the self-similar dimension, Mathematical Concepts gives
+        \[
+            20\left(\frac13\right)^d=1.
+        \]
+        Therefore
+        \[
+            3^d=20,
+            \qquad
+            \boxed{d=\frac{\ln20}{\ln3}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Start with a tetrahedral polyhedron and cut seven pairwise disjoint
+        tunnel-like through-holes through it. Let $V$, $E$, and $F$ denote the
+        numbers of vertices, edges, and faces in any polyhedral decomposition
+        of the resulting boundary surface. Determine
+        \[
+            V-E+F.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        The original tetrahedral boundary is a sphere, which has genus $0$ and
+        Euler characteristic $2$. Each disjoint through-hole adds one handle,
+        so the resulting closed orientable surface has genus
+        \[
+            g=7.
+        \]
+        By the Euler-characteristic formula from Mathematical Concepts,
+        \[
+            V-E+F=2-2g=2-14.
+        \]
+        Hence
+        \[
+            \boxed{-12}.
+        \]
+    \end{solution}
+
     \expectedproblemsection{Direct Calculation Problems}
 
     \begin{expectedproblemgroup}{Finite Sums and Products}
@@ -4947,6 +5053,39 @@
             \]
         \end{expectedsubsolution}
 
+        \begin{expectedsubproblem}
+            Factor completely:
+            \[
+                (a-b)^3+(b-c)^3+(c-a)^3.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Set
+            \[
+                x=a-b,
+                \qquad
+                y=b-c,
+                \qquad
+                z=c-a.
+            \]
+            Then $x+y+z=0$. The identity
+            \[
+                x^3+y^3+z^3-3xyz
+                =
+                (x+y+z)
+                (x^2+y^2+z^2-xy-yz-zx)
+            \]
+            therefore gives
+            \[
+                x^3+y^3+z^3=3xyz.
+            \]
+            Hence
+            \[
+                \boxed{3(a-b)(b-c)(c-a)}.
+            \]
+        \end{expectedsubsolution}
+
     \end{expectedproblemgroup}
 
     \begin{expectedproblemgroup}{Determinants}
@@ -5523,6 +5662,69 @@
             Therefore the eigenvalues are
             \[
                 \boxed{1,\ -1,\ i,\ -i}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Let $\mathbf{A}=(a_{ij})$ be the $n\times n$ matrix
+            \[
+                a_{ij}=ij,
+                \qquad
+                1\leq i,j\leq n.
+            \]
+            Determine the sum of all eigenvalues of $\mathbf{A}$, counted with
+            algebraic multiplicity.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Mathematical Concepts gives that the sum of the eigenvalues,
+            counted with algebraic multiplicity, equals the trace. Therefore
+            \[
+                \sum_{k=1}^{n}\lambda_k
+                =
+                \tr(\mathbf{A})
+                =
+                \sum_{i=1}^{n}i^2
+                =
+                \boxed{\frac{n(n+1)(2n+1)}{6}}.
+            \]
+            Equivalently, $\mathbf{A}=\mathbf{u}\mathbf{u}^{\mathsf T}$ for
+            $\mathbf{u}=(1,2,\ldots,n)^{\mathsf T}$, so $\mathbf{A}$ has rank
+            $1$ and its unique nonzero eigenvalue is $\|\mathbf{u}\|^2$.
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Let
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    -11 & 4\\
+                    -30 & 11
+                \end{pmatrix}.
+            \]
+            Determine $\mathbf{A}^{2016}$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            A direct multiplication gives
+            \[
+                \mathbf{A}^2
+                =
+                \begin{pmatrix}
+                    1&0\\
+                    0&1
+                \end{pmatrix}
+                =
+                \mathbf{I}_2.
+            \]
+            Hence
+            \[
+                \mathbf{A}^{2016}
+                =
+                (\mathbf{A}^2)^{1008}
+                =
+                \boxed{\mathbf{I}_2}.
             \]
         \end{expectedsubsolution}
 
@@ -6160,6 +6362,185 @@
         The collective pseudonym is
         \[
             \boxed{\text{Nicolas Bourbaki}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Brook Taylor published the general expansion now bearing his name in
+        the early eighteenth century, but which Scottish mathematician had
+        already found the underlying series method in $1671$?
+    \end{expectedproblem}
+
+    \begin{solution}
+        The mathematician was
+        \[
+            \boxed{\text{James Gregory}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Which French mathematician is remembered for the theorem asserting an
+        interior zero of the derivative when a differentiable function has
+        equal endpoint values, and also adopted the now-standard indexed
+        radical notation for $n$th roots?
+    \end{expectedproblem}
+
+    \begin{solution}
+        The mathematician is
+        \[
+            \boxed{\text{Michel Rolle}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        The rule commonly called l'H\^opital's rule appeared in
+        l'H\^opital's calculus textbook, but the underlying method came from
+        lessons by another mathematician. Identify that mathematician.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The mathematician was
+        \[
+            \boxed{\text{Johann Bernoulli}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        In mathematics, the abbreviation FTA commonly refers to two different
+        fundamental theorems. Name both.
+    \end{expectedproblem}
+
+    \begin{solution}
+        They are
+        \[
+            \boxed{
+                \text{the Fundamental Theorem of Algebra and the Fundamental
+                Theorem of Arithmetic}
+            }.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        What is the standard name for the ring
+        \[
+            \Z[i]=\{a+bi\mid a,b\in\Z\}?
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        Its elements are the
+        \[
+            \boxed{\text{Gaussian integers}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        The standard mathematical model of single-fold origami is usually
+        described by seven axioms named after two mathematicians. What are
+        these axioms commonly called?
+    \end{expectedproblem}
+
+    \begin{solution}
+        They are the
+        \[
+            \boxed{\text{Huzita--Hatori axioms}}.
+        \]
+        The historical naming is not a strict priority claim: Jacques Justin
+        had published all seven axioms earlier, while Humiaki Huzita and
+        Koshiro Hatori are associated with the commonly used name.
+    \end{solution}
+
+    \begin{expectedproblem}
+        What branch of mathematics studies objects together with morphisms
+        between them, with associative composition and identity morphisms?
+    \end{expectedproblem}
+
+    \begin{solution}
+        The branch is
+        \[
+            \boxed{\text{category theory}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        In the title of al-Khwarizmi's foundational algebra treatise, two Arabic
+        terms describe restoring a subtracted quantity and balancing or
+        reducing corresponding quantities. Name the two terms.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The terms are
+        \[
+            \boxed{\textit{al-jabr}\quad\text{and}\quad\textit{al-muqabala}}.
+        \]
+        The word \emph{algebra} derives from \emph{al-jabr}.
+    \end{solution}
+
+    \begin{expectedproblem}
+        How many reachable configurations does the standard $3\times3\times3$
+        Rubik's Cube have?
+    \end{expectedproblem}
+
+    \begin{solution}
+        The corner pieces can be permuted in $8!$ ways and oriented in $3^7$
+        independent ways. The edges can be permuted in $12!$ ways and oriented
+        in $2^{11}$ ways, but the corner and edge permutation parities must
+        agree, giving a factor of $1/2$. Thus
+        \[
+            8!\,3^7\,12!\,2^{10}
+            =
+            \boxed{43\,252\,003\,274\,489\,856\,000}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        For a regular space curve, what is the standard collective name for the
+        data
+        \[
+            \{\mathbf{T},\mathbf{N},\mathbf{B},\kappa,\tau\},
+        \]
+        consisting of the unit tangent, principal normal, binormal, curvature,
+        and torsion?
+    \end{expectedproblem}
+
+    \begin{solution}
+        This collection is the
+        \[
+            \boxed{\text{Frenet--Serret apparatus}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        The median identity
+        \[
+            AB^2+AC^2
+            =
+            2\bigl(AM^2+BM^2\bigr),
+        \]
+        where $M$ is the midpoint of $BC$, is sometimes called the Pappus
+        median theorem in Korea and Japan. What is its standard international
+        name?
+    \end{expectedproblem}
+
+    \begin{solution}
+        It is
+        \[
+            \boxed{\text{Apollonius' theorem}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        A fifteenth family of convex pentagons capable of tiling the plane was
+        found in $2015$. By $2017$, an exhaustive computer-assisted search had
+        settled the classification. As of $2026$, how many families of convex
+        pentagons that tile the plane are known to exist in this classification?
+    \end{expectedproblem}
+
+    \begin{solution}
+        The exhaustive classification found no additional families beyond the
+        previously known fifteen. Therefore the number is
+        \[
+            \boxed{15}.
         \]
     \end{solution}
 
@@ -7363,6 +7744,36 @@
         Therefore,
         \[
             \boxed{x=84}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        In a country where every statement made by an inhabitant is false, five
+        people $A,B,C,D,E$ have distinct ages and say:
+        \begin{problemsubparts}
+            \item $A$: ``I am the oldest.''
+            \item $B$: ``I am the youngest.''
+            \item $C$: ``I am older than $D$.''
+            \item $D$: ``I am older than $E$.''
+            \item $E$: ``I am younger than $B$.''
+        \end{problemsubparts}
+        Who is the oldest?
+    \end{expectedproblem}
+
+    \begin{solution}
+        Since every statement is false, $C$ is younger than $D$, $D$ is
+        younger than $E$, and $E$ is older than $B$. Hence
+        \[
+            C<D<E,
+            \qquad
+            B<E.
+        \]
+        Also $A$ is not the oldest. If $A>E$, then $A$ would be older than
+        $B,C,D,E$ and therefore would be the oldest, contradicting $A$'s false
+        statement. Thus $A<E$ as well. Consequently $E$ is older than all four
+        others, so
+        \[
+            \boxed{E}.
         \]
     \end{solution}
 
