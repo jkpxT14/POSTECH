@@ -3132,7 +3132,94 @@
         \end{center}
     \end{pastproblem}
 
-    \begin{solution}
+    \begin{solutions}
+        \begin{solution}
+            Let $E$ be the foot of the perpendicular from $C$ to the line $AB$.
+            Since $A,D,B$ are collinear and $\angle ADC=45^\circ$, we have
+            \[
+                \angle CDE=45^\circ.
+            \]
+            Thus $\triangle CED$ is a $45^\circ$--$45^\circ$--$90^\circ$ triangle.
+            Set
+            \[
+                CE=\ell.
+            \]
+            Then
+            \[
+                ED=\ell.
+            \]
+
+            Also,
+            \[
+                \angle BDC
+                =
+                180^\circ-\angle ADC
+                =
+                135^\circ,
+            \]
+            so in $\triangle BCD$,
+            \[
+                \angle CBD
+                =
+                180^\circ-135^\circ-15^\circ
+                =
+                30^\circ.
+            \]
+            Hence $\triangle CEB$ is a $30^\circ$--$60^\circ$--$90^\circ$ triangle, and therefore
+            \[
+                EB=\sqrt{3}\,\ell.
+            \]
+            The equality $\angle CDE=45^\circ$ places $E$ on the $A$-side of $D$,
+            so $D$ lies between $E$ and $B$. Hence
+            \[
+                DB
+                =
+                EB-ED
+                =
+                (\sqrt{3}-1)\ell.
+            \]
+            Because $D$ is the midpoint of $\overline{AB}$,
+            \[
+                AD=DB=(\sqrt{3}-1)\ell.
+            \]
+            In particular $AD<ED$, so the points occur in the order $E,A,D,B$, and
+            \[
+                EA
+                =
+                ED-AD
+                =
+                (2-\sqrt{3})\ell.
+            \]
+
+            Since $\angle ECD=45^\circ$ and $\angle ACD=\theta$,
+            \[
+                \angle ECA=45^\circ-\theta.
+            \]
+            Applying the tangent ratio in the right triangle $CEA$ gives
+            \[
+                \tan(45^\circ-\theta)
+                =
+                \frac{EA}{CE}
+                =
+                2-\sqrt{3}.
+            \]
+            On the other hand, the tangent subtraction formula gives
+            \[
+                \tan 15^\circ
+                =
+                \tan(45^\circ-30^\circ)
+                =
+                \frac{1-1/\sqrt{3}}{1+1/\sqrt{3}}
+                =
+                2-\sqrt{3}.
+            \]
+            Since $0^\circ<45^\circ-\theta<45^\circ$, we conclude that
+            \[
+                \boxed{\theta=30^\circ}.
+            \]
+        \end{solution}
+
+        \begin{solution}
         Since $A,D,B$ are collinear,
         \[
             \angle BDC
@@ -3201,7 +3288,8 @@
         \[
             \boxed{\theta=30^\circ}.
         \]
-    \end{solution}
+        \end{solution}
+    \end{solutions}
 
     \begin{pastproblem}{2024.4}
         Let $C$ be a convex subset of $\R^3$. Here convex means that for any two points
