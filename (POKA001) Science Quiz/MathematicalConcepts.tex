@@ -2,7 +2,7 @@
 
     \relatedcourses{(MATH202) Set Theory}
 
-    \relatedbooks{Introduction to Set Theory (Karel Hrbacek, Thomas Jech)}
+    \relatedbooks{Introduction to Set Theory (Karel Hrbacek and Thomas Jech)}
 
     \begin{definition}[Set and Element]
         A set is a collection of objects, called its elements. We write
@@ -281,11 +281,11 @@
 
     \begin{algorithm}[Mathematical Induction]
         To prove a statement $P(n)$ for all integers $n\geq n_0$:
-        \begin{enumerate}
+        \begin{bookitems}
             \item Prove the base case $P(n_0)$.
             \item Prove the induction step: for every $k\geq n_0$, show that
                   $P(k)$ implies $P(k+1)$.
-        \end{enumerate}
+        \end{bookitems}
         Then $P(n)$ holds for all integers $n\geq n_0$.
     \end{algorithm}
 
@@ -318,10 +318,10 @@
         (MATH210) Applied Complex Variables, (MATH311) Analysis I,
         (MATH312) Analysis II}
 
-    \relatedbooks{Calculus With Applications (Peter D. Lax, Maria Shea Terrell),
-        Multivariable Calculus with Applications (Peter D. Lax, Maria Shea Terrell),
+    \relatedbooks{Calculus With Applications (Peter D. Lax and Maria Shea Terrell),
+        Multivariable Calculus with Applications (Peter D. Lax and Maria Shea Terrell),
         Principles of Mathematical Analysis (Walter Rudin),
-        Complex Variables and Applications (James Ward Brown, Ruel V. Churchill)}
+        Complex Variables and Applications (James Ward Brown and Ruel V. Churchill)}
 
     \section*{One-Variable Calculus}
 
@@ -1623,7 +1623,7 @@
 
     \begin{algorithm}[Fast Integral Recognition Checklist]
         Before expanding or integrating directly, check in this order:
-        \begin{enumerate}
+        \begin{bookitems}
             \item parity, periodicity, and interval symmetry;
             \item the substitutions $x\mapsto a-x$, $x\mapsto 1/x$, or
                   $x\mapsto a/x$;
@@ -1633,7 +1633,7 @@
                   integral;
             \item the tangent half-angle substitution for rational trigonometric
                   expressions.
-        \end{enumerate}
+        \end{bookitems}
     \end{algorithm}
 
     \begin{formula}[Wallis Product]
@@ -1894,7 +1894,7 @@
 
     \begin{algorithm}[Fast Series Checklist]
         For a convergence or summation problem:
-        \begin{enumerate}
+        \begin{bookitems}
             \item Check the term limit first.
             \item Look for telescoping, a geometric series, or a known power
                   series.
@@ -1904,7 +1904,7 @@
                   Root Test for expressions raised to the $n$th power.
             \item For alternating terms, check monotonicity and use the first
                   omitted term to control the error.
-        \end{enumerate}
+        \end{bookitems}
     \end{algorithm}
 
     \section*{Multivariable Calculus}
@@ -5082,7 +5082,7 @@
     \relatedcourses{(MATH200) Differential Equations}
 
     \relatedbooks{Elementary Differential Equations and Boundary Value Problems
-        (William E. Boyce, Richard C. DiPrima, Douglas B. Meade)}
+        (William E. Boyce, Richard C. DiPrima, and Douglas B. Meade)}
 
     \begin{definition}[Differential Equation, Order, and Initial Value Problem]
         An ordinary differential equation (ODE) relates an unknown function of
@@ -5729,7 +5729,7 @@
     \relatedcourses{(MATH261) Discrete Mathematics}
 
     \relatedbooks{Introductory Combinatorics (Richard A. Brualdi),
-        Invitation to Discrete Mathematics (Ji\v{r}\'i Matou\v{s}ek, Jaroslav Ne\v{s}et\v{r}il)}
+        Invitation to Discrete Mathematics (Ji\v{r}\'i Matou\v{s}ek and Jaroslav Ne\v{s}et\v{r}il)}
 
     \begin{definition}[Permutation, Combination, and Multiset Selection]
         An ordered selection of $k$ distinct objects from $n$ distinct objects
@@ -6408,7 +6408,7 @@
     \relatedcourses{(MATH230) Probability \& Statistics}
 
     \relatedbooks{Probability \& Statistics for Engineers \& Scientists
-        (Ronald E. Walpole, Raymond H. Myers, Sharon L. Myers, Keying Ye)}
+        (Ronald E. Walpole, Raymond H. Myers, Sharon L. Myers, and Keying Ye)}
 
     \begin{definition}[Probability Space, Event, and Conditional Probability]
         A probability space is a triple $(\Omega,\mathcal{F},\Prob)$, where
@@ -6838,27 +6838,27 @@
     \begin{definition}[Modes of Convergence for Random Variables]
         Let $X_n$ and $X$ be random variables on the same probability space.
         The principal modes of convergence used in probability are:
-        \begin{enumerate}
-            \item[(i)] $X_n\asto X$ if
+        \begin{conditionlist}
+            \item $X_n\asto X$ if
             \[
                 \Prob\bigl(\{\omega\mid X_n(\omega)\to X(\omega)\}\bigr)=1;
             \]
-            \item[(ii)] $X_n\probto X$ if
+            \item $X_n\probto X$ if
             \[
                 \forall\varepsilon>0,
                 \qquad
                 \Prob\bigl(|X_n-X|>\varepsilon\bigr)\to 0;
             \]
-            \item[(iii)] $X_n\Lpto{p}X$ for $p\geq 1$ if
+            \item $X_n\Lpto{p}X$ for $p\geq 1$ if
             \[
                 \Exp\bigl[|X_n-X|^p\bigr]\to 0;
             \]
-            \item[(iv)] $X_n\distto X$ if
+            \item $X_n\distto X$ if
             \[
                 F_{X_n}(x)\to F_X(x)
             \]
             at every continuity point $x$ of the distribution function $F_X$.
-        \end{enumerate}
+        \end{conditionlist}
         Almost-sure convergence implies convergence in probability, and
         convergence in probability implies convergence in distribution.
     \end{definition}
@@ -8475,7 +8475,7 @@
     \relatedcourses{(MATH304) Introduction to Number Theory}
 
     \relatedbooks{Introduction to Number Theory
-        (William W. Adams, Larry Joel Goldstein)}
+        (William W. Adams and Larry Joel Goldstein)}
 
     \begin{definition}[Divisibility, Prime, Greatest Common Divisor, and Congruence]
         For $a,b\in\Z$, write $a\mid b$ if
@@ -9272,7 +9272,7 @@
 
     \relatedcourses{(MATH301) Modern Algebra I, (MATH302) Modern Algebra II}
 
-    \relatedbooks{Abstract Algebra (David S. Dummit, Richard M. Foote)}
+    \relatedbooks{Abstract Algebra (David S. Dummit and Richard M. Foote)}
 
     \begin{definition}[Group]
         A group is a set $G$ with a binary operation $\ast:G\times G\to G$ s.t.
@@ -9929,13 +9929,13 @@
     \begin{definition}[Topology]
         A topology on a set $X$ is a collection $\mathcal{T}$ of subsets of $X$
         whose elements are called open sets, satisfying:
-        \begin{enumerate}
-            \item[(i)] $\varnothing,X\in\mathcal{T}$;
-            \item[(ii)] arbitrary unions of sets in $\mathcal{T}$ belong to
+        \begin{conditionlist}
+            \item $\varnothing,X\in\mathcal{T}$;
+            \item arbitrary unions of sets in $\mathcal{T}$ belong to
             $\mathcal{T}$;
-            \item[(iii)] finite intersections of sets in $\mathcal{T}$ belong to
+            \item finite intersections of sets in $\mathcal{T}$ belong to
             $\mathcal{T}$.
-        \end{enumerate}
+        \end{conditionlist}
     \end{definition}
 
 
