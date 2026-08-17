@@ -7,6 +7,8 @@
 \usepackage[T5,T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{microtype}
+\usepackage{etoolbox}
+\usepackage{needspace}
 
 % Mathematics
 \usepackage{amsmath,amssymb,amsthm}
@@ -226,6 +228,25 @@
 \newtheorem*{strategy}{Strategy}
 \newtheorem*{tactic}{Tactic}
 
+% Readability safeguard: theorem-like labels should never be stranded at the
+% bottom of a page with too little room for the statement that follows.
+\newcommand{\sciencequizblockspace}{\Needspace{4\baselineskip}}
+\BeforeBeginEnvironment{definition}{\sciencequizblockspace}
+\BeforeBeginEnvironment{theorem}{\sciencequizblockspace}
+\BeforeBeginEnvironment{proposition}{\sciencequizblockspace}
+\BeforeBeginEnvironment{lemma}{\sciencequizblockspace}
+\BeforeBeginEnvironment{corollary}{\sciencequizblockspace}
+\BeforeBeginEnvironment{conjecture}{\sciencequizblockspace}
+\BeforeBeginEnvironment{hypothesis}{\sciencequizblockspace}
+\BeforeBeginEnvironment{formula}{\sciencequizblockspace}
+\BeforeBeginEnvironment{fact}{\sciencequizblockspace}
+\BeforeBeginEnvironment{openproblem}{\sciencequizblockspace}
+\BeforeBeginEnvironment{algorithm}{\sciencequizblockspace}
+\BeforeBeginEnvironment{remark}{\sciencequizblockspace}
+\BeforeBeginEnvironment{idea}{\sciencequizblockspace}
+\BeforeBeginEnvironment{strategy}{\sciencequizblockspace}
+\BeforeBeginEnvironment{tactic}{\sciencequizblockspace}
+
 % Problem environments
 % Past Problems keep explicit historical labels. Expected Problems are numbered
 % automatically, restarting from 1 in each section of Part V. Each ordinary
@@ -244,7 +265,7 @@
 % are [1988 IMO, Vieta Jumping], [1994 CSAT],
 % [1961 \UTokyo{} Entrance Examination], and [Chomp].
 \newcommand{\problemheading}[1]{%
-    \par\vspace{6pt}\noindent
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
 }
 
@@ -351,7 +372,7 @@
 \newenvironment{expectedsubproblem}[1][]
     {%
         \refstepcounter{expectedsubproblem}%
-        \par\vspace{4pt}\noindent
+        \par\Needspace{3\baselineskip}\vspace{4pt}\noindent
         \if\relax\detokenize{#1}\relax
             \textbf{\theexpectedsubproblem.}%
         \else
@@ -362,7 +383,7 @@
     {\par\vspace{4pt}}
 
 \newenvironment{expectedsubsolution}
-    {\par\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
+    {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
     {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
 
 \newcommand{\expectedproblemsection}[1]{%
@@ -381,7 +402,7 @@
 
 \newenvironment{solution}
     {%
-        \par\vspace{6pt}\noindent
+        \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
         \ifnumberedsolutions
             \stepcounter{solutionnumber}%
             \textit{Solution \arabic{solutionnumber}.}%
@@ -393,7 +414,7 @@
     {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
 
 \newenvironment{hint}
-    {\par\vspace{4pt}\noindent\textit{Hint.}\hspace{0.5em}\ignorespaces}
+    {\par\Needspace{2\baselineskip}\vspace{4pt}\noindent\textit{Hint.}\hspace{0.5em}\ignorespaces}
     {\par\vspace{4pt}}
 
 % Standard number systems

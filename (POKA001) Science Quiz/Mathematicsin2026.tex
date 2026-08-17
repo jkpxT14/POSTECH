@@ -2,7 +2,7 @@
 
     This part records the mathematical events most relevant to the 2026
     Science Quiz season. Its time window begins on January 1, 2025, and runs
-    through the preparation cutoff of August 16, 2026. Later developments may be
+    through the preparation cutoff of August 17, 2026. Later developments may be
     added before the competition. Unlike Part II, which collects durable facts
     that should remain useful in future years, this part emphasizes why a
     person, prize, theorem, conjecture, institution, or competition became
@@ -457,6 +457,18 @@
         & Published in 2025
         & Noncongruent immersed tori with the same metric and mean curvature. \\
 
+        Optimal spectral gap for typical hyperbolic surfaces
+        & Nalini Anantharaman; Laura Monk
+        & 2025 preprint completing a multi-paper program
+        & Random hyperbolic surfaces, Weil--Petersson measure, Laplacian,
+          asymptotically optimal spectral gap $1/4$. \\
+
+        A convex polyhedron without Rupert's property
+        & Jakob Steininger; Sergey Yurkevich
+        & 2025 preprint
+        & The Noperthedron; first proved convex polyhedron that cannot pass
+          through a suitable straight hole in an identical copy of itself. \\
+
         Unknotting number is not additive
         & Mark Brittenham; Susan Hermiller
         & Accepted in 2026
@@ -483,6 +495,44 @@
           formally verified in 2026; counterexamples now exist for every $n>2$
         & Polynomial maps, constant Jacobian determinant, noninjectivity; the
           case $n=2$ remains open. \\
+
+        Erd\H{o}s--Szemer\'edi sum--product conjecture over $\R$
+        & Thomas F. Bloom; Will Sawin; Carl Schildkraut; Dmitrii Zhelezov
+        & Disproved by a May 2026 preprint
+        & Additive combinatorics, sumsets and product sets, algebraic number
+          fields; the integer version is not disproved. \\
+
+        Cycle Double Cover Conjecture
+        & OpenAI; expositions by Sang-il Oum and Jim Geelen
+        & Affirmative AI-generated proof announced in July 2026 and publicly
+          exposited in preprints
+        & Bridgeless graphs, cycle covers, every edge covered exactly twice. \\
+
+        Maxwell Conjecture on point charges
+        & Philip Arathoon; Gavin Ball; Matthew D. Kvalheim
+        & Disproved by a July 2026 preprint
+        & Five point charges with at least $24$ nondegenerate critical points,
+          exceeding Maxwell's proposed $(n-1)^2$ bound. \\
+
+        Planar Pompeiu, Schiffer, and Berenstein conjectures
+        & Matthew J. Colbrook; George Stepaniants; Siavash Sadeghi
+        & Computer-assisted counterexample preprints in August 2026
+        & Overdetermined eigenvalue problems, Fourier zero sets, noncircular
+          real-analytic planar domains, interval arithmetic. \\
+
+        Petersen Coloring Conjecture
+        & Bryce Putman; Jorik Jooken
+        & Explicit $112$-vertex counterexample posted in August 2026; SAT/DRAT
+          verification followed by a human-checkable proof
+        & Bridgeless cubic graphs, Petersen coloring, normal $5$-edge-coloring. \\
+
+        Heil--Ramanathan--Topiwala Conjecture
+        & Markus Faulhuber; Philipp Petersen; Jordy Timo van Velthoven; Felix
+          Voigtlaender; Vignon Oussa
+        & Disproved in August 2026; a $12$-shift counterexample was followed by
+          a computer-assisted $4$-shift counterexample
+        & Time--frequency analysis, Gabor systems, linear dependence of
+          time--frequency shifts of a Schwartz function. \\
 
         Exacting and ultraexacting cardinals
         & Juan P. Aguilera; Joan Bagaria; Philipp L\"ucke
@@ -604,6 +654,77 @@
         that the most symmetric construction need not be the best known one.
     \end{fact}
 
+    \begin{fact}[Sum--product conjecture over the reals]
+        For a finite set $A$, write
+        \[
+            A+A=\{a+b:a,b\in A\},
+            \qquad
+            AA=\{ab:a,b\in A\}.
+        \]
+        In May 2026, Thomas F. Bloom, Will Sawin, Carl Schildkraut, and Dmitrii
+        Zhelezov constructed arbitrarily large finite $A\subset\R$ satisfying
+        \[
+            \max\{|A+A|,|AA|\}\leq |A|^{2-c}
+        \]
+        for an absolute constant $c>0$. This disproves the Erd\H{o}s--Szemer\'edi
+        sum--product conjecture over $\R$. Because their sets live in algebraic
+        number fields of degree growing like $\log|A|$, the result does not by
+        itself settle the original integer case.
+    \end{fact}
+
+    \begin{fact}[Maxwell's proposed bound for electrostatic equilibria is false]
+        Maxwell proposed that the field of $n$ point charges should have at most
+        $(n-1)^2$ nondegenerate critical points. Philip Arathoon, Gavin Ball, and
+        Matthew D. Kvalheim gave a configuration of five point charges whose
+        electrostatic potential has at least $24$ nondegenerate critical points.
+        Since $(5-1)^2=16$, the proposed bound is false.
+    \end{fact}
+
+    \begin{fact}[Planar Pompeiu--Schiffer and Berenstein counterexamples]
+        In August 2026, Matthew J. Colbrook and George Stepaniants constructed a
+        bounded simply connected noncircular planar domain with real-analytic
+        boundary that is simultaneously a counterexample to the planar Schiffer
+        conjecture and the corresponding Pompeiu conjecture. Colbrook, Siavash
+        Sadeghi, and Stepaniants then adapted the method to disprove the
+        unrestricted planar Berenstein conjecture. Both results are
+        computer-assisted preprints with rigorous interval-arithmetic
+        certification.
+    \end{fact}
+
+    \begin{fact}[Petersen coloring counterexample]
+        Bryce Putman's August 2026 preprint gives an explicit simple bridgeless
+        cubic graph on $112$ vertices with no Petersen coloring and no normal
+        $5$-edge-coloring. The computational proof supplies SAT instances and
+        checked DRAT certificates. Jorik Jooken subsequently posted a
+        human-checkable proof for the $112$-vertex counterexample.
+    \end{fact}
+
+    \begin{fact}[The HRT conjecture is false]
+        The Heil--Ramanathan--Topiwala conjecture asserted that every finite set
+        of distinct time--frequency shifts of a nonzero function in
+        $L^2(\R)$ is linearly independent. In August 2026, Markus Faulhuber,
+        Philipp Petersen, Jordy Timo van Velthoven, and Felix Voigtlaender
+        disproved the conjecture using $12$ time--frequency shifts of a
+        Schwartz function. Vignon Oussa then produced a computer-assisted
+        counterexample using only $4$ shifts, again with a nonzero Schwartz
+        function.
+    \end{fact}
+
+    \begin{fact}[Two memorable geometry results from 2025]
+        Two visually memorable results complement the major theorem-and-prize
+        stories of the season.
+        \begin{itemize}
+            \item Nalini Anantharaman and Laura Monk completed a program showing
+                  that a Weil--Petersson random hyperbolic surface of large genus
+                  has spectral gap arbitrarily close to the optimal value
+                  $1/4$ with probability tending to $1$.
+            \item Jakob Steininger and Sergey Yurkevich constructed the
+                  \emph{Noperthedron}, a convex polyhedron without Rupert's
+                  property. Thus not every convex polyhedron can pass through a
+                  suitable straight hole in an identical copy of itself.
+        \end{itemize}
+    \end{fact}
+
     \begin{fact}[New large-cardinal terminology]
         Exacting cardinals and ultraexacting cardinals were introduced in a 2025
         preprint by Aguilera, Bagaria, and L\"ucke. They belong to the study of
@@ -716,6 +837,38 @@
         problem set and achieved a gold-medal-level result. This is primarily an
         achievement in algorithm design and competitive programming, whereas the
         IMO emphasizes proof-based olympiad mathematics.
+    \end{fact}
+
+    \begin{fact}[GPT-5.5 and off-diagonal Ramsey numbers]
+        In April 2026, OpenAI reported that an internal GPT-5.5 system with a
+        custom research harness found a new proof of a longstanding asymptotic
+        fact about off-diagonal Ramsey numbers. The argument was subsequently
+        verified in Lean. For quiz purposes, the important association is
+        \[
+            \text{GPT-5.5}
+            \quad\longleftrightarrow\quad
+            \text{off-diagonal Ramsey numbers}
+            \quad\longleftrightarrow\quad
+            \text{Lean verification}.
+        \]
+    \end{fact}
+
+    \begin{fact}[GPT-5.6 Sol and the Cycle Double Cover Conjecture]
+        The Cycle Double Cover Conjecture asks whether every finite bridgeless
+        loopless multigraph admits a multiset of cycles in which every edge
+        appears exactly twice. In July 2026, OpenAI released the prompt and
+        materials for an affirmative proof generated by GPT-5.6 Sol Ultra.
+        Sang-il Oum and Jim Geelen posted independent expository write-ups of the
+        argument. The season-specific association is therefore
+        \[
+            \begin{aligned}
+                \text{Cycle Double Cover Conjecture}
+                &\longleftrightarrow \text{GPT-5.6 Sol Ultra}\\
+                &\longleftrightarrow \text{Oum and Geelen expositions}.
+            \end{aligned}
+        \]
+        The public proof and expositions should still be distinguished from the
+        separate question of ordinary journal publication.
     \end{fact}
 
     \begin{fact}[First Proof]

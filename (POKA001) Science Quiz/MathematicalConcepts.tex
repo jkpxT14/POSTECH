@@ -3494,6 +3494,66 @@
         are similar.
     \end{formula}
 
+
+    \begin{definition}[Column Space, Row Space, Null Space, and Rank]
+        Let $\mathbf{A}\in F^{m\times n}$. Its column space and row space are
+        the subspaces spanned by its columns and rows:
+        \[
+            \Col(\mathbf{A})\subseteq F^m,
+            \qquad
+            \Row(\mathbf{A})\subseteq F^n.
+        \]
+        Its null space is
+        \[
+            \Null(\mathbf{A})
+            =
+            \{\mathbf{x}\in F^n\mid \mathbf{A}\mathbf{x}=\mathbf{0}\}.
+        \]
+        The rank is
+        \[
+            \rk(\mathbf{A})=\dim\Col(\mathbf{A}).
+        \]
+        Equivalently, rank is the number of pivot columns in any row-echelon
+        form of $\mathbf{A}$; the Row Rank Equals Column Rank theorem below
+        justifies the corresponding row-space interpretation.
+    \end{definition}
+
+    \begin{definition}[Elementary Row Operations, Echelon Forms, and Pivots]
+        The elementary row operations are: interchange two rows; multiply a row
+        by a nonzero scalar; and add a scalar multiple of one row to another.
+        A matrix is in \emph{row echelon form} if every nonzero row begins to the
+        right of the row above it and every zero row is below every nonzero row.
+        The first nonzero entry of a nonzero row is a \emph{pivot}. It is in
+        \emph{reduced row echelon form} if, in addition, every pivot is $1$ and
+        is the only nonzero entry in its column.
+    \end{definition}
+
+    \begin{algorithm}[Gaussian Elimination and Gauss--Jordan Reduction]
+        For a linear system $\mathbf{A}\mathbf{x}=\mathbf{b}$, form the
+        augmented matrix $[\mathbf{A}\mid\mathbf{b}]$ and apply elementary row
+        operations.
+        \begin{bookitems}
+            \item Reduce to row echelon form to solve by back-substitution, or
+                  continue to reduced row echelon form for a direct description
+                  of all solutions.
+            \item Pivot columns identify basic variables; nonpivot columns
+                  identify free variables. The number of pivots is
+                  $\rk(\mathbf{A})$.
+            \item A row of the form
+                  $[\mathbf{0}^{\mathsf T}\mid c]$ with $c\neq0$ means that the
+                  system is inconsistent. Otherwise, there is a unique solution
+                  exactly when every variable column is a pivot column; free
+                  variables produce infinitely many solutions over an infinite
+                  field.
+            \item To find $\mathbf{A}^{-1}$ for a square matrix, row-reduce
+                  $[\mathbf{A}\mid\mathbf{I}_n]$. The matrix is invertible
+                  exactly when the left block reduces to $\mathbf{I}_n$, in
+                  which case the right block becomes $\mathbf{A}^{-1}$.
+        \end{bookitems}
+        In a timed problem, exploit zeros, symmetry, triangular or block form,
+        and obvious linear relations before carrying out a full reduction.
+    \end{algorithm}
+
     \begin{fact}[Translation Is Affine, Not Linear]
         For a fixed vector $\mathbf{v}\in\R^n$, the translation
         \[
@@ -3877,6 +3937,33 @@
         The same rules hold for columns.
     \end{formula}
 
+
+    \begin{algorithm}[Computing a Determinant]
+        For a square matrix $\mathbf{A}$, choose the shortest structure-aware
+        route rather than expanding automatically.
+        \begin{bookitems}
+            \item First test for an immediate value: a zero row or column, or
+                  linearly dependent rows or columns, gives determinant $0$;
+                  triangular and block-triangular matrices reduce to products of
+                  diagonal determinants.
+            \item Use row or column operations to create zeros and approach
+                  triangular form. Track row swaps and row scalings exactly;
+                  adding a multiple of one row to another leaves the determinant
+                  unchanged.
+            \item If one row or column is sparse, Laplace expansion along that
+                  row or column can be faster than elimination. For a
+                  $3\times3$ matrix, Sarrus' rule is available when it is
+                  genuinely shorter.
+            \item Before doing arithmetic, recognize standard matrices and
+                  low-rank structure. Vandermonde, Cauchy, Pascal, block,
+                  permutation, and rank-one perturbation formulas often turn a
+                  long calculation into one line.
+            \item Check the result against structural facts: a singular matrix
+                  must have determinant $0$, and
+                  $\det(\mathbf{A}\mathbf{B})=\det(\mathbf{A})\det(\mathbf{B})$.
+        \end{bookitems}
+    \end{algorithm}
+
     \begin{formula}[Matrix Determinant Lemma]
         If $\mathbf{A}\in F^{n\times n}$ is invertible and
         $\mathbf{u},\mathbf{v}\in F^n$, then
@@ -3984,6 +4071,39 @@
             \max\{\lvert\lambda\rvert:\lambda\text{ is an eigenvalue of }\mathbf{A}\}.
         \]
     \end{definition}
+
+
+    \begin{algorithm}[Computing Eigenvalues and Eigenvectors]
+        Let $\mathbf{A}\in F^{n\times n}$.
+        \begin{bookitems}
+            \item Inspect the matrix first. For triangular or block-triangular
+                  matrices, the eigenvalues come from the diagonal blocks;
+                  symmetry, all-ones structure, permutation structure, and
+                  low-rank formulas can reveal eigenvectors without computing a
+                  full characteristic polynomial.
+            \item Otherwise compute
+                  \[
+                      p_{\mathbf{A}}(\lambda)
+                      =\det(\lambda\mathbf{I}_n-\mathbf{A})
+                  \]
+                  and solve $p_{\mathbf{A}}(\lambda)=0$. Over $\R$, remember
+                  that nonreal roots may occur; over $\C$, the characteristic
+                  polynomial splits completely.
+            \item For each eigenvalue $\lambda$, row-reduce
+                  $\mathbf{A}-\lambda\mathbf{I}_n$ and find a basis of
+                  $\Null(\mathbf{A}-\lambda\mathbf{I}_n)$. Every nonzero vector
+                  in that null space is an eigenvector for $\lambda$.
+            \item Use
+                  \[
+                      \sum_i\lambda_i=\tr(\mathbf{A}),
+                      \qquad
+                      \prod_i\lambda_i=\det(\mathbf{A})
+                  \]
+                  with algebraic multiplicity as fast checks. Compare algebraic
+                  and geometric multiplicities when deciding whether
+                  $\mathbf{A}$ is diagonalizable.
+        \end{bookitems}
+    \end{algorithm}
 
     \begin{definition}[Algebraic and Geometric Multiplicity]
         Let $\lambda$ be an eigenvalue of $\mathbf{A}\in F^{n\times n}$.
@@ -4878,13 +4998,6 @@
         The displayed letters are matrices and therefore follow the book's
         bold-uppercase convention.
     \end{formula}
-
-    \begin{algorithm}[Gaussian Elimination]
-        Gaussian elimination uses elementary row operations to transform a
-        matrix into an upper triangular or row echelon form. It is the standard
-        computational method for solving linear systems, finding ranks, and
-        computing inverses.
-    \end{algorithm}
 
     \begin{theorem}[LU Decomposition]
         When Gaussian elimination can be performed without row exchanges, a
@@ -6442,9 +6555,9 @@
         \]
         For a continuous random variable with density $f_X$,
         \[
-            \Prob(a<X\leq b)=\int_a^b f_X(x)\,\mathrm{d}x,
+            \Prob(a<X\leq b)=\int_a^b f_X(x)\,\dd x,
             \qquad
-            \int_{-\infty}^{\infty}f_X(x)\,\mathrm{d}x=1.
+            \int_{-\infty}^{\infty}f_X(x)\,\dd x=1.
         \]
         In either case the cumulative distribution function is
         \[
@@ -6459,7 +6572,7 @@
             =
             \begin{cases}
                 \displaystyle\sum_x x\,\Prob(X=x), & X\text{ discrete},\\[1mm]
-                \displaystyle\int_{-\infty}^{\infty}x f_X(x)\,\mathrm{d}x,
+                \displaystyle\int_{-\infty}^{\infty}x f_X(x)\,\dd x,
                 & X\text{ continuous},
             \end{cases}
         \]
@@ -10174,7 +10287,7 @@
         The eight model geometries are
         \[
             S^3,
-            \quad \mathrm{E}^3,
+            \quad \mathbb{E}^3,
             \quad \mathbb{H}^3,
             \quad S^2\times\R,
             \quad \mathbb{H}^2\times\R,
