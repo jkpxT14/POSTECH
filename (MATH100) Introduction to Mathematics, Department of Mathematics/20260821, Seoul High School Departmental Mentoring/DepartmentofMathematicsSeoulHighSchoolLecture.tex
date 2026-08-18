@@ -50,10 +50,31 @@
 \newenvironment{subitemize}{\begin{itemize}\setlength{\itemsep}{0.22em}}{\end{itemize}}
 \newcommand{\smallurl}[1]{{\scriptsize\url{#1}}}
 
+% Three-part standard Beamer footline.
+% Keeps the ordinary Madrid layout but separates speaker, school, and department.
+\makeatletter
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}Jungwoo Kim
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}POSTECH
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}Department of Mathematics\hspace*{1.5em}\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+\makeatother
+
+
 \title[Department of Mathematics]{Department of Mathematics, POSTECH}
 \subtitle{포항공과대학교 수학과}
 \author[Jungwoo Kim]{Jungwoo Kim 김정우}
-\institute[POSTECH]{Department of Mathematics, POSTECH\\\texttt{@jkpxt14} \quad \texttt{jkpxt14@postech.ac.kr}}
+\institute[POSTECH]{@jkpxt14\\jkpxt14@postech.ac.kr}
 \date{}
 
 \begin{document}
@@ -113,7 +134,7 @@
   \item 포스텍-카이스트 학생대제전, 줄여서 포카전
   \item 고연전과 비슷하다.
   \item 축구, 농구, 야구, 이스포츠(리그 오브 레전드), 과학퀴즈, 인공지능, 해킹
-  \item 올해 포스텍 승리 예정
+  \item 올해 포스텍 승리 예정!!
 \end{mainitemize}
 \end{frame}
 
@@ -122,7 +143,7 @@
   \item 무은재학부 (무전공, 자유전공)
   \item 2학년 2학기부터 특정 학과에 배정된다.
 \end{mainitemize}
-\begin{block}{학과 배정}
+\begin{block}{2026 Department Application Results}
 \small
 수학과(13), 물리학과(25), 화학과(4), 생명과학과(14), 신소재공학과(37), 기계공학과(28), 산업경영공학과(20), 전자전기공학과(63), 컴퓨터공학과(42), 화학공학과(38), IT융합공학과(의공학과)(3) / 반도체공학과
 \end{block}
@@ -155,17 +176,18 @@
 \begin{mainitemize}
   \item 고등학교 수학과는 다르다.
   \item 대학교 수학은 매우 추상적이다.
-  \item 수능 수학 문제 푸는 것이 재밌다면 공대를 가자.
+  \item 수학을 하나의 언어로서 받아들이는 감각이 중요하다.
+  \item 수능 수학 문제 푸는 것이 재밌어서 수학과 진학을 고려 중이라면 공대를 가자.
   \item 한 문제를 깊게 고민하는 끈기가 중요하다.
   \item 단적인 예로 수능 수학은 30문제에 100분, 대학교 수학 시험은 10문제에 200분이 주어진다.
 \end{mainitemize}
 \end{frame}
 
 \begin{frame}{CSAT, KMO, IMO, Putnam vs Research}
-\begin{block}{수학을 전공한다는 것}
+\begin{block}{Majoring in Mathematics}
 수학을 ‘전공’한다는 것은, 답이 알려진 문제를 푼다는 것이 아니다.
 \end{block}
-\begin{block}{연구}
+\begin{block}{Research in Mathematics}
 새로운 문제를 정의하고, 답이 없는 문제의 답을 유추하고, 엄밀한 증명을 적어나가고, 새로운 구조를 쌓아나가는 것이 수학에서의 ‘연구’이다.
 \end{block}
 \end{frame}
@@ -246,7 +268,7 @@
     \begin{block}{타학과 대학원}
     \vspace{1.8em}
     \end{block}
-    \begin{block}{학부 취업}
+    \begin{block}{학부 졸업 후 바로 취업}
     \vspace{1.8em}
     \end{block}
   \end{column}
@@ -308,7 +330,7 @@
 \begin{mainitemize}
   \item 수시로 대학을 가라.
   \item 내신 공부가 결국 수능 공부로 이어진다.
-  \item 인생은 홀로 걸어가는 산책이다.
+  \item 본인의 길을 걷자.
   \item 시간은 많다. Slow and Steady Wins the Race.
   \item 기출문제를 열심히 풀자. \& 수능특강, 수능완성을 풀자.
   \item 27수능이라면 큐레이션에 집중하고, 28수능이라면 기본으로 돌아가자.
@@ -363,7 +385,7 @@
 \vfill
 \end{frame}
 
-\begin{frame}{Perfection takes Time}
+\begin{frame}{Closing Remarks}
 \vfill
 \begin{center}
 {\Large Perfection takes Time}\\[1.2em]
