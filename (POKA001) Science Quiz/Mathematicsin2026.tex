@@ -2,7 +2,7 @@
 
     This part records the mathematical events most relevant to the 2026
     Science Quiz season. Its time window begins on January 1, 2025, and runs
-    through the preparation cutoff of August 17, 2026. Later developments may be
+    through the preparation cutoff of August 18, 2026. Later developments may be
     added before the competition. Unlike Part II, which collects durable facts
     that should remain useful in future years, this part emphasizes why a
     person, prize, theorem, conjecture, institution, or competition became
@@ -496,6 +496,13 @@
         & Polynomial maps, constant Jacobian determinant, noninjectivity; the
           case $n=2$ remains open. \\
 
+        Riemann zeta zeros on the critical line
+        & Levent Alp\"oge; Ralph Furman; mathematical argument discovered and
+          written by Claude
+        & August 2026 preprint; Lean formalization accompanies the paper
+        & Unconditionally more than two thirds of the nontrivial zeros are
+          simple and on $\Real(s)=1/2$; the Riemann Hypothesis remains open. \\
+
         Erd\H{o}s--Szemer\'edi sum--product conjecture over $\R$
         & Thomas F. Bloom; Will Sawin; Carl Schildkraut; Dmitrii Zhelezov
         & Disproved by a May 2026 preprint
@@ -653,6 +660,34 @@
         spherical codes that need not come from lattices, reinforcing the lesson
         that the most symmetric construction need not be the best known one.
     \end{fact}
+
+    \begin{fact}[More than two thirds of the zeta zeros are simple and on the critical line]
+        In an August 2026 preprint, Levent Alp\"oge and Ralph Furman proved
+        unconditionally that at least two thirds of the nontrivial zeros of the
+        Riemann zeta function, counted with multiplicity, are simple and lie on
+        the critical line
+        \[
+            \Real(s)=\frac12.
+        \]
+        They also proved that at least five sixths are distinct. With the
+        Montgomery--Taylor window, these lower bounds improve to approximately
+        \[
+            0.6725
+            \qquad\text{and}\qquad
+            0.8362.
+        \]
+        The proof replaces a positivity step that classically used the Riemann
+        Hypothesis with a rank--trace inequality for a finite compression of
+        Weil's Hermitian form, together with Sylvester's law of inertia. The
+        paper includes a Lean~4 formalization.
+    \end{fact}
+
+    \begin{remark}
+        This is a new unconditional record toward the Riemann Hypothesis, not a
+        proof of the hypothesis. The paper states that the mathematical argument
+        was discovered and written by Claude, with Alp\"oge and Furman verifying
+        the proof and taking responsibility for its contents.
+    \end{remark}
 
     \begin{fact}[Sum--product conjecture over the reals]
         For a finite set $A$, write
@@ -928,6 +963,17 @@
         preparation cutoff. Formal verification of the stated Lean theorems and
         long-term independent assessment by the mathematical community are
         distinct stages.
+    \end{fact}
+
+    \begin{fact}[Claude and the Riemann zeta critical-line record]
+        An August 2026 paper by Levent Alp\"oge and Ralph Furman states that its
+        mathematical argument was discovered and written by Claude, an AI system
+        developed by Anthropic; the listed authors verified the proof and take
+        responsibility for it. The mathematical result itself is recorded in
+        the Major Mathematical Developments chapter: an unconditional lower
+        bound of more than two thirds for nontrivial zeta zeros that are both
+        simple and on the critical line, accompanied by Lean~4 formalization.
+        The Riemann Hypothesis itself remains open.
     \end{fact}
 
     \begin{fact}[Leiden Declaration on AI and Mathematics]

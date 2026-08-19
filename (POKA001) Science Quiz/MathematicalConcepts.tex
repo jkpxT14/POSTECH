@@ -336,7 +336,12 @@
             S_N=\sum_{n=1}^{N}a_n.
         \]
         The series converges to $S$ exactly when $S_N\to S$ as $N\to\infty$;
-        otherwise it diverges. Thus every convergence test for a series is a
+        otherwise it diverges. It converges absolutely if
+        \[
+            \sum_{n=1}^{\infty}|a_n|
+        \]
+        converges, and it converges conditionally if it converges but does not
+        converge absolutely. Thus every convergence test for a series is a
         criterion for convergence of its sequence of partial sums.
     \end{definition}
 
@@ -1043,6 +1048,21 @@
         and hidden series evaluations. Expressions involving $e^x$, $\sin x$,
         $\cos x$, $\ln(1+x)$, or $\arctan x$ often invite Taylor expansion.
     \end{strategy}
+
+    \begin{definition}[Power Series and Radius of Convergence]
+        A power series centered at $a$ is a series of the form
+        \[
+            \sum_{n=0}^{\infty}c_n(x-a)^n.
+        \]
+        There is a radius of convergence $R\in[0,\infty]$ s.t. the series
+        converges absolutely for $|x-a|<R$ and diverges for $|x-a|>R$; behavior
+        at the boundary $|x-a|=R$ must be checked separately. A Taylor series is
+        the power series with coefficients
+        \[
+            c_n=\frac{f^{(n)}(a)}{n!}.
+        \]
+        When $a=0$, it is called a Maclaurin series.
+    \end{definition}
 
     \begin{formula}[Maclaurin Series]
         The most important Maclaurin series are
@@ -3189,6 +3209,20 @@
         domain that does not wind around the origin.
     \end{formula}
 
+    \begin{definition}[Complex Contour Integral]
+        Let $\gamma:[a,b]\to\C$ be a piecewise $C^1$ parametrized contour and
+        let $f$ be continuous on the image of $\gamma$. The contour integral is
+        defined by
+        \[
+            \int_\gamma f(z)\dd z
+            =
+            \int_a^b f(\gamma(t))\gamma'(t)\dd t.
+        \]
+        If $\gamma$ is closed, the notation $\oint_\gamma f(z)\dd z$ is
+        commonly used. Reversing the orientation changes the sign of the
+        integral.
+    \end{definition}
+
     \begin{theorem}[Cauchy--Goursat Integral Theorem]
         If $f$ is holomorphic on a simply connected domain $U\subseteq\C$, then
         for every closed piecewise smooth curve $\gamma$ in $U$,
@@ -5209,6 +5243,20 @@
         values such as $y(t_0),y'(t_0),\dots$ to select a particular solution.
     \end{definition}
 
+    \begin{definition}[Separable, Linear, Exact, Bernoulli, and Autonomous First-Order Equations]
+        A first-order ODE is called \emph{separable} if it can be written as
+        $y'=g(t)h(y)$, and \emph{linear} if it has the form
+        $y'+p(t)y=q(t)$. An equation
+        \[
+            M(t,y)\dd t+N(t,y)\dd y=0
+        \]
+        is \emph{exact} on a region if there exists a potential $F$ with
+        $F_t=M$ and $F_y=N$. A \emph{Bernoulli equation} has the form
+        $y'+p(t)y=q(t)y^n$ with $n\neq0,1$. An \emph{autonomous equation}
+        has the form $y'=f(y)$, with no explicit dependence on the independent
+        variable. Recognizing the type determines the standard reduction to try.
+    \end{definition}
+
     \begin{formula}[First-Order ODE Recognition Table]
         Before calculating, identify the structural form.
 
@@ -6261,6 +6309,19 @@
         trees.
     \end{remark}
 
+    \begin{definition}[Finite Symmetry Action, Orbit, and Fixed Point]
+        For counting purposes, let $G$ be a finite collection of symmetries that
+        contains the identity and is closed under composition and inverses. An
+        action of $G$ on a finite set $X$ assigns to each $g\in G$ a permutation
+        of $X$ compatibly with composition. The orbit of $x\in X$ is the set of
+        objects obtainable from $x$ by these symmetries, and
+        \[
+            \Fix(g)=\{x\in X\mid g\cdot x=x\}
+        \]
+        is the fixed-point set of $g$. Chapter 9 gives the full abstract group
+        definition and the general orbit--stabilizer framework.
+    \end{definition}
+
     \begin{theorem}[Burnside's Lemma; Cauchy--Frobenius--Burnside Lemma]
         Suppose a finite group $G$ acts on a finite set $X$, meaning that each
         $g\in G$ acts as a permutation of $X$ and the action is compatible with
@@ -6412,6 +6473,18 @@
         Kaliningrad, Russia.
     \end{remark}
 
+    \begin{definition}[Matching, Perfect Matching, Vertex Cover, and Neighborhood]
+        In a graph, a \emph{matching} is a set of edges no two of which share a
+        vertex. A matching \emph{covers} a vertex if one of its edges is incident
+        to that vertex, and it is \emph{perfect} if it covers every vertex. A
+        \emph{vertex cover} is a set of vertices meeting every edge. For
+        $S\subseteq V$, its neighborhood is
+        \[
+            N(S)=\{v\in V\mid v\text{ is adjacent to some }s\in S\}.
+        \]
+        These notions are the basic language of assignment and pairing problems.
+    \end{definition}
+
     \begin{theorem}[Hall's Marriage Theorem]
         Let $G=(X\cup Y,E)$ be a finite bipartite graph. There is a matching
         that covers every vertex of $X$ if and only if, for every subset
@@ -6431,6 +6504,16 @@
         In every finite bipartite graph, the size of a maximum matching equals
         the size of a minimum vertex cover.
     \end{theorem}
+
+    \begin{definition}[Capacitated Network, Flow, and Cut]
+        A capacitated network is a directed graph with a distinguished source
+        $s$, sink $t$, and nonnegative capacity $c(e)$ on each edge. An
+        $s$--$t$ flow assigns values $f(e)$ satisfying
+        $0\leq f(e)\leq c(e)$ and flow conservation at every vertex other than
+        $s$ and $t$. An $s$--$t$ cut is a partition $V=S\sqcup T$ with
+        $s\in S$ and $t\in T$; its capacity is the sum of capacities of edges
+        directed from $S$ to $T$.
+    \end{definition}
 
     \begin{theorem}[Max-Flow Min-Cut Theorem]
         In a finite capacitated network, the maximum value of a source--sink
@@ -6452,6 +6535,15 @@
         equals any cofactor of $\mathbf{L}$ obtained by deleting the same row
         and column.
     \end{theorem}
+
+    \begin{definition}[Partially Ordered Set, Chain, and Antichain]
+        A partially ordered set, or poset, is a set $P$ equipped with a relation
+        $\preceq$ that is reflexive, antisymmetric, and transitive. A
+        \emph{chain} is a subset whose elements are pairwise comparable, while
+        an \emph{antichain} is a subset in which no two distinct elements are
+        comparable. The power set $\mathcal{P}([n])$ ordered by inclusion is the
+        standard finite example.
+    \end{definition}
 
     \begin{theorem}[Sperner's Theorem]
         The largest family of subsets of $[n]$ in which no member contains
@@ -9431,7 +9523,26 @@
             \qquad
             \image\varphi=\{\varphi(g)\mid g\in G\}.
         \]
+        A bijective homomorphism is an \emph{isomorphism}. An isomorphism
+        $G\to G$ is an \emph{automorphism}. Isomorphic groups have the same
+        group-theoretic structure up to relabeling.
     \end{definition}
+
+    \begin{definition}[Generated Subgroup, Generating Set, and Finitely Generated Group]
+        If $A\subseteq G$, the subgroup generated by $A$, denoted
+        $\langle A\rangle$, is the smallest subgroup of $G$ containing $A$.
+        Equivalently, it consists of all finite products of elements of $A$ and
+        their inverses. The set $A$ is a \emph{generating set} for $G$ if
+        $G=\langle A\rangle$. The group $G$ is \emph{finitely generated} if
+        it has a finite generating set. For a single element $g$, the notation
+        $\langle g\rangle$ denotes the cyclic subgroup generated by $g$.
+    \end{definition}
+
+    \begin{proposition}[Countability of Finitely Generated Groups]
+        Every finitely generated group is at most countable. Every finite group
+        is finitely generated. Consequently, an uncountable group cannot be
+        finitely generated.
+    \end{proposition}
 
     \begin{definition}[Normal Subgroup and Simple Group]
         A subgroup $N\leq G$ is normal, written $N\trianglelefteq G$, if
@@ -9445,12 +9556,24 @@
     \end{definition}
 
 
-    \begin{definition}[Quotient Group]
-        If $N\trianglelefteq G$, a left coset of $N$ is a set
+    \begin{definition}[Coset and Index]
+        If $H\leq G$ and $g\in G$, the left and right cosets of $H$ represented
+        by $g$ are
         \[
-            gN=\{gn\mid n\in N\}.
+            gH=\{gh\mid h\in H\},
+            \qquad
+            Hg=\{hg\mid h\in H\}.
         \]
-        The quotient group $G/N$ is the set of these cosets,
+        The number of left cosets is the index of $H$ in $G$, denoted
+        $[G:H]$. For finite groups,
+        \[
+            [G:H]=\frac{|G|}{|H|}.
+        \]
+    \end{definition}
+
+    \begin{definition}[Quotient Group]
+        If $N\trianglelefteq G$, the quotient group $G/N$ is the set of
+        left cosets of $N$,
         \[
             G/N=\{gN\mid g\in G\},
         \]
@@ -9460,6 +9583,31 @@
         \]
         Normality is exactly the condition that makes this multiplication
         well-defined.
+    \end{definition}
+
+    \begin{definition}[Order of a Group and of an Element]
+        The order of a finite group $G$ is its cardinality $|G|$. The order of
+        an element $g\in G$, denoted $\ord(g)$, is the least positive integer
+        $m$ s.t. $g^m=e$, if such an integer exists; otherwise $g$ has infinite
+        order. Equivalently,
+        \[
+            \ord(g)=|\langle g\rangle|.
+        \]
+    \end{definition}
+
+    \begin{definition}[Permutation, Symmetric Group, and Alternating Group]
+        A permutation of $\{1,\dots,n\}$ is a bijection from the set to itself.
+        Under composition, all such permutations form the symmetric group $S_n$.
+        A transposition swaps two elements and fixes the others. A permutation is
+        \emph{even} if it is a product of an even number of transpositions and
+        \emph{odd} otherwise. The even permutations form the alternating group
+        $A_n\leq S_n$, with
+        \[
+            |S_n|=n!,
+            \qquad
+            |A_n|=\frac{n!}{2}
+            \quad(n\geq2).
+        \]
     \end{definition}
 
     \begin{fact}[Smallest Nonabelian Simple Group]
@@ -9502,6 +9650,16 @@
         \]
         Thus any transposition reverses parity.
     \end{formula}
+
+    \begin{definition}[Group Presentation]
+        A group presentation
+        \[
+            G=\langle S\mid R\rangle
+        \]
+        specifies a generating set $S$ together with defining relations $R$.
+        Presentations give compact descriptions of groups whose elements may be
+        difficult to list explicitly.
+    \end{definition}
 
     \begin{fact}[Dihedral Group]
         The symmetries of a regular $n$-gon form the dihedral group
@@ -9549,6 +9707,19 @@
         an element of order $p$.
     \end{theorem}
 
+    \begin{corollary}[Groups of Prime Order]
+        Every group of prime order $p$ is cyclic and isomorphic to $\Z_p$.
+    \end{corollary}
+
+    \begin{proposition}[Subgroups and Generators of a Finite Cyclic Group]
+        If $G=\langle g\rangle$ has order $n$, then for every divisor $d\mid n$
+        there is exactly one subgroup of order $d$. Moreover, $G$ has exactly
+        $\varphi(n)$ generators, and
+        \[
+            \ord(g^k)=\frac{n}{\gcd(n,k)}.
+        \]
+    \end{proposition}
+
     \begin{theorem}[First Isomorphism Theorem for Groups]
         If $\varphi:G\to H$ is a group homomorphism, then
         \[
@@ -9591,6 +9762,22 @@
         where $G\cdot x$ is the orbit of $x$ and $G_x$ is its stabilizer.
     \end{theorem}
 
+    \begin{definition}[Conjugacy, Center, and Centralizer]
+        Elements $x,y\in G$ are conjugate if $y=gxg^{-1}$ for some $g\in G$.
+        The conjugacy class of $x$ is
+        \[
+            \operatorname{Cl}_G(x)=\{gxg^{-1}\mid g\in G\}.
+        \]
+        The center and centralizer are
+        \[
+            Z(G)=\{z\in G\mid zg=gz\text{ for all }g\in G\},
+            \qquad
+            C_G(x)=\{g\in G\mid gx=xg\}.
+        \]
+        The center consists exactly of the elements whose conjugacy classes have
+        size $1$.
+    \end{definition}
+
     \begin{theorem}[Class Equation]
         Let $G$ be a finite group, and choose one representative $x_i$ from
         each conjugacy class not contained in the center $Z(G)$. Then
@@ -9620,6 +9807,12 @@
         \]
     \end{theorem}
 
+    \begin{theorem}[Basic Finite $p$-Group Facts]
+        If $G$ is a finite group of order $p^n$ for a prime $p$, then its center
+        $Z(G)$ is nontrivial. In particular, every group of order $p^2$ is
+        abelian. These are standard quick consequences of the class equation.
+    \end{theorem}
+
     \begin{strategy}
         For a finite group, subgroup orders and element orders must divide the group
         order. When a
@@ -9645,22 +9838,29 @@
         source of quick algebra questions.
     \end{remark}
 
-    \begin{theorem}[Fundamental Theorem of Finite Abelian Groups]
-        Every finite abelian group is isomorphic to a direct product of cyclic
-        groups of prime-power order:
+    \begin{definition}[Direct Product and Free Group]
+        For groups $G$ and $H$, the direct product $G\times H$ consists of
+        pairs $(g,h)$ with componentwise multiplication. A free group
+        $F(S)$ on a set $S$ consists of reduced words in the symbols of $S$ and
+        their formal inverses; it has no relations beyond the group axioms. A
+        free group on $n$ generators is denoted $F_n$.
+    \end{definition}
+
+    \begin{theorem}[Fundamental Theorem of Finitely Generated Abelian Groups]
+        Every finitely generated abelian group is isomorphic to
         \[
-            G\cong
-            \Z_{p_1^{a_1}}\times\cdots\times\Z_{p_r^{a_r}}.
-        \]
-        The multiset of prime powers is uniquely determined by $G$, up to
-        reordering. Equivalently, $G$ admits a unique invariant-factor
-        decomposition
-        \[
-            G\cong\Z_{n_1}\times\cdots\times\Z_{n_k},
+            G
+            \cong
+            \Z^r\times
+            \Z_{n_1}\times\cdots\times\Z_{n_k},
             \qquad
             n_1\mid n_2\mid\cdots\mid n_k,
         \]
-        up to isomorphism.
+        for uniquely determined $r\geq0$ and invariant factors
+        $n_i\geq2$, up to isomorphism. The integer $r$ is the free rank.
+        In particular, a finite abelian group has $r=0$ and can equivalently be
+        written uniquely, up to reordering, as a direct product of cyclic groups
+        of prime-power order.
     \end{theorem}
 
     \begin{definition}[Ring and Field]
@@ -9672,6 +9872,17 @@
         and every nonzero element has a multiplicative inverse.
     \end{definition}
 
+
+    \begin{definition}[Unit, Zero Divisor, and Characteristic]
+        In a ring $R$ with identity, a \emph{unit} is an element $u$ having a
+        multiplicative inverse. A nonzero element $a$ is a \emph{zero divisor}
+        if $ab=0$ for some nonzero $b$. The characteristic of $R$ is the least
+        positive integer $n$ s.t.
+        \[
+            n1_R=0,
+        \]
+        if such an integer exists; otherwise the characteristic is $0$.
+    \end{definition}
 
     \begin{definition}[Ideal, Ring Homomorphism, and Quotient Ring]
         An ideal $I$ of a commutative ring $R$ is an additive subgroup s.t.
@@ -9690,6 +9901,24 @@
     \begin{definition}[Integral Domain]
         An integral domain is a commutative ring with identity in which there are
         no zero divisors. In other words, if $ab=0$, then $a=0$ or $b=0$.
+    \end{definition}
+
+    \begin{theorem}[Every Finite Integral Domain Is a Field]
+        Every finite integral domain is a field. Indeed, for each nonzero
+        $a$, multiplication by $a$ is injective and hence, on a finite set,
+        surjective; therefore some element maps to $1$.
+    \end{theorem}
+
+    \begin{definition}[Irreducible and Prime Elements]
+        Let $R$ be an integral domain. A nonzero nonunit $p\in R$ is
+        \emph{irreducible} if $p=ab$ implies that $a$ or $b$ is a unit. It is
+        \emph{prime} if
+        \[
+            p\mid ab
+            \quad\Longrightarrow\quad
+            p\mid a\ \text{or}\ p\mid b.
+        \]
+        Every prime element is irreducible. In a UFD, the two notions coincide.
     \end{definition}
 
     \begin{definition}[UFD, PID, and Euclidean Domain]
@@ -9909,6 +10138,37 @@
         \]
         It vanishes if and only if $f$ has a repeated root.
     \end{formula}
+
+    \begin{definition}[Algebraic Number, Minimal Polynomial, and Algebraic Conjugates]
+        A complex number $\alpha$ is algebraic over $\Q$ if it is a root of a
+        nonzero polynomial in $\Q[x]$. Its minimal polynomial
+        $m_{\alpha,\Q}(x)$ is the unique monic irreducible polynomial in
+        $\Q[x]$ having $\alpha$ as a root. The other roots of this minimal
+        polynomial are the algebraic conjugates of $\alpha$ over $\Q$.
+    \end{definition}
+
+    \begin{theorem}[Conjugate Root Theorems]
+        The standard conjugate-root principles are as follows.
+        \begin{conditionlist}
+            \item If $f\in\R[x]$ and $f(\alpha)=0$, then
+            $f(\overline{\alpha})=0$. Hence non-real roots of a real-coefficient
+            polynomial occur in complex-conjugate pairs, with the same
+            multiplicity.
+            \item If $f\in\Q[x]$, $a,b\in\Q$, and $d$ is a squarefree
+            integer, then
+            \[
+                f(a+b\sqrt d)=0
+                \quad\Longrightarrow\quad
+                f(a-b\sqrt d)=0.
+            \]
+            Thus quadratic surd roots occur with their quadratic conjugates.
+            \item More generally, if $f\in\Q[x]$ and $f(\alpha)=0$, then
+            $m_{\alpha,\Q}$ divides $f$ in $\Q[x]$. Therefore every algebraic
+            conjugate of $\alpha$ over $\Q$ is also a root of $f$. The same
+            conclusion applies to integer-coefficient polynomials because
+            $\Z[x]\subseteq\Q[x]$.
+        \end{conditionlist}
+    \end{theorem}
 
     \begin{theorem}[Rational Root Theorem]
         Let
