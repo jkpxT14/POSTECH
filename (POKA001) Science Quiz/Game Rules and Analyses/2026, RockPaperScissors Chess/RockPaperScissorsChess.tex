@@ -1,0 +1,157 @@
+% !TeX program = xelatex
+% !TeX encoding = UTF-8
+\documentclass[11pt,oneside,openany]{book}
+
+% Page layout and typography
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{xetexko}
+\IfFontExistsTF{Noto Serif CJK KR}{\setmainhangulfont[AutoFakeSlant=0.2]{Noto Serif CJK KR}}{}
+\IfFontExistsTF{Noto Sans CJK KR}{\setsanshangulfont{Noto Sans CJK KR}}{}
+\usepackage{microtype}
+\microtypesetup{protrusion=false,expansion=false}
+\usepackage{etoolbox}
+\usepackage{needspace}
+
+% Mathematics and tables
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+
+% Figures
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+
+% Verbatim game records
+\usepackage{fancyvrb}
+
+% Color and PDF metadata
+\usepackage{xcolor}
+\usepackage[unicode,hidelinks]{hyperref}
+\hypersetup{
+    pdftitle={RockPaperScissors Chess},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Rules and analysis for the 2026 Science Quiz game},
+    pdfcreator={XeLaTeX}
+}
+
+% Institution colors and names follow the current Mathematics for Science Quiz source.
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\definecolor{KoreaCrimson}{RGB}{140,0,40}
+\definecolor{YonseiBlue}{RGB}{0,55,120}
+\definecolor{MITRed}{RGB}{117,0,20}
+\definecolor{CambridgeBlue}{RGB}{142,232,216}
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\POSTECHFull}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+\DeclareRobustCommand{\KAISTFull}{%
+    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
+}
+\DeclareRobustCommand{\SeoulNationalUniversity}{%
+    \institutiontext{SNUBlue}{Seoul National University}%
+}
+\DeclareRobustCommand{\KoreaUniversity}{%
+    \institutiontext{KoreaCrimson}{Korea University}%
+}
+\DeclareRobustCommand{\YonseiUniversity}{%
+    \institutiontext{YonseiBlue}{Yonsei University}%
+}
+\DeclareRobustCommand{\MassachusettsInstituteOfTechnology}{%
+    \institutiontext{MITRed}{Massachusetts Institute of Technology}%
+}
+\DeclareRobustCommand{\UniversityOfCambridge}{%
+    \institutiontext{CambridgeBlue}{University of Cambridge}%
+}
+
+% Team colors used by board diagrams.  These are set per game from the PGN-style
+% White/Black header.  Unless otherwise stated, examples use POSTECH as White.
+\newcommand{\RPSCWhiteColor}{POSTECHRed}
+\newcommand{\RPSCBlackColor}{KAISTBlue}
+
+% Table columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% Compact book conventions
+\setcounter{tocdepth}{1}
+\renewcommand{\contentsname}{Contents}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{itemsep=0.18em,topsep=0.4em,parsep=0pt}
+\setlist[enumerate]{itemsep=0.18em,topsep=0.4em,parsep=0pt}
+
+\input{Figures/Styles/TikZ.tex}
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+\begin{titlepage}
+    \centering
+
+    \vspace*{2.65cm}
+
+    {\Huge\bfseries RockPaperScissors Chess\par}
+
+    \vspace{0.55cm}
+
+    {\LARGE Rules and Analysis\par}
+
+    \vspace{0.9cm}
+
+    {\large
+    First Edition\\
+    August 2026
+    \par}
+
+    \vspace{1.25cm}
+
+    {\large
+    Jungwoo Kim\\
+    Department of Mathematics\\
+    \POSTECHFull\\
+    (2026 Science Quiz Representative)\\
+    jkpxt14@postech.ac.kr
+    \par}
+
+    \vfill
+
+    {\large
+    \POSTECH--\KAIST{} Science War\\[0.7em]
+    \POSTECHFull\\
+    vs\\
+    \KAISTFull
+    \par}
+
+    \vspace{0.3cm}
+
+\end{titlepage}
+
+\pagenumbering{arabic}
+
+\input{Acknowledgements.tex}
+
+\input{Preface.tex}
+
+\tableofcontents
+
+\input{Rules.tex}
+\input{NotationandGameRecording.tex}
+\input{MovementandItems.tex}
+\input{Tactics.tex}
+\input{Strategy.tex}
+\input{Openings.tex}
+\input{Puzzles.tex}
+\input{Games.tex}
+
+\end{document}

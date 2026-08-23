@@ -1,0 +1,40 @@
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[x=0.72cm,y=0.72cm]
+        % Board: line-only, with standard algebraic coordinates.
+        \foreach \i in {0,...,8} {
+            \draw[rpsc board line] (\i,0)--(\i,8);
+            \draw[rpsc board line] (0,\i)--(8,\i);
+        }
+        \draw[rpsc board border] (0,0) rectangle (8,8);
+
+        \foreach \x/\file in {0.5/a,1.5/b,2.5/c,3.5/d,4.5/e,5.5/f,6.5/g,7.5/h} {
+            \node[rpsc coordinate] at (\x,-0.33) {\file};
+        }
+        \foreach \y/\rank in {0.5/1,1.5/2,2.5/3,3.5/4,4.5/5,5.5/6,6.5/7,7.5/8} {
+            \node[rpsc coordinate] at (-0.32,\y) {\rank};
+        }
+
+        % White: upright from White's seated direction. Numbered from White's left.
+        \rpscglyph{0.5}{0.58}{S}{0}{\RPSCWhiteColor}
+        \rpscglyph{2.5}{0.58}{R}{0}{\RPSCWhiteColor}
+        \rpscglyph{4.5}{0.58}{P}{0}{\RPSCWhiteColor}
+        \rpscglyph{6.5}{0.58}{S}{0}{\RPSCWhiteColor}
+        \node[rpsc piece id] at (0.5,0.18) {W1};
+        \node[rpsc piece id] at (2.5,0.18) {W2};
+        \node[rpsc piece id] at (4.5,0.18) {W3};
+        \node[rpsc piece id] at (6.5,0.18) {W4};
+
+        % Black: upright from Black's seated direction, hence rotated 180 degrees in White view.
+        \rpscglyph{7.5}{7.42}{S}{180}{\RPSCBlackColor}
+        \rpscglyph{5.5}{7.42}{R}{180}{\RPSCBlackColor}
+        \rpscglyph{3.5}{7.42}{P}{180}{\RPSCBlackColor}
+        \rpscglyph{1.5}{7.42}{S}{180}{\RPSCBlackColor}
+        \node[rpsc piece id] at (7.5,7.82) {B1};
+        \node[rpsc piece id] at (5.5,7.82) {B2};
+        \node[rpsc piece id] at (3.5,7.82) {B3};
+        \node[rpsc piece id] at (1.5,7.82) {B4};
+    \end{tikzpicture}
+    \caption{기보에서 사용하는 표준 방향과 초기 배치. 각 팀의 말은 해당 팀이 자기 자리에서 보았을 때 정방향으로 표시한다. 이 예시에서는 \POSTECH{}이 White, \KAIST{}가 Black이다.}
+    \label{fig:initial-position}
+\end{figure}

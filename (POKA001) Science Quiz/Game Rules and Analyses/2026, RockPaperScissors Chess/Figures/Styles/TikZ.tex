@@ -1,0 +1,23 @@
+% Shared TikZ styles for RockPaperScissors Chess.
+% Keep diagrams vector-based, line-based, restrained, and readable in grayscale.
+\tikzset{
+    rpsc board line/.style={draw=black!68,line width=0.48pt},
+    rpsc board border/.style={draw=black,line width=0.78pt},
+    rpsc coordinate/.style={font=\scriptsize\rmfamily,text=black!68},
+    % Piece IDs are metadata and always remain upright on the page.
+    rpsc piece id/.style={font=\fontsize{6.2}{6.8}\selectfont\rmfamily,text=black!58},
+    rpsc path/.style={draw=black!75,line width=0.70pt,-{Latex[length=2.2mm,width=1.4mm]}}
+}
+
+% Each piece is the single mathematical glyph \bar{R}, \bar{P}, or \bar{S}.
+% The bar is attached directly above the letter in the ordinary mathematical way.
+% The complete glyph, including the bar, is then rotated as one object.
+% #1 x, #2 y, #3 R/P/S, #4 rotation in degrees, #5 color
+\newcommand{\rpscglyph}[5]{%
+    \node[
+        text=#5,
+        font=\large,
+        rotate=#4,
+        transform shape
+    ] at (#1,#2) {$\bar{\mathbf{#3}}$};%
+}
