@@ -104,6 +104,7 @@ header{border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:28px
 #loadInput{display:none}
 .status-line{font-weight:700}
 .result-line{font-weight:700;margin-top:6px}
+#instruction{max-width:34em}
 @media(max-width:900px){
   #app{padding:24px 16px 36px}
   .main-grid{grid-template-columns:1fr;gap:30px}
@@ -203,7 +204,7 @@ header{border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:28px
     <pre id="recordText"></pre>
   </section>
 
-  <div class="footer-note">Offline single-file analysis board. Timers and timeout handling are intentionally omitted.</div>
+  <div class="footer-note">Offline single-file analysis board · timers and timeout handling omitted by design.</div>
 </div>
 
 <script>
@@ -215,6 +216,13 @@ header{border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:28px
    1) 2026 official final planning document
    2) current RPSC textbook Rules / Notation / Movement chapters
    3) earlier simulator only as a secondary implementation reference
+
+   Analysis-board conventions:
+   - Opening Q[1,1]: the real match uses a coin toss; this board asks the user
+     to enter the resulting first mover manually.
+   - Opening Q[0,0]: the supplied planning text does not specify the first mover;
+     this board asks the user to choose it manually.
+   - Timers, timeout-randomization, delay/rain procedures are intentionally omitted.
    UI: restrained TeX/TikZ-style linework; no external assets or libraries.
    ============================================================ */
 
@@ -450,7 +458,7 @@ function submitQuiz(p,k){
       game.phase="ORDER_CHOICE";
       game.orderChoiceTeam=p?C.POSTECH:C.KAIST;
     }else if(p&&k){
-      game.phase="COIN_TOSS";
+      game.phase="COIN_RESULT";
     }else{
       game.phase="MANUAL_ORDER";
     }
@@ -461,10 +469,9 @@ function submitQuiz(p,k){
   render();
 }
 
-function tossCoin(){
-  if(game.phase!=="COIN_TOSS") return;
-  const white=Math.random()<0.5?C.POSTECH:C.KAIST;
-  setOrder(white,"coin toss");
+function chooseCoinResult(team){
+  if(game.phase!=="COIN_RESULT") return;
+  setOrder(team,"opening Q[1,1] first mover (coin-toss result entered manually)");
 }
 function chooseOrderForSolo(correctTeam,wantsFirst){
   if(game.phase!=="ORDER_CHOICE" || game.orderChoiceTeam!==correctTeam) return;
@@ -472,7 +479,7 @@ function chooseOrderForSolo(correctTeam,wantsFirst){
 }
 function chooseManualFirst(team){
   if(game.phase!=="MANUAL_ORDER") return;
-  setOrder(team,"manual resolution after opening Q[0,0]");
+  setOrder(team,"opening Q[0,0] first mover (manual entry)");
 }
 
 function selectItemGain(type){
@@ -702,7 +709,7 @@ function applyConfirmedDraft(){
 }
 
 function isCompleteSavePoint(){
-  return !ui.draft && !!game.order.white && !["ORDER_CHOICE","COIN_TOSS","MANUAL_ORDER","ITEM_SELECT","MOVE"].includes(game.phase);
+  return !ui.draft && !!game.order.white && !["ORDER_CHOICE","COIN_RESULT","MANUAL_ORDER","ITEM_SELECT","MOVE"].includes(game.phase);
 }
 
 function resultToken(){
@@ -1055,8 +1062,8 @@ function instructionText(){
   switch(game.phase){
     case "QUIZ": return `Enter Round ${n} quiz result. Buttons are ordered POSTECH, KAIST.`;
     case "ORDER_CHOICE": return `${game.orderChoiceTeam} was the first solo-correct team. It chooses whether to move first or second.`;
-    case "COIN_TOSS": return "Both teams were correct on the opening quiz. Determine first/second order by coin toss.";
-    case "MANUAL_ORDER": return "Both teams were wrong before first/second order existed. The supplied official text does not specify this case; choose the first mover manually for analysis.";
+    case "COIN_RESULT": return "Opening Q[1, 1]: choose the first mover (enter the coin-toss result).";
+    case "MANUAL_ORDER": return "Opening Q[0, 0]: choose the first mover. The supplied official text does not specify this case.";
     case "ITEM_SELECT": return `${game.itemTeam} alone answered correctly. Choose one item to gain.`;
     case "MOVE": return moveDetail();
     case "OT_QUIZ": return `Overtime OT${game.overtime.length+1}. Quiz only; no board move or item.`;
@@ -1087,8 +1094,9 @@ function phaseControls(){
     order.classList.remove("hidden");
     const t=game.orderChoiceTeam;
     order.innerHTML=`<button data-order-solo="first">${t} First</button><button data-order-solo="second">${t} Second</button>`;
-  }else if(game.phase==="COIN_TOSS"){
-    order.classList.remove("hidden"); order.innerHTML=`<button data-coin="1">Toss Coin</button>`;
+  }else if(game.phase==="COIN_RESULT"){
+    order.classList.remove("hidden");
+    order.innerHTML=`<button data-coin-first="POSTECH">POSTECH First</button><button data-coin-first="KAIST">KAIST First</button>`;
   }else if(game.phase==="MANUAL_ORDER"){
     order.classList.remove("hidden"); order.innerHTML=`<button data-manual-first="POSTECH">POSTECH First</button><button data-manual-first="KAIST">KAIST First</button>`;
   }
@@ -1164,12 +1172,31 @@ function runSelfTests(){
     ok(stateObsKey(cubeTransform(cubeTransform(o,"E"),"W"))===stateObsKey(o),`${g}: E then W inverse`);
     let q=o; for(let i=0;i<4;i++) q=cubeTransform(q,"CW");
     ok(stateObsKey(q)===stateObsKey(o),`${g}: RoR x4`);
+    q=o; for(let i=0;i<4;i++) q=cubeTransform(q,"CCW");
+    ok(stateObsKey(q)===stateObsKey(o),`${g}: RoL x4`);
     q=cubeTransform(cubeTransform(o,"CW"),"CCW");
     ok(stateObsKey(q)===stateObsKey(o),`${g}: RoR then RoL`);
+    q=cubeTransform(cubeTransform(o,"CCW"),"CW");
+    ok(stateObsKey(q)===stateObsKey(o),`${g}: RoL then RoR`);
     ok(topGesture(cubeTransform(o,"CW"))===g,`${g}: Rotation preserves top`);
+
+    const twins=ALL_ORIENTATIONS.filter(x=>
+      topGesture(x)===g && VEC_TO_DIR.get(vecKey(topWrist(x)))==="S"
+    );
+    const gestureNormalKey=x=>x.map(f=>`${f.normal.join(",")}:${f.gesture}`).sort().join("|");
+    ok(twins.length===2,`${g}: two opposite-face initial variants`);
+    ok(gestureNormalKey(twins[0])===gestureNormalKey(twins[1]),`${g}: duplicate face identity preserves gesture geometry`);
   }
-  // Exact textbook Scissors reach-map spot checks from the official net.
+
+  for(const o of ALL_ORIENTATIONS){
+    ok(stateObsKey(cubeTransform(cubeTransform(o,"N"),"S"))===stateObsKey(o),"all states: N/S inverse");
+    ok(stateObsKey(cubeTransform(cubeTransform(o,"E"),"W"))===stateObsKey(o),"all states: E/W inverse");
+    ok(stateObsKey(cubeTransform(cubeTransform(o,"CW"),"CCW"))===stateObsKey(o),"all states: CW/CCW inverse");
+  }
+
+  // Exact textbook Scissors reach-map checks from the official net.
   const s=canonicalOrientation("S","S"), m=mapReach(s,3);
+  ok(m.size===16,"Scissors basic reach map must contain 16 endpoints");
   ok(setEq(m.get("0,3"),new Set(["R"])),"Scissors 3 north must end R");
   ok(setEq(m.get("3,0"),new Set(["P"])),"Scissors 3 east must end P");
   ok(setEq(m.get("0,1"),new Set(["S"])),"Scissors bent return-near endpoint must end S");
@@ -1183,12 +1210,36 @@ function runSelfTests(){
   ok(setEq(sr.get("3,0"),new Set(["R"])),"Scissors+Rotation 3 east must match textbook R");
   // Textbook Basic Movement spot checks for Rock and Paper as well.
   const r=canonicalOrientation("R","S"), rm=mapReach(r,4);
+  ok(rm.size===25,"Rock basic reach map must contain 25 endpoints");
   ok(setEq(rm.get("0,4"),new Set(["R"])),"Rock 4 north must end R");
   ok(setEq(rm.get("4,0"),new Set(["R"])),"Rock 4 east must end R");
   ok(setEq(rm.get("0,0"),new Set(["S","P"])),"Rock 4-step loop must end S or P");
   const p=canonicalOrientation("P","S"), pm=mapReach(p,5);
+  ok(pm.size===36,"Paper basic reach map must contain 36 endpoints");
   ok(setEq(pm.get("0,5"),new Set(["R"])),"Paper 5 north must end R");
   ok(setEq(pm.get("5,0"),new Set(["S"])),"Paper 5 east must end S");
+  const pr=new Map();
+  for(const ro of ["CW","CCW"]){
+    for(const [k,v] of mapReach(cubeTransform(p,ro),5)){
+      if(!pr.has(k))pr.set(k,new Set()); for(const x of v)pr.get(k).add(x);
+    }
+  }
+  ok(pr.size===36,"Paper+Rotation reach map must contain 36 endpoints");
+  ok(setEq(pr.get("0,5"),new Set(["S"])),"Paper+Rotation 5 north must match textbook S");
+  ok(setEq(pr.get("5,0"),new Set(["R"])),"Paper+Rotation 5 east must match textbook R");
+
+  // Rule-level invariants used by the live move engine.
+  ok(C.DIST.S===3 && C.DIST.R===4 && C.DIST.P===5,"base distances S/R/P = 3/4/5");
+  for(const g of ["S","R","P"]){
+    const o=canonicalOrientation(g,"S");
+    const before=stateObsKey(o);
+    // Push is a position-only operation in the engine, so orientation is unchanged.
+    ok(stateObsKey(clone(o))===before,`${g}: Push preserves full cube orientation`);
+    ok(C.DIST[g]-1>=1,`${g}: Step Short remains a positive roll count`);
+    ok(topGesture(cubeTransform(o,"CW"))===g && topGesture(cubeTransform(o,"CCW"))===g,
+       `${g}: RoL/RoR preserve the top gesture and therefore base distance`);
+  }
+
   ok(rpsWinner("R","S")===1&&rpsWinner("S","P")===1&&rpsWinner("P","R")===1,"RPS cycle");
   return failures;
 }
@@ -1210,7 +1261,7 @@ function bindEvents(){
   document.getElementById("orderControls").addEventListener("click",e=>{
     const b=e.target.closest("button");if(!b)return;
     if(b.dataset.orderSolo){ chooseOrderForSolo(game.orderChoiceTeam,b.dataset.orderSolo==="first"); }
-    else if(b.dataset.coin) tossCoin();
+    else if(b.dataset.coinFirst) chooseCoinResult(b.dataset.coinFirst);
     else if(b.dataset.manualFirst) chooseManualFirst(b.dataset.manualFirst);
   });
   document.getElementById("itemGainControls").addEventListener("click",e=>{ const b=e.target.closest("[data-gain]");if(b)selectItemGain(b.dataset.gain); });
