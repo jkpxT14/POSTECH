@@ -20,10 +20,12 @@
 
 The booklet is written in Korean, while the title, chapter names, section names, and notation use English.
 
-Build: Draft 13 (2026-08-23 19:05 KST)
+Build: Draft 14 (2026-08-23 20:46 KST)
 
 ## This draft updates
 
-- enlarged the Chapter 3 board labels for better readability
-- kept one-line `S`, `SR`, `SRP` notation and the `S -> R -> P` order
-- restored the dice net to the official plain orientation without extra stylistic rotation
+- corrected Rotation throughout the handbook: in-place 90-degree yaw, top face unchanged, movement distance unchanged
+- recalculated every `with Rotation` movement diagram from the corrected Rotation rule
+- distinguished Rotation from rolling explicitly in Rules and Notation
+- corrected basic-movement wording and rechecked movement-distance/parity statements
+- rechecked the official dice net and the White/Black initial-position convention
