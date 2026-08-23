@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>RockPaperScissors Chess — Analysis Board</title>
+<style>
+:root{
+  --ink:#111111;
+  --muted:#666666;
+  --hair:#b8b8b8;
+  --soft:#efefef;
+  --softer:#f7f7f7;
+  --paper:#ffffff;
+  --postech:#a61955;
+  --kaist:#004191;
+  --board:680px;
+  --serif:"Latin Modern Roman","CMU Serif","STIX Two Text","Times New Roman","Noto Serif CJK KR","Noto Serif KR","Batang",serif;
+  --mono:"Latin Modern Mono","CMU Typewriter Text","Consolas","Courier New","Noto Sans Mono CJK KR",monospace;
+  --board-line:#525252;
+  --coord:#666666;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.42;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+button,input{font:inherit;color:inherit}
+button{
+  appearance:none;
+  border:1px solid var(--ink);
+  border-radius:0;
+  background:#fff;
+  min-height:34px;
+  padding:5px 11px;
+  cursor:pointer;
+}
+button:hover:not(:disabled),button.active{background:var(--soft)}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+button:disabled{cursor:default;color:#aaa;border-color:#ccc;background:#fff}
+button.compact{min-height:30px;padding:3px 9px;font-size:.93rem}
+button.textual{border-color:transparent;padding-left:4px;padding-right:4px}
+button.textual:hover:not(:disabled){background:transparent;text-decoration:underline}
+#app{max-width:1180px;margin:0 auto;padding:36px 28px 46px}
+header{border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:28px}
+.title{font-size:2.02rem;line-height:1.12;font-weight:700;letter-spacing:.005em;margin:0}
+.subtitle{margin-top:4px;color:var(--muted);font-size:1rem;letter-spacing:.01em}
+.main-grid{display:grid;grid-template-columns:minmax(520px,700px) minmax(310px,1fr);gap:40px;align-items:start}
+.board-column{min-width:0}
+.board-role{display:flex;justify-content:space-between;align-items:baseline;min-height:24px;margin:0 38px 5px;font-size:.93rem}
+.board-role.bottom{margin-top:5px;margin-bottom:0}
+.role-name{font-weight:700}
+.team-postech{color:var(--postech)}
+.team-kaist{color:var(--kaist)}
+.board-wrap{width:100%;max-width:var(--board);margin:0 auto;user-select:none}
+#board{width:100%;height:auto;display:block}
+.board-note{max-width:var(--board);margin:12px auto 0;color:var(--muted);font-size:.9rem;min-height:1.4em}
+.panel{border-top:1px solid var(--ink)}
+.section{padding:15px 0 16px;border-bottom:1px solid var(--hair)}
+.section:last-child{border-bottom:1px solid var(--ink)}
+.section-title{font-size:.82rem;text-transform:uppercase;letter-spacing:.075em;color:#555;margin:0 0 10px}
+.score-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.score-table th,.score-table td{padding:3.5px 5px;border-bottom:0;text-align:center}
+.score-table th:first-child,.score-table td:first-child{text-align:left;padding-left:0;color:#444;font-weight:400;width:34%}
+.score-table tr:first-child th,.score-table tr:first-child td{border-bottom:1px solid #777;padding-bottom:5px}
+.score-table tr:nth-child(5) th,.score-table tr:nth-child(5) td{border-bottom:1px solid #c8c8c8;padding-bottom:6px}
+.score-table tr:nth-child(6) th,.score-table tr:nth-child(6) td{padding-top:6px}
+.score-table tr:nth-child(3) td{font-weight:700}
+.score-table .teamcell{font-weight:700}
+.meta-grid{display:grid;grid-template-columns:82px 1fr;row-gap:5px;column-gap:8px;margin-top:11px;padding-top:9px;border-top:1px solid #d3d3d3;font-variant-numeric:tabular-nums}
+.meta-grid .label{color:#444}
+#instruction{min-height:3.3em;margin:0}
+#detail{margin-top:7px;color:var(--muted);font-size:.92rem;min-height:1.3em}
+.button-row{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.button-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.button-grid button{width:100%}
+#moveControls,#quizControls,#orderControls,#itemGainControls,#draftControls{margin-top:10px}
+.item-help{font-size:.88rem;color:var(--muted);margin-top:8px}
+.utilities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.utilities button{width:100%;padding-left:6px;padding-right:6px}
+.utilities .wide{grid-column:span 1}
+.record{margin-top:38px;border-top:1px solid var(--ink);padding-top:16px}
+.record-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline;margin-bottom:10px}
+.record h2{font-size:1.15rem;margin:0}
+.record .hint{font-size:.88rem;color:var(--muted)}
+#recordText{
+  margin:0;
+  padding:15px 0 0;
+  border-top:1px solid var(--hair);
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  font-family:var(--mono);
+  font-size:.88rem;
+  line-height:1.55;
+  min-height:150px;
+}
+.footer-note{margin-top:28px;color:#777;font-size:.82rem;border-top:1px solid #ddd;padding-top:10px}
+.hidden{display:none!important}
+#loadInput{display:none}
+.status-line{font-weight:700}
+.result-line{font-weight:700;margin-top:6px}
+@media(max-width:900px){
+  #app{padding:24px 16px 36px}
+  .main-grid{grid-template-columns:1fr;gap:30px}
+  .panel{max-width:680px;margin:0 auto;width:100%}
+}
+@media(max-width:560px){
+  .title{font-size:1.65rem}
+  .utilities{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .board-role{margin-left:28px;margin-right:28px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1 class="title">RockPaperScissors Chess</h1>
+    <div class="subtitle">Analysis Board</div>
+  </header>
+
+  <main class="main-grid">
+    <section class="board-column" aria-label="RPSC board">
+      <div id="topRole" class="board-role"></div>
+      <div class="board-wrap"><svg id="board" viewBox="-42 -42 644 644" role="img" aria-label="8 by 8 RockPaperScissors Chess board"></svg></div>
+      <div id="bottomRole" class="board-role bottom"></div>
+      <div id="boardNote" class="board-note"></div>
+    </section>
+
+    <aside class="panel">
+      <section class="section">
+        <div class="section-title">Game</div>
+        <table class="score-table" aria-label="Score and item table">
+          <tbody id="scoreBody"></tbody>
+        </table>
+        <div class="meta-grid">
+          <div class="label">Move</div><div id="moveMeta">—</div>
+          <div class="label">Round</div><div id="roundMeta">1 / 20</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Current action</div>
+        <p id="instruction"></p>
+        <div id="detail"></div>
+
+        <div id="quizControls" class="button-grid hidden" aria-label="Quiz result">
+          <button data-q="11">[1, 1]</button>
+          <button data-q="10">[1, 0]</button>
+          <button data-q="01">[0, 1]</button>
+          <button data-q="00">[0, 0]</button>
+        </div>
+
+        <div id="orderControls" class="button-row hidden"></div>
+
+        <div id="itemGainControls" class="button-row hidden">
+          <button data-gain="Pu">Push</button>
+          <button data-gain="Ro">Rotation</button>
+          <button data-gain="St">Step</button>
+        </div>
+
+        <div id="moveControls" class="hidden">
+          <div class="button-row">
+            <button data-move-item="Pu">Push</button>
+            <button data-move-item="RoL">RoL</button>
+            <button data-move-item="RoR">RoR</button>
+            <button data-move-item="StS">StS</button>
+            <button data-move-item="StL">StL</button>
+          </div>
+          <div class="item-help" id="selectedItemText">Item: none</div>
+        </div>
+
+        <div id="draftControls" class="button-row hidden">
+          <button id="backBtn" class="compact">Back</button>
+          <button id="cancelBtn" class="compact">Cancel</button>
+          <button id="confirmBtn" class="compact">Confirm Move</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">Tools</div>
+        <div class="utilities">
+          <button id="flipBtn">Flip Board</button>
+          <button id="undoBtn">Undo</button>
+          <button id="saveBtn">Save</button>
+          <button id="loadBtn">Load</button>
+          <button id="resetBtn">Reset</button>
+        </div>
+        <input id="loadInput" type="file" accept=".rpsc,.txt,text/plain">
+      </section>
+    </aside>
+  </main>
+
+  <section class="record">
+    <div class="record-head">
+      <h2>Game Record</h2>
+      <span class="hint">PGN-style RPSC game record</span>
+    </div>
+    <pre id="recordText"></pre>
+  </section>
+
+  <div class="footer-note">Offline single-file analysis board. Timers and timeout handling are intentionally omitted.</div>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   RockPaperScissors Chess — local analysis board
+   Source hierarchy used in this build:
+   1) 2026 official final planning document
+   2) current RPSC textbook Rules / Notation / Movement chapters
+   3) earlier simulator only as a secondary implementation reference
+   UI: restrained TeX/TikZ-style linework; no external assets or libraries.
+   ============================================================ */
+
+const C = Object.freeze({
+  POSTECH: "POSTECH",
+  KAIST: "KAIST",
+  POSTECH_RED: "#a61955",
+  KAIST_BLUE: "#004191",
+  INK: "#111111",
+  MUTED: "#666666",
+  BOARD_LINE: "#525252",
+  COORD: "#666666",
+  DARK_SQUARE: "#efefef",
+  LIGHT_SQUARE: "#ffffff",
+  MAIN_ROUNDS: 20,
+  OT_MAX: 5,
+  DIST: {S:3, R:4, P:5},
+  FILES: "abcdefgh"
+});
+
+const DIRS = Object.freeze({
+  N:{dx:0,dy:1}, S:{dx:0,dy:-1}, E:{dx:1,dy:0}, W:{dx:-1,dy:0}
+});
+const OPP = Object.freeze({N:"S",S:"N",E:"W",W:"E"});
+const VEC_TO_DIR = new Map([
+  ["0,1,0","N"],["0,-1,0","S"],["1,0,0","E"],["-1,0,0","W"],
+  ["0,0,1","UP"],["0,0,-1","DOWN"]
+]);
+
+function clone(x){ return JSON.parse(JSON.stringify(x)); }
+function sameVec(a,b){ return a[0]===b[0] && a[1]===b[1] && a[2]===b[2]; }
+function vecKey(v){ return v.join(","); }
+function inBoard(x,y){ return x>=0 && x<8 && y>=0 && y<8; }
+function cell(x,y){ return C.FILES[x] + String(y+1); }
+function xy(s){
+  const t=s.trim().toLowerCase();
+  if(!/^[a-h][1-8]$/.test(t)) throw new Error(`Invalid square: ${s}`);
+  return {x:C.FILES.indexOf(t[0]), y:Number(t[1])-1};
+}
+function roleOfTeam(team){
+  if(!game.order.white) return null;
+  return game.order.white===team ? "W" : "B";
+}
+function teamOfRole(role){
+  if(!game.order.white) return null;
+  return role==="W" ? game.order.white : game.order.black;
+}
+function otherTeam(team){ return team===C.POSTECH ? C.KAIST : C.POSTECH; }
+function teamColor(team){ return team===C.POSTECH ? C.POSTECH_RED : C.KAIST_BLUE; }
+function score(team, g=game){ return g.teams[team].quiz + 2*g.teams[team].captures; }
+function topFace(orientation){
+  const f=orientation.find(q=>sameVec(q.normal,[0,0,1]));
+  if(!f) throw new Error("Cube has no top face.");
+  return f;
+}
+function topGesture(orientation){ return topFace(orientation).gesture; }
+function topWrist(orientation){ return topFace(orientation).wrist; }
+
+/* Official net folded into 3D.
+   Net: P-S-P-S, with R above and below the central S.
+   All hand drawings are upright in the net; wrist points toward net-bottom.
+   S1 is the central S, S2 the far-right S; P1 left, P2 right; R1 upper, R2 lower. */
+const BASE_CUBE = Object.freeze([
+  {id:"S1",gesture:"S",normal:[0,0,1], wrist:[0,-1,0]},
+  {id:"S2",gesture:"S",normal:[0,0,-1],wrist:[0,-1,0]},
+  {id:"P1",gesture:"P",normal:[-1,0,0],wrist:[0,-1,0]},
+  {id:"P2",gesture:"P",normal:[1,0,0], wrist:[0,-1,0]},
+  {id:"R1",gesture:"R",normal:[0,1,0], wrist:[0,0,1]},
+  {id:"R2",gesture:"R",normal:[0,-1,0],wrist:[0,0,-1]}
+]);
+
+function transformVec(v, op){
+  const [x,y,z]=v;
+  switch(op){
+    case "N": return [x,-z,y];       // +90° about +x
+    case "S": return [x,z,-y];
+    case "E": return [z,y,-x];      // -90° about +y
+    case "W": return [-z,y,x];
+    case "CW": return [y,-x,z];     // clockwise viewed from above
+    case "CCW": return [-y,x,z];
+    default: throw new Error(`Unknown cube operation: ${op}`);
+  }
+}
+function cubeTransform(orientation, op){
+  return orientation.map(f=>({
+    id:f.id, gesture:f.gesture,
+    normal:transformVec(f.normal,op),
+    wrist:transformVec(f.wrist,op)
+  }));
+}
+function orientationKey(o){
+  return o.slice().sort((a,b)=>a.id.localeCompare(b.id))
+    .map(f=>`${f.id}:${f.normal.join(",")}/${f.wrist.join(",")}`).join("|");
+}
+function allOrientations(){
+  const first=clone(BASE_CUBE), map=new Map([[orientationKey(first),first]]), queue=[first];
+  while(queue.length){
+    const s=queue.shift();
+    for(const d of ["N","S","E","W"]){
+      const n=cubeTransform(s,d), k=orientationKey(n);
+      if(!map.has(k)){ map.set(k,n); queue.push(n); }
+    }
+  }
+  return [...map.values()];
+}
+const ALL_ORIENTATIONS = allOrientations();
+function canonicalOrientation(gesture, wristDir){
+  const preferred=`${gesture}1`;
+  const matches=ALL_ORIENTATIONS.filter(o=>{
+    const t=topFace(o);
+    return t.gesture===gesture && VEC_TO_DIR.get(vecKey(t.wrist))===wristDir;
+  });
+  const picked=matches.find(o=>topFace(o).id===preferred) || matches[0];
+  if(!picked) throw new Error(`No orientation for ${gesture}, wrist ${wristDir}`);
+  return clone(picked);
+}
+
+function initialPieces(whiteTeam, blackTeam){
+  const W=[
+    ["W1","a1","S"],["W2","c1","R"],["W3","e1","P"],["W4","g1","S"]
+  ];
+  const B=[
+    ["B1","h8","S"],["B2","f8","R"],["B3","d8","P"],["B4","b8","S"]
+  ];
+  const out=[];
+  for(const [id,sq,g] of W){ const p=xy(sq); out.push({id,team:whiteTeam,alive:true,x:p.x,y:p.y,orientation:canonicalOrientation(g,"S")}); }
+  for(const [id,sq,g] of B){ const p=xy(sq); out.push({id,team:blackTeam,alive:true,x:p.x,y:p.y,orientation:canonicalOrientation(g,"N")}); }
+  return out;
+}
+
+function previewPieces(){
+  const a=initialPieces(C.POSTECH,C.KAIST);
+  return a.map(p=>({...p,id:p.id[0]==="W"?`P${p.id[1]}`:`K${p.id[1]}`}));
+}
+
+function todayString(){
+  const d=new Date();
+  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`;
+}
+function freshGame(){
+  return {
+    meta:{event:"RPSC Analysis",site:"Local",date:todayString()},
+    order:{white:null,black:null,source:null},
+    teams:{
+      POSTECH:{quiz:0,captures:0,items:{Pu:0,Ro:0,St:0}},
+      KAIST:{quiz:0,captures:0,items:{Pu:0,Ro:0,St:0}}
+    },
+    pieces:null,
+    rounds:[],
+    overtime:[],
+    phase:"QUIZ",
+    orderChoiceTeam:null,
+    itemTeam:null,
+    moveRole:null,
+    result:null,
+    resultReason:"",
+    lastAction:"New analysis. Enter Round 1 quiz result."
+  };
+}
+
+let game=freshGame();
+let undoStack=[];
+let ui={flipped:false,selectedItem:null,draft:null};
+let engineReady=true;
+
+function snapshot(){ return clone(game); }
+function pushUndo(){ undoStack.push(snapshot()); }
+function restoreLast(){
+  if(!undoStack.length) return;
+  game=undoStack.pop();
+  ui.selectedItem=null; ui.draft=null;
+  render();
+}
+
+function currentRound(){
+  if(!game.rounds.length) return null;
+  const r=game.rounds[game.rounds.length-1];
+  return r.complete ? null : r;
+}
+function currentMoveTeam(){ return game.phase==="MOVE" ? teamOfRole(game.moveRole) : null; }
+function pieceById(id,g=game){ return g.pieces?.find(p=>p.id===id) || null; }
+function occupiedAt(x,y,excludeId=null,g=game){
+  return g.pieces?.find(p=>p.alive && p.id!==excludeId && p.x===x && p.y===y) || null;
+}
+function aliveEnemiesAdjacent(x,y,team,excludeId=null,g=game){
+  return (g.pieces||[]).filter(p=>p.alive && p.id!==excludeId && p.team!==team && Math.abs(p.x-x)+Math.abs(p.y-y)===1);
+}
+function itemBucket(code){
+  if(code==="Pu") return "Pu";
+  if(code==="RoL"||code==="RoR") return "Ro";
+  if(code==="StL"||code==="StS") return "St";
+  return null;
+}
+function itemLabel(bucket){ return bucket==="Pu"?"Push":bucket==="Ro"?"Rotation":"Step"; }
+
+function setOrder(whiteTeam,source){
+  pushUndo();
+  game.order.white=whiteTeam;
+  game.order.black=otherTeam(whiteTeam);
+  game.order.source=source;
+  game.pieces=initialPieces(game.order.white,game.order.black);
+  game.lastAction=`First/second order set: White ${game.order.white}, Black ${game.order.black}.`;
+  routeCurrentRoundAfterOrder();
+  ui.selectedItem=null; ui.draft=null;
+  render();
+}
+function routeCurrentRoundAfterOrder(){
+  const r=currentRound();
+  if(!r){ game.phase="QUIZ"; return; }
+  const p=r.q.POSTECH, k=r.q.KAIST;
+  if(p!==k){
+    game.phase="ITEM_SELECT";
+    game.itemTeam=p?C.POSTECH:C.KAIST;
+  }else{
+    game.phase="MOVE";
+    game.moveRole="W";
+  }
+}
+
+function submitQuiz(p,k){
+  if(game.phase!=="QUIZ" && game.phase!=="OT_QUIZ") return;
+  if(game.phase==="OT_QUIZ"){ submitOTQuiz(p,k); return; }
+  const n=game.rounds.length+1;
+  if(n>C.MAIN_ROUNDS) return;
+  pushUndo();
+  game.teams.POSTECH.quiz += p?1:0;
+  game.teams.KAIST.quiz += k?1:0;
+  game.rounds.push({n,q:{POSTECH:!!p,KAIST:!!k},itemGain:null,moves:[],complete:false});
+  game.lastAction=`Round ${n}: POSTECH ${p?"correct":"wrong"}, KAIST ${k?"correct":"wrong"}.`;
+
+  if(!game.order.white){
+    if(p!==k){
+      game.phase="ORDER_CHOICE";
+      game.orderChoiceTeam=p?C.POSTECH:C.KAIST;
+    }else if(p&&k){
+      game.phase="COIN_TOSS";
+    }else{
+      game.phase="MANUAL_ORDER";
+    }
+  }else{
+    routeCurrentRoundAfterOrder();
+  }
+  ui.selectedItem=null; ui.draft=null;
+  render();
+}
+
+function tossCoin(){
+  if(game.phase!=="COIN_TOSS") return;
+  const white=Math.random()<0.5?C.POSTECH:C.KAIST;
+  setOrder(white,"coin toss");
+}
+function chooseOrderForSolo(correctTeam,wantsFirst){
+  if(game.phase!=="ORDER_CHOICE" || game.orderChoiceTeam!==correctTeam) return;
+  setOrder(wantsFirst?correctTeam:otherTeam(correctTeam),"first solo-correct choice");
+}
+function chooseManualFirst(team){
+  if(game.phase!=="MANUAL_ORDER") return;
+  setOrder(team,"manual resolution after opening Q[0,0]");
+}
+
+function selectItemGain(type){
+  if(game.phase!=="ITEM_SELECT" || !["Pu","Ro","St"].includes(type)) return;
+  pushUndo();
+  const t=game.itemTeam;
+  game.teams[t].items[type]++;
+  const r=currentRound();
+  r.itemGain={team:t,type};
+  game.lastAction=`${t} gained ${itemLabel(type)}.`;
+  completeCurrentRound();
+  render();
+}
+
+function completeCurrentRound(){
+  const r=currentRound();
+  if(r) r.complete=true;
+  game.itemTeam=null; game.moveRole=null; ui.selectedItem=null; ui.draft=null;
+  if(r && r.n>=C.MAIN_ROUNDS) evaluateMainGame();
+  else game.phase="QUIZ";
+}
+function evaluateMainGame(){
+  const ps=score(C.POSTECH), ks=score(C.KAIST);
+  if(ps!==ks){
+    game.result=ps>ks?C.POSTECH:C.KAIST;
+    game.resultReason=`Score ${ps}–${ks}`;
+    game.phase="GAME_OVER";
+    return;
+  }
+  const pq=game.teams.POSTECH.quiz, kq=game.teams.KAIST.quiz;
+  if(pq!==kq){
+    game.result=pq>kq?C.POSTECH:C.KAIST;
+    game.resultReason=`Score tied; Quiz ${pq}–${kq}`;
+    game.phase="GAME_OVER";
+    return;
+  }
+  game.phase="OT_QUIZ";
+  game.lastAction="Main game tied in score and quiz count. Overtime is quiz-only.";
+}
+function submitOTQuiz(p,k){
+  if(game.phase!=="OT_QUIZ" || game.overtime.length>=C.OT_MAX) return;
+  pushUndo();
+  const n=game.overtime.length+1;
+  game.overtime.push({n,q:{POSTECH:!!p,KAIST:!!k}});
+  game.lastAction=`OT${n}: POSTECH ${p?"correct":"wrong"}, KAIST ${k?"correct":"wrong"}.`;
+  const pd=game.overtime.reduce((s,r)=>s+(r.q.POSTECH?1:0),0);
+  const kd=game.overtime.reduce((s,r)=>s+(r.q.KAIST?1:0),0);
+  if(pd!==kd){
+    game.result=pd>kd?C.POSTECH:C.KAIST;
+    game.resultReason=`Overtime sudden death at OT${n}`;
+    game.phase="GAME_OVER";
+  }else if(n>=C.OT_MAX){
+    game.result=null;
+    game.resultReason="Overtime exhausted at 5 questions; supplied official source gives no further procedure.";
+    game.phase="GAME_OVER";
+  }
+  render();
+}
+
+function setSelectedMoveItem(code){
+  if(game.phase!=="MOVE" || ui.draft) return;
+  const bucket=itemBucket(code), team=currentMoveTeam();
+  if(!bucket || game.teams[team].items[bucket]<1) return;
+  ui.selectedItem = ui.selectedItem===code ? null : code;
+  render();
+}
+
+function beginDraft(pieceId){
+  if(game.phase!=="MOVE" || ui.draft) return;
+  const team=currentMoveTeam(), p=pieceById(pieceId);
+  if(!p || !p.alive || p.team!==team) return;
+  const item=ui.selectedItem;
+  const bucket=itemBucket(item);
+  if(bucket && game.teams[team].items[bucket]<1){ ui.selectedItem=null; return; }
+  let o=clone(p.orientation);
+  const base=C.DIST[topGesture(o)];
+  let steps=base;
+  if(item==="RoL") o=cubeTransform(o,"CCW");
+  if(item==="RoR") o=cubeTransform(o,"CW");
+  if(item==="StS") steps=base-1;
+  if(item==="StL") steps=base+1;
+  ui.draft={
+    pieceId,team,item,start:{x:p.x,y:p.y},pos:{x:p.x,y:p.y},orientation:o,
+    initialOrientation:clone(p.orientation),baseDistance:base,stepsRequired:steps,
+    pushCell:null,rollPath:[],rollDirs:[],subphase:item==="Pu"?"PUSH":"ROLL"
+  };
+  render();
+}
+
+function draftLegalCells(){
+  const d=ui.draft;
+  if(!d) return [];
+  const ans=[];
+  if(d.subphase==="PUSH"){
+    for(const [dir,v] of Object.entries(DIRS)){
+      const x=d.start.x+v.dx,y=d.start.y+v.dy;
+      if(inBoard(x,y) && !occupiedAt(x,y,d.pieceId)) ans.push({x,y,dir});
+    }
+    return ans;
+  }
+  if(d.subphase!=="ROLL") return ans;
+  const last=d.rollDirs.length?d.rollDirs[d.rollDirs.length-1]:null;
+  const finalNext=d.rollPath.length+1===d.stepsRequired;
+  for(const [dir,v] of Object.entries(DIRS)){
+    if(last && dir===OPP[last]) continue;
+    const x=d.pos.x+v.dx,y=d.pos.y+v.dy;
+    if(!inBoard(x,y) || occupiedAt(x,y,d.pieceId)) continue;
+    if(finalNext && aliveEnemiesAdjacent(x,y,d.team,d.pieceId).length>=2) continue;
+    ans.push({x,y,dir});
+  }
+  return ans;
+}
+
+function clickBoardCell(x,y){
+  if(game.phase!=="MOVE") return;
+  if(!ui.draft){
+    const p=occupiedAt(x,y,null);
+    if(p && p.team===currentMoveTeam()) beginDraft(p.id);
+    return;
+  }
+  const d=ui.draft;
+  const legal=draftLegalCells().find(c=>c.x===x&&c.y===y);
+  if(!legal) return;
+  if(d.subphase==="PUSH"){
+    d.pushCell={x,y}; d.pos={x,y}; d.subphase="ROLL";
+  }else if(d.subphase==="ROLL"){
+    d.orientation=cubeTransform(d.orientation,legal.dir);
+    d.pos={x,y}; d.rollPath.push({x,y}); d.rollDirs.push(legal.dir);
+    if(d.rollPath.length===d.stepsRequired) d.subphase="COMPLETE";
+  }
+  render();
+}
+
+function draftBack(){
+  const d=ui.draft; if(!d) return;
+  if(d.subphase==="COMPLETE") d.subphase="ROLL";
+  if(d.subphase==="ROLL" && d.rollPath.length){
+    d.rollPath.pop(); d.rollDirs.pop();
+    // Rebuild draft orientation and position exactly from start/item/push/path.
+    rebuildDraft();
+  }else if(d.subphase==="ROLL" && d.pushCell){
+    d.pushCell=null; d.pos={...d.start}; d.subphase="PUSH"; rebuildDraft();
+  }
+  render();
+}
+function rebuildDraft(){
+  const d=ui.draft; if(!d) return;
+  let o=clone(d.initialOrientation), pos={...d.start};
+  if(d.item==="RoL") o=cubeTransform(o,"CCW");
+  if(d.item==="RoR") o=cubeTransform(o,"CW");
+  if(d.pushCell) pos={...d.pushCell};
+  for(let i=0;i<d.rollDirs.length;i++){
+    o=cubeTransform(o,d.rollDirs[i]); pos={...d.rollPath[i]};
+  }
+  d.orientation=o; d.pos=pos;
+}
+function cancelDraft(){ ui.draft=null; render(); }
+
+function rpsWinner(a,b){
+  if(a===b) return 0;
+  if((a==="R"&&b==="S")||(a==="S"&&b==="P")||(a==="P"&&b==="R")) return 1;
+  return -1;
+}
+function previewCombat(){
+  const d=ui.draft;
+  if(!d || d.subphase!=="COMPLETE") return null;
+  const enemies=aliveEnemiesAdjacent(d.pos.x,d.pos.y,d.team,d.pieceId);
+  if(!enemies.length) return {enemy:null,capture:null,text:"No combat."};
+  const e=enemies[0], mg=topGesture(d.orientation), eg=topGesture(e.orientation), w=rpsWinner(mg,eg);
+  if(w===0) return {enemy:e,capture:null,text:`Combat: ${d.pieceId} ${mg} vs ${e.id} ${eg} — tie.`};
+  const loser=w>0?e.id:d.pieceId;
+  return {enemy:e,capture:loser,text:`Combat: ${d.pieceId} ${mg} vs ${e.id} ${eg} — ${loser} removed.`};
+}
+function notationForDraft(d,captureId,reset){
+  const item=d.item?`[${d.item}]`:"";
+  let path=cell(d.start.x,d.start.y);
+  if(d.pushCell) path += `>${cell(d.pushCell.x,d.pushCell.y)}`;
+  for(const p of d.rollPath) path += `-${cell(p.x,p.y)}`;
+  return `${d.pieceId}${item}: ${path}${captureId?` x${captureId}`:""}${reset?" Reset":""}`;
+}
+
+function applyConfirmedDraft(){
+  const d=ui.draft;
+  if(!d || d.subphase!=="COMPLETE") return;
+  pushUndo();
+  const p=pieceById(d.pieceId);
+  const bucket=itemBucket(d.item);
+  if(bucket){
+    if(game.teams[d.team].items[bucket]<1) throw new Error("Item inventory changed unexpectedly.");
+    game.teams[d.team].items[bucket]--;
+  }
+  p.x=d.pos.x; p.y=d.pos.y; p.orientation=clone(d.orientation);
+  let captureId=null;
+  const enemies=aliveEnemiesAdjacent(p.x,p.y,p.team,p.id);
+  if(enemies.length>1) throw new Error("Illegal simultaneous combat destination.");
+  if(enemies.length===1){
+    const e=enemies[0], w=rpsWinner(topGesture(p.orientation),topGesture(e.orientation));
+    if(w!==0){
+      const loser=w>0?e:p;
+      const winnerTeam=w>0?p.team:e.team;
+      loser.alive=false; captureId=loser.id;
+      game.teams[winnerTeam].captures++;
+    }
+  }
+  let didReset=false;
+  if((game.pieces.filter(q=>q.alive&&q.team===C.POSTECH).length===0) ||
+     (game.pieces.filter(q=>q.alive&&q.team===C.KAIST).length===0)){
+    // Official wipe rule: all eight pieces return to the initial state; score/items/order remain.
+    game.pieces=initialPieces(game.order.white,game.order.black);
+    didReset=true;
+  }
+  const rec={
+    role:game.moveRole,team:d.team,pieceId:d.pieceId,item:d.item,
+    start:cell(d.start.x,d.start.y),push:d.pushCell?cell(d.pushCell.x,d.pushCell.y):null,
+    rolls:d.rollPath.map(q=>cell(q.x,q.y)),capture:captureId,reset:didReset,
+    notation:notationForDraft(d,captureId,didReset)
+  };
+  const r=currentRound(); r.moves.push(rec);
+  game.lastAction=rec.notation;
+  ui.draft=null; ui.selectedItem=null;
+  if(game.moveRole==="W"){
+    game.moveRole="B"; game.phase="MOVE";
+  }else{
+    completeCurrentRound();
+  }
+  render();
+}
+
+function isCompleteSavePoint(){
+  return !ui.draft && !!game.order.white && !["ORDER_CHOICE","COIN_TOSS","MANUAL_ORDER","ITEM_SELECT","MOVE"].includes(game.phase);
+}
+
+function resultToken(){
+  if(!game.result) return "*";
+  return game.result===game.order.white ? "1-0" : "0-1";
+}
+function pairByRole(getter){
+  if(!game.order.white) return [0,0];
+  return [getter(game.order.white),getter(game.order.black)];
+}
+function qNotation(q){
+  const w=q[game.order.white]?1:0, b=q[game.order.black]?1:0;
+  return `Q[${w}, ${b}]`;
+}
+function roundNotation(r){
+  let s=`${r.n}. ${qNotation(r.q)}`;
+  if(r.itemGain){ s+=` ${roleOfTeam(r.itemGain.team)}+${r.itemGain.type}`; }
+  for(const m of r.moves) s+=` ${m.notation}`;
+  return s;
+}
+function recordText(){
+  if(!game.order.white){
+    const lines=[
+      `[Event "${game.meta.event}"]`,`[Site "${game.meta.site}"]`,`[Date "${game.meta.date}"]`,
+      `[White "?"]`,`[Black "?"]`,`[Result "*"]`,"",
+      "{First/second order has not yet been determined. The canonical White/Black record will appear once it is set.}"
+    ];
+    if(game.rounds.length){
+      const r=game.rounds[game.rounds.length-1];
+      lines.push(`Round ${r.n}: POSTECH ${r.q.POSTECH?1:0}, KAIST ${r.q.KAIST?1:0}`);
+    }
+    return lines.join("\n");
+  }
+  const [ws,bs]=pairByRole(t=>score(t));
+  const [wq,bq]=pairByRole(t=>game.teams[t].quiz);
+  const [wc,bc]=pairByRole(t=>game.teams[t].captures);
+  const lines=[
+    `[Event "${game.meta.event}"]`,
+    `[Site "${game.meta.site}"]`,
+    `[Date "${game.meta.date}"]`,
+    `[White "${game.order.white}"]`,
+    `[Black "${game.order.black}"]`,
+    `[Result "${resultToken()}"]`,
+    `[Score "${ws}-${bs}"]`,
+    `[Quiz "${wq}-${bq}"]`,
+    `[Captures "${wc}-${bc}"]`,
+    ""
+  ];
+  for(const r of game.rounds) lines.push(roundNotation(r));
+  for(const r of game.overtime) lines.push(`OT${r.n}. ${qNotation(r.q)}`);
+  return lines.join("\n");
+}
+
+function saveRecord(){
+  if(!isCompleteSavePoint()){
+    game.lastAction="Finish the current round action before saving the canonical record.";
+    render(); return;
+  }
+  const text=recordText();
+  const blob=new Blob([text],{type:"text/plain;charset=utf-8"});
+  const url=URL.createObjectURL(blob), a=document.createElement("a");
+  const d=game.meta.date.replaceAll(".","");
+  a.href=url; a.download=`RPSC_${d}_${game.order.white}-White.rpsc`;
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  game.lastAction="Record saved."; render();
+}
+
+function stripComments(text){ return text.replace(/\{[^}]*\}/g," "); }
+function parseHeaders(lines){
+  const h={};
+  for(const line of lines){
+    const m=line.match(/^\[([^\s]+)\s+"(.*)"\]$/);
+    if(m) h[m[1]]=m[2];
+  }
+  return h;
+}
+function parseMoveToken(text){
+  const m=text.trim().match(/^([WB][1-4])(?:\[(Pu|RoL|RoR|StL|StS)\])?:\s*([a-h][1-8](?:[>-][a-h][1-8])+)(?:\s+x([WB][1-4]))?(?:\s+(Reset))?$/i);
+  if(!m) throw new Error(`Cannot parse move: ${text}`);
+  return {pieceId:m[1].toUpperCase(),item:m[2]||null,path:m[3].toLowerCase(),capture:m[4]?m[4].toUpperCase():null,reset:!!m[5]};
+}
+function splitTwoMoves(rest){
+  const idx=rest.search(/\s+(?=[WB][1-4](?:\[|:))/);
+  if(idx<0) throw new Error(`Expected two moves: ${rest}`);
+  return [rest.slice(0,idx).trim(),rest.slice(idx).trim()];
+}
+
+function applyRecordedMove(g, move, expectedRole){
+  const p=g.pieces.find(q=>q.id===move.pieceId);
+  if(!p || !p.alive) throw new Error(`${move.pieceId} is unavailable.`);
+  if(move.pieceId[0]!==expectedRole) throw new Error(`Expected ${expectedRole} move, got ${move.pieceId}.`);
+  const team=expectedRole==="W"?g.order.white:g.order.black;
+  if(p.team!==team) throw new Error(`${move.pieceId} team mismatch.`);
+  const bucket=itemBucket(move.item);
+  if(bucket){
+    if(g.teams[team].items[bucket]<1) throw new Error(`${move.pieceId} uses unavailable ${bucket}.`);
+    g.teams[team].items[bucket]--;
+  }
+  let o=clone(p.orientation), base=C.DIST[topGesture(o)], steps=base;
+  if(move.item==="RoL") o=cubeTransform(o,"CCW");
+  if(move.item==="RoR") o=cubeTransform(o,"CW");
+  if(move.item==="StS") steps=base-1;
+  if(move.item==="StL") steps=base+1;
+  const start=cell(p.x,p.y);
+  let push=null, rolls=[];
+  if(move.item==="Pu"){
+    if(!move.path.includes(">")) throw new Error("Push record must contain >.");
+    const parts=move.path.split(">");
+    if(parts.length!==2) throw new Error("Invalid Push path.");
+    if(parts[0]!==start) throw new Error(`Start square mismatch for ${p.id}.`);
+    const seq=parts[1].split("-"); push=seq.shift(); rolls=seq;
+    const pp=xy(push);
+    if(Math.abs(pp.x-p.x)+Math.abs(pp.y-p.y)!==1 || occupiedAtIn(g,pp.x,pp.y,p.id)) throw new Error("Illegal Push slide.");
+    p.x=pp.x;p.y=pp.y;
+  }else{
+    if(move.path.includes(">")) throw new Error("Only Push may use >.");
+    const seq=move.path.split("-");
+    if(seq.shift()!==start) throw new Error(`Start square mismatch for ${p.id}.`);
+    rolls=seq;
+  }
+  if(rolls.length!==steps) throw new Error(`${p.id} must roll ${steps} cells, record has ${rolls.length}.`);
+  let lastDir=null;
+  for(let i=0;i<rolls.length;i++){
+    const q=xy(rolls[i]), dx=q.x-p.x,dy=q.y-p.y;
+    const dir=Object.keys(DIRS).find(d=>DIRS[d].dx===dx&&DIRS[d].dy===dy);
+    if(!dir) throw new Error(`Non-orthogonal step in ${p.id}.`);
+    if(lastDir && dir===OPP[lastDir]) throw new Error(`Immediate reversal in ${p.id}.`);
+    if(occupiedAtIn(g,q.x,q.y,p.id)) throw new Error(`Occupied square ${rolls[i]} in ${p.id}.`);
+    if(i===rolls.length-1 && enemiesAdjacentIn(g,q.x,q.y,team,p.id).length>=2) throw new Error(`Multiple-combat destination in ${p.id}.`);
+    o=cubeTransform(o,dir); p.x=q.x;p.y=q.y;lastDir=dir;
+  }
+  p.orientation=o;
+  let actualCapture=null;
+  const enemies=enemiesAdjacentIn(g,p.x,p.y,team,p.id);
+  if(enemies.length===1){
+    const e=enemies[0], w=rpsWinner(topGesture(p.orientation),topGesture(e.orientation));
+    if(w!==0){
+      const loser=w>0?e:p, winner=w>0?team:e.team;
+      loser.alive=false; actualCapture=loser.id; g.teams[winner].captures++;
+    }
+  }
+  if(actualCapture!==move.capture) throw new Error(`Capture mismatch in ${p.id}: expected ${move.capture||"none"}, got ${actualCapture||"none"}.`);
+  let actualReset=false;
+  if(g.pieces.filter(q=>q.alive&&q.team===C.POSTECH).length===0 || g.pieces.filter(q=>q.alive&&q.team===C.KAIST).length===0){
+    g.pieces=initialPieces(g.order.white,g.order.black); actualReset=true;
+  }
+  if(actualReset!==move.reset) throw new Error(`Reset mismatch after ${p.id}.`);
+  return {role:expectedRole,team,pieceId:move.pieceId,item:move.item,start,
+    push,rolls,capture:actualCapture,reset:actualReset,
+    notation:`${move.pieceId}${move.item?`[${move.item}]`:""}: ${move.path}${actualCapture?` x${actualCapture}`:""}${actualReset?" Reset":""}`};
+}
+function occupiedAtIn(g,x,y,excludeId=null){ return g.pieces.find(p=>p.alive&&p.id!==excludeId&&p.x===x&&p.y===y)||null; }
+function enemiesAdjacentIn(g,x,y,team,excludeId=null){ return g.pieces.filter(p=>p.alive&&p.id!==excludeId&&p.team!==team&&Math.abs(p.x-x)+Math.abs(p.y-y)===1); }
+
+function parseAndReplay(text){
+  const clean=stripComments(text.replace(/\r/g,""));
+  const lines=clean.split("\n").map(s=>s.trim()).filter(Boolean);
+  const headerLines=lines.filter(s=>s.startsWith("["));
+  const body=lines.filter(s=>!s.startsWith("["));
+  const h=parseHeaders(headerLines);
+  if(![C.POSTECH,C.KAIST].includes(h.White) || ![C.POSTECH,C.KAIST].includes(h.Black) || h.White===h.Black) throw new Error("Record must contain valid White and Black headers.");
+  const g=freshGame();
+  g.meta.event=h.Event||"RPSC Analysis"; g.meta.site=h.Site||"Local"; g.meta.date=h.Date||todayString();
+  g.order={white:h.White,black:h.Black,source:"loaded record"};
+  g.pieces=initialPieces(g.order.white,g.order.black);
+  g.phase="QUIZ";
+  let expectedMain=1, expectedOT=1;
+  for(const line of body){
+    let m=line.match(/^(\d+)\.\s+Q\[([01]),\s*([01])\](?:\s+(.*))?$/);
+    if(m){
+      const n=Number(m[1]); if(n!==expectedMain || n>20) throw new Error(`Unexpected main round number ${n}.`);
+      expectedMain++;
+      const w=!!Number(m[2]), b=!!Number(m[3]);
+      const q={POSTECH:false,KAIST:false}; q[g.order.white]=w;q[g.order.black]=b;
+      g.teams.POSTECH.quiz+=q.POSTECH?1:0; g.teams.KAIST.quiz+=q.KAIST?1:0;
+      const r={n,q,itemGain:null,moves:[],complete:true};
+      const rest=(m[4]||"").trim();
+      if(w!==b){
+        const expectedTeam=w?g.order.white:g.order.black;
+        const im=rest.match(/^([WB])\+(Pu|Ro|St)$/);
+        if(!im) throw new Error(`Round ${n} requires one item gain.`);
+        const team=im[1]==="W"?g.order.white:g.order.black;
+        if(team!==expectedTeam) throw new Error(`Wrong team gains item in round ${n}.`);
+        g.teams[team].items[im[2]]++; r.itemGain={team,type:im[2]};
+      }else{
+        if(!rest) throw new Error(`Round ${n} requires two moves.`);
+        const [a,bm]=splitTwoMoves(rest);
+        r.moves.push(applyRecordedMove(g,parseMoveToken(a),"W"));
+        r.moves.push(applyRecordedMove(g,parseMoveToken(bm),"B"));
+      }
+      g.rounds.push(r);
+      continue;
+    }
+    m=line.match(/^OT(\d+)\.\s+Q\[([01]),\s*([01])\]$/);
+    if(m){
+      const n=Number(m[1]); if(n!==expectedOT || n>C.OT_MAX) throw new Error(`Unexpected overtime number OT${n}.`);
+      expectedOT++;
+      const w=!!Number(m[2]),b=!!Number(m[3]),q={POSTECH:false,KAIST:false};q[g.order.white]=w;q[g.order.black]=b;
+      g.overtime.push({n,q}); continue;
+    }
+    throw new Error(`Unrecognized record line: ${line}`);
+  }
+  // Decide continuation/result from reconstructed state.
+  if(g.rounds.length<20){ g.phase="QUIZ"; }
+  else{
+    const ps=score(C.POSTECH,g),ks=score(C.KAIST,g),pq=g.teams.POSTECH.quiz,kq=g.teams.KAIST.quiz;
+    if(ps!==ks){ g.result=ps>ks?C.POSTECH:C.KAIST;g.resultReason=`Score ${ps}–${ks}`;g.phase="GAME_OVER"; }
+    else if(pq!==kq){ g.result=pq>kq?C.POSTECH:C.KAIST;g.resultReason=`Score tied; Quiz ${pq}–${kq}`;g.phase="GAME_OVER"; }
+    else{
+      const pd=g.overtime.reduce((s,r)=>s+(r.q.POSTECH?1:0),0),kd=g.overtime.reduce((s,r)=>s+(r.q.KAIST?1:0),0);
+      if(pd!==kd){ g.result=pd>kd?C.POSTECH:C.KAIST;g.resultReason=`Overtime sudden death at OT${g.overtime.length}`;g.phase="GAME_OVER"; }
+      else if(g.overtime.length>=5){ g.phase="GAME_OVER";g.result=null;g.resultReason="Overtime exhausted at 5 questions; supplied official source gives no further procedure."; }
+      else g.phase="OT_QUIZ";
+    }
+  }
+  // Header consistency checks when present.
+  if(h.Score){ const [ws,bs]=pairForGame(g,t=>score(t,g)); if(h.Score!==`${ws}-${bs}`) throw new Error(`Header Score ${h.Score} does not match replayed ${ws}-${bs}.`); }
+  if(h.Quiz){ const [wq,bq]=pairForGame(g,t=>g.teams[t].quiz); if(h.Quiz!==`${wq}-${bq}`) throw new Error(`Header Quiz ${h.Quiz} does not match replayed ${wq}-${bq}.`); }
+  if(h.Captures){ const [wc,bc]=pairForGame(g,t=>g.teams[t].captures); if(h.Captures!==`${wc}-${bc}`) throw new Error(`Header Captures ${h.Captures} does not match replayed ${wc}-${bc}.`); }
+  g.lastAction="Record loaded and replayed successfully.";
+  return g;
+}
+function pairForGame(g,getter){ return [getter(g.order.white),getter(g.order.black)]; }
+
+function loadFile(file){
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try{
+      const g=parseAndReplay(String(reader.result));
+      game=g; undoStack=[]; ui.selectedItem=null;ui.draft=null;
+      render();
+    }catch(err){
+      game.lastAction=`Load error: ${err.message}`; render();
+    }
+  };
+  reader.readAsText(file,"utf-8");
+}
+
+/* ---------- Rendering ---------- */
+function screenCell(x,y){ return ui.flipped ? {x:7-x,y:y} : {x:x,y:7-y}; }
+function worldDirectionAngleFromWrist(wrist){
+  // The textbook glyph's bar is shown on the finger side, opposite the wrist.
+  const f=[-wrist[0],-wrist[1],0], d=VEC_TO_DIR.get(vecKey(f));
+  const base={N:0,E:90,S:180,W:270}[d] ?? 0;
+  return (base + (ui.flipped?180:0))%360;
+}
+function roleLabels(){
+  if(!game.order.white){
+    return ui.flipped
+      ? {top:{role:"",team:C.POSTECH},bottom:{role:"",team:C.KAIST}}
+      : {top:{role:"",team:C.KAIST},bottom:{role:"",team:C.POSTECH}};
+  }
+  const topRole=ui.flipped?"White":"Black", bottomRole=ui.flipped?"Black":"White";
+  return {
+    top:{role:topRole,team:topRole==="White"?game.order.white:game.order.black},
+    bottom:{role:bottomRole,team:bottomRole==="White"?game.order.white:game.order.black}
+  };
+}
+function roleHTML(x){
+  const cls=x.team===C.POSTECH?"team-postech":"team-kaist";
+  return `<span>${x.role?`${x.role} — `:""}<span class="role-name ${cls}">${x.team}</span></span>`;
+}
+function svgEscape(s){ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&apos;"}[c])); }
+
+function renderedPieces(){
+  if(!game.pieces) return previewPieces();
+  if(!ui.draft) return game.pieces;
+  return game.pieces.map(p=>p.id===ui.draft.pieceId?{...p,x:ui.draft.pos.x,y:ui.draft.pos.y,orientation:ui.draft.orientation}:p);
+}
+function boardSVG(){
+  const size=70, ox=0,oy=0, board=560;
+  let s="";
+  // Squares: a1 is a dark square.
+  for(let x=0;x<8;x++) for(let y=0;y<8;y++){
+    const sc=screenCell(x,y), dark=((x+y)%2===0);
+    s+=`<rect x="${sc.x*size}" y="${sc.y*size}" width="${size}" height="${size}" fill="${dark?C.DARK_SQUARE:C.LIGHT_SQUARE}"/>`;
+  }
+  // Grid and border, textbook-like thin linework.
+  for(let i=0;i<=8;i++){
+    const v=i*size;
+    s+=`<line x1="${v}" y1="0" x2="${v}" y2="${board}" stroke="${i===0||i===8?C.INK:C.BOARD_LINE}" stroke-width="${i===0||i===8?1.35:.65}"/>`;
+    s+=`<line x1="0" y1="${v}" x2="${board}" y2="${v}" stroke="${i===0||i===8?C.INK:C.BOARD_LINE}" stroke-width="${i===0||i===8?1.35:.65}"/>`;
+  }
+  // Coordinates, bottom and left.
+  for(let sx=0;sx<8;sx++){
+    const file=ui.flipped?C.FILES[7-sx]:C.FILES[sx];
+    s+=`<text x="${sx*size+size/2}" y="${board+25}" text-anchor="middle" font-family="Latin Modern Roman,CMU Serif,STIX Two Text,Times New Roman,serif" font-size="14" fill="${C.COORD}">${file}</text>`;
+  }
+  for(let sy=0;sy<8;sy++){
+    const rank=ui.flipped?sy+1:8-sy;
+    s+=`<text x="-22" y="${sy*size+size/2+5}" text-anchor="middle" font-family="Latin Modern Roman,CMU Serif,STIX Two Text,Times New Roman,serif" font-size="14" fill="${C.COORD}">${rank}</text>`;
+  }
+
+  // Draft path and legal targets.
+  if(ui.draft){
+    const d=ui.draft;
+    const center=q=>{const sc=screenCell(q.x,q.y);return {x:sc.x*size+size/2,y:sc.y*size+size/2};};
+    const a=center(d.start);
+    if(d.pushCell){
+      const b=center(d.pushCell);
+      s+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="#111" stroke-width="1.3" stroke-dasharray="5 4" opacity=".55"/>`;
+    }
+    const points=[];
+    const rollStart=d.pushCell||d.start; points.push(center(rollStart));
+    for(const q of d.rollPath) points.push(center(q));
+    if(points.length>1) s+=`<polyline points="${points.map(p=>`${p.x},${p.y}`).join(" ")}" fill="none" stroke="#111" stroke-width="1.5" opacity=".62"/>`;
+    for(const q of draftLegalCells()){
+      const p=center(q);
+      s+=`<circle data-cell="${cell(q.x,q.y)}" cx="${p.x}" cy="${p.y}" r="8" fill="#111" opacity=".17" style="cursor:pointer"/>`;
+    }
+    const sc=screenCell(d.pos.x,d.pos.y);
+    s+=`<rect x="${sc.x*size+2}" y="${sc.y*size+2}" width="${size-4}" height="${size-4}" fill="none" stroke="#111" stroke-width="2"/>`;
+  }
+
+  const pieces=renderedPieces();
+  for(const p of pieces){
+    if(!p.alive) continue;
+    const sc=screenCell(p.x,p.y),cx=sc.x*size+size/2,cy=sc.y*size+size/2;
+    const gesture=topGesture(p.orientation), wrist=topWrist(p.orientation),angle=worldDirectionAngleFromWrist(wrist);
+    const color=teamColor(p.team), selectable=game.phase==="MOVE"&&!ui.draft&&p.team===currentMoveTeam();
+    s+=`<g data-piece="${p.id}" style="cursor:${selectable?"pointer":"default"}">`;
+    s+=`<g transform="translate(${cx} ${cy-2}) rotate(${angle})">`;
+    s+=`<line x1="-12" y1="-19" x2="12" y2="-19" stroke="${color}" stroke-width="2.4"/>`;
+    s+=`<text x="0" y="11" text-anchor="middle" font-family="Latin Modern Roman,CMU Serif,STIX Two Text,Times New Roman,serif" font-weight="700" font-size="34" fill="${color}">${gesture}</text>`;
+    s+=`</g>`;
+    s+=`<text x="${cx+24}" y="${cy+27}" text-anchor="end" font-family="Latin Modern Roman,CMU Serif,STIX Two Text,Times New Roman,serif" font-size="9.5" fill="#666">${svgEscape(p.id)}</text>`;
+    s+=`</g>`;
+  }
+  // Transparent hit rectangles on every square, last so clicks are easy.
+  for(let x=0;x<8;x++) for(let y=0;y<8;y++){
+    const sc=screenCell(x,y);
+    s+=`<rect data-hit="${cell(x,y)}" x="${sc.x*size}" y="${sc.y*size}" width="${size}" height="${size}" fill="transparent" style="cursor:pointer"/>`;
+  }
+  return s;
+}
+
+function moveDetail(){
+  if(game.phase!=="MOVE") return "";
+  const team=currentMoveTeam(), role=game.moveRole==="W"?"White":"Black";
+  if(!ui.draft){ return `${role} · ${team}. Select an item if needed, then select one of your pieces.`; }
+  const d=ui.draft, g=topGesture(d.orientation);
+  if(d.subphase==="PUSH") return `${d.pieceId}[Pu] · choose one orthogonal square for the non-rolling slide.`;
+  const done=d.rollPath.length;
+  if(d.subphase==="ROLL") return `${d.pieceId}${d.item?`[${d.item}]`:""} · top ${g} · roll ${done} / ${d.stepsRequired}.`;
+  const c=previewCombat();
+  return `${d.pieceId}${d.item?`[${d.item}]`:""} · ${d.stepsRequired} / ${d.stepsRequired}. ${c?c.text:""}`;
+}
+function instructionText(){
+  const n=game.rounds.length+1;
+  switch(game.phase){
+    case "QUIZ": return `Enter Round ${n} quiz result. Buttons are ordered POSTECH, KAIST.`;
+    case "ORDER_CHOICE": return `${game.orderChoiceTeam} was the first solo-correct team. It chooses whether to move first or second.`;
+    case "COIN_TOSS": return "Both teams were correct on the opening quiz. Determine first/second order by coin toss.";
+    case "MANUAL_ORDER": return "Both teams were wrong before first/second order existed. The supplied official text does not specify this case; choose the first mover manually for analysis.";
+    case "ITEM_SELECT": return `${game.itemTeam} alone answered correctly. Choose one item to gain.`;
+    case "MOVE": return moveDetail();
+    case "OT_QUIZ": return `Overtime OT${game.overtime.length+1}. Quiz only; no board move or item.`;
+    case "GAME_OVER": return game.result?`${game.result} wins.`:"Game ended without a winner under the supplied procedure.";
+    default:return "";
+  }
+}
+function roundText(){
+  if(game.phase==="OT_QUIZ") return `OT ${game.overtime.length+1} / ${C.OT_MAX}`;
+  if(game.phase==="GAME_OVER" && game.overtime.length) return `OT ${game.overtime.length} / ${C.OT_MAX}`;
+  const r=currentRound();
+  if(r) return `${r.n} / ${C.MAIN_ROUNDS}`;
+  return `${Math.min(game.rounds.length+1,C.MAIN_ROUNDS)} / ${C.MAIN_ROUNDS}`;
+}
+function moveMetaText(){
+  if(game.phase!=="MOVE") return "—";
+  const team=currentMoveTeam(), role=game.moveRole==="W"?"White":"Black";
+  return `<span class="${team===C.POSTECH?"team-postech":"team-kaist"}">${team}</span> (${role})`;
+}
+function phaseControls(){
+  const quiz=document.getElementById("quizControls"), order=document.getElementById("orderControls"), gain=document.getElementById("itemGainControls"), move=document.getElementById("moveControls"), draft=document.getElementById("draftControls");
+  quiz.classList.toggle("hidden",!(game.phase==="QUIZ"||game.phase==="OT_QUIZ"));
+  order.classList.add("hidden"); order.innerHTML="";
+  gain.classList.toggle("hidden",game.phase!=="ITEM_SELECT");
+  move.classList.toggle("hidden",game.phase!=="MOVE");
+  draft.classList.toggle("hidden",!(game.phase==="MOVE"&&ui.draft));
+  if(game.phase==="ORDER_CHOICE"){
+    order.classList.remove("hidden");
+    const t=game.orderChoiceTeam;
+    order.innerHTML=`<button data-order-solo="first">${t} First</button><button data-order-solo="second">${t} Second</button>`;
+  }else if(game.phase==="COIN_TOSS"){
+    order.classList.remove("hidden"); order.innerHTML=`<button data-coin="1">Toss Coin</button>`;
+  }else if(game.phase==="MANUAL_ORDER"){
+    order.classList.remove("hidden"); order.innerHTML=`<button data-manual-first="POSTECH">POSTECH First</button><button data-manual-first="KAIST">KAIST First</button>`;
+  }
+  if(game.phase==="MOVE"){
+    const team=currentMoveTeam();
+    document.querySelectorAll("[data-move-item]").forEach(b=>{
+      const code=b.dataset.moveItem,bucket=itemBucket(code);
+      b.disabled=!!ui.draft || game.teams[team].items[bucket]<1;
+      b.classList.toggle("active",!ui.draft&&ui.selectedItem===code);
+    });
+    document.getElementById("selectedItemText").textContent=ui.draft
+      ? `Item: ${ui.draft.item||"none"}`
+      : `Item: ${ui.selectedItem||"none"} · click again to clear`;
+  }
+  if(ui.draft){
+    document.getElementById("backBtn").disabled=ui.draft.subphase==="PUSH";
+    document.getElementById("confirmBtn").disabled=ui.draft.subphase!=="COMPLETE";
+  }
+}
+function render(){
+  const labels=roleLabels();
+  document.getElementById("topRole").innerHTML=roleHTML(labels.top);
+  document.getElementById("bottomRole").innerHTML=roleHTML(labels.bottom);
+  document.getElementById("board").innerHTML=boardSVG();
+  const roleName=t=>{const r=roleOfTeam(t);return r==="W"?"White":r==="B"?"Black":"—";};
+  const roles={POSTECH:roleName(C.POSTECH),KAIST:roleName(C.KAIST)};
+  document.getElementById("scoreBody").innerHTML=`
+    <tr><th>Team</th><td class="teamcell team-postech">POSTECH</td><td class="teamcell team-kaist">KAIST</td></tr>
+    <tr><th>Role</th><td>${roles.POSTECH}</td><td>${roles.KAIST}</td></tr>
+    <tr><th>Score</th><td>${score(C.POSTECH)}</td><td>${score(C.KAIST)}</td></tr>
+    <tr><th>Quiz</th><td>${game.teams.POSTECH.quiz}</td><td>${game.teams.KAIST.quiz}</td></tr>
+    <tr><th>Captures</th><td>${game.teams.POSTECH.captures}</td><td>${game.teams.KAIST.captures}</td></tr>
+    <tr><th>Push</th><td>${game.teams.POSTECH.items.Pu}</td><td>${game.teams.KAIST.items.Pu}</td></tr>
+    <tr><th>Rotation</th><td>${game.teams.POSTECH.items.Ro}</td><td>${game.teams.KAIST.items.Ro}</td></tr>
+    <tr><th>Step</th><td>${game.teams.POSTECH.items.St}</td><td>${game.teams.KAIST.items.St}</td></tr>`;
+  document.getElementById("moveMeta").innerHTML=moveMetaText();
+  document.getElementById("roundMeta").textContent=roundText();
+  document.getElementById("instruction").textContent=instructionText();
+  document.getElementById("detail").innerHTML=`${game.lastAction?svgEscape(game.lastAction):""}${game.phase==="GAME_OVER"&&game.resultReason?`<div class="result-line">${svgEscape(game.resultReason)}</div>`:""}`;
+  document.getElementById("recordText").textContent=recordText();
+  document.getElementById("undoBtn").disabled=!undoStack.length;
+  document.getElementById("saveBtn").disabled=!isCompleteSavePoint();
+  document.getElementById("boardNote").textContent=game.order.white
+    ? "White is shown at the bottom by default; a1 is dark; Flip Board changes only the view."
+    : "First/second order is not set yet; POSTECH is shown provisionally at the bottom.";
+  phaseControls();
+}
+
+/* ---------- Self-tests ---------- */
+function mapReach(start,L){
+  const out=new Map();
+  function add(x,y,g){ const k=`${x},${y}`; if(!out.has(k))out.set(k,new Set());out.get(k).add(g); }
+  function dfs(x,y,o,last,n){
+    if(n===L){add(x,y,topGesture(o));return;}
+    for(const [d,v] of Object.entries(DIRS)){
+      if(last&&d===OPP[last]) continue;
+      dfs(x+v.dx,y+v.dy,cubeTransform(o,d),d,n+1);
+    }
+  }
+  dfs(0,0,start,null,0); return out;
+}
+function setEq(a,b){ return a.size===b.size && [...a].every(x=>b.has(x)); }
+function stateObsKey(o){ return o.map(f=>`${f.id}:${f.normal}/${f.wrist}`).sort().join("|"); }
+function runSelfTests(){
+  const failures=[];
+  function ok(cond,msg){ if(!cond) failures.push(msg); }
+  ok(ALL_ORIENTATIONS.length===24,"cube must have 24 orientations");
+  for(const g of ["S","R","P"]){
+    const o=canonicalOrientation(g,"S");
+    ok(topGesture(o)===g,`canonical ${g} top`);
+    ok(VEC_TO_DIR.get(vecKey(topWrist(o)))==="S",`canonical ${g} wrist south`);
+    ok(stateObsKey(cubeTransform(cubeTransform(o,"N"),"S"))===stateObsKey(o),`${g}: N then S inverse`);
+    ok(stateObsKey(cubeTransform(cubeTransform(o,"E"),"W"))===stateObsKey(o),`${g}: E then W inverse`);
+    let q=o; for(let i=0;i<4;i++) q=cubeTransform(q,"CW");
+    ok(stateObsKey(q)===stateObsKey(o),`${g}: RoR x4`);
+    q=cubeTransform(cubeTransform(o,"CW"),"CCW");
+    ok(stateObsKey(q)===stateObsKey(o),`${g}: RoR then RoL`);
+    ok(topGesture(cubeTransform(o,"CW"))===g,`${g}: Rotation preserves top`);
+  }
+  // Exact textbook Scissors reach-map spot checks from the official net.
+  const s=canonicalOrientation("S","S"), m=mapReach(s,3);
+  ok(setEq(m.get("0,3"),new Set(["R"])),"Scissors 3 north must end R");
+  ok(setEq(m.get("3,0"),new Set(["P"])),"Scissors 3 east must end P");
+  ok(setEq(m.get("0,1"),new Set(["S"])),"Scissors bent return-near endpoint must end S");
+  const sr=new Map();
+  for(const ro of ["CW","CCW"]){
+    for(const [k,v] of mapReach(cubeTransform(s,ro),3)){
+      if(!sr.has(k))sr.set(k,new Set()); for(const x of v)sr.get(k).add(x);
+    }
+  }
+  ok(setEq(sr.get("0,3"),new Set(["P"])),"Scissors+Rotation 3 north must match textbook P");
+  ok(setEq(sr.get("3,0"),new Set(["R"])),"Scissors+Rotation 3 east must match textbook R");
+  // Textbook Basic Movement spot checks for Rock and Paper as well.
+  const r=canonicalOrientation("R","S"), rm=mapReach(r,4);
+  ok(setEq(rm.get("0,4"),new Set(["R"])),"Rock 4 north must end R");
+  ok(setEq(rm.get("4,0"),new Set(["R"])),"Rock 4 east must end R");
+  ok(setEq(rm.get("0,0"),new Set(["S","P"])),"Rock 4-step loop must end S or P");
+  const p=canonicalOrientation("P","S"), pm=mapReach(p,5);
+  ok(setEq(pm.get("0,5"),new Set(["R"])),"Paper 5 north must end R");
+  ok(setEq(pm.get("5,0"),new Set(["S"])),"Paper 5 east must end S");
+  ok(rpsWinner("R","S")===1&&rpsWinner("S","P")===1&&rpsWinner("P","R")===1,"RPS cycle");
+  return failures;
+}
+
+function resetGame(){
+  if(!window.confirm("Reset the entire analysis?")) return;
+  game=freshGame();undoStack=[];ui.selectedItem=null;ui.draft=null;render();
+}
+
+function bindEvents(){
+  document.getElementById("board").addEventListener("click",e=>{
+    const hit=e.target.closest("[data-hit]");
+    if(!hit) return;
+    const p=xy(hit.dataset.hit); clickBoardCell(p.x,p.y);
+  });
+  document.getElementById("quizControls").addEventListener("click",e=>{
+    const b=e.target.closest("[data-q]"); if(!b)return; const q=b.dataset.q;submitQuiz(q[0]==="1",q[1]==="1");
+  });
+  document.getElementById("orderControls").addEventListener("click",e=>{
+    const b=e.target.closest("button");if(!b)return;
+    if(b.dataset.orderSolo){ chooseOrderForSolo(game.orderChoiceTeam,b.dataset.orderSolo==="first"); }
+    else if(b.dataset.coin) tossCoin();
+    else if(b.dataset.manualFirst) chooseManualFirst(b.dataset.manualFirst);
+  });
+  document.getElementById("itemGainControls").addEventListener("click",e=>{ const b=e.target.closest("[data-gain]");if(b)selectItemGain(b.dataset.gain); });
+  document.getElementById("moveControls").addEventListener("click",e=>{const b=e.target.closest("[data-move-item]");if(b)setSelectedMoveItem(b.dataset.moveItem);});
+  document.getElementById("backBtn").addEventListener("click",draftBack);
+  document.getElementById("cancelBtn").addEventListener("click",cancelDraft);
+  document.getElementById("confirmBtn").addEventListener("click",applyConfirmedDraft);
+  document.getElementById("flipBtn").addEventListener("click",()=>{ui.flipped=!ui.flipped;render();});
+  document.getElementById("undoBtn").addEventListener("click",restoreLast);
+  document.getElementById("saveBtn").addEventListener("click",saveRecord);
+  document.getElementById("loadBtn").addEventListener("click",()=>document.getElementById("loadInput").click());
+  document.getElementById("loadInput").addEventListener("change",e=>{const f=e.target.files?.[0];if(f)loadFile(f);e.target.value="";});
+  document.getElementById("resetBtn").addEventListener("click",resetGame);
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"&&ui.draft){cancelDraft();}
+    if(e.key==="Backspace"&&ui.draft){e.preventDefault();draftBack();}
+  });
+}
+
+function init(){
+  const failures=runSelfTests();
+  if(failures.length){
+    engineReady=false;
+    game.lastAction=`Engine self-test failed: ${failures.join("; ")}`;
+    document.querySelectorAll("button").forEach(b=>b.disabled=true);
+  }
+  bindEvents(); render();
+}
+
+if(typeof document!=="undefined") init();
+if(typeof module!=="undefined" && module.exports){ module.exports={runSelfTests,parseAndReplay,recordText}; }
+</script>
+</body>
+</html>
