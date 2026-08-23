@@ -1,1 +1,100 @@
 \chapter{Movement and Items}
+
+본 장에서는 보드가 비어 있다고 가정하고, 말 하나만 놓인 상태에서 가능한 이동을 정리한다. 모든 그림은 시작칸을 가운데에 두고 그 주변의 부분 보드만 잘라서 그렸다. 가운데의 옅은 음영 칸이 시작칸이며, 도달 가능한 칸에는 가능한 최종 윗면을 bar 없이 \texttt{S}, \texttt{R}, \texttt{P}로 적었다. 한 칸에 여러 글자가 적혀 있으면 서로 다른 경로를 통해 여러 윗면이 가능하다는 뜻이고, 표기 순서는 항상 \texttt{S} $\rightarrow$ \texttt{R} $\rightarrow$ \texttt{P}이다.
+
+교재 전체에서는 게임 이름은 \emph{RockPaperScissors Chess}로 두되, 설명 순서는 한국어 감각에 맞추어 \textbf{Scissors $\rightarrow$ Rock $\rightarrow$ Paper}로 통일한다.
+
+\section{Basic Movement}
+
+\subsection{Scissors}
+
+Scissors는 기본 이동거리 3을 가진다. 따라서 시작칸에서 맨해튼 거리 3인 칸들에 도달하며, 홀수 칸 이동이므로 시작칸과 반대 색의 칸에서 끝난다. Figure~\ref{fig:basic-scissors}은 직전 칸으로의 즉시 복귀만 금지했을 때 가능한 전체 결과를 정리한 것이다.
+
+\input{Figures/Movement/basic-scissors.tex}
+
+가장 바깥쪽의 네 꼭짓점에서는 최종 윗면이 하나로 고정되지만, 안쪽의 여러 칸에서는 두 종류의 윗면이 가능하다. Scissors는 세 말 가운데 가장 짧게 움직이므로 공간은 좁지만, 경로에 따라 도착 후의 윗면이 꽤 달라진다.
+
+\subsection{Rock}
+
+Rock은 기본 이동거리 4를 가진다. 짝수 칸 이동이므로 시작칸과 같은 색의 칸에서 끝난다. Figure~\ref{fig:basic-rock}을 보면 Scissors보다 한 겹 넓은 영역을 다루고, 중심부의 여러 칸에서는 세 종류의 윗면이 모두 가능함을 확인할 수 있다.
+
+\input{Figures/Movement/basic-rock.tex}
+
+특히 중심에서 두 칸 떨어진 십자 모양의 칸들은 경로 선택의 자유가 커서 최종 윗면이 \texttt{SRP} 모두 가능하다. Rock은 기본 이동만으로도 유연한 전개를 만들기 쉽다.
+
+\subsection{Paper}
+
+Paper는 기본 이동거리 5를 가지며, 세 말 가운데 가장 넓은 범위를 다룬다. Figure~\ref{fig:basic-paper}은 Paper가 도달 가능한 전체 영역을 보여 준다.
+
+\input{Figures/Movement/basic-paper.tex}
+
+이동거리가 길기 때문에 많은 칸에서 세 종류의 윗면이 모두 가능하다. 반면, 최외곽의 몇몇 칸에서는 최종 윗면이 거의 고정되므로, 장거리 이동일수록 경로를 미리 설계하는 것이 중요하다.
+
+\section{Items}
+
+아이템은 기본 이동을 바꾸는 가장 직접적인 수단이다. 본 장의 아이템 도해는 모두 다음 약속을 따른다.
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.18}
+    \begin{tabular}{@{}L{0.16\textwidth}L{0.18\textwidth}L{0.56\textwidth}@{}}
+        \toprule
+        아이템 & 코드 & 본 장에서의 해석 \\
+        \midrule
+        Push & \texttt{Pu} & 네 방향 가운데 한 방향으로 먼저 한 칸 민 뒤, 같은 윗면으로 기본 이동을 진행한다. \\
+        Rotation & \texttt{RoL}, \texttt{RoR} & 제자리에서 좌우 가운데 한 방향으로 먼저 $90^\circ$ 회전한 뒤, 새 윗면의 기본 이동을 진행한다. 아래 그림은 \texttt{RoL}, \texttt{RoR}를 모두 합친 결과이다. \\
+        Step & \texttt{StL}, \texttt{StS} & 기본 이동거리보다 한 칸 더 가거나 한 칸 덜 간다. 아래 그림은 \texttt{StL}, \texttt{StS}를 모두 합친 결과이다. \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+Push는 출발점을 평행이동시키는 효과가 있고, Rotation은 이동거리 자체를 바꾸는 효과가 있으며, Step은 같은 윗면을 유지한 채 이동거리만 조정한다. 실제 경기에서는 아이템을 한 번의 이동에 하나만 쓸 수 있으므로, 각 아이템이 만들어 내는 도형을 몸으로 익혀 두는 것이 중요하다.
+
+\section{Movement with Items}
+
+\subsection{Scissors}
+
+Scissors에 아이템을 붙였을 때의 결과는 Figures~\ref{fig:scissors-push}--\ref{fig:scissors-step}과 같다.
+
+\input{Figures/Movement/scissors-push.tex}
+
+Push는 시작점을 한 칸 옮긴 뒤 Scissors의 3칸 이동을 하므로, 기본 Scissors보다 한 겹 넓은 영역을 다룬다. 많은 칸에서 세 종류의 윗면이 모두 가능해져 전개가 크게 유연해진다.
+
+\input{Figures/Movement/scissors-rotation.tex}
+
+Rotation은 먼저 윗면을 바꾼 뒤 이동한다. 이 책의 표준 방향에서 Scissors를 회전시키면 Paper형 이동이 되므로, Scissors with Rotation의 결과는 장거리 말처럼 넓게 펼쳐진다.
+
+\input{Figures/Movement/scissors-step.tex}
+
+Step은 \texttt{StS}를 쓰면 2칸, \texttt{StL}을 쓰면 4칸 이동이 된다. 따라서 Scissors with Step은 짧은 전개와 Rock형 전개가 한 그림 안에 겹쳐 있는 것으로 이해하면 편하다.
+
+\subsection{Rock}
+
+Rock에 아이템을 붙였을 때의 결과는 Figures~\ref{fig:rock-push}--\ref{fig:rock-step}과 같다.
+
+\input{Figures/Movement/rock-push.tex}
+
+Rock with Push는 기본 Rock보다 한 칸 바깥까지 닿는다. 시작 윗면을 유지한 채 출발점만 바꾸므로, 외곽이 넓어지는 대신 내부의 유연성도 함께 커진다.
+
+\input{Figures/Movement/rock-rotation.tex}
+
+이 책의 표준 방향에서 Rock을 회전시키면 Paper형 이동이 된다. 따라서 Rock with Rotation 역시 5칸 이동의 넓은 도형을 만든다.
+
+\input{Figures/Movement/rock-step.tex}
+
+Step은 Rock을 3칸 또는 5칸 말로 바꾼다. 다시 말해 Rock with Step은 Scissors형 이동과 Paper형 이동을 합친 그림으로 볼 수 있다.
+
+\subsection{Paper}
+
+Paper에 아이템을 붙였을 때의 결과는 Figures~\ref{fig:paper-push}--\ref{fig:paper-step}과 같다.
+
+\input{Figures/Movement/paper-push.tex}
+
+Paper with Push는 본 장에서 가장 넓은 범위를 갖는다. 한 칸을 먼저 민 뒤 5칸을 이동하므로, 전반적인 활동 반경이 매우 커지고 많은 칸에서 세 종류의 윗면이 모두 가능하다.
+
+\input{Figures/Movement/paper-rotation.tex}
+
+이 책의 표준 방향에서 Paper를 회전시키면 Scissors형 이동이 된다. 그래서 Paper with Rotation은 범위 자체는 줄어들지만, 짧은 거리에서 방향 전환을 노리는 전술에 적합하다.
+
+\input{Figures/Movement/paper-step.tex}
+
+Step은 Paper를 4칸 또는 6칸 말로 바꾼다. 6칸 이동까지 허용되므로 외곽 반경이 크게 커지며, 동시에 4칸 이동의 안정적인 중거리 전개도 함께 가져갈 수 있다.

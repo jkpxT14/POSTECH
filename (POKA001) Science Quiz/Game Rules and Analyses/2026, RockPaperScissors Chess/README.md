@@ -9,7 +9,7 @@
 - `Preface.tex`: preface
 - `Rules.tex`: game rules
 - `NotationandGameRecording.tex`: notation and game-record format
-- `MovementandItems.tex`: chapter skeleton
+- `MovementandItems.tex`: completed Chapter 3 source
 - `Tactics.tex`: chapter skeleton
 - `Strategy.tex`: chapter skeleton
 - `Openings.tex`: chapter skeleton
@@ -17,8 +17,13 @@
 - `Games.tex`: chapter skeleton
 - `Figures/`: TikZ figure sources and styles
 - `RockPaperScissorsChess.pdf`: compiled handbook
-- `RockPaperScissorsChess.synctex.gz`: SyncTeX output
 
 The booklet is written in Korean, while the title, chapter names, section names, and notation use English.
 
-Build: Draft 09 (2026-08-23 15:50 KST)
+Build: Draft 13 (2026-08-23 19:05 KST)
+
+## This draft updates
+
+- enlarged the Chapter 3 board labels for better readability
+- kept one-line `S`, `SR`, `SRP` notation and the `S -> R -> P` order
+- restored the dice net to the official plain orientation without extra stylistic rotation
