@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ProblemsetStyle}[2026/08/20 Science Quiz problem set style]
+\ProvidesPackage{ProblemsetStyle}[2026/08/24 Science Quiz problem set style]
 
 % Standalone adaptation of the current Mathematics for Science Quiz typography.
 % The handbook itself remains English-only. Problem sets may use Korean.
@@ -44,9 +44,18 @@
 \RequirePackage{xcolor}
 \RequirePackage[unicode,hidelinks]{hyperref}
 
-% Institution color copied from the current handbook source.
+% Institution colors and rendering follow the current handbook source.
 \definecolor{POSTECHRed}{RGB}{166,25,85}
-\newcommand{\POSTECHKorean}{\textcolor{POSTECHRed}{포항공과대학교}}
+\definecolor{MITRed}{RGB}{117,0,20}
+
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+
+\DeclareRobustCommand{\POSTECHKorean}{%
+    \institutiontext{POSTECHRed}{포항공과대학교}%
+}
+\DeclareRobustCommand{\MIT}{\institutiontext{MITRed}{MIT}}
 
 % Problem-set title block
 \newcommand{\problemsettitle}[1]{%
@@ -67,8 +76,17 @@
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
 }
 
-\newenvironment{problem}[1]
-    {\problemheading{#1}}
+% As in the handbook, an optional argument is used only for a compact,
+% independently verifiable official source and/or an established problem name.
+% Omit it when no qualifying attribution is known.
+\newenvironment{problem}[2][]
+    {%
+        \if\relax\detokenize{#1}\relax
+            \problemheading{#2}%
+        \else
+            \problemheading{#2.\ (#1)}%
+        \fi
+    }
     {\par\vspace{6pt}}
 
 % The separate solutions booklet keeps the handbook's italic Solution label,
