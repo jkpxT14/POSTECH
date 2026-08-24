@@ -3009,41 +3009,6 @@
             \]
         \end{expectedsubsolution}
 
-        \begin{expectedsubproblem}
-            Let
-            \[
-                a_0=2,
-                \qquad
-                a_1=\sqrt2,
-                \qquad
-                a_{n+2}=\sqrt2\,a_{n+1}-a_n.
-            \]
-            Determine $a_{2026}$.
-        \end{expectedsubproblem}
-
-        \begin{expectedsubsolution}
-            The sequence
-            \[
-                b_n=2\cos\left(\frac{n\pi}{4}\right)
-            \]
-            has the same initial values and satisfies
-            \[
-                b_{n+2}
-                =
-                2\cos\left(\frac{\pi}{4}\right)b_{n+1}-b_n
-                =
-                \sqrt2\,b_{n+1}-b_n.
-            \]
-            Hence $a_n=b_n$. Since $2026\equiv2\pmod8$,
-            \[
-                \boxed{
-                    a_{2026}
-                    =
-                    2\cos\left(\frac{2026\pi}{4}\right)
-                    =0
-                }.
-            \]
-        \end{expectedsubsolution}
 
         \begin{expectedsubproblem}
             Let $a_0=1$ and
@@ -3089,38 +3054,6 @@
             \]
         \end{expectedsubsolution}
 
-        \begin{expectedsubproblem}
-            Let
-            \[
-                a_0=2\cos\left(\frac{2\pi}{7}\right),
-                \qquad
-                a_{n+1}=a_n^2-2.
-            \]
-            Determine $a_{2026}$.
-        \end{expectedsubproblem}
-
-        \begin{expectedsubsolution}
-            The double-angle identity gives
-            \[
-                (2\cos\theta)^2-2=2\cos(2\theta).
-            \]
-            Hence induction yields
-            \[
-                a_n
-                =
-                2\cos\left(\frac{2^{n+1}\pi}{7}\right).
-            \]
-            Powers of $2$ modulo $14$ have period $3$, and
-            \[
-                2^{2027}\equiv4\pmod{14}.
-            \]
-            Therefore,
-            \[
-                \boxed{
-                    a_{2026}=2\cos\left(\frac{4\pi}{7}\right)
-                }.
-            \]
-        \end{expectedsubsolution}
 
         \begin{expectedsubproblem}
             Let $a_0=0$ and
@@ -3477,100 +3410,8 @@
             \]
         \end{expectedsubsolution}
 
-        \begin{expectedsubproblem}[1993 VTRMC]
-            For $x>0$, define
-            \[
-                f_1(x)=x,
-                \qquad
-                f_{n+1}(x)=x^{f_n(x)}.
-            \]
-            Determine $f_{2026}''(1)$.
-        \end{expectedsubproblem}
 
-        \begin{expectedsubsolution}
-            Since $f_n(1)=1$ for every $n$, take logarithms:
-            \[
-                \ln f_{n+1}(x)=f_n(x)\ln x.
-            \]
-            Differentiating and evaluating at $x=1$ shows inductively that
-            \[
-                f_n'(1)=1.
-            \]
-            Put $g(x)=\ln f_{n+1}(x)$. Then
-            \[
-                g'(1)=1
-                \qquad\text{and}\qquad
-                g''(1)=2f_n'(1)-f_n(1)=1.
-            \]
-            Since $f_{n+1}=e^g$,
-            \[
-                f_{n+1}''(1)
-                =
-                f_{n+1}(1)\bigl(g'(1)^2+g''(1)\bigr)
-                =2.
-            \]
-            Therefore,
-            \[
-                \boxed{f_{2026}''(1)=2}.
-            \]
-        \end{expectedsubsolution}
 
-        \begin{expectedsubproblem}
-            Let
-            \[
-                f(x)=\frac{1}{1-x-x^2}.
-            \]
-            Determine $f^{(2026)}(0)$ in terms of the Fibonacci sequence.
-        \end{expectedsubproblem}
-
-        \begin{expectedsubsolution}
-            The ordinary generating function of the Fibonacci sequence is
-            \[
-                \frac{1}{1-x-x^2}
-                =
-                \sum_{n=0}^{\infty}F_{n+1}x^n,
-            \]
-            where $F_0=0$ and $F_1=1$. Therefore the coefficient of $x^{2026}$ is
-            $F_{2027}$, and
-            \[
-                \boxed{f^{(2026)}(0)=2026!\,F_{2027}}.
-            \]
-        \end{expectedsubsolution}
-
-        \begin{expectedsubproblem}
-            Determine
-            \[
-                \left.
-                \frac{\dd^{2026}}{\dd x^{2026}}
-                \bigl(e^x\sin x\bigr)
-                \right|_{x=0}.
-            \]
-        \end{expectedsubproblem}
-
-        \begin{expectedsubsolution}
-            Since
-            \[
-                e^x\sin x
-                =
-                \Imag\bigl(e^{(1+i)x}\bigr),
-            \]
-            the required derivative is
-            \[
-                \Imag\bigl((1+i)^{2026}\bigr).
-            \]
-            Now
-            \[
-                (1+i)^{2026}
-                =
-                2^{1013}e^{i2026\pi/4}
-                =
-                2^{1013}i.
-            \]
-            Hence the value is
-            \[
-                \boxed{2^{1013}}.
-            \]
-        \end{expectedsubsolution}
 
         \begin{expectedsubproblem}
             Let
@@ -4691,55 +4532,7 @@
         Evaluate each of the following expressions exactly. When roots of unity
         occur, use $\omega_n=e^{2\pi i/n}$ unless another root is specified.
 
-        \begin{expectedsubproblem}
-            Determine $(1+i)^{2026}$.
-        \end{expectedsubproblem}
 
-        \begin{expectedsubsolution}
-            Using polar form,
-            \[
-                1+i=\sqrt2\,e^{i\pi/4}.
-            \]
-            Hence
-            \[
-                (1+i)^{2026}
-                =
-                2^{1013}e^{i2026\pi/4}
-                =
-                \boxed{2^{1013}i}.
-            \]
-        \end{expectedsubsolution}
-
-        \begin{expectedsubproblem}
-            Let $z\in\C\setminus\{0\}$ satisfy
-            \[
-                z+\frac{1}{z}=1.
-            \]
-            Determine
-            \[
-                z^{2026}+\frac{1}{z^{2026}}.
-            \]
-        \end{expectedsubproblem}
-
-        \begin{expectedsubsolution}
-            The equation is equivalent to
-            \[
-                z^2-z+1=0.
-            \]
-            Thus $z=e^{\pm i\pi/3}$, and therefore
-            \[
-                z^m+z^{-m}=2\cos\left(\frac{m\pi}{3}\right).
-            \]
-            Since $2026\equiv4\pmod6$,
-            \[
-                \boxed{
-                    z^{2026}+z^{-2026}
-                    =
-                    2\cos\left(\frac{4\pi}{3}\right)
-                    =-1
-                }.
-            \]
-        \end{expectedsubsolution}
 
         \begin{expectedsubproblem}
             For an integer $n\geq2$, determine
@@ -5386,42 +5179,6 @@
             \]
         \end{expectedsubsolution}
 
-        \begin{expectedsubproblem}
-            Let $\mathbf{A}$ be a $d\times d$ matrix satisfying
-            \[
-                \mathbf{A}^2-3\mathbf{A}+2\mathbf{I}_d=\mathbf{0}.
-            \]
-            Determine $\mathbf{A}^{2026}$ as a linear combination of
-            $\mathbf{A}$ and $\mathbf{I}_d$.
-        \end{expectedsubproblem}
-
-        \begin{expectedsubsolution}
-            Reduce the polynomial $x^{2026}$ modulo
-            \[
-                (x-1)(x-2)=x^2-3x+2.
-            \]
-            Its remainder has the form $r(x)=ux+v$ and must satisfy
-            \[
-                r(1)=1,
-                \qquad
-                r(2)=2^{2026}.
-            \]
-            Hence
-            \[
-                u=2^{2026}-1,
-                \qquad
-                v=2-2^{2026}.
-            \]
-            Substituting $\mathbf{A}$ for $x$ gives
-            \[
-                \boxed{
-                    \mathbf{A}^{2026}
-                    =
-                    (2^{2026}-1)\mathbf{A}
-                    +(2-2^{2026})\mathbf{I}_d
-                }.
-            \]
-        \end{expectedsubsolution}
 
         \begin{expectedsubproblem}
             Let
@@ -5592,45 +5349,6 @@
             \]
         \end{expectedsubsolution}
 
-        \begin{expectedsubproblem}
-            Let $\mathbf{J}_n$ be the $n\times n$ all-ones matrix and set
-            \[
-                \mathbf{A}=\mathbf{I}_n+\mathbf{J}_n.
-            \]
-            Determine the eigenvalues of $\mathbf{A}$ and compute
-            $\mathbf{A}^{2026}$.
-        \end{expectedsubproblem}
-
-        \begin{expectedsubsolution}
-            The vector $\ones$ is an eigenvector of $\mathbf{J}_n$ with eigenvalue
-            $n$, while every vector orthogonal to $\ones$ is an eigenvector with
-            eigenvalue $0$. Hence $\mathbf{A}$ has eigenvalues
-            \[
-                n+1
-                \quad\text{with multiplicity }1,
-                \qquad
-                1
-                \quad\text{with multiplicity }n-1.
-            \]
-            Since $\mathbf{J}_n^2=n\mathbf{J}_n$, the projection onto
-            $\Span(\ones)$ is $\mathbf{J}_n/n$. Thus
-            \[
-                \mathbf{A}^{2026}
-                =
-                \left(\mathbf{I}_n-\frac{1}{n}\mathbf{J}_n\right)
-                +(n+1)^{2026}\frac{1}{n}\mathbf{J}_n.
-            \]
-            Therefore,
-            \[
-                \boxed{
-                    \mathbf{A}^{2026}
-                    =
-                    \mathbf{I}_n
-                    +
-                    \frac{(n+1)^{2026}-1}{n}\mathbf{J}_n
-                }.
-            \]
-        \end{expectedsubsolution}
 
         \begin{expectedsubproblem}
             Determine all eigenvalues of
@@ -6063,54 +5781,8 @@
         \]
     \end{solution}
 
-    \begin{expectedproblem}
-        The 2026 International Congress of Mathematicians was held in which
-        city, and who received the four Fields Medals awarded there?
-    \end{expectedproblem}
 
-    \begin{solution}
-        The 2026 prize-and-congress record in Mathematics in 2026 gives the host city as
-        \[
-            \boxed{\text{Philadelphia, United States}}.
-        \]
-        The four Fields Medalists were
-        \[
-            \boxed{
-                \text{Yu Deng,\ John Pardon,\ Jacob Tsimerman,\ and Hong Wang}
-            }.
-        \]
-    \end{solution}
 
-    \begin{expectedproblem}
-        Which 2026 Fields Medalist is especially associated with harmonic
-        analysis, Furstenberg sets, and the three-dimensional Kakeya problem?
-        What historical distinction did she attain?
-    \end{expectedproblem}
-
-    \begin{solution}
-        The mathematician is
-        \[
-            \boxed{\text{Hong Wang}}.
-        \]
-        She became the
-        \[
-            \boxed{\text{third woman to receive a Fields Medal}}.
-        \]
-    \end{solution}
-
-    \begin{expectedproblem}
-        The 2026 Abel Prize was awarded for powerful tools in arithmetic
-        geometry and for resolving long-standing Diophantine conjectures of
-        Mordell and Lang. Identify the laureate.
-    \end{expectedproblem}
-
-    \begin{solution}
-        The 2026 Abel Prize entry in Mathematics in 2026 identifies the laureate as
-        \[
-            \boxed{\text{Gerd Faltings}}.
-        \]
-        He had previously received the Fields Medal in 1986.
-    \end{solution}
 
     \begin{expectedproblem}
         Which of the following mathematicians was born earliest?

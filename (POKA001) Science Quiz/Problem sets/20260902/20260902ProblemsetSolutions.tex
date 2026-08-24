@@ -1,0 +1,113 @@
+% !TeX program = xelatex
+\documentclass[11pt,oneside]{article}
+\usepackage{ProblemsetStyle}
+
+\hypersetup{
+    pdftitle={20260902 Problem set - Solutions},
+    pdfauthor={김정우},
+    pdfsubject={Science Quiz mathematics practice problem set solutions},
+    pdfcreator={XeLaTeX}
+}
+
+\begin{document}
+
+\problemsettitle{20260902 Problem set}
+
+\begin{problemsolution}{1}
+극형식을 이용하면
+\[
+    1+i=\sqrt2\,e^{i\pi/4}.
+\]
+따라서
+\[
+    (1+i)^{2026}
+    =
+    2^{1013}e^{i2026\pi/4}
+    =
+    \boxed{2^{1013}i}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{2}
+주어진 식은
+\[
+    z^2-z+1=0
+\]
+과 동치이므로
+\[
+    z=e^{\pm i\pi/3}.
+\]
+따라서
+\[
+    z^m+z^{-m}
+    =
+    2\cos\left(\frac{m\pi}{3}\right).
+\]
+$2026\equiv4\pmod6$이므로
+\[
+    \boxed{
+        z^{2026}+z^{-2026}
+        =
+        2\cos\left(\frac{4\pi}{3}\right)
+        =-1
+    }.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{3}
+다항식 $x^{2026}$을
+\[
+    (x-1)(x-2)=x^2-3x+2
+\]
+로 나눈 나머지를 $r(x)=ux+v$라 하자. 그러면
+\[
+    r(1)=1,
+    \qquad
+    r(2)=2^{2026}.
+\]
+따라서
+\[
+    u=2^{2026}-1,
+    \qquad
+    v=2-2^{2026}.
+\]
+$x$에 $\mathbf{A}$를 대입하면
+\[
+    \boxed{
+        \mathbf{A}^{2026}
+        =
+        (2^{2026}-1)\mathbf{A}
+        +(2-2^{2026})\mathbf{I}_d
+    }.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{4}
+all-ones vector를 $\mathbf{1}$이라 하자. $\mathbf{J}_n$은 $\mathbf{1}$에 대하여 eigenvalue $n$을 가지며, $\mathbf{1}$에 수직인 모든 벡터에 대해서는 eigenvalue $0$을 갖는다. 따라서 $\mathbf{A}$의 eigenvalue는
+\[
+    n+1
+    \quad\text{(multiplicity }1\text{)},
+    \qquad
+    1
+    \quad\text{(multiplicity }n-1\text{)}.
+\]
+또한 $\mathbf{J}_n^2=n\mathbf{J}_n$이고 $\mathbf{1}$이 생성하는 직선으로의 projection matrix는 $\mathbf{J}_n/n$이므로
+\[
+    \mathbf{A}^{2026}
+    =
+    \left(\mathbf{I}_n-\frac{1}{n}\mathbf{J}_n\right)
+    +(n+1)^{2026}\frac{1}{n}\mathbf{J}_n.
+\]
+따라서
+\[
+    \boxed{
+        \mathbf{A}^{2026}
+        =
+        \mathbf{I}_n
+        +
+        \frac{(n+1)^{2026}-1}{n}\mathbf{J}_n
+    }.
+\]
+\end{problemsolution}
+
+\end{document}

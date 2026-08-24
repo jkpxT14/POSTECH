@@ -218,10 +218,8 @@ header{border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:28px
    3) earlier simulator only as a secondary implementation reference
 
    Analysis-board conventions:
-   - Opening Q[1,1]: the real match uses a coin toss; this board asks the user
-     to enter the resulting first mover manually.
-   - Opening Q[0,0]: the supplied planning text does not specify the first mover;
-     this board asks the user to choose it manually.
+   - Opening Q[1,1] and Q[0,0] are treated as equal-result coin-toss cases.
+     This board does not randomize the toss; the user enters the resulting first mover manually.
    - Timers, timeout-randomization, delay/rain procedures are intentionally omitted.
    UI: restrained TeX/TikZ-style linework; no external assets or libraries.
    ============================================================ */
@@ -457,10 +455,8 @@ function submitQuiz(p,k){
     if(p!==k){
       game.phase="ORDER_CHOICE";
       game.orderChoiceTeam=p?C.POSTECH:C.KAIST;
-    }else if(p&&k){
-      game.phase="COIN_RESULT";
     }else{
-      game.phase="MANUAL_ORDER";
+      game.phase="COIN_RESULT";
     }
   }else{
     routeCurrentRoundAfterOrder();
@@ -471,17 +467,12 @@ function submitQuiz(p,k){
 
 function chooseCoinResult(team){
   if(game.phase!=="COIN_RESULT") return;
-  setOrder(team,"opening Q[1,1] first mover (coin-toss result entered manually)");
+  setOrder(team,"opening equal-result first mover (coin-toss result entered manually)");
 }
 function chooseOrderForSolo(correctTeam,wantsFirst){
   if(game.phase!=="ORDER_CHOICE" || game.orderChoiceTeam!==correctTeam) return;
   setOrder(wantsFirst?correctTeam:otherTeam(correctTeam),"first solo-correct choice");
 }
-function chooseManualFirst(team){
-  if(game.phase!=="MANUAL_ORDER") return;
-  setOrder(team,"opening Q[0,0] first mover (manual entry)");
-}
-
 function selectItemGain(type){
   if(game.phase!=="ITEM_SELECT" || !["Pu","Ro","St"].includes(type)) return;
   pushUndo();
@@ -604,6 +595,8 @@ function clickBoardCell(x,y){
   const legal=draftLegalCells().find(c=>c.x===x&&c.y===y);
   if(!legal) return;
   if(d.subphase==="PUSH"){
+    // Push is not a roll. The roll sequence starts fresh here, so the first roll
+    // may return to the square occupied before the Push.
     d.pushCell={x,y}; d.pos={x,y}; d.subphase="ROLL";
   }else if(d.subphase==="ROLL"){
     d.orientation=cubeTransform(d.orientation,legal.dir);
@@ -709,7 +702,7 @@ function applyConfirmedDraft(){
 }
 
 function isCompleteSavePoint(){
-  return !ui.draft && !!game.order.white && !["ORDER_CHOICE","COIN_RESULT","MANUAL_ORDER","ITEM_SELECT","MOVE"].includes(game.phase);
+  return !ui.draft && !!game.order.white && !["ORDER_CHOICE","COIN_RESULT","ITEM_SELECT","MOVE"].includes(game.phase);
 }
 
 function resultToken(){
@@ -1062,8 +1055,7 @@ function instructionText(){
   switch(game.phase){
     case "QUIZ": return `Enter Round ${n} quiz result. Buttons are ordered POSTECH, KAIST.`;
     case "ORDER_CHOICE": return `${game.orderChoiceTeam} was the first solo-correct team. It chooses whether to move first or second.`;
-    case "COIN_RESULT": return "Opening Q[1, 1]: choose the first mover (enter the coin-toss result).";
-    case "MANUAL_ORDER": return "Opening Q[0, 0]: choose the first mover. The supplied official text does not specify this case.";
+    case "COIN_RESULT": return "Opening equal-result quiz: choose the first mover (enter the coin-toss result).";
     case "ITEM_SELECT": return `${game.itemTeam} alone answered correctly. Choose one item to gain.`;
     case "MOVE": return moveDetail();
     case "OT_QUIZ": return `Overtime OT${game.overtime.length+1}. Quiz only; no board move or item.`;
@@ -1097,8 +1089,6 @@ function phaseControls(){
   }else if(game.phase==="COIN_RESULT"){
     order.classList.remove("hidden");
     order.innerHTML=`<button data-coin-first="POSTECH">POSTECH First</button><button data-coin-first="KAIST">KAIST First</button>`;
-  }else if(game.phase==="MANUAL_ORDER"){
-    order.classList.remove("hidden"); order.innerHTML=`<button data-manual-first="POSTECH">POSTECH First</button><button data-manual-first="KAIST">KAIST First</button>`;
   }
   if(game.phase==="MOVE"){
     const team=currentMoveTeam();
@@ -1262,7 +1252,6 @@ function bindEvents(){
     const b=e.target.closest("button");if(!b)return;
     if(b.dataset.orderSolo){ chooseOrderForSolo(game.orderChoiceTeam,b.dataset.orderSolo==="first"); }
     else if(b.dataset.coinFirst) chooseCoinResult(b.dataset.coinFirst);
-    else if(b.dataset.manualFirst) chooseManualFirst(b.dataset.manualFirst);
   });
   document.getElementById("itemGainControls").addEventListener("click",e=>{ const b=e.target.closest("[data-gain]");if(b)selectItemGain(b.dataset.gain); });
   document.getElementById("moveControls").addEventListener("click",e=>{const b=e.target.closest("[data-move-item]");if(b)setSelectedMoveItem(b.dataset.moveItem);});

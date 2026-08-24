@@ -20,12 +20,10 @@
 
 The booklet is written in Korean, while the title, chapter names, section names, and notation use English.
 
-Build: Draft 14 (2026-08-23 20:46 KST)
+Build: Draft 15 (2026-08-24 13:35 KST)
 
 ## This draft updates
 
-- corrected Rotation throughout the handbook: in-place 90-degree yaw, top face unchanged, movement distance unchanged
-- recalculated every `with Rotation` movement diagram from the corrected Rotation rule
-- distinguished Rotation from rolling explicitly in Rules and Notation
-- corrected basic-movement wording and rechecked movement-distance/parity statements
-- rechecked the official dice net and the White/Black initial-position convention
+- clarified the initial wrist-direction wording: the wrist on each piece's starting top face points toward that team's body
+- treated an opening equal-result quiz, `Q[1, 1]` or `Q[0, 0]`, as the initial coin-toss case; the analysis board records the user's coin-toss result instead of randomizing it
+- documented the current Push interpretation: the first roll after Push may return to the pre-Push square, pending organizer confirmation
