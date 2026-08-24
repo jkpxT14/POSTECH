@@ -20,10 +20,13 @@
 
 The booklet is written in Korean, while the title, chapter names, section names, and notation use English.
 
-Build: Draft 15 (2026-08-24 13:35 KST)
+Build: Draft 16 (2026-08-24 21:55 KST)
 
 ## This draft updates
 
-- clarified the initial wrist-direction wording: the wrist on each piece's starting top face points toward that team's body
-- treated an opening equal-result quiz, `Q[1, 1]` or `Q[0, 0]`, as the initial coin-toss case; the analysis board records the user's coin-toss result instead of randomizing it
-- documented the current Push interpretation: the first roll after Push may return to the pre-Push square, pending organizer confirmation
+- added the Gesture State and Roll-analysis system at the beginning of Chapter 3
+- introduced the `UD/NS/EW` axis convention, Gesture States, Roll Words, Axis Words, and the `V`, `H`, and `rho` operators for practical cube analysis
+- clarified that Rotation preserves the Top Gesture and Base Roll Length while changing the wrist axis and the cube orientation
+- retained `RoL` and `RoR` as distinct game-record notation even though both induce the same reduced Gesture-State Rotation operator
+- standardized the game-action term `Roll` with an initial capital throughout the handbook
+- retained the current Push interpretation: the first Roll after Push may return to the pre-Push square, pending organizer confirmation
