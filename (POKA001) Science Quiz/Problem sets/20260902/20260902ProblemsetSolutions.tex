@@ -14,75 +14,43 @@
 \problemsettitle{20260902 Problem set}
 
 \begin{problemsolution}{1}
-극형식을 이용하면
+수열
 \[
-    1+i=\sqrt2\,e^{i\pi/4}.
+    b_n=2\cos\left(\frac{n\pi}{4}\right)
 \]
-따라서
+을 생각하자. 이 수열은 $a_n$과 같은 초기값을 가지며,
 \[
-    (1+i)^{2026}
+    b_{n+2}
     =
-    2^{1013}e^{i2026\pi/4}
+    2\cos\left(\frac{\pi}{4}\right)b_{n+1}-b_n
     =
-    \boxed{2^{1013}i}.
+    \sqrt2\,b_{n+1}-b_n
+\]
+을 만족한다. 따라서 $a_n=b_n$이다. $2026\equiv2\pmod8$이므로
+\[
+    \boxed{
+        a_{2026}
+        =
+        2\cos\left(\frac{2026\pi}{4}\right)
+        =0
+    }.
 \]
 \end{problemsolution}
 
 \begin{problemsolution}{2}
-주어진 식은
+Fibonacci sequence를 $F_0=0$, $F_1=1$로 두면 그 ordinary generating function은
 \[
-    z^2-z+1=0
-\]
-과 동치이므로
-\[
-    z=e^{\pm i\pi/3}.
-\]
-따라서
-\[
-    z^m+z^{-m}
+    \frac{1}{1-x-x^2}
     =
-    2\cos\left(\frac{m\pi}{3}\right).
+    \sum_{n=0}^{\infty}F_{n+1}x^n
 \]
-$2026\equiv4\pmod6$이므로
+이다. 따라서 $x^{2026}$의 coefficient는 $F_{2027}$이고,
 \[
-    \boxed{
-        z^{2026}+z^{-2026}
-        =
-        2\cos\left(\frac{4\pi}{3}\right)
-        =-1
-    }.
+    \boxed{f^{(2026)}(0)=2026!\,F_{2027}}.
 \]
 \end{problemsolution}
 
 \begin{problemsolution}{3}
-다항식 $x^{2026}$을
-\[
-    (x-1)(x-2)=x^2-3x+2
-\]
-로 나눈 나머지를 $r(x)=ux+v$라 하자. 그러면
-\[
-    r(1)=1,
-    \qquad
-    r(2)=2^{2026}.
-\]
-따라서
-\[
-    u=2^{2026}-1,
-    \qquad
-    v=2-2^{2026}.
-\]
-$x$에 $\mathbf{A}$를 대입하면
-\[
-    \boxed{
-        \mathbf{A}^{2026}
-        =
-        (2^{2026}-1)\mathbf{A}
-        +(2-2^{2026})\mathbf{I}_d
-    }.
-\]
-\end{problemsolution}
-
-\begin{problemsolution}{4}
 all-ones vector를 $\mathbf{1}$이라 하자. $\mathbf{J}_n$은 $\mathbf{1}$에 대하여 eigenvalue $n$을 가지며, $\mathbf{1}$에 수직인 모든 벡터에 대해서는 eigenvalue $0$을 갖는다. 따라서 $\mathbf{A}$의 eigenvalue는
 \[
     n+1
