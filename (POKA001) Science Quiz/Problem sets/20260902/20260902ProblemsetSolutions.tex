@@ -13,7 +13,16 @@
 
 \problemsettitle{20260902 Problem set}
 
+% Source check: International Mathematical Union, Chern Medal Award 2026.
 \begin{problemsolution}{1}
+2026 Chern Medal Award 수상자는
+\[
+    \boxed{\text{Graeme Segal}}
+\]
+이다. Chern Medal은 ICM에서 4년마다 수여되며, 수학에서의 탁월한 업적에 대해 최고 수준의 인정을 부여하는 IMU의 주요 상 가운데 하나이다.
+\end{problemsolution}
+
+\begin{problemsolution}{2}
 수열
 \[
     b_n=2\cos\left(\frac{n\pi}{4}\right)
@@ -37,7 +46,65 @@
 \]
 \end{problemsolution}
 
-\begin{problemsolution}{2}
+\begin{problemsolution}{3}
+과퀴 수학 교재에서 사용하는 determinant의 기본 성질에 따라, 행 또는 열이 linearly dependent하면 determinant는 $0$이다. 여기서는 네 번째 행이 앞의 세 행의 합이다:
+\[
+    (3,3,5,7)
+    =
+    (1,2,3,4)
+    +(0,1,1,2)
+    +(2,0,1,1).
+\]
+따라서 행들이 linearly dependent이고,
+\[
+    \boxed{\det(\mathbf{A})=0}.
+\]
+\end{problemsolution}
+
+% Source check: OpenAI, May 20, 2026, together with the companion literature on the planar unit-distance conjecture.
+\begin{problemsolution}{4}
+1946년 Paul Erdős가 제기한 planar unit distance problem에서, $u(n)=n^{1+o(1)}$일 것이라는 추측을 흔히 Erdős unit-distance conjecture라 부른다. 2026년 5월 공개된 결과는 어떤 고정된 $\delta>0$에 대하여 무한히 많은 $n$에서
+\[
+    u(n)\geq n^{1+\delta}
+\]
+가 되는 구성을 제시하여 이 추측을 반박했다.
+
+따라서 정답은
+\[
+    \boxed{\text{Erd\H{o}s unit-distance conjecture}}
+\]
+이다.
+\end{problemsolution}
+
+\begin{problemsolution}{5}
+분모를 완전제곱하면
+\[
+    x^2+x+1
+    =
+    \left(x+\frac12\right)^2+\frac34.
+\]
+따라서
+\[
+    \int_0^1\frac{1}{x^2+x+1}\dd x
+    =
+    \frac{2}{\sqrt3}
+    \left[
+        \arctan\left(\frac{2x+1}{\sqrt3}\right)
+    \right]_0^1.
+\]
+여기서
+\[
+    \arctan\sqrt3=\frac{\pi}{3},
+    \qquad
+    \arctan\frac{1}{\sqrt3}=\frac{\pi}{6}
+\]
+이므로
+\[
+    \boxed{\frac{\pi}{3\sqrt3}}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{6}
 Fibonacci sequence를 $F_0=0$, $F_1=1$로 두면 그 ordinary generating function은
 \[
     \frac{1}{1-x-x^2}
@@ -50,7 +117,59 @@ Fibonacci sequence를 $F_0=0$, $F_1=1$로 두면 그 ordinary generating functio
 \]
 \end{problemsolution}
 
-\begin{problemsolution}{3}
+% Source check: International Mathematical Union, Leelavati Prize 2026.
+\begin{problemsolution}{7}
+IMU가 mathematical outreach에서의 뛰어난 공헌을 기리기 위해 ICM Closing Ceremony에서 수여하는 상은 Leelavati Prize이다. 2026년 수상자는 Hannah Fry이다.
+
+따라서 정답은
+\[
+    \boxed{\text{Leelavati Prize}}
+\]
+이다.
+\end{problemsolution}
+
+\begin{problemsolution}{8}
+순환군 $\Z_n$에서 residue class $\overline{k}$가 generator가 될 필요충분조건은
+\[
+    \gcd(k,n)=1
+\]
+이다. 따라서 generator의 개수는 Euler's totient function $\varphi(n)$과 같다.
+
+$1013$은 소수이고
+\[
+    2026=2\cdot1013
+\]
+이므로
+\[
+    \varphi(2026)
+    =
+    2026\left(1-\frac12\right)
+    \left(1-\frac{1}{1013}\right)
+    =1012.
+\]
+따라서 generator의 개수는
+\[
+    \boxed{1012}
+\]
+이다.
+\end{problemsolution}
+
+\begin{problemsolution}{9}
+$(0,1)$은 예를 들어
+\[
+    x\longmapsto\tan\left(\pi x-\frac{\pi}{2}\right)
+\]
+를 통해 $\R$과 homeomorphic하고, $(0,\infty)$는 logarithm을 통해 $\R$과 homeomorphic하다. 또한 $S^1$에서 한 점을 제거한 공간은 stereographic projection을 통해 $\R$과 homeomorphic하다.
+
+반면 $S^1$은 compact하지만 $\R$은 compact하지 않다. Compactness는 homeomorphism에 의해 보존되므로 $S^1$과 $\R$은 homeomorphic할 수 없다.
+
+따라서 정답은
+\[
+    \boxed{(4)}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{10}
 all-ones vector를 $\mathbf{1}$이라 하자. $\mathbf{J}_n$은 $\mathbf{1}$에 대하여 eigenvalue $n$을 가지며, $\mathbf{1}$에 수직인 모든 벡터에 대해서는 eigenvalue $0$을 갖는다. 따라서 $\mathbf{A}$의 eigenvalue는
 \[
     n+1
