@@ -4,25 +4,29 @@
 
 \section{Gesture States and Roll Analysis}
 
-주사위의 가위, 바위, 보 손모양을 각각 $\mathrm{S}$, $\mathrm{R}$, $\mathrm{P}$로 나타낸다. 이 절에서 \emph{gesture}는 이 세 손모양 가운데 하나를 뜻한다. 같은 gesture가 그려진 두 면은 서로 마주보므로, 앞으로의 Roll에서 나타나는 S/R/P를 계산하기 위해 여섯 면을 각각 추적할 필요는 없다. 각 gesture가 정육면체의 세 공간축 가운데 어느 축에 놓여 있는지만 알면 충분하다.
+RPSC의 주사위는 실제로는 24가지 물리적 방향을 가질 수 있지만, 매 Roll 뒤에 어떤 가위바위보 손 모양이 윗면에 오는지를 계산할 때마다 여섯 면 전체를 머릿속으로 추적할 필요는 없다. 같은 gesture가 그려진 두 면이 서로 마주보기 때문에, Scissors, Rock, Paper가 정육면체의 세 공간축 가운데 어디에 놓여 있는지만 보존하면 Top Gesture의 변화와 전투에 필요한 S/R/P 상태를 계산할 수 있다. 이 절은 Chapter 2의 정확한 기보를 이러한 간결한 상태와 연산으로 읽는 방법을 정리한다.
 
-세 축은
+\subsection{Gesture State}
+
+주사위의 가위, 바위, 보 손 모양을 각각 $\mathrm{S}$, $\mathrm{R}$, $\mathrm{P}$로 나타낸다. 이 절에서 \emph{gesture}는 이 세 손 모양 가운데 하나를 뜻한다. 정육면체의 세 공간축은
 \[
     \mathrm{UD},\qquad \mathrm{NS},\qquad \mathrm{EW}
 \]
-로 쓰며, 각각 Up--Down, North--South, East--West axis를 뜻한다. 주사위의 \textbf{Gesture State}를
+로 쓰며, 각각 Up--Down, North--South, East--West axis를 뜻한다.
+
+주사위의 \textbf{Gesture State}를
 \[
     \boxed{
-        s=\langle a,b,c\rangle
-        \quad\text{with coordinate order}\quad
-        \langle \mathrm{UD},\mathrm{NS},\mathrm{EW}\rangle
+        s=\langle a,b,c\rangle,
+        \qquad
+        \text{coordinate order }\langle \mathrm{UD},\mathrm{NS},\mathrm{EW}\rangle
     }
 \]
 로 나타낸다. 즉 첫 번째 성분은 UD축, 두 번째 성분은 NS축, 세 번째 성분은 EW축에 놓인 gesture이다. 예를 들어
 \[
     \langle \mathrm{S},\mathrm{R},\mathrm{P}\rangle
 \]
-는 UD축에 Scissors, NS축에 Rock, EW축에 Paper가 놓여 있다는 뜻이다. 따라서 첫 번째 성분은 항상 현재 \textbf{Top Gesture}이다.
+는 UD축에 Scissors, NS축에 Rock, EW축에 Paper가 놓여 있다는 뜻이다. 따라서 Gesture State의 첫 번째 성분은 항상 현재 \textbf{Top Gesture}이다.
 
 가능한 Gesture State들의 집합을 \textbf{Gesture State Space} $\mathcal{S}$라 두면
 \[
@@ -31,8 +35,7 @@
     \left\{
         \langle a,b,c\rangle
         \mid
-        (a,b,c)\text{ is a permutation of }
-        (\mathrm{S},\mathrm{R},\mathrm{P})
+        (a,b,c)\text{ is a permutation of }(\mathrm{S},\mathrm{R},\mathrm{P})
     \right\},
     \qquad
     |\mathcal{S}|=6.
@@ -51,9 +54,9 @@
     \langle \mathrm{P},\mathrm{S},\mathrm{R}\rangle
 \end{array}
 \]
-이다. 실제 정육면체의 물리적인 방향은 더 세분할 수 있지만, 앞으로의 Roll에서 나타나는 S/R/P와 전투를 분석하는 데에는 이 여섯 Gesture State를 구별하면 충분하다. 정확한 물리적 방향까지 복원해야 할 때에는 Chapter 2의 전체 이동 경로와 \texttt{RoL}, \texttt{RoR} 기록을 사용한다.
+이다. 정확한 물리적 방향까지 복원해야 할 때에는 Chapter 2의 전체 이동 경로와 \texttt{RoL}, \texttt{RoR} 기록이 필요하지만, 앞으로의 S/R/P 변화만 계산할 때에는 이 여섯 상태면 충분하다.
 
-실전에서는 현재 윗면의 손모양과 그 윗면에 그려진 손목이 놓인 축만 알면 Gesture State를 판별할 수 있다. 손목이 정확히 North, South, East, West 가운데 어느 방향을 향하는지를 \textbf{Wrist Direction}, 그 방향이 NS축과 EW축 가운데 어느 축에 놓이는지만 구별한 정보를 \textbf{Wrist Axis}라고 부른다. Gesture State를 읽을 때에는 Wrist Axis까지만 필요하다.
+실제 판에서 Gesture State를 읽기 위해서는 현재 윗면의 손 모양과 그 윗면에 그려진 손목의 축을 보면 된다. 손목이 정확히 North, South, East, West 가운데 어느 방향을 향하는지를 \textbf{Wrist Direction}, 그 방향이 NS축과 EW축 가운데 어느 축에 놓이는지만 구별한 정보를 \textbf{Wrist Axis}라고 부른다. Gesture State를 판별하는 데에는 Wrist Axis까지만 필요하고, Chapter 2의 bar는 그보다 더 세밀한 Wrist Direction까지 보존한다.
 
 \begin{center}
     \renewcommand{\arraystretch}{1.16}
@@ -68,7 +71,7 @@
     \end{tabular}
 \end{center}
 
-따라서 실제 판에서는
+따라서 실전에서 상태를 읽는 핵심 관계는
 \[
     \boxed{
         \text{Top Gesture}+\text{Wrist Axis}
@@ -76,7 +79,7 @@
         \text{Gesture State}
     }
 \]
-로 읽을 수 있다. Chapter 2의 bar는 정확한 Wrist Direction까지 보존하지만, 이 절의 S/R/P 분석에서는 그 bar가 NS축과 EW축 가운데 어느 축에 놓여 있는지만 보면 된다.
+이다.
 
 Gesture State $s=\langle a,b,c\rangle$의 \textbf{Base Roll Length}를 $\ell(s)$로 나타낸다. 이는 시작칸과 도착칸 사이의 기하학적 거리가 아니라, 그 이동에서 수행해야 하는 Roll의 수이다.
 \[
@@ -89,21 +92,13 @@ Gesture State $s=\langle a,b,c\rangle$의 \textbf{Base Roll Length}를 $\ell(s)$
     \end{cases}
 \]
 
-Chapter 2의 기보에는 실제로 지나간 모든 칸이 기록되어 있다. 한 이동에서 각 Roll의 실제 방향을 시간 순서대로 적은 것을 \textbf{Roll Word}라 하고 $w$로 나타낸다. 예를 들어
-\[
-    \texttt{W2: c1-c2-d2-d3-e3}
-\]
-의 Roll Word는
-\[
-    w=NENE
-\]
-이다. 이때 방향 기호의 $S$는 South를 뜻하는 italic symbol이고, gesture의 $\mathrm{S}$는 Scissors를 뜻하는 upright symbol이므로 서로 구별한다.
+\subsection{State Operators}
 
-위치 자체를 계산할 때에는 $N,S,E,W$를 모두 구별해야 하지만, Gesture State의 변화만 볼 때에는 North와 South가 같은 종류의 Roll이고 East와 West도 같은 종류의 Roll이다. 표준 보드 그림에서 North/South 방향의 Roll을 \textbf{Vertical Roll} $V$, East/West 방향의 Roll을 \textbf{Horizontal Roll} $H$라 둔다. Rotation까지 포함하면 세 연산은 모두
+Gesture State의 관점에서 한 칸의 Roll은 UD축과 Roll 방향에 해당하는 보드 축을 서로 바꾸는 연산이다. 표준 보드 그림에서 North/South 방향으로 한 칸 Roll하는 연산을 \textbf{Vertical Roll} $V$, East/West 방향으로 한 칸 Roll하는 연산을 \textbf{Horizontal Roll} $H$라 둔다. Rotation의 Gesture-State 연산은 $\rho$로 나타낸다. 세 연산은 모두 같은 State Space 위의 함수
 \[
     V,H,\rho:\mathcal{S}\longrightarrow\mathcal{S}
 \]
-인 Gesture State의 변환이며,
+이며,
 \[
 \boxed{
 \begin{aligned}
@@ -112,7 +107,7 @@ Chapter 2의 기보에는 실제로 지나간 모든 칸이 기록되어 있다.
     \rho(\langle a,b,c\rangle)&=\langle a,c,b\rangle.
 \end{aligned}}
 \]
-여기서 $V$와 $H$는 실제 Roll을 분석하기 위한 연산이고, $\rho$는 뒤에서 설명할 Rotation의 Gesture-State 연산이다. $\mathrm{NS}$와 $\mathrm{EW}$는 주사위의 공간축을 나타내므로 $V,H$와 역할을 구분한다.
+즉 $V$는 UD와 NS를, $H$는 UD와 EW를, $\rho$는 NS와 EW를 교환한다. $\mathrm{NS}$와 $\mathrm{EW}$는 주사위의 공간축이고 $V,H$는 Roll을 나타내는 연산이므로 두 종류의 기호를 구분한다.
 
 \begin{center}
     \renewcommand{\arraystretch}{1.16}
@@ -127,26 +122,40 @@ Chapter 2의 기보에는 실제로 지나간 모든 칸이 기록되어 있다.
     \end{tabular}
 \end{center}
 
-이 표에서 Rotation의 특징이 분명해진다. Rotation은 UD축을 건드리지 않으므로 Top Gesture와 Base Roll Length를 바꾸지 않는다. 대신 NS축과 EW축이 교환되므로 현재 윗면의 \textbf{Wrist Axis가 $\mathrm{NS}\leftrightarrow\mathrm{EW}$로 바뀐다}. 따라서 Rotation 자체로 이동거리나 윗면이 바뀌는 것은 아니지만, 이후 같은 Roll을 하더라도 나타나는 gesture의 변화는 달라질 수 있다.
+특히 $\rho$는 첫 번째 성분을 건드리지 않으므로 Rotation은 Top Gesture와 Base Roll Length를 바꾸지 않는다. 대신 Wrist Direction은 실제로 $90^\circ$ 회전하고 Wrist Axis는 $\mathrm{NS}\leftrightarrow\mathrm{EW}$로 바뀐다. 따라서 Rotation은 현재 윗면을 바꾸는 아이템이 아니라, 이후의 $V/H$ Roll에 대한 상태의 반응을 바꾸는 연산이다.
 
-Roll Word에서 Gesture State 변화에 필요하지 않은 방향의 부호를 버리는 대응을 \textbf{Axis Projection} $\pi$라 하고
+기보에서는 \texttt{RoL}과 \texttt{RoR}을 반드시 구별한다. 두 Rotation은 정확한 Wrist Direction과 전체 물리적 방향을 서로 다르게 만들기 때문이다. 그러나 Gesture State만 분석할 때에는 두 경우 모두 같은 $\rho$를 유도한다. 즉 \texttt{RoL}/\texttt{RoR}은 Chapter 2의 exact record이고, $\rho$는 그 기록에서 파생되는 reduced analysis이다.
+
+\subsection{Roll Words and State Transitions}
+
+Chapter 2의 Move Notation에는 그 수를 시작한 출발칸과 이후 각 Roll로 도달한 모든 칸이 순서대로 기록되어 있다. 한 이동에서 각 Roll의 실제 방향을 시간 순서대로 적은 것을 \textbf{Roll Word}라 하고 $w$로 나타낸다. 예를 들어
+\[
+    \texttt{W2: c1-c2-d2-d3-e3}
+\]
+의 Roll Word는
+\[
+    w=NENE
+\]
+이다. 이때 방향 기호의 $S$는 South를 뜻하는 italic symbol이고, gesture의 $\mathrm{S}$는 Scissors를 뜻하는 upright symbol이므로 서로 구별한다.
+
+위치 자체를 복원할 때에는 $N,S,E,W$를 모두 구별해야 하지만, Gesture State의 변화만 볼 때에는 North와 South가 모두 $V$, East와 West가 모두 $H$로 작용한다. Roll Word를 이 두 연산의 word로 바꾸는 대응을 \textbf{Axis Projection} $\pi$라 하고
 \[
     \pi(N)=\pi(S)=V,
     \qquad
     \pi(E)=\pi(W)=H
 \]
-로 정의한다. $\pi(w)$를 그 이동의 \textbf{Axis Word}라고 부른다. 예를 들어
+로 정의한다. $\pi(w)$를 그 이동의 \textbf{Axis Word}라고 부른다. 위의 W2 예에서는
 \[
-    w=NENEN
+    w=NENE
     \qquad\Longrightarrow\qquad
-    \pi(w)=VHVHV.
+    \pi(w)=VHVH.
 \]
-Axis Word는 함수 합성식을 뜻하는 것이 아니라 실제 Roll의 시간 순서를 기록한 word이다. 따라서 왼쪽에서 오른쪽으로 차례대로 적용한다. 예를 들어 Axis Word의 처음 두 글자가 $VH$라면 먼저 $V$를 적용하고 다음에 $H$를 적용하므로, 함수 표기로는 $H(V(s))$가 된다.
+Axis Word는 함수 합성식을 뜻하는 것이 아니라 실제 Roll의 시간 순서를 기록한 word이다. 따라서 왼쪽에서 오른쪽으로 차례대로 적용한다. 예를 들어 처음 두 글자가 $VH$라면 먼저 $V$를 적용하고 다음에 $H$를 적용하므로 함수 표기로는 $H(V(s))$가 된다.
 
-Chapter 2의 원기보와 이 절의 분석 표기는 다음과 같이 연결된다.
+Chapter 2의 Game Record와 Analysis Line은 모두 동일한 Move Notation을 사용하므로, 어느 쪽에 적힌 수에서도 같은 방식으로 분석 정보를 유도할 수 있다. 아이템을 사용한 수에서는 Move Notation의 아이템 코드를 먼저 읽어 Push, Rotation, Step의 효과를 반영하고, 이동 경로에서 Roll Word를 얻는다.
 \[
     \boxed{
-        \text{Game Record}
+        \text{Move Notation}
         \longrightarrow
         \text{Roll Word}
         \xrightarrow{\ \pi\ }
@@ -155,6 +164,8 @@ Chapter 2의 원기보와 이 절의 분석 표기는 다음과 같이 연결된
         \text{Gesture State Transition}
     }
 \]
+따라서 Chapter 2는 실제 수를 기록하는 언어이고, Chapter 3는 그 수를 해석하는 언어이다. Roll Word와 Axis Word를 Game Record에 다시 적어 넣을 필요는 없다.
+
 예를 들어 초기 W2는 윗면이 Rock이고 Wrist Axis가 NS이므로
 \[
     s_0=\langle \mathrm{R},\mathrm{S},\mathrm{P}\rangle.
@@ -177,7 +188,7 @@ Chapter 2의 이동
     \langle \mathrm{S},\mathrm{P},\mathrm{R}\rangle.
 \end{aligned}
 \]
-따라서 같은 기보를 따라간 뒤 W2의 최종 Top Gesture는 Scissors이고, 다음 이동을 계산하는 데 필요한 축 정보도 함께 남는다.
+따라서 이동을 마친 뒤 W2의 최종 Top Gesture는 Scissors이고, 다음 이동을 계산하는 데 필요한 축 정보도 함께 남는다.
 
 Roll의 순서는 중요하다. 일반적으로
 \[
@@ -185,25 +196,47 @@ Roll의 순서는 중요하다. 일반적으로
 \]
 따라서 Vertical Roll과 Horizontal Roll이 각각 몇 번 있었는지만 세어서는 최종 Gesture State를 정할 수 없고, Axis Word의 순서 자체를 보존해야 한다.
 
-Rotation은 Roll과 다른 제자리 동작이다. 기보에서는 \texttt{RoL}과 \texttt{RoR}을 반드시 구별한다. 두 Rotation은 정확한 Wrist Direction과 전체 물리적 방향을 서로 다르게 만들기 때문이다. 그러나 Gesture State만 분석할 때에는 두 경우 모두 NS축과 EW축을 교환하므로 같은 $\rho$로 작용한다.
-\[
-    \rho(\langle a,b,c\rangle)=\langle a,c,b\rangle.
-\]
-즉 \texttt{RoL}과 \texttt{RoR}의 구별은 정확한 경기 복원에 필요하고, $\rho$는 S/R/P 변화를 빠르게 계산하기 위한 축약이다. 두 표기는 서로 경쟁하는 표기가 아니라 Chapter 2의 exact record와 Chapter 3의 reduced analysis라는 서로 다른 목적을 가진다.
+\subsection{Items in the Analysis Model}
 
-Push와 Step에는 새로운 상태 연산이 필요하지 않다. Push는 주사위를 Roll하지 않는 평행이동이므로 Gesture State를 바꾸지 않는다. Step은 Gesture State 자체가 아니라 Roll Word의 길이를 바꾸며,
+한 수를 분석할 때 필요한 정보는 크게 \textbf{시작 위치}, \textbf{Gesture State}, \textbf{Roll의 수}로 나눌 수 있다. 세 아이템은 이 세 요소 가운데 서로 다른 부분을 바꾼다.
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.18}
+    \begin{tabular}{@{}L{0.16\textwidth}L{0.24\textwidth}L{0.47\textwidth}@{}}
+        \toprule
+        아이템 & 바꾸는 정보 & Gesture-State 분석 \\
+        \midrule
+        Push & 시작 위치 & 주사위를 Roll하지 않으므로 $s$는 그대로이고, Push 후 위치에서 $\ell(s)$번 Roll한다. \\
+        Rotation & Gesture State & 위치와 Top Gesture는 그대로이며, Roll 전에 $\rho(s)$를 적용한다. \\
+        Step Short & Roll의 수 & 시작 상태는 그대로이고 Roll Word의 길이를 $\ell(s)-1$로 정한다. \\
+        Step Long & Roll의 수 & 시작 상태는 그대로이고 Roll Word의 길이를 $\ell(s)+1$로 정한다. \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+즉 분석의 관점에서는
+\[
+    \boxed{
+        \text{Push: position}
+        \qquad
+        \text{Rotation: state}
+        \qquad
+        \text{Step: Roll count}
+    }
+\]
+로 기억할 수 있다. Push의 한 칸 평행이동은 Roll Word에 포함하지 않고, Rotation의 \texttt{RoL}/\texttt{RoR}은 exact record에서는 구별하지만 Gesture State에서는 모두 $\rho$로 읽는다. Step에는 별도의 상태 연산이 필요하지 않으며
 \[
     |w|
     =
     \begin{cases}
         \ell(s)-1, & \text{\texttt{StS}},\\
-        \ell(s), & \text{기본 이동},\\
+        \ell(s), & \text{기본 이동, Push, Rotation},\\
         \ell(s)+1, & \text{\texttt{StL}}
     \end{cases}
 \]
-로 정리할 수 있다. 따라서 분석의 관점에서 Push는 시작 위치, Rotation은 Gesture State, Step은 Roll의 수를 바꾸는 아이템으로 구분된다.
+로 Roll의 수만 바뀐다.
 
-이 분석 체계의 목적은 실제 경기에서 주사위를 머릿속으로 매번 다시 굴리는 부담을 줄이는 데 있다. Game Record에서 Roll Word와 Axis Word를 바로 얻으면 최종 Top Gesture뿐 아니라 다음 이동에 필요한 축 배치까지 계산할 수 있고, 같은 도착칸이라도 Roll의 순서에 따라 서로 다른 상태가 된다는 사실을 빠르게 확인할 수 있다. 특히 Rotation을 단순히 ``윗면이 유지되는 아이템''으로 보는 대신, Wrist Axis를 바꾸어 이후의 $V/H$ 반응을 조절하는 상태 제어로 이해할 수 있다. 이후의 Tactics, Strategy, Openings에서는 이 언어를 필요할 때 다시 사용한다.
+이 분석 체계의 목적은 실제 경기에서 주사위를 머릿속으로 매번 다시 굴리는 부담을 줄이는 데 있다. 현재 Top Gesture와 Wrist Axis에서 Gesture State를 읽고, 기보의 경로에서 Roll Word와 Axis Word를 얻으면 최종 Top Gesture뿐 아니라 다음 이동에 필요한 축 배치까지 계산할 수 있다. 같은 도착칸이라도 Roll의 순서에 따라 서로 다른 상태가 될 수 있고, Rotation은 단순히 ``윗면을 유지하는 아이템''이 아니라 이후의 $V/H$ 반응을 조절하는 state control로 이해할 수 있다. 이후의 Tactics, Strategy, Openings에서는 이 언어와 Chapter 2의 Analysis Lines를 함께 사용한다.
 
 이하에서는 보드가 비어 있다고 가정하고, 말 하나만 놓인 상태에서 가능한 이동을 정리한다. 모든 그림은 시작칸을 가운데에 두고 그 주변의 부분 보드만 잘라서 그렸다. 가운데의 옅은 음영 칸이 시작칸이며, 도달 가능한 칸에는 가능한 최종 윗면을 bar 없이 \texttt{S}, \texttt{R}, \texttt{P}로 적었다. 한 칸에 여러 글자가 적혀 있으면 서로 다른 경로를 통해 여러 윗면이 가능하다는 뜻이고, 표기 순서는 항상 \texttt{S} $\rightarrow$ \texttt{R} $\rightarrow$ \texttt{P}이다. 따라서 이 도해는 각 도착칸에서 가능한 Gesture State 전체를 표시하는 것이 아니라, 그 상태들의 첫 번째 성분인 최종 Top Gesture만 표시한다.
 
@@ -246,13 +279,13 @@ Figure~\ref{fig:basic-paper}처럼 이동거리가 길수록 많은 칸에서 �
         아이템 & 코드 & 본 장에서의 해석 \\
         \midrule
         Push & \texttt{Pu} & 네 방향 가운데 한 방향으로 먼저 한 칸 민다. 말은 굴러가지 않으므로 윗면과 방향은 그대로이며, 그 위치에서 원래의 기본 이동거리만큼 굴린다. \\
-        Rotation & \texttt{RoL}, \texttt{RoR} & 현재 칸에서 보드에 수직인 축을 중심으로 반시계 또는 시계 방향으로 $90^\circ$ 돌린다. 윗면의 손모양은 그대로이므로 기본 이동거리도 그대로이지만, 윗면의 Wrist Axis와 주사위의 방향은 $90^\circ$ 바뀐다. 그 상태에서 원래의 기본 이동거리만큼 굴린다. \\
+        Rotation & \texttt{RoL}, \texttt{RoR} & 현재 칸에서 보드에 수직인 축을 중심으로 반시계 또는 시계 방향으로 $90^\circ$ 돌린다. Top Gesture와 기본 이동거리는 그대로이고, Wrist Direction은 $90^\circ$ 회전하며 Wrist Axis는 $\mathrm{NS}\leftrightarrow\mathrm{EW}$로 바뀐다. 그 상태에서 원래의 기본 이동거리만큼 굴린다. \\
         Step & \texttt{StL}, \texttt{StS} & 기본 이동거리보다 한 칸 더 가거나 한 칸 덜 간다. 아래 그림은 \texttt{StL}, \texttt{StS}를 모두 합친 결과이다. \\
         \bottomrule
     \end{tabular}
 \end{center}
 
-Push는 출발 위치를 한 칸 옮기고, Rotation은 위치와 윗면을 그대로 둔 채 Wrist Axis와 주사위의 방향을 바꾸며, Step은 굴리는 횟수만 한 칸 늘리거나 줄인다. 특히 Rotation은 Roll과 다른 동작이다. Rotation 자체로는 칸을 이동하지 않고 Top Gesture도 바뀌지 않지만, 이후 Roll에서 어떤 gesture가 윗면으로 나타나는지는 달라질 수 있다.
+이 표는 앞의 \textit{Items in the Analysis Model}에서 정리한 구분을 실제 이동 규칙에 다시 대응시킨 것이다. Push는 시작 위치를 바꾸고, Rotation은 위치와 Top Gesture를 유지한 채 Gesture State와 정확한 물리적 방향을 바꾸며, Step은 Roll의 수만 한 칸 늘리거나 줄인다. 특히 Rotation은 Roll과 다른 동작이며, Rotation 자체로는 칸을 이동하지 않지만 이후 Roll에서 어떤 gesture가 윗면으로 나타나는지는 달라질 수 있다.
 
 본 장의 Push 도해는 Push 자체를 Roll과 구분되는 별도의 한 칸 이동으로 보고, Push 직후의 첫 Roll에서 Push 이전 칸으로 되돌아가는 것을 허용하여 계산하였다. 공식 기획안의 문구만으로는 이 점이 완전히 명시되어 있지 않으므로, 현재는 이 해석을 기준으로 공부하되 추후 주최 측 확인 결과에 따라 도해와 설명을 수정할 수 있다.
 
@@ -280,7 +313,7 @@ Rock에 아이템을 적용했을 때의 결과는 Figures~\ref{fig:rock-push}--
 
 \input{Figures/Movement/rock-push.tex}
 
-Rock with Push는 먼저 한 칸 민 뒤 4칸을 굴리므로 기본 Rock보다 한 칸 더 먼 위치까지 도달할 수 있다. Push가 방향을 바꾸지 않는다는 점은 다른 말과 같다.
+Push를 사용한 Rock은 먼저 한 칸 민 뒤 4칸을 굴리므로 기본 Rock보다 한 칸 더 먼 위치까지 도달할 수 있다. Push가 방향을 바꾸지 않는다는 점은 다른 말과 같다.
 
 \input{Figures/Movement/rock-rotation.tex}
 
@@ -288,7 +321,7 @@ Rotation을 사용해도 Rock의 윗면과 4칸 이동거리는 그대로이다.
 
 \input{Figures/Movement/rock-step.tex}
 
-Step은 Rock을 3칸 또는 5칸 굴리게 한다. 즉 기본 4칸 이동에서 굴림 횟수만 조정하며, 아이템 사용 전의 윗면과 방향은 그대로 유지한다.
+Step은 Rock을 3칸 또는 5칸 굴리게 한다. 즉 기본 4칸 이동에서 Roll의 수만 조정하며, 아이템 사용 전의 윗면과 방향은 그대로 유지한다.
 
 \subsection{Paper}
 
@@ -296,7 +329,7 @@ Paper에 아이템을 적용했을 때의 결과는 Figures~\ref{fig:paper-push}
 
 \input{Figures/Movement/paper-push.tex}
 
-Paper with Push는 먼저 한 칸 민 뒤 5칸을 굴리므로 본 장에서 가장 넓은 위치 범위를 만든다. 많은 칸에서 여러 종류의 최종 윗면이 가능하다.
+Push를 사용한 Paper는 먼저 한 칸 민 뒤 5칸을 굴리므로 본 장에서 가장 넓은 위치 범위를 만든다. 많은 칸에서 여러 종류의 최종 윗면이 가능하다.
 
 \input{Figures/Movement/paper-rotation.tex}
 

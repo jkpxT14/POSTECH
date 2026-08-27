@@ -34,7 +34,7 @@
 다음 행렬의 determinant를 구하시오.
 \[
     \mathbf{A}
-    =
+    \coloneqq
     \begin{pmatrix}
         1&2&3&4\\
         0&1&1&2\\
@@ -62,10 +62,12 @@
 
 \begin{problem}{6}
 \[
-    f(x)=\frac{1}{1-x-x^2}
+    f(x)\coloneqq \frac{1}{1-x-x^2}
 \]
 라 하자. $f^{(2026)}(0)$을 Fibonacci sequence를 이용하여 나타내시오.
 \end{problem}
+
+\newpage
 
 % Verified against the International Mathematical Union, Leelavati Prize 2026.
 \begin{problem}{7}
@@ -73,10 +75,8 @@
 \end{problem}
 
 \begin{problem}{8}
-순환군 $\Z_{2026}$의 generator 개수를 구하시오.
+가법군 $\Z/2026\Z$의 generator 개수를 구하시오.
 \end{problem}
-
-\newpage
 
 \begin{problem}{9}
 다음 중 $\R$과 homeomorphic하지 않은 공간을 고르시오.
@@ -90,11 +90,17 @@
 \end{problem}
 
 \begin{problem}{10}
-$\mathbf{J}_n$을 모든 성분이 $1$인 $n\times n$ 행렬이라 하고
+집합
 \[
-    \mathbf{A}=\mathbf{I}_n+\mathbf{J}_n
+    S\coloneqq \{1,2,\ldots,2026\}
 \]
-이라 하자. $\mathbf{A}$의 모든 eigenvalue와 multiplicity를 구하고, $\mathbf{A}^{2026}$을 계산하시오.
+의 permutation $\sigma:S\to S$를 uniformly random하게 하나 고른다. fixed point의 개수를
+\[
+    X
+    \coloneqq
+    \left|\{k\in S\mid \sigma(k)=k\}\right|
+\]
+라 할 때, expectation $\Exp[X]$를 구하시오.
 \end{problem}
 
 \end{document}

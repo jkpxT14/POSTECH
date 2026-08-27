@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ProblemsetStyle}[2026/08/27 Science Quiz problem set style]
+\ProvidesPackage{ProblemsetStyle}[2026/08/28 Science Quiz problem set style]
 
 % Standalone adaptation of the current Mathematics for Science Quiz typography.
 % The handbook itself remains English-only. Problem sets may use Korean.
@@ -36,6 +36,7 @@
 % Mathematics
 \RequirePackage{amsmath,amssymb,amsthm}
 \RequirePackage{mathtools}
+\RequirePackage{bbm}
 
 % Lists
 \RequirePackage{enumitem}
@@ -129,5 +130,9 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Exp}{\mathbb{E}}
+\newcommand{\indicatorbb}[1]{\mathbbm{1}_{#1}}
+\newcommand{\ones}{\mathbf{1}}
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \DeclareMathOperator{\proj}{proj}

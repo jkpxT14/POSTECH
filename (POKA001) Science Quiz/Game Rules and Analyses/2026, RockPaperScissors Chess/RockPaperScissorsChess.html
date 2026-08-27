@@ -105,7 +105,8 @@ header{border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:28px
 }
 .analysis-body{border-top:1px solid var(--hair);padding-top:15px;min-height:150px}
 .analysis-empty{color:var(--muted);font-size:.92rem;max-width:30em}
-.analysis-piece{font-weight:700;margin-bottom:8px}
+.analysis-piece{font-weight:700;margin-bottom:5px}
+.analysis-move{font-family:var(--mono);font-size:.86rem;color:#444;margin-bottom:8px}
 .analysis-state{font-family:var(--mono);font-size:1.02rem;margin:5px 0 11px;overflow-wrap:anywhere}
 .analysis-meta{display:grid;grid-template-columns:118px 1fr;row-gap:4px;column-gap:10px;font-size:.9rem}
 .analysis-meta .label{color:var(--muted)}
@@ -651,6 +652,13 @@ function notationForDraft(d,captureId,reset){
   for(const p of d.rollPath)path+=`-${cell(p.x,p.y)}`;
   return`${d.pieceId}${item}: ${path}${captureId?` x${captureId}`:""}${reset?" Reset":""}`;
 }
+function draftMoveNotation(d){
+  if(!d)return"";
+  const item=d.item?`[${d.item}]`:"";let path=cell(d.start.x,d.start.y);
+  if(d.pushCell)path+=`>${cell(d.pushCell.x,d.pushCell.y)}`;
+  for(const p of d.rollPath)path+=`-${cell(p.x,p.y)}`;
+  return`${d.pieceId}${item}: ${path}`;
+}
 function applyConfirmedDraft(){
   const d=ui.draft;if(!d||d.subphase!=="COMPLETE")return;
   pushUndo();const p=pieceById(d.pieceId),bucket=itemBucket(d.item);
@@ -676,6 +684,14 @@ function isCompleteSavePoint(){return!ui.draft&&!!game.order.white&&!["ORDER_CHO
 function resultToken(){if(!game.result)return"*";return game.result===game.order.white?"1-0":"0-1";}
 function pairByRole(getter){if(!game.order.white)return[0,0];return[getter(game.order.white),getter(game.order.black)];}
 function qNotation(q){const w=q[game.order.white]?1:0,b=q[game.order.black]?1:0;return`Q[${w}, ${b}]`;}
+function analysisMoveNumber(g=game){
+  return(g.rounds||[]).filter(r=>r.q.POSTECH===r.q.KAIST).length;
+}
+function analysisMoveLabel(g=game){
+  if(g.phase!=="MOVE"||!g.moveRole)return"—";
+  const n=analysisMoveNumber(g);
+  return`M${n}${g.moveRole==="W"?".":"..."}`;
+}
 function roundNotation(r){let s=`${r.n}. ${qNotation(r.q)}`;if(r.itemGain)s+=` ${roleOfTeam(r.itemGain.team)}+${r.itemGain.type}`;for(const m of r.moves)s+=` ${m.notation}`;return s;}
 function recordText(){
   if(!game.order.white){
@@ -856,28 +872,45 @@ function analysisTransition(){
   for(const dir of dirs){o=cubeTransform(o,dir);states.push(gestureState(o));ops.push(axisLetter(dir));}
   return{states,ops};
 }
+function itemAnalysisHTML(item,initialOrientation,stepsRequired){
+  if(!item)return"";
+  const s=gestureState(initialOrientation),base=baseRollLengthFromState(s);
+  let line="",note="";
+  if(item==="Pu"){
+    line=`Position changes · s = ${stateText(s)} unchanged`;
+    note=`Push is not part of the Roll Word · Roll count ℓ(s) = ${base}`;
+  }else if(item==="RoL"||item==="RoR"){
+    const rotated=cubeTransform(initialOrientation,item==="RoL"?"CCW":"CW");
+    line=`ρ(s) = ${stateText(gestureState(rotated))}`;
+    note=`${item}: Wrist Axis ${wristAxis(initialOrientation)} → ${wristAxis(rotated)} · Top Gesture and Base Roll Length unchanged`;
+  }else if(item==="StS"){
+    line=`Roll count |w| = ℓ(s) − 1 = ${stepsRequired}`;
+    note=`Gesture State is unchanged before the first Roll.`;
+  }else if(item==="StL"){
+    line=`Roll count |w| = ℓ(s) + 1 = ${stepsRequired}`;
+    note=`Gesture State is unchanged before the first Roll.`;
+  }
+  return`<div class="analysis-block"><div class="analysis-label">Item in the Analysis Model</div><div class="analysis-line">${line}</div><div class="operator-note">${note}</div></div>`;
+}
 function liveAnalysisHTML(){
   const d=ui.draft,sp=selectedPreview();
-  let piece=null,currentOrientation=null,initialOrientation=null,item=null,rollDirs=[];
-  if(d){piece=pieceById(d.pieceId);currentOrientation=d.orientation;initialOrientation=d.initialOrientation;item=d.item;rollDirs=d.rollDirs;}
-  else if(sp){piece=pieceById(sp.pieceId);currentOrientation=sp.orientation;initialOrientation=sp.initialOrientation;item=sp.item;}
+  let piece=null,currentOrientation=null,initialOrientation=null,item=null,rollDirs=[],stepsRequired=null;
+  if(d){piece=pieceById(d.pieceId);currentOrientation=d.orientation;initialOrientation=d.initialOrientation;item=d.item;rollDirs=d.rollDirs;stepsRequired=d.stepsRequired;}
+  else if(sp){piece=pieceById(sp.pieceId);currentOrientation=sp.orientation;initialOrientation=sp.initialOrientation;item=sp.item;stepsRequired=sp.stepsRequired;}
   if(!piece)return`<div class="analysis-empty">Select a piece during a board move to inspect its Gesture State. Live Analysis is derived from the exact cube orientation and is not stored separately from the Game Record.</div>${operatorReferenceHTML()}`;
-  const actualState=gestureState(initialOrientation),shownState=gestureState(currentOrientation),actualDir=wristDirection(initialOrientation),actualAxis=wristAxis(initialOrientation),base=C.DIST[topGesture(initialOrientation)];
-  const previewingRotation=!d&&(item==="RoL"||item==="RoR");
+  const actualState=gestureState(initialOrientation),shownState=gestureState(currentOrientation),actualDir=wristDirection(initialOrientation),actualAxis=wristAxis(initialOrientation),base=baseRollLengthFromState(actualState);
   const rollWord=rollDirs.length?rollDirs.join(""):"—",axisWord=rollDirs.length?rollDirs.map(axisLetter).join(""):"—",tr=analysisTransition();
-  const transition=tr.states.map((s,i)=>`${i?` <span>—${tr.ops[i-1]}→</span> `:""}${stateText(s)}`).join("");
+  const transition=tr.states.map((st,i)=>`${i?` <span>—${tr.ops[i-1]}→</span> `:""}${stateText(st)}`).join("");
   let html=`<div class="analysis-piece">${htmlEscape(piece.id)} · ${htmlEscape(piece.team)}</div>`;
-  html+=`<div class="analysis-state">s = ${stateText(actualState)}</div>`;
-  html+=`<div class="analysis-meta"><div class="label">Top Gesture</div><div>${actualState[0]}</div><div class="label">Wrist Direction</div><div>${actualDir}</div><div class="label">Wrist Axis</div><div>${actualAxis}</div><div class="label">Base Roll Length</div><div>ℓ(s) = ${base}</div></div>`;
-  if(previewingRotation){
-    html+=`<div class="analysis-block"><div class="analysis-label">Rotation Preview</div><div class="analysis-line">ρ(s) = ${stateText(shownState)}</div><div class="rotation-note">Wrist Axis ${actualAxis} → ${wristAxis(currentOrientation)} · Top Gesture unchanged · Base Roll Length unchanged</div></div>`;
-  }
-  html+=`<div class="analysis-block"><div class="analysis-label">Current Roll Analysis</div>${d?`<div class="analysis-line">Current State&nbsp;&nbsp; s = ${stateText(shownState)}</div>`:""}<div class="analysis-line">Roll Word&nbsp;&nbsp; w = ${rollWord}</div><div class="analysis-line">Axis Word&nbsp;&nbsp; π(w) = ${axisWord}</div></div>`;
-  html+=`<div class="analysis-block"><div class="analysis-label">Gesture State Transition</div><div class="transition">${transition}</div></div>`;
+  html+=`<div class="analysis-move">Analysis Move&nbsp;&nbsp; ${analysisMoveLabel()}</div>`;
+  html+=`<div class="analysis-state">Starting State&nbsp;&nbsp; s = ${stateText(actualState)}</div>`;
+  html+=`<div class="analysis-meta"><div class="label">Starting Square</div><div>${cell(piece.x,piece.y)}</div><div class="label">Top Gesture</div><div>${actualState[0]}</div><div class="label">Wrist Direction</div><div>${actualDir}</div><div class="label">Wrist Axis</div><div>${actualAxis}</div><div class="label">Base Roll Length</div><div>ℓ(s) = ${base}</div></div>`;
+  html+=itemAnalysisHTML(item,initialOrientation,stepsRequired);
+  html+=`<div class="analysis-block"><div class="analysis-label">Roll Words and State Transition</div>${d?`<div class="analysis-line">Move Notation&nbsp;&nbsp; ${htmlEscape(draftMoveNotation(d))}</div><div class="analysis-line">Current State&nbsp;&nbsp; s = ${stateText(shownState)}</div>`:(item==="RoL"||item==="RoR")?`<div class="analysis-line">Preview State&nbsp;&nbsp; s = ${stateText(shownState)}</div>`:""}<div class="analysis-line">Roll Word&nbsp;&nbsp; w = ${rollWord}</div><div class="analysis-line">Axis Word&nbsp;&nbsp; π(w) = ${axisWord}</div><div class="transition">${transition}</div></div>`;
   html+=operatorReferenceHTML();return html;
 }
 function operatorReferenceHTML(){
-  return`<div class="analysis-block"><div class="analysis-label">Operator Reference</div><div class="operator-grid"><div>V(⟨a, b, c⟩) = ⟨b, a, c⟩</div><div>H(⟨a, b, c⟩) = ⟨c, b, a⟩</div><div>ρ(⟨a, b, c⟩) = ⟨a, c, b⟩</div></div><div class="operator-note">V: UD↔NS · H: UD↔EW · ρ: NS↔EW</div></div>`;
+  return`<div class="analysis-block"><div class="analysis-label">State Operators</div><div class="operator-grid"><div>V(⟨a, b, c⟩) = ⟨b, a, c⟩</div><div>H(⟨a, b, c⟩) = ⟨c, b, a⟩</div><div>ρ(⟨a, b, c⟩) = ⟨a, c, b⟩</div></div><div class="operator-note">V: UD↔NS · H: UD↔EW · ρ: NS↔EW</div></div>`;
 }
 function phaseControls(){
   const quiz=document.getElementById("quizControls"),order=document.getElementById("orderControls"),gain=document.getElementById("itemGainControls"),move=document.getElementById("moveControls"),draft=document.getElementById("draftControls");
@@ -925,6 +958,8 @@ function runSelfTests(){
   const r=canonicalOrientation("R","S"),rm=mapReach(r,4);ok(rm.size===25,"Rock basic reach map must contain 25 endpoints");ok(setEq(rm.get("0,4"),new Set(["R"])),"Rock 4 north must end R");ok(setEq(rm.get("4,0"),new Set(["R"])),"Rock 4 east must end R");ok(setEq(rm.get("0,0"),new Set(["S","P"])),"Rock 4-step loop must end S or P");
   const p=canonicalOrientation("P","S"),pm=mapReach(p,5);ok(pm.size===36,"Paper basic reach map must contain 36 endpoints");ok(setEq(pm.get("0,5"),new Set(["R"])),"Paper 5 north must end R");ok(setEq(pm.get("5,0"),new Set(["S"])),"Paper 5 east must end S");
   const pr=new Map();for(const ro of["CW","CCW"])for(const[k,v]of mapReach(cubeTransform(p,ro),5)){if(!pr.has(k))pr.set(k,new Set());for(const x of v)pr.get(k).add(x);}ok(pr.size===36,"Paper+Rotation reach map must contain 36 endpoints");ok(setEq(pr.get("0,5"),new Set(["S"])),"Paper+Rotation 5 north must match textbook S");ok(setEq(pr.get("5,0"),new Set(["R"])),"Paper+Rotation 5 east must match textbook R");
+  const ag=freshGame();ag.rounds=[{q:{POSTECH:true,KAIST:true}},{q:{POSTECH:true,KAIST:false}},{q:{POSTECH:false,KAIST:false}}];ok(analysisMoveNumber(ag)===2,"M-number counts only equal-result board progressions");ag.phase="MOVE";ag.moveRole="W";ok(analysisMoveLabel(ag)==="M2.","White analysis label uses Mn.");ag.moveRole="B";ok(analysisMoveLabel(ag)==="M2...","Black analysis label uses Mn...");
+  const nd={pieceId:"W2",item:"RoR",start:{x:2,y:0},pushCell:null,rollPath:[{x:2,y:1},{x:3,y:1}]};ok(draftMoveNotation(nd)==="W2[RoR]: c1-c2-d2","draft Move Notation preserves starting square and full current path");
   ok(C.DIST.S===3&&C.DIST.R===4&&C.DIST.P===5,"Base Roll Length S/R/P = 3/4/5");ok(rpsWinner("S","P")===1&&rpsWinner("R","S")===1&&rpsWinner("P","R")===1,"RPS cycle S/R/P order");return failures;
 }
 function resetGame(){if(!window.confirm("Reset the entire analysis?"))return;game=freshGame();undoStack=[];clearMoveUI();render();}
@@ -941,7 +976,7 @@ function init(){
   const failures=runSelfTests();if(failures.length){engineReady=false;game.lastAction=`Engine self-test failed: ${failures.join("; ")}`;document.querySelectorAll("button").forEach(b=>b.disabled=true);}bindEvents();render();
 }
 if(typeof document!=="undefined")init();
-if(typeof module!=="undefined"&&module.exports){module.exports={runSelfTests,parseAndReplay,recordText,gestureState,VState,HState,rhoState};}
+if(typeof module!=="undefined"&&module.exports){module.exports={runSelfTests,parseAndReplay,recordText,gestureState,VState,HState,rhoState,analysisMoveNumber};}
 </script>
 </body>
 </html>

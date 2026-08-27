@@ -1929,6 +1929,29 @@
 
     \section*{Multivariable Calculus}
 
+    \begin{definition}[Open Sets in Euclidean Space]
+        For $\mathbf{a}\in\R^n$ and $r>0$, the open ball of radius $r$ centered at
+        $\mathbf{a}$ is
+        \[
+            B_r(\mathbf{a})
+            =
+            \{\mathbf{x}\in\R^n\mid \|\mathbf{x}-\mathbf{a}\|<r\},
+        \]
+        where the Euclidean norm is
+        \[
+            \|\mathbf{x}\|
+            =
+            \sqrt{x_1^2+\cdots+x_n^2}.
+        \]
+        A set $U\subseteq\R^n$ is open if every $\mathbf{a}\in U$ has some
+        $r>0$ s.t.
+        \[
+            B_r(\mathbf{a})\subseteq U.
+        \]
+        The Real Analysis section later gives the corresponding definition in an
+        arbitrary metric space.
+    \end{definition}
+
     \begin{definition}[Scalar Field, Vector Field, and Partial Derivative]
         A scalar field on $U\subseteq\R^n$ is a function $f:U\to\R$, while a
         vector field is a function $\mathbf{F}:U\to\R^m$. For a scalar-valued
@@ -2839,6 +2862,14 @@
             \sup_{x\in E}|f_n(x)-f(x)|
             \longrightarrow 0.
         \]
+        The convergence is locally uniform on $E$ if, for every compact set
+        $K\subseteq E$, the restrictions $f_n|_K$ converge uniformly to $f|_K$.
+        Equivalently, for real- or complex-valued functions,
+        \[
+            \sup_{x\in K}|f_n(x)-f(x)|
+            \longrightarrow 0
+        \]
+        for every compact $K\subseteq E$.
     \end{definition}
 
     \begin{definition}[Equicontinuity and Uniform Boundedness]
@@ -7162,6 +7193,18 @@
         \]
     \end{theorem}
 
+    \begin{definition}[Convex and Concave Functions]
+        Let $I\subseteq\R$ be an interval. A function $\varphi:I\to\R$ is
+        convex if, for all $x,y\in I$ and $t\in[0,1]$,
+        \[
+            \varphi((1-t)x+ty)
+            \leq
+            (1-t)\varphi(x)+t\varphi(y).
+        \]
+        It is concave if the reverse inequality holds. Equivalently,
+        $\varphi$ is concave if $-\varphi$ is convex.
+    \end{definition}
+
     \begin{theorem}[Jensen's Inequality]
         Let $X$ be integrable and take values in an interval $I$, and let
         $\varphi:I\to\R$ be convex with $\varphi(X)$ integrable. Then
@@ -7349,6 +7392,26 @@
         Euclidean angle sum, and negative curvature produces angle defect.
     \end{formula}
 
+    \begin{definition}[Convex Set, Convex Combination, and Convex Hull]
+        A set $C\subseteq\R^n$ is convex if for every $\mathbf{x},\mathbf{y}\in C$
+        and every $t\in[0,1]$,
+        \[
+            (1-t)\mathbf{x}+t\mathbf{y}\in C.
+        \]
+        More generally, a convex combination of points
+        $\mathbf{x}_1,\dots,\mathbf{x}_m$ is a point
+        \[
+            \sum_{i=1}^{m}\lambda_i\mathbf{x}_i,
+            \qquad
+            \lambda_i\geq0,
+            \qquad
+            \sum_{i=1}^{m}\lambda_i=1.
+        \]
+        The convex hull $\conv(S)$ of a set $S\subseteq\R^n$ is the smallest
+        convex set containing $S$; equivalently, it is the set of all finite
+        convex combinations of points of $S$.
+    \end{definition}
+
     \begin{formula}[Basic Plane and Solid Geometry Table]
         The basic measurement formulas are
 
@@ -7463,12 +7526,28 @@
         intersection of the medians.
     \end{definition}
 
+    \begin{definition}[Incircle, Excircles, Inradius, and Exradii]
+        The incircle of a triangle is the circle tangent to all three sides; its
+        center is the incenter $I$, and its radius is the inradius $r$. An
+        excircle is tangent to one side of the triangle and to the extensions of
+        the other two sides. The corresponding excenters and exradii are denoted
+        by $I_a,I_b,I_c$ and $r_a,r_b,r_c$, respectively, according to the
+        opposite vertex.
+    \end{definition}
+
     \begin{theorem}[Gergonne Point and Nagel Point]
         The cevians joining the vertices of a triangle to the contact points of
         its incircle with the opposite sides are concurrent at the Gergonne point.
         The cevians joining the vertices to the contact points of the opposite
         excircles are concurrent at the Nagel point.
     \end{theorem}
+
+    \begin{definition}[Isogonal Lines and Symmedians]
+        Two lines through a vertex of a triangle are isogonal if they are
+        reflections of one another across the internal angle bisector at that
+        vertex. The $A$-symmedian of $\triangle ABC$ is the line isogonal to the
+        $A$-median; the other symmedians are defined cyclically.
+    \end{definition}
 
     \begin{theorem}[Symmedian Lemma and Lemoine Point]
         Let the $A$-symmedian of $\triangle ABC$ meet $BC$ at $K$. Then
@@ -7785,6 +7864,15 @@
         look for a center of spiral similarity. It often reveals the required
         similar triangles immediately.
     \end{strategy}
+
+    \begin{definition}[Directed Angles Modulo $\pi$]
+        When directed angles modulo $\pi$ are used, $\angle ABC$ denotes the
+        directed angle from the line $BA$ to the line $BC$, taken modulo $\pi$.
+        Reversing the orientation of either line changes an ordinary oriented
+        angle by $\pi$ and therefore does not change its class modulo $\pi$.
+        This convention avoids separate case distinctions for many collinearity
+        and cyclicity arguments.
+    \end{definition}
 
     \begin{theorem}[Inscribed Angle Theorem]
         An inscribed angle equals half the central angle subtending the same arc.
@@ -8783,9 +8871,11 @@
         \[
             N(zw)=N(z)N(w).
         \]
-        The ring $\Z[i]$ is a Euclidean domain with respect to this norm, so a
-        Euclidean algorithm, greatest common divisors, and unique factorization
-        are available in $\Z[i]$ just as they are in $\Z$.
+        With the usual addition and multiplication, $\Z[i]$ inherits its
+        arithmetic from $\C$. In the terminology of the Algebra chapter,
+        $\Z[i]$ is a Euclidean domain with respect to this norm, so a Euclidean
+        algorithm, greatest common divisors, and unique factorization are
+        available in $\Z[i]$ just as they are in $\Z$.
     \end{definition}
 
     \begin{proposition}[Basic Rules of Congruences]
@@ -9095,10 +9185,16 @@
     \end{remark}
 
     \begin{proposition}[Multiplicative Order]
-        If $\gcd(a,n)=1$, then $[a]_n$ lies in the finite group
-        $(\Z/n\Z)^\times$. Its multiplicative order $\ord_n(a)$ divides
+        If $\gcd(a,n)=1$, the multiplicative order $\ord_n(a)$ is the least
+        positive integer $t$ s.t.
         \[
-            |(\Z/n\Z)^\times|=\varphi(n).
+            a^t\equiv1\pmod n.
+        \]
+        The invertible residue classes modulo $n$ form a set of size
+        $\varphi(n)$ and, in the group terminology of the Algebra chapter,
+        Lagrange's theorem gives
+        \[
+            \ord_n(a)\mid\varphi(n).
         \]
         Consequently, for every positive integer $k$,
         \[
@@ -9113,28 +9209,32 @@
         \[
             \ord_n(g)=\varphi(n).
         \]
-        Equivalently, the residue class $[g]_n$ generates the group
-        $(\Z/n\Z)^\times$.
+        Equivalently, in the group terminology of the Algebra chapter, the
+        residue class $[g]_n$ generates $(\Z/n\Z)^\times$.
     \end{definition}
 
     \begin{theorem}[Primitive Root Theorem; Gauss's Theorem on Primitive Roots]
-        The multiplicative group $(\Z/n\Z)^\times$ is cyclic if and only if
+        A primitive root modulo $n$ exists if and only if
         \[
             n\in\{1,2,4,p^k,2p^k\},
         \]
-        where $p$ is an odd prime and $k\geq 1$.
+        where $p$ is an odd prime and $k\geq 1$. Equivalently, in the language
+        of the Algebra chapter, $(\Z/n\Z)^\times$ is cyclic exactly for these
+        values of $n$.
     \end{theorem}
 
     \begin{definition}[Finite Field]
-        A finite field is a field containing finitely many elements. Its number
-        of elements is called its order.
+        A finite field is a finite set equipped with addition and multiplication
+        satisfying the field axioms stated in the Algebra chapter. Its number of
+        elements is called its order.
     \end{definition}
 
     \begin{theorem}[Existence and Uniqueness of Finite Fields]
         Every finite field has $q=p^n$ elements for some prime $p$ and positive
         integer $n$. Conversely, for each prime power $q=p^n$, there exists a
         field $\mathbb{F}_q$ with $q$ elements, unique up to isomorphism. Its
-        multiplicative group $\mathbb{F}_q^\times$ is cyclic of order $q-1$.
+        nonzero elements form a cyclic multiplicative group
+        $\mathbb{F}_q^\times$ of order $q-1$.
     \end{theorem}
 
     \begin{algorithm}[Modular Exponentiation by Period Reduction]
@@ -10143,8 +10243,9 @@
         A complex number $\alpha$ is algebraic over $\Q$ if it is a root of a
         nonzero polynomial in $\Q[x]$. Its minimal polynomial
         $m_{\alpha,\Q}(x)$ is the unique monic irreducible polynomial in
-        $\Q[x]$ having $\alpha$ as a root. The other roots of this minimal
-        polynomial are the algebraic conjugates of $\alpha$ over $\Q$.
+        $\Q[x]$ having $\alpha$ as a root. A complex number that is not
+        algebraic over $\Q$ is transcendental over $\Q$. The other roots of the
+        minimal polynomial are the algebraic conjugates of $\alpha$ over $\Q$.
     \end{definition}
 
     \begin{theorem}[Conjugate Root Theorems]
@@ -10536,7 +10637,7 @@
         $2$-spheres and incompressible tori into pieces whose interiors admit
         geometric structures modeled on one of the eight Thurston geometries:
         \[
-            S^3,\ E^3,\ H^3,\ S^2\times\R,\ H^2\times\R,
+            S^3,\ \mathbb{E}^3,\ \mathbb{H}^3,\ S^2\times\R,\ \mathbb{H}^2\times\R,
             \ \widetilde{\SL}_2(\R),\ \mathrm{Nil},\ \mathrm{Sol}.
         \]
         The sphere decomposition is the prime decomposition, and the torus
@@ -10572,8 +10673,14 @@
             g\circ f:A\to C,
         \]
         composition is associative, and every object $A$ has an identity
-        morphism $\id_A$. Category theory studies mathematical structures by
-        emphasizing objects, structure-preserving maps, and their composition.
+        morphism $\id_A$. For every morphism $f:A\to B$, the identity laws are
+        \[
+            f\circ\id_A=f,
+            \qquad
+            \id_B\circ f=f.
+        \]
+        Category theory studies mathematical structures by emphasizing objects,
+        structure-preserving maps, and their composition.
     \end{definition}
 
     \begin{definition}[Nash Equilibrium]

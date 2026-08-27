@@ -32,7 +32,7 @@ RPSC의 기보법은 체스의 algebraic notation과 PGN의 기록 방식을 가
 
 \section{Move Notation}
 
-말의 일반 이동은 ``말 번호: 이동 경로''의 순서로 적는다. 콜론 뒤에는 한 칸을 띄우고, 실제로 굴러간 모든 칸을 하이픈으로 연결한다.
+말의 일반 이동은 ``말 번호: 이동 경로''의 순서로 적는다. 콜론 뒤에는 한 칸을 띄운다. 이동 경로에는 \textbf{그 수를 시작하기 직전의 출발칸을 먼저 적고}, 이후 각 Roll로 도달한 모든 칸을 시간 순서대로 하이픈으로 연결한다.
 
 \begin{quote}
 \ttfamily
@@ -147,4 +147,28 @@ OT1. Q[1, 1]\\
 OT2. Q[1, 0]
 \end{quote}
 
-분석용 기보에서는 체스와 PGN의 관례를 그대로 사용할 수 있다. 좋은 수와 실수는 \texttt{!}, \texttt{?}, \texttt{!!}, \texttt{??}, \texttt{!?}, \texttt{?!}로 표시하고, 설명은 중괄호 \texttt{\{...\}}, 대안 수순은 소괄호 \texttt{(...)} 안에 적는다. 이러한 표시는 선택적인 분석 주석이며 경기의 원기보에는 필요하지 않다.
+\subsection{Analysis Lines}
+
+실제 경기의 Game Record에서는 \texttt{1.}, \texttt{2.}, \ldots{}가 \textbf{과학퀴즈 문제 번호}이다. 반면 Opening, Tactics, Strategy처럼 퀴즈의 정오 여부와 무관하게 보드의 수순 자체를 설명할 때에는, 가상의 \texttt{Q[...]}를 넣지 않고 별도의 \textbf{Analysis Line}을 사용한다. 두 번호 체계가 서로 겹치지 않도록 Analysis Line의 수순 번호에는 \texttt{M}을 붙인다. 여기서 \texttt{M}은 Move를 뜻하며, 이 번호를 \textbf{M-number}라 부른다.
+
+Analysis Line의 \texttt{M1}, \texttt{M2}, \ldots{}는 체스의 move-number convention과 같은 방식으로 White의 수와 그에 대한 Black의 대응을 한 쌍으로 묶어 센다. 전체 수순을 적을 때에는 다음과 같이 하나의 M-number 아래에 White의 수를 먼저, Black의 수를 다음에 적는다.
+
+\begin{quote}
+\ttfamily
+M1. W2: c1-c2-d2-d3-e3 B2: f8-f7-e7-e6-d6\\
+M2. W1: a1-a2-b2-b3 B3[RoR]: d8-d7-c7-c6-b6-b5
+\end{quote}
+
+White의 수만 독립적으로 적을 때에는 \texttt{Mn.}, Black의 대응만 독립적으로 적거나 Black의 수에서 variation을 시작할 때에는 체스의 ellipsis 관례를 따라 \texttt{Mn...}을 사용한다.
+
+\begin{quote}
+\ttfamily
+M2. W1: a1-a2-b2-b3\\
+M2... B3[RoR]: d8-d7-c7-c6-b6-b5
+\end{quote}
+
+M-number는 \textbf{Analysis Line 안에서 실제 보드 진행만} 센다. 따라서 Question Number와 일반적으로 일치하지 않는다. 예를 들어 실제 경기에서 1번과 4번 문제에서만 양 팀의 정오 여부가 같아 보드 진행이 발생했다면, 그 두 수순은 Game Record에서는 각각 Question 1과 Question 4에 속하지만 Analysis Line에서는 \texttt{M1}과 \texttt{M2}가 된다.
+
+Analysis Line은 Game Record를 대체하지 않는다. 퀴즈 결과와 아이템 획득 시점을 생략하므로 실제 과학퀴즈 경기 전체의 canonical record는 여전히 \texttt{n. Q[White, Black] ...} 형식이다. M-number 역시 저장해야 하는 별도 경기 정보가 아니라, 보드 수순을 설명할 때 Game Record에서 유도해 사용하는 분석용 번호이다. 다만 Analysis Line 안에서도 각 개별 수는 Chapter 2의 동일한 Move Notation을 그대로 사용한다. 즉 출발칸, 모든 Roll 경로, Push의 \texttt{>}, \texttt{RoL}/\texttt{RoR}, \texttt{StL}/\texttt{StS}, capture의 \texttt{x}, \texttt{Reset} 표기는 어느 문맥에서도 바뀌지 않는다.
+
+분석용 기보에서는 체스와 PGN의 관례를 그대로 사용할 수 있다. 좋은 수와 실수는 \texttt{!}, \texttt{?}, \texttt{!!}, \texttt{??}, \texttt{!?}, \texttt{?!}로 표시하고, 설명은 중괄호 \texttt{\{...\}}, 대안 수순은 소괄호 \texttt{(...)} 안에 적는다. variation에서도 필요한 경우 \texttt{Mn.}과 \texttt{Mn...}을 사용하여 White와 Black의 수를 정확히 지칭한다. 이러한 표시는 선택적인 분석 주석이며 경기의 원기보에는 필요하지 않다.

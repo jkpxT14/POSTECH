@@ -25,7 +25,7 @@
 \begin{problemsolution}{2}
 수열
 \[
-    b_n=2\cos\left(\frac{n\pi}{4}\right)
+    b_n\coloneqq 2\cos\left(\frac{n\pi}{4}\right)
 \]
 을 생각하자. 이 수열은 $a_n$과 같은 초기값을 가지며,
 \[
@@ -129,7 +129,7 @@ IMU가 mathematical outreach에서의 뛰어난 공헌을 기리기 위해 ICM C
 \end{problemsolution}
 
 \begin{problemsolution}{8}
-순환군 $\Z_n$에서 residue class $\overline{k}$가 generator가 될 필요충분조건은
+가법군 $\Z/n\Z$에서 residue class $[k]_n$가 generator가 될 필요충분조건은
 \[
     \gcd(k,n)=1
 \]
@@ -170,30 +170,33 @@ $(0,1)$은 예를 들어
 \end{problemsolution}
 
 \begin{problemsolution}{10}
-all-ones vector를 $\mathbf{1}$이라 하자. $\mathbf{J}_n$은 $\mathbf{1}$에 대하여 eigenvalue $n$을 가지며, $\mathbf{1}$에 수직인 모든 벡터에 대해서는 eigenvalue $0$을 갖는다. 따라서 $\mathbf{A}$의 eigenvalue는
+각 $k\in S$에 대하여
 \[
-    n+1
-    \quad\text{(multiplicity }1\text{)},
-    \qquad
-    1
-    \quad\text{(multiplicity }n-1\text{)}.
+    X_k
+    \coloneqq
+    \indicatorbb{\{\sigma(k)=k\}}
 \]
-또한 $\mathbf{J}_n^2=n\mathbf{J}_n$이고 $\mathbf{1}$이 생성하는 직선으로의 projection matrix는 $\mathbf{J}_n/n$이므로
+라 두면
 \[
-    \mathbf{A}^{2026}
+    X=\sum_{k=1}^{2026}X_k.
+\]
+Uniformly random permutation에서 임의의 $k$에 대하여
+\[
+    \Prob(\sigma(k)=k)=\frac{1}{2026},
+\]
+이므로
+\[
+    \Exp[X_k]=\frac{1}{2026}.
+\]
+과퀴 수학 교재의 linearity of expectation을 적용하면
+\[
+    \Exp[X]
     =
-    \left(\mathbf{I}_n-\frac{1}{n}\mathbf{J}_n\right)
-    +(n+1)^{2026}\frac{1}{n}\mathbf{J}_n.
-\]
-따라서
-\[
-    \boxed{
-        \mathbf{A}^{2026}
-        =
-        \mathbf{I}_n
-        +
-        \frac{(n+1)^{2026}-1}{n}\mathbf{J}_n
-    }.
+    \sum_{k=1}^{2026}\Exp[X_k]
+    =
+    2026\cdot\frac{1}{2026}
+    =
+    \boxed{1}.
 \]
 \end{problemsolution}
 
