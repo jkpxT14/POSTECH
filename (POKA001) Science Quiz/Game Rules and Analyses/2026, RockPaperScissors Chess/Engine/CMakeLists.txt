@@ -1,0 +1,34 @@
+cmake_minimum_required(VERSION 3.16)
+project(rpsc_engine VERSION 0.2.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+add_library(rpsc_core
+    src/orientation.cpp
+    src/position.cpp
+    src/movegen.cpp
+    src/evaluate.cpp
+    src/tt.cpp
+    src/search.cpp
+    src/notation.cpp
+    src/perft.cpp
+    src/engine.cpp
+    src/protocol.cpp
+)
+target_include_directories(rpsc_core PUBLIC src)
+if(MSVC)
+    target_compile_options(rpsc_core PRIVATE /W4 /permissive-)
+else()
+    target_compile_options(rpsc_core PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
+add_executable(rpsc-engine src/main.cpp)
+target_link_libraries(rpsc-engine PRIVATE rpsc_core)
+
+add_executable(rpsc-engine-tests tests/engine_tests.cpp)
+target_link_libraries(rpsc-engine-tests PRIVATE rpsc_core)
+
+enable_testing()
+add_test(NAME rpsc-engine-tests COMMAND rpsc-engine-tests)

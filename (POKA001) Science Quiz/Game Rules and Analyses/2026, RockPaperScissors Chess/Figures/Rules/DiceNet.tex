@@ -3,16 +3,8 @@
     \begin{tikzpicture}[x=0.95cm,y=0.95cm]
         \foreach \x/\y in {0/0,1/0,2/0,3/0,1/1,1/-1} {
             \draw[rpsc board line,fill=white] (\x,\y) rectangle ++(1,1);
+            \draw[rpsc board border] (\x,\y) rectangle ++(1,1);
         }
-        \draw[rpsc board border] (0,0) rectangle ++(1,1);
-        \draw[rpsc board border] (1,0) rectangle ++(1,1);
-        \draw[rpsc board border] (2,0) rectangle ++(1,1);
-        \draw[rpsc board border] (3,0) rectangle ++(1,1);
-        \draw[rpsc board border] (1,1) rectangle ++(1,1);
-        \draw[rpsc board border] (1,-1) rectangle ++(1,1);
-
-        % Use the official net directly: P-S-P-S with R above and below the second square.
-        % This is a net diagram, so the face symbols are shown in the net's own upright orientation.
         \rpscglyph{0.50}{0.56}{P}{0}{black}
         \rpscglyph{1.50}{0.56}{S}{0}{black}
         \rpscglyph{2.50}{0.56}{P}{0}{black}
@@ -20,6 +12,6 @@
         \rpscglyph{1.50}{1.56}{R}{0}{black}
         \rpscglyph{1.50}{-0.44}{R}{0}{black}
     \end{tikzpicture}
-    \caption{주사위 말의 전개도. 같은 손 모양의 두 면은 서로 마주보며, 중심의 \(\bar{\mathbf{S}}\)와 맨 오른쪽의 \(\bar{\mathbf{S}}\), 두 개의 \(\bar{\mathbf{R}}\), 두 개의 \(\bar{\mathbf{P}}\)가 각각 서로 반대편에 놓인다.}
+    \caption{주사위 말의 전개도. 같은 손 모양의 두 면은 서로 마주본다.}
     \label{fig:dice-net}
 \end{figure}

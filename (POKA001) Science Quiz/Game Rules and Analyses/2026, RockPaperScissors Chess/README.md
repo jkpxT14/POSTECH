@@ -1,37 +1,34 @@
 # 2026, RockPaperScissors Chess
 
-2026 POSTECH-KAIST Science War Science Quiz game handbook and analysis board.
+2026 POSTECH-KAIST Science War Science Quiz game handbook, analysis board, and classical engine.
 
 ## Files
 
 - `RockPaperScissorsChess.tex`: main handbook source
-- `Acknowledgements.tex`: acknowledgements
-- `Preface.tex`: preface
-- `Rules.tex`: game rules
-- `NotationandGameRecording.tex`: Chapter 2 notation and canonical game-record format
-- `MovementandItems.tex`: Chapter 3 movement, items, and Gesture-State analysis
-- `Tactics.tex`: chapter skeleton
-- `Strategy.tex`: chapter skeleton
-- `Openings.tex`: chapter skeleton
-- `Puzzles.tex`: chapter skeleton
-- `Games.tex`: chapter skeleton
-- `Figures/`: TikZ figure sources and styles
 - `RockPaperScissorsChess.pdf`: compiled handbook
 - `RockPaperScissorsChess.html`: offline single-file RPSC analysis board
+- `Rules.tex`: game rules
+- `NotationandGameRecording.tex`: canonical notation and analysis notation
+- `MovementandItems.tex`: movement, items, and Gesture-State analysis
+- `Tactics.tex`, `Strategy.tex`, `Openings.tex`, `Puzzles.tex`, `Games.tex`: reserved handbook chapters
+- `Figures/`: TikZ figure sources and styles
+- `Engine/`: classical C++ RPSC engine source and tests
 
-The handbook is written in Korean, while the title, chapter names, section names, and notation use English. The HTML analysis board preserves the same restrained line-based visual language and uses the exact physical cube orientation as its source of truth.
+The exact 24-orientation physical cube model remains the source of truth. Gesture States are a derived analysis layer. Game Record remains the canonical persistent representation of an actual game.
 
-Build: Draft 19 (2026-08-28 03:58 KST)
+Build: Draft 21 (2026-08-29 KST)
 
-## This draft updates
+Base package: `(POKA001) RockPaperScissors Chess, Draft 20.zip`.
 
-- performed a full end-to-end review of the Draft 18 handbook and offline analysis board, preserving the existing visual design and overall structure
-- polished Chapter 2 `Analysis Lines` terminology by naming the separate board-sequence counter the `M-number` and clarifying that it is a derived analysis label, not stored canonical game data
-- retained the question-based canonical Game Record and all existing Move Notation rules, including the starting square and complete Roll path
-- tightened the opening of Chapter 3 without changing its mathematical direction, and made the relation between exact Move Notation, item effects, Roll Words, Axis Words, and Gesture-State transitions more explicit
-- reused the same W2 example when introducing Axis Projection to reduce unnecessary notation switching
-- clarified Rotation wording throughout Chapter 3: Wrist Direction rotates by 90 degrees, Wrist Axis switches NS <-> EW, while Top Gesture and Base Roll Length remain unchanged
-- connected the later practical item section back to the earlier analysis model and standardized a few small wording/spacing inconsistencies
-- refined HTML Live Analysis to label the move-start state explicitly, show the starting square, show a live partial Move Notation once movement begins, and show the Rotation preview state before the first Roll
-- preserved Game Record as the only persistent representation and kept the 24-orientation physical cube model as the engine source of truth
-- expanded self-tests for `M1.` / `M1...` labeling and for starting-square preservation in live Move Notation
+## Draft 21
+
+- standardized the engine directory name as `Engine/` and reviewed file, target, function, and display naming for consistency
+- returned Chapters 4-8 to their intentionally open state; no unverified tactics, strategy, opening theory, puzzles, or games are inserted
+- consolidated optional analysis notation into one `Analysis` section instead of fragmenting Chapter 2 into small subsections
+- retained only useful move annotations, position-evaluation symbols, M-number/PV notation, and core engine-analysis terms
+- preserved the existing restrained Analysis Board layout while simplifying redundant explanatory text
+- strengthened the classical search with better tactical move ordering, killer/history ordering, aspiration windows, conservative late-move reductions, and bounded quiescence
+- kept machine learning, neural networks, and NNUE out of the engine
+- kept every Quiz turn in every mode; engine-containing modes remain fixed to `Q[0, 0]` in the initial implementation
+
+No rating or claim of verified superhuman strength is attached to this draft. Engine strength is treated as an empirical property to be established by benchmarks, regression matches, self-play, and human testing.

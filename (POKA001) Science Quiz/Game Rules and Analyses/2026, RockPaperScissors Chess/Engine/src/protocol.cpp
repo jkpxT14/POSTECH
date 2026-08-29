@@ -1,0 +1,119 @@
+#include "protocol.h"
+
+#include <chrono>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+
+#include "notation.h"
+
+namespace rpsc {
+
+Protocol::Protocol(std::istream& in, std::ostream& out) : engine_(64), in_(in), out_(out) {}
+
+void Protocol::print_search(const SearchResult& result) {
+    const auto milliseconds = std::max<std::int64_t>(1, result.elapsed.count());
+    const auto nps = static_cast<std::uint64_t>(
+        result.nodes * 1000ULL / static_cast<std::uint64_t>(milliseconds));
+    const Value white_value =
+        engine_.position().side_to_move() == Color::White ? result.value : -result.value;
+
+    out_ << "info depth " << result.depth << " seldepth " << result.seldepth << " nodes "
+         << result.nodes << " nps " << nps << " score " << std::fixed << std::setprecision(2)
+         << static_cast<double>(white_value) / ScoreUnit;
+    if (!result.pv.empty()) out_ << " pv " << format_pv(engine_.position(), result.pv);
+    out_ << '\n';
+    out_ << "bestmove " << (result.has_move ? format_move(result.best_move) : "(none)") << '\n';
+}
+
+void Protocol::bench() {
+    engine_.new_game();
+    SearchLimits limits;
+    limits.depth = 4;
+
+    const auto start = std::chrono::steady_clock::now();
+    const auto result = engine_.go(limits);
+    const auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::steady_clock::now() - start);
+
+    out_ << "bench depth 4 nodes " << result.nodes << " time " << elapsed.count()
+         << " ms bestmove " << (result.has_move ? format_move(result.best_move) : "(none)")
+         << '\n';
+}
+
+void Protocol::command(const std::string& line) {
+    if (line == "rpsc") {
+        out_ << "id name RPSC Engine 0.2\nid author Jungwoo Kim\nrpscok\n";
+        return;
+    }
+    if (line == "isready") {
+        out_ << "readyok\n";
+        return;
+    }
+    if (line == "newgame" || line == "position startpos") {
+        engine_.new_game();
+        return;
+    }
+    if (line == "d") {
+        out_ << engine_.position().debug_string();
+        return;
+    }
+    if (line == "bench") {
+        bench();
+        return;
+    }
+    if (line == "quit") {
+        running_ = false;
+        return;
+    }
+    if (line.rfind("perft ", 0) == 0) {
+        const int depth = std::stoi(line.substr(6));
+        out_ << "perft " << depth << ' ' << engine_.perft(depth) << '\n';
+        return;
+    }
+    if (line.rfind("divide ", 0) == 0) {
+        const int depth = std::stoi(line.substr(7));
+        divide(engine_.position(), depth, out_);
+        return;
+    }
+    if (line.rfind("move ", 0) == 0) {
+        Move move;
+        if (!parse_move(engine_.position(), line.substr(5), move)) {
+            out_ << "error illegal move\n";
+            return;
+        }
+        UndoState undo;
+        engine_.position().do_move(move, undo);
+        return;
+    }
+    if (line.rfind("go ", 0) == 0) {
+        std::istringstream stream(line.substr(3));
+        std::string token;
+        SearchLimits limits;
+        limits.depth = 6;
+
+        while (stream >> token) {
+            if (token == "depth") {
+                stream >> limits.depth;
+            } else if (token == "nodes") {
+                stream >> limits.nodes;
+            } else if (token == "movetime") {
+                long long milliseconds;
+                stream >> milliseconds;
+                limits.movetime = std::chrono::milliseconds(milliseconds);
+                limits.depth = 64;
+            }
+        }
+        print_search(engine_.go(limits));
+        return;
+    }
+
+    if (!line.empty()) out_ << "error unknown command\n";
+}
+
+void Protocol::loop() {
+    std::string line;
+    while (running_ && std::getline(in_, line)) command(line);
+}
+
+}  // namespace rpsc

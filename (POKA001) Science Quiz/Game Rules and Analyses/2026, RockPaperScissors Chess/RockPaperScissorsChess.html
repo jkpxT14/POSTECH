@@ -6,977 +6,138 @@
 <meta name="color-scheme" content="light">
 <title>RockPaperScissors Chess — Analysis Board</title>
 <style>
-:root{
-  --ink:#111111;
-  --muted:#666666;
-  --hair:#b8b8b8;
-  --soft:#efefef;
-  --softer:#f7f7f7;
-  --paper:#ffffff;
-  --postech:#a61955;
-  --kaist:#004191;
-  --board:680px;
-  --serif:"Latin Modern Roman","CMU Serif","STIX Two Text","Times New Roman","Noto Serif CJK KR","Noto Serif KR","Batang",serif;
-  --mono:"Latin Modern Mono","CMU Typewriter Text","Consolas","Courier New","Noto Sans Mono CJK KR",monospace;
-  --board-line:#525252;
-  --coord:#666666;
-}
-*{box-sizing:border-box}
-html,body{margin:0;background:var(--paper);color:var(--ink)}
-body{
-  font-family:var(--serif);
-  font-size:16px;
-  line-height:1.42;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
-button,input{font:inherit;color:inherit}
-button{
-  appearance:none;
-  border:1px solid var(--ink);
-  border-radius:0;
-  background:#fff;
-  min-height:34px;
-  padding:5px 11px;
-  cursor:pointer;
-}
-button:hover:not(:disabled),button.active{background:var(--soft)}
-button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-button:disabled{cursor:default;color:#aaa;border-color:#ccc;background:#fff}
-button.compact{min-height:30px;padding:3px 9px;font-size:.93rem}
-button.textual{border-color:transparent;padding-left:4px;padding-right:4px}
-button.textual:hover:not(:disabled){background:transparent;text-decoration:underline}
-#app{max-width:1180px;margin:0 auto;padding:36px 28px 46px}
-header{border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:28px;display:flex;justify-content:space-between;gap:28px;align-items:flex-end}
-.title{font-size:2.02rem;line-height:1.12;font-weight:700;letter-spacing:.005em;margin:0}
-.subtitle{margin-top:4px;color:var(--muted);font-size:1rem;letter-spacing:.01em}
-.byline{font-size:.9rem;color:#444;white-space:nowrap;padding-bottom:2px}
-.byline .postech{color:var(--postech);font-weight:700}
-.main-grid{display:grid;grid-template-columns:minmax(520px,700px) minmax(310px,1fr);gap:40px;align-items:start}
-.board-column{min-width:0}
-.board-role{display:flex;justify-content:space-between;align-items:baseline;min-height:24px;margin:0 38px 5px;font-size:.93rem}
-.board-role.bottom{margin-top:5px;margin-bottom:0}
-.role-name{font-weight:700}
-.team-postech{color:var(--postech)}
-.team-kaist{color:var(--kaist)}
-.board-wrap{width:100%;max-width:var(--board);margin:0 auto;user-select:none}
-#board{width:100%;height:auto;display:block}
-.board-note{max-width:var(--board);margin:12px auto 0;color:var(--muted);font-size:.9rem;min-height:1.4em}
-.panel{border-top:1px solid var(--ink)}
-.section{padding:15px 0 16px;border-bottom:1px solid var(--hair)}
-.section:last-child{border-bottom:1px solid var(--ink)}
-.section-title{font-size:.82rem;text-transform:uppercase;letter-spacing:.075em;color:#555;margin:0 0 10px}
-.score-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-.score-table th,.score-table td{padding:3.5px 5px;border-bottom:0;text-align:center}
-.score-table th:first-child,.score-table td:first-child{text-align:left;padding-left:0;color:#444;font-weight:400;width:34%}
-.score-table tr:first-child th,.score-table tr:first-child td{border-bottom:1px solid #777;padding-bottom:5px}
-.score-table tr:nth-child(5) th,.score-table tr:nth-child(5) td{border-bottom:1px solid #c8c8c8;padding-bottom:6px}
-.score-table tr:nth-child(6) th,.score-table tr:nth-child(6) td{padding-top:6px}
-.score-table tr:nth-child(3) td{font-weight:700}
-.score-table .teamcell{font-weight:700}
-.meta-grid{display:grid;grid-template-columns:82px 1fr;row-gap:5px;column-gap:8px;margin-top:11px;padding-top:9px;border-top:1px solid #d3d3d3;font-variant-numeric:tabular-nums}
-.meta-grid .label{color:#444}
-#instruction{min-height:3.3em;margin:0;max-width:34em}
-#detail{margin-top:7px;color:var(--muted);font-size:.92rem;min-height:1.3em}
-.button-row{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
-.button-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
-.button-grid button{width:100%}
-#moveControls,#quizControls,#orderControls,#itemGainControls,#draftControls{margin-top:10px}
-.item-help{font-size:.88rem;color:var(--muted);margin-top:8px}
-.utilities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
-.utilities button{width:100%;padding-left:6px;padding-right:6px}
-.utilities .wide{grid-column:span 1}
-.lower-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:34px;margin-top:38px;border-top:1px solid var(--ink);padding-top:16px}
-.record,.analysis{min-width:0}
-.analysis{border-left:1px solid var(--hair);padding-left:32px}
-.lower-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline;margin-bottom:10px}
-.lower-head h2{font-size:1.15rem;margin:0}
-.lower-head .hint{font-size:.88rem;color:var(--muted)}
-#recordText{
-  margin:0;
-  padding:15px 0 0;
-  border-top:1px solid var(--hair);
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-  font-family:var(--mono);
-  font-size:.88rem;
-  line-height:1.55;
-  min-height:150px;
-}
-.analysis-body{border-top:1px solid var(--hair);padding-top:15px;min-height:150px}
-.analysis-empty{color:var(--muted);font-size:.92rem;max-width:30em}
-.analysis-piece{font-weight:700;margin-bottom:5px}
-.analysis-move{font-family:var(--mono);font-size:.86rem;color:#444;margin-bottom:8px}
-.analysis-state{font-family:var(--mono);font-size:1.02rem;margin:5px 0 11px;overflow-wrap:anywhere}
-.analysis-meta{display:grid;grid-template-columns:118px 1fr;row-gap:4px;column-gap:10px;font-size:.9rem}
-.analysis-meta .label{color:var(--muted)}
-.analysis-block{border-top:1px solid #d7d7d7;margin-top:13px;padding-top:11px}
-.analysis-label{font-size:.77rem;text-transform:uppercase;letter-spacing:.065em;color:#666;margin-bottom:5px}
-.analysis-line{font-family:var(--mono);font-size:.88rem;line-height:1.5;overflow-wrap:anywhere}
-.transition{font-family:var(--mono);font-size:.84rem;line-height:1.75;overflow-wrap:anywhere}
-.operator-grid{display:grid;grid-template-columns:1fr;gap:2px;font-family:var(--mono);font-size:.84rem;line-height:1.5}
-.operator-note{color:var(--muted);font-size:.82rem;margin-top:6px}
-.rotation-note{margin-top:6px;font-size:.86rem;color:#444}
-.footer-note{margin-top:28px;color:#777;font-size:.82rem;border-top:1px solid #ddd;padding-top:10px}
-.hidden{display:none!important}
-#loadInput{display:none}
-.status-line{font-weight:700}
-.result-line{font-weight:700;margin-top:6px}
-@media(max-width:900px){
-  #app{padding:24px 16px 36px}
-  header{align-items:flex-start}
-  .main-grid{grid-template-columns:1fr;gap:30px}
-  .panel{max-width:680px;margin:0 auto;width:100%}
-  .lower-grid{grid-template-columns:1fr;gap:26px}
-  .analysis{border-left:0;padding-left:0;border-top:1px solid var(--hair);padding-top:16px}
-}
-@media(max-width:560px){
-  header{display:block}
-  .title{font-size:1.65rem}
-  .byline{margin-top:8px}
-  .utilities{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .board-role{margin-left:28px;margin-right:28px}
-  .lower-head{display:block}
-  .lower-head .hint{display:block;margin-top:3px}
-}
+:root{--ink:#111;--muted:#666;--hair:#b8b8b8;--soft:#efefef;--paper:#fff;--postech:#a61955;--kaist:#004191;--board:680px;--serif:"Latin Modern Roman","CMU Serif","STIX Two Text","Times New Roman","Noto Serif CJK KR","Noto Serif KR","Batang",serif;--mono:"Latin Modern Mono","CMU Typewriter Text","Consolas","Courier New","Noto Sans Mono CJK KR",monospace;--board-line:#525252;--coord:#666}
+*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink)}body{font-family:var(--serif);font-size:16px;line-height:1.42;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}button,input,select{font:inherit;color:inherit}button,select{appearance:none;border:1px solid var(--ink);border-radius:0;background:#fff;min-height:34px;padding:5px 11px}button{cursor:pointer}button:hover:not(:disabled),button.active,select:hover:not(:disabled){background:var(--soft)}button:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}button:disabled,select:disabled{cursor:default;color:#aaa;border-color:#ccc;background:#fff}button.compact{min-height:30px;padding:3px 9px;font-size:.93rem}#app{max-width:1180px;margin:0 auto;padding:36px 28px 46px}header{border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:28px;display:flex;justify-content:space-between;gap:28px;align-items:flex-end}.title{font-size:2.02rem;line-height:1.12;font-weight:700;letter-spacing:.005em;margin:0}.subtitle{margin-top:4px;color:var(--muted);font-size:1rem}.byline{font-size:.9rem;color:#444;white-space:nowrap;padding-bottom:2px}.byline .postech{color:var(--postech);font-weight:700}.main-grid{display:grid;grid-template-columns:minmax(520px,700px) minmax(310px,1fr);gap:40px;align-items:start}.board-column{min-width:0}.board-role{display:flex;justify-content:space-between;align-items:baseline;min-height:24px;margin:0 38px 5px;font-size:.93rem}.board-role.bottom{margin-top:5px;margin-bottom:0}.role-name{font-weight:700}.team-postech{color:var(--postech)}.team-kaist{color:var(--kaist)}.board-wrap{width:100%;max-width:var(--board);margin:0 auto;user-select:none}#board{width:100%;height:auto;display:block}.board-note{max-width:var(--board);margin:12px auto 0;color:var(--muted);font-size:.9rem;min-height:1.4em}.panel{border-top:1px solid var(--ink)}.section{padding:15px 0 16px;border-bottom:1px solid var(--hair)}.section:last-child{border-bottom:1px solid var(--ink)}.section-title{font-size:.82rem;text-transform:uppercase;letter-spacing:.075em;color:#555;margin:0 0 10px}.mode-row{display:grid;grid-template-columns:82px 1fr;gap:8px;align-items:center;margin-bottom:11px;padding-bottom:10px;border-bottom:1px solid #d3d3d3}.mode-row label{color:#444}.mode-row select{width:100%;font-size:.9rem;padding-right:24px;background-image:linear-gradient(45deg,transparent 50%,#555 50%),linear-gradient(135deg,#555 50%,transparent 50%);background-position:calc(100% - 14px) 13px,calc(100% - 10px) 13px;background-size:4px 4px,4px 4px;background-repeat:no-repeat}.score-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}.score-table th,.score-table td{padding:3.5px 5px;text-align:center}.score-table th:first-child,.score-table td:first-child{text-align:left;padding-left:0;color:#444;font-weight:400;width:34%}.score-table tr:first-child th,.score-table tr:first-child td{border-bottom:1px solid #777;padding-bottom:5px}.score-table tr:nth-child(5) th,.score-table tr:nth-child(5) td{border-bottom:1px solid #c8c8c8;padding-bottom:6px}.score-table tr:nth-child(6) th,.score-table tr:nth-child(6) td{padding-top:6px}.score-table tr:nth-child(3) td{font-weight:700}.score-table .teamcell{font-weight:700}.meta-grid{display:grid;grid-template-columns:82px 1fr;row-gap:5px;column-gap:8px;margin-top:11px;padding-top:9px;border-top:1px solid #d3d3d3;font-variant-numeric:tabular-nums}.meta-grid .label{color:#444}#instruction{min-height:3.3em;margin:0;max-width:34em}#detail{margin-top:7px;color:var(--muted);font-size:.92rem;min-height:1.3em}.button-row{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.button-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.button-grid button{width:100%}#moveControls,#quizControls,#orderControls,#itemGainControls,#draftControls,#engineControls{margin-top:10px}.item-help{font-size:.88rem;color:var(--muted);margin-top:8px}.utilities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.utilities button{width:100%;padding-left:6px;padding-right:6px}.lower-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:34px;margin-top:38px;border-top:1px solid var(--ink);padding-top:16px}.record,.analysis{min-width:0}.analysis{border-left:1px solid var(--hair);padding-left:32px}.lower-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline;margin-bottom:10px}.lower-head h2{font-size:1.15rem;margin:0}.lower-head .hint{font-size:.88rem;color:var(--muted)}#recordText{margin:0;padding:15px 0 0;border-top:1px solid var(--hair);white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--mono);font-size:.88rem;line-height:1.55;min-height:150px}.analysis-body{border-top:1px solid var(--hair);padding-top:15px;min-height:150px}.analysis-empty{color:var(--muted);font-size:.92rem;max-width:30em}.analysis-piece{font-weight:700;margin-bottom:5px}.analysis-move{font-family:var(--mono);font-size:.86rem;color:#444;margin-bottom:8px}.analysis-state{font-family:var(--mono);font-size:1.02rem;margin:5px 0 11px;overflow-wrap:anywhere}.analysis-meta{display:grid;grid-template-columns:118px 1fr;row-gap:4px;column-gap:10px;font-size:.9rem}.analysis-meta .label{color:var(--muted)}.analysis-block{border-top:1px solid #d7d7d7;margin-top:13px;padding-top:11px}.analysis-label{font-size:.77rem;text-transform:uppercase;letter-spacing:.065em;color:#666;margin-bottom:5px}.analysis-line{font-family:var(--mono);font-size:.88rem;line-height:1.5;overflow-wrap:anywhere}.analysis-primary{font-family:var(--mono);font-size:.98rem;line-height:1.5;overflow-wrap:anywhere}.engine-grid{display:grid;grid-template-columns:86px 1fr;gap:4px 10px;font-size:.87rem;margin-top:5px}.engine-grid .label{color:var(--muted)}.candidate{display:grid;grid-template-columns:18px 1fr auto;gap:7px;font-family:var(--mono);font-size:.82rem;line-height:1.45;margin-top:3px}.candidate .score{white-space:nowrap}.transition{font-family:var(--mono);font-size:.84rem;line-height:1.75;overflow-wrap:anywhere}.operator-grid{display:grid;grid-template-columns:1fr;gap:2px;font-family:var(--mono);font-size:.84rem;line-height:1.5}.operator-note{color:var(--muted);font-size:.82rem;margin-top:6px}.footer-note{margin-top:28px;color:#777;font-size:.82rem;border-top:1px solid #ddd;padding-top:10px}.hidden{display:none!important}#loadInput{display:none}.status-line,.result-line{font-weight:700}.thinking{font-style:italic;color:#444}
+@media(max-width:900px){#app{padding:24px 16px 36px}header{align-items:flex-start}.main-grid{grid-template-columns:1fr;gap:30px}.panel{max-width:680px;margin:0 auto;width:100%}.lower-grid{grid-template-columns:1fr;gap:26px}.analysis{border-left:0;padding-left:0;border-top:1px solid var(--hair);padding-top:16px}}
+@media(max-width:560px){header{display:block}.title{font-size:1.65rem}.byline{margin-top:8px}.utilities{grid-template-columns:repeat(2,minmax(0,1fr))}.board-role{margin-left:28px;margin-right:28px}.lower-head{display:block}.lower-head .hint{display:block;margin-top:3px}.mode-row{grid-template-columns:72px 1fr}}
 </style>
 </head>
 <body>
 <div id="app">
-  <header>
-    <div>
-      <h1 class="title">RockPaperScissors Chess</h1>
-      <div class="subtitle">Analysis Board</div>
-    </div>
-    <div class="byline">Jungwoo Kim (<span class="postech">POSTECH</span>)</div>
-  </header>
-
-  <main class="main-grid">
-    <section class="board-column" aria-label="RPSC board">
-      <div id="topRole" class="board-role"></div>
-      <div class="board-wrap"><svg id="board" viewBox="-42 -42 644 644" role="img" aria-label="8 by 8 RockPaperScissors Chess board"></svg></div>
-      <div id="bottomRole" class="board-role bottom"></div>
-      <div id="boardNote" class="board-note"></div>
-    </section>
-
-    <aside class="panel">
-      <section class="section">
-        <div class="section-title">Game</div>
-        <table class="score-table" aria-label="Score and item table">
-          <tbody id="scoreBody"></tbody>
-        </table>
-        <div class="meta-grid">
-          <div class="label">Move</div><div id="moveMeta">—</div>
-          <div class="label">Round</div><div id="roundMeta">1 / 20</div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-title">Current action</div>
-        <p id="instruction"></p>
-        <div id="detail"></div>
-
-        <div id="quizControls" class="button-grid hidden" aria-label="Quiz result">
-          <button data-q="11">[1, 1]</button>
-          <button data-q="10">[1, 0]</button>
-          <button data-q="01">[0, 1]</button>
-          <button data-q="00">[0, 0]</button>
-        </div>
-
-        <div id="orderControls" class="button-row hidden"></div>
-
-        <div id="itemGainControls" class="button-row hidden">
-          <button data-gain="Pu">Push</button>
-          <button data-gain="Ro">Rotation</button>
-          <button data-gain="St">Step</button>
-        </div>
-
-        <div id="moveControls" class="hidden">
-          <div class="button-row">
-            <button data-move-item="Pu">Push</button>
-            <button data-move-item="RoL">RoL</button>
-            <button data-move-item="RoR">RoR</button>
-            <button data-move-item="StS">StS</button>
-            <button data-move-item="StL">StL</button>
-          </div>
-          <div class="item-help" id="selectedItemText">Item: none</div>
-        </div>
-
-        <div id="draftControls" class="button-row hidden">
-          <button id="backBtn" class="compact">Back</button>
-          <button id="cancelBtn" class="compact">Cancel</button>
-          <button id="confirmBtn" class="compact">Confirm Move</button>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-title">Tools</div>
-        <div class="utilities">
-          <button id="flipBtn">Flip Board</button>
-          <button id="undoBtn">Undo</button>
-          <button id="saveBtn">Save</button>
-          <button id="loadBtn">Load</button>
-          <button id="resetBtn">Reset</button>
-        </div>
-        <input id="loadInput" type="file" accept=".rpsc,.txt,text/plain">
-      </section>
-    </aside>
-  </main>
-
-  <section class="lower-grid">
-    <section class="record">
-      <div class="lower-head">
-        <h2>Game Record</h2>
-        <span class="hint">PGN-style RPSC game record</span>
-      </div>
-      <pre id="recordText"></pre>
-    </section>
-
-    <section class="analysis">
-      <div class="lower-head">
-        <h2>Live Analysis</h2>
-        <span class="hint">Gesture States and Roll Analysis</span>
-      </div>
-      <div id="analysisBody" class="analysis-body"></div>
-    </section>
-  </section>
-
-  <div class="footer-note">Offline single-file analysis board · timers and timeout handling omitted by design.</div>
+<header><div><h1 class="title">RockPaperScissors Chess</h1><div class="subtitle">Analysis Board</div></div><div class="byline">Jungwoo Kim (<span class="postech">POSTECH</span>)</div></header>
+<main class="main-grid">
+<section class="board-column" aria-label="RPSC board"><div id="topRole" class="board-role"></div><div class="board-wrap"><svg id="board" viewBox="-42 -42 644 644" role="img" aria-label="8 by 8 RockPaperScissors Chess board"></svg></div><div id="bottomRole" class="board-role bottom"></div><div id="boardNote" class="board-note"></div></section>
+<aside class="panel">
+<section class="section"><div class="section-title">Game</div>
+<div class="mode-row"><label for="modeSelect">Mode</label><select id="modeSelect"><option value="hvh">Human vs Human</option><option value="hve">Human vs Engine (Only Q[0, 0])</option><option value="eve">Engine vs Engine (Only Q[0, 0])</option></select><label id="humanTeamLabel" for="humanTeamSelect" class="hidden">Human</label><select id="humanTeamSelect" class="hidden"><option value="POSTECH">POSTECH</option><option value="KAIST">KAIST</option></select></div>
+<table class="score-table" aria-label="Score and item table"><tbody id="scoreBody"></tbody></table><div class="meta-grid"><div class="label">Move</div><div id="moveMeta">—</div><div class="label">Round</div><div id="roundMeta">1 / 20</div></div></section>
+<section class="section"><div class="section-title">Current action</div><p id="instruction"></p><div id="detail"></div>
+<div id="quizControls" class="button-grid hidden" aria-label="Quiz result"><button data-q="11">[1, 1]</button><button data-q="10">[1, 0]</button><button data-q="01">[0, 1]</button><button data-q="00">[0, 0]</button></div>
+<div id="orderControls" class="button-row hidden"></div><div id="itemGainControls" class="button-row hidden"><button data-gain="Pu">Push</button><button data-gain="Ro">Rotation</button><button data-gain="St">Step</button></div>
+<div id="moveControls" class="hidden"><div class="button-row"><button data-move-item="Pu">Push</button><button data-move-item="RoL">RoL</button><button data-move-item="RoR">RoR</button><button data-move-item="StS">StS</button><button data-move-item="StL">StL</button></div><div class="item-help" id="selectedItemText">Item: none</div></div>
+<div id="draftControls" class="button-row hidden"><button id="backBtn" class="compact">Back</button><button id="cancelBtn" class="compact">Cancel</button><button id="confirmBtn" class="compact">Confirm Move</button></div>
+<div id="engineControls" class="button-row hidden"><button id="engineStartBtn" class="compact">Start</button><button id="engineStepBtn" class="compact">Step</button></div>
+</section>
+<section class="section"><div class="section-title">Tools</div><div class="utilities"><button id="flipBtn">Flip Board</button><button id="undoBtn">Undo</button><button id="analyzeBtn">Analyze</button><button id="saveBtn">Save</button><button id="loadBtn">Load</button><button id="resetBtn">Reset</button></div><input id="loadInput" type="file" accept=".rpsc,.txt,text/plain"></section>
+</aside></main>
+<section class="lower-grid"><section class="record"><div class="lower-head"><h2>Game Record</h2><span class="hint">Canonical question-based record</span></div><pre id="recordText"></pre></section><section class="analysis"><div class="lower-head"><h2>Live Analysis</h2><span class="hint">Gesture States and Engine Analysis</span></div><div id="analysisBody" class="analysis-body"></div></section></section>
+<div class="footer-note">Offline single-file analysis board · classical engine · timers and timeout handling omitted by design.</div>
 </div>
+
+<script id="engineWorkerSource" type="text/plain">
+"use strict";
+const D={N:[0,1],S:[0,-1],E:[1,0],W:[-1,0]},OP={N:"S",S:"N",E:"W",W:"E"},DIR=["N","S","E","W"],DIST={S:3,R:4,P:5},MAXPLY=64;
+let NODE=0,SEL=0,STOP=0,DEADLINE=0,TT=new Map(),HIST=Array.from({length:8},()=>new Int32Array(64)),KILL=[];
+function pc(id){return id[0]}function sq(x,y){return y*8+x}function top(s,o){return s.top[o]}function key(s){return s.side+"|"+s.c.W+","+s.c.B+"|"+s.p.map(p=>p.a?(p.x+8*p.y)+"/"+s.red[p.o]:"x").join(";")}
+function adj(s,x,y,side,skip){let a=[];for(let i=0;i<8;i++){let p=s.p[i];if(i===skip||!p.a||pc(p.id)===side)continue;if(Math.abs(p.x-x)+Math.abs(p.y-y)===1)a.push(i)}return a}
+function occ(s,x,y,skip){for(let i=0;i<8;i++){let p=s.p[i];if(i!==skip&&p.a&&p.x===x&&p.y===y)return 1}return 0}
+function alive(s,side){let n=0;for(let p of s.p)if(p.a&&pc(p.id)===side)n++;return n}
+function fight(a,b){if(a===b)return 0;if((a==="S"&&b==="P")||(a==="R"&&b==="S")||(a==="P"&&b==="R"))return 1;return-1}
+function uniqueMoves(s){let out=[],seen=new Set();for(let i=0;i<8;i++){let p=s.p[i];if(!p.a||pc(p.id)!==s.side)continue;let L=DIST[top(s,p.o)],path=[[p.x,p.y]],dirs=[];function emit(x,y,o){let es=adj(s,x,y,s.side,i),cap=-1,t=0,reset=0;if(es.length===1){let e=es[0],f=fight(top(s,o),top(s,s.p[e].o));if(f>0){cap=e;t=1;reset=alive(s,pc(s.p[e].id))===1?1:0}else if(f<0){cap=i;t=-1;reset=alive(s,s.side)===1?1:0}}let k;if(reset)k="R|"+t;else if(t<0)k=i+"|x|"+cap;else k=i+"|"+sq(x,y)+"|"+s.red[o]+"|"+cap;if(seen.has(k))return;seen.add(k);out.push({m:{i,id:p.id,path:path.slice(),dirs:dirs.slice()},t})}function dfs(x,y,o,last,n){if(n===L){emit(x,y,o);return}for(let d of DIR){if(last&&d===OP[last])continue;let [dx,dy]=D[d],nx=x+dx,ny=y+dy;if(nx<0||nx>7||ny<0||ny>7||occ(s,nx,ny,i))continue;if(n+1===L&&adj(s,nx,ny,s.side,i).length>=2)continue;path.push([nx,ny]);dirs.push(d);dfs(nx,ny,s.roll[o][DIR.indexOf(d)],d,n+1);dirs.pop();path.pop()}}dfs(p.x,p.y,p.o,null,0)}return out}
+function initPieces(s){for(let i=0;i<8;i++){let p=s.p[i],w=i<4,g=["S","R","P","S"][i%4],st=w?[[0,0],[2,0],[4,0],[6,0]][i]:[[7,7],[5,7],[3,7],[1,7]][i-4];p.a=1;p.x=st[0];p.y=st[1];p.o=s.canon[g+(w?"S":"N")]}}
+function apply(s,m){let n={side:s.side,c:{W:s.c.W,B:s.c.B},p:s.p.map(p=>({...p})),roll:s.roll,top:s.top,red:s.red,canon:s.canon},p=n.p[m.i],o=p.o;for(let d of m.dirs)o=n.roll[o][DIR.indexOf(d)];let z=m.path[m.path.length-1];p.x=z[0];p.y=z[1];p.o=o;let es=adj(n,p.x,p.y,n.side,m.i);if(es.length===1){let e=n.p[es[0]],f=fight(top(n,p.o),top(n,e.o));if(f!==0){let lose=f>0?e:p,winner=f>0?n.side:(n.side==="W"?"B":"W");lose.a=0;n.c[winner]++}}let wa=n.p.slice(0,4).some(p=>p.a),ba=n.p.slice(4).some(p=>p.a);if(!wa||!ba)initPieces(n);n.side=n.side==="W"?"B":"W";return n}
+function mobility1(s,i){let p=s.p[i],n=0;if(!p.a)return 0;for(let d of DIR){let [dx,dy]=D[d],x=p.x+dx,y=p.y+dy;if(x>=0&&x<8&&y>=0&&y<8&&!occ(s,x,y,i))n++}return n}
+function evalW(s){let v=200*(s.c.W-s.c.B),aw=0,ab=0;for(let i=0;i<8;i++){let p=s.p[i];if(!p.a)continue;i<4?aw++:ab++;v+=(i<4?1:-1)*2*mobility1(s,i)}return v+12*(aw-ab)}function ev(s){let v=evalW(s);return s.side==="W"?v:-v}
+function stop(){NODE++;if((NODE&1023)===0&&performance.now()>DEADLINE)STOP=1;return STOP}
+function same(a,b){if(!a||!b||a.i!==b.i||a.path.length!==b.path.length)return 0;for(let i=0;i<a.path.length;i++)if(a.path[i][0]!==b.path[i][0]||a.path[i][1]!==b.path[i][1])return 0;return 1}
+function q(s,a,b,ply){SEL=Math.max(SEL,ply);if(ply>=MAXPLY||stop())return ev(s);let st=ev(s);if(st>=b)return b;if(st>a)a=st;let ms=uniqueMoves(s).filter(x=>x.t!==0).sort((x,y)=>y.t-x.t);for(let x of ms){let sc=-q(apply(s,x.m),-b,-a,ply+1);if(STOP)return a;if(sc>=b)return b;if(sc>a)a=sc}return a}
+function killerScore(m,ply){let k=KILL[ply];if(!k)return 0;if(k[0]&&same(m,k[0]))return 200000;if(k[1]&&same(m,k[1]))return 150000;return 0}
+function recordKiller(m,d,ply){let q=sq(m.path.at(-1)[0],m.path.at(-1)[1]),h=HIST[m.i][q]+d*d;HIST[m.i][q]=h>100000?(h>>1):h;if(!KILL[ply])KILL[ply]=[null,null];if(!same(m,KILL[ply][0])){KILL[ply][1]=KILL[ply][0];KILL[ply][0]=m}}
+function ab(s,d,a,b,ply,pv){SEL=Math.max(SEL,ply);if(ply>=MAXPLY)return ev(s);if(d<=0)return q(s,a,b,ply);if(stop())return ev(s);let k=key(s),e=TT.get(k),tm=e&&e.m,oa=a,ob=b;if(e&&e.d>=d&&!pv){if(e.bd===0)return e.v;if(e.bd===1&&e.v>=b)return e.v;if(e.bd===-1&&e.v<=a)return e.v}let ms=uniqueMoves(s);if(!ms.length)return ev(s);let ord=ms.map(x=>({x,sc:(tm&&same(x.m,tm)?1000000:0)+(x.t>0?500000+x.t*10000:x.t<0?-250000:0)+killerScore(x.m,ply)+HIST[x.m.i][sq(x.m.path.at(-1)[0],x.m.path.at(-1)[1])]})).sort((x,y)=>y.sc-x.sc),bm=null,j=0;for(let z of ord){let x=z.x,ns=apply(s,x.m),sc;if(j===0)sc=-ab(ns,d-1,-b,-a,ply+1,pv);else{let red=!pv&&x.t===0&&d>=4&&j>=4;if(red){sc=-ab(ns,d-2,-a-1,-a,ply+1,0);if(sc>a)sc=-ab(ns,d-1,-a-1,-a,ply+1,0)}else sc=-ab(ns,d-1,-a-1,-a,ply+1,0);if(sc>a&&sc<b)sc=-ab(ns,d-1,-b,-a,ply+1,pv)}j++;if(STOP)return a;if(sc>a){a=sc;bm=x.m}if(a>=b){if(x.t===0)recordKiller(x.m,d,ply);break}}let bd=a<=oa?-1:a>=ob?1:0;TT.set(k,{d,v:a,bd,m:bm});if(TT.size>120000)TT.clear();return a}
+function pvline(s,best,d){let out=[],x=s,m=best;for(let i=0;i<d&&m;i++){out.push(m);x=apply(x,m);let e=TT.get(key(x));m=e&&e.m}return out}
+function rootPass(s,roots,prev,d,a,b){let ord=roots.map(x=>({x,sc:(same(x.m,prev)?1000000:0)+(x.t>0?500000+x.t*10000:x.t<0?-250000:0)+HIST[x.m.i][sq(x.m.path.at(-1)[0],x.m.path.at(-1)[1])]})).sort((x,y)=>y.sc-x.sc),best=prev,bv=-1e9,scores=[],j=0,alpha=a;for(let z of ord){let x=z.x,v,ns=apply(s,x.m);if(j++===0)v=-ab(ns,d-1,-b,-alpha,1,1);else{v=-ab(ns,d-1,-alpha-1,-alpha,1,0);if(v>alpha&&v<b)v=-ab(ns,d-1,-b,-alpha,1,1)}if(STOP)break;scores.push({move:x.m,value:v});if(v>bv){bv=v;best=x.m}if(v>alpha)alpha=v;if(alpha>=b)break}return{best,value:bv,scores}}
+function search(s,lim){NODE=0;SEL=0;STOP=0;KILL=Array.from({length:MAXPLY},()=>[null,null]);if(TT.size>120000)TT.clear();DEADLINE=performance.now()+(lim.ms||1000);let roots=uniqueMoves(s),prev=roots[0]?.m,res={best:null,value:0,depth:0,seldepth:0,nodes:0,pv:[],candidates:[]},start=performance.now(),prevValue=0;for(let d=1;d<=lim.depth&&prev;d++){let w=50,a=d>=4&&res.best?prevValue-w:-1e9,b=d>=4&&res.best?prevValue+w:1e9,pass;while(1){pass=rootPass(s,roots,prev,d,a,b);if(STOP)break;if(pass.value<=a&&a>-1e9){w*=2;a=prevValue-w;b=prevValue+w;continue}if(pass.value>=b&&b<1e9){w*=2;a=prevValue-w;b=prevValue+w;continue}break}if(STOP)break;prev=pass.best;prevValue=pass.value;pass.scores.sort((x,y)=>y.value-x.value);res={best:prev,value:prevValue,depth:d,seldepth:SEL,nodes:NODE,pv:pvline(s,prev,d),candidates:pass.scores.slice(0,3)}}res.ms=Math.max(1,performance.now()-start);return res}
+onmessage=e=>{let {id,state,limits}=e.data;try{postMessage({id,result:search(state,limits)})}catch(err){postMessage({id,error:String(err&&err.message||err)})}};
+</script>
 
 <script>
 "use strict";
-
-/* ============================================================
-   RockPaperScissors Chess — local analysis board
-   Source hierarchy used in this build:
-   1) 2026 official final planning document
-   2) current RPSC textbook Rules / Notation / Movement chapters
-   3) earlier simulator only as a secondary implementation reference
-
-   The 24-orientation physical cube model is the source of truth.
-   The six Gesture States are a derived analysis layer and never replace
-   exact RoL/RoR orientation in the canonical game record.
-   ============================================================ */
-
-const C = Object.freeze({
-  POSTECH:"POSTECH",
-  KAIST:"KAIST",
-  POSTECH_RED:"#a61955",
-  KAIST_BLUE:"#004191",
-  INK:"#111111",
-  MUTED:"#666666",
-  BOARD_LINE:"#525252",
-  COORD:"#666666",
-  DARK_SQUARE:"#efefef",
-  LIGHT_SQUARE:"#ffffff",
-  MAIN_ROUNDS:20,
-  OT_MAX:5,
-  DIST:{S:3,R:4,P:5},
-  FILES:"abcdefgh"
-});
-
-const DIRS=Object.freeze({
-  N:{dx:0,dy:1},S:{dx:0,dy:-1},E:{dx:1,dy:0},W:{dx:-1,dy:0}
-});
-const OPP=Object.freeze({N:"S",S:"N",E:"W",W:"E"});
-const VEC_TO_DIR=new Map([
-  ["0,1,0","N"],["0,-1,0","S"],["1,0,0","E"],["-1,0,0","W"],
-  ["0,0,1","UP"],["0,0,-1","DOWN"]
-]);
-
-function clone(x){return JSON.parse(JSON.stringify(x));}
-function sameVec(a,b){return a[0]===b[0]&&a[1]===b[1]&&a[2]===b[2];}
-function vecKey(v){return v.join(",");}
-function inBoard(x,y){return x>=0&&x<8&&y>=0&&y<8;}
-function cell(x,y){return C.FILES[x]+String(y+1);}
-function xy(s){
-  const t=s.trim().toLowerCase();
-  if(!/^[a-h][1-8]$/.test(t))throw new Error(`Invalid square: ${s}`);
-  return{x:C.FILES.indexOf(t[0]),y:Number(t[1])-1};
-}
-function otherTeam(team){return team===C.POSTECH?C.KAIST:C.POSTECH;}
-function teamColor(team){return team===C.POSTECH?C.POSTECH_RED:C.KAIST_BLUE;}
-function score(team,g=game){return g.teams[team].quiz+2*g.teams[team].captures;}
-function roleOfTeam(team){if(!game.order.white)return null;return game.order.white===team?"W":"B";}
-function teamOfRole(role){if(!game.order.white)return null;return role==="W"?game.order.white:game.order.black;}
-
-function topFace(orientation){
-  const f=orientation.find(q=>sameVec(q.normal,[0,0,1]));
-  if(!f)throw new Error("Cube has no top face.");
-  return f;
-}
-function topGesture(orientation){return topFace(orientation).gesture;}
-function topWrist(orientation){return topFace(orientation).wrist;}
-function wristDirection(orientation){return VEC_TO_DIR.get(vecKey(topWrist(orientation)));}
-function wristAxis(orientation){
-  const d=wristDirection(orientation);
-  return d==="N"||d==="S"?"NS":"EW";
-}
-function gestureOnPositiveAxis(orientation,normal){
-  const f=orientation.find(q=>sameVec(q.normal,normal));
-  if(!f)throw new Error(`Missing axis face ${normal}.`);
-  return f.gesture;
-}
-function gestureState(orientation){
-  return[
-    gestureOnPositiveAxis(orientation,[0,0,1]),
-    gestureOnPositiveAxis(orientation,[0,1,0]),
-    gestureOnPositiveAxis(orientation,[1,0,0])
-  ];
-}
-function stateText(s){return `⟨${s[0]}, ${s[1]}, ${s[2]}⟩`;}
-function stateEq(a,b){return a.length===b.length&&a.every((x,i)=>x===b[i]);}
-function VState(s){return[s[1],s[0],s[2]];}
-function HState(s){return[s[2],s[1],s[0]];}
-function rhoState(s){return[s[0],s[2],s[1]];}
-function axisLetter(dir){return dir==="N"||dir==="S"?"V":"H";}
-function baseRollLengthFromState(s){return C.DIST[s[0]];}
-
-/* Official net folded into 3D. Net geometry is P-S-P-S with R above/below
-   the central S; data below are listed by gesture S -> R -> P. */
-const BASE_CUBE=Object.freeze([
-  {id:"S1",gesture:"S",normal:[0,0,1],wrist:[0,-1,0]},
-  {id:"S2",gesture:"S",normal:[0,0,-1],wrist:[0,-1,0]},
-  {id:"R1",gesture:"R",normal:[0,1,0],wrist:[0,0,1]},
-  {id:"R2",gesture:"R",normal:[0,-1,0],wrist:[0,0,-1]},
-  {id:"P1",gesture:"P",normal:[-1,0,0],wrist:[0,-1,0]},
-  {id:"P2",gesture:"P",normal:[1,0,0],wrist:[0,-1,0]}
-]);
-
-function transformVec(v,op){
-  const[x,y,z]=v;
-  switch(op){
-    case"N":return[x,-z,y];
-    case"S":return[x,z,-y];
-    case"E":return[z,y,-x];
-    case"W":return[-z,y,x];
-    case"CW":return[y,-x,z];
-    case"CCW":return[-y,x,z];
-    default:throw new Error(`Unknown cube operation: ${op}`);
-  }
-}
-function cubeTransform(orientation,op){
-  return orientation.map(f=>({id:f.id,gesture:f.gesture,normal:transformVec(f.normal,op),wrist:transformVec(f.wrist,op)}));
-}
-function orientationKey(o){
-  return o.slice().sort((a,b)=>a.id.localeCompare(b.id)).map(f=>`${f.id}:${f.normal.join(",")}/${f.wrist.join(",")}`).join("|");
-}
-function allOrientations(){
-  const first=clone(BASE_CUBE),map=new Map([[orientationKey(first),first]]),queue=[first];
-  while(queue.length){
-    const s=queue.shift();
-    for(const d of["N","S","E","W"]){
-      const n=cubeTransform(s,d),k=orientationKey(n);
-      if(!map.has(k)){map.set(k,n);queue.push(n);}
-    }
-  }
-  return[...map.values()];
-}
-const ALL_ORIENTATIONS=allOrientations();
-function canonicalOrientation(gesture,wristDir){
-  const preferred=`${gesture}1`;
-  const matches=ALL_ORIENTATIONS.filter(o=>{
-    const t=topFace(o);
-    return t.gesture===gesture&&VEC_TO_DIR.get(vecKey(t.wrist))===wristDir;
-  });
-  const picked=matches.find(o=>topFace(o).id===preferred)||matches[0];
-  if(!picked)throw new Error(`No orientation for ${gesture}, wrist ${wristDir}`);
-  return clone(picked);
-}
-
-function initialPieces(whiteTeam,blackTeam){
-  const W=[["W1","a1","S"],["W2","c1","R"],["W3","e1","P"],["W4","g1","S"]];
-  const B=[["B1","h8","S"],["B2","f8","R"],["B3","d8","P"],["B4","b8","S"]];
-  const out=[];
-  for(const[id,sq,g]of W){const p=xy(sq);out.push({id,team:whiteTeam,alive:true,x:p.x,y:p.y,orientation:canonicalOrientation(g,"S")});}
-  for(const[id,sq,g]of B){const p=xy(sq);out.push({id,team:blackTeam,alive:true,x:p.x,y:p.y,orientation:canonicalOrientation(g,"N")});}
-  return out;
-}
-function previewPieces(){
-  const a=initialPieces(C.POSTECH,C.KAIST);
-  return a.map(p=>({...p,id:p.id[0]==="W"?`P${p.id[1]}`:`K${p.id[1]}`}));
-}
-function todayString(){
-  const d=new Date();
-  return`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`;
-}
-function freshGame(){
-  return{
-    meta:{event:"RPSC Analysis",site:"Local",date:todayString()},
-    order:{white:null,black:null,source:null},
-    teams:{POSTECH:{quiz:0,captures:0,items:{Pu:0,Ro:0,St:0}},KAIST:{quiz:0,captures:0,items:{Pu:0,Ro:0,St:0}}},
-    pieces:null,rounds:[],overtime:[],phase:"QUIZ",orderChoiceTeam:null,itemTeam:null,moveRole:null,
-    result:null,resultReason:"",lastAction:"New analysis. Enter Round 1 quiz result."
-  };
-}
-
-let game=freshGame();
-let undoStack=[];
-let ui={flipped:false,selectedItem:null,selectedPieceId:null,draft:null};
-let engineReady=true;
-
-function clearMoveUI(){ui.selectedItem=null;ui.selectedPieceId=null;ui.draft=null;}
-function snapshot(){return clone(game);}
-function pushUndo(){undoStack.push(snapshot());}
-function restoreLast(){
-  if(!undoStack.length)return;
-  game=undoStack.pop();clearMoveUI();render();
-}
-function currentRound(){
-  if(!game.rounds.length)return null;
-  const r=game.rounds[game.rounds.length-1];
-  return r.complete?null:r;
-}
-function currentMoveTeam(){return game.phase==="MOVE"?teamOfRole(game.moveRole):null;}
-function pieceById(id,g=game){return g.pieces?.find(p=>p.id===id)||null;}
-function occupiedAt(x,y,excludeId=null,g=game){return g.pieces?.find(p=>p.alive&&p.id!==excludeId&&p.x===x&&p.y===y)||null;}
-function aliveEnemiesAdjacent(x,y,team,excludeId=null,g=game){
-  return(g.pieces||[]).filter(p=>p.alive&&p.id!==excludeId&&p.team!==team&&Math.abs(p.x-x)+Math.abs(p.y-y)===1);
-}
-function itemBucket(code){
-  if(code==="Pu")return"Pu";
-  if(code==="RoL"||code==="RoR")return"Ro";
-  if(code==="StL"||code==="StS")return"St";
-  return null;
-}
-function itemLabel(bucket){return bucket==="Pu"?"Push":bucket==="Ro"?"Rotation":"Step";}
-
-function setOrder(whiteTeam,source){
-  pushUndo();
-  game.order.white=whiteTeam;game.order.black=otherTeam(whiteTeam);game.order.source=source;
-  game.pieces=initialPieces(game.order.white,game.order.black);
-  game.lastAction=`First/second order set: White ${game.order.white}, Black ${game.order.black}.`;
-  clearMoveUI();routeCurrentRoundAfterOrder();render();
-}
-function routeCurrentRoundAfterOrder(){
-  const r=currentRound();
-  if(!r){game.phase="QUIZ";return;}
-  const p=r.q.POSTECH,k=r.q.KAIST;
-  if(p!==k){game.phase="ITEM_SELECT";game.itemTeam=p?C.POSTECH:C.KAIST;}
-  else{game.phase="MOVE";game.moveRole="W";}
-}
-function submitQuiz(p,k){
-  if(game.phase!=="QUIZ"&&game.phase!=="OT_QUIZ")return;
-  if(game.phase==="OT_QUIZ"){submitOTQuiz(p,k);return;}
-  const n=game.rounds.length+1;if(n>C.MAIN_ROUNDS)return;
-  pushUndo();
-  game.teams.POSTECH.quiz+=p?1:0;game.teams.KAIST.quiz+=k?1:0;
-  game.rounds.push({n,q:{POSTECH:!!p,KAIST:!!k},itemGain:null,moves:[],complete:false});
-  game.lastAction=`Round ${n}: POSTECH ${p?"correct":"wrong"}, KAIST ${k?"correct":"wrong"}.`;
-  clearMoveUI();
-  if(!game.order.white){
-    if(p!==k){game.phase="ORDER_CHOICE";game.orderChoiceTeam=p?C.POSTECH:C.KAIST;}
-    else game.phase="COIN_RESULT";
-  }else routeCurrentRoundAfterOrder();
-  render();
-}
-function chooseCoinResult(team){if(game.phase==="COIN_RESULT")setOrder(team,"opening equal-result first mover (coin-toss result entered manually)");}
-function chooseOrderForSolo(correctTeam,wantsFirst){
-  if(game.phase!=="ORDER_CHOICE"||game.orderChoiceTeam!==correctTeam)return;
-  setOrder(wantsFirst?correctTeam:otherTeam(correctTeam),"first solo-correct choice");
-}
-function selectItemGain(type){
-  if(game.phase!=="ITEM_SELECT"||!["Pu","Ro","St"].includes(type))return;
-  pushUndo();
-  const t=game.itemTeam;game.teams[t].items[type]++;
-  const r=currentRound();r.itemGain={team:t,type};game.lastAction=`${t} gained ${itemLabel(type)}.`;
-  completeCurrentRound();render();
-}
-function completeCurrentRound(){
-  const r=currentRound();if(r)r.complete=true;
-  game.itemTeam=null;game.moveRole=null;clearMoveUI();
-  if(r&&r.n>=C.MAIN_ROUNDS)evaluateMainGame();else game.phase="QUIZ";
-}
-function evaluateMainGame(){
-  const ps=score(C.POSTECH),ks=score(C.KAIST);
-  if(ps!==ks){game.result=ps>ks?C.POSTECH:C.KAIST;game.resultReason=`Score ${ps}–${ks}`;game.phase="GAME_OVER";return;}
-  const pq=game.teams.POSTECH.quiz,kq=game.teams.KAIST.quiz;
-  if(pq!==kq){game.result=pq>kq?C.POSTECH:C.KAIST;game.resultReason=`Score tied; Quiz ${pq}–${kq}`;game.phase="GAME_OVER";return;}
-  game.phase="OT_QUIZ";game.lastAction="Main game tied in score and quiz count. Overtime is quiz-only.";
-}
-function submitOTQuiz(p,k){
-  if(game.phase!=="OT_QUIZ"||game.overtime.length>=C.OT_MAX)return;
-  pushUndo();const n=game.overtime.length+1;
-  game.overtime.push({n,q:{POSTECH:!!p,KAIST:!!k}});
-  game.lastAction=`OT${n}: POSTECH ${p?"correct":"wrong"}, KAIST ${k?"correct":"wrong"}.`;
-  const pd=game.overtime.reduce((s,r)=>s+(r.q.POSTECH?1:0),0),kd=game.overtime.reduce((s,r)=>s+(r.q.KAIST?1:0),0);
-  if(pd!==kd){game.result=pd>kd?C.POSTECH:C.KAIST;game.resultReason=`Overtime sudden death at OT${n}`;game.phase="GAME_OVER";}
-  else if(n>=C.OT_MAX){game.result=null;game.resultReason="Overtime exhausted at 5 questions; supplied official source gives no further procedure.";game.phase="GAME_OVER";}
-  render();
-}
-
-function setSelectedMoveItem(code){
-  if(game.phase!=="MOVE"||ui.draft)return;
-  const bucket=itemBucket(code),team=currentMoveTeam();
-  if(!bucket||game.teams[team].items[bucket]<1)return;
-  ui.selectedItem=ui.selectedItem===code?null:code;
-  render();
-}
-function selectPiece(pieceId){
-  if(game.phase!=="MOVE"||ui.draft)return;
-  const p=pieceById(pieceId),team=currentMoveTeam();
-  if(!p||!p.alive||p.team!==team)return;
-  ui.selectedPieceId=ui.selectedPieceId===pieceId?null:pieceId;
-  render();
-}
-function selectedPreview(){
-  if(!ui.selectedPieceId||game.phase!=="MOVE")return null;
-  const p=pieceById(ui.selectedPieceId);if(!p||!p.alive)return null;
-  const item=ui.selectedItem;
-  let o=clone(p.orientation),steps=C.DIST[topGesture(o)];
-  if(item==="RoL")o=cubeTransform(o,"CCW");
-  if(item==="RoR")o=cubeTransform(o,"CW");
-  if(item==="StS")steps--;
-  if(item==="StL")steps++;
-  return{pieceId:p.id,team:p.team,item,start:{x:p.x,y:p.y},orientation:o,initialOrientation:clone(p.orientation),baseDistance:C.DIST[topGesture(p.orientation)],stepsRequired:steps};
-}
-function selectionLegalCells(){
-  const s=selectedPreview();if(!s)return[];
-  const ans=[];
-  if(s.item==="Pu"){
-    for(const[dir,v]of Object.entries(DIRS)){
-      const x=s.start.x+v.dx,y=s.start.y+v.dy;
-      if(inBoard(x,y)&&!occupiedAt(x,y,s.pieceId))ans.push({x,y,dir,kind:"PUSH"});
-    }
-    return ans;
-  }
-  for(const[dir,v]of Object.entries(DIRS)){
-    const x=s.start.x+v.dx,y=s.start.y+v.dy;
-    if(!inBoard(x,y)||occupiedAt(x,y,s.pieceId))continue;
-    const finalNext=s.stepsRequired===1;
-    if(finalNext&&aliveEnemiesAdjacent(x,y,s.team,s.pieceId).length>=2)continue;
-    ans.push({x,y,dir,kind:"ROLL"});
-  }
-  return ans;
-}
-function makeDraftFromSelection(){
-  const s=selectedPreview();if(!s)return null;
-  return{
-    pieceId:s.pieceId,team:s.team,item:s.item,start:{...s.start},pos:{...s.start},orientation:clone(s.orientation),
-    initialOrientation:clone(s.initialOrientation),baseDistance:s.baseDistance,stepsRequired:s.stepsRequired,
-    pushCell:null,rollPath:[],rollDirs:[],subphase:s.item==="Pu"?"PUSH":"ROLL"
-  };
-}
-function startDraftWithCell(target){
-  if(!ui.selectedPieceId||ui.draft)return;
-  const d=makeDraftFromSelection();if(!d)return;
-  ui.draft=d;
-  if(target.kind==="PUSH"){
-    d.pushCell={x:target.x,y:target.y};d.pos={x:target.x,y:target.y};d.subphase="ROLL";
-  }else{
-    d.orientation=cubeTransform(d.orientation,target.dir);d.pos={x:target.x,y:target.y};
-    d.rollPath.push({x:target.x,y:target.y});d.rollDirs.push(target.dir);
-    if(d.rollPath.length===d.stepsRequired)d.subphase="COMPLETE";
-  }
-  render();
-}
-function draftLegalCells(){
-  const d=ui.draft;if(!d)return[];const ans=[];
-  if(d.subphase==="PUSH"){
-    for(const[dir,v]of Object.entries(DIRS)){
-      const x=d.start.x+v.dx,y=d.start.y+v.dy;
-      if(inBoard(x,y)&&!occupiedAt(x,y,d.pieceId))ans.push({x,y,dir});
-    }
-    return ans;
-  }
-  if(d.subphase!=="ROLL")return ans;
-  const last=d.rollDirs.length?d.rollDirs[d.rollDirs.length-1]:null;
-  const finalNext=d.rollPath.length+1===d.stepsRequired;
-  for(const[dir,v]of Object.entries(DIRS)){
-    if(last&&dir===OPP[last])continue;
-    const x=d.pos.x+v.dx,y=d.pos.y+v.dy;
-    if(!inBoard(x,y)||occupiedAt(x,y,d.pieceId))continue;
-    if(finalNext&&aliveEnemiesAdjacent(x,y,d.team,d.pieceId).length>=2)continue;
-    ans.push({x,y,dir});
-  }
-  return ans;
-}
-function clickBoardCell(x,y){
-  if(game.phase!=="MOVE")return;
-  if(!ui.draft){
-    const p=occupiedAt(x,y,null);
-    if(p&&p.team===currentMoveTeam()){selectPiece(p.id);return;}
-    if(!ui.selectedPieceId)return;
-    const target=selectionLegalCells().find(c=>c.x===x&&c.y===y);
-    if(target)startDraftWithCell(target);
-    return;
-  }
-  const d=ui.draft,target=draftLegalCells().find(c=>c.x===x&&c.y===y);if(!target)return;
-  if(d.subphase==="PUSH"){
-    d.pushCell={x,y};d.pos={x,y};d.subphase="ROLL";
-  }else if(d.subphase==="ROLL"){
-    d.orientation=cubeTransform(d.orientation,target.dir);d.pos={x,y};d.rollPath.push({x,y});d.rollDirs.push(target.dir);
-    if(d.rollPath.length===d.stepsRequired)d.subphase="COMPLETE";
-  }
-  render();
-}
-function rebuildDraft(){
-  const d=ui.draft;if(!d)return;
-  let o=clone(d.initialOrientation),pos={...d.start};
-  if(d.item==="RoL")o=cubeTransform(o,"CCW");
-  if(d.item==="RoR")o=cubeTransform(o,"CW");
-  if(d.pushCell)pos={...d.pushCell};
-  for(let i=0;i<d.rollDirs.length;i++){o=cubeTransform(o,d.rollDirs[i]);pos={...d.rollPath[i]};}
-  d.orientation=o;d.pos=pos;
-}
-function draftBack(){
-  const d=ui.draft;if(!d)return;
-  if(d.subphase==="COMPLETE")d.subphase="ROLL";
-  if(d.subphase==="ROLL"&&d.rollPath.length){d.rollPath.pop();d.rollDirs.pop();rebuildDraft();}
-  else if(d.subphase==="ROLL"&&d.pushCell){d.pushCell=null;d.pos={...d.start};d.subphase="PUSH";rebuildDraft();}
-  render();
-}
-function cancelDraft(){
-  const d=ui.draft;if(!d)return;
-  ui.selectedPieceId=d.pieceId;ui.selectedItem=d.item;ui.draft=null;render();
-}
-
-function rpsWinner(a,b){
-  if(a===b)return 0;
-  if((a==="S"&&b==="P")||(a==="R"&&b==="S")||(a==="P"&&b==="R"))return 1;
-  return-1;
-}
-function previewCombat(){
-  const d=ui.draft;if(!d||d.subphase!=="COMPLETE")return null;
-  const enemies=aliveEnemiesAdjacent(d.pos.x,d.pos.y,d.team,d.pieceId);
-  if(!enemies.length)return{enemy:null,capture:null,text:"No combat."};
-  const e=enemies[0],mg=topGesture(d.orientation),eg=topGesture(e.orientation),w=rpsWinner(mg,eg);
-  if(w===0)return{enemy:e,capture:null,text:`Combat: ${d.pieceId} ${mg} vs ${e.id} ${eg} — tie.`};
-  const loser=w>0?e.id:d.pieceId;
-  return{enemy:e,capture:loser,text:`Combat: ${d.pieceId} ${mg} vs ${e.id} ${eg} — ${loser} removed.`};
-}
-function notationForDraft(d,captureId,reset){
-  const item=d.item?`[${d.item}]`:"";let path=cell(d.start.x,d.start.y);
-  if(d.pushCell)path+=`>${cell(d.pushCell.x,d.pushCell.y)}`;
-  for(const p of d.rollPath)path+=`-${cell(p.x,p.y)}`;
-  return`${d.pieceId}${item}: ${path}${captureId?` x${captureId}`:""}${reset?" Reset":""}`;
-}
-function draftMoveNotation(d){
-  if(!d)return"";
-  const item=d.item?`[${d.item}]`:"";let path=cell(d.start.x,d.start.y);
-  if(d.pushCell)path+=`>${cell(d.pushCell.x,d.pushCell.y)}`;
-  for(const p of d.rollPath)path+=`-${cell(p.x,p.y)}`;
-  return`${d.pieceId}${item}: ${path}`;
-}
-function applyConfirmedDraft(){
-  const d=ui.draft;if(!d||d.subphase!=="COMPLETE")return;
-  pushUndo();const p=pieceById(d.pieceId),bucket=itemBucket(d.item);
-  if(bucket){if(game.teams[d.team].items[bucket]<1)throw new Error("Item inventory changed unexpectedly.");game.teams[d.team].items[bucket]--;}
-  p.x=d.pos.x;p.y=d.pos.y;p.orientation=clone(d.orientation);
-  let captureId=null;const enemies=aliveEnemiesAdjacent(p.x,p.y,p.team,p.id);
-  if(enemies.length>1)throw new Error("Illegal simultaneous combat destination.");
-  if(enemies.length===1){
-    const e=enemies[0],w=rpsWinner(topGesture(p.orientation),topGesture(e.orientation));
-    if(w!==0){const loser=w>0?e:p,winnerTeam=w>0?p.team:e.team;loser.alive=false;captureId=loser.id;game.teams[winnerTeam].captures++;}
-  }
-  let didReset=false;
-  if(game.pieces.filter(q=>q.alive&&q.team===C.POSTECH).length===0||game.pieces.filter(q=>q.alive&&q.team===C.KAIST).length===0){
-    game.pieces=initialPieces(game.order.white,game.order.black);didReset=true;
-  }
-  const rec={role:game.moveRole,team:d.team,pieceId:d.pieceId,item:d.item,start:cell(d.start.x,d.start.y),push:d.pushCell?cell(d.pushCell.x,d.pushCell.y):null,rolls:d.rollPath.map(q=>cell(q.x,q.y)),capture:captureId,reset:didReset,notation:notationForDraft(d,captureId,didReset)};
-  currentRound().moves.push(rec);game.lastAction=rec.notation;clearMoveUI();
-  if(game.moveRole==="W"){game.moveRole="B";game.phase="MOVE";}else completeCurrentRound();
-  render();
-}
-
-function isCompleteSavePoint(){return!ui.draft&&!!game.order.white&&!["ORDER_CHOICE","COIN_RESULT","ITEM_SELECT","MOVE"].includes(game.phase);}
-function resultToken(){if(!game.result)return"*";return game.result===game.order.white?"1-0":"0-1";}
-function pairByRole(getter){if(!game.order.white)return[0,0];return[getter(game.order.white),getter(game.order.black)];}
-function qNotation(q){const w=q[game.order.white]?1:0,b=q[game.order.black]?1:0;return`Q[${w}, ${b}]`;}
-function analysisMoveNumber(g=game){
-  return(g.rounds||[]).filter(r=>r.q.POSTECH===r.q.KAIST).length;
-}
-function analysisMoveLabel(g=game){
-  if(g.phase!=="MOVE"||!g.moveRole)return"—";
-  const n=analysisMoveNumber(g);
-  return`M${n}${g.moveRole==="W"?".":"..."}`;
-}
-function roundNotation(r){let s=`${r.n}. ${qNotation(r.q)}`;if(r.itemGain)s+=` ${roleOfTeam(r.itemGain.team)}+${r.itemGain.type}`;for(const m of r.moves)s+=` ${m.notation}`;return s;}
-function recordText(){
-  if(!game.order.white){
-    const lines=[`[Event "${game.meta.event}"]`,`[Site "${game.meta.site}"]`,`[Date "${game.meta.date}"]`,`[White "?"]`,`[Black "?"]`,`[Result "*"]`,"","{First/second order has not yet been determined. The canonical White/Black record will appear once it is set.}"];
-    if(game.rounds.length){const r=game.rounds[game.rounds.length-1];lines.push(`Round ${r.n}: POSTECH ${r.q.POSTECH?1:0}, KAIST ${r.q.KAIST?1:0}`);}
-    return lines.join("\n");
-  }
-  const[ws,bs]=pairByRole(t=>score(t)),[wq,bq]=pairByRole(t=>game.teams[t].quiz),[wc,bc]=pairByRole(t=>game.teams[t].captures);
-  const lines=[`[Event "${game.meta.event}"]`,`[Site "${game.meta.site}"]`,`[Date "${game.meta.date}"]`,`[White "${game.order.white}"]`,`[Black "${game.order.black}"]`,`[Result "${resultToken()}"]`,`[Score "${ws}-${bs}"]`,`[Quiz "${wq}-${bq}"]`,`[Captures "${wc}-${bc}"]`,""];
-  for(const r of game.rounds)lines.push(roundNotation(r));for(const r of game.overtime)lines.push(`OT${r.n}. ${qNotation(r.q)}`);return lines.join("\n");
-}
-function saveRecord(){
-  if(!isCompleteSavePoint()){game.lastAction="Finish the current round action before saving the canonical record.";render();return;}
-  const text=recordText(),blob=new Blob([text],{type:"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a"),d=game.meta.date.replaceAll(".","");
-  a.href=url;a.download=`RPSC_${d}_${game.order.white}-White.rpsc`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);game.lastAction="Record saved.";render();
-}
-
-function stripComments(text){return text.replace(/\{[^}]*\}/g," ");}
-function parseHeaders(lines){const h={};for(const line of lines){const m=line.match(/^\[([^\s]+)\s+"(.*)"\]$/);if(m)h[m[1]]=m[2];}return h;}
-function parseMoveToken(text){
-  const m=text.trim().match(/^([WB][1-4])(?:\[(Pu|RoL|RoR|StL|StS)\])?:\s*([a-h][1-8](?:[>-][a-h][1-8])+)(?:\s+x([WB][1-4]))?(?:\s+(Reset))?$/i);
-  if(!m)throw new Error(`Cannot parse move: ${text}`);
-  return{pieceId:m[1].toUpperCase(),item:m[2]||null,path:m[3].toLowerCase(),capture:m[4]?m[4].toUpperCase():null,reset:!!m[5]};
-}
-function splitTwoMoves(rest){const idx=rest.search(/\s+(?=[WB][1-4](?:\[|:))/);if(idx<0)throw new Error(`Expected two moves: ${rest}`);return[rest.slice(0,idx).trim(),rest.slice(idx).trim()];}
-function occupiedAtIn(g,x,y,excludeId=null){return g.pieces.find(p=>p.alive&&p.id!==excludeId&&p.x===x&&p.y===y)||null;}
-function enemiesAdjacentIn(g,x,y,team,excludeId=null){return g.pieces.filter(p=>p.alive&&p.id!==excludeId&&p.team!==team&&Math.abs(p.x-x)+Math.abs(p.y-y)===1);}
-function applyRecordedMove(g,move,expectedRole){
-  const p=g.pieces.find(q=>q.id===move.pieceId);if(!p||!p.alive)throw new Error(`${move.pieceId} is unavailable.`);
-  if(move.pieceId[0]!==expectedRole)throw new Error(`Expected ${expectedRole} move, got ${move.pieceId}.`);
-  const team=expectedRole==="W"?g.order.white:g.order.black;if(p.team!==team)throw new Error(`${move.pieceId} team mismatch.`);
-  const bucket=itemBucket(move.item);if(bucket){if(g.teams[team].items[bucket]<1)throw new Error(`${move.pieceId} uses unavailable ${bucket}.`);g.teams[team].items[bucket]--;}
-  let o=clone(p.orientation),base=C.DIST[topGesture(o)],steps=base;
-  if(move.item==="RoL")o=cubeTransform(o,"CCW");if(move.item==="RoR")o=cubeTransform(o,"CW");if(move.item==="StS")steps--;if(move.item==="StL")steps++;
-  const start=cell(p.x,p.y);let push=null,rolls=[];
-  if(move.item==="Pu"){
-    if(!move.path.includes(">"))throw new Error("Push record must contain >.");
-    const parts=move.path.split(">");if(parts.length!==2)throw new Error("Invalid Push path.");if(parts[0]!==start)throw new Error(`Start square mismatch for ${p.id}.`);
-    const seq=parts[1].split("-");push=seq.shift();rolls=seq;const pp=xy(push);
-    if(Math.abs(pp.x-p.x)+Math.abs(pp.y-p.y)!==1||occupiedAtIn(g,pp.x,pp.y,p.id))throw new Error("Illegal Push slide.");p.x=pp.x;p.y=pp.y;
-  }else{
-    if(move.path.includes(">"))throw new Error("Only Push may use >.");const seq=move.path.split("-");if(seq.shift()!==start)throw new Error(`Start square mismatch for ${p.id}.`);rolls=seq;
-  }
-  if(rolls.length!==steps)throw new Error(`${p.id} must Roll ${steps} cells, record has ${rolls.length}.`);
-  let lastDir=null;
-  for(let i=0;i<rolls.length;i++){
-    const q=xy(rolls[i]),dx=q.x-p.x,dy=q.y-p.y,dir=Object.keys(DIRS).find(d=>DIRS[d].dx===dx&&DIRS[d].dy===dy);
-    if(!dir)throw new Error(`Non-orthogonal step in ${p.id}.`);if(lastDir&&dir===OPP[lastDir])throw new Error(`Immediate reversal in ${p.id}.`);if(occupiedAtIn(g,q.x,q.y,p.id))throw new Error(`Occupied square ${rolls[i]} in ${p.id}.`);
-    if(i===rolls.length-1&&enemiesAdjacentIn(g,q.x,q.y,team,p.id).length>=2)throw new Error(`Multiple-combat destination in ${p.id}.`);
-    o=cubeTransform(o,dir);p.x=q.x;p.y=q.y;lastDir=dir;
-  }
-  p.orientation=o;let actualCapture=null;const enemies=enemiesAdjacentIn(g,p.x,p.y,team,p.id);
-  if(enemies.length===1){const e=enemies[0],w=rpsWinner(topGesture(p.orientation),topGesture(e.orientation));if(w!==0){const loser=w>0?e:p,winner=w>0?team:e.team;loser.alive=false;actualCapture=loser.id;g.teams[winner].captures++;}}
-  if(actualCapture!==move.capture)throw new Error(`Capture mismatch in ${p.id}: expected ${move.capture||"none"}, got ${actualCapture||"none"}.`);
-  let actualReset=false;if(g.pieces.filter(q=>q.alive&&q.team===C.POSTECH).length===0||g.pieces.filter(q=>q.alive&&q.team===C.KAIST).length===0){g.pieces=initialPieces(g.order.white,g.order.black);actualReset=true;}
-  if(actualReset!==move.reset)throw new Error(`Reset mismatch after ${p.id}.`);
-  return{role:expectedRole,team,pieceId:move.pieceId,item:move.item,start,push,rolls,capture:actualCapture,reset:actualReset,notation:`${move.pieceId}${move.item?`[${move.item}]`:""}: ${move.path}${actualCapture?` x${actualCapture}`:""}${actualReset?" Reset":""}`};
-}
-function pairForGame(g,getter){return[getter(g.order.white),getter(g.order.black)];}
-function parseAndReplay(text){
-  const clean=stripComments(text.replace(/\r/g,"")),lines=clean.split("\n").map(s=>s.trim()).filter(Boolean),headerLines=lines.filter(s=>s.startsWith("[")),body=lines.filter(s=>!s.startsWith("[")),h=parseHeaders(headerLines);
-  if(![C.POSTECH,C.KAIST].includes(h.White)||![C.POSTECH,C.KAIST].includes(h.Black)||h.White===h.Black)throw new Error("Record must contain valid White and Black headers.");
-  const g=freshGame();g.meta.event=h.Event||"RPSC Analysis";g.meta.site=h.Site||"Local";g.meta.date=h.Date||todayString();g.order={white:h.White,black:h.Black,source:"loaded record"};g.pieces=initialPieces(g.order.white,g.order.black);g.phase="QUIZ";
-  let expectedMain=1,expectedOT=1;
-  for(const line of body){
-    let m=line.match(/^(\d+)\.\s+Q\[([01]),\s*([01])\](?:\s+(.*))?$/);
-    if(m){
-      const n=Number(m[1]);if(n!==expectedMain||n>20)throw new Error(`Unexpected main round number ${n}.`);expectedMain++;
-      const w=!!Number(m[2]),b=!!Number(m[3]),q={POSTECH:false,KAIST:false};q[g.order.white]=w;q[g.order.black]=b;g.teams.POSTECH.quiz+=q.POSTECH?1:0;g.teams.KAIST.quiz+=q.KAIST?1:0;
-      const r={n,q,itemGain:null,moves:[],complete:true},rest=(m[4]||"").trim();
-      if(w!==b){
-        const expectedTeam=w?g.order.white:g.order.black,im=rest.match(/^([WB])\+(Pu|Ro|St)$/);if(!im)throw new Error(`Round ${n} requires one item gain.`);
-        const team=im[1]==="W"?g.order.white:g.order.black;if(team!==expectedTeam)throw new Error(`Wrong team gains item in round ${n}.`);g.teams[team].items[im[2]]++;r.itemGain={team,type:im[2]};
-      }else{
-        if(!rest)throw new Error(`Round ${n} requires two moves.`);const[a,bm]=splitTwoMoves(rest);r.moves.push(applyRecordedMove(g,parseMoveToken(a),"W"));r.moves.push(applyRecordedMove(g,parseMoveToken(bm),"B"));
-      }
-      g.rounds.push(r);continue;
-    }
-    m=line.match(/^OT(\d+)\.\s+Q\[([01]),\s*([01])\]$/);
-    if(m){const n=Number(m[1]);if(n!==expectedOT||n>C.OT_MAX)throw new Error(`Unexpected overtime number OT${n}.`);expectedOT++;const w=!!Number(m[2]),b=!!Number(m[3]),q={POSTECH:false,KAIST:false};q[g.order.white]=w;q[g.order.black]=b;g.overtime.push({n,q});continue;}
-    throw new Error(`Unrecognized record line: ${line}`);
-  }
-  if(g.rounds.length<20)g.phase="QUIZ";
-  else{
-    const ps=score(C.POSTECH,g),ks=score(C.KAIST,g),pq=g.teams.POSTECH.quiz,kq=g.teams.KAIST.quiz;
-    if(ps!==ks){g.result=ps>ks?C.POSTECH:C.KAIST;g.resultReason=`Score ${ps}–${ks}`;g.phase="GAME_OVER";}
-    else if(pq!==kq){g.result=pq>kq?C.POSTECH:C.KAIST;g.resultReason=`Score tied; Quiz ${pq}–${kq}`;g.phase="GAME_OVER";}
-    else{
-      const pd=g.overtime.reduce((s,r)=>s+(r.q.POSTECH?1:0),0),kd=g.overtime.reduce((s,r)=>s+(r.q.KAIST?1:0),0);
-      if(pd!==kd){g.result=pd>kd?C.POSTECH:C.KAIST;g.resultReason=`Overtime sudden death at OT${g.overtime.length}`;g.phase="GAME_OVER";}
-      else if(g.overtime.length>=5){g.phase="GAME_OVER";g.result=null;g.resultReason="Overtime exhausted at 5 questions; supplied official source gives no further procedure.";}
-      else g.phase="OT_QUIZ";
-    }
-  }
-  if(h.Score){const[ws,bs]=pairForGame(g,t=>score(t,g));if(h.Score!==`${ws}-${bs}`)throw new Error(`Header Score ${h.Score} does not match replayed ${ws}-${bs}.`);}
-  if(h.Quiz){const[wq,bq]=pairForGame(g,t=>g.teams[t].quiz);if(h.Quiz!==`${wq}-${bq}`)throw new Error(`Header Quiz ${h.Quiz} does not match replayed ${wq}-${bq}.`);}
-  if(h.Captures){const[wc,bc]=pairForGame(g,t=>g.teams[t].captures);if(h.Captures!==`${wc}-${bc}`)throw new Error(`Header Captures ${h.Captures} does not match replayed ${wc}-${bc}.`);}
-  g.lastAction="Record loaded and replayed successfully.";return g;
-}
-function loadFile(file){
-  const reader=new FileReader();reader.onload=()=>{try{game=parseAndReplay(String(reader.result));undoStack=[];clearMoveUI();render();}catch(err){game.lastAction=`Load error: ${err.message}`;render();}};reader.readAsText(file,"utf-8");
-}
-
-/* ---------- Rendering ---------- */
-function screenCell(x,y){return ui.flipped?{x:7-x,y:y}:{x:x,y:7-y};}
-function worldDirectionAngleFromWrist(wrist){
-  const f=[-wrist[0],-wrist[1],0],d=VEC_TO_DIR.get(vecKey(f)),base={N:0,E:90,S:180,W:270}[d]??0;return(base+(ui.flipped?180:0))%360;
-}
-function roleLabels(){
-  if(!game.order.white)return ui.flipped?{top:{role:"",team:C.POSTECH},bottom:{role:"",team:C.KAIST}}:{top:{role:"",team:C.KAIST},bottom:{role:"",team:C.POSTECH}};
-  const topRole=ui.flipped?"White":"Black",bottomRole=ui.flipped?"Black":"White";
-  return{top:{role:topRole,team:topRole==="White"?game.order.white:game.order.black},bottom:{role:bottomRole,team:bottomRole==="White"?game.order.white:game.order.black}};
-}
-function roleHTML(x){const cls=x.team===C.POSTECH?"team-postech":"team-kaist";return`<span>${x.role?`${x.role} — `:""}<span class="role-name ${cls}">${x.team}</span></span>`;}
-function htmlEscape(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
-function renderedPieces(){
-  if(!game.pieces)return previewPieces();
-  if(ui.draft)return game.pieces.map(p=>p.id===ui.draft.pieceId?{...p,x:ui.draft.pos.x,y:ui.draft.pos.y,orientation:ui.draft.orientation}:p);
-  const sp=selectedPreview();
-  if(sp&&ui.selectedItem&&(ui.selectedItem==="RoL"||ui.selectedItem==="RoR"))return game.pieces.map(p=>p.id===sp.pieceId?{...p,orientation:sp.orientation}:p);
-  return game.pieces;
-}
-function boardSVG(){
-  const size=70,board=560;let s="";
-  for(let x=0;x<8;x++)for(let y=0;y<8;y++){const sc=screenCell(x,y),dark=(x+y)%2===0;s+=`<rect x="${sc.x*size}" y="${sc.y*size}" width="${size}" height="${size}" fill="${dark?C.DARK_SQUARE:C.LIGHT_SQUARE}"/>`;}
-  for(let i=0;i<=8;i++){const v=i*size;s+=`<line x1="${v}" y1="0" x2="${v}" y2="${board}" stroke="${i===0||i===8?C.INK:C.BOARD_LINE}" stroke-width="${i===0||i===8?1.35:.65}"/>`;s+=`<line x1="0" y1="${v}" x2="${board}" y2="${v}" stroke="${i===0||i===8?C.INK:C.BOARD_LINE}" stroke-width="${i===0||i===8?1.35:.65}"/>`;}
-  for(let sx=0;sx<8;sx++){const file=ui.flipped?C.FILES[7-sx]:C.FILES[sx];s+=`<text x="${sx*size+size/2}" y="${board+25}" text-anchor="middle" font-family="Latin Modern Roman,CMU Serif,STIX Two Text,Times New Roman,serif" font-size="14" fill="${C.COORD}">${file}</text>`;}
-  for(let sy=0;sy<8;sy++){const rank=ui.flipped?sy+1:8-sy;s+=`<text x="-22" y="${sy*size+size/2+5}" text-anchor="middle" font-family="Latin Modern Roman,CMU Serif,STIX Two Text,Times New Roman,serif" font-size="14" fill="${C.COORD}">${rank}</text>`;}
-  const center=q=>{const sc=screenCell(q.x,q.y);return{x:sc.x*size+size/2,y:sc.y*size+size/2};};
-  if(ui.draft){
-    const d=ui.draft,a=center(d.start);
-    if(d.pushCell){const b=center(d.pushCell);s+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="#111" stroke-width="1.3" stroke-dasharray="5 4" opacity=".55"/>`;}
-    const points=[center(d.pushCell||d.start),...d.rollPath.map(center)];if(points.length>1)s+=`<polyline points="${points.map(p=>`${p.x},${p.y}`).join(" ")}" fill="none" stroke="#111" stroke-width="1.5" opacity=".62"/>`;
-    for(const q of draftLegalCells()){const p=center(q);s+=`<circle cx="${p.x}" cy="${p.y}" r="8" fill="#111" opacity=".17"/>`;}
-    const sc=screenCell(d.pos.x,d.pos.y);s+=`<rect x="${sc.x*size+2}" y="${sc.y*size+2}" width="${size-4}" height="${size-4}" fill="none" stroke="#111" stroke-width="2"/>`;
-  }else if(ui.selectedPieceId){
-    const p=pieceById(ui.selectedPieceId);if(p&&p.alive){const sc=screenCell(p.x,p.y);s+=`<rect x="${sc.x*size+3}" y="${sc.y*size+3}" width="${size-6}" height="${size-6}" fill="none" stroke="#111" stroke-width="1.35" opacity=".85"/>`;}
-    for(const q of selectionLegalCells()){const p2=center(q);s+=`<circle cx="${p2.x}" cy="${p2.y}" r="8" fill="#111" opacity=".17"/>`;}
-  }
-  for(const p of renderedPieces()){
-    if(!p.alive)continue;const sc=screenCell(p.x,p.y),cx=sc.x*size+size/2,cy=sc.y*size+size/2,gesture=topGesture(p.orientation),wrist=topWrist(p.orientation),angle=worldDirectionAngleFromWrist(wrist),color=teamColor(p.team),selectable=game.phase==="MOVE"&&!ui.draft&&p.team===currentMoveTeam();
-    s+=`<g data-piece="${p.id}" style="cursor:${selectable?"pointer":"default"}"><g transform="translate(${cx} ${cy-2}) rotate(${angle})"><line x1="-12" y1="-19" x2="12" y2="-19" stroke="${color}" stroke-width="2.4"/><text x="0" y="11" text-anchor="middle" font-family="Latin Modern Roman,CMU Serif,STIX Two Text,Times New Roman,serif" font-weight="700" font-size="34" fill="${color}">${gesture}</text></g><text x="${cx+24}" y="${cy+27}" text-anchor="end" font-family="Latin Modern Roman,CMU Serif,STIX Two Text,Times New Roman,serif" font-size="9.5" fill="#666">${htmlEscape(p.id)}</text></g>`;
-  }
-  for(let x=0;x<8;x++)for(let y=0;y<8;y++){const sc=screenCell(x,y);s+=`<rect data-hit="${cell(x,y)}" x="${sc.x*size}" y="${sc.y*size}" width="${size}" height="${size}" fill="transparent" style="cursor:pointer"/>`;}
-  return s;
-}
-function moveDetail(){
-  if(game.phase!=="MOVE")return"";const team=currentMoveTeam(),role=game.moveRole==="W"?"White":"Black";
-  if(!ui.draft&&!ui.selectedPieceId)return`${role} · ${team}. Select an item if needed, then select one of your pieces.`;
-  if(!ui.draft){const p=pieceById(ui.selectedPieceId);return`${role} · ${team}. ${p.id} selected — you may switch pieces until the first Roll or Push.`;}
-  const d=ui.draft,g=topGesture(d.orientation);if(d.subphase==="PUSH")return`${d.pieceId}[Pu] · choose one orthogonal square for the non-Roll Push.`;
-  const done=d.rollPath.length;if(d.subphase==="ROLL")return`${d.pieceId}${d.item?`[${d.item}]`:""} · top ${g} · Roll ${done} / ${d.stepsRequired}.`;
-  const c=previewCombat();return`${d.pieceId}${d.item?`[${d.item}]`:""} · ${d.stepsRequired} / ${d.stepsRequired}. ${c?c.text:""}`;
-}
-function instructionText(){
-  const n=game.rounds.length+1;switch(game.phase){
-    case"QUIZ":return`Enter Round ${n} quiz result. Buttons are ordered POSTECH, KAIST.`;
-    case"ORDER_CHOICE":return`${game.orderChoiceTeam} was the first solo-correct team. It chooses whether to move first or second.`;
-    case"COIN_RESULT":return"Opening equal-result quiz: choose the first mover (enter the coin-toss result).";
-    case"ITEM_SELECT":return`${game.itemTeam} alone answered correctly. Choose one item to gain.`;
-    case"MOVE":return moveDetail();
-    case"OT_QUIZ":return`Overtime OT${game.overtime.length+1}. Quiz only; no board move or item.`;
-    case"GAME_OVER":return game.result?`${game.result} wins.`:"Game ended without a winner under the supplied procedure.";
-    default:return"";
-  }
-}
-function roundText(){if(game.phase==="OT_QUIZ")return`OT ${game.overtime.length+1} / ${C.OT_MAX}`;if(game.phase==="GAME_OVER"&&game.overtime.length)return`OT ${game.overtime.length} / ${C.OT_MAX}`;const r=currentRound();if(r)return`${r.n} / ${C.MAIN_ROUNDS}`;return`${Math.min(game.rounds.length+1,C.MAIN_ROUNDS)} / ${C.MAIN_ROUNDS}`;}
-function moveMetaText(){if(game.phase!=="MOVE")return"—";const team=currentMoveTeam(),role=game.moveRole==="W"?"White":"Black";return`<span class="${team===C.POSTECH?"team-postech":"team-kaist"}">${team}</span> (${role})`;}
-
-function analysisTransition(){
-  const d=ui.draft,sp=selectedPreview();
-  if(!d&&!sp)return null;
-  const initial=d?d.initialOrientation:sp.initialOrientation,item=d?d.item:sp.item,dirs=d?d.rollDirs:[];
-  const states=[gestureState(initial)],ops=[];let o=clone(initial);
-  if(item==="RoL"||item==="RoR"){
-    o=cubeTransform(o,item==="RoL"?"CCW":"CW");states.push(gestureState(o));ops.push("ρ");
-  }
-  for(const dir of dirs){o=cubeTransform(o,dir);states.push(gestureState(o));ops.push(axisLetter(dir));}
-  return{states,ops};
-}
-function itemAnalysisHTML(item,initialOrientation,stepsRequired){
-  if(!item)return"";
-  const s=gestureState(initialOrientation),base=baseRollLengthFromState(s);
-  let line="",note="";
-  if(item==="Pu"){
-    line=`Position changes · s = ${stateText(s)} unchanged`;
-    note=`Push is not part of the Roll Word · Roll count ℓ(s) = ${base}`;
-  }else if(item==="RoL"||item==="RoR"){
-    const rotated=cubeTransform(initialOrientation,item==="RoL"?"CCW":"CW");
-    line=`ρ(s) = ${stateText(gestureState(rotated))}`;
-    note=`${item}: Wrist Axis ${wristAxis(initialOrientation)} → ${wristAxis(rotated)} · Top Gesture and Base Roll Length unchanged`;
-  }else if(item==="StS"){
-    line=`Roll count |w| = ℓ(s) − 1 = ${stepsRequired}`;
-    note=`Gesture State is unchanged before the first Roll.`;
-  }else if(item==="StL"){
-    line=`Roll count |w| = ℓ(s) + 1 = ${stepsRequired}`;
-    note=`Gesture State is unchanged before the first Roll.`;
-  }
-  return`<div class="analysis-block"><div class="analysis-label">Item in the Analysis Model</div><div class="analysis-line">${line}</div><div class="operator-note">${note}</div></div>`;
-}
-function liveAnalysisHTML(){
-  const d=ui.draft,sp=selectedPreview();
-  let piece=null,currentOrientation=null,initialOrientation=null,item=null,rollDirs=[],stepsRequired=null;
-  if(d){piece=pieceById(d.pieceId);currentOrientation=d.orientation;initialOrientation=d.initialOrientation;item=d.item;rollDirs=d.rollDirs;stepsRequired=d.stepsRequired;}
-  else if(sp){piece=pieceById(sp.pieceId);currentOrientation=sp.orientation;initialOrientation=sp.initialOrientation;item=sp.item;stepsRequired=sp.stepsRequired;}
-  if(!piece)return`<div class="analysis-empty">Select a piece during a board move to inspect its Gesture State. Live Analysis is derived from the exact cube orientation and is not stored separately from the Game Record.</div>${operatorReferenceHTML()}`;
-  const actualState=gestureState(initialOrientation),shownState=gestureState(currentOrientation),actualDir=wristDirection(initialOrientation),actualAxis=wristAxis(initialOrientation),base=baseRollLengthFromState(actualState);
-  const rollWord=rollDirs.length?rollDirs.join(""):"—",axisWord=rollDirs.length?rollDirs.map(axisLetter).join(""):"—",tr=analysisTransition();
-  const transition=tr.states.map((st,i)=>`${i?` <span>—${tr.ops[i-1]}→</span> `:""}${stateText(st)}`).join("");
-  let html=`<div class="analysis-piece">${htmlEscape(piece.id)} · ${htmlEscape(piece.team)}</div>`;
-  html+=`<div class="analysis-move">Analysis Move&nbsp;&nbsp; ${analysisMoveLabel()}</div>`;
-  html+=`<div class="analysis-state">Starting State&nbsp;&nbsp; s = ${stateText(actualState)}</div>`;
-  html+=`<div class="analysis-meta"><div class="label">Starting Square</div><div>${cell(piece.x,piece.y)}</div><div class="label">Top Gesture</div><div>${actualState[0]}</div><div class="label">Wrist Direction</div><div>${actualDir}</div><div class="label">Wrist Axis</div><div>${actualAxis}</div><div class="label">Base Roll Length</div><div>ℓ(s) = ${base}</div></div>`;
-  html+=itemAnalysisHTML(item,initialOrientation,stepsRequired);
-  html+=`<div class="analysis-block"><div class="analysis-label">Roll Words and State Transition</div>${d?`<div class="analysis-line">Move Notation&nbsp;&nbsp; ${htmlEscape(draftMoveNotation(d))}</div><div class="analysis-line">Current State&nbsp;&nbsp; s = ${stateText(shownState)}</div>`:(item==="RoL"||item==="RoR")?`<div class="analysis-line">Preview State&nbsp;&nbsp; s = ${stateText(shownState)}</div>`:""}<div class="analysis-line">Roll Word&nbsp;&nbsp; w = ${rollWord}</div><div class="analysis-line">Axis Word&nbsp;&nbsp; π(w) = ${axisWord}</div><div class="transition">${transition}</div></div>`;
-  html+=operatorReferenceHTML();return html;
-}
-function operatorReferenceHTML(){
-  return`<div class="analysis-block"><div class="analysis-label">State Operators</div><div class="operator-grid"><div>V(⟨a, b, c⟩) = ⟨b, a, c⟩</div><div>H(⟨a, b, c⟩) = ⟨c, b, a⟩</div><div>ρ(⟨a, b, c⟩) = ⟨a, c, b⟩</div></div><div class="operator-note">V: UD↔NS · H: UD↔EW · ρ: NS↔EW</div></div>`;
-}
-function phaseControls(){
-  const quiz=document.getElementById("quizControls"),order=document.getElementById("orderControls"),gain=document.getElementById("itemGainControls"),move=document.getElementById("moveControls"),draft=document.getElementById("draftControls");
-  quiz.classList.toggle("hidden",!(game.phase==="QUIZ"||game.phase==="OT_QUIZ"));order.classList.add("hidden");order.innerHTML="";gain.classList.toggle("hidden",game.phase!=="ITEM_SELECT");move.classList.toggle("hidden",game.phase!=="MOVE");draft.classList.toggle("hidden",!(game.phase==="MOVE"&&ui.draft));
-  if(game.phase==="ORDER_CHOICE"){order.classList.remove("hidden");const t=game.orderChoiceTeam;order.innerHTML=`<button data-order-solo="first">${t} First</button><button data-order-solo="second">${t} Second</button>`;}
-  else if(game.phase==="COIN_RESULT"){order.classList.remove("hidden");order.innerHTML=`<button data-coin-first="POSTECH">POSTECH First</button><button data-coin-first="KAIST">KAIST First</button>`;}
-  if(game.phase==="MOVE"){
-    const team=currentMoveTeam();document.querySelectorAll("[data-move-item]").forEach(b=>{const code=b.dataset.moveItem,bucket=itemBucket(code);b.disabled=!!ui.draft||game.teams[team].items[bucket]<1;b.classList.toggle("active",!ui.draft&&ui.selectedItem===code);});
-    document.getElementById("selectedItemText").textContent=ui.draft?`Item: ${ui.draft.item||"none"}`:`Item: ${ui.selectedItem||"none"} · click again to clear`;
-  }
-  if(ui.draft){document.getElementById("backBtn").disabled=ui.draft.subphase==="PUSH";document.getElementById("confirmBtn").disabled=ui.draft.subphase!=="COMPLETE";}
-}
-function render(){
-  const labels=roleLabels();document.getElementById("topRole").innerHTML=roleHTML(labels.top);document.getElementById("bottomRole").innerHTML=roleHTML(labels.bottom);document.getElementById("board").innerHTML=boardSVG();
-  const roleName=t=>{const r=roleOfTeam(t);return r==="W"?"White":r==="B"?"Black":"—";},roles={POSTECH:roleName(C.POSTECH),KAIST:roleName(C.KAIST)};
-  document.getElementById("scoreBody").innerHTML=`<tr><th>Team</th><td class="teamcell team-postech">POSTECH</td><td class="teamcell team-kaist">KAIST</td></tr><tr><th>Role</th><td>${roles.POSTECH}</td><td>${roles.KAIST}</td></tr><tr><th>Score</th><td>${score(C.POSTECH)}</td><td>${score(C.KAIST)}</td></tr><tr><th>Quiz</th><td>${game.teams.POSTECH.quiz}</td><td>${game.teams.KAIST.quiz}</td></tr><tr><th>Captures</th><td>${game.teams.POSTECH.captures}</td><td>${game.teams.KAIST.captures}</td></tr><tr><th>Push</th><td>${game.teams.POSTECH.items.Pu}</td><td>${game.teams.KAIST.items.Pu}</td></tr><tr><th>Rotation</th><td>${game.teams.POSTECH.items.Ro}</td><td>${game.teams.KAIST.items.Ro}</td></tr><tr><th>Step</th><td>${game.teams.POSTECH.items.St}</td><td>${game.teams.KAIST.items.St}</td></tr>`;
-  document.getElementById("moveMeta").innerHTML=moveMetaText();document.getElementById("roundMeta").textContent=roundText();document.getElementById("instruction").textContent=instructionText();document.getElementById("detail").innerHTML=`${game.lastAction?htmlEscape(game.lastAction):""}${game.phase==="GAME_OVER"&&game.resultReason?`<div class="result-line">${htmlEscape(game.resultReason)}</div>`:""}`;document.getElementById("recordText").textContent=recordText();document.getElementById("analysisBody").innerHTML=liveAnalysisHTML();
-  document.getElementById("undoBtn").disabled=!undoStack.length;document.getElementById("saveBtn").disabled=!isCompleteSavePoint();
-  document.getElementById("boardNote").textContent=game.order.white?"White is shown at the bottom by default; a1 is dark; Flip Board changes only the view.":"First/second order is not set yet; POSTECH is shown provisionally at the bottom.";phaseControls();
-}
-
-/* ---------- Self-tests ---------- */
-function mapReach(start,L){
-  const out=new Map();function add(x,y,g){const k=`${x},${y}`;if(!out.has(k))out.set(k,new Set());out.get(k).add(g);}function dfs(x,y,o,last,n){if(n===L){add(x,y,topGesture(o));return;}for(const[d,v]of Object.entries(DIRS)){if(last&&d===OPP[last])continue;dfs(x+v.dx,y+v.dy,cubeTransform(o,d),d,n+1);}}dfs(0,0,start,null,0);return out;
-}
-function setEq(a,b){return a.size===b.size&&[...a].every(x=>b.has(x));}
-function stateObsKey(o){return o.map(f=>`${f.id}:${f.normal}/${f.wrist}`).sort().join("|");}
-function runSelfTests(){
-  const failures=[];function ok(cond,msg){if(!cond)failures.push(msg);}ok(ALL_ORIENTATIONS.length===24,"cube must have 24 orientations");
-  const reduced=new Set(ALL_ORIENTATIONS.map(o=>stateText(gestureState(o))));ok(reduced.size===6,"physical cube must reduce to six Gesture States");
-  const expected={"S|NS":["S","R","P"],"S|EW":["S","P","R"],"R|NS":["R","S","P"],"R|EW":["R","P","S"],"P|NS":["P","R","S"],"P|EW":["P","S","R"]};
-  for(const g of["S","R","P"]){
-    for(const dir of["S","E"]){const o=canonicalOrientation(g,dir),axis=dir==="S"?"NS":"EW";ok(stateEq(gestureState(o),expected[`${g}|${axis}`]),`${g}/${axis}: Gesture-State table`);}
-    const o=canonicalOrientation(g,"S");ok(topGesture(o)===g,`canonical ${g} top`);ok(wristDirection(o)==="S",`canonical ${g} wrist south`);
-    ok(stateObsKey(cubeTransform(cubeTransform(o,"N"),"S"))===stateObsKey(o),`${g}: N then S inverse`);ok(stateObsKey(cubeTransform(cubeTransform(o,"E"),"W"))===stateObsKey(o),`${g}: E then W inverse`);
-    let q=o;for(let i=0;i<4;i++)q=cubeTransform(q,"CW");ok(stateObsKey(q)===stateObsKey(o),`${g}: RoR x4`);q=o;for(let i=0;i<4;i++)q=cubeTransform(q,"CCW");ok(stateObsKey(q)===stateObsKey(o),`${g}: RoL x4`);
-    ok(topGesture(cubeTransform(o,"CW"))===g&&topGesture(cubeTransform(o,"CCW"))===g,`${g}: Rotation preserves Top Gesture`);
-    ok(wristAxis(cubeTransform(o,"CW"))!==wristAxis(o)&&wristAxis(cubeTransform(o,"CCW"))!==wristAxis(o),`${g}: Rotation switches Wrist Axis`);
-  }
-  for(const o of ALL_ORIENTATIONS){
-    const s=gestureState(o);ok(stateEq(gestureState(cubeTransform(o,"N")),VState(s)),"N Roll induces V");ok(stateEq(gestureState(cubeTransform(o,"S")),VState(s)),"S Roll induces V");ok(stateEq(gestureState(cubeTransform(o,"E")),HState(s)),"E Roll induces H");ok(stateEq(gestureState(cubeTransform(o,"W")),HState(s)),"W Roll induces H");ok(stateEq(gestureState(cubeTransform(o,"CW")),rhoState(s)),"RoR induces rho");ok(stateEq(gestureState(cubeTransform(o,"CCW")),rhoState(s)),"RoL induces rho");
-  }
-  const s=canonicalOrientation("S","S"),m=mapReach(s,3);ok(m.size===16,"Scissors basic reach map must contain 16 endpoints");ok(setEq(m.get("0,3"),new Set(["R"])),"Scissors 3 north must end R");ok(setEq(m.get("3,0"),new Set(["P"])),"Scissors 3 east must end P");ok(setEq(m.get("0,1"),new Set(["S"])),"Scissors bent return-near endpoint must end S");
-  const sr=new Map();for(const ro of["CW","CCW"])for(const[k,v]of mapReach(cubeTransform(s,ro),3)){if(!sr.has(k))sr.set(k,new Set());for(const x of v)sr.get(k).add(x);}ok(setEq(sr.get("0,3"),new Set(["P"])),"Scissors+Rotation 3 north must match textbook P");ok(setEq(sr.get("3,0"),new Set(["R"])),"Scissors+Rotation 3 east must match textbook R");
-  const r=canonicalOrientation("R","S"),rm=mapReach(r,4);ok(rm.size===25,"Rock basic reach map must contain 25 endpoints");ok(setEq(rm.get("0,4"),new Set(["R"])),"Rock 4 north must end R");ok(setEq(rm.get("4,0"),new Set(["R"])),"Rock 4 east must end R");ok(setEq(rm.get("0,0"),new Set(["S","P"])),"Rock 4-step loop must end S or P");
-  const p=canonicalOrientation("P","S"),pm=mapReach(p,5);ok(pm.size===36,"Paper basic reach map must contain 36 endpoints");ok(setEq(pm.get("0,5"),new Set(["R"])),"Paper 5 north must end R");ok(setEq(pm.get("5,0"),new Set(["S"])),"Paper 5 east must end S");
-  const pr=new Map();for(const ro of["CW","CCW"])for(const[k,v]of mapReach(cubeTransform(p,ro),5)){if(!pr.has(k))pr.set(k,new Set());for(const x of v)pr.get(k).add(x);}ok(pr.size===36,"Paper+Rotation reach map must contain 36 endpoints");ok(setEq(pr.get("0,5"),new Set(["S"])),"Paper+Rotation 5 north must match textbook S");ok(setEq(pr.get("5,0"),new Set(["R"])),"Paper+Rotation 5 east must match textbook R");
-  const ag=freshGame();ag.rounds=[{q:{POSTECH:true,KAIST:true}},{q:{POSTECH:true,KAIST:false}},{q:{POSTECH:false,KAIST:false}}];ok(analysisMoveNumber(ag)===2,"M-number counts only equal-result board progressions");ag.phase="MOVE";ag.moveRole="W";ok(analysisMoveLabel(ag)==="M2.","White analysis label uses Mn.");ag.moveRole="B";ok(analysisMoveLabel(ag)==="M2...","Black analysis label uses Mn...");
-  const nd={pieceId:"W2",item:"RoR",start:{x:2,y:0},pushCell:null,rollPath:[{x:2,y:1},{x:3,y:1}]};ok(draftMoveNotation(nd)==="W2[RoR]: c1-c2-d2","draft Move Notation preserves starting square and full current path");
-  ok(C.DIST.S===3&&C.DIST.R===4&&C.DIST.P===5,"Base Roll Length S/R/P = 3/4/5");ok(rpsWinner("S","P")===1&&rpsWinner("R","S")===1&&rpsWinner("P","R")===1,"RPS cycle S/R/P order");return failures;
-}
-function resetGame(){if(!window.confirm("Reset the entire analysis?"))return;game=freshGame();undoStack=[];clearMoveUI();render();}
-function bindEvents(){
-  document.getElementById("board").addEventListener("click",e=>{const hit=e.target.closest("[data-hit]");if(!hit)return;const p=xy(hit.dataset.hit);clickBoardCell(p.x,p.y);});
-  document.getElementById("quizControls").addEventListener("click",e=>{const b=e.target.closest("[data-q]");if(!b)return;const q=b.dataset.q;submitQuiz(q[0]==="1",q[1]==="1");});
-  document.getElementById("orderControls").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.orderSolo)chooseOrderForSolo(game.orderChoiceTeam,b.dataset.orderSolo==="first");else if(b.dataset.coinFirst)chooseCoinResult(b.dataset.coinFirst);});
-  document.getElementById("itemGainControls").addEventListener("click",e=>{const b=e.target.closest("[data-gain]");if(b)selectItemGain(b.dataset.gain);});
-  document.getElementById("moveControls").addEventListener("click",e=>{const b=e.target.closest("[data-move-item]");if(b)setSelectedMoveItem(b.dataset.moveItem);});
-  document.getElementById("backBtn").addEventListener("click",draftBack);document.getElementById("cancelBtn").addEventListener("click",cancelDraft);document.getElementById("confirmBtn").addEventListener("click",applyConfirmedDraft);document.getElementById("flipBtn").addEventListener("click",()=>{ui.flipped=!ui.flipped;render();});document.getElementById("undoBtn").addEventListener("click",restoreLast);document.getElementById("saveBtn").addEventListener("click",saveRecord);document.getElementById("loadBtn").addEventListener("click",()=>document.getElementById("loadInput").click());document.getElementById("loadInput").addEventListener("change",e=>{const f=e.target.files?.[0];if(f)loadFile(f);e.target.value="";});document.getElementById("resetBtn").addEventListener("click",resetGame);
-  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ui.draft)cancelDraft();else if(e.key==="Escape"&&ui.selectedPieceId){ui.selectedPieceId=null;render();}if(e.key==="Backspace"&&ui.draft){e.preventDefault();draftBack();}});
-}
-function init(){
-  const failures=runSelfTests();if(failures.length){engineReady=false;game.lastAction=`Engine self-test failed: ${failures.join("; ")}`;document.querySelectorAll("button").forEach(b=>b.disabled=true);}bindEvents();render();
-}
+const C=Object.freeze({POSTECH:"POSTECH",KAIST:"KAIST",POSTECH_RED:"#a61955",KAIST_BLUE:"#004191",INK:"#111",MUTED:"#666",BOARD_LINE:"#525252",COORD:"#666",DARK_SQUARE:"#efefef",LIGHT_SQUARE:"#fff",MAIN_ROUNDS:20,OT_MAX:5,DIST:{S:3,R:4,P:5},FILES:"abcdefgh"});
+const DIRS=Object.freeze({N:{dx:0,dy:1},S:{dx:0,dy:-1},E:{dx:1,dy:0},W:{dx:-1,dy:0}}),OPP=Object.freeze({N:"S",S:"N",E:"W",W:"E"}),DIR_ORDER=["N","S","E","W"];
+const VEC_TO_DIR=new Map([["0,1,0","N"],["0,-1,0","S"],["1,0,0","E"],["-1,0,0","W"],["0,0,1","UP"],["0,0,-1","DOWN"]]);
+function clone(x){return JSON.parse(JSON.stringify(x))}function sameVec(a,b){return a[0]===b[0]&&a[1]===b[1]&&a[2]===b[2]}function vecKey(v){return v.join(",")}function inBoard(x,y){return x>=0&&x<8&&y>=0&&y<8}function cell(x,y){return C.FILES[x]+String(y+1)}function xy(s){let t=s.trim().toLowerCase();if(!/^[a-h][1-8]$/.test(t))throw Error(`Invalid square: ${s}`);return{x:C.FILES.indexOf(t[0]),y:+t[1]-1}}function otherTeam(t){return t===C.POSTECH?C.KAIST:C.POSTECH}function teamColor(t){return t===C.POSTECH?C.POSTECH_RED:C.KAIST_BLUE}function htmlEscape(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+function topFace(o){let f=o.find(q=>sameVec(q.normal,[0,0,1]));if(!f)throw Error("Cube has no top face.");return f}function topGesture(o){return topFace(o).gesture}function topWrist(o){return topFace(o).wrist}function wristDirection(o){return VEC_TO_DIR.get(vecKey(topWrist(o)))}function wristAxis(o){let d=wristDirection(o);return d==="N"||d==="S"?"NS":"EW"}function gestureOnPositiveAxis(o,n){let f=o.find(q=>sameVec(q.normal,n));if(!f)throw Error("Missing axis face.");return f.gesture}function gestureState(o){return[gestureOnPositiveAxis(o,[0,0,1]),gestureOnPositiveAxis(o,[0,1,0]),gestureOnPositiveAxis(o,[1,0,0])]}function stateText(s){return`⟨${s[0]}, ${s[1]}, ${s[2]}⟩`}function VState(s){return[s[1],s[0],s[2]]}function HState(s){return[s[2],s[1],s[0]]}function rhoState(s){return[s[0],s[2],s[1]]}function axisLetter(d){return d==="N"||d==="S"?"V":"H"}
+const BASE_CUBE=Object.freeze([{id:"S1",gesture:"S",normal:[0,0,1],wrist:[0,-1,0]},{id:"S2",gesture:"S",normal:[0,0,-1],wrist:[0,-1,0]},{id:"R1",gesture:"R",normal:[0,1,0],wrist:[0,0,1]},{id:"R2",gesture:"R",normal:[0,-1,0],wrist:[0,0,-1]},{id:"P1",gesture:"P",normal:[-1,0,0],wrist:[0,-1,0]},{id:"P2",gesture:"P",normal:[1,0,0],wrist:[0,-1,0]}]);
+function transformVec(v,op){let[x,y,z]=v;switch(op){case"N":return[x,-z,y];case"S":return[x,z,-y];case"E":return[z,y,-x];case"W":return[-z,y,x];case"CW":return[y,-x,z];case"CCW":return[-y,x,z]}throw Error("Unknown cube operation")}
+function cubeTransform(o,op){return o.map(f=>({id:f.id,gesture:f.gesture,normal:transformVec(f.normal,op),wrist:transformVec(f.wrist,op)}))}function orientationKey(o){return o.slice().sort((a,b)=>a.id.localeCompare(b.id)).map(f=>`${f.id}:${f.normal.join(",")}/${f.wrist.join(",")}`).join("|")}function allOrientations(){let first=clone(BASE_CUBE),m=new Map([[orientationKey(first),first]]),q=[first];while(q.length){let s=q.shift();for(let d of["N","S","E","W"]){let n=cubeTransform(s,d),k=orientationKey(n);if(!m.has(k)){m.set(k,n);q.push(n)}}}return[...m.values()]}const ALL_ORIENTATIONS=allOrientations(),ORIENTATION_INDEX=new Map(ALL_ORIENTATIONS.map((o,i)=>[orientationKey(o),i]));
+function canonicalOrientation(g,w){let preferred=g+"1",matches=ALL_ORIENTATIONS.filter(o=>{let t=topFace(o);return t.gesture===g&&VEC_TO_DIR.get(vecKey(t.wrist))===w});let p=matches.find(o=>topFace(o).id===preferred)||matches[0];if(!p)throw Error("No canonical orientation");return clone(p)}
+const ENGINE_ROLL=ALL_ORIENTATIONS.map(o=>DIR_ORDER.map(d=>ORIENTATION_INDEX.get(orientationKey(cubeTransform(o,d))))),ENGINE_TOP=ALL_ORIENTATIONS.map(topGesture),ENGINE_REDUCED=ALL_ORIENTATIONS.map(o=>{let s=gestureState(o);return s[0]+s[1]+s[2]}),ENGINE_CANON={};for(let g of["S","R","P"])for(let w of["N","S"])ENGINE_CANON[g+w]=ORIENTATION_INDEX.get(orientationKey(canonicalOrientation(g,w)));
+function initialPieces(whiteTeam,blackTeam){let W=[["W1","a1","S"],["W2","c1","R"],["W3","e1","P"],["W4","g1","S"]],B=[["B1","h8","S"],["B2","f8","R"],["B3","d8","P"],["B4","b8","S"]],out=[];for(let[id,sq,g]of W){let p=xy(sq);out.push({id,team:whiteTeam,alive:true,x:p.x,y:p.y,orientation:canonicalOrientation(g,"S")})}for(let[id,sq,g]of B){let p=xy(sq);out.push({id,team:blackTeam,alive:true,x:p.x,y:p.y,orientation:canonicalOrientation(g,"N")})}return out}
+function previewPieces(){return initialPieces(C.POSTECH,C.KAIST).map(p=>({...p,id:p.id[0]==="W"?`P${p.id[1]}`:`K${p.id[1]}`}))}function todayString(){let d=new Date();return`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`}
+function freshGame(){return{meta:{event:"RPSC Analysis",site:"Local",date:todayString()},order:{white:null,black:null,source:null},teams:{POSTECH:{quiz:0,captures:0,items:{Pu:0,Ro:0,St:0}},KAIST:{quiz:0,captures:0,items:{Pu:0,Ro:0,St:0}}},pieces:null,rounds:[],overtime:[],phase:"QUIZ",orderChoiceTeam:null,itemTeam:null,moveRole:null,result:null,resultReason:"",lastAction:"New analysis. Enter Round 1 quiz result."}}
+let game=freshGame(),undoStack=[],ui={flipped:false,selectedItem:null,selectedPieceId:null,draft:null},app={mode:"hvh",humanTeam:C.POSTECH,engineRunning:false,engineThinking:false,engineAnalysis:null,requestId:0};
+function score(t,g=game){return g.teams[t].quiz+2*g.teams[t].captures}function roleOfTeam(t){if(!game.order.white)return null;return game.order.white===t?"W":"B"}function teamOfRole(r){if(!game.order.white)return null;return r==="W"?game.order.white:game.order.black}function controllerForTeam(t){if(app.mode==="hvh")return"Human";if(app.mode==="eve")return"Engine";return t===app.humanTeam?"Human":"Engine"}function currentMoveTeam(){return game.phase==="MOVE"?teamOfRole(game.moveRole):null}function pieceById(id,g=game){return g.pieces?.find(p=>p.id===id)||null}function occupiedAt(x,y,exclude=null,g=game){return g.pieces?.find(p=>p.alive&&p.id!==exclude&&p.x===x&&p.y===y)||null}function aliveEnemiesAdjacent(x,y,team,exclude=null,g=game){return(g.pieces||[]).filter(p=>p.alive&&p.id!==exclude&&p.team!==team&&Math.abs(p.x-x)+Math.abs(p.y-y)===1)}function clearMoveUI(){ui.selectedItem=null;ui.selectedPieceId=null;ui.draft=null}function currentRound(){if(!game.rounds.length)return null;let r=game.rounds.at(-1);return r.complete?null:r}function snapshot(){return clone(game)}function pushUndo(){undoStack.push(snapshot())}
+function itemBucket(c){if(c==="Pu")return"Pu";if(c==="RoL"||c==="RoR")return"Ro";if(c==="StL"||c==="StS")return"St";return null}function itemLabel(b){return b==="Pu"?"Push":b==="Ro"?"Rotation":"Step"}
+function restoreLast(){if(!undoStack.length||app.engineThinking)return;game=undoStack.pop();clearMoveUI();app.engineAnalysis=null;app.engineRunning=false;render();scheduleAutomation()}
+function setOrder(whiteTeam,source){pushUndo();game.order.white=whiteTeam;game.order.black=otherTeam(whiteTeam);game.order.source=source;game.pieces=initialPieces(game.order.white,game.order.black);game.lastAction=`First/second order set: White ${game.order.white}, Black ${game.order.black}.`;clearMoveUI();routeCurrentRoundAfterOrder();render();scheduleAutomation()}
+function routeCurrentRoundAfterOrder(){let r=currentRound();if(!r){game.phase="QUIZ";return}let p=r.q.POSTECH,k=r.q.KAIST;if(p!==k){game.phase="ITEM_SELECT";game.itemTeam=p?C.POSTECH:C.KAIST}else{game.phase="MOVE";game.moveRole="W"}}
+function submitQuiz(p,k){if(game.phase!=="QUIZ"&&game.phase!=="OT_QUIZ")return;if(game.phase==="OT_QUIZ"){submitOTQuiz(p,k);return}let n=game.rounds.length+1;if(n>C.MAIN_ROUNDS)return;pushUndo();game.teams.POSTECH.quiz+=p?1:0;game.teams.KAIST.quiz+=k?1:0;game.rounds.push({n,q:{POSTECH:!!p,KAIST:!!k},itemGain:null,moves:[],complete:false});game.lastAction=`Round ${n}: POSTECH ${p?"correct":"wrong"}, KAIST ${k?"correct":"wrong"}.`;clearMoveUI();app.engineAnalysis=null;if(!game.order.white){if(p!==k){game.phase="ORDER_CHOICE";game.orderChoiceTeam=p?C.POSTECH:C.KAIST}else game.phase="COIN_RESULT"}else routeCurrentRoundAfterOrder();render();scheduleAutomation()}
+function chooseCoinResult(t){if(game.phase==="COIN_RESULT")setOrder(t,"opening equal-result first mover (coin-toss result entered manually)")}function chooseOrderForSolo(t,wantsFirst){if(game.phase!=="ORDER_CHOICE"||game.orderChoiceTeam!==t)return;setOrder(wantsFirst?t:otherTeam(t),"first solo-correct choice")}
+function selectItemGain(type){if(game.phase!=="ITEM_SELECT"||!["Pu","Ro","St"].includes(type))return;pushUndo();let t=game.itemTeam;game.teams[t].items[type]++;let r=currentRound();r.itemGain={team:t,type};game.lastAction=`${t} gained ${itemLabel(type)}.`;completeCurrentRound();render();scheduleAutomation()}
+function completeCurrentRound(){let r=currentRound();if(r)r.complete=true;game.itemTeam=null;game.moveRole=null;clearMoveUI();app.engineAnalysis=null;if(r&&r.n>=C.MAIN_ROUNDS)evaluateMainGame();else game.phase="QUIZ"}
+function evaluateMainGame(){let ps=score(C.POSTECH),ks=score(C.KAIST);if(ps!==ks){game.result=ps>ks?C.POSTECH:C.KAIST;game.resultReason=`Score ${ps}–${ks}`;game.phase="GAME_OVER";return}let pq=game.teams.POSTECH.quiz,kq=game.teams.KAIST.quiz;if(pq!==kq){game.result=pq>kq?C.POSTECH:C.KAIST;game.resultReason=`Score tied; Quiz ${pq}–${kq}`;game.phase="GAME_OVER";return}game.phase="OT_QUIZ";game.lastAction="Main game tied in score and quiz count. Overtime is quiz-only."}
+function submitOTQuiz(p,k){if(game.phase!=="OT_QUIZ"||game.overtime.length>=C.OT_MAX)return;pushUndo();let n=game.overtime.length+1;game.overtime.push({n,q:{POSTECH:!!p,KAIST:!!k}});game.lastAction=`OT${n}: POSTECH ${p?"correct":"wrong"}, KAIST ${k?"correct":"wrong"}.`;let pd=game.overtime.reduce((s,r)=>s+(r.q.POSTECH?1:0),0),kd=game.overtime.reduce((s,r)=>s+(r.q.KAIST?1:0),0);if(pd!==kd){game.result=pd>kd?C.POSTECH:C.KAIST;game.resultReason=`Overtime sudden death at OT${n}`;game.phase="GAME_OVER"}else if(n>=C.OT_MAX){game.result=null;game.resultReason="Overtime exhausted at 5 questions; supplied official source gives no further procedure.";game.phase="GAME_OVER"}render();scheduleAutomation()}
+function setSelectedMoveItem(code){if(game.phase!=="MOVE"||ui.draft||app.engineThinking)return;let bucket=itemBucket(code),team=currentMoveTeam();if(!bucket||game.teams[team].items[bucket]<1)return;ui.selectedItem=ui.selectedItem===code?null:code;render()}
+function selectPiece(id){if(game.phase!=="MOVE"||ui.draft||app.engineThinking||controllerForTeam(currentMoveTeam())!=="Human")return;let p=pieceById(id),team=currentMoveTeam();if(!p||!p.alive||p.team!==team)return;ui.selectedPieceId=ui.selectedPieceId===id?null:id;render()}
+function selectedPreview(){if(!ui.selectedPieceId||game.phase!=="MOVE")return null;let p=pieceById(ui.selectedPieceId);if(!p||!p.alive)return null;let item=ui.selectedItem,o=clone(p.orientation),steps=C.DIST[topGesture(o)];if(item==="RoL")o=cubeTransform(o,"CCW");if(item==="RoR")o=cubeTransform(o,"CW");if(item==="StS")steps--;if(item==="StL")steps++;return{pieceId:p.id,team:p.team,item,start:{x:p.x,y:p.y},orientation:o,initialOrientation:clone(p.orientation),stepsRequired:steps}}
+function selectionLegalCells(){let s=selectedPreview();if(!s)return[];let ans=[];if(s.item==="Pu"){for(let[dir,v]of Object.entries(DIRS)){let x=s.start.x+v.dx,y=s.start.y+v.dy;if(inBoard(x,y)&&!occupiedAt(x,y,s.pieceId))ans.push({x,y,dir,kind:"PUSH"})}return ans}for(let[dir,v]of Object.entries(DIRS)){let x=s.start.x+v.dx,y=s.start.y+v.dy;if(!inBoard(x,y)||occupiedAt(x,y,s.pieceId))continue;if(s.stepsRequired===1&&aliveEnemiesAdjacent(x,y,s.team,s.pieceId).length>=2)continue;ans.push({x,y,dir,kind:"ROLL"})}return ans}
+function makeDraftFromSelection(){let s=selectedPreview();if(!s)return null;let p=pieceById(s.pieceId);return{pieceId:s.pieceId,team:s.team,item:s.item,start:{...s.start},pos:{...s.start},orientation:clone(s.orientation),initialOrientation:clone(p.orientation),stepsRequired:s.stepsRequired,pushCell:null,rollPath:[],rollDirs:[],subphase:s.item==="Pu"?"PUSH":"ROLL"}}
+function startDraftWithCell(target){if(!ui.selectedPieceId||ui.draft)return;let d=makeDraftFromSelection();if(!d)return;ui.draft=d;if(target.kind==="PUSH"){d.pushCell={x:target.x,y:target.y};d.pos={x:target.x,y:target.y};d.subphase="ROLL"}else{d.orientation=cubeTransform(d.orientation,target.dir);d.pos={x:target.x,y:target.y};d.rollPath.push({x:target.x,y:target.y});d.rollDirs.push(target.dir);if(d.rollPath.length===d.stepsRequired)d.subphase="COMPLETE"}render()}
+function draftLegalCells(){let d=ui.draft;if(!d)return[];let ans=[];if(d.subphase==="PUSH"){for(let[dir,v]of Object.entries(DIRS)){let x=d.start.x+v.dx,y=d.start.y+v.dy;if(inBoard(x,y)&&!occupiedAt(x,y,d.pieceId))ans.push({x,y,dir})}return ans}if(d.subphase!=="ROLL")return ans;let last=d.rollDirs.length?d.rollDirs.at(-1):null,finalNext=d.rollPath.length+1===d.stepsRequired;for(let[dir,v]of Object.entries(DIRS)){if(last&&dir===OPP[last])continue;let x=d.pos.x+v.dx,y=d.pos.y+v.dy;if(!inBoard(x,y)||occupiedAt(x,y,d.pieceId))continue;if(finalNext&&aliveEnemiesAdjacent(x,y,d.team,d.pieceId).length>=2)continue;ans.push({x,y,dir})}return ans}
+function clickBoardCell(x,y){if(game.phase!=="MOVE"||app.engineThinking||controllerForTeam(currentMoveTeam())!=="Human")return;if(!ui.draft){let p=occupiedAt(x,y,null);if(p&&p.team===currentMoveTeam()){selectPiece(p.id);return}if(!ui.selectedPieceId)return;let target=selectionLegalCells().find(c=>c.x===x&&c.y===y);if(target)startDraftWithCell(target);return}let d=ui.draft,target=draftLegalCells().find(c=>c.x===x&&c.y===y);if(!target)return;if(d.subphase==="PUSH"){d.pushCell={x,y};d.pos={x,y};d.subphase="ROLL"}else{d.orientation=cubeTransform(d.orientation,target.dir);d.pos={x,y};d.rollPath.push({x,y});d.rollDirs.push(target.dir);if(d.rollPath.length===d.stepsRequired)d.subphase="COMPLETE"}render()}
+function rebuildDraft(){let d=ui.draft;if(!d)return;let o=clone(d.initialOrientation),pos={...d.start};if(d.item==="RoL")o=cubeTransform(o,"CCW");if(d.item==="RoR")o=cubeTransform(o,"CW");if(d.pushCell)pos={...d.pushCell};for(let i=0;i<d.rollDirs.length;i++){o=cubeTransform(o,d.rollDirs[i]);pos={...d.rollPath[i]}}d.orientation=o;d.pos=pos}
+function draftBack(){let d=ui.draft;if(!d)return;if(d.subphase==="COMPLETE")d.subphase="ROLL";if(d.subphase==="ROLL"&&d.rollPath.length){d.rollPath.pop();d.rollDirs.pop();rebuildDraft()}else if(d.subphase==="ROLL"&&d.pushCell){d.pushCell=null;d.pos={...d.start};d.subphase="PUSH";rebuildDraft()}render()}function cancelDraft(){let d=ui.draft;if(!d)return;ui.selectedPieceId=d.pieceId;ui.selectedItem=d.item;ui.draft=null;render()}
+function rpsWinner(a,b){if(a===b)return 0;if((a==="S"&&b==="P")||(a==="R"&&b==="S")||(a==="P"&&b==="R"))return 1;return-1}function previewCombat(){let d=ui.draft;if(!d||d.subphase!=="COMPLETE")return null;let e=aliveEnemiesAdjacent(d.pos.x,d.pos.y,d.team,d.pieceId);if(!e.length)return{capture:null,text:"No combat."};let enemy=e[0],w=rpsWinner(topGesture(d.orientation),topGesture(enemy.orientation));if(w===0)return{capture:null,text:`Combat: ${d.pieceId} ${topGesture(d.orientation)} vs ${enemy.id} ${topGesture(enemy.orientation)} — tie.`};let loser=w>0?enemy.id:d.pieceId;return{capture:loser,text:`Combat: ${d.pieceId} vs ${enemy.id} — ${loser} removed.`}}
+function notationForDraft(d,capture,reset){let item=d.item?`[${d.item}]`:"",path=cell(d.start.x,d.start.y);if(d.pushCell)path+=`>${cell(d.pushCell.x,d.pushCell.y)}`;for(let p of d.rollPath)path+=`-${cell(p.x,p.y)}`;return`${d.pieceId}${item}: ${path}${capture?` x${capture}`:""}${reset?" Reset":""}`}
+function draftMoveNotation(d){if(!d)return"";let item=d.item?`[${d.item}]`:"",path=cell(d.start.x,d.start.y);if(d.pushCell)path+=`>${cell(d.pushCell.x,d.pushCell.y)}`;for(let p of d.rollPath)path+=`-${cell(p.x,p.y)}`;return`${d.pieceId}${item}: ${path}`}
+function applyConfirmedDraft(){let d=ui.draft;if(!d||d.subphase!=="COMPLETE")return;pushUndo();let p=pieceById(d.pieceId),bucket=itemBucket(d.item);if(bucket){if(game.teams[d.team].items[bucket]<1)throw Error("Item inventory changed unexpectedly.");game.teams[d.team].items[bucket]--}p.x=d.pos.x;p.y=d.pos.y;p.orientation=clone(d.orientation);let capture=null,enemies=aliveEnemiesAdjacent(p.x,p.y,p.team,p.id);if(enemies.length>1)throw Error("Illegal simultaneous combat destination.");if(enemies.length===1){let e=enemies[0],w=rpsWinner(topGesture(p.orientation),topGesture(e.orientation));if(w!==0){let loser=w>0?e:p,winner=w>0?p.team:e.team;loser.alive=false;capture=loser.id;game.teams[winner].captures++}}let reset=false;if(game.pieces.filter(q=>q.alive&&q.team===C.POSTECH).length===0||game.pieces.filter(q=>q.alive&&q.team===C.KAIST).length===0){game.pieces=initialPieces(game.order.white,game.order.black);reset=true}let rec={role:game.moveRole,team:d.team,pieceId:d.pieceId,item:d.item,start:cell(d.start.x,d.start.y),push:d.pushCell?cell(d.pushCell.x,d.pushCell.y):null,rolls:d.rollPath.map(q=>cell(q.x,q.y)),capture,reset,notation:notationForDraft(d,capture,reset)};currentRound().moves.push(rec);game.lastAction=rec.notation;clearMoveUI();app.engineAnalysis=null;if(game.moveRole==="W"){game.moveRole="B";game.phase="MOVE"}else completeCurrentRound();render();scheduleAutomation()}
+function applyEngineMove(m){if(game.phase!=="MOVE")return;let p=pieceById(m.id);if(!p||!p.alive)throw Error("Engine selected unavailable piece.");let path=m.path.map(q=>({x:q[0],y:q[1]})),dirs=m.dirs.slice();if(path[0].x!==p.x||path[0].y!==p.y)throw Error("Engine move start mismatch.");let d={pieceId:p.id,team:p.team,item:null,start:{x:p.x,y:p.y},pos:{x:p.x,y:p.y},orientation:clone(p.orientation),initialOrientation:clone(p.orientation),stepsRequired:dirs.length,pushCell:null,rollPath:[],rollDirs:[],subphase:"ROLL"};for(let i=0;i<dirs.length;i++){let q=path[i+1];d.orientation=cubeTransform(d.orientation,dirs[i]);d.pos={...q};d.rollPath.push({...q});d.rollDirs.push(dirs[i])}d.subphase="COMPLETE";ui.draft=d;applyConfirmedDraft()}
+function isCompleteSavePoint(){return!ui.draft&&!!game.order.white&&!["ORDER_CHOICE","COIN_RESULT","ITEM_SELECT","MOVE"].includes(game.phase)}function resultToken(){if(!game.result)return"*";return game.result===game.order.white?"1-0":"0-1"}function pairByRole(fn){if(!game.order.white)return[0,0];return[fn(game.order.white),fn(game.order.black)]}function qNotation(q,g=game){let w=q[g.order.white]?1:0,b=q[g.order.black]?1:0;return`Q[${w}, ${b}]`}function analysisMoveNumber(g=game){return(g.rounds||[]).filter(r=>r.q.POSTECH===r.q.KAIST).length}function analysisMoveLabel(g=game){if(g.phase!=="MOVE"||!g.moveRole)return"—";let n=analysisMoveNumber(g);return`M${n}${g.moveRole==="W"?".":"..."}`}function roundNotation(r){let s=`${r.n}. ${qNotation(r.q)}`;if(r.itemGain)s+=` ${roleOfTeam(r.itemGain.team)}+${r.itemGain.type}`;for(let m of r.moves)s+=` ${m.notation}`;return s}
+function recordText(){if(!game.order.white){let lines=[`[Event "${game.meta.event}"]`,`[Site "${game.meta.site}"]`,`[Date "${game.meta.date}"]`,`[White "?"]`,`[Black "?"]`,`[Result "*"]`,"","{First/second order has not yet been determined.}"];if(game.rounds.length){let r=game.rounds.at(-1);lines.push(`Round ${r.n}: POSTECH ${r.q.POSTECH?1:0}, KAIST ${r.q.KAIST?1:0}`)}return lines.join("\n")}let[ws,bs]=pairByRole(t=>score(t)),[wq,bq]=pairByRole(t=>game.teams[t].quiz),[wc,bc]=pairByRole(t=>game.teams[t].captures),lines=[`[Event "${game.meta.event}"]`,`[Site "${game.meta.site}"]`,`[Date "${game.meta.date}"]`,`[White "${game.order.white}"]`,`[Black "${game.order.black}"]`,`[Result "${resultToken()}"]`,`[Score "${ws}-${bs}"]`,`[Quiz "${wq}-${bq}"]`,`[Captures "${wc}-${bc}"]`,""];for(let r of game.rounds)lines.push(roundNotation(r));for(let r of game.overtime)lines.push(`OT${r.n}. ${qNotation(r.q)}`);return lines.join("\n")}
+function saveRecord(){if(!isCompleteSavePoint()){game.lastAction="Finish the current round action before saving the canonical record.";render();return}let text=recordText(),blob=new Blob([text],{type:"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a"),d=game.meta.date.replaceAll(".","");a.href=url;a.download=`RPSC_${d}_${game.order.white}-White.rpsc`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);game.lastAction="Record saved.";render()}
+function parseHeaders(lines){let h={};for(let line of lines){let m=line.match(/^\[([^\s]+)\s+"(.*)"\]$/);if(m)h[m[1]]=m[2]}return h}function parseMoveToken(text){let m=text.trim().match(/^([WB][1-4])(?:\[(Pu|RoL|RoR|StL|StS)\])?:\s*([a-h][1-8](?:[>-][a-h][1-8])+)(?:\s+x([WB][1-4]))?(?:\s+(Reset))?$/i);if(!m)throw Error(`Cannot parse move: ${text}`);return{pieceId:m[1].toUpperCase(),item:m[2]||null,path:m[3].toLowerCase(),capture:m[4]?m[4].toUpperCase():null,reset:!!m[5]}}function splitTwoMoves(rest){let idx=rest.search(/\s+(?=[WB][1-4](?:\[|:))/);if(idx<0)throw Error(`Expected two moves: ${rest}`);return[rest.slice(0,idx).trim(),rest.slice(idx).trim()]}
+function applyRecordedMove(g,move,role){let p=g.pieces.find(q=>q.id===move.pieceId);if(!p||!p.alive||move.pieceId[0]!==role)throw Error(`Invalid recorded mover ${move.pieceId}.`);let team=role==="W"?g.order.white:g.order.black,bucket=itemBucket(move.item);if(bucket){if(g.teams[team].items[bucket]<1)throw Error(`Unavailable item in ${move.pieceId}.`);g.teams[team].items[bucket]--}let o=clone(p.orientation),steps=C.DIST[topGesture(o)];if(move.item==="RoL")o=cubeTransform(o,"CCW");if(move.item==="RoR")o=cubeTransform(o,"CW");if(move.item==="StS")steps--;if(move.item==="StL")steps++;let start=cell(p.x,p.y),push=null,rolls=[];if(move.item==="Pu"){let parts=move.path.split(">");if(parts.length!==2||parts[0]!==start)throw Error("Invalid Push path.");let seq=parts[1].split("-");push=seq.shift();rolls=seq;let z=xy(push);if(Math.abs(z.x-p.x)+Math.abs(z.y-p.y)!==1||occupiedAt(z.x,z.y,p.id,g))throw Error("Illegal Push.");p.x=z.x;p.y=z.y}else{if(move.path.includes(">"))throw Error("Only Push may use >.");let seq=move.path.split("-");if(seq.shift()!==start)throw Error("Start square mismatch.");rolls=seq}if(rolls.length!==steps)throw Error(`Wrong Roll count in ${p.id}.`);let last=null;for(let i=0;i<rolls.length;i++){let z=xy(rolls[i]),dx=z.x-p.x,dy=z.y-p.y,dir=Object.keys(DIRS).find(d=>DIRS[d].dx===dx&&DIRS[d].dy===dy);if(!dir||last&&dir===OPP[last]||occupiedAt(z.x,z.y,p.id,g))throw Error(`Illegal path in ${p.id}.`);if(i===rolls.length-1&&aliveEnemiesAdjacent(z.x,z.y,team,p.id,g).length>=2)throw Error("Multiple-combat destination.");o=cubeTransform(o,dir);p.x=z.x;p.y=z.y;last=dir}p.orientation=o;let actual=null,enemies=aliveEnemiesAdjacent(p.x,p.y,team,p.id,g);if(enemies.length===1){let e=enemies[0],f=rpsWinner(topGesture(p.orientation),topGesture(e.orientation));if(f!==0){let loser=f>0?e:p,winner=f>0?team:otherTeam(team);loser.alive=false;actual=loser.id;g.teams[winner].captures++}}if(actual!==move.capture)throw Error(`Capture mismatch in ${p.id}.`);let reset=false;if(g.pieces.filter(q=>q.alive&&q.team===C.POSTECH).length===0||g.pieces.filter(q=>q.alive&&q.team===C.KAIST).length===0){g.pieces=initialPieces(g.order.white,g.order.black);reset=true}if(reset!==move.reset)throw Error(`Reset mismatch after ${p.id}.`);return{role,team,pieceId:p.id,item:move.item,start,push,rolls,capture:actual,reset,notation:`${move.pieceId}${move.item?`[${move.item}]`:""}: ${move.path}${actual?` x${actual}`:""}${reset?" Reset":""}`}}
+function parseAndReplay(text){let clean=text.replace(/\{[^}]*\}/g," ").replace(/\r/g,""),lines=clean.split("\n").map(s=>s.trim()).filter(Boolean),headers=parseHeaders(lines.filter(s=>s.startsWith("["))),body=lines.filter(s=>!s.startsWith("["));if(![C.POSTECH,C.KAIST].includes(headers.White)||![C.POSTECH,C.KAIST].includes(headers.Black)||headers.White===headers.Black)throw Error("Record must contain valid White and Black headers.");let g=freshGame();g.meta={event:headers.Event||"RPSC Analysis",site:headers.Site||"Local",date:headers.Date||todayString()};g.order={white:headers.White,black:headers.Black,source:"loaded record"};g.pieces=initialPieces(g.order.white,g.order.black);let expected=1,ot=1;for(let line of body){let m=line.match(/^(\d+)\.\s+Q\[([01]),\s*([01])\](?:\s+(.*))?$/);if(m){let n=+m[1];if(n!==expected++||n>20)throw Error("Unexpected round number.");let w=!!+m[2],b=!!+m[3],q={POSTECH:false,KAIST:false};q[g.order.white]=w;q[g.order.black]=b;g.teams.POSTECH.quiz+=q.POSTECH?1:0;g.teams.KAIST.quiz+=q.KAIST?1:0;let r={n,q,itemGain:null,moves:[],complete:true},rest=(m[4]||"").trim();if(w!==b){let im=rest.match(/^([WB])\+(Pu|Ro|St)$/);if(!im)throw Error(`Round ${n} requires item gain.`);let team=im[1]==="W"?g.order.white:g.order.black,expectedTeam=w?g.order.white:g.order.black;if(team!==expectedTeam)throw Error("Wrong item team.");g.teams[team].items[im[2]]++;r.itemGain={team,type:im[2]}}else{let[a,bm]=splitTwoMoves(rest);r.moves.push(applyRecordedMove(g,parseMoveToken(a),"W"));r.moves.push(applyRecordedMove(g,parseMoveToken(bm),"B"))}g.rounds.push(r);continue}m=line.match(/^OT(\d+)\.\s+Q\[([01]),\s*([01])\]$/);if(m){let n=+m[1];if(n!==ot++)throw Error("Unexpected overtime number.");let q={POSTECH:false,KAIST:false};q[g.order.white]=!!+m[2];q[g.order.black]=!!+m[3];g.overtime.push({n,q});continue}throw Error(`Unrecognized record line: ${line}`)}g.phase=g.rounds.length<20?"QUIZ":"GAME_OVER";g.lastAction="Record loaded and replayed successfully.";return g}
+function loadFile(file){let r=new FileReader();r.onload=()=>{try{game=parseAndReplay(String(r.result));undoStack=[];clearMoveUI();app.engineAnalysis=null;app.engineRunning=false;render()}catch(e){game.lastAction=`Load error: ${e.message}`;render()}};r.readAsText(file,"utf-8")}
+function screenCell(x,y){return ui.flipped?{x:7-x,y:y}:{x:x,y:7-y}}function worldDirectionAngleFromWrist(w){let f=[-w[0],-w[1],0],d=VEC_TO_DIR.get(vecKey(f)),base={N:0,E:90,S:180,W:270}[d]??0;return(base+(ui.flipped?180:0))%360}function roleLabels(){if(!game.order.white)return ui.flipped?{top:{role:"",team:C.POSTECH},bottom:{role:"",team:C.KAIST}}:{top:{role:"",team:C.KAIST},bottom:{role:"",team:C.POSTECH}};let topRole=ui.flipped?"White":"Black",bottomRole=ui.flipped?"Black":"White";return{top:{role:topRole,team:topRole==="White"?game.order.white:game.order.black},bottom:{role:bottomRole,team:bottomRole==="White"?game.order.white:game.order.black}}}function roleHTML(x){let cls=x.team===C.POSTECH?"team-postech":"team-kaist";return`<span>${x.role?`${x.role} — `:""}<span class="role-name ${cls}">${x.team}</span></span>`}
+function renderedPieces(){if(!game.pieces)return previewPieces();if(ui.draft)return game.pieces.map(p=>p.id===ui.draft.pieceId?{...p,x:ui.draft.pos.x,y:ui.draft.pos.y,orientation:ui.draft.orientation}:p);let sp=selectedPreview();if(sp&&ui.selectedItem&&(ui.selectedItem==="RoL"||ui.selectedItem==="RoR"))return game.pieces.map(p=>p.id===sp.pieceId?{...p,orientation:sp.orientation}:p);return game.pieces}
+function boardSVG(){let size=70,board=560,s="";for(let x=0;x<8;x++)for(let y=0;y<8;y++){let sc=screenCell(x,y),dark=(x+y)%2===0;s+=`<rect x="${sc.x*size}" y="${sc.y*size}" width="${size}" height="${size}" fill="${dark?C.DARK_SQUARE:C.LIGHT_SQUARE}"/>`}for(let i=0;i<=8;i++){let v=i*size;s+=`<line x1="${v}" y1="0" x2="${v}" y2="${board}" stroke="${i===0||i===8?C.INK:C.BOARD_LINE}" stroke-width="${i===0||i===8?1.35:.65}"/><line x1="0" y1="${v}" x2="${board}" y2="${v}" stroke="${i===0||i===8?C.INK:C.BOARD_LINE}" stroke-width="${i===0||i===8?1.35:.65}"/>`}for(let sx=0;sx<8;sx++){let file=ui.flipped?C.FILES[7-sx]:C.FILES[sx];s+=`<text x="${sx*size+35}" y="585" text-anchor="middle" font-family="Latin Modern Roman,CMU Serif,Times New Roman,serif" font-size="14" fill="${C.COORD}">${file}</text>`}for(let sy=0;sy<8;sy++){let rank=ui.flipped?sy+1:8-sy;s+=`<text x="-22" y="${sy*size+40}" text-anchor="middle" font-family="Latin Modern Roman,CMU Serif,Times New Roman,serif" font-size="14" fill="${C.COORD}">${rank}</text>`}let center=q=>{let sc=screenCell(q.x,q.y);return{x:sc.x*size+35,y:sc.y*size+35}};if(ui.draft){let d=ui.draft,a=center(d.start);if(d.pushCell){let b=center(d.pushCell);s+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="#111" stroke-width="1.3" stroke-dasharray="5 4" opacity=".55"/>`}let pts=[center(d.pushCell||d.start),...d.rollPath.map(center)];if(pts.length>1)s+=`<polyline points="${pts.map(p=>`${p.x},${p.y}`).join(" ")}" fill="none" stroke="#111" stroke-width="1.5" opacity=".62"/>`;for(let q of draftLegalCells()){let p=center(q);s+=`<circle cx="${p.x}" cy="${p.y}" r="8" fill="#111" opacity=".17"/>`}let sc=screenCell(d.pos.x,d.pos.y);s+=`<rect x="${sc.x*size+2}" y="${sc.y*size+2}" width="66" height="66" fill="none" stroke="#111" stroke-width="2"/>`}else if(ui.selectedPieceId){let p=pieceById(ui.selectedPieceId);if(p&&p.alive){let sc=screenCell(p.x,p.y);s+=`<rect x="${sc.x*size+3}" y="${sc.y*size+3}" width="64" height="64" fill="none" stroke="#111" stroke-width="1.35" opacity=".85"/>`}for(let q of selectionLegalCells()){let z=center(q);s+=`<circle cx="${z.x}" cy="${z.y}" r="8" fill="#111" opacity=".17"/>`}}for(let p of renderedPieces()){if(!p.alive)continue;let sc=screenCell(p.x,p.y),cx=sc.x*size+35,cy=sc.y*size+35,g=topGesture(p.orientation),angle=worldDirectionAngleFromWrist(topWrist(p.orientation)),color=teamColor(p.team),selectable=game.phase==="MOVE"&&!ui.draft&&p.team===currentMoveTeam()&&controllerForTeam(p.team)==="Human";s+=`<g data-piece="${p.id}" style="cursor:${selectable?"pointer":"default"}"><g transform="translate(${cx} ${cy-2}) rotate(${angle})"><line x1="-12" y1="-19" x2="12" y2="-19" stroke="${color}" stroke-width="2.4"/><text x="0" y="11" text-anchor="middle" font-family="Latin Modern Roman,CMU Serif,Times New Roman,serif" font-weight="700" font-size="34" fill="${color}">${g}</text></g><text x="${cx+24}" y="${cy+27}" text-anchor="end" font-family="Latin Modern Roman,CMU Serif,Times New Roman,serif" font-size="9.5" fill="#666">${htmlEscape(p.id)}</text></g>`}for(let x=0;x<8;x++)for(let y=0;y<8;y++){let sc=screenCell(x,y);s+=`<rect data-hit="${cell(x,y)}" x="${sc.x*size}" y="${sc.y*size}" width="${size}" height="${size}" fill="transparent" style="cursor:pointer"/>`}return s}
+function moveDetail(){if(game.phase!=="MOVE")return"";let team=currentMoveTeam(),role=game.moveRole==="W"?"White":"Black",controller=controllerForTeam(team);if(controller==="Engine")return`${role} · ${team}. Engine is selecting a board move.`;if(!ui.draft&&!ui.selectedPieceId)return`${role} · ${team}. Select an item if needed, then select one of your pieces.`;if(!ui.draft){let p=pieceById(ui.selectedPieceId);return`${role} · ${team}. ${p.id} selected — you may switch pieces until the first Roll or Push.`}let d=ui.draft,g=topGesture(d.orientation);if(d.subphase==="PUSH")return`${d.pieceId}[Pu] · choose one orthogonal square for the non-Roll Push.`;let done=d.rollPath.length;if(d.subphase==="ROLL")return`${d.pieceId}${d.item?`[${d.item}]`:""} · top ${g} · Roll ${done} / ${d.stepsRequired}.`;let c=previewCombat();return`${d.pieceId}${d.item?`[${d.item}]`:""} · ${d.stepsRequired} / ${d.stepsRequired}. ${c?c.text:""}`}
+function instructionText(){let n=game.rounds.length+1;if(app.engineThinking)return`${game.moveRole==="W"?"White":"Black"} Engine is thinking...`;switch(game.phase){case"QUIZ":return app.mode==="hvh"?`Enter Round ${n} quiz result. Buttons are ordered POSTECH, KAIST.`:`Round ${n} uses Q[0, 0] in this engine mode.`;case"ORDER_CHOICE":return`${game.orderChoiceTeam} was the first solo-correct team. It chooses whether to move first or second.`;case"COIN_RESULT":return"Opening equal-result quiz: choose the first mover (enter the coin-toss result).";case"ITEM_SELECT":return`${game.itemTeam} alone answered correctly. Choose one item to gain.`;case"MOVE":return moveDetail();case"OT_QUIZ":return app.mode==="hvh"?`Overtime OT${game.overtime.length+1}. Quiz only; no board move or item.`:`Overtime OT${game.overtime.length+1} uses Q[0, 0].`;case"GAME_OVER":return game.result?`${game.result} wins.`:"Game ended without a winner under the supplied procedure."}return""}
+function roundText(){if(game.phase==="OT_QUIZ")return`OT ${game.overtime.length+1} / ${C.OT_MAX}`;if(game.phase==="GAME_OVER"&&game.overtime.length)return`OT ${game.overtime.length} / ${C.OT_MAX}`;let r=currentRound();if(r)return`${r.n} / ${C.MAIN_ROUNDS}`;return`${Math.min(game.rounds.length+1,C.MAIN_ROUNDS)} / ${C.MAIN_ROUNDS}`}function moveMetaText(){if(game.phase!=="MOVE")return"—";let team=currentMoveTeam(),role=game.moveRole==="W"?"White":"Black";return`<span class="${team===C.POSTECH?"team-postech":"team-kaist"}">${team}</span> (${role}, ${controllerForTeam(team)})`}
+function analysisTransition(){let d=ui.draft,sp=selectedPreview();if(!d&&!sp)return null;let initial=d?d.initialOrientation:sp.initialOrientation,item=d?d.item:sp.item,dirs=d?d.rollDirs:[],states=[gestureState(initial)],ops=[],o=clone(initial);if(item==="RoL"||item==="RoR"){o=cubeTransform(o,item==="RoL"?"CCW":"CW");states.push(gestureState(o));ops.push("ρ")}for(let dir of dirs){o=cubeTransform(o,dir);states.push(gestureState(o));ops.push(axisLetter(dir))}return{states,ops}}
+function operatorReferenceHTML(){return`<div class="analysis-block"><div class="analysis-label">State Operators</div><div class="operator-grid"><div>V(⟨a, b, c⟩) = ⟨b, a, c⟩</div><div>H(⟨a, b, c⟩) = ⟨c, b, a⟩</div><div>ρ(⟨a, b, c⟩) = ⟨a, c, b⟩</div></div><div class="operator-note">V: UD↔NS · H: UD↔EW · ρ: NS↔EW</div></div>`}
+function itemAnalysisHTML(item,initial,steps){if(!item)return"";let s=gestureState(initial),base=C.DIST[s[0]],line="",note="";if(item==="Pu"){line=`Position changes · s = ${stateText(s)} unchanged`;note=`Push is not part of the Roll Word · Roll count ℓ(s) = ${base}`}else if(item==="RoL"||item==="RoR"){let rot=cubeTransform(initial,item==="RoL"?"CCW":"CW");line=`ρ(s) = ${stateText(gestureState(rot))}`;note=`${item}: Wrist Axis ${wristAxis(initial)} → ${wristAxis(rot)} · Top Gesture and Base Roll Length unchanged`}else{line=`Roll count |w| = ℓ(s) ${item==="StS"?"−":"+"} 1 = ${steps}`;note="Gesture State is unchanged before the first Roll."}return`<div class="analysis-block"><div class="analysis-label">Item in the Analysis Model</div><div class="analysis-line">${line}</div><div class="operator-note">${note}</div></div>`}
+function toEngineState(){if(!game.pieces||!game.moveRole)return null;return{side:game.moveRole,c:{W:game.teams[game.order.white].captures,B:game.teams[game.order.black].captures},p:game.pieces.map(p=>({id:p.id,a:p.alive?1:0,x:p.x,y:p.y,o:ORIENTATION_INDEX.get(orientationKey(p.orientation))})),roll:ENGINE_ROLL,top:ENGINE_TOP,red:ENGINE_REDUCED,canon:ENGINE_CANON}}
+function engineStateClone(s){return{side:s.side,c:{...s.c},p:s.p.map(p=>({...p})),roll:s.roll,top:s.top,red:s.red,canon:s.canon}}function engineAdj(s,x,y,side,skip){let a=[];for(let i=0;i<8;i++){let p=s.p[i];if(i===skip||!p.a||p.id[0]===side)continue;if(Math.abs(p.x-x)+Math.abs(p.y-y)===1)a.push(i)}return a}function engineInitPieces(s){for(let i=0;i<8;i++){let p=s.p[i],w=i<4,g=["S","R","P","S"][i%4],st=w?[[0,0],[2,0],[4,0],[6,0]][i]:[[7,7],[5,7],[3,7],[1,7]][i-4];p.a=1;p.x=st[0];p.y=st[1];p.o=s.canon[g+(w?"S":"N")]}}function engineFight(a,b){if(a===b)return 0;if((a==="S"&&b==="P")||(a==="R"&&b==="S")||(a==="P"&&b==="R"))return 1;return-1}
+function applyEngineState(s,m){let n=engineStateClone(s),p=n.p[m.i],o=p.o;for(let d of m.dirs)o=n.roll[o][DIR_ORDER.indexOf(d)];let z=m.path.at(-1);p.x=z[0];p.y=z[1];p.o=o;let capture=null,es=engineAdj(n,p.x,p.y,n.side,m.i);if(es.length===1){let e=n.p[es[0]],f=engineFight(n.top[p.o],n.top[e.o]);if(f!==0){let loser=f>0?e:p,winner=f>0?n.side:(n.side==="W"?"B":"W");loser.a=0;capture=loser.id;n.c[winner]++}}let reset=false,wa=n.p.slice(0,4).some(p=>p.a),ba=n.p.slice(4).some(p=>p.a);if(!wa||!ba){engineInitPieces(n);reset=true}n.side=n.side==="W"?"B":"W";return{state:n,capture,reset}}
+function engineMoveText(s,m){let path=m.path.map(q=>cell(q[0],q[1])).join("-"),r=applyEngineState(s,m);return{notation:`${m.id}: ${path}${r.capture?` x${r.capture}`:""}${r.reset?" Reset":""}`,next:r.state}}
+function formatEnginePV(result){let s=toEngineState();if(!s||!result?.pv?.length)return"—";let n=analysisMoveNumber(game),parts=[];for(let m of result.pv){let label=`M${n}${s.side==="W"?".":"..."}`,x=engineMoveText(s,m);parts.push(`${label} ${x.notation}`);s=x.next;if(s.side==="W")n++}return parts.join("\n")}
+function evalSymbol(v){if(v>=150)return"+-";if(v>=75)return"±";if(v>=25)return"+=";if(v<=-150)return"-+";if(v<=-75)return"∓";if(v<=-25)return"=+";return"="}function evalText(v){let x=v/100;return`${x>=0?"+":""}${x.toFixed(2)}  ${evalSymbol(v)}`}
+function engineAnalysisHTML(){let a=app.engineAnalysis;if(!a)return"";if(a.error)return`<div class="analysis-block"><div class="analysis-label">Engine Analysis</div><div class="analysis-empty">${htmlEscape(a.error)}</div></div>`;let whiteValue=a.rootSide==="W"?a.value:-a.value,nps=Math.round(a.nodes/(Math.max(1,a.ms)/1000)),state=toEngineState(),best="—";if(state&&a.best)best=engineMoveText(state,a.best).notation;let candidates=(a.candidates||[]).map((c,i)=>{let v=a.rootSide==="W"?c.value:-c.value,txt=state?engineMoveText(state,c.move).notation:"—";return`<div class="candidate"><div>${i+1}.</div><div>${htmlEscape(txt)}</div><div class="score">${htmlEscape(evalText(v))}</div></div>`}).join("");return`<div class="analysis-block"><div class="analysis-label">Engine Analysis</div><div class="analysis-primary">Evaluation&nbsp;&nbsp; ${htmlEscape(evalText(whiteValue))}</div><div class="analysis-primary">Best Move&nbsp;&nbsp; ${htmlEscape(best)}</div><div class="engine-grid"><div class="label">Depth</div><div>${a.depth}</div><div class="label">SelDepth</div><div>${a.seldepth}</div><div class="label">Nodes</div><div>${a.nodes.toLocaleString()}</div><div class="label">NPS</div><div>${nps.toLocaleString()}</div></div><div class="analysis-block"><div class="analysis-label">Principal Variation</div><div class="analysis-line" style="white-space:pre-wrap">${htmlEscape(formatEnginePV(a))}</div></div>${candidates?`<div class="analysis-block"><div class="analysis-label">Candidate Moves</div>${candidates}</div>`:""}<div class="operator-note">Evaluation is in RPSC score units: 1.00 = one score point; one capture = 2.00. Position-evaluation symbols are analysis aids, not canonical record data.</div></div>`}
+function liveAnalysisHTML(){let d=ui.draft,sp=selectedPreview(),baseHtml="";if(d||sp){let piece=pieceById(d?d.pieceId:sp.pieceId),current=d?d.orientation:sp.orientation,initial=d?d.initialOrientation:sp.initialOrientation,item=d?d.item:sp.item,dirs=d?d.rollDirs:[],steps=d?d.stepsRequired:sp.stepsRequired,actual=gestureState(initial),shown=gestureState(current),rw=dirs.length?dirs.join(""):"—",aw=dirs.length?dirs.map(axisLetter).join(""):"—",tr=analysisTransition(),transition=tr.states.map((st,i)=>`${i?` <span>—${tr.ops[i-1]}→</span> `:""}${stateText(st)}`).join("");baseHtml=`<div class="analysis-piece">${htmlEscape(piece.id)} · ${htmlEscape(piece.team)}</div><div class="analysis-move">Analysis Move&nbsp;&nbsp; ${analysisMoveLabel()}</div><div class="analysis-state">Starting State&nbsp;&nbsp; s = ${stateText(actual)}</div><div class="analysis-meta"><div class="label">Starting Square</div><div>${cell(piece.x,piece.y)}</div><div class="label">Top Gesture</div><div>${actual[0]}</div><div class="label">Wrist Direction</div><div>${wristDirection(initial)}</div><div class="label">Wrist Axis</div><div>${wristAxis(initial)}</div><div class="label">Base Roll Length</div><div>ℓ(s) = ${C.DIST[actual[0]]}</div></div>${itemAnalysisHTML(item,initial,steps)}<div class="analysis-block"><div class="analysis-label">Roll Words and State Transition</div>${d?`<div class="analysis-line">Move Notation&nbsp;&nbsp; ${htmlEscape(draftMoveNotation(d))}</div><div class="analysis-line">Current State&nbsp;&nbsp; s = ${stateText(shown)}</div>`:""}<div class="analysis-line">Roll Word&nbsp;&nbsp; w = ${rw}</div><div class="analysis-line">Axis Word&nbsp;&nbsp; π(w) = ${aw}</div><div class="transition">${transition}</div></div>${operatorReferenceHTML()}`}else baseHtml=`<div class="analysis-empty">Select a piece during a board move to inspect its Gesture State. Live Analysis is derived from the exact cube orientation and is not stored separately from the Game Record.</div>${operatorReferenceHTML()}`;return baseHtml+engineAnalysisHTML()}
+let engineWorker=null;function ensureEngineWorker(){if(engineWorker)return engineWorker;let src=document.getElementById("engineWorkerSource").textContent,blob=new Blob([src],{type:"text/javascript"});engineWorker=new Worker(URL.createObjectURL(blob));engineWorker.onmessage=e=>{let {id,result,error}=e.data;if(id!==app.requestId)return;app.engineThinking=false;if(error){app.engineAnalysis={error};game.lastAction=`Engine error: ${error}`;render();return}result.rootSide=game.moveRole;app.engineAnalysis=result;let purpose=app.pendingPurpose;app.pendingPurpose=null;render();if(purpose==="move"&&result.best){setTimeout(()=>applyEngineMove(result.best),30)}else scheduleAutomation()};return engineWorker}
+function requestEngineSearch(purpose="analysis"){if(app.engineThinking||game.phase!=="MOVE"||!game.pieces)return;let state=toEngineState();if(!state)return;app.engineThinking=true;app.pendingPurpose=purpose;app.requestId++;let id=app.requestId,limits=purpose==="move"?(app.mode==="eve"?{depth:5,ms:1200}:{depth:6,ms:5500}):{depth:6,ms:7000};game.lastAction=purpose==="move"?`${game.moveRole==="W"?"White":"Black"} Engine is thinking...`:"Analyzing current position...";render();ensureEngineWorker().postMessage({id,state,limits})}
+function scheduleAutomation(){if(app.engineThinking||app.mode==="hvh"||game.phase==="COIN_RESULT"||game.phase==="ORDER_CHOICE"||game.phase==="ITEM_SELECT"||game.phase==="GAME_OVER")return;let active=app.mode==="hve"||app.engineRunning;if(!active)return;if(game.phase==="QUIZ"||game.phase==="OT_QUIZ"){setTimeout(()=>{if(!app.engineThinking&&(app.mode==="hve"||app.engineRunning)&&(game.phase==="QUIZ"||game.phase==="OT_QUIZ"))submitQuiz(false,false)},80);return}if(game.phase==="MOVE"&&controllerForTeam(currentMoveTeam())==="Engine")setTimeout(()=>requestEngineSearch("move"),80)}
+function engineStep(){if(app.mode!=="eve"||app.engineThinking)return;if(game.phase==="QUIZ"||game.phase==="OT_QUIZ")submitQuiz(false,false);else if(game.phase==="MOVE")requestEngineSearch("move")}
+function resetGame(){if(!window.confirm("Reset the entire analysis?"))return;game=freshGame();undoStack=[];clearMoveUI();app.engineRunning=false;app.engineThinking=false;app.engineAnalysis=null;app.requestId++;render();scheduleAutomation()}
+function phaseControls(){let quiz=document.getElementById("quizControls"),order=document.getElementById("orderControls"),gain=document.getElementById("itemGainControls"),move=document.getElementById("moveControls"),draft=document.getElementById("draftControls"),eng=document.getElementById("engineControls");quiz.classList.toggle("hidden",app.mode!=="hvh"||!(game.phase==="QUIZ"||game.phase==="OT_QUIZ"));order.classList.add("hidden");order.innerHTML="";gain.classList.toggle("hidden",game.phase!=="ITEM_SELECT");let humanMove=game.phase==="MOVE"&&controllerForTeam(currentMoveTeam())==="Human";move.classList.toggle("hidden",!humanMove||app.mode!=="hvh");draft.classList.toggle("hidden",!(humanMove&&ui.draft));eng.classList.toggle("hidden",app.mode!=="eve");if(game.phase==="ORDER_CHOICE"){order.classList.remove("hidden");let t=game.orderChoiceTeam;order.innerHTML=`<button data-order-solo="first">${t} First</button><button data-order-solo="second">${t} Second</button>`}else if(game.phase==="COIN_RESULT"){order.classList.remove("hidden");order.innerHTML=`<button data-coin-first="POSTECH">POSTECH First</button><button data-coin-first="KAIST">KAIST First</button>`}if(game.phase==="MOVE"&&humanMove&&app.mode==="hvh"){let team=currentMoveTeam();document.querySelectorAll("[data-move-item]").forEach(b=>{let code=b.dataset.moveItem,bucket=itemBucket(code);b.disabled=!!ui.draft||game.teams[team].items[bucket]<1;b.classList.toggle("active",!ui.draft&&ui.selectedItem===code)});document.getElementById("selectedItemText").textContent=ui.draft?`Item: ${ui.draft.item||"none"}`:`Item: ${ui.selectedItem||"none"} · click again to clear`}if(ui.draft){document.getElementById("backBtn").disabled=ui.draft.subphase==="PUSH";document.getElementById("confirmBtn").disabled=ui.draft.subphase!=="COMPLETE"}document.getElementById("engineStartBtn").textContent=app.engineRunning?"Pause":"Start";document.getElementById("engineStepBtn").disabled=app.engineThinking||app.engineRunning}
+function render(){let labels=roleLabels();document.getElementById("topRole").innerHTML=roleHTML(labels.top);document.getElementById("bottomRole").innerHTML=roleHTML(labels.bottom);document.getElementById("board").innerHTML=boardSVG();let roleName=t=>{let r=roleOfTeam(t);return r==="W"?"White":r==="B"?"Black":"—"},roles={POSTECH:roleName(C.POSTECH),KAIST:roleName(C.KAIST)};document.getElementById("scoreBody").innerHTML=`<tr><th>Team</th><td class="teamcell team-postech">POSTECH</td><td class="teamcell team-kaist">KAIST</td></tr><tr><th>Role</th><td>${roles.POSTECH}</td><td>${roles.KAIST}</td></tr><tr><th>Score</th><td>${score(C.POSTECH)}</td><td>${score(C.KAIST)}</td></tr><tr><th>Quiz</th><td>${game.teams.POSTECH.quiz}</td><td>${game.teams.KAIST.quiz}</td></tr><tr><th>Captures</th><td>${game.teams.POSTECH.captures}</td><td>${game.teams.KAIST.captures}</td></tr><tr><th>Push</th><td>${game.teams.POSTECH.items.Pu}</td><td>${game.teams.KAIST.items.Pu}</td></tr><tr><th>Rotation</th><td>${game.teams.POSTECH.items.Ro}</td><td>${game.teams.KAIST.items.Ro}</td></tr><tr><th>Step</th><td>${game.teams.POSTECH.items.St}</td><td>${game.teams.KAIST.items.St}</td></tr>`;let ms=document.getElementById("modeSelect"),hs=document.getElementById("humanTeamSelect"),hl=document.getElementById("humanTeamLabel");ms.value=app.mode;ms.disabled=game.rounds.length>0||app.engineThinking;hs.value=app.humanTeam;hs.classList.toggle("hidden",app.mode!=="hve");hl.classList.toggle("hidden",app.mode!=="hve");hs.disabled=!!game.order.white||app.engineThinking;document.getElementById("moveMeta").innerHTML=moveMetaText();document.getElementById("roundMeta").textContent=roundText();document.getElementById("instruction").textContent=instructionText();document.getElementById("detail").innerHTML=`${game.lastAction?htmlEscape(game.lastAction):""}${game.phase==="GAME_OVER"&&game.resultReason?`<div class="result-line">${htmlEscape(game.resultReason)}</div>`:""}`;document.getElementById("recordText").textContent=recordText();document.getElementById("analysisBody").innerHTML=liveAnalysisHTML();document.getElementById("undoBtn").disabled=!undoStack.length||app.engineThinking;document.getElementById("saveBtn").disabled=!isCompleteSavePoint()||app.engineThinking;document.getElementById("analyzeBtn").disabled=game.phase!=="MOVE"||app.engineThinking||!game.order.white;document.getElementById("boardNote").textContent=game.order.white?"White is shown at the bottom by default; a1 is dark; Flip Board changes only the view.":"First/second order is not set yet; POSTECH is shown provisionally at the bottom.";phaseControls()}
+function runSelfTests(){let f=[];function ok(c,m){if(!c)f.push(m)}ok(ALL_ORIENTATIONS.length===24,"cube must have 24 orientations");ok(new Set(ALL_ORIENTATIONS.map(o=>stateText(gestureState(o)))).size===6,"cube must reduce to six Gesture States");for(let g of["S","R","P"]){let o=canonicalOrientation(g,"S");ok(topGesture(o)===g,`${g} canonical top`);ok(orientationKey(cubeTransform(cubeTransform(o,"N"),"S"))===orientationKey(o),`${g} N/S inverse`);let q=o;for(let i=0;i<4;i++)q=cubeTransform(q,"CW");ok(orientationKey(q)===orientationKey(o),`${g} rotation x4`)}ok(C.DIST.S===3&&C.DIST.R===4&&C.DIST.P===5,"roll lengths");ok(evalSymbol(0)==="="&&evalSymbol(30)==="+="&&evalSymbol(-80)==="∓","evaluation symbols");return f}
+function bindEvents(){document.getElementById("board").addEventListener("click",e=>{let h=e.target.closest("[data-hit]");if(!h)return;let p=xy(h.dataset.hit);clickBoardCell(p.x,p.y)});document.getElementById("quizControls").addEventListener("click",e=>{let b=e.target.closest("[data-q]");if(!b)return;let q=b.dataset.q;submitQuiz(q[0]==="1",q[1]==="1")});document.getElementById("orderControls").addEventListener("click",e=>{let b=e.target.closest("button");if(!b)return;if(b.dataset.orderSolo)chooseOrderForSolo(game.orderChoiceTeam,b.dataset.orderSolo==="first");else if(b.dataset.coinFirst)chooseCoinResult(b.dataset.coinFirst)});document.getElementById("itemGainControls").addEventListener("click",e=>{let b=e.target.closest("[data-gain]");if(b)selectItemGain(b.dataset.gain)});document.getElementById("moveControls").addEventListener("click",e=>{let b=e.target.closest("[data-move-item]");if(b)setSelectedMoveItem(b.dataset.moveItem)});document.getElementById("backBtn").onclick=draftBack;document.getElementById("cancelBtn").onclick=cancelDraft;document.getElementById("confirmBtn").onclick=applyConfirmedDraft;document.getElementById("flipBtn").onclick=()=>{ui.flipped=!ui.flipped;render()};document.getElementById("undoBtn").onclick=restoreLast;document.getElementById("saveBtn").onclick=saveRecord;document.getElementById("loadBtn").onclick=()=>document.getElementById("loadInput").click();document.getElementById("loadInput").addEventListener("change",e=>{let f=e.target.files?.[0];if(f)loadFile(f);e.target.value=""});document.getElementById("resetBtn").onclick=resetGame;document.getElementById("analyzeBtn").onclick=()=>requestEngineSearch("analysis");document.getElementById("modeSelect").onchange=e=>{if(game.rounds.length)return;app.mode=e.target.value;app.engineRunning=false;app.engineAnalysis=null;clearMoveUI();render();scheduleAutomation()};document.getElementById("humanTeamSelect").onchange=e=>{if(game.order.white)return;app.humanTeam=e.target.value;render()};document.getElementById("engineStartBtn").onclick=()=>{app.engineRunning=!app.engineRunning;render();scheduleAutomation()};document.getElementById("engineStepBtn").onclick=engineStep;document.addEventListener("keydown",e=>{if(e.key==="Escape"&&ui.draft)cancelDraft();else if(e.key==="Escape"&&ui.selectedPieceId){ui.selectedPieceId=null;render()}if(e.key==="Backspace"&&ui.draft){e.preventDefault();draftBack()}})}
+function init(){let failures=runSelfTests();if(failures.length){game.lastAction=`Self-test failed: ${failures.join("; ")}`;document.querySelectorAll("button,select").forEach(x=>x.disabled=true)}bindEvents();render()}
 if(typeof document!=="undefined")init();
-if(typeof module!=="undefined"&&module.exports){module.exports={runSelfTests,parseAndReplay,recordText,gestureState,VState,HState,rhoState,analysisMoveNumber};}
+if(typeof module!=="undefined"&&module.exports){module.exports={runSelfTests,gestureState,VState,HState,rhoState,analysisMoveNumber,evalSymbol,ENGINE_ROLL,ENGINE_TOP,ENGINE_REDUCED,ENGINE_CANON};}
 </script>
 </body>
 </html>

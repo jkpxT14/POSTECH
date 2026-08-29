@@ -39,7 +39,6 @@
     pdfcreator={XeLaTeX}
 }
 
-% Institution colors and names follow the current Mathematics for Science Quiz source.
 \definecolor{POSTECHRed}{RGB}{166,25,85}
 \definecolor{KAISTBlue}{RGB}{0,65,145}
 \definecolor{SNUBlue}{RGB}{15,15,112}
@@ -47,42 +46,21 @@
 \definecolor{YonseiBlue}{RGB}{0,55,120}
 \definecolor{MITRed}{RGB}{117,0,20}
 \definecolor{CambridgeBlue}{RGB}{142,232,216}
-\newcommand{\institutiontext}[2]{%
-    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
-}
+\newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
 \DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
 \DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
-\DeclareRobustCommand{\POSTECHFull}{%
-    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
-}
-\DeclareRobustCommand{\KAISTFull}{%
-    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
-}
-\DeclareRobustCommand{\SeoulNationalUniversity}{%
-    \institutiontext{SNUBlue}{Seoul National University}%
-}
-\DeclareRobustCommand{\KoreaUniversity}{%
-    \institutiontext{KoreaCrimson}{Korea University}%
-}
-\DeclareRobustCommand{\YonseiUniversity}{%
-    \institutiontext{YonseiBlue}{Yonsei University}%
-}
-\DeclareRobustCommand{\MassachusettsInstituteOfTechnology}{%
-    \institutiontext{MITRed}{Massachusetts Institute of Technology}%
-}
-\DeclareRobustCommand{\UniversityOfCambridge}{%
-    \institutiontext{CambridgeBlue}{University of Cambridge}%
-}
+\DeclareRobustCommand{\POSTECHFull}{\institutiontext{POSTECHRed}{Pohang University of Science and Technology}}
+\DeclareRobustCommand{\KAISTFull}{\institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{\institutiontext{SNUBlue}{Seoul National University}}
+\DeclareRobustCommand{\KoreaUniversity}{\institutiontext{KoreaCrimson}{Korea University}}
+\DeclareRobustCommand{\YonseiUniversity}{\institutiontext{YonseiBlue}{Yonsei University}}
+\DeclareRobustCommand{\MassachusettsInstituteOfTechnology}{\institutiontext{MITRed}{Massachusetts Institute of Technology}}
+\DeclareRobustCommand{\UniversityOfCambridge}{\institutiontext{CambridgeBlue}{University of Cambridge}}
 
-% Team colors used by board diagrams.  These are set per game from the PGN-style
-% White/Black header.  Unless otherwise stated, examples use POSTECH as White.
 \newcommand{\RPSCWhiteColor}{POSTECHRed}
 \newcommand{\RPSCBlackColor}{KAISTBlue}
-
-% Table columns
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
-% Compact book conventions
 \setcounter{tocdepth}{1}
 \renewcommand{\contentsname}{Contents}
 \setlength{\parindent}{1em}
@@ -93,29 +71,16 @@
 \input{Figures/Styles/TikZ.tex}
 
 \begin{document}
-
 \pagenumbering{gobble}
-
 \begin{titlepage}
     \centering
-
     \vspace*{2.65cm}
-
     {\Huge\bfseries RockPaperScissors Chess\par}
-
     \vspace{0.55cm}
-
     {\LARGE Rules and Analysis\par}
-
     \vspace{0.9cm}
-
-    {\large
-    First Edition\\
-    August 2026
-    \par}
-
+    {\large First Edition\\August 2026\par}
     \vspace{1.25cm}
-
     {\large
     Jungwoo Kim\\
     Department of Mathematics\\
@@ -123,28 +88,20 @@
     (2026 Science Quiz Representative)\\
     jkpxt14@postech.ac.kr
     \par}
-
     \vfill
-
     {\large
     \POSTECH--\KAIST{} Science War\\[0.7em]
     \POSTECHFull\\
     vs\\
     \KAISTFull
     \par}
-
     \vspace{0.3cm}
-
 \end{titlepage}
 
 \pagenumbering{arabic}
-
 \input{Acknowledgements.tex}
-
 \input{Preface.tex}
-
 \tableofcontents
-
 \input{Rules.tex}
 \input{NotationandGameRecording.tex}
 \input{MovementandItems.tex}
@@ -153,5 +110,4 @@
 \input{Openings.tex}
 \input{Puzzles.tex}
 \input{Games.tex}
-
 \end{document}
