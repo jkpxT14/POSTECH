@@ -27,6 +27,12 @@ Direction opposite_dir(Direction direction) {
     return Direction::North;
 }
 
+bool orthogonally_adjacent(Square first, Square second) {
+    return std::abs(file_of(first) - file_of(second)) +
+               std::abs(rank_of(first) - rank_of(second)) ==
+           1;
+}
+
 int combat(Gesture first, Gesture second) {
     if (first == second) return 0;
     if ((first == Gesture::Scissors && second == Gesture::Paper) ||
@@ -41,6 +47,20 @@ std::uint64_t splitmix64(std::uint64_t value) {
     value = (value ^ (value >> 30)) * 0xbf58476d1ce4e5b9ULL;
     value = (value ^ (value >> 27)) * 0x94d049bb133111ebULL;
     return value ^ (value >> 31);
+}
+
+Orientation apply_rotation_item(Orientation orientation, Item item) {
+    const auto& table = OrientationTable::instance();
+    if (item == Item::RotateLeft) return table.rotate_left(orientation);
+    if (item == Item::RotateRight) return table.rotate_right(orientation);
+    return orientation;
+}
+
+int required_rolls(Orientation orientation, Item item) {
+    int rolls = base_roll_length(OrientationTable::instance().top_gesture(orientation));
+    if (item == Item::StepShort) --rolls;
+    if (item == Item::StepLong) ++rolls;
+    return rolls;
 }
 
 }  // namespace
@@ -79,6 +99,7 @@ void Position::reset() {
     side_to_move_ = Color::White;
     captures_white_ = 0;
     captures_black_ = 0;
+    items_ = {};
 }
 
 bool Position::occupied(Square square, PieceId exclude) const {
@@ -138,16 +159,27 @@ bool Position::is_legal_path(const Move& move) const {
         move.from() != piece_state.square)
         return false;
 
-    const auto& orientations = OrientationTable::instance();
-    const int required = base_roll_length(orientations.top_gesture(piece_state.orientation));
-    if (move.roll_count() != required) return false;
+    const int bucket = item_bucket(move.item);
+    if (bucket >= 0 && item_count(side_to_move_, bucket) <= 0) return false;
+    if (move.item != Item::Push && move.push_to != NoSquare) return false;
+
+    Orientation orientation = apply_rotation_item(piece_state.orientation, move.item);
+    if (move.roll_count() != required_rolls(orientation, move.item)) return false;
+
+    Square roll_from = move.from();
+    if (move.item == Item::Push) {
+        if (move.push_to == NoSquare || !orthogonally_adjacent(move.from(), move.push_to) ||
+            occupied(move.push_to, id))
+            return false;
+        roll_from = move.push_to;
+    }
 
     Direction last{};
     bool has_last = false;
     for (std::uint8_t i = 1; i < move.path_length; ++i) {
         Direction direction;
         try {
-            direction = direction_between(move.path[i - 1], move.path[i]);
+            direction = direction_between(roll_from, move.path[i]);
         } catch (...) {
             return false;
         }
@@ -158,6 +190,8 @@ bool Position::is_legal_path(const Move& move) const {
             adjacent_enemies(move.path[i], side_to_move_, id) >= 2)
             return false;
 
+        orientation = OrientationTable::instance().roll(orientation, direction);
+        roll_from = move.path[i];
         last = direction;
         has_last = true;
     }
@@ -167,14 +201,24 @@ bool Position::is_legal_path(const Move& move) const {
 MoveOutcome Position::do_move(const Move& move, UndoState& undo) {
     if (!is_legal_path(move)) throw std::invalid_argument("illegal RPSC move");
 
-    undo = {pieces_, side_to_move_, captures_white_, captures_black_};
+    undo.pieces = pieces_;
+    undo.side_to_move = side_to_move_;
+    undo.captures_white = captures_white_;
+    undo.captures_black = captures_black_;
+    undo.items = items_;
+
     auto& moving_piece = piece(move.piece);
     const Color mover = side_to_move_;
-    auto orientation = moving_piece.orientation;
+    Orientation orientation = apply_rotation_item(moving_piece.orientation, move.item);
+    Square roll_from = move.item == Item::Push ? move.push_to : move.from();
+
+    const int bucket = item_bucket(move.item);
+    if (bucket >= 0) --items_[color_index(mover)][bucket];
 
     for (std::uint8_t i = 1; i < move.path_length; ++i) {
-        orientation = OrientationTable::instance().roll(
-            orientation, direction_between(move.path[i - 1], move.path[i]));
+        const Direction direction = direction_between(roll_from, move.path[i]);
+        orientation = OrientationTable::instance().roll(orientation, direction);
+        roll_from = move.path[i];
     }
     moving_piece.square = move.to();
     moving_piece.orientation = orientation;
@@ -213,6 +257,7 @@ void Position::undo_move(const UndoState& undo) {
     side_to_move_ = undo.side_to_move;
     captures_white_ = undo.captures_white;
     captures_black_ = undo.captures_black;
+    items_ = undo.items;
 }
 
 Key Position::key() const {
@@ -227,6 +272,13 @@ Key Position::key() const {
     if (side_to_move_ == Color::Black) key ^= splitmix64(0x3141592653589793ULL);
     key ^= splitmix64(0x1111000000000000ULL + static_cast<unsigned>(captures_white_));
     key ^= splitmix64(0x2222000000000000ULL + static_cast<unsigned>(captures_black_));
+    for (int side = 0; side < 2; ++side) {
+        for (int bucket = 0; bucket < 3; ++bucket) {
+            const std::uint64_t base = 0x5555000000000000ULL +
+                                       static_cast<std::uint64_t>(side * 3 + bucket) * 0x10000ULL;
+            key ^= splitmix64(base + static_cast<unsigned>(items_[side][bucket]));
+        }
+    }
     return key;
 }
 
@@ -244,13 +296,22 @@ Key Position::search_key() const {
     if (side_to_move_ == Color::Black) key ^= splitmix64(0x2718281828459045ULL);
     key ^= splitmix64(0x3333000000000000ULL + static_cast<unsigned>(captures_white_));
     key ^= splitmix64(0x4444000000000000ULL + static_cast<unsigned>(captures_black_));
+    for (int side = 0; side < 2; ++side) {
+        for (int bucket = 0; bucket < 3; ++bucket) {
+            const std::uint64_t base = 0x7777000000000000ULL +
+                                       static_cast<std::uint64_t>(side * 3 + bucket) * 0x10000ULL;
+            key ^= splitmix64(base + static_cast<unsigned>(items_[side][bucket]));
+        }
+    }
     return key;
 }
 
 std::string Position::debug_string() const {
     std::ostringstream out;
     out << (side_to_move_ == Color::White ? "White" : "Black") << " to move | captures "
-        << captures_white_ << '-' << captures_black_ << '\n';
+        << captures_white_ << '-' << captures_black_ << " | items W " << items_[0][0] << ','
+        << items_[0][1] << ',' << items_[0][2] << " B " << items_[1][0] << ',' << items_[1][1]
+        << ',' << items_[1][2] << '\n';
 
     const auto& orientations = OrientationTable::instance();
     for (int i = 0; i < PieceCount; ++i) {

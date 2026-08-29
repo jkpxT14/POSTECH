@@ -4,6 +4,44 @@
 #include <sstream>
 
 namespace rpsc {
+namespace {
+
+const char* item_code(Item item) {
+    switch (item) {
+        case Item::None: return "";
+        case Item::Push: return "Pu";
+        case Item::RotateLeft: return "RoL";
+        case Item::RotateRight: return "RoR";
+        case Item::StepShort: return "StS";
+        case Item::StepLong: return "StL";
+    }
+    return "";
+}
+
+bool parse_item(const std::string& code, Item& item) {
+    if (code.empty()) {
+        item = Item::None;
+        return true;
+    }
+    if (code == "Pu") item = Item::Push;
+    else if (code == "RoL") item = Item::RotateLeft;
+    else if (code == "RoR") item = Item::RotateRight;
+    else if (code == "StS") item = Item::StepShort;
+    else if (code == "StL") item = Item::StepLong;
+    else return false;
+    return true;
+}
+
+bool parse_square_token(const std::string& text, std::size_t offset, Square& square) {
+    if (offset + 2 > text.size()) return false;
+    const char file = text[offset];
+    const char rank = text[offset + 1];
+    if (file < 'a' || file > 'h' || rank < '1' || rank > '8') return false;
+    square = make_square(file - 'a', rank - '1');
+    return true;
+}
+
+}  // namespace
 
 std::string square_name(Square square) {
     if (square == NoSquare) return "--";
@@ -24,11 +62,11 @@ std::string piece_name(PieceId piece) {
 
 std::string format_move(const Move& move) {
     std::ostringstream out;
-    out << piece_name(move.piece) << ": ";
-    for (std::uint8_t i = 0; i < move.path_length; ++i) {
-        if (i) out << '-';
-        out << square_name(move.path[i]);
-    }
+    out << piece_name(move.piece);
+    if (move.item != Item::None) out << '[' << item_code(move.item) << ']';
+    out << ": " << square_name(move.from());
+    if (move.item == Item::Push) out << '>' << square_name(move.push_to);
+    for (std::uint8_t i = 1; i < move.path_length; ++i) out << '-' << square_name(move.path[i]);
     return out.str();
 }
 
@@ -47,8 +85,18 @@ bool parse_move(const Position& position, const std::string& text, Move& move) {
     const auto colon = text.find(':');
     if (colon == std::string::npos || colon < 2) return false;
 
-    std::string id = text.substr(0, colon);
-    while (!id.empty() && std::isspace(static_cast<unsigned char>(id.back()))) id.pop_back();
+    std::string head = text.substr(0, colon);
+    while (!head.empty() && std::isspace(static_cast<unsigned char>(head.back()))) head.pop_back();
+
+    std::string id = head;
+    std::string code;
+    const auto open = head.find('[');
+    if (open != std::string::npos) {
+        const auto close = head.find(']', open + 1);
+        if (close == std::string::npos || close + 1 != head.size()) return false;
+        id = head.substr(0, open);
+        code = head.substr(open + 1, close - open - 1);
+    }
 
     PieceId piece = PieceId::W1;
     bool found = false;
@@ -62,29 +110,43 @@ bool parse_move(const Position& position, const std::string& text, Move& move) {
     }
     if (!found) return false;
 
+    Item item;
+    if (!parse_item(code, item)) return false;
+
     std::string path = text.substr(colon + 1);
     const auto capture = path.find(" x");
     if (capture != std::string::npos) path = path.substr(0, capture);
     const auto reset = path.find(" Reset");
     if (reset != std::string::npos) path = path.substr(0, reset);
+    while (!path.empty() && std::isspace(static_cast<unsigned char>(path.front())))
+        path.erase(path.begin());
+    while (!path.empty() && std::isspace(static_cast<unsigned char>(path.back()))) path.pop_back();
 
-    std::istringstream stream(path);
-    std::string token;
     Move parsed;
     parsed.piece = piece;
+    parsed.item = item;
 
-    while (std::getline(stream, token, '-')) {
-        while (!token.empty() && std::isspace(static_cast<unsigned char>(token.front())))
-            token.erase(token.begin());
-        while (!token.empty() && std::isspace(static_cast<unsigned char>(token.back())))
-            token.pop_back();
+    std::size_t pos = 0;
+    Square start;
+    if (!parse_square_token(path, pos, start)) return false;
+    parsed.path[parsed.path_length++] = start;
+    pos += 2;
 
-        if (token.size() != 2 || token[0] < 'a' || token[0] > 'h' || token[1] < '1' ||
-            token[1] > '8')
-            return false;
+    if (item == Item::Push) {
+        if (pos >= path.size() || path[pos] != '>') return false;
+        ++pos;
+        if (!parse_square_token(path, pos, parsed.push_to)) return false;
+        pos += 2;
+    }
+
+    while (pos < path.size()) {
+        if (path[pos] != '-') return false;
+        ++pos;
+        Square square;
+        if (!parse_square_token(path, pos, square)) return false;
         if (parsed.path_length >= MaxMoveSquares) return false;
-
-        parsed.path[parsed.path_length++] = make_square(token[0] - 'a', token[1] - '1');
+        parsed.path[parsed.path_length++] = square;
+        pos += 2;
     }
 
     if (!position.is_legal_path(parsed)) return false;

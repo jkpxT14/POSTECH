@@ -4,6 +4,7 @@
 #include <chrono>
 #include <cstdint>
 #include <vector>
+
 #include "evaluate.h"
 #include "movegen.h"
 #include "tt.h"
@@ -14,6 +15,13 @@ struct SearchLimits {
     Depth depth = 6;
     std::uint64_t nodes = 0;
     std::chrono::milliseconds movetime{0};
+    int multipv = 1;
+};
+
+struct RootLine {
+    Move move{};
+    Value value = 0;
+    std::vector<Move> pv;
 };
 
 struct SearchResult {
@@ -25,6 +33,7 @@ struct SearchResult {
     std::uint64_t nodes = 0;
     std::chrono::milliseconds elapsed{0};
     std::vector<Move> pv;
+    std::vector<RootLine> lines;
 };
 
 class Search {
@@ -35,9 +44,11 @@ class Search {
    private:
     TranspositionTable& tt_;
     struct Context;
-    Value negamax(Position& position, Depth depth, Value alpha, Value beta, int ply, Context& ctx, bool pv_node);
-    Value quiescence(Position& position, Value alpha, Value beta, int ply, Context& ctx);
+    Value negamax(Position& position, Depth depth, Value alpha, Value beta, int ply,
+                  Context& context, bool pv_node);
+    Value quiescence(Position& position, Value alpha, Value beta, int ply, Context& context);
 };
 
 }  // namespace rpsc
+
 #endif

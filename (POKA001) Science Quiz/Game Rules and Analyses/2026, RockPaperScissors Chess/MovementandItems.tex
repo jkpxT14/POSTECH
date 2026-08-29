@@ -6,7 +6,8 @@
 
 RPSC의 주사위는 실제로는 24가지 물리적 방향을 가질 수 있지만, 같은 gesture가 그려진 두 면이 서로 마주보기 때문에 S/R/P의 축 배치만 보존하면 앞으로의 Top Gesture 변화를 여섯 개의 상태로 분석할 수 있다. 정확한 물리적 방향은 여전히 Chapter 2의 full path와 \texttt{RoL}/\texttt{RoR}을 이용해 복원한다.
 
-\subsection{Gesture State}
+\medskip
+\noindent\textbf{Gesture State.}
 
 가위, 바위, 보를 각각 $\mathrm{S}$, $\mathrm{R}$, $\mathrm{P}$로 나타낸다. 정육면체의 세 공간축을
 \[
@@ -49,7 +50,8 @@ Gesture State $s=\langle a,b,c\rangle$의 \textbf{Base Roll Length}를 $\ell(s)$
     \end{cases}
 \]
 
-\subsection{State Operators}
+\medskip
+\noindent\textbf{State Operators.}
 
 North/South 방향의 한 Roll을 \textbf{Vertical Roll} $V$, East/West 방향의 한 Roll을 \textbf{Horizontal Roll} $H$라 둔다. Rotation의 reduced-state 연산은 $\rho$로 나타낸다.
 \[
@@ -63,7 +65,8 @@ North/South 방향의 한 Roll을 \textbf{Vertical Roll} $V$, East/West 방향�
 
 특히 $\rho$는 첫 번째 성분을 건드리지 않으므로 Rotation은 Top Gesture와 Base Roll Length를 바꾸지 않는다. 정확한 기보에서는 \texttt{RoL}과 \texttt{RoR}을 구별하지만 Gesture State 수준에서는 둘 모두 $\rho$로 작용한다.
 
-\subsection{Roll Words and State Transitions}
+\medskip
+\noindent\textbf{Roll Words and State Transitions.}
 
 한 이동에서 각 Roll의 실제 방향을 시간 순서대로 적은 것을 \textbf{Roll Word} $w$라 한다. 예를 들어
 \[
@@ -86,7 +89,8 @@ Roll Word를 두 상태 연산의 word로 바꾸는 대응을 \textbf{Axis Proje
 
 Roll의 순서는 중요하며 일반적으로 $H(V(s))\neq V(H(s))$이다. 따라서 Vertical Roll과 Horizontal Roll의 개수만 세는 것으로는 충분하지 않다.
 
-\subsection{Items in the Analysis Model}
+\medskip
+\noindent\textbf{Items in the Analysis Model.}
 
 \begin{center}
     \renewcommand{\arraystretch}{1.18}
@@ -108,35 +112,33 @@ Roll의 순서는 중요하며 일반적으로 $H(V(s))\neq V(H(s))$이다. 따�
 
 \section{Basic Movement}
 
-\subsection{Scissors}
+\medskip
+\noindent\textbf{Scissors.}
 Scissors는 기본 이동거리 3을 가진다.
 \input{Figures/Movement/basic-scissors.tex}
 
-\subsection{Rock}
+\medskip
+\noindent\textbf{Rock.}
 Rock은 기본 이동거리 4를 가진다. 네 번의 Roll로 작은 고리를 만들 수 있으므로 시작칸으로 되돌아오는 이동도 가능하다.
 \input{Figures/Movement/basic-rock.tex}
 
-\subsection{Paper}
+\medskip
+\noindent\textbf{Paper.}
 Paper는 기본 이동거리 5를 가지며 세 말 가운데 가장 넓은 범위를 다룬다.
 \input{Figures/Movement/basic-paper.tex}
 
-\section{Items}
+\section{Movement with Items}
 
 아이템은 기본 이동에 앞서 한 번 적용하며, 한 번의 이동에는 최대 한 개만 사용할 수 있다. 본 장의 Push 도해는 Push를 Roll과 구분되는 한 칸 평행이동으로 보고, Push 직후의 첫 Roll에서 Push 이전 칸으로 돌아가는 것을 허용하여 계산한다.
 
-\section{Movement with Items}
-
-\subsection{Scissors}
 \input{Figures/Movement/scissors-push.tex}
 \input{Figures/Movement/scissors-rotation.tex}
 \input{Figures/Movement/scissors-step.tex}
 
-\subsection{Rock}
 \input{Figures/Movement/rock-push.tex}
 \input{Figures/Movement/rock-rotation.tex}
 \input{Figures/Movement/rock-step.tex}
 
-\subsection{Paper}
 \input{Figures/Movement/paper-push.tex}
 \input{Figures/Movement/paper-rotation.tex}
 \input{Figures/Movement/paper-step.tex}

@@ -24,6 +24,7 @@ enum class Color : std::uint8_t { White = 0, Black = 1 };
 enum class Gesture : std::uint8_t { Scissors = 0, Rock = 1, Paper = 2 };
 enum class Direction : std::uint8_t { North = 0, South = 1, East = 2, West = 3 };
 enum class PieceId : std::uint8_t { W1, W2, W3, W4, B1, B2, B3, B4 };
+enum class Item : std::uint8_t { None, Push, RotateLeft, RotateRight, StepShort, StepLong };
 enum class Bound : std::uint8_t { None, Upper, Lower, Exact };
 
 constexpr Color opposite(Color c) { return c == Color::White ? Color::Black : Color::White; }
@@ -36,6 +37,14 @@ constexpr int rank_of(Square s) { return static_cast<int>(s) >> 3; }
 constexpr Square make_square(int file, int rank) { return static_cast<Square>(rank * 8 + file); }
 constexpr bool valid_square(int file, int rank) {
     return file >= 0 && file < BoardSize && rank >= 0 && rank < BoardSize;
+}
+
+
+constexpr int item_bucket(Item item) {
+    if (item == Item::Push) return 0;
+    if (item == Item::RotateLeft || item == Item::RotateRight) return 1;
+    if (item == Item::StepShort || item == Item::StepLong) return 2;
+    return -1;
 }
 
 constexpr int base_roll_length(Gesture g) {

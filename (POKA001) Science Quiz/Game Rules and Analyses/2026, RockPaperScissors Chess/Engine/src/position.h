@@ -3,6 +3,7 @@
 
 #include <array>
 #include <string>
+
 #include "move.h"
 #include "orientation.h"
 
@@ -19,6 +20,7 @@ struct UndoState {
     Color side_to_move = Color::White;
     int captures_white = 0;
     int captures_black = 0;
+    std::array<std::array<int, 3>, 2> items{};
 };
 
 struct MoveOutcome {
@@ -33,7 +35,7 @@ class Position {
 
     void reset();
     Color side_to_move() const { return side_to_move_; }
-    void set_side_to_move(Color c) { side_to_move_ = c; }
+    void set_side_to_move(Color color) { side_to_move_ = color; }
     const PieceState& piece(PieceId id) const { return pieces_[piece_index(id)]; }
     PieceState& piece(PieceId id) { return pieces_[piece_index(id)]; }
     const std::array<PieceState, PieceCount>& pieces() const { return pieces_; }
@@ -44,6 +46,16 @@ class Position {
     int captures(Color side) const { return side == Color::White ? captures_white_ : captures_black_; }
     int score(Color side) const { return 2 * captures(side); }
     int alive_count(Color side) const;
+
+    int item_count(Color side, int bucket) const { return items_[color_index(side)][bucket]; }
+    int item_count(Color side, Item item) const {
+        const int bucket = item_bucket(item);
+        return bucket < 0 ? 0 : item_count(side, bucket);
+    }
+    void set_items(Color side, int push, int rotation, int step) {
+        items_[color_index(side)] = {push, rotation, step};
+    }
+    const std::array<int, 3>& items(Color side) const { return items_[color_index(side)]; }
 
     MoveOutcome do_move(const Move& move, UndoState& undo);
     void undo_move(const UndoState& undo);
@@ -60,6 +72,7 @@ class Position {
     Color side_to_move_ = Color::White;
     int captures_white_ = 0;
     int captures_black_ = 0;
+    std::array<std::array<int, 3>, 2> items_{};
 };
 
 }  // namespace rpsc

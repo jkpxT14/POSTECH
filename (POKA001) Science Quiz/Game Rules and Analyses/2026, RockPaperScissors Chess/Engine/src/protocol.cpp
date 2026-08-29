@@ -15,14 +15,28 @@ void Protocol::print_search(const SearchResult& result) {
     const auto milliseconds = std::max<std::int64_t>(1, result.elapsed.count());
     const auto nps = static_cast<std::uint64_t>(
         result.nodes * 1000ULL / static_cast<std::uint64_t>(milliseconds));
-    const Value white_value =
-        engine_.position().side_to_move() == Color::White ? result.value : -result.value;
+    const bool white_to_move = engine_.position().side_to_move() == Color::White;
 
-    out_ << "info depth " << result.depth << " seldepth " << result.seldepth << " nodes "
-         << result.nodes << " nps " << nps << " score " << std::fixed << std::setprecision(2)
-         << static_cast<double>(white_value) / ScoreUnit;
-    if (!result.pv.empty()) out_ << " pv " << format_pv(engine_.position(), result.pv);
-    out_ << '\n';
+    if (!result.lines.empty()) {
+        for (std::size_t i = 0; i < result.lines.size(); ++i) {
+            const auto& line = result.lines[i];
+            const Value white_value = white_to_move ? line.value : -line.value;
+            out_ << "info multipv " << (i + 1) << " depth " << result.depth << " seldepth "
+                 << result.seldepth << " nodes " << result.nodes << " nps " << nps << " score "
+                 << std::fixed << std::setprecision(2)
+                 << static_cast<double>(white_value) / ScoreUnit;
+            if (!line.pv.empty()) out_ << " pv " << format_pv(engine_.position(), line.pv);
+            out_ << '\n';
+        }
+    } else {
+        const Value white_value = white_to_move ? result.value : -result.value;
+        out_ << "info depth " << result.depth << " seldepth " << result.seldepth << " nodes "
+             << result.nodes << " nps " << nps << " score " << std::fixed
+             << std::setprecision(2) << static_cast<double>(white_value) / ScoreUnit;
+        if (!result.pv.empty()) out_ << " pv " << format_pv(engine_.position(), result.pv);
+        out_ << '\n';
+    }
+
     out_ << "bestmove " << (result.has_move ? format_move(result.best_move) : "(none)") << '\n';
 }
 
@@ -43,7 +57,7 @@ void Protocol::bench() {
 
 void Protocol::command(const std::string& line) {
     if (line == "rpsc") {
-        out_ << "id name RPSC Engine 0.2\nid author Jungwoo Kim\nrpscok\n";
+        out_ << "id name RPSC Engine 0.3\nid author Jungwoo Kim\nrpscok\n";
         return;
     }
     if (line == "isready") {
@@ -76,6 +90,19 @@ void Protocol::command(const std::string& line) {
         divide(engine_.position(), depth, out_);
         return;
     }
+    if (line.rfind("items ", 0) == 0) {
+        std::istringstream stream(line.substr(6));
+        char side;
+        int push = 0, rotation = 0, step = 0;
+        if (!(stream >> side >> push >> rotation >> step) || (side != 'W' && side != 'B') ||
+            push < 0 || rotation < 0 || step < 0) {
+            out_ << "error invalid items\n";
+            return;
+        }
+        engine_.position().set_items(side == 'W' ? Color::White : Color::Black, push, rotation,
+                                     step);
+        return;
+    }
     if (line.rfind("move ", 0) == 0) {
         Move move;
         if (!parse_move(engine_.position(), line.substr(5), move)) {
@@ -102,6 +129,8 @@ void Protocol::command(const std::string& line) {
                 stream >> milliseconds;
                 limits.movetime = std::chrono::milliseconds(milliseconds);
                 limits.depth = 64;
+            } else if (token == "multipv") {
+                stream >> limits.multipv;
             }
         }
         print_search(engine_.go(limits));
