@@ -87,6 +87,30 @@ Roll Word를 두 상태 연산의 word로 바꾸는 대응을 \textbf{Axis Proje
     \boxed{\text{Move Notation}\longrightarrow\text{Roll Word}\xrightarrow{\ \pi\ }\text{Axis Word}\longrightarrow\text{Gesture State Transition}}
 \]
 
+이 흐름을 실제 수 하나에 적용해 보자. 초기 위치의 W2는 Top Gesture가 Rock이고 Wrist Axis가 NS이므로
+\[
+    s_0=\langle \mathrm{R},\mathrm{S},\mathrm{P}\rangle.
+\]
+Chapter 2의 이동
+\[
+    \texttt{W2: c1-c2-d2-d3-e3}
+\]
+은 Roll Word $w=NENE$, 따라서 Axis Word $\pi(w)=VHVH$를 가진다. 이를 왼쪽에서 오른쪽으로 적용하면
+\[
+\begin{aligned}
+    \langle \mathrm{R},\mathrm{S},\mathrm{P}\rangle
+    &\xrightarrow{V}
+    \langle \mathrm{S},\mathrm{R},\mathrm{P}\rangle
+    \xrightarrow{H}
+    \langle \mathrm{P},\mathrm{R},\mathrm{S}\rangle\\
+    &\xrightarrow{V}
+    \langle \mathrm{R},\mathrm{P},\mathrm{S}\rangle
+    \xrightarrow{H}
+    \langle \mathrm{S},\mathrm{P},\mathrm{R}\rangle.
+\end{aligned}
+\]
+따라서 W2의 최종 Top Gesture는 Scissors이며, 같은 계산으로 다음 이동에 필요한 축 배치까지 함께 얻는다. Roll Word와 Axis Word는 분석을 위한 파생 정보이므로 Game Record에 별도로 기록할 필요는 없다.
+
 Roll의 순서는 중요하며 일반적으로 $H(V(s))\neq V(H(s))$이다. 따라서 Vertical Roll과 Horizontal Roll의 개수만 세는 것으로는 충분하지 않다.
 
 \medskip

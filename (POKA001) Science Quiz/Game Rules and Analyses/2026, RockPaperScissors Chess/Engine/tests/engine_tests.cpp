@@ -76,6 +76,9 @@ int main() {
     item_position.set_items(Color::White, 1, 1, 1);
     item_position.set_items(Color::Black, 1, 1, 1);
     const auto item_moves = generate_legal_moves(item_position);
+    const auto item_strategic = generate_search_moves(item_position);
+    assert(item_moves.size() == 1472);
+    assert(item_strategic.size() == 427);
     bool saw_push = false;
     bool saw_rotate_left = false;
     bool saw_rotate_right = false;

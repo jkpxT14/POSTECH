@@ -8,6 +8,8 @@ namespace {
 
 constexpr Value ItemReserveValue = 6;
 
+constexpr std::array<std::pair<int, int>, 4> Directions{{{0, 1}, {0, -1}, {1, 0}, {-1, 0}}};
+
 int first_step_mobility(const Position& position, PieceId id) {
     const auto& piece = position.piece(id);
     if (!piece.alive()) return 0;
@@ -15,12 +17,38 @@ int first_step_mobility(const Position& position, PieceId id) {
     int mobility = 0;
     const int file = file_of(piece.square);
     const int rank = rank_of(piece.square);
-    constexpr std::array<std::pair<int, int>, 4> directions{{{0, 1}, {0, -1}, {1, 0}, {-1, 0}}};
-    for (const auto& [df, dr] : directions) {
+    for (const auto& [df, dr] : Directions) {
         if (!valid_square(file + df, rank + dr)) continue;
         if (!position.occupied(make_square(file + df, rank + dr), id)) ++mobility;
     }
     return mobility;
+}
+
+int second_step_continuations(const Position& position, PieceId id) {
+    const auto& piece = position.piece(id);
+    if (!piece.alive()) return 0;
+
+    int continuations = 0;
+    const int file = file_of(piece.square);
+    const int rank = rank_of(piece.square);
+    for (const auto& [df, dr] : Directions) {
+        const int first_file = file + df;
+        const int first_rank = rank + dr;
+        if (!valid_square(first_file, first_rank) ||
+            position.occupied(make_square(first_file, first_rank), id)) {
+            continue;
+        }
+
+        for (const auto& [next_df, next_dr] : Directions) {
+            // A Roll may not immediately return to the previous square.
+            if (next_df == -df && next_dr == -dr) continue;
+            const int second_file = first_file + next_df;
+            const int second_rank = first_rank + next_dr;
+            if (!valid_square(second_file, second_rank)) continue;
+            if (!position.occupied(make_square(second_file, second_rank), id)) ++continuations;
+        }
+    }
+    return continuations;
 }
 
 }  // namespace
@@ -47,7 +75,11 @@ Value evaluate_white(const Position& position) {
     for (int i = 0; i < PieceCount; ++i) {
         const auto id = static_cast<PieceId>(i);
         if (!position.piece(id).alive()) continue;
-        const int mobility = 2 * first_step_mobility(position, id);
+        // Reward local path flexibility rather than an unverified board-region preference.
+        // The continuation term follows the no-immediate-reverse Roll rule and stays small
+        // relative to the official capture score.
+        const int mobility = 2 * first_step_mobility(position, id) +
+                             second_step_continuations(position, id) / 2;
         value += piece_color(id) == Color::White ? mobility : -mobility;
     }
 

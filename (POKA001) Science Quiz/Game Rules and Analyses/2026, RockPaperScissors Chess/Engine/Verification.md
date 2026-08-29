@@ -1,6 +1,6 @@
 # Verification
 
-Draft 22 was built and tested against the same RPSC rule, orientation, notation, and score model used by the handbook and Analysis Board.
+Draft 23 was rebuilt from the Draft 22 GitHub source state and tested against the same RPSC rule, orientation, notation, item, and score model used by the handbook and Analysis Board.
 
 ## Deterministic rule and move-generation checks
 
@@ -16,34 +16,42 @@ With both sides holding one Push, one Rotation, and one Step at the initial posi
 
 - canonical legal moves: `1472`
 - distinct reduced search successors: `427`
-- move breakdown: no item `161`, Push `523`, Rotation Left `161`, Rotation Right `161`, Step Short `60`, Step Long `406`
 
-The native C++ Engine and the embedded browser worker produced exactly the same sets of canonical Move Notation for all four move-generation checks above: initial raw, initial reduced, item-aware raw, and item-aware reduced.
+The C++ regression suite checks all 24 physical cube orientations, inverse Rolls, fourfold Rotation, notation round trips, exact/search-key restoration after make/undo, all five item actions, deterministic mixed-item play, and distinct legal root lines for MultiPV analysis. Draft 23 additionally asserts the item-aware raw and reduced move counts above.
 
-The C++ regression suite also checks all 24 physical cube orientations, inverse Rolls, fourfold Rotation, notation round trips, exact/search-key restoration after make/undo, all five item actions, a deterministic mixed-item playout, and distinct legal root lines for MultiPV analysis.
+A Node-based smoke test of the embedded browser worker reproduced the same four raw/reduced counts used above: `161`, `84`, `1472`, and `427`. The main Analysis Board self-tests also passed.
 
-## Search and MultiPV checks
+## Search and analysis checks
 
-The native Engine completed a three-line MultiPV search at depth 4 from the initial position and a three-line item-aware search at depth 2. The browser worker completed MultiPV 3 at depth 3 from the initial position and depth 2 with current item inventories.
+The final native C++17 Release build completed without compiler warnings and `rpsc-engine-tests` passed.
 
-For the initial position at the tested completed depths, native and browser analysis agreed on the top three Candidate Moves and their numerical Evaluations. With White alone holding one of each item, they also agreed on the top three Candidate Moves and Evaluations, including the two leading Step Long lines. With symmetric item inventories, they agreed on the Best Move and Evaluation; equally evaluated lower candidates may be ordered differently because the native and browser search implementations are separate.
+Representative native single-PV searches from the initial position on the package build machine:
 
-On the package build machine, the native Release Engine produced the following representative results:
-
-- deterministic `bench` depth 4: `34350` nodes, about `0.52 s`
-- single-PV depth 5: `239889` nodes, about `1.86 s`, Evaluation `+0.02`
-- single-PV depth 6: `739965` nodes, about `5.91 s`, Evaluation `+0.00`
-- White holding one of each item, MultiPV 3 depth 2: `12933` nodes; the leading lines use Step Long and evaluate to `+2.20`
-- both sides holding one of each item, MultiPV 3 depth 2: `28730` nodes; the leading Evaluation is `+0.00`
+- depth 5: `287646` nodes, Evaluation `+0.05`
+- depth 6: `877910` nodes, Evaluation `+0.02`
 
 Timing and NPS are machine-dependent and are not a strength rating.
 
-## Build and package checks
+The browser worker was syntax-checked with Node.js and exercised directly with an initial-position MultiPV 3 search. It emitted completed-depth snapshots at depths `1`, `2`, and `3`, then one final depth-3 result with three Candidate Moves. The worker's no-item and item-aware move-generation smoke checks passed.
 
-The native Engine was compiled as a C++17 Release build with the warning flags in `CMakeLists.txt`. The final Release build completed without compiler warnings and `rpsc-engine-tests` passed. The browser scripts were syntax-checked with Node.js, the main Analysis Board self-tests passed, and worker smoke tests covered no-item and item-aware move generation, item consumption/undo, and MultiPV search.
+Draft 23 keeps the previous completed Engine snapshot visible while a new request is in flight. Analysis results carry the exact searched Engine-state snapshot and analysis move number used to format their Move Notation and PV, while request IDs and position fingerprints reject stale results from older positions.
 
-The handbook was rebuilt with XeLaTeX/latexmk as a 23-page A4 PDF. The final LaTeX log contains no LaTeX/package warnings and no overfull or underfull boxes; the PDF was rendered page-by-page for visual inspection and passed PDF preflight.
+## Evaluation change
 
-The C++ Engine remains the native reference implementation. The single-file Analysis Board currently uses a parallel classical JavaScript Web Worker rather than a compiled WebAssembly copy of the C++ core. The two implementations share the same rule state, canonical notation, current item model, numerical score scale, and analysis vocabulary, and are regression-checked for move-generation parity. A future WebAssembly bridge can remove the remaining duplicated search implementation without changing the handbook or Game Record format.
+The native C++ Engine and browser worker both retain the official score difference as the dominant Evaluation term. Draft 23 adds only a small local path-flexibility term based on:
 
-No rating or claim of verified human-superior strength is attached to Draft 22. Strength remains an empirical property to be established through regression matches, self-play, tactical suites, and human testing.
+- legal first Rolls from each live piece
+- legal second-Roll continuations after those first Rolls
+- the rule that a Roll may not immediately reverse to the previous square
+
+No center bonus, opening preference, gesture preference, or automatic numerical-to-symbol threshold is introduced.
+
+## Handbook and package checks
+
+The handbook source retains the coarse Draft 22 Chapter 3 structure while restoring one complete worked example from Move Notation through Roll Word, Axis Word, and Gesture-State transition. Chapters 4-8 remain intentionally unfilled.
+
+The handbook was rebuilt with XeLaTeX/latexmk as a 23-page A4 PDF. A final no-op latexmk pass reported the targets up to date with no LaTeX/package warnings and no overfull or underfull boxes. The PDF passed structural preflight and was rendered page-by-page for visual inspection, including the restored Chapter 3 worked example.
+
+The final package excludes generated Engine build directories, LaTeX auxiliary files, and SyncTeX output. The C++ Engine remains the native reference implementation; the Analysis Board still uses a parallel JavaScript Web Worker rather than claiming an unimplemented WebAssembly bridge.
+
+No rating or claim of verified human-superior strength is attached to Draft 23.
