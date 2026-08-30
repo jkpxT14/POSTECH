@@ -1,6 +1,6 @@
 # Verification
 
-Draft 23 was rebuilt from the Draft 22 GitHub source state and tested against the same RPSC rule, orientation, notation, item, and score model used by the handbook and Analysis Board.
+Draft 24 carries forward the Draft 23 Engine 0.4.0, handbook, rule model, and Evaluation unchanged. The package-level change is the live canonical Move Notation shown in `Current action`; Engine and rule regressions were rerun after the HTML change.
 
 ## Deterministic rule and move-generation checks
 
@@ -34,6 +34,8 @@ Timing and NPS are machine-dependent and are not a strength rating.
 
 The browser worker was syntax-checked with Node.js and exercised directly with an initial-position MultiPV 3 search. It emitted completed-depth snapshots at depths `1`, `2`, and `3`, then one final depth-3 result with three Candidate Moves. The worker's no-item and item-aware move-generation smoke checks passed.
 
+Draft 24 also checks the live Move Notation UI contract: selected-piece previews start at the canonical starting square, Push uses `>`, each Roll appends `-square`, item codes remain in the standard brackets, completed moves use the existing capture/`Reset` suffix logic, and the Current action and Live Analysis displays share the same formatter. The live string remains a draft until the normal confirm path commits the move to the Game Record.
+
 Draft 23 keeps the previous completed Engine snapshot visible while a new request is in flight. Analysis results carry the exact searched Engine-state snapshot and analysis move number used to format their Move Notation and PV, while request IDs and position fingerprints reject stale results from older positions.
 
 ## Evaluation change
@@ -54,4 +56,4 @@ The handbook was rebuilt with XeLaTeX/latexmk as a 23-page A4 PDF. A final no-op
 
 The final package excludes generated Engine build directories, LaTeX auxiliary files, and SyncTeX output. The C++ Engine remains the native reference implementation; the Analysis Board still uses a parallel JavaScript Web Worker rather than claiming an unimplemented WebAssembly bridge.
 
-No rating or claim of verified human-superior strength is attached to Draft 23.
+No rating or claim of verified human-superior strength is attached to Draft 24.

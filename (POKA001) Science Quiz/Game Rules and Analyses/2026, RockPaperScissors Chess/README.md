@@ -16,12 +16,15 @@
 
 The exact 24-orientation physical cube model remains the source of truth. Gesture States are a derived analysis layer. Game Record is the canonical persistent representation of an actual game. Engine Analysis is a separate analysis layer and never changes the canonical Game Record.
 
-Build: Draft 23 (2026-08-29 KST)
+Build: Draft 24 (2026-08-30 KST)
 
-Source base: GitHub `main` at `6ba696a0ce4a5fcd6436c38953efb210a03229ec` (Draft 22 source state).
+Source base: `(POKA001) RockPaperScissors Chess, Draft 23.zip` (SHA-256 `4c095468da79978e060f730183eb7aa0427265751b58004154489dcae7624c13`).
 
-## Draft 23
+## Draft 24
 
+- adds live canonical Move Notation to `Current action`: after a piece is selected the line begins at its starting square, then grows with every Push/Roll during both human drafting and Engine animation; item codes are shown immediately, and completed drafts preview the same capture/`Reset` suffixes that will be committed to the Game Record
+- keeps live notation provisional until `Confirm Move`; `Back` rewinds it, `Cancel` returns it to the selected-piece preview, and only a confirmed move enters the canonical Game Record
+- reuses the same live Move Notation formatter in `Current action` and `Live Analysis` so the two panels cannot drift into different path strings
 - keeps `Engine/` and all exposed component naming case-consistent while retaining conventional lowercase C++ source filenames and the `rpsc-engine` executable name
 - keeps Chapters 4-8 intentionally open; no unverified tactic, strategy, opening, puzzle, or game content is inserted
 - restores the worked Chapter 3 bridge from canonical Move Notation through Roll Word and Axis Word to a complete Gesture-State transition, while retaining the coarser Draft 22 heading structure
@@ -40,6 +43,6 @@ Source base: GitHub `main` at `6ba696a0ce4a5fcd6436c38953efb210a03229ec` (Draft 
 
 The Engine Analysis interaction takes cues from established chess-analysis interfaces without copying their visual design: Stockfish-style completed-depth information and MultiPV vocabulary, Chess.com-style persistent current-position analysis, and En Croissant-style separation between an analysis GUI and its Engine. RPSC-specific notation, scoring, Quiz flow, exact cube orientation, and Gesture-State analysis remain authoritative.
 
-The C++ Engine is the authoritative native Engine core. The offline single-file Analysis Board currently uses a parallel classical JavaScript Web Worker so that it runs without a server or local executable. The two implementations share the same rule state, exact-orientation source model, Gesture-State reduction, current item inventories, numerical score scale, local path-flexibility Evaluation term, Move Notation, M-number/PV notation, and Engine Analysis vocabulary. A future WebAssembly bridge may remove the duplicated search implementation, but Draft 23 does not claim that integration already exists.
+The C++ Engine is the authoritative native Engine core. The offline single-file Analysis Board currently uses a parallel classical JavaScript Web Worker so that it runs without a server or local executable. The two implementations share the same rule state, exact-orientation source model, Gesture-State reduction, current item inventories, numerical score scale, local path-flexibility Evaluation term, Move Notation, M-number/PV notation, and Engine Analysis vocabulary. A future WebAssembly bridge may remove the duplicated search implementation, but Draft 24 does not claim that integration already exists.
 
 No rating or claim of verified superhuman strength is attached to this draft. Engine strength remains an empirical property to be established through regression matches, self-play, tactical suites, and human testing.

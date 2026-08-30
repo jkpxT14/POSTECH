@@ -56,11 +56,11 @@ quit
 
 ## Analysis Board relationship
 
-The C++ Engine is the native reference implementation. The offline single-file Analysis Board uses a classical JavaScript Web Worker so that it can run without a server or local executable. Draft 23 keeps completed Engine results in a persistent analysis panel and lets the worker emit only completed iterative-deepening snapshots. The browser worker mirrors the native rule model and the Draft 23 local path-flexibility Evaluation term.
+The C++ Engine is the native reference implementation. The offline single-file Analysis Board uses a classical JavaScript Web Worker so that it can run without a server or local executable. Draft 24 keeps completed Engine results in a persistent analysis panel and lets the worker emit only completed iterative-deepening snapshots. The Current action panel now mirrors the canonical Move Notation live during both human drafting and Engine Roll animation; this UI change does not alter Engine search or Evaluation. The browser worker mirrors the native rule model and the Draft 23 local path-flexibility Evaluation term.
 
 The user-facing analysis pattern is intentionally conservative: persistent current-position output, numerical Evaluation, Candidate Moves, PV/MultiPV, Depth, SelDepth, Nodes, and NPS. It borrows proven interaction ideas from Stockfish-compatible analysis GUIs, Chess.com Self Analysis, and En Croissant while retaining the RPSC handbook's own notation and board-first visual language.
 
-A future WebAssembly build can replace the parallel worker implementation without changing the handbook or Game Record format. Draft 23 does not claim that the C++ core is already running in the browser.
+A future WebAssembly build can replace the parallel worker implementation without changing the handbook or Game Record format. Draft 24 does not claim that the C++ core is already running in the browser.
 
 ## Strength target
 
