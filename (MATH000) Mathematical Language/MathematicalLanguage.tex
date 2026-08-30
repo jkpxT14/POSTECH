@@ -1,0 +1,46 @@
+\documentclass[11pt,a4paper]{article}
+
+\input{MathematicalLanguageStyle.tex}
+
+\begin{document}
+
+% Lightweight opening: no separate cover, preface, acknowledgements, or part pages.
+\pagenumbering{gobble}
+\thispagestyle{empty}
+\vspace*{0.72cm}
+
+{\noindent\fontsize{18.5}{22}\selectfont\bfseries (MATH000) Mathematical Language\par}
+\vspace{0.12cm}
+{\noindent\fontsize{11.8}{14.4}\selectfont\itshape Notation and Conventions\par}
+
+\vspace{0.48cm}
+{\noindent\normalsize Jungwoo Kim\par}
+\vspace{0.04cm}
+{\noindent\normalsize Department of Mathematics, \PohangUniversityOfScienceAndTechnology\par}
+
+\vspace{0.48cm}
+\hrule height 0.4pt
+\vspace{0.36cm}
+\tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
+
+\mathpart{General Mathematical Language}
+\input{Sections/GeneralConventions.tex}
+\input{Sections/MathematicalWriting.tex}
+
+\mathpart{Notation by Mathematical Area}
+\input{Sections/SetTheoryandLogic.tex}
+\input{Sections/CalculusandAnalysis.tex}
+\input{Sections/LinearAlgebra.tex}
+\input{Sections/DifferentialEquations.tex}
+\input{Sections/CombinatoricsandDiscreteMathematics.tex}
+\input{Sections/ProbabilityandStatistics.tex}
+\input{Sections/Geometry.tex}
+\input{Sections/NumberTheory.tex}
+\input{Sections/Algebra.tex}
+\input{Sections/Topology.tex}
+\input{Sections/MiscellaneousNotation.tex}
+
+\end{document}

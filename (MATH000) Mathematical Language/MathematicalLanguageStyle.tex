@@ -1,0 +1,223 @@
+% Mathematical Language style and canonical notation
+% (MATH000) Mathematical Language - Notation and Conventions
+%
+% Design baseline: Mathematics for Science Quiz, with a lighter reference-document
+% shell. Institution colors are reserved for institution names only.
+
+\usepackage[a4paper,margin=1in,headheight=14pt,headsep=18pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[intlimits]{amsmath}
+\usepackage{amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{fancyhdr}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage[hidelinks]{hyperref}
+
+% Institution colors
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+  \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+
+% Number systems and common objects
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Hquat}{\mathbb{H}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Exp}{\mathbb{E}}
+\newcommand{\indicator}[1]{\mathbbm{1}_{#1}}
+\newcommand{\Pow}{\mathcal{P}}
+
+% Upright differential
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+
+% Logarithms and inverse trigonometric functions
+\DeclareMathOperator{\lb}{lb}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccot}{arccot}
+
+% Named operators
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\Row}{Row}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\RePart}{Re}
+\DeclareMathOperator{\ImPart}{Im}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Poi}{Pois}
+\newcommand{\Normal}{\mathcal{N}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\area}{area}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\lengthop}{length}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\closure}{cl}
+\DeclareMathOperator{\lcmop}{lcm}
+
+% Common vector/matrix symbols
+\newcommand{\ones}{\mathbf{1}}
+
+% Convergence conventions
+\newcommand{\ptwto}{\to}
+\newcommand{\unifto}{\rightrightarrows}
+\newcommand{\aeto}{\xrightarrow{\mathrm{a.e.}}}
+\newcommand{\asto}{\xrightarrow{\mathrm{a.s.}}}
+\newcommand{\probto}{\xrightarrow{\mathbb{P}}}
+\newcommand{\distto}{\xrightarrow{\mathrm{d}}}
+\newcommand{\Lpto}[1]{\xrightarrow{L^{#1}}}
+
+% Proof-ending conventions
+\newcommand{\ordinaryqed}{\ensuremath{\square}}
+\newcommand{\majorqed}{\ensuremath{\blacksquare}}
+\newcommand{\exceptionalqed}{\textsc{Q.E.D.}}
+
+% Page typography: stay close to the Science Quiz handbook rather than
+% compressing the document into a reference sheet.
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
+\linespread{1.0}
+
+% Table columns and spacing. This deliberately follows the Science Quiz
+% Notation and Conventions chapter: broad two-column tables, small text,
+% booktabs rules, and moderate row spacing.
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTpre}{0.5em}
+\setlength{\LTpost}{0.55em}
+
+\newenvironment{notationtable}{%
+  \par\vspace{0.05em}%
+  \small
+  \renewcommand{\arraystretch}{1.18}%
+  \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}%
+  \toprule
+  Notation & Meaning \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Notation & Meaning \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+}{%
+  \end{longtable}%
+}
+
+\newenvironment{ruletable}{%
+  \par\vspace{0.05em}%
+  \small
+  \renewcommand{\arraystretch}{1.18}%
+  \begin{longtable}{@{}L{0.24\textwidth}L{0.68\textwidth}@{}}%
+  \toprule
+  Item & Convention \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Item & Convention \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+}{%
+  \end{longtable}%
+}
+
+% Contents: readable, not forced into an artificially compact block.
+\setlength{\cftbeforepartskip}{0.52em}
+\setlength{\cftbeforesecskip}{0.11em}
+\renewcommand{\cftpartfont}{\normalsize\bfseries}
+\renewcommand{\cftpartpagefont}{\normalsize}
+\renewcommand{\cftsecfont}{\small}
+\renewcommand{\cftsecpagefont}{\small}
+\setlength{\cftsecnumwidth}{2.0em}
+
+% Lightweight Parts: structural markers only, never standalone pages.
+\newcounter{mathpart}
+\newcommand{\mathpart}[1]{%
+  \Needspace{11\baselineskip}%
+  \refstepcounter{mathpart}%
+  \addcontentsline{toc}{part}{Part \Roman{mathpart}. #1}%
+  \vspace{1.15em}%
+  {\noindent\large\bfseries Part \Roman{mathpart}. #1\par}%
+  \vspace{0.68em}%
+}
+
+% Section hierarchy: close to the handbook's restrained section scale.
+\titleformat{\section}
+  {\large\bfseries}
+  {\thesection}
+  {0.72em}
+  {}
+\titlespacing*{\section}{0pt}{1.38em}{0.60em}
+\pretocmd{\section}{\Needspace{5\baselineskip}}{}{}
+
+% Subsections remain available for future course documents but are intentionally
+% not used for routine grouping in this document.
+\titleformat{\subsection}
+  {\normalsize\bfseries}
+  {\thesubsection}
+  {0.68em}
+  {}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.45em}
+
+% Running identity. The left header is intentionally stable across pages.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{(MATH000) Mathematical Language}}
+\fancyhead[R]{\small\textit{Notation and Conventions}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.15em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=0.15em,topsep=0.25em}
+
+\hypersetup{
+  pdftitle={Mathematical Language: Notation and Conventions},
+  pdfauthor={Jungwoo Kim},
+  pdfsubject={Mathematical notation and writing conventions},
+  pdfcreator={LaTeX}
+}
