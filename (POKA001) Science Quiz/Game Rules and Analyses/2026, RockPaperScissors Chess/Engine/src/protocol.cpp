@@ -57,7 +57,7 @@ void Protocol::bench() {
 
 void Protocol::command(const std::string& line) {
     if (line == "rpsc") {
-        out_ << "id name RPSC Engine 0.4\nid author Jungwoo Kim\nrpscok\n";
+        out_ << "id name RPSC Engine 0.5\nid author Jungwoo Kim\nrpscok\n";
         return;
     }
     if (line == "isready") {

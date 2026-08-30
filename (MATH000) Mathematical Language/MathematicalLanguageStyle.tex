@@ -114,18 +114,15 @@
 \newcommand{\majorqed}{\ensuremath{\blacksquare}}
 \newcommand{\exceptionalqed}{\textsc{Q.E.D.}}
 
-% Page typography: stay close to the Science Quiz handbook rather than
-% compressing the document into a reference sheet.
+% Page typography
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{1.5em}
 \linespread{1.0}
 
-% Table columns and spacing. This deliberately follows the Science Quiz
-% Notation and Conventions chapter: broad two-column tables, small text,
-% booktabs rules, and moderate row spacing.
+% Table columns and spacing
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \setlength{\LTpre}{0.5em}
-\setlength{\LTpost}{0.55em}
+\setlength{\LTpost}{0.62em}
 
 \newenvironment{notationtable}{%
   \par\vspace{0.05em}%
@@ -165,7 +162,7 @@
   \end{longtable}%
 }
 
-% Contents: readable, not forced into an artificially compact block.
+% Contents
 \setlength{\cftbeforepartskip}{0.52em}
 \setlength{\cftbeforesecskip}{0.11em}
 \renewcommand{\cftpartfont}{\normalsize\bfseries}
@@ -174,7 +171,7 @@
 \renewcommand{\cftsecpagefont}{\small}
 \setlength{\cftsecnumwidth}{2.0em}
 
-% Lightweight Parts: structural markers only, never standalone pages.
+% Lightweight Parts
 \newcounter{mathpart}
 \newcommand{\mathpart}[1]{%
   \Needspace{11\baselineskip}%
@@ -185,17 +182,16 @@
   \vspace{0.68em}%
 }
 
-% Section hierarchy: close to the handbook's restrained section scale.
+% Section hierarchy
 \titleformat{\section}
   {\large\bfseries}
   {\thesection}
   {0.72em}
   {}
-\titlespacing*{\section}{0pt}{1.38em}{0.60em}
-\pretocmd{\section}{\Needspace{5\baselineskip}}{}{}
+\titlespacing*{\section}{0pt}{1.40em}{0.62em}
+\pretocmd{\section}{\Needspace{8\baselineskip}}{}{}
 
-% Subsections remain available for future course documents but are intentionally
-% not used for routine grouping in this document.
+% Subsections are reserved for future use.
 \titleformat{\subsection}
   {\normalsize\bfseries}
   {\thesubsection}
@@ -203,7 +199,7 @@
   {}
 \titlespacing*{\subsection}{0pt}{1.1em}{0.45em}
 
-% Running identity. The left header is intentionally stable across pages.
+% Running identity
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\textit{(MATH000) Mathematical Language}}

@@ -1,7 +1,9 @@
 #ifndef RPSC_TT_H_INCLUDED
 #define RPSC_TT_H_INCLUDED
 
+#include <array>
 #include <cstddef>
+#include <cstdint>
 #include <vector>
 
 #include "move.h"
@@ -15,6 +17,7 @@ struct TTEntry {
     Bound bound = Bound::None;
     Move best_move{};
     bool has_move = false;
+    std::uint8_t generation = 0;
 };
 
 class TranspositionTable {
@@ -22,12 +25,19 @@ class TranspositionTable {
     explicit TranspositionTable(std::size_t megabytes = 64);
 
     void clear();
+    void new_search();
     const TTEntry* probe(Key key) const;
     void store(Key key, Depth depth, Value value, Bound bound, const Move* best_move);
-    std::size_t size() const { return table_.size(); }
+    std::size_t size() const { return clusters_.size() * ClusterSize; }
 
    private:
-    std::vector<TTEntry> table_;
+    static constexpr std::size_t ClusterSize = 4;
+    struct Cluster {
+        std::array<TTEntry, ClusterSize> entries{};
+    };
+
+    std::vector<Cluster> clusters_;
+    std::uint8_t generation_ = 1;
 };
 
 }  // namespace rpsc

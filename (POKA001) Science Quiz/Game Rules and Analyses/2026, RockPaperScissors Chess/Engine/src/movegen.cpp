@@ -82,6 +82,57 @@ void generate_for_item(const Position& position, PieceId id, const PieceState& p
     generate_paths(position, id, move, start, distance, false, Direction::North, moves);
 }
 
+
+bool tactical_path(const Position& position, PieceId id, Move& move, Square current,
+                   Orientation orientation, int remaining, bool has_last, Direction last,
+                   std::vector<Move>& moves) {
+    if (remaining == 0) {
+        const Color mover = position.side_to_move();
+        if (position.adjacent_enemies(current, mover, id) != 1) return false;
+        const PieceId enemy_id = position.single_adjacent_enemy(current, mover, id);
+        const auto& table = OrientationTable::instance();
+        const Gesture own = table.top_gesture(orientation);
+        const Gesture enemy = table.top_gesture(position.piece(enemy_id).orientation);
+        const bool combat = own != enemy;
+        if (combat) moves.push_back(move);
+        return combat;
+    }
+
+    const bool final_step = remaining == 1;
+    bool found = false;
+    for (Direction direction :
+         {Direction::North, Direction::South, Direction::East, Direction::West}) {
+        if (has_last && direction == opposite_dir(last)) continue;
+        Square next;
+        if (!step(current, direction, next)) continue;
+        if (position.occupied(next, id)) continue;
+        if (final_step && position.adjacent_enemies(next, position.side_to_move(), id) >= 2)
+            continue;
+
+        move.path[move.path_length++] = next;
+        const Orientation next_orientation = OrientationTable::instance().roll(orientation, direction);
+        found = tactical_path(position, id, move, next, next_orientation, remaining - 1, true,
+                              direction, moves) || found;
+        --move.path_length;
+    }
+    return found;
+}
+
+void generate_tactical_for_item(const Position& position, PieceId id, const PieceState& piece,
+                                Item item, Square push_to, std::vector<Move>& moves) {
+    Move move;
+    move.piece = id;
+    move.item = item;
+    move.push_to = push_to;
+    move.path[0] = piece.square;
+    move.path_length = 1;
+
+    const Orientation orientation = item_orientation(piece.orientation, item);
+    const int distance = item_distance(orientation, item);
+    const Square start = item == Item::Push ? push_to : piece.square;
+    tactical_path(position, id, move, start, orientation, distance, false, Direction::North, moves);
+}
+
 }  // namespace
 
 std::vector<Move> generate_legal_moves(const Position& position) {
@@ -152,6 +203,53 @@ std::vector<SearchMove> generate_search_moves_info(Position& position) {
                           (position.captures(opponent) - opponent_before);
         position.undo_move(undo);
         if (seen.insert(key).second) unique.push_back({move, swing});
+    }
+    return unique;
+}
+
+std::vector<SearchMove> generate_tactical_moves_info(Position& position) {
+    std::vector<Move> raw;
+    for (int i = 0; i < PieceCount; ++i) {
+        const auto id = static_cast<PieceId>(i);
+        const auto& piece = position.piece(id);
+        if (!piece.alive() || piece_color(id) != position.side_to_move()) continue;
+
+        generate_tactical_for_item(position, id, piece, Item::None, NoSquare, raw);
+        if (position.item_count(position.side_to_move(), 0) > 0) {
+            for (Direction direction :
+                 {Direction::North, Direction::South, Direction::East, Direction::West}) {
+                Square pushed;
+                if (!step(piece.square, direction, pushed) || position.occupied(pushed, id))
+                    continue;
+                generate_tactical_for_item(position, id, piece, Item::Push, pushed, raw);
+            }
+        }
+        if (position.item_count(position.side_to_move(), 1) > 0) {
+            generate_tactical_for_item(position, id, piece, Item::RotateLeft, NoSquare, raw);
+            generate_tactical_for_item(position, id, piece, Item::RotateRight, NoSquare, raw);
+        }
+        if (position.item_count(position.side_to_move(), 2) > 0) {
+            generate_tactical_for_item(position, id, piece, Item::StepShort, NoSquare, raw);
+            generate_tactical_for_item(position, id, piece, Item::StepLong, NoSquare, raw);
+        }
+    }
+
+    std::vector<SearchMove> unique;
+    unique.reserve(raw.size());
+    std::unordered_set<Key> seen;
+    seen.reserve(raw.size() * 2 + 1);
+    const Color mover = position.side_to_move();
+    const Color opponent = opposite(mover);
+    const int own_before = position.captures(mover);
+    const int opponent_before = position.captures(opponent);
+    for (const auto& move : raw) {
+        UndoState undo;
+        position.do_move(move, undo);
+        const Key child_key = position.search_key();
+        const int swing = (position.captures(mover) - own_before) -
+                          (position.captures(opponent) - opponent_before);
+        position.undo_move(undo);
+        if (swing != 0 && seen.insert(child_key).second) unique.push_back({move, swing});
     }
     return unique;
 }

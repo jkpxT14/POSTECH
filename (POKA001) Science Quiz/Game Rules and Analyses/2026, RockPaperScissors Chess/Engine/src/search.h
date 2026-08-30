@@ -45,7 +45,7 @@ class Search {
     TranspositionTable& tt_;
     struct Context;
     Value negamax(Position& position, Depth depth, Value alpha, Value beta, int ply,
-                  Context& context, bool pv_node);
+                  Context& context, bool pv_node, const Move* previous_move);
     Value quiescence(Position& position, Value alpha, Value beta, int ply, Context& context);
 };
 

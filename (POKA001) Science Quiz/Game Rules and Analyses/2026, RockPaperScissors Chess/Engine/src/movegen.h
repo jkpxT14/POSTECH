@@ -16,6 +16,9 @@ std::vector<Move> generate_legal_moves(const Position& position);
 std::vector<Move> generate_unique_moves(Position& position);
 std::vector<Move> generate_search_moves(Position& position);
 std::vector<SearchMove> generate_search_moves_info(Position& position);
+// Capture-only generator used by quiescence and threat-aware search. It preserves
+// sacrifice/reset captures as negative swings instead of assuming every combat is good.
+std::vector<SearchMove> generate_tactical_moves_info(Position& position);
 
 }  // namespace rpsc
 

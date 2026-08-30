@@ -1,5 +1,6 @@
 #include <cassert>
 #include <iostream>
+#include <unordered_set>
 #include <vector>
 
 #include "engine.h"
@@ -39,6 +40,31 @@ bool all_distinct(const std::vector<rpsc::RootLine>& lines) {
     return true;
 }
 
+void verify_tactical_generator(rpsc::Position& position) {
+    using namespace rpsc;
+    auto full = generate_search_moves_info(position);
+    auto tactical = generate_tactical_moves_info(position);
+
+    std::unordered_set<Key> expected;
+    for (const auto& entry : full) {
+        if (entry.capture_swing == 0) continue;
+        UndoState undo;
+        position.do_move(entry.move, undo);
+        expected.insert(position.search_key());
+        position.undo_move(undo);
+    }
+
+    std::unordered_set<Key> actual;
+    for (const auto& entry : tactical) {
+        assert(entry.capture_swing != 0);
+        UndoState undo;
+        position.do_move(entry.move, undo);
+        actual.insert(position.search_key());
+        position.undo_move(undo);
+    }
+    assert(actual == expected);
+}
+
 }  // namespace
 
 int main() {
@@ -71,6 +97,7 @@ int main() {
     assert(perft(position, 2) == 25575);
     assert(perft(position, 3) == 4215782);
     verify_round_trip_and_undo(position, legal);
+    verify_tactical_generator(position);
 
     Position item_position;
     item_position.set_items(Color::White, 1, 1, 1);
@@ -93,11 +120,13 @@ int main() {
     }
     assert(saw_push && saw_rotate_left && saw_rotate_right && saw_step_short && saw_step_long);
     verify_round_trip_and_undo(item_position, item_moves);
+    verify_tactical_generator(item_position);
 
     // Deterministic mixed-item playout: every generated move must remain legal, reversible,
     // and notation-round-trippable after earlier captures, item use, or resets.
     Position playout = item_position;
     for (int ply = 0; ply < 16; ++ply) {
+        if (ply % 4 == 0) verify_tactical_generator(playout);
         const auto moves = generate_search_moves(playout);
         assert(!moves.empty());
         const Move move = moves[static_cast<std::size_t>((ply * 37 + 11) % moves.size())];

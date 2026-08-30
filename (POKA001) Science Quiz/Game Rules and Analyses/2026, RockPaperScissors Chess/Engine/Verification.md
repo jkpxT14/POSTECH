@@ -1,10 +1,10 @@
 # Verification
 
-Draft 24 carries forward the Draft 23 Engine 0.4.0, handbook, rule model, and Evaluation unchanged. The package-level change is the live canonical Move Notation shown in `Current action`; Engine and rule regressions were rerun after the HTML change.
+Draft 25 develops the Draft 24 package as one handbook / Analysis Board / Engine project. The verification below is limited to implemented behavior and deterministic checks; it is not a playing-strength rating.
 
-## Deterministic rule and move-generation checks
+## Rule and move-generation regression
 
-From the initial position, with White to move and no item:
+From the initial position, White to move, no items:
 
 - canonical full-path legal moves: `161`
 - distinct exact successor positions with the 24-orientation state retained: `145`
@@ -17,43 +17,41 @@ With both sides holding one Push, one Rotation, and one Step at the initial posi
 - canonical legal moves: `1472`
 - distinct reduced search successors: `427`
 
-The C++ regression suite checks all 24 physical cube orientations, inverse Rolls, fourfold Rotation, notation round trips, exact/search-key restoration after make/undo, all five item actions, deterministic mixed-item play, and distinct legal root lines for MultiPV analysis. Draft 23 additionally asserts the item-aware raw and reduced move counts above.
+The native regression suite checks the 24 physical cube orientations, inverse Rolls, fourfold Rotation, notation round trips, exact/search-key restoration after make/undo, item actions, deterministic mixed-item play, and distinct legal root lines for MultiPV.
 
-A Node-based smoke test of the embedded browser worker reproduced the same four raw/reduced counts used above: `161`, `84`, `1472`, and `427`. The main Analysis Board self-tests also passed.
+## Engine 0.5.0
 
-## Search and analysis checks
+The native Engine remains classical C++17 with no machine learning, neural networks, or NNUE. Draft 25 keeps immediate tactics explicit while improving quiet play through:
 
-The final native C++17 Release build completed without compiler warnings and `rpsc-engine-tests` passed.
+- direct tactical move generation for quiescence and immediate scoring-pressure checks
+- capture-priority ordering and bounded tactical quiescence
+- continuation-history and countermove ordering
+- threat-aware late-move reduction: a quiet move that removes an immediate opponent scoring possibility or creates an immediate scoring possibility is not treated as an ordinary late quiet move
+- four-way clustered transposition table with generation-aware replacement
 
-Representative native single-PV searches from the initial position on the package build machine:
+A representative initial-position depth-5 single-PV search on the package build machine completed at `287675` nodes with White-perspective Evaluation `+0.05` and principal move `W1: a1-a2-a3-b3`. Timing and NPS are machine-dependent and are not a strength claim.
 
-- depth 5: `287646` nodes, Evaluation `+0.05`
-- depth 6: `877910` nodes, Evaluation `+0.02`
+## Analysis Board
 
-Timing and NPS are machine-dependent and are not a strength rating.
+The board keeps the Draft 24 board-first visual hierarchy and live canonical Move Notation. Draft 25 adds non-destructive history analysis:
 
-The browser worker was syntax-checked with Node.js and exercised directly with an initial-position MultiPV 3 search. It emitted completed-depth snapshots at depths `1`, `2`, and `3`, then one final depth-3 result with three Candidate Moves. The worker's no-item and item-aware move-generation smoke checks passed.
+- Previous/Next moves an Analysis Cursor among complete board-decision positions
+- the canonical Game Head and actual Game Record are not rewritten by history browsing
+- Quiz events remain in stored history even when navigation jumps directly between board-decision states
+- an earlier position restores the complete RPSC state, including Quiz state, score, items, side/role, pieces, and exact cube orientations
+- Engine play and automatic fixed-result Quiz progression pause while inspecting history, while Engine Analysis remains available
+- playing a different legal move from an earlier position creates a Variation instead of replacing the Main Line
+- `Current` returns to the canonical game head
+- Engine Analysis can show the historically played move together with MultiPV alternatives without assigning uncalibrated `Best`, `Mistake`, or numerical-to-symbol grades
 
-Draft 24 also checks the live Move Notation UI contract: selected-piece previews start at the canonical starting square, Push uses `>`, each Roll appends `-square`, item codes remain in the standard brackets, completed moves use the existing capture/`Reset` suffix logic, and the Current action and Live Analysis displays share the same formatter. The live string remains a draft until the normal confirm path commits the move to the Game Record.
+The embedded self-tests also cover the `Only Q[0, 0]` navigation case: fixed-result Quiz events are preserved, history navigation is not immediately pulled forward by automatic Quiz progression, and a tied score after all 20 main Quiz turns ends as a Draw in Engine-containing `Only Q[0, 0]` modes. Human vs Human retains the official quiz-only overtime path.
 
-Draft 23 keeps the previous completed Engine snapshot visible while a new request is in flight. Analysis results carry the exact searched Engine-state snapshot and analysis move number used to format their Move Notation and PV, while request IDs and position fingerprints reject stale results from older positions.
+## Handbook and package
 
-## Evaluation change
+The handbook records only analysis vocabulary and conventions needed to keep notation, Analysis Board behavior, and Engine output consistent. Chapters 4-8 remain intentionally unfilled; Draft 25 does not add unverified tactics, strategy, openings, puzzles, or games merely to document Engine development.
 
-The native C++ Engine and browser worker both retain the official score difference as the dominant Evaluation term. Draft 23 adds only a small local path-flexibility term based on:
+The final handbook compiles as a 23-page A4 PDF. The final XeLaTeX/latexmk build reports no LaTeX/package warnings and no overfull or underfull boxes. Structural PDF preflight passes and the rendered pages were visually checked after the final pagination adjustment.
 
-- legal first Rolls from each live piece
-- legal second-Roll continuations after those first Rolls
-- the rule that a Roll may not immediately reverse to the previous square
+The deliverable excludes Engine build output and LaTeX auxiliary files. `Engine/` retains its required capitalized project-component name. The C++ Engine remains the native reference implementation; the offline Analysis Board uses a parallel classical JavaScript Web Worker and does not claim an unimplemented WebAssembly bridge.
 
-No center bonus, opening preference, gesture preference, or automatic numerical-to-symbol threshold is introduced.
-
-## Handbook and package checks
-
-The handbook source retains the coarse Draft 22 Chapter 3 structure while restoring one complete worked example from Move Notation through Roll Word, Axis Word, and Gesture-State transition. Chapters 4-8 remain intentionally unfilled.
-
-The handbook was rebuilt with XeLaTeX/latexmk as a 23-page A4 PDF. A final no-op latexmk pass reported the targets up to date with no LaTeX/package warnings and no overfull or underfull boxes. The PDF passed structural preflight and was rendered page-by-page for visual inspection, including the restored Chapter 3 worked example.
-
-The final package excludes generated Engine build directories, LaTeX auxiliary files, and SyncTeX output. The C++ Engine remains the native reference implementation; the Analysis Board still uses a parallel JavaScript Web Worker rather than claiming an unimplemented WebAssembly bridge.
-
-No rating or claim of verified human-superior strength is attached to Draft 24.
+No rating or claim of verified human-superior strength is attached to Draft 25. Strength changes should be judged by regression positions, tactical tests, self-play, and human analysis.

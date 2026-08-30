@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <array>
 #include <chrono>
+#include <cstddef>
+#include <unordered_map>
 #include <vector>
 
 namespace rpsc {
@@ -10,6 +12,8 @@ namespace {
 
 constexpr int MaxPly = 64;
 constexpr Value AspirationWindow = 50;
+constexpr int CountermoveBonus = 120000;
+constexpr int ContinuationScale = 2;
 
 struct OrderedMove {
     Move move;
@@ -33,6 +37,14 @@ Value prior_root_value(const Move& move, const std::vector<RootLine>& prior) {
     return -Infinity;
 }
 
+std::size_t continuation_index(const Move& previous, const Move& current) {
+    const std::size_t a = static_cast<std::size_t>(piece_index(previous.piece)) * 64u +
+                          static_cast<unsigned>(previous.to());
+    const std::size_t b = static_cast<std::size_t>(piece_index(current.piece)) * 64u +
+                          static_cast<unsigned>(current.to());
+    return a * (PieceCount * 64u) + b;
+}
+
 }  // namespace
 
 struct Search::Context {
@@ -43,6 +55,10 @@ struct Search::Context {
     bool stopped = false;
     std::array<std::array<int, 64>, PieceCount> history{};
     std::array<std::array<Move, 2>, MaxPly> killers{};
+    std::array<std::array<Move, 64>, PieceCount> countermoves{};
+    std::vector<int> continuation =
+        std::vector<int>(PieceCount * 64u * PieceCount * 64u, 0);
+    std::unordered_map<Key, std::uint8_t> pressure_cache;
 
     bool should_stop() {
         if (stopped) return true;
@@ -54,16 +70,59 @@ struct Search::Context {
         return false;
     }
 
-    void record_quiet_cutoff(const Move& move, Depth depth, int ply) {
+    int continuation_score(const Move* previous, const Move& move) const {
+        if (!previous || previous->path_length == 0) return 0;
+        return continuation[continuation_index(*previous, move)] / ContinuationScale;
+    }
+
+    bool is_countermove(const Move* previous, const Move& move) const {
+        if (!previous || previous->path_length == 0) return false;
+        const Move& counter = countermoves[piece_index(previous->piece)][previous->to()];
+        return counter.path_length != 0 && counter == move;
+    }
+
+    void record_quiet_cutoff(const Move& move, Depth depth, int ply, const Move* previous) {
+        const int bonus = depth * depth;
         int& history_value = history[piece_index(move.piece)][move.to()];
-        history_value += depth * depth;
+        history_value += bonus;
         if (history_value > 100000) history_value /= 2;
+
+        if (previous && previous->path_length != 0) {
+            int& continuation_value = continuation[continuation_index(*previous, move)];
+            continuation_value += 2 * bonus;
+            if (continuation_value > 100000) continuation_value /= 2;
+            countermoves[piece_index(previous->piece)][previous->to()] = move;
+        }
 
         if (ply < 0 || ply >= MaxPly) return;
         if (killers[ply][0] != move) {
             killers[ply][1] = killers[ply][0];
             killers[ply][0] = move;
         }
+    }
+
+    int capture_pressure(Position& position) {
+        const Key key = position.search_key();
+        const auto found = pressure_cache.find(key);
+        if (found != pressure_cache.end()) return found->second;
+
+        int pressure = 0;
+        for (const auto& move : generate_tactical_moves_info(position)) {
+            if (move.capture_swing > 0 && ++pressure >= 4) break;
+        }
+        if (pressure_cache.size() > 50000) pressure_cache.clear();
+        pressure_cache.emplace(key, static_cast<std::uint8_t>(pressure));
+        return pressure;
+    }
+
+    int capture_pressure_for(const Position& position, Color side) {
+        if (position.side_to_move() == side) {
+            Position copy = position;
+            return capture_pressure(copy);
+        }
+        Position copy = position;
+        copy.set_side_to_move(side);
+        return capture_pressure(copy);
     }
 };
 
@@ -78,13 +137,11 @@ Value Search::quiescence(Position& position, Value alpha, Value beta, int ply, C
     if (stand_pat >= beta) return beta;
     if (stand_pat > alpha) alpha = stand_pat;
 
-    const auto moves = generate_search_moves_info(position);
+    const auto moves = generate_tactical_moves_info(position);
     std::vector<OrderedMove> tactical;
     tactical.reserve(moves.size());
-    for (const auto& entry : moves) {
-        if (entry.capture_swing != 0)
-            tactical.push_back({entry.move, entry.capture_swing * 100000, entry.capture_swing});
-    }
+    for (const auto& entry : moves)
+        tactical.push_back({entry.move, entry.capture_swing * 100000, entry.capture_swing});
     std::stable_sort(tactical.begin(), tactical.end(),
                      [](const OrderedMove& lhs, const OrderedMove& rhs) {
                          return lhs.score > rhs.score;
@@ -104,7 +161,7 @@ Value Search::quiescence(Position& position, Value alpha, Value beta, int ply, C
 }
 
 Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, int ply,
-                      Context& context, bool pv_node) {
+                      Context& context, bool pv_node, const Move* previous_move) {
     if (ply >= MaxPly) return evaluate(position);
     if (depth <= 0) return quiescence(position, alpha, beta, ply, context);
 
@@ -114,6 +171,7 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
 
     const Value original_alpha = alpha;
     const Value original_beta = beta;
+    const Value static_eval = evaluate(position);
     const Key key = position.search_key();
     const TTEntry* entry = tt_.probe(key);
     Move tt_move{};
@@ -129,12 +187,22 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
     const auto moves = generate_search_moves_info(position);
     if (moves.empty()) return evaluate(position);
 
+    int own_pressure_before = 0;
+    for (const auto& candidate : moves)
+        if (candidate.capture_swing > 0 && ++own_pressure_before >= 4) break;
+    const Color mover = position.side_to_move();
+    const bool inspect_quiet_threats = depth >= 4;
+    const int opponent_pressure_before =
+        inspect_quiet_threats ? context.capture_pressure_for(position, opposite(mover)) : 0;
+
     std::vector<OrderedMove> ordered;
     ordered.reserve(moves.size());
     for (const auto& entry_move : moves) {
         const auto& move = entry_move.move;
         const int swing = entry_move.capture_swing;
         int score = context.history[piece_index(move.piece)][move.to()];
+        score += context.continuation_score(previous_move, move);
+        if (context.is_countermove(previous_move, move)) score += CountermoveBonus;
         if (move.item != Item::None) score -= 1000;
         if (has_tt_move && move == tt_move) score += 1000000;
         if (swing > 0)
@@ -162,29 +230,51 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
 
         Value score;
         if (move_index == 0) {
-            score = -negamax(position, depth - 1, -beta, -alpha, ply + 1, context, pv_node);
+            score = -negamax(position, depth - 1, -beta, -alpha, ply + 1, context, pv_node,
+                             &current.move);
         } else {
             const int history_value =
-                context.history[piece_index(current.move.piece)][current.move.to()];
-            const bool reducible = !pv_node && current.capture_swing == 0 &&
-                                   current.move.item == Item::None && depth >= 4 &&
-                                   move_index >= 4;
+                context.history[piece_index(current.move.piece)][current.move.to()] +
+                context.continuation_score(previous_move, current.move);
+            bool reducible = !pv_node && current.capture_swing == 0 &&
+                             current.move.item == Item::None && depth >= 4 && move_index >= 4;
+
+            int reduction = 1;
             if (reducible) {
-                int reduction = 1;
-                if (depth >= 7 && move_index >= 10 && history_value <= 0) reduction = 2;
+                // Quiet does not mean unimportant. Before reducing a late quiet move, retain
+                // full depth for rule-derived threats and defenses: a move that creates a new
+                // immediate scoring possibility for the mover or removes an opponent scoring
+                // possibility is searched like a tactical candidate.
+                const int opponent_pressure_after = context.capture_pressure(position);
+                const int own_pressure_after = context.capture_pressure_for(position, mover);
+                const bool defensive = opponent_pressure_before > 0 &&
+                                       opponent_pressure_after < opponent_pressure_before;
+                const bool creates_threat = own_pressure_after > own_pressure_before;
+                if (defensive || creates_threat) reducible = false;
+
+                if (reducible) {
+                    const Value child_static_for_mover = -evaluate(position);
+                    const bool improving = child_static_for_mover >= static_eval + 8;
+                    if (!improving && depth >= 7 && move_index >= 10 && history_value <= 0)
+                        reduction = 2;
+                }
+            }
+
+            if (reducible) {
                 const Depth reduced_depth = std::max<Depth>(0, depth - 1 - reduction);
-                score = -negamax(position, reduced_depth, -alpha - 1, -alpha, ply + 1,
-                                 context, false);
+                score = -negamax(position, reduced_depth, -alpha - 1, -alpha, ply + 1, context,
+                                 false, &current.move);
                 if (score > alpha)
-                    score = -negamax(position, depth - 1, -alpha - 1, -alpha, ply + 1,
-                                     context, false);
+                    score = -negamax(position, depth - 1, -alpha - 1, -alpha, ply + 1, context,
+                                     false, &current.move);
             } else {
                 score = -negamax(position, depth - 1, -alpha - 1, -alpha, ply + 1, context,
-                                 false);
+                                 false, &current.move);
             }
 
             if (score > alpha && score < beta)
-                score = -negamax(position, depth - 1, -beta, -alpha, ply + 1, context, pv_node);
+                score = -negamax(position, depth - 1, -beta, -alpha, ply + 1, context, pv_node,
+                                 &current.move);
         }
 
         position.undo_move(undo);
@@ -198,7 +288,7 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
         }
         if (alpha >= beta) {
             if (current.capture_swing == 0)
-                context.record_quiet_cutoff(current.move, depth, ply);
+                context.record_quiet_cutoff(current.move, depth, ply, previous_move);
             break;
         }
     }
@@ -213,10 +303,12 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
 }
 
 SearchResult Search::run(Position root, const SearchLimits& limits) {
+    tt_.new_search();
     Context context;
     context.limits = limits;
     context.limits.multipv = std::clamp(context.limits.multipv, 1, 8);
     context.start = std::chrono::steady_clock::now();
+    context.pressure_cache.reserve(8192);
 
     SearchResult result;
     const auto root_info = generate_search_moves_info(root);
@@ -293,12 +385,14 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
 
             Value score;
             if (move_index == 0) {
-                score = -negamax(root, depth - 1, -beta, -current_alpha, 1, context, true);
+                score = -negamax(root, depth - 1, -beta, -current_alpha, 1, context, true,
+                                 &current.move);
             } else {
                 score = -negamax(root, depth - 1, -current_alpha - 1, -current_alpha, 1,
-                                 context, false);
+                                 context, false, &current.move);
                 if (score > current_alpha && score < beta)
-                    score = -negamax(root, depth - 1, -beta, -current_alpha, 1, context, true);
+                    score = -negamax(root, depth - 1, -beta, -current_alpha, 1, context, true,
+                                     &current.move);
             }
             root.undo_move(undo);
             ++move_index;
