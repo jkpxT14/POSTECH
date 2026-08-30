@@ -14,6 +14,8 @@ constexpr int MaxPly = 64;
 constexpr Value AspirationWindow = 50;
 constexpr int CountermoveBonus = 120000;
 constexpr int ContinuationScale = 2;
+constexpr int FollowupScale = 4;
+constexpr int CaptureHistoryScale = 4;
 
 struct OrderedMove {
     Move move;
@@ -45,6 +47,11 @@ std::size_t continuation_index(const Move& previous, const Move& current) {
     return a * (PieceCount * 64u) + b;
 }
 
+void bounded_add(int& value, int delta) {
+    value += delta;
+    if (value > 100000 || value < -100000) value /= 2;
+}
+
 }  // namespace
 
 struct Search::Context {
@@ -54,9 +61,12 @@ struct Search::Context {
     Depth seldepth = 0;
     bool stopped = false;
     std::array<std::array<int, 64>, PieceCount> history{};
+    std::array<std::array<int, 64>, PieceCount> capture_history{};
     std::array<std::array<Move, 2>, MaxPly> killers{};
     std::array<std::array<Move, 64>, PieceCount> countermoves{};
     std::vector<int> continuation =
+        std::vector<int>(PieceCount * 64u * PieceCount * 64u, 0);
+    std::vector<int> followup =
         std::vector<int>(PieceCount * 64u * PieceCount * 64u, 0);
     std::unordered_map<Key, std::uint8_t> pressure_cache;
 
@@ -70,9 +80,13 @@ struct Search::Context {
         return false;
     }
 
-    int continuation_score(const Move* previous, const Move& move) const {
-        if (!previous || previous->path_length == 0) return 0;
-        return continuation[continuation_index(*previous, move)] / ContinuationScale;
+    int continuation_score(const Move* previous, const Move* previous2, const Move& move) const {
+        int score = 0;
+        if (previous && previous->path_length != 0)
+            score += continuation[continuation_index(*previous, move)] / ContinuationScale;
+        if (previous2 && previous2->path_length != 0)
+            score += followup[continuation_index(*previous2, move)] / FollowupScale;
+        return score;
     }
 
     bool is_countermove(const Move* previous, const Move& move) const {
@@ -81,17 +95,33 @@ struct Search::Context {
         return counter.path_length != 0 && counter == move;
     }
 
-    void record_quiet_cutoff(const Move& move, Depth depth, int ply, const Move* previous) {
-        const int bonus = depth * depth;
-        int& history_value = history[piece_index(move.piece)][move.to()];
-        history_value += bonus;
-        if (history_value > 100000) history_value /= 2;
+    int capture_history_score(const Move& move) const {
+        return capture_history[piece_index(move.piece)][move.to()] / CaptureHistoryScale;
+    }
+
+    void record_quiet_cutoff(const Move& move, Depth depth, int ply, const Move* previous,
+                             const Move* previous2, const std::vector<Move>& quiets_searched) {
+        const int bonus = std::max(1, depth * depth);
+        bounded_add(history[piece_index(move.piece)][move.to()], bonus);
 
         if (previous && previous->path_length != 0) {
-            int& continuation_value = continuation[continuation_index(*previous, move)];
-            continuation_value += 2 * bonus;
-            if (continuation_value > 100000) continuation_value /= 2;
+            bounded_add(continuation[continuation_index(*previous, move)], 2 * bonus);
             countermoves[piece_index(previous->piece)][previous->to()] = move;
+        }
+        if (previous2 && previous2->path_length != 0)
+            bounded_add(followup[continuation_index(*previous2, move)], bonus);
+
+        // Strong engines do not only reward the quiet move that cuts off: quiet moves searched
+        // earlier and shown inferior are gently demoted. This improves later ordering without
+        // declaring any RPSC-specific positional preference.
+        const int penalty = std::max(1, bonus / 2);
+        for (const Move& tried : quiets_searched) {
+            if (tried == move) continue;
+            bounded_add(history[piece_index(tried.piece)][tried.to()], -penalty);
+            if (previous && previous->path_length != 0)
+                bounded_add(continuation[continuation_index(*previous, tried)], -penalty);
+            if (previous2 && previous2->path_length != 0)
+                bounded_add(followup[continuation_index(*previous2, tried)], -penalty / 2);
         }
 
         if (ply < 0 || ply >= MaxPly) return;
@@ -99,6 +129,11 @@ struct Search::Context {
             killers[ply][1] = killers[ply][0];
             killers[ply][0] = move;
         }
+    }
+
+    void record_tactical_cutoff(const Move& move, Depth depth) {
+        const int bonus = std::max(1, depth * depth * 2);
+        bounded_add(capture_history[piece_index(move.piece)][move.to()], bonus);
     }
 
     int capture_pressure(Position& position) {
@@ -140,8 +175,10 @@ Value Search::quiescence(Position& position, Value alpha, Value beta, int ply, C
     const auto moves = generate_tactical_moves_info(position);
     std::vector<OrderedMove> tactical;
     tactical.reserve(moves.size());
-    for (const auto& entry : moves)
-        tactical.push_back({entry.move, entry.capture_swing * 100000, entry.capture_swing});
+    for (const auto& entry : moves) {
+        const int score = entry.capture_swing * 100000 + context.capture_history_score(entry.move);
+        tactical.push_back({entry.move, score, entry.capture_swing});
+    }
     std::stable_sort(tactical.begin(), tactical.end(),
                      [](const OrderedMove& lhs, const OrderedMove& rhs) {
                          return lhs.score > rhs.score;
@@ -154,14 +191,18 @@ Value Search::quiescence(Position& position, Value alpha, Value beta, int ply, C
         position.undo_move(undo);
 
         if (context.stopped) return alpha;
-        if (score >= beta) return beta;
+        if (score >= beta) {
+            context.record_tactical_cutoff(current.move, 1);
+            return beta;
+        }
         if (score > alpha) alpha = score;
     }
     return alpha;
 }
 
 Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, int ply,
-                      Context& context, bool pv_node, const Move* previous_move) {
+                      Context& context, bool pv_node, const Move* previous_move,
+                      const Move* previous2_move) {
     if (ply >= MaxPly) return evaluate(position);
     if (depth <= 0) return quiescence(position, alpha, beta, ply, context);
 
@@ -201,14 +242,14 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
         const auto& move = entry_move.move;
         const int swing = entry_move.capture_swing;
         int score = context.history[piece_index(move.piece)][move.to()];
-        score += context.continuation_score(previous_move, move);
+        score += context.continuation_score(previous_move, previous2_move, move);
         if (context.is_countermove(previous_move, move)) score += CountermoveBonus;
         if (move.item != Item::None) score -= 1000;
         if (has_tt_move && move == tt_move) score += 1000000;
         if (swing > 0)
-            score += 500000 + swing * 10000;
+            score += 500000 + swing * 10000 + context.capture_history_score(move);
         else if (swing < 0)
-            score -= 250000;
+            score += -250000 + context.capture_history_score(move);
         if (ply < MaxPly && is_killer(move, context.killers[ply], 0))
             score += 200000;
         else if (ply < MaxPly && is_killer(move, context.killers[ply], 1))
@@ -223,6 +264,8 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
     Move best{};
     bool has_best = false;
     int move_index = 0;
+    std::vector<Move> quiets_searched;
+    quiets_searched.reserve(16);
 
     for (const auto& current : ordered) {
         UndoState undo;
@@ -231,13 +274,19 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
         Value score;
         if (move_index == 0) {
             score = -negamax(position, depth - 1, -beta, -alpha, ply + 1, context, pv_node,
-                             &current.move);
+                             &current.move, previous_move);
         } else {
             const int history_value =
                 context.history[piece_index(current.move.piece)][current.move.to()] +
-                context.continuation_score(previous_move, current.move);
+                context.continuation_score(previous_move, previous2_move, current.move);
+            const bool known_reply = context.is_countermove(previous_move, current.move) ||
+                                     (ply < MaxPly &&
+                                      (is_killer(current.move, context.killers[ply], 0) ||
+                                       is_killer(current.move, context.killers[ply], 1))) ||
+                                     history_value > 4 * depth * depth;
             bool reducible = !pv_node && current.capture_swing == 0 &&
-                             current.move.item == Item::None && depth >= 4 && move_index >= 4;
+                             current.move.item == Item::None && depth >= 4 && move_index >= 4 &&
+                             !known_reply;
 
             int reduction = 1;
             if (reducible) {
@@ -263,24 +312,25 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
             if (reducible) {
                 const Depth reduced_depth = std::max<Depth>(0, depth - 1 - reduction);
                 score = -negamax(position, reduced_depth, -alpha - 1, -alpha, ply + 1, context,
-                                 false, &current.move);
+                                 false, &current.move, previous_move);
                 if (score > alpha)
                     score = -negamax(position, depth - 1, -alpha - 1, -alpha, ply + 1, context,
-                                     false, &current.move);
+                                     false, &current.move, previous_move);
             } else {
                 score = -negamax(position, depth - 1, -alpha - 1, -alpha, ply + 1, context,
-                                 false, &current.move);
+                                 false, &current.move, previous_move);
             }
 
             if (score > alpha && score < beta)
                 score = -negamax(position, depth - 1, -beta, -alpha, ply + 1, context, pv_node,
-                                 &current.move);
+                                 &current.move, previous_move);
         }
 
         position.undo_move(undo);
         ++move_index;
 
         if (context.stopped) return alpha;
+        if (current.capture_swing == 0) quiets_searched.push_back(current.move);
         if (score > alpha) {
             alpha = score;
             best = current.move;
@@ -288,7 +338,10 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
         }
         if (alpha >= beta) {
             if (current.capture_swing == 0)
-                context.record_quiet_cutoff(current.move, depth, ply, previous_move);
+                context.record_quiet_cutoff(current.move, depth, ply, previous_move,
+                                            previous2_move, quiets_searched);
+            else
+                context.record_tactical_cutoff(current.move, depth);
             break;
         }
     }
@@ -363,9 +416,9 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
             const Value old_value = prior_root_value(move, prior_scores);
             if (old_value > -Infinity) score += 1000 * old_value;
             if (swing > 0)
-                score += 500000 + swing * 10000;
+                score += 500000 + swing * 10000 + context.capture_history_score(move);
             else if (swing < 0)
-                score -= 250000;
+                score += -250000 + context.capture_history_score(move);
             ordered.push_back({move, score, swing});
         }
         std::stable_sort(ordered.begin(), ordered.end(),
@@ -386,13 +439,13 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
             Value score;
             if (move_index == 0) {
                 score = -negamax(root, depth - 1, -beta, -current_alpha, 1, context, true,
-                                 &current.move);
+                                 &current.move, nullptr);
             } else {
                 score = -negamax(root, depth - 1, -current_alpha - 1, -current_alpha, 1,
-                                 context, false, &current.move);
+                                 context, false, &current.move, nullptr);
                 if (score > current_alpha && score < beta)
                     score = -negamax(root, depth - 1, -beta, -current_alpha, 1, context, true,
-                                     &current.move);
+                                     &current.move, nullptr);
             }
             root.undo_move(undo);
             ++move_index;

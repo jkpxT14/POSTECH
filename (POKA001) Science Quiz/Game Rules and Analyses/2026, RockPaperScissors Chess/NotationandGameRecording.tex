@@ -175,7 +175,7 @@ Position Evaluation은 White의 관점에서 적는다.
 Analysis Board의 \textbf{Engine Analysis}는 플레이 주체와 독립된 분석 계층이다. 따라서 Human vs Human에서도 현재 board position에 대한 Evaluation, Candidate Move, PV를 제시할 수 있으며, 이 분석 정보는 실제 Game Record를 변경하지 않는다. Human vs Engine과 Engine vs Engine에서도 동일한 기보와 분석 체계를 사용한다.
 현재 보유한 아이템이 있는 위치에서는 합법적인 아이템 사용도 Candidate Move와 PV에 포함될 수 있다. 다만 Analysis Line은 실제로 얻지 않은 미래 아이템을 임의로 만들어 넣지 않는다.
 
-Analysis Board에서 이미 확정된 위치로 돌아가 다른 합법 수를 두는 경우에는 기존 실제 Game Record를 지우지 않고 \textbf{Variation}으로 분석한다. 위치 복원은 말의 칸만 되돌리는 것이 아니라 해당 시점까지의 Quiz Result, 점수, 아이템, 선후공, exact cube orientation을 포함한 전체 game state를 기준으로 한다. 화면의 Previous/Next navigation이 board-move decision position 사이를 빠르게 이동하더라도 중간의 Quiz event는 Game Record와 state history에서 생략되지 않는다.
+Analysis Board에서 이미 확정된 위치로 돌아가 다른 합법 수를 두면 실제 Game Record를 지우지 않고 \textbf{Variation}으로 남긴다. Main Line은 그대로 보존하며 Variation은 같은 Move Notation을 소괄호와 들여쓰기로 구분한다. Game Record의 Quiz와 Move를 클릭해 해당 위치로 이동할 수 있고, Engine Candidate의 board preview는 Confirm하기 전에는 기록되지 않는다. 위치 복원은 Quiz Result, 점수, 아이템, 선후공, exact cube orientation을 포함한 전체 game state를 사용하며, Previous/Next가 board-move decision position 사이를 이동해도 중간 Quiz event를 생략하지 않는다.
 
 \texttt{Only Q[0, 0]}은 Quiz를 제거하는 모드가 아니라 각 본 문제의 Quiz Result를 모두 \texttt{Q[0, 0]}으로 고정하는 Analysis Board의 특별한 모드이다. 따라서 20개의 Quiz turn은 모두 Game Record에 남고 각 문제에서 White와 Black의 이동이 순서대로 진행된다. 20문제 종료 후 총점이 같으면 실제 경기에서는 quiz-only Overtime이 필요하지만, 이 특별 모드에서는 새로운 실제 Quiz 결과를 결정할 수 없으므로 Draw로 분석을 종료한다.
 
