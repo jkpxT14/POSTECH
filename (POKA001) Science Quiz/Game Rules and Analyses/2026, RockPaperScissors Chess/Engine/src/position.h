@@ -21,6 +21,9 @@ struct UndoState {
     int captures_white = 0;
     int captures_black = 0;
     std::array<std::array<int, 3>, 2> items{};
+    int quiz_white = 0;
+    int quiz_black = 0;
+    int remaining_board_plies = -1;
 };
 
 struct MoveOutcome {
@@ -44,7 +47,12 @@ class Position {
     int adjacent_enemies(Square square, Color side, PieceId exclude) const;
     PieceId single_adjacent_enemy(Square square, Color side, PieceId exclude) const;
     int captures(Color side) const { return side == Color::White ? captures_white_ : captures_black_; }
-    int score(Color side) const { return 2 * captures(side); }
+    int quiz(Color side) const { return side == Color::White ? quiz_white_ : quiz_black_; }
+    int score(Color side) const { return quiz(side) + 2 * captures(side); }
+    void set_match_context(int quiz_white, int quiz_black, int remaining_board_plies) {
+        quiz_white_ = quiz_white; quiz_black_ = quiz_black; remaining_board_plies_ = remaining_board_plies;
+    }
+    int remaining_board_plies() const { return remaining_board_plies_; }
     int alive_count(Color side) const;
 
     int item_count(Color side, int bucket) const { return items_[color_index(side)][bucket]; }
@@ -73,6 +81,9 @@ class Position {
     int captures_white_ = 0;
     int captures_black_ = 0;
     std::array<std::array<int, 3>, 2> items_{};
+    int quiz_white_ = 0;
+    int quiz_black_ = 0;
+    int remaining_board_plies_ = -1;
 };
 
 }  // namespace rpsc

@@ -43,6 +43,7 @@ Position initial_probe_position(bool choose_first, int bucket) {
     auto items = probe.items(chooser);
     ++items[static_cast<std::size_t>(bucket)];
     probe.set_items(chooser, items[0], items[1], items[2]);
+    probe.set_match_context(choose_first ? 1 : 0, choose_first ? 0 : 1, 38);
     probe.set_side_to_move(Color::White);
     return probe;
 }
@@ -94,7 +95,7 @@ void Protocol::bench() {
 
 void Protocol::command(const std::string& line) {
     if (line == "rpsc") {
-        out_ << "id name RPSC Engine 0.10\nid author Jungwoo Kim\nrpscok\n";
+        out_ << "id name RPSC Engine 0.11\nid author Jungwoo Kim\nrpscok\n";
         return;
     }
     if (line == "isready") {
@@ -125,6 +126,17 @@ void Protocol::command(const std::string& line) {
     if (line.rfind("divide ", 0) == 0) {
         const int depth = std::stoi(line.substr(7));
         divide(engine_.position(), depth, out_);
+        return;
+    }
+    if (line.rfind("match ", 0) == 0) {
+        std::istringstream stream(line.substr(6));
+        int quiz_white = 0, quiz_black = 0, remaining_plies = -1;
+        if (!(stream >> quiz_white >> quiz_black >> remaining_plies) || quiz_white < 0 ||
+            quiz_black < 0 || remaining_plies < -1) {
+            out_ << "error invalid match context\n";
+            return;
+        }
+        engine_.position().set_match_context(quiz_white, quiz_black, remaining_plies);
         return;
     }
     if (line.rfind("items ", 0) == 0) {
@@ -241,7 +253,9 @@ void Protocol::command(const std::string& line) {
         limits.depth = 8;
         std::string token;
         while (stream >> token) {
-            if (token == "nodes")
+            if (token == "depth")
+                stream >> limits.depth;
+            else if (token == "nodes")
                 stream >> limits.nodes;
             else if (token == "movetime") {
                 long long ms;

@@ -1,6 +1,6 @@
 # Verification
 
-Draft 30 / Engine 0.10.0 is verified as one RPSC handbook / Analysis Board / native Engine package. The verification goal is twofold: exact rule agreement and functional search/UI behavior.
+Draft 31 / Engine 0.11.0 is verified as one RPSC handbook / Analysis Board / native Engine package. The verification goal is twofold: exact rule agreement and functional search/UI behavior.
 
 ## Native rule regression
 
@@ -24,6 +24,7 @@ Initial position with both sides holding Push/Rotation/Step = 1/1/1:
 
 The suite also checks:
 
+- official dice-net anchor: `P-S-P-S` horizontally with Rock above/below the left-hand `S`, implying S/S, R/R, P/P opposite pairs;
 - all 24 exact cube orientations;
 - Rotation keeps the top Gesture fixed;
 - RoL/RoR inverse behavior and fourfold Rotation identity;
@@ -37,6 +38,7 @@ The suite also checks:
 - exhaustive-vs-optimized reduced-successor equality in no-item, item-rich, and deterministic playout positions;
 - tactical-generator equality against score-changing successors from the full search generator;
 - distinct legal root MultiPV lines;
+- confirmed Quiz/remaining-ply Match Context survives make/undo and changes the search key;
 - Item Choice non-mutation;
 - all six First/Second + Push/Rotation/Step initial branches.
 
@@ -44,13 +46,13 @@ The suite also checks:
 
 The clean Release build and CTest are run before packaging. Protocol smoke includes:
 
-- identity `RPSC Engine 0.10`;
+- identity `RPSC Engine 0.11`;
 - `perft 2` = 25,575;
 - `chooseinitial` returning six ranked Order+Item candidates with legal continuation PVs;
 - `chooseitem W` returning three ranked item candidates with legal continuation PVs;
 - item-rich `go ... multipv 3` returning three distinct board recommendations.
 
-Draft 30 additionally verifies that decision PVs are formatted from the correct hypothetical inventory/order state. This prevents an item-using hypothetical continuation from being parsed against an inventory that has not actually received that item.
+Draft 31 preserves the decision-PV verification introduced in Draft 30: continuation lines are formatted from the correct hypothetical inventory/order state. This prevents an item-using hypothetical continuation from being parsed against an inventory that has not actually received that item.
 
 ## Browser game-flow regression
 
@@ -58,7 +60,7 @@ The Analysis Board keeps an exhaustive canonical generator and a separate optimi
 
 Browser interaction smoke is performed with a real Chromium page context, not syntax checking alone. Required behaviors include:
 
-- initial Quiz buttons visible with exact labels `[1, 1]`, `[1, 0]`, `[0, 1]`, `[0, 0]`;
+- initial Quiz buttons visible with exact labels `Q[1, 1]`, `Q[1, 0]`, `Q[0, 1]`, `Q[0, 0]`;
 - `Q[1, 0]` / `Q[0, 1]` entering the solo-correct order/item path when appropriate;
 - `Q[1, 1]` / `Q[0, 0]` entering the equal-result board-move path with first/second order resolution when needed;
 - Human vs Engine and Engine vs Engine remaining in QUIZ until the user clicks a Quiz Result;
@@ -66,7 +68,7 @@ Browser interaction smoke is performed with a real Chromium page context, not sy
 - Engine-controlled Item Choice returning to the next QUIZ after acquisition;
 - no page errors during these flows.
 
-A separate analysis smoke verifies item-rich background analysis at about 10 seconds and `Analyze` toward about 20 seconds, with Top-3 lines and item use appearing inside continuations.
+A separate analysis smoke verifies item-rich background analysis at about 10 seconds and `Analyze` toward about 20 seconds, with Top-3 lines and item use appearing inside continuations. Rotate Board is checked through all four 90-degree CCW view states without mutating canonical game state, and Candidate preview is checked as a non-destructive Roll-by-Roll animation.
 
 ## Notation and UI invariants
 

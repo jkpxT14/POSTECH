@@ -1,16 +1,16 @@
 # Strength Testing
 
-Engine 0.10.0 is a RPSC-specific decision/search release. Current evidence supports correctness, stable board-search behavior, and stronger allocation of computation across item/order decisions; it is not an Elo estimate.
+Engine 0.11.0 is a RPSC-specific decision/search release. Current evidence supports correctness, stable board-search behavior, and stronger allocation of computation across item/order decisions; it is not an Elo estimate.
 
 ## Board-search control
 
-The native no-item depth-4 `bench` remains a useful fixed control because Draft 30 intentionally does not manufacture a board-strength delta by retuning unrelated evaluation terms. In the current Release environment Engine 0.10.0 searches 196,968 nodes from the initial position and selects the established best root move.
+The native no-item depth-4 `bench` remains a useful fixed control because Draft 31 intentionally does not manufacture a board-strength delta by retuning unrelated evaluation terms. In the current Release environment Engine 0.11.0 searches 196,968 nodes from the initial position and selects the established best root move.
 
 Any future board-search patch should first demonstrate that it does not regress this control or the exact/perft suite.
 
 ## Decision-search development
 
-Draft 29 divided a finite Item Choice budget equally among three independent probes and a finite Initial Decision budget equally among six probes. Draft 30 changes the finite-budget policy without removing any candidate:
+Draft 29 divided a finite Item Choice budget equally among three independent probes and a finite Initial Decision budget equally among six probes. Draft 31 retains the finite-budget policy introduced in Draft 30 without removing any candidate:
 
 - Item Choice screens all 3 candidates, then refines the ranked candidates with 25% / 18% / 12% of the total budget after the 45% screening stage.
 - Initial Decision screens all 6 candidates, then refines the top 3 with 24% / 16% / 12% after the 48% screening stage.
@@ -18,6 +18,13 @@ Draft 29 divided a finite Item Choice budget equally among three independent pro
 - fixed-depth diagnostics continue to compare every candidate at equal requested depth.
 
 A 10-second native `chooseinitial` smoke reached depth 3 on the strongest branches and produced legal continuations containing actual item use. This is evidence that the available decision budget is being spent on deeper plausible alternatives, not a statistical game-strength claim.
+
+
+## Draft 31 RPSC-specific search changes
+
+Draft 31 changes search semantics only where the game supplies a defensible signal. Confirmed Quiz points contribute exactly one RPSC score unit each; captures remain two units. Future Quiz is symmetric and creates no items. A finite remaining-board-ply counter makes endgame resource conservation measurable: unused item reserve is tapered as available board plies disappear, and at zero remaining plies only official score/tie-break matter.
+
+Quiet item actions remain eligible for LMR, because exempting every item move causes a large branching penalty. However, the deepest two-ply late-move reduction is now restricted to non-item quiet actions. Push/Rotation/Step continuations can still be reduced by one ply when unpromising, but they receive an extra chance to prove tactical or orientation value within the same fixed time budget. This is a targeted search-allocation change, not an Elo claim.
 
 ## Rejected strength patch
 

@@ -16,24 +16,25 @@
 
 The official Science Quiz rules and the final RockPaperScissors Chess plan define the game. The exact 24-orientation physical cube model is the implementation source of truth; Gesture States are only a derived analysis/search layer. Quiz Results are always external user input. The Engine never predicts or invents a future Quiz Result.
 
-Build: Draft 30 (2026-08-31 KST)
+Build: Draft 31 (2026-08-31 KST)
 
-Source base: Draft 29 bug-fixed package / Engine 0.9.0, preserving the established GitHub folder and file structure.
+Source base: Draft 30 / Engine 0.10.0, preserving the established GitHub folder and file structure.
 
-## Draft 30
+## Draft 31
 
-Draft 30 advances the native Engine to 0.10.0 and locks the handbook, Analysis Board, and Engine to one RPSC rule/notation model before further strength work.
+Draft 31 advances the native Engine to 0.11.0 and develops the handbook, Analysis Board, and Engine as one RPSC analysis language grounded in the official 2026 rules and final game plan.
 
-- Rotation is fixed operationally across all three layers: the cube remains on its current square, the board-vertical axis and top face are fixed, the cube rotates exactly 90 degrees left or right, Top Gesture and Base Roll Length remain unchanged, and Wrist Direction / exact orientation rotate.
-- Quiz Result input is a permanent Analysis Board control in Human vs Human, Human vs Engine, and Engine vs Engine. The four canonical buttons are `[1, 1]`, `[1, 0]`, `[0, 1]`, `[0, 0]`.
-- Board analysis treats Normal, Push, RoL, RoR, StS, and StL as competing RPSC actions in one search tree. Top-3 continuations can therefore contain item acquisition/use consequences rather than showing items in a separate recommendation layer.
-- Item acquisition and the first solo-correct Order+Item decision use a shared decision-search budget. All candidates are screened, then the strongest candidates receive more of the remaining budget while sharing the TT; fixed-depth diagnostics still compare candidates at equal depth.
-- Native decision PV formatting now uses the correct hypothetical inventory/order state. Item-using continuations can therefore be emitted safely for `chooseitem` and `chooseinitial`.
-- The C++ and browser search generators retain the RPSC-specific partial Roll-state reduction while exhaustive canonical full paths remain available for legality, notation, perft, and regression.
-- The handbook extends the existing chess-inspired analysis language with Candidate Action, PV/MultiPV, Main Line/Variation, Forced Line, Critical Position, Transposition, evaluation symbols, optional annotations, and the RPSC-specific Full Roll Path distinction.
-- The Analysis Board keeps the established board-first layout. It adds no evaluation graph, heatmap, dashboard, or automatic move-quality labels; information is concentrated in the existing Current Action and Live Analysis areas.
-- Normal analysis targets about 10 seconds. `Analyze` continues the same position toward about 20 seconds; completed search information and the Worker TT are reused rather than intentionally restarting from a blank state.
-- User-facing `Q[0, 0]`-only play is not a mode. Fixed `Q[0, 0]` remains useful only as an internal board-search control in engine development.
+- The official dice-net is regression-anchored directly: horizontal `P-S-P-S`, with Rock immediately above and below the left-hand `S`. Folding this net gives opposite pairs S/S, R/R, P/P; native and browser cube states are tested from this anchor rather than merely checking that 24 orientations exist.
+- Rotation remains a strict invariant: current square and top face fixed, exactly 90 degrees around the board-vertical axis, Top Gesture/Base Roll Length unchanged, Wrist Direction/exact orientation rotated.
+- Canonical Quiz UI now displays `Q[1, 1]`, `Q[1, 0]`, `Q[0, 1]`, `Q[0, 0]`. Quiz Results remain manual in all Human/Engine modes.
+- Engine Evaluation now includes all confirmed Quiz points and current inventories. Future Quiz Results are not predicted; remaining rounds use the Symmetric Quiz Assumption, equivalent to future `Q[1, 1]`/`Q[0, 0]`, so no unearned items are created.
+- Remaining board plies are part of the search state. Item reserve value tapers near the end of the main game, and the final known board ply resolves to official Score = Quiz + 2 x Captures with the Quiz-count tie-break.
+- Quiet item actions may still receive normal LMR, but Draft 31 prevents the most aggressive two-ply reduction from being applied to an item action. This spends more of a fixed 10 s / 20 s budget on strategically unusual Push/Rotation/Step continuations without exempting all item moves from pruning.
+- Item acquisition, item conservation/use, and the first First/Second + Item decision remain direct Engine decisions. Finite decision budgets use all-candidate screening plus TT-sharing refinement; this is intentionally described as a shared decision budget rather than a false claim of one monolithic root tree.
+- `Flip Board` becomes `Rotate Board`: each click rotates the view 90 degrees counterclockwise through all four orientations. Coordinates, piece direction markers, and side labels rotate visually while canonical squares, exact cube state, Game Record, and Engine state remain unchanged.
+- Clicking an Engine Candidate now previews its Push/Rotation preprocessing and each Roll sequentially instead of jumping directly to the final square. The preview is non-destructive until Confirm Move.
+- Move-quality annotations are the six standard `!!`, `!`, `!?`, `?!`, `?`, `??`. `Only Move` remains an analysis term rather than a seventh quality symbol.
+- Normal analysis targets about 10 seconds; `Analyze` extends the same current decision toward about 20 seconds while retaining completed information and Worker TT state where applicable.
 
 ## Reference discipline
 
@@ -43,4 +44,4 @@ Chess textbooks and PGN conventions are references for notation hierarchy, varia
 
 The Engine is built specifically for RPSC: compound full Roll paths, exact cube orientation, combat and Reset, finite Push/Rotation/Step inventories, Quiz-driven action phases, and the White-then-Black Board Event structure. A proposed optimization is retained only if rule regressions pass and it improves the relevant RPSC search/test evidence; a broadly applicable technique is not valuable merely because it is successful in chess.
 
-The C++ Engine is the native reference implementation. The offline Analysis Board remains a parallel JavaScript Worker implementation in Draft 30; no WebAssembly bridge is claimed. Strength claims remain conservative. See `Engine/Verification.md` and `Engine/StrengthTesting.md`.
+The C++ Engine is the native reference implementation. The offline Analysis Board remains a parallel JavaScript Worker implementation in Draft 31; no WebAssembly bridge is claimed. Strength claims remain conservative. See `Engine/Verification.md` and `Engine/StrengthTesting.md`.

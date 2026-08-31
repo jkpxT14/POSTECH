@@ -56,6 +56,7 @@ InitialChoiceLine probe_initial(bool choose_first, int bucket, TranspositionTabl
     Position probe;
     const Color chooser = choose_first ? Color::White : Color::Black;
     add_item(probe, chooser, bucket);
+    probe.set_match_context(choose_first ? 1 : 0, choose_first ? 0 : 1, 38);
     probe.set_side_to_move(Color::White);
     Search search(tt);
     SearchResult result = search.run(probe, limits);

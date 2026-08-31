@@ -91,6 +91,8 @@ void Position::reset() {
     captures_white_ = 0;
     captures_black_ = 0;
     items_ = {};
+    quiz_white_ = quiz_black_ = 0;
+    remaining_board_plies_ = -1;
 }
 
 bool Position::occupied(Square square, PieceId exclude) const {
@@ -176,6 +178,8 @@ MoveOutcome Position::do_move(const Move& move, UndoState& undo) {
     if (!is_legal_path(move)) throw std::invalid_argument("illegal RPSC move");
     undo.pieces = pieces_; undo.side_to_move = side_to_move_; undo.captures_white = captures_white_;
     undo.captures_black = captures_black_; undo.items = items_;
+    undo.quiz_white = quiz_white_; undo.quiz_black = quiz_black_;
+    undo.remaining_board_plies = remaining_board_plies_;
 
     auto& moving_piece = piece(move.piece);
     const Color mover = side_to_move_;
@@ -205,12 +209,15 @@ MoveOutcome Position::do_move(const Move& move, UndoState& undo) {
     }
     if (alive_count(Color::White) == 0 || alive_count(Color::Black) == 0) { reset_pieces(); outcome.reset = true; }
     side_to_move_ = opposite(side_to_move_);
+    if (remaining_board_plies_ > 0) --remaining_board_plies_;
     return outcome;
 }
 
 void Position::undo_move(const UndoState& undo) {
     pieces_ = undo.pieces; side_to_move_ = undo.side_to_move; captures_white_ = undo.captures_white;
     captures_black_ = undo.captures_black; items_ = undo.items;
+    quiz_white_ = undo.quiz_white; quiz_black_ = undo.quiz_black;
+    remaining_board_plies_ = undo.remaining_board_plies;
 }
 
 Key Position::key() const {
@@ -224,6 +231,9 @@ Key Position::key() const {
     if (side_to_move_ == Color::Black) key ^= splitmix64(0x3141592653589793ULL);
     key ^= splitmix64(0x1111000000000000ULL + static_cast<unsigned>(captures_white_));
     key ^= splitmix64(0x2222000000000000ULL + static_cast<unsigned>(captures_black_));
+    key ^= splitmix64(0x2323000000000000ULL + static_cast<unsigned>(quiz_white_));
+    key ^= splitmix64(0x2424000000000000ULL + static_cast<unsigned>(quiz_black_));
+    key ^= splitmix64(0x2525000000000000ULL + static_cast<unsigned>(remaining_board_plies_ + 1));
     for (int side = 0; side < 2; ++side) for (int bucket = 0; bucket < 3; ++bucket) {
         const std::uint64_t base = 0x5555000000000000ULL + static_cast<std::uint64_t>(side * 3 + bucket) * 0x10000ULL;
         key ^= splitmix64(base + static_cast<unsigned>(items_[side][bucket]));
@@ -244,6 +254,9 @@ Key Position::search_key() const {
     if (side_to_move_ == Color::Black) key ^= splitmix64(0x2718281828459045ULL);
     key ^= splitmix64(0x3333000000000000ULL + static_cast<unsigned>(captures_white_));
     key ^= splitmix64(0x4444000000000000ULL + static_cast<unsigned>(captures_black_));
+    key ^= splitmix64(0x4545000000000000ULL + static_cast<unsigned>(quiz_white_));
+    key ^= splitmix64(0x4646000000000000ULL + static_cast<unsigned>(quiz_black_));
+    key ^= splitmix64(0x4747000000000000ULL + static_cast<unsigned>(remaining_board_plies_ + 1));
     for (int side = 0; side < 2; ++side) for (int bucket = 0; bucket < 3; ++bucket) {
         const std::uint64_t base = 0x7777000000000000ULL + static_cast<std::uint64_t>(side * 3 + bucket) * 0x10000ULL;
         key ^= splitmix64(base + static_cast<unsigned>(items_[side][bucket]));
@@ -254,7 +267,8 @@ Key Position::search_key() const {
 std::string Position::debug_string() const {
     std::ostringstream out;
     out << (side_to_move_ == Color::White ? "White" : "Black") << " to move | captures "
-        << captures_white_ << '-' << captures_black_ << " | items W " << items_[0][0] << ','
+        << captures_white_ << '-' << captures_black_ << " | quiz " << quiz_white_ << '-' << quiz_black_
+        << " | remaining plies " << remaining_board_plies_ << " | items W " << items_[0][0] << ','
         << items_[0][1] << ',' << items_[0][2] << " B " << items_[1][0] << ',' << items_[1][1]
         << ',' << items_[1][2] << '\n';
     const auto& orientations = OrientationTable::instance();

@@ -167,6 +167,38 @@ void verify_item_roll_lengths_and_consumption() {
     assert(checked_push && checked_left && checked_right && checked_short && checked_long);
 }
 
+void verify_official_dice_net_anchor() {
+    using namespace rpsc;
+    const auto& table = OrientationTable::instance();
+    const auto s = table.canonical(Gesture::Scissors, WristDirection::South);
+    assert(table.top_gesture(s) == Gesture::Scissors);
+    assert(table.wrist_direction(s) == WristDirection::South);
+    // Official Figure 2: horizontal P-S-P-S, with R immediately above and below the
+    // left-hand S. With that S as the top face, N/S expose Rock and E/W expose Paper.
+    assert(table.top_gesture(table.roll(s, Direction::North)) == Gesture::Rock);
+    assert(table.top_gesture(table.roll(s, Direction::South)) == Gesture::Rock);
+    assert(table.top_gesture(table.roll(s, Direction::East)) == Gesture::Paper);
+    assert(table.top_gesture(table.roll(s, Direction::West)) == Gesture::Paper);
+}
+
+void verify_match_context() {
+    using namespace rpsc;
+    Position p;
+    p.set_match_context(7, 5, 1);
+    assert(p.quiz(Color::White) == 7 && p.quiz(Color::Black) == 5);
+    assert(p.score(Color::White) == 7 && p.score(Color::Black) == 5);
+    const auto before = p.search_key();
+    const auto moves = generate_search_moves(p);
+    assert(!moves.empty());
+    UndoState u;
+    p.do_move(moves.front(), u);
+    assert(p.remaining_board_plies() == 0);
+    assert(p.search_key() != before);
+    p.undo_move(u);
+    assert(p.remaining_board_plies() == 1);
+    assert(p.search_key() == before);
+}
+
 void verify_all_orientations() {
     using namespace rpsc;
     const auto& table = OrientationTable::instance();
@@ -193,7 +225,9 @@ void verify_all_orientations() {
 
 int main() {
     using namespace rpsc;
+    verify_official_dice_net_anchor();
     verify_all_orientations();
+    verify_match_context();
     verify_reduced_orientation_equivalence();
     verify_item_roll_lengths_and_consumption();
 

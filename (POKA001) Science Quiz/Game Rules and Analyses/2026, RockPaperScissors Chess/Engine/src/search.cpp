@@ -181,6 +181,7 @@ struct Search::Context {
 Search::Search(TranspositionTable& tt) : tt_(tt) {}
 
 Value Search::quiescence(Position& position, Value alpha, Value beta, int ply, Context& context) {
+    if (position.remaining_board_plies() == 0) return evaluate(position);
     ++context.nodes;
     context.seldepth = std::max(context.seldepth, ply);
     if (ply >= MaxPly || context.should_stop()) return evaluate(position);
@@ -219,6 +220,7 @@ Value Search::quiescence(Position& position, Value alpha, Value beta, int ply, C
 Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, int ply,
                       Context& context, bool pv_node, const Move* previous_move,
                       const Move* previous2_move, int extensions_used) {
+    if (position.remaining_board_plies() == 0) return evaluate(position);
     if (ply >= MaxPly) return evaluate(position);
     if (depth <= 0) return quiescence(position, alpha, beta, ply, context);
 
@@ -323,7 +325,7 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
                 if (reducible) {
                     const Value child_static_for_mover = -evaluate(position);
                     const bool improving = child_static_for_mover >= static_eval + 8;
-                    if (!improving && depth >= 7 && move_index >= 10 && history_value <= 0)
+                    if (!improving && current.move.item == Item::None && depth >= 7 && move_index >= 10 && history_value <= 0)
                         reduction = 2;
                 }
             }
