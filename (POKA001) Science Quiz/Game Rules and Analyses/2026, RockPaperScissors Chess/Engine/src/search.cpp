@@ -532,27 +532,34 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
     }
 
     if (result.has_move) {
-        result.lines.push_back({result.best_move, result.value, result.pv});
-        std::vector<Move> excluded{result.best_move};
+        // A timed analysis must still return useful Top-N recommendations. The last fully
+        // completed primary iteration already scored every root action, so publish its best
+        // alternatives immediately instead of dropping MultiPV whenever the next iteration
+        // hits the clock. If time remains, refine alternatives with dedicated root searches.
+        const int wanted = std::min<int>(context.limits.multipv, prior_scores.size());
+        for (int rank = 0; rank < wanted; ++rank) {
+            RootLine line = prior_scores[static_cast<std::size_t>(rank)];
+            line.pv = build_pv(line.move, result.depth);
+            result.lines.push_back(std::move(line));
+        }
+        if (!result.lines.empty()) {
+            result.best_move = result.lines.front().move;
+            result.value = result.lines.front().value;
+            result.pv = result.lines.front().pv;
+        }
 
-        // MultiPV alternatives are searched only after the primary iterative-deepening line
-        // reaches its final completed depth. The main line therefore receives the full depth
-        // budget first instead of splitting every iteration across alternatives.
-        for (int rank = 1; rank < context.limits.multipv && !context.stopped; ++rank) {
-            Move preferred{};
-            for (const auto& line : prior_scores) {
-                if (!is_excluded(line.move, excluded)) {
-                    preferred = line.move;
+        if (!context.stopped && wanted > 1) {
+            std::vector<Move> excluded{result.best_move};
+            for (int rank = 1; rank < wanted && !context.stopped; ++rank) {
+                const Move preferred = result.lines[static_cast<std::size_t>(rank)].move;
+                const RootPass pass =
+                    search_root(result.depth, -Infinity, Infinity, excluded, preferred);
+                if (context.stopped || pass.value <= -Infinity || pass.best.path_length == 0)
                     break;
-                }
+                result.lines[static_cast<std::size_t>(rank)] =
+                    {pass.best, pass.value, build_pv(pass.best, result.depth)};
+                excluded.push_back(pass.best);
             }
-            if (preferred.path_length == 0) break;
-
-            const RootPass pass = search_root(result.depth, -Infinity, Infinity, excluded, preferred);
-            if (context.stopped || pass.value <= -Infinity || pass.best.path_length == 0) break;
-            auto pv = build_pv(pass.best, result.depth);
-            result.lines.push_back({pass.best, pass.value, std::move(pv)});
-            excluded.push_back(pass.best);
         }
     }
 

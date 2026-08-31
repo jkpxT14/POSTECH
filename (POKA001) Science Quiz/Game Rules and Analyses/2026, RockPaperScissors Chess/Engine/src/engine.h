@@ -1,7 +1,6 @@
 #ifndef RPSC_ENGINE_H_INCLUDED
 #define RPSC_ENGINE_H_INCLUDED
 
-#include <array>
 #include <cstddef>
 #include <cstdint>
 #include <vector>
@@ -29,6 +28,22 @@ struct OrderChoiceResult {
     SearchResult probe;
 };
 
+struct InitialChoiceLine {
+    bool choose_first = true;
+    int bucket = -1;  // 0 Push, 1 Rotation, 2 Step
+    Value chooser_value = 0;
+    Value white_value = 0;
+    SearchResult probe;
+};
+
+struct InitialChoiceResult {
+    bool choose_first = true;
+    int best_bucket = -1;
+    Value chooser_value = 0;
+    Value white_value = 0;
+    std::vector<InitialChoiceLine> lines;
+};
+
 class Engine {
    public:
     explicit Engine(std::size_t hash_megabytes = 64);
@@ -38,6 +53,7 @@ class Engine {
     SearchResult go(const SearchLimits& limits);
     ItemChoiceResult choose_item(Color chooser, const SearchLimits& limits);
     OrderChoiceResult choose_order(const SearchLimits& limits);
+    InitialChoiceResult choose_initial(const SearchLimits& limits);
     std::uint64_t perft(int depth);
     void clear_search();
 

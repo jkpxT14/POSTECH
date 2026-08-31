@@ -1,85 +1,41 @@
 # Strength Testing
 
-Strength testing is separated into historical Draft 27 evidence and Draft 28 item-aware controls. The numbers below are development samples, not Elo estimates.
+Engine 0.9.0 is an integrated RPSC-decision release. The current evidence verifies correctness and preserves the board-search baseline; it is not an Elo estimate.
 
-## Historical Draft 27: Engine 0.7.0 vs 0.6.0
+## Historical baseline
 
-The documented Draft 27 board-only `Q[0, 0]` proxy used 40 plies / 20 rounds, deterministic legal opening prefixes, and paired games with candidate color reversed.
+Draft 27 / Engine 0.7.0 had mixed small-sample results against 0.6.0, so no verified Elo claim was made. Draft 28 / Engine 0.8.0 introduced item-aware search and passed small paired no-item and preset-inventory smoke matches without demonstrating statistical superiority.
 
-### 6,000-node exploratory set
+Those older samples remain development context, not a strength certificate for 0.9.0.
 
-48 distinct opening prefixes, 96 games total:
+## 0.8.0 vs 0.9.0 no-item microbench
 
-- 0.7.0 wins: 47
-- draws: 12
-- 0.7.0 losses: 37
-- score: 55.21%
-- mean capture differential: +0.1875 capture/game
+Initial position, native Release `bench` depth 4, two runs each in the same packaging environment:
 
-### 12,000-node confirmation sample
+- Engine 0.8.0: 196,968 nodes; 1,038 ms / 1,102 ms
+- Engine 0.9.0: 196,968 nodes; 1,041 ms / 1,088 ms
 
-12 paired opening prefixes, 24 games total:
+Both versions selected the same best move. This is expected: Draft 29 does not deliberately retune the core no-item evaluator/search merely to manufacture a strength delta. The measurements support a no-obvious-regression conclusion only.
 
-- 0.7.0 wins: 4
-- draws: 11
-- 0.7.0 losses: 9
-- score: 39.58%
-- mean capture differential: -0.3333 capture/game
+## What 0.9.0 changes for practical strength
 
-The two budgets pointed in different directions, so Draft 27 did not claim a verified Elo gain.
+The main strength-facing changes are decision quality and usable search breadth:
 
-## Draft 28: Engine 0.8.0 vs 0.7.0 controls
+- first solo-correct order and item are searched jointly rather than greedily;
+- item acquisition is no longer restricted to a nominal depth-2 probe;
+- browser search reduces compound Roll branching before full paths are materialized;
+- timed MultiPV retains Top-3 alternatives from the last completed root iteration instead of frequently collapsing to one line at the deadline.
 
-Draft 28 changes item search substantially, so the first question is whether the underlying no-item board engine was accidentally damaged.
+These changes should be judged with RPSC-specific matches, not generic chess-style benchmarks.
 
-### No-item microbench
+## Required promotion tests
 
-Initial position, native `bench` depth 4, three runs each on the same environment:
+Future strength patches should be accepted only after separate controls:
 
-- Engine 0.7.0: 196,974 nodes; 1,075 / 1,044 / 1,074 ms
-- Engine 0.8.0: 196,968 nodes; 1,023 / 1,087 / 1,095 ms
+1. no-item fixed-Quiz (`Q[0,0]`) control - isolates board-search regression;
+2. preset-inventory fixed-Quiz control - isolates item use/conservation;
+3. fixed Quiz scripts - tests item acquisition plus later item use with identical Quiz inputs for both compared Engines;
+4. asymmetric inventories and Rotation/Step/Push tactical positions;
+5. longer paired starts/colors before any statistical strength claim.
 
-Both versions chose the same initial best move in this microbench. The timings overlap closely enough that this sample does not support a speed claim in either direction.
-
-### Item-rich depth-2 microbench
-
-Initial position with `items W 1 1 1` and `items B 1 1 1`, three runs each:
-
-- Engine 0.7.0: 66,594 nodes; approximately 111k-115k NPS
-- Engine 0.8.0: 72,927 nodes; approximately 110k-112k NPS
-
-Engine 0.8.0 searches more nodes at this shallow item-rich depth because item ordering/history/LMR semantics changed. NPS is similar in this small sample; this is not presented as a speedup.
-
-### Paired 6,000-node smoke matches
-
-A small deterministic opening-prefix harness was completed as a package smoke test. Each opening prefix was played twice with the candidate color reversed; games were capped at 40 plies.
-
-No-item control, 4 paired prefixes / 8 games:
-
-- 0.8.0 wins: 4
-- draws: 0
-- 0.8.0 losses: 4
-- score: 50.00%
-- mean capture differential: 0.0000
-
-Preset-inventory control, 4 paired prefixes / 8 games using varied asymmetric/symmetric item inventories:
-
-- 0.8.0 wins: 4
-- draws: 0
-- 0.8.0 losses: 4
-- score: 50.00%
-- mean capture differential: 0.0000
-
-These 8-game samples are far too small to measure playing strength. Their purpose is to confirm that the 0.8.0 binary can be paired against the frozen 0.7.0 baseline in both no-item and item-rich conditions without protocol/rule failures.
-
-## Interpretation and next tests
-
-Engine 0.8.0 is accepted in Draft 28 primarily as an item-aware architecture/correctness release, not because the small match samples prove an Elo gain. Future search changes should be tested one idea at a time, following the same discipline used in mature engine projects: freeze a baseline, use paired starts/colors, keep no-item controls separate from item-rich tests, promote only surviving changes to larger/longer samples, and eventually use a sequential statistical test once the custom RPSC harness is mature enough.
-
-The planned test matrix is:
-
-1. no-item `Q[0, 0]` control - isolates pure board-search regression;
-2. preset-inventory `Q[0, 0]` control - isolates item-use/conservation search without item acquisition;
-3. fixed scripted Quiz Result sequences - tests item acquisition choice plus later item use while keeping Quiz outcomes identical between compared Engines.
-
-`Q[0, 0]` therefore remains valuable as an internal development control even though it is no longer a user-facing Analysis Board mode.
+`Q[0,0]` remains an internal scientific control, not an Analysis Board game mode.

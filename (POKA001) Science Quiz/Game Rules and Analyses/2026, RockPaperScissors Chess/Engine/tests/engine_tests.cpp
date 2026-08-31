@@ -1,19 +1,249 @@
+#ifdef NDEBUG
+#undef NDEBUG
+#endif
+#include <array>
 #include <cassert>
 #include <iostream>
+#include <utility>
 #include <unordered_set>
 #include <vector>
+
 #include "engine.h"
 #include "movegen.h"
 #include "notation.h"
 #include "orientation.h"
-namespace {
-void verify_round_trip_and_undo(rpsc::Position& position,const std::vector<rpsc::Move>& moves){using namespace rpsc;const Key exact_before=position.key(),search_before=position.search_key();for(const auto& move:moves){assert(position.is_legal_path(move));const std::string text=format_move(move);Move reparsed;assert(parse_move(position,text,reparsed));assert(reparsed==move);UndoState undo;position.do_move(move,undo);position.undo_move(undo);assert(position.key()==exact_before);assert(position.search_key()==search_before);}}
-bool all_distinct(const std::vector<rpsc::RootLine>& lines){for(std::size_t i=0;i<lines.size();++i)for(std::size_t j=i+1;j<lines.size();++j)if(lines[i].move==lines[j].move)return false;return true;}
 
-void verify_search_generator_against_exact(rpsc::Position& position){using namespace rpsc;const auto legal=generate_legal_moves(position);std::unordered_set<Key> expected;for(const auto& move:legal){UndoState undo;const Color mover=position.side_to_move(),opp=opposite(mover);const int own=position.captures(mover),enemy=position.captures(opp);position.do_move(move,undo);expected.insert(position.search_key());position.undo_move(undo);}const auto search=generate_search_moves_info(position);std::unordered_set<Key> actual;for(const auto& entry:search){UndoState undo;position.do_move(entry.move,undo);actual.insert(position.search_key());position.undo_move(undo);}assert(actual==expected);}
-void verify_tactical_generator(rpsc::Position& position){using namespace rpsc;auto full=generate_search_moves_info(position),tactical=generate_tactical_moves_info(position);std::unordered_set<Key> expected;for(const auto& entry:full){if(entry.capture_swing==0)continue;UndoState undo;position.do_move(entry.move,undo);expected.insert(position.search_key());position.undo_move(undo);}std::unordered_set<Key> actual;for(const auto& entry:tactical){assert(entry.capture_swing!=0);UndoState undo;position.do_move(entry.move,undo);actual.insert(position.search_key());position.undo_move(undo);}assert(actual==expected);}
+namespace {
+
+void verify_round_trip_and_undo(rpsc::Position& position, const std::vector<rpsc::Move>& moves) {
+    using namespace rpsc;
+    const Key exact_before = position.key();
+    const Key search_before = position.search_key();
+    for (const auto& move : moves) {
+        assert(position.is_legal_path(move));
+        const std::string text = format_move(move);
+        Move reparsed;
+        assert(parse_move(position, text, reparsed));
+        assert(reparsed == move);
+        UndoState undo;
+        position.do_move(move, undo);
+        position.undo_move(undo);
+        assert(position.key() == exact_before);
+        assert(position.search_key() == search_before);
+    }
 }
-int main(){using namespace rpsc;const auto& orientations=OrientationTable::instance();assert(orientations.size()==24);for(Gesture gesture:{Gesture::Scissors,Gesture::Rock,Gesture::Paper}){auto orientation=orientations.canonical(gesture,WristDirection::South);assert(orientations.top_gesture(orientation)==gesture);const auto north=orientations.roll(orientation,Direction::North);assert(orientations.roll(north,Direction::South)==orientation);for(int i=0;i<4;++i)orientation=orientations.rotate_right(orientation);assert(orientations.top_gesture(orientation)==gesture);}Position position;const auto legal=generate_legal_moves(position);const auto unique=generate_unique_moves(position);const auto strategic=generate_search_moves(position);const auto strategic_info=generate_search_moves_info(position);std::cout<<"initial canonical moves: "<<legal.size()<<"\n";std::cout<<"initial exact positions: "<<unique.size()<<"\n";std::cout<<"initial strategic search positions: "<<strategic.size()<<"\n";assert(legal.size()==161);assert(unique.size()==145);assert(strategic.size()==84);assert(strategic_info.size()==84);assert(perft(position,1)==161);assert(perft(position,2)==25575);assert(perft(position,3)==4215782);verify_round_trip_and_undo(position,legal);verify_search_generator_against_exact(position);verify_tactical_generator(position);
-Position item_position;item_position.set_items(Color::White,1,1,1);item_position.set_items(Color::Black,1,1,1);const auto item_moves=generate_legal_moves(item_position),item_unique=generate_unique_moves(item_position),item_strategic=generate_search_moves(item_position);assert(item_moves.size()==1472);assert(item_unique.size()==1019);assert(item_strategic.size()==427);bool saw_push=false,saw_rotate_left=false,saw_rotate_right=false,saw_step_short=false,saw_step_long=false;for(const auto& move:item_moves){saw_push=saw_push||move.item==Item::Push;saw_rotate_left=saw_rotate_left||move.item==Item::RotateLeft;saw_rotate_right=saw_rotate_right||move.item==Item::RotateRight;saw_step_short=saw_step_short||move.item==Item::StepShort;saw_step_long=saw_step_long||move.item==Item::StepLong;}assert(saw_push&&saw_rotate_left&&saw_rotate_right&&saw_step_short&&saw_step_long);verify_round_trip_and_undo(item_position,item_moves);verify_search_generator_against_exact(item_position);verify_tactical_generator(item_position);
-Position playout=item_position;for(int ply=0;ply<16;++ply){if(ply%4==0){verify_search_generator_against_exact(playout);verify_tactical_generator(playout);}const auto moves=generate_search_moves(playout);assert(!moves.empty());const Move move=moves[static_cast<std::size_t>((ply*37+11)%moves.size())];const Key before=playout.key();const std::string text=format_move(move);Move reparsed;assert(parse_move(playout,text,reparsed));assert(reparsed==move);UndoState undo;playout.do_move(move,undo);const Key after=playout.key();assert(after!=before);playout.undo_move(undo);assert(playout.key()==before);playout.do_move(move,undo);}
-Engine engine;SearchLimits limits;limits.depth=4;limits.multipv=3;const auto result=engine.go(limits);assert(result.has_move);assert(result.depth==4);assert(!result.pv.empty());assert(result.lines.size()==3);assert(all_distinct(result.lines));assert(engine.position().is_legal_path(result.best_move));for(const auto& line:result.lines){assert(engine.position().is_legal_path(line.move));assert(!line.pv.empty());assert(line.pv.front()==line.move);}Engine item_engine;item_engine.position().set_items(Color::White,1,1,1);item_engine.position().set_items(Color::Black,1,1,1);SearchLimits item_limits;item_limits.depth=2;item_limits.multipv=3;const auto item_result=item_engine.go(item_limits);assert(item_result.has_move);assert(item_result.depth==2);assert(item_result.lines.size()==3);assert(all_distinct(item_result.lines));for(const auto& line:item_result.lines){assert(item_engine.position().is_legal_path(line.move));assert(!line.pv.empty());}const Key before_choice=item_engine.position().key();SearchLimits choice_limits;choice_limits.depth=2;choice_limits.nodes=60000;const auto choice=item_engine.choose_item(Color::White,choice_limits);assert(choice.best_bucket>=0&&choice.best_bucket<3);assert(choice.lines.size()==3);std::unordered_set<int> choice_buckets;for(const auto& line:choice.lines){assert(line.bucket>=0&&line.bucket<3);choice_buckets.insert(line.bucket);}assert(choice_buckets.size()==3);assert(item_engine.position().key()==before_choice);SearchLimits order_limits;order_limits.depth=2;const auto order_choice=item_engine.choose_order(order_limits);assert(order_choice.probe.depth>=1);assert(order_choice.choose_first==(order_choice.white_value>=0));std::cout<<"depth 4 best: "<<format_move(result.best_move)<<" score "<<static_cast<double>(result.value)/ScoreUnit<<" nodes "<<result.nodes<<"\n";return 0;}
+
+bool all_distinct(const std::vector<rpsc::RootLine>& lines) {
+    for (std::size_t i = 0; i < lines.size(); ++i)
+        for (std::size_t j = i + 1; j < lines.size(); ++j)
+            if (lines[i].move == lines[j].move) return false;
+    return true;
+}
+
+void verify_search_generator_against_exact(rpsc::Position& position) {
+    using namespace rpsc;
+    const auto legal = generate_legal_moves(position);
+    std::unordered_set<Key> expected;
+    for (const auto& move : legal) {
+        UndoState undo;
+        position.do_move(move, undo);
+        expected.insert(position.search_key());
+        position.undo_move(undo);
+    }
+
+    const auto search = generate_search_moves_info(position);
+    std::unordered_set<Key> actual;
+    for (const auto& entry : search) {
+        UndoState undo;
+        position.do_move(entry.move, undo);
+        actual.insert(position.search_key());
+        position.undo_move(undo);
+    }
+    assert(actual == expected);
+}
+
+void verify_tactical_generator(rpsc::Position& position) {
+    using namespace rpsc;
+    const auto full = generate_search_moves_info(position);
+    const auto tactical = generate_tactical_moves_info(position);
+    std::unordered_set<Key> expected;
+    for (const auto& entry : full) {
+        if (entry.capture_swing == 0) continue;
+        UndoState undo;
+        position.do_move(entry.move, undo);
+        expected.insert(position.search_key());
+        position.undo_move(undo);
+    }
+    std::unordered_set<Key> actual;
+    for (const auto& entry : tactical) {
+        assert(entry.capture_swing != 0);
+        UndoState undo;
+        position.do_move(entry.move, undo);
+        actual.insert(position.search_key());
+        position.undo_move(undo);
+    }
+    assert(actual == expected);
+}
+
+void verify_all_orientations() {
+    using namespace rpsc;
+    const auto& table = OrientationTable::instance();
+    assert(table.size() == 24);
+    for (int i = 0; i < 24; ++i) {
+        const auto o = static_cast<Orientation>(i);
+        assert(table.rotate_left(table.rotate_right(o)) == o);
+        assert(table.rotate_right(table.rotate_left(o)) == o);
+        assert(table.top_gesture(table.rotate_left(o)) == table.top_gesture(o));
+        assert(table.top_gesture(table.rotate_right(o)) == table.top_gesture(o));
+        auto r = o;
+        for (int q = 0; q < 4; ++q) r = table.rotate_right(r);
+        assert(r == o);
+        const std::array<std::pair<Direction, Direction>, 4> inverses{{
+            {Direction::North, Direction::South}, {Direction::South, Direction::North},
+            {Direction::East, Direction::West}, {Direction::West, Direction::East}}};
+        for (const auto& [d, inverse] : inverses) {
+            assert(table.roll(table.roll(o, d), inverse) == o);
+        }
+    }
+}
+
+}  // namespace
+
+int main() {
+    using namespace rpsc;
+    verify_all_orientations();
+
+    Position position;
+    const auto legal = generate_legal_moves(position);
+    const auto unique = generate_unique_moves(position);
+    const auto strategic = generate_search_moves(position);
+    const auto strategic_info = generate_search_moves_info(position);
+    std::cout << "initial canonical moves: " << legal.size() << "\n";
+    std::cout << "initial exact positions: " << unique.size() << "\n";
+    std::cout << "initial strategic search positions: " << strategic.size() << "\n";
+    assert(legal.size() == 161);
+    assert(unique.size() == 145);
+    assert(strategic.size() == 84);
+    assert(strategic_info.size() == 84);
+    assert(perft(position, 1) == 161);
+    assert(perft(position, 2) == 25575);
+    assert(perft(position, 3) == 4215782);
+    verify_round_trip_and_undo(position, legal);
+    verify_search_generator_against_exact(position);
+    verify_tactical_generator(position);
+
+    Position item_position;
+    item_position.set_items(Color::White, 1, 1, 1);
+    item_position.set_items(Color::Black, 1, 1, 1);
+    const auto item_moves = generate_legal_moves(item_position);
+    const auto item_unique = generate_unique_moves(item_position);
+    const auto item_strategic = generate_search_moves(item_position);
+    assert(item_moves.size() == 1472);
+    assert(item_unique.size() == 1019);
+    assert(item_strategic.size() == 427);
+    bool saw_push = false, saw_rotate_left = false, saw_rotate_right = false;
+    bool saw_step_short = false, saw_step_long = false;
+    for (const auto& move : item_moves) {
+        saw_push = saw_push || move.item == Item::Push;
+        saw_rotate_left = saw_rotate_left || move.item == Item::RotateLeft;
+        saw_rotate_right = saw_rotate_right || move.item == Item::RotateRight;
+        saw_step_short = saw_step_short || move.item == Item::StepShort;
+        saw_step_long = saw_step_long || move.item == Item::StepLong;
+    }
+    assert(saw_push && saw_rotate_left && saw_rotate_right && saw_step_short && saw_step_long);
+    verify_round_trip_and_undo(item_position, item_moves);
+    verify_search_generator_against_exact(item_position);
+    verify_tactical_generator(item_position);
+
+    Position playout = item_position;
+    for (int ply = 0; ply < 16; ++ply) {
+        if (ply % 4 == 0) {
+            verify_search_generator_against_exact(playout);
+            verify_tactical_generator(playout);
+        }
+        const auto moves = generate_search_moves(playout);
+        assert(!moves.empty());
+        const Move move = moves[static_cast<std::size_t>((ply * 37 + 11) % moves.size())];
+        const Key before = playout.key();
+        const std::string text = format_move(move);
+        Move reparsed;
+        assert(parse_move(playout, text, reparsed));
+        assert(reparsed == move);
+        UndoState undo;
+        playout.do_move(move, undo);
+        assert(playout.key() != before);
+        playout.undo_move(undo);
+        assert(playout.key() == before);
+        playout.do_move(move, undo);
+    }
+
+    Engine engine;
+    SearchLimits limits;
+    limits.depth = 4;
+    limits.multipv = 3;
+    const auto result = engine.go(limits);
+    assert(result.has_move);
+    assert(result.depth == 4);
+    assert(!result.pv.empty());
+    assert(result.lines.size() == 3);
+    assert(all_distinct(result.lines));
+    assert(engine.position().is_legal_path(result.best_move));
+    for (const auto& line : result.lines) {
+        assert(engine.position().is_legal_path(line.move));
+        assert(!line.pv.empty());
+        assert(line.pv.front() == line.move);
+    }
+
+    Engine item_engine;
+    item_engine.position().set_items(Color::White, 1, 1, 1);
+    item_engine.position().set_items(Color::Black, 1, 1, 1);
+    SearchLimits item_limits;
+    item_limits.depth = 2;
+    item_limits.multipv = 3;
+    const auto item_result = item_engine.go(item_limits);
+    assert(item_result.has_move);
+    assert(item_result.depth == 2);
+    assert(item_result.lines.size() == 3);
+    assert(all_distinct(item_result.lines));
+
+    const Key before_choice = item_engine.position().key();
+    SearchLimits choice_limits;
+    choice_limits.depth = 3;
+    choice_limits.nodes = 90000;
+    const auto choice = item_engine.choose_item(Color::White, choice_limits);
+    assert(choice.best_bucket >= 0 && choice.best_bucket < 3);
+    assert(choice.lines.size() == 3);
+    std::unordered_set<int> choice_buckets;
+    for (const auto& line : choice.lines) {
+        assert(line.bucket >= 0 && line.bucket < 3);
+        choice_buckets.insert(line.bucket);
+        assert(line.probe.depth >= 1);
+        assert(!line.probe.pv.empty());
+    }
+    assert(choice_buckets.size() == 3);
+    assert(item_engine.position().key() == before_choice);
+
+    Engine opening_engine;
+    SearchLimits opening_limits;
+    opening_limits.depth = 2;
+    opening_limits.nodes = 120000;
+    const auto opening = opening_engine.choose_initial(opening_limits);
+    assert(opening.best_bucket >= 0 && opening.best_bucket < 3);
+    assert(opening.lines.size() == 6);
+    bool saw_first = false, saw_second = false;
+    std::unordered_set<int> first_items, second_items;
+    for (const auto& line : opening.lines) {
+        saw_first = saw_first || line.choose_first;
+        saw_second = saw_second || !line.choose_first;
+        (line.choose_first ? first_items : second_items).insert(line.bucket);
+        assert(line.probe.depth >= 1);
+        assert(!line.probe.pv.empty());
+    }
+    assert(saw_first && saw_second);
+    assert(first_items.size() == 3 && second_items.size() == 3);
+
+    std::cout << "depth 4 best: " << format_move(result.best_move) << " score "
+              << static_cast<double>(result.value) / ScoreUnit << " nodes " << result.nodes
+              << "\n";
+    return 0;
+}

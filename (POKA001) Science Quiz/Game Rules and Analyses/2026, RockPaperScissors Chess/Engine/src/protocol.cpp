@@ -75,7 +75,7 @@ void Protocol::bench() {
 
 void Protocol::command(const std::string& line) {
     if (line == "rpsc") {
-        out_ << "id name RPSC Engine 0.8\nid author Jungwoo Kim\nrpscok\n";
+        out_ << "id name RPSC Engine 0.9\nid author Jungwoo Kim\nrpscok\n";
         return;
     }
     if (line == "isready") {
@@ -173,6 +173,40 @@ void Protocol::command(const std::string& line) {
         out_ << "bestorder " << (choice.choose_first ? "first" : "second") << '\n';
         return;
     }
+    if (line == "chooseinitial" || line.rfind("chooseinitial ", 0) == 0) {
+        std::istringstream stream(line.size() > 13 ? line.substr(14) : std::string{});
+        SearchLimits limits;
+        limits.depth = 8;
+        std::string token;
+        while (stream >> token) {
+            if (token == "depth")
+                stream >> limits.depth;
+            else if (token == "nodes")
+                stream >> limits.nodes;
+            else if (token == "movetime") {
+                long long ms;
+                stream >> ms;
+                limits.movetime = std::chrono::milliseconds(ms);
+                limits.depth = 84;
+            }
+        }
+        const auto choice = engine_.choose_initial(limits);
+        for (std::size_t rank = 0; rank < choice.lines.size(); ++rank) {
+            const auto& candidate = choice.lines[rank];
+            out_ << "info initial " << (rank + 1) << ' '
+                 << (candidate.choose_first ? "first" : "second") << ' '
+                 << item_name(candidate.bucket) << " score " << std::fixed
+                 << std::setprecision(2)
+                 << static_cast<double>(candidate.chooser_value) / ScoreUnit << " depth "
+                 << candidate.probe.depth << " nodes " << candidate.probe.nodes;
+            if (!candidate.probe.pv.empty())
+                out_ << " pv " << format_pv(engine_.position(), candidate.probe.pv);
+            out_ << '\n';
+        }
+        out_ << "bestinitial " << (choice.choose_first ? "first" : "second") << ' '
+             << (choice.best_bucket >= 0 ? item_name(choice.best_bucket) : "(none)") << '\n';
+        return;
+    }
     if (line.rfind("chooseitem ", 0) == 0) {
         std::istringstream stream(line.substr(11));
         char side;
@@ -182,7 +216,7 @@ void Protocol::command(const std::string& line) {
             return;
         }
         SearchLimits limits;
-        limits.depth = 2;
+        limits.depth = 8;
         std::string token;
         while (stream >> token) {
             if (token == "nodes")
@@ -199,8 +233,10 @@ void Protocol::command(const std::string& line) {
             out_ << "info item " << (rank + 1) << ' ' << item_name(candidate.bucket) << " score "
                  << std::fixed << std::setprecision(2)
                  << static_cast<double>(candidate.white_value) / ScoreUnit;
-            out_ << " depth " << candidate.probe.depth << " nodes " << candidate.probe.nodes
-                 << '\n';
+            out_ << " depth " << candidate.probe.depth << " nodes " << candidate.probe.nodes;
+            if (!candidate.probe.pv.empty())
+                out_ << " pv " << format_pv(engine_.position(), candidate.probe.pv);
+            out_ << '\n';
         }
         out_ << "bestitem "
              << (choice.best_bucket >= 0 ? item_name(choice.best_bucket) : "(none)") << '\n';
