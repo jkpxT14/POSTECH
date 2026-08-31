@@ -2,31 +2,25 @@
 
 `rpsc-engine` is the classical search Engine for RockPaperScissors Chess.
 
-Version: 0.6.0
+Version: 0.7.0
 
 ## Design
 
-- C++17
-- no machine learning, neural networks, or NNUE
+- C++17; no machine learning, neural networks, or NNUE
 - exact 24-orientation cube state as the rules and notation source of truth
 - derived six-state Gesture State for strategically equivalent search-state reduction under the current rules
 - canonical full-path legal move generation, including Push, Rotation, Step Short, and Step Long when available
-- iterative deepening with principal-variation search and aspiration windows
-- four-way clustered transposition table with deterministic 64-bit position keys and generation-aware replacement
-- TT, tactical, killer, history, continuation, two-ply follow-up, countermove, capture-history, and prior-iteration root move ordering
-- bounded history updates that reward successful quiet replies and gently demote quiet alternatives searched earlier at the same cutoff
-- conservative late-move reductions for quiet non-item moves, with RPSC threat/defence and known-reply safeguards before reduction
-- direct tactical move generation for quiescence and immediate scoring-pressure checks
-- bounded tactical quiescence search that keeps legal combat continuations explicit and uses capture history for ordering
-- true root MultiPV analysis for several fully searched Candidate Moves
-- Evaluation scaled in RPSC score units (`100 = 1.00` point, one capture = `200`)
-- conservative rule-derived positional terms only: official score, a small alive-piece term, a small uncalibrated item reserve, legal first-Roll mobility, and legal non-reversing second-Roll continuation flexibility
+- iterative deepening, principal-variation search, aspiration windows, and a four-way clustered transposition table
+- TT, tactical, killer, history, continuation, two-ply follow-up, countermove, capture-history, and prior-iteration root ordering
+- conservative late-move reductions with RPSC threat/defence and known-reply safeguards
+- direct tactical move generation and bounded tactical quiescence
+- bounded selective extension around score-changing combat events: at most two extra plies per line
+- root MultiPV after the primary line is established
+- Evaluation in RPSC score units (`100 = 1.00`, one capture = `200`), with only small rule-derived positional terms
 
-The search distinguishes `quiet` from `unimportant`. Before reducing a late quiet move, the Engine checks immediate RPSC scoring pressure. A quiet move that removes an opponent's immediate scoring possibility or creates a new immediate scoring possibility is searched at full depth. Version 0.6.0 also treats established countermoves, killer replies, and sufficiently strong history replies more cautiously under LMR. One-ply continuation history, two-ply follow-up history, and negative feedback for inferior quiets improve ordering without declaring a particular square, opening, Gesture, or waiting pattern intrinsically good.
+Version 0.7.0 is intentionally not tuned to a named square, Gesture, opening, or supplied game. The score-event extension is derived from the rule that combat can change the official score and is bounded to prevent unbounded tactical growth. The evaluation function receives no special-case bonus for the regression position that motivated this search review.
 
-Basic tactics remain first-class. Captures receive explicit move-ordering priority, tactical cutoffs update capture history, and quiescence uses a dedicated tactical generator rather than relying on generic quiet-move machinery. Quiet, defensive, and waiting play is strengthened by search context rather than by weakening immediate capture/scoring tactics or by adding an arbitrary `waiting move` bonus.
-
-Engine-containing Analysis Board play modes use `Q[0, 0]` for every Quiz; Quiz is not removed. These modes therefore do not acquire items through normal play. The Engine core itself remains item-aware because Human vs Human analysis can contain actual Push, Rotation, or Step inventories.
+Timed searches check their deadline more frequently than 0.6.0 so the 10 s / 20 s Analysis Board budgets are respected more closely.
 
 ## Build
 
@@ -38,7 +32,7 @@ ctest --test-dir build --output-on-failure
 
 ## Protocol
 
-The command-line interface is deliberately small and UCI-inspired, but it is not UCI-compatible.
+The command-line interface is UCI-inspired but not UCI-compatible.
 
 ```text
 rpsc
@@ -47,38 +41,26 @@ newgame
 position startpos
 items W 1 1 1
 move W3[RoL]: e1-e2-e3-e4-d4-c4
-go depth 6
-go depth 5 multipv 3
-go movetime 3000
+go depth 8
+go depth 6 multipv 3
+go movetime 10000
 perft 2
 bench
 quit
 ```
 
-`items W 1 1 1` sets White's current Push, Rotation, and Step counts in that order; use `B` for Black. Single-PV search concentrates computation on the best line. With `multipv N`, the Engine emits numbered root lines followed by `bestmove`. Search information uses `depth`, `seldepth`, `nodes`, `nps`, `score`, and `pv`. Displayed `score` uses White's point of view to match the handbook and Analysis Board; the search core itself uses side-to-move negamax values internally.
+A timed search uses a high depth ceiling and stops primarily on its time budget. Search information uses `depth`, `seldepth`, `nodes`, `nps`, `score`, and `pv`; displayed `score` is from White's point of view.
 
 ## Analysis Board relationship
 
-The C++ Engine is the native reference implementation. The offline single-file Analysis Board uses a parallel classical JavaScript Web Worker so that it can run without a server or local executable. Draft 26 mirrors capture/continuation/follow-up history, countermove ordering, and threat-aware quiet-move reduction principles in that worker.
+The C++ Engine remains the native reference implementation. The offline single-file Analysis Board uses a parallel classical JavaScript Web Worker so it can run without a local executable.
 
-The Analysis Board separates the canonical Game Head from the Analysis Cursor. The canonical Game Record remains visible while the cursor visits an earlier Main-Line position or a Variation. Quiz events remain real state/history events even though Previous/Next conveniently moves among complete board-decision positions. At a historical position Engine play pauses and Engine Analysis continues.
+Draft 27 gives normal current-position analysis up to about 10 seconds. `Analyze` raises the same position to a total deep-analysis budget of about 20 seconds. The browser retains completed position results in a bounded exact-position cache and, when possible, starts Deep Analysis after the last completed depth rather than repeating earlier iterations. The Worker also keeps its transposition table while the same analysis session continues. Primary-PV iterative deepening is prioritized before final-depth MultiPV alternatives so three shallow lines do not consume every iteration equally.
 
-MultiPV Alternatives are connected directly to the board. When the current position is human-controllable, selecting a candidate produces a complete canonical Move preview; the path remains hypothetical until `Confirm Move`. Confirming from a historical position stores/reuses a Variation; cancelling stores nothing. This keeps Engine exploration useful without filling the analysis tree with every candidate merely viewed.
+Historical Main-Line/Variation navigation, clickable Game Record positions, exact state restoration, and candidate board preview remain non-destructive analysis layers.
 
-A future WebAssembly build can replace the parallel worker implementation without changing the handbook, Game Record, or analysis vocabulary. Draft 26 does not claim that the C++ core is already running in the browser.
+## Strength testing
 
-## Design references
+Draft 27 follows the experimental discipline used in chess-engine development: compare a candidate against a fixed baseline over paired starting positions with colors swapped, and keep correctness tests separate from strength tests. See `StrengthTesting.md` for the current results and their limitations.
 
-Version 0.6.0 adapts established classical-engine ideas rather than chess-specific knowledge:
-
-- Stockfish: iterative PVS, TT discipline, quiet/continuation/correction-style history concepts, and conservative selective-search design
-- Fairy-Stockfish: separation of a strong search framework from variant-specific rules and state semantics
-- Ethereal: follow-up/continuation-style history and history-aware selective-search ideas
-- Edax Reversi: classical PVS, transposition-table, mobility, and selective-search discipline
-- threat-oriented Gomoku engines: forcing threats and required defensive replies deserve different treatment from generic quiet moves
-
-RPSC-specific legality, full Roll paths, exact orientation, combat, Reset, Quiz flow, official scoring, and items are implemented independently from these references.
-
-## Strength target
-
-The target is a fast, accurate classical practice Engine that can eventually exceed strong human play. Version 0.6.0 does not claim measured superiority. Search changes should be retained only when rule regression, tactical testing, self-play, and human analysis support them.
+No Elo, human-superiority, or statistically proven strength claim is attached to 0.7.0.

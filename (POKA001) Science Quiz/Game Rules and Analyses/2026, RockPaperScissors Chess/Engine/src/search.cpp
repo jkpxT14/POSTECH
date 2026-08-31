@@ -11,6 +11,7 @@ namespace rpsc {
 namespace {
 
 constexpr int MaxPly = 64;
+constexpr int MaxSelectiveExtensions = 2;
 constexpr Value AspirationWindow = 50;
 constexpr int CountermoveBonus = 120000;
 constexpr int ContinuationScale = 2;
@@ -33,9 +34,8 @@ bool is_excluded(const Move& move, const std::vector<Move>& excluded) {
 }
 
 Value prior_root_value(const Move& move, const std::vector<RootLine>& prior) {
-    for (const auto& line : prior) {
+    for (const auto& line : prior)
         if (line.move == move) return line.value;
-    }
     return -Infinity;
 }
 
@@ -73,7 +73,9 @@ struct Search::Context {
     bool should_stop() {
         if (stopped) return true;
         if (limits.nodes && nodes >= limits.nodes) return stopped = true;
-        if (limits.movetime.count() > 0 && (nodes & 1023ULL) == 0) {
+        // Timed analysis is interactive. Check often enough that a 10 s / 20 s UI budget
+        // is respected without making the wall clock query a per-node cost.
+        if (limits.movetime.count() > 0 && (nodes & 255ULL) == 0) {
             if (std::chrono::steady_clock::now() - start >= limits.movetime)
                 return stopped = true;
         }
@@ -103,7 +105,6 @@ struct Search::Context {
                              const Move* previous2, const std::vector<Move>& quiets_searched) {
         const int bonus = std::max(1, depth * depth);
         bounded_add(history[piece_index(move.piece)][move.to()], bonus);
-
         if (previous && previous->path_length != 0) {
             bounded_add(continuation[continuation_index(*previous, move)], 2 * bonus);
             countermoves[piece_index(previous->piece)][previous->to()] = move;
@@ -111,9 +112,6 @@ struct Search::Context {
         if (previous2 && previous2->path_length != 0)
             bounded_add(followup[continuation_index(*previous2, move)], bonus);
 
-        // Strong engines do not only reward the quiet move that cuts off: quiet moves searched
-        // earlier and shown inferior are gently demoted. This improves later ordering without
-        // declaring any RPSC-specific positional preference.
         const int penalty = std::max(1, bonus / 2);
         for (const Move& tried : quiets_searched) {
             if (tried == move) continue;
@@ -140,7 +138,6 @@ struct Search::Context {
         const Key key = position.search_key();
         const auto found = pressure_cache.find(key);
         if (found != pressure_cache.end()) return found->second;
-
         int pressure = 0;
         for (const auto& move : generate_tactical_moves_info(position)) {
             if (move.capture_swing > 0 && ++pressure >= 4) break;
@@ -189,7 +186,6 @@ Value Search::quiescence(Position& position, Value alpha, Value beta, int ply, C
         position.do_move(current.move, undo);
         const Value score = -quiescence(position, -beta, -alpha, ply + 1, context);
         position.undo_move(undo);
-
         if (context.stopped) return alpha;
         if (score >= beta) {
             context.record_tactical_cutoff(current.move, 1);
@@ -202,7 +198,7 @@ Value Search::quiescence(Position& position, Value alpha, Value beta, int ply, C
 
 Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, int ply,
                       Context& context, bool pv_node, const Move* previous_move,
-                      const Move* previous2_move) {
+                      const Move* previous2_move, int extensions_used) {
     if (ply >= MaxPly) return evaluate(position);
     if (depth <= 0) return quiescence(position, alpha, beta, ply, context);
 
@@ -271,10 +267,19 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
         UndoState undo;
         position.do_move(current.move, undo);
 
+        // A combat result changes the official score and is the RPSC analogue of a forcing
+        // tactical event. Preserve one ply around at most two such events per line. This is
+        // rule-derived and position-independent; it does not encode a square, Gesture, opening,
+        // or known game sequence.
+        const bool extend_score = current.capture_swing != 0 &&
+                                  extensions_used < MaxSelectiveExtensions;
+        const int next_extensions = extensions_used + (extend_score ? 1 : 0);
+        const Depth full_child_depth = depth - 1 + (extend_score ? 1 : 0);
+
         Value score;
         if (move_index == 0) {
-            score = -negamax(position, depth - 1, -beta, -alpha, ply + 1, context, pv_node,
-                             &current.move, previous_move);
+            score = -negamax(position, full_child_depth, -beta, -alpha, ply + 1, context,
+                             pv_node, &current.move, previous_move, next_extensions);
         } else {
             const int history_value =
                 context.history[piece_index(current.move.piece)][current.move.to()] +
@@ -290,10 +295,6 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
 
             int reduction = 1;
             if (reducible) {
-                // Quiet does not mean unimportant. Before reducing a late quiet move, retain
-                // full depth for rule-derived threats and defenses: a move that creates a new
-                // immediate scoring possibility for the mover or removes an opponent scoring
-                // possibility is searched like a tactical candidate.
                 const int opponent_pressure_after = context.capture_pressure(position);
                 const int own_pressure_after = context.capture_pressure_for(position, mover);
                 const bool defensive = opponent_pressure_before > 0 &&
@@ -310,20 +311,21 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
             }
 
             if (reducible) {
-                const Depth reduced_depth = std::max<Depth>(0, depth - 1 - reduction);
+                const Depth reduced_depth = std::max<Depth>(0, full_child_depth - reduction);
                 score = -negamax(position, reduced_depth, -alpha - 1, -alpha, ply + 1, context,
-                                 false, &current.move, previous_move);
+                                 false, &current.move, previous_move, next_extensions);
                 if (score > alpha)
-                    score = -negamax(position, depth - 1, -alpha - 1, -alpha, ply + 1, context,
-                                     false, &current.move, previous_move);
+                    score = -negamax(position, full_child_depth, -alpha - 1, -alpha, ply + 1,
+                                     context, false, &current.move, previous_move,
+                                     next_extensions);
             } else {
-                score = -negamax(position, depth - 1, -alpha - 1, -alpha, ply + 1, context,
-                                 false, &current.move, previous_move);
+                score = -negamax(position, full_child_depth, -alpha - 1, -alpha, ply + 1,
+                                 context, false, &current.move, previous_move, next_extensions);
             }
 
             if (score > alpha && score < beta)
-                score = -negamax(position, depth - 1, -beta, -alpha, ply + 1, context, pv_node,
-                                 &current.move, previous_move);
+                score = -negamax(position, full_child_depth, -beta, -alpha, ply + 1, context,
+                                 pv_node, &current.move, previous_move, next_extensions);
         }
 
         position.undo_move(undo);
@@ -372,9 +374,8 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
     for (const auto& entry : root_info) root_moves.push_back(entry.move);
 
     auto root_swing = [&](const Move& move) {
-        for (const auto& entry : root_info) {
+        for (const auto& entry : root_info)
             if (entry.move == move) return entry.capture_swing;
-        }
         return 0;
     };
 
@@ -382,7 +383,9 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
         std::vector<Move> pv;
         Position position = root;
         Move move = first;
-        for (int ply = 0; ply < depth && move.path_length != 0; ++ply) {
+        // Selective extensions can make the meaningful PV longer than nominal depth.
+        const int max_pv = std::min(MaxPly, depth + MaxSelectiveExtensions + 2);
+        for (int ply = 0; ply < max_pv && move.path_length != 0; ++ply) {
             if (!position.is_legal_path(move)) break;
             pv.push_back(move);
             UndoState undo;
@@ -435,17 +438,20 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
         for (const auto& current : ordered) {
             UndoState undo;
             root.do_move(current.move, undo);
+            const bool extend_score = current.capture_swing != 0;
+            const Depth child_depth = depth - 1 + (extend_score ? 1 : 0);
+            const int extensions = extend_score ? 1 : 0;
 
             Value score;
             if (move_index == 0) {
-                score = -negamax(root, depth - 1, -beta, -current_alpha, 1, context, true,
-                                 &current.move, nullptr);
+                score = -negamax(root, child_depth, -beta, -current_alpha, 1, context, true,
+                                 &current.move, nullptr, extensions);
             } else {
-                score = -negamax(root, depth - 1, -current_alpha - 1, -current_alpha, 1,
-                                 context, false, &current.move, nullptr);
+                score = -negamax(root, child_depth, -current_alpha - 1, -current_alpha, 1,
+                                 context, false, &current.move, nullptr, extensions);
                 if (score > current_alpha && score < beta)
-                    score = -negamax(root, depth - 1, -beta, -current_alpha, 1, context, true,
-                                     &current.move, nullptr);
+                    score = -negamax(root, child_depth, -beta, -current_alpha, 1, context, true,
+                                     &current.move, nullptr, extensions);
             }
             root.undo_move(undo);
             ++move_index;
@@ -499,6 +505,8 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
                              return lhs.value > rhs.value;
                          });
 
+        // Publish only a fully completed iteration. If time expires during the next depth,
+        // callers keep this stable result rather than an interrupted partial root search.
         result.has_move = true;
         result.best_move = previous_best;
         result.value = previous_value;
@@ -510,6 +518,9 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
         result.lines.push_back({result.best_move, result.value, result.pv});
         std::vector<Move> excluded{result.best_move};
 
+        // MultiPV alternatives are searched only after the primary iterative-deepening line
+        // reaches its final completed depth. The main line therefore receives the full depth
+        // budget first instead of splitting every iteration across alternatives.
         for (int rank = 1; rank < context.limits.multipv && !context.stopped; ++rank) {
             Move preferred{};
             for (const auto& line : prior_scores) {
@@ -520,8 +531,7 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
             }
             if (preferred.path_length == 0) break;
 
-            const RootPass pass =
-                search_root(result.depth, -Infinity, Infinity, excluded, preferred);
+            const RootPass pass = search_root(result.depth, -Infinity, Infinity, excluded, preferred);
             if (context.stopped || pass.value <= -Infinity || pass.best.path_length == 0) break;
             auto pv = build_pv(pass.best, result.depth);
             result.lines.push_back({pass.best, pass.value, std::move(pv)});

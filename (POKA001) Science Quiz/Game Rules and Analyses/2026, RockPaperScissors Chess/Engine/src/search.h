@@ -12,7 +12,7 @@
 namespace rpsc {
 
 struct SearchLimits {
-    Depth depth = 6;
+    Depth depth = 8;
     std::uint64_t nodes = 0;
     std::chrono::milliseconds movetime{0};
     int multipv = 1;
@@ -46,7 +46,7 @@ class Search {
     struct Context;
     Value negamax(Position& position, Depth depth, Value alpha, Value beta, int ply,
                   Context& context, bool pv_node, const Move* previous_move,
-                  const Move* previous2_move);
+                  const Move* previous2_move, int extensions_used);
     Value quiescence(Position& position, Value alpha, Value beta, int ply, Context& context);
 };
 

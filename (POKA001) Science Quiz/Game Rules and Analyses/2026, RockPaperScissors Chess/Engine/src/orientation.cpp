@@ -142,33 +142,12 @@ OrientationTable::OrientationTable() {
 Orientation OrientationTable::roll(Orientation orientation, Direction direction) const {
     return roll_[orientation][static_cast<int>(direction)];
 }
-
-Orientation OrientationTable::rotate_left(Orientation orientation) const {
-    return rotate_left_[orientation];
-}
-
-Orientation OrientationTable::rotate_right(Orientation orientation) const {
-    return rotate_right_[orientation];
-}
-
-Gesture OrientationTable::top_gesture(Orientation orientation) const {
-    return top_[orientation];
-}
-
-WristDirection OrientationTable::wrist_direction(Orientation orientation) const {
-    return wrist_[orientation];
-}
-
-GestureState OrientationTable::gesture_state(Orientation orientation) const {
-    return state_[orientation];
-}
-
-std::uint8_t OrientationTable::gesture_state_id(Orientation orientation) const {
-    return state_id_[orientation];
-}
-
-Orientation OrientationTable::canonical(Gesture gesture, WristDirection wrist) const {
-    return canonical_[gesture_index(gesture)][wrist_index(wrist)];
-}
+Orientation OrientationTable::rotate_left(Orientation orientation) const { return rotate_left_[orientation]; }
+Orientation OrientationTable::rotate_right(Orientation orientation) const { return rotate_right_[orientation]; }
+Gesture OrientationTable::top_gesture(Orientation orientation) const { return top_[orientation]; }
+WristDirection OrientationTable::wrist_direction(Orientation orientation) const { return wrist_[orientation]; }
+GestureState OrientationTable::gesture_state(Orientation orientation) const { return state_[orientation]; }
+std::uint8_t OrientationTable::gesture_state_id(Orientation orientation) const { return state_id_[orientation]; }
+Orientation OrientationTable::canonical(Gesture gesture, WristDirection wrist) const { return canonical_[gesture_index(gesture)][wrist_index(wrist)]; }
 
 }  // namespace rpsc

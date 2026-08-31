@@ -39,7 +39,6 @@ constexpr bool valid_square(int file, int rank) {
     return file >= 0 && file < BoardSize && rank >= 0 && rank < BoardSize;
 }
 
-
 constexpr int item_bucket(Item item) {
     if (item == Item::Push) return 0;
     if (item == Item::RotateLeft || item == Item::RotateRight) return 1;
