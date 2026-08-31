@@ -5,7 +5,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{microtype}
-\usepackage[intlimits]{amsmath}
+\usepackage{amsmath}
 \usepackage{amssymb,amsthm}
 \usepackage{mathtools}
 \usepackage{dsfont}
@@ -133,11 +133,11 @@
   \phantomsection
   \addcontentsline{toc}{part}{0\space #1}%
   \thispagestyle{plain}%
-  \vspace*{0.48cm}%
-  {\noindent\fontsize{20.5}{24.5}\selectfont\bfseries 0\quad #1\par}%
-  \vspace{0.56cm}%
+  \vspace*{0.32cm}%
+  {\noindent\fontsize{16.5}{20}\selectfont\bfseries 0\quad #1\par}%
+  \vspace{0.40cm}%
   \hrule height 0.4pt
-  \vspace{0.78cm}%
+  \vspace{0.62cm}%
 }
 
 \newcommand{\coursepart}[2]{%
@@ -148,11 +148,11 @@
   \phantomsection
   \addcontentsline{toc}{part}{#1\space #2}%
   \thispagestyle{plain}%
-  \vspace*{0.48cm}%
-  {\noindent\fontsize{20.5}{24.5}\selectfont\bfseries #1\quad #2\par}%
-  \vspace{0.56cm}%
+  \vspace*{0.32cm}%
+  {\noindent\fontsize{16.5}{20}\selectfont\bfseries #1\quad #2\par}%
+  \vspace{0.40cm}%
   \hrule height 0.4pt
-  \vspace{0.78cm}%
+  \vspace{0.62cm}%
 }
 
 % Optional course references. Empty arguments print nothing.
@@ -302,14 +302,14 @@
 \newcommand{\CASDocumentType}{Calculus and Analysis}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\textit{Calculus and Analysis}}
+\fancyhead[L]{\small\textit{(MATH101, 102, 311, 312) Calculus and Analysis}}
 \fancyhead[R]{\small\textit{\CASDocumentType}}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.35pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{%
   \fancyhf{}
-  \fancyhead[L]{\small\textit{Calculus and Analysis}}
+  \fancyhead[L]{\small\textit{(MATH101, 102, 311, 312) Calculus and Analysis}}
   \fancyhead[R]{\small\textit{\CASDocumentType}}
   \fancyfoot[C]{\small\thepage}
   \renewcommand{\headrulewidth}{0.35pt}
