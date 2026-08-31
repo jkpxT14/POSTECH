@@ -17,6 +17,8 @@ constexpr int CountermoveBonus = 120000;
 constexpr int ContinuationScale = 2;
 constexpr int FollowupScale = 4;
 constexpr int CaptureHistoryScale = 4;
+constexpr std::size_t ItemActionCount = 6;
+constexpr std::size_t HistoryMoveSlots = PieceCount * 64u * ItemActionCount;
 
 struct OrderedMove {
     Move move;
@@ -39,12 +41,15 @@ Value prior_root_value(const Move& move, const std::vector<RootLine>& prior) {
     return -Infinity;
 }
 
-std::size_t continuation_index(const Move& previous, const Move& current) {
-    const std::size_t a = static_cast<std::size_t>(piece_index(previous.piece)) * 64u +
-                          static_cast<unsigned>(previous.to());
-    const std::size_t b = static_cast<std::size_t>(piece_index(current.piece)) * 64u +
-                          static_cast<unsigned>(current.to());
-    return a * (PieceCount * 64u) + b;
+std::size_t move_slot(const Move& move) {
+    const std::size_t base = static_cast<std::size_t>(piece_index(move.piece)) * 64u +
+                             static_cast<unsigned>(move.to());
+    return base * ItemActionCount + static_cast<unsigned>(move.item);
+}
+
+std::uint64_t continuation_key(const Move& previous, const Move& current) {
+    return static_cast<std::uint64_t>(move_slot(previous)) * HistoryMoveSlots +
+           move_slot(current);
 }
 
 void bounded_add(int& value, int delta) {
@@ -60,21 +65,17 @@ struct Search::Context {
     std::uint64_t nodes = 0;
     Depth seldepth = 0;
     bool stopped = false;
-    std::array<std::array<int, 64>, PieceCount> history{};
-    std::array<std::array<int, 64>, PieceCount> capture_history{};
+    std::vector<int> history = std::vector<int>(HistoryMoveSlots, 0);
+    std::vector<int> capture_history = std::vector<int>(HistoryMoveSlots, 0);
     std::array<std::array<Move, 2>, MaxPly> killers{};
-    std::array<std::array<Move, 64>, PieceCount> countermoves{};
-    std::vector<int> continuation =
-        std::vector<int>(PieceCount * 64u * PieceCount * 64u, 0);
-    std::vector<int> followup =
-        std::vector<int>(PieceCount * 64u * PieceCount * 64u, 0);
+    std::unordered_map<std::size_t, Move> countermoves;
+    std::unordered_map<std::uint64_t, int> continuation;
+    std::unordered_map<std::uint64_t, int> followup;
     std::unordered_map<Key, std::uint8_t> pressure_cache;
 
     bool should_stop() {
         if (stopped) return true;
         if (limits.nodes && nodes >= limits.nodes) return stopped = true;
-        // Timed analysis is interactive. Check often enough that a 10 s / 20 s UI budget
-        // is respected without making the wall clock query a per-node cost.
         if (limits.movetime.count() > 0 && (nodes & 255ULL) == 0) {
             if (std::chrono::steady_clock::now() - start >= limits.movetime)
                 return stopped = true;
@@ -82,44 +83,63 @@ struct Search::Context {
         return false;
     }
 
+    int sparse_score(const std::unordered_map<std::uint64_t, int>& table,
+                     std::uint64_t key) const {
+        const auto found = table.find(key);
+        return found == table.end() ? 0 : found->second;
+    }
+
+    void bounded_sparse_add(std::unordered_map<std::uint64_t, int>& table,
+                            std::uint64_t key, int delta) {
+        int& value = table[key];
+        bounded_add(value, delta);
+        if (table.size() > 250000) table.clear();
+    }
+
+    int history_score(const Move& move) const { return history[move_slot(move)]; }
+
     int continuation_score(const Move* previous, const Move* previous2, const Move& move) const {
         int score = 0;
         if (previous && previous->path_length != 0)
-            score += continuation[continuation_index(*previous, move)] / ContinuationScale;
+            score += sparse_score(continuation, continuation_key(*previous, move)) /
+                     ContinuationScale;
         if (previous2 && previous2->path_length != 0)
-            score += followup[continuation_index(*previous2, move)] / FollowupScale;
+            score += sparse_score(followup, continuation_key(*previous2, move)) /
+                     FollowupScale;
         return score;
     }
 
     bool is_countermove(const Move* previous, const Move& move) const {
         if (!previous || previous->path_length == 0) return false;
-        const Move& counter = countermoves[piece_index(previous->piece)][previous->to()];
-        return counter.path_length != 0 && counter == move;
+        const auto found = countermoves.find(move_slot(*previous));
+        return found != countermoves.end() && found->second == move;
     }
 
     int capture_history_score(const Move& move) const {
-        return capture_history[piece_index(move.piece)][move.to()] / CaptureHistoryScale;
+        return capture_history[move_slot(move)] / CaptureHistoryScale;
     }
 
     void record_quiet_cutoff(const Move& move, Depth depth, int ply, const Move* previous,
                              const Move* previous2, const std::vector<Move>& quiets_searched) {
         const int bonus = std::max(1, depth * depth);
-        bounded_add(history[piece_index(move.piece)][move.to()], bonus);
+        bounded_add(history[move_slot(move)], bonus);
         if (previous && previous->path_length != 0) {
-            bounded_add(continuation[continuation_index(*previous, move)], 2 * bonus);
-            countermoves[piece_index(previous->piece)][previous->to()] = move;
+            bounded_sparse_add(continuation, continuation_key(*previous, move), 2 * bonus);
+            countermoves[move_slot(*previous)] = move;
+            if (countermoves.size() > 16384) countermoves.clear();
         }
         if (previous2 && previous2->path_length != 0)
-            bounded_add(followup[continuation_index(*previous2, move)], bonus);
+            bounded_sparse_add(followup, continuation_key(*previous2, move), bonus);
 
         const int penalty = std::max(1, bonus / 2);
         for (const Move& tried : quiets_searched) {
             if (tried == move) continue;
-            bounded_add(history[piece_index(tried.piece)][tried.to()], -penalty);
+            bounded_add(history[move_slot(tried)], -penalty);
             if (previous && previous->path_length != 0)
-                bounded_add(continuation[continuation_index(*previous, tried)], -penalty);
+                bounded_sparse_add(continuation, continuation_key(*previous, tried), -penalty);
             if (previous2 && previous2->path_length != 0)
-                bounded_add(followup[continuation_index(*previous2, tried)], -penalty / 2);
+                bounded_sparse_add(followup, continuation_key(*previous2, tried),
+                                   -std::max(1, penalty / 2));
         }
 
         if (ply < 0 || ply >= MaxPly) return;
@@ -131,7 +151,7 @@ struct Search::Context {
 
     void record_tactical_cutoff(const Move& move, Depth depth) {
         const int bonus = std::max(1, depth * depth * 2);
-        bounded_add(capture_history[piece_index(move.piece)][move.to()], bonus);
+        bounded_add(capture_history[move_slot(move)], bonus);
     }
 
     int capture_pressure(Position& position) {
@@ -237,11 +257,10 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
     for (const auto& entry_move : moves) {
         const auto& move = entry_move.move;
         const int swing = entry_move.capture_swing;
-        int score = context.history[piece_index(move.piece)][move.to()];
+        int score = context.history_score(move);
         score += context.continuation_score(previous_move, previous2_move, move);
         if (context.is_countermove(previous_move, move)) score += CountermoveBonus;
-        if (move.item != Item::None) score -= 1000;
-        if (has_tt_move && move == tt_move) score += 1000000;
+                if (has_tt_move && move == tt_move) score += 1000000;
         if (swing > 0)
             score += 500000 + swing * 10000 + context.capture_history_score(move);
         else if (swing < 0)
@@ -282,16 +301,15 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
                              pv_node, &current.move, previous_move, next_extensions);
         } else {
             const int history_value =
-                context.history[piece_index(current.move.piece)][current.move.to()] +
+                context.history_score(current.move) +
                 context.continuation_score(previous_move, previous2_move, current.move);
             const bool known_reply = context.is_countermove(previous_move, current.move) ||
                                      (ply < MaxPly &&
                                       (is_killer(current.move, context.killers[ply], 0) ||
                                        is_killer(current.move, context.killers[ply], 1))) ||
                                      history_value > 4 * depth * depth;
-            bool reducible = !pv_node && current.capture_swing == 0 &&
-                             current.move.item == Item::None && depth >= 4 && move_index >= 4 &&
-                             !known_reply;
+            bool reducible = !pv_node && current.capture_swing == 0 && depth >= 4 &&
+                             move_index >= 4 && !known_reply;
 
             int reduction = 1;
             if (reducible) {
@@ -413,9 +431,8 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
         for (const auto& move : root_moves) {
             if (is_excluded(move, excluded)) continue;
             const int swing = root_swing(move);
-            int score = context.history[piece_index(move.piece)][move.to()];
-            if (move.item != Item::None) score -= 1000;
-            if (move == preferred) score += 1200000;
+            int score = context.history_score(move);
+                        if (move == preferred) score += 1200000;
             const Value old_value = prior_root_value(move, prior_scores);
             if (old_value > -Infinity) score += 1000 * old_value;
             if (swing > 0)

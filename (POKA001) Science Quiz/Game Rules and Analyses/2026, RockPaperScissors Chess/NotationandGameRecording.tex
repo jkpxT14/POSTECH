@@ -118,7 +118,7 @@ B1: h5-g5-g4-f4 xW4 Reset
 [Captures "4-4"]
 \end{Verbatim}
 
-\texttt{Result}는 White 승리 \texttt{1-0}, Black 승리 \texttt{0-1}, 아직 결과가 정해지지 않은 경기 \texttt{*}를 사용한다. 본 문제는 \texttt{1.}부터 \texttt{20.}까지 기록한다. 총점과 퀴즈 정답 수가 모두 같아 연장전이 진행되면 \texttt{OT1.}, \texttt{OT2.}, \ldots{} 형식으로 퀴즈 결과만 기록한다. Analysis Board의 특별한 \texttt{Only Q[0, 0]} 모드에서 20문제 종료 후 총점까지 같아 Draw로 판정된 분석 대국에 한해서는 \texttt{1/2-1/2}를 사용할 수 있다. 이는 실제 경기의 연장전 규칙을 변경하는 표기가 아니다.
+\texttt{Result}는 White 승리 \texttt{1-0}, Black 승리 \texttt{0-1}, 아직 결과가 정해지지 않은 경기 \texttt{*}를 사용한다. 본 문제는 \texttt{1.}부터 \texttt{20.}까지 기록한다. 총점과 퀴즈 정답 수가 모두 같아 연장전이 진행되면 \texttt{OT1.}, \texttt{OT2.}, \ldots{} 형식으로 퀴즈 결과만 기록한다. Analysis Board의 Human vs Human, Human vs Engine, Engine vs Engine 모드도 모두 이 실제 경기의 Quiz 진행과 승패 판정 구조를 따른다.
 
 \section{Analysis}
 
@@ -177,7 +177,7 @@ Analysis Board의 \textbf{Engine Analysis}는 플레이 주체와 독립된 분�
 
 Analysis Board에서 이미 확정된 위치로 돌아가 다른 합법 수를 두면 실제 Game Record를 지우지 않고 \textbf{Variation}으로 남긴다. Main Line은 그대로 보존하며 Variation은 같은 Move Notation을 소괄호와 들여쓰기로 구분한다. Game Record의 Quiz와 Move를 클릭해 해당 위치로 이동할 수 있고, Engine Candidate의 board preview는 Confirm하기 전에는 기록되지 않는다. 위치 복원은 Quiz Result, 점수, 아이템, 선후공, exact cube orientation을 포함한 전체 game state를 사용하며, Previous/Next가 board-move decision position 사이를 이동해도 중간 Quiz event를 생략하지 않는다.
 
-\texttt{Only Q[0, 0]}은 Quiz를 제거하는 모드가 아니라 각 본 문제의 Quiz Result를 모두 \texttt{Q[0, 0]}으로 고정하는 Analysis Board의 특별한 모드이다. 따라서 20개의 Quiz turn은 모두 Game Record에 남고 각 문제에서 White와 Black의 이동이 순서대로 진행된다. 20문제 종료 후 총점이 같으면 실제 경기에서는 quiz-only Overtime이 필요하지만, 이 특별 모드에서는 새로운 실제 Quiz 결과를 결정할 수 없으므로 Draw로 분석을 종료한다.
+Analysis Board의 Quiz Result는 항상 사용자가 직접 입력하며 엔진은 미래의 Quiz Result를 예측하거나 생성하지 않는다. 양 팀의 정오 여부가 같으면 실제 규칙대로 White와 Black의 보드 이동을 계산하고, 한 팀만 정답이면 Engine-controlled 팀은 현재 board position과 inventory를 바탕으로 Push, Rotation, Step 가운데 획득할 아이템을 계산한다. 최초 선후공 선택권도 Engine-controlled 팀이면 엔진이 비교한다. 보드 이동에서는 Normal Move와 보유 아이템을 사용하는 Move가 같은 search 안에서 경쟁하며, 실제로 선택된 행동만 canonical Game Record에 기록한다.
 
 \enlargethispage{4\baselineskip}
 

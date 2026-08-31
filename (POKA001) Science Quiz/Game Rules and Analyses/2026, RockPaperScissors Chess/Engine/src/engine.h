@@ -1,6 +1,51 @@
 #ifndef RPSC_ENGINE_H_INCLUDED
 #define RPSC_ENGINE_H_INCLUDED
+
+#include <array>
+#include <cstddef>
+#include <cstdint>
+#include <vector>
+
 #include "perft.h"
 #include "search.h"
-namespace rpsc { class Engine { public: explicit Engine(std::size_t hash_megabytes=64); void new_game(); Position& position(){return position_;} const Position& position()const{return position_;} SearchResult go(const SearchLimits& limits); std::uint64_t perft(int depth); void clear_search(); private: Position position_; TranspositionTable tt_;}; }
+
+namespace rpsc {
+
+struct ItemChoiceLine {
+    int bucket = -1;  // 0 Push, 1 Rotation, 2 Step
+    Value white_value = 0;
+    SearchResult probe;
+};
+
+struct ItemChoiceResult {
+    int best_bucket = -1;
+    Value white_value = 0;
+    std::vector<ItemChoiceLine> lines;
+};
+
+struct OrderChoiceResult {
+    bool choose_first = true;
+    Value white_value = 0;
+    SearchResult probe;
+};
+
+class Engine {
+   public:
+    explicit Engine(std::size_t hash_megabytes = 64);
+    void new_game();
+    Position& position() { return position_; }
+    const Position& position() const { return position_; }
+    SearchResult go(const SearchLimits& limits);
+    ItemChoiceResult choose_item(Color chooser, const SearchLimits& limits);
+    OrderChoiceResult choose_order(const SearchLimits& limits);
+    std::uint64_t perft(int depth);
+    void clear_search();
+
+   private:
+    Position position_;
+    TranspositionTable tt_;
+};
+
+}  // namespace rpsc
+
 #endif
