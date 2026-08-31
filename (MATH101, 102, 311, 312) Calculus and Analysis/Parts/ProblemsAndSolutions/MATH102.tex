@@ -1,1 +1,175 @@
 \coursepart{2}{(MATH102) Calculus II}
+
+% 2021 Spring KAIST Calculus I Final, Problem 1
+\begin{problem}[2021 Spring \KAIST{} Calculus I]
+Determine whether each of the following statements is true or false. You do not need to justify your answers.
+\begin{problemchoices}
+\item If a series $\displaystyle\sum_{n=0}^{\infty}a_nx^n$ converges on $[-1,1]$, then the series $\displaystyle\sum_{n=1}^{\infty}na_nx^{n-1}$ converges on $(-1,1)$.
+\item If $\mathbf a,\mathbf b,\mathbf c$ are three-dimensional vectors, then
+\[
+\mathbf a\times(\mathbf b\times\mathbf c)=(\mathbf a\times\mathbf b)\times\mathbf c.
+\]
+\item If $\mathbf a,\mathbf b,\mathbf c$ are nonzero three-dimensional vectors and $(\mathbf a\times\mathbf b)\cdot\mathbf c=0$, then $\mathbf a,\mathbf b,\mathbf c$ are in the same plane.
+\item Assume $f$ is infinitely differentiable at $0$, that is, $f^{(n)}(0)$ exists for all $n=1,2,3,\ldots$. Then there exists $\varepsilon>0$ such that
+\[
+f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n
+\]
+for all $-\varepsilon<x<\varepsilon$.
+\item Let $A(x)=\displaystyle\sum_n a_nx^n$ and $B(x)=\displaystyle\sum_n b_nx^n$ be power series with radii of convergence $R_1$ and $R_2$, respectively. Then $A(x)\times B(x)$ is again a power series with radius of convergence $\min\{R_1,R_2\}$.
+\end{problemchoices}
+\end{problem}
+
+% 2021 Spring KAIST Calculus I Final, Problem 2
+\begin{problem}[2021 Spring \KAIST{} Calculus I]
+Match each of the following polar equations with an appropriate graph.
+\begin{problemsubparts}
+\item $r=4\cos(2\theta)$
+\item $\displaystyle r=\frac{4}{2-\cos\theta}$
+\item $r=2(1+\cos\theta)$
+\end{problemsubparts}
+
+\Needspace{13\baselineskip}
+\begin{center}
+\setlength{\tabcolsep}{2pt}%
+\begin{tabular}{cccc}
+\begin{tikzpicture}[x=0.365cm,y=0.365cm]
+  \polargrid
+  \draw[line width=0.65pt,samples=361,smooth,domain=0:360] plot ({(2*(1+cos(\x)))*cos(\x)},{(2*(1+cos(\x)))*sin(\x)});
+\end{tikzpicture}
+&
+\begin{tikzpicture}[x=0.365cm,y=0.365cm]
+  \polargrid
+  \draw[line width=0.65pt,samples=361,smooth,domain=0:360] plot ({(4*cos(2*\x))*cos(\x)},{(4*cos(2*\x))*sin(\x)});
+\end{tikzpicture}
+&
+\begin{tikzpicture}[x=0.365cm,y=0.365cm]
+  \polargrid
+  \draw[line width=0.65pt,samples=101,smooth,domain=-45:45] plot ({(4*sqrt(cos(2*\x)))*cos(\x)},{(4*sqrt(cos(2*\x)))*sin(\x)});
+  \draw[line width=0.65pt,samples=101,smooth,domain=135:225] plot ({(4*sqrt(cos(2*\x)))*cos(\x)},{(4*sqrt(cos(2*\x)))*sin(\x)});
+\end{tikzpicture}
+&
+\begin{tikzpicture}[x=0.365cm,y=0.365cm]
+  \polargrid
+  \draw[line width=0.65pt,samples=361,smooth,domain=0:360] plot ({(4/(2-cos(\x)))*cos(\x)},{(4/(2-cos(\x)))*sin(\x)});
+\end{tikzpicture}
+\\[-0.2em]
+\textup{(1)} & \textup{(2)} & \textup{(3)} & \textup{(4)}
+\end{tabular}
+\end{center}
+\end{problem}
+
+% 2021 Spring KAIST Calculus I Final, Problem 5
+\begin{problem}[2021 Spring \KAIST{} Calculus I]
+Let
+\[
+L_1:\ x=1+t,\ y=3-t,\ z=2t,
+\qquad
+L_2:\ x=0,\ y=-2s,\ z=5s.
+\]
+Find the minimum of $\|\overrightarrow{P_1P_2}\|$ for $P_1\in L_1$ and $P_2\in L_2$.
+\end{problem}
+
+% 2021 Spring KAIST Calculus I Final, Problem 7
+\begin{problem}[2021 Spring \KAIST{} Calculus I]
+Let $M_1$ be the plane in space given by
+\[
+2x-y-3z=2,
+\]
+and let $M_2$ be the plane perpendicular to $M_1$ through the points $P(1,-2,-4)$ and $Q(0,-1,-2)$.
+\begin{problemsubparts}
+\item Find parametric equations for the line $L$ of intersection of $M_1$ and $M_2$.
+\item Find an equation for a plane $M$ parallel to $L$ that contains the line through the points $A(-2,-4,3)$ and $B(2,0,4)$. Find the distance between $L$ and $M$.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring KAIST Calculus I Final, Problem 8
+\begin{problem}[2021 Spring \KAIST{} Calculus I]
+For the surface with equation
+\[
+(y-\sqrt2\,z_0)^2-x^2=z,
+\]
+consider its curve cut $C$ by the plane $z=z_0>0$.
+\begin{problemsubparts}
+\item Identify the type of $C$ and find its eccentricity.
+\item Find the foci and directrices of the curve cut on the plane $z=z_0$.
+\item Find the polar equation $r=f(\theta)$ of the curve cut on the plane $z=z_0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Fall KAIST Calculus I Final, Problem 1
+\begin{problem}[2021 Fall \KAIST{} Calculus I]
+Determine whether each of the following statements is true or false. You do not need to justify your answers.
+\begin{problemchoices}
+\item If a series $\displaystyle\sum_{n=0}^{\infty}a_nx^n$ converges on $[-1,1]$, then the series $\displaystyle\sum_{n=1}^{\infty}na_nx^{n-1}$ converges on $(-1,1)$.
+\item If $\mathbf a,\mathbf b,\mathbf c$ are three-dimensional vectors, then
+\[
+\mathbf a\times(\mathbf b\times\mathbf c)=(\mathbf a\times\mathbf b)\times\mathbf c.
+\]
+\item If $\mathbf a,\mathbf b,\mathbf c$ are nonzero three-dimensional vectors and $(\mathbf a\times\mathbf b)\cdot\mathbf c=0$, then $\mathbf a,\mathbf b,\mathbf c$ are in the same plane.
+\item Assume $f$ is infinitely differentiable at $0$, that is, $f^{(n)}(0)$ exists for all $n=1,2,3,\ldots$. Then there exists $\varepsilon>0$ such that
+\[
+f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n
+\]
+for all $-\varepsilon<x<\varepsilon$.
+\item Let $A(x)=\displaystyle\sum_n a_nx^n$ and $B(x)=\displaystyle\sum_n b_nx^n$ be power series with radii of convergence $R_1$ and $R_2$, respectively. Then $A(x)\times B(x)$ is again a power series with radius of convergence $\min\{R_1,R_2\}$.
+\end{problemchoices}
+\end{problem}
+
+% 2021 Fall KAIST Calculus I Final, Problem 2
+\begin{problem}[2021 Fall \KAIST{} Calculus I]
+Let $\{\mathbf{x}_n\}$ be a sequence of vectors, where
+\[
+\mathbf{x}_n=(x_n^{(1)},x_n^{(2)},x_n^{(3)}).
+\]
+Let $\mathbf{x}$ be a vector. Prove or disprove:
+\begin{problemsubparts}
+\item $\|\mathbf{x}_n-\mathbf{x}\|\to0$ if $\displaystyle\sum_{k=1}^{n}\|\mathbf{x}_k-\mathbf{x}\|\le1$ for all $n$.
+\item $\|\mathbf{x}_n-\mathbf{x}\|\to0$ if
+\[
+\lim_{n\to\infty}\frac{\|\mathbf{x}_{n+1}-\mathbf{x}\|}{\|\mathbf{x}_n-\mathbf{x}\|}=\rho<1.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Fall KAIST Calculus I Final, Problem 5
+\begin{problem}[2021 Fall \KAIST{} Calculus I]
+How many domains are separately enclosed by the following polar equations?
+\begin{problemchoices}
+\item $r=4\cos(2\theta)$
+\item $\displaystyle r=\frac{4}{2-\cos\theta}$
+\item $r=2(1+\cos\theta)$
+\end{problemchoices}
+\end{problem}
+
+% 2021 Fall KAIST Calculus I Final, Problem 6
+\begin{problem}[2021 Fall \KAIST{} Calculus I]
+Consider the curve
+\[
+r=\cos3\theta,
+\qquad -\frac{\pi}{6}\le\theta\le\frac{\pi}{6}.
+\]
+\begin{problemsubparts}
+\item Find the slopes of the curve at the origin.
+\item Find the length of the curve, using the fact that
+\[
+\int_0^{\pi/3}\sqrt{1+8\sin^2 3\theta}\,\dd\theta\approx2.23.
+\]
+\item Find the area enclosed by the curve.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Fall KAIST Calculus I Final, Problem 7
+\begin{problem}[2021 Fall \KAIST{} Calculus I]
+Your eye is at $(4,0,0)$. You are looking at a triangular plate whose vertices are at $(1,0,1)$, $(1,1,0)$, and $(-2,2,2)$. The line segment from $(1,0,0)$ to $(0,2,2)$ passes through the plate. What portion of the line segment is hidden from your view by the plate?
+\end{problem}
+
+% 2021 Fall KAIST Calculus I Final, Problem 8
+\begin{problem}[2021 Fall \KAIST{} Calculus I]
+Let
+\[
+L_1:\ x=1+t,\ y=3-t,\ z=2t,
+\qquad
+L_2:\ x=0,\ y=-2s,\ z=5s.
+\]
+Find the minimum of $\|\overrightarrow{P_1P_2}\|$ for $P_1\in L_1$ and $P_2\in L_2$.
+\end{problem}
