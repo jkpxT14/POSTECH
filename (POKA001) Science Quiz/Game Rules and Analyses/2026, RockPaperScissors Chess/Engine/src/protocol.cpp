@@ -28,6 +28,25 @@ bool parse_side(char side, Color& color) {
     return false;
 }
 
+Position item_probe_position(const Position& base, Color chooser, int bucket) {
+    Position probe = base;
+    auto items = probe.items(chooser);
+    ++items[static_cast<std::size_t>(bucket)];
+    probe.set_items(chooser, items[0], items[1], items[2]);
+    probe.set_side_to_move(Color::White);
+    return probe;
+}
+
+Position initial_probe_position(bool choose_first, int bucket) {
+    Position probe;
+    const Color chooser = choose_first ? Color::White : Color::Black;
+    auto items = probe.items(chooser);
+    ++items[static_cast<std::size_t>(bucket)];
+    probe.set_items(chooser, items[0], items[1], items[2]);
+    probe.set_side_to_move(Color::White);
+    return probe;
+}
+
 }  // namespace
 
 Protocol::Protocol(std::istream& in, std::ostream& out) : engine_(64), in_(in), out_(out) {}
@@ -75,7 +94,7 @@ void Protocol::bench() {
 
 void Protocol::command(const std::string& line) {
     if (line == "rpsc") {
-        out_ << "id name RPSC Engine 0.9\nid author Jungwoo Kim\nrpscok\n";
+        out_ << "id name RPSC Engine 0.10\nid author Jungwoo Kim\nrpscok\n";
         return;
     }
     if (line == "isready") {
@@ -199,8 +218,11 @@ void Protocol::command(const std::string& line) {
                  << std::setprecision(2)
                  << static_cast<double>(candidate.chooser_value) / ScoreUnit << " depth "
                  << candidate.probe.depth << " nodes " << candidate.probe.nodes;
-            if (!candidate.probe.pv.empty())
-                out_ << " pv " << format_pv(engine_.position(), candidate.probe.pv);
+            if (!candidate.probe.pv.empty()) {
+                const Position probe =
+                    initial_probe_position(candidate.choose_first, candidate.bucket);
+                out_ << " pv " << format_pv(probe, candidate.probe.pv);
+            }
             out_ << '\n';
         }
         out_ << "bestinitial " << (choice.choose_first ? "first" : "second") << ' '
@@ -230,12 +252,16 @@ void Protocol::command(const std::string& line) {
         const auto choice = engine_.choose_item(chooser, limits);
         for (std::size_t rank = 0; rank < choice.lines.size(); ++rank) {
             const auto& candidate = choice.lines[rank];
+            const Value chooser_value =
+                chooser == Color::White ? candidate.white_value : -candidate.white_value;
             out_ << "info item " << (rank + 1) << ' ' << item_name(candidate.bucket) << " score "
                  << std::fixed << std::setprecision(2)
-                 << static_cast<double>(candidate.white_value) / ScoreUnit;
+                 << static_cast<double>(chooser_value) / ScoreUnit;
             out_ << " depth " << candidate.probe.depth << " nodes " << candidate.probe.nodes;
-            if (!candidate.probe.pv.empty())
-                out_ << " pv " << format_pv(engine_.position(), candidate.probe.pv);
+            if (!candidate.probe.pv.empty()) {
+                const Position probe = item_probe_position(engine_.position(), chooser, candidate.bucket);
+                out_ << " pv " << format_pv(probe, candidate.probe.pv);
+            }
             out_ << '\n';
         }
         out_ << "bestitem "

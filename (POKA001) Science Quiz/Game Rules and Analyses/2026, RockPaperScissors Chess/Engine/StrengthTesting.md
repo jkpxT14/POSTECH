@@ -1,41 +1,36 @@
 # Strength Testing
 
-Engine 0.9.0 is an integrated RPSC-decision release. The current evidence verifies correctness and preserves the board-search baseline; it is not an Elo estimate.
+Engine 0.10.0 is a RPSC-specific decision/search release. Current evidence supports correctness, stable board-search behavior, and stronger allocation of computation across item/order decisions; it is not an Elo estimate.
 
-## Historical baseline
+## Board-search control
 
-Draft 27 / Engine 0.7.0 had mixed small-sample results against 0.6.0, so no verified Elo claim was made. Draft 28 / Engine 0.8.0 introduced item-aware search and passed small paired no-item and preset-inventory smoke matches without demonstrating statistical superiority.
+The native no-item depth-4 `bench` remains a useful fixed control because Draft 30 intentionally does not manufacture a board-strength delta by retuning unrelated evaluation terms. In the current Release environment Engine 0.10.0 searches 196,968 nodes from the initial position and selects the established best root move.
 
-Those older samples remain development context, not a strength certificate for 0.9.0.
+Any future board-search patch should first demonstrate that it does not regress this control or the exact/perft suite.
 
-## 0.8.0 vs 0.9.0 no-item microbench
+## Decision-search development
 
-Initial position, native Release `bench` depth 4, two runs each in the same packaging environment:
+Draft 29 divided a finite Item Choice budget equally among three independent probes and a finite Initial Decision budget equally among six probes. Draft 30 changes the finite-budget policy without removing any candidate:
 
-- Engine 0.8.0: 196,968 nodes; 1,038 ms / 1,102 ms
-- Engine 0.9.0: 196,968 nodes; 1,041 ms / 1,088 ms
+- Item Choice screens all 3 candidates, then refines the ranked candidates with 25% / 18% / 12% of the total budget after the 45% screening stage.
+- Initial Decision screens all 6 candidates, then refines the top 3 with 24% / 16% / 12% after the 48% screening stage.
+- the transposition table is shared throughout each decision;
+- fixed-depth diagnostics continue to compare every candidate at equal requested depth.
 
-Both versions selected the same best move. This is expected: Draft 29 does not deliberately retune the core no-item evaluator/search merely to manufacture a strength delta. The measurements support a no-obvious-regression conclusion only.
+A 10-second native `chooseinitial` smoke reached depth 3 on the strongest branches and produced legal continuations containing actual item use. This is evidence that the available decision budget is being spent on deeper plausible alternatives, not a statistical game-strength claim.
 
-## What 0.9.0 changes for practical strength
+## Rejected strength patch
 
-The main strength-facing changes are decision quality and usable search breadth:
+A broader quiet-threat quiescence experiment was tested during Draft 30 work. In the initial no-item depth-4 control it increased the search from roughly 197k nodes / about 1.2 s to roughly 380k nodes / about 5.5 s in the development environment without sufficient tactical/playing evidence to justify the cost. It was removed rather than shipped on theoretical appeal alone.
 
-- first solo-correct order and item are searched jointly rather than greedily;
-- item acquisition is no longer restricted to a nominal depth-2 probe;
-- browser search reduces compound Roll branching before full paths are materialized;
-- timed MultiPV retains Top-3 alternatives from the last completed root iteration instead of frequently collapsing to one line at the deadline.
+The same rule applies to future RPSC features: keep them only after rule regression and relevant strength evidence.
 
-These changes should be judged with RPSC-specific matches, not generic chess-style benchmarks.
+## Promotion tests for future strength patches
 
-## Required promotion tests
+1. fixed `Q[0, 0]` no-item control to isolate core board-search changes;
+2. fixed `Q[0, 0]` with preset/asymmetric inventories to isolate item use and conservation;
+3. fixed Quiz scripts, identical for compared engines, to test item acquisition plus later use without asking either engine to predict Quiz Results;
+4. Push-, Rotation-, Step-, horizon-, Reset-, and late-round tactical regression positions;
+5. paired starts/order assignments and larger samples before any Elo/strength claim.
 
-Future strength patches should be accepted only after separate controls:
-
-1. no-item fixed-Quiz (`Q[0,0]`) control - isolates board-search regression;
-2. preset-inventory fixed-Quiz control - isolates item use/conservation;
-3. fixed Quiz scripts - tests item acquisition plus later item use with identical Quiz inputs for both compared Engines;
-4. asymmetric inventories and Rotation/Step/Push tactical positions;
-5. longer paired starts/colors before any statistical strength claim.
-
-`Q[0,0]` remains an internal scientific control, not an Analysis Board game mode.
+The long-term target is not generic chess-engine strength. It is stronger RPSC decisions under the game's exact Roll-path, orientation, item-economy, combat, and Quiz-driven phase structure.

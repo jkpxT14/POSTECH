@@ -63,7 +63,7 @@ North/South 방향의 한 Roll을 \textbf{Vertical Roll} $V$, East/West 방향�
 \end{aligned}}
 \]
 
-특히 $\rho$는 첫 번째 성분을 건드리지 않으므로 Rotation은 Top Gesture와 Base Roll Length를 바꾸지 않는다. 정확한 기보에서는 \texttt{RoL}과 \texttt{RoR}을 구별하지만 Gesture State 수준에서는 둘 모두 $\rho$로 작용한다.
+특히 $\rho$는 첫 번째 성분을 건드리지 않으므로 Rotation은 Top Gesture와 Base Roll Length를 바꾸지 않는다. 물리적으로도 Rotation은 \textbf{현재 칸과 윗면을 고정하고 보드에 수직인 축을 중심으로 정확히 $90^\circ$ 제자리 회전}하는 동작이다. 따라서 Top Gesture와 이동거리는 그대로이며 Wrist Direction과 exact orientation만 회전한다. 정확한 기보에서는 \texttt{RoL}과 \texttt{RoR}을 구별하지만 Gesture State 수준에서는 둘 모두 $\rho$로 작용한다.
 
 \medskip
 \noindent\textbf{Roll Words and State Transitions.}
@@ -123,7 +123,7 @@ Roll의 순서는 중요하며 일반적으로 $H(V(s))\neq V(H(s))$이다. 따�
         아이템 & 바꾸는 정보 & Gesture-State 분석 \\
         \midrule
         Push & 시작 위치 & $s$는 그대로이고 Push 후 위치에서 $\ell(s)$번 Roll한다. \\
-        Rotation & Gesture State & 위치와 Top Gesture는 그대로이며 Roll 전에 $\rho(s)$를 적용한다. \\
+        Rotation & Exact orientation / Wrist Axis & 현재 칸과 Top Gesture를 고정한 채 보드에 수직인 축을 중심으로 $90^\circ$ 제자리 회전한다. reduced state에서는 Roll 전에 $\rho(s)$를 적용한다. \\
         Step Short & Roll의 수 & Roll Word 길이를 $\ell(s)-1$로 정한다. \\
         Step Long & Roll의 수 & Roll Word 길이를 $\ell(s)+1$로 정한다. \\
         \bottomrule

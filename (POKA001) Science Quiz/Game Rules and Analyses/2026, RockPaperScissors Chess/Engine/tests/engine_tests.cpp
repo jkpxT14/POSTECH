@@ -85,6 +85,88 @@ void verify_tactical_generator(rpsc::Position& position) {
     assert(actual == expected);
 }
 
+
+void verify_reduced_orientation_equivalence() {
+    using namespace rpsc;
+    const auto& table = OrientationTable::instance();
+    for (int a = 0; a < 24; ++a) {
+        const auto oa = static_cast<Orientation>(a);
+        for (int b = a + 1; b < 24; ++b) {
+            const auto ob = static_cast<Orientation>(b);
+            if (table.gesture_state_id(oa) != table.gesture_state_id(ob)) continue;
+            assert(table.top_gesture(oa) == table.top_gesture(ob));
+            assert(table.gesture_state_id(table.rotate_left(oa)) ==
+                   table.gesture_state_id(table.rotate_left(ob)));
+            assert(table.gesture_state_id(table.rotate_right(oa)) ==
+                   table.gesture_state_id(table.rotate_right(ob)));
+            for (Direction direction : {Direction::North, Direction::South, Direction::East,
+                                        Direction::West}) {
+                assert(table.gesture_state_id(table.roll(oa, direction)) ==
+                       table.gesture_state_id(table.roll(ob, direction)));
+            }
+        }
+        // RoL and RoR preserve the top face and are the same reduced rho operation even though
+        // their exact wrist directions differ.
+        assert(table.gesture_state_id(table.rotate_left(oa)) ==
+               table.gesture_state_id(table.rotate_right(oa)));
+    }
+}
+
+void verify_item_roll_lengths_and_consumption() {
+    using namespace rpsc;
+    Position position;
+    position.set_items(Color::White, 1, 1, 1);
+    const auto& table = OrientationTable::instance();
+    const auto before_items = position.items(Color::White);
+    const auto moves = generate_legal_moves(position);
+    bool checked_push = false, checked_left = false, checked_right = false;
+    bool checked_short = false, checked_long = false;
+    for (const auto& move : moves) {
+        if (move.piece != PieceId::W1 || move.item == Item::None) continue;
+        const auto& piece = position.piece(move.piece);
+        const int base = base_roll_length(table.top_gesture(piece.orientation));
+        const int rolls = static_cast<int>(move.path_length) - 1;
+        if (move.item == Item::Push) {
+            assert(rolls == base);
+            assert(move.push_to != NoSquare);
+            checked_push = true;
+        } else if (move.item == Item::RotateLeft) {
+            assert(rolls == base);
+            assert(table.top_gesture(table.rotate_left(piece.orientation)) ==
+                   table.top_gesture(piece.orientation));
+            checked_left = true;
+        } else if (move.item == Item::RotateRight) {
+            assert(rolls == base);
+            assert(table.top_gesture(table.rotate_right(piece.orientation)) ==
+                   table.top_gesture(piece.orientation));
+            checked_right = true;
+        } else if (move.item == Item::StepShort) {
+            assert(rolls == base - 1);
+            checked_short = true;
+        } else if (move.item == Item::StepLong) {
+            assert(rolls == base + 1);
+            checked_long = true;
+        }
+
+        UndoState undo;
+        position.do_move(move, undo);
+        const auto after_items = position.items(Color::White);
+        const int bucket = move.item == Item::Push
+                               ? 0
+                               : (move.item == Item::RotateLeft || move.item == Item::RotateRight)
+                                     ? 1
+                                     : 2;
+        for (int i = 0; i < 3; ++i)
+            assert(after_items[static_cast<std::size_t>(i)] ==
+                   before_items[static_cast<std::size_t>(i)] - (i == bucket ? 1 : 0));
+        position.undo_move(undo);
+        assert(position.items(Color::White) == before_items);
+
+        if (checked_push && checked_left && checked_right && checked_short && checked_long) break;
+    }
+    assert(checked_push && checked_left && checked_right && checked_short && checked_long);
+}
+
 void verify_all_orientations() {
     using namespace rpsc;
     const auto& table = OrientationTable::instance();
@@ -112,6 +194,8 @@ void verify_all_orientations() {
 int main() {
     using namespace rpsc;
     verify_all_orientations();
+    verify_reduced_orientation_equivalence();
+    verify_item_roll_lengths_and_consumption();
 
     Position position;
     const auto legal = generate_legal_moves(position);

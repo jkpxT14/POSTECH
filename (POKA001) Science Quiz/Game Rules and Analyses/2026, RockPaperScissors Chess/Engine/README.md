@@ -2,73 +2,81 @@
 
 `rpsc-engine` is the native classical search Engine for RockPaperScissors Chess.
 
-Version: 0.9.0
+Version: 0.10.0
 
 ## Scope
 
-Quiz correctness is not an Engine action. The user supplies every Quiz Result. Once that result is known, the Engine analyzes the strategic RPSC choices that follow:
+Quiz correctness is never an Engine action. The user supplies every Quiz Result. Once that result is known, the Engine analyzes the strategic RPSC choices that follow:
 
-- first/second order when the first solo-correct team receives that choice;
-- Push / Rotation / Step acquisition;
+- first/second order together with item acquisition at the first solo-correct decision;
+- Push / Rotation / Step acquisition later in the game;
 - item conservation versus use;
 - Normal / Push / RoL / RoR / StS / StL board actions;
 - the exact legal full Roll path;
-- opponent replies and the continuation line.
+- opponent replies and continuation lines.
 
-The Engine is intentionally RPSC-specific. It is not a general board-game framework.
+The Engine is intentionally RPSC-specific rather than a general board-game framework.
+
+## Rule invariants
+
+The exact 24-orientation cube state is authoritative. In particular, Rotation is an in-place 90-degree rotation about the board-vertical axis with the top face fixed. It changes Wrist Direction / exact orientation while preserving square, Top Gesture, and Base Roll Length. RoL and RoR remain distinct exact actions even when a reduced Gesture-State transition is strategically equivalent.
+
+Push translates one orthogonal square without rolling or changing orientation, then performs the original base Roll count. Step Short/Long changes only the Roll count by -1/+1. At most one item is consumed by a move.
 
 ## Exact state and move model
 
 - C++17; no ML, neural network, or NNUE
-- exact 24-orientation cube state is authoritative for rules and notation
-- six-state Gesture State is a derived search reduction
-- captures, alive pieces, side to move, and both inventories are search state
-- Push, Rotation, and Step are consumed by normal make/undo state transitions
-- combat, score changes, and Reset are successor-state effects
+- exact 24-orientation cube state for rules and notation
+- six-state Gesture State only as a derived search reduction
+- captures, alive pieces, side to move, and both inventories in the search state/key
+- item consumption handled by normal make/undo transitions
+- combat, score-changing captures, and Reset handled as successor-state effects
 
-Normal and item moves compete in one alpha-beta tree. There is no separate heuristic that first decides to spend an item and only then chooses a move.
+Normal and item moves compete in one alpha-beta tree. There is no rule such as “use an item first” or a fixed Push/Rotation/Step hierarchy.
 
 ## RPSC compound-move generation
 
 The initial no-item position has 161 canonical full-path moves, 145 exact successors, and 84 reduced search successors. With one Push, Rotation, and Step available to each side, these become 1,472 / 1,019 / 427.
 
-The Engine therefore keeps two generators:
+Two generators are retained deliberately:
 
-1. `generate_legal_moves` is exhaustive and authoritative for legality, canonical paths, notation, exact successor checks, and perft.
-2. the search generator merges equivalent partial Roll states identified by square, reduced cube state, remaining Rolls, previous direction, and item context before the full path tree expands.
+1. `generate_legal_moves` is exhaustive and authoritative for legality, canonical full paths, notation, exact successor checks, and perft.
+2. the search generator merges equivalent partial Roll states before the full compound path tree expands, using square, reduced cube state, remaining Rolls, previous direction, and item context while retaining a representative legal full path.
 
-Regression tests compare the complete reduced-successor set from the optimized generator against the exhaustive generator.
+Regression tests compare the complete reduced-successor set from the optimized generator with the exhaustive generator.
 
 ## Search
 
 - iterative deepening PVS with aspiration windows
 - clustered transposition table
 - TT / tactical / killer / history / continuation / follow-up / countermove / capture-history ordering
-- item action is part of learned move identity
+- item action included in learned move identity
 - bounded score-event selective extensions
 - tactical quiescence
-- conservative LMR with RPSC scoring-pressure and defence safeguards
-- reduced fail-high verification
+- conservative LMR with RPSC scoring-pressure/defence safeguards and fail-high verification
 - root MultiPV
+- completed iterations remain authoritative at a time cutoff
 
-Timed MultiPV in 0.9.0 publishes the best alternatives already scored by the last fully completed root iteration. A later timed-out iteration therefore does not erase Candidate 2/3. If time remains, alternatives can still be re-searched at the completed depth.
+Broad quiet-threat quiescence was experimentally rejected during Draft 30 work because it increased search cost substantially without enough evidence to justify inclusion. RPSC-specific selective search remains deliberately bounded.
 
-## Item acquisition
+## Decision search
 
-`chooseitem W` and `chooseitem B` compare Push, Rotation, and Step from the exact current board and inventories. Each hypothetical item is added to the chooser's inventory, White is set as the next Board Event's first mover, and normal RPSC search evaluates the resulting board potential.
+### Item acquisition
 
-The total node/time budget is divided among the three root alternatives while the transposition table is shared. Version 0.9.0 removes the former nominal depth-2 cap. Future Quiz Results are never generated.
+`chooseitem W` and `chooseitem B` compare Push, Rotation, and Step from the exact current board/inventories. Future Quiz Results are never generated. With a finite total time/node budget, Draft 30 first screens all three candidates, ranks them, then spends the remaining budget preferentially on the stronger candidates while sharing the TT. Fixed-depth mode searches all candidates at equal requested depth.
 
-## Initial solo-correct decision
+The continuation for each branch is formatted from the correct hypothetical inventory state, so item-using PVs are legal and reproducible.
 
-The first solo-correct team simultaneously controls order and item acquisition. `chooseinitial` therefore evaluates all six combinations:
+### First solo-correct decision
+
+`chooseinitial` evaluates all six combinations:
 
 - First + Push / Rotation / Step
 - Second + Push / Rotation / Step
 
-The chooser's perspective is used to rank those six branches. This avoids a greedy `chooseorder` -> `chooseitem` decomposition that can miss interactions between move order and the acquired resource.
+All six are screened under one total decision budget, then the top candidates receive deeper refinement. The chooser's perspective ranks the alternatives. This avoids a greedy `chooseorder` followed by `chooseitem` decomposition while allocating more computation to plausible best decisions.
 
-`chooseorder` remains available as a lower-level diagnostic command.
+`chooseorder` remains available only as a lower-level diagnostic command.
 
 ## Protocol examples
 
@@ -85,20 +93,18 @@ bench
 quit
 ```
 
-Search scores printed for ordinary board analysis use White's point of view. `chooseinitial` ranks by the solo-correct chooser's point of view. Item-choice output includes the candidate's board continuation.
+Ordinary board-analysis scores are displayed from White's point of view. Decision output is ranked from the chooser's point of view and includes continuation PVs.
 
 ## Analysis Board
 
-The offline Analysis Board keeps every Quiz Result under user control. Human vs Human, Human vs Engine, and Engine vs Engine use the same original Quiz-driven game flow.
+Human vs Human, Human vs Engine, and Engine vs Engine all keep Quiz Results under user control. During a Human-controlled RPSC choice, the Worker recommends without committing it; during an Engine-controlled choice, the same analysis result may be applied automatically.
 
-For a Human-controlled decision the Worker analyzes and recommends without committing the choice. For an Engine-controlled decision the same result is used automatically.
+The Worker mirrors the native partial Roll-state search principle and retains an exhaustive canonical generator separately. Board Move, Item Choice, and Initial Order+Item decisions expose ranked alternatives and short continuations inside the existing board-first interface. Item usage appears directly inside candidate moves/PVs.
 
-The Worker mirrors the C++ partial Roll-state search generator in Draft 29. The exhaustive browser move generator is retained separately for canonical-path/rule checks. Board, Item, and Initial Decision analysis all expose ranked alternatives and short continuation lines while preserving the existing board-first UI.
-
-Normal analysis targets about 10 seconds. `Analyze` extends the current analysis toward about 20 seconds; decision analysis carries forward its completed candidate searches and the Worker TT instead of intentionally inventing a new Quiz scenario.
+Normal board analysis targets about 10 seconds. `Analyze` extends the same current position toward about 20 seconds while reusing the completed result and Worker TT where applicable.
 
 ## Testing and strength
 
-The Release regression binary keeps assertions active explicitly. Tests cover exact and reduced move counts, perft, all 24 exact orientations, Rotation/Roll inverses, exhaustive-vs-optimized successor equality, item actions, make/undo, notation, MultiPV, item acquisition, and six-way initial decision search.
+Release tests explicitly keep assertions active. The regression suite covers exact/reduced move counts, perft, all 24 exact orientations, Rotation/Roll inverses, reduced-orientation transition equivalence, exhaustive-vs-optimized successor equality, item Roll lengths/consumption, make/undo, notation, MultiPV, Item Choice, and six-way Initial Decision search.
 
-Engine 0.9.0 does not claim a measured Elo gain. Its board-search core deliberately remains close to 0.8.0 while decision integration and browser search are improved. See `Verification.md` and `StrengthTesting.md`.
+Engine 0.10.0 is not presented as a measured Elo breakthrough. Draft 30 strengthens RPSC decision allocation, closes a hypothetical-state PV correctness bug, improves regression coverage, and locks browser/game-flow invariants while preserving the established board-search core. See `Verification.md` and `StrengthTesting.md`.
