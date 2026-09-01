@@ -1,5 +1,13 @@
 \section{Differential Equations}
 
+The Fourier transform uses the normalization
+\[
+\widehat f(\boldsymbol{\xi})\coloneqq\int_{\R^n} f(\mathbf{x})e^{-2\pi i \mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\mathbf{x},
+\qquad
+f(\mathbf{x})=\int_{\R^n}\widehat f(\boldsymbol{\xi})e^{2\pi i \mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\boldsymbol{\xi},
+\]
+whenever the Fourier inversion formula applies.
+
 \begin{notationtable}
 $y'$ & First derivative with respect to the understood independent variable. \\
 $y''$ & Second derivative. \\
@@ -10,5 +18,5 @@ $y_p$ & Particular solution. \\
 $c_1,c_2,\dots$ & Arbitrary constants in a general solution. \\
 $W(y_1,y_2)(t),\ W[y_1,y_2](t)$ & Wronskian of $y_1$ and $y_2$. \\
 $\mathcal{L}\{f(t)\}(s)$ & Laplace transform of $f$. \\
-$\widehat f(\omega),\ \mathcal{F}f(\omega)$ & Fourier transform. \\
+$\widehat f(\boldsymbol{\xi}),\ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform under the normalization above. \\
 \end{notationtable}
