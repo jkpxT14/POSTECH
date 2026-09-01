@@ -1,1 +1,100 @@
 \chapter{Games}
+
+아래 경기명은 백--흑 순서로 표기한다. 세 경기는 2026년 9월 1일 온라인으로 진행된 선수단 내부 리그전의 기록이며, Chapter~2에서 정의한 Game Record 기보를 그대로 사용한다.
+
+\newcommand{\gameheading}[4]{%
+    \noindent{\Large\bfseries #1. #2--#3\par}%
+    \vspace{0.38em}%
+    \noindent{\small 2026년 9월 1일 \textperiodcentered{} 선수단 내부 리그전 \textperiodcentered{} 온라인\par}%
+    \vspace{0.12em}%
+    \noindent{\small #4\par}%
+    \vspace{0.52em}%
+    \hrule height 0.4pt
+    \vspace{0.72em}%
+}
+
+\newenvironment{gamerecord}{%
+    \begingroup
+    \small
+    \setlength{\tabcolsep}{0pt}%
+    \renewcommand{\arraystretch}{1.05}%
+    \begin{tabular}{@{}r@{\hspace{0.72em}}>{\ttfamily\raggedright\arraybackslash}p{0.895\textwidth}@{}}%
+}{%
+    \end{tabular}%
+    \endgroup
+}
+
+\clearpage
+\gameheading{1}{김정우}{장동규}{18--17 \textperiodcentered{} 김정우 승}
+\begin{gamerecord}
+1.  & Q[1, 1] W1: a1-a2-a3-b3 B1: h8-h7-g7-f7 \\
+2.  & Q[1, 0] W+St \\
+3.  & Q[0, 1] B+St \\
+4.  & Q[1, 1] W1[StL]: b3-b4-b5-b6-c6-c7-b7 xB4 B1[StS]: f7-e7-d7-c7 xW1 \\
+5.  & Q[0, 0] W4: g1-g2-g3-f3 B2: f8-f7-e7-e8-f8 \\
+6.  & Q[1, 1] W3: e1-e2-e3-d3-d4-c4 B2: f8-f7-e7-e8 \\
+7.  & Q[1, 0] W+St \\
+8.  & Q[0, 1] B+St \\
+9.  & Q[0, 1] B+Pu \\
+10. & Q[1, 0] W+St \\
+11. & Q[1, 1] W2: c1-d1-e1-e2-d2 B1[StL]: c7-b7-a7-a6-a5-b5-b4 xW3 \\
+12. & Q[0, 0] W2: d2-e2-e3-d3-d4-c4 xB1 B3[Pu]: d8>d7-d6-d5-d4-d3-e3 xW4 \\
+13. & Q[1, 1] W2[StL]: c4-c5-c6-c7-d7-d8 xB2 B3: e3-e2-e1-d1 \\
+14. & Q[0, 1] B+St \\
+15. & Q[1, 0] W+Ro \\
+16. & Q[1, 1] W2: d8-e8-e7-d7-d8 B3: d1-d2-e2-f2-g2-g1 \\
+17. & Q[0, 0] W2: d8-d7-d6-d5-c5-b5 B3: g1-f1-f2-g2-h2-h3 \\
+18. & Q[1, 1] W2: b5-b6-b7-c7-d7 B3: h3-h2-h1-g1-g2 \\
+19. & Q[0, 0] W2: d7-d8-c8-c7-b7 B3: g2-f2-e2-e1 \\
+20. & Q[1, 0] W+St \\
+\end{gamerecord}
+
+\clearpage
+\gameheading{2}{황성진}{장동규}{15--23 \textperiodcentered{} 장동규 승}
+\begin{gamerecord}
+1.  & Q[1, 0] W+St \\
+2.  & Q[0, 1] B+St \\
+3.  & Q[1, 1] W1: a1-b1-b2-c2 B4: b8-b7-b6-a6 \\
+4.  & Q[0, 0] W2[StS]: c1-d1-d2-e2 B4: a6-b6-b5-b4-b3-b2 \\
+5.  & Q[0, 1] B+St \\
+6.  & Q[0, 0] W3: e1-d1-d2-d3-c3-b3 B1: h8-h7-h6-g6 \\
+7.  & Q[1, 1] W2: e2-f2-g2-h2-h1 B1: g6-g5-g4-g3-g2-h2 xW2 \\
+8.  & Q[1, 0] W+St \\
+9.  & Q[1, 1] W4: g1-g2-g3-h3 xW4 B2: f8-e8-e7-d7-d6 \\
+10. & Q[1, 0] W+Pu \\
+11. & Q[0, 0] W3[Pu]: b3>b4-a4-a3-a2 xW3 B4[StL]: b2-b3-b4-c4-c3 xW1 Reset \\
+12. & Q[1, 1] W1: a1-b1-b2-c2 B1: h8-h7-h6-g6 \\
+13. & Q[0, 1] B+St \\
+14. & Q[0, 1] B+Pu \\
+15. & Q[1, 1] W4[StL]: g1-g2-g3-g4-g5 xB1 B2[Pu]: f8>e8-e7-e6-f6-g6 xW4 \\
+16. & Q[1, 0] W+St \\
+17. & Q[1, 1] W3[StL]: e1-f1-g1-g2-g3-g4-g5 xB2 B3: d8-e8-f8-g8-g7-g6 xW3 \\
+18. & Q[0, 1] B+St \\
+19. & Q[0, 0] W2: c1-d1-e1-f1-g1 B3: g6-g7-g8-f8 \\
+20. & Q[1, 0] W+Ro \\
+\end{gamerecord}
+
+\clearpage
+\gameheading{3}{김정우}{황성진}{17--13 \textperiodcentered{} 김정우 승}
+\begin{gamerecord}
+1.  & Q[1, 0] W+St \\
+2.  & Q[1, 1] W4: g1-g2-g3-f3 B1: h8-g8-g7-f7 \\
+3.  & Q[0, 1] B+St \\
+4.  & Q[0, 0] W1: a1-a2-b2-c2 B3[StL]: d8-d7-d6-d5-d4-d3-e3 xW4 \\
+5.  & Q[0, 1] B+Pu \\
+6.  & Q[0, 0] W3: e1-f1-g1-g2-f2-e2 xB3 B4: b8-c8-d8-e8 \\
+7.  & Q[1, 1] W2: c1-d1-d2-d3-d4 B4: e8-e7-e6-f6-g6-g7 \\
+8.  & Q[1, 0] W+Pu \\
+9.  & Q[1, 1] W2[Pu]: d4>e4-e5-e6-f6 xB1 B4[Pu]: g7>g8-h8-h7-g7-g8 \\
+10. & Q[0, 1] B+St \\
+11. & Q[1, 0] W+Pu \\
+12. & Q[1, 1] W2: f6-f7-g7-h7-h8 xB4 B2[StS]: f8-g8-g7-h7 \\
+13. & Q[1, 0] W+St \\
+14. & Q[0, 0] W2[StL]: h8-g8-f8-e8-d8-c8 B2: h7-g7-g8-h8-h7 \\
+15. & Q[0, 1] B+St \\
+16. & Q[1, 1] W2: c8-b8-a8-a7 B2: h7-g7-g8-h8 \\
+17. & Q[0, 1] B+St \\
+18. & Q[1, 1] W3: e2-d2-d1-c1-b1 B2[StL]: h8-g8-g7-h7-h8 \\
+19. & Q[1, 0] W+Ro \\
+20. & Q[0, 0] W1: c2-c3-b3-a3-a2 B2[StL]: h8-g8-f8-e8-d8-c8 \\
+\end{gamerecord}

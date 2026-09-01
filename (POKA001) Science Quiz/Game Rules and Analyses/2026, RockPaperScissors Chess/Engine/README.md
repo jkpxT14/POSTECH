@@ -75,7 +75,7 @@ Draft 32 introduced two search-allocation changes aimed at RPSC's large compound
 
 Broad quiet-threat quiescence remains rejected because prior experiments roughly doubled search work without sufficient playing evidence.
 
-Draft 33 / Engine 0.13 adds search continuity on top of that rule/search base. History, capture-history, continuation/follow-up, and countermove tables live with the Engine search object instead of being recreated for every `go`, Item Choice, or Initial Decision probe. For an unchanged exact root search key, the last completed root ranking is also cached and used to seed the next root ordering. `newgame` and `clear` reset this learned search memory. These are ordering/allocation aids only; they do not alter legality or evaluation semantics.
+Draft 33 / Engine 0.13 adds search continuity on top of that rule/search base. History, capture-history, continuation/follow-up, and countermove tables live with the Engine search object instead of being recreated for every `go`, Item Choice, or Initial Decision probe. For an unchanged Engine search key (`Position::search_key()`), the last completed root ranking is also cached and used to seed the next root ordering. `newgame` and the Engine API's `clear_search()` reset this learned search memory. These are ordering/allocation aids only; they do not alter legality or evaluation semantics.
 
 ## Decision search
 
@@ -101,6 +101,6 @@ Normal Board Analysis targets about 10 seconds. `Analyze` continues the same dec
 
 ## Testing and strength
 
-Release tests cover official-net anchoring, 24 exact orientations, Rotation/Roll inverses, exact/reduced successor counts, perft, item lengths/consumption, make/undo, notation, generator equivalence, tactical generation, MultiPV, Match Context, Item Choice, Initial Decision, and the item-aware evaluation symmetry check, persistent-search-memory reset behavior, and root-search regression controls.
+Release tests cover official-net anchoring, 24 exact orientations, Rotation/Roll inverses, exact/reduced successor counts, perft, item lengths/consumption, make/undo, notation, generator equivalence, tactical generation, MultiPV, Match Context, Item Choice, Initial Decision, the item-aware evaluation symmetry check, and root-search regression controls. Search-memory reset wiring is additionally verified at the Engine/Search integration level: `new_game()` and `clear_search()` clear both the TT and `Search::clear_memory()`.
 
 Engine 0.13.0 is not presented as an Elo result or a guarantee that a 10/20-second search has found the global best move. Draft 33 retains the measured Draft 32 controls and adds continuity intended to spend repeated analysis budgets more effectively. See `StrengthTesting.md` and `Verification.md`.

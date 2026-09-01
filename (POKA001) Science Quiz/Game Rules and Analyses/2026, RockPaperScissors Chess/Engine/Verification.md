@@ -70,3 +70,8 @@ Draft 33 intentionally does not add timeout adjudication and does not change the
 ## Packaging
 
 The deliverable preserves the established `2026, RockPaperScissors Chess/` layout. CMake build directories, development backups, browser-test screenshots, and LaTeX auxiliary files are excluded from the ZIP.
+
+
+## Draft 33 documentation audit
+
+The continuity cache is keyed by `Position::search_key()`, the Engine's reduced RPSC search-state key; documentation therefore calls it the **Engine search key** rather than implying the exact physical-orientation key returned by `Position::key()`. The protocol exposes `newgame`; the C++ Engine API additionally exposes `clear_search()`. Both reset the TT and persistent ordering memory through `Search::clear_memory()`.

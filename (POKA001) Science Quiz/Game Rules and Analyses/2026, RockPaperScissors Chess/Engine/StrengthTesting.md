@@ -32,7 +32,7 @@ Engine 0.13 does not replace the Draft 32 rule generator or evaluator. It change
 
 1. history and capture-history survive between related searches;
 2. continuation/follow-up and countermove tables survive between related searches and Item/Initial probes;
-3. the previous completed root ranking for the same exact search key seeds the next root order;
+3. the previous completed root ranking for the same Engine search key seeds the next root order;
 4. the browser Worker passes completed root ranking into later iterations and into the 10-second → 20-second Analyze continuation.
 
 These mechanisms are intended to reduce rediscovery cost. They do not make a timed result mathematically proven. The release report therefore records completed depth/nodes and preserves the last fully completed iteration at timeout rather than claiming that 20 seconds is always sufficient.

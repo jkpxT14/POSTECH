@@ -13,9 +13,18 @@
 
 The official Science Quiz rules and final RockPaperScissors Chess plan define the game. The exact 24-orientation physical cube model is authoritative; Gesture States are derived analysis/search information. Quiz Results are always user input.
 
-Build: Draft 33 (2026-09-02 KST)
+Build: Draft 34 (2026-09-02 KST)
 
-Source base: Draft 32 / Engine 0.12.0, preserving the established project structure and rule model.
+Source base: Draft 33 / Engine 0.13.0, preserving the established project structure, rule model, Analysis Board, and Engine.
+
+## Draft 34
+
+Draft 34 is a handbook-recording update on top of Draft 33; the Analysis Board, Engine 0.13.0, and rule implementation are unchanged.
+
+- `Games` now records three 2026-09-01 squad internal-league games in the canonical RPSC Game Record notation, using White-Black player ordering and the verified converted records.
+- `Acknowledgements` is expanded and localized to Korean for names, affiliations, and 2026 Science Quiz roles while retaining the English structural heading.
+- The title-page role is refined to `2026 Science Quiz Mathematics Representative`.
+- No board diagrams are added to the game records; the chapter intentionally preserves the compact notation-first presentation.
 
 ## Draft 33
 
@@ -24,7 +33,7 @@ Draft 33 advances the native Engine to 0.13.0 and makes the Analysis Board a res
 - `.rpsc` Format 2 saves incomplete confirmed positions as well as completed rounds. Equal Quiz-only records restore White-to-move; equal Quiz plus a White move restores Black-to-move; solo-correct Quiz-only records restore the pending Item Choice.
 - A Format 2 session preserves the full Main Line/Variation tree, current variation node, exact cube orientations, score, inventories, order, and phase. Unconfirmed previews/drafts are deliberately excluded.
 - The readable Game Record remains authoritative. If the Main Line is edited externally and no longer matches the session payload, stale session metadata is ignored and the body is replayed; Score/Quiz/Captures are recomputed from that replay. Legacy flat Draft 32 `.rpsc` records remain loadable.
-- Native Engine 0.13 keeps history, capture-history, continuation/follow-up, and countermove information across related searches and decision probes. It also caches the previous completed root ranking for the same exact search key and reuses it for first-iteration move ordering.
+- Native Engine 0.13 keeps history, capture-history, continuation/follow-up, and countermove information across related searches and decision probes. It also caches the previous completed root ranking for the same Engine search key and reuses it for first-iteration move ordering.
 - The browser Worker likewise carries a completed root ranking into later iterations and the normal 10-second → Analyze 20-second continuation, while completed iterations remain authoritative.
 - Draft 32's exact move generator, root progressive widening, geometric reach/item signal, Match Context model, and conservative completed-iteration behavior are retained. These changes improve search allocation and continuity; they are not an Elo or best-move guarantee.
 - All twelve Basic/Push/Rotation/Step reference movement figures, the official dice net, and the initial placement are rechecked against the same exact orientation/rule model during release verification.
