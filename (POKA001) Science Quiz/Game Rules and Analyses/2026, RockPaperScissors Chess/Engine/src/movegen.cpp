@@ -1,5 +1,7 @@
 #include "movegen.h"
 
+#include <array>
+#include <cstdint>
 #include <unordered_set>
 #include <vector>
 
@@ -87,6 +89,61 @@ std::uint64_t partial_key(Square square, Orientation orientation, int remaining,
            (static_cast<std::uint64_t>(remaining) << 10) | (last_code << 14);
 }
 
+struct SearchScratch {
+    static constexpr std::size_t FinalTableSize = 1u << 14;
+    static constexpr std::size_t FinalTableMask = FinalTableSize - 1;
+
+    std::array<std::uint32_t, 1u << 17> partial_marks{};
+    std::uint32_t partial_generation = 0;
+    std::array<Key, FinalTableSize> final_keys{};
+    std::array<std::uint32_t, FinalTableSize> final_marks{};
+    std::uint32_t final_generation = 0;
+
+    std::uint32_t next_generation() {
+        ++partial_generation;
+        if (partial_generation == 0) {
+            partial_marks.fill(0);
+            partial_generation = 1;
+        }
+        return partial_generation;
+    }
+
+    std::uint32_t next_final_generation() {
+        ++final_generation;
+        if (final_generation == 0) {
+            final_marks.fill(0);
+            final_generation = 1;
+        }
+        return final_generation;
+    }
+
+    bool insert_final(Key key, std::uint32_t generation) {
+        // Fixed open addressing avoids allocator traffic in the hottest move-generation path.
+        // The table is deliberately far larger than the current maximum reduced successor set.
+        std::size_t slot = static_cast<std::size_t>((key * 11400714819323198485ULL) >> 50) &
+                           FinalTableMask;
+        for (std::size_t probe = 0; probe < FinalTableSize; ++probe) {
+            if (final_marks[slot] != generation) {
+                final_marks[slot] = generation;
+                final_keys[slot] = key;
+                return true;
+            }
+            if (final_keys[slot] == key) return false;
+            slot = (slot + 1) & FinalTableMask;
+        }
+        // This should be unreachable for RPSC (hundreds of successors versus 16K slots).
+        // Treating an overflow as unique is safer than dropping a legal successor.
+        return true;
+    }
+};
+
+SearchScratch& search_scratch() {
+    // Search is currently single-threaded, but thread-local ownership keeps the generator
+    // allocation-free on its hot path and remains safe if independent search threads are added.
+    static thread_local SearchScratch scratch;
+    return scratch;
+}
+
 struct SearchGeneration {
     Position& position;
     Color mover;
@@ -94,10 +151,10 @@ struct SearchGeneration {
     int own_before;
     int opponent_before;
     bool tactical_only;
-    std::unordered_set<Key> final_seen;
+    SearchScratch& scratch;
+    std::uint32_t partial_generation = 0;
+    std::uint32_t final_generation = 0;
     std::vector<SearchMove> moves;
-    std::vector<std::uint16_t> partial_marks = std::vector<std::uint16_t>(1u << 17, 0);
-    std::uint16_t partial_generation = 0;
 };
 
 void emit_search_move(SearchGeneration& generation, Move& move, Square current,
@@ -122,7 +179,7 @@ void emit_search_move(SearchGeneration& generation, Move& move, Square current,
     generation.position.undo_move(undo);
 
     if (generation.tactical_only && swing == 0) return;
-    if (generation.final_seen.insert(child_key).second)
+    if (generation.scratch.insert_final(child_key, generation.final_generation))
         generation.moves.push_back({move, swing});
 }
 
@@ -146,8 +203,8 @@ void generate_search_paths(SearchGeneration& generation, PieceId id, Move& move,
         const Orientation next_orientation =
             OrientationTable::instance().roll(orientation, direction);
         const auto key = partial_key(next, next_orientation, remaining - 1, true, direction);
-        if (generation.partial_marks[key] == generation.partial_generation) continue;
-        generation.partial_marks[key] = generation.partial_generation;
+        if (generation.scratch.partial_marks[key] == generation.partial_generation) continue;
+        generation.scratch.partial_marks[key] = generation.partial_generation;
 
         move.path[move.path_length++] = next;
         generate_search_paths(generation, id, move, next, next_orientation, remaining - 1, true,
@@ -169,13 +226,9 @@ void generate_search_for_item(SearchGeneration& generation, PieceId id, const Pi
     const int distance = item_distance(orientation, item);
     const Square start = item == Item::Push ? push_to : piece.square;
 
-    ++generation.partial_generation;
-    if (generation.partial_generation == 0) {
-        std::fill(generation.partial_marks.begin(), generation.partial_marks.end(), 0);
-        generation.partial_generation = 1;
-    }
+    generation.partial_generation = generation.scratch.next_generation();
     const auto start_key = partial_key(start, orientation, distance, false, Direction::North);
-    generation.partial_marks[start_key] = generation.partial_generation;
+    generation.scratch.partial_marks[start_key] = generation.partial_generation;
     generate_search_paths(generation, id, move, start, orientation, distance, false,
                           Direction::North);
 }
@@ -188,9 +241,11 @@ std::vector<SearchMove> generate_search_moves_internal(Position& position, bool 
                                 position.captures(mover),
                                 position.captures(opposite(mover)),
                                 tactical_only,
-                                {},
+                                search_scratch(),
+                                0,
+                                0,
                                 {}};
-    generation.final_seen.reserve(1024);
+    generation.final_generation = generation.scratch.next_final_generation();
     generation.moves.reserve(512);
 
     for (int i = 0; i < PieceCount; ++i) {

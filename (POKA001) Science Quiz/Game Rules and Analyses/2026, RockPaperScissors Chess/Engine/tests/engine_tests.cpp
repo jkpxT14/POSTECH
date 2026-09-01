@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "engine.h"
+#include "evaluate.h"
 #include "movegen.h"
 #include "notation.h"
 #include "orientation.h"
@@ -199,6 +200,30 @@ void verify_match_context() {
     assert(p.search_key() == before);
 }
 
+
+void verify_item_aware_evaluation() {
+    using namespace rpsc;
+    Position base;
+    base.set_match_context(0, 0, 20);
+    assert(evaluate_white(base) == 0);
+
+    Position push = base;
+    push.set_items(Color::White, 1, 0, 0);
+    Position rotation = base;
+    rotation.set_items(Color::White, 0, 1, 0);
+    Position step = base;
+    step.set_items(Color::White, 0, 0, 1);
+    const Value push_value = evaluate_white(push);
+    const Value rotation_value = evaluate_white(rotation);
+    const Value step_value = evaluate_white(step);
+    assert(push_value > 0 && rotation_value > 0 && step_value > 0);
+    assert(push_value != rotation_value || rotation_value != step_value || push_value != step_value);
+
+    Position black_push = base;
+    black_push.set_items(Color::Black, 1, 0, 0);
+    assert(evaluate_white(black_push) == -push_value);
+}
+
 void verify_all_orientations() {
     using namespace rpsc;
     const auto& table = OrientationTable::instance();
@@ -230,6 +255,7 @@ int main() {
     verify_match_context();
     verify_reduced_orientation_equivalence();
     verify_item_roll_lengths_and_consumption();
+    verify_item_aware_evaluation();
 
     Position position;
     const auto legal = generate_legal_moves(position);

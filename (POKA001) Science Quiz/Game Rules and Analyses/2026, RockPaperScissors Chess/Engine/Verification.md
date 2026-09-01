@@ -1,12 +1,10 @@
 # Verification
 
-Draft 31 / Engine 0.11.0 is verified as one RPSC handbook / Analysis Board / native Engine package. The verification goal is twofold: exact rule agreement and functional search/UI behavior.
+Draft 32 / Engine 0.12.0 is verified as one RPSC handbook / Analysis Board / native Engine package. Rule correctness is a release blocker; search improvements are accepted only on top of the exact rule model.
 
 ## Native rule regression
 
-The Release CTest binary explicitly undefines `NDEBUG` before `<cassert>`, so regression assertions remain active in Release verification.
-
-Initial no-item checks:
+Release assertions remain enabled. Initial controls remain:
 
 - canonical full-path legal moves: 161
 - exact successor positions: 145
@@ -15,67 +13,49 @@ Initial no-item checks:
 - perft(2): 25,575
 - perft(3): 4,215,782
 
-Initial position with both sides holding Push/Rotation/Step = 1/1/1:
+Initial position with both sides holding Push/Rotation/Step = 1/1/1 remains:
 
 - canonical full-path legal moves: 1,472
 - exact successor positions: 1,019
 - reduced strategic search successors: 427
-- all five item-use actions appear: Push, RoL, RoR, StS, StL
+- all item-use actions present: Push, RoL, RoR, StS, StL
 
-The suite also checks:
+The suite checks the official dice-net anchor (`P-S-P-S` horizontally with Rock above/below the left-hand S), all 24 exact orientations, Roll/Rotation inverses, Rotation top-face invariance, exact-vs-reduced transition equivalence, Push/Rotation/Step Roll lengths, inventory consumption/undo, notation round trips, key restoration, exhaustive-vs-optimized successor equality, tactical-generator equality, MultiPV distinctness, Match Context make/undo, Item Choice non-mutation, and all six Initial Decision branches.
 
-- official dice-net anchor: `P-S-P-S` horizontally with Rock above/below the left-hand `S`, implying S/S, R/R, P/P opposite pairs;
-- all 24 exact cube orientations;
-- Rotation keeps the top Gesture fixed;
-- RoL/RoR inverse behavior and fourfold Rotation identity;
-- exact orientations in the same reduced Gesture State have identical reduced Roll/Rotation transitions;
-- RoL and RoR map to the same reduced Rotation state while remaining distinct exact actions;
-- North/South and East/West Roll inverses;
-- Push uses the base Roll count, Rotation uses the base Roll count, StS uses base-1, and StL uses base+1;
-- each item action consumes only its correct inventory bucket and undo restores it;
-- notation round trips;
-- exact/search-key restoration after make/undo;
-- exhaustive-vs-optimized reduced-successor equality in no-item, item-rich, and deterministic playout positions;
-- tactical-generator equality against score-changing successors from the full search generator;
-- distinct legal root MultiPV lines;
-- confirmed Quiz/remaining-ply Match Context survives make/undo and changes the search key;
-- Item Choice non-mutation;
-- all six First/Second + Push/Rotation/Step initial branches.
+Draft 32 adds an evaluation regression: the symmetric initial Match Context evaluates to zero, each White item family has positive reserve value, at least two item families are distinguished by the current geometric action-diversity heuristic, and the mirrored Black inventory reverses the sign.
 
-## Native build and protocol smoke
+## Native build / protocol
 
-The clean Release build and CTest are run before packaging. Protocol smoke includes:
+Required clean smoke:
 
-- identity `RPSC Engine 0.11`;
+- identity `RPSC Engine 0.12`;
 - `perft 2` = 25,575;
-- `chooseinitial` returning six ranked Order+Item candidates with legal continuation PVs;
-- `chooseitem W` returning three ranked item candidates with legal continuation PVs;
-- item-rich `go ... multipv 3` returning three distinct board recommendations.
+- `chooseinitial` returns six ranked legal Order+Item branches;
+- `chooseitem W` returns three ranked legal item branches;
+- item-rich `go ... multipv 3` returns three distinct recommendations and legal PVs;
+- fixed depth-4 bench preserves the established best root;
+- item-rich 10-second control completes depth 3 in the current verification environment.
 
-Draft 31 preserves the decision-PV verification introduced in Draft 30: continuation lines are formatted from the correct hypothetical inventory/order state. This prevents an item-using hypothetical continuation from being parsed against an inventory that has not actually received that item.
+## Browser regression
 
-## Browser game-flow regression
+The browser keeps an exhaustive canonical generator and a reduced Worker search. Required interaction checks include:
 
-The Analysis Board keeps an exhaustive canonical generator and a separate optimized search generator. The optimized browser generator reproduces the native initial search counts: 84 reduced successors without items and 427 with both sides holding 1/1/1.
+- exact Quiz buttons `Q[1, 1]`, `Q[1, 0]`, `Q[0, 1]`, `Q[0, 0]`;
+- Quiz remains manual in Human vs Human, Human vs Engine, and Engine vs Engine;
+- equal-result, solo-correct, first Order+Item, later Item Choice, board move, combat, and Reset phase transitions;
+- Rotate Board cycles all four 90-degree CCW view states without changing canonical game state;
+- Candidate preview animates item preprocessing and each Roll without mutating the Game Record until Confirm;
+- normal Engine Analysis publishes Top 3 at completed iterations and targets about 10 seconds;
+- Analyze continues the same decision toward about 20 total seconds, preserving the earlier completed result while deepening;
+- Item Choice and Initial Decision can display screened/refined partial rankings before completion;
+- no page/console errors.
 
-Browser interaction smoke is performed with a real Chromium page context, not syntax checking alone. Required behaviors include:
+The Worker mirrors Draft 32's small geometric reach/item signal and root progressive-widening policy. The native C++ implementation remains authoritative for engine-development controls.
 
-- initial Quiz buttons visible with exact labels `Q[1, 1]`, `Q[1, 0]`, `Q[0, 1]`, `Q[0, 0]`;
-- `Q[1, 0]` / `Q[0, 1]` entering the solo-correct order/item path when appropriate;
-- `Q[1, 1]` / `Q[0, 0]` entering the equal-result board-move path with first/second order resolution when needed;
-- Human vs Engine and Engine vs Engine remaining in QUIZ until the user clicks a Quiz Result;
-- Engine-controlled initial decision returning to the next QUIZ after Order+Item is applied;
-- Engine-controlled Item Choice returning to the next QUIZ after acquisition;
-- no page errors during these flows.
+## Notation and Match Context
 
-A separate analysis smoke verifies item-rich background analysis at about 10 seconds and `Analyze` toward about 20 seconds, with Top-3 lines and item use appearing inside continuations. Rotate Board is checked through all four 90-degree CCW view states without mutating canonical game state, and Candidate preview is checked as a non-destructive Roll-by-Roll animation.
-
-## Notation and UI invariants
-
-Canonical Quiz notation uses a space after the comma: `Q[1, 1]`, `Q[1, 0]`, `Q[0, 1]`, `Q[0, 0]`. Compact variants are rejected during package checks.
-
-Quiz input remains user-controlled in all three play modes. Fixed `Q[0, 0]` is only an engine-development control condition and is not a user-facing play mode.
+Compact Quiz variants such as `Q[1,1]` are rejected in package checks. Confirmed Quiz points/current inventories are real Match Context. Future Quiz is not predicted; remaining Quiz is treated symmetrically (`Q[1, 1]` / `Q[0, 0]`) and creates no unearned item.
 
 ## Packaging
 
-The deliverable preserves the established `2026, RockPaperScissors Chess/` directory layout. CMake build products, browser-test artifacts, and LaTeX auxiliary files are excluded from the ZIP.
+The deliverable preserves the established `2026, RockPaperScissors Chess/` layout. CMake build directories, development backups, browser-test screenshots, and LaTeX auxiliary files are excluded from the ZIP.

@@ -18,6 +18,13 @@ constexpr int ContinuationScale = 2;
 constexpr int FollowupScale = 4;
 constexpr int CaptureHistoryScale = 4;
 constexpr std::size_t ItemActionCount = 6;
+
+int root_action_family(const Move& move) {
+    if (move.item == Item::Push) return 1;
+    if (move.item == Item::RotateLeft || move.item == Item::RotateRight) return 2;
+    if (move.item == Item::StepShort || move.item == Item::StepLong) return 3;
+    return 0;
+}
 constexpr std::size_t HistoryMoveSlots = PieceCount * 64u * ItemActionCount;
 
 struct OrderedMove {
@@ -243,13 +250,66 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
         if (entry->bound == Bound::Upper && entry->value <= alpha) return entry->value;
     }
 
+    const Color mover = position.side_to_move();
+    Move best{};
+    bool has_best = false;
+    int move_index = 0;
+    std::vector<Move> quiets_searched;
+    quiets_searched.reserve(16);
+    bool searched_tt_move = false;
+
+    // Search the transposition-table move before materializing the full RPSC compound-move set.
+    // With hundreds of item-rich successors, a shallow TT move that still produces a cutoff can
+    // avoid path generation, reduced-successor deduplication, and sorting at this node entirely.
+    if (has_tt_move && position.is_legal_path(tt_move)) {
+        const int own_before = position.captures(mover);
+        const Color opponent = opposite(mover);
+        const int opponent_before = position.captures(opponent);
+        UndoState undo;
+        position.do_move(tt_move, undo);
+        const int tt_swing =
+            (position.captures(mover) - own_before) -
+            (position.captures(opponent) - opponent_before);
+        const bool extend_score = tt_swing != 0 && extensions_used < MaxSelectiveExtensions;
+        const int next_extensions = extensions_used + (extend_score ? 1 : 0);
+        const Depth child_depth = depth - 1 + (extend_score ? 1 : 0);
+        const Value score =
+            -negamax(position, child_depth, -beta, -alpha, ply + 1, context, pv_node,
+                     &tt_move, previous_move, next_extensions);
+        position.undo_move(undo);
+        searched_tt_move = true;
+        move_index = 1;
+
+        if (context.stopped) return alpha;
+        if (tt_swing == 0) quiets_searched.push_back(tt_move);
+        if (score > alpha) {
+            alpha = score;
+            best = tt_move;
+            has_best = true;
+        }
+        if (alpha >= beta) {
+            if (tt_swing == 0)
+                context.record_quiet_cutoff(tt_move, depth, ply, previous_move, previous2_move,
+                                            quiets_searched);
+            else
+                context.record_tactical_cutoff(tt_move, depth);
+            tt_.store(key, depth, alpha, Bound::Lower, &tt_move);
+            return alpha;
+        }
+    }
+
     const auto moves = generate_search_moves_info(position);
-    if (moves.empty()) return evaluate(position);
+    if (moves.empty()) {
+        if (has_best) {
+            tt_.store(key, depth, alpha, Bound::Exact, &best);
+            return alpha;
+        }
+        return evaluate(position);
+    }
 
     int own_pressure_before = 0;
     for (const auto& candidate : moves)
         if (candidate.capture_swing > 0 && ++own_pressure_before >= 4) break;
-    const Color mover = position.side_to_move();
     const bool inspect_quiet_threats = depth >= 4;
     const int opponent_pressure_before =
         inspect_quiet_threats ? context.capture_pressure_for(position, opposite(mover)) : 0;
@@ -258,11 +318,11 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
     ordered.reserve(moves.size());
     for (const auto& entry_move : moves) {
         const auto& move = entry_move.move;
+        if (searched_tt_move && move == tt_move) continue;
         const int swing = entry_move.capture_swing;
         int score = context.history_score(move);
         score += context.continuation_score(previous_move, previous2_move, move);
         if (context.is_countermove(previous_move, move)) score += CountermoveBonus;
-                if (has_tt_move && move == tt_move) score += 1000000;
         if (swing > 0)
             score += 500000 + swing * 10000 + context.capture_history_score(move);
         else if (swing < 0)
@@ -273,25 +333,16 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
             score += 150000;
         ordered.push_back({move, score, swing});
     }
-    std::stable_sort(ordered.begin(), ordered.end(),
-                     [](const OrderedMove& lhs, const OrderedMove& rhs) {
-                         return lhs.score > rhs.score;
-                     });
-
-    Move best{};
-    bool has_best = false;
-    int move_index = 0;
-    std::vector<Move> quiets_searched;
-    quiets_searched.reserve(16);
+    std::sort(ordered.begin(), ordered.end(), [](const OrderedMove& lhs, const OrderedMove& rhs) {
+        return lhs.score > rhs.score;
+    });
 
     for (const auto& current : ordered) {
         UndoState undo;
         position.do_move(current.move, undo);
 
         // A combat result changes the official score and is the RPSC analogue of a forcing
-        // tactical event. Preserve one ply around at most two such events per line. This is
-        // rule-derived and position-independent; it does not encode a square, Gesture, opening,
-        // or known game sequence.
+        // tactical event. Preserve one ply around at most two such events per line.
         const bool extend_score = current.capture_swing != 0 &&
                                   extensions_used < MaxSelectiveExtensions;
         const int next_extensions = extensions_used + (extend_score ? 1 : 0);
@@ -325,7 +376,8 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
                 if (reducible) {
                     const Value child_static_for_mover = -evaluate(position);
                     const bool improving = child_static_for_mover >= static_eval + 8;
-                    if (!improving && current.move.item == Item::None && depth >= 7 && move_index >= 10 && history_value <= 0)
+                    if (!improving && current.move.item == Item::None && depth >= 7 &&
+                        move_index >= 10 && history_value <= 0)
                         reduction = 2;
                 }
             }
@@ -453,8 +505,11 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
         pass.best = ordered.front().move;
         int move_index = 0;
         Value current_alpha = alpha;
+        std::array<int, 4> family_seen{};
 
         for (const auto& current : ordered) {
+            const int family = root_action_family(current.move);
+            const int family_index = family_seen[static_cast<std::size_t>(family)]++;
             UndoState undo;
             root.do_move(current.move, undo);
             const bool extend_score = current.capture_swing != 0;
@@ -466,8 +521,27 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
                 score = -negamax(root, child_depth, -beta, -current_alpha, 1, context, true,
                                  &current.move, nullptr, extensions);
             } else {
-                score = -negamax(root, child_depth, -current_alpha - 1, -current_alpha, 1,
-                                 context, false, &current.move, nullptr, extensions);
+                // RPSC roots can have hundreds of reduced successors once items are available.
+                // Use a verification-style root LMR only for late, quiet, non-item candidates
+                // that were already uncompetitive in the previous completed iteration. A move
+                // that challenges alpha is always re-searched at full depth.
+                const Value old_value = prior_root_value(current.move, prior_scores);
+                const int full_quota = family == 0 ? 32 : 24;
+                const bool ranked_late = old_value > -Infinity && old_value + 12 < previous_value;
+                const bool reduce_root = depth >= 3 && current.capture_swing == 0 &&
+                                         family_index >= full_quota &&
+                                         (ranked_late || move_index >= 64);
+                if (reduce_root) {
+                    const Depth reduced_depth = std::max<Depth>(0, child_depth - 1);
+                    score = -negamax(root, reduced_depth, -current_alpha - 1, -current_alpha, 1,
+                                     context, false, &current.move, nullptr, extensions);
+                    if (score > current_alpha)
+                        score = -negamax(root, child_depth, -current_alpha - 1, -current_alpha, 1,
+                                         context, false, &current.move, nullptr, extensions);
+                } else {
+                    score = -negamax(root, child_depth, -current_alpha - 1, -current_alpha, 1,
+                                     context, false, &current.move, nullptr, extensions);
+                }
                 if (score > current_alpha && score < beta)
                     score = -negamax(root, child_depth, -beta, -current_alpha, 1, context, true,
                                      &current.move, nullptr, extensions);

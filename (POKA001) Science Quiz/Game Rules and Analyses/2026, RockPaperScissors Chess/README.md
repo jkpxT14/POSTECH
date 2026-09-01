@@ -4,44 +4,42 @@
 
 ## Files
 
-- `RockPaperScissorsChess.tex`: main handbook source
-- `RockPaperScissorsChess.pdf`: compiled handbook
-- `RockPaperScissorsChess.html`: offline single-file RPSC Analysis Board
-- `Rules.tex`: game rules
-- `NotationandGameRecording.tex`: canonical notation and analysis notation
-- `MovementandItems.tex`: movement, items, and Gesture-State analysis
-- `Tactics.tex`, `Strategy.tex`, `Openings.tex`, `Puzzles.tex`, `Games.tex`: reserved handbook chapters
-- `Figures/`: TikZ figure sources and styles
-- `Engine/`: native C++ RPSC Engine source, tests, verification, and strength-testing notes
+- `RockPaperScissorsChess.tex` / `.pdf`: handbook and compiled edition
+- `Rules.tex`: official-rule model used by the handbook
+- `NotationandGameRecording.tex`: canonical Game Record and analysis language
+- `MovementandItems.tex`: exact/reduced cube analysis and item movement
+- `RockPaperScissorsChess.html`: offline single-file Analysis Board
+- `Engine/`: native C++ RPSC Engine, regression tests, verification, and strength notes
 
-The official Science Quiz rules and the final RockPaperScissors Chess plan define the game. The exact 24-orientation physical cube model is the implementation source of truth; Gesture States are only a derived analysis/search layer. Quiz Results are always external user input. The Engine never predicts or invents a future Quiz Result.
+The official Science Quiz rules and final RockPaperScissors Chess plan define the game. The exact 24-orientation physical cube model is authoritative; Gesture States are derived analysis/search information. Quiz Results are always user input.
 
-Build: Draft 31 (2026-08-31 KST)
+Build: Draft 32 (2026-09-01 KST)
 
-Source base: Draft 30 / Engine 0.10.0, preserving the established GitHub folder and file structure.
+Source base: Draft 31 / Engine 0.11.0, preserving the established project structure.
 
-## Draft 31
+## Draft 32
 
-Draft 31 advances the native Engine to 0.11.0 and develops the handbook, Analysis Board, and Engine as one RPSC analysis language grounded in the official 2026 rules and final game plan.
+Draft 32 advances the native Engine to 0.12.0. The main goal is practical RPSC analysis strength under the existing 10-second normal / 20-second Analyze workflow, without changing the official rules or the established notation/UI structure.
 
-- The official dice-net is regression-anchored directly: horizontal `P-S-P-S`, with Rock immediately above and below the left-hand `S`. Folding this net gives opposite pairs S/S, R/R, P/P; native and browser cube states are tested from this anchor rather than merely checking that 24 orientations exist.
-- Rotation remains a strict invariant: current square and top face fixed, exactly 90 degrees around the board-vertical axis, Top Gesture/Base Roll Length unchanged, Wrist Direction/exact orientation rotated.
-- Canonical Quiz UI now displays `Q[1, 1]`, `Q[1, 0]`, `Q[0, 1]`, `Q[0, 0]`. Quiz Results remain manual in all Human/Engine modes.
-- Engine Evaluation now includes all confirmed Quiz points and current inventories. Future Quiz Results are not predicted; remaining rounds use the Symmetric Quiz Assumption, equivalent to future `Q[1, 1]`/`Q[0, 0]`, so no unearned items are created.
-- Remaining board plies are part of the search state. Item reserve value tapers near the end of the main game, and the final known board ply resolves to official Score = Quiz + 2 x Captures with the Quiz-count tie-break.
-- Quiet item actions may still receive normal LMR, but Draft 31 prevents the most aggressive two-ply reduction from being applied to an item action. This spends more of a fixed 10 s / 20 s budget on strategically unusual Push/Rotation/Step continuations without exempting all item moves from pruning.
-- Item acquisition, item conservation/use, and the first First/Second + Item decision remain direct Engine decisions. Finite decision budgets use all-candidate screening plus TT-sharing refinement; this is intentionally described as a shared decision budget rather than a false claim of one monolithic root tree.
-- `Flip Board` becomes `Rotate Board`: each click rotates the view 90 degrees counterclockwise through all four orientations. Coordinates, piece direction markers, and side labels rotate visually while canonical squares, exact cube state, Game Record, and Engine state remain unchanged.
-- Clicking an Engine Candidate now previews its Push/Rotation preprocessing and each Roll sequentially instead of jumping directly to the final square. The preview is non-destructive until Confirm Move.
-- Move-quality annotations are the six standard `!!`, `!`, `!?`, `?!`, `?`, `??`. `Only Move` remains an analysis term rather than a seventh quality symbol.
-- Normal analysis targets about 10 seconds; `Analyze` extends the same current decision toward about 20 seconds while retaining completed information and Worker TT state where applicable.
+- The official dice-net remains hard-anchored: horizontal `P-S-P-S`, with Rock immediately above and below the left-hand `S`. Rotation remains an in-place 90-degree turn around the board-vertical axis with square/top fixed.
+- Search move generation reuses fixed scratch storage for partial-state and reduced-successor deduplication instead of repeatedly allocating large temporary tables on the hot path.
+- A shallow TT move can be searched before the complete compound-move set is materialized; a cutoff can therefore avoid unnecessary Roll-path generation and sorting.
+- Root search now uses conservative progressive widening / verification LMR across Normal, Push, Rotation, and Step families. Every family receives full-depth candidates before late quiet actions are reduced; any reduced candidate that challenges alpha is re-searched at full depth.
+- The leaf evaluator remains score-first but adds a small RPSC-specific geometric reach signal. Item reserve value is no longer completely type-blind: Push, Rotation, and Step receive a cheap position-dependent latent value based on how many additional reduced Roll outcomes the item can create from the current pieces. The search, not a fixed item hierarchy, still decides whether an item should be acquired, conserved, or used.
+- In the current verification environment, the native depth-4 no-item control has a median wall time of about 0.86 s versus about 1.04 s for Draft 31, while preserving the established best root move. This is a throughput/control result, not an Elo claim.
+- More importantly for practical analysis, the symmetric initial item-rich 10-second control (`Pu/Ro/St = 1/1/1` for both sides) completes depth 3 in Draft 32; Draft 31 completed depth 2 in the same environment.
+- The browser Worker mirrors the item-aware geometric evaluation and root progressive-widening policy while retaining its exhaustive canonical generator and reduced search cache.
+- Engine results now appear progressively at completed iterations. Board Analysis keeps the current Top 3 visible while displaying `Analyzing` / `Deepening`, elapsed target time, Depth/SelDepth, nodes, and NPS. `Analyze` continues the same decision toward a total of about 20 seconds instead of presenting a visually separate analysis.
+- Item Choice and Initial Decision also publish stable intermediate rankings after their complete screening stage and subsequent refinement passes, rather than appearing only at the end.
+- Candidate 1 receives only restrained emphasis; selected Candidate Moves remain tied to the existing non-destructive Roll-by-Roll preview. The board-first design is otherwise preserved.
+- Confirmed Quiz score/items remain part of Match Context. Unplayed Quiz is still treated symmetrically (`Q[1, 1]` / `Q[0, 0]`), so the Engine never predicts a future Quiz winner or invents a future item.
+
+## Shared language
+
+The handbook, Analysis Board, and Engine use the same terms and notation: Game Record, Analysis Line, M-number, Candidate Action, Candidate Move, PV, MultiPV, Main Line, Variation, Match Context, Evaluation, `Pu`, `RoL`, `RoR`, `StS`, `StL`, and canonical `Q[1, 1]`-style Quiz notation. Full Roll Path remains part of the move itself.
 
 ## Reference discipline
 
-Chess textbooks and PGN conventions are references for notation hierarchy, variations, comments, annotations, and analysis vocabulary. Chess.com-style analysis is a UI reference for a board-first layout, a small number of ranked engine lines, and concise continuation display. Stockfish/Fishtest, Fairy-Stockfish, Arimaa research, and other classical engines are architecture/testing references for iterative search, move ordering, transpositions, compound-action branching, and controlled strength testing. No chess opening knowledge, copied engine code, or generic board-game abstraction defines RPSC behavior.
+Chess/PGN analysis systems are references for notation hierarchy, PV/MultiPV presentation, and completed-iteration engine UX. Stockfish/Fishtest, shogi engines, Arimaa/Amazons work, Othello engines, and other classical game-engine research are search/testing references only. No external game's rules, opening knowledge, or copied engine code defines RPSC behavior.
 
-## Development principle
-
-The Engine is built specifically for RPSC: compound full Roll paths, exact cube orientation, combat and Reset, finite Push/Rotation/Step inventories, Quiz-driven action phases, and the White-then-Black Board Event structure. A proposed optimization is retained only if rule regressions pass and it improves the relevant RPSC search/test evidence; a broadly applicable technique is not valuable merely because it is successful in chess.
-
-The C++ Engine is the native reference implementation. The offline Analysis Board remains a parallel JavaScript Worker implementation in Draft 31; no WebAssembly bridge is claimed. Strength claims remain conservative. See `Engine/Verification.md` and `Engine/StrengthTesting.md`.
+The C++ Engine remains the native reference implementation; the offline Analysis Board uses a parallel JavaScript Worker. Strength claims remain conservative and are tied to reproducible controls in `Engine/StrengthTesting.md` and `Engine/Verification.md`.

@@ -1,43 +1,44 @@
 # Strength Testing
 
-Engine 0.11.0 is a RPSC-specific decision/search release. Current evidence supports correctness, stable board-search behavior, and stronger allocation of computation across item/order decisions; it is not an Elo estimate.
+Engine 0.12.0 is an RPSC-specific search/evaluation release. The evidence below is intended to measure practical search progress and correctness; it is not an Elo estimate.
 
-## Board-search control
+## Draft 31 baseline vs Draft 32
 
-The native no-item depth-4 `bench` remains a useful fixed control because Draft 31 intentionally does not manufacture a board-strength delta by retuning unrelated evaluation terms. In the current Release environment Engine 0.11.0 searches 196,968 nodes from the initial position and selects the established best root move.
+The fixed no-item depth-4 control was repeated seven times for each build in the same Release environment.
 
-Any future board-search patch should first demonstrate that it does not regress this control or the exact/perft suite.
+- Engine 0.11.0: 196,968 nodes; median 1,042 ms; established best root `W1: a1-a2-a3-b3`.
+- Engine 0.12.0 candidate: about 212k nodes; median 858 ms; the established best root is preserved.
 
-## Decision-search development
+The node count changes because Draft 32 also changes the leaf ordering/evaluation signal. The useful measurement is that the fixed-depth control is materially faster while all exact/perft regressions still pass. This does not by itself prove game strength.
 
-Draft 29 divided a finite Item Choice budget equally among three independent probes and a finite Initial Decision budget equally among six probes. Draft 31 retains the finite-budget policy introduced in Draft 30 without removing any candidate:
+The more relevant item-rich timed control is the initial position with both sides holding `Pu/Ro/St = 1/1/1`, MultiPV 3:
 
-- Item Choice screens all 3 candidates, then refines the ranked candidates with 25% / 18% / 12% of the total budget after the 45% screening stage.
-- Initial Decision screens all 6 candidates, then refines the top 3 with 24% / 16% / 12% after the 48% screening stage.
-- the transposition table is shared throughout each decision;
-- fixed-depth diagnostics continue to compare every candidate at equal requested depth.
+- Engine 0.11.0, 10 s: last completed iteration depth 2.
+- Engine 0.12.0, 10 s: last completed iteration depth 3 in the current verification environment.
 
-A 10-second native `chooseinitial` smoke reached depth 3 on the strongest branches and produced legal continuations containing actual item use. This is evidence that the available decision budget is being spent on deeper plausible alternatives, not a statistical game-strength claim.
+This is the main practical reason for keeping the Draft 32 search-allocation changes: the same analysis budget reaches one additional completed nominal depth in a position whose reduced root has 427 successors.
 
+## Search changes retained in Draft 32
 
-## Draft 31 RPSC-specific search changes
+1. **Allocation-free search-generation scratch.** Partial Roll-state marks and the reduced final-successor dedup table are reused per search thread. The exhaustive canonical generator remains unchanged.
+2. **TT move before full materialization.** When a legal TT move is available but the stored bound cannot already cut, it is searched before generating/sorting the full compound move set. A cutoff avoids that work completely.
+3. **Root progressive widening.** At depth 3+, each action family receives a full-depth quota before late quiet candidates are searched one ply shallower. Any candidate that challenges alpha is verified at full depth. Captures are not root-reduced; Push/Rotation/Step are represented as distinct families rather than hidden behind one generic item flag.
+4. **RPSC geometric leaf signal.** A precomputed empty-board reduced reach profile gives a small orientation/square mobility term and a small marginal action-diversity term for each available item family. The official score remains dominant, and actual item use is still decided by alpha-beta continuation rather than a fixed `Pu > Ro > St` rule.
+5. **Existing selective safeguards remain.** Score-changing captures receive bounded extension; broad quiet-threat quiescence remains rejected; the deepest inner LMR remains restricted to non-item quiet actions.
 
-Draft 31 changes search semantics only where the game supplies a defensible signal. Confirmed Quiz points contribute exactly one RPSC score unit each; captures remain two units. Future Quiz is symmetric and creates no items. A finite remaining-board-ply counter makes endgame resource conservation measurable: unused item reserve is tapered as available board plies disappear, and at zero remaining plies only official score/tie-break matter.
+## Decision search
 
-Quiet item actions remain eligible for LMR, because exempting every item move causes a large branching penalty. However, the deepest two-ply late-move reduction is now restricted to non-item quiet actions. Push/Rotation/Step continuations can still be reduced by one ply when unpromising, but they receive an extra chance to prove tactical or orientation value within the same fixed time budget. This is a targeted search-allocation change, not an Elo claim.
+Item Choice still compares all `Push / Rotation / Step` branches. Initial Decision still compares all six `First/Second x Push/Rotation/Step` branches. Every candidate is screened, the strongest candidates receive refinement, and the TT is shared. Draft 32 benefits from the faster board search and item-aware leaf signal but does not falsely describe these probes as one monolithic root tree.
 
-## Rejected strength patch
+## Promotion controls
 
-A broader quiet-threat quiescence experiment was tested during Draft 30 work. In the initial no-item depth-4 control it increased the search from roughly 197k nodes / about 1.2 s to roughly 380k nodes / about 5.5 s in the development environment without sufficient tactical/playing evidence to justify the cost. It was removed rather than shipped on theoretical appeal alone.
+Any later strength patch should be tested against at least:
 
-The same rule applies to future RPSC features: keep them only after rule regression and relevant strength evidence.
+1. fixed no-item symmetric (`Q[0, 0]`) board search;
+2. fixed symmetric positions with preset item inventories;
+3. asymmetric inventories and confirmed Match Context;
+4. fixed Quiz scripts, identical for compared engines;
+5. Push-, Rotation-, Step-, capture/recapture-, Reset-, last-piece-, and late-round tactical positions;
+6. paired self-play/order assignments before any Elo-style claim.
 
-## Promotion tests for future strength patches
-
-1. fixed `Q[0, 0]` no-item control to isolate core board-search changes;
-2. fixed `Q[0, 0]` with preset/asymmetric inventories to isolate item use and conservation;
-3. fixed Quiz scripts, identical for compared engines, to test item acquisition plus later use without asking either engine to predict Quiz Results;
-4. Push-, Rotation-, Step-, horizon-, Reset-, and late-round tactical regression positions;
-5. paired starts/order assignments and larger samples before any Elo/strength claim.
-
-The long-term target is not generic chess-engine strength. It is stronger RPSC decisions under the game's exact Roll-path, orientation, item-economy, combat, and Quiz-driven phase structure.
+The target is not generic chess-engine strength. It is stronger decisions under RPSC's exact Roll paths, cube orientation, item economy, combat/Reset, finite rounds, and Quiz-driven action phases.
