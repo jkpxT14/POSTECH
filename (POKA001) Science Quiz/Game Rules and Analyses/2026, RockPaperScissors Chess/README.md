@@ -1,6 +1,6 @@
 # 2026, RockPaperScissors Chess
 
-2026 POSTECH-KAIST Science War Science Quiz game handbook, Analysis Board, and classical RPSC Engine.
+2026 KAIST-POSTECH Science War Science Quiz game handbook, Analysis Board, and classical RPSC Engine.
 
 ## Files
 
@@ -13,9 +13,19 @@
 
 The official Science Quiz rules and final RockPaperScissors Chess plan define the game. The exact 24-orientation physical cube model is authoritative; Gesture States are derived analysis/search information. Quiz Results are always user input.
 
-Build: Draft 34 (2026-09-02 KST)
+Build: Draft 35 (2026-09-02 KST)
 
-Source base: Draft 33 / Engine 0.13.0, preserving the established project structure, rule model, Analysis Board, and Engine.
+Source base: GitHub `main` at `b8ef4862a4acfc69057dab2099dafa18563ba2a1` (Draft 34 / Engine 0.13.0).
+
+## Draft 35
+
+Draft 35 is a presentation and cross-project consistency update on top of the current GitHub Draft 34 source. The RPSC rule implementation, Analysis Board behavior, and Engine 0.13.0 search/game logic are intentionally unchanged.
+
+- 2026-specific competition naming is normalized to the away-home order: `KAIST-POSTECH` in English and `카포전` in Korean.
+- Korean `포항공과대학교` references in `Acknowledgements` now use the established POSTECH RED institutional treatment while names, departments, and roles remain black.
+- `Games` is reflowed as a continuous, page-breakable game-record section instead of forcing one game per page; the three canonical records themselves are unchanged.
+- The handbook's structural headings remain English and its descriptive content remains Korean.
+- The handbook, Analysis Board, and Engine were re-audited as one RPSC system for established notation and non-deferred rules; no rule behavior is changed in this draft.
 
 ## Draft 34
 
