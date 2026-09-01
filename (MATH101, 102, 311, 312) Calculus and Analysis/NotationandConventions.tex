@@ -1,6 +1,6 @@
 \preliminarypart{Notation and Conventions}
 
-General mathematical notation and writing follow \textit{(MATH000) Mathematical Language}. The conventions below record only notation specific to calculus and analysis used in this book.
+General mathematical notation and writing follow \textit{(MATH000) Mathematical Language}. The conventions below record only notation specific to calculus and analysis used in this book. When several equivalent notations are listed, the first form is used throughout.
 
 \notationheading{Single-Variable Calculus}
 
@@ -8,6 +8,8 @@ The differential $\dd$ is upright, and $\varepsilon$ is the default small positi
 
 \begin{notationtable}
 $\displaystyle\lim_{x\to a} f(x)$ & limit as $x$ approaches $a$ \\
+$\displaystyle\lim_{x\to a^-} f(x)$ & left-hand limit as $x$ approaches $a$ \\
+$\displaystyle\lim_{x\to a^+} f(x)$ & right-hand limit as $x$ approaches $a$ \\
 $\min A$ & minimum of $A$ \\
 $\max A$ & maximum of $A$ \\
 $\inf A$ & infimum of $A$ \\
@@ -16,16 +18,45 @@ $f'(a)$ & first derivative of $f$ at $a$ \\
 $f^{(n)}(a)$ & $n$th derivative of $f$ at $a$ \\
 $\displaystyle\frac{\dd y}{\dd x}$ & derivative of $y$ with respect to $x$ \\
 $\displaystyle\int_a^b f(x)\,\dd x$ & definite integral over $[a,b]$ \\
+\end{notationtable}
+
+\notationheading{Elementary Functions}
+
+\begin{notationtable}
+$e^x,\ \exp x$ & exponential function \\
 $\ln x,\ \log_e x$ & logarithm to base $e$ \\
 $\lg x,\ \log_{10}x$ & logarithm to base $10$ \\
 $\lb x,\ \log_2x$ & logarithm to base $2$ \\
 $\log_a x$ & logarithm to base $a$ \\
-$\arcsin x$ & principal inverse sine \\
-$\arccos x$ & principal inverse cosine \\
-$\arctan x$ & principal inverse tangent \\
-$\arcsec x$ & principal inverse secant \\
-$\arccsc x$ & principal inverse cosecant \\
-$\arccot x$ & principal inverse cotangent \\
+\addlinespace[0.26em]
+$\sin x$ & sine \\
+$\cos x$ & cosine \\
+$\tan x$ & tangent \\
+$\csc x$ & cosecant \\
+$\sec x$ & secant \\
+$\cot x$ & cotangent \\
+\addlinespace[0.26em]
+$\arcsin x,\ \sin^{-1}x$ & principal inverse sine \\
+$\arccos x,\ \cos^{-1}x$ & principal inverse cosine \\
+$\arctan x,\ \tan^{-1}x$ & principal inverse tangent \\
+$\arccsc x,\ \csc^{-1}x$ & principal inverse cosecant \\
+$\arcsec x,\ \sec^{-1}x$ & principal inverse secant \\
+$\arccot x,\ \cot^{-1}x$ & principal inverse cotangent \\
+\addlinespace[0.26em]
+$\sinh x$ & hyperbolic sine \\
+$\cosh x$ & hyperbolic cosine \\
+$\tanh x$ & hyperbolic tangent \\
+$\csch x$ & hyperbolic cosecant \\
+$\sech x$ & hyperbolic secant \\
+$\coth x$ & hyperbolic cotangent \\
+\addlinespace[0.26em]
+$\begin{aligned} &\arcsinh x,\ \arsinh x,\\ &\sinh^{-1}x\end{aligned}$ & principal inverse hyperbolic sine \\
+$\begin{aligned} &\arccosh x,\ \arcosh x,\\ &\cosh^{-1}x\end{aligned}$ & principal inverse hyperbolic cosine \\
+$\begin{aligned} &\arctanh x,\ \artanh x,\\ &\tanh^{-1}x\end{aligned}$ & principal inverse hyperbolic tangent \\
+$\begin{aligned} &\arccsch x,\ \arcsch x,\\ &\csch^{-1}x\end{aligned}$ & principal inverse hyperbolic cosecant \\
+$\begin{aligned} &\arcsech x,\ \arsech x,\\ &\sech^{-1}x\end{aligned}$ & principal inverse hyperbolic secant \\
+$\begin{aligned} &\arccoth x,\ \arcoth x,\\ &\coth^{-1}x\end{aligned}$ & principal inverse hyperbolic cotangent \\
+\addlinespace[0.26em]
 $\Gamma(z)$ & Gamma function \\
 \end{notationtable}
 
