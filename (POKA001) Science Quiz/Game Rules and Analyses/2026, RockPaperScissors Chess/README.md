@@ -13,26 +13,22 @@
 
 The official Science Quiz rules and final RockPaperScissors Chess plan define the game. The exact 24-orientation physical cube model is authoritative; Gesture States are derived analysis/search information. Quiz Results are always user input.
 
-Build: Draft 32 (2026-09-01 KST)
+Build: Draft 33 (2026-09-02 KST)
 
-Source base: Draft 31 / Engine 0.11.0, preserving the established project structure.
+Source base: Draft 32 / Engine 0.12.0, preserving the established project structure and rule model.
 
-## Draft 32
+## Draft 33
 
-Draft 32 advances the native Engine to 0.12.0. The main goal is practical RPSC analysis strength under the existing 10-second normal / 20-second Analyze workflow, without changing the official rules or the established notation/UI structure.
+Draft 33 advances the native Engine to 0.13.0 and makes the Analysis Board a resumable analysis workspace without changing the official rule model.
 
-- The official dice-net remains hard-anchored: horizontal `P-S-P-S`, with Rock immediately above and below the left-hand `S`. Rotation remains an in-place 90-degree turn around the board-vertical axis with square/top fixed.
-- Search move generation reuses fixed scratch storage for partial-state and reduced-successor deduplication instead of repeatedly allocating large temporary tables on the hot path.
-- A shallow TT move can be searched before the complete compound-move set is materialized; a cutoff can therefore avoid unnecessary Roll-path generation and sorting.
-- Root search now uses conservative progressive widening / verification LMR across Normal, Push, Rotation, and Step families. Every family receives full-depth candidates before late quiet actions are reduced; any reduced candidate that challenges alpha is re-searched at full depth.
-- The leaf evaluator remains score-first but adds a small RPSC-specific geometric reach signal. Item reserve value is no longer completely type-blind: Push, Rotation, and Step receive a cheap position-dependent latent value based on how many additional reduced Roll outcomes the item can create from the current pieces. The search, not a fixed item hierarchy, still decides whether an item should be acquired, conserved, or used.
-- In the current verification environment, the native depth-4 no-item control has a median wall time of about 0.86 s versus about 1.04 s for Draft 31, while preserving the established best root move. This is a throughput/control result, not an Elo claim.
-- More importantly for practical analysis, the symmetric initial item-rich 10-second control (`Pu/Ro/St = 1/1/1` for both sides) completes depth 3 in Draft 32; Draft 31 completed depth 2 in the same environment.
-- The browser Worker mirrors the item-aware geometric evaluation and root progressive-widening policy while retaining its exhaustive canonical generator and reduced search cache.
-- Engine results now appear progressively at completed iterations. Board Analysis keeps the current Top 3 visible while displaying `Analyzing` / `Deepening`, elapsed target time, Depth/SelDepth, nodes, and NPS. `Analyze` continues the same decision toward a total of about 20 seconds instead of presenting a visually separate analysis.
-- Item Choice and Initial Decision also publish stable intermediate rankings after their complete screening stage and subsequent refinement passes, rather than appearing only at the end.
-- Candidate 1 receives only restrained emphasis; selected Candidate Moves remain tied to the existing non-destructive Roll-by-Roll preview. The board-first design is otherwise preserved.
-- Confirmed Quiz score/items remain part of Match Context. Unplayed Quiz is still treated symmetrically (`Q[1, 1]` / `Q[0, 0]`), so the Engine never predicts a future Quiz winner or invents a future item.
+- `.rpsc` Format 2 saves incomplete confirmed positions as well as completed rounds. Equal Quiz-only records restore White-to-move; equal Quiz plus a White move restores Black-to-move; solo-correct Quiz-only records restore the pending Item Choice.
+- A Format 2 session preserves the full Main Line/Variation tree, current variation node, exact cube orientations, score, inventories, order, and phase. Unconfirmed previews/drafts are deliberately excluded.
+- The readable Game Record remains authoritative. If the Main Line is edited externally and no longer matches the session payload, stale session metadata is ignored and the body is replayed; Score/Quiz/Captures are recomputed from that replay. Legacy flat Draft 32 `.rpsc` records remain loadable.
+- Native Engine 0.13 keeps history, capture-history, continuation/follow-up, and countermove information across related searches and decision probes. It also caches the previous completed root ranking for the same exact search key and reuses it for first-iteration move ordering.
+- The browser Worker likewise carries a completed root ranking into later iterations and the normal 10-second → Analyze 20-second continuation, while completed iterations remain authoritative.
+- Draft 32's exact move generator, root progressive widening, geometric reach/item signal, Match Context model, and conservative completed-iteration behavior are retained. These changes improve search allocation and continuity; they are not an Elo or best-move guarantee.
+- All twelve Basic/Push/Rotation/Step reference movement figures, the official dice net, and the initial placement are rechecked against the same exact orientation/rule model during release verification.
+- Timeout handling and the unresolved Push-followed-by-return-to-the-pre-Push-square clarification are intentionally unchanged pending official confirmation.
 
 ## Shared language
 

@@ -2,7 +2,7 @@
 
 `rpsc-engine` is the native classical search Engine for RockPaperScissors Chess.
 
-Version: 0.12.0
+Version: 0.13.0
 
 ## Scope
 
@@ -43,13 +43,13 @@ Two generators are deliberately retained:
 1. `generate_legal_moves` is exhaustive and authoritative for legality, canonical full paths, notation, exact successor checks, and perft.
 2. the search generator merges equivalent partial Roll states using square, reduced cube state, remaining Rolls, previous direction, and item context while retaining a representative legal full path.
 
-Draft 32 reuses thread-local fixed scratch storage for the partial-state marks and reduced final-successor dedup table, removing repeated large temporary allocations from the hot search path.
+Draft 32 introduced thread-local fixed scratch storage for the partial-state marks and reduced final-successor dedup table, removing repeated large temporary allocations from the hot search path.
 
 ## Evaluation
 
 Official score dominates the evaluation: confirmed Quiz is one score unit and each capture is two. At zero remaining board plies, only the official score and Quiz-count tie-break remain.
 
-Before that terminal point, small positional terms estimate alive-piece balance and mobility. Draft 32 adds an RPSC-specific geometric reach table: for every square/exact orientation it precomputes obstacle-free reduced outcomes for Normal play and the additional outcomes enabled by Push, Rotation, and Step. This supplies two deliberately small horizon signals:
+Before that terminal point, small positional terms estimate alive-piece balance and mobility. Draft 32 introduced an RPSC-specific geometric reach table: for every square/exact orientation it precomputes obstacle-free reduced outcomes for Normal play and the additional outcomes enabled by Push, Rotation, and Step. This supplies two deliberately small horizon signals:
 
 - square/orientation Roll reach for each alive piece;
 - marginal action diversity of each item family currently held.
@@ -68,12 +68,14 @@ This is not a fixed item hierarchy. The actual alpha-beta tree still decides whe
 - root MultiPV from completed iterations
 - completed iteration remains authoritative at a time cutoff
 
-Draft 32 adds two search-allocation changes aimed at RPSC's large compound branching:
+Draft 32 introduced two search-allocation changes aimed at RPSC's large compound branching:
 
 1. a legal TT move is searched before full compound-move materialization when the stored bound cannot already cut; a TT cutoff can therefore skip path generation/sorting entirely;
 2. root progressive widening / verification LMR at depth 3+: Normal, Push, Rotation, and Step each receive a full-depth quota, then late quiet candidates may be searched one ply shallower. Any candidate that challenges alpha is re-searched at full depth. Captures are not root-reduced.
 
 Broad quiet-threat quiescence remains rejected because prior experiments roughly doubled search work without sufficient playing evidence.
+
+Draft 33 / Engine 0.13 adds search continuity on top of that rule/search base. History, capture-history, continuation/follow-up, and countermove tables live with the Engine search object instead of being recreated for every `go`, Item Choice, or Initial Decision probe. For an unchanged exact root search key, the last completed root ranking is also cached and used to seed the next root ordering. `newgame` and `clear` reset this learned search memory. These are ordering/allocation aids only; they do not alter legality or evaluation semantics.
 
 ## Decision search
 
@@ -99,6 +101,6 @@ Normal Board Analysis targets about 10 seconds. `Analyze` continues the same dec
 
 ## Testing and strength
 
-Release tests cover official-net anchoring, 24 exact orientations, Rotation/Roll inverses, exact/reduced successor counts, perft, item lengths/consumption, make/undo, notation, generator equivalence, tactical generation, MultiPV, Match Context, Item Choice, Initial Decision, and the Draft 32 item-aware evaluation symmetry check.
+Release tests cover official-net anchoring, 24 exact orientations, Rotation/Roll inverses, exact/reduced successor counts, perft, item lengths/consumption, make/undo, notation, generator equivalence, tactical generation, MultiPV, Match Context, Item Choice, Initial Decision, and the item-aware evaluation symmetry check, persistent-search-memory reset behavior, and root-search regression controls.
 
-Engine 0.12.0 is not presented as an Elo result. In the current verification environment, the fixed no-item depth-4 control is materially faster than Engine 0.11.0, and the item-rich 10-second MultiPV control completes depth 3 where Draft 31 completed depth 2. See `StrengthTesting.md` and `Verification.md`.
+Engine 0.13.0 is not presented as an Elo result or a guarantee that a 10/20-second search has found the global best move. Draft 33 retains the measured Draft 32 controls and adds continuity intended to spend repeated analysis budgets more effectively. See `StrengthTesting.md` and `Verification.md`.

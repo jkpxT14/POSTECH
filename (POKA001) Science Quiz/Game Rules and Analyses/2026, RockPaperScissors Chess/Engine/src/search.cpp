@@ -72,13 +72,20 @@ struct Search::Context {
     std::uint64_t nodes = 0;
     Depth seldepth = 0;
     bool stopped = false;
-    std::vector<int> history = std::vector<int>(HistoryMoveSlots, 0);
-    std::vector<int> capture_history = std::vector<int>(HistoryMoveSlots, 0);
+    std::vector<int>& history;
+    std::vector<int>& capture_history;
     std::array<std::array<Move, 2>, MaxPly> killers{};
-    std::unordered_map<std::size_t, Move> countermoves;
-    std::unordered_map<std::uint64_t, int> continuation;
-    std::unordered_map<std::uint64_t, int> followup;
+    std::unordered_map<std::size_t, Move>& countermoves;
+    std::unordered_map<std::uint64_t, int>& continuation;
+    std::unordered_map<std::uint64_t, int>& followup;
     std::unordered_map<Key, std::uint8_t> pressure_cache;
+
+    explicit Context(Search& search)
+        : history(search.history_),
+          capture_history(search.capture_history_),
+          countermoves(search.countermoves_),
+          continuation(search.continuation_),
+          followup(search.followup_) {}
 
     bool should_stop() {
         if (stopped) return true;
@@ -185,7 +192,19 @@ struct Search::Context {
     }
 };
 
-Search::Search(TranspositionTable& tt) : tt_(tt) {}
+Search::Search(TranspositionTable& tt)
+    : tt_(tt),
+      history_(HistoryMoveSlots, 0),
+      capture_history_(HistoryMoveSlots, 0) {}
+
+void Search::clear_memory() {
+    std::fill(history_.begin(), history_.end(), 0);
+    std::fill(capture_history_.begin(), capture_history_.end(), 0);
+    countermoves_.clear();
+    continuation_.clear();
+    followup_.clear();
+    root_cache_.clear();
+}
 
 Value Search::quiescence(Position& position, Value alpha, Value beta, int ply, Context& context) {
     if (position.remaining_board_plies() == 0) return evaluate(position);
@@ -431,7 +450,7 @@ Value Search::negamax(Position& position, Depth depth, Value alpha, Value beta, 
 
 SearchResult Search::run(Position root, const SearchLimits& limits) {
     tt_.new_search();
-    Context context;
+    Context context(*this);
     context.limits = limits;
     context.limits.multipv = std::clamp(context.limits.multipv, 1, 8);
     context.start = std::chrono::steady_clock::now();
@@ -474,9 +493,24 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
         std::vector<RootLine> scores;
     };
 
+    const Key root_key = root.search_key();
     std::vector<RootLine> prior_scores;
+    if (const auto found = root_cache_.find(root_key); found != root_cache_.end()) {
+        prior_scores = found->second;
+    }
     Move previous_best = root_moves.front();
     Value previous_value = 0;
+    if (!prior_scores.empty()) {
+        const auto legal_cached = std::find_if(
+            prior_scores.begin(), prior_scores.end(),
+            [&](const RootLine& line) {
+                return std::find(root_moves.begin(), root_moves.end(), line.move) != root_moves.end();
+            });
+        if (legal_cached != prior_scores.end()) {
+            previous_best = legal_cached->move;
+            previous_value = legal_cached->value;
+        }
+    }
 
     auto search_root = [&](Depth depth, Value alpha, Value beta,
                            const std::vector<Move>& excluded, const Move& preferred) {
@@ -637,6 +671,11 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
                 excluded.push_back(pass.best);
             }
         }
+    }
+
+    if (result.has_move && !prior_scores.empty()) {
+        root_cache_[root_key] = prior_scores;
+        if (root_cache_.size() > 128) root_cache_.clear();
     }
 
     result.nodes = context.nodes;

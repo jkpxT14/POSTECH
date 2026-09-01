@@ -60,6 +60,7 @@ class Engine {
    private:
     Position position_;
     TranspositionTable tt_;
+    Search search_;
 };
 
 }  // namespace rpsc

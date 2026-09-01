@@ -1,6 +1,6 @@
 # Verification
 
-Draft 32 / Engine 0.12.0 is verified as one RPSC handbook / Analysis Board / native Engine package. Rule correctness is a release blocker; search improvements are accepted only on top of the exact rule model.
+Draft 33 / Engine 0.13.0 is verified as one RPSC handbook / Analysis Board / native Engine package. Rule correctness is a release blocker; search improvements are accepted only on top of the exact rule model.
 
 ## Native rule regression
 
@@ -22,19 +22,22 @@ Initial position with both sides holding Push/Rotation/Step = 1/1/1 remains:
 
 The suite checks the official dice-net anchor (`P-S-P-S` horizontally with Rock above/below the left-hand S), all 24 exact orientations, Roll/Rotation inverses, Rotation top-face invariance, exact-vs-reduced transition equivalence, Push/Rotation/Step Roll lengths, inventory consumption/undo, notation round trips, key restoration, exhaustive-vs-optimized successor equality, tactical-generator equality, MultiPV distinctness, Match Context make/undo, Item Choice non-mutation, and all six Initial Decision branches.
 
-Draft 32 adds an evaluation regression: the symmetric initial Match Context evaluates to zero, each White item family has positive reserve value, at least two item families are distinguished by the current geometric action-diversity heuristic, and the mirrored Black inventory reverses the sign.
+The retained Draft 32 evaluation regression checks that the symmetric initial Match Context evaluates to zero, each White item family has positive reserve value, at least two item families are distinguished by the current geometric action-diversity heuristic, and the mirrored Black inventory reverses the sign.
+
+The twelve Basic/Push/Rotation/Step movement diagrams are also machine-checked against the same exact cube transform used by the Analysis Board: all legal no-immediate-backtrack Roll words are enumerated on an unbounded reference grid, with Push translation, Rotation preprocessing, and Step Short/Long handled according to their actual movement semantics. All twelve TeX endpoint Gesture sets match exactly. The DiceNet and InitialPosition sources independently match the official `P-S-P-S`/Rock anchor and W1/W2/W3/W4 = S/R/P/S at a1/c1/e1/g1 with the mirrored Black setup.
 
 ## Native build / protocol
 
 Required clean smoke:
 
-- identity `RPSC Engine 0.12`;
+- identity `RPSC Engine 0.13`;
 - `perft 2` = 25,575;
 - `chooseinitial` returns six ranked legal Order+Item branches;
 - `chooseitem W` returns three ranked legal item branches;
 - item-rich `go ... multipv 3` returns three distinct recommendations and legal PVs;
 - fixed depth-4 bench preserves the established best root;
-- item-rich 10-second control completes depth 3 in the current verification environment.
+- item-rich 10-second control completes depth 3 in the current verification environment;
+- a consecutive 20-second item-rich control also completes depth 3 (3,898,369 nodes), so no stronger depth/optimality claim is made.
 
 ## Browser regression
 
@@ -49,12 +52,20 @@ The browser keeps an exhaustive canonical generator and a reduced Worker search.
 - Analyze continues the same decision toward about 20 total seconds, preserving the earlier completed result while deepening;
 - Item Choice and Initial Decision can display screened/refined partial rankings before completion;
 - no page/console errors.
+- Format 2 save/load restores incomplete confirmed phases, the full Variation tree, and the current sub-line node;
+- stale Format 2 metadata is rejected when the readable Main Line has been edited, with replayed body state authoritative over Score/Quiz/Captures headers;
+- legacy Draft 32 flat `.rpsc` records remain loadable;
+- unconfirmed move preview/draft frames are excluded from saved session state.
 
-The Worker mirrors Draft 32's small geometric reach/item signal and root progressive-widening policy. The native C++ implementation remains authoritative for engine-development controls.
+The Worker mirrors Draft 32's small geometric reach/item signal and root progressive-widening policy, and Draft 33 carries the previous completed root ranking across related deepening/Analyze searches. The native C++ implementation remains authoritative for engine-development controls.
 
 ## Notation and Match Context
 
 Compact Quiz variants such as `Q[1,1]` are rejected in package checks. Confirmed Quiz points/current inventories are real Match Context. Future Quiz is not predicted; remaining Quiz is treated symmetrically (`Q[1, 1]` / `Q[0, 0]`) and creates no unearned item.
+
+## Deferred rule clarifications
+
+Draft 33 intentionally does not add timeout adjudication and does not change the current Push-followed-by-first-Roll return behavior. Those two rule points remain frozen until official confirmation is supplied.
 
 ## Packaging
 

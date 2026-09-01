@@ -3,6 +3,7 @@
 
 #include <chrono>
 #include <cstdint>
+#include <unordered_map>
 #include <vector>
 
 #include "evaluate.h"
@@ -40,9 +41,16 @@ class Search {
    public:
     explicit Search(TranspositionTable& tt);
     SearchResult run(Position position, const SearchLimits& limits);
+    void clear_memory();
 
    private:
     TranspositionTable& tt_;
+    std::vector<int> history_;
+    std::vector<int> capture_history_;
+    std::unordered_map<std::size_t, Move> countermoves_;
+    std::unordered_map<std::uint64_t, int> continuation_;
+    std::unordered_map<std::uint64_t, int> followup_;
+    std::unordered_map<Key, std::vector<RootLine>> root_cache_;
     struct Context;
     Value negamax(Position& position, Depth depth, Value alpha, Value beta, int ply,
                   Context& context, bool pv_node, const Move* previous_move,
