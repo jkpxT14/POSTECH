@@ -88,19 +88,19 @@
     \begin{formula}[De Morgan's Laws]
         For subsets $A,B\subseteq U$, we have
         \[
-            (A\cup B)^{\mathsf c}=A^{\mathsf c}\cap B^{\mathsf c},
+            (A\cup B)^c=A^c\cap B^c,
             \qquad
-            (A\cap B)^{\mathsf c}=A^{\mathsf c}\cup B^{\mathsf c}.
+            (A\cap B)^c=A^c\cup B^c.
         \]
         More generally,
         \[
-            \left(\bigcup_{i\in I}A_i\right)^{\mathsf c}
+            \left(\bigcup_{i\in I}A_i\right)^c
             =
-            \bigcap_{i\in I}A_i^{\mathsf c},
+            \bigcap_{i\in I}A_i^c,
             \qquad
-            \left(\bigcap_{i\in I}A_i\right)^{\mathsf c}
+            \left(\bigcap_{i\in I}A_i\right)^c
             =
-            \bigcup_{i\in I}A_i^{\mathsf c}.
+            \bigcup_{i\in I}A_i^c.
         \]
     \end{formula}
 
@@ -116,13 +116,13 @@
     \end{definition}
 
     \begin{definition}[Function]
-        A function $f:X\to Y$ assigns to each element $x\in X$ a unique element
+        A function $f\colon X\to Y$ assigns to each element $x\in X$ a unique element
         $f(x)\in Y$. The set $X$ is the domain, and $Y$ is the codomain. The
         notation $x\mapsto f(x)$ describes the rule on elements.
     \end{definition}
 
     \begin{definition}[Injection, Surjection, and Bijection]
-        A function $f:X\to Y$ is injective if distinct elements of $X$ have
+        A function $f\colon X\to Y$ is injective if distinct elements of $X$ have
         distinct images. Equivalently,
         \[
             \forall x_1,x_2\in X,
@@ -130,7 +130,7 @@
             f(x_1)=f(x_2)\Rightarrow x_1=x_2.
         \]
         Once injectivity has been established, one may write
-        $f:X\hookrightarrow Y$.
+        $f\colon X\hookrightarrow Y$.
 
         The function is surjective if every element of $Y$ has a preimage:
         \[
@@ -139,13 +139,13 @@
             \exists x\in X\ \text{s.t.}\ f(x)=y.
         \]
         Once surjectivity has been established, one may write
-        $f:X\twoheadrightarrow Y$. The function is bijective if it is both
+        $f\colon X\twoheadrightarrow Y$. The function is bijective if it is both
         injective and surjective.
     \end{definition}
 
     \begin{proposition}[Finite Injective-Surjective Criterion]
         If $X$ and $Y$ are finite sets with $|X|=|Y|$, then for a function
-        $f:X\to Y$, the following are equivalent:
+        $f\colon X\to Y$, the following are equivalent:
         \[
             f\text{ is injective}
             \quad\Longleftrightarrow\quad
@@ -156,7 +156,7 @@
     \end{proposition}
 
     \begin{proposition}[Inverse Image Preserves Set Operations]
-        If $f:X\to Y$ and $A,B\subseteq Y$, then
+        If $f\colon X\to Y$ and $A,B\subseteq Y$, then
         \[
             f^{-1}(A\cup B)=f^{-1}(A)\cup f^{-1}(B),
         \]
@@ -224,9 +224,9 @@
 
     \begin{definition}[Countability]
         A set $A$ is countable if it is finite or if there exists a bijection
-        $f:A\to\N$. In the countably infinite case,
+        $f\colon A\to\N$. In the countably infinite case,
         \[
-            \exists f:A\xrightarrow{\sim}\N,
+            \exists f\colon A\xrightarrow{\sim}\N,
             \qquad
             |A|=|\N|=\aleph_0.
         \]
@@ -270,10 +270,10 @@
     \end{definition}
 
     \begin{theorem}[Schr\"oder--Bernstein Theorem; Cantor--Bernstein Theorem]
-        If there exists an injection $f:A\hookrightarrow B$ and an injection
-        $g:B\hookrightarrow A$, then there exists a bijection
+        If there exists an injection $f\colon A\hookrightarrow B$ and an injection
+        $g\colon B\hookrightarrow A$, then there exists a bijection
         \[
-            h:A\xrightarrow{\sim}B.
+            h\colon A\xrightarrow{\sim}B.
         \]
         Thus two sets have the same cardinality once each can be embedded into
         the other.
@@ -326,7 +326,7 @@
     \section*{One-Variable Calculus}
 
     \begin{definition}[Sequence, Series, and Partial Sum]
-        A sequence is a function $a:\N\to\R$ or $a:\N\to\C$, usually written
+        A sequence is a function $a\colon \N\to\R$ or $a\colon \N\to\C$, usually written
         $(a_n)$. A series is the formal sum
         \[
             \sum_{n=1}^{\infty}a_n,
@@ -493,7 +493,7 @@
 
     \begin{definition}[Limit of a Function; Epsilon--Delta Definition]
         Let $D\subseteq\R$, let $a$ be an accumulation point of $D$, and let
-        $f:D\to\R$. The statement
+        $f\colon D\to\R$. The statement
         \[
             \lim\limits_{x\to a}f(x)=L
         \]
@@ -568,7 +568,7 @@
     \end{theorem}
 
     \begin{definition}[Continuity at a Point]
-        Let $f:D\to\R$ and $a\in D$. The function $f$ is continuous at $a$ if
+        Let $f\colon D\to\R$ and $a\in D$. The function $f$ is continuous at $a$ if
         \[
             \lim\limits_{x\to a}f(x)=f(a).
         \]
@@ -975,7 +975,7 @@
     \end{theorem}
 
     \begin{theorem}[Derivative of an Inverse Function]
-        Let $I\subseteq\R$ be an interval, let $f:I\to\R$ be one-to-one, and
+        Let $I\subseteq\R$ be an interval, let $f\colon I\to\R$ be one-to-one, and
         suppose that $f$ is differentiable at an interior point $x_0\in I$ with
         $f'(x_0)\neq0$. If the inverse $g=f^{-1}$ is continuous at
         $y_0=f(x_0)$, then $g$ is differentiable at $y_0$ and
@@ -987,7 +987,7 @@
     \end{theorem}
 
     \begin{definition}[Riemann Integral]
-        Let $f:[a,b]\to\R$ be bounded. For a partition
+        Let $f\colon [a,b]\to\R$ be bounded. For a partition
         \[
             P:\quad a=x_0<x_1<\cdots<x_n=b,
         \]
@@ -1304,7 +1304,7 @@
     \end{formula}
 
     \begin{theorem}[Leibniz Integral Rule; Differentiation under the Integral Sign]
-        Let $I$ be an open interval, let $a,b:I\to\R$ be continuously
+        Let $I$ be an open interval, let $a,b\colon I\to\R$ be continuously
         differentiable, and suppose that $f$ and $\partial f/\partial t$ are
         continuous on
         \[
@@ -1331,7 +1331,7 @@
     \end{tactic}
 
     \begin{formula}[Frullani's Integral]
-        Let $f:[0,\infty)\to\R$ be continuous, suppose that the finite limits
+        Let $f\colon [0,\infty)\to\R$ be continuous, suppose that the finite limits
         $f(0)$ and $f(\infty)\coloneqq\lim\limits_{x\to\infty}f(x)$ exist, and assume
         that the improper integral below converges. For $a,b>0$,
         \[
@@ -1953,8 +1953,8 @@
     \end{definition}
 
     \begin{definition}[Scalar Field, Vector Field, and Partial Derivative]
-        A scalar field on $U\subseteq\R^n$ is a function $f:U\to\R$, while a
-        vector field is a function $\mathbf{F}:U\to\R^m$. For a scalar-valued
+        A scalar field on $U\subseteq\R^n$ is a function $f\colon U\to\R$, while a
+        vector field is a function $\mathbf{F}\colon U\to\R^m$. For a scalar-valued
         function $f(x_1,\dots,x_n)$, the partial derivative with respect to
         $x_i$ is the one-variable derivative obtained by varying $x_i$ while
         holding the other variables fixed:
@@ -2032,7 +2032,7 @@
     \end{theorem}
 
     \begin{definition}[Jacobian Matrix and Jacobian Determinant]
-        Let $\mathbf{F}:U\subseteq\R^n\to\R^m$ have component functions
+        Let $\mathbf{F}\colon U\subseteq\R^n\to\R^m$ have component functions
         $F_1,\dots,F_m$. Its Jacobian matrix at $\mathbf{a}$ is
         \[
             \mathbf{J}_{\mathbf{F}}(\mathbf{a})
@@ -2050,7 +2050,7 @@
     \end{definition}
 
     \begin{definition}[Differentiability; Total Derivative; Fr\'echet Derivative]
-        Let $\mathbf{F}:U\subseteq\R^n\to\R^m$, where $U$ is open, and
+        Let $\mathbf{F}\colon U\subseteq\R^n\to\R^m$, where $U$ is open, and
         let $\mathbf{a}\in U$. The map $\mathbf{F}$ is differentiable at
         $\mathbf{a}$ if there exists a linear map
         $D\mathbf{F}(\mathbf{a}):\R^n\to\R^m$ s.t.
@@ -2085,7 +2085,7 @@
 
 
     \begin{definition}[Directional Derivative]
-        Let $f:U\subseteq\R^n\to\R$ be differentiable at
+        Let $f\colon U\subseteq\R^n\to\R$ be differentiable at
         $\mathbf{a}\in U$, and let $\mathbf{u}$ be a unit vector. The
         directional derivative of $f$ at $\mathbf{a}$ in the direction
         $\mathbf{u}$ is
@@ -2108,7 +2108,7 @@
     \end{definition}
 
     \begin{theorem}[Multivariable Chain Rule]
-        Let $\mathbf{F}:\R^n\to\R^m$ and $\mathbf{G}:\R^m\to\R^k$ be
+        Let $\mathbf{F}\colon \R^n\to\R^m$ and $\mathbf{G}\colon \R^m\to\R^k$ be
         differentiable. Then
         \[
             D(\mathbf{G}\circ\mathbf{F})(\mathbf{x})
@@ -2140,7 +2140,7 @@
 
     \begin{theorem}[Change of Variables Formula]
         Let $U,V\subseteq\R^n$ be open, and let
-        $\mathbf{F}:U\to V$ be a $C^1$ diffeomorphism, meaning a bijection for
+        $\mathbf{F}\colon U\to V$ be a $C^1$ diffeomorphism, meaning a bijection for
         which both $\mathbf{F}$ and $\mathbf{F}^{-1}$ are continuously
         differentiable. If $D\subseteq U$ is a region for which the integrals
         below exist and $f$ is integrable on $\mathbf{F}(D)$, then
@@ -2300,7 +2300,7 @@
     \end{formula}
 
     \begin{theorem}[Inverse Function Theorem]
-        Let $\mathbf{F}:\R^n\to\R^n$ be continuously differentiable near
+        Let $\mathbf{F}\colon \R^n\to\R^n$ be continuously differentiable near
         $\mathbf{a}$. If
         \[
             \det D\mathbf{F}(\mathbf{a})\neq 0,
@@ -2371,7 +2371,7 @@
     \end{idea}
 
     \begin{theorem}[Euler's Homogeneous Function Theorem]
-        Suppose $f:\R^n\to\R$ is differentiable and homogeneous of degree
+        Suppose $f\colon \R^n\to\R$ is differentiable and homogeneous of degree
         $k$, meaning
         \[
             f(t\mathbf{x})=t^k f(\mathbf{x})
@@ -2473,7 +2473,7 @@
 
     \begin{proposition}[Conservative-Field Test]
         Let $U\subseteq\R^n$ be open and simply connected, and let
-        $\mathbf{F}:U\to\R^n$ be continuously differentiable. Then
+        $\mathbf{F}\colon U\to\R^n$ be continuously differentiable. Then
         $\mathbf{F}$ is conservative if and only if its Jacobian matrix is
         symmetric:
         \[
@@ -2615,7 +2615,7 @@
     \end{theorem}
 
     \begin{definition}[Metric Space and Open Ball]
-        A metric space is a pair $(X,d)$ in which $d:X\times X\to\R$ satisfies,
+        A metric space is a pair $(X,d)$ in which $d\colon X\times X\to\R$ satisfies,
         for all $x,y,z\in X$,
         \[
             d(x,y)\geq 0,
@@ -2736,7 +2736,7 @@
 
     \begin{definition}[Limit of a Map Between Metric Spaces]
         Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces, let $D\subseteq X$, let
-        $a$ be an accumulation point of $D$, and let $f:D\to Y$. The statement
+        $a$ be an accumulation point of $D$, and let $f\colon D\to Y$. The statement
         \[
             \lim\limits_{x\to a}f(x)=L
         \]
@@ -2784,7 +2784,7 @@
     \end{definition}
 
     \begin{definition}[Continuity in Metric Spaces]
-        Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A map $f:X\to Y$ is
+        Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A map $f\colon X\to Y$ is
         continuous at $x_0\in X$ if
         \[
             \forall\varepsilon>0,
@@ -2801,7 +2801,7 @@
     \end{definition}
 
     \begin{theorem}[Sequential Criterion for Continuity]
-        A map $f:X\to Y$ between metric spaces is continuous at $x\in X$ if
+        A map $f\colon X\to Y$ between metric spaces is continuous at $x\in X$ if
         and only if
         \[
             x_n\to x
@@ -2812,7 +2812,7 @@
     \end{theorem}
 
     \begin{definition}[Uniform Continuity]
-        A map $f:(X,d_X)\to(Y,d_Y)$ is uniformly continuous if
+        A map $f\colon (X,d_X)\to(Y,d_Y)$ is uniformly continuous if
         \[
             \forall\varepsilon>0,
             \quad
@@ -2829,7 +2829,7 @@
     \end{definition}
 
     \begin{definition}[Pointwise and Uniform Convergence]
-        Let $f_n:E\to Y$ and $f:E\to Y$, where $(Y,d)$ is a metric space. The
+        Let $f_n\colon E\to Y$ and $f\colon E\to Y$, where $(Y,d)$ is a metric space. The
         sequence $(f_n)$ converges pointwise to $f$, written
         $f_n\to f$, if
         \[
@@ -2929,7 +2929,7 @@
     \end{theorem}
 
     \begin{theorem}[Heine--Cantor Theorem; Uniform Continuity on Compact Sets]
-        If $K\subseteq\R^n$ is compact and $f:K\to\R^m$ is continuous, then $f$
+        If $K\subseteq\R^n$ is compact and $f\colon K\to\R^m$ is continuous, then $f$
         is uniformly continuous on $K$.
     \end{theorem}
 
@@ -2953,7 +2953,7 @@
     \end{theorem}
 
     \begin{theorem}[Uniform Cauchy Criterion]
-        Let $(Y,d)$ be complete and let $f_n:E\to Y$. Then $(f_n)$ converges
+        Let $(Y,d)$ be complete and let $f_n\colon E\to Y$. Then $(f_n)$ converges
         uniformly on $E$ if and only if
         \[
             \forall\varepsilon>0,
@@ -3016,7 +3016,7 @@
 
     \begin{theorem}[Banach Fixed-Point Theorem; Contraction Mapping Theorem]
         Let $(X,d)$ be a nonempty complete metric space, and suppose that
-        $T:X\to X$ is a contraction: there exists $q\in[0,1)$ s.t.
+        $T\colon X\to X$ is a contraction: there exists $q\in[0,1)$ s.t.
         \[
             \forall x,y\in X,
             \qquad
@@ -3035,11 +3035,11 @@
     \begin{definition}[Sigma-Algebra, Measure, Measurability, and Almost-Everywhere Convergence]
         A $\sigma$-algebra $\mathcal{F}$ on a set $X$ is a collection of subsets
         containing $X$ and closed under complements and countable unions. A
-        measure is a function $\mu:\mathcal{F}\to[0,\infty]$ with
+        measure is a function $\mu\colon \mathcal{F}\to[0,\infty]$ with
         $\mu(\varnothing)=0$ that is countably additive on pairwise disjoint
         sets. The triple $(X,\mathcal{F},\mu)$ is a measure space.
 
-        A function $f:X\to\R$ is measurable if the inverse image of every Borel
+        A function $f\colon X\to\R$ is measurable if the inverse image of every Borel
         set is in $\mathcal{F}$. A property holds almost everywhere, abbreviated
         a.e., if it fails only on a set of measure zero. Thus $f_n\aeto f$ means
         that $f_n(x)\to f(x)$ for almost every $x$.
@@ -3047,7 +3047,7 @@
 
     \begin{theorem}[Tonelli's Theorem]
         Let $(X,\mu)$ and $(Y,\nu)$ be $\sigma$-finite measure spaces, and let
-        $f:X\times Y\to[0,\infty]$ be measurable. Then the iterated integrals
+        $f\colon X\times Y\to[0,\infty]$ be measurable. Then the iterated integrals
         and the product-space integral agree, possibly with value $+\infty$:
         \[
             \int_{X\times Y}f\dd(\mu\times\nu)
@@ -3130,7 +3130,7 @@
     \section*{Complex Analysis}
 
     \begin{definition}[Complex Differentiability; Holomorphic and Entire Functions]
-        Let $U\subseteq\C$ be open and let $f:U\to\C$. The complex derivative of
+        Let $U\subseteq\C$ be open and let $f\colon U\to\C$. The complex derivative of
         $f$ at $z_0\in U$ is
         \[
             f'(z_0)
@@ -3241,7 +3241,7 @@
     \end{formula}
 
     \begin{definition}[Complex Contour Integral]
-        Let $\gamma:[a,b]\to\C$ be a piecewise $C^1$ parametrized contour and
+        Let $\gamma\colon [a,b]\to\C$ be a piecewise $C^1$ parametrized contour and
         let $f$ be continuous on the image of $\gamma$. The contour integral is
         defined by
         \[
@@ -3497,7 +3497,7 @@
 
     \begin{definition}[Linear Map; Linear Transformation]
         Let $V$ and $W$ be vector spaces over the same field $F$. A map
-        $T:V\to W$ is linear if
+        $T\colon V\to W$ is linear if
         \[
             \forall\alpha,\beta\in F,
             \quad
@@ -3533,7 +3533,7 @@
             \end{pmatrix}
             [\mathbf{v}]_{\mathcal{B}}.
         \]
-        If $T:V\to W$ is linear and $\mathcal{C}$ is an ordered basis of $W$,
+        If $T\colon V\to W$ is linear and $\mathcal{C}$ is an ordered basis of $W$,
         then the matrix $[T]_{\mathcal{C}\leftarrow\mathcal{B}}$ is characterized by
         \[
             [T(\mathbf{v})]_{\mathcal{C}}
@@ -3549,7 +3549,7 @@
             =
             \mathbf{Q}[\mathbf{v}]_{\mathcal{B}'},
         \]
-        then $\mathbf{Q}$ is invertible. For a linear operator $T:V\to V$,
+        then $\mathbf{Q}$ is invertible. For a linear operator $T\colon V\to V$,
         \[
             [T]_{\mathcal{B}'}
             =
@@ -3670,7 +3670,7 @@
     \end{formula}
 
     \begin{theorem}[Rank--Nullity Theorem]
-        Let $T:V\to W$ be a linear map between finite-dimensional vector spaces.
+        Let $T\colon V\to W$ be a linear map between finite-dimensional vector spaces.
         Then
         \[
             \dim V
@@ -3942,7 +3942,7 @@
     \begin{proposition}[Characterization of the Determinant]
         Let
         \[
-            f:(F^n)^n\to F
+            f\colon (F^n)^n\to F
         \]
         be alternating and multilinear. Then
         \[
@@ -4415,14 +4415,6 @@
             \det(\mathbf{P}_\sigma)=\sgn(\sigma).
         \]
         Its powers are determined by the cycle structure of $\sigma$.
-    \end{formula}
-
-    \begin{formula}[Idempotent, Involutory, and Nilpotent Matrices]
-        If $\mathbf{P}^2=\mathbf{P}$, then $\mathbf{P}$ is idempotent and its
-        eigenvalues belong to $\{0,1\}$. If $\mathbf{A}^2=\mathbf{I}_n$, then
-        $\mathbf{A}$ is involutory and its eigenvalues belong to
-        $\{-1,1\}$. If $\mathbf{N}^k=\mathbf{0}$ for some $k$, then
-        $\mathbf{N}$ is nilpotent and every eigenvalue is $0$.
     \end{formula}
 
     \begin{formula}[Eigenvalues of a Circulant Matrix]
@@ -5768,18 +5760,17 @@
     \end{formula}
 
     \begin{definition}[Fourier Transform]
-        For an integrable function $f:\R\to\C$, define
+        For an integrable function $f\colon \R\to\C$, define
         \[
-            \widehat{f}(\omega)
+            \widehat f(\xi)
             =
-            \int_{-\infty}^{\infty}f(t)e^{-i\omega t}\dd t.
+            \int_{-\infty}^{\infty}f(t)e^{-2\pi i t\xi}\,\dd t.
         \]
         Under suitable hypotheses, the inversion formula is
         \[
             f(t)
             =
-            \frac{1}{2\pi}
-            \int_{-\infty}^{\infty}\widehat{f}(\omega)e^{i\omega t}\dd\omega.
+            \int_{-\infty}^{\infty}\widehat f(\xi)e^{2\pi i t\xi}\,\dd\xi.
         \]
     \end{definition}
 
@@ -5802,13 +5793,13 @@
             \bottomrule
             \endlastfoot
 
-            $f'(t)$ & $i\omega\widehat{f}(\omega)$ \\
-            $f(t-a)$ & $e^{-i\omega a}\widehat{f}(\omega)$ \\
-            $e^{iat}f(t)$ & $\widehat{f}(\omega-a)$ \\
-            $f(at)$, $a\neq0$ & $\displaystyle\frac{1}{|a|}\widehat{f}\left(\frac{\omega}{a}\right)$ \\
-            $t f(t)$ & $\displaystyle i\frac{\dd}{\dd\omega}\widehat{f}(\omega)$ \\
-            $(f*g)(t)$ & $\widehat{f}(\omega)\widehat{g}(\omega)$ \\
-            $e^{-at^2}$, $a>0$ & $\displaystyle\sqrt{\frac{\pi}{a}}e^{-\omega^2/(4a)}$ \\
+            $f'(t)$ & $2\pi i\xi\widehat f(\xi)$ \\
+            $f(t-a)$ & $e^{-2\pi i a\xi}\widehat f(\xi)$ \\
+            $e^{2\pi iat}f(t)$ & $\widehat f(\xi-a)$ \\
+            $f(at)$, $a\neq0$ & $\displaystyle\frac{1}{|a|}\widehat f\left(\frac{\xi}{a}\right)$ \\
+            $t f(t)$ & $\displaystyle\frac{i}{2\pi}\frac{\dd}{\dd\xi}\widehat f(\xi)$ \\
+            $(f*g)(t)$ & $\widehat f(\xi)\widehat g(\xi)$ \\
+            $e^{-at^2}$, $a>0$ & $\displaystyle\sqrt{\frac{\pi}{a}}e^{-\pi^2\xi^2/a}$ \\
         \end{longtable}
         }
     \end{formula}
@@ -6460,18 +6451,6 @@
         interior intersection points of diagonals.
     \end{formula}
 
-    \begin{formula}[Triangles in a Complete Diagonal Drawing]
-        For $n$ vertices in convex position with no three diagonals concurrent,
-        the number of triangles whose sides lie on sides or diagonals of the
-        complete drawing is
-        \[
-            \binom{n}{3}
-            +4\binom{n}{4}
-            +5\binom{n}{5}
-            +\binom{n}{6}.
-        \]
-    \end{formula}
-
     \begin{formula}[Triangulation with Interior Vertices]
         Suppose a polygonal disk is triangulated using $V$ vertices in total,
         of which $b$ lie on the boundary. Then the number of edges and triangular
@@ -6650,7 +6629,7 @@
         A probability space is a triple $(\Omega,\mathcal{F},\Prob)$, where
         $\Omega$ is the sample space, $\mathcal{F}$ is a $\sigma$-algebra of
         events (closed under complements and countable unions), and
-        $\Prob:\mathcal{F}\to[0,1]$ satisfies
+        $\Prob\colon \mathcal{F}\to[0,1]$ satisfies
         \[
             \Prob(\Omega)=1,
             \qquad
@@ -6668,7 +6647,7 @@
     \end{definition}
 
     \begin{definition}[Random Variable, Distribution, and Distribution Function]
-        A random variable is a measurable function $X:\Omega\to\R$. Its
+        A random variable is a measurable function $X\colon \Omega\to\R$. Its
         distribution is the probability law of its values. For a discrete
         random variable, the probability mass function is
         \[
@@ -6841,7 +6820,7 @@
     \begin{formula}[Complement Rule and Inclusion--Exclusion for Probability]
         The complement rule is
         \[
-            \Prob(A^{\mathsf c})=1-\Prob(A).
+            \Prob(A^c)=1-\Prob(A).
         \]
         For two events,
         \[
@@ -6919,7 +6898,7 @@
             Bernoulli$(p)$ &
             $\Prob(X=x)=p^x(1-p)^{1-x}$, $x\in\{0,1\}$ &
             $p$ & $p(1-p)$ \\
-            Binomial$(n,p)$ &
+            $\Bin(n,p)$ &
             $\displaystyle\Prob(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$ &
             $np$ & $np(1-p)$ \\
             Geometric$(p)$ &
@@ -6928,7 +6907,7 @@
             Negative binomial$(r,p)$ &
             $\displaystyle\Prob(X=k)=\binom{k-1}{r-1}p^r(1-p)^{k-r}$, $k\geq r$ &
             $\displaystyle\frac{r}{p}$ & $\displaystyle\frac{r(1-p)}{p^2}$ \\
-            Poisson$(\lambda)$ &
+            $\Poi(\lambda)$ &
             $\displaystyle\Prob(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}$ &
             $\lambda$ & $\lambda$ \\
             Uniform$(a,b)$ &
@@ -6947,7 +6926,7 @@
             $\chi^2(\nu)$ &
             $\displaystyle f(x)=\frac{x^{\nu/2-1}e^{-x/2}}{2^{\nu/2}\Gamma(\nu/2)}$, $x>0$ &
             $\nu$ & $2\nu$ \\
-            Normal$(\mu,\sigma^2)$ &
+            $\Normal(\mu,\sigma^2)$ &
             $\displaystyle f(x)=\frac{1}{\sigma\sqrt{2\pi}}
             e^{-(x-\mu)^2/(2\sigma^2)}$ &
             $\mu$ & $\sigma^2$ \\
@@ -6956,7 +6935,7 @@
     \end{formula}
 
     \begin{formula}[Classical Sampling-Distribution Constructions]
-        Let $Z,Z_1,\dots,Z_\nu\sim N(0,1)$ be independent. Then
+        Let $Z,Z_1,\dots,Z_\nu\sim\Normal(0,1)$ be independent. Then
         \[
             \sum_{i=1}^{\nu}Z_i^2\sim\chi^2(\nu).
         \]
@@ -7194,7 +7173,7 @@
     \end{theorem}
 
     \begin{definition}[Convex and Concave Functions]
-        Let $I\subseteq\R$ be an interval. A function $\varphi:I\to\R$ is
+        Let $I\subseteq\R$ be an interval. A function $\varphi\colon I\to\R$ is
         convex if, for all $x,y\in I$ and $t\in[0,1]$,
         \[
             \varphi((1-t)x+ty)
@@ -7207,7 +7186,7 @@
 
     \begin{theorem}[Jensen's Inequality]
         Let $X$ be integrable and take values in an interval $I$, and let
-        $\varphi:I\to\R$ be convex with $\varphi(X)$ integrable. Then
+        $\varphi\colon I\to\R$ be convex with $\varphi(X)$ integrable. Then
         \[
             \varphi(\Exp[X])
             \leq
@@ -8073,36 +8052,6 @@
         \]
     \end{formula}
 
-    \begin{formula}[Obtuse Triangles from Equally Spaced Points]
-        Let $N$ equally spaced points lie on a circle. The number of obtuse
-        triangles determined by three of the points is
-        \[
-            N\binom{k-1}{2}
-            \quad\text{if }N=2k,
-        \]
-        and
-        \[
-            N\binom{k}{2}
-            \quad\text{if }N=2k+1.
-        \]
-        For even $N$, triangles containing a diameter are right rather than
-        obtuse.
-    \end{formula}
-
-    \begin{fact}[Alternating-Area Invariant in a Regular Even-Gon]
-        Let $V_1,\dots,V_{2m}$ be the vertices of a regular $2m$-gon in cyclic
-        order, and let $P$ be any point inside it. Then
-        \[
-            [PV_1V_2]+[PV_3V_4]+\cdots+[PV_{2m-1}V_{2m}]
-        \]
-        equals
-        \[
-            [PV_2V_3]+[PV_4V_5]+\cdots+[PV_{2m}V_1].
-        \]
-        The equality follows from the cancellation of alternating directed edge
-        vectors.
-    \end{fact}
-
     \begin{theorem}[Classification of Platonic Solids]
         There are exactly five Platonic solids:
         \[
@@ -8900,28 +8849,6 @@
     \end{proposition}
 
 
-    \begin{formula}[Fast Residue Filters for Powers]
-        The following small-modulus facts are useful impossibility tests:
-        \[
-            x^2\equiv0,1\pmod4,
-            \qquad
-            x^2\equiv0,1,4\pmod8,
-        \]
-        \[
-            x^3\equiv0,\pm1\pmod9,
-            \qquad
-            x^4\equiv0,1\pmod{16}.
-        \]
-        In particular,
-        \[
-            x\text{ odd}
-            \quad\Longrightarrow\quad
-            x^2\equiv1\pmod8.
-        \]
-        Thus a proposed square, cube, or fourth power can often be ruled out
-        before any large calculation is attempted.
-    \end{formula}
-
     \begin{theorem}[Linear Congruence Criterion]
         The congruence
         \[
@@ -9042,7 +8969,7 @@
     \end{strategy}
 
     \begin{definition}[Arithmetic and Multiplicative Functions]
-        An arithmetic function is a function $f:\N\to\C$. It is
+        An arithmetic function is a function $f\colon \N\to\C$. It is
         multiplicative if
         \[
             \gcd(m,n)=1
@@ -9318,16 +9245,24 @@
         \]
     \end{theorem}
 
-    \begin{fact}[Quadratic Residues Modulo Small Moduli]
-        Squares have very restricted residues modulo small integers:
+    \begin{fact}[Small-Modulus Residue Filters]
+        Small powers have restricted residues modulo small integers:
         \[
             x^2\equiv 0,1\pmod 4,
             \qquad
             x^2\equiv 0,1,4\pmod 8.
         \]
-        In particular, an integer congruent to $2$ or $3$ modulo $4$ cannot be a
+        Also,
+        \[
+            x^3\equiv0,\pm1\pmod9,
+            \qquad
+            x^4\equiv0,1\pmod{16}.
+        \]
+        In particular, if $x$ is odd, then $x^2\equiv1\pmod8$.
+        Hence an integer congruent to $2$ or $3$ modulo $4$ cannot be a
         square, and an integer congruent to $2,3,5,6,7$ modulo $8$ cannot be a
-        square.
+        square. These tests can often rule out a proposed square, cube, or fourth
+        power before any large calculation is attempted.
     \end{fact}
 
     \begin{tactic}
@@ -9580,7 +9515,7 @@
     \relatedbooks{Abstract Algebra (David S. Dummit and Richard M. Foote)}
 
     \begin{definition}[Group]
-        A group is a set $G$ with a binary operation $\ast:G\times G\to G$ s.t.
+        A group is a set $G$ with a binary operation $\ast\colon G\times G\to G$ s.t.
         \[
             \forall a,b,c\in G,
             \qquad
@@ -9610,7 +9545,7 @@
 
     \begin{definition}[Subgroup, Homomorphism, and Kernel]
         A subset $H\subseteq G$ is a subgroup, written $H\leq G$, if it is a
-        group under the operation of $G$. A map $\varphi:G\to H$ is a group
+        group under the operation of $G$. A map $\varphi\colon G\to H$ is a group
         homomorphism if
         \[
             \varphi(ab)=\varphi(a)\varphi(b)
@@ -9821,7 +9756,7 @@
     \end{proposition}
 
     \begin{theorem}[First Isomorphism Theorem for Groups]
-        If $\varphi:G\to H$ is a group homomorphism, then
+        If $\varphi\colon G\to H$ is a group homomorphism, then
         \[
             G/\ker\varphi\cong \image\varphi.
         \]
@@ -9991,7 +9926,7 @@
             \quad\Longrightarrow\quad
             ra\in I.
         \]
-        A ring homomorphism $\varphi:R\to S$ preserves addition,
+        A ring homomorphism $\varphi\colon R\to S$ preserves addition,
         multiplication, and the multiplicative identity under the conventions
         of this book. Its kernel is an ideal. If $I$ is an ideal of $R$, the
         quotient ring $R/I$ consists of additive cosets with the induced ring
@@ -10035,7 +9970,7 @@
 
         A Euclidean domain is an integral domain equipped with a function
         \[
-            \delta:R\setminus\{0\}\to\Nzero
+            \delta\colon R\setminus\{0\}\to\Nzero
         \]
         s.t. for all $a,b\in R$ with $b\neq0$, there exist $q,r\in R$
         satisfying
@@ -10464,7 +10399,7 @@
 
 
     \begin{definition}[Continuity in Topological Spaces]
-        A map $f:(X,\mathcal{T}_X)\to(Y,\mathcal{T}_Y)$ is continuous if the
+        A map $f\colon (X,\mathcal{T}_X)\to(Y,\mathcal{T}_Y)$ is continuous if the
         inverse image of every open set is open:
         \[
             \forall V\in\mathcal{T}_Y,
@@ -10475,7 +10410,7 @@
 
     \begin{definition}[Homeomorphism]
         A homeomorphism is a bijective continuous map whose inverse is also
-        continuous. Equivalently, $f:X\xrightarrow{\sim}Y$ is a homeomorphism
+        continuous. Equivalently, $f\colon X\xrightarrow{\sim}Y$ is a homeomorphism
         if $f$ and $f^{-1}$ are continuous. Two spaces are homeomorphic, written
         $X\cong Y$, if such a map exists.
     \end{definition}
@@ -10507,17 +10442,17 @@
     \begin{definition}[Path, Path-Connectedness, and Homotopy]
         A path from $x_0$ to $x_1$ in $X$ is a continuous map
         \[
-            \gamma:[0,1]\to X,
+            \gamma\colon [0,1]\to X,
             \qquad
             \gamma(0)=x_0,
             \quad
             \gamma(1)=x_1.
         \]
         The space $X$ is path-connected if every two points can be joined by a
-        path. Two maps $f,g:X\to Y$ are homotopic, written $f\simeq g$, if
+        path. Two maps $f,g\colon X\to Y$ are homotopic, written $f\simeq g$, if
         there exists a continuous map
         \[
-            H:X\times[0,1]\to Y
+            H\colon X\times[0,1]\to Y
         \]
         with $H(x,0)=f(x)$ and $H(x,1)=g(x)$. A loop is a path with the same
         initial and terminal point.
@@ -10543,7 +10478,7 @@
     \begin{theorem}[Borsuk--Ulam Theorem]
         Every continuous map
         \[
-            f:S^n\to\R^n
+            f\colon S^n\to\R^n
         \]
         takes some pair of antipodal points to the same value.
     \end{theorem}
@@ -10559,7 +10494,7 @@
     \end{theorem}
 
     \begin{theorem}[Invariance of Domain]
-        If $U\subseteq\R^n$ is open and $f:U\to\R^n$ is continuous and injective,
+        If $U\subseteq\R^n$ is open and $f\colon U\to\R^n$ is continuous and injective,
         then $f(U)$ is open and $f$ is a homeomorphism from $U$ onto $f(U)$.
     \end{theorem}
 
@@ -10670,10 +10605,10 @@
         \[
             A\xrightarrow{f}B\xrightarrow{g}C
             \quad\longmapsto\quad
-            g\circ f:A\to C,
+            g\circ f\colon A\to C,
         \]
         composition is associative, and every object $A$ has an identity
-        morphism $\id_A$. For every morphism $f:A\to B$, the identity laws are
+        morphism $\id_A$. For every morphism $f\colon A\to B$, the identity laws are
         \[
             f\circ\id_A=f,
             \qquad
@@ -11078,10 +11013,14 @@
             \sum_{n=1}^{\infty}\frac{1}{n(n+2)}=\frac34,
         \]
         \[
-            \sum_{n=1}^{\infty}\frac{1}{n^4}=\frac{\pi^4}{90},
-            \qquad
-            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^4}=\frac{\pi^4}{96}.
+            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^4}
+            =
+            \left(1-\frac{1}{16}\right)\frac{\pi^4}{90}
+            =
+            \frac{\pi^4}{96},
         \]
+        where the value of $\sum_{n=1}^{\infty}n^{-4}$ is recorded with the
+        classical series values in the Calculus chapter.
     \end{formula}
 
     \begin{strategy}

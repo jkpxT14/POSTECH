@@ -441,7 +441,7 @@
 \DeclareMathOperator{\Hess}{Hess}
 \DeclareMathOperator{\Real}{Re}
 \DeclareMathOperator{\Imag}{Im}
-\DeclareMathOperator*{\Res}{Res}
+\DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\lb}{lb}
 \DeclareMathOperator{\arcsec}{arcsec}
 \DeclareMathOperator{\arccsc}{arccsc}
@@ -465,18 +465,20 @@
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Bin}{Bin}
-\DeclareMathOperator{\Poi}{Poi}
-\DeclareMathOperator{\Normal}{N}
+\DeclareMathOperator{\Poi}{Pois}
+\newcommand{\Normal}{\mathcal{N}}
 
 % Convergence arrows
 % Labeled arrows are used only when the mode of convergence should be explicit.
-\newcommand{\ptwto}{\xrightarrow{\mathrm{ptw}}}
-\newcommand{\unifto}{\xrightarrow{\mathrm{unif}}}
+\newcommand{\ptwto}{\to}
+\newcommand{\unifto}{\rightrightarrows}
+\newcommand{\ptwlabelto}{\xrightarrow{\mathrm{ptw}}}
+\newcommand{\uniflabelto}{\xrightarrow{\mathrm{unif}}}
 \newcommand{\aeto}{\xrightarrow{\mathrm{a.e.}}}
 \newcommand{\asto}{\xrightarrow{\mathrm{a.s.}}}
 \newcommand{\distto}{\xrightarrow{\mathrm{d}}}
 \newcommand{\Lpto}[1]{\xrightarrow{L^{#1}}}
-\newcommand{\probto}{\xrightarrow{\Prob}}
+\newcommand{\probto}{\xrightarrow{\mathbb{P}}}
 
 % Linear algebra operators
 \DeclareMathOperator{\rk}{rk}
@@ -486,7 +488,7 @@
 \DeclareMathOperator{\Null}{Null}
 \DeclareMathOperator{\Row}{Row}
 \DeclareMathOperator{\image}{im}
-\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\proj}{proj}
 \DeclareMathOperator{\diag}{diag}
 
@@ -536,7 +538,7 @@
         Jungwoo Kim\\
         Department of Mathematics\\
         \PohangUniversityOfScienceAndTechnology\\
-        (2026 Science Quiz Representative)\\
+        (2026 Science Quiz Mathematics Representative)\\
         jkpxt14@postech.ac.kr
         \par}
 
