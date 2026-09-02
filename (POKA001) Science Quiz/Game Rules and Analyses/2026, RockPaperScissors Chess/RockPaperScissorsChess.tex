@@ -6,7 +6,9 @@
 \usepackage[a4paper,margin=1in]{geometry}
 \usepackage{fontspec}
 \usepackage{xetexko}
-\IfFontExistsTF{NanumMyeongjo}{\setmainhangulfont[AutoFakeSlant=0.18]{NanumMyeongjo}}{\IfFontExistsTF{Noto Serif CJK KR}{\setmainhangulfont[AutoFakeSlant=0.18]{Noto Serif CJK KR}}{}}
+\IfFontExistsTF{NanumMyeongjo}
+  {\setmainhangulfont[AutoFakeSlant=0.18]{NanumMyeongjo}}
+  {\IfFontExistsTF{Noto Serif CJK KR}{\setmainhangulfont[AutoFakeSlant=0.2]{Noto Serif CJK KR}}{}}
 \IfFontExistsTF{Noto Sans CJK KR}{\setsanshangulfont{Noto Sans CJK KR}}{}
 \usepackage{microtype}
 \microtypesetup{protrusion=false,expansion=false}
@@ -66,8 +68,6 @@
 \renewcommand{\contentsname}{Contents}
 \setlength{\parindent}{1em}
 \setlength{\parskip}{0pt}
-\setlength{\emergencystretch}{1em}
-\raggedbottom
 \setlist[itemize]{itemsep=0.18em,topsep=0.4em,parsep=0pt}
 \setlist[enumerate]{itemsep=0.18em,topsep=0.4em,parsep=0pt}
 

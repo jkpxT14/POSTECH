@@ -57,7 +57,7 @@ struct Search::Context {
     bool should_stop(){
         if(stopped)return true;
         if(limits.nodes && nodes>=limits.nodes)return stopped=true;
-        if(limits.movetime.count()>0 && (nodes&255ULL)==0 && std::chrono::steady_clock::now()-start>=limits.movetime)return stopped=true;
+        if(limits.movetime.count()>0 && (nodes&63ULL)==0 && std::chrono::steady_clock::now()-start>=limits.movetime)return stopped=true;
         return false;
     }
     int sparse_score(const std::unordered_map<std::uint64_t,int>& table,std::uint64_t key)const{auto f=table.find(key);return f==table.end()?0:f->second;}
@@ -139,8 +139,7 @@ SearchResult Search::run(Position root,const SearchLimits& limits){
     std::vector<RootLine> prior;auto cached=root_cache_.find(root_key);if(cached!=root_cache_.end())prior=cached->second;Depth cached_depth=0;if(auto d=root_depth_cache_.find(root_key);d!=root_depth_cache_.end())cached_depth=d->second;
     std::unordered_map<Move,Value,MoveHash> prior_value;auto rebuild=[&]{prior_value.clear();prior_value.reserve(prior.size()*2+1);for(const auto&l:prior)prior_value[l.move]=l.value;};rebuild();
     Move previous_best=root_moves.front();Value previous_value=0;if(!prior.empty()){auto legal=std::find_if(prior.begin(),prior.end(),[&](const RootLine&l){return std::find(root_moves.begin(),root_moves.end(),l.move)!=root_moves.end();});if(legal!=prior.end()){previous_best=legal->move;previous_value=legal->value;}}
-    // Draft 36 / Engine 0.14: a repeated timed analysis of the unchanged Engine search key
-    // resumes at the next unfinished depth instead of paying again for completed iterations.
+    // Reuse the previous completed root ordering on repeated timed analysis.
     if(limits.movetime.count()>0&&!prior.empty()&&cached_depth>0){result.has_move=true;result.best_move=previous_best;result.value=previous_value;result.depth=cached_depth;}
     auto build_pv=[&](const Move&first,Depth depth){std::vector<Move>pv;Position p=root;Move m=first;int max=std::min(MaxPly,depth+MaxSelectiveExtensions+2);for(int ply=0;ply<max&&m.path_length;++ply){if(!p.is_legal_path(m))break;pv.push_back(m);UndoState u;p.do_move(m,u);const TTEntry*e=tt_.probe(p.search_key());m=e&&e->has_move?e->best_move:Move{};}return pv;};
     struct RootPass{Move best{};Value value=-Infinity;std::vector<RootLine>scores;};
@@ -153,7 +152,7 @@ SearchResult Search::run(Position root,const SearchLimits& limits){
             root.undo_move(u);++move_index;if(c.stopped)return pass;pass.scores.push_back({cur.move,score,{}});if(score>pass.value){pass.value=score;pass.best=cur.move;}if(score>current_alpha)current_alpha=score;if(current_alpha>=beta)break;
         }return pass;
     };
-    Depth start_depth=(limits.movetime.count()>0&&cached_depth>0&&!prior.empty())?cached_depth+1:1;
+    Depth start_depth=(limits.movetime.count()>0&&cached_depth>0&&!prior.empty())?cached_depth:1;
     for(Depth depth=start_depth;depth<=std::max(1,limits.depth);++depth){Value alpha=-Infinity,beta=Infinity,window=AspirationWindow;if(depth>=4&&result.has_move){alpha=std::max(-Infinity,previous_value-window);beta=std::min(Infinity,previous_value+window);}RootPass pass;while(true){pass=search_root(depth,alpha,beta,{},previous_best);if(c.stopped)break;if(pass.value<=alpha&&alpha>-Infinity){window*=2;alpha=std::max(-Infinity,previous_value-window);beta=std::min(Infinity,previous_value+window);continue;}if(pass.value>=beta&&beta<Infinity){window*=2;alpha=std::max(-Infinity,previous_value-window);beta=std::min(Infinity,previous_value+window);continue;}break;}if(c.stopped)break;previous_best=pass.best;previous_value=pass.value;prior=std::move(pass.scores);std::stable_sort(prior.begin(),prior.end(),[](const auto&a,const auto&b){return a.value>b.value;});rebuild();result.has_move=true;result.best_move=previous_best;result.value=previous_value;result.depth=depth;result.pv=build_pv(previous_best,depth);root_cache_[root_key]=prior;root_depth_cache_[root_key]=depth;}
     if(result.has_move){int wanted=std::min<int>(c.limits.multipv,prior.size());for(int rank=0;rank<wanted;++rank){RootLine line=prior[static_cast<std::size_t>(rank)];line.pv=build_pv(line.move,result.depth);result.lines.push_back(std::move(line));}if(!result.lines.empty()){result.best_move=result.lines.front().move;result.value=result.lines.front().value;result.pv=result.lines.front().pv;}
         if(!c.stopped&&wanted>1){std::vector<Move>excluded{result.best_move};for(int rank=1;rank<wanted&&!c.stopped;++rank){Move pref=result.lines[static_cast<std::size_t>(rank)].move;RootPass pass=search_root(result.depth,-Infinity,Infinity,excluded,pref);if(c.stopped||pass.value<=-Infinity||pass.best.path_length==0)break;result.lines[static_cast<std::size_t>(rank)]={pass.best,pass.value,build_pv(pass.best,result.depth)};excluded.push_back(pass.best);}}

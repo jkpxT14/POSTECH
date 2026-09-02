@@ -6,10 +6,6 @@
 
 RPSC의 주사위는 실제로는 24가지 물리적 방향을 가질 수 있지만, 같은 gesture가 그려진 두 면이 서로 마주보기 때문에 S/R/P의 축 배치만 보존하면 앞으로의 Top Gesture 변화를 여섯 개의 상태로 분석할 수 있다. 정확한 물리적 방향은 여전히 Chapter 2의 full path와 \texttt{RoL}/\texttt{RoR}을 이용해 복원한다.
 
-\begin{quote}
-\textbf{상태의 위계.} Exact Orientation은 24가지 물리적 방향을 모두 구분하며 규칙 판정과 canonical record의 기준이다. Gesture State는 그 exact state에서 유도한 6-state reduction으로, 이동 패턴과 분석을 간결하게 계산하기 위해서만 사용한다.
-\end{quote}
-
 \medskip
 \noindent\textbf{Gesture State.}
 
@@ -134,7 +130,7 @@ Roll의 순서는 중요하며 일반적으로 $H(V(s))\neq V(H(s))$이다. 따�
     \end{tabular}
 \end{center}
 
-이후의 Tactics, Strategy, Openings에서는 Chapter 2의 Analysis Line과 이 장의 상태 언어를 함께 사용한다. Engine과 Analysis Board 역시 정확한 24-orientation을 규칙 상태의 기준으로 보존하고, Gesture State는 탐색과 설명을 위한 derived information으로만 사용한다.
+이후의 Tactics, Strategy, Openings에서는 Chapter 2의 Analysis Line과 이 장의 상태 언어를 함께 사용한다. 엔진도 정확한 24-orientation을 상태의 기준으로 보존하고, Gesture State를 평가와 분석에 필요한 derived information으로 사용한다.
 
 이하에서는 보드가 비어 있다고 가정하고, 말 하나만 놓인 상태에서 가능한 이동을 정리한다. 가운데의 옅은 음영 칸이 시작칸이며, 도달 가능한 칸에는 가능한 최종 윗면을 bar 없이 \texttt{S}, \texttt{R}, \texttt{P}로 적는다. 한 칸에 여러 글자가 적혀 있으면 서로 다른 경로를 통해 여러 윗면이 가능하다는 뜻이고, 순서는 항상 \texttt{S} $\rightarrow$ \texttt{R} $\rightarrow$ \texttt{P}이다.
 
