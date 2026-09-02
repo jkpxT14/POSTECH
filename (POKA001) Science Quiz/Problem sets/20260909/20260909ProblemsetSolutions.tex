@@ -35,26 +35,27 @@
 \end{problemsolution}
 
 \begin{problemsolution}{2}
+Vi\`ete's formulas에 의해
 \[
-    e^x\sin x
-    =
-    \ImPart\bigl(e^{(1+i)x}\bigr)
+    \alpha+\beta+\gamma=0,
+    \qquad
+    \alpha\beta+\beta\gamma+\gamma\alpha=-3.
 \]
-이므로 요구된 값은
+또한 $1$은 주어진 다항식의 근이 아니므로 분모는 모두 $0$이 아니다. 통분하면 분자는
 \[
-    \ImPart\bigl((1+i)^{2026}\bigr)
-\]
-이다. 한편
-\[
-    (1+i)^{2026}
-    =
-    2^{1013}e^{i2026\pi/4}
-    =
-    2^{1013}i.
+    \begin{aligned}
+        &(1-\beta)(1-\gamma)
+        +(1-\gamma)(1-\alpha)
+        +(1-\alpha)(1-\beta)\\
+        &\qquad
+        =3-2(\alpha+\beta+\gamma)
+        +(\alpha\beta+\beta\gamma+\gamma\alpha)
+        =0.
+    \end{aligned}
 \]
 따라서
 \[
-    \boxed{2^{1013}}.
+    \boxed{0}.
 \]
 \end{problemsolution}
 

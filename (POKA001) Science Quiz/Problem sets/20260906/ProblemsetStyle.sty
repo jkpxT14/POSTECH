@@ -1,0 +1,141 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ProblemsetStyle}[2026/09/03 Science Quiz problem set style]
+
+% Standalone problem-set typography based on Mathematics for Science Quiz.
+% Mathematical notation and writing conventions follow the current (MATH000) Mathematical Language.
+% The handbook itself remains English-only. Problem sets may use Korean.
+% This package is intentionally engine-compatible: the same source compiles with
+% the user's ordinary latexmk/pdfLaTeX workflow and also with XeLaTeX/LuaLaTeX.
+
+% Page layout and typography
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage{iftex}
+\ifPDFTeX
+    % TeX Live's ko.TeX support makes UTF-8 Korean work under pdfLaTeX.
+    \RequirePackage{kotex}
+\else
+    \RequirePackage{fontspec}
+    \ifXeTeX
+        \RequirePackage{xetexko}
+    \else
+        \RequirePackage{luatexko}
+    \fi
+    \IfFontExistsTF{Noto Serif CJK KR}
+        {\setmainhangulfont[AutoFakeSlant=0.2]{Noto Serif CJK KR}}
+        {}
+    \IfFontExistsTF{Noto Sans CJK KR}
+        {\setsanshangulfont{Noto Sans CJK KR}}
+        {}
+\fi
+\RequirePackage{microtype}
+\ifPDFTeX\else
+    \microtypesetup{protrusion=false,expansion=false}
+\fi
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+
+% Mathematics
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{dsfont}
+
+% Lists
+\RequirePackage{enumitem}
+
+% Color and PDF metadata
+\RequirePackage{xcolor}
+\RequirePackage[unicode,hidelinks]{hyperref}
+
+% Institution colors and rendering follow the current handbook source.
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{MITRed}{RGB}{117,0,20}
+
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+
+\DeclareRobustCommand{\POSTECHKorean}{%
+    \institutiontext{POSTECHRed}{포항공과대학교}%
+}
+\DeclareRobustCommand{\MIT}{\institutiontext{MITRed}{MIT}}
+
+% Problem-set title block
+\newcommand{\problemsettitle}[1]{%
+    \begin{center}
+        \vspace*{1.15cm}
+        {\LARGE\bfseries #1\par}
+        \vspace{0.65cm}
+        {\large 김정우\par}
+        \vspace{0.18cm}
+        {\large \POSTECHKorean{} 수학과\par}
+    \end{center}
+    \vspace{1.05cm}
+}
+
+% Problem environments follow the current handbook's same-line Problem style.
+\newcommand{\problemheading}[1]{%
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+    \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
+}
+
+% As in the handbook, an optional argument is used only for a compact,
+% independently verifiable official source and/or an established problem name.
+% Omit it when no qualifying attribution is known.
+\newenvironment{problem}[2][]
+    {%
+        \if\relax\detokenize{#1}\relax
+            \problemheading{#2}%
+        \else
+            \problemheading{#2.\ (#1)}%
+        \fi
+    }
+    {\par\vspace{6pt}}
+
+% The separate solutions booklet keeps the handbook's italic Solution label,
+% with an explicit problem number so each solution is identifiable on its own.
+\newcommand{\solutionheading}[1]{%
+    \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
+    \textit{Solution #1.}\hspace{0.5em}\ignorespaces
+}
+
+\newenvironment{problemsolution}[1]
+    {\solutionheading{#1}}
+    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+
+% Lists inside problems use the current handbook's role-specific numbering.
+\newlist{problemchoices}{enumerate}{1}
+\setlist[problemchoices]{
+    label=(\arabic*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+\newlist{problemsubparts}{enumerate}{1}
+\setlist[problemsubparts]{
+    label=(\alph*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+% Canonical notation used across the current problem sets.
+% Definitions below are copied from the current (MATH000) Mathematical Language.
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Exp}{\mathbb{E}}
+\newcommand{\indicator}[1]{\mathds{1}_{#1}}
+\newcommand{\ones}{\mathbf{1}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\ImPart}{Im}

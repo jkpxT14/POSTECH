@@ -50,29 +50,12 @@ International Mathematical Union의 2026 Fields Medal 공식 발표에 따르면
 \end{problemsolution}
 
 \begin{problemsolution}{3}
-$\mathbf{J}_5$의 eigenvalue는
+$\mathbf{A}^2=\mathbf{A}$이므로 $\mathbf{A}$는 image에서는 identity로, kernel에서는 $0$으로 작용한다. Rank가 $3$이므로 image는 3차원이고, rank--nullity theorem에 의해 kernel은 1차원이다. 따라서 $\mathbf{I}_4+\mathbf{A}$는 image에서 $2$배, kernel에서 $1$배로 작용한다. 그러므로
 \[
-    5,\quad0,\quad0,\quad0,\quad0
+    \det\!\left(\mathbf{I}_4+\mathbf{A}\right)
+    =2^3\cdot1
+    =\boxed{8}.
 \]
-이다. 실제로 all-ones vector $\ones$에 대하여 $\mathbf{J}_5\ones=5\ones$이고, $\ones$에 수직인 4차원 부분공간에서는 $\mathbf{J}_5$가 $0$으로 작용한다.
-
-따라서
-\[
-    \mathbf{A}=2\mathbf{I}_5+\mathbf{J}_5
-\]
-의 eigenvalue는
-\[
-    7,\quad2,\quad2,\quad2,\quad2
-\]
-이고, determinant는 eigenvalue들의 곱이므로
-\[
-    \det(\mathbf{A})=7\cdot2^4=112.
-\]
-따라서 정답은
-\[
-    \boxed{112}
-\]
-이다.
 \end{problemsolution}
 
 % Source check: The Abel Prize, 2026 laureate announcement and citation.

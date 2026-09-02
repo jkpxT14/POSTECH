@@ -1,0 +1,206 @@
+% !TeX program = xelatex
+\documentclass[11pt,oneside]{article}
+\usepackage{ProblemsetStyle}
+
+\hypersetup{
+    pdftitle={20260906 Problem set - Solutions},
+    pdfauthor={김정우},
+    pdfsubject={Science Quiz mathematics practice problem set solutions},
+    pdfcreator={XeLaTeX}
+}
+
+\begin{document}
+
+\problemsettitle{20260906 Problem set}
+
+% Source check: The Abel Prize, 2025 laureate announcement and citation.
+\begin{problemsolution}{1}
+The Norwegian Academy of Science and Letters는 Masaki Kashiwara에게 algebraic analysis와 representation theory에 대한 근본적 기여, 특히 $D$-modules 이론의 발전과 crystal bases의 발견을 이유로 2025 Abel Prize를 수여했다.
+
+따라서 정답은
+\[
+    \boxed{\text{Abel Prize}}
+\]
+이다.
+\end{problemsolution}
+
+\begin{problemsolution}{2}
+두 절단점의 위치를 $U,V\in(0,1)$이라 하고, 대칭성에 의해 $0<U<V<1$인 경우를 먼저 생각하자. 세 조각의 길이는
+\[
+    U,
+    \qquad
+    V-U,
+    \qquad
+    1-V
+\]
+이다. 세 양수가 삼각형의 세 변이 될 필요충분조건은 가장 긴 조각이 $1/2$보다 작은 것이므로
+\[
+    U<\frac12,
+    \qquad
+    V-U<\frac12,
+    \qquad
+    1-V<\frac12.
+\]
+즉
+\[
+    0<U<\frac12,
+    \qquad
+    \frac12<V<U+\frac12.
+\]
+단위 정사각형의 절반인 영역 $U<V$ 안에서 이 조건을 만족하는 영역의 넓이는
+\[
+    \int_0^{1/2}U\,\dd U
+    =\frac18.
+\]
+$V<U$인 대칭적인 경우까지 합치면 확률은
+\[
+    2\cdot\frac18
+    =\boxed{\frac14}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{3}
+변수를 분리하면
+\[
+    \frac{1}{y(1-y)}\,\dd y
+    =\dd x.
+\]
+적분하여
+\[
+    \ln\frac{y}{1-y}=x+C
+\]
+를 얻는다. $y(0)=1/2$이므로 $C=0$이고,
+\[
+    \frac{y}{1-y}=e^x.
+\]
+따라서
+\[
+    y(x)=\frac{e^x}{1+e^x}.
+\]
+$x=\ln3$을 대입하면
+\[
+    \boxed{y(\ln3)=\frac34}.
+\]
+\end{problemsolution}
+
+% Source check: The Shaw Prize, 2026 Mathematical Sciences announcement and citation.
+\begin{problemsolution}{4}
+2026 Shaw Prize in Mathematical Sciences의 공동 수상자는 Emmanuel Cand\`es와 Camillo De Lellis이다. 공식 citation은 Cand\`es 쪽의 information theory, signal processing, statistics와 De Lellis 쪽의 geometric measure theory, fluid dynamics를 mathematical analysis의 깊은 기법으로 연결한 업적을 강조한다.
+
+따라서 정답은
+\[
+    \boxed{\text{Emmanuel Cand\`es and Camillo De Lellis}}
+\]
+이다.
+\end{problemsolution}
+
+\begin{problemsolution}{5}
+삼각형의 넓이는 두 변 벡터의 cross product 크기의 절반이다. 여기서
+\[
+    \mathbf{u}\times\mathbf{v}
+    =
+    \begin{pmatrix}
+        1\\-1\\-1
+    \end{pmatrix},
+\]
+이므로
+\[
+    \|\mathbf{u}\times\mathbf{v}\|
+    =\sqrt3.
+\]
+따라서 넓이는
+\[
+    \boxed{\frac{\sqrt3}{2}}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{6}
+\[
+    105=3\cdot5\cdot7
+\]
+이고 세 소수는 pairwise coprime이다. 각 소수 $p\in\{3,5,7\}$에 대하여
+\[
+    x^2\equiv1\pmod p
+\]
+의 해는
+\[
+    x\equiv1\pmod p
+    \qquad\text{또는}\qquad
+    x\equiv-1\pmod p
+\]
+의 두 개이다. Chinese remainder theorem에 의해 세 modulus에서의 부호 선택 하나마다 modulo $105$의 residue class가 정확히 하나씩 대응한다.
+
+따라서 해의 개수는
+\[
+    2^3=\boxed{8}.
+\]
+\end{problemsolution}
+
+% Source check: Levent Alpöge and Ralph Furman, More than two thirds of the zeta zeros are simple and on the critical line, arXiv:2608.13637.
+\begin{problemsolution}{7}
+Alp\"oge와 Furman의 2026년 8월 preprint는 Riemann zeta function의 nontrivial zeros를 multiplicity를 포함하여 셌을 때, 적어도 $2/3$가 simple이면서 critical line 위에 있음을 별도의 가정 없이 보인다고 명시한다.
+
+따라서 정답은
+\[
+    \boxed{\frac23}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{8}
+$x=0$ 근방에서 Taylor expansion을 사용하면
+\[
+    \tan x
+    =x+\frac{x^3}{3}+O(x^5),
+    \qquad
+    \sin x
+    =x-\frac{x^3}{6}+O(x^5).
+\]
+따라서
+\[
+    \tan x-\sin x
+    =\frac{x^3}{2}+O(x^5),
+\]
+이므로
+\[
+    \boxed{
+        \lim_{x\to0}
+        \frac{\tan x-\sin x}{x^3}
+        =\frac12
+    }.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{9}
+Degree가 $1$, $2$, $3$인 vertex의 개수를 각각 $n_1,n_2,n_3$라 하자. 주어진 조건에 의해 $n_3=4$이다. Tree의 vertex 수를 $n$이라 하면
+\[
+    n=n_1+n_2+n_3
+\]
+이고 edge 수는 $n-1$이다. Handshaking lemma에 의해
+\[
+    n_1+2n_2+3n_3
+    =2(n-1)
+    =2(n_1+n_2+n_3-1).
+\]
+정리하면
+\[
+    n_1=n_3+2=6.
+\]
+Leaf는 degree가 $1$인 vertex이므로 정답은
+\[
+    \boxed{6}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{10}
+네 번의 회전에 대하여 고정되는 coloring의 수를 센다.
+
+Identity rotation은 모든 coloring $3^4=81$개를 고정한다. $90^\circ$와 $270^\circ$ 회전에 고정되려면 네 꼭짓점이 모두 같은 색이어야 하므로 각각 $3$개이다. $180^\circ$ 회전에 고정되려면 서로 마주보는 두 꼭짓점끼리 같은 색이면 되므로 $3^2=9$개이다.
+
+Burnside's lemma에 의해 서로 다른 coloring의 수는
+\[
+    \frac{81+3+9+3}{4}
+    =\boxed{24}.
+\]
+\end{problemsolution}
+
+\end{document}
