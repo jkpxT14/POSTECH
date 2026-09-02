@@ -1,7 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ProblemsetStyle}[2026/08/24 Science Quiz problem set style]
+\ProvidesPackage{ProblemsetStyle}[2026/09/03 Science Quiz problem set style]
 
-% Standalone adaptation of the current Mathematics for Science Quiz typography.
+% Standalone problem-set typography based on Mathematics for Science Quiz.
+% Mathematical notation and writing conventions follow the current (MATH000) Mathematical Language.
 % The handbook itself remains English-only. Problem sets may use Korean.
 % This package is intentionally engine-compatible: the same source compiles with
 % the user's ordinary latexmk/pdfLaTeX workflow and also with XeLaTeX/LuaLaTeX.
@@ -36,6 +37,7 @@
 % Mathematics
 \RequirePackage{amsmath,amssymb,amsthm}
 \RequirePackage{mathtools}
+\RequirePackage{dsfont}
 
 % Lists
 \RequirePackage{enumitem}
@@ -125,7 +127,15 @@
     align=left
 }
 
-% Notation used in this problem set, matching the handbook conventions.
+% Canonical notation used across the current problem sets.
+% Definitions below are copied from the current (MATH000) Mathematical Language.
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Exp}{\mathbb{E}}
+\newcommand{\indicator}[1]{\mathds{1}_{#1}}
+\newcommand{\ones}{\mathbf{1}}
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\ImPart}{Im}
