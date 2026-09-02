@@ -1,6 +1,6 @@
 \chapter{Notation and Game Recording}
 
-RPSC의 기보법은 체스의 algebraic notation과 PGN의 기록 방식을 가능한 한 유지하면서, RPSC에만 필요한 퀴즈 결과, 주사위 이동 경로, 아이템을 추가한다. 기보의 목적은 경기의 흐름을 간결하게 읽는 동시에, 필요한 경우 각 말의 위치와 방향을 처음부터 다시 복원할 수 있게 하는 것이다. 실제 경기의 기록과 분석용 표시는 구분하되, 둘 모두 같은 Move Notation을 사용한다.
+RPSC의 기보법은 체스의 algebraic notation과 PGN의 기록 원칙을 바탕으로 하되, RPSC에 필요한 퀴즈 결과, Full Roll Path, 아이템 정보를 추가한다. 먼저 Board와 Piece ID를 정하고, 하나의 Move Notation을 정의한 뒤, 이를 실제 경기의 Game Record와 분석용 Analysis Line에 공통으로 사용한다. 따라서 기록은 짧게 읽을 수 있으면서도 필요할 때 exact orientation까지 처음부터 복원할 수 있다.
 
 \section{Board and Pieces}
 
@@ -132,7 +132,7 @@ M2. W1: a1-a2-b2-b3 B3[RoR]: d8-d7-c7-c6-b6-b5
 
 White의 수만 적을 때에는 \texttt{Mn.}, Black의 대응만 적거나 Black의 수에서 variation을 시작할 때에는 \texttt{Mn...}을 사용한다. 한 팀이 보드에서 한 번 움직인 것을 \textbf{ply}라 부르므로, 완전한 M-number 하나는 White와 Black의 두 ply로 이루어진다. Analysis Line은 Game Record를 대체하지 않으며, 각 개별 수에는 Chapter 2의 동일한 Move Notation을 그대로 사용한다.
 
-체스의 PGN 분석 관례와 마찬가지로, 설명은 중괄호 \texttt{\{...\}}, 대안 수순은 소괄호 \texttt{(...)} 안에 적는다. 소괄호 안의 variation은 필요하면 다시 variation을 포함할 수 있다. 실제 경기 기록의 Main Line은 그대로 두고, 분석에서만 대안을 분기시키는 것이 원칙이다.
+설명은 중괄호 \texttt{\{...\}}, 대안 수순은 소괄호 \texttt{(...)} 안에 적는다. variation은 필요하면 다시 variation을 포함할 수 있지만, 실제 경기의 Main Line 자체를 덮어쓰지 않는다. Analysis Board에서도 과거의 확정 Position에서 다른 수를 선택하면 같은 원칙으로 별도의 Variation을 만든다.
 
 \medskip
 \noindent\textbf{Move Annotations.}
@@ -223,7 +223,6 @@ Quiz Result는 항상 사용자가 직접 입력한다. 표기는 반드시 \mbo
 기본 분석은 약 10초를 사용하며 \textbf{Analyze}는 같은 decision을 총 약 20초까지 더 깊게 탐색한다. 보드 이동, Item Choice, 최초 Order+Item Choice 모두 가능한 한 상위 세 Candidate Action과 continuation을 같은 시각 언어로 보여준다. 내부 PV는 더 길 수 있지만 Analysis Board는 읽기 쉽도록 핵심 구간만 표시한다.
 
 이미 확정된 위치로 돌아가 다른 합법 수를 두면 Main Line을 지우지 않고 Variation으로 남긴다. Game Record의 Quiz와 Move를 클릭해 위치를 복원할 수 있고, Engine Candidate를 선택하면 Push/Rotation의 선행 동작과 각 Roll을 실제 순서대로 board preview에서 재생한다. 이 preview는 Confirm하기 전에는 Game Record나 실제 Position에 기록되지 않는다. 복원 상태에는 점수, 아이템, 선후공, exact cube orientation이 모두 포함된다.
-
 
 \medskip
 \noindent\textbf{Incomplete Records and Analysis Sessions.}

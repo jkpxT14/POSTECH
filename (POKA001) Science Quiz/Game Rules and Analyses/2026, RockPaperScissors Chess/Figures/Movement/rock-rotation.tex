@@ -2,51 +2,16 @@
     \centering
     \begin{tikzpicture}[x=0.620cm,y=0.620cm]
         \fill[black!4] (4,4) rectangle (5,5);
-        \draw[rpsc board line] (0,0)--(0,9);
-        \draw[rpsc board line] (0,0)--(9,0);
-        \draw[rpsc board line] (1,0)--(1,9);
-        \draw[rpsc board line] (0,1)--(9,1);
-        \draw[rpsc board line] (2,0)--(2,9);
-        \draw[rpsc board line] (0,2)--(9,2);
-        \draw[rpsc board line] (3,0)--(3,9);
-        \draw[rpsc board line] (0,3)--(9,3);
-        \draw[rpsc board line] (4,0)--(4,9);
-        \draw[rpsc board line] (0,4)--(9,4);
-        \draw[rpsc board line] (5,0)--(5,9);
-        \draw[rpsc board line] (0,5)--(9,5);
-        \draw[rpsc board line] (6,0)--(6,9);
-        \draw[rpsc board line] (0,6)--(9,6);
-        \draw[rpsc board line] (7,0)--(7,9);
-        \draw[rpsc board line] (0,7)--(9,7);
-        \draw[rpsc board line] (8,0)--(8,9);
-        \draw[rpsc board line] (0,8)--(9,8);
-        \draw[rpsc board line] (9,0)--(9,9);
-        \draw[rpsc board line] (0,9)--(9,9);
+        \foreach \i in {0,...,9} {\draw[rpsc board line] (\i,0)--(\i,9);\draw[rpsc board line] (0,\i)--(9,\i);}
         \draw[rpsc board border] (0,0) rectangle (9,9);
         \node[rpsc analysis text] at (4.50,8.50) {R};
-        \node[rpsc analysis text] at (3.50,7.50) {SP};
-        \node[rpsc analysis text] at (5.50,7.50) {SP};
-        \node[rpsc analysis text compact] at (2.50,6.50) {SRP};
-        \node[rpsc analysis text compact] at (4.50,6.50) {SRP};
-        \node[rpsc analysis text compact] at (6.50,6.50) {SRP};
-        \node[rpsc analysis text] at (1.50,5.50) {SP};
-        \node[rpsc analysis text] at (3.50,5.50) {SP};
-        \node[rpsc analysis text] at (5.50,5.50) {SP};
-        \node[rpsc analysis text] at (7.50,5.50) {SP};
-        \node[rpsc analysis text] at (0.50,4.50) {R};
-        \node[rpsc analysis text compact] at (2.50,4.50) {SRP};
-        \node[rpsc analysis text] at (4.50,4.50) {SP};
-        \node[rpsc analysis text compact] at (6.50,4.50) {SRP};
-        \node[rpsc analysis text] at (8.50,4.50) {R};
-        \node[rpsc analysis text] at (1.50,3.50) {SP};
-        \node[rpsc analysis text] at (3.50,3.50) {SP};
-        \node[rpsc analysis text] at (5.50,3.50) {SP};
-        \node[rpsc analysis text] at (7.50,3.50) {SP};
-        \node[rpsc analysis text compact] at (2.50,2.50) {SRP};
-        \node[rpsc analysis text compact] at (4.50,2.50) {SRP};
-        \node[rpsc analysis text compact] at (6.50,2.50) {SRP};
-        \node[rpsc analysis text] at (3.50,1.50) {SP};
-        \node[rpsc analysis text] at (5.50,1.50) {SP};
+        \node[rpsc analysis text] at (3.50,7.50) {SP};\node[rpsc analysis text] at (5.50,7.50) {SP};
+        \node[rpsc analysis text compact] at (2.50,6.50) {SRP};\node[rpsc analysis text compact] at (4.50,6.50) {SRP};\node[rpsc analysis text compact] at (6.50,6.50) {SRP};
+        \node[rpsc analysis text] at (1.50,5.50) {SP};\node[rpsc analysis text] at (3.50,5.50) {SP};\node[rpsc analysis text] at (5.50,5.50) {SP};\node[rpsc analysis text] at (7.50,5.50) {SP};
+        \node[rpsc analysis text] at (0.50,4.50) {R};\node[rpsc analysis text compact] at (2.50,4.50) {SRP};\node[rpsc analysis text] at (4.50,4.50) {SP};\node[rpsc analysis text compact] at (6.50,4.50) {SRP};\node[rpsc analysis text] at (8.50,4.50) {R};
+        \node[rpsc analysis text] at (1.50,3.50) {SP};\node[rpsc analysis text] at (3.50,3.50) {SP};\node[rpsc analysis text] at (5.50,3.50) {SP};\node[rpsc analysis text] at (7.50,3.50) {SP};
+        \node[rpsc analysis text compact] at (2.50,2.50) {SRP};\node[rpsc analysis text compact] at (4.50,2.50) {SRP};\node[rpsc analysis text compact] at (6.50,2.50) {SRP};
+        \node[rpsc analysis text] at (3.50,1.50) {SP};\node[rpsc analysis text] at (5.50,1.50) {SP};
         \node[rpsc analysis text] at (4.50,0.50) {R};
     \end{tikzpicture}
     \caption{Rock with Rotation}

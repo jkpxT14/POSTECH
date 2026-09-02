@@ -11,31 +11,27 @@
 namespace rpsc {
 
 struct ItemChoiceLine {
-    int bucket = -1;  // 0 Push, 1 Rotation, 2 Step
+    int bucket = -1;
     Value white_value = 0;
     SearchResult probe;
 };
-
 struct ItemChoiceResult {
     int best_bucket = -1;
     Value white_value = 0;
     std::vector<ItemChoiceLine> lines;
 };
-
 struct OrderChoiceResult {
     bool choose_first = true;
     Value white_value = 0;
     SearchResult probe;
 };
-
 struct InitialChoiceLine {
     bool choose_first = true;
-    int bucket = -1;  // 0 Push, 1 Rotation, 2 Step
+    int bucket = -1;
     Value chooser_value = 0;
     Value white_value = 0;
     SearchResult probe;
 };
-
 struct InitialChoiceResult {
     bool choose_first = true;
     int best_bucket = -1;
@@ -51,6 +47,7 @@ class Engine {
     Position& position() { return position_; }
     const Position& position() const { return position_; }
     SearchResult go(const SearchLimits& limits);
+    SearchResult analyze(const SearchLimits& limits) { return go(limits); }
     ItemChoiceResult choose_item(Color chooser, const SearchLimits& limits);
     OrderChoiceResult choose_order(const SearchLimits& limits);
     InitialChoiceResult choose_initial(const SearchLimits& limits);
@@ -64,5 +61,4 @@ class Engine {
 };
 
 }  // namespace rpsc
-
 #endif

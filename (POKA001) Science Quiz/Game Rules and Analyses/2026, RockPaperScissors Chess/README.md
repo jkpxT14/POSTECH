@@ -1,60 +1,73 @@
-# 2026, RockPaperScissors Chess
+# RockPaperScissors Chess
 
-2026 KAIST-POSTECH Science War Science Quiz game handbook, Analysis Board, and classical RPSC Engine.
+Build: **Draft 36** (2026-09-02 KST)  
+Native Engine: **0.14.0**  
+Source base: GitHub `main` at `5070395ae9fb26e35adc9c9dc14cafa09e9fb4ed`.
 
-## Files
+This directory is one RPSC system rather than three independent artifacts:
 
-- `RockPaperScissorsChess.tex` / `.pdf`: handbook and compiled edition
-- `Rules.tex`: official-rule model used by the handbook
-- `NotationandGameRecording.tex`: canonical Game Record and analysis language
-- `MovementandItems.tex`: exact/reduced cube analysis and item movement
-- `RockPaperScissorsChess.html`: offline single-file Analysis Board
-- `Engine/`: native C++ RPSC Engine, regression tests, verification, and strength notes
+**Canonical Rule Model → Notation / State Model → Handbook / Analysis Board / Native Engine**
 
-The official Science Quiz rules and final RockPaperScissors Chess plan define the game. The exact 24-orientation physical cube model is authoritative; Gesture States are derived analysis/search information. Quiz Results are always user input.
+The handbook defines the human-readable rules and notation, the offline Analysis Board uses the same exact cube and move semantics interactively, and the native Engine provides the reference classical search implementation and regression suite.
 
-Build: Draft 35 (2026-09-02 KST)
+## Draft 36
 
-Source base: GitHub `main` at `b8ef4862a4acfc69057dab2099dafa18563ba2a1` (Draft 34 / Engine 0.13.0).
+Draft 36 is a readability, analysis-workspace, and search-performance release.
 
-## Draft 35
+### Handbook
 
-Draft 35 is a presentation and cross-project consistency update on top of the current GitHub Draft 34 source. The RPSC rule implementation, Analysis Board behavior, and Engine 0.13.0 search/game logic are intentionally unchanged.
+- Keeps the 11 pt book layout, restrained academic styling, Latin Modern English/mathematics, and existing figure language.
+- Uses `NanumMyeongjo` for Korean body text when installed, with `Noto Serif CJK KR` as the fallback. The change gives long Korean paragraphs slightly stronger visual weight without making body text bold.
+- Tightens the flow of Rules / Notation / Movement explanations and makes the Exact Orientation → Gesture State relationship explicit.
+- Preserves the latest three internal-league game records and detailed score breakdowns from the source commit.
 
-- 2026-specific competition naming is normalized to the away-home order: `KAIST-POSTECH` in English and `카포전` in Korean.
-- Korean `포항공과대학교` references in `Acknowledgements` now use the established POSTECH RED institutional treatment while names, departments, and roles remain black.
-- `Games` is reflowed as a continuous, page-breakable game-record section instead of forcing one game per page; the three canonical records themselves are unchanged.
-- The handbook's structural headings remain English and its descriptive content remains Korean.
-- The handbook, Analysis Board, and Engine were re-audited as one RPSC system for established notation and non-deferred rules; no rule behavior is changed in this draft.
+### Analysis Board
 
-## Draft 34
+`RockPaperScissorsChess.html` remains an offline single-file analysis workspace. Draft 36 keeps the project’s white, line-based academic visual language while making the analysis hierarchy clearer: the primary candidate receives a restrained left rule, depth/nodes/time appear as compact status chips, and history controls remain adjacent to the Game Record. The design direction takes useful interaction patterns from established chess analysis tools—large stable board, nearby engine lines, forward/back navigation, board rotation, and MultiPV-style alternatives—without copying their visual branding.
 
-Draft 34 is a handbook-recording update on top of Draft 33; the Analysis Board, Engine 0.13.0, and rule implementation are unchanged.
+The board supports Human vs Human, Human vs Engine, and Engine vs Engine control modes. Quiz Results remain explicit user input. Board analysis runs in a Web Worker so long searches do not intentionally block the interface; `Analyze` first targets about 10 seconds and a repeated request reuses the completed same-position result while extending toward about 20 total seconds.
 
-- `Games` now records three 2026-09-01 squad internal-league games in the canonical RPSC Game Record notation, using White-Black player ordering and the verified converted records.
-- `Acknowledgements` is expanded and localized to Korean for names, affiliations, and 2026 Science Quiz roles while retaining the English structural heading.
-- The title-page role is refined to `2026 Science Quiz Mathematics Representative`.
-- No board diagrams are added to the game records; the chapter intentionally preserves the compact notation-first presentation.
+Format 2 saves the readable canonical Main Line together with the current analysis-history tree. Session metadata is checked against the readable Main Line before restoration.
 
-## Draft 33
+### Native Engine 0.14.0
 
-Draft 33 advances the native Engine to 0.13.0 and makes the Analysis Board a resumable analysis workspace without changing the official rule model.
+Engine 0.14.0 retains the exact rule model and the 0.13 search base while adding two allocation/search-budget improvements:
 
-- `.rpsc` Format 2 saves incomplete confirmed positions as well as completed rounds. Equal Quiz-only records restore White-to-move; equal Quiz plus a White move restores Black-to-move; solo-correct Quiz-only records restore the pending Item Choice.
-- A Format 2 session preserves the full Main Line/Variation tree, current variation node, exact cube orientations, score, inventories, order, and phase. Unconfirmed previews/drafts are deliberately excluded.
-- The readable Game Record remains authoritative. If the Main Line is edited externally and no longer matches the session payload, stale session metadata is ignored and the body is replayed; Score/Quiz/Captures are recomputed from that replay. Legacy flat Draft 32 `.rpsc` records remain loadable.
-- Native Engine 0.13 keeps history, capture-history, continuation/follow-up, and countermove information across related searches and decision probes. It also caches the previous completed root ranking for the same Engine search key and reuses it for first-iteration move ordering.
-- The browser Worker likewise carries a completed root ranking into later iterations and the normal 10-second → Analyze 20-second continuation, while completed iterations remain authoritative.
-- Draft 32's exact move generator, root progressive widening, geometric reach/item signal, Match Context model, and conservative completed-iteration behavior are retained. These changes improve search allocation and continuity; they are not an Elo or best-move guarantee.
-- All twelve Basic/Push/Rotation/Step reference movement figures, the official dice net, and the initial placement are rechecked against the same exact orientation/rule model during release verification.
-- Timeout handling and the unresolved Push-followed-by-return-to-the-pre-Push-square clarification are intentionally unchanged pending official confirmation.
+1. board one-step transitions are precomputed in the hot move-generation path;
+2. same-key timed continuation stores the last completed root depth/ranking and resumes from the next unfinished depth instead of repeating already completed iterative-deepening passes.
 
-## Shared language
+The 0.13 ordering stack is retained: TT move first, history, capture history, continuation/follow-up, countermove, killers, tactical quiescence, score-event extensions, pressure-aware LMR, aspiration, and root family quotas with verification.
 
-The handbook, Analysis Board, and Engine use the same terms and notation: Game Record, Analysis Line, M-number, Candidate Action, Candidate Move, PV, MultiPV, Main Line, Variation, Match Context, Evaluation, `Pu`, `RoL`, `RoR`, `StS`, `StL`, and canonical `Q[1, 1]`-style Quiz notation. Full Roll Path remains part of the move itself.
+In the release environment the seven-run no-item depth-4 control used 203,165 nodes with a median of 812 ms and preserved the established best root `W1: a1-a2-a3-b3`. The documented 0.12/0.13-era control was about 212k nodes / 858 ms. The item-rich 10-second control still completes depth 3; a subsequent 20-second same-position search spends its budget directly on the unfinished depth 4 but does not complete depth 4 in this stress position. No stronger claim is made.
 
-## Reference discipline
+See `Engine/StrengthTesting.md` and `Engine/Verification.md`.
 
-Chess/PGN analysis systems are references for notation hierarchy, PV/MultiPV presentation, and completed-iteration engine UX. Stockfish/Fishtest, shogi engines, Arimaa/Amazons work, Othello engines, and other classical game-engine research are search/testing references only. No external game's rules, opening knowledge, or copied engine code defines RPSC behavior.
+## Semantic freezes
 
-The C++ Engine remains the native reference implementation; the offline Analysis Board uses a parallel JavaScript Worker. Strength claims remain conservative and are tied to reproducible controls in `Engine/StrengthTesting.md` and `Engine/Verification.md`.
+These meanings are release invariants and are regression-tested:
+
+1. **Rotation:** in-place 90° CW/CCW rotation about the board-vertical axis. Square and top face remain fixed. `RoL` and `RoR` remain distinct exact actions.
+2. **Timeout:** the handbook records the official timeout/random-fallback rule. Analysis Board and Engine do not adjudicate timeout/random replacement.
+3. **Push return:** Push is not a Roll. The first Roll after Push may immediately return to the square occupied before Push.
+
+The exact 24-orientation cube state is authoritative. The six-state Gesture State is a derived reduction only.
+
+## Build
+
+### Handbook
+
+XeLaTeX is required.
+
+```bash
+latexmk RockPaperScissorsChess.tex
+```
+
+### Engine
+
+```bash
+cmake -S Engine -B Engine/build -DCMAKE_BUILD_TYPE=Release
+cmake --build Engine/build
+ctest --test-dir Engine/build --output-on-failure
+```
+
+The packaged release intentionally excludes build directories and LaTeX auxiliary files.
