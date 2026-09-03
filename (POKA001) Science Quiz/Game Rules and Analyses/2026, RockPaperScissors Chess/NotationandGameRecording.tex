@@ -45,26 +45,54 @@ W2: c1-c2-d2-d3-e3
 
 \begin{center}
     \renewcommand{\arraystretch}{1.15}
-    \begin{tabular}{@{}cll@{}}
+    \begin{tabular}{@{}cL{0.66\textwidth}@{}}
         \toprule
-        코드 & 의미 & 사용 예 \\
+        코드 & 의미 \\
         \midrule
-        \texttt{Pu} & Push & \texttt{W3[Pu]: e3>f3-f4-g4-g5-h5-h4} \\
-        \texttt{RoL} & Rotation Left & \texttt{W2[RoL]: c1-c2-d2-d3-e3} \\
-        \texttt{RoR} & Rotation Right & \texttt{W2[RoR]: c1-c2-d2-d3-e3} \\
-        \texttt{StL} & Step Long & \texttt{W1[StL]: a3-a4-b4-b5-c5} \\
-        \texttt{StS} & Step Short & \texttt{W1[StS]: a3-a4-b4} \\
+        \texttt{Pu} & Push \\
+        \texttt{RoN} & North로 한 칸 Roll했을 때와 같은 orientation 변화를 현재 칸에서 적용 \\
+        \texttt{RoS} & South로 한 칸 Roll했을 때와 같은 orientation 변화를 현재 칸에서 적용 \\
+        \texttt{RoE} & East로 한 칸 Roll했을 때와 같은 orientation 변화를 현재 칸에서 적용 \\
+        \texttt{RoW} & West로 한 칸 Roll했을 때와 같은 orientation 변화를 현재 칸에서 적용 \\
+        \texttt{RoL} & 위에서 보아 반시계방향으로 $90^\circ$ 제자리 회전 \\
+        \texttt{RoR} & 위에서 보아 시계방향으로 $90^\circ$ 제자리 회전 \\
+        \texttt{StL} & Step Long \\
+        \texttt{StS} & Step Short \\
         \bottomrule
     \end{tabular}
 \end{center}
 
-Push로 밀린 한 칸은 Roll과 구별하기 위해 \texttt{>}로 적는다. Rotation은 말을 다른 칸으로 옮기거나 옆면으로 굴리는 동작이 아니며, \texttt{RoL}과 \texttt{RoR}은 제자리 $90^\circ$ 회전의 정확한 방향을 보존한다.
+Rotation의 N, S, E, W는 White/Black의 시점과 무관한 \textbf{보드 절대방향}이다. North는 rank 증가, South는 rank 감소, East는 file 증가, West는 file 감소를 뜻한다. \texttt{RoN}, \texttt{RoS}, \texttt{RoE}, \texttt{RoW}는 해당 방향으로 한 칸 Roll했을 때의 정육면체 회전만 제자리에서 적용한다. \texttt{RoL}, \texttt{RoR}은 보드에 수직인 축을 중심으로 회전한다.
+
+초기 W2를 예로 들면 Rotation 후 윗면에 따라 Roll 수가 달라질 수 있으므로 다음과 같이 기록된다.
+
+\begin{quote}
+\ttfamily
+W2[RoN]: c1-c2-d2-d3\\
+W2[RoE]: c1-c2-d2-d3-e3-e4\\
+W2[RoR]: c1-c2-d2-d3-e3
+\end{quote}
+
+Push로 밀린 한 칸은 Roll과 구별하기 위해 \texttt{>}로 적는다. 첫 Roll은 Push 이전 칸으로 즉시 되돌아갈 수 없다.
+
+\begin{quote}
+\ttfamily
+W3[Pu]: e3>f3-f4-g4-g5-h5-h4
+\end{quote}
 
 아이템을 새로 획득한 경우에는 팀 문자 뒤에 \texttt{+}와 기본 아이템 코드를 붙인다. Rotation과 Step은 획득 시에는 방향이나 길이를 아직 선택하지 않으므로 각각 \texttt{Ro}, \texttt{St}만 기록한다.
 
 \begin{quote}
 \ttfamily
 W+Pu\qquad B+Ro\qquad W+St
+\end{quote}
+
+제한 시간 초과는 그 결과로 실행되는 행동의 \textbf{앞}에 \texttt{Timeout}을 적는다. 기보는 실제 사건이 일어난 순서를 따른다. 이동 시간 초과에서도 실제로 나온 full path를 모두 기록하고, 아이템 선택 시간 초과에서는 실제로 무작위 획득된 아이템을 기록한다.
+
+\begin{quote}
+\ttfamily
+Timeout W2: c1-c2-d2-e2-e3\\
+Timeout W+Ro
 \end{quote}
 
 전투 결과 말이 제거되면 이동 기보 뒤에 \texttt{x}와 제거된 말의 번호를 적는다. \texttt{x}는 ``뒤의 말이 제거되었다''는 뜻이다. 한 팀의 네 말이 모두 제거되어 초기화가 발생하면 마지막에 \texttt{Reset}을 붙인다.
@@ -74,7 +102,13 @@ W+Pu\qquad B+Ro\qquad W+St
 B1: h5-g5-g4-f4 xW4 Reset
 \end{quote}
 
-이 기보법에서 이동 경로는 경기 복원의 기준이 되는 \textbf{canonical record}이다. Chapter 3의 Roll Word, Axis Word, Gesture State는 이 정보를 대체하여 중복 저장하는 것이 아니라, 필요할 때 canonical record에서 유도하는 분석 정보이다.
+따라서 한 행동 안의 정보는 필요한 경우
+\[
+    \texttt{Timeout}\;\longrightarrow\;\text{Move or Item Gain}\;\longrightarrow\;\text{Capture}\;\longrightarrow\;\texttt{Reset}
+\]
+의 실제 발생 순서로 적는다.
+
+이 기보법에서 이동 경로는 경기 복원의 기준이 되는 \textbf{canonical record}이다. Chapter 3의 Roll Word와 Gesture State는 이 정보를 대체하여 중복 저장하는 것이 아니라, 필요할 때 canonical record에서 유도하는 분석 정보이다.
 
 \section{Game Record}
 
@@ -181,7 +215,7 @@ Position Evaluation은 White의 관점에서 적는다. 아래의 기호는 수�
 \medskip
 \noindent\textbf{Analysis Terms.}
 
-교재, Engine, Analysis Board는 다음 용어를 같은 의미로 사용한다.
+분석 기보에서는 다음 용어를 같은 의미로 사용한다.
 
 \begin{center}
     \renewcommand{\arraystretch}{1.16}
@@ -207,22 +241,7 @@ Position Evaluation은 White의 관점에서 적는다. 아래의 기호는 수�
     \end{tabular}
 \end{center}
 
-RPSC에서는 한 번의 보드 이동이 여러 Roll로 이루어지므로, \textbf{Full Roll Path} 자체가 Candidate Move의 일부이다. 따라서 같은 말이 같은 칸에 도착하더라도 exact orientation이나 보유 아이템 상태가 다르면 서로 다른 Position일 수 있다. 반대로 서로 다른 full path가 위치, exact/reduced state, inventory와 후속 가능성까지 같아지는 경우 Engine은 transposition으로 계산을 재사용할 수 있다. canonical Game Record에는 언제나 실제 full path를 보존한다.
-
-\medskip
-\noindent\textbf{Engine Analysis and Decisions.}
-
-Analysis Board의 Engine Analysis는 플레이 주체와 독립되어 Human-controlled 선택에서도 추천만 제공할 수 있다. 보드 이동에서는 Normal Move와 Push, Rotation Left/Right, Step Short/Long을 같은 search 안에서 비교하고 상위 Candidate Move와 짧은 PV를 제시한다. PV 내부에서도 아이템 사용은 \texttt{Pu}, \texttt{RoL}, \texttt{RoR}, \texttt{StS}, \texttt{StL}을 포함한 동일한 Move Notation으로 나타낸다.
-
-한 팀만 정답이면 Push, Rotation, Step의 \textbf{Item Choice}도 Candidate Action으로 분석한다. 최초 단독 정답에서는 선공/후공과 아이템을 따로 판단하지 않고 \textbf{First/Second $\times$ Push/Rotation/Step}의 여섯 조합을 하나의 decision으로 비교한다. 아이템을 실제 보드 이동에 사용할 때에도 Normal Move, \texttt{Pu}, \texttt{RoL}, \texttt{RoR}, \texttt{StS}, \texttt{StL}이 같은 Candidate Move 집합에서 경쟁하므로, 지금 사용하는 가치와 보존하는 가치가 동일한 search 안에서 비교된다.
-
-Quiz Result는 항상 사용자가 직접 입력한다. 표기는 반드시 \mbox{\texttt{Q[1, 1]}}, \mbox{\texttt{Q[1, 0]}}, \mbox{\texttt{Q[0, 1]}}, \mbox{\texttt{Q[0, 0]}}처럼 쉼표 뒤 한 칸을 띄운다. \textbf{지금까지 입력되어 확정된 Quiz Result는 Match Context의 실제 사실}이므로 Quiz 점수와 그 결과로 얻은 현재 아이템 재고를 Evaluation에 모두 반영한다. 반대로 아직 일어나지 않은 Quiz를 어느 팀이 맞힐지는 Engine이 예측하지 않는다.
-
-미래의 보드 continuation을 비교할 때에는 남은 Quiz에서 두 팀의 정오 여부가 같다고 두는 \textbf{Symmetric Quiz Assumption}을 사용한다. 즉 이후 Quiz는 \texttt{Q[1, 1]} 또는 \texttt{Q[0, 0]}과 동등하게 취급하여 새로운 아이템 획득 없이 First--Second 순서의 보드 이동만 이어진다고 본다. \texttt{Q[1, 1]}은 양 팀 Quiz 점수를 똑같이 1점씩 올리고 \texttt{Q[0, 0]}은 어느 쪽도 올리지 않으므로, 두 경우 모두 현재 점수차와 상대적 Evaluation에는 같은 효과를 준다. 이 가정은 미래 Quiz를 예측하는 모델이 아니라, 현재의 Board Move와 Item Choice/Use를 공통 기준에서 비교하기 위한 분석 조건이다.
-
-기본 분석은 약 10초를 사용하며 \textbf{Analyze}는 같은 decision을 총 약 20초까지 더 깊게 탐색한다. 보드 이동, Item Choice, 최초 Order+Item Choice 모두 가능한 한 상위 세 Candidate Action과 continuation을 같은 시각 언어로 보여준다. 내부 PV는 더 길 수 있지만 Analysis Board는 읽기 쉽도록 핵심 구간만 표시한다.
-
-이미 확정된 위치로 돌아가 다른 합법 수를 두면 Main Line을 지우지 않고 Variation으로 남긴다. Game Record의 Quiz와 Move를 클릭해 위치를 복원할 수 있고, Engine Candidate를 선택하면 Push/Rotation의 선행 동작과 각 Roll을 실제 순서대로 board preview에서 재생한다. 이 preview는 Confirm하기 전에는 Game Record나 실제 Position에 기록되지 않는다. 복원 상태에는 점수, 아이템, 선후공, exact cube orientation이 모두 포함된다.
+RPSC에서는 한 번의 보드 이동이 여러 Roll로 이루어지므로, \textbf{Full Roll Path} 자체가 Candidate Move의 일부이다. 따라서 같은 말이 같은 칸에 도착하더라도 exact orientation이나 보유 아이템 상태가 다르면 서로 다른 Position일 수 있다. 반대로 서로 다른 full path가 위치, exact/reduced state, inventory와 후속 가능성까지 같아지면 같은 Position에 도달한 transposition으로 볼 수 있다. canonical Game Record에는 언제나 실제 full path를 보존한다.
 
 \medskip
 \noindent\textbf{Incomplete Records and Analysis Sessions.}
