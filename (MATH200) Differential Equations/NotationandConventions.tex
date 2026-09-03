@@ -1,0 +1,28 @@
+\preliminarypart{Notation and Conventions}
+
+General mathematical notation and writing follow \textit{(MATH000) Mathematical Language}. The conventions below record only notation specific to differential equations used in this book. When several equivalent notations are listed, the first form is used throughout.
+
+\notationheading{Differential Equations}
+
+The Fourier transform uses the normalization
+\[
+\widehat f(\boldsymbol{\xi})\coloneqq
+\int_{\R^n} f(\mathbf{x})e^{-2\pi i\mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\mathbf{x},
+\qquad
+f(\mathbf{x})=
+\int_{\R^n}\widehat f(\boldsymbol{\xi})e^{2\pi i\mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\boldsymbol{\xi},
+\]
+whenever the Fourier inversion formula applies.
+
+\begin{notationtable}
+$y'$ & first derivative with respect to the understood independent variable \\
+$y''$ & second derivative \\
+$\dot{x}$ & first derivative of $x$ with respect to time \\
+$\ddot{x}$ & second derivative of $x$ with respect to time \\
+$y_h,\ y_c$ & homogeneous or complementary part of a solution \\
+$y_p$ & particular solution \\
+$c_1,c_2,\dots$ & arbitrary constants in a general solution \\
+$W(y_1,y_2)(t),\ W[y_1,y_2](t)$ & Wronskian of $y_1$ and $y_2$ \\
+$\mathcal{L}\{f(t)\}(s)$ & Laplace transform of $f$ \\
+$\widehat f(\boldsymbol{\xi}),\ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform under the normalization above \\
+\end{notationtable}
