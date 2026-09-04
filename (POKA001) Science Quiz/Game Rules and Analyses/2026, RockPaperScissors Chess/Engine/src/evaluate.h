@@ -1,5 +1,5 @@
 #ifndef RPSC_EVALUATE_H_INCLUDED
 #define RPSC_EVALUATE_H_INCLUDED
 #include "position.h"
-namespace rpsc {Value evaluate_white(const Position&);Value evaluate(const Position&);}
+namespace rpsc { Value evaluate_white(const Position&); Value evaluate(const Position&); }
 #endif

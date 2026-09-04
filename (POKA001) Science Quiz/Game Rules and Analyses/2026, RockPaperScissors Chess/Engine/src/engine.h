@@ -4,42 +4,15 @@
 #include <cstddef>
 #include <cstdint>
 #include <vector>
-
 #include "perft.h"
 #include "search.h"
 
 namespace rpsc {
-
-struct ItemChoiceLine {
-    int bucket = -1;
-    Value white_value = 0;
-    SearchResult probe;
-};
-struct ItemChoiceResult {
-    int best_bucket = -1;
-    Value white_value = 0;
-    std::vector<ItemChoiceLine> lines;
-};
-struct OrderChoiceResult {
-    bool choose_first = true;
-    Value white_value = 0;
-    SearchResult probe;
-};
-struct InitialChoiceLine {
-    bool choose_first = true;
-    int bucket = -1;
-    Value chooser_value = 0;
-    Value white_value = 0;
-    SearchResult probe;
-};
-struct InitialChoiceResult {
-    bool choose_first = true;
-    int best_bucket = -1;
-    Value chooser_value = 0;
-    Value white_value = 0;
-    std::vector<InitialChoiceLine> lines;
-};
-
+struct ItemChoiceLine { int bucket = -1; Value white_value = 0; SearchResult probe; };
+struct ItemChoiceResult { int best_bucket = -1; Value white_value = 0; std::vector<ItemChoiceLine> lines; };
+struct OrderChoiceResult { bool choose_first = true; Value white_value = 0; SearchResult probe; };
+struct InitialChoiceLine { bool choose_first = true; int bucket = -1; Value chooser_value = 0; Value white_value = 0; SearchResult probe; };
+struct InitialChoiceResult { bool choose_first = true; int best_bucket = -1; Value chooser_value = 0; Value white_value = 0; std::vector<InitialChoiceLine> lines; };
 class Engine {
    public:
     explicit Engine(std::size_t hash_megabytes = 64);
@@ -53,12 +26,10 @@ class Engine {
     InitialChoiceResult choose_initial(const SearchLimits& limits);
     std::uint64_t perft(int depth);
     void clear_search();
-
    private:
     Position position_;
     TranspositionTable tt_;
     Search search_;
 };
-
 }  // namespace rpsc
 #endif
