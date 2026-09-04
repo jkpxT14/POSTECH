@@ -1,3 +1,917 @@
 \coursepart{1}{(MATH203) Applied Linear Algebra}
+\ifCourseSolutions\else
+{\noindent\small\itshape Problems are arranged chronologically by year and semester, with the midterm preceding the final examination within the same semester, while preserving the original problem order within each source.\par}
+\vspace{0.22cm}
+\fi
 
-% Problems and matching solutions will be added here in chronological source order.
+% 2018 Fall POSTECH Applied Linear Algebra Midterm, Problem 1
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+In this problem, $V$ is a vector space. Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item There exists a linearly independent subset $S\subset V$ that contains the zero vector $\mathbf 0$.
+\item If $\mathbf A\in\R^{n\times n}$ is invertible, then the columns of $\mathbf A$ form a basis for $\R^n$.
+\item Every projection matrix is invertible.
+\item $\Null(\mathbf A)^\perp=\Col(\mathbf A)$.
+\item Let $\{\mathbf v_1,\dots,\mathbf v_n\}$ be a basis for $V$, and let $T:V\to W$ be a linear transformation. If
+\[
+T(\mathbf v_i)=\mathbf w_i,
+\qquad 1\le i\le n,
+\]
+for given vectors $\mathbf w_1,\dots,\mathbf w_n\in W$, then $T$ is uniquely determined.
+\end{problemchoices}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Midterm, Problem 2
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+For each statement, prove it or disprove it by providing a counterexample.
+\begin{problemchoices}
+\item Consider a linear system
+\[
+\mathbf A\mathbf x=\mathbf b,
+\qquad
+\mathbf A\in\R^{m\times n},\quad
+\mathbf x\in\R^n,\quad
+\mathbf b\in\R^m.
+\]
+If there are more variables than equations, $m<n$, then the system always has a solution.
+\item If $\mathbf A\in\R^{n\times n}$ satisfies
+\[
+\mathbf A^2=\mathbf A
+\qquad\text{and}\qquad
+\rk(\mathbf A)=n,
+\]
+then $\mathbf A=\mathbf I_n$.
+\item The null space of $\mathbf A$ is equal to the null space of $\mathbf A^{\mathsf T}\mathbf A$.
+\end{problemchoices}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Midterm, Problem 3
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&2\\
+0&1&0\\
+2&1&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find $\mathbf A^{-1}$.
+\item Compute $\bigl(\mathbf A\mathbf A^{\mathsf T}\bigr)^{-1}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Midterm, Problem 4
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&0\\
+0&1&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find a right inverse $\mathbf B$ such that
+\[
+\mathbf A\mathbf B=\mathbf I_2.
+\]
+\item Using the matrix $\mathbf B$ obtained in part \textup{(a)}, compute $\bigl(\mathbf B\mathbf A\bigr)^{100}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Midterm, Problem 5
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1\\
+4&4\\
+4&4
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+1\\1\\1
+\end{pmatrix}.
+\]
+Find the orthogonal projection $\mathbf b_c$ of $\mathbf b$ onto $\Col(\mathbf A)$.
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Midterm, Problem 6
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&1\\
+1&2&2\\
+1&2&3
+\end{pmatrix},
+\qquad
+\mathbf B=
+\begin{pmatrix}
+0&1&1&1\\
+-1&0&-1&0\\
+1&-1&0&0
+\end{pmatrix},
+\qquad
+\mathbf C=
+\begin{pmatrix}
+1&2&2\\
+2&4&5
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find an $LU$ decomposition $\mathbf A=\mathbf L\mathbf U$, where $\mathbf L$ is lower triangular and $\mathbf U$ is upper triangular.
+\item Find a basis for $\Col(\mathbf B)$.
+\item Find $\Null(\mathbf B)$.
+\item Write the complete solution in the form $\mathbf x=\mathbf x_p+\mathbf x_n$ for
+\[
+\mathbf C
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+=
+\begin{pmatrix}
+1\\4
+\end{pmatrix},
+\]
+where $\mathbf x_p$ is a particular solution and $\mathbf x_n\in\Null(\mathbf C)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Midterm, Problem 7
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Let $V=M_2(\R)$, the vector space of $2\times2$ real matrices with the usual addition and scalar multiplication.
+\begin{problemsubparts}
+\item Show that
+\[
+\mathbf v_1=
+\begin{pmatrix}
+1&0\\0&1
+\end{pmatrix},
+\quad
+\mathbf v_2=
+\begin{pmatrix}
+1&0\\0&-1
+\end{pmatrix},
+\quad
+\mathbf v_3=
+\begin{pmatrix}
+0&1\\1&0
+\end{pmatrix},
+\quad
+\mathbf v_4=
+\begin{pmatrix}
+0&1\\-1&0
+\end{pmatrix}
+\]
+form a basis for $V$.
+\item Find the matrix representation of the linear transformation
+\[
+T:V\to V,
+\qquad
+\begin{pmatrix}
+a&b\\c&d
+\end{pmatrix}
+\longmapsto
+\begin{pmatrix}
+a+d&c\\b&a-d
+\end{pmatrix},
+\]
+with respect to the ordered basis $\{\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4\}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Midterm, Problem 8
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+P_k=\left\{a_k t^k+a_{k-1}t^{k-1}+\cdots+a_1t+a_0\mid a_0,\dots,a_k\in\R\right\},
+\]
+with the usual polynomial addition and scalar multiplication. Use the ordered basis
+\[
+\{1,t,t^2,\dots,t^k\}
+\]
+for $P_k$.
+\begin{problemsubparts}
+\item Find the matrix representation $\mathbf A$ of the differentiation map
+\[
+D:P_2\to P_1,
+\qquad
+D(f)=\frac{\dd f}{\dd t}.
+\]
+\item Find the matrix representation $\mathbf B$ of the integration map
+\[
+T:P_1\to P_2,
+\qquad
+(Tf)(t)=\int_0^t f(s)\,\dd s.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Final, Problem 1
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item $\mathbf A$ and $\mathbf A^{\mathsf T}\mathbf A$ have the same rank for every rectangular matrix $\mathbf A$.
+\item The only possible eigenvalues of a symmetric orthogonal matrix are $1$ and $-1$.
+\item For an $n\times n$ matrix $\mathbf A$ and a scalar $k\in\R$,
+\[
+\det(k\mathbf A)=k\det(\mathbf A).
+\]
+\item For an orthogonal matrix $\mathbf Q\in\R^{n\times n}$ and $\mathbf x\in\R^n$,
+\[
+\|\mathbf Q\mathbf x\|=\|\mathbf x\|.
+\]
+\item If there is a basis consisting of eigenvectors of a matrix, then the matrix is diagonalizable.
+\item Every diagonalizable matrix has an orthonormal basis consisting of eigenvectors.
+\end{problemchoices}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Final, Problem 2
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Compute the determinants of the following matrices.
+\begin{problemsubparts}
+\item Use cofactor expansion to find the determinant of
+\[
+\mathbf A=
+\begin{pmatrix}
+1&0&2\\
+0&2&-1\\
+-1&1&3
+\end{pmatrix}.
+\]
+\item Transform the matrix into upper triangular form using elementary row operations, and compute the determinant of
+\[
+\mathbf B=
+\begin{pmatrix}
+1&0&2\\
+-1&2&-1\\
+2&4&0
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Final, Problem 3
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ and $\mathbf B$ be real square matrices. Prove that if $\mathbf A$ and $\mathbf B$ are orthogonally similar, then they have the same singular values.
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Final, Problem 4
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Write down as many pairwise nonsimilar $4\times4$ matrices as possible whose only eigenvalue is $2$.
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Final, Problem 5
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Consider $\R^4$ with the standard inner product and let
+\[
+S=\{\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4\}\subset\R^4,
+\]
+where
+\[
+\mathbf v_1=
+\begin{pmatrix}
+1\\0\\1\\0
+\end{pmatrix},
+\qquad
+\mathbf v_2=
+\begin{pmatrix}
+0\\1\\0\\-1
+\end{pmatrix},
+\qquad
+\mathbf v_3=
+\begin{pmatrix}
+2\\3\\2\\-3
+\end{pmatrix},
+\qquad
+\mathbf v_4=
+\begin{pmatrix}
+1\\2\\1\\2
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find a subset of $S$ that is a basis for $\Span(S)$ and includes $\{\mathbf v_1,\mathbf v_2\}$.
+\item Apply the Gram--Schmidt process to the subset found in part \textup{(a)} and obtain an orthonormal basis for $\Span(S)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Final, Problem 6
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Identify and sketch the curve
+\[
+x^2+xy+y^2=1.
+\]
+Justify your identification with an explicit equation. Indicate all $x$-intercepts and $y$-intercepts, and label all coordinate axes.
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Final, Problem 7
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Solve the initial value problem
+\[
+\mathbf u'(t)=
+\begin{pmatrix}
+1&2\\
+0&1
+\end{pmatrix}\mathbf u(t),
+\qquad
+\mathbf u(0)=
+\begin{pmatrix}
+0\\1
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Final, Problem 8
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Use a similarity transformation to find the matrix $\mathbf A\in\R^{3\times3}$ representing reflection across the plane
+\[
+x+y+z=0.
+\]
+\end{problem}
+
+% 2018 Fall POSTECH Applied Linear Algebra Final, Problem 9
+\begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
+Find the singular value decomposition of
+\[
+\mathbf A=
+\begin{pmatrix}
+4&0&3\\
+0&0&5
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 1
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&0&1\\
+0&1&0\\
+1&0&3
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find an orthogonal matrix $\mathbf P$ such that $\mathbf P^{\mathsf T}\mathbf A\mathbf P$ is diagonal.
+\item Find the characteristic polynomial of $\mathbf A$.
+\item Show that $\mathbf A^{-1}$ can be expressed as
+\[
+a\mathbf A^2+b\mathbf A+c\mathbf I
+\]
+for some $a,b,c\in\R$, and find $a,b,c$.
+\item Find $e^{\mathbf A}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 2
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+0&1&2\\
+0&0&1\\
+0&0&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find all eigenvalues of $\mathbf A$.
+\item Find all eigenvectors of $\mathbf A$.
+\item Determine whether $\mathbf A$ is diagonalizable. Explain why.
+\item Find the Jordan form of $\mathbf A$.
+\item Find a Jordan basis of $\mathbf A$.
+\item Find $\det(e^{\mathbf A})$.
+\item Calculate $e^{\mathbf A}$.
+\item Solve
+\[
+\mathbf y'=\mathbf A\mathbf y,
+\qquad
+\mathbf y(0)=
+\begin{pmatrix}
+2\\1\\4
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 3
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf D=
+\begin{pmatrix}
+\mathbf A&\mathbf B\\
+\mathbf 0&\mathbf C
+\end{pmatrix},
+\]
+where $\mathbf A$ and $\mathbf C$ are square matrices and $\mathbf 0$ is a zero matrix of compatible size. Prove that
+\[
+\det(\mathbf D)=\det(\mathbf A)\det(\mathbf C).
+\]
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 4
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Let $(g_k)$ be a sequence satisfying
+\[
+g_{k+2}=g_{k+1}-g_k,
+\qquad
+g_1=1,
+\qquad
+g_2=2.
+\]
+\begin{problemsubparts}
+\item Find $g_{300}$.
+\item Determine whether the sequence $(g_k)$ converges. In either case, explain why.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 5
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Calculate
+\[
+\det
+\begin{pmatrix}
+0&1&1&1\\
+1&0&1&1\\
+1&1&0&1\\
+1&1&1&0
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 6
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+f(x)=
+\det
+\begin{pmatrix}
+1&a&a^2&a^3\\
+1&b&b^2&b^3\\
+1&c&c^2&c^3\\
+1&x&x^2&x^3
+\end{pmatrix}.
+\]
+Find all zeros of $f(x)$ and verify your answer.
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 7
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf M\in\R^{n\times n}$ be invertible, and let $\mathbf v_1,\dots,\mathbf v_l\in\R^n$ be linearly independent. Prove that
+\[
+\mathbf M\mathbf v_1,\dots,\mathbf M\mathbf v_l
+\]
+are also linearly independent.
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 8
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Prove that the two matrices
+\[
+\begin{pmatrix}
+\mathbf A_1&\mathbf 0&\mathbf 0\\
+\mathbf 0&\mathbf A_2&\mathbf 0\\
+\mathbf 0&\mathbf 0&\mathbf A_3
+\end{pmatrix}
+\qquad\text{and}\qquad
+\begin{pmatrix}
+\mathbf A_2&\mathbf 0&\mathbf 0\\
+\mathbf 0&\mathbf A_3&\mathbf 0\\
+\mathbf 0&\mathbf 0&\mathbf A_1
+\end{pmatrix}
+\]
+are similar, where $\mathbf A_1,\mathbf A_2,\mathbf A_3$ are square matrices of sizes $m,n,l$, respectively.
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 9
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&0&-1+i\\
+0&1&1-i\\
+0&0&i
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find the eigenvalues of $\mathbf A$.
+\item Find the eigenvectors of $\mathbf A$.
+\item Find a matrix $\mathbf S$ such that $\mathbf S^{-1}\mathbf A\mathbf S$ is diagonal.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 10
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a real symmetric matrix, and let $\lambda$ be an eigenvalue of $\mathbf A$ with algebraic multiplicity $m$. Show that
+\[
+\dim\Null(\mathbf A-\lambda\mathbf I)=m.
+\]
+\end{problem}
+
+% 2019 Spring POSTECH Applied Linear Algebra Final, Problem 11
+\begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
+\begin{problemchoices}
+\item State and prove Schur's Lemma.
+\item State and prove the complex spectral theorem.
+\end{problemchoices}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 1
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A=(a_{ij})$ be the $n\times n$ matrix defined by
+\[
+a_{ij}=
+\begin{cases}
+1, & i-j=1\text{ and }i<n,\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+Find the sum of all entries of
+\[
+\sum_{k=1}^{2n}\mathbf A^k.
+\]
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 2
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+a&0&b\\
+a&a&4\\
+0&a&2
+\end{pmatrix}.
+\]
+For what values of $a$ and $b$ does the system
+\[
+\mathbf A\mathbf x=
+\begin{pmatrix}
+2\\4\\b
+\end{pmatrix}
+\]
+have
+\begin{problemchoices}
+\item a unique solution,
+\item a one-parameter family of solutions,
+\item a two-parameter family of solutions,
+\item no solution?
+\end{problemchoices}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 3
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Find the inverse of
+\[
+\mathbf B=
+\begin{pmatrix}
+1&2&-3&0\\
+1&-2&0&4\\
+-1&2&0&4\\
+1&2&3&0
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 4
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let $\{\mathbf e_1,\dots,\mathbf e_n\}$ and $\{\mathbf f_1,\dots,\mathbf f_n\}$ be two bases of a vector space $V$. If
+\[
+\mathbf e_i=\sum_{j=1}^n a_{ij}\mathbf f_j,
+\qquad i=1,\dots,n,
+\]
+show that the matrix $\mathbf A=(a_{ij})$ is invertible.
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 5
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&5&1&1\\
+1&1&3&0&-1\\
+2&2&12&1&0
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find a basis for $\Row(\mathbf A)$ and a basis for $\Col(\mathbf A)$.
+\item Consider the restriction
+\[
+\mathbf A\big|_{\Row(\mathbf A)}:\Row(\mathbf A)\to\Col(\mathbf A).
+\]
+Find its matrix representation with respect to the bases obtained in part \textup{(a)}, and verify that this matrix is invertible.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 6
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let $V\subset\R^3$ be a two-dimensional subspace.
+\begin{problemsubparts}
+\item Show that the reflection of any vector $\mathbf x\in\R^3$ across $V$ is
+\[
+(2\mathbf P-\mathbf I)\mathbf x,
+\]
+where $\mathbf P$ is the orthogonal projection onto $V$. \textit{Hint.} Consider an orthonormal basis of $V$ and extend it to an orthonormal basis of $\R^3$.
+\item Let
+\[
+\mathbf e_1=
+\begin{pmatrix}
+1\\0\\0
+\end{pmatrix},
+\qquad
+\mathbf e_2=
+\begin{pmatrix}
+0\\1\\0
+\end{pmatrix},
+\qquad
+\mathbf e_3=
+\begin{pmatrix}
+0\\0\\1
+\end{pmatrix}
+\]
+be the standard basis of $\R^3$. Let $V$ be spanned by
+\[
+\begin{pmatrix}
+1\\0\\1
+\end{pmatrix}
+\qquad\text{and}\qquad
+\begin{pmatrix}
+0\\1\\2
+\end{pmatrix}.
+\]
+Find the matrix representation of reflection across $V$ with respect to the standard basis.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 7
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+0&0&0&0&2\\
+0&0&2&0&-1\\
+1&2&-1&0&2\\
+0&1&0&2&0\\
+0&0&0&2&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find the matrices $\mathbf P$, $\mathbf U$, and $\mathbf L$ in a decomposition
+\[
+\mathbf P\mathbf A=\mathbf L\mathbf U.
+\]
+\item Solve $\mathbf A\mathbf x=\mathbf b$ for $\mathbf x$, where
+\[
+\mathbf b=
+\begin{pmatrix}
+-2\\3\\5\\4\\1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 8
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Find a nonzero matrix $\mathbf A$ whose null space is spanned by
+\[
+\begin{pmatrix}
+1\\1\\0
+\end{pmatrix}
+\qquad\text{and}\qquad
+\begin{pmatrix}
+0\\1\\1
+\end{pmatrix},
+\]
+and whose left null space is spanned by
+\[
+\begin{pmatrix}
+2\\3\\-1
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 9
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Fit a quadratic function
+\[
+f(t)=c_0+c_1t+c_2t^2
+\]
+to the four data points
+\[
+(-1,8),\qquad(0,8),\qquad(1,4),\qquad(2,16).
+\]
+Explain why your answer is the best fit.
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 10
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Decompose
+\[
+\mathbf A=
+\begin{pmatrix}
+1&-1&0&0\\
+-1&2&-1&0\\
+0&-1&2&-1\\
+0&0&-1&2
+\end{pmatrix}
+\]
+as
+\[
+\mathbf A=\mathbf Q\mathbf R,
+\]
+where $\mathbf R$ is an invertible upper triangular matrix and $\mathbf Q$ is an orthogonal matrix.
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 11
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let $P_4$ be the vector space of real polynomials of degree at most $4$ in the variable $t$. The map
+\[
+T:P_4\to P_4,
+\qquad
+T(p(t))=p(t+1),
+\]
+is linear.
+\begin{problemsubparts}
+\item Find the matrix $\mathbf A$ representing $T$ with respect to the ordered basis
+\[
+\{1,t+1,t^2+1,t^3+1,t^4+1\}.
+\]
+\item Find $\mathbf A^{-1}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 1
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Fit a quadratic function
+\[
+f(t)=c_0+c_1t+c_2t^2
+\]
+to the four data points
+\[
+(-1,8),\qquad(0,8),\qquad(1,4),\qquad(2,16).
+\]
+Explain why your answer is the best fit.
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 2
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Decompose
+\[
+\mathbf A=
+\begin{pmatrix}
+1&-1&0&0\\
+-1&2&-1&0\\
+0&-1&2&-1\\
+0&0&-1&2
+\end{pmatrix}
+\]
+as
+\[
+\mathbf A=\mathbf Q\mathbf R,
+\]
+where $\mathbf R$ is an invertible upper triangular matrix and $\mathbf Q$ is an orthogonal matrix.
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 3
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+For a positive integer $n$, let $S_n$ be the set of linear combinations of
+\[
+\sin x,\dots,\sin nx,\cos x,\dots,\cos nx,
+\]
+that is,
+\[
+S_n=\left\{\sum_{k=1}^n\bigl(a_k\sin kx+b_k\cos kx\bigr)\ \middle|\ a_k,b_k\in\R\right\}.
+\]
+Then the map
+\[
+D:S_n\to S_n,
+\qquad
+D(f)=\frac{\dd f}{\dd x},
+\]
+is linear.
+\begin{problemsubparts}
+\item Find the matrix representation of $D$ with respect to the ordered basis
+\[
+\{\sin x,\cos x,\sin 2x,\cos 2x,\dots,\sin nx,\cos nx\}.
+\]
+\item Find the determinant and trace of $D$.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 4
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let $T$ be a linear operator on $\R^5$ represented by
+\[
+\mathbf A=
+\begin{pmatrix}
+1&0&-2&0&2\\
+1&1&-3&0&3\\
+1&2&-4&0&3\\
+1&0&-1&1&1\\
+1&2&-3&0&2
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Show that the characteristic polynomial has the form
+\[
+p_{\mathbf A}(\lambda)=-(\lambda-1)^3(\lambda-a)^2,
+\]
+and find $a$.
+\item Find bases for the eigenspaces $E_1(\mathbf A)$ and $E_a(\mathbf A)$. Here, $E_1(\mathbf A)$ (respectively, $E_a(\mathbf A)$) denotes the subspace of $\R^5$ consisting of all eigenvectors of $\mathbf A$ corresponding to the eigenvalue $1$ (respectively, $a$), together with the zero vector.
+\item Find the Jordan form of $\mathbf A$.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 5
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Factorize
+\[
+\mathbf A=
+\begin{pmatrix}
+1&i\\
+-i&1
+\end{pmatrix}
+\]
+as
+\[
+\mathbf A=\mathbf U\boldsymbol\Lambda\mathbf U^{-1},
+\]
+where $\mathbf U$ is unitary and $\boldsymbol\Lambda$ is diagonal.
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 6
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Suppose three cities $A$, $B$, and $C$ are centers for trucks. Every month, half of the trucks in $A$ and half of those in $B$ go to $C$, while the other halves stay where they are. Every month, half of the trucks in $C$ go to $A$ and the other half go to $B$.
+\begin{problemsubparts}
+\item Find the Markov transition matrix acting on the initial-state vector
+\[
+\begin{pmatrix}
+a_0\\b_0\\c_0
+\end{pmatrix},
+\]
+where $a_0,b_0,c_0$ denote the initial numbers of trucks in cities $A,B,C$, respectively.
+\item If there are always $450$ trucks, find the long-run distribution of trucks.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 7
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+a&1&1\\
+1&a&1\\
+1&1&a
+\end{pmatrix}.
+\]
+For what range of $a$ is $\mathbf A$ positive definite?
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 8
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Find the singular value decomposition of
+\[
+\mathbf A=
+\begin{pmatrix}
+3&2&2\\
+2&3&-2
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 9
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $n\times n$ matrix.
+\begin{problemsubparts}
+\item Show that $\mathbf A=\mathbf 0$ if
+\[
+\det(\mathbf A-\lambda\mathbf I)=(-\lambda)^n
+\]
+and $\mathbf A$ is Hermitian.
+\item Show that $\mathbf A^n=\mathbf 0$ if
+\[
+\det(\mathbf A-\lambda\mathbf I)=(-\lambda)^n.
+\]
+\textit{Hint.} Consider the Jordan form.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Applied Linear Algebra Final, Problem 10
+\begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
+Let $\lambda_0$ be an eigenvalue of a square matrix $\mathbf A$, and let $m$ be the algebraic multiplicity of $\lambda_0$ in the characteristic polynomial of $\mathbf A$. Show that
+\[
+\dim E_{\lambda_0}(\mathbf A)\le m.
+\]
+\end{problem}
