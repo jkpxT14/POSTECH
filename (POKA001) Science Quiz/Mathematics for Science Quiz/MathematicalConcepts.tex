@@ -1469,7 +1469,7 @@
     \end{formula}
 
     \begin{definition}[Gamma Function]
-        For $\Real(z)>0$, the Gamma function is defined by
+        For $\RePart(z)>0$, the Gamma function is defined by
         \[
             \Gamma(z)
             =
@@ -1530,7 +1530,7 @@
             =
             \frac{n!}{a^{n+1}}.
         \]
-        More generally, for $\Real(s)>0$,
+        More generally, for $\RePart(s)>0$,
         \[
             \int_0^{\infty}x^{s-1}e^{-ax}\dd x
             =
@@ -3200,7 +3200,7 @@
             \qquad
             k\in\Z.
         \]
-        The function $z\mapsto\Real(z)$ is not complex differentiable at any
+        The function $z\mapsto\RePart(z)$ is not complex differentiable at any
         point, since its difference quotient depends on the direction of
         approach.
     \end{fact}
@@ -3512,7 +3512,7 @@
         \[
             \ker T=\{\mathbf{v}\in V\mid T(\mathbf{v})=\mathbf{0}\},
             \qquad
-            \image T=\{T(\mathbf{v})\mid\mathbf{v}\in V\}.
+            \im T=\{T(\mathbf{v})\mid\mathbf{v}\in V\}.
         \]
     \end{definition}
 
@@ -3675,7 +3675,7 @@
         \[
             \dim V
             =
-            \dim\ker T+\dim\image T.
+            \dim\ker T+\dim\im T.
         \]
         For a matrix $\mathbf{A}\in F^{m\times n}$, this becomes
         \[
@@ -5668,16 +5668,16 @@
             \bottomrule
             \endlastfoot
 
-            $1$ & $\displaystyle\frac{1}{s}$ & $\Real(s)>0$ \\
+            $1$ & $\displaystyle\frac{1}{s}$ & $\RePart(s)>0$ \\
             $t^n$ & $\displaystyle\frac{n!}{s^{n+1}}$ & $n\in\Nzero$ \\
-            $e^{at}$ & $\displaystyle\frac{1}{s-a}$ & $\Real(s)>a$ \\
+            $e^{at}$ & $\displaystyle\frac{1}{s-a}$ & $\RePart(s)>a$ \\
             $t^ne^{at}$ & $\displaystyle\frac{n!}{(s-a)^{n+1}}$ & $n\in\Nzero,\ s>a$ \\
-            $\sin at$ & $\displaystyle\frac{a}{s^2+a^2}$ & $\Real(s)>0$ \\
-            $\cos at$ & $\displaystyle\frac{s}{s^2+a^2}$ & $\Real(s)>0$ \\
-            $e^{at}\sin bt$ & $\displaystyle\frac{b}{(s-a)^2+b^2}$ & $\Real(s)>a$ \\
-            $e^{at}\cos bt$ & $\displaystyle\frac{s-a}{(s-a)^2+b^2}$ & $\Real(s)>a$ \\
-            $\sinh at$ & $\displaystyle\frac{a}{s^2-a^2}$ & $\Real(s)>|a|$ \\
-            $\cosh at$ & $\displaystyle\frac{s}{s^2-a^2}$ & $\Real(s)>|a|$ \\
+            $\sin at$ & $\displaystyle\frac{a}{s^2+a^2}$ & $\RePart(s)>0$ \\
+            $\cos at$ & $\displaystyle\frac{s}{s^2+a^2}$ & $\RePart(s)>0$ \\
+            $e^{at}\sin bt$ & $\displaystyle\frac{b}{(s-a)^2+b^2}$ & $\RePart(s)>a$ \\
+            $e^{at}\cos bt$ & $\displaystyle\frac{s-a}{(s-a)^2+b^2}$ & $\RePart(s)>a$ \\
+            $\sinh at$ & $\displaystyle\frac{a}{s^2-a^2}$ & $\RePart(s)>|a|$ \\
+            $\cosh at$ & $\displaystyle\frac{s}{s^2-a^2}$ & $\RePart(s)>|a|$ \\
             $f'(t)$ & $sF(s)-f(0)$ & \\
             $f''(t)$ & $s^2F(s)-sf(0)-f'(0)$ & \\
             $t f(t)$ & $-F'(s)$ & \\
@@ -8873,7 +8873,7 @@
         \[
             \gcd(a,b)=\prod_p p^{\min(\alpha_p,\beta_p)},
             \qquad
-            \lcm(a,b)=\prod_p p^{\max(\alpha_p,\beta_p)}.
+            \lcmop(a,b)=\prod_p p^{\max(\alpha_p,\beta_p)}.
         \]
         More generally, the least common multiple of several integers is found
         by taking the largest exponent of each prime appearing in the list.
@@ -9021,15 +9021,15 @@
     \begin{definition}[$p$-Adic Valuation, $p$-Adic Absolute Value, and $p$-Adic Numbers]
         Fix a prime $p$. For a nonzero rational number $x$, write uniquely
         \[
-            x=p^{\nu_p(x)}\frac{a}{b},
+            x=p^{v_p(x)}\frac{a}{b},
             \qquad
             p\nmid ab,
         \]
-        where $\nu_p(x)\in\Z$ is the $p$-adic valuation of $x$. For a nonzero
-        integer, $\nu_p(n)$ is therefore the exponent of $p$ in its prime
+        where $v_p(x)\in\Z$ is the $p$-adic valuation of $x$. For a nonzero
+        integer, $v_p(n)$ is therefore the exponent of $p$ in its prime
         factorization. Define
         \[
-            |x|_p=p^{-\nu_p(x)},
+            |x|_p=p^{-v_p(x)},
             \qquad
             |0|_p=0.
         \]
@@ -9045,7 +9045,7 @@
     \begin{formula}[$p$-Adic Valuation of a Factorial; Legendre's Formula]
         For a prime $p$ and a positive integer $n$,
         \[
-            \nu_p(n!)
+            v_p(n!)
             =
             \sum_{k=1}^{\infty}
             \left\lfloor\frac{n}{p^k}\right\rfloor.
@@ -9159,9 +9159,9 @@
     \begin{theorem}[Existence and Uniqueness of Finite Fields]
         Every finite field has $q=p^n$ elements for some prime $p$ and positive
         integer $n$. Conversely, for each prime power $q=p^n$, there exists a
-        field $\mathbb{F}_q$ with $q$ elements, unique up to isomorphism. Its
+        field $\F_q$ with $q$ elements, unique up to isomorphism. Its
         nonzero elements form a cyclic multiplicative group
-        $\mathbb{F}_q^\times$ of order $q-1$.
+        $\F_q^\times$ of order $q-1$.
     \end{theorem}
 
     \begin{algorithm}[Modular Exponentiation by Period Reduction]
@@ -9223,7 +9223,7 @@
     \begin{theorem}[Kummer's Theorem]
         The valuation
         \[
-            \nu_p\!\left(\binom{n}{k}\right)
+            v_p\!\left(\binom{n}{k}\right)
         \]
         equals the number of carries when $k$ and $n-k$ are added in base $p$.
     \end{theorem}
@@ -9232,16 +9232,16 @@
         Let $p$ be an odd prime, and suppose that $p\mid x-y$ while
         $p\nmid xy$. Then, for every positive integer $n$,
         \[
-            \nu_p(x^n-y^n)
+            v_p(x^n-y^n)
             =
-            \nu_p(x-y)+\nu_p(n).
+            v_p(x-y)+v_p(n).
         \]
         A standard companion form is: if $n$ is odd, $p\mid x+y$, and
         $p\nmid xy$, then
         \[
-            \nu_p(x^n+y^n)
+            v_p(x^n+y^n)
             =
-            \nu_p(x+y)+\nu_p(n).
+            v_p(x+y)+v_p(n).
         \]
     \end{theorem}
 
@@ -9453,7 +9453,7 @@
     \end{idea}
 
     \begin{definition}[Riemann Zeta Function]
-        For $\Real(s)>1$, the Riemann zeta function is defined by
+        For $\RePart(s)>1$, the Riemann zeta function is defined by
         \[
             \zeta(s)
             =
@@ -9556,7 +9556,7 @@
         \[
             \ker\varphi=\{g\in G\mid\varphi(g)=e_H\},
             \qquad
-            \image\varphi=\{\varphi(g)\mid g\in G\}.
+            \im\varphi=\{\varphi(g)\mid g\in G\}.
         \]
         A bijective homomorphism is an \emph{isomorphism}. An isomorphism
         $G\to G$ is an \emph{automorphism}. Isomorphic groups have the same
@@ -9758,7 +9758,7 @@
     \begin{theorem}[First Isomorphism Theorem for Groups]
         If $\varphi\colon G\to H$ is a group homomorphism, then
         \[
-            G/\ker\varphi\cong \image\varphi.
+            G/\ker\varphi\cong \im\varphi.
         \]
     \end{theorem}
 
@@ -10000,7 +10000,7 @@
     \begin{definition}[Quaternion Algebra]
         The quaternions form the real algebra
         \[
-            \mathbb{H}
+            \Hquat
             =
             \{a+bi+cj+dk\mid a,b,c,d\in\R\},
         \]
@@ -10029,7 +10029,7 @@
         \[
             q^{-1}=\frac{\overline{q}}{|q|^2}.
         \]
-        Thus $\mathbb{H}$ is a noncommutative division ring, not a field under
+        Thus $\Hquat$ is a noncommutative division ring, not a field under
         the convention that fields are commutative.
     \end{definition}
 
@@ -10572,7 +10572,7 @@
         $2$-spheres and incompressible tori into pieces whose interiors admit
         geometric structures modeled on one of the eight Thurston geometries:
         \[
-            S^3,\ \mathbb{E}^3,\ \mathbb{H}^3,\ S^2\times\R,\ \mathbb{H}^2\times\R,
+            S^3,\ \R^3,\ \mathbb{H}^3,\ S^2\times\R,\ \mathbb{H}^2\times\R,
             \ \widetilde{\SL}_2(\R),\ \mathrm{Nil},\ \mathrm{Sol}.
         \]
         The sphere decomposition is the prime decomposition, and the torus
@@ -10583,7 +10583,7 @@
         The eight model geometries are
         \[
             S^3,
-            \quad \mathbb{E}^3,
+            \quad \R^3,
             \quad \mathbb{H}^3,
             \quad S^2\times\R,
             \quad \mathbb{H}^2\times\R,

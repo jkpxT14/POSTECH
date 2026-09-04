@@ -60,7 +60,7 @@
         $\R$ & the set of real numbers \\
         $\Rbar=\R\cup\{-\infty,+\infty\}$ & the set of extended real numbers \\
         $\C$ & the set of complex numbers \\
-        $\mathbb{H}$ & the quaternion division ring \\
+        $\Hquat$ & the quaternion division ring \\
         $a\coloneqq b$ & $a$ is defined to be $b$ \\
         \textnormal{s.t.} & abbreviation used to introduce a condition or constraint \\
         $\varepsilon$ & a positive quantity in analysis, usually arbitrary \\
@@ -105,8 +105,19 @@
         Strategy & a broadly useful problem-solving method \\
         Tactic & a local, immediately applicable device \\
         Remark & supplementary context or a caution \\
+        Problem & a mathematical question to be solved \\
+        Example & an illustration of a definition, method, or result \\
+        Counterexample & an example showing that a statement is false \\
     \end{longtable}
     }
+
+    Labels are set upright. Decimal labels such as $1.1,1.2,\dots$ identify
+    independent units under a common parent; $(1),(2),\dots$ are used for
+    ordinary enumerations; $(a),(b),\dots$ are used for connected subparts of
+    one problem; and $(i),(ii),\dots$ are reserved for formal mathematical
+    clauses or hypotheses. Displayed equations are punctuated as parts of their
+    surrounding sentences and are numbered only when they are referenced or
+    need a stable label.
 
     \section*{Set Theory and Logic}
 
@@ -179,13 +190,13 @@
         $X\cong Y$ & $X$ and $Y$ are isomorphic; in topology, this means homeomorphic \\
         $f(A)$ & the image of $A$ under $f$ \\
         $f^{-1}(B)$ & the inverse image, or preimage, of $B$ \\
-        $\indicatorbb{A}(x)$ & the indicator function of $A$ \\
+        $\indicator{A}(x)$ & the indicator function of $A$ \\
         $\aleph_0$ & the cardinality of a countably infinite set \\
         $\mathfrak{c}$ & the cardinality of the continuum \\
     \end{longtable}
     }
 
-    The symbol $\indicatorbb{A}$ is blackboard bold and does not denote a
+    The symbol $\indicator{A}$ is blackboard bold and does not denote a
     vector. The all-ones vector is $\ones$. Boldface is otherwise reserved for
     vectors and matrices.
 
@@ -270,8 +281,8 @@
         $f_n\aeto f$ & convergence almost everywhere \\
         $\|f\|_\infty$ & the supremum norm of $f$ \\
         $z=x+iy$ & a complex number with real part $x$ and imaginary part $y$ \\
-        $\Real z$, $\Re z$ & the real part of $z$ \\
-        $\Imag z$, $\Im z$ & the imaginary part of $z$ \\
+        $\RePart z$, $\Re z$ & the real part of $z$ \\
+        $\ImPart z$, $\Im z$ & the imaginary part of $z$ \\
         $\overline{z}$ & the complex conjugate of $z$ \\
         $|z|$ & the modulus of $z$ \\
         $\arg z$ & an argument of $z$ \\
@@ -323,7 +334,7 @@
         $\Null(\mathbf{A})$ & the null space of $\mathbf{A}$ \\
         $\Row(\mathbf{A})$ & the row space of $\mathbf{A}$ \\
         $\ker T$ & the kernel of a linear map $T$ \\
-        $\image T$ & the image of a linear map $T$ \\
+        $\im T$ & the image of a linear map $T$ \\
         $\mathbf{e}_i$ & the $i$th standard basis vector \\
         $\dim V$ & the dimension of the vector space $V$ \\
         $\Span(\mathbf{v}_1,\dots,\mathbf{v}_k)$ & the span of the listed vectors \\
@@ -335,6 +346,9 @@
         $\mathbf{u}\times\mathbf{v}$ & the cross product in $\R^3$ \\
     \end{longtable}
     }
+
+    On a complex inner-product space, the inner product is conjugate-linear in
+    its first argument and linear in its second argument.
 
     \section*{Differential Equations}
 
@@ -492,7 +506,7 @@
         $\vol(S)$ & the volume of a three-dimensional region or solid $S$ \\
         $\dist(P,S)$ & the distance from the point $P$ to the set or geometric object $S$ \\
         $\conv(S)$ & the convex hull of $S$ \\
-        $\mathbb{E}^n$ & $n$-dimensional Euclidean space, in geometric contexts \\
+        $\R^n$ & $n$-dimensional Euclidean space, in geometric contexts \\
         $\mathbb{H}^n$ & $n$-dimensional hyperbolic space, in geometric contexts;\newline $\mathbb{H}$ without an exponent denotes the quaternions in algebraic contexts \\
         $R$ & the circumradius of a triangle \\
         $r$ & the inradius of a triangle \\
@@ -530,7 +544,7 @@
         $a\mid b$ & $a$ divides $b$ \\
         $a\nmid b$ & $a$ does not divide $b$ \\
         $\gcd(a,b)$ & the greatest common divisor of $a$ and $b$ \\
-        $\lcm(a,b)$ & the least common multiple of $a$ and $b$ \\
+        $\lcmop(a,b)$ & the least common multiple of $a$ and $b$ \\
         $a\equiv b\pmod n$ & $a$ is congruent to $b$ modulo $n$ \\
         $\pi(x)$ & the number of primes not exceeding $x$ \\
         $[a]_n$ & the residue class of $a$ modulo $n$ \\
@@ -540,13 +554,13 @@
         $\left(\frac{a}{p}\right)$ & the Legendre symbol \\
         $\varphi(n)$ & Euler's totient function \\
         $\ord_n(a)$ & the multiplicative order of $a$ modulo $n$ \\
-        $\nu_p(n)$ & the exponent of $p$ in the prime factorization of $n$ \\
+        $v_p(n)$ & the exponent of $p$ in the prime factorization of $n$ \\
         $\tau(n)$ & the number of positive divisors of $n$ \\
         $\sigma(n)$ & the sum of the positive divisors of $n$ \\
         $\mu(n)$ & the M\"obius function \\
         $\rad(n)$ & the product of the distinct prime divisors of $n$ \\
         $p$ & usually a prime number in number-theoretic contexts \\
-        $\mathbb{F}_q$ & the finite field with $q$ elements \\
+        $\F_q$ & the finite field with $q$ elements \\
     \end{longtable}
     }
 
@@ -585,7 +599,7 @@
         $H\trianglelefteq G$ & $H$ is a normal subgroup of $G$ \\
         $G/H$ & the quotient group of $G$ by $H$ \\
         $\ker\varphi$ & the kernel of a homomorphism $\varphi$ \\
-        $\image\varphi$ & the image of a homomorphism $\varphi$ \\
+        $\im\varphi$ & the image of a homomorphism $\varphi$ \\
         $\Aut(G)$ & the automorphism group of $G$ \\
         $G\cdot x$ & the orbit of $x$ under a group action \\
         $G_x$ & the stabilizer of $x$ under a group action \\
@@ -605,7 +619,7 @@
         $\deg f$ & the degree of a polynomial $f$ \\
         $\Disc(f)$ & the discriminant of a polynomial $f$ \\
         $\trdeg_K L$ & the transcendence degree of $L$ over $K$ \\
-        $\characteristic F$ & the characteristic of $F$ \\
+        $\charac F$ & the characteristic of $F$ \\
         $\Gal(L/K)$ & the Galois group of the extension $L/K$ \\
     \end{longtable}
     }

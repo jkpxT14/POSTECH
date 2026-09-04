@@ -195,7 +195,7 @@
 
     \begin{pastproblem}{2011.4}
         Give at least two real-valued functions defined on $\R$ that remain unchanged after being
-        differentiated twice. In other words, give at least two functions $f:\R\to\R$ satisfying
+        differentiated twice. In other words, give at least two functions $f\colon\R\to\R$ satisfying
         \[
             f''=f.
         \]
@@ -306,11 +306,11 @@
     \begin{solution}
         The number must be divisible by
         \[
-            \lcm(1,2,3,4,6,7,8,9)=504.
+            \lcmop(1,2,3,4,6,7,8,9)=504.
         \]
         Since
         \[
-            \lcm(7,8,9)=504,
+            \lcmop(7,8,9)=504,
         \]
         it is enough to enforce divisibility by $7$, $8$, and $9$ separately.
 
@@ -880,13 +880,13 @@
         \[
             \rk(\mathbf{Q})=3.
         \]
-        Therefore, the linear map $\mathbf{Q}^{\mathsf T}:\R^n\to\R^3$ is surjective.
+        Therefore, the linear map $\mathbf{Q}^{\mathsf T}\colon\R^n\to\R^3$ is surjective.
 
         It follows that the image of $\mathbf{A}=\mathbf{P}\mathbf{Q}^{\mathsf T}$ is
         \[
-            \image(\mathbf{A})
+            \im(\mathbf{A})
             =
-            \mathbf{P}(\image(\mathbf{Q}^{\mathsf T}))
+            \mathbf{P}(\im(\mathbf{Q}^{\mathsf T}))
             =
             \mathbf{P}(\R^3)
             =
@@ -1188,7 +1188,7 @@
     \end{solution}
 
     \begin{pastproblem}{2015.6}
-        Let $f:\R\to\R$ be a periodic function with period $2\pi$. For $x\in(0,2\pi]$, define
+        Let $f\colon\R\to\R$ be a periodic function with period $2\pi$. For $x\in(0,2\pi]$, define
         \[
             f(x)
             =
@@ -2042,7 +2042,7 @@
         eight Thurston geometries:
         \[
             S^3,\quad
-            \mathbb{E}^3,\quad
+            \R^3,\quad
             \mathbb{H}^3,\quad
             S^2 \times \R,\quad
             \mathbb{H}^2 \times \R,\quad
@@ -2983,7 +2983,7 @@
     \end{solution}
 
     \begin{pastproblem}{2023.4}
-        Let $f:(-1,1)\to\R$ be a continuous function. For each $\lambda>0$, define
+        Let $f\colon(-1,1)\to\R$ be a continuous function. For each $\lambda>0$, define
         \[
             f_\lambda(x)
             \coloneqq
@@ -3843,7 +3843,7 @@
         \[
             I_i
             =
-            \indicatorbb{\{\text{a new run starts at position }i\}}.
+            \indicator{\{\text{a new run starts at position }i\}}.
         \]
         Then
         \[

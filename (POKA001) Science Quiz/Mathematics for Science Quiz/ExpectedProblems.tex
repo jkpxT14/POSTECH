@@ -128,7 +128,7 @@
     \begin{expectedproblem}[1982 IMO]
         A function
         \[
-            f:\Z_{>0}\to\Z_{\geq0}
+            f\colon\Z_{>0}\to\Z_{\geq0}
         \]
         satisfies
         \[
@@ -987,7 +987,7 @@
     \end{solution}
 
     \begin{expectedproblem}[1986 Putnam]
-        Let $\mathbf{A}$ and $\mathbf{B}$ be square matrices of the same size
+        Let $\mathbf{A}$ and $\mathbf{B}$ be $n\times n$ matrices
         over a field, and suppose that
         \[
             \mathbf{A}+\mathbf{B}=\mathbf{A}\mathbf{B}.
@@ -1001,15 +1001,15 @@
     \begin{solution}
         Rearranging the hypothesis gives
         \[
-            (\mathbf{A}-\mathbf{I})(\mathbf{B}-\mathbf{I})
+            (\mathbf{A}-\mathbf{I}_n)(\mathbf{B}-\mathbf{I}_n)
             =
-            \mathbf{A}\mathbf{B}-\mathbf{A}-\mathbf{B}+\mathbf{I}
+            \mathbf{A}\mathbf{B}-\mathbf{A}-\mathbf{B}+\mathbf{I}_n
             =
-            \mathbf{I}.
+            \mathbf{I}_n.
         \]
         For square matrices, a one-sided inverse is a two-sided inverse. Hence
         \[
-            (\mathbf{B}-\mathbf{I})(\mathbf{A}-\mathbf{I})=\mathbf{I}.
+            (\mathbf{B}-\mathbf{I}_n)(\mathbf{A}-\mathbf{I}_n)=\mathbf{I}_n.
         \]
         Expanding this identity gives
         \[
@@ -1238,7 +1238,7 @@
     \begin{expectedproblem}[1987 IMO]
         Prove that there is no function
         \[
-            f:\Nzero\to\Nzero
+            f\colon\Nzero\to\Nzero
         \]
         s.t.
         \[
@@ -1822,7 +1822,7 @@
     \begin{expectedproblem}[1977 IMO]
         Let
         \[
-            f:\Z_{>0}\to\Z_{>0}
+            f\colon\Z_{>0}\to\Z_{>0}
         \]
         satisfy
         \[
@@ -2395,7 +2395,7 @@
             \qquad
             \tan z,
             \qquad
-            \Real(z),
+            \RePart(z),
             \qquad
             e^z.
         \]
@@ -2424,7 +2424,7 @@
             \qquad
             k\in\Z.
         \]
-        Finally, $\Real(z)$ is not complex differentiable at any point: its
+        Finally, $\RePart(z)$ is not complex differentiable at any point: its
         difference quotient equals $1$ along real increments and $0$ along
         purely imaginary increments. Thus the answers are
         \[
@@ -2432,7 +2432,7 @@
                 \begin{aligned}
                     \text{(a)}\;&z^2,\ \sin z,\ e^z,\\
                     \text{(b)}\;&\tan z,\\
-                    \text{(c)}\;&\Real(z).
+                    \text{(c)}\;&\RePart(z).
                 \end{aligned}
             }
         \]
@@ -2559,7 +2559,7 @@
         Let $\{0,1\}^{\N}$ be the set of all infinite binary sequences. Prove
         that no function
         \[
-            f:\N\to\{0,1\}^{\N}
+            f\colon\N\to\{0,1\}^{\N}
         \]
         is surjective.
     \end{expectedproblem}
@@ -2628,7 +2628,7 @@
         four?
         \begin{problemchoices}
             \item the Cantor set;
-            \item the set of all functions $f:\Q\to\R$;
+            \item the set of all functions $f\colon\Q\to\R$;
             \item the set $C([0,1])$ of all continuous functions
                   $[0,1]\to\R$;
             \item $\R$;
@@ -4433,7 +4433,7 @@
         \end{expectedsubsolution}
 
         \begin{expectedsubproblem}[2014 CSAT]
-            Let $f:\R\to\R$ be continuous and odd. Suppose that
+            Let $f\colon\R\to\R$ be continuous and odd. Suppose that
             \[
                 f(x)
                 =
@@ -7195,10 +7195,10 @@
 
     \begin{solution}
         Encode red and blue by $0$ and $1$, so a hat configuration is a vector
-        in $\mathbb{F}_2^7$. Let $\mathbf{H}$ be the $3\times7$ matrix whose
-        columns are the seven nonzero vectors of $\mathbb{F}_2^3$, and let
+        in $\F_2^7$. Let $\mathbf{H}$ be the $3\times7$ matrix whose
+        columns are the seven nonzero vectors of $\F_2^3$, and let
         \[
-            C=\{\mathbf{x}\in\mathbb{F}_2^7\mid
+            C=\{\mathbf{x}\in\F_2^7\mid
             \mathbf{H}\mathbf{x}=\mathbf{0}\}
         \]
         be the binary Hamming code. Since $\mathbf{H}$ has rank $3$, the code
@@ -7209,7 +7209,7 @@
         \[
             16(1+7)=128
         \]
-        vectors in total. They therefore partition $\mathbb{F}_2^7$, so every
+        vectors in total. They therefore partition $\F_2^7$, so every
         non-codeword differs from a unique codeword in exactly one coordinate.
 
         Player $i$ considers the two full configurations consistent with the

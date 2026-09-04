@@ -3314,11 +3314,6 @@
         Yang--Mills existence and mass gap.
     \end{fact}
 
-    \begin{theorem}[Poincaré Conjecture]
-        Every closed simply connected $3$-manifold is homeomorphic to the
-        $3$-sphere $S^3$.
-    \end{theorem}
-
     \begin{remark}
         Henri Poincaré posed the problem in the early twentieth century. Grigori
         Perelman proved it using Ricci flow and ideas from Hamilton's program.
@@ -3337,7 +3332,7 @@
         \[
             \zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^s}
         \]
-        be the Riemann zeta function, initially defined for $\Real(s)>1$ and
+        be the Riemann zeta function, initially defined for $\RePart(s)>1$ and
         continued meromorphically. The Riemann Hypothesis states that every
         nontrivial zero of $\zeta(s)$ has real part $1/2$.
     \end{hypothesis}
@@ -3703,14 +3698,6 @@
         involving $\pi$.
     \end{remark}
 
-    \begin{theorem}[Fermat's Last Theorem]
-        For every integer $n\ge 3$, there do not exist positive integers
-        $x,y,z$ s.t.
-        \[
-            x^n+y^n=z^n.
-        \]
-    \end{theorem}
-
     \begin{remark}
         Fermat wrote that he had a marvelous proof, but no proof appeared in
         his margin. Andrew Wiles proved the theorem through the modularity of
@@ -3775,15 +3762,6 @@
             \end{gathered}
         \]
     \end{remark}
-
-    \begin{theorem}[Thurston Geometrization Theorem]
-        Every closed orientable $3$-manifold can be decomposed into pieces that
-        admit one of the eight Thurston geometries:
-        \[
-            S^3,\ \mathbb{E}^3,\ \mathbb{H}^3,\ S^2\times\R,\ \mathbb{H}^2\times\R,
-            \ \widetilde{\SL}_2(\R),\ \mathrm{Nil},\ \mathrm{Sol}.
-        \]
-    \end{theorem}
 
     \begin{remark}
         The Poincaré conjecture is a special case of the geometrization program.
@@ -4156,7 +4134,7 @@
     \begin{remark}
         Gerver constructed a sofa of area approximately $2.21953166$. The 2024
         preprint \textit{Optimality of Gerver's Sofa} (Jineon Baek) presents a
-        proof that Gerver's construction is optimal. At the September 1, 2026
+        proof that Gerver's construction is optimal. At the September 4, 2026
         preparation cutoff, the result remained a preprint, so its publication
         status should
         be distinguished from the mathematical claim made in the manuscript.
@@ -4185,101 +4163,6 @@
         The problem asks whether manifolds admit genuinely non-Lie continuous
         symmetry groups. It remains open in full generality.
     \end{remark}
-
-    \begin{fact}[Jacobian Conjecture: 2026 Status]
-        Keller's 1939 conjecture asserted that a polynomial map
-        \[
-            F=(F_1,\dots,F_n):\C^n\to\C^n
-        \]
-        with nonzero constant Jacobian determinant
-        \[
-            \det\left(
-                \frac{\partial F_i}{\partial x_j}
-            \right)
-        \]
-        must have a polynomial inverse.
-
-        In July 2026, Levent Alpöge announced an explicit counterexample in
-        dimension $3$: the Jacobian determinant is a nonzero constant, yet the
-        polynomial map is not injective. An independent Isabelle/HOL
-        formalization verified the explicit map and its noninjectivity. Further
-        constructions give counterexamples in every dimension $n>2$.
-
-        Therefore the classical Jacobian conjecture is false for
-        \[
-            n\geq 3,
-        \]
-        while the planar case $n=2$ remains open. The announcement credits
-        Akhil Mathew with prompting the question and the AI system Claude Fable
-        with work leading to the counterexample; it should not be summarized as
-        ``AI alone solved the Jacobian conjecture.''
-    \end{fact}
-
-
-    \begin{fact}[Erd\H{o}s--Szemer\'edi Sum--Product Conjecture: 2026 Status]
-        A standard real-variable form predicted that every sufficiently large
-        finite set $A\subset\R$ must have either an almost-quadratically large
-        sumset $A+A$ or an almost-quadratically large product set $AA$. In May
-        2026, Thomas F. Bloom, Will Sawin, Carl Schildkraut, and Dmitrii Zhelezov
-        disproved this statement over $\R$: for some absolute constant $c>0$
-        there are arbitrarily large finite sets $A\subset\R$ with
-        \[
-            \max\{|A+A|,|AA|\}\leq |A|^{2-c}.
-        \]
-        Their construction uses algebraic integers in number fields whose degree
-        grows with $|A|$. It therefore does not disprove the original integer
-        version, which may still hold for $A\subset\Z$.
-    \end{fact}
-
-    \begin{fact}[Cycle Double Cover Conjecture: 2026 Status]
-        The Cycle Double Cover Conjecture states that every finite bridgeless
-        loopless multigraph has a multiset of cycles in which every edge occurs
-        exactly twice. In July 2026, OpenAI announced an affirmative proof
-        generated with GPT-5.6 Sol Ultra, and expository preprints by Sang-il
-        Oum and Jim Geelen presented the argument in conventional mathematical
-        form. At the September 1, 2026 preparation cutoff, the result should be
-        remembered as an announced and publicly exposited proof rather than
-        silently conflated
-        with ordinary journal publication.
-    \end{fact}
-
-    \begin{fact}[Petersen Coloring Conjecture: 2026 Status]
-        The Petersen Coloring Conjecture asserted that every bridgeless cubic
-        graph admits a Petersen coloring. In August 2026, Bryce Putman produced
-        an explicit simple bridgeless cubic counterexample on $112$ vertices,
-        supported by SAT formulations and independently checkable DRAT
-        certificates. Jorik Jooken then gave a human-checkable proof for the
-        same counterexample. Thus the conjecture is false.
-    \end{fact}
-
-    \begin{fact}[Heil--Ramanathan--Topiwala Conjecture: 2026 Status]
-        The Heil--Ramanathan--Topiwala, or HRT, Conjecture asserted that for
-        every nonzero $f\in L^2(\R)$ and every finite set of distinct
-        time--frequency shifts, the resulting functions are linearly
-        independent. In August 2026, Markus Faulhuber, Philipp Petersen, Jordy
-        Timo van Velthoven, and Felix Voigtlaender disproved the conjecture with
-        $12$ shifts of a Schwartz function. Vignon Oussa then gave a
-        computer-assisted $4$-shift counterexample. Thus the HRT conjecture is
-        false.
-    \end{fact}
-
-    \begin{fact}[Sendov's Conjecture: 2026 Status]
-        Sendov's conjecture states that if a polynomial $p$ of degree $n\geq2$
-        has all of its zeros in the closed unit disk, then for every zero $a$ of
-        $p$ there exists a critical point $\zeta$ of $p$ s.t.
-        \[
-            p'(\zeta)=0,
-            \qquad
-            |\zeta-a|\leq1.
-        \]
-        In August 2026, Lech Mazur obtained an AI-assisted proof covering all
-        degrees. Terence Tao subsequently produced a human-digested exposition
-        and a streamlined Lean formalization, and explained that the same ideas
-        establish the stronger Phelps--Rodriguez form. At the September 1, 2026
-        preparation cutoff, the mathematical argument had therefore received
-        both human exposition and formal verification; this status should still
-        be distinguished from ordinary journal publication.
-    \end{fact}
 
     \begin{openproblem}[Inverse Galois Problem]
         Determine whether every finite group $G$ occurs as

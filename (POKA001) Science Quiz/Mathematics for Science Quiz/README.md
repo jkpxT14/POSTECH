@@ -3,6 +3,12 @@
 This folder contains the complete mathematics handbook for the Science Quiz
 section of the POSTECH-KAIST Science War.
 
+Edition: Second Edition (September 2026)
+
+The time-sensitive material is current through the preparation cutoff of
+September 4, 2026. The notation follows the September 4, 2026 version of
+`(MATH000) Mathematical Language`.
+
 ## Folder Structure
 
 - `MathematicsforScienceQuiz.tex`: main document and shared formatting
