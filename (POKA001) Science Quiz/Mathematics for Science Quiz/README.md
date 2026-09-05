@@ -6,8 +6,9 @@ section of the POSTECH-KAIST Science War.
 Edition: Second Edition (September 2026)
 
 The time-sensitive material is current through the preparation cutoff of
-September 4, 2026. The notation follows the September 4, 2026 version of
-`(MATH000) Mathematical Language`.
+September 4, 2026. The notation follows `(MATH000) Mathematical Language` at
+commit `7a4a97af9bb81c71c8535119eb87a118bcfbfa05` (the latest `main` commit when
+this edition was prepared on September 5, 2026).
 
 ## Folder Structure
 

@@ -14,7 +14,10 @@
     letters, such as $\mathbf{A},\mathbf{B},\mathbf{P}$. In particular, the
     identity matrix, a diagonal matrix, and a projection matrix are written as
     $\mathbf{I}_n$, $\mathbf{D}$, and $\mathbf{P}$, respectively. Unless
-    otherwise stated, vectors are column vectors.
+    otherwise stated, vectors are column vectors. Number systems are written in
+    blackboard bold, sets ordinarily use uppercase italic letters, and families
+    and collections use calligraphic letters when useful. Named operators are
+    set upright.
 
     Round parentheses are used for ordered tuples and matrix delimiters. Square
     brackets are used for closed intervals and for area notation such as
@@ -90,28 +93,33 @@
         \bottomrule
         \endlastfoot
 
-        Definition & a precise meaning of a term or object \\
-        Theorem & a major mathematical result \\
+        Definition & the precise meaning of a term, object, property, or construction \\
+        Theorem & a principal mathematical result \\
         Proposition & a useful result of more limited scope \\
-        Lemma & a supporting result or technical tool \\
-        Corollary & a result that follows directly from another result \\
-        Formula & a computational identity or closed form \\
-        Algorithm & a step-by-step computational procedure \\
-        Fact & a verified mathematical or historical fact \\
-        Conjecture & a statement believed to be true but not proved in full generality \\
+        Lemma & a supporting result, usually for a later proof \\
+        Corollary & a result following readily from a preceding result \\
+        Conjecture & a statement proposed to be true but not proved in full generality \\
         Hypothesis & a named assumption or proposed statement \\
-        Open Problem & a problem whose stated form remains unsolved \\
-        Idea & a concise account of a decisive mathematical idea \\
-        Strategy & a broadly useful problem-solving method \\
-        Tactic & a local, immediately applicable device \\
-        Remark & supplementary context or a caution \\
-        Problem & a mathematical question to be solved \\
-        Example & an illustration of a definition, method, or result \\
-        Counterexample & an example showing that a statement is false \\
+        Formula & a distinguished computational identity or closed form \\
+        Algorithm & an explicit step-by-step procedure \\
+        Fact & a verified statement not requiring theorem status \\
+        Example & an illustration of a definition, construction, phenomenon, or result \\
+        Counterexample & an example disproving a general assertion or showing that a hypothesis is necessary \\
+        Remark & supplementary context, a warning, or a qualification \\
+        Problem & a mathematical task intended to be solved \\
+        Open Problem & a problem not known to be solved in the stated form \\
+        Idea & a decisive conceptual insight \\
+        Strategy & a broad problem-solving plan \\
+        Tactic & a local step within a larger strategy \\
     \end{longtable}
     }
 
-    Labels are set upright. Decimal labels such as $1.1,1.2,\dots$ identify
+    Proof labels are written as \textit{Proof} and solution labels as
+    \textit{Solution}, each followed by a period. The ordinary end mark is
+    $\square$; $\blacksquare$ is reserved for substantial or especially
+    important proofs, and \textsc{Q.E.D.} for exceptional paper-level proofs.
+
+    Enumeration labels are set upright. Decimal labels such as $1.1,1.2,\dots$ identify
     independent units under a common parent; $(1),(2),\dots$ are used for
     ordinary enumerations; $(a),(b),\dots$ are used for connected subparts of
     one problem; and $(i),(ii),\dots$ are reserved for formal mathematical
@@ -228,10 +236,21 @@
         \bottomrule
         \endlastfoot
 
+        $\displaystyle\lim_{x\to a}f(x)$ & the limit of $f(x)$ as $x$ approaches $a$ \\
+        $\displaystyle\lim_{x\to a^-}f(x)$ & the left-hand limit of $f(x)$ as $x$ approaches $a$ \\
+        $\displaystyle\lim_{x\to a^+}f(x)$ & the right-hand limit of $f(x)$ as $x$ approaches $a$ \\
+        $\min A$, $\max A$ & the minimum and maximum of $A$ \\
+        $\inf A$, $\sup A$ & the infimum and supremum of $A$ \\
         $f'(a)$ & the first derivative of $f$ at $a$ \\
         $f^{(n)}(a)$ & the $n$th derivative of $f$ at $a$ \\
         $\displaystyle\frac{\dd y}{\dd x}$ & the derivative of $y$ with respect to $x$, with upright $\dd$ \\
         $\displaystyle\int_a^b f(x)\dd x$ & the definite integral of $f$ over $[a,b]$ \\
+        $\displaystyle\iint_D f\dd A$ & a double integral over $D$ \\
+        $\displaystyle\iiint_\Omega f\dd V$ & a triple integral over $\Omega$ \\
+        $\displaystyle\sum_{k=1}^{n}a_k$ & a finite sum \\
+        $\displaystyle\sum_{k=1}^{\infty}a_k$ & an infinite series \\
+        $\displaystyle\prod_{k=1}^{n}a_k$ & a finite product \\
+        $e^x$, $\exp x$ & the exponential function \\
         $\Gamma(z)$ & the Gamma function \\
         $B(x,y)$ & the Beta function \\
         $\zeta(s)$ & the Riemann zeta function \\
@@ -340,10 +359,16 @@
         $\Span(\mathbf{v}_1,\dots,\mathbf{v}_k)$ & the span of the listed vectors \\
         $U\oplus V$ & the direct sum of subspaces $U$ and $V$ \\
         $\langle\mathbf{u},\mathbf{v}\rangle$ & the inner product of $\mathbf{u}$ and $\mathbf{v}$ \\
+        $\mathbf{u}\cdot\mathbf{v}$ & the standard Euclidean inner product on $\R^n$ \\
+        $\mathbf{u}^{\mathsf H}\mathbf{v}$ & the standard Hermitian inner product on $\C^n$ \\
         $\|\mathbf{v}\|$ & the norm of $\mathbf{v}$ \\
+        $U^\perp$ & the orthogonal complement of the subspace $U$ \\
+        $\proj_U\mathbf{x}$ & the orthogonal projection of $\mathbf{x}$ onto $U$ \\
         $\proj_{\mathbf{v}}\mathbf{x}$ & the orthogonal projection of $\mathbf{x}$ onto $\Span(\mathbf{v})$ \\
         $\mathbf{u}\perp\mathbf{v}$ & $\mathbf{u}$ and $\mathbf{v}$ are orthogonal \\
         $\mathbf{u}\times\mathbf{v}$ & the cross product in $\R^3$ \\
+        $E_\lambda(\mathbf{A})$ & the eigenspace of $\mathbf{A}$ associated with $\lambda$ \\
+        $\sigma(\mathbf{A})$ & the spectrum of $\mathbf{A}$ \\
     \end{longtable}
     }
 
@@ -643,11 +668,13 @@
         \endlastfoot
 
         $(X,\mathcal{T})$ & a topological space \\
-        $\interior A$ & the interior of $A$ \\
+        $A^\circ$ & the interior of $A$ \\
         $\overline{A}$ & the closure of $A$ \\
         $\partial A$ & the boundary of $A$ \\
         $\pi_1(X,x_0)$ & the fundamental group of $X$ based at $x_0$ \\
         $\chi(X)$ & the Euler characteristic of $X$ \\
+        $X\cong Y$ & $X$ and $Y$ are homeomorphic \\
+        $X\simeq Y$ & $X$ and $Y$ are homotopy equivalent \\
     \end{longtable}
     }
 
