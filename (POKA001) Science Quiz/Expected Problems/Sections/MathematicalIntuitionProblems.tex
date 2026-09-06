@@ -1,0 +1,179 @@
+
+    \expectedproblemsection{Mathematical Intuition Problems}
+
+    \begin{expectedproblem}
+        A geodesic triangle is drawn on a surface of constant Gaussian
+        curvature. Predict whether its angle sum is less than, equal to, or
+        greater than $\pi$ in each case.
+        \begin{problemsubparts}
+            \item negative curvature;
+            \item zero curvature;
+            \item positive curvature.
+        \end{problemsubparts}
+    \end{expectedproblem}
+
+    \begin{solution}
+        By the Gauss--Bonnet relation
+        \[
+            \alpha+\beta+\gamma-\pi
+            =
+            K\area(\triangle ABC),
+        \]
+        the sign of the angle excess is the sign of $K$. Therefore,
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{(a)}\;&\text{less than }\pi,\\
+                    \text{(b)}\;&\text{equal to }\pi,\\
+                    \text{(c)}\;&\text{greater than }\pi.
+                \end{aligned}
+            }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1996 Putnam]
+        Two circles have radii $1$ and $3$, and the distance between their
+        centers is $10$. A point $X$ moves on the first circle and a point $Y$
+        moves on the second. Determine the locus of the midpoint $M$ of
+        $\overline{XY}$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let the centers of the two circles be $A$ and $B$, and let $O$ be the
+        midpoint of $\overline{AB}$. Write
+        \[
+            \overrightarrow{AX}=\mathbf{u},
+            \qquad
+            \overrightarrow{BY}=\mathbf{v},
+        \]
+        where
+        \[
+            \|\mathbf{u}\|=1,
+            \qquad
+            \|\mathbf{v}\|=3.
+        \]
+        Since $M$ is the midpoint of $X$ and $Y$,
+        \[
+            \overrightarrow{OM}
+            =
+            \frac{\mathbf{u}+\mathbf{v}}{2}.
+        \]
+        The possible lengths of $\mathbf{u}+\mathbf{v}$ range from
+        \[
+            3-1=2
+            \qquad\text{to}\qquad
+            3+1=4.
+        \]
+        Every intermediate length and every direction occur by varying the
+        angle between $\mathbf{u}$ and $\mathbf{v}$ and rotating both vectors.
+        Therefore the locus is the closed annulus
+        \[
+            \boxed{1\leq OM\leq2}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1996 Putnam]
+        Two squares have total area $1$. Their sides, and the sides of a
+        containing rectangle, must remain parallel, and the interiors of the
+        two squares may not overlap. Determine the least number $A$ s.t.
+        every such pair of squares can be packed into a rectangle of area at
+        most $A$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let the side lengths be $x\geq y>0$, so
+        \[
+            x^2+y^2=1.
+        \]
+        Since two axis-parallel squares with disjoint interiors must be
+        separated horizontally or vertically, any containing rectangle has one
+        side at least $x+y$ and the other at least $x$. This bound is attained
+        by placing the squares side by side. Thus the least area required for
+        this pair is
+        \[
+            x(x+y).
+        \]
+
+        Put $t=y/x$, where $0<t\leq1$. Then
+        \[
+            x^2=\frac{1}{1+t^2},
+        \]
+        and the required area is
+        \[
+            \frac{1+t}{1+t^2}.
+        \]
+        Differentiation shows that this expression is maximized at
+        \[
+            t=\sqrt2-1.
+        \]
+        Its maximum value is
+        \[
+            \boxed{\frac{1+\sqrt2}{2}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1994 CSAT]
+        A cube is intersected by a plane. Among the following shapes, determine
+        how many can occur as the cross-section:
+        \begin{problemchoices}
+            \item a triangle;
+            \item a nonsquare rectangle;
+            \item a nonsquare rhombus;
+            \item a pentagon;
+            \item a hexagon.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        Work with the cube
+        \[
+            0\leq x,y,z\leq1.
+        \]
+        Each of the five shapes occurs.
+
+        The plane
+        \[
+            x+y+z=\frac12
+        \]
+        produces a triangle. The plane
+        \[
+            z=\frac{x}{2}
+        \]
+        produces a rectangle whose side lengths are $1$ and $\sqrt5/2$, so it
+        is not a square.
+
+        The plane
+        \[
+            4z=x+y+1
+        \]
+        produces a parallelogram with adjacent side vectors
+        \[
+            \left(1,0,\frac14\right)
+            \qquad\text{and}\qquad
+            \left(0,1,\frac14\right).
+        \]
+        These vectors have equal lengths but nonzero dot product, so the
+        cross-section is a nonsquare rhombus.
+
+        The plane
+        \[
+            x+y+2z=\frac{11}{10}
+        \]
+        meets five edges of the cube, at
+        \[
+            \left(\frac1{10},1,0\right),
+            \left(1,\frac1{10},0\right),
+            \left(1,0,\frac1{20}\right),
+            \left(0,0,\frac{11}{20}\right),
+            \left(0,1,\frac1{20}\right),
+        \]
+        and therefore produces a pentagon. Finally,
+        \[
+            x+y+z=\frac32
+        \]
+        produces a hexagon. Thus all five listed shapes are possible, and the
+        required number is
+        \[
+            \boxed{5}.
+        \]
+    \end{solution}

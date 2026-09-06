@@ -1,0 +1,2721 @@
+    \expectedproblemsection{Direct Calculation Problems}
+
+    \begin{expectedproblemgroup}{Finite Sums and Products}
+        Evaluate each of the following finite sums or products exactly. State any
+        restrictions on the integer parameters that are needed for the displayed
+        expression to be defined.
+
+        \begin{expectedsubproblem}[Vandermonde's Identity]
+            For $n\in\Nzero$, determine
+            \[
+                \sum_{k=0}^{n}\binom{n}{k}^2.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            This is the $r=s=n$ specialization of Vandermonde's identity from
+            Mathematical Concepts. Its coefficient interpretation gives the
+            same result immediately: since
+            \[
+                \binom{n}{k}=\binom{n}{n-k},
+            \]
+            the required sum is the coefficient of $x^n$ in
+            \[
+                (1+x)^n(1+x)^n=(1+x)^{2n}.
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    \sum_{k=0}^{n}\binom{n}{k}^2=\binom{2n}{n}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            For $n\in\Nzero$, determine
+            \[
+                \sum_{k=0}^{n}
+                (-1)^k\binom{n}{k}\frac{1}{k+1}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Using
+            \[
+                \frac{1}{k+1}=\int_0^1x^k\dd x,
+            \]
+            we obtain
+            \[
+                \begin{aligned}
+                    \sum_{k=0}^{n}
+                    (-1)^k\binom{n}{k}\frac{1}{k+1}
+                    &=
+                    \int_0^1
+                    \sum_{k=0}^{n}\binom{n}{k}(-x)^k\dd x\\
+                    &=
+                    \int_0^1(1-x)^n\dd x\\
+                    &=
+                    \boxed{\frac{1}{n+1}}.
+                \end{aligned}
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[Sine Product Formula]
+            For an integer $n\geq2$, determine
+            \[
+                \prod_{k=1}^{n-1}\sin\left(\frac{k\pi}{n}\right).
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let $\omega_n=e^{2\pi i/n}$. Factoring $z^n-1$ and then dividing by
+            $z-1$ gives
+            \[
+                \frac{z^n-1}{z-1}
+                =
+                \prod_{k=1}^{n-1}(z-\omega_n^k).
+            \]
+            Letting $z\to1$ and taking absolute values yields
+            \[
+                n
+                =
+                \prod_{k=1}^{n-1}|1-\omega_n^k|
+                =
+                \prod_{k=1}^{n-1}
+                2\sin\left(\frac{k\pi}{n}\right).
+            \]
+            Hence
+            \[
+                \boxed{
+                    \prod_{k=1}^{n-1}
+                    \sin\left(\frac{k\pi}{n}\right)
+                    =
+                    \frac{n}{2^{n-1}}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            For an integer $n\geq2$, determine
+            \[
+                \prod_{k=2}^{n}\frac{k^3-1}{k^3+1}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Factor each term as
+            \[
+                \frac{k^3-1}{k^3+1}
+                =
+                \frac{k-1}{k+1}
+                \frac{k^2+k+1}{k^2-k+1}.
+            \]
+            The two products telescope separately:
+            \[
+                \prod_{k=2}^{n}\frac{k-1}{k+1}
+                =
+                \frac{2}{n(n+1)},
+            \]
+            and, since $k^2+k+1=(k+1)^2-(k+1)+1$,
+            \[
+                \prod_{k=2}^{n}
+                \frac{k^2+k+1}{k^2-k+1}
+                =
+                \frac{n^2+n+1}{3}.
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    \prod_{k=2}^{n}\frac{k^3-1}{k^3+1}
+                    =
+                    \frac{2(n^2+n+1)}{3n(n+1)}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            For $m\in\N$ and $\sin x\neq0$, determine
+            \[
+                \prod_{k=0}^{m-1}\cos(2^k x).
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Repeatedly apply
+            \[
+                \sin(2t)=2\sin t\cos t.
+            \]
+            This gives
+            \[
+                \sin(2^m x)
+                =
+                2^m\sin x
+                \prod_{k=0}^{m-1}\cos(2^k x).
+            \]
+            Since $\sin x\neq0$,
+            \[
+                \boxed{
+                    \prod_{k=0}^{m-1}\cos(2^k x)
+                    =
+                    \frac{\sin(2^m x)}{2^m\sin x}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            For $n\in\Nzero$, determine
+            \[
+                \sum_{\substack{0\leq k\leq n\\3\mid k}}
+                \binom{n}{k}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                \omega=e^{2\pi i/3}.
+            \]
+            Since
+            \[
+                1+\omega^k+\omega^{2k}
+                =
+                \begin{cases}
+                    3, & 3\mid k,\\
+                    0, & 3\nmid k,
+                \end{cases}
+            \]
+            the roots-of-unity filter gives
+            \[
+                \begin{aligned}
+                    3S_n
+                    &=
+                    \sum_{k=0}^{n}\binom{n}{k}
+                    \bigl(1+\omega^k+\omega^{2k}\bigr)\\
+                    &=
+                    2^n+(1+\omega)^n+(1+\omega^2)^n.
+                \end{aligned}
+            \]
+            Now
+            \[
+                1+\omega=e^{i\pi/3},
+                \qquad
+                1+\omega^2=e^{-i\pi/3}.
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    S_n
+                    =
+                    \frac{2^n+2\cos(n\pi/3)}{3}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[1997 CSAT]
+            For a permutation
+            \[
+                (a_1,a_2,a_3,a_4)
+            \]
+            of $\{1,2,3,4\}$, let $s_k$ be the number of entries to the right
+            of $a_k$ that are smaller than $a_k$, for $k=1,2,3$. Define
+            \[
+                |(a_1,a_2,a_3,a_4)|=s_1+s_2+s_3.
+            \]
+            Determine the sum of this quantity over all $24$ permutations.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            For each unordered pair of distinct elements, exactly half of the
+            $24$ permutations place the larger element before the smaller one.
+            Thus each of the
+            \[
+                \binom42=6
+            \]
+            pairs contributes one inversion in exactly $12$ permutations. Hence
+            the total inversion number is
+            \[
+                \boxed{6\cdot12=72}.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+
+    \begin{expectedproblemgroup}{Recurrence Relations}
+        Determine the requested term, closed form, or residue for each of the
+        following recursively defined sequences.
+
+        \begin{expectedsubproblem}[2006 VTRMC]
+            Let $F_0=0$, $F_1=1$, and
+            \[
+                F_{n+2}=F_{n+1}+F_n.
+            \]
+            Determine the last decimal digit of $F_{2006}$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Modulo $2$, the Fibonacci sequence has period $3$:
+            \[
+                0,1,1,0,1,1,\ldots.
+            \]
+            Hence
+            \[
+                F_{2006}\equiv F_2\equiv1\pmod2.
+            \]
+            Also
+            \[
+                F_{n+5}=5F_{n+1}+3F_n,
+            \]
+            so modulo $5$,
+            \[
+                F_{n+5}\equiv3F_n.
+            \]
+            Iterating four times gives $F_{n+20}\equiv F_n\pmod5$. Therefore
+            \[
+                F_{2006}\equiv F_6=8\equiv3\pmod5.
+            \]
+            The unique decimal digit that is odd and congruent to $3$ modulo $5$ is
+            \[
+                \boxed{3}.
+            \]
+        \end{expectedsubsolution}
+
+
+        \begin{expectedsubproblem}
+            Let $a_0=1$ and
+            \[
+                a_{n+1}
+                =
+                \frac12\left(a_n+\frac{2}{a_n}\right).
+            \]
+            Determine a closed form for $a_n$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Set
+            \[
+                r_n=\frac{a_n-\sqrt2}{a_n+\sqrt2}.
+            \]
+            Direct substitution into the recurrence gives
+            \[
+                r_{n+1}=r_n^2.
+            \]
+            Moreover,
+            \[
+                r_0
+                =
+                \frac{1-\sqrt2}{1+\sqrt2}
+                =
+                -(3-2\sqrt2).
+            \]
+            Thus
+            \[
+                r_n=\bigl(-(3-2\sqrt2)\bigr)^{2^n}.
+            \]
+            Solving the defining relation for $a_n$ yields
+            \[
+                \boxed{
+                    a_n
+                    =
+                    \sqrt2\,
+                    \frac{1+r_n}{1-r_n},
+                    \qquad
+                    r_n=\bigl(-(3-2\sqrt2)\bigr)^{2^n}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+
+        \begin{expectedsubproblem}
+            Let $a_0=0$ and
+            \[
+                a_{n+1}=\frac{1+a_n}{2+a_n}.
+            \]
+            Determine a closed form for $a_n$ in terms of the Fibonacci
+            sequence.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let $(F_n)$ be the Fibonacci sequence with $F_0=0$ and $F_1=1$. We
+            claim that
+            \[
+                a_n=\frac{F_{2n}}{F_{2n+1}}.
+            \]
+            The formula holds for $n=0$. If it holds for $n$, then
+            \[
+                \begin{aligned}
+                    a_{n+1}
+                    &=
+                    \frac{F_{2n}+F_{2n+1}}
+                    {F_{2n}+2F_{2n+1}}\\
+                    &=
+                    \frac{F_{2n+2}}{F_{2n+3}}.
+                \end{aligned}
+            \]
+            Thus
+            \[
+                \boxed{a_n=\frac{F_{2n}}{F_{2n+1}}}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2014 \UTokyo{} Entrance Examination]
+            A bag initially contains $a+2$ white balls and one red ball, where
+            $a$ is a positive integer. After each draw, perform the following
+            operation:
+            \begin{problemchoices}
+                \item if a white ball is drawn, replace the contents by $a$
+                white balls and one red ball;
+                \item if the red ball is drawn, remove it and leave the other
+                balls unchanged.
+            \end{problemchoices}
+            Let $p_n$ be the probability that the red ball is drawn on the
+            $n$th draw. Determine $p_n$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The first probability is
+            \[
+                p_1=\frac{1}{a+3}.
+            \]
+            If the red ball is drawn on the $n$th draw, it cannot be drawn next. If
+            a white ball is drawn, the next state has $a+1$ balls, exactly one of
+            which is red. Therefore
+            \[
+                p_{n+1}=\frac{1-p_n}{a+1}.
+            \]
+            The fixed point of this recurrence is $1/(a+2)$. Hence, with
+            \[
+                q_n=p_n-\frac{1}{a+2},
+            \]
+            we have
+            \[
+                q_{n+1}=-\frac{q_n}{a+1},
+                \qquad
+                q_1=-\frac{1}{(a+3)(a+2)}.
+            \]
+            Consequently,
+            \[
+                \boxed{
+                    p_n
+                    =
+                    \frac{1}{a+2}
+                    +
+                    \frac{(-1)^n}{
+                        (a+3)(a+2)(a+1)^{n-1}
+                    }
+                }
+            \]
+            for $n\geq1$. In particular,
+            \[
+                p_2=\frac{a+2}{(a+3)(a+1)}.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+
+    \begin{expectedproblemgroup}{Limits}
+        Evaluate each of the following limits. In parameterized problems,
+        determine the exact value for every parameter regime stated in the
+        subproblem.
+
+        \begin{expectedsubproblem}[2012 \KAIST{} Problem of the Week]
+            Let $a_0=3$ and
+            \[
+                a_n=a_{n-1}+\sqrt{a_{n-1}^2+3},
+                \qquad n\geq1.
+            \]
+            Determine
+            \[
+                \lim\limits_{n\to\infty}\frac{a_n}{2^n}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Write
+            \[
+                a_n=\sqrt3\cot\theta_n.
+            \]
+            Since $a_0=3$, we may take $\theta_0=\pi/6$. The half-angle identity
+            \[
+                \cot\frac{\theta}{2}=\cot\theta+\csc\theta
+            \]
+            transforms the recurrence into
+            \[
+                a_n
+                =
+                \sqrt3\left(\cot\theta_{n-1}+\csc\theta_{n-1}\right)
+                =
+                \sqrt3\cot\frac{\theta_{n-1}}{2}.
+            \]
+            Hence
+            \[
+                \theta_n=\frac{\pi}{6\cdot2^n}
+                \qquad\text{and}\qquad
+                a_n=\sqrt3\cot\left(\frac{\pi}{6\cdot2^n}\right).
+            \]
+            Using $t\cot t\to1$ as $t\to0$, we obtain
+            \[
+                \boxed{
+                    \lim\limits_{n\to\infty}\frac{a_n}{2^n}
+                    =
+                    \frac{6\sqrt3}{\pi}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2013 \KAIST{} Problem of the Week]
+            For $a,b\in\R$, determine
+            \[
+                \lim\limits_{n\to\infty}
+                n\left(
+                    1-\frac{a}{n}-\frac{b\ln(n+1)}{n}
+                \right)^n.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Put
+            \[
+                c_n=a+b\ln(n+1).
+            \]
+            Since $c_n/n\to0$ and $c_n^2/n\to0$, the logarithmic expansion gives
+            \[
+                n\ln\left(1-\frac{c_n}{n}\right)
+                =
+                -c_n+o(1).
+            \]
+            Therefore,
+            \[
+                n\left(1-\frac{c_n}{n}\right)^n
+                =
+                e^{-a}n(n+1)^{-b}\bigl(1+o(1)\bigr).
+            \]
+            It follows that the limit is
+            \[
+                \boxed{
+                    \begin{cases}
+                        \infty, & b<1,\\
+                        e^{-a}, & b=1,\\
+                        0, & b>1.
+                    \end{cases}
+                }
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2014 \KAIST{} Problem of the Week]
+            For $x\geq0$, let
+            \[
+                f_n(x)
+                =
+                \frac{
+                    \displaystyle\prod_{k=1}^{n-1}(x+k)(x+k+1)
+                }{(n!)^2}.
+            \]
+            Determine
+            \[
+                \lim\limits_{n\to\infty}f_n(x).
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The Gamma function gives
+            \[
+                f_n(x)
+                =
+                \frac{\Gamma(n+x)\Gamma(n+x+1)}
+                {\Gamma(x+1)\Gamma(x+2)\Gamma(n+1)^2}.
+            \]
+            Using
+            \[
+                \frac{\Gamma(n+\alpha)}{\Gamma(n+\beta)}
+                \sim n^{\alpha-\beta},
+            \]
+            we obtain
+            \[
+                f_n(x)
+                \sim
+                \frac{n^{2x-1}}{\Gamma(x+1)\Gamma(x+2)}.
+            \]
+            Consequently,
+            \[
+                \boxed{
+                    \lim\limits_{n\to\infty}f_n(x)
+                    =
+                    \begin{cases}
+                        0, & 0\leq x<\dfrac12,\\[4pt]
+                        \dfrac{8}{3\pi}, & x=\dfrac12,\\[6pt]
+                        \infty, & x>\dfrac12.
+                    \end{cases}
+                }
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week]
+            For $a\geq0$, determine
+            \[
+                \lim\limits_{n\to\infty}
+                n\int_{-1}^{0}
+                \left(x+\frac{x^2}{2}+e^{ax}\right)^n\dd x.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                g(x)=x+\frac{x^2}{2}+e^{ax}.
+            \]
+            On $[-1,0]$, we have $-1/2\leq g(x)\leq1$, with equality $g(x)=1$
+            only at $x=0$. Moreover,
+            \[
+                g(0)=1
+                \qquad\text{and}\qquad
+                g'(0)=1+a.
+            \]
+            The contribution from every interval $[-1,-\delta]$ is exponentially
+            small. On the remaining interval, set $x=-t/n$. For each fixed $t\geq0$,
+            \[
+                g\left(-\frac{t}{n}\right)^n
+                \longrightarrow
+                e^{-(1+a)t}.
+            \]
+            A uniform exponential bound near the endpoint permits dominated
+            convergence, and therefore
+            \[
+                \begin{aligned}
+                    \lim\limits_{n\to\infty}
+                    n\int_{-1}^{0}g(x)^n\dd x
+                    &=
+                    \int_0^\infty e^{-(1+a)t}\dd t\\
+                    &=
+                    \boxed{\frac{1}{1+a}}.
+                \end{aligned}
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2023 \KAIST{} Problem of the Week]
+            Determine
+            \[
+                \lim\limits_{n\to\infty}
+                \left(
+                    \frac{\displaystyle\sum_{k=1}^{n+2}k^k}
+                    {\displaystyle\sum_{k=1}^{n+1}k^k}
+                    -
+                    \frac{\displaystyle\sum_{k=1}^{n+1}k^k}
+                    {\displaystyle\sum_{k=1}^{n}k^k}
+                \right).
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                S_n=\sum_{k=1}^{n}k^k.
+            \]
+            The final two terms dominate the sum:
+            \[
+                S_n
+                =
+                n^n\left(1+\frac{1}{en}+O\left(\frac{1}{n^2}\right)\right).
+            \]
+            Hence
+            \[
+                \begin{aligned}
+                    \frac{S_{n+1}}{S_n}
+                    &=
+                    (n+1)\left(1+\frac{1}{n}\right)^n
+                    \frac{
+                        1+\dfrac{1}{e(n+1)}+O(n^{-2})
+                    }{
+                        1+\dfrac{1}{en}+O(n^{-2})
+                    }\\
+                    &=
+                    en+\frac{e}{2}+O\left(\frac{1}{n}\right).
+                \end{aligned}
+            \]
+            Replacing $n$ by $n+1$ and subtracting gives
+            \[
+                \boxed{
+                    \lim\limits_{n\to\infty}
+                    \left(
+                        \frac{S_{n+2}}{S_{n+1}}
+                        -
+                        \frac{S_{n+1}}{S_n}
+                    \right)
+                    =e
+                }.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+
+    \begin{expectedproblemgroup}{Derivatives}
+        Compute each requested derivative or derivative-dependent quantity
+        exactly. For high-order derivatives, a closed form involving standard
+        sequences or harmonic numbers is acceptable.
+
+        \begin{expectedsubproblem}[2006 HMMT]
+            A nonzero polynomial $f\in\R[x]$ satisfies
+            \[
+                f(x)=f'(x)f''(x).
+            \]
+            Determine the leading coefficient of $f$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Suppose that the leading term of $f$ is $cx^n$, where $c\neq0$. The
+            leading term of $f'f''$ is
+            \[
+                c^2n^2(n-1)x^{2n-3}.
+            \]
+            Comparing degrees gives
+            \[
+                n=2n-3,
+            \]
+            so $n=3$. Comparing leading coefficients then gives
+            \[
+                c=18c^2.
+            \]
+            Since $c\neq0$,
+            \[
+                \boxed{c=\frac{1}{18}}.
+            \]
+        \end{expectedsubsolution}
+
+
+
+
+        \begin{expectedsubproblem}
+            Let
+            \[
+                H_n=\sum_{k=1}^{n}\frac{1}{k}.
+            \]
+            Determine
+            \[
+                \left.
+                \frac{\dd^{100}}{\dd x^{100}}
+                \bigl(x^{100}\ln x\bigr)
+                \right|_{x=1}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            For a real parameter $\alpha$,
+            \[
+                \frac{\dd^{100}}{\dd x^{100}}x^\alpha
+                =
+                \alpha(\alpha-1)\cdots(\alpha-99)x^{\alpha-100}.
+            \]
+            Differentiate both sides with respect to $\alpha$ and then set
+            $\alpha=100$ and $x=1$. Since
+            \[
+                \left.
+                \frac{\dd}{\dd\alpha}
+                \prod_{j=0}^{99}(\alpha-j)
+                \right|_{\alpha=100}
+                =
+                100!\sum_{k=1}^{100}\frac{1}{k},
+            \]
+            we obtain
+            \[
+                \boxed{100!\,H_{100}}.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+
+    \begin{expectedproblemgroup}{Series}
+        Determine whether each of the following series converges. For every
+        convergent series, determine its exact sum. In parameterized problems,
+        state all parameter values for which convergence occurs.
+
+        \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week]
+            Let $k$ be a positive integer, and define
+            \[
+                a_n
+                =
+                \begin{cases}
+                    1, & (k+1)\nmid n,\\
+                    -k, & (k+1)\mid n.
+                \end{cases}
+            \]
+            Determine
+            \[
+                \sum_{n=1}^{\infty}\frac{a_n}{n}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            At the end of the $N$th complete block of length $k+1$, the partial sum
+            is
+            \[
+                \begin{aligned}
+                    \sum_{n=1}^{(k+1)N}\frac{a_n}{n}
+                    &=
+                    \sum_{n=1}^{(k+1)N}\frac{1}{n}
+                    -(k+1)\sum_{m=1}^{N}\frac{1}{(k+1)m}\\
+                    &=
+                    H_{(k+1)N}-H_N.
+                \end{aligned}
+            \]
+            Since $H_N=\ln N+\gamma+o(1)$, these partial sums tend to
+            $\ln(k+1)$. The terms inside the final incomplete block tend uniformly
+            to zero, so the full series has the same limit. Therefore,
+            \[
+                \boxed{
+                    \sum_{n=1}^{\infty}\frac{a_n}{n}=\ln(k+1)
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2017 \KAIST{} Problem of the Week]
+            Determine whether
+            \[
+                \sum_{n=0}^{\infty}
+                \frac{1}{4^n}\binom{2n}{n}
+            \]
+            converges.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            By the central binomial coefficient asymptotic,
+            \[
+                \frac{1}{4^n}\binom{2n}{n}
+                \sim
+                \frac{1}{\sqrt{\pi n}}.
+            \]
+            Since the $p$-series $\sum n^{-1/2}$ diverges, the limit comparison
+            test gives
+            \[
+                \boxed{
+                    \sum_{n=0}^{\infty}
+                    \frac{1}{4^n}\binom{2n}{n}
+                    \text{ diverges}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2014 \KAIST{} Problem of the Week]
+            Determine all positive integers $\ell$ for which
+            \[
+                \sum_{n=1}^{\infty}
+                \frac{n^3}{(n+1)(n+2)\cdots(n+\ell)}
+            \]
+            converges, and compute its value whenever it converges.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The $n$th term is asymptotic to $n^{3-\ell}$, so the series converges
+            exactly when
+            \[
+                \ell\geq5.
+            \]
+            For such $\ell$, the beta-integral identity gives
+            \[
+                \frac{1}{(n+1)(n+2)\cdots(n+\ell)}
+                =
+                \frac{1}{(\ell-1)!}
+                \int_0^1x^n(1-x)^{\ell-1}\dd x.
+            \]
+            Since
+            \[
+                \sum_{n=1}^{\infty}n^3x^n
+                =
+                \frac{x(1+4x+x^2)}{(1-x)^4},
+            \]
+            term-by-term integration yields
+            \[
+                \begin{aligned}
+                    \sum_{n=1}^{\infty}
+                    \frac{n^3}{(n+1)\cdots(n+\ell)}
+                    &=
+                    \frac{1}{(\ell-1)!}
+                    \int_0^1x(1+4x+x^2)(1-x)^{\ell-5}\dd x\\
+                    &=
+                    \boxed{
+                        \frac{\ell(\ell+5)}{
+                            (\ell-4)(\ell-3)(\ell-2)(\ell-1)(\ell-1)!
+                        }
+                    }.
+                \end{aligned}
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Determine
+            \[
+                \sum_{n=1}^{\infty}
+                \frac{1}{n^2\binom{2n}{n}}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The Taylor expansion
+            \[
+                2\arcsin^2\left(\frac{x}{2}\right)
+                =
+                \sum_{n=1}^{\infty}
+                \frac{x^{2n}}{n^2\binom{2n}{n}}
+            \]
+            holds for $|x|\leq2$. It may be verified by differentiating both sides
+            and using the power series for $1/\sqrt{1-x^2/4}$.
+
+            Setting $x=1$ gives
+            \[
+                \sum_{n=1}^{\infty}
+                \frac{1}{n^2\binom{2n}{n}}
+                =
+                2\arcsin^2\left(\frac12\right)
+                =
+                2\left(\frac{\pi}{6}\right)^2
+                =
+                \boxed{\frac{\pi^2}{18}}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Evaluate
+            \[
+                \sum_{n=1}^{\infty}\frac{n}{(n+1)!}
+            \]
+            in two ways.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            First,
+            \[
+                \frac{n}{(n+1)!}
+                =
+                \frac{1}{n!}-\frac{1}{(n+1)!},
+            \]
+            so the series telescopes:
+            \[
+                \sum_{n=1}^{N}\frac{n}{(n+1)!}
+                =
+                1-\frac{1}{(N+1)!}
+                \longrightarrow
+                1.
+            \]
+
+            Alternatively, put $m=n+1$ and use the exponential series:
+            \[
+                \begin{aligned}
+                    \sum_{n=1}^{\infty}\frac{n}{(n+1)!}
+                    &=
+                    \sum_{m=2}^{\infty}\frac{m-1}{m!}\\
+                    &=
+                    \sum_{m=2}^{\infty}\frac{1}{(m-1)!}
+                    -
+                    \sum_{m=2}^{\infty}\frac{1}{m!}\\
+                    &=
+                    (e-1)-(e-2)=1.
+                \end{aligned}
+            \]
+            Thus both methods give
+            \[
+                \boxed{1}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[1998 CSAT]
+            Let
+            \[
+                a_1=1,
+                \qquad
+                a_2=2,
+                \qquad
+                a_{n+2}=a_{n+1}+a_n.
+            \]
+            Determine
+            \[
+                \sum_{n=1}^{\infty}
+                \frac{a_n}{a_{n+1}a_{n+2}}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The recurrence gives
+            \[
+                \frac{a_n}{a_{n+1}a_{n+2}}
+                =
+                \frac{a_{n+2}-a_{n+1}}{a_{n+1}a_{n+2}}
+                =
+                \frac{1}{a_{n+1}}-\frac{1}{a_{n+2}}.
+            \]
+            Thus the series telescopes:
+            \[
+                \sum_{n=1}^{N}
+                \frac{a_n}{a_{n+1}a_{n+2}}
+                =
+                \frac{1}{a_2}-\frac{1}{a_{N+2}}.
+            \]
+            Since $a_n\to\infty$,
+            \[
+                \boxed{
+                    \sum_{n=1}^{\infty}
+                    \frac{a_n}{a_{n+1}a_{n+2}}
+                    =
+                    \frac12
+                }.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+
+    \begin{expectedproblemgroup}{Integrals}
+        Evaluate each of the following integrals. For indefinite integrals, the
+        constant of integration may be omitted; for definite integrals,
+        determine the exact value.
+
+        \begin{expectedsubproblem}[2010 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int_0^{\pi/2}\sin x\sin(2x)\sin(3x)\dd x
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            By the product-to-sum identities,
+            \[
+                \sin x\sin(3x)
+                =
+                \frac{1}{2}\bigl(\cos(2x)-\cos(4x)\bigr),
+            \]
+            and hence
+            \[
+                \sin x\sin(2x)\sin(3x)
+                =
+                \frac{1}{4}
+                \bigl(\sin(2x)+\sin(4x)-\sin(6x)\bigr).
+            \]
+            Therefore,
+            \[
+                \int_0^{\pi/2}\sin x\sin(2x)\sin(3x)\dd x
+                =
+                \frac{1}{4}\left(1-\frac{1}{3}\right)
+                =
+                \boxed{\frac{1}{6}}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2010 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int_0^1\sin^2(\ln x)\dd x
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let $t=-\ln x$. Then $x=e^{-t}$ and
+            $\dd x=-e^{-t}\dd t$, so
+            \[
+                \int_0^1\sin^2(\ln x)\dd x
+                =
+                \int_0^\infty e^{-t}\sin^2t\dd t.
+            \]
+            Since $\sin^2t=(1-\cos(2t))/2$,
+            \[
+                \int_0^\infty e^{-t}\sin^2t\dd t
+                =
+                \frac{1}{2}
+                \left(1-\frac{1}{5}\right)
+                =
+                \boxed{\frac{2}{5}}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2010 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int_1^\infty\frac{\dd x}{x\sqrt{x^4-1}}
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let $u=x^2$. Then
+            \[
+                \frac{\dd x}{x}=\frac{\dd u}{2u},
+            \]
+            and therefore
+            \[
+                \int_1^\infty\frac{\dd x}{x\sqrt{x^4-1}}
+                =
+                \frac{1}{2}
+                \int_1^\infty\frac{\dd u}{u\sqrt{u^2-1}}.
+            \]
+            With $u=\sec\theta$, this becomes
+            \[
+                \frac{1}{2}\int_0^{\pi/2}\dd\theta
+                =
+                \boxed{\frac{\pi}{4}}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2010 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int_0^1\frac{\ln(1+x)}{1+x^2}\dd x
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                I=\int_0^1\frac{\ln(1+x)}{1+x^2}\dd x.
+            \]
+            Substituting $x=\tan t$ gives
+            \[
+                I=\int_0^{\pi/4}\ln(1+\tan t)\dd t.
+            \]
+            Under $t\mapsto\pi/4-t$,
+            \[
+                1+\tan\left(\frac{\pi}{4}-t\right)
+                =
+                \frac{2}{1+\tan t}.
+            \]
+            Thus
+            \[
+                I=\frac{\pi}{4}\ln2-I,
+            \]
+            and consequently
+            \[
+                \boxed{I=\frac{\pi}{8}\ln2}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2010 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int\frac{\cos x+x\sin x}{x(x+\cos x)}\dd x
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            We recognize the logarithmic derivative
+            \[
+                \diff{}{x}
+                \bigl(\ln|x|-\ln|x+\cos x|\bigr)
+                =
+                \frac{\cos x+x\sin x}{x(x+\cos x)}.
+            \]
+            Hence
+            \[
+                \boxed{
+                    \int\frac{\cos x+x\sin x}{x(x+\cos x)}\dd x
+                    =
+                    \ln|x|-\ln|x+\cos x|
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2010 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int_0^{\pi/2}\frac{\dd x}{\sin x+\sec x}
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Write
+            \[
+                I
+                =
+                \int_0^{\pi/2}
+                \frac{\cos x}{1+\sin x\cos x}\dd x.
+            \]
+            Replacing $x$ by $\pi/2-x$ also gives
+            \[
+                I
+                =
+                \int_0^{\pi/2}
+                \frac{\sin x}{1+\sin x\cos x}\dd x.
+            \]
+            Adding the two expressions and setting
+            $u=\sin x-\cos x$, we obtain
+            \[
+                2I
+                =
+                \int_{-1}^{1}\frac{2}{3-u^2}\dd u.
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    I=\frac{1}{\sqrt3}\ln(2+\sqrt3)
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2010 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int_0^1\sqrt{1+x\sqrt{1+x\sqrt{1+\cdots}}}\dd x
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            For $x\in[0,1]$, define the finite truncations by
+            \[
+                R_1(x)=1,
+                \qquad
+                R_{n+1}(x)=\sqrt{1+xR_n(x)}.
+            \]
+            Since $y\mapsto\sqrt{1+xy}$ is increasing for $x\in[0,1]$, induction
+            gives
+            \[
+                1\leq R_n(x)\leq\varphi
+                \qquad\text{and}\qquad
+                R_n(x)\leq R_{n+1}(x),
+            \]
+            where $\varphi=(1+\sqrt5)/2$ and $\varphi^2=1+\varphi$. Hence
+            $R_n(x)$ converges pointwise to a limit $R(x)$. Passing to the limit in
+            the recurrence gives
+            \[
+                R(x)^2=1+xR(x),
+            \]
+            so positivity yields
+            \[
+                R(x)=\frac{x+\sqrt{x^2+4}}{2}.
+            \]
+            The uniform bound $0\leq R_n(x)\leq\varphi$ permits integration by the
+            dominated convergence theorem. Therefore,
+            \[
+                \begin{aligned}
+                    \int_0^1R(x)\dd x
+                    &=
+                    \frac12\int_0^1x\dd x
+                    +
+                    \frac12\int_0^1\sqrt{x^2+4}\dd x\\
+                    &=
+                    \boxed{
+                        \frac{1+\sqrt5}{4}
+                        +
+                        \ln\left(\frac{1+\sqrt5}{2}\right)
+                    }.
+                \end{aligned}
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2010 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int\left(\frac{1}{\ln x}-\frac{1}{(\ln x)^2}\right)\dd x,
+                \qquad x>0,\quad x\neq1
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            On any interval contained in $(0,\infty)\setminus\{1\}$,
+            \[
+                \diff{}{x}\left(\frac{x}{\ln x}\right)
+                =
+                \frac{1}{\ln x}
+                -
+                \frac{1}{(\ln x)^2}.
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    \int
+                    \left(
+                        \frac{1}{\ln x}
+                        -
+                        \frac{1}{(\ln x)^2}
+                    \right)\dd x
+                    =
+                    \frac{x}{\ln x}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2010 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int_1^2\sqrt{x-1}\sqrt{2-x}\dd x
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let $u=x-1$. Then
+            \[
+                \int_1^2\sqrt{x-1}\sqrt{2-x}\dd x
+                =
+                \int_0^1\sqrt{u(1-u)}\dd u.
+            \]
+            Setting $v=u-1/2$ gives
+            \[
+                \sqrt{u(1-u)}
+                =
+                \sqrt{\frac{1}{4}-v^2}.
+            \]
+            Thus the integral is the area of a semicircle of radius $1/2$:
+            \[
+                \boxed{\frac{\pi}{8}}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2011 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int\cos(\ln x)\dd x,
+                \qquad x>0
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let $t=\ln x$. Then $x=e^t$ and $\dd x=e^t\dd t$, so
+            \[
+                \int\cos(\ln x)\dd x
+                =
+                \int e^t\cos t\dd t.
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    \int\cos(\ln x)\dd x
+                    =
+                    \frac{x}{2}
+                    \bigl(\cos(\ln x)+\sin(\ln x)\bigr)
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2011 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int_0^\pi\cos x\cos(3x)\cos(5x)\dd x
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            By repeated use of the product-to-sum identity,
+            \[
+                \cos x\cos(3x)\cos(5x)
+                =
+                \frac{1}{4}
+                \bigl(
+                    \cos x+\cos(3x)+\cos(7x)+\cos(9x)
+                \bigr).
+            \]
+            Each term has integral $0$ on $[0,\pi]$. Hence
+            \[
+                \boxed{
+                    \int_0^\pi\cos x\cos(3x)\cos(5x)\dd x=0
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2011 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int\sin(101x)\sin^{99}x\dd x
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Differentiating a suitable product gives
+            \[
+                \begin{aligned}
+                    \diff{}{x}
+                    \left(
+                        \frac{1}{100}\sin(100x)\sin^{100}x
+                    \right)
+                    &=
+                    \sin^{99}x
+                    \bigl(
+                        \sin x\cos(100x)
+                        +
+                        \cos x\sin(100x)
+                    \bigr)\\
+                    &=
+                    \sin(101x)\sin^{99}x.
+                \end{aligned}
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    \int\sin(101x)\sin^{99}x\dd x
+                    =
+                    \frac{1}{100}\sin(100x)\sin^{100}x
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2011 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int x e^{e^{x^2}+x^2}\dd x
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Since
+            \[
+                e^{e^{x^2}+x^2}=e^{e^{x^2}}e^{x^2},
+            \]
+            let $u=e^{x^2}$. Then $\dd u=2xe^{x^2}\dd x$, and
+            \[
+                \int x e^{e^{x^2}+x^2}\dd x
+                =
+                \frac{1}{2}\int e^u\dd u.
+            \]
+            Hence
+            \[
+                \boxed{
+                    \int x e^{e^{x^2}+x^2}\dd x
+                    =
+                    \frac{1}{2}e^{e^{x^2}}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2011 \MIT{} Integration Bee]
+            \(\displaystyle
+                \int\sqrt{\frac{1-x}{1+x}}\dd x,
+                \qquad -1<x<1
+            \)
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            For $-1<x<1$,
+            \[
+                \sqrt{\frac{1-x}{1+x}}
+                =
+                \frac{1-x}{\sqrt{1-x^2}}.
+            \]
+            Therefore,
+            \[
+                \begin{aligned}
+                    \int\sqrt{\frac{1-x}{1+x}}\dd x
+                    &=
+                    \int\frac{\dd x}{\sqrt{1-x^2}}
+                    -
+                    \int\frac{x}{\sqrt{1-x^2}}\dd x\\
+                    &=
+                    \boxed{\arcsin x+\sqrt{1-x^2}}.
+                \end{aligned}
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[Gabriel's Horn]
+            Determine the volume and the area of the curved surface obtained by
+            rotating
+            \[
+                y=\frac{1}{x},
+                \qquad
+                x\geq1,
+            \]
+            about the $x$-axis.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The volume is
+            \[
+                V
+                =
+                \pi\int_1^{\infty}\frac{1}{x^2}\dd x
+                =
+                \boxed{\pi}.
+            \]
+            The curved surface area is
+            \[
+                S
+                =
+                2\pi\int_1^{\infty}
+                \frac{1}{x}\sqrt{1+\frac{1}{x^4}}\dd x.
+            \]
+            Since the integrand is at least $1/x$, this integral dominates
+            \[
+                2\pi\int_1^{\infty}\frac{1}{x}\dd x,
+            \]
+            which diverges. Hence
+            \[
+                \boxed{S=\infty}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[Napkin Ring Problem]
+            A cylindrical hole is drilled through the center of a sphere. The
+            remaining solid has height $6$. Determine its volume without being
+            given either the sphere radius or the hole radius.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let the original sphere radius be $R$ and the cylindrical hole radius
+            be $r$. If the remaining solid has height $6$, then its half-height is
+            $3$, so
+            \[
+                R^2-r^2=9.
+            \]
+            At height $z\in[-3,3]$, the cross-section of the remaining solid is an
+            annulus of area
+            \[
+                \pi\bigl((R^2-z^2)-r^2\bigr)
+                =
+                \pi(9-z^2).
+            \]
+            Therefore,
+            \[
+                V
+                =
+                \pi\int_{-3}^{3}(9-z^2)\dd z
+                =
+                \boxed{36\pi}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[Steinmetz Solid]
+            Two infinite circular cylinders of radius $R$ have perpendicular
+            axes that intersect. Determine the volume of their intersection.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Choose coordinates so that the cylinders are
+            \[
+                x^2+y^2\leq R^2,
+                \qquad
+                x^2+z^2\leq R^2.
+            \]
+            For fixed $x\in[-R,R]$, both $y$ and $z$ range independently over
+            \[
+                \left[-\sqrt{R^2-x^2},\sqrt{R^2-x^2}\right].
+            \]
+            The cross-section is therefore a square of area
+            \[
+                4(R^2-x^2).
+            \]
+            Hence
+            \[
+                V
+                =
+                \int_{-R}^{R}4(R^2-x^2)\dd x
+                =
+                \boxed{\frac{16}{3}R^3}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[Dirichlet Integral]
+            Determine the improper integral
+            \[
+                \int_0^{\infty}\frac{\sin x}{x}\dd x.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            For $a>0$, define
+            \[
+                F(a)
+                =
+                \int_0^{\infty}e^{-ax}\frac{\sin x}{x}\dd x.
+            \]
+            Differentiation under the integral sign gives
+            \[
+                F'(a)
+                =
+                -\int_0^{\infty}e^{-ax}\sin x\dd x
+                =
+                -\frac{1}{1+a^2}.
+            \]
+            Also $F(a)\to0$ as $a\to\infty$. Therefore,
+            \[
+                F(a)
+                =
+                \int_a^{\infty}\frac{\dd t}{1+t^2}
+                =
+                \frac{\pi}{2}-\arctan a.
+            \]
+            Letting $a\to0^+$ and applying Abel's limiting argument for the
+            Dirichlet integral yields
+            \[
+                \boxed{
+                    \int_0^{\infty}\frac{\sin x}{x}\dd x
+                    =
+                    \frac{\pi}{2}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[1944 Dalzell, On 22/7]
+            Evaluate
+            \[
+                \int_0^1
+                \frac{x^4(1-x)^4}{1+x^2}\dd x,
+            \]
+            and use the result to prove that
+            \[
+                \pi<\frac{22}{7}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Polynomial division gives
+            \[
+                \frac{x^4(1-x)^4}{1+x^2}
+                =
+                x^6-4x^5+5x^4-4x^2+4
+                -
+                \frac{4}{1+x^2}.
+            \]
+            Therefore,
+            \[
+                \begin{aligned}
+                    I
+                    &=
+                    \int_0^1
+                    \left(x^6-4x^5+5x^4-4x^2+4\right)\dd x
+                    -4\int_0^1\frac{\dd x}{1+x^2}\\
+                    &=
+                    \frac{22}{7}-\pi.
+                \end{aligned}
+            \]
+            Since the original integrand is positive on $(0,1)$,
+            \[
+                0<I=\frac{22}{7}-\pi,
+            \]
+            and hence
+            \[
+                \boxed{\pi<\frac{22}{7}}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[Borwein Integrals]
+            For $n\in\Nzero$, define
+            \[
+                I_n
+                =
+                \int_0^{\infty}
+                \prod_{k=0}^{n}
+                \frac{\sin(x/(2k+1))}{x/(2k+1)}\dd x.
+            \]
+            Determine how long the pattern $I_n=\pi/2$ persists, and show that
+            the next case is smaller.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Put
+            \[
+                a_k=\frac{1}{2k+1},
+            \]
+            and let $X_k$ be independent random variables uniformly distributed on
+            $[-a_k,a_k]$. The characteristic function of $X_k$ is
+            \[
+                \frac{\sin(a_k t)}{a_k t}.
+            \]
+            If $S_n=X_0+\cdots+X_n$ has density $f_n$, Fourier inversion at the
+            origin gives
+            \[
+                I_n=\pi f_n(0).
+            \]
+
+            Write $S_n=X_0+Y_n$, where $X_0$ is uniform on $[-1,1]$. If
+            \[
+                \sum_{k=1}^{n}a_k\leq1,
+            \]
+            then $|Y_n|\leq1$ always, and conditioning on $Y_n$ gives
+            \[
+                f_n(0)=\frac12.
+            \]
+            Thus $I_n=\pi/2$. Now
+            \[
+                \sum_{k=1}^{6}\frac{1}{2k+1}
+                =
+                \frac{43024}{45045}<1,
+            \]
+            whereas
+            \[
+                \sum_{k=1}^{7}\frac{1}{2k+1}
+                =
+                \frac{46027}{45045}>1.
+            \]
+            Hence
+            \[
+                \boxed{I_0=I_1=\cdots=I_6=\frac{\pi}{2}}.
+            \]
+            For $n=7$, the continuous random variable $Y_7$ has positive
+            probability of satisfying $|Y_7|>1$. Therefore
+            \[
+                f_7(0)
+                =
+                \frac12\Prob(|Y_7|\leq1)
+                <
+                \frac12,
+            \]
+            and consequently
+            \[
+                \boxed{I_7<\frac{\pi}{2}}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[1987 Putnam]
+            Determine
+            \[
+                \int_2^4
+                \frac{\ln(9-x)}{
+                    \ln(9-x)+\ln(x+3)
+                }
+                \dd x.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                h(x)
+                =
+                \frac{\ln(9-x)}{
+                    \ln(9-x)+\ln(x+3)
+                }.
+            \]
+            The substitution $x\mapsto6-x$ gives
+            \[
+                h(6-x)=1-h(x).
+            \]
+            Since the interval $[2,4]$ is symmetric about $3$,
+            \[
+                2\int_2^4h(x)\dd x
+                =
+                \int_2^4\bigl(h(x)+h(6-x)\bigr)\dd x
+                =2.
+            \]
+            Therefore the integral is
+            \[
+                \boxed{1}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[1989 \UTokyo{} Entrance Examination]
+            Let
+            \[
+                f(x)=\pi x^2\sin(\pi x^2).
+            \]
+            Determine the volume obtained by revolving the region bounded by
+            $y=f(x)$, the $x$-axis, $x=0$, and $x=1$ about the $y$-axis.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Using cylindrical shells, the volume is
+            \[
+                V
+                =
+                2\pi\int_0^1x f(x)\dd x
+                =
+                2\pi^2\int_0^1x^3\sin(\pi x^2)\dd x.
+            \]
+            Let $u=x^2$. Then
+            \[
+                V
+                =
+                \pi^2\int_0^1u\sin(\pi u)\dd u.
+            \]
+            Integration by parts gives
+            \[
+                \int_0^1u\sin(\pi u)\dd u=\frac1\pi.
+            \]
+            Hence
+            \[
+                \boxed{V=\pi}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2014 CSAT]
+            Let $f\colon\R\to\R$ be continuous and odd. Suppose that
+            \[
+                f(x)
+                =
+                \frac{\pi}{2}
+                \int_1^{x+1}f(t)\dd t
+            \]
+            for every real $x$, and that $f(1)=1$. Determine
+            \[
+                \pi^2\int_0^1x f(x+1)\dd x.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Differentiating the integral equation gives
+            \[
+                f'(x)=\frac{\pi}{2}f(x+1),
+            \]
+            so
+            \[
+                f(x+1)=\frac{2}{\pi}f'(x).
+            \]
+            Therefore the required expression is
+            \[
+                2\pi\int_0^1x f'(x)\dd x.
+            \]
+            Integration by parts yields
+            \[
+                2\pi\left(
+                    [xf(x)]_0^1-\int_0^1f(x)\dd x
+                \right)
+                =
+                2\pi-2\pi\int_0^1f(x)\dd x.
+            \]
+
+            Since $f$ is odd and $f(1)=1$, we have $f(-1)=-1$. Substituting
+            $x=-1$ into the original equation gives
+            \[
+                -1
+                =
+                \frac{\pi}{2}\int_1^0f(t)\dd t
+                =
+                -\frac{\pi}{2}\int_0^1f(t)\dd t.
+            \]
+            Thus
+            \[
+                \int_0^1f(t)\dd t=\frac{2}{\pi},
+            \]
+            and the required value is
+            \[
+                \boxed{2\pi-4}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            For a real parameter $p>1$, evaluate
+            \[
+                \int_0^\infty\frac{\dd x}{1+x^p}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Set
+            \[
+                t=\frac{x^p}{1+x^p}.
+            \]
+            Then
+            \[
+                x^p=\frac{t}{1-t}
+            \]
+            and the integral becomes
+            \[
+                \frac{1}{p}
+                \int_0^1
+                t^{1/p-1}(1-t)^{-1/p}\dd t
+                =
+                \frac{1}{p}
+                B\left(\frac{1}{p},1-\frac{1}{p}\right).
+            \]
+            By the beta--gamma identity and Euler's reflection formula,
+            \[
+                \Gamma(z)\Gamma(1-z)=\frac{\pi}{\sin(\pi z)},
+            \]
+            so
+            \[
+                \boxed{
+                    \int_0^\infty\frac{\dd x}{1+x^p}
+                    =
+                    \frac{\pi}{p}
+                    \csc\left(\frac{\pi}{p}\right)
+                }.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+
+    \begin{expectedproblemgroup}{Complex Numbers}
+        Evaluate each of the following expressions exactly. When roots of unity
+        occur, use $\omega_n=e^{2\pi i/n}$ unless another root is specified.
+
+
+
+        \begin{expectedsubproblem}
+            For an integer $n\geq2$, determine
+            \[
+                \sum_{k=0}^{n-1}(1+\omega_n^k)^n.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Expand by the binomial theorem and interchange the finite sums:
+            \[
+                \sum_{k=0}^{n-1}(1+\omega_n^k)^n
+                =
+                \sum_{j=0}^{n}\binom{n}{j}
+                \sum_{k=0}^{n-1}\omega_n^{kj}.
+            \]
+            The inner sum is $n$ when $n\mid j$ and $0$ otherwise. For
+            $0\leq j\leq n$, only $j=0$ and $j=n$ contribute. Hence
+            \[
+                \boxed{
+                    \sum_{k=0}^{n-1}(1+\omega_n^k)^n=2n
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[Quadratic Gauss Sum]
+            Let $\omega=e^{2\pi i/5}$. Determine
+            \[
+                \sum_{k=0}^{4}\omega^{k^2}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The quadratic residues modulo $5$ are
+            \[
+                0,1,4,4,1.
+            \]
+            Therefore,
+            \[
+                \sum_{k=0}^{4}\omega^{k^2}
+                =
+                1+2(\omega+\omega^{-1})
+                =
+                1+4\cos\left(\frac{2\pi}{5}\right).
+            \]
+            Since
+            \[
+                2\cos\left(\frac{2\pi}{5}\right)
+                =
+                \frac{\sqrt5-1}{2},
+            \]
+            the sum is
+            \[
+                \boxed{\sqrt5}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            For an integer $n\geq2$, determine
+            \[
+                \sum_{k=0}^{n-1}\frac{1}{2-\omega_n^k}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                p(z)=z^n-1
+                =
+                \prod_{k=0}^{n-1}(z-\omega_n^k).
+            \]
+            Its logarithmic derivative is
+            \[
+                \frac{p'(z)}{p(z)}
+                =
+                \sum_{k=0}^{n-1}\frac{1}{z-\omega_n^k}.
+            \]
+            Setting $z=2$ gives
+            \[
+                \boxed{
+                    \sum_{k=0}^{n-1}\frac{1}{2-\omega_n^k}
+                    =
+                    \frac{n2^{n-1}}{2^n-1}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+
+    \begin{expectedproblemgroup}{Polynomials and Roots}
+        Use the coefficients, factorization, or symmetric functions of the roots
+        to compute each requested quantity exactly. Solving every polynomial
+        explicitly is not required unless the problem asks for the roots.
+
+        \begin{expectedsubproblem}[2006 HMMT]
+            Determine the sum of the distinct real roots of
+            \[
+                2x^6-3x^5+3x^4+x^3-3x^2+3x-1=0.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The polynomial factors as
+            \[
+                2x^6-3x^5+3x^4+x^3-3x^2+3x-1
+                =
+                (x^2-x+1)^2(2x^2+x-1).
+            \]
+            The first factor has no real roots. The distinct real roots are therefore
+            the roots of
+            \[
+                2x^2+x-1=(2x-1)(x+1),
+            \]
+            namely $1/2$ and $-1$. Their sum is
+            \[
+                \boxed{-\frac12}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[1997 VTRMC]
+            Two roots $r_1,r_2$ of
+            \[
+                x^4-x^3+ax^2-8x-8=0
+            \]
+            satisfy $r_1r_2=2$. Determine $a$, $r_1$, and $r_2$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Since $r_1r_2=2$, their quadratic factor has the form
+            \[
+                x^2+px+2.
+            \]
+            The remaining factor must have constant term $-4$, so write
+            \[
+                x^4-x^3+ax^2-8x-8
+                =
+                (x^2+px+2)(x^2+qx-4).
+            \]
+            Comparing the coefficients of $x^3$ and $x$ gives
+            \[
+                p+q=-1,
+                \qquad
+                2q-4p=-8.
+            \]
+            Hence $p=1$ and $q=-2$. Comparing the coefficient of $x^2$ gives
+            $a=-4$. Thus
+            \[
+                r_1,r_2
+                =
+                \frac{-1\pm i\sqrt7}{2}.
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    a=-4,
+                    \qquad
+                    \{r_1,r_2\}
+                    =
+                    \left\{
+                        \frac{-1+i\sqrt7}{2},
+                        \frac{-1-i\sqrt7}{2}
+                    \right\}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Let $\alpha_1,\ldots,\alpha_5$ be the roots of
+            \[
+                x^5-5x+3=0.
+            \]
+            Determine
+            \[
+                \sum_{j=1}^{5}
+                \left(\alpha_j^4+\alpha_j^5\right).
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                s_k=\sum_{j=1}^{5}\alpha_j^k.
+            \]
+            Newton's identities for
+            \[
+                x^5+0x^4+0x^3+0x^2-5x+3
+            \]
+            give
+            \[
+                s_1=s_2=s_3=0,
+            \]
+            \[
+                s_4+4(-5)=0,
+                \qquad
+                s_5+5(3)=0.
+            \]
+            Hence $s_4=20$ and $s_5=-15$, so
+            \[
+                \boxed{s_4+s_5=5}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Let $\alpha_1,\ldots,\alpha_4$ be the roots of
+            \[
+                x^4+x^3+x^2+x+1=0.
+            \]
+            Determine
+            \[
+                \sum_{j=1}^{4}\frac{1}{(1-\alpha_j)^2}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                p(x)=x^4+x^3+x^2+x+1
+                =
+                \prod_{j=1}^{4}(x-\alpha_j).
+            \]
+            Then
+            \[
+                \frac{p'(x)}{p(x)}
+                =
+                \sum_{j=1}^{4}\frac{1}{x-\alpha_j}.
+            \]
+            Differentiating gives
+            \[
+                \sum_{j=1}^{4}\frac{1}{(x-\alpha_j)^2}
+                =
+                \left(\frac{p'(x)}{p(x)}\right)^2
+                -
+                \frac{p''(x)}{p(x)}.
+            \]
+            Since
+            \[
+                p(1)=5,
+                \qquad
+                p'(1)=10,
+                \qquad
+                p''(1)=20,
+            \]
+            the required sum is
+            \[
+                \boxed{\left(\frac{10}{5}\right)^2-\frac{20}{5}=0}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Let $\alpha_1,\alpha_2,\alpha_3$ be the roots of
+            \[
+                x^3-x-1=0.
+            \]
+            Determine
+            \[
+                \prod_{j=1}^{3}(1+\alpha_j^2).
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                p(x)=x^3-x-1
+                =
+                \prod_{j=1}^{3}(x-\alpha_j).
+            \]
+            For each root $\alpha_j$,
+            \[
+                (i-\alpha_j)(-i-\alpha_j)=1+\alpha_j^2.
+            \]
+            Therefore,
+            \[
+                \prod_{j=1}^{3}(1+\alpha_j^2)
+                =
+                p(i)p(-i).
+            \]
+            Since
+            \[
+                p(i)=-1-2i,
+                \qquad
+                p(-i)=-1+2i,
+            \]
+            we obtain
+            \[
+                \boxed{p(i)p(-i)=5}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[1995 CSAT]
+            Suppose that
+            \[
+                \frac{1}{(x-1)(x-2)\cdots(x-10)}
+                =
+                \sum_{k=1}^{10}\frac{a_k}{x-k}
+            \]
+            whenever the denominators are nonzero. Determine
+            \[
+                a_1+a_2+\cdots+a_{10}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Multiply the identity by $x$ and let $x\to\infty$. The left-hand side
+            tends to $0$, while
+            \[
+                \frac{x}{x-k}\to1
+            \]
+            for every $k$. Therefore
+            \[
+                \boxed{a_1+a_2+\cdots+a_{10}=0}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Factor completely:
+            \[
+                (a-b)^3+(b-c)^3+(c-a)^3.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Set
+            \[
+                x=a-b,
+                \qquad
+                y=b-c,
+                \qquad
+                z=c-a.
+            \]
+            Then $x+y+z=0$. The identity
+            \[
+                x^3+y^3+z^3-3xyz
+                =
+                (x+y+z)
+                (x^2+y^2+z^2-xy-yz-zx)
+            \]
+            therefore gives
+            \[
+                x^3+y^3+z^3=3xyz.
+            \]
+            Hence
+            \[
+                \boxed{3(a-b)(b-c)(c-a)}.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+
+    \begin{expectedproblemgroup}{Determinants}
+        Compute each of the following determinants in exact form.
+
+        \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week]
+            Let $\mathbf{A}=(a_{ij})$ be the $n\times n$ matrix defined by
+            \[
+                a_{ij}
+                =
+                \begin{cases}
+                    3, & i=j,\\
+                    (-1)^{|i-j|}, & i\neq j.
+                \end{cases}
+            \]
+            Determine $\det(\mathbf{A})$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let
+            \[
+                \mathbf{S}=\diag((-1)^1,(-1)^2,\ldots,(-1)^n).
+            \]
+            Then $\det(\mathbf{S})^2=1$, and
+            \[
+                \mathbf{S}\mathbf{A}\mathbf{S}
+                =
+                2\mathbf{I}_n+\mathbf{J}_n,
+            \]
+            where $\mathbf{J}_n$ is the all-ones matrix. The eigenvalues of
+            $2\mathbf{I}_n+\mathbf{J}_n$ are $n+2$ once and $2$ with multiplicity
+            $n-1$. Therefore,
+            \[
+                \boxed{\det(\mathbf{A})=2^{n-1}(n+2)}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2016 \KAIST{} Problem of the Week]
+            Let $T$ be a tree on the vertex set $\{1,2,\ldots,n\}$, and let
+            $d_{ij}$ be the distance between vertices $i$ and $j$. Define
+            \[
+                \mathbf{D}_T(x)=\left(x^{d_{ij}}\right)_{1\leq i,j\leq n}.
+            \]
+            Determine $\det(\mathbf{D}_T(x))$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            We use induction on $n$. The formula is immediate for $n=1$. For
+            $n\geq2$, choose a leaf $n$ whose unique neighbor is $p$. For every
+            $j\neq n$,
+            \[
+                d_{nj}=1+d_{pj}.
+            \]
+            Apply the row operation
+            \[
+                R_n\longleftarrow R_n-xR_p.
+            \]
+            The last row becomes zero except for its last entry $1-x^2$. Next apply
+            \[
+                C_n\longleftarrow C_n-xC_p.
+            \]
+            The last column also becomes zero except for the same last entry, while
+            the remaining principal block is the matrix associated with the tree
+            obtained by deleting the leaf. Thus
+            \[
+                \det(\mathbf{D}_T(x))
+                =
+                (1-x^2)\det(\mathbf{D}_{T-n}(x)).
+            \]
+            Induction gives
+            \[
+                \boxed{
+                    \det(\mathbf{D}_T(x))=(1-x^2)^{n-1}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2015 \KAIST{} Problem of the Week]
+            For $n\in\N$ and $x\in\R$, let
+            $\mathbf{T}_n(x)=(t_{ij})$ be the $n\times n$ tridiagonal matrix
+            defined by
+            \[
+                t_{ij}
+                =
+                \begin{cases}
+                    1, & i=j,\\
+                    x, & |i-j|=1,\\
+                    0, & |i-j|\geq2.
+                \end{cases}
+            \]
+            Determine $\det(\mathbf{T}_n(x))$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Put
+            \[
+                D_n(x)=\det(\mathbf{T}_n(x)),
+                \qquad
+                D_0(x)=1.
+            \]
+            Expansion along the final row gives
+            \[
+                D_n(x)=D_{n-1}(x)-x^2D_{n-2}(x),
+                \qquad
+                D_0(x)=D_1(x)=1.
+            \]
+            The polynomial
+            \[
+                \sum_{k=0}^{\lfloor n/2\rfloor}
+                (-1)^k\binom{n-k}{k}x^{2k}
+            \]
+            has these initial values and satisfies the same recurrence by
+            Pascal's identity. Therefore,
+            \[
+                \boxed{
+                    \det(\mathbf{T}_n(x))
+                    =
+                    \sum_{k=0}^{\lfloor n/2\rfloor}
+                    (-1)^k\binom{n-k}{k}x^{2k}
+                }.
+            \]
+            Equivalently, if $x\neq\pm1/2$ and
+            \[
+                r_{\pm}=\frac{1\pm\sqrt{1-4x^2}}{2},
+            \]
+            then
+            \[
+                D_n(x)=\frac{r_+^{n+1}-r_-^{n+1}}{r_+-r_-};
+            \]
+            for $x=\pm1/2$, this becomes $D_n(x)=(n+1)/2^n$.
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2011 \KAIST{} Problem of the Week]
+            Let $\mathbf{M}=(m_{ij})$ be the $n\times n$ matrix defined by
+            \[
+                m_{ij}=i(i+1)(i+2)\cdots(i+j-2),
+            \]
+            where the empty product $m_{i1}$ is $1$. Determine
+            $\det(\mathbf{M})$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            For $j\geq1$, define the monic polynomial
+            \[
+                p_{j-1}(t)=t(t+1)\cdots(t+j-2),
+            \]
+            with $p_0(t)=1$. Then
+            \[
+                m_{ij}=p_{j-1}(i).
+            \]
+            Replacing the monomial basis
+            $1,t,t^2,\ldots,t^{n-1}$ by the monic basis
+            $p_0,p_1,\ldots,p_{n-1}$ uses a unit upper-triangular change-of-basis
+            matrix. Hence $\det(\mathbf{M})$ equals the Vandermonde determinant at
+            $1,2,\ldots,n$:
+            \[
+                \begin{aligned}
+                    \det(\mathbf{M})
+                    &=
+                    \prod_{1\leq i<j\leq n}(j-i)\\
+                    &=
+                    \boxed{\prod_{k=1}^{n-1}k!}.
+                \end{aligned}
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[2012 \KAIST{} Problem of the Week]
+            List all nonempty subsets of $\{1,2,\ldots,n\}$ as
+            $S_1,S_2,\ldots,S_{2^n-1}$, and define the
+            $(2^n-1)\times(2^n-1)$ matrix $\mathbf{A}=(a_{ij})$ by
+            \[
+                a_{ij}
+                =
+                \begin{cases}
+                    1, & S_i\cap S_j\neq\emptyset,\\
+                    0, & S_i\cap S_j=\emptyset.
+                \end{cases}
+            \]
+            Determine $|\det(\mathbf{A})|$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Index rows and columns by the nonempty subsets of $[n]$. Define
+            \[
+                c_{S,U}
+                =
+                \begin{cases}
+                    1, & U\subseteq S,\\
+                    0, & U\nsubseteq S,
+                \end{cases}
+            \]
+            and let $\mathbf{C}=(c_{S,U})$. Also let $\mathbf{E}$ be diagonal with
+            \[
+                e_{U,U}=(-1)^{|U|+1}.
+            \]
+            Inclusion-exclusion gives
+            \[
+                (\mathbf{C}\mathbf{E}\mathbf{C}^{\mathsf{T}})_{S,T}
+                =
+                \sum_{\varnothing\neq U\subseteq S\cap T}(-1)^{|U|+1}
+                =
+                \begin{cases}
+                    1, & S\cap T\neq\varnothing,\\
+                    0, & S\cap T=\varnothing.
+                \end{cases}
+            \]
+            Thus
+            \[
+                \mathbf{A}=\mathbf{C}\mathbf{E}\mathbf{C}^{\mathsf{T}}.
+            \]
+            Order the subsets by increasing cardinality. Then $\mathbf{C}$ is
+            triangular with every diagonal entry equal to $1$, so
+            $\det(\mathbf{C})=1$. Since every diagonal entry of $\mathbf{E}$ is
+            $\pm1$,
+            \[
+                \boxed{|\det(\mathbf{A})|=1}.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+
+    \begin{expectedproblemgroup}{Eigenvalues and Matrix Powers}
+        Determine the requested eigenvalues or matrix powers exactly. Use
+        diagonalization, polynomial identities, or invariant subspaces whenever
+        they make the computation shorter than direct multiplication.
+
+        \begin{expectedsubproblem}[1997 VTRMC]
+            Let
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1 & 3\\
+                    1 & 1
+                \end{pmatrix}.
+            \]
+            Determine the $(1,1)$-entry of $\mathbf{A}^{100}$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The eigenvalues of $\mathbf{A}$ are
+            \[
+                \lambda_\pm=1\pm\sqrt3.
+            \]
+            The matrix is diagonalizable, and the two spectral projections have
+            equal $(1,1)$-entries $1/2$. Hence
+            \[
+                (\mathbf{A}^{100})_{11}
+                =
+                \frac{\lambda_+^{100}+\lambda_-^{100}}{2}.
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    (\mathbf{A}^{100})_{11}
+                    =
+                    \frac{(1+\sqrt3)^{100}+(1-\sqrt3)^{100}}{2}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}[Fibonacci Q-Matrix]
+            Let
+            \[
+                \mathbf{Q}
+                =
+                \begin{pmatrix}
+                    1 & 1\\
+                    1 & 0
+                \end{pmatrix}.
+            \]
+            Determine $\mathbf{Q}^n$ for $n\in\N$ in terms of the Fibonacci
+            sequence.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Let $F_0=0$, $F_1=1$, and $F_{n+2}=F_{n+1}+F_n$. We claim that
+            \[
+                \mathbf{Q}^n
+                =
+                \begin{pmatrix}
+                    F_{n+1} & F_n\\
+                    F_n & F_{n-1}
+                \end{pmatrix}
+            \]
+            for $n\geq1$. The formula is true for $n=1$, and multiplying the
+            displayed matrix by $\mathbf{Q}$ advances every entry according to the
+            Fibonacci recurrence. Thus
+            \[
+                \boxed{
+                    \mathbf{Q}^n
+                    =
+                    \begin{pmatrix}
+                        F_{n+1} & F_n\\
+                        F_n & F_{n-1}
+                    \end{pmatrix}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+
+        \begin{expectedsubproblem}
+            Let
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1 & 1 & 0\\
+                    0 & 1 & 1\\
+                    0 & 0 & 1
+                \end{pmatrix}.
+            \]
+            Determine $\mathbf{A}^n$ for $n\in\Nzero$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Write
+            \[
+                \mathbf{A}=\mathbf{I}_3+\mathbf{N},
+                \qquad
+                \mathbf{N}
+                =
+                \begin{pmatrix}
+                    0 & 1 & 0\\
+                    0 & 0 & 1\\
+                    0 & 0 & 0
+                \end{pmatrix}.
+            \]
+            Since $\mathbf{N}^3=\mathbf{0}$, the nilpotent-matrix recognition rule
+            and the binomial theorem from Mathematical Concepts give
+            \[
+                \mathbf{A}^n
+                =
+                \mathbf{I}_3+n\mathbf{N}+\binom{n}{2}\mathbf{N}^2.
+            \]
+            Therefore,
+            \[
+                \boxed{
+                    \mathbf{A}^n
+                    =
+                    \begin{pmatrix}
+                        1 & n & \binom{n}{2}\\
+                        0 & 1 & n\\
+                        0 & 0 & 1
+                    \end{pmatrix}
+                }.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Determine the eigenvalues of
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1 & 2 & 3\\
+                    1 & 2 & 3\\
+                    1 & 2 & 3
+                \end{pmatrix}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Write
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1\\1\\1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1&2&3
+                \end{pmatrix}.
+            \]
+            This is a rank-one outer product. Its only possible nonzero
+            eigenvalue is
+            \[
+                \begin{pmatrix}
+                    1&2&3
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1\\1\\1
+                \end{pmatrix}
+                =
+                6.
+            \]
+            Since the matrix has rank $1$, the remaining two eigenvalues are
+            $0$. Therefore,
+            \[
+                \boxed{6,\ 0,\ 0}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Determine the eigenvalues of
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    1 & -2 & 3 & 0\\
+                    -2 & 3 & 0 & 1\\
+                    3 & 0 & 1 & -2\\
+                    0 & 1 & -2 & 3
+                \end{pmatrix}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Reorder the coordinates as $(1,3,2,4)$. The resulting similar
+            matrix has the block form
+            \[
+                \begin{pmatrix}
+                    \mathbf{B} & -2\mathbf{I}_2\\
+                    -2\mathbf{I}_2 & \mathbf{C}
+                \end{pmatrix},
+                \qquad
+                \mathbf{B}
+                =
+                \begin{pmatrix}
+                    1&3\\3&1
+                \end{pmatrix},
+                \qquad
+                \mathbf{C}
+                =
+                \begin{pmatrix}
+                    3&1\\1&3
+                \end{pmatrix}.
+            \]
+            The vectors $(1,1)$ and $(1,-1)$ simultaneously diagonalize
+            $\mathbf{B}$ and $\mathbf{C}$. On the corresponding two-dimensional
+            invariant subspaces, the matrix reduces respectively to
+            \[
+                \begin{pmatrix}
+                    4&-2\\-2&4
+                \end{pmatrix}
+                \quad\text{and}\quad
+                \begin{pmatrix}
+                    -2&-2\\-2&2
+                \end{pmatrix}.
+            \]
+            Their eigenvalues are $6,2$ and $\pm2\sqrt2$. Hence
+            \[
+                \boxed{6,\ 2,\ 2\sqrt2,\ -2\sqrt2}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Let $\mathbf{A}$ be the $2022\times2022$ matrix whose diagonal
+            entries are $0$ and whose off-diagonal entries are $1$. Determine
+            all eigenvalues, including multiplicities.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            We have
+            \[
+                \mathbf{A}=\mathbf{J}_{2022}-\mathbf{I}_{2022}.
+            \]
+            The all-ones vector is an eigenvector of $\mathbf{J}_{2022}$ with
+            eigenvalue $2022$, while every vector whose coordinates sum to zero
+            has eigenvalue $0$. Subtracting the identity shifts all eigenvalues
+            by $-1$. Therefore,
+            \[
+                \boxed{
+                    2021\text{ with multiplicity }1,
+                    \qquad
+                    -1\text{ with multiplicity }2021
+                }.
+            \]
+        \end{expectedsubsolution}
+
+
+        \begin{expectedsubproblem}
+            Determine all eigenvalues of
+            \[
+                \mathbf{P}
+                =
+                \begin{pmatrix}
+                    0&1&0&0\\
+                    0&0&1&0\\
+                    0&0&0&1\\
+                    1&0&0&0
+                \end{pmatrix}.
+            \]
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            The matrix cyclically shifts the coordinates and satisfies
+            \[
+                \mathbf{P}^4=\mathbf{I}_4.
+            \]
+            Hence every eigenvalue $\lambda$ satisfies $\lambda^4=1$. The
+            characteristic polynomial is
+            \[
+                \lambda^4-1,
+            \]
+            whose roots are
+            \[
+                1,\quad -1,\quad i,\quad -i.
+            \]
+            Therefore the eigenvalues are
+            \[
+                \boxed{1,\ -1,\ i,\ -i}.
+            \]
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Let $\mathbf{A}=(a_{ij})$ be the $n\times n$ matrix
+            \[
+                a_{ij}=ij,
+                \qquad
+                1\leq i,j\leq n.
+            \]
+            Determine the sum of all eigenvalues of $\mathbf{A}$, counted with
+            algebraic multiplicity.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            Mathematical Concepts gives that the sum of the eigenvalues,
+            counted with algebraic multiplicity, equals the trace. Therefore
+            \[
+                \sum_{k=1}^{n}\lambda_k
+                =
+                \tr(\mathbf{A})
+                =
+                \sum_{i=1}^{n}i^2
+                =
+                \boxed{\frac{n(n+1)(2n+1)}{6}}.
+            \]
+            Equivalently, $\mathbf{A}=\mathbf{u}\mathbf{u}^{\mathsf T}$ for
+            $\mathbf{u}=(1,2,\ldots,n)^{\mathsf T}$, so $\mathbf{A}$ has rank
+            $1$ and its unique nonzero eigenvalue is $\|\mathbf{u}\|^2$.
+        \end{expectedsubsolution}
+
+        \begin{expectedsubproblem}
+            Let
+            \[
+                \mathbf{A}
+                =
+                \begin{pmatrix}
+                    -11 & 4\\
+                    -30 & 11
+                \end{pmatrix}.
+            \]
+            Determine $\mathbf{A}^{2016}$.
+        \end{expectedsubproblem}
+
+        \begin{expectedsubsolution}
+            A direct multiplication gives
+            \[
+                \mathbf{A}^2
+                =
+                \begin{pmatrix}
+                    1&0\\
+                    0&1
+                \end{pmatrix}
+                =
+                \mathbf{I}_2.
+            \]
+            Hence
+            \[
+                \mathbf{A}^{2016}
+                =
+                (\mathbf{A}^2)^{1008}
+                =
+                \boxed{\mathbf{I}_2}.
+            \]
+        \end{expectedsubsolution}
+
+    \end{expectedproblemgroup}
+

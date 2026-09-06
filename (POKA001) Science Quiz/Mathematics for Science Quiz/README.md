@@ -16,10 +16,13 @@ this edition was prepared on September 5, 2026).
 - `Preface.tex`, `Acknowledgements.tex`, `NotationandConventions.tex`: front matter
 - `MathematicalConcepts.tex`, `FactstoMemorize.tex`, `Mathematicsin2026.tex`:
   study material
-- `PastProblems.tex`, `ExpectedProblems.tex`: problems and solutions
+- `PastProblems.tex`: past Science Quiz problems and solutions
 - `Figures/`: editable figure sources, styles, and compiled figure files
 - `MathematicsforScienceQuiz.pdf`: compiled handbook
 - `MathematicsforScienceQuiz.synctex.gz`: source synchronization data
+
+Additional practice problems and their solutions are maintained separately in
+the companion document `Expected Problems`.
 
 ## Provider
 

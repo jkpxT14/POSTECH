@@ -1,0 +1,2726 @@
+    \expectedproblemsection{Standard Mathematical Problems}
+
+    \begin{expectedproblem}[1988 IMO, Vieta Jumping]
+        Let $a$ and $b$ be positive integers s.t. $ab+1$ divides
+        $a^2+b^2$. Show that
+        \[
+            \frac{a^2+b^2}{ab+1}
+        \]
+        is the square of an integer.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let
+        \[
+            k=\frac{a^2+b^2}{ab+1}\in\N.
+        \]
+        Suppose, for contradiction, that $k$ is not a perfect square. Among all
+        positive integer solutions of
+        \[
+            a^2+b^2=k(ab+1),
+        \]
+        choose one for which $a+b$ is minimal, and assume without loss of
+        generality that $a\geq b$.
+
+        If $a=b$, then
+        \[
+            k=\frac{2a^2}{a^2+1}<2,
+        \]
+        so $k=1$, a contradiction. Hence $a>b$. Regard the equation as a
+        quadratic equation in $a$:
+        \[
+            x^2-kbx+b^2-k=0.
+        \]
+        One root is $a$, so the other root is
+        \[
+            c=kb-a\in\Z.
+        \]
+        We claim that $c>0$. From
+        \[
+            a(a-kb)=k-b^2,
+        \]
+        if $a=kb$, then $k=b^2$, contrary to the assumption. If $a>kb$, then
+        the left-hand side is at least $a\geq kb\geq k$, whereas the
+        right-hand side is less than $k$, which is impossible. Therefore
+        $a<kb$, and hence $c>0$.
+
+        Since $k$ is a positive integer that is not a perfect square, we have
+        $k\geq2$. Let
+        \[
+            f(x)=x^2-kbx+b^2-k.
+        \]
+        Since
+        \[
+            f(b)=(2-k)b^2-k<0
+        \]
+        and the two roots are $c$ and $a$ with $a>b$, it follows that
+        \[
+            0<c<b.
+        \]
+        By Vi\`ete's formulas, $c$ is the other root, and therefore
+        \[
+            c^2+b^2=k(cb+1).
+        \]
+        Thus $(c,b)$ is another positive integer solution with
+        \[
+            c+b<a+b,
+        \]
+        contradicting the minimality of $a+b$. Hence $k$ must be a perfect
+        square.
+    \end{solution}
+
+    \begin{expectedproblem}[Sophomore's Dream]
+        Prove the identity
+        \[
+            \int_0^1 x^{-x}\dd x
+            =
+            \sum_{n=1}^{\infty}\frac{1}{n^n}.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        For $0<x\leq1$, we have $-\ln x\geq0$, and hence
+        \[
+            x^{-x}
+            =
+            e^{-x\ln x}
+            =
+            \sum_{n=0}^{\infty}
+            \frac{x^n(-\ln x)^n}{n!}.
+        \]
+        Every term is nonnegative, so Tonelli's theorem from Mathematical
+        Concepts permits term-by-term integration:
+        \[
+            \int_0^1x^{-x}\dd x
+            =
+            \sum_{n=0}^{\infty}
+            \frac{1}{n!}
+            \int_0^1x^n(-\ln x)^n\dd x.
+        \]
+        In the $n$th integral, let $t=-(n+1)\ln x$. Then
+        \[
+            \int_0^1x^n(-\ln x)^n\dd x
+            =
+            \frac{1}{(n+1)^{n+1}}
+            \int_0^\infty t^ne^{-t}\dd t
+            =
+            \frac{n!}{(n+1)^{n+1}}.
+        \]
+        Therefore
+        \[
+            \int_0^1x^{-x}\dd x
+            =
+            \sum_{n=0}^{\infty}\frac{1}{(n+1)^{n+1}}
+            =
+            \boxed{\sum_{n=1}^{\infty}\frac{1}{n^n}}.
+        \]
+        Numerically, the common value is approximately
+        \[
+            1.291285997\ldots.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1982 IMO]
+        A function
+        \[
+            f\colon\Z_{>0}\to\Z_{\geq0}
+        \]
+        satisfies
+        \[
+            f(m+n)-f(m)-f(n)\in\{0,1\}
+        \]
+        for all positive integers $m$ and $n$. Moreover,
+        \[
+            f(2)=0,
+            \qquad
+            f(3)>0,
+            \qquad
+            f(9999)=3333.
+        \]
+        Determine $f(1982)$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Repeatedly applying the given condition shows that, for all positive
+        integers $r$ and $t$,
+        \[
+            r f(t)
+            \leq
+            f(rt)
+            \leq
+            r f(t)+r-1.
+        \]
+        Apply this estimate to
+        \[
+            N=9999\cdot1982
+        \]
+        in two different ways. Using $t=1982$ and then $t=9999$ gives
+        \[
+            9999f(1982)
+            \leq
+            f(N)
+            \leq
+            9999f(1982)+9998
+        \]
+        and
+        \[
+            1982\cdot3333
+            \leq
+            f(N)
+            \leq
+            1982\cdot3333+1981.
+        \]
+        Consequently,
+        \[
+            \frac{1982\cdot3333-9998}{9999}
+            \leq
+            f(1982)
+            \leq
+            \frac{1982\cdot3333+1981}{9999}.
+        \]
+        The left endpoint lies strictly between $659$ and $660$, whereas the
+        right endpoint lies strictly between $660$ and $661$. Since
+        $f(1982)$ is an integer, it follows that
+        \[
+            \boxed{f(1982)=660}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Happy Ending Problem]
+        Five points are given in the plane, no three of which are collinear.
+        Prove that four of them are the vertices of a convex quadrilateral.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Using the convex-hull terminology from Mathematical Concepts, consider
+        the convex hull of the five points. If the convex hull has at
+        least four vertices, any four of its vertices, taken in cyclic order,
+        form a convex quadrilateral.
+
+        It remains to consider the case in which the convex hull is a triangle
+        with vertices $A,B,C$. Let the remaining two points be $P$ and $Q$;
+        both lie in the interior of $\triangle ABC$. The line $PQ$ contains none
+        of $A,B,C$, so two of the three vertices lie in the same open half-plane
+        determined by $PQ$. Relabel them as $A$ and $B$.
+
+        The triangle $\triangle ABQ$ meets the line $PQ$ only at $Q$, because
+        $A$ and $B$ lie strictly on the same side of that line. Hence
+        $P\notin\triangle ABQ$. Similarly, $Q\notin\triangle ABP$. Since
+        $A$ and $B$ are vertices of the convex hull of all five points, neither
+        lies in the triangle determined by the other three points. Consequently,
+        all four points $A,B,P,Q$ are vertices of their convex hull, which is a
+        convex quadrilateral.
+    \end{solution}
+
+    \begin{expectedproblem}[Sylvester--Gallai Theorem]
+        Let $S$ be a finite set of points in the plane, not all collinear. Prove
+        that there exists a line containing exactly two points of $S$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Call a line determined by points of $S$ \emph{ordinary} if it contains
+        exactly two points of $S$. Consider all pairs $(P,\ell)$ s.t.
+        $P\in S$, the line $\ell$ is determined by at least two points of $S$,
+        and $P\notin\ell$. Since $S$ is finite and not collinear, the set of
+        positive distances arising in this way is finite and nonempty. Choose
+        $(P,\ell)$ so that
+        \[
+            h=\dist(P,\ell)>0
+        \]
+        is as small as possible, and let $H$ be the foot of the perpendicular
+        from $P$ to $\ell$.
+
+        Suppose, for contradiction, that $\ell$ contains at least three points
+        of $S$. We can choose distinct points $A,B\in S\cap\ell$ so that either
+        $A=H$, or $A$ and $B$ lie on the same side of $H$ with $A$ closer to
+        $H$. In either case,
+        \[
+            AB<PB.
+        \]
+        Indeed, if $A=H$, then $AB=HB<PB$; otherwise,
+        $AB=HB-HA<HB<PB$.
+
+        Computing the area of $\triangle PAB$ with bases $AB$ and $PB$ gives
+        \[
+            \frac12 AB\,h
+            =
+            [PAB]
+            =
+            \frac12 PB\,\dist(A,PB).
+        \]
+        Hence
+        \[
+            \dist(A,PB)
+            =
+            \frac{AB}{PB}h
+            <
+            h.
+        \]
+        However, the line $PB$ is determined by two points of $S$, and
+        $A\notin PB$. This contradicts the minimality of $h$.
+
+        Therefore, $\ell$ contains exactly two points of $S$, so $\ell$ is the
+        required ordinary line.
+    \end{solution}
+
+    \begin{expectedproblem}[Moser's Circle Problem]
+        Let $n$ be a positive integer. Place $n$ points on a circle and join
+        every pair of points by a chord.
+        Assume that no three chords meet at a common point in the interior of
+        the circle. Determine, with proof, the maximum number of regions into
+        which the chords divide the circle.
+    \end{expectedproblem}
+
+    \begin{solution}
+        There are
+        \[
+            \binom{n}{2}
+        \]
+        chords. Draw them one at a time. If a new chord contains $r$ existing
+        interior intersection points, those points divide it into $r+1$
+        segments, and each segment splits one existing region into two.
+        Therefore the new chord creates $r+1$ new regions.
+
+        It follows that the final number of regions is
+        \[
+            1
+            +
+            \left|\{\text{chords}\}\right|
+            +
+            \left|\{\text{interior intersections}\}\right|.
+        \]
+        Every interior intersection is determined by four boundary points:
+        among the six chords joining those four points, exactly the two
+        diagonals of their cyclic quadrilateral intersect in the interior.
+        Conversely, every choice of four boundary points produces one such
+        intersection. The assumption that no three chords are concurrent
+        ensures that all these intersections are distinct. Hence there are
+        \[
+            \binom{n}{4}
+        \]
+        interior intersections.
+
+        Thus the maximum number of regions is
+        \[
+            \boxed{
+                1+\binom{n}{2}+\binom{n}{4}
+            }.
+        \]
+        In particular, the first values are
+        \[
+            1,\ 2,\ 4,\ 8,\ 16,\ 31,\ldots,
+        \]
+        so the apparent pattern $2^{n-1}$ fails when $n=6$.
+    \end{solution}
+
+    \begin{expectedproblem}[1976 IMO]
+        Determine, with proof, the largest number that can be written as the
+        product of positive integers whose sum is $1976$. The number of
+        factors is not prescribed.
+    \end{expectedproblem}
+
+    \begin{solution}
+        A maximizing product contains no factor $1$, since replacing a pair
+        $1,a$ by $a+1$ preserves the sum and increases the product. It also
+        contains no factor $k\geq5$, because replacing $k$ by $3$ and $k-3$
+        preserves the sum and increases the product:
+        \[
+            3(k-3)>k.
+        \]
+        A factor $4$ may be replaced by $2,2$ without changing the product.
+        Thus it suffices to use only $2$ and $3$.
+
+        Three factors equal to $2$ should be replaced by two factors equal to
+        $3$, since
+        \[
+            2+2+2=3+3
+            \qquad\text{and}\qquad
+            2^3<3^2.
+        \]
+        Hence at most two factors equal to $2$ occur. Since
+        \[
+            1976=3\cdot658+2,
+        \]
+        the only optimal remainder pattern is one factor equal to $2$ and
+        $658$ factors equal to $3$.
+
+        Therefore, the largest possible product is
+        \[
+            \boxed{2\cdot3^{658}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2021 Putnam]
+        A grasshopper starts at the origin in the coordinate plane and makes a
+        sequence of hops. Each hop has length $5$, and after every hop the
+        grasshopper is at a point whose coordinates are both integers.
+        Determine the smallest number of hops needed to reach
+        \[
+            (2021,2021).
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        If a hop has displacement vector $\mathbf{d}=(p,q)$, then
+        \[
+            p^2+q^2=25.
+        \]
+        Thus the possible absolute coordinate pairs are $(5,0)$ and $(4,3)$,
+        in either order. In particular, a single hop can increase the sum of
+        the two coordinates by at most
+        \[
+            4+3=7.
+        \]
+        Since
+        \[
+            2021+2021=4042=7\cdot577+3,
+        \]
+        at least $578$ hops are necessary.
+
+        This bound is attained because
+        \[
+            (2021,2021)
+            =
+            288(3,4)+288(4,3)+(5,0)+(0,5).
+        \]
+        The right-hand side is a sum of
+        \[
+            288+288+1+1=578
+        \]
+        legal hop vectors. Therefore, the minimum number of hops is
+        \[
+            \boxed{578}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Buffon's Needle]
+        Infinitely many parallel lines are drawn in the plane, with distance
+        $d$ between consecutive lines. A needle of length $\ell$, where
+        \[
+            0<\ell\leq d,
+        \]
+        is dropped at random. Assume that its midpoint is uniformly
+        distributed modulo one strip and, independently, that its direction is
+        uniformly distributed. Determine the probability that the needle
+        intersects one of the parallel lines.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let $X$ be the distance from the midpoint of the needle to the nearest
+        parallel line, and let $\Theta$ be the acute angle between the needle
+        and the lines. Then
+        \[
+            0\leq X\leq\frac{d}{2},
+            \qquad
+            0\leq\Theta\leq\frac{\pi}{2},
+        \]
+        and $X$ and $\Theta$ are independent and uniform on these intervals.
+
+        For a fixed angle $\theta$, the needle intersects a line exactly when
+        its perpendicular half-length reaches the nearest line, that is, when
+        \[
+            X\leq\frac{\ell}{2}\sin\theta.
+        \]
+        Since $\ell\leq d$, the right-hand side never exceeds $d/2$.
+        Therefore,
+        \[
+            \begin{aligned}
+                \Prob(\text{intersection})
+                &=
+                \frac{2}{\pi}
+                \int_0^{\pi/2}
+                \Prob\left(
+                    X\leq\frac{\ell}{2}\sin\theta
+                \right)\dd\theta\\
+                &=
+                \frac{2}{\pi}
+                \int_0^{\pi/2}
+                \frac{\ell\sin\theta}{d}\dd\theta\\
+                &=
+                \boxed{\frac{2\ell}{\pi d}}.
+            \end{aligned}
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2011 IMO, Windmill Problem]
+        Let $S$ be a finite set of at least two points in the plane, and assume
+        that no three points of $S$ are collinear. A windmill is the following
+        process. Start with a line $\ell$ through a point $P\in S$. Rotate
+        $\ell$ clockwise about the pivot $P$ until it first meets another point
+        $Q\in S$. The point $Q$ then becomes the new pivot, and the line
+        continues to rotate clockwise. The process is repeated indefinitely.
+
+        Prove that one can choose the initial point $P$ and the initial line
+        $\ell$ so that every point of $S$ is used as a pivot infinitely many
+        times.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Orient the rotating line and call its two open sides the left and right
+        sides. When the pivot changes from $T$ to $U$, retain the orientation of
+        the line. Immediately after the change, the old pivot $T$ lies on the
+        same side on which $U$ lay immediately before the change. Hence the
+        ordered numbers of points on the two sides are invariant throughout the
+        process, except at the instants when the line contains two points of
+        $S$.
+
+        First suppose that
+        \[
+            |S|=2m+1.
+        \]
+        For every $T\in S$, there is an oriented line through $T$ with exactly
+        $m$ points of $S$ on each side. To see this, rotate a line through $T$
+        by an angle $\pi$. The number of points on its left changes by one at
+        each encounter with another point of $S$, and its initial and final
+        values sum to $2m$; therefore the value $m$ occurs.
+
+        Choose such a balanced line through any point as the initial state. The
+        side counts remain $(m,m)$. Fix $T\in S$ and choose a balanced line
+        $r$ through $T$. Among all lines parallel to $r$, the line $r$ is the
+        unique one that contains a point of $S$ and has $m$ points on each
+        side: translating it in either direction changes the balance at the
+        first point crossed. Consequently, when the windmill becomes parallel
+        to $r$, it must coincide with $r$, so $T$ is a pivot. Thus every point
+        is visited during each half-turn of the windmill line.
+
+        Now suppose that
+        \[
+            |S|=2m.
+        \]
+        For every $T\in S$, the same half-turn argument gives an oriented line
+        through $T$ with $m-1$ points on its left and $m$ points on its right.
+        Start the windmill from one such line. Its ordered side counts remain
+        $(m-1,m)$. For any prescribed $T$, choose an oriented line $r$ through
+        $T$ with these counts. It is the unique oriented translate in its
+        direction with these counts, so the windmill must pass through $T$ when
+        it reaches that oriented direction. Hence every point is visited during
+        each full turn.
+
+        Only finitely many line directions are determined by pairs of points of
+        $S$. Therefore the positive angular increments between successive pivot
+        changes have a positive minimum. Since the process continues
+        indefinitely, the total angle of rotation tends to infinity. The
+        preceding half-turn or full-turn argument then applies repeatedly, and
+        every point of $S$ is used as a pivot infinitely many times.
+    \end{solution}
+
+    \begin{expectedproblem}[Art Gallery Problem]
+        A museum has the shape of a simple polygon with $n$ vertices. A guard
+        must stand at a vertex of the polygon and can see a point whenever the
+        entire line segment joining the guard to that point lies in the
+        polygon. Prove that the entire museum can always be guarded by at most
+        \[
+            \left\lfloor\frac{n}{3}\right\rfloor
+        \]
+        guards.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Triangulate the polygon using nonintersecting diagonals between its
+        vertices. The graph formed by the polygon sides and the triangulation
+        diagonals admits a proper coloring with three colors.
+
+        To prove this, use induction on $n$. The assertion is immediate for a
+        triangle. Every triangulated polygon has an ear: a triangle in the
+        triangulation with two sides on the boundary. Remove the ear vertex and
+        color the remaining triangulated polygon by induction. The two
+        neighbors of the removed vertex are adjacent and therefore have
+        different colors, so the removed vertex can be assigned the third
+        color. This completes the induction.
+
+        Every triangle of the triangulation has one vertex of each color. Of
+        the three color classes, one contains at most
+        \[
+            \left\lfloor\frac{n}{3}\right\rfloor
+        \]
+        vertices. Place guards at all vertices in that smallest color class.
+        Every triangle contains one of these guards, and a guard at a vertex of
+        a triangle sees every point of that triangle because a triangle is
+        convex. Since the triangles cover the polygon, these guards see the
+        entire museum.
+    \end{solution}
+
+    \begin{expectedproblem}[Bertrand's Ballot Problem]
+        In an election, candidate $A$ receives $p$ votes and candidate $B$
+        receives $q$ votes, where
+        \[
+            p>q.
+        \]
+        The $p+q$ ballots are counted in a uniformly random order. Determine
+        the probability that, after every ballot is counted, the cumulative
+        number of votes for $A$ is strictly greater than the cumulative number
+        of votes for $B$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Represent a vote for $A$ by a horizontal step and a vote for $B$ by a
+        vertical step. A counting order is then a lattice path from $(0,0)$ to
+        $(p,q)$, and the required condition is that the path remain strictly
+        below the diagonal $y=x$ after leaving the origin.
+
+        The first ballot must be for $A$. Remove this first horizontal step and
+        translate the remaining path one unit to the left. We obtain a path
+        from $(0,0)$ to $(p-1,q)$ that never enters the region $y>x$.
+        By the reflection principle, the number of such paths is
+        \[
+            \binom{p+q-1}{q}
+            -
+            \binom{p+q-1}{q-1}.
+        \]
+        Since all
+        \[
+            \binom{p+q}{q}
+        \]
+        ballot orders are equally likely, the desired probability is
+        \[
+            \begin{aligned}
+                \frac{
+                    \binom{p+q-1}{q}-\binom{p+q-1}{q-1}
+                }{
+                    \binom{p+q}{q}
+                }
+                &=
+                \frac{p-q}{p+q}.
+            \end{aligned}
+        \]
+        Therefore the probability is
+        \[
+            \boxed{\frac{p-q}{p+q}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1964 IMO]
+        Seventeen people correspond with one another. Every pair discusses
+        exactly one of three topics in their correspondence. Prove that there
+        are three people s.t. every pair among them discusses the same
+        topic.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Choose one person $P$. Among the $16$ correspondences involving $P$,
+        at least
+        \[
+            \left\lceil\frac{16}{3}\right\rceil=6
+        \]
+        concern the same topic; call it topic $1$, and let the six other people
+        be $P_1,\ldots,P_6$.
+
+        If some pair $P_i,P_j$ also discusses topic $1$, then
+        $P,P_i,P_j$ form the required triple. Suppose instead that no
+        correspondence among $P_1,\ldots,P_6$ concerns topic $1$. Their mutual
+        correspondences therefore use only topics $2$ and $3$.
+
+        It remains to use the elementary fact $R(3,3)\leq6$. Indeed, choose one
+        of six vertices. At least three of its five incident edges have the
+        same color. If one of the three edges joining their other endpoints has
+        that color, there is a monochromatic triangle; otherwise those three
+        edges form a triangle of the other color. Thus among
+        $P_1,\ldots,P_6$ there is a triangle all of whose edges have topic $2$
+        or all of whose edges have topic $3$.
+    \end{solution}
+
+    \begin{expectedproblem}[Sperner's Lemma]
+        A triangle $ABC$ is triangulated into finitely many smaller triangles.
+        Label every vertex by one of $1,2,3$ so that $A,B,C$ receive labels
+        $1,2,3$, respectively; vertices on $AB$ receive only $1$ or $2$;
+        vertices on $BC$ receive only $2$ or $3$; and vertices on $CA$ receive
+        only $3$ or $1$. Interior vertices may receive any label.
+
+        Prove that the number of small triangles whose three vertex labels are
+        $1,2,3$ is odd. In particular, at least one such triangle exists.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Call an edge a $12$-edge if its endpoints have labels $1$ and $2$.
+        Along the subdivided side $AB$, the sequence of labels begins with $1$
+        and ends with $2$. Hence the number of changes between $1$ and $2$ on
+        $AB$ is odd, so $AB$ contains an odd number of $12$-edges. The other
+        two sides contain none.
+
+        Count incidences between small triangles and their $12$-edges modulo
+        $2$. Every interior $12$-edge is incident with two small triangles and
+        contributes $0$ modulo $2$, whereas every boundary $12$-edge contributes
+        $1$. Thus the total incidence count is odd.
+
+        A small triangle with labels $1,2,3$ has exactly one $12$-edge. A small
+        triangle using only labels $1$ and $2$ has either zero or two such
+        edges, and every other small triangle has none. Therefore the parity of
+        the incidence count is exactly the parity of the number of fully
+        labeled triangles. That number is consequently odd.
+    \end{solution}
+
+    \begin{expectedproblem}[Morley's Trisector Theorem]
+        In a triangle $ABC$, trisect each interior angle. Let $P$ be the
+        intersection of the two trisectors adjacent to $BC$, let $Q$ be the
+        intersection of the two trisectors adjacent to $CA$, and let $R$ be the
+        intersection of the two trisectors adjacent to $AB$. Prove that
+        $\triangle PQR$ is equilateral.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Write
+        \[
+            \angle A=3\alpha,
+            \qquad
+            \angle B=3\beta,
+            \qquad
+            \angle C=3\gamma.
+        \]
+        Then
+        \[
+            \alpha+\beta+\gamma=\frac{\pi}{3}.
+        \]
+        Let $\mathcal{R}$ be the circumradius of $\triangle ABC$.
+
+        In $\triangle BCP$, the angles at $B$ and $C$ are $\beta$ and
+        $\gamma$. The sine rule and the identity
+        \[
+            \sin(3t)
+            =
+            4\sin t\sin\left(\frac{\pi}{3}+t\right)
+            \sin\left(\frac{\pi}{3}-t\right)
+        \]
+        give
+        \[
+            BP
+            =
+            \frac{BC\sin\gamma}{\sin(\beta+\gamma)}
+            =
+            8\mathcal{R}\sin\alpha\sin\gamma
+            \sin\left(\frac{\pi}{3}+\alpha\right).
+        \]
+        Similarly, using $AB=2\mathcal{R}\sin(3\gamma)$ in
+        $\triangle ABR$,
+        \[
+            BR
+            =
+            8\mathcal{R}\sin\alpha\sin\gamma
+            \sin\left(\frac{\pi}{3}+\gamma\right).
+        \]
+        Since $\angle PBR=\beta$, the law of cosines yields
+        \[
+            \begin{aligned}
+                PR^2
+                &=
+                \bigl(8\mathcal{R}\sin\alpha\sin\gamma\bigr)^2
+                \Biggl(
+                    \sin^2\left(\frac{\pi}{3}+\alpha\right)
+                    +
+                    \sin^2\left(\frac{\pi}{3}+\gamma\right)\\
+                &\hspace{7em}
+                    -2
+                    \sin\left(\frac{\pi}{3}+\alpha\right)
+                    \sin\left(\frac{\pi}{3}+\gamma\right)
+                    \cos\beta
+                \Biggr).
+            \end{aligned}
+        \]
+        Because
+        \[
+            \left(\frac{\pi}{3}+\alpha\right)
+            +
+            \left(\frac{\pi}{3}+\gamma\right)
+            +\beta
+            =
+            \pi,
+        \]
+        the expression in parentheses is $\sin^2\beta$. Hence
+        \[
+            PR
+            =
+            8\mathcal{R}\sin\alpha\sin\beta\sin\gamma.
+        \]
+        Cyclically applying the same calculation gives the identical value for
+        $PQ$ and $QR$. Therefore $\triangle PQR$ is equilateral.
+    \end{solution}
+
+    \begin{expectedproblem}[Steiner Tree for a Square]
+        Determine the minimum possible total length of a connected road network
+        containing all four vertices of a square of side length $a$. Roads may
+        meet at additional points in the interior of the square.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The standard structure theorem for Euclidean Steiner minimal trees says
+        that a shortest network is a tree, every nonterminal branching point
+        has degree $3$, and its three incident edges meet at angles of
+        $120^\circ$. The possible square topologies have zero, one, or two
+        Steiner points. With zero Steiner points, the shortest network is a
+        minimum spanning tree of length $3a$. With one Steiner point, one first
+        joins three square vertices by their three-terminal Steiner tree and
+        then attaches the remaining vertex by an edge of length at least $a$.
+        The three-terminal tree for a right isosceles triangle of legs $a$ has
+        length
+        \[
+            a\sqrt{2+\sqrt3},
+        \]
+        so this case is also longer than the construction below. Thus it
+        remains to examine the full topology with two Steiner points, each
+        joined to two adjacent vertices and to the other Steiner point.
+
+        Place the square at
+        \[
+            (0,-a/2),\quad(0,a/2),\quad(a,-a/2),\quad(a,a/2).
+        \]
+        The two Steiner points lie on the horizontal symmetry axis. Write them
+        as
+        \[
+            S_1=(d,0),
+            \qquad
+            S_2=(a-d,0).
+        \]
+        The angle between the two edges from $S_1$ to the left-hand vertices is
+        $120^\circ$. Taking their dot product gives
+        \[
+            \frac{d^2-a^2/4}{d^2+a^2/4}=-\frac12,
+        \]
+        so
+        \[
+            d=\frac{a}{2\sqrt3}.
+        \]
+        Each of the four terminal edges has length
+        \[
+            \sqrt{d^2+\frac{a^2}{4}}=\frac{a}{\sqrt3},
+        \]
+        while
+        \[
+            S_1S_2=a-2d=a-\frac{a}{\sqrt3}.
+        \]
+        Thus the total length is
+        \[
+            4\frac{a}{\sqrt3}
+            +a-\frac{a}{\sqrt3}
+            =
+            \boxed{a(1+\sqrt3)}.
+        \]
+        Since
+        \[
+            a(1+\sqrt3)
+            <
+            a\left(1+\sqrt{2+\sqrt3}\right)
+            <
+            3a,
+        \]
+        the two-Steiner construction is the global minimum.
+    \end{solution}
+
+    \begin{expectedproblem}[1975 IMO]
+        Let $A$ be the sum of the decimal digits of $4444^{4444}$, let $B$ be
+        the sum of the decimal digits of $A$, and let $C$ be the sum of the
+        decimal digits of $B$. Determine $C$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Since $4444<10^4$,
+        \[
+            4444^{4444}<10^{17776}.
+        \]
+        Hence
+        \[
+            A\leq9\cdot17776=159984.
+        \]
+        Thus $A$ has at most six digits, so $B\leq54$. Among the integers from
+        $1$ to $54$, the largest possible digit sum is $13$, attained at $49$.
+        Therefore
+        \[
+            1\leq C\leq13.
+        \]
+
+        Repeated digit sums preserve a number modulo $9$. Since
+        \[
+            4444\equiv7\pmod9,
+            \qquad
+            7^3\equiv1\pmod9,
+            \qquad
+            4444\equiv1\pmod3,
+        \]
+        we have
+        \[
+            C\equiv4444^{4444}\equiv7\pmod9.
+        \]
+        The only integer between $1$ and $13$ congruent to $7$ modulo $9$ is
+        \[
+            \boxed{C=7}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Golomb's Tromino Theorem]
+        Remove an arbitrary unit square from a $2^n\times2^n$ board. Prove that
+        the remaining board can be tiled by L-shaped trominoes, each consisting
+        of three unit squares.
+    \end{expectedproblem}
+
+    \begin{solution}
+        We use induction on $n$. For $n=1$, the board is $2\times2$, and the
+        three remaining squares form one L-tromino.
+
+        Suppose the statement holds for $n-1$. Divide a $2^n\times2^n$ board
+        into four $2^{n-1}\times2^{n-1}$ quadrants. The missing square lies in
+        one quadrant. Place one L-tromino at the center so that it covers one
+        central square in each of the other three quadrants.
+
+        Each quadrant is now a $2^{n-1}\times2^{n-1}$ board with exactly one
+        square missing: the original missing square in one quadrant and a
+        central square in each of the other three. By the induction hypothesis,
+        every quadrant can be tiled. Together with the central tromino, these
+        tilings cover the whole deficient board.
+    \end{solution}
+
+    \begin{expectedproblem}
+        A rectangle is tiled by finitely many smaller rectangles whose sides
+        are parallel to the sides of the large rectangle. Each small rectangle
+        has at least one side of integer length. Prove that the large rectangle
+        also has at least one side of integer length.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Place the large rectangle at
+        \[
+            [0,a]\times[0,b].
+        \]
+        For any measurable region $E$, define
+        \[
+            I(E)
+            =
+            \iint_E
+            \sin(2\pi x)\sin(2\pi y)\dd x\dd y.
+        \]
+        This quantity is additive over a finite dissection.
+
+        Consider a tile
+        \[
+            [u,u+w]\times[v,v+h].
+        \]
+        If $w$ is an integer, then
+        \[
+            \int_u^{u+w}\sin(2\pi x)\dd x=0;
+        \]
+        if $h$ is an integer, the corresponding integral in $y$ is zero.
+        Therefore every tile has invariant $0$, and additivity gives
+        \[
+            I([0,a]\times[0,b])=0.
+        \]
+        On the other hand,
+        \[
+            I([0,a]\times[0,b])
+            =
+            \frac{(1-\cos(2\pi a))(1-\cos(2\pi b))}{4\pi^2}.
+        \]
+        Both factors in the numerator are nonnegative. Their product is zero
+        only when
+        \[
+            \cos(2\pi a)=1
+            \qquad\text{or}\qquad
+            \cos(2\pi b)=1,
+        \]
+        which means that $a$ or $b$ is an integer.
+    \end{solution}
+
+    \begin{expectedproblem}[Hall's Marriage Theorem]
+        A standard deck of $52$ cards is divided into $13$ piles of four cards.
+        Prove that one can choose exactly one card from each pile so that the
+        chosen cards have the thirteen distinct ranks
+        \[
+            A,2,3,\ldots,10,J,Q,K.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        Construct a bipartite graph whose left vertices are the $13$ piles and
+        whose right vertices are the $13$ ranks. Join a pile to every rank that
+        occurs in it. We verify Hall's condition.
+
+        Take any $k$ piles. Together they contain $4k$ cards. If the union of
+        their neighboring ranks contained at most $k-1$ ranks, those ranks
+        could account for at most
+        \[
+            4(k-1)
+        \]
+        cards in the entire deck, since each rank occurs in four suits. This is
+        impossible. Thus every $k$ piles collectively contain at least $k$
+        distinct ranks.
+
+        Hall's Marriage Theorem therefore gives a matching from all piles to
+        distinct ranks. Choosing the matched card from each pile produces the
+        required selection.
+    \end{solution}
+
+    \begin{expectedproblem}[Zeckendorf's Theorem]
+        Define
+        \[
+            F_1=1,
+            \qquad
+            F_2=2,
+            \qquad
+            F_{n+2}=F_{n+1}+F_n.
+        \]
+        Prove that every positive integer can be written uniquely as a sum of
+        nonconsecutive terms of this Fibonacci sequence.
+    \end{expectedproblem}
+
+    \begin{solution}
+        For existence, apply the greedy algorithm. Given $N>0$, choose the
+        largest $F_k\leq N$. Since $N<F_{k+1}=F_k+F_{k-1}$, the remainder
+        satisfies
+        \[
+            0\leq N-F_k<F_{k-1}.
+        \]
+        Thus the next Fibonacci number selected by the same procedure has index
+        at most $k-2$. Repeating this process terminates and produces a sum of
+        nonconsecutive Fibonacci numbers.
+
+        For uniqueness, use the identity
+        \[
+            F_{k-1}+F_{k-3}+F_{k-5}+\cdots<F_k.
+        \]
+        In fact, the sum on the left is $F_k-1$. Suppose two valid
+        representations differ, and let $F_k$ be the largest term appearing in
+        exactly one of them. The representation containing $F_k$ exceeds the
+        sum of every possible collection of nonconsecutive smaller terms,
+        whereas the other representation uses only such smaller terms. They
+        therefore cannot have the same value, a contradiction.
+    \end{solution}
+
+    \begin{expectedproblem}[1986 Putnam]
+        Let $\mathbf{A}$ and $\mathbf{B}$ be $n\times n$ matrices
+        over a field, and suppose that
+        \[
+            \mathbf{A}+\mathbf{B}=\mathbf{A}\mathbf{B}.
+        \]
+        Prove that
+        \[
+            \mathbf{A}\mathbf{B}=\mathbf{B}\mathbf{A}.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        Rearranging the hypothesis gives
+        \[
+            (\mathbf{A}-\mathbf{I}_n)(\mathbf{B}-\mathbf{I}_n)
+            =
+            \mathbf{A}\mathbf{B}-\mathbf{A}-\mathbf{B}+\mathbf{I}_n
+            =
+            \mathbf{I}_n.
+        \]
+        For square matrices, a one-sided inverse is a two-sided inverse. Hence
+        \[
+            (\mathbf{B}-\mathbf{I}_n)(\mathbf{A}-\mathbf{I}_n)=\mathbf{I}_n.
+        \]
+        Expanding this identity gives
+        \[
+            \mathbf{B}\mathbf{A}-\mathbf{A}-\mathbf{B}=\mathbf{0}.
+        \]
+        Comparing with the original relation yields
+        \[
+            \mathbf{B}\mathbf{A}
+            =
+            \mathbf{A}+\mathbf{B}
+            =
+            \mathbf{A}\mathbf{B}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Erd\H{o}s--Szekeres Monotone Subsequence Theorem]
+        Let
+        \[
+            a_1,a_2,\ldots,a_{n^2+1}
+        \]
+        be distinct real numbers. Prove that the sequence contains an
+        increasing subsequence of length $n+1$ or a decreasing subsequence of
+        length $n+1$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        For each index $i$, let $p_i$ be the length of the longest increasing
+        subsequence ending at $a_i$, and let $q_i$ be the length of the longest
+        decreasing subsequence ending at $a_i$.
+
+        Suppose that neither required subsequence exists. Then
+        \[
+            1\leq p_i\leq n,
+            \qquad
+            1\leq q_i\leq n
+        \]
+        for every $i$. There are only $n^2$ possible ordered pairs
+        $(p_i,q_i)$, so two indices $i<j$ have
+        \[
+            (p_i,q_i)=(p_j,q_j).
+        \]
+        Since the terms are distinct, either $a_i<a_j$ or $a_i>a_j$. In the
+        first case, an increasing subsequence ending at $a_i$ can be extended by
+        $a_j$, so $p_j>p_i$. In the second case, $q_j>q_i$. Both alternatives
+        contradict equality of the ordered pairs.
+    \end{solution}
+
+    \begin{expectedproblem}[2002 Putnam]
+        Given any five distinct points on a sphere, prove that some four of them
+        lie in a closed hemisphere.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Choose two of the points that are not antipodal, and draw a great circle
+        through them. The two chosen points lie on the boundary of each of the
+        two closed hemispheres determined by that great circle.
+
+        Each of the remaining three points belongs to at least one of the two
+        hemispheres. By the pigeonhole principle, one hemisphere contains at
+        least two of those three points. Together with the two boundary points,
+        it contains at least four of the five points.
+    \end{solution}
+
+    \begin{expectedproblem}[Prouhet--Thue--Morse Partition]
+        For a positive integer $m$, partition
+        \[
+            \{0,1,\ldots,2^m-1\}
+        \]
+        into sets $A$ and $B$ s.t.
+        \[
+            \sum_{a\in A}a^r
+            =
+            \sum_{b\in B}b^r
+        \]
+        for every $r=0,1,\ldots,m-1$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Put an integer $j$ in $A$ when the number $s_2(j)$ of $1$'s in its
+        binary expansion is even, and put it in $B$ when $s_2(j)$ is odd.
+        Consider
+        \[
+            P(x)
+            =
+            \sum_{j=0}^{2^m-1}(-1)^{s_2(j)}x^j
+            =
+            \prod_{k=0}^{m-1}(1-x^{2^k}).
+        \]
+        Every factor on the right vanishes at $x=1$, so $P$ has a zero of order
+        $m$ there.
+
+        Apply the operator
+        \[
+            x\frac{\dd}{\dd x}
+        \]
+        exactly $r<m$ times and then set $x=1$. Since the zero has order $m$,
+        the result is $0$. On the other hand,
+        \[
+            \left.
+            \left(x\frac{\dd}{\dd x}\right)^r P(x)
+            \right|_{x=1}
+            =
+            \sum_{j=0}^{2^m-1}(-1)^{s_2(j)}j^r.
+        \]
+        Separating the even and odd binary parities gives the required equal
+        power sums.
+    \end{solution}
+
+    \begin{expectedproblem}[Cayley's Formula]
+        For an integer $n\geq2$, determine the number of trees with vertex set
+        \[
+            \{1,2,\ldots,n\}.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        Associate a Pr\"ufer sequence with a labeled tree as follows. Repeatedly
+        delete the leaf with the smallest label and record its unique neighbor.
+        Stop when two vertices remain. This produces a sequence of length
+        $n-2$, every term of which lies in $\{1,\ldots,n\}$.
+
+        Conversely, start with a sequence
+        \[
+            (p_1,p_2,\ldots,p_{n-2}).
+        \]
+        At each step, choose the smallest remaining label that does not occur
+        in the current sequence, join it to the first term of the sequence, and
+        then delete both that label and the first sequence term. After all terms have
+        been removed, join the two labels that remain. This reconstructs a
+        unique tree and reverses the encoding process.
+
+        Thus labeled trees are in bijection with length-$(n-2)$ sequences over
+        an alphabet of $n$ labels. Their number is therefore
+        \[
+            \boxed{n^{n-2}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Tournament King Theorem]
+        In a tournament, every pair of vertices is joined by exactly one
+        directed edge. Prove that there is a vertex $A$ s.t. every other
+        vertex $B$ is either an out-neighbor of $A$ or an out-neighbor of some
+        out-neighbor of $A$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Choose a vertex $A$ of maximum outdegree. Let $B$ be any vertex that
+        defeats $A$. If no vertex defeated by $A$ defeats $B$, then $B$ defeats
+        $A$ and every out-neighbor of $A$. Consequently,
+        \[
+            \deg^+(B)\geq\deg^+(A)+1,
+        \]
+        contradicting the maximality of the outdegree of $A$.
+
+        Therefore, for every $B$ that defeats $A$, there is a vertex $C$ s.t. $A$ defeats $C$ and $C$ defeats $B$. Hence $A$ is a king.
+    \end{solution}
+
+    \begin{expectedproblem}[Gale--Shapley Stable Marriage Problem]
+        Two sets $X$ and $Y$ each contain $n$ people. Every person has a strict
+        preference ordering of all members of the other set. Prove that there
+        is a perfect matching with no blocking pair, and give an algorithm that
+        finds one.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Use the deferred-acceptance algorithm. While some person $x\in X$ is
+        unmatched and has not proposed to everyone, let $x$ propose to the most
+        preferred member of $Y$ who has not yet rejected $x$. Each $y\in Y$
+        keeps the most preferred proposal received so far and rejects every
+        other proposer. A tentative engagement may therefore be replaced by a
+        more preferred one.
+
+        Each ordered pair $(x,y)$ is used in at most one proposal, so the
+        algorithm terminates after at most $n^2$ proposals. At termination the
+        matching is perfect: if some $x$ were unmatched, then $x$ would have
+        proposed to every member of $Y$, so every member of $Y$ would be
+        holding a proposal; since the two sets have equal size, no member of
+        $X$ could then be unmatched.
+
+        Suppose that $(x,y)$ is a blocking pair in the final matching. Since
+        $x$ prefers $y$ to the assigned partner, $x$ must have proposed to $y$
+        earlier. The person $y$ either rejected $x$ immediately or later
+        replaced $x$ by someone preferred to $x$. Since tentative partners of
+        $y$ only improve, the final partner is preferred to $x$, contradicting
+        that $(x,y)$ blocks the matching.
+    \end{solution}
+
+    \begin{expectedproblem}[Buffon's Noodle]
+        Parallel lines at distance $D$ apart are drawn in the plane. A
+        rectifiable plane curve of total length $L$ is placed with uniformly
+        random translation modulo the strips and uniformly random orientation.
+        If $N$ is the number of intersections of the curve with the parallel
+        lines, determine $\Exp[N]$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        First consider a line segment of length $\ell$ making an acute angle
+        $\theta$ with the parallel lines. Its perpendicular span is
+        \[
+            \ell\sin\theta.
+        \]
+        Averaging over a uniformly random offset modulo $D$, the expected number
+        of parallel lines crossed by this segment is
+        \[
+            \frac{\ell\sin\theta}{D}.
+        \]
+        Averaging over a uniformly random direction gives
+        \[
+            \frac{2}{\pi}
+            \int_0^{\pi/2}
+            \frac{\ell\sin\theta}{D}\dd\theta
+            =
+            \frac{2\ell}{\pi D}.
+        \]
+
+        For a polygonal curve, add the intersection counts of its segments.
+        Linearity of expectation gives the same formula with $\ell$ replaced by
+        the total length. A general rectifiable curve follows by polygonal
+        approximation, which is the corresponding special case of the
+        Cauchy--Crofton formula. Therefore,
+        \[
+            \boxed{\Exp[N]=\frac{2L}{\pi D}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1987 IMO]
+        Prove that there is no function
+        \[
+            f\colon\Nzero\to\Nzero
+        \]
+        s.t.
+        \[
+            f(f(n))=n+1987
+        \]
+        for every $n\in\Nzero$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Applying $f$ to the given identity in two different ways gives
+        \[
+            f(n+1987)
+            =
+            f(f(f(n)))
+            =
+            f(n)+1987.
+        \]
+        Thus the residue of $f(n)$ modulo $1987$ depends only on the residue of
+        $n$ modulo $1987$.
+
+        For each $r\in\{0,1,\ldots,1986\}$, write
+        \[
+            f(r)=1987q_r+s_r,
+            \qquad
+            0\leq s_r<1987.
+        \]
+        Then
+        \[
+            r+1987
+            =
+            f(f(r))
+            =
+            1987q_r+f(s_r).
+        \]
+        Reducing modulo $1987$ shows that
+        \[
+            s_{s_r}=r.
+        \]
+        Hence $r\mapsto s_r$ is an involution on a set of $1987$ elements.
+
+        This involution has no fixed point. Indeed, if $s_r=r$, then the same
+        displayed identity gives
+        \[
+            1987(q_r+q_r)=1987,
+        \]
+        so $2q_r=1$, which is impossible. An involution without fixed points
+        partitions its underlying set into pairs, but a set of odd cardinality
+        cannot be partitioned into pairs. Therefore no such function exists.
+    \end{solution}
+
+    \begin{expectedproblem}[1994 IMO]
+        Let
+        \[
+            A=\{a_1,a_2,\ldots,a_m\}\subseteq\{1,2,\ldots,n\}
+        \]
+        be a set of distinct positive integers. Suppose that whenever
+        $x,y\in A$ and $x+y\leq n$, one also has $x+y\in A$. Prove that
+        \[
+            \frac{a_1+a_2+\cdots+a_m}{m}
+            \geq
+            \frac{n+1}{2}.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let $d$ be the least element of $A$. Partition $A$ according to residue
+        classes modulo $d$. Consider one nonempty class, and let $b$ be its
+        least element. Since $d,b\in A$, the closure condition implies that
+        \[
+            b,
+            \quad
+            b+d,
+            \quad
+            b+2d,
+            \quad\ldots
+        \]
+        all belong to $A$ for as long as they do not exceed $n$. Therefore this
+        residue class of $A$ is a complete arithmetic progression
+        \[
+            b,b+d,\ldots,c,
+        \]
+        where $c$ is the largest integer not exceeding $n$ that is congruent to
+        $b$ modulo $d$.
+
+        We have $b\geq d$ and $c>n-d$, so
+        \[
+            b+c>n.
+        \]
+        Since $b+c$ is an integer,
+        \[
+            b+c\geq n+1.
+        \]
+        The average of the progression is therefore at least $(n+1)/2$.
+        Every residue class has average at least this value, so their weighted
+        average, which is the average of all elements of $A$, also satisfies
+        \[
+            \boxed{
+                \frac{a_1+a_2+\cdots+a_m}{m}
+                \geq
+                \frac{n+1}{2}
+            }.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1974 IMO]
+        Three cards bear distinct positive integers
+        \[
+            0<p<q<r.
+        \]
+        In each round the cards are shuffled and dealt, one to each of three
+        players $A,B,C$. Each player receives as many counters as the number on
+        the card dealt to that player, and all counters are retained. At least
+        two rounds are played.
+
+        At the end, the players have respectively
+        \[
+            20,\qquad10,\qquad9
+        \]
+        counters, and in the final round player $B$ received the card bearing
+        $r$. Determine who received the card bearing $q$ in the first round.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Suppose that $t$ rounds were played. Adding the final totals gives
+        \[
+            t(p+q+r)=20+10+9=39.
+        \]
+        Since $t\geq2$ and player $C$ received at least one counter per round,
+        $t\leq9$. Hence
+        \[
+            t=3,
+            \qquad
+            p+q+r=13.
+        \]
+
+        Player $A$ received $20$ counters in three rounds, so $r\geq7$. In the
+        last round player $B$ received $r$, so the two earlier cards dealt to
+        $B$ have total $10-r$. Checking the possibilities with
+        $p<q<r$ and $p+q+r=13$ gives the unique choice
+        \[
+            (p,q,r)=(1,4,8).
+        \]
+        Indeed, for $r=7,9,$ or $10$, the required sum $10-r$ cannot be formed
+        by two cards, while for $r=8$ it forces both earlier cards of $B$ to be
+        $p=1$.
+
+        In each of the first two rounds, players $A$ and $C$ therefore received
+        $q$ and $r$. To reach a total of $20$, player $A$ must have received
+        \[
+            r,r,q,
+        \]
+        over the three rounds. Consequently player $C$ received
+        \[
+            q,q,p,
+        \]
+        and in particular received $q$ in the first round. Thus the required
+        player is
+        \[
+            \boxed{C}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2004 Putnam]
+        A basketball player's cumulative free-throw percentage was below
+        $80\%$ at one point in a season and above $80\%$ at a later point.
+        Prove that at some intermediate point the cumulative percentage was
+        exactly $80\%$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        After $n$ attempts, let $m$ be the number of successful free throws and
+        define
+        \[
+            D=5m-4n.
+        \]
+        The cumulative percentage is below, equal to, or above $80\%$ exactly
+        when $D$ is negative, zero, or positive, respectively.
+
+        After a successful free throw, $D$ increases by
+        \[
+            5-4=1,
+        \]
+        whereas after a missed free throw, $D$ decreases by $4$. Thus the only
+        way for the integer $D$ to pass from a negative value to a positive
+        value is through $0$: an upward step has size only $1$. Therefore at
+        some intermediate point
+        \[
+            5m-4n=0,
+        \]
+        and the cumulative percentage was exactly $4/5=80\%$.
+    \end{solution}
+
+    \begin{expectedproblem}[2005 Putnam]
+        Find a nonzero polynomial $P(x,y)$ in two variables s.t.
+        \[
+            P(\lfloor a\rfloor,\lfloor2a\rfloor)=0
+        \]
+        for every real number $a$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Write
+        \[
+            a=\lfloor a\rfloor+\{a\},
+            \qquad
+            0\leq\{a\}<1.
+        \]
+        Then
+        \[
+            \lfloor2a\rfloor-2\lfloor a\rfloor
+            =
+            \lfloor2\{a\}\rfloor
+            \in\{0,1\}.
+        \]
+        Hence one may take
+        \[
+            \boxed{
+                P(x,y)=(y-2x)(y-2x-1)
+            }.
+        \]
+        This polynomial is nonzero and vanishes for both possible values of
+        $y-2x$.
+    \end{solution}
+
+    \begin{expectedproblem}[1996 Putnam]
+        Let $[n]=\{1,2,\ldots,n\}$. A subset $X\subseteq[n]$ is called
+        \emph{selfish} if
+        \[
+            |X|\in X.
+        \]
+        A selfish set is minimal if none of its proper subsets is selfish.
+        Determine the number of minimal selfish subsets of $[n]$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let $X$ be a minimal selfish set and put $|X|=k$. Then $k\in X$. We
+        claim that $X$ contains no integer $j<k$. If it did, one could choose a
+        $j$-element subset $Y\subsetneq X$ containing $j$, and then
+        \[
+            |Y|=j\in Y,
+        \]
+        so $Y$ would be selfish, contradicting minimality.
+
+        Conversely, any $k$-element set that contains $k$ and whose other
+        elements are all greater than $k$ is minimal selfish. Thus, for a fixed
+        $k$, there are
+        \[
+            \binom{n-k}{k-1}
+        \]
+        choices. Summing over all possible $k$ gives
+        \[
+            \sum_{k\geq1}\binom{n-k}{k-1}
+            =
+            \sum_{j\geq0}\binom{n-j-1}{j}
+            =
+            F_n,
+        \]
+        where $F_1=F_2=1$ and $F_n=F_{n-1}+F_{n-2}$. Therefore the number of
+        minimal selfish sets is
+        \[
+            \boxed{F_n}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2002 AIME I]
+        Let $S$ be a set of distinct positive integers s.t.
+        \[
+            1\in S,
+            \qquad
+            \max S=2002.
+        \]
+        Suppose that, for every $x\in S$, the arithmetic mean of the elements
+        of $S\setminus\{x\}$ is an integer. Determine the maximum possible
+        value of $|S|$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let
+        \[
+            |S|=k,
+            \qquad
+            T=\sum_{x\in S}x.
+        \]
+        The hypothesis says that
+        \[
+            T-x\equiv0\pmod{k-1}
+        \]
+        for every $x\in S$. Hence all elements of $S$ are congruent modulo
+        $k-1$. Since $1,2002\in S$,
+        \[
+            k-1\mid2001.
+        \]
+
+        Put $d=k-1$. There must be at least $d+1$ distinct positive integers not
+        exceeding $2002$ that are congruent to $1$ modulo $d$. The number of
+        such integers is $2001/d+1$, so
+        \[
+            d+1\leq\frac{2001}{d}+1,
+            \qquad\text{hence}\qquad
+            d^2\leq2001.
+        \]
+        Since
+        \[
+            2001=3\cdot23\cdot29,
+        \]
+        the largest divisor of $2001$ not exceeding $\sqrt{2001}$ is $29$.
+        Therefore $k\leq30$.
+
+        Equality is attainable. Take
+        \[
+            S
+            =
+            \{1+29j\mid0\leq j\leq28\}\cup\{2002\}.
+        \]
+        This set has $30$ elements, all congruent to $1$ modulo $29$. Its total
+        is also congruent to $1$ modulo $29$, so deleting any one element leaves
+        a sum divisible by $29$. Thus the maximum is
+        \[
+            \boxed{30}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1961 \UTokyo{} Entrance Examination]
+        In a triangle $ABC$, points $L\in\overline{BC}$,
+        $M\in\overline{CA}$, and $N\in\overline{AB}$ satisfy
+        \[
+            \frac{LC}{BL}
+            =
+            \frac{MA}{CM}
+            =
+            \frac{NB}{AN}
+            =2.
+        \]
+        Let
+        \[
+            P=AL\cap CN,
+            \qquad
+            Q=AL\cap BM,
+            \qquad
+            R=BM\cap CN.
+        \]
+        Determine
+        \[
+            \frac{[PQR]}{[ABC]}.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        Area ratios are preserved by affine transformations, so take
+        \[
+            A=(0,0),
+            \qquad
+            B=(1,0),
+            \qquad
+            C=(0,1).
+        \]
+        The division conditions give
+        \[
+            L=\left(\frac23,\frac13\right),
+            \qquad
+            M=\left(0,\frac23\right),
+            \qquad
+            N=\left(\frac13,0\right).
+        \]
+        Solving the three pairs of line equations yields
+        \[
+            P=\left(\frac27,\frac17\right),
+            \quad
+            Q=\left(\frac47,\frac27\right),
+            \quad
+            R=\left(\frac17,\frac47\right).
+        \]
+        Therefore
+        \[
+            [PQR]
+            =
+            \frac12
+            \left|
+                \det
+                \begin{pmatrix}
+                    2/7 & 1/7\\
+                    -1/7 & 3/7
+                \end{pmatrix}
+            \right|
+            =
+            \frac{1}{14}.
+        \]
+        Since $[ABC]=1/2$,
+        \[
+            \boxed{
+                \frac{[PQR]}{[ABC]}=\frac17
+            }.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1995 \KyotoU{} Entrance Examination]
+        For a positive integer $n$, let $f(n)$ be the remainder when $n$ is
+        divided by $7$, and define
+        \[
+            g(n)
+            =
+            3f\left(\sum_{k=1}^{7}k^n\right).
+        \]
+        Prove that
+        \[
+            f(n^7)=f(n)
+        \]
+        for every positive integer $n$. Then determine the maximum possible
+        value of $g(n)$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Fermat's little theorem gives
+        \[
+            n^7\equiv n\pmod7
+        \]
+        for every integer $n$, including multiples of $7$. Hence
+        \[
+            f(n^7)=f(n).
+        \]
+
+        Since $f$ takes values in $\{0,1,\ldots,6\}$, we have
+        \[
+            g(n)\leq18
+        \]
+        for every positive integer $n$. This upper bound is attained at $n=6$.
+        Indeed, for $1\leq k\leq6$,
+        \[
+            k^6\equiv1\pmod7,
+        \]
+        while $7^6\equiv0\pmod7$. Therefore
+        \[
+            f\left(\sum_{k=1}^{7}k^6\right)=6,
+        \]
+        and the maximum possible value is
+        \[
+            \boxed{18}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1993 \TokyoTech{} Entrance Examination]
+        Let $P(x)$ be a polynomial of degree $n$. Suppose that
+        \[
+            P(0),P(1),\ldots,P(n)
+        \]
+        are all integers. Prove that $P(m)$ is an integer for every
+        $m\in\Z$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        We use induction on the degree. The assertion is immediate for constant
+        polynomials. Let
+        \[
+            Q(x)=P(x+1)-P(x).
+        \]
+        Then $Q$ has degree at most $n-1$, and
+        \[
+            Q(0),Q(1),\ldots,Q(n-1)
+        \]
+        are integers. By the induction hypothesis,
+        \[
+            Q(m)\in\Z
+        \]
+        for every $m\in\Z$.
+
+        Since $P(0)\in\Z$, for $m>0$ we have
+        \[
+            P(m)
+            =
+            P(0)+\sum_{j=0}^{m-1}Q(j)
+            \in\Z.
+        \]
+        For $m<0$,
+        \[
+            P(m)
+            =
+            P(0)-\sum_{j=m}^{-1}Q(j)
+            \in\Z.
+        \]
+        Thus $P(m)$ is an integer for every integer $m$.
+    \end{solution}
+
+    \begin{expectedproblem}[2009 \Hitotsubashi{} Entrance Examination]
+        Let $m,n\geq2$ be integers satisfying
+        \[
+            m^3+1=n^3+10^3.
+        \]
+        Determine $m$ and $n$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Rearranging and factoring gives
+        \[
+            (m-n)(m^2+mn+n^2)=999.
+        \]
+        Put $d=m-n>0$. Then $d\mid999$ and
+        \[
+            3n^2+3dn+d^2=\frac{999}{d}.
+        \]
+        Since $n\geq2$, the left-hand side exceeds $d^2$, so $d^3<999$.
+        Hence the only possible positive divisors are
+        \[
+            d=1,3,9.
+        \]
+        Substitution gives no integer $n\geq2$ for $d=1$, gives $n=9$ for
+        $d=3$, and gives only $n=1$ or a negative value for $d=9$. Therefore
+        \[
+            \boxed{(m,n)=(12,9)}.
+        \]
+        The common value is the taxicab number
+        \[
+            12^3+1^3=9^3+10^3=1729.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[2025 \UTokyo{} Entrance Examination]
+        For a positive integer $a$, define
+        \[
+            f_a(x)=x^2+x-a.
+        \]
+        A square number means the square of a nonnegative integer. First prove
+        that if $n$ is a positive integer and $f_a(n)$ is a square number, then
+        $n\leq a$.
+
+        Let $N_a$ be the number of positive integers $n$ for which $f_a(n)$ is
+        a square number. Prove that
+        \[
+            N_a=1
+            \quad\Longleftrightarrow\quad
+            4a+1\text{ is prime}.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        Suppose that
+        \[
+            n^2+n-a=m^2
+        \]
+        for some $m\in\Nzero$. If $n\geq a+1$, then
+        \[
+            n^2<n^2+n-a<(n+1)^2,
+        \]
+        which is impossible for a square. Hence $n\leq a$.
+
+        Multiplying the equation by $4$ and completing the square gives
+        \[
+            (2n+1-2m)(2n+1+2m)=4a+1.
+        \]
+        Both factors are positive odd integers. Conversely, let
+        \[
+            uv=4a+1,
+            \qquad
+            1\leq u\leq v,
+        \]
+        with $u$ and $v$ odd. Since $uv\equiv1\pmod4$, the two factors are
+        congruent modulo $4$, and therefore
+        \[
+            n=\frac{u+v-2}{4},
+            \qquad
+            m=\frac{v-u}{4}
+        \]
+        are nonnegative integers satisfying $f_a(n)=m^2$. This gives a
+        bijection between positive factor pairs of $4a+1$ and admissible values
+        of $n$.
+
+        The factorization
+        \[
+            4a+1=1\cdot(4a+1)
+        \]
+        always gives the solution $n=a$. There is exactly one factor pair if
+        and only if $4a+1$ is prime. Hence
+        \[
+            \boxed{
+                N_a=1
+                \quad\Longleftrightarrow\quad
+                4a+1\text{ is prime}
+            }.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[1977 IMO]
+        Let
+        \[
+            f\colon\Z_{>0}\to\Z_{>0}
+        \]
+        satisfy
+        \[
+            f(n+1)>f(f(n))
+        \]
+        for every positive integer $n$. Prove that
+        \[
+            f(n)=n
+        \]
+        for every positive integer $n$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        We first prove, by induction on $m$, that
+        \[
+            k\geq m
+            \quad\Longrightarrow\quad
+            f(k)\geq m.
+        \]
+        The assertion is immediate for $m=1$. Suppose it holds for some $m$,
+        and let $k\geq m+1$. Write $k=n+1$, so $n\geq m$. By the induction
+        hypothesis,
+        \[
+            f(n)\geq m,
+        \]
+        and applying the same hypothesis once more gives
+        \[
+            f(f(n))\geq m.
+        \]
+        Hence
+        \[
+            f(k)=f(n+1)>f(f(n))\geq m,
+        \]
+        so $f(k)\geq m+1$. The induction is complete. Taking $k=m$ shows that
+        \[
+            f(n)\geq n
+        \]
+        for every $n$.
+
+        Applying this inequality with the input $f(n)$ gives
+        \[
+            f(f(n))\geq f(n).
+        \]
+        Therefore
+        \[
+            f(n+1)>f(f(n))\geq f(n),
+        \]
+        so $f$ is strictly increasing.
+
+        If $f(n)>n$ for some $n$, then $f(n)\geq n+1$. Since $f$ is
+        increasing,
+        \[
+            f(f(n))\geq f(n+1),
+        \]
+        contradicting the given inequality. Thus $f(n)\leq n$ for every $n$.
+        Combined with $f(n)\geq n$, this yields
+        \[
+            \boxed{f(n)=n}
+        \]
+        for every positive integer $n$.
+    \end{solution}
+
+    \begin{expectedproblem}[1985 IMO]
+        Let $n$ and $k$ be relatively prime positive integers with $k<n$. Each
+        element of
+        \[
+            M=\{1,2,\ldots,n-1\}
+        \]
+        is colored either blue or white. Suppose that
+        \begin{problemchoices}
+            \item $i$ and $n-i$ have the same color for every $i\in M$;
+            \item $i$ and $|i-k|$ have the same color whenever
+                  $i\in M$ and $i\neq k$.
+        \end{problemchoices}
+        Prove that all elements of $M$ have the same color.
+    \end{expectedproblem}
+
+    \begin{solution}
+        For $1\leq j\leq n-1$, let $r_j$ be the least positive residue of
+        $jk$ modulo $n$. Since
+        \[
+            \gcd(n,k)=1,
+        \]
+        the numbers
+        \[
+            r_1,r_2,\ldots,r_{n-1}
+        \]
+        are precisely the elements of $M$ in some order.
+
+        We show that consecutive terms in this list have the same color. Let
+        $1\leq j\leq n-2$. The equality $r_j+k=n$ cannot occur, because it
+        would imply
+        \[
+            (j+1)k\equiv0\pmod n
+        \]
+        with $1\leq j+1<n$.
+
+        If $r_j+k<n$, then
+        \[
+            r_{j+1}=r_j+k.
+        \]
+        Since $r_{j+1}\neq k$, the second coloring condition gives
+        \[
+            r_{j+1}\sim|r_{j+1}-k|=r_j,
+        \]
+        where $x\sim y$ means that $x$ and $y$ have the same color.
+
+        If $r_j+k>n$, then
+        \[
+            r_{j+1}=r_j+k-n.
+        \]
+        The first condition gives $r_j\sim n-r_j$, and the second gives
+        \[
+            n-r_j
+            \sim
+            |n-r_j-k|
+            =r_j+k-n
+            =r_{j+1}.
+        \]
+        Thus $r_j\sim r_{j+1}$ in either case. Consequently all the residues
+        $r_1,\\ldots,r_{n-1}$, and hence all elements of $M$, have the same
+        color.
+    \end{solution}
+
+    \begin{expectedproblem}[2001 IMO]
+        Twenty-one girls and twenty-one boys took part in a mathematical
+        competition. Each contestant solved at most six problems, and every
+        girl--boy pair solved at least one problem in common. Prove that some
+        problem was solved by at least three girls and at least three boys.
+    \end{expectedproblem}
+
+    \begin{solution}
+        For each girl--boy pair, choose one problem that both contestants
+        solved. Suppose, for contradiction, that no problem was solved by at
+        least three girls and at least three boys.
+
+        Call a problem \emph{girl-sparse} if it was solved by at most two
+        girls. Fix a boy. The problems solved by this boy must collectively
+        cover all $21$ girls. Since he solved at most six problems, at least one
+        of those problems was solved by at least three girls. Hence he solved at
+        most five girl-sparse problems. Each such problem accounts for at most
+        two of his $21$ chosen girl--boy pairs. Therefore, for this boy, at most
+        \[
+            5\cdot2=10
+        \]
+        chosen pairs use a girl-sparse problem. Over all boys, there are at
+        most
+        \[
+            21\cdot10=210
+        \]
+        such pairs.
+
+        By symmetry, at most $210$ chosen pairs use a problem solved by at most
+        two boys. Under the contrary assumption, every problem is girl-sparse
+        or is solved by at most two boys. Thus all
+        \[
+            21^2=441
+        \]
+        chosen pairs would belong to the union of two sets containing at most
+        $210$ pairs each. This is impossible because
+        \[
+            441>210+210.
+        \]
+        Therefore some problem was solved by at least three girls and at least
+        three boys.
+    \end{solution}
+
+    \begin{expectedproblem}[2012 Putnam]
+        Let
+        \[
+            d_1,d_2,\ldots,d_{12}
+        \]
+        be real numbers in the open interval $(1,12)$. Prove that there exist
+        distinct indices $i,j,k$ s.t. $d_i,d_j,d_k$ are the side lengths
+        of an acute triangle.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Reorder the numbers so that
+        \[
+            d_1\leq d_2\leq\cdots\leq d_{12}.
+        \]
+        Suppose that no three of them are the side lengths of an acute
+        triangle. For every $r\geq3$, the three consecutive numbers
+        $d_{r-2},d_{r-1},d_r$ then satisfy
+        \[
+            d_r^2\geq d_{r-1}^2+d_{r-2}^2.
+        \]
+        Indeed, the reverse strict inequality would imply both the triangle
+        inequality and, by the converse of the Pythagorean theorem, that the
+        triangle is acute.
+
+        Let $F_1=F_2=1$ and $F_r=F_{r-1}+F_{r-2}$. Since
+        \[
+            d_1^2>1=F_1,
+            \qquad
+            d_2^2>1=F_2,
+        \]
+        induction gives
+        \[
+            d_r^2>F_r
+        \]
+        for every $r$. In particular,
+        \[
+            d_{12}^2>F_{12}=144,
+        \]
+        so $d_{12}>12$, contradicting $d_{12}\in(1,12)$. Therefore the
+        required three indices exist.
+    \end{solution}
+
+    \begin{expectedproblem}[2017 Putnam]
+        Let $S$ be the smallest set of positive integers satisfying the
+        following conditions:
+        \begin{problemchoices}
+            \item $2\in S$;
+            \item if $n^2\in S$, then $n\in S$;
+            \item if $n\in S$, then $(n+5)^2\in S$.
+        \end{problemchoices}
+        Determine all positive integers that do not belong to $S$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Let
+        \[
+            U=\{n\in\Z_{>0}\mid (n\neq1)\land(5\nmid n)\}.
+        \]
+        The set $U$ contains $2$ and satisfies both closure conditions. Hence,
+        by the minimality of $S$,
+        \[
+            S\subseteq U.
+        \]
+
+        We prove the reverse inclusion by showing that every set $T$ satisfying
+        the three conditions contains $U$. Combining the second and third
+        conditions gives
+        \[
+            n\in T
+            \quad\Longrightarrow\quad
+            n+5\in T.
+        \]
+        Thus $T$ is closed under adding any nonnegative multiple of $5$.
+
+        Starting from $2\in T$, the following chain is valid:
+        \[
+            2
+            \longrightarrow
+            49
+            \longrightarrow
+            54^2
+            \longrightarrow
+            56^2
+            \longrightarrow
+            56
+            \longrightarrow
+            121
+            \longrightarrow
+            11.
+        \]
+        Here the first two arrows use the third condition, the arrows from
+        $54^2$ to $56^2$ and from $56$ to $121$ use closure under adding
+        multiples of $5$, and the square-root arrows use the second condition.
+        From $11\in T$, closure under adding multiples of $5$ gives
+        \[
+            16\in T,
+            \qquad
+            36\in T.
+        \]
+        Taking square roots gives $4,6\in T$. Since $4\in T$, adding $5$
+        gives $9\in T$, and taking a square root gives $3\in T$. Hence
+        \[
+            2,3,4,6\in T.
+        \]
+        Repeatedly adding $5$ now shows that $T$ contains every positive
+        integer other than $1$ and the positive multiples of $5$. Thus
+        $U\subseteq T$ for every admissible $T$, and in particular
+        $U\subseteq S$.
+
+        Therefore the positive integers not in $S$ are exactly
+        \[
+            \boxed{1\text{ and the positive multiples of }5}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Fagnano's Problem]
+        Let $ABC$ be an acute triangle. Choose points
+        \[
+            P\in\overline{BC},
+            \qquad
+            Q\in\overline{CA},
+            \qquad
+            R\in\overline{AB}.
+        \]
+        Determine the triangle $PQR$ whose perimeter
+        \[
+            PQ+QR+RP
+        \]
+        is as small as possible.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Reflect $P$ across the lines $CA$ and $AB$ to points $P_1$ and $P_2$,
+        respectively. Since $Q\in CA$ and $R\in AB$,
+        \[
+            PQ=P_1Q,
+            \qquad
+            PR=P_2R.
+        \]
+        Therefore
+        \[
+            PQ+QR+RP
+            =
+            P_1Q+QR+RP_2
+            \geq
+            P_1P_2.
+        \]
+        Moreover,
+        \[
+            AP_1=AP_2=AP,
+            \qquad
+            \angle P_1AP_2=2\angle A,
+        \]
+        so
+        \[
+            P_1P_2=2AP\sin A.
+        \]
+        This quantity is minimized when $AP$ is the altitude from $A$ to
+        $BC$.
+
+        Let $D,E,F$ be the feet of the altitudes from $A,B,C$, respectively.
+        When $P=D$, the right-angle cyclic quadrilaterals determined by the
+        altitude feet show that the reflections $D_1,D_2$ of $D$ across $CA$
+        and $AB$ satisfy
+        \[
+            D_1,E,F,D_2
+        \]
+        collinear. Hence equality holds in the preceding triangle inequality
+        for
+        \[
+            (P,Q,R)=(D,E,F).
+        \]
+        Thus the unique minimizing inscribed triangle is the orthic triangle of
+        $ABC$.
+    \end{solution}
+
+    \begin{expectedproblem}[Fermat--Torricelli Problem]
+        Given a triangle $ABC$, determine the point $P$ in the plane for which
+        \[
+            PA+PB+PC
+        \]
+        is as small as possible.
+    \end{expectedproblem}
+
+    \begin{solution}
+        First suppose that every angle of $ABC$ is less than $120^\circ$. The
+        standard construction with outward equilateral triangles produces a
+        unique interior point $P$ satisfying
+        \[
+            \angle APB
+            =
+            \angle BPC
+            =
+            \angle CPA
+            =120^\circ.
+        \]
+        Let $\mathbf{u}_A,\mathbf{u}_B,\mathbf{u}_C$ be the unit vectors from
+        $P$ toward $A,B,C$, respectively. Since these vectors are separated by
+        angles of $120^\circ$,
+        \[
+            \mathbf{u}_A+\mathbf{u}_B+\mathbf{u}_C=\mathbf{0}.
+        \]
+        For any point $Q$, let $\mathbf{q}$ be the vector from $P$ to $Q$.
+        The Cauchy--Schwarz inequality gives
+        \[
+            QA\geq PA-\mathbf{u}_A\cdot\mathbf{q},
+        \]
+        and similarly for $B$ and $C$. Adding the three inequalities yields
+        \[
+            QA+QB+QC\geq PA+PB+PC.
+        \]
+        Thus this interior point is the minimizer.
+
+        Now suppose, without loss of generality, that
+        \[
+            \angle BAC\geq120^\circ.
+        \]
+        Let $\mathbf{u}$ and $\mathbf{v}$ be the unit vectors from $A$ toward
+        $B$ and $C$, and let $\mathbf{q}$ be the vector from $A$ to an arbitrary
+        point $Q$. Then
+        \[
+            QB\geq AB-\mathbf{u}\cdot\mathbf{q},
+            \qquad
+            QC\geq AC-\mathbf{v}\cdot\mathbf{q}.
+        \]
+        Since
+        \[
+            \|\mathbf{u}+\mathbf{v}\|
+            =
+            2\cos\left(\frac{\angle BAC}{2}\right)
+            \leq1,
+        \]
+        we also have
+        \[
+            QA=\|\mathbf{q}\|
+            \geq
+            (\mathbf{u}+\mathbf{v})\cdot\mathbf{q}.
+        \]
+        Adding gives
+        \[
+            QA+QB+QC\geq AB+AC,
+        \]
+        with equality at $Q=A$. Therefore the minimizing point is
+        \[
+            \boxed{
+                \begin{cases}
+                    \text{the interior point making three }120^\circ
+                    \text{ angles},
+                    & \text{if all triangle angles are }<120^\circ,\\
+                    \text{the vertex whose angle is }\geq120^\circ,
+                    & \text{otherwise}.
+                \end{cases}
+            }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Napoleon's Theorem]
+        On the three sides $BC,CA,AB$ of an arbitrary triangle $ABC$, construct
+        equilateral triangles externally. Let $X,Y,Z$ be the centers of the
+        equilateral triangles constructed on $BC,CA,AB$, respectively. Prove
+        that $XYZ$ is equilateral.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Identify the plane with $\C$, and let $a,b,c$ be the complex
+        coordinates of $A,B,C$, listed counterclockwise. Put
+        \[
+            \rho=e^{-i\pi/3}.
+        \]
+        The third vertices of the outward equilateral triangles on
+        $BC,CA,AB$ are
+        \[
+            p=b+\rho(c-b),
+            \qquad
+            q=c+\rho(a-c),
+            \qquad
+            r=a+\rho(b-a),
+        \]
+        respectively. Since the center of an equilateral triangle is its
+        centroid, the complex coordinates $x,y,z$ of $X,Y,Z$ are
+        \[
+            x=\frac{b+c+p}{3},
+            \qquad
+            y=\frac{c+a+q}{3},
+            \qquad
+            z=\frac{a+b+r}{3}.
+        \]
+        Direct simplification gives
+        \[
+            z-y=-\rho(y-x).
+        \]
+        The complex number $-\rho$ has modulus $1$ and argument $2\pi/3$.
+        Hence the vector from $Y$ to $Z$ is obtained from the vector from $X$
+        to $Y$ by a rotation through $120^\circ$, without changing its length.
+        Therefore
+        \[
+            XY=YZ
+            \qquad\text{and}\qquad
+            \angle XYZ=60^\circ,
+        \]
+        so $XYZ$ is equilateral.
+    \end{solution}
+
+    \begin{expectedproblem}[Butterfly Theorem]
+        Let $M$ be the midpoint of a chord $PQ$ of a circle. Draw two other
+        chords $AB$ and $CD$ through $M$, and define
+        \[
+            X=AD\cap PQ,
+            \qquad
+            Y=BC\cap PQ.
+        \]
+        Prove that $M$ is the midpoint of $XY$.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Choose Cartesian coordinates with
+        \[
+            M=(0,0)
+        \]
+        and $PQ$ as the $x$-axis. Since the perpendicular bisector of $PQ$
+        passes through the center of the circle, its equation has the form
+        \[
+            x^2+(y-h)^2=R^2.
+        \]
+        Excluding only immediate degenerate cases, write the two chords through
+        $M$ as
+        \[
+            AB:\ x=\alpha y,
+            \qquad
+            CD:\ x=\beta y,
+            \qquad
+            \alpha\neq\beta.
+        \]
+        Let $y_A,y_B,y_C,y_D$ be the $y$-coordinates of the corresponding
+        points. Substitution into the circle equation and Vi\`ete's formulas
+        give
+        \[
+            \frac{y_A+y_B}{y_Ay_B}
+            =
+            \frac{2h}{h^2-R^2}
+            =
+            \frac{y_C+y_D}{y_Cy_D}.
+        \]
+
+        Write $X=(x_X,0)$ and $Y=(x_Y,0)$. Collinearity of $A,X,D$ and of
+        $B,Y,C$ gives
+        \[
+            x_X(y_A-y_D)
+            =
+            (\alpha-\beta)y_Ay_D,
+        \]
+        \[
+            x_Y(y_B-y_C)
+            =
+            (\alpha-\beta)y_By_C.
+        \]
+        Hence
+        \[
+            \frac{x_X+x_Y}{\alpha-\beta}
+            =
+            \frac{
+                y_Ay_B(y_C+y_D)-y_Cy_D(y_A+y_B)
+            }{
+                (y_A-y_D)(y_B-y_C)
+            }
+            =0.
+        \]
+        Thus $x_X=-x_Y$, so $X$ and $Y$ are equidistant from the origin $M$.
+        Therefore
+        \[
+            \boxed{MX=MY}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        The number $N$ of typhoons arriving in a given year is modeled by a
+        Poisson distribution with parameter $1$. Determine the probability that
+        at least one typhoon arrives during the next year.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Since $N\sim\Poi(1)$,
+        \[
+            \Prob(N\geq1)
+            =
+            1-\Prob(N=0)
+            =
+            1-e^{-1}.
+        \]
+        Therefore, the required probability is
+        \[
+            \boxed{1-\frac{1}{e}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Consider the functions
+        \[
+            z^2,
+            \qquad
+            \sin z,
+            \qquad
+            \tan z,
+            \qquad
+            \RePart(z),
+            \qquad
+            e^z.
+        \]
+        Determine:
+        \begin{problemsubparts}
+            \item which functions are entire;
+            \item which function is meromorphic on $\C$ but not entire;
+            \item which function is not holomorphic on any nonempty open
+                  subset of $\C$.
+        \end{problemsubparts}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The functions
+        \[
+            z^2,
+            \qquad
+            \sin z,
+            \qquad
+            e^z
+        \]
+        are entire. The function $\tan z$ is meromorphic but not entire because
+        it has poles at
+        \[
+            \frac{\pi}{2}+k\pi,
+            \qquad
+            k\in\Z.
+        \]
+        Finally, $\RePart(z)$ is not complex differentiable at any point: its
+        difference quotient equals $1$ along real increments and $0$ along
+        purely imaginary increments. Thus the answers are
+        \[
+            \boxed{
+                \begin{aligned}
+                    \text{(a)}\;&z^2,\ \sin z,\ e^z,\\
+                    \text{(b)}\;&\tan z,\\
+                    \text{(c)}\;&\RePart(z).
+                \end{aligned}
+            }
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        In the usual topology on $\R$, determine whether each statement is true
+        or false.
+        \begin{problemchoices}
+            \item There exists a perfect subset of $\R$ containing no
+                  nondegenerate interval.
+            \item The set $\Z$ is open.
+            \item The set $\Z$ is closed.
+            \item There exists a countable subset of $\R$ that is neither
+                  open nor closed.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The Cantor set is perfect and contains no nondegenerate interval, so
+        (1) is true. The set $\Z$ is not open, because no open interval centered
+        at an integer lies inside $\Z$, but it is closed because
+        $\R\setminus\Z$ is open. Hence (2) is false and (3) is true. Finally,
+        $\Q$ is countable and is neither open nor closed in $\R$, so (4) is
+        true. Therefore,
+        \[
+            \boxed{\text{(1) T,\quad (2) F,\quad (3) T,\quad (4) T}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Which of the following integers can be the order of a nonabelian simple
+        group?
+        \begin{problemchoices}
+            \item $60$;
+            \item $48$;
+            \item $30$;
+            \item $77$.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The alternating group $A_5$ is simple and has order $60$, so $60$ is
+        possible.
+
+        A group of order $77=7\cdot11$ has a unique Sylow $11$-subgroup, since
+        \[
+            n_{11}\equiv1\pmod{11},
+            \qquad
+            n_{11}\mid7,
+        \]
+        so it is not simple. If a group of order $30$ were simple, then it would
+        have $6$ Sylow $5$-subgroups and $10$ Sylow $3$-subgroups. These would
+        already contain
+        \[
+            6(5-1)+10(3-1)=44
+        \]
+        nonidentity elements, impossible in a group with only $29$
+        nonidentity elements.
+
+        Finally, for a group of order $48$, the number of Sylow $2$-subgroups
+        is $1$ or $3$. The first case gives a normal subgroup. In the second
+        case, conjugation gives a homomorphism to $S_3$; it cannot be injective
+        because $48>6$, so its kernel is a nontrivial proper normal subgroup.
+        Hence the only possible order is
+        \[
+            \boxed{60}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Let
+        \[
+            \mathbf{F}(x,y,z)=(z,x,y).
+        \]
+        A plane through the origin intersects the sphere
+        \[
+            x^2+y^2+z^2=4
+        \]
+        in a great circle. Determine the plane for which the positively
+        oriented circulation of $\mathbf{F}$ around this circle is as large as
+        possible, and find the maximum circulation.
+    \end{expectedproblem}
+
+    \begin{solution}
+        The curl is constant:
+        \[
+            \nabla\times\mathbf{F}
+            =
+            (1,1,1).
+        \]
+        Let $\mathbf{n}$ be the unit normal that determines the positive
+        orientation of the circle. The circle bounds a disk of radius $2$ and
+        area $4\pi$. By Stokes' Theorem,
+        \[
+            \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
+            =
+            \iint_S
+            (\nabla\times\mathbf{F})\cdot\mathbf{n}\dd S
+            =
+            4\pi(1,1,1)\cdot\mathbf{n}.
+        \]
+        Cauchy--Schwarz gives
+        \[
+            (1,1,1)\cdot\mathbf{n}
+            \leq
+            \sqrt{3},
+        \]
+        with equality when
+        \[
+            \mathbf{n}
+            =
+            \frac{1}{\sqrt3}(1,1,1).
+        \]
+        Therefore the required plane and maximum circulation are
+        \[
+            \boxed{x+y+z=0},
+            \qquad
+            \boxed{4\pi\sqrt3}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}[Cantor's Diagonal Argument]
+        Let $\{0,1\}^{\N}$ be the set of all infinite binary sequences. Prove
+        that no function
+        \[
+            f\colon\N\to\{0,1\}^{\N}
+        \]
+        is surjective.
+    \end{expectedproblem}
+
+    \begin{solution}
+        Write
+        \[
+            f(n)=(a_{n1},a_{n2},a_{n3},\ldots),
+            \qquad
+            a_{nk}\in\{0,1\}.
+        \]
+        Define a binary sequence $b=(b_1,b_2,\ldots)$ by
+        \[
+            b_n=1-a_{nn}.
+        \]
+        For every $n\in\N$, the sequence $b$ differs from $f(n)$ in its
+        $n$th coordinate. Hence
+        \[
+            b\neq f(n)
+            \qquad
+            \text{for every }n\in\N.
+        \]
+        Therefore $b$ is not in the image of $f$, so $f$ is not surjective.
+    \end{solution}
+
+    \begin{expectedproblem}
+        On $\R^2$, determine which of the following functions is not a metric.
+        For $\mathbf{x}=(x_1,x_2)$ and $\mathbf{y}=(y_1,y_2)$, let
+        \begin{problemchoices}
+            \item $d(\mathbf{x},\mathbf{y})
+                  =\sqrt{(x_1-y_1)^2+(x_2-y_2)^2}$;
+            \item $d(\mathbf{x},\mathbf{y})
+                  =\min\{|x_1-y_1|,|x_2-y_2|\}$;
+            \item $d(\mathbf{x},\mathbf{y})
+                  =|x_1-y_1|+|x_2-y_2|$;
+            \item $d(\mathbf{x},\mathbf{y})=0$ if $\mathbf{x}=\mathbf{y}$ and
+                  $d(\mathbf{x},\mathbf{y})=1$ otherwise.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        Choice (2) is not a metric. For example,
+        \[
+            \mathbf{x}=(0,0),
+            \qquad
+            \mathbf{y}=(0,1)
+        \]
+        are distinct, but
+        \[
+            d(\mathbf{x},\mathbf{y})
+            =
+            \min\{0,1\}
+            =
+            0.
+        \]
+        Thus the identity-of-indiscernibles axiom fails. The other three
+        functions are, respectively, the Euclidean, taxicab, and discrete
+        metrics. Therefore, the answer is
+        \[
+            \boxed{(2)}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Which of the following sets has cardinality different from the other
+        four?
+        \begin{problemchoices}
+            \item the Cantor set;
+            \item the set of all functions $f\colon\Q\to\R$;
+            \item the set $C([0,1])$ of all continuous functions
+                  $[0,1]\to\R$;
+            \item $\R$;
+            \item the set of all algebraic numbers.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The Cantor set has cardinality $|\R|=\mathfrak{c}$. Also,
+        \[
+            |\R^{\Q}|
+            =
+            \mathfrak{c}^{\aleph_0}
+            =
+            (2^{\aleph_0})^{\aleph_0}
+            =
+            \mathfrak{c}.
+        \]
+        A continuous function on $[0,1]$ is determined by its values on the
+        countable dense set $\Q\cap[0,1]$, so
+        \[
+            |C([0,1])|\leq\mathfrak{c}^{\aleph_0}=\mathfrak{c}.
+        \]
+        Constant functions give the reverse inequality, hence
+        $|C([0,1])|=\mathfrak{c}$. By contrast, the algebraic numbers are
+        countable because there are only countably many polynomials in
+        $\Z[x]$, each with finitely many roots. Therefore the answer is
+        \[
+            \boxed{\text{the set of all algebraic numbers}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Determine which of the following series converge:
+        \begin{problemchoices}
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac1n$;
+            \item $\displaystyle
+                  \sum_{\substack{p\text{ prime}\\p+2\text{ prime}}}
+                  \left(\frac1p+\frac1{p+2}\right)$;
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac1{n^2}$;
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac1{2^n}$.
+        \end{problemchoices}
+    \end{expectedproblem}
+
+    \begin{solution}
+        The harmonic series in (1) diverges. Brun's Theorem from Mathematical
+        Concepts states that the twin-prime reciprocal sum in (2) converges.
+        The series in (3) is a $p$-series with $p=2>1$, and the series in (4)
+        is geometric with ratio $1/2$, so both converge. Hence
+        \[
+            \boxed{\text{(2), (3), and (4)}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        A Menger sponge is obtained by repeatedly replacing each cube by $20$
+        smaller cubes, each scaled by a factor of $1/3$. Determine its
+        self-similar dimension.
+    \end{expectedproblem}
+
+    \begin{solution}
+        If $d$ is the self-similar dimension, Mathematical Concepts gives
+        \[
+            20\left(\frac13\right)^d=1.
+        \]
+        Therefore
+        \[
+            3^d=20,
+            \qquad
+            \boxed{d=\frac{\ln20}{\ln3}}.
+        \]
+    \end{solution}
+
+    \begin{expectedproblem}
+        Start with a tetrahedral polyhedron and cut seven pairwise disjoint
+        tunnel-like through-holes through it. Let $V$, $E$, and $F$ denote the
+        numbers of vertices, edges, and faces in any polyhedral decomposition
+        of the resulting boundary surface. Determine
+        \[
+            V-E+F.
+        \]
+    \end{expectedproblem}
+
+    \begin{solution}
+        The original tetrahedral boundary is a sphere, which has genus $0$ and
+        Euler characteristic $2$. Each disjoint through-hole adds one handle,
+        so the resulting closed orientable surface has genus
+        \[
+            g=7.
+        \]
+        By the Euler-characteristic formula from Mathematical Concepts,
+        \[
+            V-E+F=2-2g=2-14.
+        \]
+        Hence
+        \[
+            \boxed{-12}.
+        \]
+    \end{solution}
+

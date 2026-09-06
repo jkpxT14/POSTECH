@@ -1,6 +1,7 @@
-\documentclass[11pt,oneside]{book}
-
 \pdfminorversion=7
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ExpectedProblemsStyle}[2026/09/06 Revised formatting for Expected Problems]
 
 % Page layout and typography
 \usepackage[a4paper,margin=1in]{geometry}
@@ -9,6 +10,7 @@
 \usepackage{microtype}
 \usepackage{etoolbox}
 \usepackage{needspace}
+\usepackage{fancyhdr}
 
 % Mathematics
 \usepackage{amsmath,amssymb,amsthm}
@@ -24,16 +26,9 @@
 % Figures
 \usepackage{graphicx}
 
-% Color and PDF metadata
+% Institution colors and PDF support
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
-
-\hypersetup{
-    pdftitle={Mathematics for Science Quiz},
-    pdfauthor={Jungwoo Kim},
-    pdfsubject={Mathematics preparation handbook for Science Quiz},
-    pdfcreator={LaTeX}
-}
 
 % Canonical personal-name rendering when an additional font encoding is needed.
 \DeclareRobustCommand{\NgoBaoChau}{{\fontencoding{T5}\selectfont Ngô Bảo Châu}}
@@ -151,104 +146,12 @@
 % Table columns
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
-% Chapter metadata
-\newcommand{\relatedcourses}[1]{%
-    \if\relax\detokenize{#1}\relax
-    \else
-        \noindent Related \POSTECH{} Courses: #1\par
-    \fi
-}
-\newcommand{\relatedbooks}[1]{%
-    \if\relax\detokenize{#1}\relax
-    \else
-        \noindent Related Books: #1\par
-    \fi
-}
-
-% Typography follows standard mathematical conventions throughout the book:
-% theorem statements are italic, definitions and expository statements are
-% upright, proof and solution labels are italic, and problem/source headings
-% are bold upright. In running text, italics are reserved for titles and terms
-% being defined, while bold is reserved for genuine structural headings.
-% Theorem styles
-\newtheoremstyle{sciencequizplain}
-    {6pt}
-    {6pt}
-    {\itshape}
-    {}
-    {\bfseries}
-    {}
-    {\newline}
-    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
-
-\newtheoremstyle{sciencequizdefinition}
-    {6pt}
-    {6pt}
-    {}
-    {}
-    {\bfseries}
-    {}
-    {\newline}
-    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
-
-\newtheoremstyle{sciencequizsameline}
-    {6pt}
-    {6pt}
-    {}
-    {}
-    {\itshape}
-    {.}
-    {0.5em}
-    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
-
-\renewenvironment{proof}[1][Proof]
-    {\par\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}
-    {\hfill$\square$\par}
-
-\theoremstyle{sciencequizdefinition}
-\newtheorem{definition}{Definition}[chapter]
-
-\theoremstyle{sciencequizplain}
-\newtheorem{theorem}[definition]{Theorem}
-\newtheorem{proposition}[definition]{Proposition}
-\newtheorem{lemma}[definition]{Lemma}
-\newtheorem{corollary}[definition]{Corollary}
-\newtheorem{conjecture}[definition]{Conjecture}
-\newtheorem{hypothesis}[definition]{Hypothesis}
-
-\theoremstyle{sciencequizdefinition}
-\newtheorem{formula}[definition]{Formula}
-\newtheorem{fact}[definition]{Fact}
-\newtheorem{openproblem}[definition]{Open Problem}
-\newtheorem{algorithm}[definition]{Algorithm}
-
-\theoremstyle{sciencequizsameline}
-\newtheorem*{remark}{Remark}
-\newtheorem*{idea}{Idea}
-\newtheorem*{strategy}{Strategy}
-\newtheorem*{tactic}{Tactic}
-
-% Readability safeguard: theorem-like labels should never be stranded at the
-% bottom of a page with too little room for the statement that follows.
-\newcommand{\sciencequizblockspace}{\Needspace{4\baselineskip}}
-\BeforeBeginEnvironment{definition}{\sciencequizblockspace}
-\BeforeBeginEnvironment{theorem}{\sciencequizblockspace}
-\BeforeBeginEnvironment{proposition}{\sciencequizblockspace}
-\BeforeBeginEnvironment{lemma}{\sciencequizblockspace}
-\BeforeBeginEnvironment{corollary}{\sciencequizblockspace}
-\BeforeBeginEnvironment{conjecture}{\sciencequizblockspace}
-\BeforeBeginEnvironment{hypothesis}{\sciencequizblockspace}
-\BeforeBeginEnvironment{formula}{\sciencequizblockspace}
-\BeforeBeginEnvironment{fact}{\sciencequizblockspace}
-\BeforeBeginEnvironment{openproblem}{\sciencequizblockspace}
-\BeforeBeginEnvironment{algorithm}{\sciencequizblockspace}
-\BeforeBeginEnvironment{remark}{\sciencequizblockspace}
-\BeforeBeginEnvironment{idea}{\sciencequizblockspace}
-\BeforeBeginEnvironment{strategy}{\sciencequizblockspace}
-\BeforeBeginEnvironment{tactic}{\sciencequizblockspace}
-
 % Problem environments
-% Past Problems keep explicit historical labels.
+% Past Problems keep explicit historical labels. Expected Problems are numbered
+% automatically, restarting from 1 in each section. Each ordinary
+% Expected Problem is stored as one adjacent expectedproblem--solution pair.
+% In Direct Calculation Problems, each expectedsubproblem is stored immediately
+% before its matching expectedsubsolution so the pair can be moved as one unit.
 % When one problem has genuinely different solution methods, wrap its solution
 % environments in solutions; they are then labeled Solution 1, Solution 2, ...
 % automatically. Ordinary solutions remain labeled simply Solution.
@@ -265,17 +168,11 @@
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
 }
 
-\newenvironment{problem}[1]
-    {\problemheading{#1}}
-    {\par\vspace{6pt}}
-
-\newenvironment{pastproblem}[1]
-    {\problemheading{#1}}
-    {\par\vspace{6pt}}
-
 % Lists inside problems use role-specific labels throughout the book.
 % Independent choices, clues, assumptions, and ordered statements use
-% (1), (2), (3), ...; connected subparts use (a), (b), (c), ....
+% (1), (2), (3), ...; connected subparts use (a), (b), (c), .... Both
+% environments are left aligned and use the same spacing in Past Problems and
+% Expected Problems.
 \newlist{problemchoices}{enumerate}{1}
 \setlist[problemchoices]{
     label=(\arabic*),
@@ -300,57 +197,76 @@
     align=left
 }
 
-% Outside problem statements, independent ordered items and procedural steps use
-% (1), (2), ...; formal axioms, conditions, and parallel logical modes use
-% (i), (ii), .... This keeps each numbering style tied to a stable semantic role.
-\newlist{bookitems}{enumerate}{1}
-\setlist[bookitems]{
-    label=(\arabic*),
-    leftmargin=2.5em,
-    labelsep=0.6em,
-    itemsep=0.15em,
-    topsep=0.4em,
-    parsep=0pt,
-    partopsep=0pt,
-    align=left
+\newcounter{expectedproblemsection}
+\newcounter{expectedproblem}
+\renewcommand{\theHexpectedproblem}{%
+    \arabic{expectedproblemsection}.\arabic{expectedproblem}%
 }
+\newenvironment{expectedproblem}[1][]
+    {%
+        \refstepcounter{expectedproblem}%
+        \if\relax\detokenize{#1}\relax
+            \problemheading{\theexpectedproblem}%
+        \else
+            \problemheading{\theexpectedproblem.\ (#1)}%
+        \fi
+    }
+    {\par\vspace{6pt}}
 
-\newlist{conditionlist}{enumerate}{1}
-\setlist[conditionlist]{
-    label=(\roman*),
-    leftmargin=2.5em,
-    labelsep=0.6em,
-    itemsep=0.15em,
-    topsep=0.4em,
-    parsep=0pt,
-    partopsep=0pt,
-    align=left
+% Direct Calculation Problems use numbered category headings rather than
+% parenthetical source/name attributions. Their independently movable items are
+% numbered 1.1, 1.2, ... through expectedsubproblem.
+\newenvironment{expectedproblemgroup}[1]
+    {%
+        \refstepcounter{expectedproblem}%
+        \problemheading{\theexpectedproblem}%
+        \textbf{#1.}\par\vspace{0.3em}\noindent\ignorespaces
+    }
+    {\par\vspace{6pt}}
+
+% Subproblems and corresponding solutions inside an Expected Problem
+\newcounter{expectedsubproblem}[expectedproblem]
+\renewcommand{\theexpectedsubproblem}{%
+    \theexpectedproblem.\arabic{expectedsubproblem}%
 }
+\renewcommand{\theHexpectedsubproblem}{%
+    \arabic{expectedproblemsection}.\arabic{expectedproblem}.%
+    \arabic{expectedsubproblem}%
+}
+\newenvironment{expectedsubproblem}[1][]
+    {%
+        \refstepcounter{expectedsubproblem}%
+        \par\Needspace{3\baselineskip}\vspace{4pt}\noindent
+        \if\relax\detokenize{#1}\relax
+            \textbf{\theexpectedsubproblem.}%
+        \else
+            \textbf{\theexpectedsubproblem.\ (#1).}%
+        \fi
+        \hspace{0.5em}\ignorespaces
+    }
+    {\par\vspace{4pt}}
 
-\newif\ifnumberedsolutions
-\numberedsolutionsfalse
-\newcounter{solutionnumber}
+\newenvironment{expectedsubsolution}
+    {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
+    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
 
-\newenvironment{solutions}
-    {\setcounter{solutionnumber}{0}\numberedsolutionstrue}
-    {\numberedsolutionsfalse}
+\newcommand{\expectedproblemsection}[1]{%
+    \clearpage
+    \phantomsection
+    \section*{#1}%
+    \addcontentsline{toc}{section}{#1}%
+    \markboth{#1}{#1}%
+    \stepcounter{expectedproblemsection}%
+    \setcounter{expectedproblem}{0}%
+}
 
 \newenvironment{solution}
     {%
         \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
-        \ifnumberedsolutions
-            \stepcounter{solutionnumber}%
-            \textit{Solution \arabic{solutionnumber}.}%
-        \else
-            \textit{Solution.}%
-        \fi
+        \textit{Solution.}%
         \hspace{0.5em}\ignorespaces
     }
     {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
-
-\newenvironment{hint}
-    {\par\Needspace{2\baselineskip}\vspace{4pt}\noindent\textit{Hint.}\hspace{0.5em}\ignorespaces}
-    {\par\vspace{4pt}}
 
 % Standard number systems
 \newcommand{\N}{\mathbb{N}}
@@ -387,6 +303,15 @@
 \DeclareMathOperator{\arcsinh}{arcsinh}
 \DeclareMathOperator{\arccosh}{arccosh}
 \DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\arcsch}{arcsch}
+\DeclareMathOperator{\arsech}{arsech}
+\DeclareMathOperator{\arcoth}{arcoth}
 \DeclareMathOperator{\lengthop}{length}
 \DeclareMathOperator{\area}{area}
 \DeclareMathOperator{\vol}{vol}
@@ -394,6 +319,8 @@
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Fix}{Fix}
 \DeclareMathOperator{\inv}{inv}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\closure}{cl}
 
 % Probability and statistics notation
 \newcommand{\Prob}{\mathbb{P}}
@@ -427,6 +354,7 @@
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\proj}{proj}
 \DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\spec}{spec}
 
 % Number theory and algebra operators
 \DeclareMathOperator{\lcmop}{lcm}
@@ -445,75 +373,15 @@
 \newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
 \newcommand{\indicator}[1]{\mathbbm{1}_{#1}}
 \newcommand{\ones}{\mathbf{1}}
+\newcommand{\indep}{\mathrel{\perp\!\!\!\perp}}
 
-\begin{document}
-
-    \pagenumbering{gobble}
-
-    \begin{titlepage}
-        \centering
-
-        \vspace*{2.4cm}
-
-        {\Huge\bfseries Story of\\[0.35em]
-        How \POSTECH\\[0.35em]
-        Defeats \KAIST\par}
-
-        \vspace{0.7cm}
-
-        {\LARGE\bfseries Mathematics for Science Quiz\par}
-
-        \vspace{0.55cm}
-
-        {\large Second Edition\par}
-        {\normalsize September 2026\par}
-
-        \vspace{1.15cm}
-
-        {\large
-        Jungwoo Kim\\
-        Department of Mathematics\\
-        \PohangUniversityOfScienceAndTechnology\\
-        (2026 Science Quiz Mathematics Representative)\\
-        jkpxt14@postech.ac.kr
-        \par}
-
-        \vfill
-
-        {\large
-        \POSTECH--\KAIST{} Science War\\[0.7em]
-        \PohangUniversityOfScienceAndTechnology\\
-        vs\\
-        \KoreaAdvancedInstituteOfScienceAndTechnology
-        \par}
-
-        \vspace{0.3cm}
-
-    \end{titlepage}
-
-    \pagenumbering{arabic}
-
-    \input{Preface}
-
-    \input{Acknowledgements}
-
-    \tableofcontents
-
-    \input{NotationandConventions}
-
-    \part{Mathematical Concepts}
-
-    \input{MathematicalConcepts}
-
-    \part{Facts to Memorize}
-
-    \input{FactstoMemorize}
-
-    \part{Mathematics in 2026}
-
-    \input{Mathematicsin2026}
-
-    \part{Past Problems}
-
-    \input{PastProblems}
-\end{document}
+% Running design for the standalone problem collection
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Expected Problems}}
+\fancyhead[R]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\raggedbottom
