@@ -1,6 +1,6 @@
 \section{Calculus and Analysis}
 
-The differential $\dd$ is upright; $\varepsilon$ is the default small positive quantity in analysis.
+The differential $\dd$ is upright; $\varepsilon$ is the default small positive quantity in analysis. Function spaces take their domains in parentheses, for example $C([a,b])$, $\mathcal{R}([a,b])$, and $L^p(\Omega)$.
 
 \begin{notationtable}
 $\displaystyle\lim_{x\to a} f(x)$ & Limit as $x$ approaches $a$. \\
@@ -83,9 +83,17 @@ $\liminf a_n$ & Limit inferior. \\
 $f_n\to f,\ f_n\ptwlabelto f$ & Pointwise convergence. \\*
 $f_n\rightrightarrows f,\ f_n\uniflabelto f$ & Uniform convergence. \\
 $f_n\aeto f$ & Convergence almost everywhere. \\
-$C^k(I)$ & $k$ times continuously differentiable functions on $I$. \\*
-$C^\infty(I)$ & Smooth functions on $I$. \\
-$\|f\|_\infty$ & Supremum norm. \\
+\addlinespace[0.26em]
+$C(\Omega),\ C^0(\Omega)$ & Continuous functions on $\Omega$. \\*
+$C^k(\Omega)$ & $k$ times continuously differentiable functions on $\Omega$. \\*
+$C^\infty(\Omega)$ & Smooth functions on $\Omega$. \\
+$\mathcal{R}([a,b])$ & Riemann-integrable functions on $[a,b]$. \\
+$L^p(\Omega)$ & Lebesgue $L^p$ space on $\Omega$. \\*
+$L^\infty(\Omega)$ & Lebesgue space of essentially bounded functions on $\Omega$. \\
+$\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{x\in\Omega}|f(x)|$, when finite. \\
+$\|f\|_{L^p(\Omega)},\ \|f\|_p$ & $L^p$-norm $\displaystyle\left(\int_\Omega |f(x)|^p\,\dd x\right)^{1/p}$ for $1\le p<\infty$. \\
+$\|f\|_{L^\infty(\Omega)}$ & $L^\infty$-norm $\displaystyle\esssup_{x\in\Omega}|f(x)|$. \\
+\addlinespace[0.26em]
 $B_r(x)$ & Open ball of radius $r$ centered at $x$. \\*
 $\overline{B}_r(x)$ & Closed ball of radius $r$ centered at $x$. \\
 \addlinespace[0.26em]
