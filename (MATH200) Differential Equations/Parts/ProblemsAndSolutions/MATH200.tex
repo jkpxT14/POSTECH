@@ -1,3 +1,1675 @@
 \coursepart{1}{(MATH200) Differential Equations}
+\ifCourseSolutions\else
+{\noindent\small\itshape Problems are arranged chronologically by year and semester, with the midterm preceding the final examination within the same semester, while preserving the original problem order within each source.\par}
+\vspace{0.22cm}
+\fi
 
-% Problems and matching solutions will be added here in chronological source order.
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 1
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Answer the following questions.
+\begin{problemsubparts}
+\item Solve the initial-value problem
+\[
+\frac{\dd y}{\dd x}=\frac{(50-y)(y-10)}{40},
+\qquad
+y(0)=18.
+\]
+\item Sketch the solution curve.
+\item Find the point on the solution curve where $\dd y/\dd x$ is maximized.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 2
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Solve the differential equation
+\[
+(x+1)y'+(x+2)y=2xe^{-x},
+\qquad x>-1.
+\]
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 3
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Solve the initial-value problem
+\[
+y^2\cos(xy)\,\dd x
+-\bigl(2-2\sin(xy)-xy\cos(xy)\bigr)\,\dd y=0,
+\qquad
+y(\pi)=2.
+\]
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 4
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find the general solution of the differential equation
+\[
+y''-\frac{1}{x}y'=-x\sin x,
+\qquad x>0.
+\]
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 5
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Consider the population model for a species of fish in a lake
+\[
+\frac{\dd P}{\dd t}=2P-\frac{P^2}{50},
+\]
+where $P$ is measured in thousands of fish and $t$ is measured in years. The managing office of the lake wants to issue fishing licenses for the harvesting of some of the fish; this amounts to a constant term being subtracted off of the right-hand side of the above equation, which is a function of $h$, the number of licenses issued. Each fishing license is valid for the annual take of $3{,}000$ fish. Answer the following questions.
+\begin{problemsubparts}
+\item What is the largest number of licenses that can be issued if the goal is to keep a stable population of fish in the lake over the long term? The number of licenses is, of course, a nonnegative integer.
+\item If the largest number of licenses is actually issued, what is the expected long-term stable population of fish in the lake?
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 6
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Consider the linear differential equation
+\[
+ay''+by'+cy=g(t),
+\]
+where $a,b,c$ are positive constants and $g(t)$ is a continuous function. If $y_1(t)$ and $y_2(t)$ are both solutions of the above equation, show that
+\[
+\lim_{t\to\infty}\bigl(y_1(t)-y_2(t)\bigr)=0.
+\]
+Is this still true if $b=0$?
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 7
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Verify that $y_1(t)=1$ and $y_2(t)=\sqrt{t}$ both solve the differential equation
+\[
+yy''+(y')^2=0,
+\qquad t>0,
+\]
+but $y(t)=c_1+c_2\sqrt{t}$ is not a general solution of the differential equation. Explain why this result does not contradict the superposition principle for homogeneous equations we have learned in the class.
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 8
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find an integer $n$ such that $\phi(x)=\sin(x^n)$ satisfies the differential equation
+\[
+xy''-y'+4x^3y=0,
+\qquad x>0.
+\]
+Find the general solution of the equation.
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 9
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find a particular solution of the differential equation
+\[
+y''-2y'+y=e^x\arctan x.
+\]
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 10
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Using the method of Green's functions, find the solution of the initial-value problem
+\[
+y''-10y'+25y=e^{5t},
+\qquad
+y(0)=-1,
+\qquad
+y'(0)=1.
+\]
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 11
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find a function $\phi$ such that the function $y=\phi(\ln x)$ satisfies the differential equation
+\[
+x^3y'''+2x^2y''-xy'+y=\frac{1}{x},
+\qquad x>0.
+\]
+Find the general solution of the equation.
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 12
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find the general solution of the system of second-order differential equations
+\[
+\begin{cases}
+x''=-2x+y+t-1,\\
+y''=4x-2y+3+\cos(2t).
+\end{cases}
+\]
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 1
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+For a piecewise continuous function $f(t)$ defined on $[0,\infty)$, we have studied in class that a sufficient condition guaranteeing the existence of the Laplace transform $\mathcal{L}\{f(t)\}(s)$ is that $f$ be of exponential order. Meanwhile, there may be a piecewise continuous function that possesses the Laplace transform but is not of exponential order. It is known that the function
+\[
+g(t)=2te^{t^2}\cos\bigl(e^{t^2}\bigr)
+\]
+is not of exponential order. Nevertheless, show that $\mathcal{L}\{g(t)\}(s)$ exists. \textit{(Hint. Use integration by parts.)}
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 2
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+For each $t\ge0$, let
+\[
+f(t)=\int_0^\infty \frac{\cos(t\eta)}{1+\eta^2}\,\dd\eta.
+\]
+Show that
+\[
+\mathcal{L}\{f(t)\}(s)
+=\int_0^\infty \frac{s}{(1+\eta^2)(s^2+\eta^2)}\,\dd\eta
+=\frac{\pi}{2(s+1)}.
+\]
+\textit{(Hint. Consider changing the order of integration.)}
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 3
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find the series solution of the initial-value problem
+\[
+y''+x^2y'+y=0,
+\qquad
+y(0)=2,
+\qquad
+y'(0)=3,
+\]
+up to the first four nonzero terms.
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 4
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find the general solution of the differential equation
+\[
+4x^2y''-8x^2y'+(4x^2+1)y=0.
+\]
+Note that $x=0$ is a singular point of the differential equation. \textit{(Hint. When you obtain a three-term recurrence relation, consider an appropriate substitution that converts the three-term relation into a two-term relation.)}
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 5
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Solve
+\[
+\mathbf X'=
+\begin{pmatrix}
+-3&-1&-5\\
+-2&1&-2\\
+2&1&4
+\end{pmatrix}\mathbf X
+\]
+by diagonalization.
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 6
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find the general solution of the nonhomogeneous linear system
+\[
+\mathbf X'=
+\begin{pmatrix}
+3&-1&-1\\
+1&1&-1\\
+1&-1&1
+\end{pmatrix}\mathbf X
++
+\begin{pmatrix}
+2t+1\\
+3\\
+0
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 7
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+3&1\\
+4&0
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find $e^{t\mathbf A}$.
+\item Solve the initial-value problem
+\[
+\mathbf X'=\mathbf A\mathbf X,
+\qquad
+\mathbf X(0)=
+\begin{pmatrix}
+2\\
+-1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 8
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Consider the linear system
+\[
+\mathbf X'=
+\begin{pmatrix}
+-3&0&2\\
+1&-1&0\\
+-2&-1&0
+\end{pmatrix}\mathbf X.
+\]
+\begin{problemsubparts}
+\item Decide whether the origin is a stable critical point, an asymptotically stable critical point, or an unstable critical point for the system.
+\item Find the general solution.
+\item Find the solution $\mathbf X(t)$ such that
+\[
+\mathbf X(0)=
+\begin{pmatrix}
+0\\3\\0
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 9
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find the solution of the system
+\[
+\begin{cases}
+x'=-5x+4y,\\
+y'=-2x+4y,
+\end{cases}
+\]
+and draw the phase plane near the critical point $(0,0)$. Include the direction of some solution curves.
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 10
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Find all the critical points of the following nonlinear system of differential equations and classify (if possible) whether they are stable (unstable) nodes or saddle points, spirals, etc.:
+\[
+\begin{cases}
+x'=0.2x(1-0.2x-0.3y),\\
+y'=0.5y(1-0.1x-0.2y).
+\end{cases}
+\]
+\end{problem}
+
+% 2021 Spring KAIST Differential Equations and Applications Final, Problem 11
+\Needspace{28\baselineskip}
+\begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
+Parabolas have the reflective property that whenever an incident ray parallel to the axis of a parabola is reflected on the parabola, then it will pass through the focus; the following figure depicts a case of the parabola $y^2=4px$ $(p>0)$.
+
+\begin{center}
+\begin{tikzpicture}[x=1.08cm,y=1.08cm,>=Latex]
+  \def\p{0.55}
+  \def\yP{1.55}
+  \pgfmathsetmacro{\xP}{\yP*\yP/(4*\p)}
+  \draw[->,line width=0.45pt] (-0.25,0) -- (3.55,0) node[right] {$x$};
+  \draw[->,line width=0.45pt] (0,-2.15) -- (0,2.75) node[above] {$y$};
+  \draw[KAISTBlue,line width=0.9pt,domain=-2.0:2.25,samples=100,smooth,variable=\t]
+    plot ({\t*\t/(4*\p)},{\t});
+  \fill (\xP,\yP) circle (1.2pt) node[above left=1pt] {$P(x_0,y_0)$};
+  \fill (\p,0) circle (1.2pt) node[below=2pt] {$F(p,0)$};
+  \draw[black!55,dashed,->,line width=0.65pt] (3.25,\yP) -- (\xP+0.04,\yP) node[midway,above=2pt] {$L$};
+  \draw[POSTECHRed,->,line width=0.75pt] (\xP,\yP) -- (\p+0.03,0.05);
+  \draw[black!45,line width=0.6pt] ({\xP-0.55},{\yP-0.37}) -- ({\xP+1.05},{\yP+0.70});
+  \node[KAISTBlue] at (2.25,-1.55) {$y^2=4px$};
+\end{tikzpicture}
+\end{center}
+
+If we model such a reflective property as a differential equation, then we obtain the first-order nonlinear differential equation
+\[
+y(y')^2-2(p-x)y'-y=0.
+\]
+More precisely, a solution $y=f(x)$ of the above differential equation is intended to satisfy the following: if an incident ray $L$ parallel to the $x$-axis is reflected at the point $P(x_0,y_0)$ on the graph of $y=f(x)$, then it passes through the point $F(p,0)$.
+\begin{problemsubparts}
+\item Verify that the parabola $y^2=4px$ satisfies the given differential equation.
+\item Find a one-parameter family of solutions of the given differential equation. \textit{(Hint. Use the substitution $w=y^2$. Then differentiate the modified equation with respect to the independent variable $x$.)}
+\item Characterize a common geometric property of the one-parameter family of solutions you obtained.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 1
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Solve the differential equation
+\[
+y'+y=1.
+\]
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 2
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Consider the differential equation
+\[
+y'=y^2,
+\qquad
+y(0)=1.
+\]
+\begin{problemsubparts}
+\item Solve the initial-value problem.
+\item Find the maximal possible interval on which the solution $y(x)$ satisfying $y(0)=1$ exists.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 3
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Consider a solution $y(x)$ of the autonomous differential equation
+\[
+y'=y(y-1).
+\]
+\begin{problemsubparts}
+\item Find all constant solutions.
+\item Sketch the graph of the solution $y(x)$, $-\infty<x<\infty$, such that $y(0)=\frac12$. You do not need to find the formula for $y(x)$.
+\item Let $y(x)$ be the solution such that $y(0)=\frac12$. Find
+\[
+\lim_{x\to-\infty}y(x)
+\qquad\text{and}\qquad
+\lim_{x\to+\infty}y(x).
+\]
+You do not need to find the formula for $y(x)$.
+\item Sketch the graph of the solution $y(x)$ near $x=0$ such that $y(0)=2$. You do not need to find the explicit formula for $y(x)$.
+\item Sketch the graph of the solution $y(x)$ near $x=0$ such that $y(0)=-1$. You do not need to find the explicit formula for $y(x)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 4
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Consider the differential equation
+\[
+(x^2+y^2)y'+(3x^2+2x)y=-y^3.
+\]
+\begin{problemsubparts}
+\item Rewrite the given differential equation as
+\[
+M(x,y)\,\dd x+N(x,y)\,\dd y=0
+\]
+for some functions $M(x,y)$ and $N(x,y)$.
+\item Show that
+\[
+\frac{\partial M(x,y)}{\partial y}
+-\frac{\partial N(x,y)}{\partial x}
+=3N(x,y).
+\]
+\item Let $\mu(x)=e^{3x}$. Show that
+\[
+\frac{\partial\bigl(\mu(x)M(x,y)\bigr)}{\partial y}
+-\frac{\partial\bigl(\mu(x)N(x,y)\bigr)}{\partial x}
+=0.
+\]
+\item Consider the equation
+\[
+\mu(x)M(x,y)\,\dd x+\mu(x)N(x,y)\,\dd y=0,
+\]
+and find $f(x,y)$ satisfying
+\[
+\frac{\partial f(x,y)}{\partial x}=\mu(x)M(x,y),
+\qquad
+\frac{\partial f(x,y)}{\partial y}=\mu(x)N(x,y).
+\]
+\item Express the solution of the given differential equation as
+\[
+f(x,y)=C,
+\]
+where $C$ is an arbitrary constant.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 5
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Solve the initial-value problem
+\[
+\frac{\dd y}{\dd x}=\cos^2(x-y),
+\qquad
+y(0)=\frac{\pi}{4}.
+\]
+\begin{problemsubparts}
+\item Let $u=x-y$. Express $\dd u/\dd x$ in terms of $\dd y/\dd x$.
+\item Show that
+\[
+\frac{\dd u}{\dd x}=\sin^2u.
+\]
+\item Solve the differential equation
+\[
+\frac{\dd u}{\dd x}=\sin^2u.
+\]
+\item Show that
+\[
+y=x+\operatorname{arccot}(x+C),
+\]
+where $C$ is a constant.
+\item Determine the constant $C$ such that $y(0)=\pi/4$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 6
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Consider the differential equation
+\[
+(x^3+y^3)\,\dd x+xy^2\,\dd y=0.
+\]
+\begin{problemsubparts}
+\item Let $y=ux$. Rewrite the given differential equation in terms of $x$ and $u$.
+\item Find $A(x)$ and $B(u)$ such that
+\[
+A(x)\,\dd x+B(u)\,\dd u=0.
+\]
+\item Solve the differential equation
+\[
+A(x)\,\dd x+B(u)\,\dd u=0.
+\]
+\item Express the solution of the given differential equation in the form
+\[
+g(x,y)=C,
+\]
+where $C$ is a constant.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 7
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Show that the functions
+\[
+y_1(x)=x,
+\qquad
+y_2(x)=x\ln x,
+\qquad
+y_3(x)=x(\ln x)^2
+\]
+are linearly independent on $(0,\infty)$, where $\ln$ denotes the natural logarithm.
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 8
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Consider the second-order differential equation
+\[
+y''+y'-2y=e^x\sin x+2x-1.
+\]
+\begin{problemsubparts}
+\item Find the complementary solutions of
+\[
+y''+y'-2y=0.
+\]
+\item Find a particular solution of
+\[
+y''+y'-2y=e^x\sin x.
+\]
+\item Find a particular solution of
+\[
+y''+y'-2y=2x-1.
+\]
+\item Find a particular solution of
+\[
+y''+y'-2y=e^x\sin x+2x-1.
+\]
+\item Find the general solution of
+\[
+y''+y'-2y=e^x\sin x+2x-1.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 9
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+We will use the Green's function to solve the initial-value problem
+\[
+y''+y'+y=e^{-x/2},
+\qquad
+y(0)=0,
+\qquad
+y'(0)=1.
+\]
+\begin{problemsubparts}
+\item Find the auxiliary equation for the homogeneous equation
+\[
+y''+y'+y=0.
+\]
+\item Find two independent solutions $y_1(x)$ and $y_2(x)$ of the homogeneous equation.
+\item Compute the Wronskian of $y_1(x)$ and $y_2(x)$.
+\item Find the Green's function $G(x,t)$.
+\item Using the Green's function, find a particular solution $y_p(x)$ of
+\[
+y''+y'+y=e^{-x/2}
+\]
+that satisfies $y_p(0)=y_p'(0)=0$.
+\item Find a solution $y_h(x)$ of
+\[
+y''+y'+y=0,
+\qquad
+y(0)=0,
+\qquad
+y'(0)=1.
+\]
+\item Find a solution of
+\[
+y''+y'+y=e^{-x/2},
+\qquad
+y(0)=0,
+\qquad
+y'(0)=1.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 10
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Consider the Laplace transform $\mathcal{L}\{f(t)\}(s)$ of functions $f(t)$, $0\le t<\infty$.
+\begin{problemsubparts}
+\item Compute the Laplace transform of $f(t)=e^t$ using the definition of the Laplace transform.
+\item Assume that (i) $f(t)$ is differentiable, (ii) $\mathcal{L}\{f(t)\}$ exists, and (iii) $\mathcal{L}\{f'(t)\}$ exists. Prove that
+\[
+\mathcal{L}\{f'(t)\}(s)=-f(0)+s\mathcal{L}\{f(t)\}(s).
+\]
+\item Take $f(t)=e^t$ in part (b), and find the Laplace transform of $f(t)=e^t$. \textit{(Hint. The answer should coincide with the result from part (a).)}
+\item Solve the differential equation
+\[
+y''(t)+y(t)=0,
+\qquad
+y(0)=a_0,
+\qquad
+y'(0)=a_1,
+\]
+on $(0,\infty)$ by using the Laplace transform.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 1
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+For each $t\ge0$, let
+\[
+f(t)=\int_0^\infty \frac{\sin(tx)}{x}\,\dd x
+\]
+and
+\[
+I(x)=\int_0^\infty \sin(tx)e^{-st}\,\dd t.
+\]
+\begin{problemsubparts}
+\item Show that for $s>0$,
+\[
+\int_0^\infty f(t)e^{-st}\,\dd t
+=\int_0^\infty \frac{1}{x}I(x)\,\dd x.
+\]
+\item Show that
+\[
+I(x)=\frac1x-\frac{s^2}{x^2}I(x)
+\]
+for $s>0$ and $x>0$.
+\item Show that
+\[
+I(x)=\frac{x}{x^2+s^2}.
+\]
+\item Show that
+\[
+\mathcal{L}\{f(t)\}(s)=\frac{\pi}{2s}.
+\]
+\item Show that
+\[
+f(t)=\frac{\pi}{2}
+\]
+for all $t>0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 2
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Let $y(t)$ be a solution of the differential equation
+\[
+ty''+y'+ty=0,
+\]
+or equivalently
+\[
+(ty')'+ty=0,
+\]
+such that $y(0)=1$. It is called the Bessel function of the first kind of order $\nu=0$. Let
+\[
+h(t)=ty'(t),
+\qquad
+F(s)=\mathcal{L}\{y(t)\}(s),
+\qquad
+G(s)=\mathcal{L}\{y'(t)\}(s).
+\]
+\begin{problemsubparts}
+\item Show that
+\[
+s\mathcal{L}\{h(t)\}(s)-h(0)-F'(s)=0.
+\]
+\item Show that
+\[
+-sG'(s)-F'(s)=0.
+\]
+\item Show that
+\[
+G'(s)=F(s)+sF'(s).
+\]
+\item Show that
+\[
+\frac{F'(s)}{F(s)}=-\frac{s}{s^2+1}.
+\]
+\item Show that
+\[
+F(s)=\frac{C}{\sqrt{s^2+1}}.
+\]
+\item Determine $C$, and find $\mathcal{L}\{y(t)\}(s)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 3
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Let
+\[
+y=\sum_{n=0}^{\infty}a_nx^n
+\]
+be a nonzero series solution of the differential equation
+\[
+y''-(x^2-1)y=0
+\]
+about the point $x=0$.
+\begin{problemsubparts}
+\item Find the constants $p$ and $q$ such that for $n=2,3,4,\dots$,
+\[
+(pn+q)\bigl((n+2)a_{n+2}+a_n\bigr)=na_n+a_{n-2}.
+\]
+\item Find the series solution satisfying
+\[
+y(0)=1,
+\qquad
+y'(0)=0.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 4
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+3&4\\
+1&0
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Solve the homogeneous linear system
+\[
+\mathbf x'=\mathbf A\mathbf x.
+\]
+\item Solve the nonhomogeneous linear system
+\[
+\mathbf x'=\mathbf A\mathbf x+
+\begin{pmatrix}
+-\sin t\\
+\sin t
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 5
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Diagonalize the matrix
+\[
+\mathbf A=
+\begin{pmatrix}
+-3&-1&-5\\
+-2&1&-2\\
+2&1&4
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Solve the system
+\[
+\mathbf x'=\mathbf A\mathbf x.
+\]
+\item Compute $e^{t\mathbf A}$. An answer as a product of three matrices is acceptable.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 6
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+5&-6\\
+-2&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find a fundamental matrix $\boldsymbol{\Phi}(t)$ of the system
+\[
+\mathbf x'=\mathbf A\mathbf x.
+\]
+\item Find a particular solution of the nonhomogeneous system
+\[
+\mathbf x'=\mathbf A\mathbf x+
+\begin{pmatrix}
+4\\
+11
+\end{pmatrix}.
+\]
+\item Solve the initial-value problem
+\[
+\mathbf x'=\mathbf A\mathbf x+
+\begin{pmatrix}
+4\\
+11
+\end{pmatrix},
+\qquad
+\mathbf x(0)=
+\begin{pmatrix}
+1\\
+4
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 7
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Find two linearly independent series solutions, up to the first four nonzero terms, for the differential equation
+\[
+2xy''+3y'-xy=0.
+\]
+You can leave products of integers without multiplying them. For example, the expression
+\[
+\frac{1}{1\cdot3\cdot5\cdot7}
+\]
+is good enough.
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 8
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Consider the system
+\[
+\begin{cases}
+x'=x(1-x-y),\\[0.2em]
+y'=y\left(\dfrac34-y-\dfrac x2\right).
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Find the critical points.
+\item Find the Jacobian matrix at each critical point.
+\item Classify the critical points.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 9
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Consider the system
+\[
+\begin{cases}
+x'=2x-y,\\
+y'=5x-2y.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Find all the critical points of the system.
+\item Show that $(0,0)$ is a center.
+\item Find
+\[
+\left(\frac{\dd x}{\dd t},\frac{\dd y}{\dd t}\right)
+\]
+at the points $(1,0)$, $(0,1)$, $(-1,0)$, and $(0,-1)$.
+\item As $t$ increases, does the point $(x(t),y(t))$ move around $(0,0)$ in the clockwise or counterclockwise orientation?
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Differential Equations and Applications Final, Problem 10
+\begin{problem}[2022 Spring \KAIST{} Differential Equations and Applications]
+Consider the system
+\[
+\begin{cases}
+x'=-x+2y-4x^3,\\
+y'=x-4y.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Find and classify the critical points of the system.
+\item Explain why the given system does not have a periodic solution. \textit{(Hint. If there were a periodic solution, then consider a closed curve $C$ and apply Green's theorem. Or, you may use the theorem given in the textbook.)}
+\item Show that for any constant $a>0$, the region
+\[
+D=\{(x,y)\mid x^2+y^2<a\}
+\]
+is an invariant region. \textit{(Hint. Take a point $(x,y)$ on the boundary of $D$. Then $(-x,-y)$ has the same direction as the normal vector pointing inside $D$.)}
+\item If $(x(t),y(t))$ is a solution satisfying the initial condition
+\[
+(x(0),y(0))=(x_0,y_0),
+\]
+then what is the long-term behavior of $(x(t),y(t))$ as $t\to+\infty$?
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 1
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+For each $x>0$, let
+\[
+f(x)=
+\begin{cases}
+\cos x\sin x, & x\le\pi,\\
+-2\sin x, & x>\pi.
+\end{cases}
+\]
+Solve the differential equation
+\[
+y'\cos x+y\sin x=f(x).
+\]
+Find the solution satisfying $y(4\pi/3)=0$ defined on the largest interval.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 2
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Find the one-parameter family of solutions of the differential equation
+\[
+(y-x)y'+y=1.
+\]
+Determine whether it is the general solution. Find the solution satisfying $y(1)=0$ defined on the largest interval.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 3
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Solve the differential equation
+\[
+\bigl(1+2e^{-y^2}x^2\bigr)xyy'=\frac12.
+\]
+Find the solution satisfying
+\[
+y(-2)=-\sqrt{\ln 4}
+\]
+defined on the largest interval.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 4
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Find a function of the form $\phi(x)=ax^2+bx+c$ satisfying the differential equation
+\[
+(x^2-1)x^2y''-(x^2+1)xy'+(x^2+1)y=0.
+\]
+Find the general solution of the equation. Find all solutions satisfying the boundary conditions
+\[
+y(-1)=2,
+\qquad
+y(1)=-2,
+\]
+if any.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 5
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Find an integer $n$ such that the function $\phi(x)=x^n$ satisfies the differential equation
+\[
+x(x-1)y''+(3x-2)y'+y=0.
+\]
+Find the general solution of the equation. Find the solution satisfying
+\[
+y(1/2)=0,
+\qquad
+y'(1/2)=4.
+\]
+Find all solutions satisfying
+\[
+y(1/2)=\ln 4,
+\qquad
+y(2)=0,
+\]
+if any.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 6
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Use the Green's function to solve the initial-value problem
+\[
+y''-6y'+9y=e^{4x},
+\qquad
+y(0)=1,
+\qquad
+y'(0)=-1.
+\]
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 7
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Find the general solution to the system
+\[
+\begin{cases}
+x'=y,\\
+y'=z,\\
+z'=w,\\
+w'=x,
+\end{cases}
+\]
+where $x,y,z,w$ are all functions of $t$.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 8
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Solve the Cauchy--Euler equation
+\[
+x^3y'''+6x^2y''+7xy'+y=0
+\]
+on $(0,\infty)$.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 9
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Solve
+\[
+y'''(y'')^{-1/2}e^{-x}=1
+\]
+with initial conditions
+\[
+y(0)=y'(0)=0,
+\qquad
+y''(0)=1.
+\]
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Midterm, Problem 10
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Solve the initial-value problem
+\[
+y'''-y=1,
+\qquad
+y(0)=y'(0)=y''(0)=0
+\]
+with Laplace transform.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 1
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Let $q>0$ be a constant. For each $t\ge0$, let
+\[
+f(t)=
+\begin{cases}
+\displaystyle\frac{2t}{q}, & 0\le t\le\dfrac q2,\\[0.8em]
+\displaystyle 2\left(1-\frac tq\right), & \dfrac q2\le t<q,
+\end{cases}
+\]
+and $f(t+q)=f(t)$. Show that
+\[
+\mathcal{L}\{f(t)\}(s)
+=\frac{2}{qs^2}\tanh\left(\frac{qs}{4}\right).
+\]
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 2
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Solve the initial-value problem
+\[
+xy''-2(1-x)y'-2(1-x)y=2e^{-x}\cos x,
+\qquad
+y(0)=0,
+\qquad
+y'(0)=-1.
+\]
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 3
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Find the series solutions of the differential equation
+\[
+(1-x^2)y''-2xy'+6y=0
+\]
+about the point $x=0$.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 4
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Let $\nu>0$ be a constant. Let $\lambda=1$ or $-1$. Find the series solutions of the differential equation
+\[
+x^2y''-2xy'+(2-\lambda\nu^2x^2)y=0
+\]
+about the point $x=0$. Identify the elementary functions represented by the series.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 5
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Find the series solutions of the differential equation
+\[
+-x(1+x)^2y''+(x^2-1)y'+(1-x)y=0
+\]
+about the point $x=-1$. Identify the elementary functions represented by the series.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 6
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Consider the linear system
+\[
+\mathbf X'=\mathbf A\mathbf X,
+\qquad
+\mathbf A=
+\begin{pmatrix}
+0&1&2\\
+3&4&5\\
+2&1&0
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find the eigenvalues of $\mathbf A$.
+\item Find a matrix $\mathbf P$ such that $\mathbf P^{-1}\mathbf A\mathbf P$ is diagonal.
+\item Let $\mathbf X=\mathbf P\mathbf Y$. Construct a system of differential equations for $\mathbf Y$.
+\item Solve $\mathbf Y$.
+\item Solve $\mathbf X$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 7
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find $\mathbf A^k$, where $k$ is an arbitrary positive integer.
+\item Find $e^{t\mathbf A}$, where $t$ is an arbitrary real number.
+\item Solve the linear system $\mathbf X'=\mathbf A\mathbf X$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 8
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+A bead with mass $m$ slides along a curve
+\[
+z=x^n e^{-x}.
+\]
+Here $n$ is a positive constant and $x$ takes values on $(0,\infty)$. The damping force is $-\beta v$, where $\beta>0$ is a constant and $v$ is the velocity of the bead.
+\begin{problemsubparts}
+\item Write down the system of differential equations describing the model.
+\item Find and classify the critical points of the system.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 9
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Write
+\[
+x''=\ln\left(\frac12+x^2+2xx'+(x')^2\right)
+\]
+as a system of differential equations. Then find and classify the critical points of the system.
+\end{problem}
+
+% 2022 Fall KAIST Differential Equations and Applications Final, Problem 10
+\begin{problem}[2022 Fall \KAIST{} Differential Equations and Applications]
+Consider the system
+\[
+\begin{cases}
+x'=-x^2+2y^2,\\
+y'=-y^3+y.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Find the critical point $(x_0,y_0)$ that is in the first quadrant.
+\item Show that if a constant $c>0$ is small enough, then
+\[
+\left\{(x,y)\mid (x-x_0)^2+(y-y_0)^2<c^2\right\}
+\]
+is an invariant region. \textit{(Hint. The change of variables $u=x-x_0$, $v=y-y_0$ may make the computation easier.)}
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, True/False A--E
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item Every separable first-order equation
+\[
+\frac{\dd y}{\dd x}=g(x)h(y)
+\]
+is exact.
+\item The substitution $u=y-2x+3$ makes the differential equation
+\[
+\frac{\dd y}{\dd x}=2+\sqrt{y-2x+3}
+\]
+separable.
+\item A population of bacteria growing exponentially doubles in population every $10$ days. Therefore, the population size is described by the differential equation
+\[
+\frac{\dd y}{\dd t}=\frac15y,
+\]
+where $t=1$ corresponds to $1$ day.
+\item A model for the population $P(t)$ of the fishery at time $t$ is given by
+\[
+\frac{\dd P}{\dd t}=-(P-400)(P-1).
+\]
+With this model, the fishery population becomes extinct.
+\item The initial-value problem
+\[
+xy''-y'=0,
+\qquad
+y(0)=0,
+\qquad
+y'(0)=1
+\]
+has a unique solution.
+\end{problemchoices}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 1
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the differential equation
+\[
+y'+y=x.
+\]
+\begin{problemsubparts}
+\item First, solve the differential equation $y'+y=0$.
+\item Find a particular solution of the form
+\[
+y_p(x)=Ax+B
+\]
+satisfying $y_p'+y_p=x$, where $A$ and $B$ are constants.
+\item Find the general solution of $y'+y=x$.
+\item Find a solution of $y'+y=x$ satisfying $y(0)=2$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 2
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider a solution $y(x)$ of the differential equation
+\[
+y'=y^2-1.
+\]
+\begin{problemsubparts}
+\item \textit{(True/False)} If the solution $y$ satisfies $y(0)=\frac12$, then $y$ cannot be a constant function.
+\item Sketch the graph of the solution $y(x)$ near $x=0$ such that $y(0)=-\frac32$. You do not need to find the formula for $y(x)$.
+\item \textit{(True/False)} For the solution $y$ in part (b), $\lim_{x\to\infty}y(x)$ exists but is not $-1$.
+\item Sketch the graph of the solution $y(x)$ near $x=0$ such that $y(0)=0$. You do not need to find the explicit formula for $y(x)$.
+\item For the solution $y$ in part (d), show by direct computation that
+\[
+\lim_{x\to\infty}y(x)=-1.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 3
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider a solution $y(x)$ of the differential equation
+\[
+y'=e^{-y}.
+\]
+\begin{problemsubparts}
+\item Find the solutions $y(x)$ satisfying $y(0)=-1$, $y(0)=0$, and $y(0)=1$.
+\item Sketch the solutions $y(x)$ satisfying $y(0)=-1$, $y(0)=0$, and $y(0)=1$.
+\item Define $z(x)=e^{-y(x)}$. Show that
+\[
+z'=-z^2.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 4
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+A tank contains $1000$ liters of a solution consisting of $100$ kg of salt dissolved in water. Pure water is pumped into the tank at the rate of $5$ liters per second, and the mixture, kept uniform by stirring, is pumped out at the same rate. How long will it take until only $10$ kg of salt remains in the tank?
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 5
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+\begin{problemsubparts}
+\item \textit{(True/False)} $\ln x$ and $\ln(2x)$ are both solutions of
+\[
+y''+\frac1x y'=0
+\]
+on $(0,\infty)$.
+\item \textit{(True/False)} $\ln x$ and $\ln(2x)$ are linearly independent on $(0,\infty)$.
+\item For $k\in\{4,5,6,\dots\}$, compute the Wronskian of
+\[
+\ln x,\ \ln(2x),\ \dots,\ \ln(kx)
+\]
+on $(0,\infty)$.
+\item For $k\in\{4,5,6,\dots\}$, determine whether
+\[
+\ln x,\ \ln(2x),\ \dots,\ \ln(kx)
+\]
+are linearly independent on $(0,\infty)$. Justify your claim.
+\item \textit{(True/False)} $\ln x$, $\ln(2x)$, and $\ln(3x)$ are all solutions of
+\[
+y'''+\frac2x y''=0
+\]
+on $(0,1)$.
+\item \textit{(True/False)} $\ln x$, $\ln(2x)$, and $\ln(3x)$ are linearly independent on $(0,\infty)$.
+\item \textit{(True/False)} If $k\in\{4,5,6,\dots\}$, then $\ln x$, $\ln(2x)$, $\dots$, $\ln(kx)$ are all solutions of
+\[
+y^{(k)}+\frac{k-1}{x}y^{(k-1)}=0
+\]
+on $(0,\infty)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 6
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Find the general solution of the differential equation
+\[
+y^{(4)}-4y^{(3)}+8y''-8y'+4y=e^{-x}(5x+4\sin x).
+\]
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 7
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the differential equation
+\[
+x^2y''-2xy'+x^2y=x^4. \tag{1}
+\]
+\begin{problemsubparts}
+\item Let
+\[
+T(y)=x^2y''-2xy'+x^2y.
+\]
+Calculate $T(\cos x)$, $T(\sin x)$, $T(x\cos x)$, and $T(x\sin x)$.
+\item Find a fundamental set of solutions of the associated homogeneous equation
+\[
+T(y)=0.
+\]
+You may use the property
+\[
+T(ay_1+by_2+cy_3+dy_4)
+=aT(y_1)+bT(y_2)+cT(y_3)+dT(y_4)
+\]
+for real numbers $a,b,c,d$ and functions $y_1,y_2,y_3,y_4$.
+\item Find the general solution of (1).
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 8
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the differential equation
+\[
+x^2y''+5xy'+5y=0,
+\qquad x>0.
+\]
+\begin{problemsubparts}
+\item \textit{(True/False)} There is a real number $r$ such that $x^r$ is a solution of the equation.
+\item Let $a$ be a positive constant. Find the solution of the equation subject to
+\[
+y(a)=-a^2,
+\qquad
+y'(a)=2a.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 9
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider
+\[
+y''+2y'+y=x
+\]
+with conditions
+\[
+y(0)=0 \tag{2}
+\]
+and
+\[
+y(1)=0. \tag{3}
+\]
+\begin{problemsubparts}
+\item \textit{(True/False)} There is a nonconstant solution of the corresponding homogeneous equation satisfying conditions (2) and (3).
+\item Find the general solution of the corresponding homogeneous equation.
+\item Find two linearly independent solutions of the corresponding homogeneous equation such that one of them satisfies (2) and the other satisfies (3).
+\item Find the Green's function $G(x,t)$ of the two solutions you found.
+\item \textit{(True/False)}
+\[
+\phi(x)=\int_0^1G(x,t)t\,\dd t
+\]
+is a particular solution of the above differential equation but does not satisfy $\phi(0)=\phi(1)$.
+\item Find a solution of the original nonhomogeneous equation subject to conditions (2) and (3).
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 10
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Set
+\[
+f(t)=
+\begin{cases}
+\sin t, & t<\dfrac{\pi}{2},\\[0.4em]
+\cos t, & t\ge\dfrac{\pi}{2}.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Write $f(t)$ in terms of the Heaviside function, i.e., the unit step function.
+\item Find the Laplace transform of $f(t)$.
+\item Solve
+\[
+y''(t)-y(t)=f(t)
+\]
+subject to $y(0)=0$ and $y'(0)=1$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Midterm, Problem 11
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the system
+\[
+\begin{cases}
+x'=y+t^2,\\
+y'=z+t,\\
+z'=x,
+\end{cases}
+\]
+where $x$, $y$, and $z$ are all functions of $t$.
+\begin{problemsubparts}
+\item Use the method of elimination to obtain a differential equation involving only $x$ and $t$.
+\item Find $x(t)$.
+\item Use the expression for $x(t)$ and the first equation in the system to find $y(t)$.
+\item Use the expression for $y(t)$ and the second equation in the system to find $z(t)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, True/False A--E
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item Since $x=0$ is an irregular singular point of
+\[
+x^3y''-xy'+y=0,
+\]
+the differential equation possesses no solution that is analytic at $x=0$.
+\item The general solution of
+\[
+x^2y''+xy'+(x^2-1)y=0
+\]
+is
+\[
+y=c_1J_1(x)+c_2J_{-1}(x),
+\]
+where $J_1(x)$ and $J_{-1}(x)$ are Bessel functions of the first kind of orders $1$ and $-1$, respectively.
+\item The Bessel function of the second kind $Y_\nu(x)$ is linearly independent of $J_{-\nu}(x)$ for noninteger $\nu$.
+\item The superposition principle for solutions of a system of linear equations holds only for homogeneous cases.
+\item The general solution of the system
+\[
+\mathbf X'=\mathbf A\mathbf X
+\]
+with a real symmetric $n\times n$ matrix $\mathbf A$ is always written using the eigenvalues and eigenvectors of $\mathbf A$.
+\end{problemchoices}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, Problem 1
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Let $a$ and $b$ be two nonzero real constants. For $t\ge0$, let
+\[
+f_a(t)=e^{at}
+\qquad\text{and}\qquad
+f_b(t)=e^{bt}.
+\]
+\begin{problemsubparts}
+\item Assume that $a=b$. Compute $(f_a\ast f_a)(t)$ for $t\ge0$.
+\item Assume that $a\ne b$. Compute $(f_a\ast f_b)(t)$ for $t\ge0$.
+\item \textit{(True/False)} For all $a,b$, there exist $M>0$ and $c>0$ such that
+\[
+\bigl|(f_a\ast f_b)(t)\bigr|\le Me^{ct}
+\]
+for all $t\ge0$.
+\item Prove that
+\[
+\lim_{b\to a}(f_a\ast f_b)(t)=(f_a\ast f_a)(t)
+\]
+for all $t\ge0$.
+\item \textit{(True/False)} For $b\ne a$,
+\[
+(\cos bt\ast\cos at)(t)=\frac{\sin bt-\sin at}{b^2-a^2}
+\]
+for all $t\ge0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, Problem 2
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the differential equation
+\[
+y''(t)+2y'(t)+5y(t)=0
+\]
+with $y(0)=2$ and $y'(0)=3$. In the following, solve the differential equation with the given initial conditions using the Laplace transform.
+\begin{problemsubparts}
+\item Apply the Laplace transform $\mathcal{L}$ to the above differential equation and obtain
+\[
+p(s)\mathcal{L}\{y(t)\}(s)-q(s)=0,
+\]
+where $p(s)$ and $q(s)$ are polynomials in $s$. Find $p(s)$ and $q(s)$.
+\item Find the function $h(t)$ whose Laplace transform is
+\[
+\frac{q(s)}{p(s)}.
+\]
+\item Check that $h(t)$ is a solution of the above differential equation.
+\item \textit{(True/False)} For a Riemann-integrable function $f(t)$,
+\[
+y(t)=\frac12\int_0^t e^{-\tau}\sin(2\tau)f(t-\tau)\,\dd\tau
+\]
+is a solution of
+\[
+y''(t)+2y'(t)+5y(t)=f(t),
+\qquad
+y(0)=y'(0)=0,
+\qquad t\ge0.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, Problem 3
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the differential equation
+\[
+xy''+2y'+xy=0,
+\qquad x>0. \tag{1}
+\]
+\begin{problemsubparts}
+\item Classify the singular points, if any.
+\item Let
+\[
+T(y)=xy''+2y'+xy.
+\]
+Compute $T(x^{n+r})$ for a natural number $n$ and a real number $r$.
+\item Find the conditions on $c_n$ and $r$ such that
+\[
+\sum_{n=0}^{\infty}c_nx^{n+r}
+\]
+is a solution of equation (1), i.e.,
+\[
+T\left(\sum_{n=0}^{\infty}c_nx^{n+r}\right)
+=\sum_{n=0}^{\infty}c_nT(x^{n+r})=0.
+\]
+\item Find the series solutions of equation (1) and show that they form a fundamental set of solutions of equation (1).
+\item Find the smallest $l>0$ such that
+\[
+-\infty<\lim_{x\to0^+}x^ly(x)<\infty
+\]
+for every $y$ that satisfies equation (1), and prove it.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, Problem 4
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Find the solution of the system
+\[
+\mathbf X'=
+\begin{pmatrix}
+0&-1\\
+13&4
+\end{pmatrix}\mathbf X,
+\qquad
+\mathbf X(0)=
+\begin{pmatrix}
+0\\
+3
+\end{pmatrix}. \tag{2}
+\]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+0&-1\\
+13&4
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item \textit{(True/False)} $\mathbf A$ has a real eigenvalue.
+\item Find the exponential matrix $e^{t\mathbf A}$ by using the Laplace transform and show that
+\[
+e^{(t+s)\mathbf A}=e^{t\mathbf A}e^{s\mathbf A}
+\]
+for all $t,s>0$.
+\item Find the solution of system (2).
+\item \textit{(True/False)} Let $\mathbf X(t)$ be the solution of (2). Suppose $\mathbf Y(t)$ is the solution of
+\[
+\mathbf Y'=
+\begin{pmatrix}
+0&-1\\
+13&4
+\end{pmatrix}\mathbf Y,
+\qquad
+\mathbf Y(0)=e^{\pi}
+\begin{pmatrix}
+1\\
+-2
+\end{pmatrix}.
+\]
+Then there exists $t>0$ such that
+\[
+\mathbf Y(t)\ne\mathbf X\left(t+\frac{\pi}{2}\right).
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, Problem 5
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the system
+\[
+\mathbf X'=\mathbf A\mathbf X,
+\qquad
+\mathbf A=
+\begin{pmatrix}
+1&-3&3\\
+0&-5&6\\
+0&-3&4
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find the eigenvalues $\lambda_1,\lambda_2,\lambda_3$ of $\mathbf A$.
+\item Find a set of linearly independent vectors $\{\mathbf v_1,\mathbf v_2,\mathbf v_3\}$ satisfying
+\[
+\mathbf A\mathbf v_i=\lambda_i\mathbf v_i,
+\qquad
+\|\mathbf v_i\|\ne0,
+\qquad i=1,2,3. \tag{3}
+\]
+\item \textit{(True/False)} Suppose $\{\mathbf v_i\}_{i=1}^3$ satisfies (3). Let
+\[
+\mathbf X=\sum_{i=1}^3x_i\mathbf v_i.
+\]
+Then $\mathbf X'=\mathbf A\mathbf X$ is equivalent to
+\[
+x_i'(t)=\lambda_i x_i(t),
+\qquad i=1,2,3.
+\]
+\item Find the solution to the system satisfying the initial condition
+\[
+\mathbf X(0)=
+\begin{pmatrix}
+1\\
+-3\\
+-1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, Problem 6
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the linear system
+\[
+\mathbf X'=
+\begin{pmatrix}
+-3&2\\
+-1&-1
+\end{pmatrix}\mathbf X
++
+\begin{pmatrix}
+2\\
+0
+\end{pmatrix}e^{-2t}\sec^3t.
+\]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+-3&2\\
+-1&-1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Compute $e^{t\mathbf A}$.
+\item \textit{(True/False)} $e^{t\mathbf A}$ is invertible for all $t\ge0$.
+\item \textit{(True/False)}
+\[
+\mathbf U(t)=\int_0^t e^{-s\mathbf A}
+\begin{pmatrix}
+2\\
+0
+\end{pmatrix}
+\bigl(e^{-2s}\sec^3s\bigr)\,\dd s
+\]
+is a solution of the above linear system for $t\ge0$.
+\item Find the general solution of the above linear system.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, Problem 7
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the system
+\[
+\begin{cases}
+x'=x-2y,\\
+y'=2x-y.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Classify the critical point of this system.
+\item Find the velocity $(x',y')$ at the point $(c,0)$, where $(c,0)$ is an arbitrary point on the positive half of the $x$-axis of the $xy$-plane.
+\item Draw the curve of a nontrivial solution $(x(t),y(t))$ on the $xy$-plane, with an arrow on it to show the direction of motion of the point $(x(t),y(t))$ as $t$ increases.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, Problem 8
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the system
+\[
+\begin{cases}
+x'=-2x+2x^2,\\
+y'=-3x+y+3x^2.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Find the critical points of this system.
+\item Find the Jacobian matrix at each critical point.
+\item For each critical point, find the trace and determinant of the Jacobian matrix.
+\item Classify each critical point.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Differential Equations and Applications Final, Problem 9
+\begin{problem}[2023 Spring \KAIST{} Differential Equations and Applications]
+Consider the system
+\[
+\begin{cases}
+x'=y,\\
+y'=-x+y(1-x^2-y^2).
+\end{cases} \tag{4}
+\]
+\begin{problemsubparts}
+\item Find the critical points of this system.
+\item Suppose $(x(t),y(t))$ is a solution of (4). Let
+\[
+r(t)=x(t)^2+y(t)^2.
+\]
+Derive an equation satisfied by
+\[
+r'=2xx'+2yy'.
+\]
+\item Suppose $r(0)>1$. Prove that
+\[
+r(t)<r(0)
+\]
+for all $t>0$ by using the equation derived in part (b).
+\item \textit{(True/False)} The region
+\[
+R=\{(x,y)\mid x^2+y^2<c\}
+\]
+is an invariant region of Type I when $c>1$.
+\item Suppose $c>1$ is a constant. Show that there is at least one periodic solution in the region
+\[
+\{(x,y)\mid x^2+y^2<c\}.
+\]
+\end{problemsubparts}
+\end{problem}
