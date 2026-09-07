@@ -2250,6 +2250,688 @@ Let $V,W\subseteq\R^n$ be subspaces.
 \end{problemsubparts}
 \end{problem}
 
+
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 1
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Describe all possible $2\times4$ reduced row echelon forms whose rows are linearly independent.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 2
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Let
+\[
+\mathbf A(\theta)=
+\begin{pmatrix}
+\cos\theta & \csc\theta & 0 & -\sin\theta\\
+\cos^2\theta & \cot\theta & 2.78 & \sin^2\theta\\
+0 & 3.14 & 0 & 0\\
+\sin\theta & \tan\theta & 0 & \cos\theta
+\end{pmatrix}.
+\]
+Compute
+\[
+\det\bigl(\mathbf A(1.76\pi)\bigr)-\det\bigl(\mathbf A(2\pi/3)\bigr).
+\]
+\item Suppose $\mathbf A\in\R^{3\times3}$ and $\det(\mathbf A)=2$. Compute
+\[
+\det(\mathbf A^{-1})+\det(3\mathbf A^{-1})+\det\bigl((5\mathbf A)^{-1}\bigr)+\det(\mathbf A^{\mathsf T}).
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 3
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+There are three main colleges of science and engineering at \KAIST{}: the College of Natural Sciences (NS), the College of Life Science and Bioengineering (LSB), and the College of Engineering (E). Suppose students pursuing transdisciplinary study choose one of the following three course sets:
+\begin{problemchoices}
+\item Type I: $30$ credits from NS, $21$ credits from LSB, and $27$ credits from E;
+\item Type II: $33$ credits from NS, $21$ credits from LSB, and $30$ credits from E;
+\item Type III: $30$ credits from NS, $15$ credits from LSB, and $39$ credits from E.
+\end{problemchoices}
+Among graduates in 2022 who chose one of these three sets, the total numbers of credits taken were $4950$ from NS, $2880$ from LSB, and $5430$ from E. How many students chose Type I?
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 4
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+0&0&0&1\\
+1&0&0&0\\
+0&1&0&1\\
+0&0&2&1
+\end{pmatrix}.
+\]
+Find $\mathbf A^{-1}$.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 5
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$ have linearly independent columns. Show that if $\mathbf v_1,\dots,\mathbf v_p\in\R^n$ are linearly independent, then
+\[
+\mathbf A\mathbf v_1,\dots,\mathbf A\mathbf v_p
+\]
+are linearly independent.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 6
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let $T\colon\R^n\to\R^n$ be a linear operator satisfying
+\[
+\|T(\mathbf x)\|=\|\mathbf x\|
+\qquad\text{for every }\mathbf x\in\R^n.
+\]
+Prove that
+\[
+T(\mathbf x)\cdot T(\mathbf y)=\mathbf x\cdot\mathbf y
+\qquad\text{for all }\mathbf x,\mathbf y\in\R^n.
+\]
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 7
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Show that
+\[
+\mathbf A=
+\begin{pmatrix}
+\frac{1}{\sqrt2}&0&\frac{1}{\sqrt2}\\
+0&-1&0\\
+-\frac{1}{\sqrt2}&0&\frac{1}{\sqrt2}
+\end{pmatrix}
+\]
+represents a rotation $R_\theta$ about a line $\ell$ through the origin, followed by a reflection $H_\ell$ about the plane through the origin perpendicular to $\ell$. Find the standard matrices of $R_\theta$ and $H_\ell$.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 8
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+For $n\times n$ matrices $\mathbf A$ and $\mathbf B$, one has
+\[
+\tr(\mathbf A\mathbf B)=\tr(\mathbf B\mathbf A).
+\]
+Prove or disprove the following statement: for $n\times n$ matrices $\mathbf A,\mathbf B,\mathbf C$,
+\[
+\tr(\mathbf A\mathbf B\mathbf C)=\tr(\mathbf B\mathbf A\mathbf C).
+\]
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 9
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Suppose $p(x)$ and $q(x)$ are polynomials with real coefficients, and let $r(x)=p(x)q(x)$. Show that for every $n\times n$ matrix $\mathbf A$,
+\[
+r(\mathbf A)=p(\mathbf A)q(\mathbf A).
+\]
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 10
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Find all $2\times2$ orthogonal matrices that do not admit an $LU$ decomposition.
+\item For each such orthogonal matrix, find a $PLU$ decomposition.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 11
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A=(a_{ij})\in\R^{n\times n}$ be triangular, with pairwise distinct diagonal entries:
+\[
+a_{ii}\ne a_{jj}
+\qquad\text{whenever }i\ne j.
+\]
+Find all eigenvalues of $\mathbf A$ and determine the algebraic multiplicity of each eigenvalue.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 12
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Prove or disprove the following statement. For a consistent linear system
+\[
+\mathbf A\mathbf x=\mathbf b
+\]
+with $n$ unknowns and $m$ equations, the solution set has the form
+\[
+\mathbf x_0+\Null(\mathbf A)
+=
+\{\mathbf x_0+\mathbf v\mid \mathbf v\in\Null(\mathbf A)\}
+\]
+for some solution $\mathbf x_0$.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 13
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{n\times n}$ be nilpotent; that is, $\mathbf A^k=\mathbf0$ for some positive integer $k$. Show that the matrix transformation
+\[
+T_{\mathbf A}\colon\R^n\to\R^n,
+\qquad
+T_{\mathbf A}(\mathbf x)=\mathbf A\mathbf x,
+\]
+is not injective.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 14
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A=(a_{ij})\in\R^{3\times3}$ be skew-symmetric, so that
+\[
+\mathbf A^{\mathsf T}=-\mathbf A.
+\]
+\begin{problemsubparts}
+\item Find the characteristic polynomial of $\mathbf A$ and all real eigenvalues of $\mathbf A$.
+\item Find the full eigenspace corresponding to each real eigenvalue.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 15
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=\frac16
+\begin{pmatrix}
+1&1&2\\
+1&1&2\\
+2&2&4
+\end{pmatrix}.
+\]
+Draw $\Col(\mathbf A)$ and $\Null(\mathbf A)$ in $\R^3$. It is known that $\mathbf A$ is the standard matrix of the orthogonal projection onto $\Col(\mathbf A)$. For $n$ randomly generated points, transform them as specified in the MATLAB code below and scatter-plot the original and transformed points. Fill in blanks \textup{(1)}--\textup{(10)}.
+
+{\small\ttfamily
+\begin{tabbing}
+\hspace{2em}\=\hspace{2em}\=\kill
+\%\%\% plot the column space and the nullspace of A \%\%\%\\
+A = 1/6 * [1, 1, 2; 1, 1, 2; 2, 2, 4];\\
+x = \_\_\_(1)\_\_\_; \% generate a vector that contains\\
+\>\% 150 equally spaced points, from -1 to 1.\\
+y = x;\\
+{}[X, Y] = \_\_\_(2)\_\_\_(x, y); \% construct a grid over the domain\\[0.15em]
+a = [\_\_\_(3)\_\_\_]; \% choose a column vector ``a'' in the column space of A\\
+plot3(x, \_\_\_(4)\_\_\_, \_\_\_(5)\_\_\_) \% draw the column space of A\\
+hold on;\\[0.15em]
+Z = \_\_\_(6)\_\_\_; \% compute the z-components of the nullspace (plane) of A\\
+\_\_\_(7)\_\_\_; \% draw the surface of the nullspace of A\\
+hold on; \% keep using the same figure window for future plots\\[0.15em]
+\%\%\% scatter plot n randomly generated points and their transformed points \%\%\%\\
+n = 5;\\
+b = -1 + 2*rand(3,n); \% generate n random points in [-1,1]\textasciicircum 3\\
+p = zeros(3,n);\\
+for i=1:n\\
+\>\% if norm(b(:,i)) is greater than or equal to 1/2,\\
+\>\% project b(:,i) onto the column space of A;\\
+\>\% otherwise stretch its entries by 1, 0.5, and 2, respectively\\
+\>\_\_\_(8)\_\_\_\\
+\>\>p(:,i) = \_\_\_(9)\_\_\_;\\
+\>else\\
+\>\>p(:,i) = \_\_\_(10)\_\_\_;\\
+\>end\\
+end\\[0.15em]
+scatter3(b(1,:),b(2,:),b(3,:),'*');\\
+scatter3(p(1,:),p(2,:),p(3,:));\\
+axis equal;
+\end{tabbing}
+}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 1
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{n\times n}$. Determine whether each of the following statements is true or false, and justify your answer.
+\begin{problemsubparts}
+\item Elementary row operations do not change $\Row(\mathbf A)$.
+\item Elementary row operations do not change $\Col(\mathbf A)$.
+\item Elementary row operations do not change $\dim\Null(\mathbf A^{\mathsf T})$.
+\item The nonzero rows of any row echelon form $\mathbf R$ of $\mathbf A$ form a basis for $\Row(\mathbf A)$, even when $\mathbf R$ is not in reduced row echelon form.
+\item The nonzero columns of any row echelon form $\mathbf R$ of $\mathbf A$ form a basis for $\Col(\mathbf A)$, even when $\mathbf R$ is not in reduced row echelon form.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 2
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Given $\mathbf A\in\R^{m\times n}$, let $\mathcal B$ be a basis for $\Row(\mathbf A)$ and let $\mathcal B'$ be a basis for $\Null(\mathbf A)$. Prove that
+\[
+\mathcal B\cup\mathcal B'
+\]
+is a basis for $\R^n$.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 3
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+-1&0\\
+0&1\\
+0&1
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+0\\0\\1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Write the normal equations associated with $\mathbf A\mathbf x=\mathbf b$.
+\item Find all least-squares solutions of $\mathbf A\mathbf x=\mathbf b$. If the least-squares solution is unique, state that it is unique.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 4
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Prove or disprove the following statement: if $\mathbf P$ is the standard matrix of an orthogonal projection of $\R^n$ onto a subspace of $\R^n$, then
+\[
+\tr(\mathbf P)=\rk(\mathbf P).
+\]
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 5
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&1\\
+1&2&2^2\\
+1&3&3^2\\
+1&4&4^2\\
+1&5&5^2
+\end{pmatrix}.
+\]
+Does $\mathbf A$ have full column rank? If not, find a basis for $\Col(\mathbf A)$ consisting of columns of $\mathbf A$.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 6
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+2&0&0&0\\
+0&-2&0&2\\
+0&0&-3&0\\
+0&2&0&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find all eigenvalues of $\mathbf A$ together with their algebraic multiplicities.
+\item Determine whether $\mathbf A$ is orthogonally diagonalizable. If it is, find an orthonormal basis of $\R^4$ consisting of eigenvectors of $\mathbf A$; otherwise, explain why not.
+\item Find the solution set of
+\[
+\mathbf A\mathbf x=
+\begin{pmatrix}
+200\\150\\300\\-75
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 7
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Show that a square matrix is nilpotent if and only if $0$ is its only eigenvalue.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 8
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Find a column-row factorization (CR decomposition) of each matrix.
+\begin{problemsubparts}
+\item
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&3&4\\
+2&4&6&8\\
+3&6&9&12\\
+4&8&12&16
+\end{pmatrix}.
+\]
+\item
+\[
+\mathbf B=
+\begin{pmatrix}
+1&2&3\\
+0&2&4\\
+0&0&-1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 9
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let $W$ be a plane through the origin in $\R^3$.
+\begin{problemsubparts}
+\item Show that the standard matrix of the orthogonal projection of $\R^3$ onto $W$ is symmetric.
+\item Find the standard matrix $\mathbf P$ of the orthogonal projection onto the plane
+\[
+x-y+z=0.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 10
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&0&1\\
+1&0&-1\\
+1&1&0\\
+-1&1&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find a $QR$ decomposition of $\mathbf A$.
+\item Find the least-squares solution $\widehat{\mathbf x}$ of
+\[
+\mathbf A\mathbf x=
+\begin{pmatrix}
+1\\0\\0\\1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 11
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Prove the following statements.
+\begin{problemsubparts}
+\item Let $S\subseteq\R^n$ be a set of nonzero, pairwise orthogonal vectors. Show that $S$ is linearly independent.
+\item If $\mathbf u_1,\mathbf u_2,\dots,\mathbf u_m$ are eigenvectors of a matrix $\mathbf A$ corresponding to distinct eigenvalues $\lambda_1,\lambda_2,\dots,\lambda_m$, show that
+\[
+\{\mathbf u_1,\mathbf u_2,\dots,\mathbf u_m\}
+\]
+is linearly independent.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 12
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Let $W$ be a subspace of $\R^n$, and define
+\[
+U=\{\mathbf x\in\R^n\mid \mathbf x\perp\mathbf w\text{ for every }\mathbf w\in W\}.
+\]
+Show that $U$ is a subspace of $\R^n$.
+\item Let $W\subseteq\R^5$ be spanned by
+\[
+\mathbf u_1=
+\begin{pmatrix}2\\2\\-1\\0\\1\end{pmatrix},
+\qquad
+\mathbf u_2=
+\begin{pmatrix}1\\1\\-2\\0\\-1\end{pmatrix},
+\qquad
+\mathbf u_3=
+\begin{pmatrix}0\\0\\1\\1\\1\end{pmatrix}.
+\]
+Find a basis for the subspace $U$ defined in part \textup{(a)}.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 13
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Suppose an invertible square matrix $\mathbf A$ has a singular value decomposition
+\[
+\mathbf A=\mathbf U\boldsymbol\Sigma\mathbf V^{\mathsf T}.
+\]
+Give singular value decompositions of $\mathbf A^{\mathsf T}$ and $\mathbf A^{-1}$ in terms of $\mathbf U$, $\boldsymbol\Sigma$, and $\mathbf V$.
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 14
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Find a singular value decomposition of
+\[
+\mathbf A=
+\begin{pmatrix}
+-1&1\\
+-1&-1
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2022 Spring KAIST Introduction to Linear Algebra Final, Problem 15
+\begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A$ be a singular symmetric $n\times n$ matrix, and let $\mathbf B$ be a symmetric perturbation of $\mathbf A$. An eigenvector corresponding to the largest eigenvalue is called a dominating eigenvector. The MATLAB code below computes the angle between dominating eigenvectors of $\mathbf A$ and $\mathbf B$, and the angle between $\Col(\mathbf A)$ and the dominating eigenvector of $\mathbf B$. Fill in blanks \textup{(1)}--\textup{(9)}.
+
+{\small\ttfamily
+\begin{tabbing}
+\hspace{2em}\=\hspace{2em}\=\kill
+\% Input: a (singular) symmetric n by n matrix A.\\
+n = size(A,1);\\
+E = \_\_\_(1)\_\_\_; \% Generate an n by n matrix with random numbers\\
+\>\% from a standard normal distribution.\\
+epsilon = 0.001;\\
+B = A + epsilon*1/2*(E+E');\\[0.15em]
+\% Compute vA and vB that are eigenvectors\\
+\% corresponding to the largest eigenvalues of A and B, respectively.\\
+vA = final\_MAS109(A, 1); vB = final\_MAS109(B, 1);\\[0.15em]
+\% Compute cos(theta), where theta is an angle between vA and vB.\\
+cos\_theta = \_\_\_(2)\_\_\_;\\[0.15em]
+\% Compute CA whose columns are orthonormal eigenvectors of A\\
+\% that span the column space of A.\\
+CA = \_\_\_(3)\_\_\_;\\[0.15em]
+\% Express vB as a sum of two orthogonal terms vB1 and vB2.\\
+vB1 = \_\_\_(4)\_\_\_; \% projection of vB onto the column space of A\\
+vB2 = \_\_\_(5)\_\_\_; \% projection of vB onto the null space of A\\[0.15em]
+\% Compute cos(phi), where phi is an angle between vB and the column space of A.\\
+cos\_phi = \_\_\_(6)\_\_\_;\\[0.35em]
+\% Define final\_MAS109, which outputs CA, whose columns are orthonormal\\
+\% eigenvectors corresponding to the k largest eigenvalues of A.\\
+function \_\_\_(7)\_\_\_\\
+\>[V, D] = eig(A); \% for symmetric A, eigenvectors are orthonormal\\
+\>lambdas = \_\_\_(8)\_\_\_; \% eigenvalues in vector form\\
+\>[sorted\_lambdas index] = sort(lambdas, 'descend');\\
+\>\% Example: if lambdas = [10 -5 4], then index = [1 3 2].\\
+\>CA = \_\_\_(9)\_\_\_;\\
+end
+\end{tabbing}
+}
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 1
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Let $P_1$ be the plane through the points
+\[
+(1,3,-3),\qquad(8,1,6),\qquad(0,5,-6).
+\]
+Find an equation for $P_1$.
+\item Let $P_2$ be the plane with normal vector $(11,-3,5)$ passing through $(0,12,11)$. Show that $P_1\cap P_2$ is a line, and give a vector equation for this line.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 2
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Find an $LU$ decomposition of
+\[
+\mathbf A=
+\begin{pmatrix}
+2&8&2\\
+-4&-17&-2\\
+6&23&11
+\end{pmatrix}.
+\]
+\item Use the $LU$ decomposition from part \textup{(a)} to solve
+\[
+\mathbf A\mathbf x=
+\begin{pmatrix}
+1\\1\\0
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 3
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+For which values of $a$ does the system
+\[
+\begin{aligned}
+3x_1-8x_2-5x_3+10x_4&=9,\\
+-x_1+x_2-3x_3-6x_4&=-2,\\
+-2x_1+8x_2+20x_3+16x_4&=-3,\\
+x_1-x_2+3x_3+a(a-1)x_4&=a-1
+\end{aligned}
+\]
+have no solution, exactly one solution, or infinitely many solutions?
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 4
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+Use elementary row operations to find the inverse of
+\[
+\mathbf A=
+\begin{pmatrix}
+6&18&3&0\\
+16&33&8&-2\\
+1&3&0&0\\
+-8&-16&-4&1
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 5
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{n\times n}$ be nilpotent; that is, $\mathbf A^k=\mathbf0$ for some integer $k>0$.
+\begin{problemsubparts}
+\item Show that the characteristic polynomial of $\mathbf A$ is $\lambda^n$; equivalently,
+\[
+\det(\lambda\mathbf I_n-\mathbf A)=\lambda^n.
+\]
+\item Prove or disprove that $3\mathbf I_n+\mathbf A^2$ is invertible. If it is invertible, find its inverse.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 6
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{200\times100}$ satisfy
+\[
+\|\mathbf A\mathbf x\|=\|\mathbf x\|
+\qquad\text{for every }\mathbf x\in\R^{100}.
+\]
+Using direct computation, show that the columns of $\mathbf A$ are orthonormal.
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 7
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Let $\mathbf A\in\R^{9\times9}$ satisfy $\det(\mathbf A)=9$. Find
+\[
+\det\bigl((\adj(\mathbf A))^{-1}\bigr).
+\]
+\item Let $\mathbf B\in\R^{n\times n}$ be invertible and have integer entries. Prove that every entry of $\mathbf B^{-1}$ is an integer if and only if
+\[
+\det(\mathbf B)=\pm1.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 8
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+0&3&0\\
+0&0&3\\
+3&0&0
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find all complex eigenvalues and eigenvectors of $\mathbf A$.
+\item Express the operator
+\[
+T_{\mathbf A}\colon\R^3\to\R^3,
+\qquad
+T_{\mathbf A}(\mathbf x)=\mathbf A\mathbf x,
+\]
+as a composition of special operators. Describe all relevant properties using, as applicable, the terms contraction, dilation, expansion, orthogonal, rotation, reflection, and shearing. For a rotation, state the axis and angle; for a reflection, state which vectors are reflected and which are fixed.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 9
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+Let $T\colon\R^4\to\R^4$ be a linear operator, and let $\mathbf v_1,\dots,\mathbf v_4,\mathbf w_1,\dots,\mathbf w_4\in\R^4$. Define
+\[
+\mathbf u_i=
+\begin{pmatrix}
+T(\mathbf v_i)\cdot\mathbf w_1\\
+T(\mathbf v_i)\cdot\mathbf w_2\\
+T(\mathbf v_i)\cdot\mathbf w_3\\
+T(\mathbf v_i)\cdot\mathbf w_4
+\end{pmatrix},
+\qquad i=1,2,3,4.
+\]
+Show that $\mathbf u_1,\mathbf u_2,\mathbf u_3,\mathbf u_4$ are linearly independent if and only if $T$ is injective and both
+\[
+\{\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4\}
+\qquad\text{and}\qquad
+\{\mathbf w_1,\mathbf w_2,\mathbf w_3,\mathbf w_4\}
+\]
+are linearly independent.
+
+\textit{Hint.} Use the matrices
+\[
+\mathbf V=\begin{pmatrix}\mathbf v_1&\mathbf v_2&\mathbf v_3&\mathbf v_4\end{pmatrix},
+\qquad
+\mathbf W=\begin{pmatrix}\mathbf w_1&\mathbf w_2&\mathbf w_3&\mathbf w_4\end{pmatrix},
+\]
+and the matrix representation $[T]$.
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 10
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+Let $W$ be the plane through the origin in $\R^3$ perpendicular to
+\[
+\mathbf u=
+\begin{pmatrix}
+1\\2\\3
+\end{pmatrix},
+\]
+and let $\mathbf A$ be the standard matrix of reflection about $W$.
+\begin{problemsubparts}
+\item Find linearly independent vectors $\mathbf v,\mathbf w\in\R^3$ such that
+\[
+\mathbf A\mathbf v=\mathbf v,
+\qquad
+\mathbf A\mathbf w=\mathbf w.
+\]
+\item Find $\mathbf A$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Fall KAIST Introduction to Linear Algebra Midterm, Problem 11
+\begin{problem}[2022 Fall \KAIST{} Introduction to Linear Algebra]
+Consider the MATLAB code below.
+
+{\small\ttfamily
+\begin{tabbing}
+\hspace{2em}\=\hspace{2em}\=\kill
+I = 1:0.5:2.3;\\
+b = zeros(10, 1);\\
+for i = 2*I\\
+\>b(i) = i\textasciicircum 2;\\
+end\\[0.15em]
+u = [2 1 5 3];\\
+v = [1 2];\\[0.15em]
+n = numel(u);\\
+w = zeros(n, 1);\\
+j = 0;\\
+for i = 1:n\\
+\>if u(i) > 2\\
+\>\>w(j+1) = u(i);\\
+\>\>j = j+1;\\
+\>end\\
+end\\
+w = w(1:j);
+\end{tabbing}
+}
+
+What are the outputs of the following commands?
+\begin{problemsubparts}
+\item \texttt{disp(b(1)+b(3)+b(5))}
+\item \texttt{disp(u'*v)}
+\item \texttt{disp(u.*[v v])}
+\item \texttt{disp(w)}
+\end{problemsubparts}
+\end{problem}
+
 % 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 1
 \begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
 Determine whether each of the following statements is true or false. You do not need to justify your answers.
@@ -2621,4 +3303,1896 @@ For an $n\times n$ matrix $\mathbf A$, show that
 \det(e^{\mathbf A})=e^{\tr(\mathbf A)}.
 \]
 \textit{Hint.} By Schur's triangularization theorem over $\C$, there exists an invertible matrix $\mathbf M$ such that $\mathbf M^{-1}\mathbf A\mathbf M$ is upper triangular.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 1
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $L$ be the line through $(1,1,1)$ and $(2,4,3)$.
+\begin{problemsubparts}
+\item Find a parametric equation of the plane $P$ through $Q=(-1,2,3)$ that is perpendicular to $L$.
+\item Find the intersection point $B$ of $P$ and $L$, and find the distance between $Q$ and $B$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 2
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+For $a\in\R$, consider the linear system
+\[
+\begin{pmatrix}
+1&2&6a\\
+4&1&4\\
+7&0&-a^2
+\end{pmatrix}
+\begin{pmatrix}x\\y\\z\end{pmatrix}
+=
+\begin{pmatrix}-a\\a^2-1\\-a+10\end{pmatrix}.
+\]
+For each value of $a$, determine the number of solutions of the system.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 3
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf u=
+\begin{pmatrix}1\\2\\10\\100\end{pmatrix},
+\qquad
+\mathbf v=
+\begin{pmatrix}0\\1\\0\\-1\end{pmatrix},
+\]
+and let $\mathbf e_i^{\mathsf T}$ be the $i$th standard basis row vector of $\R^4$. Compute each of the following whenever it is defined.
+\begin{problemchoices}
+\item $\tr(\mathbf u\mathbf v^{\mathsf T})$.
+\item $\tr(\mathbf u^{\mathsf T}\mathbf v)$.
+\item $\mathbf e_2^{\mathsf T}\mathbf u\mathbf v^{\mathsf T}$.
+\item $\mathbf e_2\mathbf u\mathbf v^{\mathsf T}$.
+\item $\mathbf u\mathbf v^{\mathsf T}\mathbf e_2^{\mathsf T}$.
+\item $\mathbf u\mathbf v^{\mathsf T}\mathbf e_2$.
+\end{problemchoices}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 4
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{3\times3}$ be invertible and satisfy
+\[
+\mathbf A^2=2\mathbf A.
+\]
+Find all possible values of $\det(\mathbf A)$, and justify both the possible and impossible values.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 5
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf e_i$ be the $i$th standard basis vector of $\R^n$. For arbitrary linear operators $T_1,T_2\colon\R^n\to\R^n$, determine which of the following functions are always linear. Justify your answers.
+\begin{problemchoices}
+\item $f_1(\mathbf x)=T_1(\mathbf x)+T_2(\mathbf x)$.
+\item $f_2(\mathbf x)=T_1(\mathbf x)+\mathbf e_1$.
+\item $f_3(\mathbf x)=T_1(\mathbf x)\cdot T_2(\mathbf x)$.
+\item $f_4(\mathbf x)=\mathbf e_1\cdot T_1(\mathbf x)$.
+\end{problemchoices}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 6
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $T\colon\R^n\to\R^n$ be a linear operator. Prove that the following statements are equivalent:
+\begin{problemclauses}
+\item $\|T(\mathbf x)\|=\|\mathbf x\|$ for every $\mathbf x\in\R^n$.
+\item $T(\mathbf x)\cdot T(\mathbf y)=\mathbf x\cdot\mathbf y$ for every $\mathbf x,\mathbf y\in\R^n$.
+\end{problemclauses}
+Then use this result to show that every length-preserving linear operator $T\colon\R^n\to\R^n$ preserves angles.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 7
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Determine whether each statement is true or false. A false statement should be disproved by a counterexample.
+\begin{problemchoices}
+\item An $n\times n$ matrix $\mathbf A$ is invertible if and only if a row echelon form of $\mathbf A$ obtained by Gaussian elimination is upper triangular with every diagonal entry equal to $1$.
+\item Every subspace $W\subseteq\R^n$ contains the zero vector.
+\item If $\mathbf A$ and $\mathbf B$ are symmetric $n\times n$ matrices, then $\mathbf A\mathbf B$ is symmetric.
+\item For a fixed nonzero vector $\mathbf v\in\R^n$, the function $T\colon\R^n\to\R^n$ defined by $T(\mathbf x)=\mathbf x+\mathbf v$ is a linear operator.
+\item If $\mathbf A\in\R^{m\times n}$ and $n>m$, then $\Null(\mathbf A)$ contains a nonzero vector.
+\end{problemchoices}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 8
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&3\\
+2&3&4\\
+3&4&5
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Determine whether $\mathbf A$ admits an $LU$ decomposition. If it does, find one; otherwise, find a $PLU$ decomposition.
+\item Compute $\det(\mathbf A)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 9
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{n\times n}$ with $n\ge2$. Express
+\[
+\det\bigl(\adj(\mathbf A)\bigr)
+\]
+in terms of $n$ and $\det(\mathbf A)$.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 10
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+0&2&1\\
+2&-3&-2\\
+-1&2&2
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find all eigenvalues of $\mathbf A$, their algebraic multiplicities, and the corresponding eigenvectors.
+\item Find $3\mathbf A^{-1}$ if it exists.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 11
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+A square matrix $\mathbf A$ is called idempotent if $\mathbf A^2=\mathbf A$.
+\begin{problemsubparts}
+\item Determine all possible eigenvalues of an idempotent matrix. For each possible eigenvalue, give an example of an idempotent matrix having that eigenvalue.
+\item Can a single idempotent matrix have all of the possible eigenvalues found in part \textup{(a)}? If so, give an example.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 12
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\frac13
+\begin{pmatrix}
+1&-2&-2\\
+-2&1&-2\\
+-2&-2&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Show that $\mathbf A$ is orthogonal.
+\item Find all eigenvalues of $\mathbf A$ and the eigenspace corresponding to each eigenvalue.
+\item Determine whether the orthogonal linear operator represented by $\mathbf A$ is a rotation about a line through the origin, a reflection about a plane through the origin, or neither. In the rotation case, find a direction vector of the axis and the rotation angle. In the reflection case, find a normal vector of the reflection plane.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 13
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf X,\mathbf Y\in\R^{3\times3}$ be invertible.
+\begin{problemsubparts}
+\item Determine all $c\in\R$ for which
+\[
+\mathbf X\mathbf Y-\mathbf Y\mathbf X=c\mathbf I_3
+\]
+can hold. For each possible value, give an example of $\mathbf X$ and $\mathbf Y$; for each impossible value, explain why it is impossible.
+\item Determine all $c\in\R$ for which
+\[
+\mathbf X\mathbf Y\mathbf X^{-1}\mathbf Y^{-1}=c\mathbf I_3
+\]
+can hold. For each possible value, give an example of $\mathbf X$ and $\mathbf Y$; for each impossible value, explain why it is impossible.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 14
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+The following commands are entered in the MATLAB Command Window.
+
+{\small\ttfamily
+\begin{tabbing}
+A = magic(4);\\
+A\_times\_ones = A * [1; 1; 1; 1];\\
+sum\_row2 = A\_times\_ones(2);\\
+disp(sum\_row2);
+\end{tabbing}
+}
+
+The MATLAB function \texttt{magic} takes a positive integer $n$ and returns an $n\times n$ matrix containing the integers $1,2,\dots,n^2$ such that every row sum and every column sum is the same.
+
+\begin{problemsubparts}
+\item What is the output of the code? Explain why.
+\item Assuming the code above has already been executed, write MATLAB code that creates a variable \texttt{B} whose value is the product of \texttt{A} with itself.
+\item Assuming the code from part \textup{(b)} has also been executed, the following commands are run:
+
+{\small\ttfamily
+\begin{tabbing}
+B\_times\_ones = B * [1, 1, 1, 1]';\\
+disp(B\_times\_ones);
+\end{tabbing}
+}
+
+A column vector whose entries are all $1156$ is displayed. Explain why. \textit{Hint.} $1156=34^2$.
+\end{problemsubparts}
+
+Now suppose the following MATLAB function is available:
+
+{\small\ttfamily
+\begin{tabbing}
+\hspace{2em}\=\hspace{2em}\=\kill
+function y = my\_func(x)\\
+\>if x > 0\\
+\>\>y = sqrt(x);\\
+\>elseif x < 0\\
+\>\>y = x\string^2;\\
+\>else\\
+\>\>y = 0;\\
+\>end\\
+end
+\end{tabbing}
+}
+
+\begin{problemsubparts}[resume]
+\item Assuming all code through part \textup{(c)} has already been executed, what is the output of
+
+{\small\ttfamily
+\begin{tabbing}
+x = [1, 1, 1, 1] * B\_times\_ones;\\
+disp(my\_func(-3) + my\_func(x));
+\end{tabbing}
+}
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 1
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf p_1=
+\begin{pmatrix}1\\1\\1\end{pmatrix},
+\qquad
+\mathbf p_2=
+\begin{pmatrix}2\\0\\1\end{pmatrix},
+\qquad
+\mathbf p_3=
+\begin{pmatrix}1\\5\\x\end{pmatrix}
+\]
+be three points in $\R^3$. For which values of $x$ does there exist a two-dimensional linear subspace containing all three points? Justify your answer.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 2
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $T\colon\R^n\to\R^n$ be a linear operator, and let
+\[
+\{\mathbf v_1,\dots,\mathbf v_k\}\subseteq\R^n
+\]
+be linearly independent. Show that if
+\[
+\{T(\mathbf v_1),\dots,T(\mathbf v_k)\}
+\]
+is not linearly independent, then $T$ is not injective. Equivalently, show that there exist distinct $\mathbf x,\mathbf y\in\R^n$ such that
+\[
+T(\mathbf x)=T(\mathbf y).
+\]
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 3
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A$ be row equivalent to
+\[
+\mathbf R=
+\begin{pmatrix}
+0&1&0&0&4&0\\
+0&0&1&1&7&0\\
+0&0&0&0&0&1\\
+0&0&0&0&0&0\\
+0&0&0&0&0&0
+\end{pmatrix}.
+\]
+For each item, either answer the question or state that there is not enough information.
+\begin{problemsubparts}
+\item Find $\dim\Null(\mathbf A)$.
+\item Find a basis for $\Null(\mathbf A)$.
+\item Find $\dim\Col(\mathbf A)$.
+\item Find a basis for $\Col(\mathbf A)$.
+\item Find $\dim\Row(\mathbf A)$.
+\item Find a basis for $\Row(\mathbf A)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 4
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathcal B=
+\left\{
+\mathbf b_1=
+\begin{pmatrix}1\\1\\1\\1\end{pmatrix},
+\mathbf b_2=
+\begin{pmatrix}2\\3\\1\\2\end{pmatrix},
+\mathbf b_3=
+\begin{pmatrix}5\\2\\4\\1\end{pmatrix}
+\right\}
+\]
+be a basis for a subspace $W\subseteq\R^4$.
+\begin{problemsubparts}
+\item Find an orthogonal basis for $W$ that contains $\mathbf b_1$ and whose vectors all have integer coordinates.
+\item Find a basis for $W^\perp$.
+\item Find the orthogonal projection onto $W$ of
+\[
+\mathbf x=
+\begin{pmatrix}2\\3\\5\\7\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 5
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+V=\Null(\mathbf A)\subseteq\R^n
+\]
+for some matrix $\mathbf A$, and suppose $\mathbf v_1,\dots,\mathbf v_k\in V$ are linearly independent. Form a matrix $\mathbf B$ by appending the rows
+\[
+\mathbf v_1^{\mathsf T},\dots,\mathbf v_k^{\mathsf T}
+\]
+to the bottom of $\mathbf A$. If
+\[
+\{\mathbf w_1,\dots,\mathbf w_m\}
+\]
+is a basis for $\Null(\mathbf B)$, prove that
+\[
+\{\mathbf v_1,\dots,\mathbf v_k,\mathbf w_1,\dots,\mathbf w_m\}
+\]
+is a basis for $V$.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 6
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Find an orthogonal diagonalization of
+\[
+\mathbf A=
+\begin{pmatrix}
+2&1&-1\\
+1&2&1\\
+-1&1&2
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 7
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&3\\
+2&6
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+6\\7
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find all least-squares solutions of $\mathbf A\mathbf x=\mathbf b$.
+\item Find the least-squares solution $\mathbf y$ of $\mathbf A\mathbf x=\mathbf b$ with minimum norm $\|\mathbf y\|$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 8
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Find a singular value decomposition of
+\[
+\mathbf A=
+\begin{pmatrix}
+2&3\\
+0&2
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 9
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Consider
+\[
+\mathbf A=
+\begin{pmatrix}
+a&b&c\\
+\frac1{\sqrt2}&-\frac1{\sqrt2}&0\\
+\frac1{\sqrt3}&\frac1{\sqrt3}&\frac1{\sqrt3}
+\end{pmatrix},
+\qquad
+\mathbf B=
+\begin{pmatrix}
+d&e&f\\
+\frac1{\sqrt2}&-\frac1{\sqrt2}&0\\
+0&0&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item For which values of $a,b,c,d,e,f$ are $\mathbf A$ and $\mathbf B$ orthogonal matrices representing rotations?
+\item When both matrices are orthogonal and represent rotations, let
+\[
+\mathbf C=\mathbf A^{\mathsf T}\mathbf B\mathbf A.
+\]
+Show that $\mathbf C$ represents a rotation about a line through the origin in $\R^3$, and find its axis and angle. You need not determine the orientation of the axis or the direction of rotation.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 10
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{n\times n}$ have rank $1$, where $n>1$.
+\begin{problemsubparts}
+\item Show directly, without invoking the corresponding rank-factorization theorem, that there exist nonzero vectors $\mathbf u,\mathbf v\in\R^n$ such that
+\[
+\mathbf A=\mathbf u\mathbf v^{\mathsf T}.
+\]
+\item Find all eigenvalues of $\mathbf A$, together with their algebraic multiplicities, in terms of $\mathbf u$ and $\mathbf v$. You may need to consider two cases.
+\item Give a necessary and sufficient condition, in terms of $\mathbf u$ and $\mathbf v$, for $\mathbf A=\mathbf u\mathbf v^{\mathsf T}$ to be diagonalizable.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 11
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A,\mathbf B\in\R^{n\times n}$. Suppose $\mathcal B_1$ and $\mathcal B_2$ are orthonormal bases for $\R^n$, where $\mathcal B_1$ consists of eigenvectors of $\mathbf A$ and $\mathcal B_2$ consists of eigenvectors of $\mathbf B$. Show that there exists an orthonormal basis for $\R^n$ consisting of eigenvectors of $\mathbf A+\mathbf B$.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 12
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $Q(\mathbf x)$ be a quadratic form on $\R^3$, where
+\[
+\mathbf x=
+\begin{pmatrix}
+x_1\\x_2\\x_3
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Show that there exists a rotation matrix $\mathbf R=\mathbf R_{\mathbf u,\theta}$, depending on $Q$, such that $Q(\mathbf R\mathbf x)$ is diagonal; that is,
+\[
+Q(\mathbf R\mathbf x)=\lambda_1x_1^2+\lambda_2x_2^2+\lambda_3x_3^2
+\]
+for some $\lambda_1,\lambda_2,\lambda_3\in\R$.
+\item Let
+\[
+Q(\mathbf x)=-x_1^2+x_2^2+4x_1x_3+4x_2x_3.
+\]
+Find a rotation matrix $\mathbf R$ such that $Q(\mathbf R\mathbf x)$ is diagonal. You need not determine the axis or angle of rotation.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 13
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Find all $n\times n$ upper triangular orthogonal matrices.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 14
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{n\times n}$ be invertible. Show that there exist a unique orthogonal matrix $\mathbf Q$ and a unique upper triangular matrix $\mathbf R$ such that
+\[
+\mathbf A=\mathbf Q\mathbf R
+\]
+and every diagonal entry of $\mathbf R$ is positive.
+\end{problem}
+
+% 2023 Spring KAIST Introduction to Linear Algebra Final, Problem 15
+\begin{problem}[2023 Spring \KAIST{} Introduction to Linear Algebra]
+The following commands are entered in the MATLAB Command Window.
+
+{\small\ttfamily
+\begin{tabbing}
+\hspace{2em}\=\hspace{2em}\=\kill
+A = zeros(7);\\
+for i = [1, 3, 5, 7]\\
+\>for j = [1, 3, 5, 7]\\
+\>\>A(i, j) = 1;\\
+\>end\\
+end\\
+for i = [2, 4, 6]\\
+\>for j = [2, 4, 6]\\
+\>\>A(i, j) = 1;\\
+\>end\\
+end
+\end{tabbing}
+}
+
+\begin{problemsubparts}
+\item Some columns of \texttt{A} are eigenvectors of $\mathbf A$. Identify those columns and compute the corresponding eigenvalues.
+\item Suppose the following commands are then executed:
+
+{\small\ttfamily
+\begin{tabbing}
+eigvals = eig(A);\\
+disp(max(eigvals));
+\end{tabbing}
+}
+
+Here \texttt{max} returns the maximum element of its input. What is displayed? Explain why.
+\end{problemsubparts}
+
+Suppose the MATLAB function \texttt{householder}, which takes a column vector \texttt{x}, is defined by
+
+{\small\ttfamily
+\begin{tabbing}
+\hspace{2em}\=\hspace{2em}\=\kill
+function Q = householder(x)\\
+\>[n, m] = size(x);\\
+\>if x' * x == 0\\
+\>\>Q = eye(n);\\
+\>else\\
+\>\>Q = eye(n) - 2 * (x * x') / (x' * x);\\
+\>end\\
+end
+\end{tabbing}
+}
+
+Assuming all previous code has already been executed, the following commands are then run:
+
+{\small\ttfamily
+\begin{tabbing}
+H = householder([-1; 0; 1; 0; -1; 0; 1]);\\
+B = H * A * H;\\
+syms t;\\
+y = subs(det(t * eye(7) - B), t, 1);\\
+{}[L, U, P] = lu(A);\\
+{}[Q, R] = qr(U);\\
+v = diag(inv(P) * L * inv(Q) * R);
+\end{tabbing}
+}
+
+\begin{problemsubparts}[resume]
+\item What is the value of \texttt{y} after executing the code?
+\item What is the value of \texttt{v} after executing the code?
+\end{problemsubparts}
+\end{problem}
+
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 1
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Determine whether each of the following sets is a subspace of $\R^4$. No justification is required.
+\begin{problemchoices}
+\item $\Span((1,2,3,4),(0,2,0,1))\cup\Span((1,0,3,0))$.
+\item $\Span((1,1,3,-2),(2,3,1,-1))\cup\Span((1,3,-7,4))$.
+\item The set of vectors in $\R^4$ whose entries sum to $0$.
+\item The set of vectors in $\Span((1,1,1,-1),(-1,1,1,1))$ whose entries sum to $100$.
+\item The set of vectors in $\R^4$ that are orthogonal to $(1,2,3,-4)$ and whose entries sum to $0$.
+\end{problemchoices}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 2
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{3\times3}$ satisfy
+\[
+\bigl(2\mathbf A^{\mathsf T}\bigr)^{-1}=
+\begin{pmatrix}
+3&0&2\\
+-1&1&-1\\
+-1&0&0
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find $\mathbf A$.
+\item Find all eigenvalues of $\mathbf A$, their algebraic multiplicities, and the corresponding eigenspaces.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 3
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+For $a\in\R$, consider the linear system
+\[
+\begin{pmatrix}
+1&-2&4\\
+-2&2&-3a\\
+a&-8&a^2+2
+\end{pmatrix}
+\begin{pmatrix}x\\y\\z\end{pmatrix}
+=
+\begin{pmatrix}a-1\\-7\\a\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Determine the number of solutions for each $a\in\R$.
+\item Use Cramer's rule to solve the system when $a=0$. Do not use another method.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 4
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Define $T\colon\R^4\to\R^4$ by
+\[
+T(a,b,c,d)=(y_1,y_2,y_3,y_4),
+\]
+where
+\[
+\begin{pmatrix}y_1&y_2\\y_3&y_4\end{pmatrix}
+=
+\begin{pmatrix}1&2\\0&1\end{pmatrix}
+\begin{pmatrix}a&b\\c&d\end{pmatrix}
+-
+\begin{pmatrix}a&b\\c&d\end{pmatrix}
+\begin{pmatrix}1&2\\0&1\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Show that $T$ is a linear transformation.
+\item Find $\ker T$ and $\det([T]_{\mathcal E})$, where $\mathcal E$ is the standard ordered basis of $\R^4$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 5
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&1\\
+2&3&4\\
+4&5&6
+\end{pmatrix},
+\qquad
+\mathbf v_1=\begin{pmatrix}1\\1\\1\end{pmatrix},\quad
+\mathbf v_2=\begin{pmatrix}2\\3\\4\end{pmatrix},\quad
+\mathbf v_3=\begin{pmatrix}4\\5\\6\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find an $LU$ decomposition of $\mathbf A$.
+\item Find all $\mathbf v\in\R^3$ such that $\mathbf v-(3,4,7)$ lies in
+\[
+\Span(\mathbf v_1)^\perp\cap\Span(\mathbf v_2)^\perp\cap\Span(\mathbf v_3)^\perp.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 6
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Suppose $\mathbf A,\mathbf B,\mathbf C,\mathbf D\in\R^{3\times3}$ satisfy
+\[
+\mathbf A\mathbf D=
+\begin{pmatrix}
+-1&-5&-8\\
+-1&-5&-8\\
+-2&-10&75
+\end{pmatrix},
+\qquad
+\mathbf B\mathbf D=
+\begin{pmatrix}
+0&0&0\\
+4&20&33\\
+0&0&-46
+\end{pmatrix},
+\]
+and
+\[
+(\mathbf A+\mathbf B)\mathbf C=\mathbf I_3.
+\]
+Find a matrix in reduced row echelon form that is row equivalent to $\mathbf D$.
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 7
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{3\times3}$ be orthogonal. Determine whether each statement is true or false, and justify your answer by proof or counterexample.
+\begin{problemchoices}
+\item $\mathbf A\mathbf B$ is orthogonal, where
+\[
+\mathbf B=
+\begin{pmatrix}
+0&0&1\\
+0&1&0\\
+1&0&0
+\end{pmatrix}.
+\]
+\item $|\lambda|=1$ for every eigenvalue $\lambda$ of $\mathbf A$.
+\end{problemchoices}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 8
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+On $\R^2$, let $T_1$ be reflection across the $x$-axis and let $T_2$ be reflection across the line $y=x$.
+\begin{problemsubparts}
+\item Show, using their standard matrices, that $T_1\circ T_2\ne T_2\circ T_1$.
+\item Describe $T_1\circ T_2$ and $T_2\circ T_1$ as rotations about the origin.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 9
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{2\times2}$ be symmetric. Determine whether each statement is true or false, and justify your answer by proof or counterexample.
+\begin{problemchoices}
+\item $\mathbf A$ has a real eigenvalue.
+\item If $\mathbf A$ has distinct eigenvalues $\lambda_1,\lambda_2$ and $\mathbf x_i$ is an eigenvector corresponding to $\lambda_i$ for $i=1,2$, then $\mathbf x_1\perp\mathbf x_2$.
+\end{problemchoices}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 10
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A,\mathbf B\in\R^{n\times n}$ and suppose that an invertible matrix $\mathbf Q\in\R^{n\times n}$ satisfies
+\[
+\mathbf A=\mathbf Q^{-1}\mathbf B\mathbf Q.
+\]
+Determine whether each statement is true or false, and justify your answer by proof or counterexample.
+\begin{problemchoices}
+\item $\tr(\mathbf A)=\tr(\mathbf B)$.
+\item If $\lambda$ is an eigenvalue of $\mathbf A$, then $\lambda$ is an eigenvalue of $\mathbf B$.
+\item If $\mathbf x$ is an eigenvector of $\mathbf A$, then $\mathbf x$ is an eigenvector of $\mathbf B$.
+\end{problemchoices}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 11
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+-2&0&0&0\\
+1&-2&0&0\\
+-7&4&-1&0\\
+1&-8&13&1
+\end{pmatrix},
+\qquad
+\mathbf B=
+\begin{pmatrix}
+1&6&-2&7\\
+0&-1&11&5\\
+0&0&1&-4\\
+0&0&0&-2
+\end{pmatrix}.
+\]
+Find $\det\bigl(\adj(\mathbf A\mathbf B)\bigr)$.
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Midterm, Problem 12
+% Source correction: the printed statement in part (a) asks for an invertible 3x3 skew-symmetric matrix, which cannot exist over R. The evident missing word "no" is restored.
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Show that there is no invertible skew-symmetric $3\times3$ real matrix.
+\item Suppose $\mathbf A\in\R^{n\times n}$ is skew-symmetric and $\mathbf I_n$ is the identity matrix. Show that $\mathbf I_n-\mathbf A$ is invertible.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 1
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\begin{aligned}
+\mathbf v_1&=(1,1,-1),&
+\mathbf v_2&=(2,2,-2),&
+\mathbf v_3&=(2,2,2),\\
+\mathbf v_4&=(2,2,-6),&
+\mathbf v_5&=(3,3,5),&
+\mathbf v_6&=(3,4,2).
+\end{aligned}
+\]
+Find all $i\in\{2,3,4,5,6\}$ such that $\mathbf v_i$ can be expressed as a linear combination of $\mathbf v_1,\dots,\mathbf v_{i-1}$. Justify your answer.
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 2
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{2\times2}$ have characteristic polynomial
+\[
+p(x)=x^2-x+1.
+\]
+Compute
+\[
+\tr\left(\mathbf A^{109}+\bigl(\mathbf A^{-1}\bigr)^{109}\right).
+\]
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 3
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&3\\
+1&2&4\\
+3&6&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find a basis for $\Col(\mathbf A)$.
+\item Write
+\[
+\mathbf A=\mathbf c_1\mathbf r_1+\mathbf c_2\mathbf r_2+\cdots+\mathbf c_k\mathbf r_k,
+\]
+where $k=\rk(\mathbf A)$, each $\mathbf c_i$ is a column of $\mathbf A$, and each $\mathbf r_i$ is a $1\times3$ row vector.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 4
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+0&1&0\\
+1&0&0\\
+0&1&1
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}1\\1\\1\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find a $QR$ decomposition of $\mathbf A$.
+\item Find the least-squares solution of $\mathbf A\mathbf x=\mathbf b$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 5
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+W=\Span\bigl((1,-1,1,0),(0,1,1,-1)\bigr)\subseteq\R^4,
+\qquad
+\mathbf b=
+\begin{pmatrix}1\\0\\0\\1\end{pmatrix}.
+\]
+Find $\widehat{\mathbf w}\in W$ such that
+\[
+\|\mathbf b-\widehat{\mathbf w}\|\le\|\mathbf b-\mathbf w\|
+\]
+for every $\mathbf w\in W$.
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 6
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Find the least-squares line of best fit to the four points
+\[
+(0,-1),\quad(-1,-1),\quad(1,1),\quad(2,2).
+\]
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 7
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Find a singular value decomposition of
+\[
+\mathbf A=
+\begin{pmatrix}
+1&-2&0\\
+0&-2&1
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 8
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let the ordered bases $\mathcal B_1$ and $\mathcal B_2$ of $\R^3$ be
+\[
+\mathcal B_1=
+\left(
+\begin{pmatrix}1\\0\\0\end{pmatrix},
+\begin{pmatrix}1\\0\\-1\end{pmatrix},
+\begin{pmatrix}0\\1\\1\end{pmatrix}
+\right),
+\]
+\[
+\mathcal B_2=
+\left(
+\begin{pmatrix}0\\1\\1\end{pmatrix},
+\begin{pmatrix}-1\\3\\2\end{pmatrix},
+\begin{pmatrix}2\\-3\\-2\end{pmatrix}
+\right).
+\]
+Suppose $\mathcal B_3$ is an ordered basis of $\R^3$ satisfying
+\[
+\mathbf P_{\mathcal B_2\to\mathcal B_3}=
+\begin{pmatrix}
+1&1&0\\
+0&-1&0\\
+2&0&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find $\mathbf P_{\mathcal B_3\to\mathcal B_1}$.
+\item Let $T\colon\R^4\to\R^3$ be defined by
+\[
+T(a,b,c,d)=(a+b,c-a,b+d).
+\]
+Find $[T]_{\mathcal B_1,\mathcal E}$, where $\mathcal E$ is the standard ordered basis of $\R^4$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 9
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&0&y\\
+0&1&y\\
+2&2&y-3
+\end{pmatrix},
+\qquad y\in\R.
+\]
+\begin{problemsubparts}
+\item Show that $1$ is an eigenvalue of $\mathbf A$ for every $y\in\R$.
+\item Find all $y\in\R$ for which $\mathbf A$ is not diagonalizable. Justify your answer.
+\item Find all $y\in\R$ for which $\mathbf A$ is orthogonally diagonalizable. Justify your answer and, in each case, orthogonally diagonalize $\mathbf A$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 10
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Suppose $\mathbf B\in\R^{4\times4}$ satisfies
+\[
+\mathbf A\mathbf B=
+\begin{pmatrix}
+1&2&-1&2\\
+3&6&-2&5\\
+0&0&0&0\\
+0&0&0&0
+\end{pmatrix},
+\qquad
+\mathbf A=
+\begin{pmatrix}
+2&-1&1&1\\
+3&2&-1&1\\
+-1&3&2&-1\\
+1&-1&3&2
+\end{pmatrix}.
+\]
+Find a basis for $\Row(\mathbf B)$ and a basis for $\Null(\mathbf B^{\mathsf T})$. You may use $\det(\mathbf A)=45$.
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 11
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+For
+\[
+\mathbf A=
+\begin{pmatrix}
+3&4&5&-2\\
+6&8&10&-4\\
+1&0&2&2\\
+2&4&3&-4
+\end{pmatrix},
+\]
+find matrices $\mathbf D$ and $\mathbf S$ such that
+\[
+\mathbf A=\mathbf S\mathbf D,
+\]
+the rows of $\mathbf D$ form a linearly independent subset of the rows of $\mathbf A$, and $\mathbf S^{\mathsf T}$ is in reduced row echelon form.
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 12
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf P\in\R^{n\times n}$ satisfy $\mathbf P^2=\mathbf P$. Determine whether each statement is true or false, and justify your answer by proof or counterexample.
+\begin{problemsubparts}
+\item $\mathbf P$ is diagonalizable.
+\item $\tr(\mathbf P)=\rk(\mathbf P)$.
+\item If $\mathbf P$ is symmetric, then $\mathbf P$ is the standard matrix of the orthogonal projection of $\R^n$ onto $\Col(\mathbf P)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 13
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$ and $\mathbf B\in\R^{n\times k}$, and let $\mathbf R$ and $\mathbf S$ be their reduced row echelon forms, respectively. Determine whether each statement is true or false, and justify your answer by proof or counterexample.
+\begin{problemsubparts}
+\item $\rk(\mathbf A\mathbf B)=\rk(\mathbf R\mathbf B)$.
+\item $\rk(\mathbf A\mathbf B)=\rk(\mathbf A\mathbf S)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Introduction to Linear Algebra Final, Problem 14
+\begin{problem}[2024 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{4\times5}$, $\mathbf v_1\in\R^5$, and $\mathbf v_2\in\R^4$. Suppose there exist linearly independent vectors $\mathbf x_1,\mathbf x_2,\mathbf x_3,\mathbf x_4\in\R^4$ such that
+\[
+\mathbf A\mathbf v_1=\mathbf x_1,
+\qquad
+\mathbf A\mathbf A^{\mathsf T}\mathbf v_2=\mathbf x_2,
+\qquad
+\mathbf A^{\mathsf T}\mathbf x_3=\mathbf 0,
+\qquad
+\mathbf A\mathbf A^{\mathsf T}\mathbf x_4=\mathbf 0.
+\]
+Compute $\rk(\mathbf A)$ and justify your answer.
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 1
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Find all $a,b,c\in\R$ for which
+\[
+\mathbf A=
+\begin{pmatrix}
+1&a-b+2c&2a-b+c\\
+3&-1&a+c\\
+0&-2&1
+\end{pmatrix}
+\]
+is symmetric.
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 2
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Determine whether each function is a linear transformation. If it is, find its standard matrix.
+\begin{problemsubparts}
+\item $T_1\colon\R^3\to\R^3$ is reflection about the origin $(0,0,0)$.
+\item $T_2\colon\R^3\to\R^3$ is orthogonal projection onto the plane
+\[
+2x+3y+4z=1.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 3
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf v_1=(1,4,4),\qquad
+\mathbf v_2=(-1,3,6),\qquad
+\mathbf v_3=(-7,0,12)
+\]
+in $\R^3$.
+\begin{problemsubparts}
+\item Determine whether $\mathbf v_1,\mathbf v_2,\mathbf v_3$ are linearly independent. If they are, prove it. Otherwise, express one vector as a linear combination of the other two.
+\item Find all $a\in\R$ for which $\mathbf w=(3,5,a)\in\Span(\mathbf v_1,\mathbf v_2,\mathbf v_3)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 4
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A$ be invertible.
+\begin{problemsubparts}
+\item Show that $\mathbf A^{\mathsf T}$ is invertible and
+\[
+\bigl(\mathbf A^{\mathsf T}\bigr)^{-1}=\bigl(\mathbf A^{-1}\bigr)^{\mathsf T}.
+\]
+\item Show that if $\mathbf A$ is skew-symmetric, that is, $\mathbf A^{\mathsf T}=-\mathbf A$, then $\mathbf A^{-1}$ is also skew-symmetric.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 5
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Find all $b\in\R$ for which the system
+\[
+\begin{cases}
+x_1-2x_2-x_3=b^2,\\
+-2x_1+3x_2+2x_3=b,\\
+-4x_1+7x_2+4x_3=-1
+\end{cases}
+\]
+is consistent. For each such $b$, find the general solution.
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 6
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=\frac13
+\begin{pmatrix}
+1&2&-2\\
+2&1&2\\
+-2&2&1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Determine whether $\mathbf A$ is orthogonal. Justify your answer.
+\item Find all real eigenvalues of $\mathbf A$ and the eigenspace corresponding to each one.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 7
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&2\\
+6&7&-9\\
+0&3&-11
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}0\\1\\107\end{pmatrix}.
+\]
+Find an $LU$ decomposition of $\mathbf A$, and use it to solve $\mathbf A\mathbf x=\mathbf b$ by forward substitution followed by backward substitution. Do not use inverses of the factors obtained from the decomposition.
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 8
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A,\mathbf B,\mathbf C,\mathbf D$ be matrices such that $\mathbf A\mathbf B$, $\mathbf A\mathbf C$, $\mathbf B\mathbf D$, and $\mathbf C\mathbf D$ are defined. Determine whether each statement is true or false.
+\begin{problemsubparts}
+\item If one column of $\mathbf B$ equals one column of $\mathbf C$, then one column of $\mathbf A\mathbf B$ equals one column of $\mathbf A\mathbf C$.
+\item If $\mathbf B$ and $\mathbf C$ are row equivalent, then $\mathbf A\mathbf B$ and $\mathbf A\mathbf C$ are row equivalent.
+\item If $\mathbf B$ and $\mathbf C$ are row equivalent, then $\mathbf B\mathbf D$ and $\mathbf C\mathbf D$ are row equivalent.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 9
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let $T_1,T_2\colon\R^n\to\R^m$ be linear transformations and let $c_1,c_2\in\R$. Define
+\[
+(c_1T_1+c_2T_2)(\mathbf u)=c_1T_1(\mathbf u)+c_2T_2(\mathbf u),
+\qquad \mathbf u\in\R^n.
+\]
+\begin{problemsubparts}
+\item Show that $c_1T_1+c_2T_2$ is a linear transformation.
+\item Suppose now that $m=n$. A scalar $\lambda\in\R$ is called an eigenvalue of a linear operator $S\colon\R^n\to\R^n$ if there exists a nonzero vector $\mathbf x\in\R^n$ such that $S(\mathbf x)=\lambda\mathbf x$. Determine whether the following statement is true or false: if $\lambda_i$ is an eigenvalue of $T_i$ for $i=1,2$, then $c_1\lambda_1+c_2\lambda_2$ is an eigenvalue of $c_1T_1+c_2T_2$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 10
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+For an integer $n>2$, define $\mathbf A=(a_{ij})\in\R^{n\times n}$ by
+\[
+a_{ij}=
+\begin{cases}
+r,&i=j,\\
+1,&i+1=j\text{ and }i\ne2,\\
+0,&\text{otherwise},
+\end{cases}
+\]
+where $r\in\R$ is fixed.
+\begin{problemsubparts}
+\item Find the characteristic polynomial of $\mathbf A$.
+\item Find all real eigenvalues of $\mathbf A$.
+\item Find the eigenspace $E_\lambda(\mathbf A)$ corresponding to each real eigenvalue $\lambda$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 11
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf u=(\sqrt2,\sqrt2,0),
+\qquad
+\mathbf v=(0,2,0).
+\]
+For $\theta\ge0$, let $T_\theta\colon\R^3\to\R^3$ be rotation about the positive $x$-axis through angle $\theta$.
+\begin{problemsubparts}
+\item Find $\theta\in[0,\pi]$ for which the area of the parallelogram spanned by $\mathbf u$ and $T_\theta(\mathbf v)$ is maximized.
+\item For the angle found in part \textup{(a)}, find the standard matrix of $T_\theta$.
+\item For the angle found in part \textup{(a)}, find a vector perpendicular to the parallelogram spanned by $\mathbf u$ and $T_\theta(\mathbf v)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 12
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A=(a_{ij})\in\R^{n\times n}$ and let $i,j\in\{1,\dots,n\}$.
+\begin{problemsubparts}
+\item State the definition of the $(i,j)$-cofactor of $\mathbf A$ and of the adjugate matrix $\adj(\mathbf A)$.
+\item State the cofactor expansions of $\det(\mathbf A)$ along the $i$th row and the $j$th column.
+\item Compute $\mathbf A\adj(\mathbf A)$ and justify your answer using suitable cofactor expansions.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 13
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let $n>1$, let $\mathbf A\in\R^{n\times n}$, and let $\mathbf I_n$ be the identity matrix.
+\begin{problemsubparts}
+\item Show that if $\mathbf A$ is nilpotent, then $\mathbf I_n-\mathbf A$ is invertible.
+\item For the matrix $\mathbf A=(a_{ij})$ defined by
+\[
+a_{ij}=
+\begin{cases}
+1,&i+1=j,\\
+0,&\text{otherwise},
+\end{cases}
+\]
+find the index of nilpotency of $\mathbf A$, that is, the smallest positive integer $k$ such that $\mathbf A^k=\mathbf0$, and find $(\mathbf I_n-\mathbf A)^{-1}$. No proof is required for this part.
+\item For the matrix in part \textup{(b)}, find all fixed points of $\mathbf A$, that is, all $\mathbf x\in\R^n$ satisfying $\mathbf A\mathbf x=\mathbf x$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 14
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Suppose $\mathbf u_1,\dots,\mathbf u_4$ span $\R^4$, and suppose there exists a linear transformation $T\colon\R^4\to\R^6$ such that
+\[
+\begin{aligned}
+T(\mathbf u_1)&=(a_1,b_1,0,0,0,0),\\
+T(\mathbf u_2)&=(0,a_2,b_2,0,0,0),\\
+T(\mathbf u_3)&=(0,0,a_3,b_3,0,0),\\
+T(\mathbf u_4)&=(b_4,0,0,a_4,0,0),
+\end{aligned}
+\]
+where $a_1,a_2,a_3,a_4$ are even integers and $b_1,b_2,b_3,b_4$ are odd integers.
+\begin{problemsubparts}
+\item Find $\ker T$.
+\item Find $\im T$.
+\item Find $c_1,c_2,c_3,c_4\in\R$ such that
+\[
+T\left(\sum_{i=1}^4 c_i\mathbf u_i\right)=(1,0,0,0,0,0).
+\]
+\textit{Hint.} Each $c_i$ can be expressed as a rational function of
+$a_1,a_2,a_3,a_4,b_1,b_2,b_3,b_4$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Midterm, Problem 15
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item For a positive odd integer $m$, compute $\det(\mathbf A)$ for an arbitrary $m\times m$ skew-symmetric matrix $\mathbf A$. Your answer should not depend on the specific matrix.
+\item For a positive integer $n$, let $\mathbf B\in\R^{n\times n}$ be orthogonal with $\det(\mathbf B)<0$. Compute
+\[
+\det(\mathbf B+\mathbf I_n).
+\]
+Your answer should not depend on the specific matrix $\mathbf B$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 1
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Find the standard matrix $\mathbf P$ for the orthogonal projection of $\R^3$ onto the plane
+\[
+x-5y+10z=0.
+\]
+\item Use $\mathbf P$ to find the orthogonal projection of $(5,2,1)\in\R^3$ onto the plane.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 2
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+W=\Span\bigl((1,1,0),(1,2,-1),(0,1,1)\bigr)\subseteq\R^3.
+\]
+\begin{problemsubparts}
+\item Find an orthonormal basis for $W$.
+\item Find a $QR$ decomposition of
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1\\
+1&2\\
+0&-1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 3
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A,\mathbf B\in\R^{m\times n}$ be row equivalent, and let $\mathbf a_1,\dots,\mathbf a_n$ and $\mathbf b_1,\dots,\mathbf b_n$ be their column vectors, respectively. Prove that for any $c_1,\dots,c_n\in\R$,
+\[
+\sum_{i=1}^n c_i\mathbf a_i=\mathbf0
+\quad\Longleftrightarrow\quad
+\sum_{i=1}^n c_i\mathbf b_i=\mathbf0.
+\]
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 4
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let $\mathcal B$ be any ordered basis of $\R^n$. Prove that vectors $\mathbf v_1,\dots,\mathbf v_k\in\R^n$ are linearly independent if and only if their coordinate vectors
+\[
+[\mathbf v_1]_{\mathcal B},\dots,[\mathbf v_k]_{\mathcal B}
+\]
+are linearly independent in $\R^n$.
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 5
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf P=
+\begin{pmatrix}
+2&1&0\\
+0&2&1\\
+1&0&2
+\end{pmatrix}.
+\]
+Let $\mathcal E$ denote the standard ordered basis of $\R^3$.
+\begin{problemsubparts}
+\item Find the ordered basis $\mathcal B$ of $\R^3$ such that $\mathbf P$ is the transition matrix from $\mathcal B$ to $\mathcal E$.
+\item Find the ordered basis $\mathcal C$ of $\R^3$ such that $\mathbf P$ is the transition matrix from $\mathcal E$ to $\mathcal C$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 6
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+W=\Span(\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4,\mathbf v_5)\subseteq\R^4,
+\]
+where
+\[
+\begin{aligned}
+\mathbf v_1&=(2,7,3,1),&
+\mathbf v_2&=(1,0,4,3),&
+\mathbf v_3&=(0,2,3,0),\\
+\mathbf v_4&=(3,6,1,2),&
+\mathbf v_5&=(1,0,0,9).
+\end{aligned}
+\]
+\begin{problemsubparts}
+\item Find a subset of $\{\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4,\mathbf v_5\}$ that forms a basis for $W$.
+\item Express each vector not chosen for the basis as a linear combination of the basis vectors.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 7
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+-1&-3\\
+1&3\\
+2&6
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}1\\0\\1\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find all least-squares solutions of $\mathbf A\mathbf x=\mathbf b$.
+\item Find the least-squares solution with minimum norm $\|\mathbf x\|$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 8
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Let $\mathbf A\in\R^{n\times n}$ have singular value decomposition
+\[
+\mathbf A=\mathbf U\boldsymbol\Sigma\mathbf V^{\mathsf T}.
+\]
+For $i=1,\dots,n$, let $\mathbf u_i$ and $\mathbf v_i$ be the $i$th columns of $\mathbf U$ and $\mathbf V$, respectively, and let $\sigma_i$ be the $(i,i)$-entry of $\boldsymbol\Sigma$. Find an orthonormal basis for $\R^n$ consisting of eigenvectors of $\mathbf A^{\mathsf T}\mathbf A$, and an orthonormal basis for $\R^n$ consisting of eigenvectors of $\mathbf A\mathbf A^{\mathsf T}$.
+\item Find a singular value decomposition of
+\[
+\mathbf B=
+\begin{pmatrix}
+1&0&0\\
+1&1&0\\
+-1&1&0
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 9
+% Source correction: the printed problem has b in R^4, but A^T A x lies in R^5 and x is stated to be in R^5. The ambient space is therefore minimally corrected to R^5.
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+3&-5&-1&5&4\\
+0&-3&2&7&6\\
+4&-5&-9&2&-5\\
+2&6&8&3&-6
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Show that
+\[
+W=\left\{\mathbf b\in\R^5\mid \mathbf A^{\mathsf T}\mathbf A\mathbf x=\mathbf b
+\text{ has at least one solution }\mathbf x\in\R^5\right\}
+\]
+is a subspace of $\R^5$. \textit{Hint.} Show that $W$ is one of the fundamental spaces of a matrix.
+\item Find $\dim W$ and $\dim W^\perp$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 10
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let $W\subseteq\R^n$ be an $m$-dimensional subspace with $0<m<n$, and let $T\colon\R^n\to\R^n$ be the orthogonal projection onto $W$. Show that there exists an ordered basis $\mathcal B$ of $\R^n$ such that
+\[
+[T]_{\mathcal B}=
+\begin{pmatrix}
+\mathbf I_m&\mathbf A\\
+\mathbf0&\mathbf0
+\end{pmatrix}
+\]
+for some $m\times(n-m)$ matrix $\mathbf A$.
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 11
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Consider the proposition: if square matrices $\mathbf A$ and $\mathbf B$ are similar, then their characteristic polynomials are equal.
+\begin{problemsubparts}
+\item Prove the proposition.
+\item Prove or disprove its converse.
+\item Prove or disprove the following statement: if $\mathbf A$ and $\mathbf B$ are diagonalizable square matrices and have the same characteristic polynomial, then they are similar.
+\end{problemsubparts}
+\textit{Hint.} You may use without proof that diagonal matrices with the same characteristic polynomial are similar.
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 12
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Find vectors $\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4\in\R^3$ and $\mathbf w_1,\mathbf w_2,\mathbf w_3\in\R^4$ satisfying all of the following conditions.
+\begin{problemclauses}
+\item The entries of $\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4$ are exactly the twelve integers $1,2,\dots,12$, each used once.
+\item The entries of $\mathbf w_1,\mathbf w_2,\mathbf w_3$ are exactly the twelve integers $1,2,\dots,12$, each used once.
+\item For every $i\in\{1,2,3,4\}$ and $j\in\{1,2,3\}$, the vectors $\mathbf v_i$ and $\mathbf w_j$ share exactly one component.
+\item The subspaces $\Span(\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4)\subseteq\R^3$ and $\Span(\mathbf w_1,\mathbf w_2,\mathbf w_3)\subseteq\R^4$ have the same dimension.
+\end{problemclauses}
+\end{problem}
+
+% 2024 Fall KAIST Introduction to Linear Algebra Final, Problem 13
+\begin{problem}[2024 Fall \KAIST{} Introduction to Linear Algebra]
+Let $n$ be a positive integer and let $\mathbf I_n$ be the identity matrix.
+\begin{problemsubparts}
+\item Suppose $\mathbf A\in\R^{n\times n}$ satisfies $\mathbf A^2=\mathbf I_n$. Prove that:
+\begin{problemclauses}
+\item the eigenvalues of $\mathbf A$ are contained in $\{1,-1\}$;
+\item $\Col(\mathbf A-\mathbf I_n)\subseteq\Null(\mathbf A+\mathbf I_n)$;
+\item $\mathbf A$ is diagonalizable.
+\end{problemclauses}
+\item Suppose $\mathbf B\in\R^{n\times n}$ is orthogonal. Show that if $\mathbf B$ is diagonalizable over $\R$, then
+\[
+\mathbf B^2=\mathbf I_n.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 1
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Consider a system of $m$ linear equations in $n$ unknowns.
+\begin{problemsubparts}
+\item If the system is homogeneous, explain why it has at least one solution.
+\item If $m<n$, systems often have solutions. Give an example with $m=2$ and $n=3$ of the form
+\[
+\begin{cases}
+a_{11}x+a_{12}y+a_{13}z=b_1,\\
+a_{21}x+a_{22}y+a_{23}z=b_2,
+\end{cases}
+\]
+in which the six coefficients $a_{11},a_{12},a_{13},a_{21},a_{22},a_{23}$ are pairwise distinct and the system has no solution. You need not solve the system.
+\item If $m>n$, systems often have no solutions. Give an example with $m=3$ and $n=2$ of the form
+\[
+\begin{cases}
+a_{11}x+a_{12}y=b_1,\\
+a_{21}x+a_{22}y=b_2,\\
+a_{31}x+a_{32}y=b_3,
+\end{cases}
+\]
+in which the six coefficients $a_{11},a_{12},a_{21},a_{22},a_{31},a_{32}$ are pairwise distinct and the system has a unique solution. You need not solve the system.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 2
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Consider the system
+\[
+\begin{cases}
+x+2y+3z=14,\\
+2x-y+z=3,\\
+3x+4y-z=8.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Write the augmented matrix and use elementary row operations to reduce it to reduced row echelon form.
+\item Determine whether the system has a unique solution, infinitely many solutions, or no solution. Justify your answer and, if solutions exist, find all of them.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 3
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&3\\
+4&5&6\\
+7&8&9
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Compute $\det(\mathbf A)$ and list all possible cases for the number of solutions of $\mathbf A\mathbf x=\mathbf b$ as $\mathbf b$ ranges over $\R^3$.
+\item Determine the number of free variables in $\mathbf A\mathbf x=\mathbf0$ and find the general solution in parametric form.
+\item For
+\[
+\mathbf x_1=\begin{pmatrix}-3\\-3\\-3\end{pmatrix},
+\qquad
+\mathbf x_2=\begin{pmatrix}0\\0\\2\end{pmatrix},
+\]
+determine whether each vector belongs to the range of $T_{\mathbf A}\colon\R^3\to\R^3$, $T_{\mathbf A}(\mathbf x)=\mathbf A\mathbf x$. Justify your answers.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 4
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item State the Leibniz formula for the determinant of an $n\times n$ matrix $\mathbf A=(a_{ij})$ in terms of permutations.
+\item Using the definition from part \textup{(a)}, compute
+\[
+\det\begin{pmatrix}
+1&0&1\\
+2&3&-1\\
+-1&2&0
+\end{pmatrix}.
+\]
+\item For $1\le i\le n$, state the cofactor expansion of $\det(\mathbf A)$ along the $i$th row.
+\item Using cofactor expansion along suitable rows or columns, compute
+\[
+\det\begin{pmatrix}
+0&1&0&0&0\\
+2&0&-1&4&5\\
+0&0&0&2&-3\\
+1&0&0&1&2\\
+0&1&0&0&-1
+\end{pmatrix}.
+\]
+At each step, indicate the row or column used.
+\item Using elementary row operations, find the inverse of
+\[
+\mathbf B=
+\begin{pmatrix}
+1&1&1&-1\\
+1&1&-1&1\\
+1&-1&1&1\\
+-1&1&1&1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 5
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Recall that the adjugate matrix of a square matrix is the transpose of its cofactor matrix.
+\begin{problemsubparts}
+\item Find $\adj(\mathbf A)$ and $\mathbf A^{-1}$ for
+\[
+\mathbf A=
+\begin{pmatrix}
+2&0&3\\
+0&3&2\\
+-2&0&-4
+\end{pmatrix}.
+\]
+\item Let $\mathbf B\in\R^{n\times n}$ with $n>1$. Prove that
+\[
+\det\bigl(\adj(\mathbf B)\bigr)=\det(\mathbf B)^{n-1}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 6
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Find the reduced row echelon form of the $n\times n$ matrix
+\[
+\begin{pmatrix}
+0&1&1&\cdots&1&1\\
+1&0&1&\cdots&1&1\\
+1&1&0&\cdots&1&1\\
+\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+1&1&1&\cdots&0&1\\
+1&1&1&\cdots&1&1
+\end{pmatrix}.
+\]
+\item Find the minimum possible number of zero entries in an invertible $n\times n$ matrix whose entries belong to $\{0,1\}$. Justify your answer.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 7
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Find the characteristic polynomial of
+\[
+\mathbf A=
+\begin{pmatrix}
+0&0&0&0&-a_0\\
+1&0&0&0&-a_1\\
+0&1&0&0&-a_2\\
+0&0&1&0&-a_3\\
+0&0&0&1&-a_4
+\end{pmatrix}.
+\]
+\item Find a matrix whose characteristic polynomial is
+\[
+2-3\lambda+4\lambda^2-\lambda^3+2\lambda^4+\lambda^5.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 8
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\lambda$ be an eigenvalue of $\mathbf A\in\R^{n\times n}$ with corresponding eigenvector $\mathbf x$.
+\begin{problemsubparts}
+\item If $\mathbf P\in\R^{n\times n}$ is invertible, prove that $\lambda$ is an eigenvalue of $\mathbf P^{-1}\mathbf A\mathbf P$ and find a corresponding eigenvector.
+\item If $\mathbf A$ is invertible, prove that $\lambda^{-1}$ is an eigenvalue of $\mathbf A^{-1}$ and find a corresponding eigenvector.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 9
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{2\times2}$ be symmetric.
+\begin{problemsubparts}
+\item Prove that $\mathbf A$ has a real eigenvalue.
+\item If $\mathbf A$ has one repeated eigenvalue, prove that $\mathbf A$ is a scalar multiple of $\mathbf I_2$.
+\item If $\mathbf A$ has two distinct eigenvalues, prove that eigenvectors corresponding to distinct eigenvalues are orthogonal.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 10
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+-\frac1{\sqrt2}&-\frac1{\sqrt2}\\
+\frac1{\sqrt2}&-\frac1{\sqrt2}
+\end{pmatrix},
+\qquad
+\mathbf B=
+\begin{pmatrix}
+\frac1{\sqrt2}&\frac1{\sqrt2}\\
+\frac1{\sqrt2}&-\frac1{\sqrt2}
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Prove that $\mathbf A$ is the standard matrix of a rotation of $\R^2$, and find its rotation angle $\theta\in[0,\pi]$.
+\item Prove that $\mathbf B$ is the standard matrix of a reflection of $\R^2$, and find its reflection line.
+\item Determine whether $\mathbf A\mathbf B$ is the standard matrix of a rotation or a reflection. If it is a rotation, find its angle $\theta\in[0,\pi]$; if it is a reflection, find its reflection line.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 11
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$.
+\begin{problemsubparts}
+\item Prove that $\mathbf A^{\mathsf T}\mathbf A$ is symmetric.
+\item If $\tr(\mathbf A^{\mathsf T}\mathbf A)=0$, prove that $\mathbf A=\mathbf0$.
+\item Prove that
+\[
+\Null(\mathbf A)=\Null(\mathbf A^{\mathsf T}\mathbf A).
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Midterm, Problem 12
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+0&1&0\\
+0&0&1\\
+1&0&0
+\end{pmatrix}.
+\]
+Prove or disprove that $\mathbf A$ is the standard matrix of a rotation of $\R^3$. If it is, find the rotation axis and rotation angle.
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 1
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf v_1=\begin{pmatrix}2\\5\\1\end{pmatrix},
+\qquad
+\mathbf v_2=\begin{pmatrix}1\\2\\3\end{pmatrix},
+\qquad
+V=\Span(\mathbf v_1,\mathbf v_2)\subseteq\R^3.
+\]
+\begin{problemsubparts}
+\item Determine whether $\mathbf v_1$ and $\mathbf v_2$ are linearly independent, and find $\dim V$.
+\item Find an orthonormal basis for $V$.
+\item Extend the orthonormal basis found in part \textup{(b)} to an orthonormal basis for $\R^3$.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 2
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&1&0\\
+0&1&-1&2\\
+2&5&0&2
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Compute $\rk(\mathbf A)$ and $\dim\Null(\mathbf A)$.
+\item Find a basis for $\Col(\mathbf A)$ and a basis for $\Null(\mathbf A)$.
+\item Compute $\rk(\mathbf A^{\mathsf T})$ and $\dim\Null(\mathbf A^{\mathsf T})$.
+\item Find a basis for $\Col(\mathbf A^{\mathsf T})$ and a basis for $\Null(\mathbf A^{\mathsf T})$.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 3
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let $U,W\subseteq\R^n$ be subspaces, and define
+\[
+U+W=\{\mathbf u+\mathbf w\mid \mathbf u\in U,\ \mathbf w\in W\}.
+\]
+\begin{problemsubparts}
+\item Prove that $U+W$ and $U\cap W$ are subspaces of $\R^n$.
+\item Prove that
+\[
+\dim(U+W)=\dim U+\dim W-\dim(U\cap W).
+\]
+\item For
+\[
+U=\Span\left(
+\begin{pmatrix}1\\2\\0\\1\end{pmatrix},
+\begin{pmatrix}0\\1\\1\\1\end{pmatrix}
+\right),
+\]
+\[
+W=\Span\left(
+\begin{pmatrix}1\\0\\1\\0\end{pmatrix},
+\begin{pmatrix}1\\4\\2\\3\end{pmatrix},
+\begin{pmatrix}1\\8\\3\\6\end{pmatrix}
+\right)\subseteq\R^4,
+\]
+compute $\dim(U+W)$ and find a basis for $U+W$.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 4
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A,\mathbf B\in\R^{n\times n}$.
+\begin{problemsubparts}
+\item Prove that
+\[
+\Null(\mathbf B)\subseteq\Null(\mathbf A\mathbf B).
+\]
+\item Suppose $(\mathbf v_1,\dots,\mathbf v_p)$ is a basis for $\Null(\mathbf B)$ and $(\mathbf v_1,\dots,\mathbf v_{p+q})$ is a basis for $\Null(\mathbf A\mathbf B)$. Prove that
+\[
+\mathbf B\mathbf v_{p+1},\dots,\mathbf B\mathbf v_{p+q}
+\]
+are linearly independent.
+\item Prove that
+\[
+\dim\Null(\mathbf A\mathbf B)\le \dim\Null(\mathbf A)+\dim\Null(\mathbf B)
+\]
+and
+\[
+\rk(\mathbf A\mathbf B)\ge \rk(\mathbf A)+\rk(\mathbf B)-n.
+\]
+\item Prove that $\rk(\mathbf A)=k$ if and only if
+\[
+\mathbf A=\mathbf u_1\mathbf v_1^{\mathsf T}+\cdots+\mathbf u_k\mathbf v_k^{\mathsf T}
+\]
+for some linearly independent vectors $\mathbf u_1,\dots,\mathbf u_k\in\R^n$ and some linearly independent vectors $\mathbf v_1,\dots,\mathbf v_k\in\R^n$.
+\item Prove that
+\[
+\rk(\mathbf A+\mathbf B)\le \rk(\mathbf A)+\rk(\mathbf B)
+\]
+and
+\[
+\dim\Null(\mathbf A+\mathbf B)\ge \dim\Null(\mathbf A)+\dim\Null(\mathbf B)-n.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 5
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$ and $\mathbf b\in\R^m$.
+\begin{problemsubparts}
+\item A least-squares solution $\widehat{\mathbf x}$ of $\mathbf A\mathbf x=\mathbf b$ is an exact solution of $\mathbf A\widehat{\mathbf x}=\widehat{\mathbf b}$ for some $\widehat{\mathbf b}\in\R^m$. Express $\widehat{\mathbf b}$ using the orthogonal projection onto one of the fundamental spaces of $\mathbf A$.
+\item If $\mathbf A$ has full column rank, determine the number of least-squares solutions of $\mathbf A\mathbf x=\mathbf b$ and justify your answer.
+\item If $\mathbf A$ does not have full column rank, determine the number of least-squares solutions of $\mathbf A\mathbf x=\mathbf b$ and justify your answer.
+\item Write the normal equations for $\mathbf A\mathbf x=\mathbf b$ and explain why every solution of the normal equations is a least-squares solution of $\mathbf A\mathbf x=\mathbf b$.
+\item Find all least-squares solutions of $\mathbf A\mathbf x=\mathbf b$ for
+\[
+\mathbf A=
+\begin{pmatrix}
+2&1\\
+4&2\\
+-2&1
+\end{pmatrix},
+\qquad
+\mathbf b=\begin{pmatrix}3\\2\\1\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 6
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Let $\mathbf P\in\R^{n\times n}$ satisfy $\rk(\mathbf P)=k$, $\mathbf P^2=\mathbf P$, and $\mathbf P^{\mathsf T}=\mathbf P$. Prove that $\mathbf P$ is the standard matrix of the orthogonal projection onto some $k$-dimensional subspace $W\subseteq\R^n$.
+\item Classify $\mathbf P$ from part \textup{(a)} as positive semidefinite, negative semidefinite, or indefinite.
+\item Let $\mathbf H\in\R^{n\times n}$ satisfy $\mathbf H^{\mathsf T}=\mathbf H$, and suppose $\mathbf I_n-\mathbf H$ has rank $1$ and has eigenvalue $2$. Prove that $\mathbf H$ is the standard matrix of reflection across the hyperplane $\mathbf x^\perp$ for some nonzero $\mathbf x\in\R^n$.
+\item Classify $\mathbf H$ from part \textup{(c)} as positive semidefinite, negative semidefinite, or indefinite.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 7
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Using the Gram--Schmidt process, find a $QR$ decomposition of
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&1\\
+-1&-2&3\\
+0&4&5
+\end{pmatrix}.
+\]
+\item Using reflections (Householder matrices), find a $QR$ decomposition of
+\[
+\mathbf B=
+\begin{pmatrix}
+0&3&1\\
+0&0&5\\
+1&1&1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 8
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+Let
+\[
+\mathbf v_1=\begin{pmatrix}1\\0\\1\end{pmatrix},\qquad
+\mathbf v_2=\begin{pmatrix}0\\1\\2\end{pmatrix},\qquad
+\mathbf v_3=\begin{pmatrix}1\\1\\0\end{pmatrix},
+\]
+and let $\mathcal B=(\mathbf v_1,\mathbf v_2,\mathbf v_3)$.
+\begin{problemsubparts}
+\item Prove that $\mathcal B$ is an ordered basis for $\R^3$.
+\item Find the change-of-basis matrix $\mathbf P_{\mathcal B\to\mathcal S}$ from $\mathcal B$ to the standard ordered basis $\mathcal S$ of $\R^3$.
+\item For
+\[
+\mathbf v=\begin{pmatrix}3\\2\\1\end{pmatrix},
+\]
+compute the coordinate vector $[\mathbf v]_{\mathcal B}$.
+\item Express $\mathbf v$ in terms of $\mathbf P_{\mathcal B\to\mathcal S}$ and $[\mathbf v]_{\mathcal B}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 9
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+For $\mathbf x\in\R^3$, let $\mathbf x'$ be obtained by rotating $\mathbf x$ by $45^\circ$ counterclockwise about the $z$-axis, viewed from the positive $z$-axis toward the origin. Let $\mathbf x''$ be obtained by rotating $\mathbf x'$ by $30^\circ$ counterclockwise about the $y$-axis, viewed from the positive $y$-axis toward the origin.
+\begin{problemsubparts}
+\item Find the matrix $\mathbf A$ such that $\mathbf A\mathbf x=\mathbf x''$ for every $\mathbf x\in\R^3$.
+\item Determine whether $\mathbf A$ is similar to a Householder matrix.
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 10
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Find a singular value decomposition of
+\[
+\mathbf A=
+\begin{pmatrix}
+3&2&2\\
+2&3&-2
+\end{pmatrix}.
+\]
+\item Find a polar decomposition of
+\[
+\mathbf B=
+\begin{pmatrix}
+3&0\\
+4&5
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2025 Spring KAIST Introduction to Linear Algebra Final, Problem 11
+\begin{problem}[2025 Spring \KAIST{} Introduction to Linear Algebra]
+\begin{problemsubparts}
+\item Let
+\[
+\mathbf A=
+\begin{pmatrix}
+-1&0&1\\
+-3&2&4\\
+1&-1&-2
+\end{pmatrix},
+\qquad
+\mathbf B=
+\begin{pmatrix}
+1&2&-2\\
+2&1&-2\\
+2&2&-3
+\end{pmatrix}.
+\]
+Determine whether $\mathbf A$ is similar to $\mathbf B$. If so, find an invertible matrix $\mathbf P$ such that
+\[
+\mathbf A=\mathbf P^{-1}\mathbf B\mathbf P.
+\]
+\item Let
+\[
+\mathbf C=
+\begin{pmatrix}
+1&3&-3\\
+0&1&0\\
+0&-3&4
+\end{pmatrix},
+\qquad
+\mathbf D=
+\begin{pmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{pmatrix}.
+\]
+Determine whether $\mathbf C$ is similar to $\mathbf D$. If so, find an invertible matrix $\mathbf Q$ such that
+\[
+\mathbf C=\mathbf Q^{-1}\mathbf D\mathbf Q.
+\]
+\end{problemsubparts}
 \end{problem}
