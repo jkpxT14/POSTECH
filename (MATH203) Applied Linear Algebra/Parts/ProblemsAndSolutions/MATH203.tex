@@ -8,11 +8,11 @@
 \begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
 In this problem, $V$ is a vector space. Determine whether each of the following statements is true or false.
 \begin{problemchoices}
-\item There exists a linearly independent subset $S\subset V$ that contains the zero vector $\mathbf 0$.
+\item There exists a linearly independent subset $S\subseteq V$ that contains the zero vector $\mathbf 0$.
 \item If $\mathbf A\in\R^{n\times n}$ is invertible, then the columns of $\mathbf A$ form a basis for $\R^n$.
 \item Every projection matrix is invertible.
 \item $\Null(\mathbf A)^\perp=\Col(\mathbf A)$.
-\item Let $\{\mathbf v_1,\dots,\mathbf v_n\}$ be a basis for $V$, and let $T:V\to W$ be a linear transformation. If
+\item Let $\{\mathbf v_1,\dots,\mathbf v_n\}$ be a basis for $V$, and let $T\colon V\to W$ be a linear transformation. If
 \[
 T(\mathbf v_i)=\mathbf w_i,
 \qquad 1\le i\le n,
@@ -172,17 +172,17 @@ Let $V=M_2(\R)$, the vector space of $2\times2$ real matrices with the usual add
 form a basis for $V$.
 \item Find the matrix representation of the linear transformation
 \[
-T:V\to V,
+T\colon V\to V,
 \qquad
 \begin{pmatrix}
 a&b\\c&d
 \end{pmatrix}
-\longmapsto
+\mapsto
 \begin{pmatrix}
 a+d&c\\b&a-d
 \end{pmatrix},
 \]
-with respect to the ordered basis $\{\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4\}$.
+with respect to the ordered basis $(\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4)$.
 \end{problemsubparts}
 \end{problem}
 
@@ -194,19 +194,19 @@ P_k=\left\{a_k t^k+a_{k-1}t^{k-1}+\cdots+a_1t+a_0\mid a_0,\dots,a_k\in\R\right\}
 \]
 with the usual polynomial addition and scalar multiplication. Use the ordered basis
 \[
-\{1,t,t^2,\dots,t^k\}
+(1,t,t^2,\dots,t^k)
 \]
 for $P_k$.
 \begin{problemsubparts}
 \item Find the matrix representation $\mathbf A$ of the differentiation map
 \[
-D:P_2\to P_1,
+D\colon P_2\to P_1,
 \qquad
 D(f)=\frac{\dd f}{\dd t}.
 \]
 \item Find the matrix representation $\mathbf B$ of the integration map
 \[
-T:P_1\to P_2,
+T\colon P_1\to P_2,
 \qquad
 (Tf)(t)=\int_0^t f(s)\,\dd s.
 \]
@@ -271,7 +271,7 @@ Write down as many pairwise nonsimilar $4\times4$ matrices as possible whose onl
 \begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
 Consider $\R^4$ with the standard inner product and let
 \[
-S=\{\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4\}\subset\R^4,
+S=\{\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4\}\subseteq\R^4,
 \]
 where
 \[
@@ -363,7 +363,7 @@ Let
 \item Find the characteristic polynomial of $\mathbf A$.
 \item Show that $\mathbf A^{-1}$ can be expressed as
 \[
-a\mathbf A^2+b\mathbf A+c\mathbf I
+a\mathbf A^2+b\mathbf A+c\mathbf I_3
 \]
 for some $a,b,c\in\R$, and find $a,b,c$.
 \item Find $e^{\mathbf A}$.
@@ -511,9 +511,9 @@ Let
 
 % 2019 Spring POSTECH Applied Linear Algebra Final, Problem 10
 \begin{problem}[2019 Spring \POSTECH{} Applied Linear Algebra]
-Let $\mathbf A$ be a real symmetric matrix, and let $\lambda$ be an eigenvalue of $\mathbf A$ with algebraic multiplicity $m$. Show that
+Let $\mathbf A$ be an $n\times n$ real symmetric matrix, and let $\lambda$ be an eigenvalue of $\mathbf A$ with algebraic multiplicity $m$. Show that
 \[
-\dim\Null(\mathbf A-\lambda\mathbf I)=m.
+\dim\Null(\mathbf A-\lambda\mathbf I_n)=m.
 \]
 \end{problem}
 
@@ -607,7 +607,7 @@ Let
 \item Find a basis for $\Row(\mathbf A)$ and a basis for $\Col(\mathbf A)$.
 \item Consider the restriction
 \[
-\mathbf A\big|_{\Row(\mathbf A)}:\Row(\mathbf A)\to\Col(\mathbf A).
+\mathbf A\big|_{\Row(\mathbf A)}\colon \Row(\mathbf A)\to\Col(\mathbf A).
 \]
 Find its matrix representation with respect to the bases obtained in part \textup{(a)}, and verify that this matrix is invertible.
 \end{problemsubparts}
@@ -615,11 +615,11 @@ Find its matrix representation with respect to the bases obtained in part \textu
 
 % 2019 Fall POSTECH Applied Linear Algebra Midterm, Problem 6
 \begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
-Let $V\subset\R^3$ be a two-dimensional subspace.
+Let $V\subseteq\R^3$ be a two-dimensional subspace.
 \begin{problemsubparts}
 \item Show that the reflection of any vector $\mathbf x\in\R^3$ across $V$ is
 \[
-(2\mathbf P-\mathbf I)\mathbf x,
+(2\mathbf P-\mathbf I_3)\mathbf x,
 \]
 where $\mathbf P$ is the orthogonal projection onto $V$. \textit{Hint.} Consider an orthonormal basis of $V$ and extend it to an orthonormal basis of $\R^3$.
 \item Let
@@ -737,7 +737,7 @@ where $\mathbf R$ is an invertible upper triangular matrix and $\mathbf Q$ is an
 \begin{problem}[2019 Fall \POSTECH{} Applied Linear Algebra]
 Let $P_4$ be the vector space of real polynomials of degree at most $4$ in the variable $t$. The map
 \[
-T:P_4\to P_4,
+T\colon P_4\to P_4,
 \qquad
 T(p(t))=p(t+1),
 \]
@@ -745,7 +745,7 @@ is linear.
 \begin{problemsubparts}
 \item Find the matrix $\mathbf A$ representing $T$ with respect to the ordered basis
 \[
-\{1,t+1,t^2+1,t^3+1,t^4+1\}.
+(1,t+1,t^2+1,t^3+1,t^4+1).
 \]
 \item Find $\mathbf A^{-1}$.
 \end{problemsubparts}
@@ -795,7 +795,7 @@ S_n=\left\{\sum_{k=1}^n\bigl(a_k\sin kx+b_k\cos kx\bigr)\ \middle|\ a_k,b_k\in\R
 \]
 Then the map
 \[
-D:S_n\to S_n,
+D\colon S_n\to S_n,
 \qquad
 D(f)=\frac{\dd f}{\dd x},
 \]
@@ -803,7 +803,7 @@ is linear.
 \begin{problemsubparts}
 \item Find the matrix representation of $D$ with respect to the ordered basis
 \[
-\{\sin x,\cos x,\sin 2x,\cos 2x,\dots,\sin nx,\cos nx\}.
+(\sin x,\cos x,\sin 2x,\cos 2x,\dots,\sin nx,\cos nx).
 \]
 \item Find the determinant and trace of $D$.
 \end{problemsubparts}
@@ -897,12 +897,12 @@ Let $\mathbf A$ be an $n\times n$ matrix.
 \begin{problemsubparts}
 \item Show that $\mathbf A=\mathbf 0$ if
 \[
-\det(\mathbf A-\lambda\mathbf I)=(-\lambda)^n
+\det(\mathbf A-\lambda\mathbf I_n)=(-\lambda)^n
 \]
 and $\mathbf A$ is Hermitian.
 \item Show that $\mathbf A^n=\mathbf 0$ if
 \[
-\det(\mathbf A-\lambda\mathbf I)=(-\lambda)^n.
+\det(\mathbf A-\lambda\mathbf I_n)=(-\lambda)^n.
 \]
 \textit{Hint.} Consider the Jordan form.
 \end{problemsubparts}
@@ -1064,14 +1064,14 @@ Let $P_n$ be the vector space of real polynomials of degree at most $n$. Let $E_
 \[
 P_{n+1}\to P_n,
 \qquad
-f(x)\longmapsto \frac{\dd f}{\dd x},
+f(x)\mapsto \frac{\dd f}{\dd x},
 \]
 is linear.
 \item The map
 \[
 P_n\to P_{2n+2},
 \qquad
-f(x)\longmapsto \int_1^{x^2}f(u)\,\dd u,
+f(x)\mapsto \int_1^{x^2}f(u)\,\dd u,
 \]
 is linear.
 \item $\dim P_n=n$.
@@ -1080,7 +1080,7 @@ is linear.
 
 % 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 11
 \begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
-Let $V$ be a one-dimensional vector space. Determine whether the following statement is true or false: if $f:V\to\R$ satisfies
+Let $V$ be a one-dimensional vector space. Determine whether the following statement is true or false: if $f\colon V\to\R$ satisfies
 \[
 f(a\mathbf v)=a f(\mathbf v)
 \]
@@ -1208,11 +1208,11 @@ is a least-squares solution.
 \begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
 Let $P_2$ be the vector space of real polynomials of degree at most $2$. Select the matrix representation of the linear transformation
 \[
-T:P_2\to\R^2,
+T\colon P_2\to\R^2,
 \qquad
-p(x)\longmapsto\bigl(p(2),p'(2)\bigr),
+p(x)\mapsto\bigl(p(2),p'(2)\bigr),
 \]
-with respect to the ordered bases $\{1,x,x^2\}$ of $P_2$ and $\{\mathbf e_1,\mathbf e_2\}$ of $\R^2$.
+with respect to the ordered bases $(1,x,x^2)$ of $P_2$ and $(\mathbf e_1,\mathbf e_2)$ of $\R^2$.
 \begin{problemchoices}
 \item $\displaystyle\begin{pmatrix}2&0\\0&2\end{pmatrix}$
 \item $\displaystyle\begin{pmatrix}2&0\\0&2\\0&0\end{pmatrix}$
@@ -1226,9 +1226,9 @@ with respect to the ordered bases $\{1,x,x^2\}$ of $P_2$ and $\{\mathbf e_1,\mat
 \begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
 Let $V$ be a vector space. Determine whether the following statement is true or false: the matrix representation of the identity transformation
 \[
-I_V:V\to V,
+\id_V\colon V\to V,
 \qquad
-\mathbf v\longmapsto\mathbf v,
+\mathbf v\mapsto\mathbf v,
 \]
 with respect to any choice of bases of $V$ is an identity matrix.
 \end{problem}
@@ -1711,9 +1711,9 @@ Let $\mathfrak{sl}_2$ be the set of $2\times2$ real matrices whose diagonal entr
 \begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
 Let
 \[
-\mathbf H=\mathbf I-2\mathbf u\mathbf u^{\mathsf T},
+\mathbf H=\mathbf I_n-2\mathbf u\mathbf u^{\mathsf T},
 \]
-where $\mathbf u$ is a unit vector.
+where $\mathbf u\in\R^n$ is a unit vector.
 \begin{problemsubparts}
 \item Show that
 \[
@@ -1725,7 +1725,7 @@ and
 \]
 for every $\mathbf w\perp\mathbf u$.
 \item Show that $\|\mathbf H\mathbf x\|=\|\mathbf x\|$ for every $\mathbf x$ of compatible dimension.
-\item Let
+\item For $n=3$, let
 \[
 \mathbf x=
 \begin{pmatrix}0\\1\\1\end{pmatrix},
@@ -1771,7 +1771,7 @@ and express each component of $\mathbf y(t)$ explicitly.
 \begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
 Let
 \[
-V=\{\mathbf v_1,\dots,\mathbf v_n\}\subset\R^n
+V=\{\mathbf v_1,\dots,\mathbf v_n\}\subseteq\R^n
 \]
 be a set of nonzero mutually orthogonal vectors.
 \begin{problemsubparts}
@@ -1943,7 +1943,7 @@ Let
 \mathbf A=\mathbf Q\boldsymbol\Lambda\mathbf Q^{\mathsf T}.
 \]
 \item Compute $\mathbf A^{2020}$, describing each entry exactly.
-\item Let $T:\R^3\to\R^3$ be the linear transformation represented by $\mathbf A$. Find an orthonormal basis of $\R^3$ with respect to which the matrix representation of $T$ is diagonal.
+\item Let $T\colon \R^3\to\R^3$ be the linear transformation represented by $\mathbf A$. Find an orthonormal basis of $\R^3$ with respect to which the matrix representation of $T$ is diagonal.
 \end{problemsubparts}
 \end{problem}
 
@@ -2033,18 +2033,18 @@ Find the inverse of
 \begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
 Let $P_4$ be the vector space of real polynomials of degree at most $4$, and define the linear map
 \[
-T:P_4\to P_4,
+T\colon P_4\to P_4,
 \qquad
 T(p(t))=t^2\frac{\dd^2p(t)}{\dd t^2}.
 \]
 \begin{problemsubparts}
 \item Find the matrix $\mathbf A$ representing $T$ with respect to the ordered basis
 \[
-\{1,t,t^2,t^3,t^4\}.
+(1,t,t^2,t^3,t^4).
 \]
 \item Find the matrix $\mathbf B$ representing $T$ with respect to the ordered basis
 \[
-\{1,t+1,t^2+1,t^3+1,t^4+1\}.
+(1,t+1,t^2+1,t^3+1,t^4+1).
 \]
 \end{problemsubparts}
 \end{problem}
@@ -2104,7 +2104,7 @@ V=\Span\!\left(
 \begin{pmatrix}1\\2\\1\\2\\-2\end{pmatrix},
 \begin{pmatrix}2\\2\\1\\1\\0\end{pmatrix},
 \begin{pmatrix}3\\0\\0\\1\\1\end{pmatrix}
-\right)\subset\R^5.
+\right)\subseteq\R^5.
 \]
 \begin{problemsubparts}
 \item Find $V^\perp$.
@@ -2127,7 +2127,7 @@ V=\Span\!\left(
 
 % 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 2, Part I, Problem 3
 \begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
-Let $T:\R^3\to\R^3$ be reflection across the plane
+Let $T\colon \R^3\to\R^3$ be reflection across the plane
 \[
 z=2y.
 \]
@@ -2239,7 +2239,7 @@ Using the Gauss--Jordan method, find $\mathbf A^{-1}$.
 
 % 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 3, Problem 4
 \begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
-Let $V,W\subset\R^n$ be subspaces.
+Let $V,W\subseteq\R^n$ be subspaces.
 \begin{problemsubparts}
 \item Prove that $V+W$ is a subspace of $\R^n$.
 \item Prove that $V\cap W$ is a subspace of $\R^n$.
@@ -2267,13 +2267,13 @@ where $\mathbf L$ is lower triangular with all diagonal entries equal to $1$, $\
 \]
 forms a subspace of the vector space of $n\times n$ matrices.
 \item Every subspace of $\R^4$ is the null space of some matrix.
-\item Let $H_\theta:\R^2\to\R^2$ denote reflection across the line through the origin making angle $\theta$ with the positive $x$-axis. Then $H_{\theta_1}\circ H_{\theta_2}$ is counterclockwise rotation by $2(\theta_1-\theta_2)$.
+\item Let $H_\theta\colon \R^2\to\R^2$ denote reflection across the line through the origin making angle $\theta$ with the positive $x$-axis. Then $H_{\theta_1}\circ H_{\theta_2}$ is counterclockwise rotation by $2(\theta_1-\theta_2)$.
 \item There exists a nonsquare matrix that has both a left inverse and a right inverse, possibly different from each other.
-\item Let $V$ and $W$ be finite-dimensional vector spaces. If a linear transformation $T:V\to W$ is injective, then
+\item Let $V$ and $W$ be finite-dimensional vector spaces. If a linear transformation $T\colon V\to W$ is injective, then
 \[
 \dim V\le \dim W.
 \]
-\item Let $T:\R^n\to\R^m$ be linear. If the values $T(\mathbf v)$ are known for $n$ distinct nonzero vectors $\mathbf v\in\R^n$, then $T(\mathbf v)$ is determined for every $\mathbf v\in\R^n$.
+\item Let $T\colon \R^n\to\R^m$ be linear. If the values $T(\mathbf v)$ are known for $n$ distinct nonzero vectors $\mathbf v\in\R^n$, then $T(\mathbf v)$ is determined for every $\mathbf v\in\R^n$.
 \item For a square matrix $\mathbf A$, if the columns of $\mathbf A$ are linearly independent, then the rows of $\mathbf A$ are linearly independent.
 \end{problemchoices}
 \end{problem}
@@ -2297,7 +2297,7 @@ a_{ij}=
 \item Let $\mathbf B=(b_{ij})$ be
 \[
 \mathbf B=\sum_{k=0}^{n-1}\mathbf A^k
-=\mathbf I+\mathbf A+\mathbf A^2+\cdots+\mathbf A^{n-1}.
+=\mathbf I_n+\mathbf A+\mathbf A^2+\cdots+\mathbf A^{n-1}.
 \]
 Evaluate the sum of all entries of $\mathbf B$,
 \[
@@ -2352,7 +2352,7 @@ where $\mathbf U$ is the echelon matrix obtained from $\mathbf A$ and $\mathbf R
 
 % 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 5
 \begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let $V=M_2(\R)$ be the vector space of $2\times2$ real matrices, and let $P_3$ be the vector space of real polynomials of degree at most $3$. Consider the linear map $T:P_3\to V$ defined by
+Let $V=M_2(\R)$ be the vector space of $2\times2$ real matrices, and let $P_3$ be the vector space of real polynomials of degree at most $3$. Consider the linear map $T\colon P_3\to V$ defined by
 \[
 T(a_0+a_1x+a_2x^2+a_3x^3)
 =
@@ -2364,9 +2364,9 @@ a_0+a_1&-a_0-a_2\\
 \begin{problemsubparts}
 \item Find the matrix $\mathbf A$ representing $T$ with respect to the ordered basis
 \[
-\{1,x,x^2,x^3\}
+(1,x,x^2,x^3)
 \]
-of $P_3$ and the ordered basis
+of $P_3$ and the ordered basis $(\mathbf E_1,\mathbf E_2,\mathbf E_3,\mathbf E_4)$ of $V$, where
 \[
 \mathbf E_1=
 \begin{pmatrix}1&0\\0&0\end{pmatrix},\quad
@@ -2375,9 +2375,8 @@ of $P_3$ and the ordered basis
 \mathbf E_3=
 \begin{pmatrix}0&0\\1&0\end{pmatrix},\quad
 \mathbf E_4=
-\begin{pmatrix}0&0\\0&1\end{pmatrix}
+\begin{pmatrix}0&0\\0&1\end{pmatrix}.
 \]
-of $V$.
 \item Find $\rk(\mathbf A)$ and $\dim\Null(\mathbf A)$.
 \end{problemsubparts}
 \end{problem}
@@ -2455,16 +2454,16 @@ Determine whether each of the following statements is true or false. You do not 
 \begin{problemchoices}
 \item There exist $3\times3$ matrices $\mathbf A$ and $\mathbf B$ such that
 \[
-\mathbf A\mathbf B-\mathbf B\mathbf A=\mathbf I.
+\mathbf A\mathbf B-\mathbf B\mathbf A=\mathbf I_3.
 \]
 \item If $\mathbf A$ and $\mathbf B$ are simultaneously diagonalizable, and $\mathbf B$ and $\mathbf C$ are simultaneously diagonalizable, then $\mathbf A$ and $\mathbf C$ are simultaneously diagonalizable.
-\item There exists a real $2\times2$ matrix $\mathbf A\ne\mathbf I$ such that
+\item There exists a real $2\times2$ matrix $\mathbf A\ne\mathbf I_2$ such that
 \[
-\mathbf A^3=\mathbf I.
+\mathbf A^3=\mathbf I_2.
 \]
 \item If a $3\times3$ matrix $\mathbf A$ has eigenvalues $1,2,3$, then
 \[
-(\mathbf A-\mathbf I)(\mathbf A-2\mathbf I)(\mathbf A-3\mathbf I)
+(\mathbf A-\mathbf I_3)(\mathbf A-2\mathbf I_3)(\mathbf A-3\mathbf I_3)
 \]
 cannot have a nonzero eigenvalue.
 \item If a real matrix $\mathbf A$ is normal, then
