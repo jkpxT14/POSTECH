@@ -915,3 +915,1711 @@ Let $\lambda_0$ be an eigenvalue of a square matrix $\mathbf A$, and let $m$ be 
 \dim E_{\lambda_0}(\mathbf A)\le m.
 \]
 \end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 1
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: the product of triangular matrices is a triangular matrix.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 2
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf D$ be an $n\times n$ diagonal matrix. Determine whether the following statement is true or false:
+\[
+\mathbf A\mathbf D=\mathbf D\mathbf A
+\]
+for every $n\times n$ matrix $\mathbf A$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 3
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: every nonsingular symmetric square matrix $\mathbf A$ admits an $LDL^{\mathsf T}$ factorization, where $\mathbf L$ is lower triangular and $\mathbf D$ is diagonal.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 4
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a square matrix. Determine whether the following statement is true or false:
+\[
+\dim\Col(\mathbf A^2)=\dim\Col(\mathbf A).
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 5
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a rectangular matrix. Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item $\Null(\mathbf A^{\mathsf T}\mathbf A)=\Null(\mathbf A)$.
+\item $\Null(\mathbf A\mathbf A^{\mathsf T})=\Null(\mathbf A)$.
+\item If $\mathbf A$ is square, then $\Null(\mathbf A^2)=\Null(\mathbf A)$.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 6
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: if distinct nonzero vectors $\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4$ span a subspace $V$ of $\R^5$, then there exist mutually orthonormal vectors $\mathbf w_1,\mathbf w_2,\mathbf w_3,\mathbf w_4$ that span $V$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 7
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\begin{aligned}
+\mathbf v_1&=\begin{pmatrix}-1\\1\\0\\0\end{pmatrix},&
+\mathbf v_2&=\begin{pmatrix}1\\0\\1\\0\end{pmatrix},&
+\mathbf v_3&=\begin{pmatrix}-1\\0\\0\\1\end{pmatrix},\\[0.4em]
+\mathbf v_4&=\begin{pmatrix}0\\-1\\1\\0\end{pmatrix},&
+\mathbf v_5&=\begin{pmatrix}0\\1\\0\\1\end{pmatrix},&
+\mathbf v_6&=\begin{pmatrix}0\\0\\1\\1\end{pmatrix}.
+\end{aligned}
+\]
+Select all true statements.
+\begin{problemchoices}
+\item $\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4$ span $\R^4$.
+\item $\mathbf v_1,\mathbf v_3,\mathbf v_4,\mathbf v_5,\mathbf v_6$ span $\R^4$.
+\item $\mathbf v_4,\mathbf v_5,\mathbf v_6$ are linearly independent over $\R$.
+\item $\mathbf v_3,\mathbf v_4,\mathbf v_5$ are linearly independent over $\R$.
+\item $\mathbf v_3,\mathbf v_4,\mathbf v_5$ span $\R^3$.
+\item None of the above.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 8
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+3&1&-1\\
+1&3&1\\
+1&1&0
+\end{pmatrix}
+=
+\begin{pmatrix}
+1&0&0\\
+\frac13&1&0\\
+\frac13&\frac14&1
+\end{pmatrix}
+\begin{pmatrix}
+3&1&-1\\
+0&\frac83&\frac43\\
+0&0&0
+\end{pmatrix}.
+\]
+Select all true statements.
+\begin{problemchoices}
+\item The vectors
+\[
+\begin{pmatrix}3\\1\\-1\end{pmatrix}
+\quad\text{and}\quad
+\begin{pmatrix}0\\8\\4\end{pmatrix}
+\]
+span $\Row(\mathbf A)$.
+\item The vectors
+\[
+\begin{pmatrix}3\\0\\0\end{pmatrix}
+\quad\text{and}\quad
+\begin{pmatrix}-1\\\frac43\\0\end{pmatrix}
+\]
+span $\Col(\mathbf A)$.
+\item The left null space $\Null(\mathbf A^{\mathsf T})$ is spanned by
+\[
+\begin{pmatrix}-1\\-1\\4\end{pmatrix}
+\quad\text{and}\quad
+\begin{pmatrix}0\\0\\0\end{pmatrix}.
+\]
+\item $\mathbf A$ has a left inverse.
+\item $\mathbf A$ has a right inverse.
+\item None of the above.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 9
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+For $a,b,c,d\in\R$, let
+\[
+\mathbf A=
+\begin{pmatrix}
+a&b&0&0\\
+c&d&0&0\\
+0&0&a&b\\
+0&0&c&d
+\end{pmatrix}.
+\]
+Select all true statements.
+\begin{problemchoices}
+\item $\mathbf A$ is invertible if $abcd\ne0$.
+\item $\mathbf A$ has a right inverse if $cd=0$.
+\item $\mathbf A$ has both a right inverse and a left inverse if $ad-bc\ne0$.
+\item $\mathbf A$ has a left inverse if $ab\ne0$.
+\item None of the above.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 10
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $P_n$ be the vector space of real polynomials of degree at most $n$. Let $E_n$ be the set of even polynomials in $P_n$, that is, polynomials $p$ satisfying $p(x)=p(-x)$, and let $O_n$ be the set of odd polynomials in $P_n$, that is, polynomials $q$ satisfying $q(x)=-q(-x)$. Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item $E_n$ is a subspace of $P_n$.
+\item $O_n$ is a subspace of $P_n$.
+\item The map
+\[
+P_{n+1}\to P_n,
+\qquad
+f(x)\longmapsto \frac{\dd f}{\dd x},
+\]
+is linear.
+\item The map
+\[
+P_n\to P_{2n+2},
+\qquad
+f(x)\longmapsto \int_1^{x^2}f(u)\,\dd u,
+\]
+is linear.
+\item $\dim P_n=n$.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 11
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $V$ be a one-dimensional vector space. Determine whether the following statement is true or false: if $f:V\to\R$ satisfies
+\[
+f(a\mathbf v)=a f(\mathbf v)
+\]
+for every $a\in\R$ and $\mathbf v\in V$, then $f$ is linear.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 12
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $V=M_3(\R)$, the vector space of all $3\times3$ real matrices. Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item $\dim V=9$.
+\item The subset of invertible $3\times3$ matrices is a subspace of $V$.
+\item The subset of $3\times3$ matrices whose entries sum to zero is a subspace of $V$.
+\item The set of all linear transformations $V\to V$ is a vector space.
+\item The matrix representation of a linear transformation $V\to V$ is a $3\times3$ matrix.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 13
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $V$ be a vector space and let $\mathbf x,\mathbf y,\mathbf z\in V$. Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item If $\mathbf x,\mathbf y,\mathbf z$ are linearly independent, then $\mathbf x,\mathbf y$ are linearly independent.
+\item If $\mathbf x,\mathbf y,\mathbf z$ are linearly dependent, then
+\[
+\Span(\mathbf x,\mathbf y,\mathbf z)=\Span(\mathbf x,\mathbf y).
+\]
+\item If $\mathbf x,\mathbf y,\mathbf z$ are linearly independent, then
+\[
+\dim\Span(\mathbf x,\mathbf y,\mathbf z)=3.
+\]
+\item If $\dim\Span(\mathbf x,\mathbf y,\mathbf z)=3$, then $\mathbf x,\mathbf y,\mathbf z$ are linearly independent.
+\item $\{\mathbf x,\mathbf y,\mathbf z\}$ is a basis for $\Span(\mathbf x,\mathbf y,\mathbf z)$.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 14
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$. Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item $\mathbf A\mathbf x=\mathbf b$ has a solution if and only if $\mathbf b\in\Col(\mathbf A)$.
+\item $\mathbf A\mathbf x=\mathbf b$ has a unique solution if and only if $\rk(\mathbf A)=n$.
+\item If $\rk(\mathbf A)=m$, then $\mathbf A\mathbf x=\mathbf b$ has a solution for every $\mathbf b\in\R^m$.
+\item If $m<n$, then $\mathbf A\mathbf x=\mathbf b$ has infinitely many solutions.
+\item If $m>n$, then there exists $\mathbf b\in\R^m$ for which $\mathbf A\mathbf x=\mathbf b$ has no solution.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 15
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf U$ be an echelon form of a matrix $\mathbf A$. Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item $\Row(\mathbf A)=\Row(\mathbf U)$.
+\item $\Col(\mathbf A)=\Col(\mathbf U)$.
+\item $\Null(\mathbf A)=\Null(\mathbf U)$.
+\item $\Row(\mathbf A)=\Col(\mathbf A)$.
+\item $\rk(\mathbf A)=\rk(\mathbf U)$.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 16
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $U\subseteq\R^n$ be a subspace. Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item Every $\mathbf x\in\R^n$ can be written uniquely as
+\[
+\mathbf x=\mathbf u+\mathbf v,
+\qquad
+\mathbf u\in U,
+\quad
+\mathbf v\in U^\perp.
+\]
+\item If $\mathbf u\in U$ and $\mathbf v\in U^\perp$, then $\mathbf u$ and $\mathbf v$ are linearly independent.
+\item $U\cap U^\perp=\{\mathbf 0\}$.
+\item $\dim U=\dim U^\perp$.
+\item If $\mathbf A\in\R^{n\times n}$ satisfies $\Col(\mathbf A)=U$, then
+\[
+\mathbf A(\mathbf A^{\mathsf T}\mathbf A)^{-1}\mathbf A^{\mathsf T}
+\]
+is the projection matrix onto $U$.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 17
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf x,\mathbf y,\mathbf z$ be linearly independent vectors in $\R^5$. Applying the Gram--Schmidt process to $\mathbf x,\mathbf y,\mathbf z$ produces orthonormal vectors $\mathbf u_1,\mathbf u_2,\mathbf u_3\in\R^5$. Let $\mathbf A$ be the $5\times3$ matrix with columns $\mathbf x,\mathbf y,\mathbf z$, and let $\mathbf Q$ be the $5\times3$ matrix with columns $\mathbf u_1,\mathbf u_2,\mathbf u_3$. Select all true statements.
+\begin{problemchoices}
+\item $\mathbf Q^{\mathsf T}\mathbf Q=\mathbf I_3$.
+\item $\mathbf Q\mathbf Q^{\mathsf T}=\mathbf I_5$.
+\item $\mathbf Q$ has orthonormal rows.
+\item $\Col(\mathbf A)=\Col(\mathbf Q)$.
+\item
+\[
+\mathbf u_1\mathbf u_1^{\mathsf T}+\mathbf u_2\mathbf u_2^{\mathsf T}+\mathbf u_3\mathbf u_3^{\mathsf T}
+\]
+is the projection matrix onto $\Col(\mathbf Q)$.
+\item None of the above.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 18
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Suppose that $\mathbf A\mathbf x=\mathbf b$ is inconsistent, and let $\mathbf P$ be the orthogonal projection onto $\Col(\mathbf A)$. Determine whether each of the following statements is true or false.
+\begin{problemchoices}
+\item There is always a least-squares solution.
+\item The least-squares solution is unique.
+\item Every least-squares solution satisfies
+\[
+\mathbf A^{\mathsf T}\mathbf A\mathbf x=\mathbf A^{\mathsf T}\mathbf b.
+\]
+\item Every solution of
+\[
+\mathbf A\mathbf x=\mathbf P\mathbf b
+\]
+is a least-squares solution.
+\item
+\[
+\mathbf A(\mathbf A^{\mathsf T}\mathbf A)^{-1}\mathbf A^{\mathsf T}\mathbf b
+\]
+is a least-squares solution.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 19
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $P_2$ be the vector space of real polynomials of degree at most $2$. Select the matrix representation of the linear transformation
+\[
+T:P_2\to\R^2,
+\qquad
+p(x)\longmapsto\bigl(p(2),p'(2)\bigr),
+\]
+with respect to the ordered bases $\{1,x,x^2\}$ of $P_2$ and $\{\mathbf e_1,\mathbf e_2\}$ of $\R^2$.
+\begin{problemchoices}
+\item $\displaystyle\begin{pmatrix}2&0\\0&2\end{pmatrix}$
+\item $\displaystyle\begin{pmatrix}2&0\\0&2\\0&0\end{pmatrix}$
+\item $\displaystyle\begin{pmatrix}2&0&0\\0&2&0\end{pmatrix}$
+\item $\displaystyle\begin{pmatrix}1&2&4\\0&1&4\end{pmatrix}$
+\item $\displaystyle\begin{pmatrix}1&0\\2&1\\4&4\end{pmatrix}$
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Quiz, Problem 20
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $V$ be a vector space. Determine whether the following statement is true or false: the matrix representation of the identity transformation
+\[
+I_V:V\to V,
+\qquad
+\mathbf v\longmapsto\mathbf v,
+\]
+with respect to any choice of bases of $V$ is an identity matrix.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 1
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ and $\mathbf B$ be $n\times n$ matrices. Determine whether the following statement is true or false:
+\[
+\det(\mathbf A+\mathbf B)=\det(\mathbf A)+\det(\mathbf B).
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 2
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $n\times n$ matrix. Determine whether the following statement is true or false:
+\[
+\det(2\mathbf A)=2\det(\mathbf A).
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 3
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ and $\mathbf B$ be $n\times n$ matrices. Determine whether the following statement is true or false:
+\[
+\det(\mathbf A\mathbf B)=\det(\mathbf A)\det(\mathbf B).
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 4
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+For
+\[
+\det(\mathbf A-\lambda\mathbf I_3)
+=
+\det
+\begin{pmatrix}
+a_{11}-\lambda&a_{12}&a_{13}\\
+a_{21}&a_{22}-\lambda&a_{23}\\
+a_{31}&a_{32}&a_{33}-\lambda
+\end{pmatrix},
+\]
+what is the coefficient of $\lambda^2$?
+\begin{problemchoices}
+\item $2$
+\item $a_{11}+a_{22}+a_{33}$
+\item $-a_{11}a_{22}a_{33}$
+\item $\det(\mathbf A)$
+\item None of the above.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 5
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an invertible matrix and let $\mathbf C$ be its cofactor matrix. Determine whether the following statement is true or false:
+\[
+\mathbf A^{-1}=\frac{1}{\det(\mathbf A)}\mathbf C^{\mathsf T}.
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 6
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+A parallelepiped in $\R^3$ has edge vectors
+\[
+\begin{pmatrix}1\\1\\0\end{pmatrix},
+\qquad
+\begin{pmatrix}-1\\2\\1\end{pmatrix},
+\qquad
+\begin{pmatrix}0\\1\\-3\end{pmatrix}.
+\]
+What is its volume?
+\begin{problemchoices}
+\item $\dfrac{10}{3}$
+\item $5$
+\item $7.5$
+\item $10$
+\item None of the above.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 7
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: the determinant of a permutation matrix is always $1$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 8
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $n\times n$ matrix and $\mathbf b\in\R^n$. Determine whether the following statement is true or false: Cramer's rule gives a solution of $\mathbf A\mathbf x=\mathbf b$ for every such $\mathbf A$ and $\mathbf b$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 9
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $n\times n$ matrix. Determine whether the following statement is true or false: if $\mathbf A$ has $n$ distinct eigenvalues, then $\mathbf A$ is diagonalizable.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 10
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $n\times n$ matrix. Determine whether the following statement is true or false: if $\mathbf A$ has fewer than $n$ distinct eigenvalues, then $\mathbf A$ is not diagonalizable.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 11
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $n\times n$ matrix. Determine whether the following statement is true or false: eigenvectors of $\mathbf A$ associated with distinct eigenvalues are mutually orthogonal.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 12
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $n\times n$ complex matrix. Determine whether the following statement is true or false: $\mathbf A$ is unitarily diagonalizable if and only if $\C^n$ has an orthonormal basis consisting of eigenvectors of $\mathbf A$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 13
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $n\times n$ matrix. Determine whether the following statement is true or false: the solution of the initial value problem
+\[
+\mathbf u'(t)=\mathbf A\mathbf u(t),
+\qquad
+\mathbf u(0)=\mathbf u_0,
+\]
+is
+\[
+\mathbf u(t)=e^{t\mathbf A}\mathbf u_0,
+\]
+regardless of whether $\mathbf A$ is diagonalizable.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 14
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: every real symmetric matrix is orthogonally diagonalizable.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 15
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: every Hermitian matrix is unitarily diagonalizable.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 16
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: every orthogonally diagonalizable matrix is real symmetric.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 17
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ and $\mathbf B$ be $n\times n$ real symmetric matrices. Determine whether the following statement is true or false: if $\mathbf A$ and $\mathbf B$ are congruent, then they have the same eigenvalues.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 18
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ and $\mathbf B$ be $n\times n$ real symmetric matrices. Determine whether the following statement is true or false: if $\mathbf A$ and $\mathbf B$ are congruent, then they have the same number of positive eigenvalues.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 19
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: every real symmetric matrix is congruent to a diagonal matrix.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 20
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a real symmetric matrix. Determine whether the following statement is true or false: if $\mathbf A$ is positive definite, then every leading principal submatrix of $\mathbf A$ has positive determinant.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 21
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$. Determine whether the following statement is true or false: every real matrix has a singular value decomposition.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 22
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$. Determine whether the following statement is true or false: the singular values of $\mathbf A$ are the nonnegative square roots of the eigenvalues of $\mathbf A^{\mathsf T}\mathbf A$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 23
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$. Determine whether the following statement is true or false: if $\mathbf A$ has a left inverse, then its pseudoinverse is a left inverse of $\mathbf A$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 24
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: every matrix has a pseudoinverse.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 25
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$. Determine whether the following statement is true or false: $\mathbf A^{\mathsf T}\mathbf A$ and $\mathbf A\mathbf A^{\mathsf T}$ have the same eigenvalues.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 26
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a $2\times2$ upper triangular matrix with diagonal entries $1$ and $2$. Determine whether the following statement is true or false: $\mathbf A$ is diagonalizable.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 27
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following matrix is diagonalizable:
+\[
+\mathbf A=
+\begin{pmatrix}
+1&-1\\
+1&-1
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 28
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false:
+\[
+\begin{pmatrix}
+1&0\\
+0&2
+\end{pmatrix}^{1000}
+=
+\begin{pmatrix}
+1&0\\
+0&2^{1000}
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 29
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+3&2\\
+1&1
+\end{pmatrix}
+\begin{pmatrix}
+1&0\\
+0&4
+\end{pmatrix}
+\begin{pmatrix}
+3&2\\
+1&1
+\end{pmatrix}^{-1}.
+\]
+Determine whether the following statement is true or false: the vectors
+\[
+\begin{pmatrix}3\\1\end{pmatrix}
+\quad\text{and}\quad
+\begin{pmatrix}2\\1\end{pmatrix}
+\]
+are eigenvectors of $\mathbf A$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 30
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a $2\times2$ matrix whose eigenvalues are $1$ and $2$. Determine whether the following statement is true or false: $\mathbf A$ is invertible.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 31
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a $2\times2$ matrix whose only eigenvalue is $2$. Determine whether the following statement is true or false: $\mathbf A$ is not invertible.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 32
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a $2\times2$ matrix. Determine whether the following statement is true or false: if $\mathbf A$ is not diagonalizable, then it has only one eigenvalue, counted with algebraic multiplicity two.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 33
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a $2\times2$ matrix with repeated eigenvalue $3$. Determine whether the following statement is true or false: $\mathbf A$ is invertible.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 34
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ and $\mathbf B$ be $2\times2$ matrices. Determine whether the following statement is true or false:
+\[
+e^{\mathbf A+\mathbf B}=e^{\mathbf A}e^{\mathbf B}.
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 35
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $n\times n$ complex matrix. Determine whether the following statement is true or false: either
+\[
+\det(\mathbf A)=\det(\mathbf A^{\mathsf H})
+\]
+or
+\[
+\det(\mathbf A)=-\det(\mathbf A^{\mathsf H}).
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 36
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ and $\mathbf B$ be $n\times n$ orthogonal matrices. Determine whether the following statement is true or false: $\mathbf A\mathbf B$ is orthogonal.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 37
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a $5\times5$ matrix with rank $4$. Determine whether the following statement is true or false:
+\[
+\det(\mathbf A)=0.
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 38
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+4&1\\
+2&3
+\end{pmatrix}.
+\]
+Determine whether the following statement is true or false: $\mathbf A-\alpha\mathbf I_2$ is singular only when $\alpha=2$ or $\alpha=5$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 39
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: every full-rank $2\times2$ matrix is diagonalizable.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 40
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: it is possible to choose $x\in\R$ such that $\det(\mathbf A)\ne0$ for
+\[
+\mathbf A=
+\begin{pmatrix}
+x&0&0\\
+x&0&0\\
+x&x&x
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 41
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: the only possible eigenvalues of a real symmetric orthogonal matrix are $1$ and $-1$.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 42
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: similar matrices have the same eigenvalues, counting algebraic multiplicity.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 43
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: if two $n\times n$ matrices have the same eigenvalues, counting algebraic multiplicity, then they are similar.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 44
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a symmetric matrix. Determine whether the following statement is true or false: $\mathbf A$ is positive definite if and only if there exists a matrix $\mathbf R$ such that
+\[
+\mathbf A=\mathbf R^{\mathsf T}\mathbf R.
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 45
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a $4\times4$ real symmetric matrix with $\det(\mathbf A)=30$. Suppose that $\mathbf A$ is not positive definite, all eigenvalues of $\mathbf A$ are integers, and two eigenvalues are $2$ and $3$. What are the other two eigenvalues?
+\begin{problemchoices}
+\item $1,5$
+\item $-1,-5$
+\item $1,-5$
+\item $2,3$
+\item None of the above.
+\end{problemchoices}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 46
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: every symmetric matrix with positive determinant is positive definite.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 47
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a square matrix. Determine whether the following statement is true or false: if every cofactor of $\mathbf A$ is zero, then $\mathbf A$ is not invertible.
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 48
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a $3\times3$ matrix with exactly two linearly independent eigenvectors $\mathbf v_1,\mathbf v_2$, corresponding to eigenvalues $\lambda_1,\lambda_2$, respectively.
+\begin{problemsubparts}
+\item Determine whether the following statement is true or false: $\lambda_1$ and $\lambda_2$ must be distinct.
+\item Select a Jordan form to which $\mathbf A$ is similar.
+\begin{problemchoices}
+\item $\displaystyle\begin{pmatrix}\lambda_1&0&0\\0&\lambda_2&0\\0&0&\lambda_2\end{pmatrix}$
+\item $\displaystyle\begin{pmatrix}\lambda_1&1&0\\0&\lambda_2&0\\0&0&\lambda_2\end{pmatrix}$
+\item $\displaystyle\begin{pmatrix}\lambda_1&0&0\\0&\lambda_2&1\\0&0&\lambda_2\end{pmatrix}$
+\item $\displaystyle\begin{pmatrix}\lambda_1&1&0\\0&\lambda_2&1\\0&0&\lambda_2\end{pmatrix}$
+\item None of the above.
+\end{problemchoices}
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Spring POSTECH Applied Linear Algebra Final, Problem 49
+\begin{problem}[2020 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether the following statement is true or false: every complex square matrix has at least one eigenvector.
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Midterm Part I, Problem 1
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&4\\
+2&3&5\\
+4&5&6
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+1\\1\\1
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Solve $\mathbf A\mathbf x=\mathbf b$.
+\item Find an $LDU$ decomposition
+\[
+\mathbf A=\mathbf L\mathbf D\mathbf U,
+\]
+where $\mathbf L$ is lower triangular with diagonal entries $1$, $\mathbf D$ is diagonal, and $\mathbf U$ is upper triangular with diagonal entries $1$.
+\item Find $\mathbf A^{-1}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Midterm Part I, Problem 2
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+For
+\[
+\mathbf A=
+\begin{pmatrix}
+1&0&0\\
+2&1&0\\
+3&4&1
+\end{pmatrix}
+\begin{pmatrix}
+1&2&3&4\\
+0&1&2&3\\
+0&0&1&2
+\end{pmatrix},
+\]
+find bases for the row space $\Row(\mathbf A)$, equivalently $\Col(\mathbf A^{\mathsf T})$, and the null space $\Null(\mathbf A)$.
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Midterm Part I, Problem 3
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Let $V$ be the subspace of $\R^4$ spanned by the orthonormal vectors
+\[
+\begin{pmatrix}\frac12\\-\frac12\\\frac12\\-\frac12\end{pmatrix},
+\qquad
+\begin{pmatrix}0\\\frac1{\sqrt2}\\\frac1{\sqrt2}\\0\end{pmatrix},
+\qquad
+\begin{pmatrix}\frac1{\sqrt2}\\0\\0\\\frac1{\sqrt2}\end{pmatrix}.
+\]
+Find the orthogonal projection of
+\[
+\mathbf b=
+\begin{pmatrix}
+1\\1\\1\\-1
+\end{pmatrix}
+\]
+onto $V$.
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Midterm Part II, Problem 1
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Let $V$ be a subspace of $\R^n$ and let $W=V^\perp$. Show that
+\[
+V+W=\R^n.
+\]
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Midterm Part II, Problem 2
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Let $\mathfrak{sl}_2$ be the set of $2\times2$ real matrices whose diagonal entries sum to zero.
+\begin{problemsubparts}
+\item Show that $\mathfrak{sl}_2$ is a vector space.
+\item Find a basis for $\mathfrak{sl}_2$, and prove that your chosen matrices form a basis.
+\item Find $\dim\mathfrak{sl}_2$.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Midterm Part II, Problem 3
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf H=\mathbf I-2\mathbf u\mathbf u^{\mathsf T},
+\]
+where $\mathbf u$ is a unit vector.
+\begin{problemsubparts}
+\item Show that
+\[
+\mathbf H\mathbf u=-\mathbf u
+\]
+and
+\[
+\mathbf H\mathbf w=\mathbf w
+\]
+for every $\mathbf w\perp\mathbf u$.
+\item Show that $\|\mathbf H\mathbf x\|=\|\mathbf x\|$ for every $\mathbf x$ of compatible dimension.
+\item Let
+\[
+\mathbf x=
+\begin{pmatrix}0\\1\\1\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}\sqrt2\\0\\0\end{pmatrix}.
+\]
+Find a unit vector $\mathbf u$ such that $\mathbf x$ solves
+\[
+\mathbf H\mathbf x=\mathbf b.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Final Part I, Problem 1
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+0&-1&-2\\
+-2&-1&2\\
+3&-1&-5
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find the eigenvalues of $\mathbf A$.
+\item Find the eigenvectors of $\mathbf A$.
+\item Solve
+\[
+\mathbf y'(t)=\mathbf A\mathbf y(t),
+\qquad
+\mathbf y(0)=
+\begin{pmatrix}
+1\\2\\1
+\end{pmatrix},
+\]
+and express each component of $\mathbf y(t)$ explicitly.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Final Part I, Problem 2
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+V=\{\mathbf v_1,\dots,\mathbf v_n\}\subset\R^n
+\]
+be a set of nonzero mutually orthogonal vectors.
+\begin{problemsubparts}
+\item Show that $V$ is a basis for $\R^n$.
+\item Let $\mathbf A$ be the $n\times n$ matrix whose columns are $\mathbf v_1,\dots,\mathbf v_n$. Find $\det(\mathbf A)$ in terms of $\mathbf v_1,\dots,\mathbf v_n$.
+\item Let $\mathbf B$ be any $n\times n$ matrix. Show that
+\[
+|\det(\mathbf B)|=\operatorname{vol}(P),
+\]
+where $P$ is the parallelepiped spanned by the columns of $\mathbf B$.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Final Part I, Problem 3
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+\begin{problemsubparts}
+\item Find a $6\times6$ matrix $\mathbf A$ satisfying
+\[
+\det(\mathbf A-\lambda\mathbf I_6)
+=(\lambda-2)(\lambda-3)^2(\lambda-4)^3,
+\]
+and
+\[
+\dim E_2(\mathbf A)=1,
+\qquad
+\dim E_3(\mathbf A)=1,
+\qquad
+\dim E_4(\mathbf A)=2.
+\]
+\item Compute $e^{t\mathbf A}$ for the matrix $\mathbf A$ found in part \textup{(a)}.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Final Part I, Problem 4
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Consider the Markov matrix
+\[
+\mathbf A=
+\begin{pmatrix}
+0.5&0.5&0.25\\
+0&0.5&0.25\\
+0.5&0&0.5
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Determine whether the sequence
+\[
+\mathbf A^k
+\begin{pmatrix}
+0.25\\0.25\\0.5
+\end{pmatrix}
+\]
+converges as $k\to\infty$.
+\item Give an example of a Markov matrix $\mathbf M$ and a column vector $\mathbf u_0$ for which the sequence $\mathbf M^k\mathbf u_0$ does not converge as $k\to\infty$.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Final Part I, Problem 5
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+For
+\[
+f(x,y,z)=2x^2+5y^2+8z^2+4xy+6yz,
+\]
+let $\mathbf A$ be a symmetric matrix satisfying
+\[
+f(x,y,z)=\mathbf x^{\mathsf T}\mathbf A\mathbf x,
+\qquad
+\mathbf x=
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find $\mathbf A$.
+\item Show that $\mathbf A$ is positive definite using determinants.
+\item Show that $\mathbf A$ is positive definite using pivots.
+\item Show that $\mathbf A$ is positive definite using eigenvalues. \textit{Hint.} $10$ is an eigenvalue.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Final Part II, Problem 1
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Suppose a vector $\mathbf p_0\in\R^3$ rotates at a constant angular rate of $1$ rad/s about the unit axis
+\[
+\mathbf w=
+\begin{pmatrix}
+w_1\\w_2\\w_3
+\end{pmatrix},
+\qquad
+\|\mathbf w\|=1.
+\]
+Let $\mathbf p(t)$ denote its position at time $t$. Its velocity is
+\[
+\mathbf p'(t)=\mathbf w\times\mathbf p(t).
+\]
+Since $\mathbf w\times\mathbf p(t)=\boldsymbol\Omega\mathbf p(t)$, where
+\[
+\boldsymbol\Omega=
+\begin{pmatrix}
+0&-w_3&w_2\\
+w_3&0&-w_1\\
+-w_2&w_1&0
+\end{pmatrix},
+\]
+we have
+\[
+\mathbf p'(t)=\boldsymbol\Omega\mathbf p(t),
+\qquad
+\mathbf p(0)=\mathbf p_0.
+\]
+\begin{problemsubparts}
+\item Find the eigenvalues of $\boldsymbol\Omega$.
+\item Show that
+\[
+e^{t\boldsymbol\Omega}
+=\mathbf I_3+(\sin t)\boldsymbol\Omega+(1-\cos t)\boldsymbol\Omega^2.
+\]
+\textit{Hint.} Use the power-series expansions of $\sin t$ and $\cos t$.
+\item Show that the position vector preserves its length:
+\[
+\|\mathbf p(t)\|=\|\mathbf p_0\|
+\]
+for all $t$.
+\item Suppose
+\[
+\mathbf w=
+\begin{pmatrix}0\\1\\0\end{pmatrix},
+\qquad
+\mathbf p_0=
+\begin{pmatrix}0\\1\\1\end{pmatrix}.
+\]
+Find $\mathbf p(\pi/2)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Final Part II, Problem 2
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=\mathbf I_n-\mathbf u\mathbf v^{\mathsf T},
+\qquad
+\mathbf u,\mathbf v\in\R^n.
+\]
+\begin{problemsubparts}
+\item Show that if $\mathbf A$ is invertible, then its inverse has the form
+\[
+\mathbf A^{-1}=\mathbf I_n+\alpha\mathbf u\mathbf v^{\mathsf T}
+\]
+for some scalar $\alpha$, and find $\alpha$.
+\item Determine for which $\mathbf u$ and $\mathbf v$ the matrix $\mathbf A$ is not invertible.
+\item If $\mathbf A$ is not invertible, find $\Null(\mathbf A)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Applied Linear Algebra Final Part II, Problem 3
+\begin{problem}[2020 Fall \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+2&1&0\\
+1&2&1\\
+0&1&2
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find a diagonal matrix $\boldsymbol\Lambda$ and an orthogonal matrix $\mathbf Q$ such that
+\[
+\mathbf A=\mathbf Q\boldsymbol\Lambda\mathbf Q^{\mathsf T}.
+\]
+\item Compute $\mathbf A^{2020}$, describing each entry exactly.
+\item Let $T:\R^3\to\R^3$ be the linear transformation represented by $\mathbf A$. Find an orthonormal basis of $\R^3$ with respect to which the matrix representation of $T$ is diagonal.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 1, Problem 1
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Find an $LDU$ decomposition
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&3\\
+0&1&0\\
+1&4&4
+\end{pmatrix}
+=\mathbf L\mathbf D\mathbf U,
+\]
+where $\mathbf L$ is lower triangular with diagonal entries $1$, $\mathbf D$ is diagonal, and $\mathbf U$ is upper triangular with diagonal entries $1$.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 1, Problem 2
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Find an $LDU$ decomposition
+\[
+\mathbf A=
+\begin{pmatrix}
+1&0&1&2\\
+0&1&1&1\\
+1&1&3&1\\
+2&1&1&4
+\end{pmatrix}
+=\mathbf L\mathbf D\mathbf U,
+\]
+where $\mathbf L$ is lower triangular with diagonal entries $1$, $\mathbf D$ is diagonal, and $\mathbf U$ is upper triangular with diagonal entries $1$.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 1, Problem 3
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&0\\
+2&3&4\\
+3&4&5
+\end{pmatrix}.
+\]
+Find a $QR$ decomposition $\mathbf A=\mathbf Q\mathbf R$, where $\mathbf Q$ is orthogonal and $\mathbf R$ is invertible and upper triangular.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 1, Problem 4
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A\in\R^{m\times n}$ and assume that $\mathbf A^{\mathsf T}\mathbf A$ is invertible. Define
+\[
+\mathbf P=\mathbf A(\mathbf A^{\mathsf T}\mathbf A)^{-1}\mathbf A^{\mathsf T}.
+\]
+For $\mathbf b\in\R^m$, show that $\mathbf b-\mathbf P\mathbf b$ is orthogonal to every vector in $\Col(\mathbf A)$.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 1, Problem 5
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether each of the following statements is true or false for every matrix $\mathbf A\in\R^{m\times n}$. You need not justify your answers.
+\begin{problemchoices}
+\item $\mathbf A$ and $-\mathbf A$ have the same reduced row echelon form.
+\item If $\mathbf A$ is invertible, then $\mathbf A^{\mathsf T}$ is invertible.
+\item If $\mathbf A\mathbf x=\mathbf b$ has a solution for every $\mathbf b\in\R^m$, then $n\ge m$.
+\item If $\mathbf A\mathbf x=\mathbf b$ has a unique solution for some $\mathbf b\in\R^m$, then $n\le m$.
+\item If the columns of a square matrix $\mathbf A$ are orthonormal, then its rows are orthonormal.
+\item If $\mathbf A\mathbf x=\mathbf b$ has infinitely many solutions for some $\mathbf b\in\R^m$, then $\mathbf A\mathbf x=\mathbf 0$ has a nonzero solution.
+\item $\rk(\mathbf A^{\mathsf T}\mathbf A)=\rk(\mathbf A)$.
+\end{problemchoices}
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 1, Problem 6
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Find the inverse of
+\[
+\mathbf B=
+\begin{pmatrix}
+1&0&0&0\\
+4&1&0&0\\
+3&4&1&0\\
+2&3&4&1
+\end{pmatrix}.
+\]
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 1, Problem 7
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let $P_4$ be the vector space of real polynomials of degree at most $4$, and define the linear map
+\[
+T:P_4\to P_4,
+\qquad
+T(p(t))=t^2\frac{\dd^2p(t)}{\dd t^2}.
+\]
+\begin{problemsubparts}
+\item Find the matrix $\mathbf A$ representing $T$ with respect to the ordered basis
+\[
+\{1,t,t^2,t^3,t^4\}.
+\]
+\item Find the matrix $\mathbf B$ representing $T$ with respect to the ordered basis
+\[
+\{1,t+1,t^2+1,t^3+1,t^4+1\}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 1, Problem 8
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&4&1&1&1\\
+1&4&2&1&1\\
+0&0&1&0&0
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find a basis for $\Col(\mathbf A)$.
+\item Find a basis for $\Col(\mathbf A)^\perp$.
+\item Find an orthonormal basis for $\Null(\mathbf A)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 1, Problem 9
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+State precisely the definition of each of the following concepts.
+\begin{problemchoices}
+\item Linear independence.
+\item Orthogonal matrix.
+\item Vector space.
+\item Projection matrix.
+\item Linear transformation.
+\end{problemchoices}
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 2, Part I, Problem 1
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&1\\
+2&-1&0\\
+2&4&3
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find $\mathbf A^{-1}$. Write your answer as a single explicit $3\times3$ matrix.
+\item Find an $LDU$ decomposition of $\mathbf A$.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 2, Part I, Problem 2
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+V=\Span\!\left(
+\begin{pmatrix}1\\2\\1\\2\\-2\end{pmatrix},
+\begin{pmatrix}2\\2\\1\\1\\0\end{pmatrix},
+\begin{pmatrix}3\\0\\0\\1\\1\end{pmatrix}
+\right)\subset\R^5.
+\]
+\begin{problemsubparts}
+\item Find $V^\perp$.
+\item Find all $\mathbf x\in\R^5$ satisfying $\mathbf A\mathbf x=\mathbf b$, where
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&1&2&-2\\
+2&2&1&1&0\\
+3&0&0&1&1
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+1\\2\\3
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 2, Part I, Problem 3
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let $T:\R^3\to\R^3$ be reflection across the plane
+\[
+z=2y.
+\]
+Find the matrix representing $T$ with respect to the standard basis. Write your answer as a single explicit $3\times3$ matrix.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 2, Part II, Problem 1
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+2&1&0\\
+2&2&1\\
+0&-1&-1
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+1\\2\\3
+\end{pmatrix}.
+\]
+Find the minimum value of
+\[
+\|\mathbf A\mathbf x-\mathbf b\|^2.
+\]
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 2, Part II, Problem 2
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let $V$ be a vector space. Suppose that
+\[
+\{\mathbf v_1,\dots,\mathbf v_n\}
+\qquad\text{and}\qquad
+\{\mathbf w_1,\dots,\mathbf w_m\}
+\]
+are two bases of $V$. Show that $m=n$.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 2, Part II, Problem 3
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ and $\mathbf B$ be $n\times n$ matrices. Show that if either $\mathbf A$ or $\mathbf B$ is not invertible, then $\mathbf A\mathbf B$ is not invertible.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 2, Part II, Problem 4
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf Q$ be an $n\times n$ matrix. Show that if
+\[
+\|\mathbf Q\mathbf x\|=\|\mathbf x\|
+\]
+for every $\mathbf x\in\R^n$, then the rows of $\mathbf Q$ are orthonormal.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 3, Problem 1
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+2&4&6&4\\
+2&5&7&6\\
+2&3&5&2
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find an echelon form of $\mathbf A$.
+\item Find $\rk(\mathbf A)$.
+\item Find a basis for $\Col(\mathbf A)$.
+\item Find a basis for $\Col(\mathbf A^{\mathsf T})$.
+\item Find an $LDU$ factorization of $\mathbf A$.
+\item Solve $\mathbf A\mathbf x=\mathbf b$, where
+\[
+\mathbf b=
+\begin{pmatrix}
+16\\20\\12
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 3, Problem 2
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&3\\
+2&4&6\\
+2&5&7\\
+3&9&13
+\end{pmatrix}.
+\]
+Show that the columns of $\mathbf A$ are linearly independent.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 3, Problem 3
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+2&-1&0\\
+-1&2&-1\\
+0&-1&2
+\end{pmatrix}.
+\]
+Using the Gauss--Jordan method, find $\mathbf A^{-1}$.
+\end{problem}
+
+% 2021 Spring POSTECH Applied Linear Algebra Midterm, Source 3, Problem 4
+\begin{problem}[2021 Spring \POSTECH{} Applied Linear Algebra]
+Let $V,W\subset\R^n$ be subspaces.
+\begin{problemsubparts}
+\item Prove that $V+W$ is a subspace of $\R^n$.
+\item Prove that $V\cap W$ is a subspace of $\R^n$.
+\item Prove that
+\[
+\dim(V+W)+\dim(V\cap W)=\dim V+\dim W.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 1
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether each of the following statements is true or false. You do not need to justify your answers.
+\begin{problemchoices}
+\item Let $\mathbf A$ and $\mathbf B$ be matrices. If both $\mathbf A\mathbf B$ and $\mathbf B\mathbf A$ are defined, then both products are square matrices.
+\item Let $\mathbf A$ be a square matrix. Suppose that
+\[
+\mathbf A=\mathbf L\mathbf D\mathbf U,
+\]
+where $\mathbf L$ is lower triangular with all diagonal entries equal to $1$, $\mathbf U$ is upper triangular with all diagonal entries equal to $1$, and $\mathbf D$ is diagonal with no zero diagonal entries. Then such a decomposition is unique.
+\item If $\mathbf A$ is a square matrix and $\mathbf A^2$ is nonsingular, then $\mathbf A$ is nonsingular.
+\item The set of all $n\times n$ skew-symmetric matrices,
+\[
+\mathbf A^{\mathsf T}=-\mathbf A,
+\]
+forms a subspace of the vector space of $n\times n$ matrices.
+\item Every subspace of $\R^4$ is the null space of some matrix.
+\item Let $H_\theta:\R^2\to\R^2$ denote reflection across the line through the origin making angle $\theta$ with the positive $x$-axis. Then $H_{\theta_1}\circ H_{\theta_2}$ is counterclockwise rotation by $2(\theta_1-\theta_2)$.
+\item There exists a nonsquare matrix that has both a left inverse and a right inverse, possibly different from each other.
+\item Let $V$ and $W$ be finite-dimensional vector spaces. If a linear transformation $T:V\to W$ is injective, then
+\[
+\dim V\le \dim W.
+\]
+\item Let $T:\R^n\to\R^m$ be linear. If the values $T(\mathbf v)$ are known for $n$ distinct nonzero vectors $\mathbf v\in\R^n$, then $T(\mathbf v)$ is determined for every $\mathbf v\in\R^n$.
+\item For a square matrix $\mathbf A$, if the columns of $\mathbf A$ are linearly independent, then the rows of $\mathbf A$ are linearly independent.
+\end{problemchoices}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 2
+\Needspace{11\baselineskip}
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A=(a_{ij})_{n\times n}$ be the matrix defined by
+\[
+a_{ij}=
+\begin{cases}
+1, & j-i=1,\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Evaluate the sum of all entries of $\mathbf A$,
+\[
+\sum_{1\le i,j\le n} a_{ij}.
+\]
+\item Let $\mathbf B=(b_{ij})$ be
+\[
+\mathbf B=\sum_{k=0}^{n-1}\mathbf A^k
+=\mathbf I+\mathbf A+\mathbf A^2+\cdots+\mathbf A^{n-1}.
+\]
+Evaluate the sum of all entries of $\mathbf B$,
+\[
+\sum_{1\le i,j\le n} b_{ij}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 3
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Consider
+\[
+\mathbf A=
+\begin{pmatrix}
+1&-1&0\\
+2&0&-2\\
+0&a&4
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find all $a\in\R$ for which $\mathbf A$ is invertible.
+\item Using the Gauss--Jordan method, find $\mathbf A^{-1}$ when $a=2$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 4
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Consider
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&3&2\\
+2&4&8&6\\
+-1&-2&1&2
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+b_1\\b_2\\b_3
+\end{pmatrix}.
+\]
+In solving $\mathbf A\mathbf x=\mathbf b$, apply Gaussian elimination to obtain
+\[
+\mathbf U\mathbf x=\mathbf c,
+\]
+and then reduce further to
+\[
+\mathbf R\mathbf x=\mathbf d,
+\]
+where $\mathbf U$ is the echelon matrix obtained from $\mathbf A$ and $\mathbf R$ is the reduced row echelon form of $\mathbf A$. Compute $\mathbf c$ and $\mathbf d$ in terms of $b_1,b_2,b_3$.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 5
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $V=M_2(\R)$ be the vector space of $2\times2$ real matrices, and let $P_3$ be the vector space of real polynomials of degree at most $3$. Consider the linear map $T:P_3\to V$ defined by
+\[
+T(a_0+a_1x+a_2x^2+a_3x^3)
+=
+\begin{pmatrix}
+a_0+a_1&-a_0-a_2\\
+-a_1+a_3&a_2-a_3
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find the matrix $\mathbf A$ representing $T$ with respect to the ordered basis
+\[
+\{1,x,x^2,x^3\}
+\]
+of $P_3$ and the ordered basis
+\[
+\mathbf E_1=
+\begin{pmatrix}1&0\\0&0\end{pmatrix},\quad
+\mathbf E_2=
+\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad
+\mathbf E_3=
+\begin{pmatrix}0&0\\1&0\end{pmatrix},\quad
+\mathbf E_4=
+\begin{pmatrix}0&0\\0&1\end{pmatrix}
+\]
+of $V$.
+\item Find $\rk(\mathbf A)$ and $\dim\Null(\mathbf A)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 6
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&-2\\
+1&-1\\
+1&0\\
+1&2
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+1\\2\\1\\2
+\end{pmatrix}.
+\]
+Decompose
+\[
+\mathbf b=\mathbf b_c+\mathbf b_n,
+\]
+where $\mathbf b_c\in\Col(\mathbf A)$ and $\mathbf b_n\in\Null(\mathbf A^{\mathsf T})$, in the following two ways.
+\begin{problemsubparts}
+\item Solve the normal equation
+\[
+\mathbf A^{\mathsf T}\mathbf A\widehat{\mathbf x}=\mathbf A^{\mathsf T}\mathbf b
+\]
+and compute $\mathbf b_c=\mathbf A\widehat{\mathbf x}$.
+\item Find an orthonormal basis $\{\mathbf q_1,\mathbf q_2\}$ for $\Col(\mathbf A)$ and express $\mathbf b_c$ as a linear combination of $\mathbf q_1$ and $\mathbf q_2$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 7
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Suppose that data are expected to conform to the quadratic relation
+\[
+y(t)=A+Bt+Ct^2.
+\]
+The observed data are
+\[
+\begin{array}{c|ccccc}
+t&-2&-1&0&1&2\\ \hline
+y(t)&-4&1&3&4&6
+\end{array}.
+\]
+Find the parameters $A,B,C$ that minimize the sum of squared errors.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 8
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $V$ be a subspace of $\R^d$. Prove that if
+\[
+\{\mathbf v_1,\dots,\mathbf v_m\}
+\qquad\text{and}\qquad
+\{\mathbf w_1,\dots,\mathbf w_n\}
+\]
+are both bases for $V$, then $m=n$.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 9
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $m\times n$ real matrix. Prove that
+\[
+\rk(\mathbf A)=\rk(\mathbf A^{\mathsf T}\mathbf A)=\rk(\mathbf A\mathbf A^{\mathsf T}).
+\]
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 1
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether each of the following statements is true or false. You do not need to justify your answers.
+\begin{problemchoices}
+\item There exist $3\times3$ matrices $\mathbf A$ and $\mathbf B$ such that
+\[
+\mathbf A\mathbf B-\mathbf B\mathbf A=\mathbf I.
+\]
+\item If $\mathbf A$ and $\mathbf B$ are simultaneously diagonalizable, and $\mathbf B$ and $\mathbf C$ are simultaneously diagonalizable, then $\mathbf A$ and $\mathbf C$ are simultaneously diagonalizable.
+\item There exists a real $2\times2$ matrix $\mathbf A\ne\mathbf I$ such that
+\[
+\mathbf A^3=\mathbf I.
+\]
+\item If a $3\times3$ matrix $\mathbf A$ has eigenvalues $1,2,3$, then
+\[
+(\mathbf A-\mathbf I)(\mathbf A-2\mathbf I)(\mathbf A-3\mathbf I)
+\]
+cannot have a nonzero eigenvalue.
+\item If a real matrix $\mathbf A$ is normal, then
+\[
+(\mathbf A^k)^+=(\mathbf A^+)^k
+\]
+for every positive integer $k$.
+\item If $\det(\mathbf A)>0$ and $\det(\mathbf B)>0$, then
+\[
+\det(\mathbf A+\mathbf B)>0.
+\]
+\item If $\mathbf A=(a_{ij})$ is an $n\times n$ matrix satisfying
+\[
+\sum_{i=1}^n a_{ij}=5
+\]
+for every $j$, then $5$ is an eigenvalue of $\mathbf A$.
+\item If $\mathbf A$ is an $n\times n$ symmetric matrix, then $e^{\mathbf A}$ is positive definite.
+\item Let $\mathbf A$ and $\mathbf B$ be $n\times n$ matrices. If $\lambda$ is an eigenvalue of $\mathbf A$ and $\mu$ is an eigenvalue of $\mathbf B$, then $\lambda+\mu$ is an eigenvalue of $\mathbf A+\mathbf B$.
+\item If a real symmetric matrix $\mathbf A$ is positive definite, then it is nonsingular.
+\end{problemchoices}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 2
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+\begin{problemsubparts}
+\item Find the volume of the parallelepiped determined by the edge vectors from $(0,0,0)$ to
+\[
+(-1,2,2),\qquad (2,-1,2),\qquad (2,2,-1).
+\]
+\item Compute
+\[
+\det
+\begin{pmatrix}
+1&1&1&1\\
+1&-1&1&-1\\
+1&1&-1&-1\\
+1&-1&-1&1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 3
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A,\mathbf B,\mathbf C$ be $n\times n$ matrices and let $\mathbf 0$ be the $n\times n$ zero matrix. Show that
+\[
+\det
+\begin{pmatrix}
+\mathbf A&\mathbf B\\
+\mathbf 0&\mathbf C
+\end{pmatrix}
+=\det(\mathbf A)\det(\mathbf C).
+\]
+\textit{Hint.} One possible approach is to use the Leibniz formula for the determinant.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 4
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $(a_n)_{n=0}^{\infty}$ and $(b_n)_{n=0}^{\infty}$ be sequences satisfying
+\[
+a_{n+1}=3a_n+2b_n,
+\qquad
+b_{n+1}=a_n+4b_n,
+\qquad
+a_0=1,
+\qquad
+b_0=0.
+\]
+Evaluate
+\[
+\lim_{n\to\infty}\frac{a_n-b_n}{a_n+b_n}.
+\]
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 5
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&2\\
+0&1&1\\
+0&0&1
+\end{pmatrix},
+\qquad
+\mathbf B=
+\begin{pmatrix}
+1&0&0\\
+1&1&0\\
+2&1&1
+\end{pmatrix},
+\qquad
+\mathbf C=
+\begin{pmatrix}
+1&0&0\\
+1&1&1\\
+0&0&1
+\end{pmatrix}.
+\]
+Find two matrices among $\mathbf A,\mathbf B,\mathbf C$ that are similar to each other. Justify your answer.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 6
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+3&2&2\\
+2&3&-2
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find the singular value decomposition of $\mathbf A$.
+\item Find the pseudoinverse $\mathbf A^+$ of $\mathbf A$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 7
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+\begin{problemsubparts}
+\item Find all $\alpha\in\R$ such that
+\[
+\mathbf A=
+\begin{pmatrix}
+4&\alpha\\
+\alpha&5
+\end{pmatrix}
+\]
+is positive definite.
+\item For a real number $\alpha$ such that $\mathbf A$ is positive definite, let $d_1(\alpha)$ and $d_2(\alpha)$ be the distances from the origin to, respectively, the closest and farthest points on
+\[
+4x^2+2\alpha xy+5y^2=1.
+\]
+Find the minimum value of
+\[
+f(\alpha)=d_1(\alpha)^2+d_2(\alpha)^2.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 8
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a square matrix with real entries. Show that
+\[
+\tr(\mathbf A^{\mathsf T}\mathbf A)=0
+\]
+if and only if $\mathbf A=\mathbf 0$.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 9
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+For an $n\times n$ matrix $\mathbf A$, show that
+\[
+\det(e^{\mathbf A})=e^{\tr(\mathbf A)}.
+\]
+\textit{Hint.} By Schur's triangularization theorem over $\C$, there exists an invertible matrix $\mathbf M$ such that $\mathbf M^{-1}\mathbf A\mathbf M$ is upper triangular.
+\end{problem}
