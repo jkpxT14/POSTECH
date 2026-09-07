@@ -1,6 +1,6 @@
 \preliminarypart{Notation and Conventions}
 
-General mathematical notation and writing follow \textit{(MATH000) Mathematical Language}. The conventions below record only notation specific to differential equations used in this book. When several equivalent notations are listed, the first form is used throughout.
+General mathematical notation and writing follow \textit{(MATH000) Mathematical Language}. The conventions below record only notation specific to differential equations used in this book. Widely used standard alternatives may be listed in preferred order; the first form is used throughout.
 
 \notationheading{Differential Equations}
 
@@ -15,14 +15,25 @@ f(\mathbf{x})=
 whenever the Fourier inversion formula applies.
 
 \begin{notationtable}
-$y'$ & first derivative with respect to the understood independent variable \\
-$y''$ & second derivative \\
-$\dot{x}$ & first derivative of $x$ with respect to time \\
-$\ddot{x}$ & second derivative of $x$ with respect to time \\
-$y_h,\ y_c$ & homogeneous or complementary part of a solution \\
-$y_p$ & particular solution \\
-$c_1,c_2,\dots$ & arbitrary constants in a general solution \\
-$W(y_1,y_2)(t),\ W[y_1,y_2](t)$ & Wronskian of $y_1$ and $y_2$ \\
-$\mathcal{L}\{f(t)\}(s)$ & Laplace transform of $f$ \\
-$\widehat f(\boldsymbol{\xi}),\ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform under the normalization above \\
+$y'$ & First derivative with respect to the understood independent variable. \\
+$y''$ & Second derivative. \\
+$\dot{x}$ & First derivative of $x$ with respect to time. \\
+$\ddot{x}$ & Second derivative of $x$ with respect to time. \\
+$y_h,\ y_c$ & Homogeneous or complementary part of a solution. \\
+$y_p$ & Particular solution. \\
+$c_1,c_2,\dots$ & Arbitrary constants in a general solution. \\
+$\begin{aligned} &W(y_1,\dots,y_n)(t),\\ &W[y_1,\dots,y_n](t)\end{aligned}$ & Wronskian of $y_1,\dots,y_n$. \\
+$\begin{aligned} &\mathbf{x}'=\mathbf A\mathbf{x}+\mathbf g(t),\\ &\dot{\mathbf{x}}=\mathbf A\mathbf{x}+\mathbf g(t)\end{aligned}$ & Linear first-order system in state-vector form. \\
+$\boldsymbol{\Phi}(t)$ & Fundamental matrix of a linear system. \\
+\addlinespace[0.26em]
+$\begin{aligned} &\mathcal{L}\{f(t)\}(s),\\ &\mathcal{L}[f](s)\end{aligned}$ & Laplace transform of $f$. \\
+$\begin{aligned} &\mathcal{L}^{-1}\{F(s)\}(t),\\ &\mathcal{L}^{-1}[F](t)\end{aligned}$ & Inverse Laplace transform of $F$. \\
+$(f\ast g)(t)$ & One-sided convolution, $\displaystyle (f\ast g)(t)\coloneqq\int_0^t f(\tau)g(t-\tau)\,\dd\tau$. \\
+$H(t-a),\ u(t-a)$ & Heaviside or unit-step function shifted to $t=a$; its value at the jump is specified when relevant. \\
+\addlinespace[0.26em]
+$G(x,\xi)$ & Green's function; the variables depend on context. \\
+$J_\nu(x)$ & Bessel function of the first kind of order $\nu$. \\
+$Y_\nu(x),\ N_\nu(x)$ & Bessel function of the second kind (Neumann function) of order $\nu$. \\
+\addlinespace[0.26em]
+$\widehat f(\boldsymbol{\xi}),\ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform under the normalization above. \\
 \end{notationtable}
