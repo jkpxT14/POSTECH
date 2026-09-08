@@ -56,6 +56,10 @@ class Position {
     std::string debug_string() const;
 
    private:
+    friend struct MoveGeneratorAccess;
+    friend struct SearchAccess;
+    bool validate_path(const Move&, Orientation* final_orientation) const;
+    MoveOutcome apply_legal_move(const Move&, Orientation, UndoState&);
     void reset_pieces();
     std::array<PieceState, PieceCount> pieces_{};
     Color side_to_move_ = Color::White;

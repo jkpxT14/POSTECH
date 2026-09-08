@@ -93,7 +93,7 @@ Gesture State $s=\langle a,b,c\rangle$의 Base Roll Length를 $\ell(s)$로 적�
         \toprule
         아이템 & 실전 계산 \\
         \midrule
-        Push & Gesture State는 바뀌지 않는다. 한 칸 민 뒤 $\ell(s)$번 Roll하며, 첫 Roll에서 Push 이전 칸으로 되돌아갈 수 없다. \\
+        Push & Gesture State는 바뀌지 않는다. 한 칸 민 뒤 $\ell(s)$번 Roll하며, 첫 Roll에서 Push 이전 칸으로 되돌아갈 수 있다. \\
         Rotation & 먼저 선택한 Rotation의 $\tau$를 적용하여 $s'$를 구한 뒤, \textbf{$\ell(s')$번} Roll한다. Rotation으로 Top Gesture와 이동거리가 바뀔 수 있다. \\
         Step Short & Gesture State는 그대로 두고 Roll 수를 $\ell(s)-1$로 정한다. \\
         Step Long & Gesture State는 그대로 두고 Roll 수를 $\ell(s)+1$로 정한다. \\
@@ -149,7 +149,10 @@ Paper는 기본 이동거리 5를 가지며 세 말 가운데 가장 넓은 범�
 
 \section{Movement with Items}
 
-Push 도해는 Push 후 첫 Roll부터 즉시 역행 금지를 적용하여 계산한다. Rotation 도해는 여섯 Rotation을 각각 먼저 적용하고, Rotation 후 Top Gesture에 따른 3/4/5 Roll의 모든 합법 경로를 합쳐 표시한다. Step 도해는 Step Short와 Step Long의 합법 경로를 함께 표시한다.
+Push 후 첫 Roll에서 시작칸으로 돌아오더라도 전체 이동이 끝난 것은 아니다. 예를 들어 East로 민 뒤 West로 한 번 Roll하면 위치는 돌아오지만 Gesture State는 $\tau_{\mathrm{NS}}(s)$가 된다. 이때 이미 한 번 Roll했으므로 남은 Roll 수는 $\ell(s)-1$이며, 다음 Roll에서 즉시 East로 역행할 수 없다.
+
+
+Push 도해는 Push 후 첫 Roll의 복귀를 허용하고, 연속된 Roll 사이에만 즉시 역행 금지를 적용하여 계산한다. 도해의 격자는 시작칸 기준의 상대 도달 범위이며 실제 보드의 크기가 아니다. 실전에서는 보드 경계, 다른 말과 최종 대결 조건을 추가로 확인한다. Rotation 도해는 여섯 Rotation을 각각 먼저 적용하고, Rotation 후 Top Gesture에 따른 3/4/5 Roll의 모든 합법 경로를 합쳐 표시한다. Step 도해는 Step Short와 Step Long의 합법 경로를 함께 표시한다.
 
 \input{Figures/Movement/scissors-push.tex}
 \input{Figures/Movement/scissors-rotation.tex}

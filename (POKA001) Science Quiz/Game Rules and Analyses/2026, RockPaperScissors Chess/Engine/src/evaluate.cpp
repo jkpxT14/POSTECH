@@ -19,12 +19,6 @@ Direction opposite_dir(Direction d) {
          : d == Direction::South ? Direction::North
          : d == Direction::East ? Direction::West : Direction::East;
 }
-Direction dir_from_delta(int df, int dr) {
-    if (df == 0 && dr == 1) return Direction::North;
-    if (df == 0 && dr == -1) return Direction::South;
-    if (df == 1 && dr == 0) return Direction::East;
-    return Direction::West;
-}
 
 struct ReachProfile { std::uint16_t normal = 0, push = 0, rotation = 0, step = 0; };
 using ReachTable = std::array<std::array<ReachProfile, 24>, 64>;
@@ -58,6 +52,13 @@ ReachTable build() {
     const auto& t = OrientationTable::instance();
     for (int si = 0; si < 64; ++si) {
         for (int oi = 0; oi < 24; ++oi) {
+            bool reused = false;
+            for (int prev = 0; prev < oi; ++prev) {
+                if (t.gesture_state_id(Orientation(prev)) == t.gesture_state_id(Orientation(oi))) {
+                    out[si][oi] = out[si][prev]; reused = true; break;
+                }
+            }
+            if (reused) continue;
             Square square = Square(si);
             Orientation o = Orientation(oi);
             const int base = base_roll_length(t.top_gesture(o));
@@ -69,8 +70,7 @@ ReachTable build() {
             for (auto [df, dr] : Delta) {
                 int f = file_of(square) + df, r = rank_of(square) + dr;
                 if (!valid_square(f, r)) continue;
-                Direction push_dir = dir_from_delta(df, dr);
-                add(make_square(f, r), o, base, push, true, push_dir);
+                add(make_square(f, r), o, base, push);
             }
 
             Marks rotation = normal;
@@ -92,27 +92,27 @@ ReachTable build() {
 const ReachTable& table() { static const ReachTable t = build(); return t; }
 const ReachProfile& reach(const PieceState& p) { return table()[std::size_t(p.square)][std::size_t(p.orientation)]; }
 
-int first_mob(const Position& p, PieceId id) {
+int first_mob(const Position& p, PieceId id, std::uint64_t occupied) {
     const auto& pc = p.piece(id);
     if (!pc.alive()) return 0;
     int c = 0;
     for (auto [df, dr] : Delta) {
         int f = file_of(pc.square) + df, r = rank_of(pc.square) + dr;
-        if (valid_square(f, r) && !p.occupied(make_square(f, r), id)) ++c;
+        if (valid_square(f, r) && !(occupied & (1ULL << unsigned(make_square(f, r))))) ++c;
     }
     return c;
 }
-int second_mob(const Position& p, PieceId id) {
+int second_mob(const Position& p, PieceId id, std::uint64_t occupied) {
     const auto& pc = p.piece(id);
     if (!pc.alive()) return 0;
     int c = 0;
     for (auto [df, dr] : Delta) {
         int f = file_of(pc.square) + df, r = rank_of(pc.square) + dr;
-        if (!valid_square(f, r) || p.occupied(make_square(f, r), id)) continue;
+        if (!valid_square(f, r) || (occupied & (1ULL << unsigned(make_square(f, r))))) continue;
         for (auto [ef, er] : Delta) {
             if (ef == -df && er == -dr) continue;
             int sf = f + ef, sr = r + er;
-            if (valid_square(sf, sr) && !p.occupied(make_square(sf, sr), id)) ++c;
+            if (valid_square(sf, sr) && !(occupied & (1ULL << unsigned(make_square(sf, sr))))) ++c;
         }
     }
     return c;
@@ -159,11 +159,15 @@ Value evaluate_white(const Position& p) {
     value += 12 * (p.alive_count(Color::White) - p.alive_count(Color::Black));
     const int rv = reserve(p);
     value += inventory(p, Color::White, rv) - inventory(p, Color::Black, rv);
+    std::uint64_t occupied = 0;
+    for (const auto& pc : p.pieces())
+        if (pc.alive()) occupied |= 1ULL << unsigned(pc.square);
     for (int i = 0; i < PieceCount; ++i) {
         auto id = PieceId(i);
         const auto& pc = p.piece(id);
         if (!pc.alive()) continue;
-        int mobility = 2 * first_mob(p, id) + second_mob(p, id) / 2 + int(reach(pc).normal) / 20;
+        const auto others = occupied & ~(1ULL << unsigned(pc.square));
+        int mobility = 2 * first_mob(p, id, others) + second_mob(p, id, others) / 2 + int(reach(pc).normal) / 20;
         value += piece_color(id) == Color::White ? mobility : -mobility;
     }
     return value;

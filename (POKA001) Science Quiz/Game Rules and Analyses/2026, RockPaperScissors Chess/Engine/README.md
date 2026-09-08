@@ -1,6 +1,6 @@
 # RPSC Engine
 
-Version: **0.15.0**
+Version: **0.17.0**
 
 Native C++17 analysis engine for RockPaperScissors Chess. The handbook is the rule reference; Quiz Results are external input.
 
@@ -10,7 +10,7 @@ Native C++17 analysis engine for RockPaperScissors Chess. The handbook is the ru
 - six-state Gesture State only as a safe search reduction
 - six Rotation actions: `RoN`, `RoS`, `RoE`, `RoW`, `RoL`, `RoR`
 - Rotation is applied before the Roll length is read from the new Top Gesture
-- Push is a non-Roll one-square translation and the first Roll cannot return to the pre-Push square
+- Push is a non-Roll one-square translation and the first Roll may return to the pre-Push square; reversal is forbidden only between consecutive Rolls
 - official Timeout adjudication belongs to the game controller, not Engine search
 - exhaustive `generate_legal_moves` is authoritative for legality
 

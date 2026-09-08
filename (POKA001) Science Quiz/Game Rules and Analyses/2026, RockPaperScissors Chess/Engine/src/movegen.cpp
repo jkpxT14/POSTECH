@@ -1,10 +1,22 @@
 #include "movegen.h"
 
 #include <array>
+#include <cassert>
 #include <cstdint>
 #include <unordered_set>
 
 namespace rpsc {
+// Only the generator may use this entry point: every edge, inventory action and
+// final combat square has already been checked, and exact orientation accumulated.
+struct MoveGeneratorAccess {
+    static MoveOutcome apply(Position& p, const Move& m, Orientation o, UndoState& u) {
+#ifndef NDEBUG
+        Orientation checked;
+        assert(p.validate_path(m, &checked) && checked == o);
+#endif
+        return p.apply_legal_move(m, o, u);
+    }
+};
 namespace {
 constexpr std::array<Direction, 4> Dirs{
     Direction::North, Direction::South, Direction::East, Direction::West};
@@ -32,14 +44,6 @@ struct StepTable {
     }
 };
 const StepTable& steps() { static const StepTable table; return table; }
-
-Direction direction_between(Square a, Square b) {
-    int df = file_of(b) - file_of(a), dr = rank_of(b) - rank_of(a);
-    if (df == 0 && dr == 1) return Direction::North;
-    if (df == 0 && dr == -1) return Direction::South;
-    if (df == 1 && dr == 0) return Direction::East;
-    return Direction::West;
-}
 
 Orientation modifier_orientation(Orientation o, Item item) {
     return OrientationTable::instance().apply_rotation(o, item);
@@ -87,8 +91,7 @@ void exhaustive_item(const Position& p, PieceId id, const PieceState& pc, Item i
     Direction last = Direction::North;
     if (item == Item::Push) {
         start = push;
-        has_last = true;
-        last = direction_between(pc.square, push);  // first Roll may not reverse Push
+        has_last = false;  // Push does not seed Roll history.
     }
     (void)o;  // exhaustive path legality needs only distance; exact orientation is reconstructed by Position.
     exhaustive_paths(p, id, m, start, distance, has_last, last, out);
@@ -150,13 +153,13 @@ void emit(Gen& g, Move& m, Square cur, Orientation o) {
         if (t.top_gesture(o) == t.top_gesture(g.p.piece(enemy).orientation)) return;
     }
     UndoState undo;
-    g.p.do_move(m, undo);
+    MoveGeneratorAccess::apply(g.p, m, o, undo);
     const Key k = g.p.search_key();
     const int swing = (g.p.captures(g.mover) - g.own_before) -
                       (g.p.captures(g.opponent) - g.opp_before);
     g.p.undo_move(undo);
     if (g.tactical && swing == 0) return;
-    if (g.scratch.insert(k, g.final_generation)) g.out.push_back({m, swing});
+    if (g.scratch.insert(k, g.final_generation)) g.out.push_back({m, swing, o});
 }
 
 void reduced_paths(Gen& g, PieceId id, Move& m, Square cur, Orientation o, int rem,
@@ -197,8 +200,7 @@ void reduced_item(Gen& g, PieceId id, const PieceState& pc, Item item, Square pu
     Direction last = Direction::North;
     if (item == Item::Push) {
         start = push;
-        has_last = true;
-        last = direction_between(pc.square, push);
+        has_last = false;  // First Roll may return to the pre-Push square.
     }
     g.partial_generation = g.scratch.next_partial();
     const auto idx = partial_index(start, o, distance, has_last, last);

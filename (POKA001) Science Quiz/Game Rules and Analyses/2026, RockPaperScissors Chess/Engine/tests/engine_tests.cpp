@@ -110,16 +110,19 @@ int main() {
     const auto initial_unique = generate_unique_moves(p).size();
     const auto initial_search = generate_search_moves(p).size();
     const auto p1 = perft(p, 1), p2 = perft(p, 2), p3 = perft(p, 3);
+    assert(initial_legal == 161 && initial_unique == 145 && initial_search == 84);
+    assert(p1 == 161 && p2 == 25575 && p3 == 4215782);
     verify_generator(p);
     verify_roundtrip(p, legal);
 
-    // New item rules: all six Rotation actions exist; Push immediate return never exists.
+    // New item rules: all six Rotation actions exist; Push return exists but consecutive Roll reversal is illegal.
     p.set_items(Color::White, 1, 1, 1);
     p.set_items(Color::Black, 1, 1, 1);
     legal = generate_legal_moves(p);
     const auto item_legal = legal.size();
     const auto item_unique = generate_unique_moves(p).size();
     const auto item_search = generate_search_moves(p).size();
+    assert(item_legal == 2146 && item_unique == 1459 && item_search == 568);
     bool push_return = false, rn = false, rs = false, re = false, rw = false, rl = false, rr = false;
     bool ss = false, sl = false;
     for (const auto& move : legal) {
@@ -133,23 +136,43 @@ int main() {
         ss |= move.item == Item::StepShort;
         sl |= move.item == Item::StepLong;
     }
-    assert(!push_return && rn && rs && re && rw && rl && rr && ss && sl);
+    assert(push_return && rn && rs && re && rw && rl && rr && ss && sl);
     verify_generator(p);
     verify_roundtrip(p, legal);
 
-    // Explicitly reject the now-illegal Push return e3>f3-e3... pattern at first Roll.
+    // Accept Push return; reject reversal between the first and second Rolls.
     Position push_test;
     push_test.set_items(Color::White, 1, 0, 0);
-    Move illegal_push;
-    illegal_push.piece = PieceId::W1;
-    illegal_push.item = Item::Push;
-    illegal_push.push_to = make_square(1, 0);  // a1>b1
-    illegal_push.path[0] = make_square(0, 0);
-    illegal_push.path[1] = make_square(0, 0);  // b1-a1: immediate return
-    illegal_push.path[2] = make_square(0, 1);
-    illegal_push.path[3] = make_square(1, 1);
-    illegal_push.path_length = 4;
-    assert(!push_test.is_legal_path(illegal_push));
+    Move push_move;
+    push_move.piece = PieceId::W1;
+    push_move.item = Item::Push;
+    push_move.push_to = make_square(1, 0);  // a1>b1
+    push_move.path[0] = make_square(0, 0);
+    push_move.path[1] = make_square(0, 0);  // b1-a1: immediate return
+    push_move.path[2] = make_square(0, 1);
+    push_move.path[3] = make_square(1, 1);
+    push_move.path_length = 4;
+    assert(push_test.is_legal_path(push_move));
+    push_move.path[2] = make_square(1, 0);  // Roll W then E is illegal.
+    assert(!push_test.is_legal_path(push_move));
+
+    // Handbook centered Push example: five Rolls, first returning to e3.
+    Position example;
+    for (int i = 0; i < PieceCount; ++i) example.piece(PieceId(i)).square = NoSquare;
+    example.piece(PieceId::W3) = {make_square(4, 2), t.canonical(Gesture::Paper, WristDirection::South)};
+    example.set_items(Color::White, 1, 0, 0);
+    Move handbook_push;
+    assert(parse_move(example, "W3[Pu]: e3>f3-e3-e4-f4-f5-g5", handbook_push));
+
+    // Every exact starting orientation preserves exhaustive/reduced equivalence.
+    for (int oi = 0; oi < 24; ++oi) {
+        Position mixed;
+        mixed.set_items(Color::White, 1, 1, 1);
+        mixed.set_items(Color::Black, 1, 1, 1);
+        mixed.piece(PieceId::W1).orientation = Orientation(oi);
+        mixed.piece(PieceId::W3).square = make_square(4, 2);
+        verify_generator(mixed);
+    }
 
     // Reset preserves score/items and hands the next scheduled ply to Black.
     Position reset_test;
@@ -235,5 +258,5 @@ int main() {
     std::cout << "initial legal/unique/search " << initial_legal << '/' << initial_unique << '/' << initial_search << '\n';
     std::cout << "initial perft " << p1 << '/' << p2 << '/' << p3 << '\n';
     std::cout << "item-rich legal/unique/search " << item_legal << '/' << item_unique << '/' << item_search << '\n';
-    std::cout << "RPSC Engine 0.15.0 new-rules regression suite passed\n";
+    std::cout << "RPSC Engine 0.17.0 new-rules regression suite passed\n";
 }

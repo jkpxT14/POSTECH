@@ -2,12 +2,25 @@
 
 #include <algorithm>
 #include <array>
+#include <cassert>
 #include <chrono>
 #include <cstddef>
 #include <unordered_map>
 #include <vector>
 
 namespace rpsc {
+// Search moves have already passed generator legality checks and carry their
+// accumulated exact orientation.  Reusing that result avoids validating and
+// replaying every path a second time on the hot search edge.
+struct SearchAccess {
+    static MoveOutcome apply(Position& p, const Move& m, Orientation o, UndoState& u) {
+#ifndef NDEBUG
+        Orientation checked;
+        assert(p.validate_path(m, &checked) && checked == o);
+#endif
+        return p.apply_legal_move(m, o, u);
+    }
+};
 namespace {
 constexpr int MaxPly = 64;
 constexpr int MaxSelectiveExtensions = 2;
@@ -24,7 +37,12 @@ int root_action_family(const Move& move) {
     if (is_step(move.item)) return 3;
     return 0;
 }
-struct OrderedMove { Move move{}; int score = 0; int capture_swing = 0; };
+struct OrderedMove {
+    Move move{};
+    int score = 0;
+    int capture_swing = 0;
+    Orientation final_orientation = 0;
+};
 std::size_t move_slot(const Move& move) {
     const std::size_t base = static_cast<std::size_t>(piece_index(move.piece)) * 64u + static_cast<unsigned>(move.to());
     return base * ItemActionCount + item_action_index(move.item);
@@ -163,12 +181,13 @@ Value Search::quiescence(Position& p, Value alpha, Value beta, int ply, Context&
     std::vector<OrderedMove> ordered;
     ordered.reserve(info.size());
     for (const auto& entry : info)
-        ordered.push_back({entry.move, entry.capture_swing * 100000 + c.capture_history_score(entry.move), entry.capture_swing});
+        ordered.push_back({entry.move, entry.capture_swing * 100000 + c.capture_history_score(entry.move),
+                           entry.capture_swing, entry.final_orientation});
     std::stable_sort(ordered.begin(), ordered.end(), [](const auto& a, const auto& b) { return a.score > b.score; });
 
     for (const auto& cur : ordered) {
         UndoState undo;
-        p.do_move(cur.move, undo);
+        SearchAccess::apply(p, cur.move, cur.final_orientation, undo);
         Value score = -quiescence(p, -beta, -alpha, ply + 1, c);
         p.undo_move(undo);
         if (c.stopped) return alpha;
@@ -253,13 +272,13 @@ Value Search::negamax(Position& p, Depth depth, Value alpha, Value beta, int ply
         else if (e.capture_swing < 0) score += -250000 + c.capture_history_score(m);
         if (ply < MaxPly && is_killer(m, c.killers[ply], 0)) score += 200000;
         else if (ply < MaxPly && is_killer(m, c.killers[ply], 1)) score += 150000;
-        ordered.push_back({m, score, e.capture_swing});
+        ordered.push_back({m, score, e.capture_swing, e.final_orientation});
     }
     std::sort(ordered.begin(), ordered.end(), [](const auto& a, const auto& b) { return a.score > b.score; });
 
     for (const auto& cur : ordered) {
         UndoState undo;
-        p.do_move(cur.move, undo);
+        SearchAccess::apply(p, cur.move, cur.final_orientation, undo);
         bool extend = cur.capture_swing != 0 && extensions_used < MaxSelectiveExtensions;
         int next_ext = extensions_used + (extend ? 1 : 0);
         Depth full = depth - 1 + (extend ? 1 : 0);
@@ -330,7 +349,13 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
     root_moves.reserve(root_info.size());
     std::unordered_map<Move, int, MoveHash> root_swing;
     root_swing.reserve(root_info.size() * 2);
-    for (const auto& e : root_info) { root_moves.push_back(e.move); root_swing.emplace(e.move, e.capture_swing); }
+    std::unordered_map<Move, Orientation, MoveHash> root_orientation;
+    root_orientation.reserve(root_info.size() * 2);
+    for (const auto& e : root_info) {
+        root_moves.push_back(e.move);
+        root_swing.emplace(e.move, e.capture_swing);
+        root_orientation.emplace(e.move, e.final_orientation);
+    }
     const Key root_key = root.search_key();
 
     std::vector<RootLine> prior;
@@ -352,6 +377,8 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
         });
         if (legal != prior.end()) { previous_best = legal->move; previous_value = legal->value; }
     }
+    result.has_move = true; result.best_move = previous_best;
+    result.value = evaluate(root); result.pv = {previous_best};
     if (limits.movetime.count() > 0 && !prior.empty() && cached_depth > 0) {
         result.has_move = true; result.best_move = previous_best; result.value = previous_value; result.depth = cached_depth;
     }
@@ -384,7 +411,7 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
             if (auto it = prior_value.find(m); it != prior_value.end()) score += 1000 * it->second;
             if (swing > 0) score += 500000 + swing * 10000 + c.capture_history_score(m);
             else if (swing < 0) score += -250000 + c.capture_history_score(m);
-            ordered.push_back({m, score, swing});
+            ordered.push_back({m, score, swing, root_orientation.at(m)});
         }
         std::stable_sort(ordered.begin(), ordered.end(), [](const auto& a, const auto& b) { return a.score > b.score; });
         RootPass pass;
@@ -397,7 +424,7 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
             int family = root_action_family(cur.move);
             int family_index = family_seen[static_cast<std::size_t>(family)]++;
             UndoState undo;
-            root.do_move(cur.move, undo);
+            SearchAccess::apply(root, cur.move, cur.final_orientation, undo);
             bool extend = cur.capture_swing != 0;
             Depth child = depth - 1 + (extend ? 1 : 0);
             int ext = extend ? 1 : 0;

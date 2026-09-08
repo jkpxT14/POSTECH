@@ -114,7 +114,13 @@ int Position::alive_count(Color side) const {
     return count;
 }
 
-bool Position::is_legal_path(const Move& m) const {
+bool Position::is_legal_path(const Move& m) const { return validate_path(m, nullptr); }
+
+bool Position::validate_path(const Move& m, Orientation* final_orientation) const {
+    if (piece_index(m.piece) >= PieceCount || item_action_index(m.item) >= ItemActionCount) return false;
+    if (m.path_length < 2 || m.path_length > MaxMoveSquares) return false;
+    for (std::uint8_t i = 0; i < m.path_length; ++i)
+        if (m.path[i] < 0 || m.path[i] >= 64) return false;
     const auto id = m.piece;
     const auto& p = piece(id);
     if (!p.alive() || piece_color(id) != side_to_move_ || m.path_length < 2 || m.from() != p.square) return false;
@@ -130,10 +136,10 @@ bool Position::is_legal_path(const Move& m) const {
     Direction last = Direction::North;
     bool has_last = false;
     if (m.item == Item::Push) {
-        if (m.push_to == NoSquare || !adjacent(m.from(), m.push_to) || occupied(m.push_to, id)) return false;
+        if (m.push_to < 0 || m.push_to >= 64 || !adjacent(m.from(), m.push_to) || occupied(m.push_to, id)) return false;
         try { last = direction_between(m.from(), m.push_to); }
         catch (...) { return false; }
-        has_last = true;  // Push participates in immediate-backtracking prohibition.
+        has_last = false;  // Push is not a Roll; only consecutive Rolls forbid reversal.
         from = m.push_to;
     }
 
@@ -149,25 +155,24 @@ bool Position::is_legal_path(const Move& m) const {
         last = d;
         has_last = true;
     }
+    if (final_orientation) *final_orientation = o;
     return true;
 }
 
 MoveOutcome Position::do_move(const Move& m, UndoState& undo) {
-    if (!is_legal_path(m)) throw std::invalid_argument("illegal RPSC move");
+    Orientation final_orientation;
+    if (!validate_path(m, &final_orientation)) throw std::invalid_argument("illegal RPSC move");
+    return apply_legal_move(m, final_orientation, undo);
+}
+
+MoveOutcome Position::apply_legal_move(const Move& m, Orientation o, UndoState& undo) {
     undo = {pieces_, side_to_move_, captures_white_, captures_black_, items_, quiz_white_, quiz_black_, remaining_board_plies_};
 
     auto& moving = piece(m.piece);
     const Color mover = side_to_move_;
-    Orientation o = modifier_orientation(moving.orientation, m.item);
-    Square from = m.item == Item::Push ? m.push_to : m.from();
     const int bucket = item_bucket(m.item);
     if (bucket >= 0) --items_[color_index(mover)][bucket];
 
-    for (std::uint8_t i = 1; i < m.path_length; ++i) {
-        const auto d = direction_between(from, m.path[i]);
-        o = OrientationTable::instance().roll(o, d);
-        from = m.path[i];
-    }
     moving.square = m.to();
     moving.orientation = o;
 

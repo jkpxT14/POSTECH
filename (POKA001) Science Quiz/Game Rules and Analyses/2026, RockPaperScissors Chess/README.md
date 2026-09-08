@@ -1,5 +1,7 @@
 # 2026, RockPaperScissors Chess
 
+Package revision **0.17.0** (2026-09-08), ruleset `2026-rpsc-rotation6-push-return`.
+
 2026 KAIST-POSTECH Science War Science Quiz RockPaperScissors Chess handbook, offline Analysis Board, and native C++ Engine.
 
 - `RockPaperScissorsChess.tex` / `.pdf`: handbook

@@ -5,7 +5,11 @@
 #include "position.h"
 
 namespace rpsc {
-struct SearchMove { Move move{}; int capture_swing = 0; };
+struct SearchMove {
+    Move move{};
+    int capture_swing = 0;
+    Orientation final_orientation = 0;
+};
 std::vector<Move> generate_legal_moves(const Position&);
 std::vector<Move> generate_unique_moves(Position&);
 std::vector<Move> generate_search_moves(Position&);
