@@ -917,6 +917,274 @@ m\le f'''(x)\le M.
 \end{problemsubparts}
 \end{problem}
 
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 1
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Use the precise $\varepsilon$-$\delta$ definitions to prove the following.
+\begin{problemsubparts}
+\item
+\[
+\lim_{x\to0}x^2=0.
+\]
+\item The function
+\[
+f(x)=\sqrt{|x|}
+\]
+is continuous at $x=0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 2
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Let $(a,b)$ be a point on the circle
+\[
+x^2+y^2=25.
+\]
+Show that the tangent line at $(a,b)$ is perpendicular to the line joining $(a,b)$ to the origin.
+\item The radius of a sphere is measured as $x$ with an error of at most $1\%$. Using estimates of percentage change, find the maximum percentage errors in the volume and surface area of the sphere.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 3
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Let
+\[
+f(x)=x^{1/x},
+\qquad x>0.
+\]
+\begin{problemsubparts}
+\item Find
+\[
+\lim_{x\to\infty}f(x)
+\qquad\text{and}\qquad
+\lim_{x\to0^+}f(x).
+\]
+\item Find $f'(x)$ and determine the zero of the derivative, i.e., solve $f'(x)=0$.
+\item Sketch the graph of $f$ using the information above.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 4
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Which of the following functions are differentiable at $0$? Justify your answer.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.55em,labelsep=0.62em,itemsep=0.18em,topsep=0.42em,parsep=0pt,partopsep=0pt]
+\item $|\sin^3 x|$
+\item $\sqrt{x+1}$
+\item $\sqrt{x^2+|x|}$
+\item $\sqrt{x^2+|x|^3}$
+\end{enumerate}
+\item Show that
+\[
+\sinh(x+y)=\sinh x\cosh y+\cosh x\sinh y.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 5
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Let $f\colon[a,b]\to[c,d]$ be an increasing one-to-one function with range $[c,d]$, and let $g\colon[c,d]\to[a,b]$ be its inverse. Find
+\[
+\int_a^b f(x)\,\dd x+\int_c^d g(y)\,\dd y.
+\]
+\item Let $f$ be a function defined on $\R$ by
+\[
+f(x)=
+\begin{cases}
+\arctan(ax^2+bx+2), & x\ge \dfrac{\pi}{2},\\[0.6em]
+\dfrac{\pi}{4}\sin x, & -\dfrac{\pi}{2}<x<\dfrac{\pi}{2},\\[0.8em]
+\arctan(dx^2+ex-3), & x\le-\dfrac{\pi}{2}.
+\end{cases}
+\]
+Find values of $a,b,d,e$ which ensure that $f$ is differentiable and has an inverse.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 6
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Find
+\[
+\lim_{x\to0^+}\frac{\ln x}{1/\sin x}.
+\]
+\item Find
+\[
+\lim_{x\to0}
+\frac{\displaystyle\int_0^{x^2}\frac{\sin t}{t}\,\dd t}{x^2}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 7
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Evaluate the following integrals.
+\begin{problemsubparts}
+\item
+\[
+\int\frac{1}{x^2+x+1}\,\dd x.
+\]
+\item
+\[
+\int\arccosh x\,\dd x.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 8
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Evaluate the following integrals.
+\begin{problemsubparts}
+\item
+\[
+\int_0^{\pi/2}\cos x\,\sinh(\sin x)\,\dd x.
+\]
+\item
+\[
+\int_0^{\pi/2}
+\left[
+\arctan\!\bigl(\arctanh(\sin x)\bigr)
++\arcsin\!\bigl(\tanh(\tan x)\bigr)
+\right]\,\dd x.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 9
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Determine the values of $a\in\R$ for which the improper integral
+\[
+\int_1^\infty \cos(e^{ax})\,\dd x
+\]
+converges. Justify your answer.
+\item Determine whether
+\[
+\int_0^\infty\frac{\cos^3 x}{\sqrt{x}}\,\dd x
+\]
+converges. Justify your answer.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Midterm, Problem 10
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Find the function $y=y(x)$ satisfying
+\[
+y^2\frac{\dd y}{\dd x}=3x^2y^3-6x^2,
+\qquad
+y(0)=1.
+\]
+\item Suppose the half-life of a radioactive material $X$ is $6$ months. Let $y(t)$ be the mass of $X$ at time $t$, where time is measured in months. Find the decay rate $k$ and the differential equation satisfied by $y$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring KAIST Calculus I Final, Problem 1
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Let $f$ satisfy
+\[
+x\ln x\,f'(x)+f(x)-x=0,
+\qquad
+f(e^{-1})=-e^{-1},
+\qquad
+0<x<1.
+\]
+\begin{problemsubparts}
+\item Find $f$ by solving the differential equation.
+\item Define
+\[
+a_{i+1}=|f(a_i)|,
+\qquad
+a_1=a\in(0,e^{-1}).
+\]
+Determine whether
+\[
+\sum_{i=1}^{\infty}a_i
+\]
+diverges, converges conditionally, or converges absolutely.
+\end{problemsubparts}
+\end{problem}
+% 2022 Spring KAIST Calculus I Final, Problem 3
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Suggest three different ways to find the Maclaurin series for $\cos^2 x$. Then use one of them to find the first three nonzero terms of the series.
+\item Compute
+\[
+\lim_{t\to0^+}
+\frac{
+ e^{-1}\left(1+\frac{t}{2}\right)
+ -\left(\frac{1}{1+t}\right)^{1/t}
+}{t^2}.
+\]
+\end{problemsubparts}
+\end{problem}
+% 2022 Spring KAIST Calculus I Final, Problem 4
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Consider the series
+\[
+f(x)=1+\sum_{n=1}^{\infty}\frac{(2n)!}{(n!)^2}x^n.
+\]
+\begin{problemsubparts}
+\item Find the radius $R$ of convergence and show that $f$ satisfies
+\[
+(1-4x)f'(x)=2f(x)
+\]
+for $x\in(-R,R)$.
+\item Find $f(x)$ and compute
+\[
+1+\sum_{n=1}^{\infty}\frac{(2n)!}{(n!)^2}\frac{1}{8^n}.
+\]
+\end{problemsubparts}
+\end{problem}
+% 2022 Spring KAIST Calculus I Final, Problem 5
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Determine whether each of the following sequences converges. Find its limit if it converges. You do not need to justify your answers.
+\begin{problemsubparts}
+\item $\displaystyle a_n=\left(1+\frac{2}{n}\right)^n$.
+\item $\displaystyle b_n=\left(1+\frac{1}{n}\right)^{n^2}$.
+\item $\displaystyle c_n=\arctan(\sqrt n-\sin n)$.
+\item $\displaystyle d_{n+1}=\frac{4}{3+d_n}$ with $d_1=10$.
+\end{problemsubparts}
+\end{problem}
+% 2022 Spring KAIST Calculus I Final, Problem 7
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+For what values of $x$ does each of the following series converge?
+\begin{problemsubparts}
+\item
+\[
+\sum_{n=1}^{\infty}\frac{(2x-1)^n}{n}.
+\]
+\item
+\[
+\sum_{n=1}^{\infty}\frac{(3x+2)^{n^2}}{n^2}.
+\]
+\end{problemsubparts}
+\end{problem}
+% 2022 Spring KAIST Calculus I Final, Problem 9
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Show that
+\[
+\ln(n!)\ge n\ln n-n
+\]
+for every positive integer $n$.
+
+\textit{Hint.} Use an appropriate Riemann sum of the function $y=\ln x$ on the interval $[1,n]$.
+\item Determine whether
+\[
+\sum_{n=2}^{\infty}(-1)^n\frac{1}{\ln(n!)}
+\]
+diverges, converges absolutely, or converges conditionally.
+\item Determine whether
+\[
+\sum_{n=2}^{\infty}(-1)^n
+\frac{1}{\ln^2(n)\sqrt[n]{n!}}
+\]
+diverges, converges absolutely, or converges conditionally.
+\end{problemsubparts}
+\end{problem}
+
 % 2023 Spring POSTECH Calculus I Midterm, Problem 1
 \begin{problem}[2023 Spring \POSTECH{} Calculus I]
 Prove the following statements.
@@ -1047,3 +1315,484 @@ f(x)=\sum_{n=1}^{\infty}\frac{x^n}{n}.
 \item Evaluate $f''(1/2)$.
 \end{problemsubparts}
 \end{problem}
+
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 1
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Use the precise $\varepsilon$-$\delta$ definitions for the following.
+\begin{problemsubparts}
+\item Suppose
+\[
+\lim_{x\to c}f(x)=L
+\qquad\text{and}\qquad
+\lim_{x\to c}g(x)=M,
+\]
+where $L,M,c\in\R$. Prove that
+\[
+\lim_{x\to c}\bigl(f(x)+g(x)\bigr)=L+M.
+\]
+\item Determine whether
+\[
+f(x)=
+\begin{cases}
+x^2, & x\ne0,\\
+2, & x=0
+\end{cases}
+\]
+is continuous at $x=0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 2
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Find all horizontal asymptotes of the graph of
+\[
+f(x)=\frac{x^3-|x|^3+x^2}{|x|^3+2},
+\]
+if any.
+\item Prove that
+\[
+e^x-3x^2=0
+\]
+has at least three solutions. Recall that $e\approx2.71828$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 3
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Consider
+\[
+f(x)=
+\begin{cases}
+x^2\sin(1/x), & x\ne0,\\
+0, & x=0.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Show that $f$ is continuous at $x=0$.
+\item Show that $f'(x)$ exists for $x\ne0$.
+\item Show that $f$ is differentiable at $x=0$.
+\item Show that $f'$ is not continuous at $x=0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 4
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Evaluate
+\[
+\int_0^\pi \cos(\arccot x)\,\dd x.
+\]
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 5
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Consider the curve
+\[
+y^4=y^2-x^2
+\]
+in the $xy$-plane.
+\begin{problemsubparts}
+\item Find the equation of the tangent line at
+\[
+\left(\frac{\sqrt3}{4},\frac{\sqrt3}{2}\right).
+\]
+\item Find the equation of the normal line at
+\[
+\left(\frac{\sqrt3}{4},\frac12\right).
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 6
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Let
+\[
+f(x)=\sqrt{1+x^3}=(1+x^3)^{1/2}.
+\]
+\begin{problemsubparts}
+\item Find a polynomial that approximates $f(x)$ at $x=0$, using
+\[
+(1+x)^k\approx1+kx
+\]
+for small $x$.
+\item Use the product rule to find $f(0)$, $f'(0)$, $f''(0)$, and $f'''(0)$, and then find
+\[
+p(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\frac{f'''(0)}{3!}x^3.
+\]
+\item Find the linearization at $x=0$ of
+\[
+g(x)=\int_3^{3+\sin x}f(t)\,\dd t.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 7
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Evaluate the integral and express the answer in terms of the natural logarithm:
+\[
+\int_1^{\sqrt5}2x\,\arccosh(x^2)\,\dd x.
+\]
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 8
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Evaluate
+\[
+\int_0^\infty\frac{1}{\sqrt{x(x+4)}}\,\dd x
+\]
+by splitting it into the following two integrals.
+\begin{problemsubparts}
+\item
+\[
+\int_0^4\frac{1}{\sqrt{x(x+4)}}\,\dd x.
+\]
+\item
+\[
+\int_4^\infty\frac{1}{\sqrt{x(x+4)}}\,\dd x.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 9
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Let $y$ be a solution of
+\[
+y'=-\frac{2xy}{1+x^2},
+\qquad
+y(0)=1.
+\]
+\begin{problemsubparts}
+\item Find $y$.
+\item Find
+\[
+\int_{-\infty}^{\infty}y(x)\,\dd x.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Midterm, Problem 10
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Let $a>0$ and $b>0$ be constants satisfying $ab^2>1$. Let
+\[
+I=[2,\infty),
+\]
+and let $f$ be differentiable on $I$ with $f(2)=b^2$. Suppose that, with $y=f(x)$,
+\[
+2axy\frac{\dd y}{\dd x}-2y=x\frac{\dd y}{\dd x}.
+\]
+Show that $f$ is one-to-one on $I$, and find $f^{-1}$.
+\end{problem}
+
+
+% 2023 Spring KAIST Calculus I Final, Problem 1
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Let
+\[
+f(x)=\arctan x,
+\qquad -\infty<x<\infty.
+\]
+\begin{problemsubparts}
+\item Find the set of points at which the Maclaurin series generated by $f$ converges to $f$.
+\item Use the Maclaurin series of $\arctan x$ to show that
+\[
+\left|
+\frac{\pi}{\sqrt3}
+-\left(2-\frac29+\frac{2}{45}-\frac{2}{189}\right)
+\right|
+\le\frac{2}{3^6}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Final, Problem 2
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Determine whether each of the following series converges.
+\begin{problemsubparts}
+\item
+\[
+\sum_{n=2}^{\infty}\frac{(-1)^n n}{(n+1)\ln n}.
+\]
+\item
+\[
+\sum_{n=1}^{\infty}(-1)^n a_n^{a_n},
+\]
+where $a_n>0$ for all $n$ and
+\[
+\lim_{n\to\infty}a_n=\frac1e\approx\frac1{2.71828}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Final, Problem 3
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+A tank contains $200\,\mathrm{L}$ of water with $10\,\mathrm{kg}$ of salt dissolved in it. Salt water containing $0.2\,\mathrm{kg}$ of salt per liter is added at a rate of $20\,\mathrm{L/min}$, while the well-mixed solution is pumped out at a rate of $10\,\mathrm{L/min}$.
+\begin{problemsubparts}
+\item Let $y(t)$ be the kilograms of salt in the tank $t$ minutes after the pumping process begins. Write a first-order linear differential equation satisfied by $y(t)$.
+\item How much salt is in the tank $4$ minutes after the pumping process begins?
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Final, Problem 9
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Find the interval of convergence of
+\[
+\sum_{n=1}^{\infty}\frac{(-1)^n x^n}{\sqrt{n+1}}.
+\]
+\item Find the interval of convergence of
+\[
+\sum_{n=1}^{\infty}\left(\frac{x^3+1}{2}\right)^n
+\]
+and find the sum of the series as a simple function of $x$.
+\item Find the Maclaurin series of the function obtained in part \textup{(b)}, together with its interval of convergence.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Final, Problem 10
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Show that
+\[
+\ln(n+1)
+\le
+1+\frac12+\cdots+\frac1n
+\le
+1+\ln n.
+\]
+\item Show that
+\[
+\frac1{n+1}<\int_n^{n+1}\frac1x\,\dd x.
+\]
+\item Let
+\[
+a_n=1+\frac12+\cdots+\frac1n-\ln n.
+\]
+Show that the sequence $(a_n)$ converges as $n\to\infty$.
+\end{problemsubparts}
+\end{problem}
+
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 1
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Let
+\[
+f(x)=x^2+3.
+\]
+Using the $\varepsilon$-$\delta$ definition of continuity, show that $f$ is continuous at $x=1$.
+\item Use the mean value theorem to show that, for any distinct $\theta_1,\theta_2\in[0,\pi/4]$,
+\[
+\left|
+\frac{\ln(\cos\theta_1)-\ln(\cos\theta_2)}{\theta_1-\theta_2}
+\right|
+\le1.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 2
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Suppose $x,y,z$ satisfy
+\[
+x^3+xy+y^3=1,
+\qquad
+\cos(\pi y)+\sin(\pi y)=z^3.
+\]
+\begin{problemsubparts}
+\item Find $\dd y/\dd x$ at $x=0$.
+\item Find $\dd z/\dd x$ at $x=0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 3
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Let
+\[
+f(x)=-x^3-4x^2-x+3.
+\]
+\begin{problemsubparts}
+\item Find the largest interval $[a,b]$ containing $-1$ on which $f$ is one-to-one.
+\item Let $g$ be the inverse of the restriction of $f$ to $[a,b]$. Find $g'(-3)$ if it exists, or prove that it does not exist.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 4
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Determine whether
+\[
+f(x)=
+\begin{cases}
+x^2\sin(\ln|x|), & x\ne0,\\
+0, & x=0
+\end{cases}
+\]
+is differentiable at $x=0$.
+\item Find the derivative of
+\[
+y=(1+x^2)^{\sin x}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 6
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+A deposit is left in a bank account for $10$ years under compound interest, and the total amount doubles. Construct a differential equation for the amount and find the annual interest rate.
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 7
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Consider the differential equation
+\[
+y''-2y'+y=x^2+x.
+\]
+\begin{problemsubparts}
+\item Find a particular solution $y_p$. \textit{Hint.} $y_p=x^2+ax+b$ for some constants $a,b$.
+\item Find the unique solution satisfying
+\[
+y'(0)=0,
+\qquad
+y(0)=0.
+\]
+\end{problemsubparts}
+\end{problem}
+
+
+% 2024 Spring KAIST Calculus I Final, Problem 2
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Determine whether each of the following limits exists, and if it does, find the limit.
+\begin{problemsubparts}
+\item
+\[
+\lim_{x\to0}\frac{x-\sin x}{\sinh x-x}.
+\]
+\item
+\[
+\lim_{x\to0}
+\frac{\displaystyle\int_0^{x^2}\arctan t\,\dd t}{x^4}.
+\]
+\item
+\[
+\lim_{x\to\infty}\bigl[\ln(e^x+1)-x\bigr].
+\]
+\item
+\[
+\lim_{x\to\infty}x\left(\frac\pi2-\arctan x\right).
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Final, Problem 3
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Let $f$ be continuously differentiable and one-to-one on $[a,b]$, and assume $f'(x)\ne0$ on $[a,b]$. Compute
+\[
+\int_{f(a)}^{f(b)}f^{-1}(y)\,\dd y
++
+\int_a^b f(x)\,\dd x.
+\]
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Final, Problem 4
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Let
+\[
+\Gamma(n)=\int_0^\infty x^{n-1}e^{-x}\,\dd x,
+\qquad n\ge1.
+\]
+\begin{problemsubparts}
+\item Show by the comparison test that the improper integral $\Gamma(n)$ converges for every real $n\ge1$.
+\item Find $\Gamma(n)$ when $n$ is a positive integer.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Final, Problem 5
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Evaluate
+\[
+\int_{-\infty}^{0}
+\frac{7x^2-2}{(x-1)^2(x^2+2x+2)}\,\dd x.
+\]
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Final, Problem 6
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Test the convergence of the following series.
+\begin{problemsubparts}
+\item
+\[
+\sum_{n=1}^{\infty}\frac{(n!)^2 4^n}{(2n)!}.
+\]
+\item
+\[
+\sum_{n=1}^{\infty}
+\frac{(-1)^n4^n+n^{617}3^n}{n4^n}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Final, Problem 7
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Prove or disprove the following statements.
+\begin{problemsubparts}
+\item If
+\[
+\sum_{n=1}^{\infty}a_n
+\qquad\text{and}\qquad
+\sum_{n=1}^{\infty}b_n
+\]
+converge, then
+\[
+\sum_{n=1}^{\infty}a_nb_n
+\]
+converges.
+\item If the two series above converge absolutely, then
+\[
+\sum_{n=1}^{\infty}a_nb_n
+\]
+converges absolutely.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Final, Problem 8
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Determine the values of $x$ for which the following series converge.
+\begin{problemsubparts}
+\item
+\[
+\sum_{n=2}^{\infty}\frac{(-x)^n}{n(\ln n)^2}.
+\]
+\item
+\[
+\sum_{n=1}^{\infty}n(\sin x)^{n-1}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Final, Problem 9
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Find the Taylor polynomial $p_n(x)$ for $\sin x$ centered at $x_0=\pi/2$, and state Taylor's theorem using this polynomial.
+\item Use Taylor's theorem to show that
+\[
+p_n(x)\to\sin x
+\]
+for every $x\in\R$ as $n\to\infty$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Final, Problem 10
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Use Taylor's theorem to find the second-order term of
+\[
+(2+x+3x^2)^{10}.
+\]
+\item Let
+\[
+f(x)=\sqrt{\arctan x+1}.
+\]
+Approximate $f(2)$ using the linear approximation of $f$ at $x=1$.
+\end{problemsubparts}
+\end{problem}
+

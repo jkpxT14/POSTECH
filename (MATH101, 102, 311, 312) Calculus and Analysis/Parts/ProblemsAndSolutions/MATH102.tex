@@ -1005,6 +1005,58 @@ for some nonnegative integers $m$ and $n$. Let $0^0=1$.
 \end{problemsubparts}
 \end{problem}
 
+% 2022 Spring KAIST Calculus I Final, Problem 2
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Let $k\ge2$, let $\mathbf v^1,\ldots,\mathbf v^k$ be unit vectors in $\R^3$, and define
+\[
+\mathbf u=\sum_{i=1}^{k}\mathbf v^i,
+\qquad
+A=\sum_{i>j}\mathbf v^i\cdot\mathbf v^j.
+\]
+\begin{problemsubparts}
+\item Find a relation between $A$ and $\|\mathbf u\|$.
+\item Find the minimum possible value of $A$ and determine when the minimum is attained.
+\end{problemsubparts}
+\end{problem}
+% 2022 Spring KAIST Calculus I Final, Problem 6
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Let
+\[
+\mathbf u=\mathbf i+\mathbf j-2\mathbf k,
+\qquad
+\mathbf v=\mathbf i+\mathbf k,
+\qquad
+\mathbf w=\mathbf i+2\mathbf j-\mathbf k.
+\]
+\begin{problemsubparts}
+\item Compute
+\[
+(\mathbf u\times\mathbf v)\cdot\mathbf w.
+\]
+\item Find $a,b,c$ satisfying
+\[
+(\mathbf u\times\mathbf v)\times\mathbf w
+=a\mathbf u+b\mathbf v+c\mathbf w.
+\]
+\end{problemsubparts}
+\end{problem}
+% 2022 Spring KAIST Calculus I Final, Problem 8
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+Find the area of the region that is outside the circle of radius $\sqrt2$ centered at the origin and inside the polar curve
+\[
+r=2\cos\frac{\theta}{3}.
+\]
+\end{problem}
+% 2022 Spring KAIST Calculus I Final, Problem 10
+\begin{problem}[2022 Spring \KAIST{} Calculus I]
+For each of the following equations in polar coordinates, write an equivalent equation in Cartesian coordinates and sketch the graph. Assume $-\infty<r<\infty$.
+\begin{problemsubparts}
+\item $r^2=1+\cos\theta$.
+\item $r=2+\cos(2\theta)$.
+\item $r=\cos(3\theta)$.
+\end{problemsubparts}
+\end{problem}
+
 % 2022 Spring KAIST Calculus II Final, Problem 1
 \begin{problem}[2022 Spring \KAIST{} Calculus II]
 Answer the following True/False questions. You do not need to justify your answers.
@@ -2104,6 +2156,122 @@ z=4-x-y.
 Find the volume of $D$.
 \end{problem}
 
+
+% 2023 Spring KAIST Calculus I Final, Problem 4
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Two curves are given in polar coordinates:
+\[
+r^2=2\sin(2\theta)
+\qquad\text{and}\qquad
+r=1.
+\]
+\begin{problemsubparts}
+\item Sketch the two curves in the Cartesian coordinate plane.
+\item Find the area of the region lying inside both curves.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Final, Problem 5
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Consider the tangent line to the curve
+\[
+y=\cosh x
+\]
+at $x=1$.
+\begin{problemsubparts}
+\item Find the unit vector in the first quadrant that is parallel to the tangent line.
+\item Find the unit vector in the fourth quadrant that is perpendicular to the tangent line.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Final, Problem 6
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+Let
+\[
+A=\{(x,y,z):3x-6y-2z=15\}
+\]
+and
+\[
+B=\{(x,y,z):2x+y-2z=5\}.
+\]
+Their intersection is the line
+\[
+\{(3+14t,-1+2t,15t):t\in\R\}.
+\]
+\begin{problemsubparts}
+\item Find the plane $C$ that is normal to this line and contains $(3,-1,0)$.
+\item Find the angle between the two lines $A\cap C$ and $B\cap C$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Final, Problem 7
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Let $0<a<b\le1$, and define
+\[
+D_{(a,b)}=\{(x,y):0\le y\le a^2,\ x\in(a,b)\}
+\]
+and
+\[
+E_{(a,b)}
+=
+\{(2x-4y,x+3y,x+y):(x,y)\in D_{(a,b)}\}.
+\]
+Find the areas of $D_{(a,b)}$ and $E_{(a,b)}$.
+\item Let
+\[
+D=\{(x,y):0\le y\le x^2,\ x\in(0,1)\}
+\]
+and
+\[
+E=\{(2x-4y,x+3y,x+y):(x,y)\in D\}.
+\]
+Find the areas of $D$ and $E$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring KAIST Calculus I Final, Problem 8
+\begin{problem}[2023 Spring \KAIST{} Calculus I]
+When a circle rolls on the inside of a fixed circle, any point $P$ on the circumference of the rolling circle describes a hypocycloid. Let the fixed circle be
+\[
+x^2+y^2=9,
+\]
+let the radius of the rolling circle be $1$, and let the initial position of the tracing point $P$ be $A=(3,0)$. The figure shows a position with $0<\theta<\pi/2$.
+
+\Needspace{16\baselineskip}
+\begin{center}
+\begin{tikzpicture}[x=0.68cm,y=0.68cm,>=Latex]
+  \def\ang{48}
+  \draw[line width=0.6pt] (0,0) circle (3);
+  \draw[black!45,line width=0.55pt,samples=241,smooth,domain=0:360]
+    plot ({2*cos(\x)+cos(2*\x)},{2*sin(\x)-sin(2*\x)});
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (3,0);
+  \coordinate (C) at ({2*cos(\ang)},{2*sin(\ang)});
+  \coordinate (B) at ({3*cos(\ang)},{3*sin(\ang)});
+  \coordinate (P) at ({2*cos(\ang)+cos(2*\ang)},{2*sin(\ang)-sin(2*\ang)});
+  \draw[line width=0.55pt] (C) circle (1);
+  \draw[black!55] (O)--(B);
+  \draw[black!55] (C)--(P);
+  \draw[black!55] (O)--(A);
+  \fill (O) circle (1.2pt) node[below left=1pt] {$O$};
+  \fill (A) circle (1.2pt) node[below right=1pt] {$A$};
+  \fill (B) circle (1.2pt) node[above right=1pt] {$B$};
+  \fill (C) circle (1.2pt) node[right=2pt] {$C$};
+  \fill (P) circle (1.2pt) node[below right=1pt] {$P$};
+  \draw (0.75,0) arc[start angle=0,end angle=\ang,radius=0.75];
+  \node at (0.88,0.34) {$\theta$};
+  \node[above] at (0,3.05) {$3$};
+  \node[above right=-1pt] at (3.02,0.02) {$3$};
+\end{tikzpicture}
+\end{center}
+
+\begin{problemsubparts}
+\item Find parametric equations for the hypocycloid, using as the parameter the angle $\theta$ from the positive $x$-axis to the line joining the centers of the two circles.
+\item Find the arc length of the hypocycloid corresponding to $0\le\theta\le2\pi$.
+\end{problemsubparts}
+\end{problem}
+
 % 2023 Fall POSTECH Calculus II Midterm, Problem 1
 \begin{problem}[2023 Fall \POSTECH{} Calculus II]
 Find an equation for the plane tangent to
@@ -2417,6 +2585,168 @@ write the outward flux
 \iint_S\mathbf F\cdot\mathbf N\,\dd S
 \]
 in terms of $q_1$ and $q_2$. Justify your answer.
+\end{problem}
+
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 5
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+\begin{problemsubparts}
+\item Find all unit vectors that are orthogonal to
+\[
+\mathbf x=
+\begin{pmatrix}1\\2\\0\end{pmatrix},
+\qquad
+\mathbf y=
+\begin{pmatrix}0\\0\\1\end{pmatrix}.
+\]
+\item Let $\mathbf u(t)$ be a differentiable vector-valued function in $\R^3$. Show that
+\[
+\mathbf u(t)\cdot\dot{\mathbf u}(t)=0
+\]
+if $\mathbf u(t)$ is a unit vector for every $t$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 8
+\Needspace{23\baselineskip}
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Let the gravitational acceleration on the Earth's surface be $g$. An obstacle of height $h$ is located midway between the launch point and a target at horizontal distance $\ell$, as shown below.
+
+\Needspace{13\baselineskip}
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (T) at (6,0);
+  \coordinate (H) at (3,2.15);
+  \draw[line width=0.6pt] (-0.15,0)--(6.25,0);
+  \draw[black!45,line width=0.6pt] (O)--(H)--(T);
+  \draw[dashed,line width=0.55pt] (3,0)--(H);
+  \draw[line width=0.75pt,samples=81,smooth,domain=0:6]
+    plot (\x,{0.34*\x*(6-\x)});
+  \draw[-{Latex[length=2mm]},line width=0.6pt] (O)--({1.15*cos(58)},{1.15*sin(58)}) node[above right=-1pt] {$v_0$};
+  \draw (0.55,0) arc[start angle=0,end angle=58,radius=0.55];
+  \node at (0.72,0.27) {$\phi$};
+  \fill (O) circle (1.1pt) node[below left=1pt] {$O$};
+  \fill (T) circle (1.1pt);
+  \node[below] at (3,0) {$\ell/2$};
+  \node[below] at (6,0) {$\ell$};
+  \node[right=2pt] at (H) {$h$};
+\end{tikzpicture}
+\end{center}
+
+\begin{problemsubparts}
+\item Find the relationship between the launch angle $\phi$ and launch speed $v_0$ required to hit the target without striking the obstacle. Give one equality and one inequality.
+\item Find the minimum launch speed and the corresponding launch angle. The answer is divided into two cases depending on the size of $h$.
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 9
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+The two-body problem is reduced to the equations
+\[
+\ddot r-r\dot\theta^2=-\frac{k}{r^2},
+\qquad
+r\ddot\theta+2\dot r\dot\theta=0.
+\]
+Suppose
+\[
+r(0)=100,
+\qquad
+\dot\theta(0)=0.
+\]
+\begin{problemsubparts}
+\item Show that $r$ satisfies
+\[
+\dot r^{\,2}=\frac{2k}{r}+C
+\]
+for some constant $C$.
+\item Find the minimum speed $\dot r(0)>0$ such that
+\[
+\lim_{t\to\infty}r(t)=\infty.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2024 Spring KAIST Calculus I Midterm, Problem 10
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+\textit{Trajectory of an Intercontinental Ballistic Missile.} An object is launched from the equator toward the North Pole. Let $G$ be the gravitational constant, $M$ the mass of the Earth, $R$ the radius of the Earth, and $L$ the angular momentum of the orbit. The trajectory is part of an elliptical orbit with the center of the Earth as a focus. In polar coordinates $(r,\theta)$ centered at the Earth, let
+\[
+u(\theta)=\frac{1}{r(\theta)}.
+\]
+Then
+\[
+u''+u=\frac{GM}{L^2},
+\qquad
+u(0)=\frac1R,
+\qquad
+u\!\left(\frac\pi2\right)=\frac1R.
+\]
+
+\begin{problemsubparts}
+\item Find the unique solution of this boundary-value problem.
+
+\Needspace{18\baselineskip}
+\begin{center}
+\begin{tikzpicture}[x=0.82cm,y=0.82cm,>=Latex]
+  \def\RR{2.25}
+  \def\ecc{0.48}
+  \pgfmathsetmacro{\pp}{\RR*(1-\ecc/sqrt(2))}
+  \draw[line width=0.6pt] (0,0) circle (\RR);
+  \draw[black!45,line width=0.7pt,samples=241,smooth,domain=0:360]
+    plot ({(\pp/(1-\ecc*cos(\x-45)))*cos(\x)},{(\pp/(1-\ecc*cos(\x-45)))*sin(\x)});
+  \coordinate (O) at (0,0);
+  \coordinate (E) at (\RR,0);
+  \coordinate (N) at (0,\RR);
+  \def\qa{55}
+  \coordinate (Q) at ({(\pp/(1-\ecc*cos(\qa-45)))*cos(\qa)},{(\pp/(1-\ecc*cos(\qa-45)))*sin(\qa)});
+  \draw[black!55,dashed] (-1.45,-1.45)--(1.15,1.15);
+  \draw[line width=0.55pt] (O)--(Q);
+  \draw[-{Latex[length=2mm]},line width=0.6pt] (E)--++(0.82,0) node[right=-1pt] {$\mathbf e_r(0)$};
+  \draw[-{Latex[length=2mm]},line width=0.6pt] (E)--++(0,0.82) node[above left=-1pt] {$\mathbf e_\theta(0)$};
+  \draw[-{Latex[length=2mm]},line width=0.75pt] (E)--++({1.15*cos(58)},{1.15*sin(58)}) node[above right=-1pt] {$\dot{\mathbf r}(0)$};
+  \draw (2.25,0.58) arc[start angle=90,end angle=58,radius=0.58];
+  \node at (2.48,0.62) {$\phi$};
+  \draw (0.72,0) arc[start angle=0,end angle=\qa,radius=0.72];
+  \node at (0.82,0.34) {$\theta$};
+  \fill (O) circle (1.2pt);
+  \fill (E) circle (1.2pt) node[below right=2pt] {launch point (equator)};
+  \fill (N) circle (1.2pt) node[above left=2pt] {north pole};
+  \fill (Q) circle (1.2pt) node[above right=1pt] {$\mathbf r(\theta)$};
+  \node[below left] at (-1.0,-1.0) {phase offset};
+  \node[left=1pt] at (-0.55,-0.55) {$-\theta_0$};
+\end{tikzpicture}
+\end{center}
+
+\item The trajectory is
+\[
+\mathbf r(\theta)=r(\theta)\mathbf e_r(\theta).
+\]
+Use the chain rule to calculate the launch velocity $\dot{\mathbf r}(0)$. This problem asks for $\dd\mathbf r/\dd t$, not $\dd\mathbf r/\dd\theta$.
+\item Determine the launch speed
+\[
+v_0=\|\dot{\mathbf r}(0)\|
+\]
+and the launch angle $\phi$.
+\item Find the range of angular momentum $L$ that must be satisfied and the minimum launch speed.
+\end{problemsubparts}
+\end{problem}
+
+
+% 2024 Spring KAIST Calculus I Final, Problem 1
+\begin{problem}[2024 Spring \KAIST{} Calculus I]
+Let $\mathbf r\colon\R\to\R^3$ be a smooth curve with
+\[
+\mathbf r'(t)\ne\mathbf0
+\]
+for every $t\in\R$. Show that if the curvature is identically zero,
+\[
+\kappa(t)=0
+\qquad\text{for all }t\in\R,
+\]
+then there exist $\mathbf a,\mathbf b\in\R^3$ and a smooth function $f\colon\R\to\R$ such that
+\[
+\mathbf r(t)=f(t)\mathbf a+\mathbf b.
+\]
 \end{problem}
 
 % 2024 Fall POSTECH Calculus II Midterm, Problem 1
