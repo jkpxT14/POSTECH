@@ -117,6 +117,11 @@
 % Common vector/matrix symbols
 \newcommand{\ones}{\mathbf{1}}
 
+% Map arrows
+% A bijection combines the standard injective hook with the standard surjective
+% double arrowhead. \joinrel joins the two relation glyphs without ad hoc spacing.
+\DeclareRobustCommand{\bijarrow}{\mathrel{\lhook\joinrel\twoheadrightarrow}}
+
 % Convergence conventions
 \newcommand{\ptwto}{\to}
 \newcommand{\unifto}{\rightrightarrows}
