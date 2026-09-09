@@ -14,6 +14,14 @@
 \problemsettitle{20260909 Problem set}
 
 \begin{problemsolution}{1}
+OpenAI가 2026년 9월 8일 solution을 proposed했다고 발표한 Clay Millennium Prize Problem은
+\[
+    \boxed{\text{Navier--Stokes existence and smoothness problem}}
+\]
+이다. 발표에는 AI-generated writeup과 Lean formal proof가 함께 공개되었다.
+\end{problemsolution}
+
+\begin{problemsolution}{2}
 배각공식
 \[
     (2\cos\theta)^2-2=2\cos(2\theta)
@@ -34,7 +42,83 @@
 \]
 \end{problemsolution}
 
-\begin{problemsolution}{2}
+\begin{problemsolution}{3}
+$\mathbf{A}\mathbf{B}$와 $\mathbf{B}\mathbf{A}$는 $0$이 아닌 eigenvalue들을 algebraic multiplicity까지 동일하게 갖는다. 먼저
+\[
+    \begin{aligned}
+        p_{\mathbf{A}\mathbf{B}}(\lambda)
+        &=
+        \det\!\begin{pmatrix}
+            \lambda-2&-1\\
+            -1&\lambda-2
+        \end{pmatrix}\\
+        &=(\lambda-2)^2-1\\
+        &=(\lambda-1)(\lambda-3).
+    \end{aligned}
+\]
+따라서 $3\times3$ 행렬 $\mathbf{B}\mathbf{A}$의 eigenvalue는 $0,1,3$이고,
+\[
+    \boxed{
+        p_{\mathbf{B}\mathbf{A}}(\lambda)
+        =
+        \lambda(\lambda-1)(\lambda-3)
+    }.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{4}
+반박된 conjecture는
+\[
+    \boxed{\text{Petersen Coloring Conjecture}}
+\]
+이다. 2026년 8월 Putman이 $112$-vertex counterexample을 제시했고, Jooken이 이어서 human-checkable proof를 공개했다.
+\end{problemsolution}
+
+\begin{problemsolution}{5}
+Row player가 첫 번째 행을 probability $p$로 선택한다고 하자. Column player가 첫 번째 열을 고를 때와 두 번째 열을 고를 때의 expected payoff는 각각
+\[
+    1+2p,
+    \qquad
+    2-2p
+\]
+이다. 두 값을 같게 두면
+\[
+    1+2p=2-2p,
+\]
+이므로
+\[
+    p=\frac14,
+    \qquad
+    v=\frac32.
+\]
+
+이제 column player가 첫 번째 열을 probability $q$로 선택한다고 하자. Row player가 첫 번째 행과 두 번째 행을 고를 때의 expected payoff는 각각
+\[
+    3q,
+    \qquad
+    2-q
+\]
+이다. 두 값을 같게 두면
+\[
+    3q=2-q,
+\]
+이므로
+\[
+    q=\frac12.
+\]
+따라서
+\[
+    \boxed{
+        p=\frac14,
+        \qquad
+        q=\frac12,
+        \qquad
+        v=\frac32
+    }.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{6}
 Vi\`ete's formulas에 의해
 \[
     \alpha+\beta+\gamma=0,
@@ -59,7 +143,45 @@ Vi\`ete's formulas에 의해
 \]
 \end{problemsolution}
 
-\begin{problemsolution}{3}
+\newpage
+
+\begin{problemsolution}{7}
+Shou-Wu Zhang이 2026 International Congress of Basic Science에서 받은 mathematics medal은
+\[
+    \boxed{\text{Andrew Wiles Medal}}
+\]
+이다. 수상 citation은 arithmetic geometry에 대한 transformative contributions를 강조한다.
+\end{problemsolution}
+
+\begin{problemsolution}{8}
+$S_6$의 orbit은 $6$개의 원소를 두 원소씩 세 쌍으로 나누는 모든 partition들로 이루어진다. 그 개수는
+\[
+    \frac{6!}{2^3\,3!}=15.
+\]
+Orbit--stabilizer theorem에 의해
+\[
+    \left|(S_6)_{\mathcal{P}}\right|
+    =
+    \frac{|S_6|}{|S_6\cdot\mathcal{P}|}
+    =
+    \frac{6!}{15}
+    =48.
+\]
+따라서
+\[
+    \boxed{48}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{9}
+주어진 설명에 해당하는 수학자는
+\[
+    \boxed{\text{Peter D. Lax}}
+\]
+이다. Courant Institute는 그가 2025년 5월 16일 $99$세로 별세했다고 발표했다.
+\end{problemsolution}
+
+\begin{problemsolution}{10}
 주어진 식은
 \[
     z^2-z+1=0
