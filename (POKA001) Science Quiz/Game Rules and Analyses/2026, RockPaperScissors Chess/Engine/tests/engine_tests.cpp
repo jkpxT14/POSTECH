@@ -258,5 +258,6 @@ int main() {
     std::cout << "initial legal/unique/search " << initial_legal << '/' << initial_unique << '/' << initial_search << '\n';
     std::cout << "initial perft " << p1 << '/' << p2 << '/' << p3 << '\n';
     std::cout << "item-rich legal/unique/search " << item_legal << '/' << item_unique << '/' << item_search << '\n';
-    std::cout << "RPSC Engine 0.17.0 new-rules regression suite passed\n";
+    std::cout << "RPSC Engine 0.18.0 new-rules regression suite passed\n";
 }
+

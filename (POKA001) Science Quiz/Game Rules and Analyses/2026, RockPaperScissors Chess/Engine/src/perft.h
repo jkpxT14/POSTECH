@@ -4,3 +4,4 @@
 #include "movegen.h"
 namespace rpsc { std::uint64_t perft(Position&, int); }
 #endif
+

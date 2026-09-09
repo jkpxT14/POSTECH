@@ -1,6 +1,6 @@
 # RPSC Engine
 
-Version: **0.17.0**
+Version: **0.18.0**
 
 Native C++17 analysis engine for RockPaperScissors Chess. The handbook is the rule reference; Quiz Results are external input.
 
@@ -19,3 +19,4 @@ Native C++17 analysis engine for RockPaperScissors Chess. The handbook is the ru
 Iterative-deepening PVS, aspiration windows, transposition table, tactical quiescence, bounded capture extensions, LMR/root reduction, MultiPV, and history/continuation/countermove ordering are retained. Rule-equivalent reduced Rotation branches are merged only inside search; exact legality and notation keep all six actions.
 
 Build with CMake and run `ctest --test-dir build --output-on-failure`.
+

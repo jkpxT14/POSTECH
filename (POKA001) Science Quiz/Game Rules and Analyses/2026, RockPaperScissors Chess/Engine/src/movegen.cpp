@@ -302,3 +302,4 @@ std::vector<Move> generate_search_moves(Position& p) {
     return moves;
 }
 }  // namespace rpsc
+

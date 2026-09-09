@@ -14,3 +14,4 @@ std::uint64_t perft(Position& p, int depth) {
     return nodes;
 }
 }  // namespace rpsc
+

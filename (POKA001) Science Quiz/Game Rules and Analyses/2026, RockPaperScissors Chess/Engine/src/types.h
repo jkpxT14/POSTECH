@@ -67,3 +67,4 @@ constexpr std::size_t ItemActionCount = 10;
 }  // namespace rpsc
 
 #endif
+

@@ -36,3 +36,4 @@ class OrientationTable {
 }  // namespace rpsc
 
 #endif
+

@@ -150,3 +150,4 @@ GestureState OrientationTable::gesture_state(Orientation o) const { return state
 std::uint8_t OrientationTable::gesture_state_id(Orientation o) const { return state_id_[o]; }
 Orientation OrientationTable::canonical(Gesture g, WristDirection w) const { return canonical_[int(g)][int(w)]; }
 }  // namespace rpsc
+

@@ -73,7 +73,7 @@ int run_protocol() {
         in >> command;
         if (command == "quit" || command == "exit") break;
         if (command == "rpsc") {
-            std::cout << "id name RPSC Engine 0.17.0\nid author Jungwoo Kim\nrpscok\n";
+            std::cout << "id name RPSC Engine 0.18.0\nid author Jungwoo Kim\nrpscok\n";
         } else if (command == "isready") std::cout << "readyok\n";
         else if (command == "newgame" || line == "position startpos") {
             engine.new_game(); std::cout << "ok\n";
@@ -183,3 +183,4 @@ int run_protocol() {
     return 0;
 }
 }  // namespace rpsc
+

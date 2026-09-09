@@ -18,3 +18,4 @@ std::vector<SearchMove> generate_tactical_moves_info(Position&);
 }  // namespace rpsc
 
 #endif
+

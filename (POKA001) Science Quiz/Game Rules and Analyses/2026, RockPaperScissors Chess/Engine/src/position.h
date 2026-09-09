@@ -70,3 +70,4 @@ class Position {
 }  // namespace rpsc
 
 #endif
+

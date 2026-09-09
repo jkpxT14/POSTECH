@@ -41,3 +41,4 @@ class Search {
 };
 }  // namespace rpsc
 #endif
+

@@ -39,3 +39,4 @@ struct MoveHash {
 }  // namespace rpsc
 
 #endif
+

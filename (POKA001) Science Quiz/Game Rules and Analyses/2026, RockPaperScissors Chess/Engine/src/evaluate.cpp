@@ -177,3 +177,4 @@ Value evaluate(const Position& p) {
     return p.side_to_move() == Color::White ? value : -value;
 }
 }  // namespace rpsc
+

@@ -31,3 +31,4 @@ class TranspositionTable {
 };
 }  // namespace rpsc
 #endif
+

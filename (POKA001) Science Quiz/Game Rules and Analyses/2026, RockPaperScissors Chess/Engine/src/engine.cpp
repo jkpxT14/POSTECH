@@ -145,3 +145,4 @@ void Engine::clear_search() {
     search_.clear_memory();
 }
 }  // namespace rpsc
+

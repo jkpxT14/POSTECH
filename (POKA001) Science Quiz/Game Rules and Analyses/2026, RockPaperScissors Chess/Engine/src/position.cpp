@@ -267,3 +267,4 @@ std::string Position::debug_string() const {
     return out.str();
 }
 }  // namespace rpsc
+

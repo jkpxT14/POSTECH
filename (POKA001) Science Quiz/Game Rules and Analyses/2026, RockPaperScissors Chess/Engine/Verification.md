@@ -1,6 +1,6 @@
 # Verification
 
-Package / Engine **0.17.0**, 2026-09-08. Based on `jkpxT14/POSTECH` commit `884b1eeae6691719ac0aebc5fc4416f301005747`.
+Package / Engine **0.18.0**, 2026-09-09. Based on `jkpxT14/POSTECH` commit `e5ab8cd01fd3bd535b4233c674890dfd847a5f5f`.
 Ruleset: `2026-rpsc-rotation6-push-return`.
 
 Push does not seed Roll history. Its first Roll may return to the pre-Push square; the next Roll may not reverse that first Roll. Six exact Rotations, post-Rotation Roll length, Timeout sampling, Reset scheduling and notation remain as specified by the handbook.
@@ -23,6 +23,9 @@ Initial exhaustive perft depths 1 / 2 / 3: **161 / 25,575 / 4,215,782**.
 - Handbook W2 Rotation examples and the W3 Push-return example validated. Three Push figures were regenerated with the 24-orientation model and independently checked: **25 / 36 / 49 destination cells** for Scissors / Rock / Paper.
 - Browser self-tests in headless Microsoft Edge: Timeout live path/state/notation, unchanged committed game/history during animation and preview, disabled Back, Cancel, Confirm, dual Timeout chronology and session/notation replay. Loading is disabled during animation.
 - Native optimized evaluation exactly matches the reference implementation on **246,758 legal successors over 120 positions**, including varying match context and item inventories.
+- Browser and native searches now publish a MultiPV line only after its full root search is complete at the published depth. A timed interruption keeps the previous complete set instead of showing null-window bounds as exact candidate evaluations.
+- Native and browser quiescence search enumerate every legal successor when one board ply remains; the final scheduled move cannot be skipped by a stand-pat evaluation.
+- The offline worker reports startup, runtime, and response failures and can be restarted from the Analysis control.
 - Handbook rebuilt with XeLaTeX: **26 pages**, with the existing chapter structure and diagram style preserved. The build has only the known local font fallback and underfull-box warnings; no missing-file, missing-glyph or overflow errors.
 
 ## Release time-budget checks
@@ -40,4 +43,5 @@ Fresh search, MultiPV 3. Wall times include protocol round-trip; each best move 
 
 Depth is position- and hardware-dependent. These checks verify deadline handling; they do not prove Elo, optimal play or a guaranteed depth under every 10/20-second search.
 
-Release was compiled directly with GCC (`-std=c++17 -O3 -DNDEBUG -Wall -Wextra -Wpedantic -static`). The bundled executable is Windows x64. The HTML uses its embedded JS worker and does not launch the native executable.
+Release was compiled directly with GCC (`-std=c++17 -O3 -DNDEBUG -Wall -Wextra -Wpedantic -static`). The source package includes CMake targets for the native engine, the original rule suite, and the new search regressions. The HTML uses its embedded JS worker and does not launch the native executable.
+

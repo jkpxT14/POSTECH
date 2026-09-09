@@ -37,3 +37,4 @@ void TranspositionTable::store(Key key, Depth depth, Value value, Bound bound, c
     else slot->has_move = false;
 }
 }  // namespace rpsc
+

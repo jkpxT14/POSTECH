@@ -173,6 +173,24 @@ Value Search::quiescence(Position& p, Value alpha, Value beta, int ply, Context&
     ++c.nodes;
     c.seldepth = std::max(c.seldepth, ply);
     if (ply >= MaxPly || c.should_stop()) return evaluate(p);
+    // The final scheduled move is compulsory: standing pat is not a legal option.
+    // Resolve every distinct legal successor, including quiet moves and item moves.
+    if (p.remaining_board_plies() == 1) {
+        const auto moves = generate_search_moves_info(p);
+        if (moves.empty()) return evaluate(p);
+        for (const auto& cur : moves) {
+            if (c.should_stop()) return alpha;
+            UndoState undo;
+            SearchAccess::apply(p, cur.move, cur.final_orientation, undo);
+            Value score = -evaluate(p);
+            p.undo_move(undo);
+            ++c.nodes;
+            c.seldepth = std::max(c.seldepth, ply + 1);
+            if (score >= beta) return beta;
+            alpha = std::max(alpha, score);
+        }
+        return alpha;
+    }
     Value stand = evaluate(p);
     if (stand >= beta) return beta;
     if (stand > alpha) alpha = stand;
@@ -343,6 +361,7 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
     c.pressure_cache.reserve(8192);
 
     SearchResult result;
+    if (root.remaining_board_plies() == 0) { result.value = evaluate(root); return result; }
     const auto root_info = generate_search_moves_info(root);
     if (root_info.empty()) return result;
     std::vector<Move> root_moves;
@@ -379,8 +398,12 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
     }
     result.has_move = true; result.best_move = previous_best;
     result.value = evaluate(root); result.pv = {previous_best};
+    const int wanted = std::min<int>(c.limits.multipv, root_moves.size());
+    if (int(prior.size()) < wanted) cached_depth = 0;
     if (limits.movetime.count() > 0 && !prior.empty() && cached_depth > 0) {
         result.has_move = true; result.best_move = previous_best; result.value = previous_value; result.depth = cached_depth;
+        result.lines.assign(prior.begin(), prior.begin() + wanted);
+        result.pv = result.lines.front().pv;
     }
 
     auto build_pv = [&](const Move& first, Depth depth) {
@@ -436,7 +459,7 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
                 if (auto it = prior_value.find(cur.move); it != prior_value.end()) old = it->second;
                 int quota = family == 0 ? 28 : 20;
                 bool ranked_late = old > -Infinity && old + 12 < previous_value;
-                bool reduce = depth >= 3 && cur.capture_swing == 0 && family_index >= quota && (ranked_late || move_index >= 56);
+                bool reduce = c.limits.multipv == 1 && depth >= 3 && cur.capture_swing == 0 && family_index >= quota && (ranked_late || move_index >= 56);
                 if (reduce) {
                     Depth rd = std::max<Depth>(0, child - 1);
                     score = -negamax(root, rd, -current_alpha - 1, -current_alpha, 1, c, false, &cur.move, nullptr, ext);
@@ -479,43 +502,36 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
             break;
         }
         if (c.stopped) break;
-        previous_best = pass.best;
-        previous_value = pass.value;
-        prior = std::move(pass.scores);
+        // Complete all requested ranks at this depth before publishing any of them.
+        // Null-window scores for unselected roots are ordering hints, never MultiPV scores.
+        std::vector<RootLine> completed{{pass.best, pass.value, build_pv(pass.best, depth)}};
+        std::vector<Move> excluded{pass.best};
+        auto ordering = std::move(pass.scores);
+        for (int rank = 1; rank < wanted; ++rank) {
+            Move preferred = rank < int(result.lines.size()) ? result.lines[rank].move : Move{};
+            auto next = search_root(depth, -Infinity, Infinity, excluded, preferred);
+            if (c.stopped || next.best.path_length == 0) break;
+            completed.push_back({next.best, next.value, build_pv(next.best, depth)});
+            excluded.push_back(next.best);
+        }
+        if (c.stopped || int(completed.size()) != wanted) break;
+        std::stable_sort(completed.begin(), completed.end(), [](const auto& a, const auto& b) { return a.value > b.value; });
+        previous_best = completed.front().move;
+        previous_value = completed.front().value;
+        prior = std::move(ordering);
         std::stable_sort(prior.begin(), prior.end(), [](const auto& a, const auto& b) { return a.value > b.value; });
         rebuild();
         result.has_move = true;
         result.best_move = previous_best;
         result.value = previous_value;
         result.depth = depth;
-        result.pv = build_pv(previous_best, depth);
-        root_cache_[root_key] = prior;
+        result.lines = std::move(completed);
+        result.pv = result.lines.front().pv;
+        root_cache_[root_key] = result.lines;
         root_depth_cache_[root_key] = depth;
+        if (root.remaining_board_plies() > 0 && depth >= root.remaining_board_plies()) break;
     }
 
-    if (result.has_move) {
-        int wanted = std::min<int>(c.limits.multipv, prior.size());
-        for (int rank = 0; rank < wanted; ++rank) {
-            RootLine line = prior[static_cast<std::size_t>(rank)];
-            line.pv = build_pv(line.move, result.depth);
-            result.lines.push_back(std::move(line));
-        }
-        if (!result.lines.empty()) {
-            result.best_move = result.lines.front().move;
-            result.value = result.lines.front().value;
-            result.pv = result.lines.front().pv;
-        }
-        if (!c.stopped && wanted > 1) {
-            std::vector<Move> excluded{result.best_move};
-            for (int rank = 1; rank < wanted && !c.stopped; ++rank) {
-                Move preferred = result.lines[static_cast<std::size_t>(rank)].move;
-                RootPass pass = search_root(result.depth, -Infinity, Infinity, excluded, preferred);
-                if (c.stopped || pass.value <= -Infinity || pass.best.path_length == 0) break;
-                result.lines[static_cast<std::size_t>(rank)] = {pass.best, pass.value, build_pv(pass.best, result.depth)};
-                excluded.push_back(pass.best);
-            }
-        }
-    }
     if (root_cache_.size() > 256) { root_cache_.clear(); root_depth_cache_.clear(); }
     result.nodes = c.nodes;
     result.seldepth = c.seldepth;
@@ -523,3 +539,4 @@ SearchResult Search::run(Position root, const SearchLimits& limits) {
     return result;
 }
 }  // namespace rpsc
+

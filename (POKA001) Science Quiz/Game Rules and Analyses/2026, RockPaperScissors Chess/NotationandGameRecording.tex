@@ -255,3 +255,4 @@ Format 2의 session metadata는 편의를 위한 복원 정보이며 \textbf{can
 RPSC의 수치 Evaluation은 체스의 centipawn이 아니라 \textbf{RPSC score unit}을 기준으로 한다. 공식 점수에 맞추어 이미 확정된 Quiz 정답은 $1.00$, capture 하나는 $2.00$으로 반영하며, 양수는 White, 음수는 Black의 우세를 나타낸다. 남은 본 문제에서는 Symmetric Quiz Assumption을 사용하므로 미확정 Quiz로 점수차나 아이템을 새로 만들지 않는다. 남은 보드 이동 횟수가 줄수록 사용하지 못한 아이템의 보존가치도 자연스럽게 낮아지며, 마지막 보드 이동 이후에는 공식 점수와 Quiz tie-break만 남는다. 위치 보정항이 있으므로 경기 중의 수치가 최종 점수차를 그대로 보장하는 것은 아니다.
 
 PV와 decision continuation은 실제로 발생하지 않은 Quiz Result를 끼워 넣지 않고 Analysis Line의 M-number로 표시하며, 실제 Engine 대국의 Game Record에는 사용자가 입력한 모든 Quiz turn을 그대로 기록한다.
+
