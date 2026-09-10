@@ -1,20 +1,58 @@
 \section{Probability and Statistics}
 
-Probability and expectation are written in blackboard bold by default.
+Probability and expectation are written in blackboard bold by default. For gamma distributions, $\beta$ denotes a rate parameter and $\theta$ a scale parameter, so $\theta=1/\beta$. The geometric distribution counts the number of trials up to and including the first success.
 
 \begin{notationtable}
 $\Prob(A),\ P(A)$ & Probability of event $A$. \\
 $\Prob(A\mid B),\ P(A\mid B)$ & Conditional probability of $A$ given $B$. \\
 $X\indep Y$ & $X$ and $Y$ are independent. \\*
 $X\indep Y\mid Z$ & $X$ and $Y$ are conditionally independent given $Z$. \\
+\addlinespace[0.26em]
+$p_X(x)=\Prob(X=x)$ & Probability mass function (pmf) of a discrete random variable $X$. \\
+$f_X(x)$ & Probability density function (pdf) of a continuous random variable $X$. \\
+$F_X(x)=\Prob(X\le x)$ & Cumulative distribution function (cdf) of $X$. \\
+$p_{X,Y}(x,y),\ f_{X,Y}(x,y)$ & Joint pmf or joint pdf of $(X,Y)$, according to context. \\
+$p_{X\mid Y}(x\mid y),\ f_{X\mid Y}(x\mid y)$ & Conditional pmf or conditional pdf of $X$ given $Y=y$, according to context. \\
+$\displaystyle F^{-1}(p)=\inf\{x\in\R\mid F(x)\ge p\}$ & Generalized inverse of a cdf $F$; the $p$-quantile, for $0<p<1$. \\
+\addlinespace[0.26em]
 $\Exp[X],\ E[X]$ & Expectation of random variable $X$. \\
 $\Exp[X\mid Y],\ E[X\mid Y]$ & Conditional expectation of $X$ given $Y$. \\
 $\Var(X)$ & Variance of $X$. \\
 $\Cov(X,Y)$ & Covariance of $X$ and $Y$. \\
+$\rho_{X,Y}$ & Population correlation coefficient of $X$ and $Y$. \\
+$r$ & Sample correlation coefficient, when the sample is understood. \\
+$\varphi_X(t)=\Exp[e^{itX}]$ & Characteristic function of $X$. \\
+$M_X(t)=\Exp[e^{tX}]$ & Moment-generating function (mgf) of $X$, when finite in a neighborhood of $0$. \\
 \addlinespace[0.26em]
+$\displaystyle\bar X=\frac1n\sum_{i=1}^n X_i$ & Sample mean as a statistic of a random sample $X_1,\dots,X_n$. \\
+$\displaystyle\bar x=\frac1n\sum_{i=1}^n x_i$ & Observed sample mean for data $x_1,\dots,x_n$. \\
+$\displaystyle S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2$ & Sample variance as a statistic. \\
+$\displaystyle s^2=\frac1{n-1}\sum_{i=1}^n(x_i-\bar x)^2$ & Observed sample variance. \\
+$S=\sqrt{S^2},\ s=\sqrt{s^2}$ & Sample standard deviation as a statistic and its observed value. \\
+$\hat\theta$ & Estimator or estimate of a parameter $\theta$, according to context. \\
+$\hat p$ & Estimator or estimate of a probability parameter $p$; commonly the sample proportion. \\
+$\SE(\hat\theta)$ & Standard error of an estimator $\hat\theta$. \\
+\addlinespace[0.26em]
+$L(\theta;\mathbf{x})$ & Likelihood function for parameter $\theta$ given observed data $\mathbf{x}$. \\
+$\ell(\theta;\mathbf{x})=\log L(\theta;\mathbf{x})$ & Log-likelihood function. \\
+$H_0$ & Null hypothesis. \\
+$H_1,\ H_a$ & Alternative hypothesis; $H_1$ is preferred. \\
+$\alpha$ & Significance level; an upper bound on the Type I error probability under the specified test. \\
+$\beta$ & Type II error probability under a specified alternative. \\
+$\nu$ & Degrees of freedom. \\
+\addlinespace[0.26em]
+$X\sim\Bern(p)$ & Bernoulli distribution with success probability $p$. \\
 $X\sim\Bin(n,p)$ & Binomial distribution. \\
-$X\sim\Poi(\lambda)$ & Poisson distribution. \\
+$\begin{aligned} &X\sim\Geom(p),\\ &\Prob(X=k)=(1-p)^{k-1}p \end{aligned}$ & Geometric distribution on $\N$, counting trials up to and including the first success. \\
+$X\sim\Poi(\lambda)$ & Poisson distribution with parameter $\lambda$. \\
+$X\sim\Unif(a,b)$ & Continuous uniform distribution on $[a,b]$. \\
+$X\sim\ExpDist(\lambda)$ & Exponential distribution with rate $\lambda$. \\
+$X\sim\Gamma(\alpha,\beta)$ & Gamma distribution with shape $\alpha$ and rate $\beta$. \\
+$X\sim\Gamma(\alpha,\theta)$ & Gamma distribution with shape $\alpha$ and scale $\theta$; here $\theta=1/\beta$. \\
 $\begin{aligned} &X\sim\Normal(\mu,\sigma^2),\\ &X\sim N(\mu,\sigma^2)\end{aligned}$ & Normal distribution with mean $\mu$ and variance $\sigma^2$. \\
+$X\sim\chi^2_\nu$ & Chi-squared distribution with $\nu$ degrees of freedom. \\
+$X\sim t_\nu$ & Student's $t$ distribution with $\nu$ degrees of freedom. \\
+$X\sim F_{\nu_1,\nu_2}$ & $F$ distribution with numerator and denominator degrees of freedom $\nu_1,\nu_2$. \\
 \addlinespace[0.26em]
 $X_n\asto X$ & Almost-sure convergence. \\
 $X_n\probto X$ & Convergence in probability. \\
