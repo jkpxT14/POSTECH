@@ -1,22 +1,19 @@
 # RPSC Engine
 
-Version: **0.18.0**
+Version: **0.19.0 checkpoint**
 
-Native C++17 analysis engine for RockPaperScissors Chess. The handbook is the rule reference; Quiz Results are external input.
+Ruleset: `2026-rpsc-rotation6-push-return`.
 
-## Rule model
+This version is the tested exact-fast successor of the GitHub 0.18.0 native engine. It intentionally retains the proven 0.18.0 search/evaluation structure while accelerating rule-exact move generation and generated-move application.
 
-- exact 24-orientation cube state for rules and notation
-- six-state Gesture State only as a safe search reduction
-- six Rotation actions: `RoN`, `RoS`, `RoE`, `RoW`, `RoL`, `RoR`
-- Rotation is applied before the Roll length is read from the new Top Gesture
-- Push is a non-Roll one-square translation and the first Roll may return to the pre-Push square; reversal is forbidden only between consecutive Rolls
-- official Timeout adjudication belongs to the game controller, not Engine search
-- exhaustive `generate_legal_moves` is authoritative for legality
+## Build
 
-## Search
+```text
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+ctest --test-dir build --output-on-failure
+```
 
-Iterative-deepening PVS, aspiration windows, transposition table, tactical quiescence, bounded capture extensions, LMR/root reduction, MultiPV, and history/continuation/countermove ordering are retained. Rule-equivalent reduced Rotation branches are merged only inside search; exact legality and notation keep all six actions.
+The bundled `rpsc-engine` executable is a Linux x86-64 Release build. On Windows, build the same source with CMake/MSVC or MinGW; the old 0.18.0 Windows executable is intentionally not relabeled as 0.19.0.
 
-Build with CMake and run `ctest --test-dir build --output-on-failure`.
-
+The text protocol remains compatible with the 0.18.0 command set. `go ... multipv 3` is the normal analysis mode.

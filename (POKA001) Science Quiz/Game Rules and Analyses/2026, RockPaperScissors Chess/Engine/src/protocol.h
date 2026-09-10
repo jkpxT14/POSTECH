@@ -2,4 +2,3 @@
 #define RPSC_PROTOCOL_H_INCLUDED
 namespace rpsc { int run_protocol(); }
 #endif
-

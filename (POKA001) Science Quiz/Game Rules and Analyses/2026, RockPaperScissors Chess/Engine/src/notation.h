@@ -14,4 +14,3 @@ bool parse_move(const Position& position, const std::string& text, Move& move);
 std::string format_pv(const Position& position, const std::vector<Move>& pv, int m_number = 1);
 }  // namespace rpsc
 #endif
-

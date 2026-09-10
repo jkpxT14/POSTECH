@@ -1,11 +1,10 @@
-# Verification
+# Verification — Engine 0.19.0 Checkpoint
 
-Package / Engine **0.18.0**, 2026-09-09. Based on `jkpxT14/POSTECH` commit `e5ab8cd01fd3bd535b4233c674890dfd847a5f5f`.
 Ruleset: `2026-rpsc-rotation6-push-return`.
 
-Push does not seed Roll history. Its first Roll may return to the pre-Push square; the next Roll may not reverse that first Roll. Six exact Rotations, post-Rotation Roll length, Timeout sampling, Reset scheduling and notation remain as specified by the handbook.
+0.19.0 changes the exact execution hot path, not the game rules. The same 24-orientation cube model, six Rotation actions, post-Rotation move length, Push-return rule, Step rules, combat, Reset scheduling, score context, notation and final-ply semantics are retained.
 
-## Rule and successor baselines
+## Asserted rule/successor baselines
 
 | Position | Legal paths | Exact successors | Reduced successors |
 |---|---:|---:|---:|
@@ -14,34 +13,21 @@ Push does not seed Roll history. Its first Roll may return to the pre-Push squar
 
 Initial exhaustive perft depths 1 / 2 / 3: **161 / 25,575 / 4,215,782**.
 
-## Completed checks
+## 0.19.0 exact-fast changes
 
-- Native C++17 Release regression suite: orientation inverses, all six Rotation/tau reductions, Push-return acceptance, subsequent Roll reversal rejection, make/undo, notation round-trip, MultiPV distinctness, item/order probes, timed continuation and Reset handing the scheduled next move to Black.
-- Exhaustive and reduced native successor equality for all 24 exact starting orientations; initial and item-rich baseline counts are asserted in the shipped tests.
-- JS embedded engine vs C++ exact legal paths and exact successor states, plus reduced successor equality, on **50 deterministic positions** with captures, replenished inventories and changed orientations.
-- Games 1–4: **80 quiz rounds** replayed in the board and native Release engine; final capture pairs **3–3, 2–6, 3–1, 3–3** match.
-- Handbook W2 Rotation examples and the W3 Push-return example validated. Three Push figures were regenerated with the 24-orientation model and independently checked: **25 / 36 / 49 destination cells** for Scissors / Rock / Paper.
-- Browser self-tests in headless Microsoft Edge: Timeout live path/state/notation, unchanged committed game/history during animation and preview, disabled Back, Cancel, Confirm, dual Timeout chronology and session/notation replay. Loading is disabled during animation.
-- Native optimized evaluation exactly matches the reference implementation on **246,758 legal successors over 120 positions**, including varying match context and item inventories.
-- Browser and native searches now publish a MultiPV line only after its full root search is complete at the published depth. A timed interruption keeps the previous complete set instead of showing null-window bounds as exact candidate evaluations.
-- Native and browser quiescence search enumerate every legal successor when one board ply remains; the final scheduled move cannot be skipped by a stand-pat evaluation.
-- The offline worker reports startup, runtime, and response failures and can be restarted from the Analysis control.
-- Handbook rebuilt with XeLaTeX: **26 pages**, with the existing chapter structure and diagram style preserved. The build has only the known local font fallback and underfull-box warnings; no missing-file, missing-glyph or overflow errors.
+- Precomputed orthogonal step and adjacency bitmasks.
+- Parent occupancy/enemy bitboards reused across path generation.
+- Reduced-successor duplicate detection uses a collision-free compact signature for the state components that can change within one parent, avoiding repeated Position make/hash/undo at every endpoint.
+- `SearchMove` carries exact final orientation and capture/reset metadata.
+- Search applies already-generated legal moves through a dedicated fast path.
+- Reset exhaustion is checked only for the side that actually lost a captured piece.
+- Transposition-table indexing uses a power-of-two table mask.
 
-## Release time-budget checks
+## Release checks
 
-Fresh search, MultiPV 3. Wall times include protocol round-trip; each best move was accepted by native legality on application.
+A clean CMake Release build from the checkpoint source passes:
 
-| Position | Budget | Measured wall time | Completed depth | Nodes |
-|---|---:|---:|---:|---:|
-| initial | 10 s | 10.0018 s | 5 | 2,389,249 |
-| initial | 20 s | 20.0017 s | 5 | 5,286,977 |
-| item-rich | 10 s | 10.0010 s | 3 | 2,769,793 |
-| item-rich | 20 s | 20.0007 s | 3 | 5,215,681 |
-| midgame | 10 s | 10.0006 s | 3 | 2,541,249 |
-| midgame | 20 s | 20.0018 s | 3 | 2,874,241 |
+- `rpsc-engine-tests`
+- `rpsc-search-regressions`
 
-Depth is position- and hardware-dependent. These checks verify deadline handling; they do not prove Elo, optimal play or a guaranteed depth under every 10/20-second search.
-
-Release was compiled directly with GCC (`-std=c++17 -O3 -DNDEBUG -Wall -Wextra -Wpedantic -static`). The source package includes CMake targets for the native engine, the original rule suite, and the new search regressions. The HTML uses its embedded JS worker and does not launch the native executable.
-
+The checkpoint executable also completes the depth-4 initial benchmark with the same searched node count as its source build. Browser embedding is intentionally deferred to the next full-package synchronization; therefore this ZIP does not claim native/browser 0.19.0 equivalence yet.

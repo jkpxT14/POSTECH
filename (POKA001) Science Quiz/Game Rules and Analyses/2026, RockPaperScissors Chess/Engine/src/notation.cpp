@@ -89,8 +89,6 @@ std::string format_move(const Position& before, const Move& move) {
 bool parse_move(const Position& position, const std::string& input, Move& move) {
     std::string text = input;
     trim(text);
-    // Native Engine parses one board move. Official Timeout is a game-controller event,
-    // so a Timeout prefix is intentionally not accepted here.
     const auto colon = text.find(':');
     if (colon == std::string::npos || colon < 2) return false;
 
@@ -109,11 +107,7 @@ bool parse_move(const Position& position, const std::string& input, Move& move) 
     bool found = false;
     for (int i = 0; i < PieceCount; ++i) {
         auto candidate = static_cast<PieceId>(i);
-        if (piece_name(candidate) == id) {
-            piece = candidate;
-            found = true;
-            break;
-        }
+        if (piece_name(candidate) == id) { piece = candidate; found = true; break; }
     }
     if (!found) return false;
 
@@ -174,4 +168,3 @@ std::string format_pv(const Position& start, const std::vector<Move>& pv, int m_
     return out.str();
 }
 }  // namespace rpsc
-

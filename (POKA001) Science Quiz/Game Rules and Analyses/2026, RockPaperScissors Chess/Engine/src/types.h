@@ -16,29 +16,14 @@ constexpr Value CaptureValue = 200;
 constexpr Value Infinity = 1000000;
 constexpr int BoardSize = 8;
 constexpr int PieceCount = 8;
-constexpr int MaxMoveSquares = 7;  // start + at most six Rolls (Paper + Step Long)
+constexpr int MaxMoveSquares = 7;
 
 enum class Color : std::uint8_t { White = 0, Black = 1 };
 enum class Gesture : std::uint8_t { Scissors = 0, Rock = 1, Paper = 2 };
 enum class Direction : std::uint8_t { North = 0, South = 1, East = 2, West = 3 };
 enum class PieceId : std::uint8_t { W1, W2, W3, W4, B1, B2, B3, B4 };
-
-// A move modifier, not an inventory bucket. Inventory remains Push / Rotation / Step.
-enum class Item : std::uint8_t {
-    None = 0,
-    Push,
-    RotateNorth,
-    RotateSouth,
-    RotateEast,
-    RotateWest,
-    RotateLeft,
-    RotateRight,
-    StepShort,
-    StepLong
-};
-
+enum class Item : std::uint8_t { None = 0, Push, RotateNorth, RotateSouth, RotateEast, RotateWest, RotateLeft, RotateRight, StepShort, StepLong };
 enum class Bound : std::uint8_t { None, Upper, Lower, Exact };
-
 constexpr Color opposite(Color c) { return c == Color::White ? Color::Black : Color::White; }
 constexpr int color_index(Color c) { return static_cast<int>(c); }
 constexpr int piece_index(PieceId p) { return static_cast<int>(p); }
@@ -47,24 +32,11 @@ constexpr int file_of(Square s) { return static_cast<int>(s) & 7; }
 constexpr int rank_of(Square s) { return static_cast<int>(s) >> 3; }
 constexpr Square make_square(int f, int r) { return static_cast<Square>(r * 8 + f); }
 constexpr bool valid_square(int f, int r) { return f >= 0 && f < 8 && r >= 0 && r < 8; }
-constexpr int base_roll_length(Gesture g) {
-    return g == Gesture::Scissors ? 3 : g == Gesture::Rock ? 4 : 5;
-}
-constexpr bool is_rotation(Item item) {
-    return item == Item::RotateNorth || item == Item::RotateSouth ||
-           item == Item::RotateEast || item == Item::RotateWest ||
-           item == Item::RotateLeft || item == Item::RotateRight;
-}
+constexpr int base_roll_length(Gesture g) { return g == Gesture::Scissors ? 3 : g == Gesture::Rock ? 4 : 5; }
+constexpr bool is_rotation(Item item) { return item == Item::RotateNorth || item == Item::RotateSouth || item == Item::RotateEast || item == Item::RotateWest || item == Item::RotateLeft || item == Item::RotateRight; }
 constexpr bool is_step(Item item) { return item == Item::StepShort || item == Item::StepLong; }
-constexpr int item_bucket(Item item) {
-    if (item == Item::Push) return 0;
-    if (is_rotation(item)) return 1;
-    if (is_step(item)) return 2;
-    return -1;
-}
+constexpr int item_bucket(Item item) { if (item == Item::Push) return 0; if (is_rotation(item)) return 1; if (is_step(item)) return 2; return -1; }
 constexpr std::size_t item_action_index(Item item) { return static_cast<std::size_t>(item); }
 constexpr std::size_t ItemActionCount = 10;
-}  // namespace rpsc
-
+}
 #endif
-

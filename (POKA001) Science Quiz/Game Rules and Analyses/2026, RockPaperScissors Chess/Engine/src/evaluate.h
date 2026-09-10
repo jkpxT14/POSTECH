@@ -3,4 +3,3 @@
 #include "position.h"
 namespace rpsc { Value evaluate_white(const Position&); Value evaluate(const Position&); }
 #endif
-

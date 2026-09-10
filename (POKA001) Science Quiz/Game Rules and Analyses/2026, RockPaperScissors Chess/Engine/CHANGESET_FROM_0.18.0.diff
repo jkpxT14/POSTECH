@@ -1,0 +1,326 @@
+diff -ru '--exclude=build' '--exclude=build-prof' rpsc_baseline/CMakeLists.txt rpsc_meta/CMakeLists.txt
+--- rpsc_baseline/CMakeLists.txt	2026-09-10 03:51:28.968217794 +0000
++++ rpsc_meta/CMakeLists.txt	2026-09-10 03:49:32.159331568 +0000
+@@ -1,5 +1,5 @@
+ cmake_minimum_required(VERSION 3.16)
+-project(rpsc_engine VERSION 0.18.0 LANGUAGES CXX)
++project(rpsc_engine VERSION 0.19.0 LANGUAGES CXX)
+ set(CMAKE_CXX_STANDARD 17)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ set(CMAKE_CXX_EXTENSIONS OFF)
+diff -ru '--exclude=build' '--exclude=build-prof' rpsc_baseline/src/movegen.cpp rpsc_meta/src/movegen.cpp
+--- rpsc_baseline/src/movegen.cpp	2026-09-10 03:45:47.660740706 +0000
++++ rpsc_meta/src/movegen.cpp	2026-09-10 04:48:11.620551262 +0000
+@@ -1,27 +1,199 @@
+ #include "movegen.h"
++
+ #include <array>
+ #include <cassert>
+ #include <cstdint>
+ #include <unordered_set>
+-namespace rpsc { struct MoveGeneratorAccess{static MoveOutcome apply(Position&p,const Move&m,Orientation o,UndoState&u){
++
++namespace rpsc {
++struct MoveGeneratorAccess {
++    static MoveOutcome apply(Position& p, const Move& m, Orientation o, UndoState& u) {
+ #ifndef NDEBUG
+-Orientation checked; assert(p.validate_path(m,&checked)&&checked==o);
++        Orientation checked;
++        assert(p.validate_path(m, &checked) && checked == o);
+ #endif
+-return p.apply_legal_move(m,o,u);}}; namespace {
+-constexpr std::array<Direction,4> Dirs{Direction::North,Direction::South,Direction::East,Direction::West}; constexpr std::array<Direction,4> Opp{Direction::South,Direction::North,Direction::West,Direction::East}; constexpr std::array<Item,6> Rotations{Item::RotateNorth,Item::RotateSouth,Item::RotateEast,Item::RotateWest,Item::RotateLeft,Item::RotateRight};
+-struct StepTable{std::array<std::array<Square,4>,64> next{};StepTable(){for(int s=0;s<64;++s)for(int di=0;di<4;++di){int f=file_of(Square(s)),r=rank_of(Square(s));switch(Dirs[di]){case Direction::North:++r;break;case Direction::South:--r;break;case Direction::East:++f;break;case Direction::West:--f;break;}next[s][di]=valid_square(f,r)?make_square(f,r):NoSquare;}}}; const StepTable&steps(){static const StepTable t;return t;}
+-Orientation modifier_orientation(Orientation o,Item item){return OrientationTable::instance().apply_rotation(o,item);} int modifier_distance(Orientation original,Item item){const auto&t=OrientationTable::instance();Orientation o=modifier_orientation(original,item);int n=base_roll_length(t.top_gesture(o));if(item==Item::StepShort)--n;if(item==Item::StepLong)++n;return n;}
+-void exhaustive_paths(const Position&p,PieceId id,Move&m,Square cur,int rem,bool has_last,Direction last,std::vector<Move>&out){if(rem==0){out.push_back(m);return;}bool final=rem==1;for(int di=0;di<4;++di){Direction d=Dirs[di];if(has_last&&d==Opp[int(last)])continue;Square next=steps().next[int(cur)][di];if(next==NoSquare||p.occupied(next,id))continue;if(final&&p.adjacent_enemies(next,p.side_to_move(),id)>=2)continue;m.path[m.path_length++]=next;exhaustive_paths(p,id,m,next,rem-1,true,d,out);--m.path_length;}}
+-void exhaustive_item(const Position&p,PieceId id,const PieceState&pc,Item item,Square push,std::vector<Move>&out){Move m;m.piece=id;m.item=item;m.push_to=push;m.path[0]=pc.square;m.path_length=1;int distance=modifier_distance(pc.orientation,item);Square start=pc.square;bool has_last=false;Direction last=Direction::North;if(item==Item::Push)start=push;exhaustive_paths(p,id,m,start,distance,has_last,last,out);}
++        return p.apply_legal_move(m, o, u);
++    }
++};
++namespace {
++constexpr std::array<Direction,4> Dirs{Direction::North,Direction::South,Direction::East,Direction::West};
++constexpr std::array<Direction,4> Opp{Direction::South,Direction::North,Direction::West,Direction::East};
++constexpr std::array<Item,6> Rotations{Item::RotateNorth,Item::RotateSouth,Item::RotateEast,Item::RotateWest,Item::RotateLeft,Item::RotateRight};
++
++struct StepTable {
++    std::array<std::array<Square,4>,64> next{};
++    std::array<std::uint64_t,64> neighbors{};
++    StepTable() {
++        for (int s=0;s<64;++s) {
++            for (int di=0;di<4;++di) {
++                int f=file_of(Square(s)),r=rank_of(Square(s));
++                switch(Dirs[di]){case Direction::North:++r;break;case Direction::South:--r;break;case Direction::East:++f;break;case Direction::West:--f;break;}
++                next[s][di]=valid_square(f,r)?make_square(f,r):NoSquare;
++                if(next[s][di]!=NoSquare) neighbors[s]|=1ULL<<unsigned(next[s][di]);
++            }
++        }
++    }
++};
++const StepTable& steps(){static const StepTable t;return t;}
++int pc64(std::uint64_t x){
++#if defined(__GNUC__) || defined(__clang__)
++    return __builtin_popcountll(x);
++#else
++    int n=0;while(x){x&=x-1;++n;}return n;
++#endif
++}
++
++Orientation modifier_orientation(Orientation o,Item item){return OrientationTable::instance().apply_rotation(o,item);}
++int modifier_distance(Orientation original,Item item){const auto&t=OrientationTable::instance();Orientation o=modifier_orientation(original,item);int n=base_roll_length(t.top_gesture(o));if(item==Item::StepShort)--n;if(item==Item::StepLong)++n;return n;}
++
++void exhaustive_paths(const Position& p, PieceId id, Move& m, Square cur, int rem,
++                      bool has_last, Direction last, std::uint64_t occupied,
++                      std::uint64_t enemies, std::vector<Move>& out) {
++    if(rem==0){out.push_back(m);return;}
++    const bool final=rem==1;
++    for(int di=0;di<4;++di){
++        Direction d=Dirs[di]; if(has_last&&d==Opp[int(last)])continue;
++        Square next=steps().next[int(cur)][di];
++        if(next==NoSquare||(occupied&(1ULL<<unsigned(next))))continue;
++        if(final&&pc64(steps().neighbors[int(next)]&enemies)>=2)continue;
++        m.path[m.path_length++]=next;
++        exhaustive_paths(p,id,m,next,rem-1,true,d,occupied,enemies,out);
++        --m.path_length;
++    }
++}
++void exhaustive_item(const Position& p, PieceId id, const PieceState& pc, Item item, Square push,
++                     std::uint64_t occupied, std::uint64_t enemies, std::vector<Move>& out){
++    Move m;m.piece=id;m.item=item;m.push_to=push;m.path[0]=pc.square;m.path_length=1;
++    int distance=modifier_distance(pc.orientation,item);Square start=pc.square;
++    if(item==Item::Push)start=push;
++    exhaustive_paths(p,id,m,start,distance,false,Direction::North,occupied,enemies,out);
++}
++
+ std::uint32_t partial_index(Square s,Orientation o,int rem,bool has_last,Direction last){auto st=OrientationTable::instance().gesture_state_id(o);auto lc=has_last?unsigned(last):4u;return unsigned(s)|(unsigned(st)<<6)|(unsigned(rem)<<11)|(lc<<15);}
+-struct Scratch{static constexpr std::size_t FinalSize=1u<<14,Mask=FinalSize-1;std::array<std::uint32_t,1u<<18> partial{};std::uint32_t partial_generation=1;std::array<Key,FinalSize> keys{};std::array<std::uint32_t,FinalSize> marks{};std::uint32_t final_generation=1;std::uint32_t next_partial(){if(++partial_generation==0){partial.fill(0);partial_generation=1;}return partial_generation;}std::uint32_t next_final(){if(++final_generation==0){marks.fill(0);final_generation=1;}return final_generation;}bool insert(Key k,std::uint32_t g){std::size_t slot=std::size_t((k*11400714819323198485ULL)>>50)&Mask;for(std::size_t probe=0;probe<FinalSize;++probe){if(marks[slot]!=g){marks[slot]=g;keys[slot]=k;return true;}if(keys[slot]==k)return false;slot=(slot+1)&Mask;}return true;}}; Scratch&scratch(){static thread_local Scratch v;return v;}
+-struct Gen{Position&p;Color mover,opponent;int own_before,opp_before;bool tactical;Scratch&scratch;std::uint32_t partial_generation=0,final_generation=0;std::vector<SearchMove> out;};
+-void emit(Gen&g,Move&m,Square cur,Orientation o){if(g.tactical){if(g.p.adjacent_enemies(cur,g.mover,m.piece)!=1)return;auto enemy=g.p.single_adjacent_enemy(cur,g.mover,m.piece);const auto&t=OrientationTable::instance();if(t.top_gesture(o)==t.top_gesture(g.p.piece(enemy).orientation))return;}UndoState u;MoveGeneratorAccess::apply(g.p,m,o,u);Key k=g.p.search_key();int swing=(g.p.captures(g.mover)-g.own_before)-(g.p.captures(g.opponent)-g.opp_before);g.p.undo_move(u);if(g.tactical&&swing==0)return;if(g.scratch.insert(k,g.final_generation))g.out.push_back({m,swing,o});}
+-void reduced_paths(Gen&g,PieceId id,Move&m,Square cur,Orientation o,int rem,bool has_last,Direction last){if(rem==0){emit(g,m,cur,o);return;}bool final=rem==1;const auto&t=OrientationTable::instance();for(int di=0;di<4;++di){Direction d=Dirs[di];if(has_last&&d==Opp[int(last)])continue;Square next=steps().next[int(cur)][di];if(next==NoSquare||g.p.occupied(next,id))continue;if(final&&g.p.adjacent_enemies(next,g.mover,id)>=2)continue;Orientation no=t.roll(o,d);auto idx=partial_index(next,no,rem-1,true,d);if(g.scratch.partial[idx]==g.partial_generation)continue;g.scratch.partial[idx]=g.partial_generation;m.path[m.path_length++]=next;reduced_paths(g,id,m,next,no,rem-1,true,d);--m.path_length;}}
+-void reduced_item(Gen&g,PieceId id,const PieceState&pc,Item item,Square push){Move m;m.piece=id;m.item=item;m.push_to=push;m.path[0]=pc.square;m.path_length=1;Orientation o=modifier_orientation(pc.orientation,item);int distance=modifier_distance(pc.orientation,item);Square start=pc.square;bool has_last=false;Direction last=Direction::North;if(item==Item::Push)start=push;g.partial_generation=g.scratch.next_partial();g.scratch.partial[partial_index(start,o,distance,has_last,last)]=g.partial_generation;reduced_paths(g,id,m,start,o,distance,has_last,last);}
+-std::vector<SearchMove> generate_search_internal(Position&p,bool tactical){Color mover=p.side_to_move();Gen g{p,mover,opposite(mover),p.captures(mover),p.captures(opposite(mover)),tactical,scratch(),0,0,{}};g.final_generation=g.scratch.next_final();g.out.reserve(768);for(int i=0;i<PieceCount;++i){auto id=PieceId(i);const auto&pc=p.piece(id);if(!pc.alive()||piece_color(id)!=mover)continue;reduced_item(g,id,pc,Item::None,NoSquare);if(p.item_count(mover,0)>0)for(int di=0;di<4;++di){Square push=steps().next[int(pc.square)][di];if(push!=NoSquare&&!p.occupied(push,id))reduced_item(g,id,pc,Item::Push,push);}if(p.item_count(mover,1)>0){std::array<bool,27> seen{};const auto&t=OrientationTable::instance();for(Item rot:Rotations){Orientation ro=t.apply_rotation(pc.orientation,rot);auto st=t.gesture_state_id(ro);if(seen[st])continue;seen[st]=true;reduced_item(g,id,pc,rot,NoSquare);}}if(p.item_count(mover,2)>0){reduced_item(g,id,pc,Item::StepShort,NoSquare);reduced_item(g,id,pc,Item::StepLong,NoSquare);}}return g.out;}
+-}
+-std::vector<Move> generate_legal_moves(const Position&p){std::vector<Move>out;out.reserve(4096);Color mover=p.side_to_move();for(int i=0;i<PieceCount;++i){auto id=PieceId(i);const auto&pc=p.piece(id);if(!pc.alive()||piece_color(id)!=mover)continue;exhaustive_item(p,id,pc,Item::None,NoSquare,out);if(p.item_count(mover,0)>0)for(int di=0;di<4;++di){Square push=steps().next[int(pc.square)][di];if(push!=NoSquare&&!p.occupied(push,id))exhaustive_item(p,id,pc,Item::Push,push,out);}if(p.item_count(mover,1)>0)for(Item r:Rotations)exhaustive_item(p,id,pc,r,NoSquare,out);if(p.item_count(mover,2)>0){exhaustive_item(p,id,pc,Item::StepShort,NoSquare,out);exhaustive_item(p,id,pc,Item::StepLong,NoSquare,out);}}return out;}
+-std::vector<Move> generate_unique_moves(Position&p){auto all=generate_legal_moves(p);std::vector<Move>u;std::unordered_set<Key>seen;for(const auto&m:all){UndoState st;p.do_move(m,st);Key k=p.key();p.undo_move(st);if(seen.insert(k).second)u.push_back(m);}return u;}
+-std::vector<SearchMove> generate_search_moves_info(Position&p){return generate_search_internal(p,false);} std::vector<SearchMove> generate_tactical_moves_info(Position&p){return generate_search_internal(p,true);} std::vector<Move> generate_search_moves(Position&p){auto info=generate_search_moves_info(p);std::vector<Move>m;for(const auto&e:info)m.push_back(e.move);return m;}
++struct Scratch {
++    static constexpr std::size_t FinalSize=1u<<14,Mask=FinalSize-1;
++    std::array<std::uint32_t,1u<<18> partial{};std::uint32_t partial_generation=1;
++    std::array<Key,FinalSize> keys{};std::array<std::uint32_t,FinalSize> marks{};std::uint32_t final_generation=1;
++    std::uint32_t next_partial(){if(++partial_generation==0){partial.fill(0);partial_generation=1;}return partial_generation;}
++    std::uint32_t next_final(){if(++final_generation==0){marks.fill(0);final_generation=1;}return final_generation;}
++    bool insert(Key k,std::uint32_t g){std::size_t slot=std::size_t((k*11400714819323198485ULL)>>50)&Mask;for(std::size_t probe=0;probe<FinalSize;++probe){if(marks[slot]!=g){marks[slot]=g;keys[slot]=k;return true;}if(keys[slot]==k)return false;slot=(slot+1)&Mask;}return true;}
++};
++Scratch& scratch(){static thread_local Scratch v;return v;}
++struct Gen {
++    Position& p;
++    Color mover, opponent;
++    bool tactical;
++    Scratch& scratch;
++    std::uint32_t partial_generation=0, final_generation=0;
++    std::vector<SearchMove> out;
++    std::array<std::int8_t,64> enemy_at{};
++    int own_alive=0, opponent_alive=0;
++};
++
++int combat(Gesture a, Gesture b) {
++    if (a == b) return 0;
++    if ((a == Gesture::Scissors && b == Gesture::Paper) ||
++        (a == Gesture::Rock && b == Gesture::Scissors) ||
++        (a == Gesture::Paper && b == Gesture::Rock)) return 1;
++    return -1;
++}
++
++// All endpoints emitted during one generation share the same parent position.
++// Therefore successor equality can be decided from just the fields that change,
++// instead of make -> search_key -> undo for every path endpoint.  This signature
++// is collision-free (bit-packed, not hashed) and mirrors Position::search_key's
++// reduced orientation semantics exactly.
++Key successor_signature(const Gen& g, const Move& m, Square cur, Orientation o,
++                        std::uint64_t enemies, int& swing, PieceId& captured,
++                        bool& has_capture, bool& reset) {
++    const auto& t = OrientationTable::instance();
++    std::uint64_t near = steps().neighbors[int(cur)] & enemies;
++    int outcome = 0; // quiet/tie
++    int enemy_index = 0;
++    swing = 0;
++    captured = PieceId::W1; has_capture = false; reset = false;
++    if (near) {
++        Square es;
++#if defined(__GNUC__) || defined(__clang__)
++        es = Square(__builtin_ctzll(near));
++#else
++        es = Square(0); while (((near >> unsigned(es)) & 1ULL) == 0) es = Square(int(es)+1);
++#endif
++        const int ei = g.enemy_at[unsigned(es)];
++        if (ei >= 0) {
++            enemy_index = ei;
++            const int result = combat(t.top_gesture(o), t.top_gesture(g.p.piece(PieceId(ei)).orientation));
++            if (result > 0) {
++                swing = 1; captured = PieceId(ei); has_capture = true; reset = g.opponent_alive == 1;
++                outcome = reset ? 3 : 1; // reset-win / win
++            } else if (result < 0) {
++                swing = -1; captured = m.piece; has_capture = true; reset = g.own_alive == 1;
++                outcome = reset ? 4 : 2; // reset-loss / loss
++            }
++        }
++    }
++
++    const unsigned bucket = m.item == Item::None ? 0u : unsigned(item_bucket(m.item) + 1); // 0..3
++    Key sig = Key(outcome) | (Key(bucket) << 3) | (Key(piece_index(m.piece)) << 5);
++    // A losing mover is removed, so its endpoint/orientation are not part of the
++    // resulting search state.  After Reset all pieces are canonical again.
++    if (outcome == 0 || outcome == 1) {
++        sig |= Key(unsigned(cur)) << 8;
++        sig |= Key(t.gesture_state_id(o)) << 14;
++    }
++    if (outcome == 1) sig |= Key(unsigned(enemy_index)) << 19;
++    return sig;
++}
++
++void emit(Gen& g, Move& m, Square cur, Orientation o, std::uint64_t enemies) {
++    int swing = 0; PieceId captured = PieceId::W1; bool has_capture = false, reset = false;
++    const Key signature = successor_signature(g, m, cur, o, enemies, swing, captured, has_capture, reset);
++    if (g.tactical && swing == 0) return;
++    if (g.scratch.insert(signature, g.final_generation)) g.out.push_back({m,swing,o,captured,has_capture,reset});
++}
++void reduced_paths(Gen&g,PieceId id,Move&m,Square cur,Orientation o,int rem,bool has_last,Direction last,
++                   std::uint64_t occupied,std::uint64_t enemies){
++    if(rem==0){emit(g,m,cur,o,enemies);return;}
++    bool final=rem==1;const auto&t=OrientationTable::instance();
++    for(int di=0;di<4;++di){Direction d=Dirs[di];if(has_last&&d==Opp[int(last)])continue;Square next=steps().next[int(cur)][di];if(next==NoSquare||(occupied&(1ULL<<unsigned(next))))continue;if(final&&pc64(steps().neighbors[int(next)]&enemies)>=2)continue;Orientation no=t.roll(o,d);auto idx=partial_index(next,no,rem-1,true,d);if(g.scratch.partial[idx]==g.partial_generation)continue;g.scratch.partial[idx]=g.partial_generation;m.path[m.path_length++]=next;reduced_paths(g,id,m,next,no,rem-1,true,d,occupied,enemies);--m.path_length;}
++}
++void reduced_item(Gen&g,PieceId id,const PieceState&pc,Item item,Square push,std::uint64_t occupied,std::uint64_t enemies){
++    Move m;m.piece=id;m.item=item;m.push_to=push;m.path[0]=pc.square;m.path_length=1;Orientation o=modifier_orientation(pc.orientation,item);int distance=modifier_distance(pc.orientation,item);Square start=pc.square;if(item==Item::Push)start=push;g.partial_generation=g.scratch.next_partial();g.scratch.partial[partial_index(start,o,distance,false,Direction::North)]=g.partial_generation;reduced_paths(g,id,m,start,o,distance,false,Direction::North,occupied,enemies);
++}
++std::vector<SearchMove> generate_search_internal(Position&p,bool tactical){
++    Color mover=p.side_to_move(); Color opponent=opposite(mover);
++    std::uint64_t occupancy=0,enemies=0;
++    int own_alive=0,opponent_alive=0;
++    std::array<std::int8_t,64> enemy_at{}; enemy_at.fill(-1);
++    for(int i=0;i<PieceCount;++i){
++        auto id=PieceId(i); const auto&pc=p.piece(id); if(!pc.alive())continue;
++        const auto bit=1ULL<<unsigned(pc.square); occupancy|=bit;
++        if(piece_color(id)==opponent){enemies|=bit;enemy_at[unsigned(pc.square)]=std::int8_t(i);++opponent_alive;}
++        else ++own_alive;
++    }
++    Gen g{p,mover,opponent,tactical,scratch(),0,0,{},enemy_at,own_alive,opponent_alive};
++    g.final_generation=g.scratch.next_final(); g.out.reserve(768);
++    for(int i=0;i<PieceCount;++i){
++        auto id=PieceId(i);const auto&pc=p.piece(id);if(!pc.alive()||piece_color(id)!=mover)continue;
++        std::uint64_t occupied=occupancy&~(1ULL<<unsigned(pc.square));
++        reduced_item(g,id,pc,Item::None,NoSquare,occupied,enemies);
++        if(p.item_count(mover,0)>0)for(int di=0;di<4;++di){Square push=steps().next[int(pc.square)][di];if(push!=NoSquare&&!(occupied&(1ULL<<unsigned(push))))reduced_item(g,id,pc,Item::Push,push,occupied,enemies);}
++        if(p.item_count(mover,1)>0){std::array<bool,27>seen{};const auto&t=OrientationTable::instance();for(Item rot:Rotations){Orientation ro=t.apply_rotation(pc.orientation,rot);auto st=t.gesture_state_id(ro);if(seen[st])continue;seen[st]=true;reduced_item(g,id,pc,rot,NoSquare,occupied,enemies);}}
++        if(p.item_count(mover,2)>0){reduced_item(g,id,pc,Item::StepShort,NoSquare,occupied,enemies);reduced_item(g,id,pc,Item::StepLong,NoSquare,occupied,enemies);}
++    }
++    return g.out;
++}
++} // namespace
++
++std::vector<Move> generate_legal_moves(const Position&p){
++    std::vector<Move>out;out.reserve(4096);Color mover=p.side_to_move();
++    std::uint64_t occupancy=0,enemies=0;
++    for(int i=0;i<PieceCount;++i){auto id=PieceId(i);const auto&pc=p.piece(id);if(!pc.alive())continue;auto bit=1ULL<<unsigned(pc.square);occupancy|=bit;if(piece_color(id)!=mover)enemies|=bit;}
++    for(int i=0;i<PieceCount;++i){auto id=PieceId(i);const auto&pc=p.piece(id);if(!pc.alive()||piece_color(id)!=mover)continue;std::uint64_t occupied=occupancy&~(1ULL<<unsigned(pc.square));exhaustive_item(p,id,pc,Item::None,NoSquare,occupied,enemies,out);if(p.item_count(mover,0)>0)for(int di=0;di<4;++di){Square push=steps().next[int(pc.square)][di];if(push!=NoSquare&&!(occupied&(1ULL<<unsigned(push))))exhaustive_item(p,id,pc,Item::Push,push,occupied,enemies,out);}if(p.item_count(mover,1)>0)for(Item r:Rotations)exhaustive_item(p,id,pc,r,NoSquare,occupied,enemies,out);if(p.item_count(mover,2)>0){exhaustive_item(p,id,pc,Item::StepShort,NoSquare,occupied,enemies,out);exhaustive_item(p,id,pc,Item::StepLong,NoSquare,occupied,enemies,out);}}
++    return out;
+ }
++std::vector<Move> generate_unique_moves(Position&p){auto all=generate_legal_moves(p);std::vector<Move>u;u.reserve(all.size());std::unordered_set<Key>seen;seen.reserve(all.size()*2);for(const auto&m:all){UndoState st;p.do_move(m,st);Key k=p.key();p.undo_move(st);if(seen.insert(k).second)u.push_back(m);}return u;}
++std::vector<SearchMove> generate_search_moves_info(Position&p){return generate_search_internal(p,false);}
++std::vector<SearchMove> generate_tactical_moves_info(Position&p){return generate_search_internal(p,true);}
++std::vector<Move> generate_search_moves(Position&p){auto info=generate_search_moves_info(p);std::vector<Move>m;m.reserve(info.size());for(const auto&e:info)m.push_back(e.move);return m;}
++} // namespace rpsc
+diff -ru '--exclude=build' '--exclude=build-prof' rpsc_baseline/src/movegen.h rpsc_meta/src/movegen.h
+--- rpsc_baseline/src/movegen.h	2026-09-10 03:45:46.931584370 +0000
++++ rpsc_meta/src/movegen.h	2026-09-10 04:47:21.919253317 +0000
+@@ -2,5 +2,5 @@
+ #define RPSC_MOVEGEN_H_INCLUDED
+ #include <vector>
+ #include "position.h"
+-namespace rpsc { struct SearchMove{Move move{};int capture_swing=0;Orientation final_orientation=0;}; std::vector<Move> generate_legal_moves(const Position&); std::vector<Move> generate_unique_moves(Position&); std::vector<Move> generate_search_moves(Position&); std::vector<SearchMove> generate_search_moves_info(Position&); std::vector<SearchMove> generate_tactical_moves_info(Position&); }
++namespace rpsc { struct SearchMove{Move move{};int capture_swing=0;Orientation final_orientation=0;PieceId captured=PieceId::W1;bool has_capture=false;bool reset=false;}; std::vector<Move> generate_legal_moves(const Position&); std::vector<Move> generate_unique_moves(Position&); std::vector<Move> generate_search_moves(Position&); std::vector<SearchMove> generate_search_moves_info(Position&); std::vector<SearchMove> generate_tactical_moves_info(Position&); }
+ #endif
+diff -ru '--exclude=build' '--exclude=build-prof' rpsc_baseline/src/position.cpp rpsc_meta/src/position.cpp
+--- rpsc_baseline/src/position.cpp	2026-09-10 03:51:03.305017569 +0000
++++ rpsc_meta/src/position.cpp	2026-09-10 04:47:21.919608658 +0000
+@@ -20,7 +20,8 @@
+ bool Position::is_legal_path(const Move&m)const{return validate_path(m,nullptr);}
+ bool Position::validate_path(const Move&m,Orientation*final_orientation)const{if(piece_index(m.piece)>=PieceCount||item_action_index(m.item)>=ItemActionCount)return false;if(m.path_length<2||m.path_length>MaxMoveSquares)return false;for(std::uint8_t i=0;i<m.path_length;++i)if(m.path[i]<0||m.path[i]>=64)return false;const auto id=m.piece;const auto&p=piece(id);if(!p.alive()||piece_color(id)!=side_to_move_||m.from()!=p.square)return false;const int bucket=item_bucket(m.item);if(bucket>=0&&item_count(side_to_move_,bucket)<=0)return false;if(m.item!=Item::Push&&m.push_to!=NoSquare)return false;Orientation o=modifier_orientation(p.orientation,m.item);if(m.roll_count()!=required_rolls(p.orientation,m.item))return false;Square from=m.from();Direction last=Direction::North;bool has_last=false;if(m.item==Item::Push){if(m.push_to<0||m.push_to>=64||!adjacent(m.from(),m.push_to)||occupied(m.push_to,id))return false;try{last=direction_between(m.from(),m.push_to);}catch(...){return false;}has_last=false;from=m.push_to;}for(std::uint8_t i=1;i<m.path_length;++i){Direction d;try{d=direction_between(from,m.path[i]);}catch(...){return false;}if(has_last&&d==opposite_dir(last))return false;if(occupied(m.path[i],id))return false;if(i+1==m.path_length&&adjacent_enemies(m.path[i],side_to_move_,id)>=2)return false;o=OrientationTable::instance().roll(o,d);from=m.path[i];last=d;has_last=true;}if(final_orientation)*final_orientation=o;return true;}
+ MoveOutcome Position::do_move(const Move&m,UndoState&undo){Orientation o;if(!validate_path(m,&o))throw std::invalid_argument("illegal RPSC move");return apply_legal_move(m,o,undo);}
+-MoveOutcome Position::apply_legal_move(const Move&m,Orientation o,UndoState&undo){undo={pieces_,side_to_move_,captures_white_,captures_black_,items_,quiz_white_,quiz_black_,remaining_board_plies_};auto&moving=piece(m.piece);const Color mover=side_to_move_;const int bucket=item_bucket(m.item);if(bucket>=0)--items_[color_index(mover)][bucket];moving.square=m.to();moving.orientation=o;MoveOutcome out;if(adjacent_enemies(moving.square,mover,m.piece)==1){auto enemy=single_adjacent_enemy(moving.square,mover,m.piece);const auto&t=OrientationTable::instance();int result=combat(t.top_gesture(moving.orientation),t.top_gesture(piece(enemy).orientation));if(result!=0){out.has_capture=true;out.captured=result>0?enemy:m.piece;Color winner=result>0?mover:opposite(mover);piece(out.captured).square=NoSquare;if(winner==Color::White)++captures_white_;else ++captures_black_;}}if(alive_count(Color::White)==0||alive_count(Color::Black)==0){reset_pieces();out.reset=true;}side_to_move_=opposite(side_to_move_);if(remaining_board_plies_>0)--remaining_board_plies_;return out;}
++MoveOutcome Position::apply_legal_move(const Move&m,Orientation o,UndoState&undo){undo={pieces_,side_to_move_,captures_white_,captures_black_,items_,quiz_white_,quiz_black_,remaining_board_plies_};auto&moving=piece(m.piece);const Color mover=side_to_move_;const int bucket=item_bucket(m.item);if(bucket>=0)--items_[color_index(mover)][bucket];moving.square=m.to();moving.orientation=o;MoveOutcome out;if(adjacent_enemies(moving.square,mover,m.piece)==1){auto enemy=single_adjacent_enemy(moving.square,mover,m.piece);const auto&t=OrientationTable::instance();int result=combat(t.top_gesture(moving.orientation),t.top_gesture(piece(enemy).orientation));if(result!=0){out.has_capture=true;out.captured=result>0?enemy:m.piece;Color winner=result>0?mover:opposite(mover);piece(out.captured).square=NoSquare;if(winner==Color::White)++captures_white_;else ++captures_black_;}}if(out.has_capture){Color lost=piece_color(out.captured);if(alive_count(lost)==0){reset_pieces();out.reset=true;}}side_to_move_=opposite(side_to_move_);if(remaining_board_plies_>0)--remaining_board_plies_;return out;}
++MoveOutcome Position::apply_generated_move(const Move&m,Orientation o,PieceId captured,bool has_capture,bool reset,UndoState&undo){undo={pieces_,side_to_move_,captures_white_,captures_black_,items_,quiz_white_,quiz_black_,remaining_board_plies_};const Color mover=side_to_move_;const int bucket=item_bucket(m.item);if(bucket>=0)--items_[color_index(mover)][bucket];auto&moving=piece(m.piece);moving.square=m.to();moving.orientation=o;MoveOutcome out;out.has_capture=has_capture;out.captured=captured;out.reset=reset;if(has_capture){const Color winner=captured==m.piece?opposite(mover):mover;piece(captured).square=NoSquare;if(winner==Color::White)++captures_white_;else++captures_black_;if(reset)reset_pieces();}side_to_move_=opposite(side_to_move_);if(remaining_board_plies_>0)--remaining_board_plies_;return out;}
+ void Position::undo_move(const UndoState&u){pieces_=u.pieces;side_to_move_=u.side_to_move;captures_white_=u.captures_white;captures_black_=u.captures_black;items_=u.items;quiz_white_=u.quiz_white;quiz_black_=u.quiz_black;remaining_board_plies_=u.remaining_board_plies;}
+ Key Position::key()const{Key k=0;for(int i=0;i<PieceCount;++i){const auto&p=pieces_[i];std::uint64_t sq=p.alive()?unsigned(p.square):64u;std::uint64_t o=p.alive()?p.orientation:0u;std::uint64_t f=(std::uint64_t(i)*65u+sq)*24u+o;k^=mix(0x123456789abcdef0ULL+f);}if(side_to_move_==Color::Black)k^=mix(0x3141592653589793ULL);k^=mix(0x1111000000000000ULL+unsigned(captures_white_));k^=mix(0x2222000000000000ULL+unsigned(captures_black_));k^=mix(0x2323000000000000ULL+unsigned(quiz_white_));k^=mix(0x2424000000000000ULL+unsigned(quiz_black_));k^=mix(0x2525000000000000ULL+unsigned(remaining_board_plies_+1));for(int s=0;s<2;++s)for(int b=0;b<3;++b)k^=mix(0x5555000000000000ULL+std::uint64_t(s*3+b)*0x10000ULL+unsigned(items_[s][b]));return k;}
+ Key Position::search_key()const{Key k=0;const auto&t=OrientationTable::instance();for(int i=0;i<PieceCount;++i){const auto&p=pieces_[i];std::uint64_t sq=p.alive()?unsigned(p.square):64u;std::uint64_t st=p.alive()?t.gesture_state_id(p.orientation):0u;std::uint64_t f=(std::uint64_t(i)*65u+sq)*32u+st;k^=mix(0xabcdef0123456789ULL+f);}if(side_to_move_==Color::Black)k^=mix(0x2718281828459045ULL);k^=mix(0x3333000000000000ULL+unsigned(captures_white_));k^=mix(0x4444000000000000ULL+unsigned(captures_black_));k^=mix(0x4545000000000000ULL+unsigned(quiz_white_));k^=mix(0x4646000000000000ULL+unsigned(quiz_black_));k^=mix(0x4747000000000000ULL+unsigned(remaining_board_plies_+1));for(int s=0;s<2;++s)for(int b=0;b<3;++b)k^=mix(0x7777000000000000ULL+std::uint64_t(s*3+b)*0x10000ULL+unsigned(items_[s][b]));return k;}
+diff -ru '--exclude=build' '--exclude=build-prof' rpsc_baseline/src/position.h rpsc_meta/src/position.h
+--- rpsc_baseline/src/position.h	2026-09-10 03:45:21.185528931 +0000
++++ rpsc_meta/src/position.h	2026-09-10 04:47:21.919509833 +0000
+@@ -9,6 +9,6 @@
+ struct UndoState { std::array<PieceState,PieceCount> pieces; Color side_to_move=Color::White; int captures_white=0,captures_black=0; std::array<std::array<int,3>,2> items{}; int quiz_white=0,quiz_black=0,remaining_board_plies=-1; };
+ struct MoveOutcome { PieceId captured=PieceId::W1; bool has_capture=false,reset=false; };
+ class Position { public: Position(); void reset(); Color side_to_move()const{return side_to_move_;} void set_side_to_move(Color c){side_to_move_=c;} const PieceState& piece(PieceId id)const{return pieces_[piece_index(id)];} PieceState& piece(PieceId id){return pieces_[piece_index(id)];} const auto& pieces()const{return pieces_;} bool occupied(Square,PieceId)const; int adjacent_enemies(Square,Color,PieceId)const; PieceId single_adjacent_enemy(Square,Color,PieceId)const; int captures(Color c)const{return c==Color::White?captures_white_:captures_black_;} int quiz(Color c)const{return c==Color::White?quiz_white_:quiz_black_;} int score(Color c)const{return quiz(c)+2*captures(c);} void set_match_context(int qw,int qb,int r){quiz_white_=qw;quiz_black_=qb;remaining_board_plies_=r;} int remaining_board_plies()const{return remaining_board_plies_;} int alive_count(Color)const; int item_count(Color s,int b)const{return items_[color_index(s)][b];} int item_count(Color s,Item i)const{int b=item_bucket(i);return b<0?0:item_count(s,b);} void set_items(Color s,int p,int r,int st){items_[color_index(s)]={p,r,st};} const std::array<int,3>& items(Color s)const{return items_[color_index(s)];} MoveOutcome do_move(const Move&,UndoState&); void undo_move(const UndoState&); bool is_legal_path(const Move&)const; Key key()const; Key search_key()const; std::string debug_string()const;
+-private: friend struct MoveGeneratorAccess; friend struct SearchAccess; bool validate_path(const Move&,Orientation* final_orientation)const; MoveOutcome apply_legal_move(const Move&,Orientation,UndoState&); void reset_pieces(); std::array<PieceState,PieceCount> pieces_{}; Color side_to_move_=Color::White; int captures_white_=0,captures_black_=0; std::array<std::array<int,3>,2> items_{}; int quiz_white_=0,quiz_black_=0,remaining_board_plies_=-1; };
++private: friend struct MoveGeneratorAccess; friend struct SearchAccess; bool validate_path(const Move&,Orientation* final_orientation)const; MoveOutcome apply_legal_move(const Move&,Orientation,UndoState&); MoveOutcome apply_generated_move(const Move&,Orientation,PieceId,bool,bool,UndoState&); void reset_pieces(); std::array<PieceState,PieceCount> pieces_{}; Color side_to_move_=Color::White; int captures_white_=0,captures_black_=0; std::array<std::array<int,3>,2> items_{}; int quiz_white_=0,quiz_black_=0,remaining_board_plies_=-1; };
+ }
+ #endif
+diff -ru '--exclude=build' '--exclude=build-prof' rpsc_baseline/src/protocol.cpp rpsc_meta/src/protocol.cpp
+--- rpsc_baseline/src/protocol.cpp	2026-09-10 03:51:28.969976912 +0000
++++ rpsc_meta/src/protocol.cpp	2026-09-10 03:50:17.643986872 +0000
+@@ -68,7 +68,7 @@
+         std::string command; in >> command;
+         if (command == "quit" || command == "exit") break;
+         if (command == "rpsc") {
+-            std::cout << "id name RPSC Engine 0.18.0\nid author Jungwoo Kim\nrpscok\n" << std::flush;
++            std::cout << "id name RPSC Engine 0.19.0\nid author Jungwoo Kim\nrpscok\n" << std::flush;
+         } else if (command == "isready") std::cout << "readyok\n" << std::flush;
+         else if (command == "newgame" || line == "position startpos") { engine.new_game(); std::cout << "ok\n" << std::flush; }
+         else if (command == "clear") { engine.clear_search(); std::cout << "ok\n" << std::flush; }
+diff -ru '--exclude=build' '--exclude=build-prof' rpsc_baseline/src/search.cpp rpsc_meta/src/search.cpp
+--- rpsc_baseline/src/search.cpp	2026-09-10 03:47:01.284771217 +0000
++++ rpsc_meta/src/search.cpp	2026-09-10 04:47:21.919890587 +0000
+@@ -7,22 +7,22 @@
+ #include <unordered_map>
+ #include <vector>
+ namespace rpsc {
+-struct SearchAccess{static MoveOutcome apply(Position&p,const Move&m,Orientation o,UndoState&u){
++struct SearchAccess{static MoveOutcome apply(Position&p,const Move&m,Orientation o,PieceId captured,bool has_capture,bool reset,UndoState&u){
+ #ifndef NDEBUG
+ Orientation checked;assert(p.validate_path(m,&checked)&&checked==o);
+ #endif
+-return p.apply_legal_move(m,o,u);}};
++return p.apply_generated_move(m,o,captured,has_capture,reset,u);}};
+ namespace { constexpr int MaxPly=64;constexpr int MaxSelectiveExtensions=2;constexpr Value AspirationWindow=50;constexpr int CountermoveBonus=120000;constexpr int ContinuationScale=2;constexpr int FollowupScale=4;constexpr int CaptureHistoryScale=4;constexpr std::size_t HistoryMoveSlots=PieceCount*64u*ItemActionCount;
+-int root_action_family(const Move&m){if(m.item==Item::Push)return 1;if(is_rotation(m.item))return 2;if(is_step(m.item))return 3;return 0;} struct OrderedMove{Move move{};int score=0;int capture_swing=0;Orientation final_orientation=0;}; std::size_t move_slot(const Move&m){std::size_t base=std::size_t(piece_index(m.piece))*64u+static_cast<unsigned>(m.to());return base*ItemActionCount+item_action_index(m.item);} std::uint64_t continuation_key(const Move&a,const Move&b){return std::uint64_t(move_slot(a))*HistoryMoveSlots+move_slot(b);} bool is_killer(const Move&m,const std::array<Move,2>&k,int i){return i>=0&&i<2&&k[i].path_length!=0&&m==k[i];} bool is_excluded(const Move&m,const std::vector<Move>&x){return std::any_of(x.begin(),x.end(),[&](const Move&o){return m==o;});} void bounded_add(int&v,int d){v+=d;if(v>100000||v<-100000)v/=2;}
++int root_action_family(const Move&m){if(m.item==Item::Push)return 1;if(is_rotation(m.item))return 2;if(is_step(m.item))return 3;return 0;} struct OrderedMove{Move move{};int score=0;int capture_swing=0;Orientation final_orientation=0;PieceId captured=PieceId::W1;bool has_capture=false;bool reset=false;}; std::size_t move_slot(const Move&m){std::size_t base=std::size_t(piece_index(m.piece))*64u+static_cast<unsigned>(m.to());return base*ItemActionCount+item_action_index(m.item);} std::uint64_t continuation_key(const Move&a,const Move&b){return std::uint64_t(move_slot(a))*HistoryMoveSlots+move_slot(b);} bool is_killer(const Move&m,const std::array<Move,2>&k,int i){return i>=0&&i<2&&k[i].path_length!=0&&m==k[i];} bool is_excluded(const Move&m,const std::vector<Move>&x){return std::any_of(x.begin(),x.end(),[&](const Move&o){return m==o;});} void bounded_add(int&v,int d){v+=d;if(v>100000||v<-100000)v/=2;}
+ }
+ struct Search::Context{SearchLimits limits;std::chrono::steady_clock::time_point start;std::uint64_t nodes=0;Depth seldepth=0;bool stopped=false;std::vector<int>&history;std::vector<int>&capture_history;std::array<std::array<Move,2>,MaxPly>killers{};std::unordered_map<std::size_t,Move>&countermoves;std::unordered_map<std::uint64_t,int>&continuation;std::unordered_map<std::uint64_t,int>&followup;std::unordered_map<Key,std::uint8_t>pressure_cache;explicit Context(Search&s):history(s.history_),capture_history(s.capture_history_),countermoves(s.countermoves_),continuation(s.continuation_),followup(s.followup_){} bool should_stop(){if(stopped)return true;if(limits.nodes&&nodes>=limits.nodes)return stopped=true;if(limits.movetime.count()>0&&(nodes&63ULL)==0&&std::chrono::steady_clock::now()-start>=limits.movetime)return stopped=true;return false;} int sparse_score(const std::unordered_map<std::uint64_t,int>&t,std::uint64_t k)const{auto it=t.find(k);return it==t.end()?0:it->second;} void bounded_sparse_add(std::unordered_map<std::uint64_t,int>&t,std::uint64_t k,int d){int&v=t[k];bounded_add(v,d);if(t.size()>250000)t.clear();} int history_score(const Move&m)const{return history[move_slot(m)];} int capture_history_score(const Move&m)const{return capture_history[move_slot(m)]/CaptureHistoryScale;} int continuation_score(const Move*prev,const Move*prev2,const Move&m)const{int s=0;if(prev&&prev->path_length)s+=sparse_score(continuation,continuation_key(*prev,m))/ContinuationScale;if(prev2&&prev2->path_length)s+=sparse_score(followup,continuation_key(*prev2,m))/FollowupScale;return s;} bool is_countermove(const Move*prev,const Move&m)const{if(!prev||!prev->path_length)return false;auto it=countermoves.find(move_slot(*prev));return it!=countermoves.end()&&it->second==m;} void record_quiet_cutoff(const Move&m,Depth depth,int ply,const Move*prev,const Move*prev2,const std::vector<Move>&quiets){int bonus=std::max(1,depth*depth);bounded_add(history[move_slot(m)],bonus);if(prev&&prev->path_length){bounded_sparse_add(continuation,continuation_key(*prev,m),2*bonus);countermoves[move_slot(*prev)]=m;if(countermoves.size()>16384)countermoves.clear();}if(prev2&&prev2->path_length)bounded_sparse_add(followup,continuation_key(*prev2,m),bonus);int penalty=std::max(1,bonus/2);for(const auto&q:quiets){if(q==m)continue;bounded_add(history[move_slot(q)],-penalty);if(prev&&prev->path_length)bounded_sparse_add(continuation,continuation_key(*prev,q),-penalty);if(prev2&&prev2->path_length)bounded_sparse_add(followup,continuation_key(*prev2,q),-std::max(1,penalty/2));}if(ply>=0&&ply<MaxPly&&killers[ply][0]!=m){killers[ply][1]=killers[ply][0];killers[ply][0]=m;}} void record_tactical_cutoff(const Move&m,Depth depth){bounded_add(capture_history[move_slot(m)],std::max(1,depth*depth*2));} int capture_pressure(Position&p){Key k=p.search_key();auto it=pressure_cache.find(k);if(it!=pressure_cache.end())return it->second;int pressure=0;for(const auto&m:generate_tactical_moves_info(p))if(m.capture_swing>0&&++pressure>=4)break;if(pressure_cache.size()>50000)pressure_cache.clear();pressure_cache.emplace(k,std::uint8_t(pressure));return pressure;} int capture_pressure_for(const Position&p,Color side){Position copy=p;copy.set_side_to_move(side);return capture_pressure(copy);} };
+ Search::Search(TranspositionTable&tt):tt_(tt),history_(HistoryMoveSlots,0),capture_history_(HistoryMoveSlots,0){} void Search::clear_memory(){std::fill(history_.begin(),history_.end(),0);std::fill(capture_history_.begin(),capture_history_.end(),0);countermoves_.clear();continuation_.clear();followup_.clear();root_cache_.clear();root_depth_cache_.clear();}
+-Value Search::quiescence(Position&p,Value alpha,Value beta,int ply,Context&c){if(p.remaining_board_plies()==0)return evaluate(p);++c.nodes;c.seldepth=std::max(c.seldepth,ply);if(ply>=MaxPly||c.should_stop())return evaluate(p);if(p.remaining_board_plies()==1){const auto moves=generate_search_moves_info(p);if(moves.empty())return evaluate(p);for(const auto&cur:moves){if(c.should_stop())return alpha;UndoState u;SearchAccess::apply(p,cur.move,cur.final_orientation,u);Value score=-evaluate(p);p.undo_move(u);++c.nodes;c.seldepth=std::max(c.seldepth,ply+1);if(score>=beta)return beta;alpha=std::max(alpha,score);}return alpha;}Value stand=evaluate(p);if(stand>=beta)return beta;if(stand>alpha)alpha=stand;auto info=generate_tactical_moves_info(p);std::vector<OrderedMove>ordered;ordered.reserve(info.size());for(const auto&e:info)ordered.push_back({e.move,e.capture_swing*100000+c.capture_history_score(e.move),e.capture_swing,e.final_orientation});std::stable_sort(ordered.begin(),ordered.end(),[](const auto&a,const auto&b){return a.score>b.score;});for(const auto&cur:ordered){UndoState u;SearchAccess::apply(p,cur.move,cur.final_orientation,u);Value score=-quiescence(p,-beta,-alpha,ply+1,c);p.undo_move(u);if(c.stopped)return alpha;if(score>=beta){c.record_tactical_cutoff(cur.move,1);return beta;}if(score>alpha)alpha=score;}return alpha;}
++Value Search::quiescence(Position&p,Value alpha,Value beta,int ply,Context&c){if(p.remaining_board_plies()==0)return evaluate(p);++c.nodes;c.seldepth=std::max(c.seldepth,ply);if(ply>=MaxPly||c.should_stop())return evaluate(p);if(p.remaining_board_plies()==1){const auto moves=generate_search_moves_info(p);if(moves.empty())return evaluate(p);for(const auto&cur:moves){if(c.should_stop())return alpha;UndoState u;SearchAccess::apply(p,cur.move,cur.final_orientation,cur.captured,cur.has_capture,cur.reset,u);Value score=-evaluate(p);p.undo_move(u);++c.nodes;c.seldepth=std::max(c.seldepth,ply+1);if(score>=beta)return beta;alpha=std::max(alpha,score);}return alpha;}Value stand=evaluate(p);if(stand>=beta)return beta;if(stand>alpha)alpha=stand;auto info=generate_tactical_moves_info(p);std::vector<OrderedMove>ordered;ordered.reserve(info.size());for(const auto&e:info)ordered.push_back({e.move,e.capture_swing*100000+c.capture_history_score(e.move),e.capture_swing,e.final_orientation,e.captured,e.has_capture,e.reset});std::stable_sort(ordered.begin(),ordered.end(),[](const auto&a,const auto&b){return a.score>b.score;});for(const auto&cur:ordered){UndoState u;SearchAccess::apply(p,cur.move,cur.final_orientation,cur.captured,cur.has_capture,cur.reset,u);Value score=-quiescence(p,-beta,-alpha,ply+1,c);p.undo_move(u);if(c.stopped)return alpha;if(score>=beta){c.record_tactical_cutoff(cur.move,1);return beta;}if(score>alpha)alpha=score;}return alpha;}
+ Value Search::negamax(Position&p,Depth depth,Value alpha,Value beta,int ply,Context&c,bool pv_node,const Move*prev,const Move*prev2,int extensions_used){if(p.remaining_board_plies()==0||ply>=MaxPly)return evaluate(p);if(depth<=0)return quiescence(p,alpha,beta,ply,c);++c.nodes;c.seldepth=std::max(c.seldepth,ply);if(c.should_stop())return evaluate(p);const Value original_alpha=alpha,original_beta=beta,static_eval=evaluate(p);Key key=p.search_key();const TTEntry*entry=tt_.probe(key);Move tt_move{};bool has_tt=entry&&entry->has_move;if(has_tt)tt_move=entry->best_move;if(entry&&entry->depth>=depth&&!pv_node){if(entry->bound==Bound::Exact)return entry->value;if(entry->bound==Bound::Lower&&entry->value>=beta)return entry->value;if(entry->bound==Bound::Upper&&entry->value<=alpha)return entry->value;}Color mover=p.side_to_move();Move best{};bool has_best=false;int move_index=0;std::vector<Move>quiets;quiets.reserve(20);bool searched_tt=false;if(has_tt&&p.is_legal_path(tt_move)){int own=p.captures(mover),opp=p.captures(opposite(mover));UndoState u;p.do_move(tt_move,u);int swing=(p.captures(mover)-own)-(p.captures(opposite(mover))-opp);bool extend=swing!=0&&extensions_used<MaxSelectiveExtensions;Value score=-negamax(p,depth-1+(extend?1:0),-beta,-alpha,ply+1,c,pv_node,&tt_move,prev,extensions_used+(extend?1:0));p.undo_move(u);searched_tt=true;move_index=1;if(c.stopped)return alpha;if(swing==0)quiets.push_back(tt_move);if(score>alpha){alpha=score;best=tt_move;has_best=true;}if(alpha>=beta){if(swing==0)c.record_quiet_cutoff(tt_move,depth,ply,prev,prev2,quiets);else c.record_tactical_cutoff(tt_move,depth);tt_.store(key,depth,alpha,Bound::Lower,&tt_move);return alpha;}}
+-const auto info=generate_search_moves_info(p);if(info.empty()){if(has_best){tt_.store(key,depth,alpha,Bound::Exact,&best);return alpha;}return evaluate(p);}int own_pressure=0;for(const auto&e:info)if(e.capture_swing>0&&++own_pressure>=4)break;bool inspect=depth>=4;int opponent_pressure=inspect?c.capture_pressure_for(p,opposite(mover)):0;std::vector<OrderedMove>ordered;ordered.reserve(info.size());for(const auto&e:info){const Move&m=e.move;if(searched_tt&&m==tt_move)continue;int score=c.history_score(m)+c.continuation_score(prev,prev2,m);if(c.is_countermove(prev,m))score+=CountermoveBonus;if(e.capture_swing>0)score+=500000+e.capture_swing*10000+c.capture_history_score(m);else if(e.capture_swing<0)score+=-250000+c.capture_history_score(m);if(ply<MaxPly&&is_killer(m,c.killers[ply],0))score+=200000;else if(ply<MaxPly&&is_killer(m,c.killers[ply],1))score+=150000;ordered.push_back({m,score,e.capture_swing,e.final_orientation});}std::sort(ordered.begin(),ordered.end(),[](const auto&a,const auto&b){return a.score>b.score;});for(const auto&cur:ordered){UndoState u;SearchAccess::apply(p,cur.move,cur.final_orientation,u);bool extend=cur.capture_swing!=0&&extensions_used<MaxSelectiveExtensions;int next_ext=extensions_used+(extend?1:0);Depth full=depth-1+(extend?1:0);Value score;if(move_index==0){score=-negamax(p,full,-beta,-alpha,ply+1,c,pv_node,&cur.move,prev,next_ext);}else{int hist=c.history_score(cur.move)+c.continuation_score(prev,prev2,cur.move);bool known=c.is_countermove(prev,cur.move)||(ply<MaxPly&&(is_killer(cur.move,c.killers[ply],0)||is_killer(cur.move,c.killers[ply],1)))||hist>4*depth*depth;bool reducible=!pv_node&&cur.capture_swing==0&&depth>=4&&move_index>=4&&!known;int reduction=1;if(reducible){int opp_after=c.capture_pressure(p),own_after=c.capture_pressure_for(p,mover);bool defensive=opponent_pressure>0&&opp_after<opponent_pressure;bool threat=own_after>own_pressure;if(defensive||threat)reducible=false;if(reducible){Value child_static=-evaluate(p);bool improving=child_static>=static_eval+8;if(!improving&&cur.move.item==Item::None&&depth>=7&&move_index>=10&&hist<=0)reduction=2;}}if(reducible){Depth rd=std::max<Depth>(0,full-reduction);score=-negamax(p,rd,-alpha-1,-alpha,ply+1,c,false,&cur.move,prev,next_ext);if(score>alpha)score=-negamax(p,full,-alpha-1,-alpha,ply+1,c,false,&cur.move,prev,next_ext);}else score=-negamax(p,full,-alpha-1,-alpha,ply+1,c,false,&cur.move,prev,next_ext);if(score>alpha&&score<beta)score=-negamax(p,full,-beta,-alpha,ply+1,c,pv_node,&cur.move,prev,next_ext);}p.undo_move(u);++move_index;if(c.stopped)return alpha;if(cur.capture_swing==0)quiets.push_back(cur.move);if(score>alpha){alpha=score;best=cur.move;has_best=true;}if(alpha>=beta){if(cur.capture_swing==0)c.record_quiet_cutoff(cur.move,depth,ply,prev,prev2,quiets);else c.record_tactical_cutoff(cur.move,depth);break;}}
++const auto info=generate_search_moves_info(p);if(info.empty()){if(has_best){tt_.store(key,depth,alpha,Bound::Exact,&best);return alpha;}return evaluate(p);}int own_pressure=0;for(const auto&e:info)if(e.capture_swing>0&&++own_pressure>=4)break;bool inspect=depth>=4;int opponent_pressure=inspect?c.capture_pressure_for(p,opposite(mover)):0;std::vector<OrderedMove>ordered;ordered.reserve(info.size());for(const auto&e:info){const Move&m=e.move;if(searched_tt&&m==tt_move)continue;int score=c.history_score(m)+c.continuation_score(prev,prev2,m);if(c.is_countermove(prev,m))score+=CountermoveBonus;if(e.capture_swing>0)score+=500000+e.capture_swing*10000+c.capture_history_score(m);else if(e.capture_swing<0)score+=-250000+c.capture_history_score(m);if(ply<MaxPly&&is_killer(m,c.killers[ply],0))score+=200000;else if(ply<MaxPly&&is_killer(m,c.killers[ply],1))score+=150000;ordered.push_back({m,score,e.capture_swing,e.final_orientation,e.captured,e.has_capture,e.reset});}std::sort(ordered.begin(),ordered.end(),[](const auto&a,const auto&b){return a.score>b.score;});for(const auto&cur:ordered){UndoState u;SearchAccess::apply(p,cur.move,cur.final_orientation,cur.captured,cur.has_capture,cur.reset,u);bool extend=cur.capture_swing!=0&&extensions_used<MaxSelectiveExtensions;int next_ext=extensions_used+(extend?1:0);Depth full=depth-1+(extend?1:0);Value score;if(move_index==0){score=-negamax(p,full,-beta,-alpha,ply+1,c,pv_node,&cur.move,prev,next_ext);}else{int hist=c.history_score(cur.move)+c.continuation_score(prev,prev2,cur.move);bool known=c.is_countermove(prev,cur.move)||(ply<MaxPly&&(is_killer(cur.move,c.killers[ply],0)||is_killer(cur.move,c.killers[ply],1)))||hist>4*depth*depth;bool reducible=!pv_node&&cur.capture_swing==0&&depth>=4&&move_index>=4&&!known;int reduction=1;if(reducible){int opp_after=c.capture_pressure(p),own_after=c.capture_pressure_for(p,mover);bool defensive=opponent_pressure>0&&opp_after<opponent_pressure;bool threat=own_after>own_pressure;if(defensive||threat)reducible=false;if(reducible){Value child_static=-evaluate(p);bool improving=child_static>=static_eval+8;if(!improving&&cur.move.item==Item::None&&depth>=7&&move_index>=10&&hist<=0)reduction=2;}}if(reducible){Depth rd=std::max<Depth>(0,full-reduction);score=-negamax(p,rd,-alpha-1,-alpha,ply+1,c,false,&cur.move,prev,next_ext);if(score>alpha)score=-negamax(p,full,-alpha-1,-alpha,ply+1,c,false,&cur.move,prev,next_ext);}else score=-negamax(p,full,-alpha-1,-alpha,ply+1,c,false,&cur.move,prev,next_ext);if(score>alpha&&score<beta)score=-negamax(p,full,-beta,-alpha,ply+1,c,pv_node,&cur.move,prev,next_ext);}p.undo_move(u);++move_index;if(c.stopped)return alpha;if(cur.capture_swing==0)quiets.push_back(cur.move);if(score>alpha){alpha=score;best=cur.move;has_best=true;}if(alpha>=beta){if(cur.capture_swing==0)c.record_quiet_cutoff(cur.move,depth,ply,prev,prev2,quiets);else c.record_tactical_cutoff(cur.move,depth);break;}}
+ Bound bound=Bound::Exact;if(alpha<=original_alpha)bound=Bound::Upper;else if(alpha>=original_beta)bound=Bound::Lower;tt_.store(key,depth,alpha,bound,has_best?&best:nullptr);return alpha;}
+-SearchResult Search::run(Position root,const SearchLimits&limits){tt_.new_search();Context c(*this);c.limits=limits;c.limits.multipv=std::clamp(c.limits.multipv,1,8);c.start=std::chrono::steady_clock::now();c.pressure_cache.reserve(8192);SearchResult result;if(root.remaining_board_plies()==0){result.value=evaluate(root);return result;}const auto root_info=generate_search_moves_info(root);if(root_info.empty())return result;std::vector<Move>root_moves;root_moves.reserve(root_info.size());std::unordered_map<Move,int,MoveHash>root_swing;root_swing.reserve(root_info.size()*2);std::unordered_map<Move,Orientation,MoveHash>root_orientation;root_orientation.reserve(root_info.size()*2);for(const auto&e:root_info){root_moves.push_back(e.move);root_swing.emplace(e.move,e.capture_swing);root_orientation.emplace(e.move,e.final_orientation);}Key root_key=root.search_key();std::vector<RootLine>prior;if(auto it=root_cache_.find(root_key);it!=root_cache_.end())prior=it->second;Depth cached_depth=0;if(auto it=root_depth_cache_.find(root_key);it!=root_depth_cache_.end())cached_depth=it->second;std::unordered_map<Move,Value,MoveHash>prior_value;auto rebuild=[&]{prior_value.clear();prior_value.reserve(prior.size()*2+1);for(const auto&line:prior)prior_value[line.move]=line.value;};rebuild();Move previous_best=root_moves.front();Value previous_value=0;if(!prior.empty()){auto legal=std::find_if(prior.begin(),prior.end(),[&](const RootLine&line){return std::find(root_moves.begin(),root_moves.end(),line.move)!=root_moves.end();});if(legal!=prior.end()){previous_best=legal->move;previous_value=legal->value;}}result.has_move=true;result.best_move=previous_best;result.value=evaluate(root);result.pv={previous_best};int wanted=std::min<int>(c.limits.multipv,root_moves.size());if(int(prior.size())<wanted)cached_depth=0;if(limits.movetime.count()>0&&!prior.empty()&&cached_depth>0){result.has_move=true;result.best_move=previous_best;result.value=previous_value;result.depth=cached_depth;result.lines.assign(prior.begin(),prior.begin()+wanted);result.pv=result.lines.front().pv;}
+-auto build_pv=[&](const Move&first,Depth depth){std::vector<Move>pv;Position p=root;Move m=first;int max=std::min(MaxPly,depth+MaxSelectiveExtensions+2);for(int ply=0;ply<max&&m.path_length;++ply){if(!p.is_legal_path(m))break;pv.push_back(m);UndoState u;p.do_move(m,u);const TTEntry*entry=tt_.probe(p.search_key());m=entry&&entry->has_move?entry->best_move:Move{};}return pv;};struct RootPass{Move best{};Value value=-Infinity;std::vector<RootLine>scores;};auto search_root=[&](Depth depth,Value alpha,Value beta,const std::vector<Move>&excluded,const Move&preferred){std::vector<OrderedMove>ordered;ordered.reserve(root_moves.size());for(const auto&m:root_moves){if(is_excluded(m,excluded))continue;int swing=root_swing[m];int score=c.history_score(m);if(m==preferred)score+=1200000;if(auto it=prior_value.find(m);it!=prior_value.end())score+=1000*it->second;if(swing>0)score+=500000+swing*10000+c.capture_history_score(m);else if(swing<0)score+=-250000+c.capture_history_score(m);ordered.push_back({m,score,swing,root_orientation.at(m)});}std::stable_sort(ordered.begin(),ordered.end(),[](const auto&a,const auto&b){return a.score>b.score;});RootPass pass;if(ordered.empty())return pass;pass.best=ordered.front().move;int move_index=0;Value current_alpha=alpha;std::array<int,4>family_seen{};for(const auto&cur:ordered){int family=root_action_family(cur.move);int family_index=family_seen[std::size_t(family)]++;UndoState u;SearchAccess::apply(root,cur.move,cur.final_orientation,u);bool extend=cur.capture_swing!=0;Depth child=depth-1+(extend?1:0);int ext=extend?1:0;Value score;if(move_index==0)score=-negamax(root,child,-beta,-current_alpha,1,c,true,&cur.move,nullptr,ext);else{Value old=-Infinity;if(auto it=prior_value.find(cur.move);it!=prior_value.end())old=it->second;int quota=family==0?28:20;bool ranked_late=old>-Infinity&&old+12<previous_value;bool reduce=c.limits.multipv==1&&depth>=3&&cur.capture_swing==0&&family_index>=quota&&(ranked_late||move_index>=56);if(reduce){Depth rd=std::max<Depth>(0,child-1);score=-negamax(root,rd,-current_alpha-1,-current_alpha,1,c,false,&cur.move,nullptr,ext);if(score>current_alpha)score=-negamax(root,child,-current_alpha-1,-current_alpha,1,c,false,&cur.move,nullptr,ext);}else score=-negamax(root,child,-current_alpha-1,-current_alpha,1,c,false,&cur.move,nullptr,ext);if(score>current_alpha&&score<beta)score=-negamax(root,child,-beta,-current_alpha,1,c,true,&cur.move,nullptr,ext);}root.undo_move(u);++move_index;if(c.stopped)return pass;pass.scores.push_back({cur.move,score,{}});if(score>pass.value){pass.value=score;pass.best=cur.move;}if(score>current_alpha)current_alpha=score;if(current_alpha>=beta)break;}return pass;};
++SearchResult Search::run(Position root,const SearchLimits&limits){tt_.new_search();Context c(*this);c.limits=limits;c.limits.multipv=std::clamp(c.limits.multipv,1,8);c.start=std::chrono::steady_clock::now();c.pressure_cache.reserve(8192);SearchResult result;if(root.remaining_board_plies()==0){result.value=evaluate(root);return result;}const auto root_info=generate_search_moves_info(root);if(root_info.empty())return result;std::vector<Move>root_moves;root_moves.reserve(root_info.size());std::unordered_map<Move,int,MoveHash>root_swing;root_swing.reserve(root_info.size()*2);std::unordered_map<Move,Orientation,MoveHash>root_orientation;std::unordered_map<Move,PieceId,MoveHash>root_captured;std::unordered_map<Move,unsigned,MoveHash>root_flags;root_orientation.reserve(root_info.size()*2);root_captured.reserve(root_info.size()*2);root_flags.reserve(root_info.size()*2);for(const auto&e:root_info){root_moves.push_back(e.move);root_swing.emplace(e.move,e.capture_swing);root_orientation.emplace(e.move,e.final_orientation);root_captured.emplace(e.move,e.captured);root_flags.emplace(e.move,(e.has_capture?1u:0u)|(e.reset?2u:0u));}Key root_key=root.search_key();std::vector<RootLine>prior;if(auto it=root_cache_.find(root_key);it!=root_cache_.end())prior=it->second;Depth cached_depth=0;if(auto it=root_depth_cache_.find(root_key);it!=root_depth_cache_.end())cached_depth=it->second;std::unordered_map<Move,Value,MoveHash>prior_value;auto rebuild=[&]{prior_value.clear();prior_value.reserve(prior.size()*2+1);for(const auto&line:prior)prior_value[line.move]=line.value;};rebuild();Move previous_best=root_moves.front();Value previous_value=0;if(!prior.empty()){auto legal=std::find_if(prior.begin(),prior.end(),[&](const RootLine&line){return std::find(root_moves.begin(),root_moves.end(),line.move)!=root_moves.end();});if(legal!=prior.end()){previous_best=legal->move;previous_value=legal->value;}}result.has_move=true;result.best_move=previous_best;result.value=evaluate(root);result.pv={previous_best};int wanted=std::min<int>(c.limits.multipv,root_moves.size());if(int(prior.size())<wanted)cached_depth=0;if(limits.movetime.count()>0&&!prior.empty()&&cached_depth>0){result.has_move=true;result.best_move=previous_best;result.value=previous_value;result.depth=cached_depth;result.lines.assign(prior.begin(),prior.begin()+wanted);result.pv=result.lines.front().pv;}
++auto build_pv=[&](const Move&first,Depth depth){std::vector<Move>pv;Position p=root;Move m=first;int max=std::min(MaxPly,depth+MaxSelectiveExtensions+2);for(int ply=0;ply<max&&m.path_length;++ply){if(!p.is_legal_path(m))break;pv.push_back(m);UndoState u;p.do_move(m,u);const TTEntry*entry=tt_.probe(p.search_key());m=entry&&entry->has_move?entry->best_move:Move{};}return pv;};struct RootPass{Move best{};Value value=-Infinity;std::vector<RootLine>scores;};auto search_root=[&](Depth depth,Value alpha,Value beta,const std::vector<Move>&excluded,const Move&preferred){std::vector<OrderedMove>ordered;ordered.reserve(root_moves.size());for(const auto&m:root_moves){if(is_excluded(m,excluded))continue;int swing=root_swing[m];int score=c.history_score(m);if(m==preferred)score+=1200000;if(auto it=prior_value.find(m);it!=prior_value.end())score+=1000*it->second;if(swing>0)score+=500000+swing*10000+c.capture_history_score(m);else if(swing<0)score+=-250000+c.capture_history_score(m);unsigned flags=root_flags.at(m);ordered.push_back({m,score,swing,root_orientation.at(m),root_captured.at(m),(flags&1u)!=0,(flags&2u)!=0});}std::stable_sort(ordered.begin(),ordered.end(),[](const auto&a,const auto&b){return a.score>b.score;});RootPass pass;if(ordered.empty())return pass;pass.best=ordered.front().move;int move_index=0;Value current_alpha=alpha;std::array<int,4>family_seen{};for(const auto&cur:ordered){int family=root_action_family(cur.move);int family_index=family_seen[std::size_t(family)]++;UndoState u;SearchAccess::apply(root,cur.move,cur.final_orientation,cur.captured,cur.has_capture,cur.reset,u);bool extend=cur.capture_swing!=0;Depth child=depth-1+(extend?1:0);int ext=extend?1:0;Value score;if(move_index==0)score=-negamax(root,child,-beta,-current_alpha,1,c,true,&cur.move,nullptr,ext);else{Value old=-Infinity;if(auto it=prior_value.find(cur.move);it!=prior_value.end())old=it->second;int quota=family==0?28:20;bool ranked_late=old>-Infinity&&old+12<previous_value;bool reduce=c.limits.multipv==1&&depth>=3&&cur.capture_swing==0&&family_index>=quota&&(ranked_late||move_index>=56);if(reduce){Depth rd=std::max<Depth>(0,child-1);score=-negamax(root,rd,-current_alpha-1,-current_alpha,1,c,false,&cur.move,nullptr,ext);if(score>current_alpha)score=-negamax(root,child,-current_alpha-1,-current_alpha,1,c,false,&cur.move,nullptr,ext);}else score=-negamax(root,child,-current_alpha-1,-current_alpha,1,c,false,&cur.move,nullptr,ext);if(score>current_alpha&&score<beta)score=-negamax(root,child,-beta,-current_alpha,1,c,true,&cur.move,nullptr,ext);}root.undo_move(u);++move_index;if(c.stopped)return pass;pass.scores.push_back({cur.move,score,{}});if(score>pass.value){pass.value=score;pass.best=cur.move;}if(score>current_alpha)current_alpha=score;if(current_alpha>=beta)break;}return pass;};
+ Depth start_depth=(limits.movetime.count()>0&&cached_depth>0&&!prior.empty())?cached_depth:1;for(Depth depth=start_depth;depth<=std::max(1,limits.depth);++depth){Value alpha=-Infinity,beta=Infinity,window=AspirationWindow;if(depth>=4&&result.has_move){alpha=std::max(-Infinity,previous_value-window);beta=std::min(Infinity,previous_value+window);}RootPass pass;while(true){pass=search_root(depth,alpha,beta,{},previous_best);if(c.stopped)break;if(pass.value<=alpha&&alpha>-Infinity){window*=2;alpha=std::max(-Infinity,previous_value-window);beta=std::min(Infinity,previous_value+window);continue;}if(pass.value>=beta&&beta<Infinity){window*=2;alpha=std::max(-Infinity,previous_value-window);beta=std::min(Infinity,previous_value+window);continue;}break;}if(c.stopped)break;std::vector<RootLine>completed{{pass.best,pass.value,build_pv(pass.best,depth)}};std::vector<Move>excluded{pass.best};auto ordering=std::move(pass.scores);for(int rank=1;rank<wanted;++rank){Move preferred=rank<int(result.lines.size())?result.lines[rank].move:Move{};auto next=search_root(depth,-Infinity,Infinity,excluded,preferred);if(c.stopped||next.best.path_length==0)break;completed.push_back({next.best,next.value,build_pv(next.best,depth)});excluded.push_back(next.best);}if(c.stopped||int(completed.size())!=wanted)break;std::stable_sort(completed.begin(),completed.end(),[](const auto&a,const auto&b){return a.value>b.value;});previous_best=completed.front().move;previous_value=completed.front().value;prior=std::move(ordering);std::stable_sort(prior.begin(),prior.end(),[](const auto&a,const auto&b){return a.value>b.value;});rebuild();result.has_move=true;result.best_move=previous_best;result.value=previous_value;result.depth=depth;result.lines=std::move(completed);result.pv=result.lines.front().pv;root_cache_[root_key]=result.lines;root_depth_cache_[root_key]=depth;if(root.remaining_board_plies()>0&&depth>=root.remaining_board_plies())break;}
+ if(root_cache_.size()>256){root_cache_.clear();root_depth_cache_.clear();}result.nodes=c.nodes;result.seldepth=c.seldepth;result.elapsed=std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now()-c.start);return result;}
+ }
+diff -ru '--exclude=build' '--exclude=build-prof' rpsc_baseline/src/tt.cpp rpsc_meta/src/tt.cpp
+--- rpsc_baseline/src/tt.cpp	2026-09-10 03:51:28.966436068 +0000
++++ rpsc_meta/src/tt.cpp	2026-09-10 04:25:55.715140153 +0000
+@@ -2,8 +2,9 @@
+ #include <algorithm>
+ namespace rpsc {
+ TranspositionTable::TranspositionTable(std::size_t mb){resize(mb);} 
+-void TranspositionTable::resize(std::size_t mb){std::size_t bytes=std::max<std::size_t>(1,mb)*1024*1024;std::size_t n=std::max<std::size_t>(1,bytes/sizeof(table_[0]));table_.assign(n,{});} 
++void TranspositionTable::resize(std::size_t mb){std::size_t bytes=std::max<std::size_t>(1,mb)*1024*1024;std::size_t requested=std::max<std::size_t>(1,bytes/sizeof(table_[0]));
++std::size_t n=1;while((n<<1)<=requested)n<<=1;table_.assign(n,{});} 
+ void TranspositionTable::clear(){for(auto&c:table_)for(auto&e:c)e=TTEntry{};generation_=1;} 
+-const TTEntry* TranspositionTable::probe(Key key)const{if(table_.empty())return nullptr;const auto&c=table_[std::size_t(key)%table_.size()];for(const auto&e:c)if(e.bound!=Bound::None&&e.key==key)return &e;return nullptr;} 
+-void TranspositionTable::store(Key key,Depth depth,Value value,Bound bound,const Move*move){auto&c=table_[std::size_t(key)%table_.size()];TTEntry*slot=&c[0];for(auto&e:c){if(e.key==key){slot=&e;break;}int score=(e.bound==Bound::None?-100000:0)+e.depth*8+(e.generation==generation_?16:0);int best=(slot->bound==Bound::None?-100000:0)+slot->depth*8+(slot->generation==generation_?16:0);if(score<best)slot=&e;}if(slot->key==key&&slot->depth>depth&&bound!=Bound::Exact)return;slot->key=key;slot->depth=depth;slot->value=value;slot->bound=bound;slot->generation=generation_;if(move){slot->best_move=*move;slot->has_move=true;}else slot->has_move=false;}
++const TTEntry* TranspositionTable::probe(Key key)const{if(table_.empty())return nullptr;const auto&c=table_[std::size_t(key)&(table_.size()-1)];for(const auto&e:c)if(e.bound!=Bound::None&&e.key==key)return &e;return nullptr;} 
++void TranspositionTable::store(Key key,Depth depth,Value value,Bound bound,const Move*move){auto&c=table_[std::size_t(key)&(table_.size()-1)];TTEntry*slot=&c[0];for(auto&e:c){if(e.key==key){slot=&e;break;}int score=(e.bound==Bound::None?-100000:0)+e.depth*8+(e.generation==generation_?16:0);int best=(slot->bound==Bound::None?-100000:0)+slot->depth*8+(slot->generation==generation_?16:0);if(score<best)slot=&e;}if(slot->key==key&&slot->depth>depth&&bound!=Bound::Exact)return;slot->key=key;slot->depth=depth;slot->value=value;slot->bound=bound;slot->generation=generation_;if(move){slot->best_move=*move;slot->has_move=true;}else slot->has_move=false;}
+ }

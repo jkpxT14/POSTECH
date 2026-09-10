@@ -24,8 +24,7 @@ void parse_limits(std::istringstream& in, SearchLimits& limits) {
     while (in >> key) {
         if (key == "depth") in >> limits.depth;
         else if (key == "movetime") {
-            long long ms;
-            in >> ms;
+            long long ms; in >> ms;
             limits.movetime = std::chrono::milliseconds(ms);
             limits.depth = 84;
         } else if (key == "nodes") in >> limits.nodes;
@@ -33,10 +32,7 @@ void parse_limits(std::istringstream& in, SearchLimits& limits) {
     }
 }
 void print_search(const Position& position, const SearchResult& result) {
-    if (!result.has_move) {
-        std::cout << "bestmove (none)\n";
-        return;
-    }
+    if (!result.has_move) { std::cout << "bestmove (none)\n" << std::flush; return; }
     const auto ms = std::max<std::int64_t>(1, result.elapsed.count());
     const auto nps = result.nodes * 1000ULL / static_cast<std::uint64_t>(ms);
     const bool white = position.side_to_move() == Color::White;
@@ -59,7 +55,7 @@ void print_search(const Position& position, const SearchResult& result) {
         if (!result.pv.empty()) std::cout << " pv " << format_pv(position, result.pv);
         std::cout << '\n';
     }
-    std::cout << "bestmove " << format_move(result.best_move) << '\n';
+    std::cout << "bestmove " << format_move(result.best_move) << '\n' << std::flush;
 }
 }  // namespace
 
@@ -69,118 +65,99 @@ int run_protocol() {
     while (std::getline(std::cin, line)) {
         if (line.empty()) continue;
         std::istringstream in(line);
-        std::string command;
-        in >> command;
+        std::string command; in >> command;
         if (command == "quit" || command == "exit") break;
         if (command == "rpsc") {
-            std::cout << "id name RPSC Engine 0.18.0\nid author Jungwoo Kim\nrpscok\n";
-        } else if (command == "isready") std::cout << "readyok\n";
-        else if (command == "newgame" || line == "position startpos") {
-            engine.new_game(); std::cout << "ok\n";
-        } else if (command == "clear") {
-            engine.clear_search(); std::cout << "ok\n";
-        } else if (command == "items") {
+            std::cout << "id name RPSC Engine 0.19.0\nid author Jungwoo Kim\nrpscok\n" << std::flush;
+        } else if (command == "isready") std::cout << "readyok\n" << std::flush;
+        else if (command == "newgame" || line == "position startpos") { engine.new_game(); std::cout << "ok\n" << std::flush; }
+        else if (command == "clear") { engine.clear_search(); std::cout << "ok\n" << std::flush; }
+        else if (command == "items") {
             std::string side; int pu, ro, st; Color color;
             if (!(in >> side >> pu >> ro >> st) || !parse_side(side, color) || pu < 0 || ro < 0 || st < 0)
-                std::cout << "error invalid items\n";
-            else { engine.position().set_items(color, pu, ro, st); std::cout << "ok\n"; }
+                std::cout << "error invalid items\n" << std::flush;
+            else { engine.position().set_items(color, pu, ro, st); std::cout << "ok\n" << std::flush; }
         } else if (command == "gain") {
             std::string side, item; Color color;
-            if (!(in >> side >> item) || !parse_side(side, color) ||
-                (item != "Pu" && item != "Ro" && item != "St"))
-                std::cout << "error invalid gain\n";
+            if (!(in >> side >> item) || !parse_side(side, color) || (item != "Pu" && item != "Ro" && item != "St"))
+                std::cout << "error invalid gain\n" << std::flush;
             else {
                 auto inventory = engine.position().items(color);
                 int bucket = item == "Pu" ? 0 : item == "Ro" ? 1 : 2;
                 ++inventory[bucket];
                 engine.position().set_items(color, inventory[0], inventory[1], inventory[2]);
-                std::cout << "ok\n";
+                std::cout << "ok\n" << std::flush;
             }
         } else if (command == "side") {
             std::string side; Color color;
-            if (!(in >> side) || !parse_side(side, color)) std::cout << "error invalid side\n";
-            else { engine.position().set_side_to_move(color); std::cout << "ok\n"; }
+            if (!(in >> side) || !parse_side(side, color)) std::cout << "error invalid side\n" << std::flush;
+            else { engine.position().set_side_to_move(color); std::cout << "ok\n" << std::flush; }
         } else if (command == "match") {
             int white_quiz, black_quiz, remaining;
             if (!(in >> white_quiz >> black_quiz >> remaining) || white_quiz < 0 || black_quiz < 0 || remaining < -1)
-                std::cout << "error invalid match context\n";
-            else { engine.position().set_match_context(white_quiz, black_quiz, remaining); std::cout << "ok\n"; }
-        } else if (command == "show" || command == "d") std::cout << engine.position().debug_string();
-        else if (command == "legal") std::cout << generate_legal_moves(engine.position()).size() << '\n';
-        else if (command == "moves") std::cout << generate_search_moves_info(engine.position()).size() << '\n';
-        else if (command == "perft") {
-            int depth; in >> depth; std::cout << "perft " << depth << ' ' << engine.perft(depth) << '\n';
-        } else if (command == "divide") {
+                std::cout << "error invalid match context\n" << std::flush;
+            else { engine.position().set_match_context(white_quiz, black_quiz, remaining); std::cout << "ok\n" << std::flush; }
+        } else if (command == "show" || command == "d") { std::cout << engine.position().debug_string() << std::flush; }
+        else if (command == "eval") {
+            std::cout << "eval " << std::fixed << std::setprecision(2)
+                      << double(evaluate_white(engine.position())) / ScoreUnit << '\n' << std::flush;
+        }
+        else if (command == "legal") std::cout << generate_legal_moves(engine.position()).size() << '\n' << std::flush;
+        else if (command == "moves") std::cout << generate_search_moves_info(engine.position()).size() << '\n' << std::flush;
+        else if (command == "perft") { int depth; in >> depth; std::cout << "perft " << depth << ' ' << engine.perft(depth) << '\n' << std::flush; }
+        else if (command == "divide") {
             int depth; in >> depth;
-            if (depth < 1) std::cout << "error invalid depth\n";
+            if (depth < 1) std::cout << "error invalid depth\n" << std::flush;
             else {
-                std::uint64_t total = 0;
-                auto moves = generate_legal_moves(engine.position());
+                std::uint64_t total = 0; auto moves = generate_legal_moves(engine.position());
                 for (const auto& move : moves) {
-                    UndoState undo;
-                    engine.position().do_move(move, undo);
-                    auto n = perft(engine.position(), depth - 1);
-                    engine.position().undo_move(undo);
-                    total += n;
+                    UndoState undo; engine.position().do_move(move, undo);
+                    auto n = perft(engine.position(), depth - 1); engine.position().undo_move(undo); total += n;
                     std::cout << format_move(move) << ' ' << n << '\n';
                 }
-                std::cout << "total " << total << '\n';
+                std::cout << "total " << total << '\n' << std::flush;
             }
         } else if (command == "move") {
-            std::string rest; std::getline(in, rest);
-            if (!rest.empty() && rest.front() == ' ') rest.erase(rest.begin());
+            std::string rest; std::getline(in, rest); if (!rest.empty() && rest.front() == ' ') rest.erase(rest.begin());
             Move move;
-            if (!parse_move(engine.position(), rest, move)) std::cout << "error illegal move\n";
-            else { UndoState undo; engine.position().do_move(move, undo); std::cout << "ok\n"; }
+            if (!parse_move(engine.position(), rest, move)) std::cout << "error illegal move\n" << std::flush;
+            else { UndoState undo; engine.position().do_move(move, undo); std::cout << "ok\n" << std::flush; }
         } else if (command == "go") {
-            SearchLimits limits; limits.depth = 8; parse_limits(in, limits);
-            print_search(engine.position(), engine.go(limits));
+            SearchLimits limits; limits.depth = 8; parse_limits(in, limits); print_search(engine.position(), engine.go(limits));
         } else if (command == "chooseorder") {
-            SearchLimits limits; limits.depth = 4; parse_limits(in, limits);
-            auto choice = engine.choose_order(limits);
-            std::cout << "info order first score " << std::fixed << std::setprecision(2)
-                      << double(choice.white_value) / ScoreUnit << " depth " << choice.probe.depth
-                      << " nodes " << choice.probe.nodes << '\n';
-            std::cout << "info order second score " << std::fixed << std::setprecision(2)
-                      << double(-choice.white_value) / ScoreUnit << '\n';
-            std::cout << "bestorder " << (choice.choose_first ? "first" : "second") << '\n';
+            SearchLimits limits; limits.depth = 4; parse_limits(in, limits); auto choice = engine.choose_order(limits);
+            std::cout << "info order first score " << std::fixed << std::setprecision(2) << double(choice.white_value) / ScoreUnit
+                      << " depth " << choice.probe.depth << " nodes " << choice.probe.nodes << '\n';
+            std::cout << "info order second score " << std::fixed << std::setprecision(2) << double(-choice.white_value) / ScoreUnit << '\n';
+            std::cout << "bestorder " << (choice.choose_first ? "first" : "second") << '\n' << std::flush;
         } else if (command == "chooseitem") {
             std::string side; Color chooser;
-            if (!(in >> side) || !parse_side(side, chooser)) {
-                std::cout << "error invalid chooseitem\n"; continue;
+            if (!(in >> side) || !parse_side(side, chooser)) { std::cout << "error invalid chooseitem\n" << std::flush; continue; }
+            SearchLimits limits; limits.depth = 8; parse_limits(in, limits); auto choice = engine.choose_item(chooser, limits);
+            for (std::size_t i = 0; i < choice.lines.size(); ++i) {
+                const auto& x = choice.lines[i]; Value value = chooser == Color::White ? x.white_value : -x.white_value;
+                std::cout << "info item " << i + 1 << ' ' << item_name(x.bucket) << " score " << std::fixed << std::setprecision(2)
+                          << double(value) / ScoreUnit << " depth " << x.probe.depth << " nodes " << x.probe.nodes << '\n';
             }
-            SearchLimits limits; limits.depth = 8; parse_limits(in, limits);
-            auto choice = engine.choose_item(chooser, limits);
+            std::cout << "bestitem " << (choice.best_bucket >= 0 ? item_name(choice.best_bucket) : "(none)") << '\n' << std::flush;
+        } else if (command == "chooseinitial") {
+            SearchLimits limits; limits.depth = 8; parse_limits(in, limits); auto choice = engine.choose_initial(limits);
             for (std::size_t i = 0; i < choice.lines.size(); ++i) {
                 const auto& x = choice.lines[i];
-                Value value = chooser == Color::White ? x.white_value : -x.white_value;
-                std::cout << "info item " << i + 1 << ' ' << item_name(x.bucket) << " score "
-                          << std::fixed << std::setprecision(2) << double(value) / ScoreUnit
+                std::cout << "info initial " << i + 1 << ' ' << (x.choose_first ? "first" : "second") << ' ' << item_name(x.bucket)
+                          << " score " << std::fixed << std::setprecision(2) << double(x.chooser_value) / ScoreUnit
                           << " depth " << x.probe.depth << " nodes " << x.probe.nodes << '\n';
             }
-            std::cout << "bestitem " << (choice.best_bucket >= 0 ? item_name(choice.best_bucket) : "(none)") << '\n';
-        } else if (command == "chooseinitial") {
-            SearchLimits limits; limits.depth = 8; parse_limits(in, limits);
-            auto choice = engine.choose_initial(limits);
-            for (std::size_t i = 0; i < choice.lines.size(); ++i) {
-                const auto& x = choice.lines[i];
-                std::cout << "info initial " << i + 1 << ' ' << (x.choose_first ? "first" : "second")
-                          << ' ' << item_name(x.bucket) << " score " << std::fixed << std::setprecision(2)
-                          << double(x.chooser_value) / ScoreUnit << " depth " << x.probe.depth
-                          << " nodes " << x.probe.nodes << '\n';
-            }
             std::cout << "bestinitial " << (choice.choose_first ? "first" : "second") << ' '
-                      << (choice.best_bucket >= 0 ? item_name(choice.best_bucket) : "(none)") << '\n';
+                      << (choice.best_bucket >= 0 ? item_name(choice.best_bucket) : "(none)") << '\n' << std::flush;
         } else if (command == "bench") {
-            engine.new_game(); SearchLimits limits; limits.depth = 4;
-            auto result = engine.go(limits);
-            std::cout << "bench depth 4 nodes " << result.nodes << " time " << result.elapsed.count()
-                      << " ms bestmove " << (result.has_move ? format_move(result.best_move) : "(none)") << '\n';
+            engine.new_game(); SearchLimits limits; limits.depth = 4; auto result = engine.go(limits);
+            std::cout << "bench depth 4 nodes " << result.nodes << " time " << result.elapsed.count() << " ms bestmove "
+                      << (result.has_move ? format_move(result.best_move) : "(none)") << '\n' << std::flush;
         } else if (command == "help") {
-            std::cout << "newgame | items W/B pu ro st | gain W/B Pu/Ro/St | match Wquiz Bquiz remainingPlies | side W/B | move NOTATION | go depth N | go movetime MS [multipv N] | chooseorder | chooseitem W/B | chooseinitial | legal | moves | perft N | divide N | bench | show | clear | quit\n";
-        } else std::cout << "error unknown command\n";
+            std::cout << "newgame | items W/B pu ro st | gain W/B Pu/Ro/St | match Wquiz Bquiz remainingPlies | side W/B | move NOTATION | eval | go depth N | go movetime MS [multipv N] | chooseorder | chooseitem W/B | chooseinitial | legal | moves | perft N | divide N | bench | show | clear | quit\n" << std::flush;
+        } else std::cout << "error unknown command\n" << std::flush;
     }
     return 0;
 }
 }  // namespace rpsc
-
