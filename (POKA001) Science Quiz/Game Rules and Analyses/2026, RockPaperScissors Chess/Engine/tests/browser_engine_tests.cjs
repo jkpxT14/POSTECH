@@ -30,12 +30,12 @@ for(let i=0;i<4;i++){
 s.rem=0;assert(search(s,{depth:1,ms:10,multipv:3}).best===null,'terminal move');
 console.log('Browser engine: legal-path/successor checks and '+cases+' exact endgame rank checks passed');
 `,worker);
-// Replay the textbook's existing records with the UI's actual notation parser.
+// Replay all textbook game records with the UI's actual notation parser.
 const games=fs.readFileSync(path.join(base,'Games.tex'),'utf8');let counts=[];
 for(const block of games.matchAll(/\\begin\{gamerecord\}([\s\S]*?)\\end\{gamerecord\}/g)){
  const rows=block[1].trim().split('\n').map(l=>l.trim().replace(/\s*&\s*/,' ').replace(/\\\\\s*$/,''));
  ui.record='[Event "Regression"]\n[White "POSTECH"]\n[Black "KAIST"]\n[Result "*"]\n\n'+rows.join('\n');
  counts.push(vm.runInContext('(()=>{let g=parseAndReplayDetailed(record).game;return [g.rounds.length,g.teams.POSTECH.captures,g.teams.KAIST.captures]})()',ui));
 }
-assert.deepStrictEqual(JSON.parse(JSON.stringify(counts)),[[20,3,3],[20,2,6],[20,3,1],[20,3,3]]);
-console.log('Handbook: four games / 80 quiz rounds replayed; captures match');
+assert.deepStrictEqual(JSON.parse(JSON.stringify(counts)),[[20,3,3],[20,2,6],[20,3,1],[20,3,3],[20,7,6]]);
+console.log('Handbook: five games / 100 quiz rounds replayed; captures match');
