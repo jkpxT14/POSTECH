@@ -19,7 +19,11 @@ $\displaystyle\frac{\partial f}{\partial x_i},\ \partial_i f$ & Partial derivati
 $\displaystyle\int_a^b f(x)\,\dd x$ & Definite integral over $[a,b]$. \\
 $\displaystyle\iint_D f\,\dd A$ & Double integral over $D$. \\
 $\displaystyle\iiint_\Omega f\,\dd V$ & Triple integral over $\Omega$. \\
-$\displaystyle\oint_C f(z)\,\dd z$ & Contour integral over a closed curve $C$. \\
+$\displaystyle\int_C f(z)\,\dd z$ & Contour integral along an oriented contour $C$. \\
+$\displaystyle\oint_C f(z)\,\dd z$ & Contour integral over a closed contour $C$. \\
+$-C$ & The contour $C$ with the opposite orientation. \\
+$\gamma^{-1}$ & Reversed parametrized path $\gamma$, when unambiguous; not a functional inverse. \\
+$\PV,\ \mathrm{P.V.}$ & Principal value; in particular, the Cauchy principal value of a singular or improper integral. \\
 \addlinespace[0.26em]
 $\displaystyle\sum_{k=1}^{n} a_k$ & Finite sum. \\
 $\displaystyle\sum_{k=1}^{\infty} a_k$ & Infinite series. \\
@@ -97,11 +101,16 @@ $\|f\|_{L^\infty(\Omega)}$ & $L^\infty$-norm $\displaystyle\esssup_{x\in\Omega}|
 $B_r(x)$ & Open ball of radius $r$ centered at $x$. \\*
 $\overline{B}_r(x)$ & Closed ball of radius $r$ centered at $x$. \\
 \addlinespace[0.26em]
+$\widehat{\C}=\C\cup\{\infty\}$ & Extended complex plane, equivalently the Riemann sphere. \\
 $z=x+iy$ & Complex number with real part $x$ and imaginary part $y$. \\
 $\RePart z$ & Real part of $z$. \\
 $\ImPart z$ & Imaginary part of $z$; distinct from lowercase $\im$ for image. \\
 $\overline{z}$ & Complex conjugate. \\
 $|z|$ & Complex modulus. \\
-$\arg z$ & Argument of $z$. \\
-$\Res(f;a),\ \operatorname{Res}_{z=a}f(z)$ & Residue of $f$ at $a$. \\
+$\arg z$ & Argument of a nonzero complex number $z$; its values differ by integer multiples of $2\pi$. \\
+$\Arg z$ & Principal argument of $z\ne0$, with $-\pi<\Arg z\le\pi$. \\
+$\log z$ & Complex logarithm of $z\ne0$; a branch is specified when a single-valued logarithm is required. \\
+$\Log z=\ln|z|+i\Arg z$ & Principal complex logarithm for $z\ne0$. \\
+$\Res(f;a),\ \operatorname{Res}_{z=a}f(z)$ & Residue of $f$ at a finite point $a$. \\
+$\Res(f;\infty),\ \operatorname{Res}_{z=\infty}f(z)$ & Residue of $f$ at infinity. \\
 \end{notationtable}
