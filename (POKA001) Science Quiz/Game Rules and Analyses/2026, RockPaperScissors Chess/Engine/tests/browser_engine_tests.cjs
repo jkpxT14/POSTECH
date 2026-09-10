@@ -37,5 +37,5 @@ for(const block of games.matchAll(/\\begin\{gamerecord\}([\s\S]*?)\\end\{gamerec
  ui.record='[Event "Regression"]\n[White "POSTECH"]\n[Black "KAIST"]\n[Result "*"]\n\n'+rows.join('\n');
  counts.push(vm.runInContext('(()=>{let g=parseAndReplayDetailed(record).game;return [g.rounds.length,g.teams.POSTECH.captures,g.teams.KAIST.captures]})()',ui));
 }
-assert.deepStrictEqual(JSON.parse(JSON.stringify(counts)),[[20,3,3],[20,2,6],[20,3,1],[20,3,3],[20,7,6]]);
-console.log('Handbook: five games / 100 quiz rounds replayed; captures match');
+assert.deepStrictEqual(JSON.parse(JSON.stringify(counts)),[[20,3,3],[20,2,6],[20,3,1],[20,3,3],[20,6,7],[20,7,6]]);
+console.log('Handbook: six games / 120 quiz rounds replayed; captures match');
