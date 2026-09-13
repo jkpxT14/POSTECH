@@ -19,8 +19,9 @@
     and collections use calligraphic letters when useful. Named operators are
     set upright.
 
-    Round parentheses are used for ordered tuples and matrix delimiters. Square
-    brackets are used for closed intervals and for area notation such as
+    Round parentheses are preferred for ordered tuples, sequences, and matrix
+    delimiters; square brackets are an accepted alternative for matrices. Square
+    brackets are also used for closed intervals and for area notation such as
     $[ABC]$. Braces are used for sets. In set-builder notation, the condition is
     separated by $\mid$, as in $\{x\in A\mid P(x)\}$. Determinants may be
     enclosed by vertical bars because a determinant is a scalar.
@@ -194,7 +195,8 @@
         $f|_A$ & restriction of $f$ to $A$ \\
         $f\colon X\hookrightarrow Y$ & an injective map \\
         $f\colon X\twoheadrightarrow Y$ & a surjective map \\
-        $f\colon X\xrightarrow{\sim}Y$ & an isomorphism; for sets without additional structure, equivalently a bijection \\
+        $f\colon X\bijarrow Y$ & a bijective map \\
+        $f\colon X\xrightarrow{\sim}Y$ & an isomorphism \\
         $X\cong Y$ & $X$ and $Y$ are isomorphic; in topology, this means homeomorphic \\
         $f(A)$ & the image of $A$ under $f$ \\
         $f^{-1}(B)$ & the inverse image, or preimage, of $B$ \\
@@ -269,6 +271,9 @@
         $\arcsinh x$ & the inverse hyperbolic sine \\
         $\arccosh x$ & the principal inverse hyperbolic cosine, with values in $[0,\infty)$ \\
         $\arctanh x$ & the inverse hyperbolic tangent on $(-1,1)$ \\
+        $\arcsech x$ & the principal inverse hyperbolic secant on $(0,1]$ \\
+        $\arccsch x$ & the principal inverse hyperbolic cosecant on $\R\setminus\{0\}$ \\
+        $\arccoth x$ & the principal inverse hyperbolic cotangent on $(-\infty,-1)\cup(1,\infty)$ \\
         $C^k(I)$ & the space of $k$ times continuously differentiable functions on $I$ \\
         $C^\infty(I)$ & the space of smooth functions on $I$ \\
         $\displaystyle\frac{\partial f}{\partial x_i}$ & the partial derivative of $f$ with respect to $x_i$ \\
@@ -304,7 +309,10 @@
         $\ImPart z$, $\Im z$ & the imaginary part of $z$ \\
         $\overline{z}$ & the complex conjugate of $z$ \\
         $|z|$ & the modulus of $z$ \\
-        $\arg z$ & an argument of $z$ \\
+        $\arg z$ & the multivalued argument of $z\neq0$ \\
+        $\Arg z$ & the principal argument, with $-\pi<\Arg z\leq\pi$ \\
+        $\log z$ & the multivalued complex logarithm \\
+        $\Log z=\ln|z|+i\Arg z$ & the principal complex logarithm \\
         $\displaystyle\oint_C f(z)\dd z$ & a contour integral around a closed curve $C$ \\
         $\Res(f;a)$ & the residue of $f$ at $a$ \\
     \end{longtable}
@@ -412,7 +420,7 @@
         $y_h$ & the homogeneous part of a solution \\
         $y_p$ & a particular solution \\
         $c_1,c_2,\dots$ & arbitrary constants in a general solution \\
-        $W(y_1,y_2)(t)$ & the Wronskian of $y_1$ and $y_2$ \\
+        $W(y_1,\dots,y_n)(t)$ & the Wronskian of $y_1,\dots,y_n$ \\
         $\mathcal{L}\{f(t)\}(s)$ & the Laplace transform of $f(t)$ \\
         $\widehat f(\boldsymbol{\xi})$ & the Fourier transform under the normalization above \\
     \end{longtable}

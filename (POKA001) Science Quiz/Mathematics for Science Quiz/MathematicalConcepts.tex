@@ -205,7 +205,7 @@
         \[
             |A|=|B|
             \qquad\text{or}\qquad
-            A\xrightarrow{\sim}B.
+            A\bijarrow B.
         \]
         Thus cardinality compares the sizes of finite and infinite sets through
         one-to-one correspondences rather than through geometric containment.
@@ -226,7 +226,7 @@
         A set $A$ is countable if it is finite or if there exists a bijection
         $f\colon A\to\N$. In the countably infinite case,
         \[
-            \exists f\colon A\xrightarrow{\sim}\N,
+            \exists f\colon A\bijarrow\N,
             \qquad
             |A|=|\N|=\aleph_0.
         \]
@@ -273,7 +273,7 @@
         If there exists an injection $f\colon A\hookrightarrow B$ and an injection
         $g\colon B\hookrightarrow A$, then there exists a bijection
         \[
-            h\colon A\xrightarrow{\sim}B.
+            h\colon A\bijarrow B.
         \]
         Thus two sets have the same cardinality once each can be embedded into
         the other.
@@ -678,6 +678,9 @@
             $\arcsinh x$ & $\R$ & $\R$ & odd & none \\
             $\arccosh x$ & $[1,\infty)$ & $[0,\infty)$ & neither & none \\
             $\arctanh x$ & $(-1,1)$ & $\R$ & odd & none \\
+            $\arcsech x$ & $(0,1]$ & $[0,\infty)$ & neither & none \\
+            $\arccsch x$ & $\R\setminus\{0\}$ & $\R\setminus\{0\}$ & odd & none \\
+            $\arccoth x$ & $(-\infty,-1)\cup(1,\infty)$ & $\R\setminus\{0\}$ & odd & none \\
         \end{longtable}
         }
     \end{formula}
@@ -764,6 +767,9 @@
             Half angle &
             $\displaystyle\sin^2\frac{x}{2}=\frac{1-\cos x}{2},\quad
             \cos^2\frac{x}{2}=\frac{1+\cos x}{2}$ \\
+            Half angle &
+            $\displaystyle\tan^2\frac{x}{2}=\frac{1-\cos x}{1+\cos x}
+            \quad(1+\cos x\neq0)$ \\
             Product-to-sum &
             $\displaystyle2\sin x\sin y=\cos(x-y)-\cos(x+y)$ \\
             Product-to-sum &
@@ -793,6 +799,15 @@
             $\displaystyle\arccosh x=\ln\!\left(x+\sqrt{x^2-1}\right)\ (x\geq1)$ \\
             Inverse hyperbolic &
             $\displaystyle\arctanh x=\frac12\ln\!\left(\frac{1+x}{1-x}\right)\ (|x|<1)$ \\
+            Inverse hyperbolic &
+            $\displaystyle\arcsech x=\arccosh\!\left(\frac1x\right)
+            \quad(0<x\leq1)$ \\
+            Inverse hyperbolic &
+            $\displaystyle\arccsch x=\arcsinh\!\left(\frac1x\right)
+            \quad(x\neq0)$ \\
+            Inverse hyperbolic &
+            $\displaystyle\arccoth x=\arctanh\!\left(\frac1x\right)
+            \quad(|x|>1)$ \\
             Synthesis &
             $\displaystyle a\cos x+b\sin x
             =R\cos(x-\alpha),\quad
@@ -834,6 +849,7 @@
         before differentiating.
     \end{strategy}
 
+    \Needspace{12\baselineskip}
     \begin{formula}[Derivative and Antiderivative Table]
         The following table records the basic one-variable forms. Affine changes
         of variable are handled by the chain rule and substitution. The constant
@@ -881,6 +897,9 @@
             $\arcsin x$ & $\displaystyle\frac{1}{\sqrt{1-x^2}}$ & $x\arcsin x+\sqrt{1-x^2}$ \\
             $\arccos x$ & $\displaystyle-\frac{1}{\sqrt{1-x^2}}$ & $x\arccos x-\sqrt{1-x^2}$ \\
             $\arctan x$ & $\displaystyle\frac{1}{1+x^2}$ & $x\arctan x-\displaystyle\frac{1}{2}\ln(1+x^2)$ \\
+            $\arcsec x$ & $\displaystyle\frac{1}{|x|\sqrt{x^2-1}}$ & $x\arcsec x-\ln\!\left(|x|+\sqrt{x^2-1}\right)$ \\
+            $\arccsc x$ & $\displaystyle-\frac{1}{|x|\sqrt{x^2-1}}$ & $x\arccsc x+\ln\!\left(|x|+\sqrt{x^2-1}\right)$ \\
+            $\arccot x$ & $\displaystyle-\frac{1}{1+x^2}$ & $x\arccot x+\displaystyle\frac{1}{2}\ln(1+x^2)$ \\
             $\sinh x$ & $\cosh x$ & $\cosh x$ \\
             $\cosh x$ & $\sinh x$ & $\sinh x$ \\
             $\tanh x$ & $\sech^2x$ & $\ln(\cosh x)$ \\
@@ -890,6 +909,9 @@
             $\arcsinh x$ & $\displaystyle\frac{1}{\sqrt{x^2+1}}$ & $x\arcsinh x-\sqrt{x^2+1}$ \\
             $\arccosh x$ & $\displaystyle\frac{1}{\sqrt{x-1}\sqrt{x+1}}$ & $x\arccosh x-\sqrt{x^2-1}$ \\
             $\arctanh x$ & $\displaystyle\frac{1}{1-x^2}$ & $x\arctanh x+\displaystyle\frac{1}{2}\ln(1-x^2)$ \\
+            $\arcsech x$ & $\displaystyle-\frac{1}{x\sqrt{1-x^2}}$ & $x\arcsech x+\arcsin x$ \\
+            $\arccsch x$ & $\displaystyle-\frac{1}{|x|\sqrt{1+x^2}}$ & $x\arccsch x+\arcsinh|x|$ \\
+            $\arccoth x$ & $\displaystyle\frac{1}{1-x^2}$ & $x\arccoth x+\displaystyle\frac{1}{2}\ln(x^2-1)$ \\
             $\displaystyle\frac{1}{x^2+a^2}$ & $\displaystyle-\frac{2x}{(x^2+a^2)^2}$ & $\displaystyle\frac{1}{a}\arctan\frac{x}{a}\quad(a>0)$ \\
             $\displaystyle\frac{1}{x^2-a^2}$ & $\displaystyle-\frac{2x}{(x^2-a^2)^2}$ & $\displaystyle\frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|\quad(a>0)$ \\
             $\displaystyle\frac{1}{a^2-x^2}$ & $\displaystyle\frac{2x}{(a^2-x^2)^2}$ & $\displaystyle\frac{1}{2a}\ln\left|\frac{a+x}{a-x}\right|\quad(a>0)$ \\
@@ -1122,6 +1144,14 @@
             \sum_{n=0}^{\infty}\frac{x^{2n+1}}{2n+1}
             \qquad (|x|<1).
         \]
+        Finally,
+        \[
+            \arcsin x
+            =
+            \sum_{n=0}^{\infty}
+            \frac{\binom{2n}{n}}{4^n(2n+1)}x^{2n+1}
+            \qquad (|x|\leq1).
+        \]
     \end{formula}
 
     \begin{formula}[Binomial Series]
@@ -1179,6 +1209,14 @@
             \sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}
             =
             \frac{\pi}{4}.
+        \]
+        Two immediate Basel-sum consequences are
+        \[
+            \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^2}
+            =\frac{\pi^2}{12},
+            \qquad
+            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^2}
+            =\frac{\pi^2}{8}.
         \]
     \end{formula}
 
@@ -1902,8 +1940,8 @@
         \[
             \lim\limits_{n\to\infty}a_n=0.
         \]
-        Equivalently, if $\lim\limits_{n\to\infty}a_n$ does not exist or is not $0$,
-        then $\sum_{n=1}^{\infty}a_n$ diverges.
+        Equivalently, if $\lim\nolimits_{n\to\infty}a_n$ does not exist or is not
+        $0$, then $\sum\nolimits_{n=1}^{\infty}a_n$ diverges.
     \end{theorem}
 
     \begin{strategy}
@@ -1968,8 +2006,14 @@
     \end{definition}
 
     \begin{definition}[Gradient, Divergence, Curl, and Laplacian]
-        For a scalar-valued function $f(x,y,z)$ and a vector field
-        $\mathbf{F}=(P,Q,R)^{\mathsf T}$, we write
+        For a scalar field $f\colon U\to\R$ and a vector field
+        $\mathbf{F}\colon U\to\R^3$ with
+        \[
+            \mathbf{F}(x,y,z)
+            =
+            \bigl(P(x,y,z),Q(x,y,z),R(x,y,z)\bigr)^{\mathsf T},
+        \]
+        we write
         \[
             \nabla f
             =
@@ -2070,9 +2114,10 @@
         Equivalently, in compact symbolic form,
         {\small
         \[
-            \forall\varepsilon>0\;\exists\delta>0\;\forall\mathbf{h}\in\R^n:\quad
-            \bigl(\mathbf{a}+\mathbf{h}\in U\land0<\|\mathbf{h}\|<\delta\bigr)
-            \Rightarrow
+            \forall\varepsilon>0\;\exists\delta>0\;\forall\mathbf{h}\in\R^n,
+            \quad
+            \bigl(\mathbf{a}+\mathbf{h}\in U\ \land\ 0<\|\mathbf{h}\|<\delta\bigr)
+            \Longrightarrow
             \|\mathbf{F}(\mathbf{a}+\mathbf{h})-\mathbf{F}(\mathbf{a})
             -D\mathbf{F}(\mathbf{a})\mathbf{h}\|<\varepsilon\|\mathbf{h}\|.
         \]
@@ -2117,7 +2162,7 @@
         \]
     \end{theorem}
 
-    \begin{theorem}[Fubini's Theorem]
+    \begin{theorem}[Iterated-Integral Form of Fubini's Theorem]
         Let $R\subseteq\R^2$ be a bounded region of the form
         \[
             R=\{(x,y)\mid a\leq x\leq b,\ g_1(x)\leq y\leq g_2(x)\},
@@ -5190,7 +5235,8 @@
     \end{theorem}
 
     \begin{theorem}[Singular Value Decomposition; SVD]
-        Every real or complex matrix $\mathbf{A}\in\C^{m\times n}$ can be
+        Let $\F\in\{\R,\C\}$. Every matrix
+        $\mathbf{A}\in\F^{m\times n}$ can be
         written as
         \[
             \mathbf{A}
@@ -5229,8 +5275,8 @@
             =
             \mathbf{v}_j.
         \]
-        Ordinary eigenvectors are precisely the generalized eigenvectors of
-        rank $1$.
+        Ordinary eigenvectors are precisely the nonzero vectors satisfying the
+        condition with $k=1$.
     \end{definition}
 
     \begin{theorem}[Jordan Canonical Form]
@@ -5468,17 +5514,14 @@
     \end{remark}
 
     \begin{definition}[Wronskian]
-        For two differentiable functions $y_1$ and $y_2$, their Wronskian is
+        For differentiable functions $y_1,\dots,y_n$, their Wronskian is
         \[
-            W(y_1,y_2)(t)
+            W(y_1,\dots,y_n)(t)
             =
-            \begin{vmatrix}
-                y_1(t) & y_2(t) \\
-                y_1'(t) & y_2'(t)
-            \end{vmatrix}
-            =
-            y_1(t)y_2'(t)-y_1'(t)y_2(t).
+            \det\!\left(y_j^{(i-1)}(t)\right)_{1\leq i,j\leq n}.
         \]
+        For $n=2$, this is
+        $W(y_1,y_2)=y_1y_2'-y_1'y_2$.
     \end{definition}
 
     \begin{proposition}[Wronskian and Linear Independence]
@@ -5672,7 +5715,7 @@
             $1$ & $\displaystyle\frac{1}{s}$ & $\RePart(s)>0$ \\
             $t^n$ & $\displaystyle\frac{n!}{s^{n+1}}$ & $n\in\Nzero$ \\
             $e^{at}$ & $\displaystyle\frac{1}{s-a}$ & $\RePart(s)>a$ \\
-            $t^ne^{at}$ & $\displaystyle\frac{n!}{(s-a)^{n+1}}$ & $n\in\Nzero,\ s>a$ \\
+            $t^ne^{at}$ & $\displaystyle\frac{n!}{(s-a)^{n+1}}$ & $n\in\Nzero,\ \RePart(s)>a$ \\
             $\sin at$ & $\displaystyle\frac{a}{s^2+a^2}$ & $\RePart(s)>0$ \\
             $\cos at$ & $\displaystyle\frac{s}{s^2+a^2}$ & $\RePart(s)>0$ \\
             $e^{at}\sin bt$ & $\displaystyle\frac{b}{(s-a)^2+b^2}$ & $\RePart(s)>a$ \\
@@ -5698,11 +5741,11 @@
         \]
         If
         \[
-            (f*g)(t)=\int_0^t f(\tau)g(t-\tau)\dd\tau,
+            (f\ast g)(t)=\int_0^t f(\tau)g(t-\tau)\dd\tau,
         \]
         then
         \[
-            \mathcal{L}\{f*g\}=\mathcal{L}\{f\}\mathcal{L}\{g\}.
+            \mathcal{L}\{f\ast g\}=\mathcal{L}\{f\}\mathcal{L}\{g\}.
         \]
     \end{proposition}
 
@@ -6423,8 +6466,8 @@
     \end{theorem}
 
     \begin{formula}[Regions Cut by Hyperplanes in General Position]
-        The maximum number of regions into which $n$ hyperplanes in general
-        position divide $d$-dimensional space is
+        For $n$ hyperplanes in general position in dimension $d$, the maximum
+        number of regions is
         \[
             R_d(n)=\sum_{k=0}^{d}\binom{n}{k}.
         \]
@@ -7250,10 +7293,10 @@
 
     \begin{formula}[Monty Hall Problem]
         There are three doors, exactly one of which hides a prize. The contestant
-        first chooses a door. A host who knows the prize location must then open
-        one of the other doors that hides no prize; whenever two such doors are
-        available, the host chooses between them by a rule independent of the
-        prize location. The contestant is then offered the unopened door.
+        first chooses a door. A host who knows the prize location always opens
+        an unchosen door that hides no prize and then offers the unique remaining
+        unopened door. When the host has two eligible doors, the protocol fixes
+        how one is selected.
         Under this protocol, staying wins with probability $1/3$, whereas
         switching wins with probability $2/3$.
     \end{formula}
@@ -7326,7 +7369,7 @@
         to the given line.
     \end{fact}
 
-    \begin{definition}[Euclidean, Hyperbolic, and Elliptic Geometry]
+    \begin{definition}[Euclidean, Hyperbolic, Spherical, and Elliptic Geometry]
         The three constant-curvature geometries are distinguished by their
         parallel behavior and triangle angle sums.
         \begin{longtable}{@{}L{0.22\textwidth}L{0.34\textwidth}L{0.30\textwidth}@{}}
@@ -7345,8 +7388,13 @@
 
             Euclidean & Exactly one parallel & Equal to $\pi$ \\
             Hyperbolic & Infinitely many disjoint lines & Less than $\pi$ \\
-            Elliptic / spherical & No disjoint geodesic line & Greater than $\pi$ \\
+            Spherical & No disjoint great circle & Greater than $\pi$ \\
+            Elliptic & No disjoint geodesic line & Greater than $\pi$ \\
         \end{longtable}
+        Spherical geometry uses the sphere itself, where antipodal points are
+        distinct. Elliptic geometry identifies antipodal points; the two models
+        share positive curvature and the same local triangle-angle behavior but
+        are not the same global geometry.
     \end{definition}
 
     \begin{theorem}[Parallel Postulate and Triangle Angle Sum]
@@ -9142,7 +9190,8 @@
     \end{definition}
 
     \begin{theorem}[Primitive Root Theorem; Gauss's Theorem on Primitive Roots]
-        A primitive root modulo $n$ exists if and only if
+        With the convention that the trivial group $(\Z/1\Z)^\times$ is cyclic,
+        a primitive root modulo $n$ exists if and only if
         \[
             n\in\{1,2,4,p^k,2p^k\},
         \]
@@ -9911,8 +9960,11 @@
 
     \begin{definition}[Unit, Zero Divisor, and Characteristic]
         In a ring $R$ with identity, a \emph{unit} is an element $u$ having a
-        multiplicative inverse. A nonzero element $a$ is a \emph{zero divisor}
-        if $ab=0$ for some nonzero $b$. The characteristic of $R$ is the least
+        multiplicative inverse. A nonzero element $a$ is a \emph{left zero
+        divisor} if $ab=0$ for some nonzero $b$, and a \emph{right zero divisor}
+        if $ba=0$ for some nonzero $b$. In a commutative ring these notions
+        coincide and $a$ is simply called a \emph{zero divisor}. The
+        characteristic of $R$ is the least
         positive integer $n$ s.t.
         \[
             n1_R=0,
@@ -10580,19 +10632,10 @@
         decomposition is the JSJ decomposition of the irreducible pieces.
     \end{theorem}
 
-    \begin{fact}[The Eight Thurston Geometries]
-        The eight model geometries are
-        \[
-            S^3,
-            \quad \R^3,
-            \quad \mathbb{H}^3,
-            \quad S^2\times\R,
-            \quad \mathbb{H}^2\times\R,
-            \quad \widetilde{\SL}_2(\R),
-            \quad \mathrm{Nil},
-            \quad \mathrm{Sol}.
-        \]
-    \end{fact}
+    \begin{remark}
+        The recognition cue is ``eight Thurston geometries''; the theorem above
+        gives the complete list once, without repeating it in a separate fact.
+    \end{remark}
 
     \chapter{Miscellaneous Topics}
 
@@ -11006,22 +11049,15 @@
         comparisons such as $11^9$ versus $9^{11}$ or $e^\pi$ versus $\pi^e$.
     \end{strategy}
 
-    \begin{formula}[More Useful Series Values]
-        The following values are common in fast calculation problems:
+    \begin{formula}[Elementary Telescoping Series]
+        Two common fast calculations are
         \[
             \sum_{n=1}^{\infty}\frac{1}{n(n+1)}=1,
             \qquad
             \sum_{n=1}^{\infty}\frac{1}{n(n+2)}=\frac34,
         \]
-        \[
-            \sum_{n=1}^{\infty}\frac{1}{(2n-1)^4}
-            =
-            \left(1-\frac{1}{16}\right)\frac{\pi^4}{90}
-            =
-            \frac{\pi^4}{96},
-        \]
-        where the value of $\sum_{n=1}^{\infty}n^{-4}$ is recorded with the
-        classical series values in the Calculus chapter.
+        Both follow by partial fractions and telescoping. Classical zeta and
+        alternating-series values are collected in the Calculus chapter.
     \end{formula}
 
     \begin{strategy}

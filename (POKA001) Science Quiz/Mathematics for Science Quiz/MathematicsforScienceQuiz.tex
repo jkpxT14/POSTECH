@@ -1,11 +1,23 @@
 \documentclass[11pt,oneside]{book}
 
-\pdfminorversion=7
+\usepackage{iftex}
+\ifPDFTeX
+    \pdfminorversion=7
+\fi
 
 % Page layout and typography
 \usepackage[a4paper,margin=1in]{geometry}
-\usepackage[T5,T1]{fontenc}
-\usepackage{lmodern}
+\ifPDFTeX
+    \usepackage[T1]{fontenc}
+    \usepackage{lmodern}
+\else
+    \usepackage{fontspec}
+    \setmainfont{Latin Modern Roman}[
+        SmallCapsFont={Latin Modern Roman Caps}
+    ]
+    \setsansfont{Latin Modern Sans}
+    \setmonofont{Latin Modern Mono}
+\fi
 \usepackage{microtype}
 \usepackage{etoolbox}
 \usepackage{needspace}
@@ -13,7 +25,11 @@
 % Mathematics
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
-\usepackage{bbm}
+\IfFileExists{dsfont.sty}{%
+    \usepackage{dsfont}%
+}{%
+    \newcommand{\mathds}[1]{\mathbb{##1}}%
+}
 
 % Tables
 \usepackage{array}
@@ -36,7 +52,11 @@
 }
 
 % Canonical personal-name rendering when an additional font encoding is needed.
-\DeclareRobustCommand{\NgoBaoChau}{{\fontencoding{T5}\selectfont Ngô Bảo Châu}}
+\ifPDFTeX
+    \DeclareRobustCommand{\NgoBaoChau}{Ng\^o B\~ao Ch\^au}
+\else
+    \DeclareRobustCommand{\NgoBaoChau}{Ngô Bảo Châu}
+\fi
 
 % Institution colors
 % Full-name commands reproduce official English names exactly. Short-name
@@ -387,6 +407,11 @@
 \DeclareMathOperator{\arcsinh}{arcsinh}
 \DeclareMathOperator{\arccosh}{arccosh}
 \DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Log}{Log}
 \DeclareMathOperator{\lengthop}{length}
 \DeclareMathOperator{\area}{area}
 \DeclareMathOperator{\vol}{vol}
@@ -443,8 +468,9 @@
 % Combinatorics notation
 \newcommand{\multichoose}[2]{\left(\!\binom{#1}{#2}\!\right)}
 \newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
-\newcommand{\indicator}[1]{\mathbbm{1}_{#1}}
+\newcommand{\indicator}[1]{\mathds{1}_{#1}}
 \newcommand{\ones}{\mathbf{1}}
+\DeclareRobustCommand{\bijarrow}{\mathrel{\lhook\joinrel\twoheadrightarrow}}
 
 \begin{document}
 
@@ -465,8 +491,8 @@
 
         \vspace{0.55cm}
 
-        {\large Second Edition\par}
-        {\normalsize September 2026\par}
+        {\large 2026 Science War Edition\par}
+        {\normalsize September 13, 2026\par}
 
         \vspace{1.15cm}
 
