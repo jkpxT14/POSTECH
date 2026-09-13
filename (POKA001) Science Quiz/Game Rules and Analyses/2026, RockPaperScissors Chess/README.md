@@ -1,25 +1,23 @@
 # 2026, RockPaperScissors Chess
 
-Full synchronized package revision **0.20.0** (2026-09-14), `.rpsc` **Format 3**, ruleset `2026-rpsc-rotation6-push-return`.
+Synchronized package revision **0.21.0** (2026-09-14), `.rpsc` **Format 3**, ruleset `2026-rpsc-rotation6-push-return`.
 
-The handbook, offline Analysis Board, browser parser/serializer, native C++ engine protocol, examples, and regression tests follow one canonical separation:
+The handbook, offline Analysis Board, native engine, examples, and regression tests use one notation contract:
 
 - White / Black = board roles.
 - POSTECH / KAIST = schools.
 - `White`, `Black` headers = players/controllers.
 - `WhiteTeam`, `BlackTeam` = school assignment.
 - `Result`, `Score`, `Quiz`, `Captures` = White-Black order.
-- Every per-question quiz token = **`Q[POSTECH, KAIST]`**.
+- Every per-question quiz token = `Q[POSTECH, KAIST]`.
 
-The critical reverse-assignment regression is `WhiteTeam=KAIST`, `BlackTeam=POSTECH`: `Q[1,0] B+St` and `Q[0,1] W+Ro` are valid, while `Q[1,0] W+...` is invalid.
+For a reverse assignment (`WhiteTeam=KAIST`, `BlackTeam=POSTECH`), `Q[1,0] B+...` and `Q[0,1] W+...` are the canonical item-gain records.
 
 ## Contents
 
 - `RockPaperScissorsChess.pdf` / `.tex`: handbook and source.
-- `RockPaperScissorsChess.html`: self-contained interactive Analysis Board with exact cube orientation, full item movement, three play modes, Format 2 loader / Format 3 writer, session history, replay validation, and three-line browser MultiPV analysis.
-- `Engine/`: native C++17 RPSC Engine 0.20.0, source, regression tests, protocol tests, and paired self-play harness.
-- `Examples/`: Game 6 legacy Format 2 and canonical Format 3 examples.
-- `RELEASE_NOTES_0.20.0.md`: the synchronized migration contract and verification scope.
-- `PackageStatus.md`: concise release status.
+- `RockPaperScissorsChess.html`: self-contained Analysis Board with Format 2 migration, Format 3 save/load, replay validation, and three-line analysis.
+- `Engine/`: native C++17 RPSC Engine 0.21.0, source, tests, and paired self-play harness.
+- `Examples/`: legacy Format 2 and canonical Format 3 Game 6 records.
 
-Format 2 files are read with their original legacy semantics (`Q[White, Black]`) and migrated in memory to school-indexed quiz state. New saves are Format 3 only.
+Format 2 files are read with their original `Q[White, Black]` semantics and migrated in memory. New saves use Format 3.

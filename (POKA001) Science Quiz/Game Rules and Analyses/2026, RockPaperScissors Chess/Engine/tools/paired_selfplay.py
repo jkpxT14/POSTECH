@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Paired RPSC engine match harness (RPSC 0.20.0).
+"""Paired RPSC engine match harness (RPSC 0.21.0).
 
 Usage:
   python paired_selfplay.py CANDIDATE BASELINE PAIRS START [MOVE_MS] [ITEM_MS]

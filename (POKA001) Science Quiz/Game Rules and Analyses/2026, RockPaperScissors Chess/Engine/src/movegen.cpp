@@ -83,6 +83,7 @@ struct Gen {
     std::uint32_t partial_generation=0, final_generation=0;
     std::vector<SearchMove> out;
     std::array<std::int8_t,64> enemy_at{};
+    std::array<std::uint64_t,7> tactical_reach{};
     int own_alive=0, opponent_alive=0;
 };
 int combat(Gesture a, Gesture b) {
@@ -138,6 +139,7 @@ void emit(Gen& g, Move& m, Square cur, Orientation o, std::uint64_t enemies) {
 }
 void reduced_paths(Gen&g,PieceId id,Move&m,Square cur,Orientation o,int rem,bool has_last,Direction last,
                    std::uint64_t occupied,std::uint64_t enemies){
+    if(g.tactical && !(g.tactical_reach[std::size_t(rem)]&(1ULL<<unsigned(cur))))return;
     if(rem==0){emit(g,m,cur,o,enemies);return;}
     bool final=rem==1;const auto&t=OrientationTable::instance();
     for(int di=0;di<4;++di){Direction d=Dirs[di];if(has_last&&d==Opp[int(last)])continue;Square next=steps().next[int(cur)][di];if(next==NoSquare||(occupied&(1ULL<<unsigned(next))))continue;if(final&&pc64(steps().neighbors[int(next)]&enemies)>=2)continue;Orientation no=t.roll(o,d);auto idx=partial_index(next,no,rem-1,true,d);if(g.scratch.partial[idx]==g.partial_generation)continue;g.scratch.partial[idx]=g.partial_generation;m.path[m.path_length++]=next;reduced_paths(g,id,m,next,no,rem-1,true,d,occupied,enemies);--m.path_length;}
@@ -151,7 +153,8 @@ std::vector<SearchMove> generate_search_internal(Position&p,bool tactical){
     int own_alive=0,opponent_alive=0;
     std::array<std::int8_t,64> enemy_at{}; enemy_at.fill(-1);
     for(int i=0;i<PieceCount;++i){auto id=PieceId(i); const auto&pc=p.piece(id); if(!pc.alive())continue;const auto bit=1ULL<<unsigned(pc.square); occupancy|=bit;if(piece_color(id)==opponent){enemies|=bit;enemy_at[unsigned(pc.square)]=std::int8_t(i);++opponent_alive;}else ++own_alive;}
-    Gen g{p,mover,opponent,tactical,scratch(),0,0,{},enemy_at,own_alive,opponent_alive};
+    Gen g{p,mover,opponent,tactical,scratch(),0,0,{},enemy_at,{},own_alive,opponent_alive};
+    if(tactical){std::uint64_t target=0;for(int s=0;s<64;++s)if(enemies&(1ULL<<unsigned(s)))target|=steps().neighbors[s];g.tactical_reach[0]=target;for(int d=1;d<=6;++d){std::uint64_t prev=g.tactical_reach[std::size_t(d-1)],cur=0;for(int s=0;s<64;++s)if(steps().neighbors[s]&prev)cur|=1ULL<<unsigned(s);g.tactical_reach[std::size_t(d)]=cur;}}
     g.final_generation=g.scratch.next_final(); g.out.reserve(768);
     for(int i=0;i<PieceCount;++i){auto id=PieceId(i);const auto&pc=p.piece(id);if(!pc.alive()||piece_color(id)!=mover)continue;std::uint64_t occupied=occupancy&~(1ULL<<unsigned(pc.square));reduced_item(g,id,pc,Item::None,NoSquare,occupied,enemies);if(p.item_count(mover,0)>0)for(int di=0;di<4;++di){Square push=steps().next[int(pc.square)][di];if(push!=NoSquare&&!(occupied&(1ULL<<unsigned(push))))reduced_item(g,id,pc,Item::Push,push,occupied,enemies);}if(p.item_count(mover,1)>0){std::array<bool,27>seen{};const auto&t=OrientationTable::instance();for(Item rot:Rotations){Orientation ro=t.apply_rotation(pc.orientation,rot);auto st=t.gesture_state_id(ro);if(seen[st])continue;seen[st]=true;reduced_item(g,id,pc,rot,NoSquare,occupied,enemies);}}if(p.item_count(mover,2)>0){reduced_item(g,id,pc,Item::StepShort,NoSquare,occupied,enemies);reduced_item(g,id,pc,Item::StepLong,NoSquare,occupied,enemies);}}
     return g.out;

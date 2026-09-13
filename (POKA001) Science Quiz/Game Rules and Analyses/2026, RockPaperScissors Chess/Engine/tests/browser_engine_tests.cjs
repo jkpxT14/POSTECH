@@ -1,4 +1,4 @@
-// RPSC 0.20.0 browser analyzer / Format 3 regression suite.
+// RPSC 0.21.0 browser analyzer / Format 3 regression suite.
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
 const base=path.resolve(__dirname,'../..');
 const html=fs.readFileSync(path.join(base,'RockPaperScissorsChess.html'),'utf8');
