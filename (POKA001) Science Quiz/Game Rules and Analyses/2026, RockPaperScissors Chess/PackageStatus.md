@@ -1,41 +1,39 @@
-# Package Status — 0.19.0 Checkpoint
+# Package Status — 0.20.0 / Format 3
 
 ## Upstream lineage
 
 - Repository: `jkpxT14/POSTECH`
+- Baseline branch: `main`
+- Baseline inspected commit: `a4fae5c40d4c7db56d3898676744e474a592ce51`
 - Package path: `(POKA001) Science Quiz/Game Rules and Analyses/2026, RockPaperScissors Chess/`
-- Upstream native baseline: Engine 0.18.0
+- Previous native checkpoint: Engine 0.19.0
 - Ruleset: `2026-rpsc-rotation6-push-return`
-- Exact 24-orientation cube state remains authoritative.
 
-## Checkpoint objective
+## Consistency migration
 
-The purpose of 0.19.0 is to leave a tested, clearly stronger native-engine checkpoint before further strength work. No rule approximation was introduced to obtain the speedup.
+0.20.0 is a synchronized semantics release. The native search core remains White/Black-oriented; this release changes the school/role boundary and shared record semantics.
 
-The selected candidate keeps the 0.18.0 search/evaluation semantics and improves the exact hot path: precomputed board-neighbor masks, occupancy/enemy bitboards during move generation, direct collision-free reduced-successor signatures inside one parent position, generated capture/reset metadata, a generated-move application fast path, a capture-side-only Reset check, and power-of-two transposition-table indexing.
+1. White/Black are board roles and order game names, result, score, quiz totals, and captures.
+2. POSTECH/KAIST are school identities assigned to board roles per game.
+3. Only the per-question token is fixed school order: `Q[POSTECH, KAIST]`.
+4. A unilateral quiz is mapped from correct school to current board role exactly once when determining `W+` / `B+`.
+5. `.rpsc` Format 3 separates `[White]/[Black]` controller identity from `[WhiteTeam]/[BlackTeam]` school mapping and includes `[QOrder "POSTECH, KAIST"]`.
+6. Format 2 is legacy `Q[White, Black]`; it is supported for load/migration but never emitted by new saves.
+7. Native search remains purely White/Black. `teams` + `matchpk` perform the school-to-board-role conversion at the protocol boundary.
 
-## Strength gate
+## Fixed game fixtures
 
-Primary checkpoint match: **50 paired scenarios / 100 games**, candidate 0.19.0 versus frozen GitHub 0.18.0 baseline. Each pair used the same 20-round quiz schedule and swapped only which engine played White/Black. Quiz schedules were generated with 70% symmetric results and 30% unilateral results (15% `Q[1,0]`, 15% `Q[0,1]`). Search budget was 50 ms per board move and 20 ms per item-choice probe.
+- Game 1: `18-17 (12-11 + 6-6)`
+- Game 2: `15-23 (11-11 + 4-12)`
+- Game 3: `17-13 (11-11 + 6-2)`
+- Game 4: `20-18 (14-12 + 6-6)`
+- Game 5: `32-34 (20-20 + 12-14)`
+- Game 6: `25-23 (11-11 + 14-12)`
 
-Observed score: **56.0 / 100 = 56.0%** for Engine 0.19.0.
+Game 6 is explicitly `WhiteTeam=KAIST`, `BlackTeam=POSTECH`; its unilateral Q strings were canonicalized without changing item recipients, moves, captures, Reset events, score, or result.
 
-This is an observed checkpoint score, not a statistical guarantee that the true win expectation is at least 55%. It is sufficient for the requested interim checkpoint; larger holdouts remain part of subsequent development.
+## Verification gate
 
-## Rule regression gate
+Release acceptance requires the native CTest suite, browser Format 3/migration suite, protocol school-role mapping, six-game replay, 120-round handbook notation validator, paired self-play smoke test, and a clean two-pass handbook build/render to pass.
 
-The native Release suite passes both shipped tests. The inherited baselines remain:
-
-- Initial: 161 legal paths, 145 exact successors, 84 reduced successors.
-- Initial perft depths 1 / 2 / 3: 161 / 25,575 / 4,215,782.
-- Initial with one Push, Rotation, Step per side: 2,146 legal paths, 1,459 exact successors, 568 reduced successors.
-
-The tests cover the 24 exact orientations, six Rotation actions and their reduction, Push-return semantics, consecutive-Roll reversal prohibition, make/undo, notation, Reset, finite-horizon search, and MultiPV distinctness.
-
-## Evaluation convention
-
-The evaluator scores the current board, accumulated quiz/capture score, current inventories and remaining board horizon. For analysis from the current position, future quiz outcomes are treated as symmetric board-progress rounds (`Q[0,0]` or `Q[1,1]`), so it does not speculate about future unilateral item grants. Previously acquired items remain part of the position.
-
-## Next development target
-
-Continue from 0.19.0 rather than restarting from 0.18.0. The next priorities are larger independent paired holdouts, deeper item-choice policy, and then synchronization of the 0.19 engine into the current single-file Analysis Board with native/browser successor and MultiPV regression before the next full package release.
+Critical invariant: `WhiteTeam=KAIST`, `BlackTeam=POSTECH`, `Q[1,0]` => **Black receives the item**.

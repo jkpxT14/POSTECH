@@ -1,27 +1,5 @@
-# Strength Testing — Engine 0.19.0 Checkpoint
+# Strength Testing — Engine 0.20.0
 
-## Baseline
+A quiz schedule is always a sequence of `Q[POSTECH, KAIST]`. In each paired scenario the school-to-color mapping is fixed while the candidate and baseline engines swap White/Black. With the default harness mapping `WhiteTeam=POSTECH`, `BlackTeam=KAIST`, Game A assigns candidate to White/POSTECH and Game B assigns candidate to Black/KAIST. Therefore White move-order advantage and each school-only quiz opportunity are both exchanged between engines.
 
-Frozen GitHub native Engine 0.18.0, ruleset `2026-rpsc-rotation6-push-return`.
-
-## Paired match design
-
-One scenario defines a deterministic 20-round Quiz Result sequence. A pair consists of:
-
-1. Engine 0.19.0 as White, Engine 0.18.0 as Black.
-2. Engine 0.18.0 as White, Engine 0.19.0 as Black.
-
-The **same Quiz Result sequence** is used in both games. Thus White/Black move-order advantage and unilateral `Q[1,0]` / `Q[0,1]` item opportunities are each experienced once by each engine. The sequence generator uses 35% `Q[1,1]`, 35% `Q[0,0]`, 15% `Q[1,0]`, and 15% `Q[0,1]`.
-
-Primary checkpoint run:
-
-- 50 pairs / 100 games.
-- 50 ms per normal board search.
-- 20 ms per item-choice search.
-- Candidate points: 56.0.
-- Baseline points: 44.0.
-- Candidate score: **56.0%**.
-
-The full local run log used to select this checkpoint is included as `tools/checkpoint-match.log`.
-
-The score is an empirical development checkpoint, not a confidence-bound claim. Future releases should add independent larger paired holdouts rather than reusing this set for tuning.
+The harness uses `teams W POSTECH B KAIST` and sends quiz totals through `matchpk <POSTECHQuiz> <KAISTQuiz> <remainingPlies>`. It never treats `Q[1,0]` as a generic White opportunity.

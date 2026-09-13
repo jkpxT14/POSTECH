@@ -1,19 +1,17 @@
 # RPSC Engine
 
-Version: **0.19.0 checkpoint**
+Version: **0.20.0**  
+Ruleset: `2026-rpsc-rotation6-push-return`
 
-Ruleset: `2026-rpsc-rotation6-push-return`.
+The search core is intentionally board-role based (`White` / `Black`). School identity is external match metadata and is converted exactly once at the protocol boundary.
 
-This version is the tested exact-fast successor of the GitHub 0.18.0 native engine. It intentionally retains the proven 0.18.0 search/evaluation structure while accelerating rule-exact move generation and generated-move application.
-
-## Build
+## School-aware protocol
 
 ```text
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-ctest --test-dir build --output-on-failure
+teams W KAIST B POSTECH
+matchpk 11 10 6
 ```
 
-The bundled `rpsc-engine` executable is a Linux x86-64 Release build. On Windows, build the same source with CMake/MSVC or MinGW; the old 0.18.0 Windows executable is intentionally not relabeled as 0.19.0.
+`matchpk <POSTECHQuiz> <KAISTQuiz> <remainingPlies>` always uses POSTECH/KAIST order. With the mapping above it becomes internal `quiz_white=10`, `quiz_black=11`. The older `match <Wquiz> <Bquiz> <remainingPlies>` command remains only as an explicit White/Black compatibility command.
 
-The text protocol remains compatible with the 0.18.0 command set. `go ... multipv 3` is the normal analysis mode.
+Build with CMake and run `ctest --test-dir build --output-on-failure`. The bundled `rpsc-engine` is a Linux x86-64 Release build from this 0.20.0 source.

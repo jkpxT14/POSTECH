@@ -19,6 +19,7 @@ bool parse_side(const std::string& text, Color& color) {
     if (text == "B") { color = Color::Black; return true; }
     return false;
 }
+bool valid_school(const std::string& text) { return text == "POSTECH" || text == "KAIST"; }
 void parse_limits(std::istringstream& in, SearchLimits& limits) {
     std::string key;
     while (in >> key) {
@@ -61,6 +62,8 @@ void print_search(const Position& position, const SearchResult& result) {
 
 int run_protocol() {
     Engine engine;
+    std::string white_school = "POSTECH";
+    std::string black_school = "KAIST";
     std::string line;
     while (std::getline(std::cin, line)) {
         if (line.empty()) continue;
@@ -68,11 +71,22 @@ int run_protocol() {
         std::string command; in >> command;
         if (command == "quit" || command == "exit") break;
         if (command == "rpsc") {
-            std::cout << "id name RPSC Engine 0.19.0\nid author Jungwoo Kim\nrpscok\n" << std::flush;
+            std::cout << "id name RPSC Engine 0.20.0\nid author Jungwoo Kim\nrpscok\n" << std::flush;
         } else if (command == "isready") std::cout << "readyok\n" << std::flush;
-        else if (command == "newgame" || line == "position startpos") { engine.new_game(); std::cout << "ok\n" << std::flush; }
-        else if (command == "clear") { engine.clear_search(); std::cout << "ok\n" << std::flush; }
-        else if (command == "items") {
+        else if (command == "newgame" || line == "position startpos") {
+            engine.new_game(); white_school = "POSTECH"; black_school = "KAIST";
+            std::cout << "ok\n" << std::flush;
+        } else if (command == "clear") { engine.clear_search(); std::cout << "ok\n" << std::flush; }
+        else if (command == "teams") {
+            std::string wtag, wschool, btag, bschool;
+            if (!(in >> wtag >> wschool >> btag >> bschool) || wtag != "W" || btag != "B" ||
+                !valid_school(wschool) || !valid_school(bschool) || wschool == bschool) {
+                std::cout << "error invalid teams; use: teams W POSTECH|KAIST B KAIST|POSTECH\n" << std::flush;
+            } else {
+                white_school = wschool; black_school = bschool;
+                std::cout << "ok\n" << std::flush;
+            }
+        } else if (command == "items") {
             std::string side; int pu, ro, st; Color color;
             if (!(in >> side >> pu >> ro >> st) || !parse_side(side, color) || pu < 0 || ro < 0 || st < 0)
                 std::cout << "error invalid items\n" << std::flush;
@@ -92,13 +106,26 @@ int run_protocol() {
             std::string side; Color color;
             if (!(in >> side) || !parse_side(side, color)) std::cout << "error invalid side\n" << std::flush;
             else { engine.position().set_side_to_move(color); std::cout << "ok\n" << std::flush; }
+        } else if (command == "matchpk") {
+            int postech_quiz, kaist_quiz, remaining;
+            if (!(in >> postech_quiz >> kaist_quiz >> remaining) || postech_quiz < 0 || kaist_quiz < 0 || remaining < -1) {
+                std::cout << "error invalid matchpk context\n" << std::flush;
+            } else {
+                const int white_quiz = white_school == "POSTECH" ? postech_quiz : kaist_quiz;
+                const int black_quiz = black_school == "POSTECH" ? postech_quiz : kaist_quiz;
+                engine.position().set_match_context(white_quiz, black_quiz, remaining);
+                std::cout << "ok\n" << std::flush;
+            }
         } else if (command == "match") {
+            // Compatibility/direct command. Its ordering is explicitly White, Black.
             int white_quiz, black_quiz, remaining;
             if (!(in >> white_quiz >> black_quiz >> remaining) || white_quiz < 0 || black_quiz < 0 || remaining < -1)
                 std::cout << "error invalid match context\n" << std::flush;
             else { engine.position().set_match_context(white_quiz, black_quiz, remaining); std::cout << "ok\n" << std::flush; }
-        } else if (command == "show" || command == "d") { std::cout << engine.position().debug_string() << std::flush; }
-        else if (command == "eval") {
+        } else if (command == "show" || command == "d") {
+            std::cout << "teams W " << white_school << " B " << black_school << '\n';
+            std::cout << engine.position().debug_string() << std::flush;
+        } else if (command == "eval") {
             std::cout << "eval " << std::fixed << std::setprecision(2)
                       << double(evaluate_white(engine.position())) / ScoreUnit << '\n' << std::flush;
         }
@@ -151,11 +178,12 @@ int run_protocol() {
             std::cout << "bestinitial " << (choice.choose_first ? "first" : "second") << ' '
                       << (choice.best_bucket >= 0 ? item_name(choice.best_bucket) : "(none)") << '\n' << std::flush;
         } else if (command == "bench") {
-            engine.new_game(); SearchLimits limits; limits.depth = 4; auto result = engine.go(limits);
+            engine.new_game(); white_school = "POSTECH"; black_school = "KAIST";
+            SearchLimits limits; limits.depth = 4; auto result = engine.go(limits);
             std::cout << "bench depth 4 nodes " << result.nodes << " time " << result.elapsed.count() << " ms bestmove "
                       << (result.has_move ? format_move(result.best_move) : "(none)") << '\n' << std::flush;
         } else if (command == "help") {
-            std::cout << "newgame | items W/B pu ro st | gain W/B Pu/Ro/St | match Wquiz Bquiz remainingPlies | side W/B | move NOTATION | eval | go depth N | go movetime MS [multipv N] | chooseorder | chooseitem W/B | chooseinitial | legal | moves | perft N | divide N | bench | show | clear | quit\n" << std::flush;
+            std::cout << "newgame | teams W POSTECH|KAIST B KAIST|POSTECH | matchpk POSTECHQuiz KAISTQuiz remainingPlies | match Wquiz Bquiz remainingPlies (direct W/B compatibility) | items W/B pu ro st | gain W/B Pu/Ro/St | side W/B | move NOTATION | eval | go depth N | go movetime MS [multipv N] | chooseorder | chooseitem W/B | chooseinitial | legal | moves | perft N | divide N | bench | show | clear | quit\n" << std::flush;
         } else std::cout << "error unknown command\n" << std::flush;
     }
     return 0;

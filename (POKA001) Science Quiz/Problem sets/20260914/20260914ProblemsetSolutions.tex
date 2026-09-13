@@ -1,0 +1,224 @@
+% !TeX program = xelatex
+\documentclass[11pt,oneside]{article}
+\usepackage{ProblemsetStyle}
+
+\hypersetup{
+    pdftitle={20260914 Problem set - Solutions},
+    pdfauthor={김정우},
+    pdfsubject={Science Quiz mathematics practice problem set solutions},
+    pdfcreator={XeLaTeX}
+}
+
+\begin{document}
+
+\problemsettitle{20260914 Problem set}
+
+\begin{problemsolution}{1}
+선택한 세 정수를
+\[
+    1\leq a<b<c\leq10
+\]
+이라 하자. 연속한 두 정수가 없다는 조건은
+\[
+    b-a\geq2,
+    \qquad
+    c-b\geq2
+\]
+이다. 따라서
+\[
+    a'=a,
+    \qquad
+    b'=b-1,
+    \qquad
+    c'=c-2
+\]
+로 두면
+\[
+    1\leq a'<b'<c'\leq8
+\]
+이고, 이는 $\{1,\ldots,8\}$에서 세 원소를 고르는 것과 일대일 대응한다. 그러므로 favorable subset의 개수는
+\[
+    \binom83=56
+\]
+이고, 전체 subset의 개수는
+\[
+    \binom{10}{3}=120
+\]
+이다. 따라서 확률은
+\[
+    \boxed{\frac{56}{120}=\frac{7}{15}}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{2}
+OpenAI의 발표와 accompanying paper에서 $R(k,\ell)$은 standard \emph{off-diagonal Ramsey number}를 뜻한다. 즉, 모든 $N$-vertex graph가 $K_k$ 또는 order $\ell$의 independent set을 포함하도록 하는 최소 $N$이다.
+
+따라서 정답은
+\[
+    \boxed{\text{off-diagonal Ramsey numbers}}
+\]
+이다.
+\end{problemsolution}
+
+\begin{problemsolution}{3}
+$n\geq1$에 대해 arctangent subtraction formula를 쓰면
+\[
+    \arctan(n+1)-\arctan n
+    =
+    \arctan\!\left(
+        \frac{1}{1+n(n+1)}
+    \right)
+    =
+    \arctan\!\left(\frac{1}{n^2+n+1}\right).
+\]
+따라서 partial sum은 telescoping되어
+\[
+    \sum_{n=1}^{N}
+    \arctan\!\left(\frac{1}{n^2+n+1}\right)
+    =
+    \arctan(N+1)-\arctan1.
+\]
+$N\to\infty$로 보내면
+\[
+    \boxed{\frac{\pi}{2}-\frac{\pi}{4}=\frac{\pi}{4}}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{4}
+Legendre's formula를 binary digit sum $s_2(n)$으로 쓰면
+\[
+    v_2(n!)=n-s_2(n).
+\]
+따라서 $2026=2\cdot1013$이고 $s_2(2026)=s_2(1013)$이므로
+\[
+    \begin{aligned}
+    v_2\!\left(\binom{2026}{1013}\right)
+    &=
+    2s_2(1013)-s_2(2026)\\
+    &=s_2(1013).
+    \end{aligned}
+\]
+그런데
+\[
+    1013=(1111110101)_2
+\]
+이므로 $s_2(1013)=8$이다. 따라서
+\[
+    \boxed{m=8}.
+\]
+Equivalently, Kummer's theorem으로 $1013+1013$의 binary addition에서 발생하는 carry의 개수를 세어도 된다.
+\end{problemsolution}
+
+\begin{problemsolution}{5}
+2025 Breakthrough Prize in Mathematics 수상자는 Dennis Gaitsgory이다. 공식 citation은 geometric Langlands program과 그 quantum version에 대한 foundational contributions, derived algebraic geometry approach의 발전, 그리고 characteristic $0$에서 geometric Langlands conjecture의 proof를 강조한다.
+
+따라서 정답은
+\[
+    \boxed{\text{Dennis Gaitsgory}}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{6}
+Semiperimeter는
+\[
+    s=\frac{13+14+15}{2}=21
+\]
+이고, Heron's formula로 area는
+\[
+    K
+    =
+    \sqrt{21\cdot8\cdot7\cdot6}
+    =84.
+\]
+따라서
+\[
+    r=\frac{K}{s}=4,
+    \qquad
+    R=\frac{abc}{4K}
+    =\frac{13\cdot14\cdot15}{4\cdot84}
+    =\frac{65}{8}.
+\]
+그러므로
+\[
+    R-2r
+    =
+    \frac{65}{8}-8
+    =
+    \boxed{\frac18}.
+\]
+\end{problemsolution}
+
+\newpage
+
+\begin{problemsolution}{7}
+Rank--nullity theorem에 의해
+\[
+    \dim\ker\mathbf{A}=4-3=1.
+\]
+Nilpotent matrix의 Jordan form에서 Jordan block의 개수는 $\dim\ker\mathbf{A}$와 같으므로, $\mathbf{A}$는 하나의 size-$4$ nilpotent Jordan block과 similar하다. 따라서
+\[
+    \mathbf{A}\sim J_4(0),
+    \qquad
+    \mathbf{A}^2\sim J_4(0)^2,
+\]
+이고 $J_4(0)^2$의 rank는 $2$이다. 그러므로
+\[
+    \boxed{\operatorname{rank}(\mathbf{A}^2)=2}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{8}
+International Mathematical Union이 2026년 7월 소개한 수학자는 Heisuke Hironaka이다. Hironaka는 characteristic $0$의 field 위에서 arbitrary dimension의 algebraic variety에 대해 resolution of singularities를 증명한 업적으로 1970 Fields Medal을 받았다.
+
+따라서 정답은
+\[
+    \boxed{\text{Heisuke Hironaka}}.
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{9}
+$1\leq j\leq9$에 대해
+\[
+    \left\lfloor\sqrt{k}\right\rfloor=j
+\]
+인 $k$는
+\[
+    j^2\leq k\leq(j+1)^2-1
+\]
+이므로 정확히 $2j+1$개이다. 또한 $k=100$에서는 값이 $10$이다. 따라서
+\[
+    \begin{aligned}
+    \sum_{k=1}^{100}\left\lfloor\sqrt{k}\right\rfloor
+    &=
+    \sum_{j=1}^{9}j(2j+1)+10\\
+    &=
+    2\sum_{j=1}^{9}j^2+\sum_{j=1}^{9}j+10\\
+    &=
+    2\cdot285+45+10\\
+    &=\boxed{625}.
+    \end{aligned}
+\]
+\end{problemsolution}
+
+\begin{problemsolution}{10}
+Cayley's formula에 의해 $K_6$의 spanning tree 개수는
+\[
+    6^{6-2}=6^4=1296
+\]
+이다. $K_6$의 $15$개 edge는 symmetry에 의해 같은 수의 spanning tree에 포함된다. 모든 spanning tree는 $5$개의 edge를 가지므로, spanning tree--edge incidence의 총개수는
+\[
+    1296\cdot5.
+\]
+따라서 지정된 하나의 edge를 포함하는 spanning tree의 개수는
+\[
+    \frac{1296\cdot5}{15}=432.
+\]
+그 edge를 제거하면 이 $432$개만 사라지므로, 남는 spanning tree의 개수는
+\[
+    1296-432
+    =
+    \boxed{864}.
+\]
+\end{problemsolution}
+
+\end{document}

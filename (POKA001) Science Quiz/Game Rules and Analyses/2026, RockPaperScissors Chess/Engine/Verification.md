@@ -1,33 +1,11 @@
-# Verification — Engine 0.19.0 Checkpoint
+# Verification — RPSC 0.20.0 / .rpsc Format 3
 
-Ruleset: `2026-rpsc-rotation6-push-return`.
+The release gate covers the shared rules and notation boundary, not only search code.
 
-0.19.0 changes the exact execution hot path, not the game rules. The same 24-orientation cube model, six Rotation actions, post-Rotation move length, Push-return rule, Step rules, combat, Reset scheduling, score context, notation and final-ply semantics are retained.
-
-## Asserted rule/successor baselines
-
-| Position | Legal paths | Exact successors | Reduced successors |
-|---|---:|---:|---:|
-| Initial, no items | 161 | 145 | 84 |
-| Initial, one of each item per side | 2,146 | 1,459 | 568 |
-
-Initial exhaustive perft depths 1 / 2 / 3: **161 / 25,575 / 4,215,782**.
-
-## 0.19.0 exact-fast changes
-
-- Precomputed orthogonal step and adjacency bitmasks.
-- Parent occupancy/enemy bitboards reused across path generation.
-- Reduced-successor duplicate detection uses a collision-free compact signature for the state components that can change within one parent, avoiding repeated Position make/hash/undo at every endpoint.
-- `SearchMove` carries exact final orientation and capture/reset metadata.
-- Search applies already-generated legal moves through a dedicated fast path.
-- Reset exhaustion is checked only for the side that actually lost a captured piece.
-- Transposition-table indexing uses a power-of-two table mask.
-
-## Release checks
-
-A clean CMake Release build from the checkpoint source passes:
-
-- `rpsc-engine-tests`
-- `rpsc-search-regressions`
-
-The checkpoint executable also completes the depth-4 initial benchmark with the same searched node count as its source build. Browser embedding is intentionally deferred to the next full-package synchronization; therefore this ZIP does not claim native/browser 0.19.0 equivalence yet.
+- Native Release build succeeds.
+- Native regression suite: initial 161 legal paths, 145 exact successors, 84 reduced successors; perft 1/2/3 = 161 / 25,575 / 4,215,782; item-rich 2,146 / 1,459 / 568; MultiPV=3 remains distinct.
+- Native endgame exact-rank regression passes.
+- Protocol boundary regression: `teams W KAIST B POSTECH` + `matchpk 11 10 6` produces internal `quiz 10-11`.
+- Browser regression validates Format 3, Format 2 migration, reverse school assignment, illegal unilateral item recipients, Format 3 round-trip, all six handbook games, interactive first-order selection, and three distinct recommendations.
+- Handbook validator checks 6 games / 120 rounds and every unilateral `Q` -> `W+` / `B+` mapping against the game’s `WhiteTeam` / `BlackTeam` assignment.
+- Critical invariant: `WhiteTeam=KAIST`, `BlackTeam=POSTECH`, `Q[1,0]` => `B+...`.

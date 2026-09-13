@@ -1,14 +1,3 @@
 % Shared TikZ styles for RockPaperScissors Chess.
-% Keep diagrams vector-based, line-based, restrained, and readable in grayscale.
-\tikzset{
-    rpsc board line/.style={draw=black!68,line width=0.48pt},
-    rpsc board border/.style={draw=black,line width=0.78pt},
-    rpsc coordinate/.style={font=\scriptsize\rmfamily,text=black!68},
-    rpsc piece id/.style={font=\fontsize{6.2}{6.8}\selectfont\rmfamily,text=black!58},
-    rpsc path/.style={draw=black!75,line width=0.70pt,-{Latex[length=2.2mm,width=1.4mm]}},
-    rpsc analysis text/.style={font=\fontsize{7.9}{8.1}\selectfont\rmfamily\bfseries,text=black!85,align=center,inner sep=0pt},
-    rpsc analysis text compact/.style={font=\fontsize{7.3}{7.5}\selectfont\rmfamily\bfseries,text=black!85,align=center,inner sep=0pt}
-}
-\newcommand{\rpscglyph}[5]{%
-    \node[text=#5,font=\large,rotate=#4,transform shape] at (#1,#2) {$\bar{\mathbf{#3}}$};%
-}
+\tikzset{rpsc board line/.style={draw=black!68,line width=0.48pt},rpsc board border/.style={draw=black,line width=0.78pt},rpsc coordinate/.style={font=\scriptsize\rmfamily,text=black!68},rpsc piece id/.style={font=\fontsize{6.2}{6.8}\selectfont\rmfamily,text=black!58},rpsc path/.style={draw=black!75,line width=0.70pt,-{Latex[length=2.2mm,width=1.4mm]}},rpsc analysis text/.style={font=\fontsize{7.9}{8.1}\selectfont\rmfamily\bfseries,text=black!85,align=center,inner sep=0pt},rpsc analysis text compact/.style={font=\fontsize{7.3}{7.5}\selectfont\rmfamily\bfseries,text=black!85,align=center,inner sep=0pt}}
+\newcommand{\rpscglyph}[5]{\node[text=#5,font=\large,rotate=#4,transform shape] at (#1,#2) {$\bar{\mathbf{#3}}$};}

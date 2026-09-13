@@ -1,41 +1,81 @@
-// Run with Node.js; no browser dependency required for shared rules/search tests.
+// RPSC 0.20.0 browser analyzer / Format 3 regression suite.
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
 const base=path.resolve(__dirname,'../..');
 const html=fs.readFileSync(path.join(base,'RockPaperScissorsChess.html'),'utf8');
 const parts=[...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
-const ui=vm.createContext({console,setTimeout,clearTimeout,performance});vm.runInContext(parts[1],ui);
-const worker=vm.createContext({console,performance});vm.runInContext(parts[0],worker);
-worker.s=vm.runInContext('initialOrderProbeState(C.POSTECH)',ui);
-vm.runInContext(`
-function assert(c,msg){if(!c)throw Error(msg)}
-s.rem=-1;assert(generateMoves(s).length===161,'initial legal paths');
-s.it.W={Pu:1,Ro:1,St:1};s.it.B={Pu:1,Ro:1,St:1};
-assert(generateMoves(s).length===2146,'item-rich legal paths');
-let raw=generateMoves(s);assert(raw.some(m=>m.item==='Pu'&&m.path[1][0]===m.path[0][0]&&m.path[1][1]===m.path[0][1]),'Push return');
-for(let m of raw)for(let j=1;j<m.dirs.length;j++)assert(m.dirs[j]!==OP[m.dirs[j-1]],'Roll reversal');
-function successor(m){let z=cloneState(s);doMove(z,m,0);return key(z)}
-let exactSet=new Set(raw.map(successor)),reducedSet=new Set(uniqueMoves(s).map(x=>successor(x.m)));
-assert(exactSet.size===568&&reducedSet.size===exactSet.size&&[...exactSet].every(x=>reducedSet.has(x)),'successor completeness');
-function oracle(z){if(z.rem===0)return ev(z);let ms=uniqueMoves(z);if(!ms.length)return ev(z);let best=-1e9;for(let x of ms){let child=cloneState(z);doMove(child,x.m,0);best=Math.max(best,-oracle(child))}return best}
-let cases=0;
-for(let i=0;i<4;i++){
- s.rem=-1;let ms=uniqueMoves(s),m=ms[(i*137+61)%ms.length].m;doMove(s,m,0);s.rem=2;
- let scores=uniqueMoves(s).map(x=>{let z=cloneState(s);doMove(z,x.m,0);return -oracle(z)}).sort((a,b)=>b-a);
- let before=JSON.stringify(s),r=search(s,{depth:1,ms:60000,multipv:3});assert(r.depth===1,'completed depth');
- for(let k=0;k<3;k++){assert(r.candidates[k].value===scores[k],'exact endgame rank '+k);let z=cloneState(s);doMove(z,r.candidates[k].move,0);assert(-oracle(z)===r.candidates[k].value,'candidate score');cases++}
- assert(JSON.stringify(s)===before,'search mutates root');
- let resumed=search(s,{depth:64,ms:0.001,multipv:3,startDepth:2,seedResult:r});assert(resumed.depth>=r.depth,'completed cache lost');
- for(let k=0;k<3;k++)assert(resumed.candidates[k].value===r.candidates[k].value,'interrupted MultiPV changed');
+assert.strictEqual(parts.length,2,'expected worker + UI scripts');
+const ui=vm.createContext({console,performance,setTimeout,clearTimeout,module:{exports:{}},confirm:()=>true});
+vm.runInContext(parts[1],ui);
+const run=x=>vm.runInContext(x,ui);
+assert.deepStrictEqual(JSON.parse(JSON.stringify(run('runSelfTests()'))),[]);
+assert.strictEqual(run(`qText({POSTECH:1,KAIST:0})`),'Q[1, 0]');
+assert.strictEqual(run(`ORI.length`),24);
+assert.strictEqual(run(`generateRawMoves(emptyGame(),'W').length`),161);
+
+// Canonical reverse assignment: Q[1,0] means POSTECH-only and therefore B gains the item.
+ui.reverse=`[Format "3"]\n[White "Engine"]\n[Black "POSTECH Squad"]\n[WhiteTeam "KAIST"]\n[BlackTeam "POSTECH"]\n[Result "*"]\n[QOrder "POSTECH, KAIST"]\n\n1. Q[1, 0] B+St\n2. Q[0, 1] W+Ro`;
+let rg=run('parseRecord(reverse)');ui.rg=rg;
+assert.strictEqual(run('rg.q.POSTECH'),1);assert.strictEqual(run('rg.q.KAIST'),1);
+assert.strictEqual(run('rg.items.B.St'),1);assert.strictEqual(run('rg.items.W.Ro'),1);
+ui.bad=ui.reverse.replace('Q[1, 0] B+St','Q[1, 0] W+St');
+assert.throws(()=>run('parseRecord(bad)'),/item must be B/);
+
+// Legacy Format 2 interprets Q in White,Black order then migrates on serialization.
+ui.legacy=`[Format "2"]\n[White "KAIST"]\n[Black "POSTECH"]\n[Result "*"]\n\n1. Q[0, 1] B+St`;
+let lg=run('parseRecord(legacy)');ui.lg=lg;
+assert.strictEqual(run('lg.q.POSTECH'),1);assert.strictEqual(run('lg.q.KAIST'),0);
+assert.ok(run('serialize3(lg)').includes('1. Q[1, 0] B+St'));
+
+// Format 3 round trip is semantic and textual canonicalization.
+ui.canon=run('serialize3(rg)');ui.rg2=run('parseRecord(canon)');
+assert.strictEqual(run('serialize3(rg2)'),ui.canon);
+
+// Replay all six handbook games with explicit school-role mappings.
+const games=fs.readFileSync(path.join(base,'Games.tex'),'utf8');
+const blocks=[...games.matchAll(/\\begin\{gamerecord\}([\s\S]*?)\\end\{gamerecord\}/g)].map(x=>x[1]);
+assert.strictEqual(blocks.length,6);
+const maps=[['POSTECH','KAIST'],['POSTECH','KAIST'],['POSTECH','KAIST'],['POSTECH','KAIST'],['POSTECH','KAIST'],['KAIST','POSTECH']];
+const expected=[[18,17,12,11,3,3],[15,23,11,11,2,6],[17,13,11,11,3,1],[20,18,14,12,3,3],[32,34,20,20,6,7],[25,23,11,11,7,6]];
+for(let i=0;i<blocks.length;i++){
+  const body=blocks[i].trim().split('\n').map(l=>l.trim().replace(/^([0-9]+\.)\s*&\s*/,'$1 ').replace(/\\\\\s*$/,'')).join('\n');
+  const [wt,bt]=maps[i];
+  ui.rec=`[Format "3"]\n[White "W"]\n[Black "B"]\n[WhiteTeam "${wt}"]\n[BlackTeam "${bt}"]\n[Result "*"]\n[QOrder "POSTECH, KAIST"]\n\n${body}`;
+  let gg=run('parseRecord(rec)');ui.gg=gg;let s=run('scorePair(gg)');
+  let got=[s.ws,s.bs,s.wq,s.bq,s.wc,s.bc];
+  assert.deepStrictEqual(got,expected[i],`Game ${i+1}: ${got}`);
 }
-s.rem=0;assert(search(s,{depth:1,ms:10,multipv:3}).best===null,'terminal move');
-console.log('Browser engine: legal-path/successor checks and '+cases+' exact endgame rank checks passed');
-`,worker);
-// Replay all textbook game records with the UI's actual notation parser.
-const games=fs.readFileSync(path.join(base,'Games.tex'),'utf8');let counts=[];
-for(const block of games.matchAll(/\\begin\{gamerecord\}([\s\S]*?)\\end\{gamerecord\}/g)){
- const rows=block[1].trim().split('\n').map(l=>l.trim().replace(/\s*&\s*/,' ').replace(/\\\\\s*$/,''));
- ui.record='[Event "Regression"]\n[White "POSTECH"]\n[Black "KAIST"]\n[Result "*"]\n\n'+rows.join('\n');
- counts.push(vm.runInContext('(()=>{let g=parseAndReplayDetailed(record).game;return [g.rounds.length,g.teams.POSTECH.captures,g.teams.KAIST.captures]})()',ui));
-}
-assert.deepStrictEqual(JSON.parse(JSON.stringify(counts)),[[20,3,3],[20,2,6],[20,3,1],[20,3,3],[20,6,7],[20,7,6]]);
-console.log('Handbook: six games / 120 quiz rounds replayed; captures match');
+
+// Full legacy Game 6 fixture preserves the historical state when migrated.
+ui.fullLegacy=fs.readFileSync(path.join(base,'Examples/Game6_Format2_legacy.rpsc'),'utf8');
+let f2=run('parseRecord(fullLegacy)');ui.f2=f2;let s2=run('scorePair(f2)');
+assert.deepStrictEqual([s2.ws,s2.bs,s2.wq,s2.bq,s2.wc,s2.bc],[25,23,11,11,7,6]);
+let migrated=run('serialize3(f2)');
+assert.ok(migrated.includes('[WhiteTeam "KAIST"]'));
+assert.ok(migrated.includes('[BlackTeam "POSTECH"]'));
+assert.ok(migrated.includes('5. Q[1, 0] B+St'));
+assert.ok(migrated.includes('7. Q[0, 1] W+Pu'));
+
+
+// Interactive state machine: first solo-correct may choose second; Q remains school-ordered.
+run(`game=freshGame(); app.mode='hvh'; initHistory(); submitQuiz(1,0)`);
+assert.strictEqual(run('game.phase'),'ORDER_CHOICE');
+assert.strictEqual(run('game.orderChoiceSchool'),'POSTECH');
+run(`chooseSolo(false)`); // POSTECH chooses second: WhiteTeam=KAIST, BlackTeam=POSTECH.
+assert.strictEqual(run('game.teams.W'),'KAIST');assert.strictEqual(run('game.teams.B'),'POSTECH');
+assert.strictEqual(run('game.phase'),'ITEM_SELECT');assert.strictEqual(run('game.itemRole'),'B');
+run(`gainItem('St',false)`);assert.strictEqual(run('game.phase'),'QUIZ');
+assert.ok(run(`serialize3(game)`).includes('1. Q[1, 0] B+St'));
+run(`submitQuiz(1,1)`);assert.strictEqual(run('game.phase'),'MOVE');assert.strictEqual(run('game.moveRole'),'W');
+run(`m1=generateRawMoves(game,'W')[0]; playMoveObject(m1,false)`);assert.strictEqual(run('game.moveRole'),'B');
+run(`m2=generateRawMoves(game,'B')[0]; playMoveObject(m2,false)`);assert.strictEqual(run('game.phase'),'QUIZ');
+assert.strictEqual(run('game.rounds[1].moves.length'),2);
+
+// Worker and UI use the same exact orientation tables and reduced successor semantics.
+const worker=vm.createContext({console,performance,postMessage:()=>{}});vm.runInContext(parts[0],worker);
+ui.es=run(`engineState(emptyGame(),'W')`);worker.s=JSON.parse(JSON.stringify(ui.es));
+assert.strictEqual(vm.runInContext('gen(s).length',worker),161);
+assert.strictEqual(vm.runInContext('unique(s).length',worker),84);
+let wr=vm.runInContext('analyze(s,150,0)',worker);
+assert.ok(wr.candidates.length>=3,'worker should expose at least three candidates');
+assert.strictEqual(new Set(wr.candidates.slice(0,3).map(x=>x.notation)).size,3);
+console.log('Browser analyzer Format 3 / migration / six-game / worker regression suite passed.');

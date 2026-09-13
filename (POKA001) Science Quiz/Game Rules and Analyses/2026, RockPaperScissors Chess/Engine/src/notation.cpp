@@ -91,7 +91,6 @@ bool parse_move(const Position& position, const std::string& input, Move& move) 
     trim(text);
     const auto colon = text.find(':');
     if (colon == std::string::npos || colon < 2) return false;
-
     std::string head = text.substr(0, colon);
     trim(head);
     std::string id = head, code;
@@ -102,7 +101,6 @@ bool parse_move(const Position& position, const std::string& input, Move& move) 
         id = head.substr(0, open);
         code = head.substr(open + 1, close - open - 1);
     }
-
     PieceId piece = PieceId::W1;
     bool found = false;
     for (int i = 0; i < PieceCount; ++i) {
@@ -110,17 +108,14 @@ bool parse_move(const Position& position, const std::string& input, Move& move) 
         if (piece_name(candidate) == id) { piece = candidate; found = true; break; }
     }
     if (!found) return false;
-
     Item item;
     if (!parse_item(code, item)) return false;
-
     std::string path = text.substr(colon + 1);
     const auto suffix = path.find(" x");
     if (suffix != std::string::npos) path = path.substr(0, suffix);
     const auto reset = path.find(" Reset");
     if (reset != std::string::npos) path = path.substr(0, reset);
     trim(path);
-
     Move parsed;
     parsed.piece = piece;
     parsed.item = item;
@@ -129,14 +124,12 @@ bool parse_move(const Position& position, const std::string& input, Move& move) 
     if (!parse_square_token(path, pos, start)) return false;
     parsed.path[parsed.path_length++] = start;
     pos += 2;
-
     if (item == Item::Push) {
         if (pos >= path.size() || path[pos] != '>') return false;
         ++pos;
         if (!parse_square_token(path, pos, parsed.push_to)) return false;
         pos += 2;
     }
-
     while (pos < path.size()) {
         if (path[pos] != '-') return false;
         ++pos;
@@ -146,7 +139,6 @@ bool parse_move(const Position& position, const std::string& input, Move& move) 
         parsed.path[parsed.path_length++] = square;
         pos += 2;
     }
-
     if (!position.is_legal_path(parsed)) return false;
     move = parsed;
     return true;
