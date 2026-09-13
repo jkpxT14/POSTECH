@@ -1,12 +1,12 @@
 \chapter{Games}
 
-경기명과 점수는 백--흑 순서로 표기한다. 각 경기의 둘째 줄에는 학교 배정을 \texttt{WhiteTeam: ... · BlackTeam: ...}으로 명시한다. 따라서 경기명, 총점, 괄호 안의 Quiz/Capture 점수는 모두 White--Black 순서이며, 각 문제의 \texttt{Q[...]}만 Chapter~2의 규약에 따라 언제나 POSTECH--KAIST 순서이다. Game 1--3은 2026년 9월 1일 온라인으로 진행된 선수단 내부 리그전, Game 4는 9월 2일 정기회의 연습경기, Game 5와 Game 6은 9월 9일의 엔진 성능 테스트와 엔진--선수단 연습경기 기록이다.
+경기명, 총점, Quiz/Capture 점수는 White--Black 순서이다. 둘째 줄에는 각 보드 역할의 학교 배정을 표시하며, 각 문제의 \texttt{Q[...]}만 Chapter~2에 따라 항상 POSTECH--KAIST 순서를 사용한다. Game 1--3은 9월 1일 선수단 내부 리그전, Game 4는 9월 2일 연습경기, Game 5--6은 9월 9일 엔진 테스트와 연습경기 기록이다.
 
 \newenvironment{gamerecord}{\begingroup\small\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}\setlength{\LTpre}{0pt}\setlength{\LTpost}{0pt}\renewcommand{\arraystretch}{1.02}\begin{longtable}{@{}r@{\hspace{0.62em}}>{\ttfamily\raggedright\arraybackslash}p{0.895\textwidth}@{}}}{\end{longtable}\endgroup}
 \newcommand{\gamehead}[7]{%
 \Needspace{9\baselineskip}\par\vspace{1.05em}%
 \noindent{\large\bfseries #1. #2--#3\hfill{\small\mdseries #4}\par}%
-\vspace{0.18em}\noindent{\small WhiteTeam: #5 \textperiodcentered{} BlackTeam: #6\par}%
+\vspace{0.18em}\noindent{\small White: #5 \textperiodcentered{} Black: #6\par}%
 \vspace{0.18em}\noindent{\small #7\par}%
 \vspace{0.34em}\hrule height 0.4pt\vspace{0.34em}}
 
@@ -58,27 +58,27 @@
 20. & Q[1, 0] W+Ro \\
 \end{gamerecord}
 
-\gamehead{3}{김정우}{황성진}{17--13 (11--11 + 6--2) \textperiodcentered{} 김정우 승}{POSTECH}{KAIST}{2026년 9월 1일 \textperiodcentered{} 선수단 내부 리그전 \textperiodcentered{} 온라인}
+\gamehead{3}{김정우}{황성진}{17--13 (11--11 + 6--2) \textperiodcentered{} 김정우 승}{KAIST}{POSTECH}{2026년 9월 1일 \textperiodcentered{} 선수단 내부 리그전 \textperiodcentered{} 온라인}
 \begin{gamerecord}
-1.  & Q[1, 0] W+St \\
+1.  & Q[0, 1] W+St \\
 2.  & Q[1, 1] W4: g1-g2-g3-f3 B1: h8-g8-g7-f7 \\
-3.  & Q[0, 1] B+St \\
+3.  & Q[1, 0] B+St \\
 4.  & Q[0, 0] W1: a1-a2-b2-c2 B3[StL]: d8-d7-d6-d5-d4-d3-e3 xW4 \\
-5.  & Q[0, 1] B+Pu \\
+5.  & Q[1, 0] B+Pu \\
 6.  & Q[0, 0] W3: e1-f1-g1-g2-f2-e2 xB3 B4: b8-c8-d8-e8 \\
 7.  & Q[1, 1] W2: c1-d1-d2-d3-d4 B4: e8-e7-e6-f6-g6-g7 \\
-8.  & Q[1, 0] W+Pu \\
+8.  & Q[0, 1] W+Pu \\
 9.  & Q[1, 1] W2[Pu]: d4>e4-e5-e6-f6 xB1 B4[Pu]: g7>g8-h8-h7-g7-g8 \\
-10. & Q[0, 1] B+St \\
-11. & Q[1, 0] W+Pu \\
+10. & Q[1, 0] B+St \\
+11. & Q[0, 1] W+Pu \\
 12. & Q[1, 1] W2: f6-f7-g7-h7-h8 xB4 B2[StS]: f8-g8-g7-h7 \\
-13. & Q[1, 0] W+St \\
+13. & Q[0, 1] W+St \\
 14. & Q[0, 0] W2[StL]: h8-g8-f8-e8-d8-c8 B2: h7-g7-g8-h8-h7 \\
-15. & Q[0, 1] B+St \\
+15. & Q[1, 0] B+St \\
 16. & Q[1, 1] W2: c8-b8-a8-a7 B2: h7-g7-g8-h8 \\
-17. & Q[0, 1] B+St \\
+17. & Q[1, 0] B+St \\
 18. & Q[1, 1] W3: e2-d2-d1-c1-b1 B2[StL]: h8-g8-g7-h7-h8 \\
-19. & Q[1, 0] W+Ro \\
+19. & Q[0, 1] W+Ro \\
 20. & Q[0, 0] W1: c2-c3-b3-a3-a2 B2[StL]: h8-g8-f8-e8-d8-c8 \\
 \end{gamerecord}
 

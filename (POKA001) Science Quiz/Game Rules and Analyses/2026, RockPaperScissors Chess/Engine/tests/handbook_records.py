@@ -101,6 +101,18 @@ def main() -> None:
         if (swq, sbq) != (calc_wq, calc_bq):
             fail(f"Game {n}: summary quiz {swq}-{sbq}, replayed Q gives {calc_wq}-{calc_bq}")
 
+    # Game 3 is historically White=Kim Jungwoo, Black=Hwang Sungjin, with Hwang/POSTECH on Black.
+    if (heads[2].group("white_team"), heads[2].group("black_team")) != ("KAIST", "POSTECH"):
+        fail("Game 3 school assignment must be White=KAIST, Black=POSTECH")
+    game3 = blocks[2].group(1)
+    for token in (
+        "1.  & Q[0, 1] W+St",
+        "3.  & Q[1, 0] B+St",
+        "19. & Q[0, 1] W+Ro",
+    ):
+        if token not in game3:
+            fail(f"Game 3 canonical regression token missing: {token}")
+
     # Direct high-risk regression from the reversed Game 6 assignment.
     game6 = blocks[5].group(1)
     for token in (

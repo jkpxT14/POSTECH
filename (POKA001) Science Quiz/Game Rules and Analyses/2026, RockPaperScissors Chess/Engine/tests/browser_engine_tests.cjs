@@ -34,7 +34,8 @@ assert.strictEqual(run('serialize3(rg2)'),ui.canon);
 const games=fs.readFileSync(path.join(base,'Games.tex'),'utf8');
 const blocks=[...games.matchAll(/\\begin\{gamerecord\}([\s\S]*?)\\end\{gamerecord\}/g)].map(x=>x[1]);
 assert.strictEqual(blocks.length,6);
-const maps=[['POSTECH','KAIST'],['POSTECH','KAIST'],['POSTECH','KAIST'],['POSTECH','KAIST'],['POSTECH','KAIST'],['KAIST','POSTECH']];
+const headLines=games.split('\n').filter(l=>l.startsWith('\\gamehead'));
+const maps=headLines.map(l=>{const m=l.match(/\}\{(POSTECH|KAIST)\}\{(POSTECH|KAIST)\}\{2026/);assert.ok(m,'school mapping in gamehead');return [m[1],m[2]];});
 const expected=[[18,17,12,11,3,3],[15,23,11,11,2,6],[17,13,11,11,3,1],[20,18,14,12,3,3],[32,34,20,20,6,7],[25,23,11,11,7,6]];
 for(let i=0;i<blocks.length;i++){
   const body=blocks[i].trim().split('\n').map(l=>l.trim().replace(/^([0-9]+\.)\s*&\s*/,'$1 ').replace(/\\\\\s*$/,'')).join('\n');

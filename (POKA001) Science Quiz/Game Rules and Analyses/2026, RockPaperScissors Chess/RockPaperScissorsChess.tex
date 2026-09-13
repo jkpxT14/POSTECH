@@ -22,7 +22,7 @@
 % White/Black are board roles, not school identities. Figure colors therefore stay neutral.
 \newcommand{\RPSCWhiteColor}{black}\newcommand{\RPSCBlackColor}{gray!62!black}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
-\setcounter{tocdepth}{1}\renewcommand{\contentsname}{Contents}\setlength{\parindent}{1em}\setlength{\parskip}{0pt}
+\setcounter{tocdepth}{1}\renewcommand{\contentsname}{Contents}\makeatletter\renewcommand{\@dotsep}{10000}\makeatother\setlength{\parindent}{1em}\setlength{\parskip}{0pt}
 \setlist[itemize]{itemsep=0.18em,topsep=0.4em,parsep=0pt}\setlist[enumerate]{itemsep=0.18em,topsep=0.4em,parsep=0pt}
 \input{Figures/Styles/TikZ.tex}
 \begin{document}
