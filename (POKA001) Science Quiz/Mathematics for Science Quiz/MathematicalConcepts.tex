@@ -70,10 +70,10 @@
         \[
             \neg(\forall x\in A,\ P(x))
             \Longleftrightarrow
-            \exists x\in A\ \text{s.t.}\ \neg P(x),
+            \exists x\in A\ \textnormal{s.t.}\ \neg P(x),
         \]
         \[
-            \neg(\exists x\in A\ \text{s.t.}\ P(x))
+            \neg(\exists x\in A\ \textnormal{s.t.}\ P(x))
             \Longleftrightarrow
             \forall x\in A,\ \neg P(x).
         \]
@@ -136,7 +136,7 @@
         \[
             \forall y\in Y,
             \qquad
-            \exists x\in X\ \text{s.t.}\ f(x)=y.
+            \exists x\in X\ \textnormal{s.t.}\ f(x)=y.
         \]
         Once surjectivity has been established, one may write
         $f\colon X\twoheadrightarrow Y$. The function is bijective if it is both
@@ -213,7 +213,7 @@
 
     \begin{definition}[Dedekind-Infinite Set]
         A set $A$ is Dedekind-infinite if there exists a proper subset
-        $B\subsetneq A$ s.t.
+        $B\subsetneq A$ such that
         \[
             |A|=|B|.
         \]
@@ -934,7 +934,7 @@
 
     \begin{theorem}[Intermediate Value Theorem]
         Let $f$ be continuous on $[a,b]$. If $N$ is any number between
-        $f(a)$ and $f(b)$, then there exists $c\in[a,b]$ s.t.
+        $f(a)$ and $f(b)$, then there exists $c\in[a,b]$ such that
         \[
             f(c)=N.
         \]
@@ -958,7 +958,7 @@
 
     \begin{theorem}[Rolle's Theorem]
         Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. If
-        $f(a)=f(b)$, then there exists $c\in(a,b)$ s.t.
+        $f(a)=f(b)$, then there exists $c\in(a,b)$ such that
         \[
             f'(c)=0.
         \]
@@ -966,7 +966,7 @@
 
     \begin{theorem}[Mean Value Theorem; Lagrange Mean Value Theorem]
         Let $f$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then
-        there exists $c\in(a,b)$ s.t.
+        there exists $c\in(a,b)$ such that
         \[
             f'(c)
             =
@@ -981,7 +981,7 @@
 
     \begin{theorem}[Cauchy's Mean Value Theorem; Extended Mean Value Theorem]
         Let $f$ and $g$ be continuous on $[a,b]$ and differentiable on
-        $(a,b)$. Then there exists $c\in(a,b)$ s.t.
+        $(a,b)$. Then there exists $c\in(a,b)$ such that
         \[
             \bigl(f(b)-f(a)\bigr)g'(c)
             =
@@ -1041,7 +1041,7 @@
     \begin{theorem}[Taylor's Theorem]
         Let $f$ be $(n+1)$ times differentiable on an open interval containing
         the closed interval with endpoints $a$ and $x$. Then there exists a
-        point $\xi$ strictly between $a$ and $x$ s.t.
+        point $\xi$ strictly between $a$ and $x$ such that
         \[
             f(x)
             =
@@ -1076,7 +1076,7 @@
         \[
             \sum_{n=0}^{\infty}c_n(x-a)^n.
         \]
-        There is a radius of convergence $R\in[0,\infty]$ s.t. the series
+        There is a radius of convergence $R\in[0,\infty]$ such that the series
         converges absolutely for $|x-a|<R$ and diverges for $|x-a|>R$; behavior
         at the boundary $|x-a|=R$ must be checked separately. A Taylor series is
         the power series with coefficients
@@ -1982,7 +1982,7 @@
             \sqrt{x_1^2+\cdots+x_n^2}.
         \]
         A set $U\subseteq\R^n$ is open if every $\mathbf{a}\in U$ has some
-        $r>0$ s.t.
+        $r>0$ such that
         \[
             B_r(\mathbf{a})\subseteq U.
         \]
@@ -2097,7 +2097,7 @@
         Let $\mathbf{F}\colon U\subseteq\R^n\to\R^m$, where $U$ is open, and
         let $\mathbf{a}\in U$. The map $\mathbf{F}$ is differentiable at
         $\mathbf{a}$ if there exists a linear map
-        $D\mathbf{F}(\mathbf{a})\colon\R^n\to\R^m$ s.t.
+        $D\mathbf{F}(\mathbf{a})\colon\R^n\to\R^m$ such that
         \[
             \mathbf{F}(\mathbf{a}+\mathbf{h})
             =
@@ -2404,7 +2404,7 @@
             g(x_1,\dots,x_n)=0
         \]
         at a point where $\nabla g\neq\mathbf{0}$. Then there exists a scalar
-        $\lambda$ s.t.
+        $\lambda$ such that
         \[
             \nabla f=\lambda\nabla g.
         \]
@@ -2740,13 +2740,13 @@
             \bottomrule
             \endlastfoot
 
-            Interior point & $x\in A$ and $\exists r>0$ s.t. $B_r(x)\subseteq A$ \\
-            Exterior point & $\exists r>0$ s.t. $B_r(x)\subseteq X\setminus A$ \\
+            Interior point & $x\in A$ and $\exists r>0$ such that $B_r(x)\subseteq A$ \\
+            Exterior point & $\exists r>0$ such that $B_r(x)\subseteq X\setminus A$ \\
             Boundary point & $\forall r>0$, $B_r(x)\cap A\neq\varnothing$ and
                 $B_r(x)\cap(X\setminus A)\neq\varnothing$ \\
             Accumulation point; limit point & $\forall r>0$,
                 $(B_r(x)\setminus\{x\})\cap A\neq\varnothing$ \\
-            Isolated point & $x\in A$ and $\exists r>0$ s.t.
+            Isolated point & $x\in A$ and $\exists r>0$ such that
                 $B_r(x)\cap A=\{x\}$ \\
             Interior $A^\circ$ & the set of all interior points of $A$ \\
             Closure $\overline{A}$ & $A$ together with all of its accumulation points;
@@ -3062,7 +3062,7 @@
 
     \begin{theorem}[Banach Fixed-Point Theorem; Contraction Mapping Theorem]
         Let $(X,d)$ be a nonempty complete metric space, and suppose that
-        $T\colon X\to X$ is a contraction: there exists $q\in[0,1)$ s.t.
+        $T\colon X\to X$ is a contraction: there exists $q\in[0,1)$ such that
         \[
             \forall x,y\in X,
             \qquad
@@ -3126,7 +3126,7 @@
 
     \begin{theorem}[Lebesgue Dominated Convergence Theorem]
         If $f_n\aeto f$ and there exists an integrable function
-        $g$ s.t. $|f_n|\leq g$ for all $n$, then
+        $g$ such that $|f_n|\leq g$ for all $n$, then
         \[
             \lim\limits_{n\to\infty}\int f_n\dd\mu
             =
@@ -3147,7 +3147,7 @@
     \begin{idea}
         Write $\lVert x\rVert_{\R/\Z}$ for the distance from $x$ to the nearest
         integer. By the pigeonhole principle, for every $N\geq2$ there is a
-        positive integer $q$ s.t.
+        positive integer $q$ such that
         \[
             0<\lVert q\alpha\rVert_{\R/\Z}<\frac1N.
         \]
@@ -3570,7 +3570,16 @@
         \]
         be an ordered basis of $V$. The coordinate vector of
         $\mathbf{v}\in V$ relative to $\mathcal{B}$ is the unique column vector
-        $[\mathbf{v}]_{\mathcal{B}}$ satisfying
+        whose entries are the unique scalars $c_1,\dots,c_n\in F$ satisfying
+        \[
+            [\mathbf{v}]_{\mathcal{B}}
+            =
+            \begin{pmatrix}c_1\\ \vdots\\ c_n\end{pmatrix},
+            \qquad
+            \mathbf{v}=\sum_{i=1}^{n}c_i\mathbf{v}_i.
+        \]
+        When $V=F^m$, the basis vectors may be assembled as columns of a
+        matrix, giving
         \[
             \mathbf{v}
             =
@@ -4158,7 +4167,7 @@
     \begin{definition}[Eigenvalue, Eigenvector, Eigenspace, and Characteristic Polynomial]
         Let $\mathbf{A}\in F^{n\times n}$. A scalar $\lambda\in F$ is an
         eigenvalue of $\mathbf{A}$ if there exists a nonzero vector
-        $\mathbf{v}\in F^n$ s.t.
+        $\mathbf{v}\in F^n$ such that
         \[
             \mathbf{A}\mathbf{v}=\lambda\mathbf{v}.
         \]
@@ -4234,7 +4243,7 @@
     \begin{definition}[Diagonalizable Matrix]
         A matrix $\mathbf{A}\in F^{n\times n}$ is diagonalizable over $F$ if
         there exist an invertible matrix $\mathbf{P}\in F^{n\times n}$ and a
-        diagonal matrix $\mathbf{D}$ s.t.
+        diagonal matrix $\mathbf{D}$ such that
         \[
             \mathbf{A}=\mathbf{P}\mathbf{D}\mathbf{P}^{-1}.
         \]
@@ -4714,7 +4723,7 @@
     \begin{definition}[Minimal Polynomial]
         The minimal polynomial $m_{\mathbf{A}}(t)$ of a square matrix
         $\mathbf{A}$ is the unique monic polynomial of smallest positive degree
-        s.t.
+        such that
         \[
             m_{\mathbf{A}}(\mathbf{A})=\mathbf{0}.
         \]
@@ -4899,7 +4908,7 @@
     \begin{theorem}[Spectral Theorem for Real Symmetric Matrices]
         If $\mathbf{A}\in\R^{n\times n}$ is symmetric, then all eigenvalues of
         $\mathbf{A}$ are real, and there exists an orthogonal matrix
-        $\mathbf{Q}$ and a diagonal matrix $\mathbf{D}$ s.t.
+        $\mathbf{Q}$ and a diagonal matrix $\mathbf{D}$ such that
         \[
             \mathbf{A}
             =
@@ -4928,7 +4937,7 @@
         A complex square matrix is normal if and only if it is unitarily
         diagonalizable. Equivalently, $\mathbf{A}$ is normal if and only if
         there exist a unitary matrix $\mathbf{U}$ and a diagonal matrix
-        $\mathbf{D}$ s.t.
+        $\mathbf{D}$ such that
         \[
             \mathbf{A}
             =
@@ -4947,7 +4956,7 @@
 
     \begin{theorem}[Spectral Theorem for Hermitian Matrices]
         If $\mathbf{A}\in\C^{n\times n}$ is Hermitian, then there exists a
-        unitary matrix $\mathbf{U}$ and a real diagonal matrix $\mathbf{D}$ s.t.
+        unitary matrix $\mathbf{U}$ and a real diagonal matrix $\mathbf{D}$ such that
         \[
             \mathbf{A}
             =
@@ -5282,7 +5291,7 @@
     \begin{theorem}[Jordan Canonical Form]
         Over the complex numbers, every square matrix is similar to a Jordan
         matrix. That is, for every $\mathbf{A}\in\C^{n\times n}$, there exists
-        an invertible matrix $\mathbf{P}$ s.t.
+        an invertible matrix $\mathbf{P}$ such that
         \[
             \mathbf{P}^{-1}\mathbf{A}\mathbf{P}
         \]
@@ -5443,7 +5452,7 @@
         \[
             M(x,y)\dd x+N(x,y)\dd y=0
         \]
-        is exact if there is a potential function $F\in C^1(D)$ s.t.
+        is exact if there is a potential function $F\in C^1(D)$ such that
         \[
             F_x=M,
             \qquad
@@ -5729,7 +5738,7 @@
             $u(t-a)f(t-a)$ & $e^{-as}F(s)$ & $a>0$ \\
             $f(t+T)=f(t)$ &
             $\displaystyle\frac{\int_0^T e^{-st}f(t)\dd t}{1-e^{-sT}}$ &
-            $T>0,\ s>0$ \\
+            $T>0,\ \RePart(s)>0$ \\
         \end{longtable}
         }
     \end{formula}
@@ -6266,7 +6275,8 @@
 
     \begin{definition}[Graphs, Walks, Paths, Trails, Cycles, and Trees]
         Unless stated otherwise, a graph $G=(V,E)$ here is a finite undirected
-        graph with vertex set $V$ and edge set $E$. Two vertices joined by an
+        simple graph with vertex set $V$ and edge set $E$: it has no loops or
+        multiple edges. Two vertices joined by an
         edge are adjacent, and the degree $\deg(v)$ is the number of edges
         incident to $v$. A walk is a sequence of adjacent vertices. A trail
         repeats no edge, while a path repeats no vertex. A closed trail is a
@@ -6630,7 +6640,7 @@
 
     \begin{theorem}[Ramsey's Theorem]
         For any positive integers $r$ and $s$, there exists an integer
-        $R(r,s)$ s.t. every red-blue coloring of the edges of a sufficiently
+        $R(r,s)$ such that every red-blue coloring of the edges of a sufficiently
         large complete graph contains either a red $K_r$ or a blue $K_s$.
     \end{theorem}
 
@@ -6939,25 +6949,27 @@
             \bottomrule
             \endlastfoot
 
-            Bernoulli$(p)$ &
+            $\Bern(p)$ &
             $\Prob(X=x)=p^x(1-p)^{1-x}$, $x\in\{0,1\}$ &
             $p$ & $p(1-p)$ \\
             $\Bin(n,p)$ &
-            $\displaystyle\Prob(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$ &
+            $\displaystyle\Prob(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$,
+            $k\in\{0,1,\dots,n\}$ &
             $np$ & $np(1-p)$ \\
-            Geometric$(p)$ &
-            $\Prob(X=k)=(1-p)^{k-1}p$, $k\geq1$ &
+            $\Geom(p)$ &
+            $\Prob(X=k)=(1-p)^{k-1}p$, $k\in\N$ &
             $\displaystyle\frac1p$ & $\displaystyle\frac{1-p}{p^2}$ \\
             Negative binomial$(r,p)$ &
             $\displaystyle\Prob(X=k)=\binom{k-1}{r-1}p^r(1-p)^{k-r}$, $k\geq r$ &
             $\displaystyle\frac{r}{p}$ & $\displaystyle\frac{r(1-p)}{p^2}$ \\
             $\Poi(\lambda)$ &
-            $\displaystyle\Prob(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}$ &
+            $\displaystyle\Prob(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}$,
+            $k\in\Nzero$ &
             $\lambda$ & $\lambda$ \\
-            Uniform$(a,b)$ &
+            $\Unif(a,b)$ &
             $\displaystyle f(x)=\frac{1}{b-a}$, $a\leq x\leq b$ &
             $\displaystyle\frac{a+b}{2}$ & $\displaystyle\frac{(b-a)^2}{12}$ \\
-            Exponential$(\lambda)$ &
+            $\ExpDist(\lambda)$ &
             $f(x)=\lambda e^{-\lambda x}$, $x\geq0$ &
             $\displaystyle\frac1\lambda$ & $\displaystyle\frac1{\lambda^2}$ \\
             Gamma$(\alpha,\lambda)$ &
@@ -8735,15 +8747,11 @@
         circles becomes one quadratic equation in their curvatures.
     \end{remark}
 
-    \begin{formula}[Boundary Lattice Points on a Segment]
-        If a lattice segment has displacement $(\Delta x,\Delta y)$, then the
-        number of lattice points on it, including both endpoints, is
-        \[
-            \gcd(|\Delta x|,|\Delta y|)+1.
-        \]
-        Summing the gcd contributions over polygon edges gives the number $B$ of
+    \begin{remark}[Boundary Lattice Points for Pick's Theorem]
+        Apply the lattice-segment formula above to each polygon edge. Summing
+        $\gcd(|\Delta x|,|\Delta y|)$ over all edges gives the number $B$ of
         boundary lattice points without double-counting vertices.
-    \end{formula}
+    \end{remark}
 
     \begin{theorem}[Pick's Theorem]
         Let $P$ be a simple polygon whose vertices lie on lattice points in the
@@ -8828,12 +8836,12 @@
 
     \begin{theorem}[B\'ezout's Identity; B\'ezout's Lemma]
         Let $a,b\in\Z$, not both zero. Then there exist integers $x,y\in\Z$
-        s.t.
+        such that
         \[
             ax+by=\gcd(a,b).
         \]
         In particular, if $\gcd(a,b)=1$, then there exist integers $x,y\in\Z$
-        s.t.
+        such that
         \[
             ax+by=1.
         \]
@@ -8845,13 +8853,15 @@
     \end{remark}
 
     \begin{algorithm}[Euclidean Algorithm]
-        To compute $\gcd(a,b)$ for integers $a,b\in\Z$, repeatedly divide the
-        larger number by the smaller number and replace the pair by
+        To compute $\gcd(a,b)$ for integers $a,b\in\Z$, not both zero, begin
+        with $x=\max\{|a|,|b|\}$ and $y=\min\{|a|,|b|\}$. While $y>0$, write
         \[
-            (b,r),
+            x=qy+r,
+            \qquad 0\leq r<y,
         \]
-        where $r$ is the remainder. Continue until the remainder becomes $0$.
-        The last nonzero remainder is $\gcd(a,b)$.
+        and replace $(x,y)$ by $(y,r)$. When $y=0$, the current value of $x$
+        is $\gcd(a,b)$. In particular, if one input is zero, then
+        $\gcd(a,0)=|a|$.
     \end{algorithm}
 
     \begin{definition}[Gaussian Integers]
@@ -9162,7 +9172,7 @@
 
     \begin{proposition}[Multiplicative Order]
         If $\gcd(a,n)=1$, the multiplicative order $\ord_n(a)$ is the least
-        positive integer $t$ s.t.
+        positive integer $t$ such that
         \[
             a^t\equiv1\pmod n.
         \]
@@ -9216,7 +9226,7 @@
 
     \begin{algorithm}[Modular Exponentiation by Period Reduction]
         To compute $a^n\pmod m$, first reduce $a$ modulo $m$. If
-        $\gcd(a,m)=1$, determine a convenient exponent $t>0$ s.t.
+        $\gcd(a,m)=1$, determine a convenient exponent $t>0$ such that
         \[
             a^t\equiv1\pmod m,
         \]
@@ -9420,7 +9430,7 @@
     \begin{theorem}[Lagrange's Four-Square Theorem]
         Every nonnegative integer can be written as a sum of four integer
         squares. That is, for every $n\in\Nzero$, there exist integers
-        $a,b,c,d\in\Z$ s.t.
+        $a,b,c,d\in\Z$ such that
         \[
             n=a^2+b^2+c^2+d^2.
         \]
@@ -9444,6 +9454,8 @@
         \[
             |q_k\alpha-p_k|<|q\alpha-p|.
         \]
+        Here ``second kind'' refers to minimizing $|q\alpha-p|$, rather than
+        the absolute error $|\alpha-p/q|$ itself.
     \end{theorem}
 
     \begin{strategy}
@@ -9481,7 +9493,7 @@
     \end{remark}
 
     \begin{theorem}[Bertrand's Postulate; Chebyshev's Theorem]
-        For every integer $n>1$, there exists a prime $p$ s.t.
+        For every integer $n>1$, there exists a prime $p$ such that
         \[
             n<p<2n.
         \]
@@ -9547,7 +9559,7 @@
 
     \begin{theorem}[Fermat's Last Theorem]
         For every integer $n\geq 3$, there do not exist positive integers
-        $a,b,c$ s.t.
+        $a,b,c$ such that
         \[
             a^n+b^n=c^n.
         \]
@@ -9565,14 +9577,14 @@
     \relatedbooks{Abstract Algebra (David S. Dummit, Richard M. Foote)}
 
     \begin{definition}[Group]
-        A group is a set $G$ with a binary operation $\ast\colon G\times G\to G$ s.t.
+        A group is a set $G$ with a binary operation $\ast\colon G\times G\to G$ such that
         \[
             \forall a,b,c\in G,
             \qquad
             (a\ast b)\ast c=a\ast(b\ast c),
         \]
         \[
-            \exists e\in G\ \text{s.t.}\quad
+            \exists e\in G\ \textnormal{s.t.}\quad
             \forall a\in G,
             \qquad
             e\ast a=a\ast e=a,
@@ -9581,7 +9593,7 @@
         \[
             \forall a\in G,
             \qquad
-            \exists a^{-1}\in G\ \text{s.t.}\quad
+            \exists a^{-1}\in G\ \textnormal{s.t.}\quad
             a\ast a^{-1}=a^{-1}\ast a=e.
         \]
         The group is abelian if
@@ -9595,7 +9607,8 @@
 
     \begin{definition}[Subgroup, Homomorphism, and Kernel]
         A subset $H\subseteq G$ is a subgroup, written $H\leq G$, if it is a
-        group under the operation of $G$. A map $\varphi\colon G\to H$ is a group
+        group under the operation of $G$. Writing the group operations
+        multiplicatively, a map $\varphi\colon G\to K$ is a group
         homomorphism if
         \[
             \varphi(ab)=\varphi(a)\varphi(b)
@@ -9604,7 +9617,7 @@
         \]
         Its kernel and image are
         \[
-            \ker\varphi=\{g\in G\mid\varphi(g)=e_H\},
+            \ker\varphi=\{g\in G\mid\varphi(g)=e_K\},
             \qquad
             \im\varphi=\{\varphi(g)\mid g\in G\}.
         \]
@@ -9673,7 +9686,7 @@
     \begin{definition}[Order of a Group and of an Element]
         The order of a finite group $G$ is its cardinality $|G|$. The order of
         an element $g\in G$, denoted $\ord(g)$, is the least positive integer
-        $m$ s.t. $g^m=e$, if such an integer exists; otherwise $g$ has infinite
+        $m$ such that $g^m=e$, if such an integer exists; otherwise $g$ has infinite
         order. Equivalently,
         \[
             \ord(g)=|\langle g\rangle|.
@@ -9764,7 +9777,7 @@
     \end{fact}
 
     \begin{definition}[Cyclic Group]
-        A group $G$ is cyclic if there exists an element $g\in G$ s.t. every
+        A group $G$ is cyclic if there exists an element $g\in G$ such that every
         element of $G$ is a power of $g$. In this case, we write
         \[
             G=\langle g\rangle.
@@ -9949,7 +9962,7 @@
     \end{theorem}
 
     \begin{definition}[Ring and Field]
-        A ring is a set $R$ with operations $+$ and $\cdot$ s.t.
+        A ring is a set $R$ with operations $+$ and $\cdot$ such that
         $(R,+)$ is an abelian group, multiplication is associative, and
         multiplication distributes over addition on both sides. Throughout this
         book, rings are assumed to have a multiplicative identity $1_R$ unless
@@ -9965,7 +9978,7 @@
         if $ba=0$ for some nonzero $b$. In a commutative ring these notions
         coincide and $a$ is simply called a \emph{zero divisor}. The
         characteristic of $R$ is the least
-        positive integer $n$ s.t.
+        positive integer $n$ such that
         \[
             n1_R=0,
         \]
@@ -9973,7 +9986,7 @@
     \end{definition}
 
     \begin{definition}[Ideal, Ring Homomorphism, and Quotient Ring]
-        An ideal $I$ of a commutative ring $R$ is an additive subgroup s.t.
+        An ideal $I$ of a commutative ring $R$ is an additive subgroup such that
         \[
             r\in R\land a\in I
             \quad\Longrightarrow\quad
@@ -10025,7 +10038,7 @@
         \[
             \delta\colon R\setminus\{0\}\to\Nzero
         \]
-        s.t. for all $a,b\in R$ with $b\neq0$, there exist $q,r\in R$
+        such that for all $a,b\in R$ with $b\neq0$, there exist $q,r\in R$
         satisfying
         \[
             a=bq+r,
@@ -10132,7 +10145,7 @@
 
     \begin{algorithm}[Polynomial Division Algorithm]
         Let $F$ be a field. If $f(x),g(x)\in F[x]$ and $g(x)\neq 0$, then there
-        exist unique polynomials $q(x),r(x)\in F[x]$ s.t.
+        exist unique polynomials $q(x),r(x)\in F[x]$ such that
         \[
             f(x)=q(x)g(x)+r(x),
             \qquad
@@ -10296,7 +10309,7 @@
         \[
             f(x)=a_nx^n+\cdots+a_0\in\Z[x].
         \]
-        If there exists a prime $p$ s.t.
+        If there exists a prime $p$ such that
         \[
             p\nmid a_n,
             \qquad
@@ -10405,7 +10418,7 @@
         A collection $\mathcal{B}$ of subsets of $X$ is a basis if every
         $x\in X$ lies in some $B\in\mathcal{B}$ and, whenever
         $x\in B_1\cap B_2$ with $B_1,B_2\in\mathcal{B}$, there exists
-        $B_3\in\mathcal{B}$ s.t.
+        $B_3\in\mathcal{B}$ such that
         \[
             x\in B_3\subseteq B_1\cap B_2.
         \]
@@ -10439,7 +10452,7 @@
             X\subseteq\bigcup_{U\in\mathcal{U}}U
             \Rightarrow
             \exists U_1,\dots,U_n\in\mathcal{U}
-            \ \text{s.t.}\
+            \ \textnormal{s.t.}\
             X\subseteq U_1\cup\cdots\cup U_n.
         \]
     \end{definition}
@@ -10481,7 +10494,7 @@
         \[
             x\neq y
             \quad\Longrightarrow\quad
-            \exists U,V\text{ open s.t. }x\in U,\ y\in V,\ U\cap V=\varnothing.
+            \exists U,V\text{ open such that }x\in U,\ y\in V,\ U\cap V=\varnothing.
         \]
         Every metric space is Hausdorff.
     \end{definition}
@@ -11054,7 +11067,7 @@
         \[
             \sum_{n=1}^{\infty}\frac{1}{n(n+1)}=1,
             \qquad
-            \sum_{n=1}^{\infty}\frac{1}{n(n+2)}=\frac34,
+            \sum_{n=1}^{\infty}\frac{1}{n(n+2)}=\frac34.
         \]
         Both follow by partial fractions and telescoping. Classical zeta and
         alternating-series values are collected in the Calculus chapter.
