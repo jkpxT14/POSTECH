@@ -150,7 +150,7 @@ White의 수만 적을 때에는 \texttt{Mn.}, Black의 대응만 적거나 Blac
 Position Evaluation은 White의 관점에서 적는다. $=$, $+=$, $=+$, $\pm$, $\mp$, $+-$, $-+$, $\infty$는 각각 균형, White/Black의 약간의 우세, 명확한 우세, 결정적 우세, 불명확을 나타내는 전통적인 체스식 분석 표기이다.
 
 \medskip\noindent\textbf{Incomplete Records.}
-Analysis Board의 \texttt{.rpsc} 파일은 진행 중인 확정 상태에서도 저장할 수 있다. \texttt{Q[1,1]} 또는 \texttt{Q[0,0]} 뒤에 이동이 없으면 White 이동 전, White의 Move Notation만 있으면 Black 이동 전 상태를 뜻한다. 한 학교만 정답인 경우에는 정답 학교의 Item Choice가 남아 있을 수 있다.
+Analysis Board의 \texttt{.rpsc} 파일은 진행 중인 확정 상태에서도 저장할 수 있다. \texttt{Q[1,1]} 또는 \texttt{Q[0,0]} 뒤에 이동이 없으면 White 이동 전, White의 Move Notation만 있으면 Black 이동 전 상태를 뜻한다. 한 학교만 정답인 경우에는 정답 학교의 Item Choice가 남아 있을 수 있다. Analysis Board가 저장하는 Session metadata는 main line, sideline, 현재 분석 위치와 재사용 가능한 엔진 분석 결과를 보존하기 위한 보조 정보이며, 위의 canonical Game Record 표기 자체를 바꾸지 않는다.
 
 현재 저장 형식인 \textbf{Format 3}에서 \texttt{Q}는 항상 \POSTECH--\KAIST{} 순서이고, \texttt{White}/\texttt{Black}은 controller, \texttt{WhiteTeam}/\texttt{BlackTeam}은 학교 배정이다. \texttt{QOrder}는 \texttt{POSTECH, KAIST}로 기록한다.
 

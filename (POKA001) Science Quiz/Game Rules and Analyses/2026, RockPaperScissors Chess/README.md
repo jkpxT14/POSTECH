@@ -1,8 +1,10 @@
 # 2026, RockPaperScissors Chess
 
-Synchronized package revision **0.22.2** (2026-09-14), `.rpsc` **Format 3**, ruleset `2026-rpsc-rotation6-push-return`.
+Synchronized package revision **0.22.3** (2026-09-14), `.rpsc` **Format 3**, ruleset `2026-rpsc-rotation6-push-return`.
 
-The Analysis Board preserves the established SVG board, fixed board geometry, move-path animation, history/variation workflow, Gesture-State analysis, 10 s -> 20 s analysis flow, and Jungwoo Kim (POSTECH) byline. Live White-role evaluation stays active across board moves, quiz waits, and item decisions. After Black finishes a board move and the next Quiz is still unknown, the board is analyzed under the evaluation-equivalent equal-result assumption `Q[0,0] / Q[1,1]`, so the current evaluation and Top 3 PVs continue on both the main line and analysis variations. Format 3 sessions preserve the main line, sidelines, current analysis node, and position state; after loading, any saved line can be revisited and analyzed again.
+The Analysis Board preserves the established SVG board, fixed board geometry, move-path animation, history/variation workflow, Gesture-State analysis, 10 s -> 20 s analysis flow, and Jungwoo Kim (POSTECH) byline. Live White-role evaluation stays active across board moves, quiz waits, and item decisions. After Black finishes a board move and the next Quiz is still unknown, the board is analyzed under the evaluation-equivalent equal-result assumption `Q[0,0] / Q[1,1]`, so the current evaluation and Top 3 PVs continue on both the main line and analysis variations. Format 3 sessions preserve the main line, sidelines, current analysis node, position state, and compatible completed board-analysis cache. After loading, saved main-line and sideline positions can immediately restore their evaluation, Top 3, and PVs, while Analyze can continue the same position toward 20 s. Historical item/order decision nodes are re-analyzed in place without auto-playing them.
+
+Both the native `search.cpp` and embedded browser worker remain byte-identical to their strengthened 0.22.0 counterparts; 0.22.3 changes analyzer/session behavior, not engine strength.
 
 The handbook, offline Analysis Board, native engine, examples, and regression tests use one notation contract:
 
@@ -22,7 +24,7 @@ The seven handbook games are regression-replayed under the current rules: all 14
 
 - `RockPaperScissorsChess.pdf` / `.tex`: handbook and source.
 - `RockPaperScissorsChess.html`: self-contained Analysis Board with Format 2 migration, Format 3 session save/load, live evaluation, main-line/sideline analysis, move animation, and Top 3 PV analysis.
-- `Engine/`: native C++17 RPSC Engine 0.22.2, source, tests, and paired self-play harness.
+- `Engine/`: native C++17 RPSC Engine 0.22.3, source, tests, and paired self-play harness.
 - `Examples/`: legacy Format 2 and canonical Format 3 Game 6 records.
 
 Format 2 files are read with their original `Q[White, Black]` semantics and migrated in memory. New saves use Format 3.

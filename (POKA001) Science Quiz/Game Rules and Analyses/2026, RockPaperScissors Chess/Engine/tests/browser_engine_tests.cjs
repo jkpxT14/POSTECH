@@ -1,4 +1,4 @@
-// RPSC 0.22.2 analyzer / Format 3 regression suite.
+// RPSC 0.22.3 analyzer / Format 3 regression suite.
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
 const base=path.resolve(__dirname,'../..');
 const html=fs.readFileSync(path.join(base,'RockPaperScissorsChess.html'),'utf8');
@@ -60,10 +60,12 @@ assert.strictEqual(run('Array.isArray(history.nodes[0].children)'),true);
 assert.strictEqual(run('typeof historyPrevious'), 'function');
 assert.strictEqual(run('typeof returnToCurrent'), 'function');
 assert.strictEqual(run('typeof renderVariation'), 'function');
-assert.ok(run('goHistory.toString().includes("scheduleBackgroundAnalysis")'),'history navigation must restart live background analysis');
-assert.ok(run('goHistory.toString().includes("boardAnalysisPhase")'),'post-Black QUIZ history nodes must also restart live analysis');
+assert.ok(run('goHistory.toString().includes("scheduleAutomation")'),'history navigation must restart context-appropriate live analysis');
 assert.ok(run('goHistory.toString().includes("restoreLiveEvalFromCache")'),'history navigation must not display an eval inherited from another node');
+assert.ok(run('goHistory.toString().includes("lastItemDecision=null")'),'history navigation must clear stale decision analysis from another node');
 assert.ok(run('scheduleAutomation.toString().includes("isHistoricalView()")'),'loaded historical/variation positions must remain analysis-only and live-analyzed');
+assert.ok(run(`scheduleAutomation.toString().includes('requestEngineItemChoice(\"item\")')`),'historical item-choice nodes must receive live engine analysis without auto-playing');
+assert.ok(run(`scheduleAutomation.toString().includes('requestEngineInitialChoice(\"initial\")')`),'historical initial-decision nodes must receive live engine analysis without auto-playing');
 
 // Position Eval remains live between board moves and uses White-role signs everywhere.
 // A post-Black QUIZ node is analyzed as the next White move under equal-Q (Q[0,0] / Q[1,1]).
@@ -102,6 +104,12 @@ assert.strictEqual(run('app.lastLiveEval.value'),25,'after a manual item choice,
 run(`game=freshGame(); game.phase='ORDER_CHOICE'; game.orderChoiceTeam=C.POSTECH; app.lastInitialDecision={team:C.POSTECH,candidates:[{first:false,item:'Pu',value:70,whiteValue:-70,pv:[]}],partial:false,totalMs:10000}; app.engineThinking=false`);
 let initialEval=run('positionEvalHTML()');
 assert.ok(initialEval.includes('-0.70')&&initialEval.includes('Projected White')&&initialEval.includes('KAIST'),'initial decision eval must show the candidate White role, not chooser-sign evaluation');
+run(`game=freshGame(); game.order={white:C.POSTECH,black:C.KAIST,source:'test'}; game.pieces=initialPieces(C.POSTECH,C.KAIST); game.teams.POSTECH.quiz=10; game.teams.KAIST.quiz=10; game.teams.POSTECH.captures=5; game.teams.KAIST.captures=4; game.phase='GAME_OVER'; game.result=C.POSTECH; app.lastLiveEval=null; clearEngineAnalysis()`);
+let finalEval=run('positionEvalHTML()');
+assert.ok(finalEval.includes('+2.00')&&finalEval.includes('Final board position'),'finished games must show exact White-role terminal evaluation instead of a blank');
+run(`game.phase='OT_QUIZ'; game.teams.POSTECH.captures=4; game.teams.KAIST.captures=4; game.overtime=[]; app.lastLiveEval=null`);
+let overtimeEval=run('positionEvalHTML()');
+assert.ok(overtimeEval.includes('+0.00')&&overtimeEval.includes('Overtime'),'overtime board-frozen states must keep a numeric White-role evaluation');
 
 // Full analysis-session round trip: main line + sideline + current variation node.
 // Use a short legal prefix from Game 1, branch before White's first move, then save/load.
@@ -148,15 +156,30 @@ const sideAnalysis=run('engineAnalysisHTML()');
 assert.ok((sideAnalysis.match(/class="candidate/g)||[]).length>=3,'sideline analysis must render Top 3 candidates');
 assert.ok((sideAnalysis.match(/PV&nbsp;&nbsp;/g)||[]).length>=3,'sideline candidates must render PV lines');
 
+// Completed board analyses are persisted with an engine signature so loaded main/sideline nodes restore instantly.
+run('cacheAnalysis(positionFingerprint(),sideResult,toEngineState(),analysisMoveNumber(game),game.moveRole,"background",0)');
+assert.ok(run('app.analysisCache.size')>=1,'completed sideline analysis must enter the position cache');
+assert.strictEqual(run('ANALYSIS_ENGINE_SIGNATURE'),'0.22.0-search');
+const cachedKey=run('positionFingerprint()');ui.cachedKey=cachedKey;
+const payload=run('sessionPayload()');ui.payload=JSON.parse(JSON.stringify(payload));
+assert.strictEqual(payload.analysisEngine,'0.22.0-search');
+assert.ok(Array.isArray(payload.analysisCache)&&payload.analysisCache.some(x=>x.key===cachedKey),'session payload must persist completed board analysis');
+run('app.analysisCache.clear()');
+assert.strictEqual(run('restoreAnalysisCacheFromSession(payload)'),payload.analysisCache.length,'compatible session analysis cache must restore');
+assert.ok(run('showCachedAnalysis(cachedKey)'),'restored cache must immediately repopulate eval/Top 3/PV state');
+assert.ok(run('engineAnalysisHTML()').includes('PV&nbsp;&nbsp;'),'restored cached analysis must retain PV lines');
+
 // Session save must include the complete history tree and restore the active variation.
+const savedEval=run('app.engineAnalysis.rootSide==="W"?app.engineAnalysis.candidates[0].value:-app.engineAnalysis.candidates[0].value');ui.savedEval=savedEval;
 run(`app.lastLiveEval={value:37,whiteTeam:game.order.white,source:'board'}`);
 const savedSession=run('sessionRecordText()');ui.savedSession=savedSession;
 assert.ok(savedSession.includes('[Session "'),'analysis session payload must be embedded');
 assert.ok(savedSession.includes('{Variation '),'human-readable variation summary must be present');
 run('roundTrip=parseAndReplayDetailed(savedSession)');
 assert.strictEqual(run('roundTrip.sessionFresh'),true,'saved Format 3 session must restore as fresh');
-run('installLoadedHistory(roundTrip)');
-assert.strictEqual(run('app.lastLiveEval.value'),37,'load must restore the visible live evaluation context');
+run('app.analysisCache.clear(); installLoadedHistory(roundTrip)');
+assert.ok(run('app.analysisCache.size')>=1,'load must restore compatible saved board analyses');
+assert.strictEqual(run('app.lastLiveEval.value'),savedEval,'node-specific cached evaluation must override a stale generic live-eval fallback');
 assert.strictEqual(run('history.current'),variationId,'load must restore the active sideline node');
 assert.strictEqual(run('history.head'),canonicalHead,'load must preserve canonical main-line head');
 assert.strictEqual(run('historyNode().onMain'),false);
@@ -183,4 +206,4 @@ let result=vm.runInContext('search(s,{depth:3,ms:500,multipv:3})',worker);
 assert.ok(result.candidates.length>=3,'worker must expose Top 3 candidates');
 assert.strictEqual(new Set(result.candidates.slice(0,3).map(x=>JSON.stringify(x.move))).size,3);
 assert.ok(result.candidates.slice(0,3).every(x=>Array.isArray(x.pv)&&x.pv.length>=1),'each candidate must carry a PV');
-console.log('RPSC 0.22.2 analyzer / Format 3 / session / continuous-live-eval / Top 3 PV regression suite passed.');
+console.log('RPSC 0.22.3 analyzer / Format 3 / persisted-analysis / continuous-live-eval / Top 3 PV regression suite passed.');

@@ -1,9 +1,9 @@
 # RPSC Engine
 
-Version: **0.22.2**  
+Version: **0.22.3**  
 Ruleset: `2026-rpsc-rotation6-push-return`
 
-0.22.2 is a synchronized package patch; the native search core is unchanged from 0.22.0. The browser Analysis Board extends continuous live evaluation to post-Black Quiz-wait positions via the equal-Q assumption.
+0.22.3 is a synchronized analyzer/session patch; the native search core is unchanged from 0.22.0. The browser Analysis Board keeps continuous live evaluation and now preserves compatible completed board analyses across Format 3 save/load, including main-line and sideline positions.
 
 The search core uses White/Black board roles. School identity is converted at the protocol boundary.
 
