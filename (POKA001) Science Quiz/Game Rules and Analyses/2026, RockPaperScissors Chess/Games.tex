@@ -1,12 +1,13 @@
 \chapter{Games}
 
-경기명, 총점, Quiz/Capture 점수는 White--Black 순서이다. 둘째 줄에는 각 보드 역할의 학교 배정을 표시하며, 각 문제의 \texttt{Q[...]}만 Chapter~2에 따라 항상 POSTECH--KAIST 순서를 사용한다. Game 1--3은 9월 1일 선수단 내부 리그전, Game 4는 9월 2일 연습경기, Game 5--6은 9월 9일 엔진 테스트와 연습경기, Game 7은 9월 13일 과학퀴즈 회의에서 진행한 선수단--엔진 연습경기 기록이다.
+경기명, 총점, Quiz/Capture 점수는 White--Black 순서이다. 둘째 줄에는 각 보드 역할의 학교 배정을 표시하며, 각 문제의 \texttt{Q[...]}만 Chapter~2에 따라 항상 \POSTECH--\KAIST{} 순서를 사용한다. Game 1--3은 9월 1일 선수단 내부 리그전, Game 4는 9월 2일 연습경기, Game 5--6은 9월 9일 엔진 테스트와 연습경기, Game 7은 9월 13일 과학퀴즈 회의에서 진행한 선수단--엔진 연습경기 기록이다.
 
 \newenvironment{gamerecord}{\begingroup\small\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}\setlength{\LTpre}{0pt}\setlength{\LTpost}{0pt}\renewcommand{\arraystretch}{1.02}\begin{longtable}{@{}r@{\hspace{0.62em}}>{\ttfamily\raggedright\arraybackslash}p{0.895\textwidth}@{}}}{\end{longtable}\endgroup}
+\newcommand{\schooldisplay}[1]{\ifstrequal{#1}{POSTECH}{\POSTECH}{\ifstrequal{#1}{KAIST}{\KAIST}{#1}}}
 \newcommand{\gamehead}[7]{%
 \Needspace{9\baselineskip}\par\vspace{1.05em}%
 \noindent{\large\bfseries #1. #2--#3\hfill{\small\mdseries #4}\par}%
-\vspace{0.18em}\noindent{\small White: #5 \textperiodcentered{} Black: #6\par}%
+\vspace{0.18em}\noindent{\small White: \schooldisplay{#5} \textperiodcentered{} Black: \schooldisplay{#6}\par}%
 \vspace{0.18em}\noindent{\small #7\par}%
 \vspace{0.34em}\hrule height 0.4pt\vspace{0.34em}}
 

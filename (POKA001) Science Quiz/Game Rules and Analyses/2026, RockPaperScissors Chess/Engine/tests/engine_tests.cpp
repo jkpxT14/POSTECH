@@ -29,5 +29,5 @@ int main(){
     Position pu; pu.set_items(Color::White,1,0,0); Move m; m.piece=PieceId::W1; m.item=Item::Push; m.push_to=make_square(1,0); m.path[0]=make_square(0,0); m.path[1]=make_square(0,0); m.path[2]=make_square(0,1); m.path[3]=make_square(1,1); m.path_length=4; assert(pu.is_legal_path(m)); m.path[2]=make_square(1,0); assert(!pu.is_legal_path(m));
     Position s; s.set_match_context(0,0,20); assert(evaluate_white(s)==0); Position wi=s; wi.set_items(Color::White,1,0,0); assert(evaluate_white(wi)>0);
     Engine e; SearchLimits lim; lim.depth=3; lim.multipv=3; auto r=e.go(lim); assert(r.has_move&&r.depth==3&&r.lines.size()==3&&distinct(r.lines));
-    std::cout<<"RPSC Engine 0.22.1 regression suite passed\n";
+    std::cout<<"RPSC Engine 0.22.2 regression suite passed\n";
 }

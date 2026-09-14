@@ -1,4 +1,4 @@
-// RPSC 0.22.1 analyzer / Format 3 regression suite.
+// RPSC 0.22.2 analyzer / Format 3 regression suite.
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
 const base=path.resolve(__dirname,'../..');
 const html=fs.readFileSync(path.join(base,'RockPaperScissorsChess.html'),'utf8');
@@ -61,15 +61,39 @@ assert.strictEqual(run('typeof historyPrevious'), 'function');
 assert.strictEqual(run('typeof returnToCurrent'), 'function');
 assert.strictEqual(run('typeof renderVariation'), 'function');
 assert.ok(run('goHistory.toString().includes("scheduleBackgroundAnalysis")'),'history navigation must restart live background analysis');
+assert.ok(run('goHistory.toString().includes("boardAnalysisPhase")'),'post-Black QUIZ history nodes must also restart live analysis');
 assert.ok(run('goHistory.toString().includes("restoreLiveEvalFromCache")'),'history navigation must not display an eval inherited from another node');
 assert.ok(run('scheduleAutomation.toString().includes("isHistoricalView()")'),'loaded historical/variation positions must remain analysis-only and live-analyzed');
 
-// Position Eval remains visible between board moves and uses White-role signs everywhere.
+// Position Eval remains live between board moves and uses White-role signs everywhere.
+// A post-Black QUIZ node is analyzed as the next White move under equal-Q (Q[0,0] / Q[1,1]).
 ui.document={getElementById:()=>({})};
-run(`game=freshGame(); game.order={white:C.POSTECH,black:C.KAIST,source:'test'}; game.pieces=initialPieces(C.POSTECH,C.KAIST); game.phase='QUIZ'; app.lastLiveEval={value:42,whiteTeam:C.POSTECH,source:'board'}; app.lastItemDecision=null; app.lastInitialDecision=null; app.engineThinking=false`);
+run(`game=freshGame(); game.order={white:C.POSTECH,black:C.KAIST,source:'test'}; game.pieces=initialPieces(C.POSTECH,C.KAIST); game.rounds=[{n:1,q:{POSTECH:true,KAIST:true},itemGain:null,moves:[],complete:true}]; game.teams.POSTECH.quiz=1; game.teams.KAIST.quiz=1; game.phase='QUIZ'; game.moveRole=null; app.lastLiveEval=null; app.lastItemDecision=null; app.lastInitialDecision=null; app.engineThinking=false; clearEngineAnalysis()`);
+assert.strictEqual(run('boardAnalysisPhase()'),true,'QUIZ after roles are assigned must be an analyzable board phase');
+assert.strictEqual(run('analysisProbeState().side'),'W','equal-Q probe after Black must start with White');
+assert.strictEqual(run('analysisProbeMoveNumber()'),2,'equal-Q probe must label the next board-move round');
+const quizKey=run('positionFingerprint()');
+assert.ok(quizKey,'QUIZ phase must have a live-analysis fingerprint');
+const quizState=JSON.parse(JSON.stringify(run('analysisProbeState()')));
+const quizWorker=vm.createContext({console,performance,postMessage:()=>{}});vm.runInContext(parts[0],quizWorker);quizWorker.s=quizState;
+const quizStatic0=vm.runInContext('evalW(s)',quizWorker);
+quizWorker.s2=JSON.parse(JSON.stringify(quizState));vm.runInContext('s2.q.W++; s2.q.B++',quizWorker);
+const quizStatic1=vm.runInContext('evalW(s2)',quizWorker);
+assert.strictEqual(quizStatic0,quizStatic1,'Q[0,0] and Q[1,1] must be evaluation-equivalent');
+const quizResult=vm.runInContext('search(s,{depth:2,ms:350,multipv:3})',quizWorker);
+assert.ok(quizResult.candidates.length>=3,'QUIZ assumption must produce Top 3 next-White candidates');
+ui.quizResult=JSON.parse(JSON.stringify(quizResult));
+run('app.engineAnalysis=quizResult; app.engineAnalysis.rootSide="W"; app.analysisKey=positionFingerprint(); app.analysisState=analysisProbeState(); app.analysisMoveNumber=analysisProbeMoveNumber()');
 let quizEval=run('positionEvalHTML()');
-assert.ok(quizEval.includes('+0.42')&&quizEval.includes('Awaiting Quiz'),'quiz phase must retain the last White-role evaluation');
-run(`game.phase='ITEM_SELECT'; game.itemTeam=C.KAIST; app.lastItemDecision={chooser:'B',team:C.KAIST,candidates:[{item:'Ro',value:65,pv:[]}],partial:false,totalMs:10000};`);
+ui.quizBest=quizResult.candidates[0].value;
+assert.ok(quizEval.includes(run('evalText(quizBest)'))&&quizEval.includes('Q[0, 0] / Q[1, 1]'),'QUIZ phase must show a fresh equal-Q live evaluation');
+let quizAnalysis=run('engineAnalysisHTML()');
+assert.ok((quizAnalysis.match(/class="candidate/g)||[]).length>=3&&quizAnalysis.includes('PV&nbsp;&nbsp;'),'QUIZ phase must show Top 3 lines and PVs');
+const key00=run('positionFingerprint()');
+run('game.teams.POSTECH.quiz++; game.teams.KAIST.quiz++');
+const key11=run('positionFingerprint()');
+assert.strictEqual(key00,key11,'equal correct Quiz increments must share the same analysis cache key');
+run('game.teams.POSTECH.quiz--; game.teams.KAIST.quiz--; game.phase="ITEM_SELECT"; game.itemTeam=C.KAIST; app.lastItemDecision={chooser:"B",team:C.KAIST,candidates:[{item:"Ro",value:65,pv:[]}],partial:false,totalMs:10000};');
 let itemEval=run('positionEvalHTML()');
 assert.ok(itemEval.includes('+0.65')&&itemEval.includes('Item Choice'),'item-choice live eval must remain White-role normalized even when Black chooses');
 assert.ok(run('itemDecisionHTML()').includes('+0.65'),'item recommendation scores must use White-role signs');
@@ -84,6 +108,13 @@ assert.ok(initialEval.includes('-0.70')&&initialEval.includes('Projected White')
 run(`render=()=>{}; scheduleAutomation=()=>{}; scheduleBackgroundAnalysis=()=>{}; stopEngineWorker=()=>{app.engineThinking=false}`);
 ui.sessionRec=`[Format "3"]\n[White "W"]\n[Black "B"]\n[WhiteTeam "POSTECH"]\n[BlackTeam "KAIST"]\n[Result "*"]\n[QOrder "POSTECH, KAIST"]\n\n1. Q[1, 1] W1: a1-a2-a3-b3 B1: h8-h7-g7-f7\n2. Q[1, 0] W+St`;
 run('sessionParsed=parseAndReplayDetailed(sessionRec); installLoadedHistory(sessionParsed)');
+const postBlackQuiz=run('history.nodes.find(n=>n?.kind==="move"&&n.event?.role==="B"&&n.state?.phase==="QUIZ")');
+assert.ok(postBlackQuiz,'replayed history must retain a node immediately after Black completes a move');
+ui.postBlackId=postBlackQuiz.id;
+run('game=clone(historyNode(postBlackId).state)');
+assert.strictEqual(run('game.phase'),'QUIZ');
+assert.ok(run('positionFingerprint()'),'post-Black historical QUIZ node must remain directly analyzable');
+run('game=clone(historyNode(history.head).state)');
 const canonicalHead=run('history.head');
 const branchParent=run('history.nodes.find(n=>n.state.phase==="MOVE"&&n.state.moveRole==="W").id');
 ui.branchParent=branchParent;
@@ -152,4 +183,4 @@ let result=vm.runInContext('search(s,{depth:3,ms:500,multipv:3})',worker);
 assert.ok(result.candidates.length>=3,'worker must expose Top 3 candidates');
 assert.strictEqual(new Set(result.candidates.slice(0,3).map(x=>JSON.stringify(x.move))).size,3);
 assert.ok(result.candidates.slice(0,3).every(x=>Array.isArray(x.pv)&&x.pv.length>=1),'each candidate must carry a PV');
-console.log('RPSC 0.22.1 analyzer / Format 3 / session / live-eval / Top 3 PV regression suite passed.');
+console.log('RPSC 0.22.2 analyzer / Format 3 / session / continuous-live-eval / Top 3 PV regression suite passed.');
