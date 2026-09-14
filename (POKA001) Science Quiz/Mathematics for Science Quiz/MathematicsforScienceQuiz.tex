@@ -28,7 +28,10 @@
 \IfFileExists{dsfont.sty}{%
     \usepackage{dsfont}%
 }{%
-    \newcommand{\mathds}[1]{\mathbb{##1}}%
+    % AMS blackboard bold has no digit glyphs, so \mathbb{1} renders as an
+    % unrelated character. The Pazo blackboard-bold alphabet supports digits
+    % and provides a portable fallback for indicator functions.
+    \DeclareMathAlphabet{\mathds}{U}{fplmbb}{m}{n}%
 }
 
 % Tables
