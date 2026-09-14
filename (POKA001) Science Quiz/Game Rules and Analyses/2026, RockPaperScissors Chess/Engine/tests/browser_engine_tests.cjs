@@ -1,4 +1,4 @@
-// RPSC 0.21.1 recovered analyzer / Format 3 regression suite.
+// RPSC 0.22.0 analyzer / Format 3 regression suite.
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
 const base=path.resolve(__dirname,'../..');
 const html=fs.readFileSync(path.join(base,'RockPaperScissorsChess.html'),'utf8');
@@ -11,8 +11,9 @@ assert.ok(!html.includes('class="coord file"'),'no per-square coordinate clutter
 assert.ok(html.includes('Position Eval'),'current evaluation surface present');
 assert.ok(html.includes('ms:10000,multipv:3'),'normal board analysis remains 10 seconds');
 assert.ok(html.includes('20000-seedElapsed'),'Analyze extends the same search toward 20 seconds');
+assert.ok(!html.includes('saveBtn").disabled=isHistoricalView()'),'Save remains available on a complete sideline position');
 
-const ui=vm.createContext({console,performance,setTimeout,clearTimeout,module:{exports:{}},confirm:()=>true});
+const ui=vm.createContext({console,performance,setTimeout,clearTimeout,module:{exports:{}},confirm:()=>true,btoa,atob,escape,unescape,encodeURIComponent,decodeURIComponent});
 vm.runInContext(parts[1],ui);
 const run=x=>vm.runInContext(x,ui);
 assert.strictEqual(run('ALL_ORIENTATIONS.length'),24);
@@ -59,10 +60,73 @@ assert.strictEqual(run('Array.isArray(history.nodes[0].children)'),true);
 assert.strictEqual(run('typeof historyPrevious'), 'function');
 assert.strictEqual(run('typeof returnToCurrent'), 'function');
 assert.strictEqual(run('typeof renderVariation'), 'function');
+assert.ok(run('goHistory.toString().includes("scheduleBackgroundAnalysis")'),'history navigation must restart live background analysis');
+assert.ok(run('scheduleAutomation.toString().includes("isHistoricalView()")'),'loaded historical/variation positions must remain analysis-only and live-analyzed');
+
+// Full analysis-session round trip: main line + sideline + current variation node.
+// Use a short legal prefix from Game 1, branch before White's first move, then save/load.
+run(`render=()=>{}; scheduleAutomation=()=>{}; scheduleBackgroundAnalysis=()=>{}; stopEngineWorker=()=>{app.engineThinking=false}`);
+ui.sessionRec=`[Format "3"]\n[White "W"]\n[Black "B"]\n[WhiteTeam "POSTECH"]\n[BlackTeam "KAIST"]\n[Result "*"]\n[QOrder "POSTECH, KAIST"]\n\n1. Q[1, 1] W1: a1-a2-a3-b3 B1: h8-h7-g7-f7\n2. Q[1, 0] W+St`;
+run('sessionParsed=parseAndReplayDetailed(sessionRec); installLoadedHistory(sessionParsed)');
+const canonicalHead=run('history.head');
+const branchParent=run('history.nodes.find(n=>n.state.phase==="MOVE"&&n.state.moveRole==="W").id');
+ui.branchParent=branchParent;
+run('history.current=branchParent; game=clone(historyNode(branchParent).state); app.variationActive=false');
+assert.strictEqual(run('historyPlayedMove()'),'W1: a1-a2-a3-b3');
+
+// Build one legal alternate from the embedded engine and commit it as a sideline.
+const branchWorker=vm.createContext({console,performance,postMessage:()=>{}});vm.runInContext(parts[0],branchWorker);
+branchWorker.s=JSON.parse(JSON.stringify(run('toEngineState()')));
+const branchMoves=vm.runInContext('uniqueMoves(s).map(x=>x.m)',branchWorker);
+ui.branchMoves=branchMoves;
+const altIndex=run('branchMoves.findIndex(m=>engineMoveText(toEngineState(),m).notation!==historyPlayedMove())');
+assert.ok(altIndex>=0,'an alternate legal move must exist');
+ui.altMove=branchMoves[altIndex];
+run('full=draftFromEngineMove(altMove); ui.draft=full; applyConfirmedDraft()');
+assert.strictEqual(run('history.head'),canonicalHead,'canonical main-line head must remain unchanged');
+assert.strictEqual(run('historyNode().onMain'),false,'alternate move must create a variation node');
+assert.strictEqual(run('app.variationActive'),true);
+const variationId=run('history.current');ui.variationId=variationId;
+
+// Live evaluation and Top 3 must work on the sideline position too.
+branchWorker.s=JSON.parse(JSON.stringify(run('toEngineState()')));
+const sideResult=vm.runInContext('search(s,{depth:2,ms:350,multipv:3})',branchWorker);
+assert.ok(sideResult.candidates.length>=3,'sideline search must return Top 3');
+ui.sideResult=JSON.parse(JSON.stringify(sideResult));
+run('app.engineAnalysis=sideResult; app.engineAnalysis.rootSide=game.moveRole; app.analysisKey=positionFingerprint(); app.analysisState=toEngineState(); app.analysisMoveNumber=analysisMoveNumber(game)');
+ui.document={getElementById:()=>({})};
+const sideEval=run('positionEvalHTML()');
+assert.ok(sideEval.includes('Position Eval')&&sideEval.includes('White'),'sideline evaluation must be White-role normalized');
+const sideAnalysis=run('engineAnalysisHTML()');
+assert.ok((sideAnalysis.match(/class="candidate/g)||[]).length>=3,'sideline analysis must render Top 3 candidates');
+assert.ok((sideAnalysis.match(/PV&nbsp;&nbsp;/g)||[]).length>=3,'sideline candidates must render PV lines');
+
+// Session save must include the complete history tree and restore the active variation.
+const savedSession=run('sessionRecordText()');ui.savedSession=savedSession;
+assert.ok(savedSession.includes('[Session "'),'analysis session payload must be embedded');
+assert.ok(savedSession.includes('{Variation '),'human-readable variation summary must be present');
+run('roundTrip=parseAndReplayDetailed(savedSession)');
+assert.strictEqual(run('roundTrip.sessionFresh'),true,'saved Format 3 session must restore as fresh');
+run('installLoadedHistory(roundTrip)');
+assert.strictEqual(run('history.current'),variationId,'load must restore the active sideline node');
+assert.strictEqual(run('history.head'),canonicalHead,'load must preserve canonical main-line head');
+assert.strictEqual(run('historyNode().onMain'),false);
+assert.strictEqual(run('app.variationActive'),true);
+
+// After loading, navigate away and back through the variation, then return to the main line.
+const beforePrev=run('history.current');
+run('historyPrevious()');
+assert.notStrictEqual(run('history.current'),beforePrev,'Previous must leave the variation leaf');
+run('goHistory(variationId)');
+assert.strictEqual(run('history.current'),beforePrev,'saved variation must remain directly navigable after moving away');
+run('returnToCurrent()');
+assert.strictEqual(run('history.current'),run('history.head'),'Current must return to canonical main line');
 
 // Worker keeps the mature MultiPV interface and the strengthened selective search.
 const worker=vm.createContext({console,performance,postMessage:()=>{}});vm.runInContext(parts[0],worker);
 assert.strictEqual(vm.runInContext('typeof tacticalReach',worker),'function');
+assert.ok(parts[0].includes('extUsed<1'),'browser worker must use the one-step selective-extension limit');
+assert.ok(parts[0].includes('x.t>=0||x.reset'),'browser quiescence must skip non-reset losing sacrifices');
 ui.es=run(`toEngineState('W')`);worker.s=JSON.parse(JSON.stringify(ui.es));
 let legal=vm.runInContext('uniqueMoves(s).length',worker);
 assert.ok(legal>3,'worker must have multiple legal successors');
@@ -70,4 +134,4 @@ let result=vm.runInContext('search(s,{depth:3,ms:500,multipv:3})',worker);
 assert.ok(result.candidates.length>=3,'worker must expose Top 3 candidates');
 assert.strictEqual(new Set(result.candidates.slice(0,3).map(x=>JSON.stringify(x.move))).size,3);
 assert.ok(result.candidates.slice(0,3).every(x=>Array.isArray(x.pv)&&x.pv.length>=1),'each candidate must carry a PV');
-console.log('Recovered analyzer / Format 3 / Top 3 PV regression suite passed.');
+console.log('RPSC 0.22.0 analyzer / Format 3 / session / live-eval / Top 3 PV regression suite passed.');

@@ -71,7 +71,7 @@ int run_protocol() {
         std::string command; in >> command;
         if (command == "quit" || command == "exit") break;
         if (command == "rpsc") {
-            std::cout << "id name RPSC Engine 0.21.1\nid author Jungwoo Kim\nrpscok\n" << std::flush;
+            std::cout << "id name RPSC Engine 0.22.0\nid author Jungwoo Kim\nrpscok\n" << std::flush;
         } else if (command == "isready") std::cout << "readyok\n" << std::flush;
         else if (command == "newgame" || line == "position startpos") {
             engine.new_game(); white_school = "POSTECH"; black_school = "KAIST";
