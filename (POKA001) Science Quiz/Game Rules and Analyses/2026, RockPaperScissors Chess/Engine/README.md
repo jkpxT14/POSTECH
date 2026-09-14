@@ -1,7 +1,9 @@
 # RPSC Engine
 
-Version: **0.22.0**  
+Version: **0.22.1**  
 Ruleset: `2026-rpsc-rotation6-push-return`
+
+0.22.1 is a synchronized patch release; the native search core is unchanged from 0.22.0.
 
 The search core uses White/Black board roles. School identity is converted at the protocol boundary.
 

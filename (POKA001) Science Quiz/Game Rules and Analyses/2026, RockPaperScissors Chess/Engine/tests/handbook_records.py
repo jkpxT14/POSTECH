@@ -38,8 +38,8 @@ def main() -> None:
     text = GAMES.read_text(encoding="utf-8")
     heads = list(HEAD_RE.finditer(text))
     blocks = list(BLOCK_RE.finditer(text))
-    if len(heads) != 6 or len(blocks) != 6:
-        fail(f"expected 6 game heads/blocks, got {len(heads)}/{len(blocks)}")
+    if len(heads) != 7 or len(blocks) != 7:
+        fail(f"expected 7 game heads/blocks, got {len(heads)}/{len(blocks)}")
 
     unilateral = 0
     for idx, (hm, bm) in enumerate(zip(heads, blocks), 1):
@@ -125,7 +125,27 @@ def main() -> None:
         if token not in game6:
             fail(f"Game 6 canonical regression token missing: {token}")
 
-    print(f"Handbook records: 6 games / 120 rounds / {unilateral} unilateral Q mappings passed")
+    # Game 7 is the 2026-09-13 Science Quiz meeting practice: squad (White/POSTECH) beat engine (Black/KAIST).
+    h7 = heads[6]
+    if (h7.group("white_player"), h7.group("black_player")) != ("선수단", "엔진"):
+        fail("Game 7 participants must be 선수단--엔진")
+    if (h7.group("white_team"), h7.group("black_team")) != ("POSTECH", "KAIST"):
+        fail("Game 7 school assignment must be White=POSTECH, Black=KAIST")
+    game7_head_line = next((ln for ln in text.splitlines() if ln.startswith("\\gamehead{7}")), "")
+    if "선수단 승" not in h7.group("summary") or "2026년 9월 13일" not in h7.group("date") or "과학퀴즈 회의" not in game7_head_line:
+        fail("Game 7 metadata/result mismatch")
+    game7 = blocks[6].group(1)
+    for token in (
+        "1.  & Q[1, 0] W+St",
+        "2.  & Q[0, 1] B+Pu",
+        "8.  & Q[0, 0] W3[RoL]: e1-e2-e3-e4-e5-e6 xB2 B4[Pu]: b8>b7-b6-c6-d6 xW3",
+        "14. & Q[0, 0] W1[RoS]: b3-b4-b5-c5-d5 xB3 Reset B4: b8-b7-b6-c6",
+        "20. & Q[0, 0] W2[RoE]: c1-c2-c3-b3-a3-a2 B1: h8-h7-h6-h5",
+    ):
+        if token not in game7:
+            fail(f"Game 7 canonical regression token missing: {token}")
+
+    print(f"Handbook records: 7 games / 140 rounds / {unilateral} unilateral Q mappings passed")
 
 
 if __name__ == "__main__":

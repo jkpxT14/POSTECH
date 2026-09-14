@@ -1,4 +1,4 @@
-// RPSC 0.22.0 analyzer / Format 3 regression suite.
+// RPSC 0.22.1 analyzer / Format 3 regression suite.
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
 const base=path.resolve(__dirname,'../..');
 const html=fs.readFileSync(path.join(base,'RockPaperScissorsChess.html'),'utf8');
@@ -38,13 +38,13 @@ assert.strictEqual(run('lg.teams.POSTECH.quiz'),1);
 assert.strictEqual(run('lg.teams.KAIST.quiz'),0);
 assert.ok(run('recordText(lg)').includes('1. Q[1, 0] B+St'));
 
-// Replay all six handbook games with explicit school-role mappings.
+// Replay all seven handbook games with explicit school-role mappings.
 const games=fs.readFileSync(path.join(base,'Games.tex'),'utf8');
 const blocks=[...games.matchAll(/\\begin\{gamerecord\}([\s\S]*?)\\end\{gamerecord\}/g)].map(x=>x[1]);
-assert.strictEqual(blocks.length,6);
+assert.strictEqual(blocks.length,7);
 const headLines=games.split('\n').filter(l=>l.startsWith('\\gamehead'));
 const maps=headLines.map(l=>{const m=l.match(/\}\{(POSTECH|KAIST)\}\{(POSTECH|KAIST)\}\{2026/);assert.ok(m,'school mapping in gamehead');return [m[1],m[2]];});
-const expected=[[18,17,12,11,3,3],[15,23,11,11,2,6],[17,13,11,11,3,1],[20,18,14,12,3,3],[32,34,20,20,6,7],[25,23,11,11,7,6]];
+const expected=[[18,17,12,11,3,3],[15,23,11,11,2,6],[17,13,11,11,3,1],[20,18,14,12,3,3],[32,34,20,20,6,7],[25,23,11,11,7,6],[20,18,10,10,5,4]];
 for(let i=0;i<blocks.length;i++){
   const body=blocks[i].trim().split('\n').map(l=>l.trim().replace(/^([0-9]+\.)\s*&\s*/,'$1 ').replace(/\\\\\s*$/,'')).join('\n');
   const [wt,bt]=maps[i];
@@ -61,7 +61,23 @@ assert.strictEqual(run('typeof historyPrevious'), 'function');
 assert.strictEqual(run('typeof returnToCurrent'), 'function');
 assert.strictEqual(run('typeof renderVariation'), 'function');
 assert.ok(run('goHistory.toString().includes("scheduleBackgroundAnalysis")'),'history navigation must restart live background analysis');
+assert.ok(run('goHistory.toString().includes("restoreLiveEvalFromCache")'),'history navigation must not display an eval inherited from another node');
 assert.ok(run('scheduleAutomation.toString().includes("isHistoricalView()")'),'loaded historical/variation positions must remain analysis-only and live-analyzed');
+
+// Position Eval remains visible between board moves and uses White-role signs everywhere.
+ui.document={getElementById:()=>({})};
+run(`game=freshGame(); game.order={white:C.POSTECH,black:C.KAIST,source:'test'}; game.pieces=initialPieces(C.POSTECH,C.KAIST); game.phase='QUIZ'; app.lastLiveEval={value:42,whiteTeam:C.POSTECH,source:'board'}; app.lastItemDecision=null; app.lastInitialDecision=null; app.engineThinking=false`);
+let quizEval=run('positionEvalHTML()');
+assert.ok(quizEval.includes('+0.42')&&quizEval.includes('Awaiting Quiz'),'quiz phase must retain the last White-role evaluation');
+run(`game.phase='ITEM_SELECT'; game.itemTeam=C.KAIST; app.lastItemDecision={chooser:'B',team:C.KAIST,candidates:[{item:'Ro',value:65,pv:[]}],partial:false,totalMs:10000};`);
+let itemEval=run('positionEvalHTML()');
+assert.ok(itemEval.includes('+0.65')&&itemEval.includes('Item Choice'),'item-choice live eval must remain White-role normalized even when Black chooses');
+assert.ok(run('itemDecisionHTML()').includes('+0.65'),'item recommendation scores must use White-role signs');
+run(`render=()=>{}; scheduleAutomation=()=>{}; game.rounds=[{n:1,q:{POSTECH:false,KAIST:true},itemGain:null,moves:[],complete:false}]; initHistory(); app.lastItemDecision={chooser:'B',team:C.KAIST,candidates:[{item:'Ro',value:65,pv:[]},{item:'Pu',value:25,pv:[]},{item:'St',value:-10,pv:[]}],bestItem:'St',partial:false,totalMs:10000}; game.teams.KAIST.items.Pu=0; selectItemGain('Pu')`);
+assert.strictEqual(run('app.lastLiveEval.value'),25,'after a manual item choice, the retained eval must match the item actually selected');
+run(`game=freshGame(); game.phase='ORDER_CHOICE'; game.orderChoiceTeam=C.POSTECH; app.lastInitialDecision={team:C.POSTECH,candidates:[{first:false,item:'Pu',value:70,whiteValue:-70,pv:[]}],partial:false,totalMs:10000}; app.engineThinking=false`);
+let initialEval=run('positionEvalHTML()');
+assert.ok(initialEval.includes('-0.70')&&initialEval.includes('Projected White')&&initialEval.includes('KAIST'),'initial decision eval must show the candidate White role, not chooser-sign evaluation');
 
 // Full analysis-session round trip: main line + sideline + current variation node.
 // Use a short legal prefix from Game 1, branch before White's first move, then save/load.
@@ -102,12 +118,14 @@ assert.ok((sideAnalysis.match(/class="candidate/g)||[]).length>=3,'sideline anal
 assert.ok((sideAnalysis.match(/PV&nbsp;&nbsp;/g)||[]).length>=3,'sideline candidates must render PV lines');
 
 // Session save must include the complete history tree and restore the active variation.
+run(`app.lastLiveEval={value:37,whiteTeam:game.order.white,source:'board'}`);
 const savedSession=run('sessionRecordText()');ui.savedSession=savedSession;
 assert.ok(savedSession.includes('[Session "'),'analysis session payload must be embedded');
 assert.ok(savedSession.includes('{Variation '),'human-readable variation summary must be present');
 run('roundTrip=parseAndReplayDetailed(savedSession)');
 assert.strictEqual(run('roundTrip.sessionFresh'),true,'saved Format 3 session must restore as fresh');
 run('installLoadedHistory(roundTrip)');
+assert.strictEqual(run('app.lastLiveEval.value'),37,'load must restore the visible live evaluation context');
 assert.strictEqual(run('history.current'),variationId,'load must restore the active sideline node');
 assert.strictEqual(run('history.head'),canonicalHead,'load must preserve canonical main-line head');
 assert.strictEqual(run('historyNode().onMain'),false);
@@ -134,4 +152,4 @@ let result=vm.runInContext('search(s,{depth:3,ms:500,multipv:3})',worker);
 assert.ok(result.candidates.length>=3,'worker must expose Top 3 candidates');
 assert.strictEqual(new Set(result.candidates.slice(0,3).map(x=>JSON.stringify(x.move))).size,3);
 assert.ok(result.candidates.slice(0,3).every(x=>Array.isArray(x.pv)&&x.pv.length>=1),'each candidate must carry a PV');
-console.log('RPSC 0.22.0 analyzer / Format 3 / session / live-eval / Top 3 PV regression suite passed.');
+console.log('RPSC 0.22.1 analyzer / Format 3 / session / live-eval / Top 3 PV regression suite passed.');

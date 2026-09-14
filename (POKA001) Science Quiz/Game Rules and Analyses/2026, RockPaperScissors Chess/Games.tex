@@ -1,6 +1,6 @@
 \chapter{Games}
 
-경기명, 총점, Quiz/Capture 점수는 White--Black 순서이다. 둘째 줄에는 각 보드 역할의 학교 배정을 표시하며, 각 문제의 \texttt{Q[...]}만 Chapter~2에 따라 항상 POSTECH--KAIST 순서를 사용한다. Game 1--3은 9월 1일 선수단 내부 리그전, Game 4는 9월 2일 연습경기, Game 5--6은 9월 9일 엔진 테스트와 연습경기 기록이다.
+경기명, 총점, Quiz/Capture 점수는 White--Black 순서이다. 둘째 줄에는 각 보드 역할의 학교 배정을 표시하며, 각 문제의 \texttt{Q[...]}만 Chapter~2에 따라 항상 POSTECH--KAIST 순서를 사용한다. Game 1--3은 9월 1일 선수단 내부 리그전, Game 4는 9월 2일 연습경기, Game 5--6은 9월 9일 엔진 테스트와 연습경기, Game 7은 9월 13일 과학퀴즈 회의에서 진행한 선수단--엔진 연습경기 기록이다.
 
 \newenvironment{gamerecord}{\begingroup\small\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}\setlength{\LTpre}{0pt}\setlength{\LTpost}{0pt}\renewcommand{\arraystretch}{1.02}\begin{longtable}{@{}r@{\hspace{0.62em}}>{\ttfamily\raggedright\arraybackslash}p{0.895\textwidth}@{}}}{\end{longtable}\endgroup}
 \newcommand{\gamehead}[7]{%
@@ -153,3 +153,28 @@
 19. & Q[0, 1] W+Pu \\
 20. & Q[0, 0] W2: g5-g4-g3-f3-f2 xB1 Reset B4: b8-b7-a7-a8 \\
 \end{gamerecord}
+
+\gamehead{7}{선수단}{엔진}{20--18 (10--10 + 10--8) \textperiodcentered{} 선수단 승}{POSTECH}{KAIST}{2026년 9월 13일 \textperiodcentered{} 과학퀴즈 회의 \textperiodcentered{} 연습경기}
+\begin{gamerecord}
+1.  & Q[1, 0] W+St \\
+2.  & Q[0, 1] B+Pu \\
+3.  & Q[1, 1] W4: g1-g2-g3-f3 B1: h8-h7-h6-g6 \\
+4.  & Q[0, 1] B+Ro \\
+5.  & Q[0, 0] W4: f3-e3-e4-e5-f5-g5 xB1 B3: d8-e8-e7-f7-f6-g6 xW4 \\
+6.  & Q[1, 0] W+Ro \\
+7.  & Q[1, 1] W1: a1-a2-a3-b3 B2: f8-e8-d8-d7-e7 \\
+8.  & Q[0, 0] W3[RoL]: e1-e2-e3-e4-e5-e6 xB2 B4[Pu]: b8>b7-b6-c6-d6 xW3 \\
+9.  & Q[1, 0] W+Ro \\
+10. & Q[0, 1] B+Pu \\
+11. & Q[1, 1] W2[StL]: c1-c2-c3-c4-c5-d5 xB4 B3[RoN]: g6-g5-g4-f4-e4-d4 xW2 \\
+12. & Q[1, 0] W+St \\
+13. & Q[0, 1] B+Ro \\
+14. & Q[0, 0] W1[RoS]: b3-b4-b5-c5-d5 xB3 Reset B4: b8-b7-b6-c6 \\
+15. & Q[1, 0] W+Ro \\
+16. & Q[0, 1] B+St \\
+17. & Q[1, 1] W3[StL]: e1-e2-e3-e4-e5-e6-d6 xB4 B3: d8-e8-e7-f7-f6-e6 xW3 \\
+18. & Q[0, 1] B+Pu \\
+19. & Q[1, 0] W+St \\
+20. & Q[0, 0] W2[RoE]: c1-c2-c3-b3-a3-a2 B1: h8-h7-h6-h5 \\
+\end{gamerecord}
+
