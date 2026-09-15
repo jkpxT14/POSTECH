@@ -491,6 +491,27 @@
         telescoping after a suitable normalization.
     \end{strategy}
 
+    \begin{tactic}[Fractional-Linear Recurrences]
+        Suppose that a first-order recurrence has the form
+        \[
+            a_{n+1}=T(a_n),
+            \qquad
+            T(x)=\frac{\alpha x+\beta}{\gamma x+\delta}.
+        \]
+        First find the fixed points of $T$. If $r$ is a repeated fixed point,
+        the substitution
+        \[
+            b_n=\frac{1}{a_n-r}
+        \]
+        often produces an arithmetic or first-order linear recurrence. If
+        $r$ and $s$ are distinct fixed points, try
+        \[
+            b_n=\frac{a_n-r}{a_n-s}.
+        \]
+        This converts iteration of many fractional-linear maps into a geometric
+        recurrence. Check separately any value that makes a denominator zero.
+    \end{tactic}
+
     \begin{definition}[Limit of a Function; Epsilon--Delta Definition]
         Let $D\subseteq\R$, let $a$ be an accumulation point of $D$, and let
         $f\colon D\to\R$. The statement
@@ -3286,6 +3307,26 @@
         domain that does not wind around the origin.
     \end{formula}
 
+    \begin{formula}[$n$th Roots and Roots of Unity]
+        If $w=\rho e^{i\theta}\neq0$, then the solutions of $z^n=w$ are
+        \[
+            z_k
+            =
+            \rho^{1/n}e^{i(\theta+2\pi k)/n},
+            \qquad
+            k=0,1,\dots,n-1.
+        \]
+        With $\omega_n=e^{2\pi i/n}$, the $n$th roots of unity are
+        $1,\omega_n,\dots,\omega_n^{n-1}$, and
+        \[
+            x^n-1=\prod_{k=0}^{n-1}(x-\omega_n^k).
+        \]
+        Evaluating $(x^n-1)/(x-1)$ at $x=1$ gives
+        \[
+            \prod_{k=1}^{n-1}(1-\omega_n^k)=n.
+        \]
+    \end{formula}
+
     \begin{definition}[Complex Contour Integral]
         Let $\gamma\colon [a,b]\to\C$ be a piecewise $C^1$ parametrized contour and
         let $f$ be continuous on the image of $\gamma$. The contour integral is
@@ -3836,6 +3877,20 @@
                 -c & a
             \end{pmatrix}.
         \]
+    \end{formula}
+
+    \begin{formula}[Trace and Determinant of a $2\times 2$ Inverse]
+        If $\mathbf{A}\in F^{2\times2}$ is invertible, then
+        \[
+            \tr(\mathbf{A}^{-1})
+            =
+            \frac{\tr(\mathbf{A})}{\det(\mathbf{A})},
+            \qquad
+            \det(\mathbf{A}^{-1})
+            =
+            \frac{1}{\det(\mathbf{A})}.
+        \]
+        The trace identity is special to dimension $2$.
     \end{formula}
 
     \begin{theorem}[Cramer's Rule]
@@ -5579,6 +5634,18 @@
         On intervals with $x<0$, the analogous real formulas use $|x|$.
     \end{formula}
 
+    \begin{definition}[Bessel Equation and Bessel Functions]
+        Bessel's equation of order $\nu$ is
+        \[
+            x^2y''+xy'+(x^2-\nu^2)y=0.
+        \]
+        Its standard solutions are the Bessel functions of the first and
+        second kinds, denoted $J_\nu(x)$ and $Y_\nu(x)$. For noninteger $\nu$,
+        $J_\nu$ and $J_{-\nu}$ also form a fundamental pair. Bessel functions
+        arise naturally after separation of variables in problems with
+        cylindrical or circular symmetry.
+    \end{definition}
+
     \begin{algorithm}[Undetermined Coefficients]
         For a constant-coefficient equation with forcing term made from
         polynomials, exponentials, sines, or cosines, guess a particular solution
@@ -6175,6 +6242,18 @@
             B_n=\sum_{k=0}^{n}\stirlingsecond{n}{k}
         \]
         counts all set partitions of an $n$-element set.
+    \end{formula}
+
+    \begin{formula}[Counting Surjections]
+        For finite sets with $n$ labeled elements in the domain and $k$ labeled
+        elements in the codomain, the number of surjections is
+        \[
+            k!\stirlingsecond{n}{k}
+            =
+            \sum_{j=0}^{k}(-1)^j\binom{k}{j}(k-j)^n.
+        \]
+        The first expression orders the $k$ nonempty fibers. The second follows
+        from inclusion--exclusion. The value is $0$ when $k>n$.
     \end{formula}
 
     \begin{formula}[Fibonacci Numbers; Binet's Formula]
@@ -8864,6 +8943,15 @@
         $\gcd(a,0)=|a|$.
     \end{algorithm}
 
+    \begin{theorem}[GCD of Exponential Expressions]
+        For every integer $a>1$ and positive integers $m,n$,
+        \[
+            \gcd(a^m-1,a^n-1)=a^{\gcd(m,n)}-1.
+        \]
+        The proof applies the Euclidean algorithm to the exponents.
+        Expressions involving $a^m+1$ require separate parity conditions.
+    \end{theorem}
+
     \begin{definition}[Gaussian Integers]
         The Gaussian integers are
         \[
@@ -9224,6 +9312,18 @@
         $\F_q^\times$ of order $q-1$.
     \end{theorem}
 
+    \begin{proposition}[Power Maps on Finite Cyclic Groups]
+        Let $G$ be a finite cyclic group of order $N$, and let $r\in\N$. The map
+        \[
+            G\to G,
+            \qquad
+            x\mapsto x^r,
+        \]
+        is bijective if and only if $\gcd(r,N)=1$. Consequently, $x\mapsto x^r$
+        permutes $\F_q^\times$ if and only if $\gcd(r,q-1)=1$. The same
+        condition characterizes when it permutes the whole field $\F_q$.
+    \end{proposition}
+
     \begin{algorithm}[Modular Exponentiation by Period Reduction]
         To compute $a^n\pmod m$, first reduce $a$ modulo $m$. If
         $\gcd(a,m)=1$, determine a convenient exponent $t>0$ such that
@@ -9244,6 +9344,28 @@
         If $a$ is not a unit modulo $m$, use repeated squaring directly or
         analyze prime-power factors separately rather than applying a unit-group
         period without justification.
+    \end{algorithm}
+
+    \begin{algorithm}[Textbook RSA]
+        Choose distinct primes $p,q$ and set
+        \[
+            N=pq,
+            \qquad
+            \varphi(N)=(p-1)(q-1).
+        \]
+        Choose $e$ with $\gcd(e,\varphi(N))=1$, and find $d$ such that
+        \[
+            ed\equiv1\pmod{\varphi(N)}.
+        \]
+        The public key is $(N,e)$ and the private exponent is $d$. Textbook
+        encryption and decryption are
+        \[
+            c\equiv m^e\pmod N,
+            \qquad
+            m\equiv c^d\pmod N.
+        \]
+        Practical RSA uses randomized padding and must not use this unpadded
+        form directly.
     \end{algorithm}
 
     \begin{strategy}
@@ -9529,6 +9651,27 @@
             \frac{1}{1-p^{-s}}.
         \]
     \end{definition}
+
+    \begin{fact}[Analytic Continuation and Special Values of the Zeta Function]
+        The Riemann zeta function extends meromorphically to the complex plane,
+        with a single simple pole at $s=1$. Its functional equation may be
+        written symmetrically as
+        \[
+            \pi^{-s/2}\Gamma\!\left(\frac{s}{2}\right)\zeta(s)
+            =
+            \pi^{-(1-s)/2}\Gamma\!\left(\frac{1-s}{2}\right)\zeta(1-s).
+        \]
+        Important special values include
+        \[
+            \zeta(0)=-\frac12,
+            \qquad
+            \zeta(-1)=-\frac1{12},
+            \qquad
+            \zeta(-2m)=0\quad(m\in\N).
+        \]
+        The value $\zeta(-1)=-1/12$ comes from analytic continuation; it is not
+        the ordinary sum of $1+2+3+\cdots$.
+    \end{fact}
 
     \begin{remark}
         The Euler product is the bridge between the zeta function and prime
@@ -9943,6 +10086,29 @@
         their formal inverses; it has no relations beyond the group axioms. A
         free group on $n$ generators is denoted $F_n$.
     \end{definition}
+
+    \begin{definition}[Semidirect Product]
+        Let $N$ and $H$ be groups, and let
+        \[
+            \varphi\colon H\to\Aut(N)
+        \]
+        be a homomorphism. The semidirect product $N\rtimes_\varphi H$ is the
+        set $N\times H$ with multiplication
+        \[
+            (n_1,h_1)(n_2,h_2)
+            =
+            \bigl(n_1\varphi(h_1)(n_2),h_1h_2\bigr).
+        \]
+        The direct product is the special case in which the action is trivial.
+    \end{definition}
+
+    \begin{strategy}
+        In a finite-group classification problem, first use the Sylow theorems
+        to locate normal Sylow subgroups. If $N\trianglelefteq G$ and a
+        complementary subgroup $H$ exists, possible structures are controlled
+        by homomorphisms $H\to\Aut(N)$. Distinct actions can still yield
+        isomorphic groups, so counting actions alone is not a classification.
+    \end{strategy}
 
     \begin{theorem}[Fundamental Theorem of Finitely Generated Abelian Groups]
         Every finitely generated abelian group is isomorphic to
@@ -10570,6 +10736,20 @@
         to an open subset of $\R^n$.
     \end{definition}
 
+    \begin{definition}[Boundary, Puncture, and Wedge Sum]
+        An $n$-manifold with boundary is locally modeled on the closed
+        half-space
+        \[
+            \mathbb{H}^n
+            =
+            \{(x_1,\dots,x_n)\in\R^n\mid x_n\geq0\}.
+        \]
+        Its boundary $\partial M$ consists of the points modeled on $x_n=0$.
+        A puncture means removal of a point. For pointed spaces $(X,x_0)$ and
+        $(Y,y_0)$, the wedge sum $X\vee Y$ is obtained by identifying $x_0$
+        with $y_0$ in the disjoint union.
+    \end{definition}
+
     \begin{definition}[Fundamental Group]
         Fix a base point $x_0\in X$. The fundamental group
         $\pi_1(X,x_0)$ is the set of endpoint-preserving homotopy classes of
@@ -10591,6 +10771,11 @@
             \qquad
             \pi_1(\mathbb{T}^2)\cong\Z^2.
         \]
+        More generally,
+        \[
+            \pi_1\!\left(\bigvee_{j=1}^{r}S^1\right)\cong F_r.
+        \]
+        The wedge point is generally not a manifold point.
     \end{fact}
 
     \begin{strategy}
@@ -10602,13 +10787,19 @@
     \end{strategy}
 
     \begin{formula}[Euler Characteristic of a Surface]
-        For a triangulated closed surface, the Euler characteristic is
+        For a triangulated surface, the Euler characteristic is
         \[
             \chi=V-E+F.
         \]
-        For an orientable closed surface of genus $g$,
+        For a compact connected orientable surface $S_{g,b}$ of genus $g$ with
+        $b$ boundary components,
         \[
-            \chi=2-2g.
+            \chi(S_{g,b})=2-2g-b.
+        \]
+        For a compact connected nonorientable surface $N_{k,b}$ with $k$
+        projective-plane summands and $b$ boundary components,
+        \[
+            \chi(N_{k,b})=2-k-b.
         \]
     \end{formula}
 
@@ -10617,6 +10808,15 @@
         surface of genus $g\geq 0$ or a nonorientable surface obtained as a
         connected sum of $k\geq 1$ projective planes.
     \end{theorem}
+
+    \begin{remark}[Removing a Point versus Removing a Disk]
+        Removing one point from a closed surface produces a noncompact surface
+        without boundary. Removing the interior of an embedded closed disk
+        instead produces a compact surface with one boundary component. These
+        spaces can be homotopy equivalent without being homeomorphic. Thus an
+        informal ``hole'' must be identified as a point, disk, or boundary
+        removal before applying a topological invariant.
+    \end{remark}
 
     \begin{theorem}[Poincaré Conjecture]
         Every closed simply connected $3$-manifold is homeomorphic to the
