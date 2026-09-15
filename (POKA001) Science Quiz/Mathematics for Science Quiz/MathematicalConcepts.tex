@@ -512,6 +512,24 @@
         recurrence. Check separately any value that makes a denominator zero.
     \end{tactic}
 
+    \begin{theorem}[Master Theorem for Divide-and-Conquer Recurrences]
+        Let $T(n)=aT(n/b)+f(n)$, where $a\geq1$, $b>1$,
+        $T(1)=\Theta(1)$, and $f$ is eventually nonnegative. Take $n$ through
+        powers of $b$ and put $d=\log_b a$. Then:
+        \begin{enumerate}
+            \item If $f(n)=O(n^{d-\varepsilon})$ for some $\varepsilon>0$,
+                  then $T(n)=\Theta(n^d)$.
+            \item If $f(n)=\Theta(n^d(\log n)^k)$ for $k\geq0$,
+                  then $T(n)=\Theta(n^d(\log n)^{k+1})$.
+            \item If $f(n)=\Omega(n^{d+\varepsilon})$ for some $\varepsilon>0$
+                  and $af(n/b)\leq cf(n)$ eventually for a constant $c<1$,
+                  then $T(n)=\Theta(f(n))$.
+        \end{enumerate}
+        Here $\Theta$ means bounds above and below by positive constant
+        multiples. Check the hypotheses before choosing a case; recurrences
+        with unequal subproblem sizes need a different method.
+    \end{theorem}
+
     \begin{definition}[Limit of a Function; Epsilon--Delta Definition]
         Let $D\subseteq\R$, let $a$ be an accumulation point of $D$, and let
         $f\colon D\to\R$. The statement
@@ -6601,6 +6619,15 @@
         In a planar subdivision, count edge-face incidences first and then use
         $V-E+F=2$. Interior edges are counted twice and boundary edges once.
         This is often faster and safer than trying to enumerate faces directly.
+        For a convex polyhedron with three edges at every vertex, let $f_k$
+        count its $k$-gonal faces. Since $3V=2E$ and
+        $\sum_{k\geq3}kf_k=2E$, Euler's formula gives
+        \[
+            \sum_{k\geq3}(6-k)f_k=12.
+        \]
+        In particular, if every face is a pentagon or a hexagon, there are
+        exactly twelve pentagonal faces.
+
     \end{strategy}
 
     \begin{theorem}[Eulerian Trail Criterion]
@@ -6684,7 +6711,7 @@
         $\preceq$ that is reflexive, antisymmetric, and transitive. A
         \emph{chain} is a subset whose elements are pairwise comparable, while
         an \emph{antichain} is a subset in which no two distinct elements are
-        comparable. The power set $\mathcal{P}([n])$ ordered by inclusion is the
+        comparable. The power set $\Pow([n])$ ordered by inclusion is the
         standard finite example.
     \end{definition}
 
@@ -6945,10 +6972,28 @@
     \end{definition}
 
     \begin{tactic}
-        ``Disjoint'' and ``independent'' are different. If two nonempty events
-        are disjoint, then knowing that one occurred makes the other impossible;
-        they are usually not independent.
+        ``Disjoint'' and ``independent'' are different. Disjoint events $A,B$
+        are independent exactly when $\Prob(A)\Prob(B)=0$. In particular,
+        two disjoint events of positive probability are not independent;
+        nonempty events need not have positive probability.
     \end{tactic}
+
+    \begin{formula}[Distributions of Maxima and Minima]
+        Let $X_1,\dots,X_n$ be independent with common cumulative distribution
+        function $F$. For $M=\max_iX_i$ and $m=\min_iX_i$,
+        \[
+            \Prob(M\leq x)=F(x)^n,
+            \qquad \Prob(m>x)=(1-F(x))^n.
+        \]
+        For a discrete distribution, subtraction of adjacent cumulative
+        probabilities gives the mass function; in general,
+        \[
+            \Prob(M=x)=F(x)^n-F(x^-)^n,
+        \]
+        where $F(x^-)=\Prob(X_1<x)$. For independent variables with different
+        distribution functions $F_i$, replace the powers by
+        $\prod_{i=1}^n F_i(x)$ and $\prod_{i=1}^n(1-F_i(x))$, respectively.
+    \end{formula}
 
     \begin{formula}[Complement Rule and Inclusion--Exclusion for Probability]
         The complement rule is
@@ -6991,6 +7036,15 @@
         an expected number of objects. Introduce indicator random variables and add their
         expectations.
     \end{strategy}
+
+    \begin{formula}[Tail-Sum Formula]
+        If $X$ takes values in $\Nzero$, then
+        \[
+            \Exp[X]=\sum_{k=1}^{\infty}\Prob(X\geq k).
+        \]
+        The identity also holds when both sides are infinite. For waiting
+        times, count the probability that the process has not yet stopped.
+    \end{formula}
 
     \begin{proposition}[Expectation of a Product of Independent Random Variables]
         If $X_1,\dots,X_n$ are independent integrable random variables, then
