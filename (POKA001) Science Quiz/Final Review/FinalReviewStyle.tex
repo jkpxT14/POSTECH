@@ -1,0 +1,257 @@
+% Final Review shared style
+% Mathematics for Science Quiz -- 2026 Science War
+
+\usepackage[a4paper,margin=1in,headheight=14pt,headsep=17pt]{geometry}
+\usepackage{fontspec}
+\usepackage{xetexko}
+% Korean-font policy: prefer the TeX Live bundled Un fonts so that the
+% document does not depend on Nanum/Noto fonts installed in the operating
+% system.  A standard Windows Korean-font fallback is kept for minimal TeX Live
+% installations that do not include unfonts-core.
+\IfFontExistsTF{UnBatang}{%
+  \setmainhangulfont[AutoFakeSlant=0.14]{UnBatang}%
+}{%
+  \IfFontExistsTF{Batang}{%
+    \setmainhangulfont[AutoFakeSlant=0.14]{Batang}%
+  }{%
+    \IfFontExistsTF{Malgun Gothic}{%
+      \setmainhangulfont[AutoFakeSlant=0.14]{Malgun Gothic}%
+    }{%
+      \PackageError{FinalReview}{No Korean main font found}{%
+        Install the TeX Live package `unfonts-core' or a standard Korean system font.}%
+    }%
+  }%
+}
+\IfFontExistsTF{UnDotum}{%
+  \setsanshangulfont{UnDotum}%
+}{%
+  \IfFontExistsTF{Malgun Gothic}{%
+    \setsanshangulfont{Malgun Gothic}%
+  }{%
+    \setsanshangulfont{UnBatang}%
+  }%
+}
+
+\usepackage{microtype}
+\microtypesetup{protrusion=false,expansion=false}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{array,booktabs,longtable,tabularx}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage[unicode,hidelinks]{hyperref}
+
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SoftGray}{RGB}{95,95,95}
+\definecolor{RuleGray}{RGB}{155,155,155}
+\newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+
+\hypersetup{
+  pdftitle={Final Review - Mathematics for Science Quiz},
+  pdfauthor={Jungwoo Kim},
+  pdfsubject={2026 KAIST-POSTECH Science War Science Quiz Mathematics Final Review},
+  pdfcreator={XeLaTeX}
+}
+
+% Canonical notation used in the handbook / MATH000.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\Exp}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Pow}{\mathcal{P}}
+\newcommand{\ones}{\mathbf{1}}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\RePart}{Re}
+\DeclareMathOperator{\ImPart}{Im}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+
+\setlength{\parindent}{1.25em}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{1.4em}
+\linespread{1.035}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.14em,topsep=0.3em,parsep=0pt,partopsep=0pt}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.14em,topsep=0.3em,parsep=0pt,partopsep=0pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlength{\LTpre}{0.35em}
+\setlength{\LTpost}{0.45em}
+
+% Lightweight document hierarchy: English structure, Korean body.
+\newcounter{finalchapter}
+\newcommand{\CurrentChapter}{Final Review}
+\newcommand{\finalpart}[2]{%
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{part}{Part #1\space #2}%
+  \pdfbookmark[0]{Part #1. #2}{part-#1}%
+  \thispagestyle{plain}%
+  \vspace*{0.20cm}%
+  {\noindent\fontsize{16.5}{20}\selectfont\bfseries Part #1\quad #2\par}%
+  \vspace{0.34cm}%
+  \hrule height 0.42pt
+  \vspace{0.62cm}%
+}
+\newcommand{\finalchapter}[2]{%
+  \Needspace{10\baselineskip}%
+  \setcounter{finalchapter}{#1}%
+  \gdef\CurrentChapter{#1. #2}%
+  \phantomsection
+  \addcontentsline{toc}{section}{#1\space #2}%
+  \pdfbookmark[1]{#1. #2}{chapter-#1}%
+  \vspace{0.46em}%
+  {\noindent\fontsize{15}{18}\selectfont\bfseries #1\quad #2\par}%
+  \vspace{0.16em}%
+  {\color{RuleGray}\hrule height 0.30pt}%
+  \vspace{0.52em}%
+}
+\newcounter{finalsectionanchor}
+\newcommand{\finalsection}[1]{%
+  \Needspace{6\baselineskip}%
+  \stepcounter{finalsectionanchor}%
+  \pdfbookmark[2]{#1}{section-\thefinalchapter-\arabic{finalsectionanchor}}%
+  \vspace{0.48em}%
+  {\noindent\fontsize{12.4}{15}\selectfont\bfseries #1\par}%
+  \vspace{0.14em}%
+}
+\newcommand{\finalheading}[1]{%
+  \Needspace{4\baselineskip}%
+  \vspace{0.36em}%
+  {\noindent\bfseries #1\par}%
+  \vspace{0.06em}%
+}
+\newcommand{\memoryline}[1]{%
+  \par\smallskip\noindent\textit{#1}\par\smallskip
+}
+
+% Unnumbered theorem-like environments. Inclusion itself signals importance.
+\newtheoremstyle{finalplain}
+  {5.5pt}{5.5pt}{\itshape}{}{\bfseries}{}{\newline}
+  {\thmname{#1}\thmnote{. #3}}
+\newtheoremstyle{finaldefinition}
+  {5.5pt}{5.5pt}{}{}{\bfseries}{}{\newline}
+  {\thmname{#1}\thmnote{. #3}}
+\newtheoremstyle{finalsameline}
+  {4.5pt}{4.5pt}{}{}{\itshape}{.}{0.5em}
+  {\thmname{#1}\thmnote{. #3}}
+
+\theoremstyle{finaldefinition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{formula}{Formula}
+\newtheorem*{fact}{Fact}
+\newtheorem*{algorithm}{Algorithm}
+\theoremstyle{finalplain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{corollary}{Corollary}
+\theoremstyle{finalsameline}
+\newtheorem*{remark}{Remark}
+\newtheorem*{strategy}{Strategy}
+\newtheorem*{tactic}{Tactic}
+
+\newcommand{\finalblockspace}{\Needspace{4\baselineskip}}
+\BeforeBeginEnvironment{definition}{\finalblockspace}
+\BeforeBeginEnvironment{formula}{\finalblockspace}
+\BeforeBeginEnvironment{fact}{\finalblockspace}
+\BeforeBeginEnvironment{algorithm}{\finalblockspace}
+\BeforeBeginEnvironment{theorem}{\finalblockspace}
+\BeforeBeginEnvironment{proposition}{\finalblockspace}
+\BeforeBeginEnvironment{corollary}{\finalblockspace}
+\BeforeBeginEnvironment{remark}{\finalblockspace}
+\BeforeBeginEnvironment{strategy}{\finalblockspace}
+\BeforeBeginEnvironment{tactic}{\finalblockspace}
+
+% Contents: Parts + Chapters only. Section bookmarks remain available in the PDF sidebar.
+\setcounter{tocdepth}{1}
+\renewcommand{\contentsname}{}
+\setlength{\cftbeforepartskip}{0.45em}
+\renewcommand{\cftpartfont}{\normalsize\bfseries}
+\renewcommand{\cftpartpagefont}{\normalsize\bfseries}
+\renewcommand{\cftsecfont}{\small}
+\renewcommand{\cftsecpagefont}{\small}
+\setlength{\cftbeforesecskip}{0.05em}
+\setlength{\cftsecindent}{1.25em}
+\setlength{\cftsecnumwidth}{0pt}
+
+% Running header / footer.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Final Review}}
+\fancyhead[R]{\small\textit{Mathematics for Science Quiz}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\small\textit{Final Review}}
+  \fancyhead[R]{\small\textit{Mathematics for Science Quiz}}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0.35pt}
+  \renewcommand{\footrulewidth}{0pt}%
+}
+
+\newcommand{\FinalOpening}{%
+  \pagenumbering{gobble}%
+  \pagestyle{empty}%
+  \thispagestyle{empty}%
+  \vspace*{0.48cm}%
+  {\noindent\fontsize{21}{25}\selectfont\bfseries Final Review\par}%
+  \vspace{0.06cm}%
+  {\noindent\fontsize{12.2}{15}\selectfont\itshape Mathematics for Science Quiz\par}%
+  \vspace{0.20cm}%
+  {\noindent\small 2026 \KAIST--\POSTECH{} Science War\par}%
+  \vspace{0.34cm}%
+  {\noindent\small First Edition \textperiodcentered{} September 16, 2026\par}%
+  \vspace{0.38cm}%
+  {\noindent\normalsize Jungwoo Kim\par}%
+  {\noindent\small Department of Mathematics, \POSTECH\par}%
+  {\noindent\small 2026 Science Quiz Mathematics Representative\par}%
+  \vspace{0.40cm}%
+  \hrule height 0.42pt
+  \vspace{0.30cm}%
+  {\noindent\large\bfseries Contents\par}%
+  \vspace{0.05cm}%
+  \begingroup
+    \small
+    \begin{multicols}{2}
+      \RaggedRight
+      \hyphenpenalty=10000\exhyphenpenalty=10000
+      \tableofcontents
+    \end{multicols}
+  \endgroup
+  \vfill
+  {\noindent\footnotesize\color{SoftGray}
+    Based on \textit{Mathematics for Science Quiz}, 2026 Science War Edition, content cutoff September 15, 2026.\par}
+  \thispagestyle{empty}%
+  \clearpage
+  \pagestyle{fancy}%
+  \pagenumbering{arabic}%
+}
