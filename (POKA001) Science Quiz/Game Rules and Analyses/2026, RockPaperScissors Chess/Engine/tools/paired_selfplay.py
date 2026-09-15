@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Paired RPSC engine match harness (RPSC 0.22.3).
+"""Paired RPSC engine match harness (RPSC 0.23.0).
 
 Usage:
   python paired_selfplay.py CANDIDATE BASELINE PAIRS START [MOVE_MS] [ITEM_MS]
@@ -27,7 +27,7 @@ class EngineProcess:
         self.send(text);got=self._line().decode().strip()
         if got!="ok":raise RuntimeError((text,got))
     def go(self,ms):
-        self.send(f"go movetime {ms}")
+        self.send(f"go movetime {ms} multipv 3")
         while True:
             line=self._line().decode().strip()
             if line.startswith("bestmove "):return line[len("bestmove "):]

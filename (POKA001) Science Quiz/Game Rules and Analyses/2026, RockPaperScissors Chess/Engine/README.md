@@ -1,9 +1,9 @@
 # RPSC Engine
 
-Version: **0.22.3**  
+Version: **0.23.0**  
 Ruleset: `2026-rpsc-rotation6-push-return`
 
-0.22.3 is a synchronized analyzer/session patch; the native search core is unchanged from 0.22.0. The browser Analysis Board keeps continuous live evaluation and now preserves compatible completed board analyses across Format 3 save/load, including main-line and sideline positions.
+0.23.0 is a strength-focused RPSC search update. It keeps the 0.22.3 rules, evaluation scale, Format 3 school/board-role boundary, and Top 3 MultiPV analysis, while improving the efficiency of secondary root-line search.
 
 The search core uses White/Black board roles. School identity is converted at the protocol boundary.
 
@@ -14,28 +14,18 @@ teams W KAIST B POSTECH
 matchpk 11 10 6
 ```
 
-`matchpk <POSTECHQuiz> <KAISTQuiz> <remainingPlies>` always uses POSTECH/KAIST order. With the mapping above, the internal context is `quiz_white=10`, `quiz_black=11`. The compatibility command `match <Wquiz> <Bquiz> <remainingPlies>` is explicitly White/Black ordered.
+`matchpk <POSTECHQuiz> <KAISTQuiz> <remainingPlies>` always uses POSTECH/KAIST order. The compatibility command `match <Wquiz> <Bquiz> <remainingPlies>` is explicitly White/Black ordered.
 
-## 0.22 search update
+## 0.23 search update
 
-0.22.0 keeps the 0.21 search architecture and exact tactical-reach pruning, while tightening selective search for RPSC:
+The first root pass still searches the complete legal successor set. For MultiPV ranks 2 and 3, 0.23 reuses that completed root ordering and concentrates the full secondary searches on the strongest 24-score frontier, while retaining tied frontier moves and previously completed PV candidates. Top 3 output is preserved.
 
-- at most one additional tactical extension is carried down a line;
-- quiescence omits non-reset negative-swing sacrifices, while reset sacrifices remain searchable;
-- the threat/defense guard for late-move reductions is evaluated lazily, preserving the guard while avoiding unnecessary tactical generation.
+This is RPSC-specific search engineering: the move generator still treats Push, six Rotations, Step Short/Long, cube orientation, captures, recaptures, and Reset as native game semantics. No chess-specific positional model is introduced.
 
-The same selective-search changes are embedded in `RockPaperScissorsChess.html` for browser analysis.
+The 0.22 selective-search safeguards remain in place: tactical extension is bounded, qsearch keeps reset sacrifices searchable, and the late-move-reduction threat/defense guard is evaluated lazily.
 
-### Acceptance match against 0.21.1
+### Research acceptance against 0.22.3
 
-Four independent deterministic paired suites were run at **1,000 board-search nodes / 300 item-search nodes per decision**. The quiz schedule is paired and the engines swap White/Black (and therefore POSTECH/KAIST) within every pair.
+The selected candidate exceeded the requested 55% threshold in paired research matches while keeping MultiPV=3. In the main research sample it scored **46 wins, 3 draws, 31 losses**, or **59.375% match score**. The packaged 0.23.0 build was independently rechecked over 40 paired games at **1,000 board-search nodes / 300 item-search nodes** with MultiPV=3 and scored **22 wins, 2 draws, 16 losses**, or **57.5% match score** against 0.22.3.
 
-- Suite A, 100 games: **53 wins, 45 losses, 2 draws** - 53.0% wins, 54.0% match score.
-- Suite B, 100 games: **60 wins, 36 losses, 4 draws** - 60.0% wins, 62.0% match score.
-- Suite C, 100 games: **58 wins, 37 losses, 5 draws** - 58.0% wins, 60.5% match score.
-- Suite D, 100 games: **61 wins, 37 losses, 2 draws** - 61.0% wins, 62.0% match score.
-- Combined, 400 games: **232 wins, 155 losses, 13 draws** - **58.0% win rate**, 59.625% match score.
-
-This benchmark is fixed-node rather than wall-clock, so it compares search decisions without machine-timing noise.
-
-Build with CMake and run `ctest --test-dir build --output-on-failure`. The bundled `rpsc-engine` is a Linux x86-64 Release build from this source.
+Build with CMake and run the engine/browser regression tests from this source. The bundled `rpsc-engine` is a Linux x86-64 Release build.

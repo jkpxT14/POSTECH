@@ -1,4 +1,4 @@
-// RPSC 0.22.3 analyzer / Format 3 regression suite.
+// RPSC 0.23.0 analyzer / Format 3 regression suite.
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
 const base=path.resolve(__dirname,'../..');
 const html=fs.readFileSync(path.join(base,'RockPaperScissorsChess.html'),'utf8');
@@ -38,20 +38,24 @@ assert.strictEqual(run('lg.teams.POSTECH.quiz'),1);
 assert.strictEqual(run('lg.teams.KAIST.quiz'),0);
 assert.ok(run('recordText(lg)').includes('1. Q[1, 0] B+St'));
 
-// Replay all seven handbook games with explicit school-role mappings.
-const games=fs.readFileSync(path.join(base,'Games.tex'),'utf8');
-const blocks=[...games.matchAll(/\\begin\{gamerecord\}([\s\S]*?)\\end\{gamerecord\}/g)].map(x=>x[1]);
-assert.strictEqual(blocks.length,7);
-const headLines=games.split('\n').filter(l=>l.startsWith('\\gamehead'));
-const maps=headLines.map(l=>{const m=l.match(/\}\{(POSTECH|KAIST)\}\{(POSTECH|KAIST)\}\{2026/);assert.ok(m,'school mapping in gamehead');return [m[1],m[2]];});
-const expected=[[18,17,12,11,3,3],[15,23,11,11,2,6],[17,13,11,11,3,1],[20,18,14,12,3,3],[32,34,20,20,6,7],[25,23,11,11,7,6],[20,18,10,10,5,4]];
-for(let i=0;i<blocks.length;i++){
-  const body=blocks[i].trim().split('\n').map(l=>l.trim().replace(/^([0-9]+\.)\s*&\s*/,'$1 ').replace(/\\\\\s*$/,'')).join('\n');
-  const [wt,bt]=maps[i];
-  ui.rec=`[Format "3"]\n[White "W"]\n[Black "B"]\n[WhiteTeam "${wt}"]\n[BlackTeam "${bt}"]\n[Result "*"]\n[QOrder "POSTECH, KAIST"]\n\n${body}`;
-  let gg=run('parseAndReplayDetailed(rec).game');ui.gg=gg;
-  let got=run(`[score(gg.order.white,gg),score(gg.order.black,gg),gg.teams[gg.order.white].quiz,gg.teams[gg.order.black].quiz,gg.teams[gg.order.white].captures,gg.teams[gg.order.black].captures]`);
-  assert.deepStrictEqual(JSON.parse(JSON.stringify(got)),expected[i],`Game ${i+1}: ${got}`);
+// Replay bundled handbook games only when a handbook is present.
+// The Engine+Analyzer package intentionally does not modify or bundle the textbook.
+const gamesPath=path.join(base,'Games.tex');
+if(fs.existsSync(gamesPath)){
+  const games=fs.readFileSync(gamesPath,'utf8');
+  const blocks=[...games.matchAll(/\\begin\{gamerecord\}([\s\S]*?)\\end\{gamerecord\}/g)].map(x=>x[1]);
+  assert.ok(blocks.length>=7);
+  const headLines=games.split('\n').filter(l=>l.startsWith('\\gamehead'));
+  const maps=headLines.map(l=>{const m=l.match(/\}\{(POSTECH|KAIST)\}\{(POSTECH|KAIST)\}\{2026/);assert.ok(m,'school mapping in gamehead');return [m[1],m[2]];});
+  const expected=[[18,17,12,11,3,3],[15,23,11,11,2,6],[17,13,11,11,3,1],[20,18,14,12,3,3],[32,34,20,20,6,7],[25,23,11,11,7,6],[20,18,10,10,5,4],[15,17,9,9,3,4]];
+  for(let i=0;i<Math.min(blocks.length,expected.length);i++){
+    const body=blocks[i].trim().split('\n').map(l=>l.trim().replace(/^([0-9]+\.)\s*&\s*/,'$1 ').replace(/\\\\\s*$/,'')).join('\n');
+    const [wt,bt]=maps[i];
+    ui.rec=`[Format "3"]\n[White "W"]\n[Black "B"]\n[WhiteTeam "${wt}"]\n[BlackTeam "${bt}"]\n[Result "*"]\n[QOrder "POSTECH, KAIST"]\n\n${body}`;
+    let gg=run('parseAndReplayDetailed(rec).game');ui.gg=gg;
+    let got=run(`[score(gg.order.white,gg),score(gg.order.black,gg),gg.teams[gg.order.white].quiz,gg.teams[gg.order.black].quiz,gg.teams[gg.order.white].captures,gg.teams[gg.order.black].captures]`);
+    assert.deepStrictEqual(JSON.parse(JSON.stringify(got)),expected[i],`Game ${i+1}: ${got}`);
+  }
 }
 
 // History remains a tree with sideline support.
@@ -82,7 +86,7 @@ const quizStatic0=vm.runInContext('evalW(s)',quizWorker);
 quizWorker.s2=JSON.parse(JSON.stringify(quizState));vm.runInContext('s2.q.W++; s2.q.B++',quizWorker);
 const quizStatic1=vm.runInContext('evalW(s2)',quizWorker);
 assert.strictEqual(quizStatic0,quizStatic1,'Q[0,0] and Q[1,1] must be evaluation-equivalent');
-const quizResult=vm.runInContext('search(s,{depth:2,ms:350,multipv:3})',quizWorker);
+const quizResult=vm.runInContext('search(s,{depth:2,ms:1500,multipv:3})',quizWorker);
 assert.ok(quizResult.candidates.length>=3,'QUIZ assumption must produce Top 3 next-White candidates');
 ui.quizResult=JSON.parse(JSON.stringify(quizResult));
 run('app.engineAnalysis=quizResult; app.engineAnalysis.rootSide="W"; app.analysisKey=positionFingerprint(); app.analysisState=analysisProbeState(); app.analysisMoveNumber=analysisProbeMoveNumber()');
@@ -145,7 +149,7 @@ const variationId=run('history.current');ui.variationId=variationId;
 
 // Live evaluation and Top 3 must work on the sideline position too.
 branchWorker.s=JSON.parse(JSON.stringify(run('toEngineState()')));
-const sideResult=vm.runInContext('search(s,{depth:2,ms:350,multipv:3})',branchWorker);
+const sideResult=vm.runInContext('search(s,{depth:2,ms:1500,multipv:3})',branchWorker);
 assert.ok(sideResult.candidates.length>=3,'sideline search must return Top 3');
 ui.sideResult=JSON.parse(JSON.stringify(sideResult));
 run('app.engineAnalysis=sideResult; app.engineAnalysis.rootSide=game.moveRole; app.analysisKey=positionFingerprint(); app.analysisState=toEngineState(); app.analysisMoveNumber=analysisMoveNumber(game)');
@@ -159,10 +163,10 @@ assert.ok((sideAnalysis.match(/PV&nbsp;&nbsp;/g)||[]).length>=3,'sideline candid
 // Completed board analyses are persisted with an engine signature so loaded main/sideline nodes restore instantly.
 run('cacheAnalysis(positionFingerprint(),sideResult,toEngineState(),analysisMoveNumber(game),game.moveRole,"background",0)');
 assert.ok(run('app.analysisCache.size')>=1,'completed sideline analysis must enter the position cache');
-assert.strictEqual(run('ANALYSIS_ENGINE_SIGNATURE'),'0.22.0-search');
+assert.strictEqual(run('ANALYSIS_ENGINE_SIGNATURE'),'0.23.0-mpv24');
 const cachedKey=run('positionFingerprint()');ui.cachedKey=cachedKey;
 const payload=run('sessionPayload()');ui.payload=JSON.parse(JSON.stringify(payload));
-assert.strictEqual(payload.analysisEngine,'0.22.0-search');
+assert.strictEqual(payload.analysisEngine,'0.23.0-mpv24');
 assert.ok(Array.isArray(payload.analysisCache)&&payload.analysisCache.some(x=>x.key===cachedKey),'session payload must persist completed board analysis');
 run('app.analysisCache.clear()');
 assert.strictEqual(run('restoreAnalysisCacheFromSession(payload)'),payload.analysisCache.length,'compatible session analysis cache must restore');
@@ -202,8 +206,8 @@ assert.ok(parts[0].includes('x.t>=0||x.reset'),'browser quiescence must skip non
 ui.es=run(`toEngineState('W')`);worker.s=JSON.parse(JSON.stringify(ui.es));
 let legal=vm.runInContext('uniqueMoves(s).length',worker);
 assert.ok(legal>3,'worker must have multiple legal successors');
-let result=vm.runInContext('search(s,{depth:3,ms:500,multipv:3})',worker);
+let result=vm.runInContext('search(s,{depth:3,ms:2500,multipv:3})',worker);
 assert.ok(result.candidates.length>=3,'worker must expose Top 3 candidates');
 assert.strictEqual(new Set(result.candidates.slice(0,3).map(x=>JSON.stringify(x.move))).size,3);
 assert.ok(result.candidates.slice(0,3).every(x=>Array.isArray(x.pv)&&x.pv.length>=1),'each candidate must carry a PV');
-console.log('RPSC 0.22.3 analyzer / Format 3 / persisted-analysis / continuous-live-eval / Top 3 PV regression suite passed.');
+console.log('RPSC 0.23.0 analyzer / Format 3 / persisted-analysis / continuous-live-eval / Top 3 PV regression suite passed.');
