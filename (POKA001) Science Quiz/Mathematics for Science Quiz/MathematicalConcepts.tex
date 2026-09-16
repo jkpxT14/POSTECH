@@ -424,7 +424,7 @@
         indicate linear, quadratic, and cubic behavior, respectively.
     \end{strategy}
 
-    \begin{formula}[Linear Recurrences with Constant Coefficients]
+    \begin{formula}[Linear Recurrences with Constant Coefficients]\label{pp:recurrence}
         Consider
         \[
             a_n=c_1a_{n-1}+c_2a_{n-2}+\cdots+c_ma_{n-m}.
@@ -1526,7 +1526,7 @@
         \]
     \end{formula}
 
-    \begin{formula}[Arctangent Integral]
+    \begin{formula}[Arctangent Integral]\label{pp:arctan}
         For $a>0$,
         \[
             \int_{-\infty}^{\infty}\frac{1}{x^2+a^2}\dd x
@@ -1581,7 +1581,7 @@
         \]
     \end{definition}
 
-    \begin{formula}[Beta--Gamma Identity]
+    \begin{formula}[Beta--Gamma Identity]\label{pp:beta}
         The Beta and Gamma functions are related by
         \[
             B(x,y)
@@ -2555,7 +2555,7 @@
         Hence the integral is path independent.
     \end{theorem}
 
-    \begin{proposition}[Conservative-Field Test]
+    \begin{proposition}[Conservative-Field Test]\label{pp:conservative}
         Let $U\subseteq\R^n$ be open and simply connected, and let
         $\mathbf{F}\colon U\to\R^n$ be continuously differentiable. Then
         $\mathbf{F}$ is conservative if and only if its Jacobian matrix is
@@ -3173,7 +3173,7 @@
         \]
     \end{theorem}
 
-    \begin{theorem}[Density of Irrational Rotations]
+    \begin{theorem}[Density of Irrational Rotations]\label{pp:density}
         If $\alpha\in\R\setminus\Q$, then the sequence of fractional parts
         \[
             \{n\alpha\},\qquad n=0,1,2,\dots,
@@ -3783,7 +3783,7 @@
         $\mathbf{A}^{\mathsf H}$.
     \end{formula}
 
-    \begin{theorem}[Rank--Nullity Theorem]
+    \begin{theorem}[Rank--Nullity Theorem]\label{pp:rank}
         Let $T\colon V\to W$ be a linear map between finite-dimensional vector spaces.
         Then
         \[
@@ -4659,7 +4659,7 @@
         \]
     \end{formula}
 
-    \begin{formula}[Eigenvalues of a Three-Dimensional Rotation Matrix]
+    \begin{formula}[Eigenvalues of a Three-Dimensional Rotation Matrix]\label{pp:rotation}
         A rotation of $\R^3$ by angle $\theta$ around an axis through the
         origin has eigenvalues
         \[
@@ -4674,7 +4674,7 @@
         real eigenvalue.
     \end{formula}
 
-    \begin{proposition}[Trace, Determinant, and Eigenvalues]
+    \begin{proposition}[Trace, Determinant, and Eigenvalues]\label{pp:trace}
         Let $\mathbf{A}\in\C^{n\times n}$ have eigenvalues
         $\lambda_1,\dots,\lambda_n$, counted with algebraic multiplicity. Then
         \[
@@ -4718,7 +4718,7 @@
         characteristic polynomial $p_{\mathbf{A}}(\lambda)$.
     \end{proposition}
 
-    \begin{formula}[All-Ones Matrix]
+    \begin{formula}[All-Ones Matrix]\label{pp:ones}
         Let $\mathbf{J}_n$ be the $n\times n$ matrix whose entries are all $1$.
         Then
         \[
@@ -6109,7 +6109,7 @@
         are equivalent.
     \end{formula}
 
-    \begin{formula}[Pascal's Identity and Vandermonde's Identity]
+    \begin{formula}[Pascal's Identity and Vandermonde's Identity]\label{pp:vandermonde}
         Pascal's identity is
         \[
             \binom{n}{k}
@@ -6141,7 +6141,7 @@
         is called a multinomial coefficient.
     \end{formula}
 
-    \begin{formula}[Stars and Bars]
+    \begin{formula}[Stars and Bars]\label{pp:stars}
         The number of nonnegative integer solutions of
         \[
             x_1+x_2+\cdots+x_n=k
@@ -6169,7 +6169,7 @@
         \]
     \end{formula}
 
-    \begin{theorem}[Reflection Principle and Ballot-Path Formula]
+    \begin{theorem}[Reflection Principle and Ballot-Path Formula]\label{pp:reflection}
         The reflection principle converts a path that first crosses a boundary
         into an unrestricted reflected path. In particular, for integers
         $a\geq b\geq0$, the number of paths from $(0,0)$ to $(a,b)$ using right
@@ -6310,7 +6310,7 @@
         \]
     \end{formula}
 
-    \begin{formula}[Tower of Hanoi]
+    \begin{formula}[Tower of Hanoi]\label{pp:hanoi}
         Let $T_n$ be the minimum number of moves needed to move $n$ disks in the
         Tower of Hanoi puzzle. Then
         \[
@@ -7020,7 +7020,7 @@
         \]
     \end{formula}
 
-    \begin{proposition}[Linearity of Expectation]
+    \begin{proposition}[Linearity of Expectation]\label{pp:linearity}
         If $X_1,\dots,X_n$ are integrable random variables and
         $a_1,\dots,a_n$ are scalars, then
         \[
@@ -7391,7 +7391,7 @@
         applying the function.
     \end{idea}
 
-    \begin{formula}[Exact Birthday Problem]
+    \begin{formula}[Exact Birthday Problem]\label{pp:birthday}
         Under the standard model of $365$ equally likely birthdays and no leap
         day, the probability that at least two people among $n$ share a birthday
         is
@@ -8413,7 +8413,7 @@
         Angles, lengths, and circles are not generally preserved.
     \end{strategy}
 
-    \begin{theorem}[Cavalieri's Principle]
+    \begin{theorem}[Cavalieri's Principle]\label{pp:cavalieri}
         If two plane regions lie between the same pair of parallel lines and
         every line parallel to them cuts the regions in segments whose lengths
         have a constant ratio $c$, then their areas have ratio $c$. The
@@ -8549,7 +8549,7 @@
         \]
     \end{formula}
 
-    \begin{formula}[Distance from a Point to a Plane]
+    \begin{formula}[Distance from a Point to a Plane]\label{pp:plane}
         The distance from a point $\mathbf{p}_0=(x_0,y_0,z_0)$ to the plane
         \[
             ax+by+cz+d=0
@@ -9823,7 +9823,7 @@
         group-theoretic structure up to relabeling.
     \end{definition}
 
-    \begin{definition}[Generated Subgroup, Generating Set, and Finitely Generated Group]
+    \begin{definition}[Generated Subgroup, Generating Set, and Finitely Generated Group]\label{pp:generated}
         If $A\subseteq G$, the subgroup generated by $A$, denoted
         $\langle A\rangle$, is the smallest subgroup of $G$ containing $A$.
         Equivalently, it consists of all finite products of elements of $A$ and
@@ -9833,7 +9833,7 @@
         $\langle g\rangle$ denotes the cyclic subgroup generated by $g$.
     \end{definition}
 
-    \begin{proposition}[Countability of Finitely Generated Groups]
+    \begin{proposition}[Countability of Finitely Generated Groups]\label{pp:countable}
         Every finitely generated group is at most countable. Every finite group
         is finitely generated. Consequently, an uncountable group cannot be
         finitely generated.
@@ -10469,7 +10469,7 @@
         minimal polynomial are the algebraic conjugates of $\alpha$ over $\Q$.
     \end{definition}
 
-    \begin{theorem}[Conjugate Root Theorems]
+    \begin{theorem}[Conjugate Root Theorems]\label{pp:conjugate}
         The standard conjugate-root principles are as follows.
         \begin{conditionlist}
             \item If $f\in\R[x]$ and $f(\alpha)=0$, then

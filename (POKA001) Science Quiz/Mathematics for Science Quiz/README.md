@@ -31,4 +31,17 @@ Jungwoo Kim (Department of Mathematics, Pohang University of Science and Technol
 
 Final edition; content cutoff: 2026-09-15.
 
+Revision: FINAL-r2 (Past Problems editorial review, 2026-09-16).
+Baseline: GitHub commit `d73aca318128d6f8704a530171c06e2c75f40f4d`.
+
+All 103 past problems and 106 solution blocks were reviewed. Problem IDs,
+order, choices, and historical context are preserved. Four question passages
+received limited grammar or definition corrections. Solutions were refined
+for accuracy, first-year readability, notation, and explicit references to
+the study material. The study chapters retain their content; twenty reference
+labels were added without changing their printed statements or structure.
+
+The September 15 content cutoff is unchanged. This editorial revision does
+not add September 16 events.
+
 Build with `latexmk -xelatex MathematicsforScienceQuiz.tex`.

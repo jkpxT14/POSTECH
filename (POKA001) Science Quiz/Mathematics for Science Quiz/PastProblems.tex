@@ -6,7 +6,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        No such positive integers exist. By the quadratic-residue criterion modulo $4$ from Mathematical Concepts, for any integer $a$, we have
+        No such positive integers exist. Every integer is even or odd, so its square satisfies
         \[
             (a^2\equiv 0\pmod{4})\lor(a^2\equiv 1\pmod{4}).
         \]
@@ -29,10 +29,9 @@
     \end{pastproblem}
 
     \begin{solution}
-        As recorded in Facts to Memorize, Grigori Perelman proved the Poincar\'e
-        conjecture using Ricci flow. He was awarded the Fields Medal in 2006, but
-        declined it.
-
+Grigori Perelman proved the Poincar\'e conjecture using Ricci flow
+        and declined the 2006 Fields Medal. These are the two identifying clues
+        in the Fields Medal and Poincar\'e conjecture entries in Part II.
         Therefore, the answer is $\boxed{\text{Grigori Perelman}}$.
     \end{solution}
 
@@ -42,9 +41,8 @@
     \end{pastproblem}
 
     \begin{solution}
-        The Fields Medal history in Facts to Memorize records John Charles Fields
-        as a Canadian mathematician after whom the medal is named.
-
+John Charles Fields was a Canadian mathematician. The medal's name
+        honors him, as recorded in the Fields Medal section.
         Therefore, the answer is $\boxed{\text{Canada}}$.
     \end{solution}
 
@@ -59,7 +57,7 @@
             p_{\mathbf{A}}(\lambda)=\det(\lambda\mathbf{I}_5-\mathbf{A}).
         \]
         This polynomial has degree $5$. Therefore it can have at most $5$ distinct roots, and hence
-        $\mathbf{A}$ can have at most $5$ distinct eigenvalues.
+        $\mathbf{A}$ can have at most $5$ distinct eigenvalues. This bound is attained by $\diag(1,2,3,4,5)$, whose five diagonal entries are its eigenvalues.
 
         Therefore, the answer is $\boxed{5}$.
     \end{solution}
@@ -124,20 +122,19 @@
     \end{solution}
 
     \begin{pastproblem}{2011.1}
-        Identify the international mathematical congress, held in the Republic of Korea in 2014, at which the
+        Identify the international mathematical congress, scheduled to be held in the Republic of Korea in 2014, at which the
         Fields Medal is awarded.
     \end{pastproblem}
 
     \begin{solution}
-        By the prize-and-congress facts collected in Facts to Memorize, the Fields
-        Medal is awarded at the International Congress of Mathematicians, commonly
-        abbreviated as ICM.\@ The 2014 ICM was held in Seoul, Republic of Korea.
-
-        Therefore, the answer is $\boxed{\text{International Congress of Mathematicians, or ICM}}$.
+The Fields Medal is awarded at the International Congress of
+        Mathematicians (ICM). The congress scheduled for 2014 was in Seoul,
+        Republic of Korea. Therefore, the answer is
+        $\boxed{\text{International Congress of Mathematicians (ICM)}}$.
     \end{solution}
 
     \begin{pastproblem}{2011.2}
-        Let $\mathbf{A}$ and $\mathbf{B}$ be $n\times n$ matrices. If
+        Let $\mathbf{A}$ and $\mathbf{B}$ be $n\times n$ matrices satisfying
         \[
             \mathbf{A}\mathbf{B}-\mathbf{I}_n=\mathbf{0},
         \]
@@ -148,29 +145,15 @@
     \end{pastproblem}
 
     \begin{solution}
-        The condition
-        \[
-            \mathbf{A}\mathbf{B}-\mathbf{I}_n=\mathbf{0}
-        \]
-        means that
-        \[
-            \mathbf{A}\mathbf{B}=\mathbf{I}_n.
-        \]
-        Since $\mathbf{A}$ and $\mathbf{B}$ are square matrices, this implies that $\mathbf{B}$ is
-        the inverse of $\mathbf{A}$. Hence
-        \[
-            \mathbf{B}\mathbf{A}=\mathbf{I}_n.
-        \]
-        Therefore,
+The condition is $\mathbf{A}\mathbf{B}=\mathbf{I}_n$. Taking determinants gives
+        $\det(\mathbf{A})\det(\mathbf{B})=1$, so $\mathbf{A}$ is invertible.
+        Multiplying on the left by $\mathbf{A}^{-1}$ yields
+        $\mathbf{B}=\mathbf{A}^{-1}$. Hence
         \[
             \mathbf{B}\mathbf{A}-\mathbf{I}_n
-            =
-            \mathbf{I}_n-\mathbf{I}_n
-            =
-            \mathbf{0}.
+            =\mathbf{A}^{-1}\mathbf{A}-\mathbf{I}_n
+            =\boxed{\mathbf{0}}.
         \]
-
-        Therefore, the answer is $\boxed{\mathbf{0}}$.
     \end{solution}
 
     \begin{pastproblem}{2011.3}
@@ -184,7 +167,7 @@
             =
             10\cdot 9\cdot 8(1+x)^7.
         \]
-        Substituting $x=0$, we get
+        Substituting $x=0$, we obtain
         \[
             10\cdot 9\cdot 8(1+0)^7
             =
@@ -227,7 +210,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        By the trace--eigenvalue identity in Mathematical Concepts, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
+        By Proposition~\ref{pp:trace}, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
         to $\tr(\mathbf{A})$.
 
         In this matrix, the diagonal entries are
@@ -337,7 +320,7 @@
         \[
             (1,4),\qquad (2,3),\qquad (6,8),\qquad (7,7).
         \]
-        The lexicographically smallest admissible multiset is
+        Only the extra pair $(1,4)$ allows the number to start with $11$; the other pairs allow only one occurrence of $1$. Thus any valid arrangement starting with $11$ is smaller than every arrangement from the other pairs. We therefore first consider the digits
         \[
             1,1,2,3,4,4,6,7,8,9.
         \]
@@ -400,7 +383,7 @@
             =
             -x-\frac{x^2}{2}-\frac{x^3}{3}-\cdots,
         \]
-        with $x=\dfrac{1}{366}$, we get
+        with $x=\dfrac{1}{366}$, we obtain
         \[
             -\ln\left(\frac{365}{366}\right)
             =
@@ -412,7 +395,10 @@
             +
             \cdots.
         \]
-        Hence
+        For $0<x<1$, the logarithm series is strictly larger than $x$ and
+        strictly smaller than the geometric series
+        $\sum_{k=1}^{\infty}x^k=x/(1-x)$, because $1/k<1$ for $k\geq2$.
+        With $x=1/366$, this gives
         \[
             \frac{1}{366}
             <
@@ -451,7 +437,7 @@
             \int_0^{\pi/2}
             \frac{1}{1+\tan^{\sqrt{2}}t}\dd t.
         \]
-        Use the substitution
+        Using the reflection substitution for definite integrals, set
         \[
             x=\frac{\pi}{2}-t.
         \]
@@ -490,10 +476,6 @@
             =
             \frac{\pi}{2}.
         \]
-        Therefore,
-        \[
-            I=\frac{\pi}{4}.
-        \]
         Therefore, the answer is $\boxed{\dfrac{\pi}{4}}$.
     \end{solution}
 
@@ -512,7 +494,7 @@
                 \item The Cauchy--\underline{\hspace{2cm}} theorem gives the radius of
                       convergence of a power series.
                 \item A \underline{\hspace{2cm}} matrix is a square matrix whose entries are
-                      all $+1$ or $-1$, and such matrices are also used in error-correcting codes.
+                      all $+1$ or $-1$ and whose rows are mutually orthogonal; such matrices are also used in error-correcting codes.
             \end{problemchoices}
         \end{hint}
     \end{pastproblem}
@@ -599,7 +581,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        By the trace--eigenvalue identity in Mathematical Concepts, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
+        By Proposition~\ref{pp:trace}, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
         to $\tr(\mathbf{A})$.
 
         In this matrix, the diagonal entries are
@@ -659,13 +641,9 @@
     \end{pastproblem}
 
     \begin{solution}
-        The mathematician was Charles Hermite. In 1873, Hermite proved that
-        \[
-            e
-        \]
-        is transcendental. Lindemann subsequently developed related ideas to prove the
-        transcendence of $\pi$ in 1882.
-
+Charles Hermite proved the transcendence of $e$ in 1873.
+        Lindemann proved the transcendence of $\pi$ in 1882. This is the
+        Hermite--Lindemann chronological pair in the mathematical history section.
         Therefore, the answer is $\boxed{\text{Charles Hermite}}$.
     \end{solution}
 
@@ -774,7 +752,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        Let $\mathbf{A}$ be the given matrix, and let $\mathbf{J}_{2014}$ be the $2014\times 2014$ matrix
+        Use the all-ones matrix formula (Formula~\ref{pp:ones}). Let $\mathbf{A}$ be the given matrix, and let $\mathbf{J}_{2014}$ be the $2014\times 2014$ matrix
         whose entries are all $1$. Then
         \[
             \mathbf{A}=\mathbf{J}_{2014}-\mathbf{I}_{2014}.
@@ -880,7 +858,7 @@
         \[
             \rk(\mathbf{Q})=3.
         \]
-        Therefore, the linear map $\mathbf{Q}^{\mathsf T}\colon\R^n\to\R^3$ is surjective.
+        Transposition preserves rank, so $\mathbf{Q}^{\mathsf T}$ has rank $3$. Its output space is $\R^3$, and thus it can produce every vector in $\R^3$: the map is surjective.
 
         It follows that the image of $\mathbf{A}=\mathbf{P}\mathbf{Q}^{\mathsf T}$ is
         \[
@@ -933,16 +911,11 @@
     \end{pastproblem}
 
     \begin{solution}
-        The passage is referring to Euclid's \textit{Elements}, one of the most influential works in
-        the history of mathematics.
-
-        For centuries, Euclid's \textit{Elements} served as a standard model of rigorous
-        mathematical reasoning and was central to mathematical education. The quotations from
-        Abraham Lincoln and Bertrand Russell emphasize how deeply the book influenced not only
-        mathematicians, but also philosophers, politicians, and intellectual culture more broadly.
-
-        Therefore, the answer is $\boxed{\text{\textit{The Elements}},\ \text{or Euclid's
-        \textit{Elements}}}$.
+The quotations refer to Euclid's \textit{Elements}, whose first six
+        books treat plane geometry. Its organization around definitions,
+        postulates, and deductive reasoning made it a model for mathematical
+        exposition for centuries.
+        Therefore, the answer is $\boxed{\text{Euclid's \textit{Elements}}}$.
     \end{solution}
 
     \begin{pastproblem}{2015.2}
@@ -1062,7 +1035,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        Since $P_{xy}(\mathbf{w}_k)=\mathbf{v}_k$, each $\mathbf{w}_k$ must have the form
+        Each projection $\mathbf{v}_k$ has length $1$. If the positive height of $\mathbf{w}_k$ is $c_k$, then $\|\mathbf{w}_k\|^2=1+c_k^2$. Equal lengths and positive heights therefore force $c_0=c_1=c_2=c>0$. Thus each $\mathbf{w}_k$ has the form
         \[
             \mathbf{w}_k
             =
@@ -1233,7 +1206,7 @@
             Thus $f$ is a $2\pi$-periodic function which is $1$ near multiples of $2\pi$, and
             $0$ on the large middle interval.
 
-            By the Density of Irrational Rotations theorem in Mathematical Concepts, since
+            By the density of irrational rotations (Theorem~\ref{pp:density}), since
             $1/(2\pi)$ is irrational, the fractional parts
             \[
                 \left\{\frac{n}{2\pi}\right\},
@@ -1427,7 +1400,7 @@
     \begin{solution}
         Let the displacement vector of the line segment be
         \[
-            \mathbf{v}=(a,b,c).
+            \mathbf{v}=(a,b,c)^{\mathsf T}.
         \]
         Then the length of $\ell$ is
         \[
@@ -1446,7 +1419,7 @@
             \qquad
             \sqrt{a^2+b^2}=6.
         \]
-        Squaring and adding these three equations, we get
+        Squaring and adding these three equations, we obtain
         \[
             (b^2+c^2)+(c^2+a^2)+(a^2+b^2)
             =
@@ -1475,7 +1448,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        By the rotation-matrix facts in Mathematical Concepts, a rotation in
+        As in Formula~\ref{pp:rotation}, a rotation in
         $\R^3$ around an axis fixes every vector lying on the rotation axis.
         Therefore, the direction vector
         \[
@@ -1526,7 +1499,7 @@
         \]
         where $0\leq x\leq 3$.
 
-        Differentiating, we get
+        Differentiating, we obtain
         \[
             V'(x)
             =
@@ -1534,11 +1507,11 @@
             =
             6\pi x(2-x).
         \]
-        Thus the critical point in the interval is
+        Thus the only critical point in the open interval $(0,3)$ is
         \[
             x=2.
         \]
-        At this point,
+        The endpoint volumes are $V(0)=V(3)=0$, so the positive volume at $x=2$ is the global maximum. At this point,
         \[
             h=6-2\cdot 2=2,
         \]
@@ -1561,7 +1534,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        By the Conjugate Root Theorems in Mathematical Concepts, every non-real
+        By the conjugate-root theorem (Theorem~\ref{pp:conjugate}), every non-real
         root of a real-coefficient polynomial appears together with its complex
         conjugate, with the same multiplicity.
 
@@ -1583,7 +1556,7 @@
         additional non-real roots.
 
         Thus the polynomial has at least $6$ non-real roots. Since the degree is $7$, there is
-        exactly one remaining root, and it must be real.
+        exactly one remaining root, counted with multiplicity. It must be real: an additional non-real root, or a repeated one among the six, would require its conjugate with the same multiplicity and exceed degree $7$.
 
         Therefore, the equation has $\boxed{1}$ real root.
     \end{solution}
@@ -1600,15 +1573,9 @@
     \end{pastproblem}
 
     \begin{solution}
-        The mathematician described in the problem is Emmy Noether.
-
-        Noether made fundamental contributions to modern algebra, especially through her work on
-        rings, ideals, and modules. She is also famous for Noether's theorem, which connects
-        symmetries and conservation laws in physics.
-
-        The biographical details in the problem, including her connection with Göttingen and
-        Hilbert's defense of her academic appointment, point to Emmy Noether.
-
+The dates $1882$--$1935$, work on rings and ideals, and Hilbert's
+        defense at Göttingen identify Emmy Noether. The mathematical history
+        section records the same anecdote.
         Therefore, the answer is $\boxed{\text{Emmy Noether}}$.
     \end{solution}
 
@@ -1634,7 +1601,7 @@
         \[
             k_1+k_2+\cdots+k_7=4.
         \]
-        By the Stars and Bars formula in Mathematical Concepts, this number is
+        By stars and bars (Formula~\ref{pp:stars}), this number is
         \[
             \binom{4+7-1}{7-1}
             =
@@ -1676,7 +1643,7 @@
                 1 & 2 & 3 & 4
             \end{pmatrix}.
         \]
-        By the trace--eigenvalue identity in Mathematical Concepts, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
+        By Proposition~\ref{pp:trace}, the sum of the eigenvalues of a square matrix, counted with algebraic multiplicity, is equal
         to its trace. Therefore,
         \[
             \sum_{i=1}^{4}\lambda_i
@@ -1820,8 +1787,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        By the linear-recurrence method developed in Mathematical Concepts,
-        Binet's formula is
+        Applying the constant-coefficient recurrence formula (Formula~\ref{pp:recurrence}) to the roots of $t^2-t-1=0$ gives Binet's formula:
         \[
             F_n=\frac{\varphi^n-\psi^n}{\sqrt5},
             \qquad
@@ -1867,8 +1833,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        We first compute the determinant of $\mathbf{C}$. By Vandermonde's identity from
-        Mathematical Concepts,
+        For $n=1$, $\mathbf{B}=(2017)$ and the answer is immediate. Assume $n\geq2$. We first compute the determinant of $\mathbf{C}$. By Vandermonde's identity (Formula~\ref{pp:vandermonde}),
         \[
             \binom{i+j-2}{i-1}
             =
@@ -1905,8 +1870,8 @@
             1.
         \]
 
-        The matrix $\mathbf{B}$ differs from $\mathbf{C}$ only in the $(n,n)$-entry. Since the
-        determinant is linear in each entry, we have
+        The matrix $\mathbf{B}$ differs from $\mathbf{C}$ only in the $(n,n)$-entry. By cofactor expansion, the
+        determinant is affine in a single entry when all other entries are fixed, we have
         \[
             \det(\mathbf{B})
             =
@@ -1962,7 +1927,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        This integral is a beta integral. For positive integers $m$ and $n$, we have
+        This is a beta integral (Formula~\ref{pp:beta}). For positive integers $m$ and $n$, we have
         \[
             \int_0^1 x^m(1-x)^n\dd x
             =
@@ -2080,7 +2045,7 @@
             =
             x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.
         \]
-        Substituting $x=1$, we obtain
+        At $x=1$, the alternating series converges. Abel's theorem identifies its sum with the limit of $\ln(1+x)$ as $x\to1^-$, so
         \[
             \ln 2
             =
@@ -2119,7 +2084,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        Let $\mathbf{A}$ be the given matrix, and let $\mathbf{J}_{2019}$ be the $2019\times 2019$ matrix
+        Use the all-ones matrix formula (Formula~\ref{pp:ones}). Let $\mathbf{A}$ be the given matrix, and let $\mathbf{J}_{2019}$ be the $2019\times 2019$ matrix
         whose entries are all $1$. Then
         \[
             \mathbf{A}=\mathbf{J}_{2019}-\mathbf{I}_{2019}.
@@ -2133,7 +2098,7 @@
         \[
             \mathbf{J}_{2019}\ones=2019\ones,
         \]
-        we get
+        we obtain
         \[
             \mathbf{A}\ones
             =
@@ -2227,7 +2192,7 @@
             \qquad
             e\approx 2.71828183,
         \]
-        we get
+        we obtain
         \[
             \pi+e
             \approx
@@ -2318,8 +2283,13 @@
     \end{pastproblem}
 
     \begin{solution}
-        In 2020, Cédric Villani was serving in French politics rather than as a professor.
-        Therefore, the answer is $\boxed{(1)\ \text{Cédric Villani}}$.
+The intended answer is $\boxed{(1)\ \text{C\'edric Villani}}$.
+        In 2020, Villani was serving as a member of the French National Assembly;
+        his parliamentary term ran from 2017 to 2022. The question refers to his
+        political role at the time. Its wording should not be read as saying
+        that he had never held, or had permanently lost, a professorship.
+        % Source: https://www.assemblee-nationale.fr/dyn/deputes/PA722260
+        % Source: https://www.assemblee-nationale.fr/dyn/deputes/PA722260/fonctions?archive=oui
     \end{solution}
 
     \begin{pastproblem}{2020.4}
@@ -2348,8 +2318,7 @@
         \]
         depends only on the endpoints. Here $\Delta U$ denotes a finite change;
         in the distributional identity below, $\Delta$ acts on a function and
-        denotes the Laplacian. The conservative-field criterion from
-        Mathematical Concepts connects this statement with choice (1), while
+        denotes the Laplacian. The conservative-field criterion (Proposition~\ref{pp:conservative}) connects this statement with choice (1), while
         \[
             \nabla\times\nabla U=\mathbf{0}
         \]
@@ -2384,15 +2353,12 @@
     \end{pastproblem}
 
     \begin{solution}
-        École normale supérieure is one of France's most prestigious higher education
-        institutions. It operates educational programs and is naturally regarded as a
-        degree-granting school.
-
-        By contrast, IHES, MSRI, and IAS are research institutes rather than degree-granting
-        schools. Collège de France is also a famous academic institution that offers public
-        lectures, but it does not grant degrees.
-
-        Therefore, the answer is $\boxed{(2)\ \text{École normale supérieure}}$.
+École normale supérieure offers degree programs and its own ENS diploma.
+        IHES, MSRI, and IAS are research institutes rather than degree-granting
+        schools; Collège de France offers research and public lectures without
+        awarding degrees. Therefore, the answer is
+        \[\boxed{(2)\ \text{École normale supérieure}}.\]
+        % Source: https://www.ens.psl.eu/une-formation-d-exception/formations
     \end{solution}
 
     \begin{pastproblem}{2021.1}
@@ -2460,7 +2426,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        By Binet's formula in Mathematical Concepts,
+        By Binet's formula, obtained from Formula~\ref{pp:recurrence},
         \[
             F_8
             =
@@ -2496,15 +2462,15 @@
     \end{pastproblem}
 
     \begin{solution}
-        By the definition of a finitely generated group in Mathematical Concepts,
+        By Definition~\ref{pp:generated},
         it is enough to exhibit a finite generating set or to prove that none can
         exist. First, consider an open unit disk with finitely many punctures. If
         the removed points are $p_1,\dots,p_n$, then the fundamental group is
         isomorphic to the free group on $n$ generators:
         \[
-            \pi_1\left(D\setminus\{p_1,\dots,p_n\}\right)\cong F_n.
+            \pi_1\left(D\setminus\{p_1,\dots,p_n\},x_0\right)\cong F_n.
         \]
-        Hence the group in choice (1) is finitely generated.
+        Here $x_0$ is a base point in the punctured disk, and a loop around each puncture gives one generator. Hence the group in choice (1) is finitely generated.
 
         The group $\SL_2(\Z)$ is also finitely generated. For example, it is generated by the two
         matrices
@@ -2523,10 +2489,8 @@
         \]
         Thus choice (2) is finitely generated.
 
-        On the other hand, $\C^{\times}$ is an uncountable abelian group. By the
-        Countability of Finitely Generated Groups proposition in Mathematical
-        Concepts, every finitely generated group is at most countable. Hence
-        $\C^{\times}$ cannot be finitely generated. Therefore, choice (3) is
+        On the other hand, $\C^{\times}$ is an uncountable abelian group. By Proposition~\ref{pp:countable}, every finitely generated group is at most countable. Hence
+        $\C^{\times}$ cannot be finitely generated: finite words in a finite list of generators and their inverses form an at most countable set. Therefore, choice (3) is
         not finitely generated.
 
         Finally, the Monster group is a finite group. Every finite group is finitely generated,
@@ -2553,8 +2517,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        We use the rank--nullity and trace--eigenvalue results from Mathematical
-        Concepts. First, write $\mathbf{A}$ as
+        We use rank--nullity (Theorem~\ref{pp:rank}) and the trace identity (Proposition~\ref{pp:trace}). First, write $\mathbf{A}$ as
         \[
             \mathbf{A}
             =
@@ -2569,7 +2532,7 @@
         \]
         Thus $\rk(\mathbf{A})=1$.
 
-        First, let
+        Let
         \[
             \mathbf{v}
             =
@@ -2611,7 +2574,7 @@
         \]
         so
         \[
-            E_0
+            E_0(\mathbf{A})
             =
             \left\{
                 \begin{pmatrix}
@@ -2620,7 +2583,7 @@
                     z
                 \end{pmatrix}
                 \in \R^3
-                :
+                \mid
                 x+2y+3z=0
             \right\}.
         \]
@@ -2650,7 +2613,7 @@
         Hence there exists a basis of $\R^3$ consisting of eigenvectors of $\mathbf{A}$. Therefore,
         $\mathbf{A}$ is diagonalizable.
 
-        Thus the eigenvalues are $\boxed{6,0,0}$, with algebraic
+        Thus the distinct eigenvalues are $\boxed{6\text{ and }0}$, with algebraic
         multiplicities $1$ and $2$, respectively, and
         $\boxed{\mathbf{A}\text{ is diagonalizable}}$.
     \end{solution}
@@ -2705,7 +2668,7 @@
         at least two people. If a certain lock had its key given to only one person, then the other
         two people would not be able to open that lock together.
 
-        Thus, for each lock, exactly one of the three people should not receive the key. On the
+        A lock whose key is given to all three people restricts no one and is unnecessary. Each useful lock can therefore exclude exactly one person. On the
         other hand, no single person should be able to open the safe alone. Therefore, each person
         must be missing the key to at least one lock.
 
@@ -2750,7 +2713,7 @@
             3\int_{-\infty}^{\infty}
             \frac{1}{u^2+7}\dd u.
         \]
-        We use the standard formula
+        For $a>0$, we use the arctangent integral (Formula~\ref{pp:arctan})
         \[
             \int_{-\infty}^{\infty}
             \frac{1}{u^2+a^2}\dd u
@@ -2780,35 +2743,25 @@
     \end{pastproblem}
 
     \begin{solution}
-        Let $G$ denote a girl and $B$ denote a boy. If we distinguish the two children by birth
-        order, then the possible gender combinations are
+Use the usual model in which the two children's sexes are independent,
+        each with probability $1/2$ of being a girl. Distinguishing the children
+        by birth order gives four equally likely outcomes:
         \[
             GG,\quad GB,\quad BG,\quad BB.
         \]
-
-        For part (a), the condition that one child is a daughter means that at least one child is a
-        girl. Thus the possible cases are
+        In part (a), conditioning on at least one daughter removes $BB$.
+        The remaining three outcomes are equally likely, and only $GG$ has
+        two daughters. Thus
         \[
-            GG,\quad GB,\quad BG.
+            \Prob(GG\mid\text{at least one daughter})=\frac13.
         \]
-        Among these three cases, only $GG$ has the property that the other child is also a daughter.
-        Therefore,
+        In part (b), the specified child is already identified. Independence
+        leaves the other child's probability of being a girl equal to $1/2$;
+        the name does not change this calculation under the stated interpretation.
+        Therefore, the answers are
         \[
-            \Prob(\text{both are daughters}\mid \text{at least one is a daughter})
-            =
-            \frac{1}{3}.
+            \boxed{\text{(a) }\frac13,\qquad\text{(b) }\frac12}.
         \]
-
-        For part (b), the information that one child is a daughter named Youngmi is more specific.
-        In the intended interpretation of the problem, this information identifies one particular
-        child. Then the gender of the other child is still equally likely to be $G$ or $B$. Hence
-        \[
-            \Prob(\text{the other child is a daughter})
-            =
-            \frac{1}{2}.
-        \]
-
-        Therefore, the answers are $\boxed{\text{(a) } \dfrac{1}{3},\ \text{(b) } \dfrac{1}{2}}$.
     \end{solution}
 
     \begin{pastproblem}{2022.5}
@@ -2847,17 +2800,10 @@
     \end{pastproblem}
 
     \begin{solution}
-        The mathematician described in the problem is George Dantzig.
-
-        George Dantzig is known as one of the founders of linear programming and as the creator of
-        the simplex method. For this reason, he is often called the father of linear programming.
-
-        The anecdote in the problem is also a famous story about Dantzig. While he was a doctoral
-        student at UC Berkeley, he arrived late to Jerzy Neyman's statistics class and copied down
-        two problems written on the blackboard, believing that they were homework problems. He later
-        submitted solutions, not realizing that the problems were actually open problems in
-        statistics.
-
+George Dantzig developed the simplex method for linear programming.
+        The two statistics problems he mistook for homework were posed in
+        Jerzy Neyman's class at UC Berkeley. This is the Dantzig anecdote
+        recorded in Part II.
         Therefore, the answer is $\boxed{\text{George Dantzig}}$.
     \end{solution}
 
@@ -2868,7 +2814,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        We have
+        Each count has the binomial distribution introduced in Probability and Statistics, so
         \[
             X,Y\sim\Bin\left(3,\frac12\right),
         \]
@@ -2914,31 +2860,19 @@
     \end{pastproblem}
 
     \begin{solution}
-        This is a direct application of the Reflection Principle and Catalan-number
-        formulas in Mathematical Concepts. To go from $(0,0)$ to $(6,6)$, a path must consist of $6$ right steps and $6$ upward steps.
-        Without the condition $y\leq x$, the total number of such paths is
-        \[
-            \binom{12}{6}.
-        \]
-
-        We now count the paths that do go above the line $y=x$. By the reflection principle stated in Mathematical Concepts, the
-        number of paths from $(0,0)$ to $(6,6)$ that at some point satisfy $y>x$ is
-        \[
-            \binom{12}{5}.
-        \]
-        Therefore, the number of paths that always stay in the region $y\leq x$ is
-        \[
-            \binom{12}{6}-\binom{12}{5}.
-        \]
-        Computing this gives
+A path contains six right steps and six upward steps, so there are
+        $\binom{12}{6}$ unrestricted paths. To count the paths that cross above
+        $y=x$, reflect the part up to the first point with $y=x+1$, exchanging
+        right and upward steps. This gives a bijection with paths having seven
+        right steps and five upward steps, of which there are $\binom{12}{5}$.
+        This is the reflection principle in Theorem~\ref{pp:reflection}.
+        Subtracting the forbidden paths gives
         \[
             \binom{12}{6}-\binom{12}{5}
-            =
-            924-792
-            =
-            132.
+            =924-792
+            =\boxed{132}.
         \]
-        Therefore, the answer is $\boxed{132}$.
+        Equivalently, this is the Catalan number $C_6=\binom{12}{6}/7$.
     \end{solution}
 
     \begin{pastproblem}{2023.3}
@@ -3002,77 +2936,33 @@
     \end{pastproblem}
 
     \begin{solution}
-        We prove that the statement is true.
+Locally uniform convergence implies convergence at each fixed point
+        once that point belongs to the domains. We only need the points
+        $0$, $1$, and $-1$.
 
-        First, evaluate at $x=0$. For every sequence $\lambda_i\to\infty$, we have
+        At $x=0$, the assumption gives $\lambda f(0)\to0$ as
+        $\lambda\to\infty$, so $f(0)=0$. At $x=1$ and $x=-1$, it gives
         \[
-            f_{\lambda_i}(0)
-            =
-            \lambda_i f(0).
+            \lambda f(1/\lambda)\to0,
+            \qquad
+            \lambda f(-1/\lambda)\to0.
         \]
-        Since $f_{\lambda_i}$ converges locally uniformly to $0$, in particular $f_{\lambda_i}(0)\to
-        0$ at the fixed point $x=0$. Hence
-        \[
-            \lambda_i f(0)\to 0.
-        \]
-        This is possible for all sequences $\lambda_i\to\infty$ only if
-        \[
-            f(0)=0.
-        \]
+        These limits hold as $\lambda\to\infty$ because the assumption holds
+        for every sequence tending to infinity.
 
-        Now we show that $f'(0)=0$. Let $h_i\to 0$ be any sequence with $h_i\neq 0$. For all
-        sufficiently large $i$, we have $h_i\in(-1,1)$. Define
+        To compute the right-hand derivative, put $h=1/\lambda>0$:
         \[
-            \lambda_i=\frac{1}{|h_i|}.
+            \frac{f(h)-f(0)}{h}
+            =\lambda f(1/\lambda)\longrightarrow0.
         \]
-        Then $\lambda_i\to\infty$, and
+        For the left-hand derivative, put $h=-1/\lambda<0$:
         \[
-            h_i=\frac{\sgn(h_i)}{\lambda_i}.
+            \frac{f(h)-f(0)}{h}
+            =-\lambda f(-1/\lambda)\longrightarrow0.
         \]
-        By the assumption, $f_{\lambda_i}\to 0$ locally uniformly on $\R$. By the
-        definition of locally uniform convergence in Mathematical Concepts, this
-        convergence is uniform on the compact set $\{-1,1\}$. Therefore,
-        \[
-            f_{\lambda_i}(\sgn(h_i))\to 0.
-        \]
-        But
-        \[
-            f_{\lambda_i}(\sgn(h_i))
-            =
-            \lambda_i
-            f\left(
-                \frac{\sgn(h_i)}{\lambda_i}
-            \right)
-            =
-            \lambda_i f(h_i).
-        \]
-        Hence
-        \[
-            \lambda_i f(h_i)\to 0.
-        \]
-        Since $f(0)=0$, we get
-        \[
-            \left|
-                \frac{f(h_i)-f(0)}{h_i}
-            \right|
-            =
-            \left|
-                \frac{f(h_i)}{h_i}
-            \right|
-            =
-            \lambda_i |f(h_i)|
-            \to 0.
-        \]
-        Thus
-        \[
-            \frac{f(h_i)-f(0)}{h_i}\to 0
-        \]
-        for every sequence $h_i\to 0$ with $h_i\neq 0$. Therefore, $f$ is differentiable at $0$ and
-        \[
-            f'(0)=0.
-        \]
-
-        Therefore, the answer is $\boxed{\text{True}}$.
+        Both one-sided derivatives exist and agree. Therefore $f$ is
+        differentiable at $0$ with $f'(0)=0$, and the answer is
+        $\boxed{\text{True}}$.
     \end{solution}
 
     \begin{pastproblem}{2024.1}
@@ -3100,7 +2990,7 @@
         \]
         such numbers.
 
-        Therefore, the total number of appearances of the digit $0$ is
+        A number such as $100$ contributes twice, correctly counting its two zeros. Therefore, the total number of appearances of the digit $0$ is
         \[
             90+90=180.
         \]
@@ -3124,7 +3014,7 @@
                 (1) & \text{John von Neumann: born in } 1903, \\
                 (2) & \text{Alan Turing: born in } 1912, \\
                 (3) & \text{John Nash: born in } 1928, \\
-                (4) & \text{Pierre de Fermat: born in } 1607.
+                (4) & \text{Pierre de Fermat: early seventeenth century}.
             \end{array}
         \]
         Among these four, the person born the latest is John Nash.
@@ -3360,7 +3250,7 @@
             =
             \{(x,y)\in\R^2\mid (x,y,z)\in C\}.
         \]
-        We claim that $C_z$ has the same area as $E$ for every $z$.
+        By Cavalieri's principle (Theorem~\ref{pp:cavalieri}), the volume is determined by these cross-sectional areas. We will show that every $C_z$ contains the interior of $E$ and is contained in $E$. Possible differences on the ellipse boundary do not affect area.
 
         First, we show that $C_z\subseteq E$. Suppose that $(x,y,z)\in C$ and
         \[
@@ -3445,27 +3335,19 @@
     \end{pastproblem}
 
     \begin{solution}
-        On the first toss, it is impossible to have two consecutive equal outcomes. After the first
-        toss, the process stops exactly when the next toss gives the same result as the previous
-        toss.
-
-        Since the coin is fair, from the second toss onward we have
+The first toss cannot stop the process. After any non-stopping history,
+        the next toss matches the previous outcome with probability $1/2$.
+        Let $G$ count the additional tosses, including the matching toss.
+        For $k\in\N$, surviving $k-1$ additional tosses and then stopping gives
         \[
-            \Prob(\text{the new toss matches the previous toss})
-            =
-            \frac{1}{2}.
+            \Prob(G=k)=\left(\frac12\right)^{k-1}\frac12.
         \]
-        Therefore, after the first toss, the number of additional tosses needed until the process
-        stops follows a geometric distribution with success probability $\dfrac{1}{2}$. Its expected
-        value is
+        Thus $G\sim\Geom(1/2)$ under the convention in the distribution table:
+        the successful trial is counted. Since $\Exp[G]=1/(1/2)=2$,
+        the expected total number of tosses is
         \[
-            \frac{1}{1/2}=2.
+            1+\Exp[G]=\boxed{3}.
         \]
-        Since the first toss is always made, the expected total number of tosses is
-        \[
-            1+2=3.
-        \]
-        Therefore, the answer is $\boxed{3}$.
     \end{solution}
 
     \begin{pastproblem}{2025.2}
@@ -3513,7 +3395,7 @@
         If a sphere of radius $r>0$ is tangent to the three coordinate planes,
         its center has the form
         \[
-            \mathbf{c}=(\sigma_1r,\sigma_2r,\sigma_3r),
+            \mathbf{c}=(\sigma_1r,\sigma_2r,\sigma_3r)^{\mathsf T},
             \qquad
             \sigma_1,\sigma_2,\sigma_3\in\{-1,1\}.
         \]
@@ -3521,7 +3403,7 @@
         \[
             k\in\{-3,-1,1,3\}.
         \]
-        Tangency to $x+y+z=3$ requires
+        By the point-to-plane distance formula (Formula~\ref{pp:plane}), tangency to $x+y+z=3$ requires
         \[
             \frac{|kr-3|}{\sqrt3}=r.
         \]
@@ -3554,7 +3436,7 @@
                 \frac{3-\sqrt3}{2},
                 \frac{3-\sqrt3}{2},
                 \frac{3-\sqrt3}{2}
-            \right),
+            \right)^{\mathsf T},
         \]
         and the required sphere is
         \[
@@ -3587,8 +3469,7 @@
         A card numbered $n$ is flipped once for each positive divisor of $n$. Hence it is flipped
         $\tau(n)$ times, where $\tau(n)$ is the number of positive divisors of $n$.
 
-        A positive integer has an odd number of positive divisors if and only if it is a perfect
-        square. Therefore, exactly the cards numbered
+        Divisors pair as $d$ and $n/d$; the only unpaired divisor occurs when $d=\sqrt n$. Thus $\tau(n)$ is odd if and only if $n$ is a perfect square. Therefore, exactly the cards numbered
         \[
             1^2,\quad 2^2,\quad 3^2,\quad \ldots,\quad 14^2
         \]
@@ -3622,7 +3503,7 @@
             \qquad\text{and}\qquad
             \frac{\ln 9}{9}.
         \]
-        The function $f(x)=\ln x/x$ is decreasing for $x>e$. Since $9<11$ and both are greater than
+        The comparison-of-powers method uses $f(x)=\ln x/x$. Since $f'(x)=(1-\ln x)/x^2<0$ for $x>e$, this function is decreasing there. Since $9<11$ and both are greater than
         $e$, we have
         \[
             \frac{\ln 9}{9}
@@ -3646,7 +3527,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        Let $E$ be the desired expected sum. On the first roll, if the result is $6$, the process
+        If $N$ is the stopping time, then $N\sim\Geom(1/6)$ and $\Exp[N]=6$. The total sum is at most $6N$, so its expectation is finite. Let $E$ be the desired expected sum. On the first roll, if the result is $6$, the process
         stops and contributes $6$. If the result is one of $1,2,3,4,5$, then the process returns to
         the same situation after contributing that roll.
 
@@ -3681,8 +3562,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        The Exact Birthday Problem formula in Mathematical Concepts is obtained by
-        the same complementary-counting argument. It is easier to compute the complementary probability that all $10$ birthdays are distinct.
+        Under the standard independent-birthday model, use the complement as in Formula~\ref{pp:birthday}. It is easier to compute the probability that all $10$ birthdays are distinct.
         The first person may have any birthday, the second must avoid that birthday, the third must
         avoid the first two birthdays, and so on. Hence
         \[
@@ -3713,13 +3593,7 @@
     \end{pastproblem}
 
     \begin{solution}
-        Using the standard approximations
-        \[
-            e\approx 2.718,
-            \qquad
-            \pi\approx 3.142,
-        \]
-        we get
+        Using the mathematical constants listed at the beginning of the book gives
         \[
             e^\pi \approx 23.14,
             \qquad
@@ -3820,7 +3694,7 @@
 
     \begin{pastproblem}{2025.13}
         A fair coin is flipped $50$ times, and each outcome is recorded as either heads $(H)$ or
-        tails $(T)$. A run is a consecutive sequence of the same outcome. For example, if the
+        tails $(T)$. A run is a maximal consecutive sequence of the same outcome. For example, if the
         result is
         $HHTTTH$, there are $3$ runs: $HH$, $TTT$, and $H$. Determine the expected number of runs.
         \begin{problemchoices}
@@ -3845,11 +3719,11 @@
             =
             \indicator{\{\text{a new run starts at position }i\}}.
         \]
-        Then
+        The indicator $I_i$ is $1$ when a new run starts and $0$ otherwise. If $R$ denotes the total number of runs, then
         \[
             R=1+\sum_{i=2}^{50}I_i.
         \]
-        By linearity of expectation from Mathematical Concepts,
+        Since $\Exp[I_i]=\Prob(I_i=1)=1/2$, linearity of expectation (Proposition~\ref{pp:linearity}) gives
         \[
             \Exp[R]
             =
@@ -3973,14 +3847,13 @@
     \begin{solution}
         Let $T(n)$ be the minimum number of moves needed for $n$ disks. To move $n$ disks, first
         move the top $n-1$ disks to the auxiliary peg, then move the largest disk once, and finally
-        move the $n-1$ disks onto the largest disk. Hence
+        move the $n-1$ disks onto the largest disk. These two transfers are also necessary before and after the largest disk reaches its destination, so the construction attains the lower bound. Hence
         \[
             T(n)=2T(n-1)+1,
             \qquad
             T(1)=1.
         \]
-        This is the standard Tower of Hanoi recurrence recorded in Mathematical
-        Concepts, and solving it gives
+        This is the Tower of Hanoi recurrence in Formula~\ref{pp:hanoi}; solving it gives
         \[
             T(n)=2^n-1.
         \]
