@@ -11,6 +11,7 @@
 \RequirePackage[a4paper,margin=1in]{geometry}
 \RequirePackage{iftex}
 \ifPDFTeX
+    % TeX Live's ko.TeX support makes UTF-8 Korean work under pdfLaTeX.
     \RequirePackage{kotex}
 \else
     \RequirePackage{fontspec}
@@ -77,6 +78,9 @@
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
 }
 
+% As in the handbook, an optional argument is used only for a compact,
+% independently verifiable official source and/or an established problem name.
+% Omit it when no qualifying attribution is known.
 \newenvironment{problem}[2][]
     {%
         \if\relax\detokenize{#1}\relax

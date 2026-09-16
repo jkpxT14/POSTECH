@@ -106,10 +106,9 @@ $1,2,3$이 서로 이웃한 세 자리를 차지한다면 이 세 수를 하나�
 \[
     4!\,3!
 \]
-이고, 전체 permutation은 $6!$개이므로
+이고, 전체 permutation은 $6!$개이므로 확률은
 \[
-    \Prob
-    =\frac{4!\,3!}{6!}
+    \frac{4!\,3!}{6!}
     =\boxed{\frac15}.
 \]
 여러 지정된 objects가 consecutive해야 하는 counting에서는 그 objects를 하나의 block으로 묶는 것이 표준적인 첫 단계이다.
@@ -145,7 +144,7 @@ Science Quiz에서는
     \frac{1}{\sqrt{x+1}-\sqrt{x-1}}\,\dd x
     &=%
     \frac12\int_1^3
-    \left(\sqrt{x+1}+\sqrt{x-1}\right)\dd x\\
+    \left(\sqrt{x+1}+\sqrt{x-1}\right)\,\dd x\\
     &=\frac13
     \left[(x+1)^{3/2}+(x-1)^{3/2}\right]_1^3\\
     &=\frac13\left(8+2\sqrt2-2\sqrt2\right)\\
@@ -154,7 +153,6 @@ Science Quiz에서는
 \]
 Radical이 분모에서 차 형태로 나타나면 substitution보다 먼저 conjugate rationalization을 확인하는 것이 좋다.
 \end{problemsolution}
-
 
 \begin{problemsolution}{7}
 positive integer의 prime factorization을
@@ -225,21 +223,21 @@ characteristic equation은
 \]
 이다. 따라서 general solution은
 \[
-    y(x)=C_1e^x+C_2e^{2x}.
+    y(x)=c_1e^x+c_2e^{2x}.
 \]
 Initial conditions를 적용하면
 \[
-    C_1+C_2=0
+    c_1+c_2=0
 \]
 이고
 \[
-    C_1+2C_2=1.
+    c_1+2c_2=1.
 \]
 따라서
 \[
-    C_1=-1,
+    c_1=-1,
     \qquad
-    C_2=1,
+    c_2=1,
 \]
 즉
 \[
@@ -247,8 +245,8 @@ Initial conditions를 적용하면
 \]
 그러므로
 \[
-    y(\log2)
-    =e^{2\log2}-e^{\log2}
+    y(\ln2)
+    =e^{2\ln2}-e^{\ln2}
     =4-2
     =\boxed{2}.
 \]
