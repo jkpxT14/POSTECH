@@ -1,0 +1,39 @@
+--- a/Mathematicsin2026.tex
++++ b/Mathematicsin2026.tex
+@@ -146,6 +146,13 @@
+         & Emmanuel Cand\`es; Camillo De Lellis
+         & Compressed sensing, signal processing, statistics; geometric measure
+           theory, singularities, and fluid dynamics. \\
++
++        2026
++        % Stanford Mathematics announcement, 2026-09-11.
++        & WLF Prize for Young Scientists
++        & Ziquan Zhuang
++        & Inaugural young-scientist prizes of the World Laureates Foundation;
++          $K$-stability and birational geometry. \\
+ 
+         2026
+         & Clay Research Awards
+@@ -1184,14 +1191,14 @@
+     \end{longtable}
+     }
+ 
+-    \begin{fact}[Jacob Tsimerman and OpenAI]
+-        After receiving a 2026 Fields Medal, Jacob Tsimerman announced at the
+-        2026 ICM that he would begin a position at OpenAI. He went on leave from the
+-        University of Toronto to work on AI safety, while remaining a professor
+-        and faculty member there. The accurate season-specific association is
+-        therefore a Fields Medalist moving temporarily from ordinary university
+-        duties into AI-safety research, not an unqualified claim that he quit
+-        mathematics or resigned from the university.
++    % Sources: https://maisi.org/ (Scientific Director); 20260915 Problem set.
++    \begin{fact}[Jacob Tsimerman, OpenAI, and MAISI]
++        At the 2026 ICM, Fields Medalist Jacob Tsimerman announced a position
++        at OpenAI in AI safety. He took leave from the University of Toronto
++        while retaining his professorship; this was not a resignation from
++        the university. He is also Scientific Director of the Mathematical AI
++        Safety Institute (MAISI), an independent nonprofit developing
++        mathematical foundations for the safety of powerful AI systems.
+     \end{fact}
+ 
+     \vspace{1em}

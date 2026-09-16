@@ -1300,6 +1300,24 @@
         \]
     \end{formula}
 
+    \begin{formula}[Arctangent Differences and Telescoping]\label{r4:arctan}
+        With $\arctan$ taking values in $(-\pi/2,\pi/2)$, for real $u,v$
+        satisfying $1+uv>0$,
+        \[
+            \arctan u-\arctan v
+            =\arctan\!\left(\frac{u-v}{1+uv}\right).
+        \]
+        Hence, for $a>0$ and $x>0$,
+        \[
+            \arctan\!\left(\frac{a}{x(x+1)+a^2}\right)
+            =\arctan\!\left(\frac a x\right)
+             -\arctan\!\left(\frac a{x+1}\right).
+        \]
+        Consecutive terms cancel when summed over consecutive positive integers
+        $x$. Outside the stated sign condition, the subtraction identity may
+        require a correction by $\pi$; principal values must be checked.
+    \end{formula}
+
     \begin{formula}[Abel's Summation Formula; Summation by Parts]
         Let
         \[
@@ -1377,6 +1395,22 @@
             \left[u(x)v(x)\right]_a^b
             -
             \int_a^b u'(x)v(x)\dd x.
+        \]
+    \end{formula}
+
+    \begin{formula}[Logarithmic Moments on the Unit Interval]\label{r4:log-moments}
+        For real $a>-1$ and an integer $m\geq0$,
+        \[
+            \int_0^1 x^a(\ln x)^m\dd x
+            =\frac{(-1)^m m!}{(a+1)^{m+1}}.
+        \]
+        The condition $a>-1$ ensures convergence at zero. Together with the
+        geometric series, these moments turn logarithmic integrals into sums.
+        For example, applying monotone convergence to the nonnegative terms
+        $x^k(-\ln x)$ gives
+        \[
+            \int_0^1\frac{\ln x}{1-x}\dd x
+            =-\sum_{k=0}^{\infty}\frac1{(k+1)^2}=-\frac{\pi^2}{6}.
         \]
     \end{formula}
 
@@ -3593,6 +3627,21 @@
         number is the dimension of $V$, denoted by $\dim V$.
     \end{definition}
 
+    \begin{formula}[Dimension of a Sum of Subspaces]\label{r4:subspace-sum}
+        For subspaces $U,V$ of a finite-dimensional vector space $W$, define
+        $U+V=\{\mathbf{u}+\mathbf{v}\mid\mathbf{u}\in U,\ \mathbf{v}\in V\}$.
+        Then
+        \[
+            \dim(U+V)=\dim U+\dim V-\dim(U\cap V).
+        \]
+        In particular, if $\dim W=n$, $\dim U=p$, and $\dim V=q$, then
+        \[
+            \max(0,p+q-n)\leq\dim(U\cap V)\leq\min(p,q).
+        \]
+        The sum is a direct sum exactly when $U\cap V=\{\mathbf{0}\}$;
+        in that case the dimensions add.
+    \end{formula}
+
     \begin{theorem}[Basis Extension and Reduction]
         Every linearly independent list in a finite-dimensional vector space
         can be extended to a basis, and every spanning list contains a basis.
@@ -4432,6 +4481,18 @@
         }
     \end{formula}
 
+    \begin{fact}[Real Skew-Symmetric Matrices]\label{r4:skew-rank}
+        A real matrix $\mathbf{A}\in\R^{n\times n}$ is skew-symmetric if
+        $\mathbf{A}^{\mathsf T}=-\mathbf{A}$. Its rank is even, so
+        \[
+            \rk(\mathbf{A})\leq2\lfloor n/2\rfloor.
+        \]
+        In odd dimension, $\det(\mathbf{A})=0$. The rank bound is attained
+        by a block diagonal matrix with $\lfloor n/2\rfloor$ copies of
+        $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$ and, when $n$ is odd,
+        one additional zero entry.
+    \end{fact}
+
     \begin{formula}[Vandermonde Determinant]
         For scalars $x_1,x_2,\dots,x_n$,
         \[
@@ -4717,6 +4778,20 @@
         Equivalently, the eigenvalues of $\mathbf{A}$ are the roots of the
         characteristic polynomial $p_{\mathbf{A}}(\lambda)$.
     \end{proposition}
+
+    \begin{corollary}[Eigenvalues of Rectangular Products]\label{r4:ab-ba}
+        For $\mathbf{A}\in\C^{m\times n}$ and $\mathbf{B}\in\C^{n\times m}$
+        with $m\leq n$,
+        \[
+            \det(t\mathbf{I}_n-\mathbf{B}\mathbf{A})
+            =t^{n-m}\det(t\mathbf{I}_m-\mathbf{A}\mathbf{B}).
+        \]
+        Thus $\mathbf{A}\mathbf{B}$ and $\mathbf{B}\mathbf{A}$ have the same
+        nonzero eigenvalues with the same algebraic multiplicities; the larger
+        product has $n-m$ additional zero eigenvalues, counted with multiplicity.
+        Equal characteristic polynomials for square products do not imply
+        that the products are similar.
+    \end{corollary}
 
     \begin{formula}[All-Ones Matrix]\label{pp:ones}
         Let $\mathbf{J}_n$ be the $n\times n$ matrix whose entries are all $1$.
@@ -5370,6 +5445,24 @@
         \]
         is in Jordan canonical form.
     \end{theorem}
+
+    \begin{formula}[Ranks of Powers of a Nilpotent Matrix]\label{r4:nilpotent-ranks}
+        Let $\mathbf{J}_s(0)$ denote the $s\times s$ matrix with ones on the
+        superdiagonal and zeros elsewhere. For every integer $k\geq0$,
+        \[
+            \rk\bigl(\mathbf{J}_s(0)^k\bigr)=\max(s-k,0).
+        \]
+        If a nilpotent $n\times n$ matrix $\mathbf{N}$ has Jordan blocks of
+        sizes $s_1,\ldots,s_r$, then
+        \[
+            \rk(\mathbf{N}^k)=\sum_{j=1}^{r}\max(s_j-k,0),
+            \qquad \dim\ker(\mathbf{N}^k)=\sum_{j=1}^{r}\min(k,s_j).
+        \]
+        For $k\geq1$, the increase in nullity from $k-1$ to $k$ equals the
+        number of blocks of size at least $k$. In particular,
+        $\rk(\mathbf{N})=n-r$; a nilpotent matrix of rank $n-1$ has one block
+        and $\rk(\mathbf{N}^k)=\max(n-k,0)$.
+    \end{formula}
 
     \begin{remark}
         Jordan canonical form describes the structure that remains when a matrix
@@ -6159,6 +6252,27 @@
         distinct monomial terms.
     \end{formula}
 
+    \begin{formula}[Gap Counting and Block Counting]\label{r4:gaps-blocks}
+        The number of $k$-element subsets of $\{1,\ldots,n\}$ containing no
+        consecutive integers is
+        \[
+            \binom{n-k+1}{k}
+            \qquad(0\leq k\leq\lfloor(n+1)/2\rfloor).
+        \]
+        For an ordered selection $x_1<\cdots<x_k$ with
+        $x_{i+1}\geq x_i+2$, remove the required gaps by setting
+        $y_i=x_i-(i-1)$. This gives an unrestricted $k$-subset of
+        $\{1,\ldots,n-k+1\}$. There are no such subsets for larger $k$.
+
+        To arrange $n$ distinct objects in a line with a specified set of
+        $r$ objects consecutive, regard that set as one block. With arbitrary
+        internal order, the count is
+        \[
+            r!(n-r+1)!\qquad(1\leq r\leq n).
+        \]
+        If the internal order is prescribed, omit the factor $r!$.
+    \end{formula}
+
     \begin{formula}[Lattice Path Counting]
         The number of shortest lattice paths from $(0,0)$ to $(m,n)$ using only
         unit steps to the right and upward is
@@ -6728,6 +6842,19 @@
         equals the minimum number of chains covering the poset.
     \end{theorem}
 
+    \begin{fact}[Cliques, Independent Sets, and Graph Complements]\label{r4:graph-complement}
+        In a finite simple graph, a clique is a set of pairwise adjacent
+        vertices, and an independent set has no adjacent pair. The complement
+        $\overline G$ has the same vertices as $G$, with an edge precisely
+        when two distinct vertices are not adjacent in $G$. Therefore,
+        \[
+            \omega(G)=\alpha(\overline G),
+        \]
+        where $\omega$ is the maximum clique size and $\alpha$ the maximum
+        independent-set size. A clique problem becomes an independent-set
+        problem after taking complements.
+    \end{fact}
+
     \begin{theorem}[Tur\'an's Theorem]
         Among all $n$-vertex graphs containing no $K_{r+1}$, the maximum number
         of edges is attained by the complete $r$-partite graph whose part sizes
@@ -7030,6 +7157,22 @@
         \]
         Independence is not required.
     \end{proposition}
+
+    \begin{formula}[Cycles in a Uniform Random Permutation]\label{r4:cycles}
+        Choose a permutation uniformly from $S_n$. Let $X_r$ be the number of
+        cycles of length $r$ in its disjoint-cycle decomposition, including
+        fixed points as cycles of length $1$. For $1\leq r\leq n$,
+        \[
+            \Exp[X_r]=\frac1r.
+        \]
+        Thus the total number of cycles $C_n=\sum_{r=1}^{n}X_r$ satisfies
+        \[
+            \Exp[C_n]=H_n=\sum_{r=1}^{n}\frac1r.
+        \]
+        In particular, the expected number of fixed points is $1$. These
+        identities require a uniform permutation; the variables $X_r$ need
+        not be independent for their expectations to add.
+    \end{formula}
 
     \begin{strategy}
         Linearity of expectation is often the most efficient method for counting
@@ -9126,9 +9269,16 @@
 
     \begin{strategy}[Vieta Jumping]
         If an integer equation is quadratic in one variable, regard that
-        variable as one root of a monic quadratic. Vi\`ete's formulas give the
-        other integral root. Prove that it yields a smaller positive solution
-        and apply infinite descent.
+        variable as one root of a monic quadratic. In the form
+        $x^2-B(y)x+C(y)=0$, with integer-valued $B,C$, the other root is
+        \[
+            x'=B(y)-x,\qquad xx'=C(y).
+        \]
+        Thus $x'$ is an integer and is also a root of the same quadratic.
+        When $x\neq0$, one may also use $x'=C(y)/x$. To use this as descent,
+        check separately that the new solution is positive, satisfies all
+        original restrictions, and decreases the chosen positive size
+        measure. Those conditions do not follow from the root formula alone.
     \end{strategy}
 
     \begin{theorem}[Frobenius Coin Theorem for Two Denominations]
@@ -9218,6 +9368,19 @@
             \prod_{i=1}^{k}\frac{p_i^{\alpha_i+1}-1}{p_i-1}.
         \]
     \end{formula}
+
+    \begin{algorithm}[Least Integer with a Prescribed Divisor Count]\label{r4:least-divisors}
+        To minimize a positive integer $n$ subject to $\tau(n)=D>1$, list
+        the multiplicative partitions
+        \[
+            D=b_1\cdots b_r,\qquad b_1\geq\cdots\geq b_r\geq2.
+        \]
+        For each partition, use consecutive primes $p_1=2,p_2=3,\ldots$ and
+        form $n=p_1^{b_1-1}\cdots p_r^{b_r-1}$; then compare these candidates.
+        Larger exponents belong on smaller primes, but this ordering alone
+        does not determine the optimal multiplicative partition. When $D=1$,
+        the minimum is $n=1$.
+    \end{algorithm}
 
     \begin{definition}[$p$-Adic Valuation, $p$-Adic Absolute Value, and $p$-Adic Numbers]
         Fix a prime $p$. For a nonzero rational number $x$, write uniquely
@@ -9365,6 +9528,17 @@
         nonzero elements form a cyclic multiplicative group
         $\F_q^\times$ of order $q-1$.
     \end{theorem}
+
+    \begin{formula}[Counting Invertible Matrices over a Finite Field]\label{r4:finite-gl}
+        Let $q$ be a prime power and $n\geq1$. The general linear group
+        $\GL_n(\F_q)$ consists of the invertible $n\times n$ matrices over
+        $\F_q$. Its order is
+        \[
+            |\GL_n(\F_q)|=\prod_{i=0}^{n-1}(q^n-q^i).
+        \]
+        Choose the columns in order: after $i$ independent columns, their
+        span has $q^i$ vectors, all excluded from the next choice.
+    \end{formula}
 
     \begin{proposition}[Power Maps on Finite Cyclic Groups]
         Let $G$ be a finite cyclic group of order $N$, and let $r\in\N$. The map
@@ -9839,6 +10013,19 @@
         finitely generated.
     \end{proposition}
 
+    \begin{fact}[Standard Generators of the Modular Matrix Group]\label{r4:sl2-generators}
+        The group $\SL_2(\Z)$ of integer $2\times2$ matrices with determinant
+        $1$ is generated by
+        \[
+            \mathbf{S}=\begin{pmatrix}0&-1\\1&0\end{pmatrix},
+            \qquad
+            \mathbf{T}=\begin{pmatrix}1&1\\0&1\end{pmatrix}.
+        \]
+        Every element is a finite product of $\mathbf{S},\mathbf{T}$ and
+        their inverses. This is an infinite but finitely generated group;
+        countability alone would not establish finite generation.
+    \end{fact}
+
     \begin{definition}[Normal Subgroup and Simple Group]
         A subgroup $N\leq G$ is normal, written $N\trianglelefteq G$, if
         \[
@@ -10014,6 +10201,20 @@
             \ord(g^k)=\frac{n}{\gcd(n,k)}.
         \]
     \end{proposition}
+
+    \begin{formula}[Homomorphisms between Finite Cyclic Groups]\label{r4:cyclic-hom}
+        For positive integers $m,n$, a homomorphism
+        $f\colon\Z/m\Z\to\Z/n\Z$ of additive groups is determined by
+        $y=f(\overline{1})$. The necessary and sufficient condition is
+        $my=\overline{0}$ in $\Z/n\Z$, or $my\equiv0\pmod n$ for a
+        representative of $y$. Consequently,
+        \[
+            \bigl|\operatorname{Hom}(\Z/m\Z,\Z/n\Z)\bigr|=\gcd(m,n).
+        \]
+        Here $\operatorname{Hom}(G,H)$ denotes the set of group homomorphisms
+        from $G$ to $H$. Choosing the image of a generator is the general
+        method; arbitrary images need not respect its order.
+    \end{formula}
 
     \begin{theorem}[First Isomorphism Theorem for Groups]
         If $\varphi\colon G\to H$ is a group homomorphism, then
@@ -10433,6 +10634,20 @@
         coefficients with alternating signs, divided by $a_n$.
     \end{formula}
 
+    \begin{formula}[Logarithmic Derivative of a Polynomial]\label{r4:poly-log}
+        Let $p(t)=c\prod_{i=1}^{n}(t-r_i)$ with $c\neq0$, where roots are
+        counted with multiplicity. For $p(t)\neq0$,
+        \[
+            \frac{p'(t)}{p(t)}=\sum_{i=1}^{n}\frac1{t-r_i}.
+        \]
+        This evaluates reciprocal root sums directly from coefficients,
+        without solving for the individual roots. Differentiating gives
+        \[
+            \sum_{i=1}^{n}\frac1{(t-r_i)^2}
+            =\left(\frac{p'(t)}{p(t)}\right)^2-\frac{p''(t)}{p(t)}.
+        \]
+    \end{formula}
+
     \begin{formula}[Newton's Identities; Newton--Girard Formulas]
         Let $e_k$ be the elementary symmetric polynomials in roots
         $r_1,\dots,r_n$, and let
@@ -10829,7 +11044,12 @@
         \[
             \pi_1\!\left(\bigvee_{j=1}^{r}S^1\right)\cong F_r.
         \]
-        The wedge point is generally not a manifold point.
+        Here $F_r$ is the free group on $r$ generators. A disk with $r$
+        distinct interior points removed is homotopy equivalent to a wedge
+        of $r$ circles, so its fundamental group is also $F_r$; loops around
+        the punctures give generators. The wedge point is generally not a
+        manifold point: homotopy equivalence does not imply homeomorphism,
+        and isomorphic fundamental groups alone do not classify spaces.
     \end{fact}
 
     \begin{strategy}
@@ -10937,6 +11157,38 @@
         the others.
     \end{definition}
 
+    \begin{algorithm}[Mixed Strategies in a Two-by-Two Zero-Sum Game]\label{r4:zero-sum}
+        Let the row player's payoff matrix be
+        \[
+            \mathbf{M}=\begin{pmatrix}a&b\\c&d\end{pmatrix},
+            \qquad \Delta=a-b-c+d.
+        \]
+        The row player maximizes this payoff; the column player minimizes it.
+        Let $p$ be the probability of row $1$ and $q$ that of column $1$.
+        The expected row payoffs against the two pure columns are
+        $pa+(1-p)c$ and $pb+(1-p)d$. Equating them makes the column player
+        indifferent. Similarly, equate $qa+(1-q)b$ and $qc+(1-q)d$ to make
+        the row player indifferent. If $\Delta\neq0$ and both resulting
+        probabilities lie strictly between $0$ and $1$, the equilibrium is
+        \[
+            p=\frac{d-c}{\Delta},\qquad
+            q=\frac{d-b}{\Delta},\qquad
+            v=\frac{ad-bc}{\Delta},
+        \]
+        where $v$ is the expected payoff to the row player.
+
+        First check for a pure saddle point: an entry that is a minimum in
+        its row and a maximum in its column. Such an entry is the game value.
+        If $\Delta=0$ or the formulas do not give an interior solution,
+        include boundary strategies explicitly. A method valid in every case is
+        \[
+            v=\max_{0\leq p\leq1}\min\{pa+(1-p)c,\ pb+(1-p)d\}.
+        \]
+        Check $p=0$, $p=1$, and the intersection of the two affine functions
+        when it lies in $[0,1]$. Determine the column strategy analogously by
+        minimizing $\max\{qa+(1-q)b,\ qc+(1-q)d\}$ over $q\in[0,1]$.
+    \end{algorithm}
+
     \begin{definition}[Self-Similar Dimension]
         Suppose a self-similar set is the union of $N$ geometrically similar
         copies of itself, each scaled by a factor $r$ with $0<r<1$, and the
@@ -11037,6 +11289,20 @@
         \]
         These identities convert many apparently analytic floor problems into
         integer casework.
+    \end{tactic}
+
+    \begin{tactic}[Grouping a Floor Sum by Its Values]\label{r4:floor-sum}
+        Partition the summation indices into intervals on which the floor is
+        constant, then multiply each value by its number of occurrences.
+        For example, $\lfloor\sqrt{k}\rfloor=j$ exactly when
+        $j^2\leq k<(j+1)^2$. For an integer $N\geq1$, put
+        $m=\lfloor\sqrt N\rfloor$. Then
+        \[
+            \sum_{k=1}^{N}\lfloor\sqrt{k}\rfloor
+            =\sum_{j=1}^{m-1}j(2j+1)+m(N-m^2+1).
+        \]
+        The final interval can be incomplete; its actual length must replace
+        $2m+1$.
     \end{tactic}
 
     \begin{strategy}[Iterated Knowledge Elimination]
