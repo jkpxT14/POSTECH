@@ -3,7 +3,7 @@
 Revision date: 2026-09-16. Edition cutoff: 2026-09-15.
 Baseline: jkpxT14/POSTECH @ 568c78e43f1ab7a3fc206e6602f4cafede6adaae.
 
-- Applied 20 targeted study-material insertions/expansions; see ReleaseNotes/CHANGELOG.md.
+- Applied 20 targeted study-material insertions/expansions.
 - Preserved all Part/Chapter/Section headings and ordering.
 - PastProblems.tex is byte-identical to baseline: 103 pastproblem blocks and 106 solution blocks.
 - Main formatting, NotationandConventions.tex, FactstoMemorize.tex, Preface.tex, and Acknowledgements.tex are byte-identical to baseline. This retains the preceding MATH000 span synchronization and past-problem editorial work.
@@ -12,10 +12,9 @@ Baseline: jkpxT14/POSTECH @ 568c78e43f1ab7a3fc206e6602f4cafede6adaae.
 - All extracted PDF text blocks lie within page bounds. This complements visual review; it does not certify every pre-existing page.
 - Independently enumerated permutation cycles for n=1..7; tested interior zero-sum formulas for all matrices with integer entries -2..2; checked nonadjacent subset counts for n<=11, floor sums for N<=1000, and cyclic homomorphism counts for m,n<=39. These checks supplement the mathematical review, rather than prove the general identities.
 - New formulas state their domains and boundary conditions. Moved the AB/BA corollary after eigenvalue definitions, and clique definitions before Turan's theorem.
-- Verified the two new current-event associations against official sources, with cutoff/announcement-date limitations recorded in CHANGELOG.md. This is not a fresh exhaustive survey of all 2026 news.
+- Verified the two new current-event associations against official sources, with the September 15 cutoff retained. The MAISI page confirms the role but does not date its announcement. This is not a fresh exhaustive survey of all 2026 news.
 - No Final Review or Problem-set source has been edited.
 
-Run `python3 ReleaseNotes/verify_package.py` to verify file integrity and preserved structure.
 Run `latexmk -xelatex MathematicsforScienceQuiz.tex` to rebuild the PDF.
 
 The historical review records below describe earlier revisions, not new claims of an exhaustive rereview.

@@ -61,7 +61,8 @@ No Chapter or Section was added, removed, or renamed. PastProblems.tex, the
 notation source, and the main formatting source remain byte-identical to the
 pinned baseline. Final Review and Problem sets are outside this package.
 
-See ReleaseNotes/CHANGELOG.md for item locations and inclusion decisions,
-REVIEW.md for validation, and ReleaseNotes/RESUME.md for the completion state.
+See REVIEW.md for validation.
+This clean package retains the FINAL-r4 textbook content and omits auxiliary
+release records.
 The compiled PDF is included; build inputs and editable figures are retained.
 Temporary build products and SyncTeX files are omitted.
