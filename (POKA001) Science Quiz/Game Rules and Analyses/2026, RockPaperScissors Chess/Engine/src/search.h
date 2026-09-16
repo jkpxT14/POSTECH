@@ -10,6 +10,7 @@ namespace rpsc {
 class Searcher {
 public:
   SearchResult search(const Position& root,const SearchLimits& limits);
+  void clear() { tt_.clear(); }
 private:
   using Clock=std::chrono::steady_clock;
   uint64_t nodes_=0;int sel_=0;bool stop_=false;Clock::time_point deadline_{};TranspositionTable tt_;

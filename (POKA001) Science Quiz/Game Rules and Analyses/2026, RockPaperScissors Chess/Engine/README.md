@@ -1,6 +1,8 @@
-# RPSC Engine 0.24.0
+# RPSC Engine 0.24.1
 
-This is the standalone engine component of the 2026 RockPaperScissors Chess project. The established native `Engine/src` + `Engine/tests` layout is preserved; the Analysis Board remains the separate `RockPaperScissorsChess.html` at the project root.
+Standalone native engine and reproducible strength-reference material for the 2026 RockPaperScissors Chess project.
+
+The production Analysis Board is `../RockPaperScissorsChess.html`. Its embedded JavaScript search core is the strength-tested engine used by the browser; the same production core is also exposed directly as `rpsc_engine_0.24.1.js`. The native C++ engine mirrors the same RPSC search priorities while preserving the full protocol surface used for debugging, item/order probes, regression tests, and external tooling.
 
 ## Build
 
@@ -10,16 +12,22 @@ cmake --build build --config Release
 ctest --test-dir build -C Release --output-on-failure
 ```
 
-The executable is `rpsc-engine` (`rpsc-engine.exe` on Windows).
+No compiled binaries are committed in this package; build them locally from source.
 
-## Engine 0.24.0
+## 0.24 search policy
 
-The search keeps three recommendations while deliberately spending more compute on the first recommendation. It combines iterative deepening, alpha-beta/PVS-style re-search, a transposition table, quiescence search, tactical/Reset-aware extensions, selective 1v1-transition extension, late-move reductions for noncritical quiet moves, protected quiet/tactical challengers, Top-3 stabilization, and final root verification.
+- MultiPV remains 3 for analysis.
+- Broad root search first; compute then shifts toward recommendation #1.
+- Protected quiet and tactical/item challengers remain searchable.
+- Tactical/Reset and selective low-material-transition extensions are guarded from aggressive reduction.
+- Top 3 are stabilized before final #1 verification.
+- The browser uses 10 s default analysis and an Analyze continuation to 20 s cumulative.
 
-The strength-tested reference search core used by the Analysis Board is `reference/rpsc_engine_0.24.0.js`; its paired comparison records are documented in `Verification.md`.
+## Protocol boundary
 
-## Role convention
+- `W` / `B` are board roles only.
+- `P` / `K` mean POSTECH / KAIST.
+- `matchpk <POSTECHQuiz> <KAISTQuiz> <remainingPlies>` is always P/K ordered and is converted to W/B only after reading `teams W ... B ...`.
+- Format 3 quiz notation in the Analysis Board remains `Q[POSTECH, KAIST]` regardless of which school is White.
 
-- `W` / `B`: White / Black board roles.
-- `P` / `K`: POSTECH / KAIST school identities.
-- Analysis Board quiz notation: always `Q[POSTECH, KAIST]`, never White/Black order.
+Use `help` in `rpsc-engine` for supported commands.

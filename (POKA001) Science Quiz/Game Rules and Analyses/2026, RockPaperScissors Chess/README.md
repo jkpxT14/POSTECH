@@ -1,30 +1,30 @@
 # 2026, RockPaperScissors Chess
 
-Synchronized package revision **0.22.3** (2026-09-14), `.rpsc` **Format 3**, ruleset `2026-rpsc-rotation6-push-return`.
+Synchronized release **0.24.1** (2026-09-17), `.rpsc` **Format 3**, ruleset `2026-rpsc-rotation6-push-return`.
 
-The Analysis Board preserves the established SVG board, fixed board geometry, move-path animation, history/variation workflow, Gesture-State analysis, 10 s -> 20 s analysis flow, and Jungwoo Kim (POSTECH) byline. Live White-role evaluation stays active across board moves, quiz waits, and item decisions. After Black finishes a board move and the next Quiz is still unknown, the board is analyzed under the evaluation-equivalent equal-result assumption `Q[0,0] / Q[1,1]`, so the current evaluation and Top 3 PVs continue on both the main line and analysis variations. Format 3 sessions preserve the main line, sidelines, current analysis node, position state, and compatible completed board-analysis cache. After loading, saved main-line and sideline positions can immediately restore their evaluation, Top 3, and PVs, while Analyze can continue the same position toward 20 s. Historical item/order decision nodes are re-analyzed in place without auto-playing them.
+This package contains the latest handbook, the self-contained Analysis Board, and the restored/upgraded native engine source. The Analysis Board keeps the established visual design and Top-3 workflow while using the strengthened primary-biased MultiPV engine and the 10 s -> 20 s continuation policy.
 
-Both the native `search.cpp` and embedded browser worker remain byte-identical to their strengthened 0.22.0 counterparts; 0.22.3 changes analyzer/session behavior, not engine strength.
+## Invariants
 
-The handbook, offline Analysis Board, native engine, examples, and regression tests use one notation contract:
-
-- White / Black = board roles.
-- POSTECH / KAIST = schools.
-- `White`, `Black` headers = players/controllers.
-- `WhiteTeam`, `BlackTeam` = school assignment.
-- `Result`, `Score`, `Quiz`, `Captures` = White-Black order.
-- Every per-question quiz token = `Q[POSTECH, KAIST]`.
-- Numeric evaluation = White-role perspective (`+` White, `-` Black).
-
-For a reverse assignment (`WhiteTeam=KAIST`, `BlackTeam=POSTECH`), `Q[1,0] B+...` and `Q[0,1] W+...` are the canonical item-gain records.
-
-The seven handbook games are regression-replayed under the current rules: all 140 quiz rows, item-role mappings, move paths, captures, resets, and the fixed score/quiz/capture totals are checked by the bundled test suite.
+- White / Black (`W` / `B`) are board roles.
+- POSTECH / KAIST (`P` / `K`) are schools.
+- Every quiz token is `Q[POSTECH, KAIST]`, independent of White/Black assignment.
+- `WhiteTeam` / `BlackTeam` record the school-to-role assignment.
+- Numeric engine evaluation is from the White-role perspective.
+- Push permits the first Roll to return to the pre-Push square.
+- All six Rotation directions are distinguished in exact orientation and notation.
 
 ## Contents
 
-- `RockPaperScissorsChess.pdf` / `.tex`: handbook and source.
-- `RockPaperScissorsChess.html`: self-contained Analysis Board with Format 2 migration, Format 3 session save/load, live evaluation, main-line/sideline analysis, move animation, and Top 3 PV analysis.
-- `Engine/`: native C++17 RPSC Engine 0.22.3, source, tests, and paired self-play harness.
+- `RockPaperScissorsChess.pdf` / `.tex`: current handbook and source, including Games 1–9.
+- `RockPaperScissorsChess.html`: self-contained Analysis Board with the strengthened embedded 0.24 search core, Top 3 live analysis, history/variations, cache reuse, and 10 s -> 20 s continuation.
+- `Engine/`: native C++ engine source with restored full RPSC protocol, item/order/initial-choice interfaces, regression tests, and strength-reference material.
 - `Examples/`: legacy Format 2 and canonical Format 3 Game 6 records.
 
-Format 2 files are read with their original `Q[White, Black]` semantics and migrated in memory. New saves use Format 3.
+## Engine strength gate
+
+The exact JavaScript search core embedded in the Analysis Board was selected against the 0.23.0 baseline in a paired accelerated regression: **56 games, 34 wins, 21 losses, 1 draw (60.7% raw wins)**. The saved benchmark uses 30/50/80/150 ms board-move controls and role reversal; it is a regression/candidate-selection result, not a guarantee of the same percentage at literal 10-second wall-clock control on every machine.
+
+The native engine retains the same RPSC rules boundary and upgraded search family while restoring the 0.23 protocol surface (`teams`, `matchpk`, `items`, `gain`, `move`, `chooseitem`, `chooseinitial`, etc.). Source-level regression tests verify the critical POSTECH/KAIST vs White/Black mapping.
+
+No compiled engine binaries, build directories, SyncTeX files, checkpoint logs, or temporary patch files are included in this release package.

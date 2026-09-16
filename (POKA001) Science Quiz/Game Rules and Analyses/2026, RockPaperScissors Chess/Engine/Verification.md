@@ -1,54 +1,49 @@
-# Verification — Engine 0.24.0
+# Verification - RPSC 0.24.1
 
-## Strength gate
+## Browser engine strength gate
 
-The exact 0.24.0 JavaScript search core embedded in `../RockPaperScissorsChess.html` is also stored as `reference/rpsc_engine_0.24.0.js`.
-Its SHA-256 is:
+The Analysis Board keeps the 0.24 primary-biased MultiPV-3 JavaScript search core selected against the previous 0.23 baseline. The exact reference core is stored in `reference/rpsc_engine_0.24.0.js`; 0.24.1 is an integration/packaging revision and does not weaken that worker core.
 
-`7724152e4c2f36eebe74d5fde7db8dbf8420462f0632862ef76ebdeb1de32271`
+Recorded paired accelerated regression:
 
-The embedded worker and the reference file were checked to be byte-for-byte identical.
+- games: **56**
+- wins: **34**
+- losses: **21**
+- draws: **1**
+- raw win rate: **60.7%**
+- score rate (draw = 0.5): **61.6%**
 
-It was compared against the 0.23.0 baseline core in `reference/baseline_0.23.0.js` using paired seeds with White/Black role reversal.
+The records are in `reference/results/paired_regression_56.jsonl`. Controls are 30/50/80/150 ms per board move with paired role reversal. This is a candidate-selection/regression gate, not a guarantee that every machine reproduces the same percentage at literal 10-second wall-clock control.
 
-- Games: **56**
-- 0.24.0: **34 wins, 21 losses, 1 draw**
-- Raw win rate: **60.7%**
-- Score rate (draw = 0.5): **61.6%**
+## Analysis time policy
 
-The exact pair records are in `reference/results/paired_regression_56.jsonl`.
-The set uses accelerated 30/50/80/150 ms board-move controls as a regression and candidate-selection gate; it is not a claim that every machine will reproduce 60.7% at literal 10-second wall-clock control.
+Default 10 s:
 
-## Time policy in the Analysis Board
+- 0-2 s broad root search
+- 2-7 s primary-biased championship search
+- 7-9 s Top-3 stabilization
+- 9-10 s final #1 verification
 
-MultiPV remains **3** throughout.
+Analyze continuation to 20 s cumulative:
 
-Default 10-second analysis:
+- 10-11.5 s challenger refresh
+- 11.5-17.5 s deep primary search
+- 17.5-19 s deep Top-3 stabilization
+- 19-20 s final verification
 
-- 0.0–2.0 s: broad root search
-- 2.0–7.0 s: primary-biased championship search
-- 7.0–9.0 s: Top-3 stabilization
-- 9.0–10.0 s: final #1 verification
+## Native engine regression gate
 
-Analyze continuation, additional 10 seconds (10 -> 20 s cumulative):
+`ctest` checks:
 
-- 10.0–11.5 s: challenger refresh
-- 11.5–17.5 s: deep primary search
-- 17.5–19.0 s: deep Top-3 stabilization
-- 19.0–20.0 s: final verification
-
-Final verification uses the best-vs-second gap: clear gaps focus the entire final window on #1; close races split #1/#2 approximately 60/40, and very close races 50/50.
-
-## Correctness checks
-
-The native `engine_tests` target checks:
-
-- exact 24 cube orientations;
-- RPS cycle;
-- initial 4-v-4 setup;
-- legal move generation;
+- 24 exact cube orientations and the RPS cycle;
+- legal initial position and move generation;
 - Push -> first Roll return legality;
 - W/B role separation;
-- MultiPV search smoke test.
+- three distinct MultiPV recommendations;
+- item and initial order/item choice APIs;
+- one-ply exact search correctness;
+- `teams W KAIST B POSTECH` + `matchpk 11 10 6` -> internal `quiz 10-11`;
+- browser/analyzer contract: Top 3, 10 -> 20 s continuation, fixed `Q[POSTECH, KAIST]`, reverse school-role mapping, and embedded-worker identity;
+- all 9 handbook games / 180 quiz rows for unilateral-item P/K -> W/B mapping.
 
-The Analysis Board retains the Format 3 tests that enforce `Q[POSTECH, KAIST]` ordering even when KAIST is White and POSTECH is Black.
+The source package deliberately excludes compiled executables, build directories, logs, `.synctex.gz`, and historical patch artifacts.

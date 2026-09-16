@@ -1,11 +1,44 @@
-#ifdef NDEBUG
-#undef NDEBUG
-#endif
+#include "engine.h"
+#include "evaluate.h"
+#include "move.h"
+#include "movegen.h"
 #include <algorithm>
 #include <cassert>
 #include <iostream>
-#include <random>
-#include "engine.h"
+#include <vector>
+
 using namespace rpsc;
-static Value exact(Position& p){ if(p.remaining_board_plies()==0)return evaluate(p); auto ms=generate_search_moves(p); if(ms.empty())return evaluate(p); Value b=-Infinity; for(auto&m:ms){UndoState u;p.do_move(m,u);b=std::max(b,-exact(p));p.undo_move(u);}return b; }
-int main(){std::mt19937 rng(20260910);int checks=0;for(int sample=0;sample<8;++sample){Position p;p.set_items(Color::White,sample%2,1,1);p.set_items(Color::Black,1,sample%2,1);for(int j=0;j<2;++j){auto ms=generate_search_moves(p);UndoState u;p.do_move(ms[rng()%ms.size()],u);}p.set_match_context(sample%3,1,2);auto ms=generate_search_moves(p);std::vector<Value> v;for(auto&m:ms){UndoState u;p.do_move(m,u);v.push_back(-exact(p));p.undo_move(u);}std::sort(v.begin(),v.end(),std::greater<Value>());Engine e;e.position()=p;SearchLimits l;l.depth=1;l.multipv=3;auto r=e.go(l);assert(r.lines.size()==3);for(int k=0;k<3;++k){assert(r.lines[k].value==v[k]);++checks;}}std::cout<<"Endgame checks: "<<checks<<"\n";}
+
+int main() {
+  Position p;
+  p.items[0] = Inventory{1,1,1};
+  p.items[1] = Inventory{1,1,1};
+  p.quiz = {2,1};
+  p.remaining_plies = 1;
+  p.side = Side::White;
+
+  std::vector<std::pair<std::string,int>> exact;
+  for (const auto& sm : generate_moves(p, false)) {
+    Position q = p;
+    const bool ok = q.apply(sm.move);
+    assert(ok);
+    exact.push_back({move_signature(sm.move), -evaluate(q)});
+  }
+  std::sort(exact.begin(), exact.end(), [](const auto& a, const auto& b){
+    if (a.second != b.second) return a.second > b.second;
+    return a.first < b.first;
+  });
+  assert(exact.size() >= 3);
+
+  Engine e;
+  e.position() = p;
+  SearchLimits lim;
+  lim.depth = 4;
+  lim.movetime_ms = 700;
+  lim.multipv = 3;
+  auto r = e.go(lim);
+  assert(r.has_best && r.candidates.size() == 3);
+  assert(r.candidates[0].value == exact[0].second);
+  std::cout << "One-ply exact search regression passed.\n";
+  return 0;
+}
