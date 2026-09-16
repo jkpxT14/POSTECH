@@ -1,67 +1,27 @@
 # Final Review
 
-**Subtitle:** Mathematics for Science Quiz  
-**Version:** First Edition / v1.0.1  
-**Date:** September 16, 2026
+Mathematics for Science Quiz - 2026 KAIST-POSTECH Science War.
 
-This package is the Korean final-review document for the 2026 KAIST-POSTECH Science War Science Quiz mathematics preparation pipeline:
+Second Edition, September 16, 2026.
 
-1. `Mathematics for Science Quiz` - main handbook (English)
-2. `Expected Problems` - N-set / expected problems (English)
-3. `Problem sets` - mock examinations (Korean)
-4. `Final Review` - final retrieval and memorization document (Korean)
+## Purpose
 
-## Source base
+A result-first Korean final-review document designed for one 2-3 hour pass immediately before the Science Quiz. It is intentionally broader than the first edition: famous and reusable formulas, theorem conclusions, mathematician/prize/history associations, and the September 15, 2026 current-mathematics cutoff are retained, while routine basics, long proofs, highly technical detail, and olympiad-specific tricks are removed.
 
-The content was selected from the GitHub `main` version of:
+## Baselines
 
-`(POKA001) Science Quiz/Mathematics for Science Quiz/`
+- `(MATH000) Mathematical Language`, current GitHub main on September 16, 2026.
+- `Mathematics for Science Quiz`, 2026 Science War Edition, FINAL-r3, content cutoff September 15, 2026.
+- All 103 past-problem directions were used as a coverage check; reusable kernels are absorbed into Parts I-II rather than reproduced as a Past Problems part.
 
-- Edition: **2026 Science War Edition (September 15, 2026)**
-- Content cutoff: **September 15, 2026**
-- Repository state checked: **September 16, 2026**
-- Latest repository commit checked while preparing this edition: `fd1826695f1d9b6d99466ed978ebaeabcff88fa2`
-- The handbook README records the MATH000 notation baseline as commit `e573739329291e71c779b4d9b4be5ff3fcd60920`.
+## Language and notation
 
-## Editorial policy
-
-The handbook structure is preserved through Parts I-III and Chapters 1-20. The handbook's `Past Problems` part is not reproduced; reusable past-problem ideas are absorbed into the relevant mathematical or factual locations.
-
-The Final Review deliberately prioritizes:
-
-- reusable past-problem kernels;
-- one standard step beyond past problems;
-- short, distinctive formulas and structures;
-- famous mathematicians with strong quiz anchors;
-- memorable history and anecdotes;
-- 2025-2026 mathematics news with precise status labels.
-
-Proof-heavy, highly local, and olympiad-specific material is intentionally omitted even when it remains valuable in the full handbook.
-
-## Files
-
-- `FinalReview.tex` - main document
-- `FinalReviewStyle.tex` - typography and layout
-- `MathematicalConcepts.tex` - Part I
-- `FactstoMemorize.tex` - Part II
-- `Mathematicsin2026.tex` - Part III
-- `FinalReview.pdf` - compiled document
-- `.latexmkrc` - XeLaTeX build configuration
+The document is Korean-first. English is retained for structural headings, canonical names, theorem/prize names, and mathematical terms when it improves recognition. Notation follows MATH000: bold lowercase vectors, bold uppercase matrices, upright differential, `span` as the linear-span operator, blackboard-bold probability/expectation, and the current probability/complex-analysis conventions.
 
 ## Build
 
 ```bash
-latexmk -xelatex FinalReview.tex
+latexmk -xelatex -interaction=nonstopmode -halt-on-error FinalReview.tex
 ```
 
-The source no longer requires Nanum or Noto CJK fonts to be installed in the operating system. It prefers `UnBatang` / `UnDotum`, which are distributed through TeX Live's `unfonts-core` package, and falls back to standard Windows Korean fonts when necessary. On a minimal TeX Live installation, if the Un fonts are absent, install them with:
-
-```bash
-tlmgr install unfonts-core
-```
-
-### v1.0.1 build fix
-
-This patch changes only Korean-font portability. The selected mathematics content, structure, and editorial scope are unchanged from the First Edition v1.0.
-
-The document uses English Part/Chapter/Section headings and Korean explanatory text. Korean personal names are used when a standard Korean form is established; the canonical English name is supplied when useful for identification.
+XeLaTeX is required. The style prefers TeX Live's UnBatang/UnDotum and falls back to standard Windows Korean fonts. No font files are bundled.

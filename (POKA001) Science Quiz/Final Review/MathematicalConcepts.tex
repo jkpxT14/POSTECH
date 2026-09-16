@@ -107,39 +107,48 @@ $|r|<1$이면
 $0/0$ 또는 $\infty/\infty$ 꼴에서 가정이 만족되면 L'H\^opital's rule을 고려한다.
 \end{formula}
 
-\begin{formula}[Derivative Table]
+\begin{formula}[Derivative Table: 실수하기 쉬운 항목]
+너무 기본적인 항목보다 순간적으로 헷갈리기 쉬운 항목을 우선한다.
 \[
-(x^n)'=nx^{n-1},\quad
-(e^x)'=e^x,\quad
-(\log x)'=\frac1x,
+(\arcsin x)'=\frac1{\sqrt{1-x^2}},\qquad
+(\arccos x)'=-\frac1{\sqrt{1-x^2}},\qquad
+(\arctan x)'=\frac1{1+x^2},
 \]
 \[
-(\sin x)'=\cos x,\quad
-(\cos x)'=-\sin x,\quad
-(\tan x)'=\sec^2x.
+(\operatorname{arcsinh}x)'=\frac1{\sqrt{1+x^2}},\qquad
+(\operatorname{arctanh}x)'=\frac1{1-x^2},
 \]
-Product, quotient, chain rule을 즉시 적용할 수 있어야 한다.
+\[
+(\sinh x)'=\cosh x,\qquad
+(\cosh x)'=\sinh x,\qquad
+(\tanh x)'=\operatorname{sech}^2x.
+\]
+또한 $a^x$와 $\log_a x$에 대해
+\[
+(a^x)'=a^x\log a,\qquad
+(\log_a x)'=\frac1{x\log a}.
+\]
+Product, quotient, chain rule은 별도 암기 항목이 아니라 즉시 사용할 도구로 본다.
 \end{formula}
 
-\begin{formula}[Antiderivatives]
+\begin{formula}[Antiderivative Table: 암기 가치가 큰 형태]
 \[
-\int x^n\dd x=\frac{x^{n+1}}{n+1}+C\quad(n\ne-1),
-\qquad
-\int\frac{1}{x}\dd x=\log|x|+C,
+\int\frac{\dd x}{a^2+x^2}=\frac1a\arctan\frac xa+C,\qquad
+\int\frac{\dd x}{\sqrt{a^2-x^2}}=\arcsin\frac xa+C,
 \]
 \[
-\int e^x\dd x=e^x+C,
-\quad
-\int\sin x\dd x=-\cos x+C,
-\quad
-\int\cos x\dd x=\sin x+C.
+\int\frac{\dd x}{x^2-a^2}=\frac1{2a}\log\left|\frac{x-a}{x+a}\right|+C,
 \]
-또한
 \[
-\int\frac{1}{1+x^2}\dd x=\arctan x+C,
-\qquad
-\int\frac{1}{\sqrt{1-x^2}}\dd x=\arcsin x+C.
+\int\frac{\dd x}{\sqrt{x^2+a^2}}
+=\operatorname{arcsinh}\frac xa+C
+=\log\!\left|x+\sqrt{x^2+a^2}\right|+C',
 \]
+\[
+\int \sec x\,\dd x=\log|\sec x+\tan x|+C,\qquad
+\int \csc x\,\dd x=\log|\csc x-\cot x|+C.
+\]
+기본적인 power, exponential, sine/cosine 적분은 자동화된 것으로 본다.
 \end{formula}
 
 \begin{formula}[Taylor and Maclaurin Series]
@@ -174,6 +183,36 @@ F(x)=\int_a^x f(t)\dd t
 \int_a^b f(x)\dd x=F(b)-F(a).
 \]
 \end{theorem}
+
+\begin{theorem}[Rolle and Mean Value Theorems]
+연속성/미분가능성 가정 아래
+\[
+f(a)=f(b)\Longrightarrow \exists c\in(a,b): f'(c)=0,
+\]
+\[
+\exists c\in(a,b):\quad f'(c)=\frac{f(b)-f(a)}{b-a}.
+\]
+Cauchy MVT는 L'H\^opital's rule과 여러 비교정리의 배경이 된다. 파이널에서는 조건과 결론만 기억한다.
+\end{theorem}
+
+\begin{formula}[Integration by Parts and Change of Variables]
+\[
+\int u\,\dd v=uv-\int v\,\dd u,
+\qquad
+\int_a^b f(g(t))g'(t)\,\dd t=\int_{g(a)}^{g(b)}f(x)\,\dd x.
+\]
+정적분에서는 boundary와 orientation을 함께 바꾼다.
+\end{formula}
+
+\begin{formula}[Gaussian Integral]
+\[
+\boxed{\displaystyle \int_{-\infty}^{\infty}e^{-x^2}\,\dd x=\sqrt\pi},
+\qquad
+\int_0^\infty e^{-ax^2}\,\dd x=\frac12\sqrt{\frac\pi a}\quad(a>0).
+\]
+Normal distribution, Gamma function, polar-coordinate trick과 연결되는 대표 결과이다.
+\end{formula}
+
 
 \begin{formula}[Useful Definite Integrals]
 \[
@@ -216,6 +255,27 @@ B(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}.
 \]
 Ratio/root test에서 극한이 $<1$이면 absolute convergence, $>1$이면 divergence. Alternating series는 항의 크기가 $0$으로 감소하면 수렴한다.
 \end{formula}
+
+\begin{formula}[Two Useful Infinite-Series Anchors]
+\[
+\sum_{n=1}^\infty \frac{x^n}{n}=-\log(1-x)\quad(|x|<1),
+\]
+\[
+\sum_{n=0}^\infty (-1)^n\frac{x^{2n+1}}{2n+1}=\arctan x\quad(|x|\le1\text{ at endpoints conditionally}).
+\]
+특히 $x=1$에서 Gregory--Leibniz series
+\[
+\frac\pi4=1-\frac13+\frac15-\frac17+\cdots.
+\]
+\end{formula}
+
+\begin{formula}[Wallis Product]
+\[
+\boxed{\displaystyle \frac\pi2=\prod_{n=1}^{\infty}\frac{(2n)^2}{(2n-1)(2n+1)}}.
+\]
+Wallis product는 $\pi$, Beta/Gamma, trigonometric integrals와 연결되는 유명한 암기 결과이다.
+\end{formula}
+
 
 \begin{fact}[Basel Problem]
 오일러 (Leonhard Euler)의 대표적 계산:
@@ -306,6 +366,36 @@ D(G\circ F)(\mathbf a)=DG(F(\mathbf a))\,DF(\mathbf a).
 Jacobian matrix의 곱 순서를 바꾸지 않는다.
 \end{theorem}
 
+\begin{formula}[Hessian and Second-Derivative Test]
+$f\colon\R^n\to\R$의 Hessian은
+\[
+\Hess f=\left(\frac{\partial^2f}{\partial x_i\partial x_j}\right).
+\]
+Critical point에서 $\Hess f$가 positive definite이면 strict local minimum, negative definite이면 strict local maximum이다. Indefinite이면 saddle point이다.
+\end{formula}
+
+\begin{theorem}[Lagrange Multipliers]
+Constraint $g(\mathbf x)=c$ 위의 regular extremum에서
+\[
+\boxed{\nabla f=\lambda\nabla g}.
+\]
+여러 constraints라면 corresponding multiplier를 더한다. 문제에서는 먼저 constraint와 gradient를 정확히 쓴다.
+\end{theorem}
+
+\begin{formula}[Change of Variables]
+좌표변환 $\mathbf x=F(\mathbf u)$에 대해
+\[
+\dd\mathbf x=\left|\det DF(\mathbf u)\right|\dd\mathbf u.
+\]
+Polar/spherical coordinates에서 Jacobian factor를 빼먹지 않는다:
+\[
+\dd A=r\,\dd r\,\dd\theta,
+\qquad
+\dd V=\rho^2\sin\phi\,\dd\rho\,\dd\phi\,\dd\theta.
+\]
+\end{formula}
+
+
 \begin{formula}[Vector Calculus Operators]
 \[
 \nabla f,
@@ -350,6 +440,20 @@ K\text{ closed and bounded}.
 \]
 연속함수는 compact set에서 maximum과 minimum을 갖는다.
 \end{theorem}
+
+\begin{theorem}[Extreme and Intermediate Value Principles]
+연속함수는 compact interval에서 maximum/minimum을 갖고, interval에서 두 함수값 사이의 모든 값을 취한다. 계산보다 ``연속 + compact/interval''이라는 조건을 보는 것이 핵심이다.
+\end{theorem}
+
+\begin{formula}[Cauchy--Schwarz and Triangle Inequalities]
+\[
+|\langle \mathbf u,\mathbf v\rangle|\le\|\mathbf u\|\,\|\mathbf v\|,
+\qquad
+\|\mathbf u+\mathbf v\|\le\|\mathbf u\|+\|\mathbf v\|.
+\]
+Equality condition은 Cauchy--Schwarz에서 linear dependence이다.
+\end{formula}
+
 
 \begin{fact}[Connectedness]
 $\R$의 connected subsets는 정확히 intervals이다. Continuous image of a connected set is connected; continuous image of a compact set is compact.
@@ -416,6 +520,22 @@ f^{(n)}(a)=\frac{n!}{2\pi i}\int_\gamma\frac{f(z)}{(z-a)^{n+1}}\dd z.
 ($a_k$: $\gamma$ 내부의 isolated singularities). Real improper integral을 contour integral로 바꾸는 문제의 핵심 결과이다.
 \end{theorem}
 
+\begin{theorem}[Liouville and Fundamental Theorem of Algebra]
+Bounded entire function은 constant이다. 그 결과를 이용하면 모든 nonconstant complex polynomial은 적어도 하나의 complex root를 갖는다.
+\end{theorem}
+
+\begin{formula}[Residues at Simple Poles]
+$f(z)=g(z)/h(z)$이고 $h(a)=0$, $h'(a)\ne0$이면
+\[
+\Res(f;a)=\frac{g(a)}{h'(a)}.
+\]
+또한
+\[
+\Res\left(\frac{g(z)}{z-a};a\right)=g(a).
+\]
+\end{formula}
+
+
 \begin{formula}[Principal Logarithm]
 \[
 \Log z=\log|z|+i\Arg z,
@@ -448,6 +568,34 @@ Column rank와 row rank는 같다.
 
 \finalheading{Determinant를 계산할 때}
 처음부터 cofactor expansion하지 않는다. 먼저 triangular/block 구조, zero pattern, dependent 또는 proportional rows/columns, row operations, special matrix 여부를 본다. Cofactor expansion은 zero가 많을 때 특히 유리하다.
+
+
+\begin{formula}[Determinant and Trace Identities]
+\[
+\det(\mathbf A^{\mathsf T})=\det\mathbf A,
+\qquad
+\det(\mathbf A^{-1})=\frac1{\det\mathbf A},
+\qquad
+\det(c\mathbf A)=c^n\det\mathbf A,
+\]
+\[
+\tr(\mathbf A+\mathbf B)=\tr\mathbf A+\tr\mathbf B,
+\qquad
+\boxed{\tr(\mathbf A\mathbf B)=\tr(\mathbf B\mathbf A)}.
+\]
+더 일반적으로 cyclic permutation은 trace를 보존한다.
+\end{formula}
+
+\begin{formula}[Adjugate and Inverse]
+\[
+\mathbf A\,\adj(\mathbf A)=\adj(\mathbf A)\mathbf A=(\det\mathbf A)\mathbf I,
+\]
+따라서 $\det\mathbf A\ne0$이면
+\[
+\mathbf A^{-1}=\frac{\adj(\mathbf A)}{\det\mathbf A}.
+\]
+작은 행렬이나 symbolic question에서 유용하다.
+\end{formula}
 
 
 \begin{fact}[LU Factorization and Pivoting]
@@ -510,6 +658,34 @@ p_{\mathbf A}(\lambda)
 }
 \]
 Characteristic polynomial은 마지막 수단에 가깝게 둔다.
+
+\begin{formula}[Eigenvalues under Standard Operations]
+$\mathbf A\mathbf v=\lambda\mathbf v$이면
+\[
+\mathbf A^k\mathbf v=\lambda^k\mathbf v,
+\qquad
+p(\mathbf A)\mathbf v=p(\lambda)\mathbf v.
+\]
+$\mathbf A$가 invertible이면 $\mathbf A^{-1}$의 corresponding eigenvalue는 $\lambda^{-1}$. 또한 $\mathbf A+c\mathbf I$는 eigenvalues를 $c$만큼 shift한다.
+\end{formula}
+
+\begin{theorem}[Cayley--Hamilton]
+Characteristic polynomial $p_{\mathbf A}(t)$에 대해
+\[
+\boxed{p_{\mathbf A}(\mathbf A)=\mathbf0}.
+\]
+고차 matrix power를 낮은 차수로 줄이거나 inverse formula를 얻는 데 즉시 쓸 수 있다.
+\end{theorem}
+
+\begin{formula}[Matrix Determinant Lemma]
+Invertible $\mathbf A$와 vectors $\mathbf u,\mathbf v$에 대해
+\[
+\det(\mathbf A+\mathbf u\mathbf v^{\mathsf T})
+=\det(\mathbf A)\left(1+\mathbf v^{\mathsf T}\mathbf A^{-1}\mathbf u\right).
+\]
+특히 $\mathbf I+\mathbf u\mathbf v^{\mathsf T}$의 determinant는 $1+\mathbf v^{\mathsf T}\mathbf u$이다.
+\end{formula}
+
 
 \begin{theorem}[Diagonalizability]
 $\mathbf A$가 $n$개의 linearly independent eigenvectors를 가지면
@@ -624,6 +800,27 @@ e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x).
 \]
 \end{theorem}
 
+\begin{formula}[Separable and First-Order Linear ODEs]
+\[
+y'=g(x)h(y)\quad\Longrightarrow\quad \int\frac{\dd y}{h(y)}=\int g(x)\,\dd x,
+\]
+\[
+y'+p(x)y=q(x),\qquad
+\mu(x)=e^{\int p(x)\dd x},\qquad
+(\mu y)'=\mu q.
+\]
+\end{formula}
+
+\begin{formula}[Constant-Coefficient Systems]
+\[
+\mathbf x'(t)=\mathbf A\mathbf x(t)
+\quad\Longrightarrow\quad
+\mathbf x(t)=e^{t\mathbf A}\mathbf x(0).
+\]
+Diagonalizable하면 eigenmodes $e^{\lambda t}\mathbf v$의 linear combination으로 본다.
+\end{formula}
+
+
 \begin{fact}[Three Fundamental PDEs]
 \[
 \text{Heat: }u_t=\kappa\Delta u,
@@ -695,6 +892,27 @@ $(0,0)$에서 $(m,n)$까지 right/up만 허용하면 경로 수는
 Diagonal을 넘지 않는 조건이 붙으면 reflection principle 또는 Catalan number를 의심한다.
 \end{formula}
 
+\begin{formula}[Derangements]
+$D_n$을 아무 원소도 제자리에 있지 않는 permutations의 수라 하면
+\[
+D_n=n!\sum_{k=0}^{n}\frac{(-1)^k}{k!},
+\qquad
+D_n=\left\lfloor\frac{n!}{e}+\frac12\right\rfloor.
+\]
+\end{formula}
+
+\begin{formula}[Vandermonde and Stars and Bars]
+\[
+\sum_k\binom{r}{k}\binom{s}{n-k}=\binom{r+s}{n}.
+\]
+Nonnegative integer solutions of
+\[
+x_1+\cdots+x_m=n
+\]
+의 수는 $\binom{n+m-1}{m-1}$이고, positive solutions의 수는 $\binom{n-1}{m-1}$이다.
+\end{formula}
+
+
 \begin{formula}[Catalan Numbers]
 \[
 \boxed{C_n=\frac1{n+1}\binom{2n}{n}}.
@@ -750,6 +968,34 @@ $n$ vertices를 가진 tree는 정확히
 \]
 개의 edges를 가진다. Connected graph에서 cycle이 없다는 것과 $|E|=|V|-1$은 tree의 대표적 동치 조건이다.
 \end{formula}
+
+\begin{theorem}[Planar Graph Euler Formula]
+Connected planar graph의 planar embedding에서
+\[
+V-E+F=2.
+\]
+Simple planar graph $(V\ge3)$이면
+\[
+E\le3V-6,
+\]
+and triangle-free이면 $E\le2V-4$.
+\end{theorem}
+
+\begin{fact}[Spanning Trees]
+Tree는 connected acyclic graph이고 $n$ vertices이면 edges는 정확히 $n-1$개이다. Complete graph의 spanning-tree 수는 Cayley's formula
+\[
+\boxed{T(K_n)=n^{n-2}}.
+\]
+\end{fact}
+
+\begin{formula}[Tower of Hanoi]
+$n$ disks를 옮기는 최소 move 수는
+\[
+\boxed{2^n-1}.
+\]
+Recurrence $T_n=2T_{n-1}+1$의 대표 anchor이다.
+\end{formula}
+
 
 \begin{theorem}[Euler's Polyhedron Formula]
 Convex polyhedron에 대해
@@ -821,6 +1067,39 @@ Independent integrable variables에 대해
 Expectation of a sum과 달리 product에서는 independence가 중요하다.
 \end{proposition}
 
+\begin{formula}[Total Probability and Total Expectation]
+Partition $B_1,\dots,B_m$에 대해
+\[
+\Prob(A)=\sum_i\Prob(A\mid B_i)\Prob(B_i),
+\]
+\[
+\Exp[X]=\Exp\!\left[\Exp[X\mid Y]\right].
+\]
+또한
+\[
+\Var(X)=\Exp[\Var(X\mid Y)]+\Var(\Exp[X\mid Y]).
+\]
+\end{formula}
+
+\begin{formula}[Covariance and Independence]
+\[
+\Cov(X,Y)=\Exp[XY]-\Exp[X]\Exp[Y],
+\]
+\[
+\Var(X+Y)=\Var X+\Var Y+2\Cov(X,Y).
+\]
+Independent이면 covariance는 $0$이지만 converse는 일반적으로 거짓이다.
+\end{formula}
+
+\begin{fact}[Memoryless Distributions]
+Geometric과 exponential distribution은 memoryless:
+\[
+\Prob(X>s+t\mid X>s)=\Prob(X>t).
+\]
+Discrete와 continuous의 대표적인 memoryless distributions이다.
+\end{fact}
+
+
 \begin{formula}[Tail-Sum Formula]
 $X\in\Nzero$이면
 \[
@@ -829,23 +1108,36 @@ $X\in\Nzero$이면
 Waiting-time 문제에서는 ``아직 끝나지 않았을 확률''을 더하는 방식으로 기억한다.
 \end{formula}
 
-\begin{formula}[Common Distributions]
+\begin{formula}[Common Distributions: pmf/pdf, Mean, Variance]
 \begin{center}
 \small
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{0.96\textwidth}{@{}L{0.22\textwidth}Y Y@{}}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{0.98\textwidth}{@{}L{0.20\textwidth}Y L{0.16\textwidth}L{0.16\textwidth}@{}}
 \toprule
-Distribution & Mean & Variance / cue \\
+Distribution & pmf / pdf & $\Exp[X]$ & $\Var(X)$\\
 \midrule
-Bernoulli$(p)$ & $p$ & $p(1-p)$ \\
-Binomial$(n,p)$ & $np$ & $np(1-p)$ \\
-Geometric$(p)$ & $1/p$ & 첫 success까지의 trial 수 convention \\
-Poisson$(\lambda)$ & $\lambda$ & variance도 $\lambda$ \\
-Normal$(\mu,\sigma^2)$ & $\mu$ & symmetric bell curve \\
+$\Bern(p)$ & $\Prob(X=x)=p^x(1-p)^{1-x}$, $x=0,1$ & $p$ & $p(1-p)$\\
+$\Bin(n,p)$ & $\binom nkp^k(1-p)^{n-k}$ & $np$ & $np(1-p)$\\
+$\Geom(p)$ & $(1-p)^{k-1}p$, $k\in\N$ & $1/p$ & $(1-p)/p^2$\\
+$\Poi(\lambda)$ & $e^{-\lambda}\lambda^k/k!$ & $\lambda$ & $\lambda$\\
+$\Unif(a,b)$ & $1/(b-a)$ on $[a,b]$ & $(a+b)/2$ & $(b-a)^2/12$\\
+$\ExpDist(\lambda)$ & $\lambda e^{-\lambda x}$, $x\ge0$ & $1/\lambda$ & $1/\lambda^2$\\
+$\Normal(\mu,\sigma^2)$ & $\frac1{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}$ & $\mu$ & $\sigma^2$\\
 \bottomrule
 \end{tabularx}
 \end{center}
+Geometric distribution은 MATH000 convention대로 \textbf{first success가 나온 trial까지 센다}.
 \end{formula}
+
+\begin{formula}[Sample Mean and Variance]
+\[
+\bar X=\frac1n\sum_{i=1}^nX_i,
+\qquad
+S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2.
+\]
+Normal sample에서는 표준화와 $t$, $\chi^2$ distributions가 자연스럽게 등장한다. Final에서는 notation과 association을 우선 기억한다.
+\end{formula}
+
 
 \begin{formula}[Maxima and Minima]
 Independent identically distributed $X_1,\ldots,X_n$의 CDF가 $F$이면
@@ -927,6 +1219,29 @@ K=\frac12ab\sin C=rs=\frac{abc}{4R},
 K=\sqrt{s(s-a)(s-b)(s-c)}.
 \]
 \end{formula}
+
+\begin{formula}[Triangle Area Toolkit]
+Side lengths $a,b,c$, semiperimeter $s=(a+b+c)/2$, inradius $r$, circumradius $R$, area $K$에 대해
+\[
+\boxed{K=rs=\frac{abc}{4R}=\frac12bc\sin A},
+\]
+\[
+\boxed{K=\sqrt{s(s-a)(s-b)(s-c)}}\qquad\text{(Heron's formula)}.
+\]
+또한 cosine law:
+\[
+a^2=b^2+c^2-2bc\cos A.
+\]
+\end{formula}
+
+\begin{formula}[Circle Essentials]
+Radius $R$인 circle에서 central angle $\theta$ (radians)에 대해
+\[
+\text{arc length}=R\theta,\qquad \text{sector area}=\frac12R^2\theta.
+\]
+Tangent는 접점에서 radius와 perpendicular이며, external point에서 그은 두 tangents의 길이는 같다.
+\end{formula}
+
 
 \begin{theorem}[Thales' Theorem]
 Diameter가 subtend하는 inscribed angle은 $90^\circ$이다. Circle + right angle 문제가 나오면 diameter를 의심한다.
@@ -1144,6 +1459,36 @@ p\text{ prime}
 \end{theorem}
 
 
+\begin{formula}[Divisor Functions]
+$n=\prod p_i^{a_i}$이면
+\[
+\tau(n)=\prod_i(a_i+1),
+\qquad
+\sigma(n)=\prod_i\frac{p_i^{a_i+1}-1}{p_i-1}.
+\]
+$n$이 perfect square일 때와 그때에만 $\tau(n)$이 odd이다.
+\end{formula}
+
+\begin{formula}[Multiplicative Order]
+$\gcd(a,n)=1$일 때 $\ord_n(a)$는 $a^k\equiv1\pmod n$인 최소 양의 $k$. 항상
+\[
+\ord_n(a)\mid\varphi(n).
+\]
+Order를 알면 exponent reduction을 빠르게 할 수 있다.
+\end{formula}
+
+\begin{fact}[Euler Criterion and Quadratic Residues]
+Odd prime $p\nmid a$에 대해
+\[
+a^{(p-1)/2}\equiv\left(\frac ap\right)\pmod p.
+\]
+Quadratic reciprocity는 odd primes $p,q$에 대해
+\[
+\left(\frac pq\right)\left(\frac qp\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}.
+\]
+\end{fact}
+
+
 \begin{fact}[Continued Fractions]
 Simple continued fraction은 rational number에서 유한하게 끝난다. 반대로 quadratic irrational의 simple continued fraction은 eventually periodic이다 (Lagrange theorem). 대표적으로
 \[
@@ -1174,6 +1519,23 @@ Finite group $G$의 subgroup $H$에 대해
 \]
 따라서 원소 $g$의 order도 $|G|$를 나눈다.
 \end{theorem}
+
+\begin{theorem}[First Isomorphism Theorem]
+Group homomorphism $\varphi:G\to H$에 대해
+\[
+G/\ker\varphi\cong\im\varphi.
+\]
+Kernel은 normal subgroup이고, injective iff $\ker\varphi=\{e\}$.
+\end{theorem}
+
+\begin{fact}[Orders in Finite Groups]
+Lagrange에 의해 $H\le G$이면 $|H|\mid|G|$. 특히 element order는 $|G|$를 나누고,
+\[
+g^{|G|}=e
+\]
+for every $g\in G$ in a finite group.
+\end{fact}
+
 
 \begin{fact}[Cyclic and Permutation Groups]
 Cyclic group은 한 generator로 생성된다. $S_n$은 $n$개 원소의 모든 permutations의 group이고
@@ -1215,7 +1577,7 @@ i^2=j^2=k^2=ijk=-1,
 \begin{definition}[Open, Closed, Interior, Closure]
 Topological space에서 open sets가 구조를 정한다. $A$의 interior와 closure는 각각
 \[
-\Int(A),\qquad \Cl(A)
+A^\circ,\ \interior A,\qquad \overline A,\ \closure A
 \]
 로 쓴다. Closed set은 complement가 open인 집합이다.
 \end{definition}
@@ -1244,6 +1606,15 @@ Polyhedron/surface combinatorics에서
 \]
 Sphere는 $\chi=2$, torus는 $\chi=0$이다.
 \end{formula}
+
+\begin{formula}[Euler Characteristic of Orientable Surfaces]
+Closed orientable surface of genus $g$에 대해
+\[
+\boxed{\chi=2-2g}.
+\]
+Sphere $g=0$ gives $2$, torus $g=1$ gives $0$.
+\end{formula}
+
 
 \begin{fact}[Poincar\'e Conjecture]
 Closed simply connected $3$-manifold는 $S^3$와 homeomorphic이라는 명제. 그리고리 페렐만 (Grigori Perelman)이 Ricci flow를 이용해 해결했고 2006 Fields Medal을 거부했다.

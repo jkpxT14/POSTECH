@@ -9,13 +9,13 @@
 % system.  A standard Windows Korean-font fallback is kept for minimal TeX Live
 % installations that do not include unfonts-core.
 \IfFontExistsTF{UnBatang}{%
-  \setmainhangulfont[AutoFakeSlant=0.14]{UnBatang}%
+  \setmainhangulfont[ItalicFont={UnBatang}]{UnBatang}%
 }{%
   \IfFontExistsTF{Batang}{%
-    \setmainhangulfont[AutoFakeSlant=0.14]{Batang}%
+    \setmainhangulfont[ItalicFont={Batang}]{Batang}%
   }{%
     \IfFontExistsTF{Malgun Gothic}{%
-      \setmainhangulfont[AutoFakeSlant=0.14]{Malgun Gothic}%
+      \setmainhangulfont[ItalicFont={Malgun Gothic}]{Malgun Gothic}%
     }{%
       \PackageError{FinalReview}{No Korean main font found}{%
         Install the TeX Live package `unfonts-core' or a standard Korean system font.}%
@@ -77,11 +77,11 @@
 \DeclareMathOperator{\rk}{rk}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\diag}{diag}
-\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\Null}{Null}
 \DeclareMathOperator{\Col}{Col}
-\DeclareMathOperator{\Int}{Int}
-\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\closure}{cl}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Log}{Log}
@@ -93,11 +93,28 @@
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Bern}{Bern}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Geom}{Geom}
+\DeclareMathOperator{\Poi}{Pois}
+\DeclareMathOperator{\Unif}{Unif}
+\DeclareMathOperator{\ExpDist}{Exp}
+\newcommand{\Normal}{\mathcal{N}}
+\newcommand{\indicator}[1]{\mathbf{1}_{#1}}
 
-\setlength{\parindent}{1.25em}
+\setlength{\parindent}{1.18em}
 \setlength{\parskip}{0pt}
 \setlength{\emergencystretch}{1.4em}
-\linespread{1.035}
+\linespread{1.06}
 \setlist[itemize]{leftmargin=1.5em,itemsep=0.14em,topsep=0.3em,parsep=0pt,partopsep=0pt}
 \setlist[enumerate]{leftmargin=1.7em,itemsep=0.14em,topsep=0.3em,parsep=0pt,partopsep=0pt}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
@@ -154,13 +171,13 @@
 
 % Unnumbered theorem-like environments. Inclusion itself signals importance.
 \newtheoremstyle{finalplain}
-  {5.5pt}{5.5pt}{\itshape}{}{\bfseries}{}{\newline}
+  {5.2pt}{5.2pt}{}{}{\bfseries}{}{\newline}
   {\thmname{#1}\thmnote{. #3}}
 \newtheoremstyle{finaldefinition}
-  {5.5pt}{5.5pt}{}{}{\bfseries}{}{\newline}
+  {5.2pt}{5.2pt}{}{}{\bfseries}{}{\newline}
   {\thmname{#1}\thmnote{. #3}}
 \newtheoremstyle{finalsameline}
-  {4.5pt}{4.5pt}{}{}{\itshape}{.}{0.5em}
+  {4.2pt}{4.2pt}{}{}{\bfseries}{.}{0.5em}
   {\thmname{#1}\thmnote{. #3}}
 
 \theoremstyle{finaldefinition}
@@ -177,7 +194,7 @@
 \newtheorem*{strategy}{Strategy}
 \newtheorem*{tactic}{Tactic}
 
-\newcommand{\finalblockspace}{\Needspace{4\baselineskip}}
+\newcommand{\finalblockspace}{\Needspace{5\baselineskip}}
 \BeforeBeginEnvironment{definition}{\finalblockspace}
 \BeforeBeginEnvironment{formula}{\finalblockspace}
 \BeforeBeginEnvironment{fact}{\finalblockspace}
@@ -205,14 +222,14 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\textit{Final Review}}
-\fancyhead[R]{\small\textit{Mathematics for Science Quiz}}
+\fancyhead[R]{\small\textit{\CurrentChapter}}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.35pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{%
   \fancyhf{}
   \fancyhead[L]{\small\textit{Final Review}}
-  \fancyhead[R]{\small\textit{Mathematics for Science Quiz}}
+  \fancyhead[R]{\small\textit{\CurrentChapter}}
   \fancyfoot[C]{\small\thepage}
   \renewcommand{\headrulewidth}{0.35pt}
   \renewcommand{\footrulewidth}{0pt}%
@@ -229,7 +246,7 @@
   \vspace{0.20cm}%
   {\noindent\small 2026 \KAIST--\POSTECH{} Science War\par}%
   \vspace{0.34cm}%
-  {\noindent\small First Edition \textperiodcentered{} September 16, 2026\par}%
+  {\noindent\small Second Edition \textperiodcentered{} September 16, 2026\par}%
   \vspace{0.38cm}%
   {\noindent\normalsize Jungwoo Kim\par}%
   {\noindent\small Department of Mathematics, \POSTECH\par}%
@@ -241,11 +258,9 @@
   \vspace{0.05cm}%
   \begingroup
     \small
-    \begin{multicols}{2}
-      \RaggedRight
-      \hyphenpenalty=10000\exhyphenpenalty=10000
-      \tableofcontents
-    \end{multicols}
+    \RaggedRight
+    \hyphenpenalty=10000\exhyphenpenalty=10000
+    \tableofcontents
   \endgroup
   \vfill
   {\noindent\footnotesize\color{SoftGray}
