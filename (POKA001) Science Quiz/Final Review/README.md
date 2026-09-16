@@ -2,21 +2,25 @@
 
 Mathematics for Science Quiz - 2026 KAIST-POSTECH Science War.
 
-Second Edition, September 16, 2026.
+Second Edition, September 15, 2026.
 
 ## Purpose
 
-A result-first Korean final-review document designed for one 2-3 hour pass immediately before the Science Quiz. It is intentionally broader than the first edition: famous and reusable formulas, theorem conclusions, mathematician/prize/history associations, and the September 15, 2026 current-mathematics cutoff are retained, while routine basics, long proofs, highly technical detail, and olympiad-specific tricks are removed.
+A Korean-first, result-first final-review document designed for one 2-3 hour pass immediately before the Science Quiz. The target is not textbook completeness: retain famous, reusable, distinctive, and directly applicable results; remove routine basics, long proofs, highly technical local details, and olympiad-specific tricks.
+
+Coverage was checked against the handbook's 103 past-problem directions, the dated 2026 problem sets, and the Expected Problems collection. Reusable kernels are absorbed into the relevant chapters; problem statements and long solutions are not reproduced.
 
 ## Baselines
 
-- `(MATH000) Mathematical Language`, current GitHub main on September 16, 2026.
+- `(MATH000) Mathematical Language`, current notation baseline used by the September 15 edition.
 - `Mathematics for Science Quiz`, 2026 Science War Edition, FINAL-r3, content cutoff September 15, 2026.
-- All 103 past-problem directions were used as a coverage check; reusable kernels are absorbed into Parts I-II rather than reproduced as a Past Problems part.
+- Current-mathematics claims are kept at the September 15, 2026 status boundary.
 
 ## Language and notation
 
-The document is Korean-first. English is retained for structural headings, canonical names, theorem/prize names, and mathematical terms when it improves recognition. Notation follows MATH000: bold lowercase vectors, bold uppercase matrices, upright differential, `span` as the linear-span operator, blackboard-bold probability/expectation, and the current probability/complex-analysis conventions.
+This is a Korean document. English is retained mainly for Part/Chapter/Section titles, canonical theorem/prize/problem names, proper names, and mathematical keywords when recognition benefits from it. Explanatory prose, table headers, memory cues, and result statements are Korean-first.
+
+Notation follows MATH000: bold lowercase vectors, bold uppercase matrices, upright differential, lowercase `span`, blackboard-bold probability/expectation, the current geometric-distribution convention, and the current complex `Arg`/`Log` conventions.
 
 ## Build
 
