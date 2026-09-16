@@ -1,3 +1,12 @@
+# FINAL-r3 notation sync
+
+Only the linear-span operator definition changed from `Span` to `span`, matching
+MATH000 commit 271808b83999990c278b910fb6d36fd3a80b82f1. All seven mathematical
+occurrences were checked in the rebuilt PDF. Page count remains 282.
+PDF text differs only by these seven replacements; final build has no warnings.
+All other LaTeX sources are byte-identical to the GitHub baseline.
+The following record documents the preceding FINAL-r2 review.
+
 # FINAL-r2 review record
 
 Edition cutoff: 2026-09-15. Editorial revision: 2026-09-16.
