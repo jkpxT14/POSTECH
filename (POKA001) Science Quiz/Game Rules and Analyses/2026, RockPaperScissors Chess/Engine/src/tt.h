@@ -1,11 +1,8 @@
-#ifndef RPSC_TT_H_INCLUDED
-#define RPSC_TT_H_INCLUDED
-#include <array>
-#include <cstddef>
-#include <vector>
-#include "move.h"
+#pragma once
+#include "types.h"
+#include <string>
+#include <unordered_map>
 namespace rpsc {
-struct TTEntry { Key key=0; Value value=0; Depth depth=-1; Bound bound=Bound::None; Move best_move{}; bool has_move=false; std::uint8_t generation=0; };
-class TranspositionTable { public: explicit TranspositionTable(std::size_t megabytes=64); void resize(std::size_t); void clear(); void new_search(){++generation_;} const TTEntry* probe(Key) const; void store(Key,Depth,Value,Bound,const Move*); private: static constexpr std::size_t Cluster=4; std::vector<std::array<TTEntry,Cluster>> table_; std::uint8_t generation_=1;};
-}
-#endif
+struct TTEntry{int depth=0,value=0,bound=0;Move best;bool has_best=false;};
+class TranspositionTable{public:explicit TranspositionTable(size_t max=150000):max_(max){};void clear(){map_.clear();}const TTEntry* probe(const std::string&k)const{auto i=map_.find(k);return i==map_.end()?nullptr:&i->second;}void store(std::string k,TTEntry e){if(map_.size()>max_)map_.clear();map_[std::move(k)]=std::move(e);}private:size_t max_;std::unordered_map<std::string,TTEntry>map_;};
+} // namespace rpsc

@@ -1,0 +1,12 @@
+RPSC Engine 0.24.0 vs 0.23.0 — accelerated paired regression
+
+Games: 56
+Wins: 34
+Losses: 21
+Draws: 1
+Raw win rate: 60.7%
+Score rate (draw = 0.5): 61.6%
+
+Search controls represented in this regression set: 30 ms, 50 ms, 80 ms, 150 ms per board move.
+Each seed is paired with White/Black role reversal.
+This is a regression/selection gate; it does not claim that every machine reproduces 60.7% at literal 10-second wall-clock control.

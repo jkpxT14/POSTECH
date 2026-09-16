@@ -1,28 +1,146 @@
 #include "search.h"
+#include "move.h"
 #include <algorithm>
-#include <array>
-#include <cassert>
-#include <chrono>
-#include <cstddef>
-#include <unordered_map>
-#include <vector>
+#include <cmath>
+#include <unordered_set>
+
 namespace rpsc {
-struct SearchAccess{static MoveOutcome apply(Position&p,const Move&m,Orientation o,PieceId captured,bool has_capture,bool reset,UndoState&u){
-#ifndef NDEBUG
-Orientation checked;assert(p.validate_path(m,&checked)&&checked==o);
-#endif
-return p.apply_generated_move(m,o,captured,has_capture,reset,u);}};
-namespace { constexpr int MaxPly=64;constexpr int MaxSelectiveExtensions=1;constexpr Value AspirationWindow=50;constexpr int CountermoveBonus=120000;constexpr int ContinuationScale=2;constexpr int FollowupScale=4;constexpr int CaptureHistoryScale=4;constexpr std::size_t HistoryMoveSlots=PieceCount*64u*ItemActionCount;
-int root_action_family(const Move&m){if(m.item==Item::Push)return 1;if(is_rotation(m.item))return 2;if(is_step(m.item))return 3;return 0;} struct OrderedMove{Move move{};int score=0;int capture_swing=0;Orientation final_orientation=0;PieceId captured=PieceId::W1;bool has_capture=false;bool reset=false;}; std::size_t move_slot(const Move&m){std::size_t base=std::size_t(piece_index(m.piece))*64u+static_cast<unsigned>(m.to());return base*ItemActionCount+item_action_index(m.item);} std::uint64_t continuation_key(const Move&a,const Move&b){return std::uint64_t(move_slot(a))*HistoryMoveSlots+move_slot(b);} bool is_killer(const Move&m,const std::array<Move,2>&k,int i){return i>=0&&i<2&&k[i].path_length!=0&&m==k[i];} bool is_excluded(const Move&m,const std::vector<Move>&x){return std::any_of(x.begin(),x.end(),[&](const Move&o){return m==o;});} void bounded_add(int&v,int d){v+=d;if(v>100000||v<-100000)v/=2;}
+namespace {constexpr int INF=1000000000;bool skipped(const Move&m,const std::vector<Move>&xs){for(auto&x:xs)if(same_move(m,x))return true;return false;} }
+bool Searcher::timed_out(){nodes_++;if((nodes_&255)==0&&Clock::now()>=deadline_)stop_=true;return stop_;}
+int Searcher::qsearch(Position&p,int a,int b,int ply){sel_=std::max(sel_,ply);if(p.remaining_plies==0||ply>=64||timed_out())return evaluate(p);int st=evaluate(p);if(st>=b)return b;if(st>a)a=st;auto ms=generate_moves(p,true);std::sort(ms.begin(),ms.end(),[](auto&A,auto&B){return (A.tactical*100000+(A.reset?1000:0))>(B.tactical*100000+(B.reset?1000:0));});for(auto&x:ms){if(x.tactical<0&&!x.reset)continue;Position n=p;if(!n.apply(x.move))continue;int sc=-qsearch(n,-b,-a,ply+1);if(stop_)return a;if(sc>=b)return b;if(sc>a)a=sc;}return a;}
+int Searcher::alphabeta(Position&p,int d,int a,int b,int ply,bool pv,int ext_used){sel_=std::max(sel_,ply);if(p.remaining_plies==0||ply>=64)return evaluate(p);if(d<=0)return qsearch(p,a,b,ply);if(timed_out())return evaluate(p);int st=evaluate(p);if(!pv&&d<=4){if(st-(60+30*d)>=b)return st;if(d==1&&st+70<=a)return qsearch(p,a,b,ply);}auto k=p.key();const TTEntry*e=tt_.probe(k);int oa=a,ob=b;if(e&&e->depth>=d&&!pv){if(e->bound==0)return e->value;if(e->bound==1&&e->value>=b)return e->value;if(e->bound==-1&&e->value<=a)return e->value;}
+ auto ms=generate_moves(p,false);if(ms.empty())return evaluate(p);Move ttmove{};bool has_tt=e&&e->has_best; if(has_tt)ttmove=e->best;std::sort(ms.begin(),ms.end(),[&](auto&A,auto&B){auto score=[&](auto&x){int s=x.tactical>0?500000+x.tactical*10000:x.tactical<0?-250000:0;if(x.reset)s+=180000;if(has_tt&&same_move(x.move,ttmove))s+=1000000;if(x.move.item!=Item::None)s+=500;return s;};return score(A)>score(B);});Move best{};bool hb=false;int j=0;for(auto&x:ms){Position n=p;int alive0=p.alive_total();if(!n.apply(x.move))continue;int alive1=n.alive_total();bool transition=x.tactical!=0&&alive0>2&&alive1==2;int extra=(x.tactical!=0&&ext_used<1)?1:0;if((x.reset||transition)&&ext_used+extra<2)extra++;int ne=std::min(2,ext_used+extra),cd=d-1+extra,sc; if(j==0)sc=-alphabeta(n,cd,-b,-a,ply+1,pv,ne);else{bool critical=x.tactical!=0||x.reset||transition;bool reduce=!pv&&!critical&&d>=4&&j>=4;int r=(reduce&&d>=7&&j>=10&&x.move.item==Item::None)?2:1;if(reduce){sc=-alphabeta(n,std::max(0,cd-r),-a-1,-a,ply+1,false,ne);if(sc>a)sc=-alphabeta(n,cd,-a-1,-a,ply+1,false,ne);}else sc=-alphabeta(n,cd,-a-1,-a,ply+1,false,ne);if(sc>a&&sc<b)sc=-alphabeta(n,cd,-b,-a,ply+1,pv,ne);}j++;if(stop_)return a;if(sc>a){a=sc;best=x.move;hb=true;}if(a>=b)break;}
+ TTEntry ne;ne.depth=d;ne.value=a;ne.bound=a<=oa?-1:a>=ob?1:0;ne.best=best;ne.has_best=hb;tt_.store(k,ne);return a;}
+Searcher::RootPass Searcher::root_pass(const Position&p,const std::vector<ScoredMove>&roots,const Move*preferred,int d,int a,int b,const std::vector<Move>&skip,bool multipv){std::vector<ScoredMove>ord;for(auto&x:roots)if(!skipped(x.move,skip))ord.push_back(x);std::sort(ord.begin(),ord.end(),[&](auto&A,auto&B){auto s=[&](auto&x){int v=x.tactical>0?500000+x.tactical*10000:x.tactical<0?-250000:0;if(x.reset)v+=180000;if(preferred&&same_move(x.move,*preferred))v+=1200000;return v;};return s(A)>s(B);});RootPass r;if(ord.empty())return r;int alpha=a,j=0;for(auto&x:ord){Position n=p;int alive0=p.alive_total();n.apply(x.move);int alive1=n.alive_total();bool transition=x.tactical!=0&&alive0>2&&alive1==2;int extra=x.tactical!=0?1:0;if((x.reset||transition)&&extra<2)extra++;int cd=d-1+extra,v;if(j==0)v=-alphabeta(n,cd,-b,-alpha,1,true,extra);else{bool reduce=!multipv&&d>=3&&x.tactical==0&&j>=64;if(reduce){v=-alphabeta(n,std::max(0,cd-1),-alpha-1,-alpha,1,false,extra);if(v>alpha)v=-alphabeta(n,cd,-alpha-1,-alpha,1,false,extra);}else v=-alphabeta(n,cd,-alpha-1,-alpha,1,false,extra);if(v>alpha&&v<b)v=-alphabeta(n,cd,-b,-alpha,1,true,extra);}j++;if(stop_)break;r.scores.push_back({x.move,v});if(!r.has_best||v>r.value){r.has_best=true;r.best=x.move;r.value=v;}if(v>alpha)alpha=v;if(alpha>=b)break;}return r;}
+std::vector<Move> Searcher::pvline(Position p,const Move&best,int d){std::vector<Move>out;Move m=best;bool has=true;for(int i=0;i<std::min(64,d+4)&&has;i++){out.push_back(m);p.apply(m);auto*e=tt_.probe(p.key());has=e&&e->has_best;if(has)m=e->best;}return out;}
+SearchResult Searcher::search(const Position& root, const SearchLimits& lim) {
+  auto start = Clock::now();
+  nodes_ = 0; sel_ = 0; stop_ = false; tt_.clear();
+  int total = std::max(20, lim.movetime_ms);
+  int k = std::clamp(lim.multipv, 1, 3);
+  auto hard_end = start + std::chrono::milliseconds(total);
+  auto broad_end = start + std::chrono::milliseconds((int)(total * 0.20));
+  auto primary_end = start + std::chrono::milliseconds((int)(total * 0.70));
+  auto secondary_end = start + std::chrono::milliseconds((int)(total * 0.90));
+
+  auto roots = generate_moves(root, false);
+  SearchResult res;
+  if (roots.empty()) return res;
+  Move prev = roots[0].move;
+  int prev_value = 0;
+  std::vector<std::pair<Move,int>> global_ranking;
+
+  auto merge_ranking = [&](const std::vector<std::pair<Move,int>>& fresh) {
+    for (auto& rv : fresh) {
+      auto it = std::find_if(global_ranking.begin(), global_ranking.end(), [&](auto& q){return same_move(q.first, rv.first);});
+      if (it == global_ranking.end()) global_ranking.push_back(rv); else it->second = rv.second;
+    }
+    std::sort(global_ranking.begin(), global_ranking.end(), [](auto&A,auto&B){return A.second>B.second;});
+  };
+  auto publish = [&](const RootPass& pass, int depth, bool merge) {
+    auto ranking = pass.scores;
+    std::sort(ranking.begin(), ranking.end(), [](auto&A,auto&B){return A.second>B.second;});
+    if (!merge) global_ranking = ranking; else merge_ranking(ranking);
+    res.has_best = true; res.best = pass.best; res.value = pass.value; res.depth = depth;
+    res.seldepth = sel_; res.nodes = nodes_; res.candidates.clear();
+    res.candidates.push_back({pass.best, pass.value, depth, pvline(root, pass.best, depth)});
+    for (auto& rv : global_ranking) {
+      if ((int)res.candidates.size() >= k) break;
+      if (same_move(rv.first, pass.best)) continue;
+      res.candidates.push_back({rv.first, rv.second, std::max(1, depth-1), pvline(root, rv.first, std::max(1, depth-1))});
+    }
+    prev = pass.best; prev_value = pass.value;
+  };
+  auto search_pass = [&](const std::vector<ScoredMove>& pool, int depth, Clock::time_point end, bool merge) {
+    deadline_ = end; stop_ = false;
+    int w=50, a=depth>=4?prev_value-w:-INF, b=depth>=4?prev_value+w:INF;
+    RootPass pass;
+    while (true) {
+      pass = root_pass(root, pool, &prev, depth, a, b, {}, false);
+      if (stop_ || !pass.has_best) break;
+      if (pass.value <= a) { w*=2; a=prev_value-w; b=prev_value+w; continue; }
+      if (pass.value >= b) { w*=2; a=prev_value-w; b=prev_value+w; continue; }
+      break;
+    }
+    if (stop_ || !pass.has_best) { stop_=false; return false; }
+    publish(pass, depth, merge); return true;
+  };
+  auto add_root = [&](std::vector<ScoredMove>& pool, const ScoredMove* r) {
+    if (!r) return;
+    for (auto& q:pool) if (same_move(q.move,r->move)) return;
+    pool.push_back(*r);
+  };
+  auto find_root = [&](const Move& m)->const ScoredMove* {
+    for (auto& r:roots) if (same_move(r.move,m)) return &r;
+    return nullptr;
+  };
+  auto champ_pool = [&]() {
+    std::vector<ScoredMove> pool;
+    for (auto& c:res.candidates) add_root(pool,find_root(c.move));
+    for (auto& rv:global_ranking) { if (pool.size()>=4) break; add_root(pool,find_root(rv.first)); }
+    for (auto& rv:global_ranking) { auto*r=find_root(rv.first); if (r&&r->tactical==0&&r->move.item==Item::None){add_root(pool,r);break;} }
+    for (auto& rv:global_ranking) { auto*r=find_root(rv.first); if (r&&(r->tactical!=0||r->reset||r->move.item!=Item::None)){add_root(pool,r);break;} }
+    for (auto& rv:global_ranking) { if (pool.size()>=std::min<size_t>(6,roots.size())) break; add_root(pool,find_root(rv.first)); }
+    return pool;
+  };
+
+  // 0-20% broad search.
+  for (int d=1; d<=lim.depth && Clock::now()<broad_end; ++d) {
+    if (!search_pass(roots,d,broad_end,false)) break;
+    if (root.remaining_plies>0 && d>=root.remaining_plies) break;
+  }
+
+  // 20-70% primary-biased championship over at most six candidates.
+  auto champ = champ_pool(); if (champ.empty()) champ=roots;
+  for (int d=std::max(1,res.depth+1); d<=lim.depth && Clock::now()<primary_end; ++d) {
+    if (!search_pass(champ,d,primary_end,true)) break;
+    champ=champ_pool();
+    if (root.remaining_plies>0 && d>=root.remaining_plies) break;
+  }
+
+  // 70-90% Top-3 stabilization, allowing #2/#3 to trail primary by two depths.
+  if (k>1 && res.candidates.size()>=2 && Clock::now()<secondary_end) {
+    deadline_=secondary_end; stop_=false; int sd=std::max(1,res.depth-2);
+    auto pool=champ_pool(); std::vector<Move> skip{res.best}; std::vector<Candidate> verified;
+    for (int rank=1; rank<k && Clock::now()<secondary_end; ++rank) {
+      const Move* pref=rank<(int)res.candidates.size()?&res.candidates[rank].move:nullptr;
+      auto nx=root_pass(root,pool,pref,sd,-INF,INF,skip,true);
+      if (stop_||!nx.has_best) break;
+      verified.push_back({nx.best,nx.value,sd,pvline(root,nx.best,sd)}); skip.push_back(nx.best);
+    }
+    if (!stop_&&!verified.empty()) {
+      std::sort(verified.begin(),verified.end(),[](auto&A,auto&B){return A.value>B.value;});
+      std::vector<Candidate> out{res.candidates[0]};
+      for(auto&x:verified)if((int)out.size()<k)out.push_back(x);
+      for(size_t i=1;i<res.candidates.size()&&(int)out.size()<k;i++){bool dup=false;for(auto&x:out)dup|=same_move(x.move,res.candidates[i].move);if(!dup)out.push_back(res.candidates[i]);}
+      res.candidates=std::move(out);
+    }
+    stop_=false;
+  }
+
+  // 90-100% final verification: #1 only for clear gaps, otherwise #1/#2 = 60/40 or 50/50.
+  if (res.has_best && Clock::now()<hard_end && !res.candidates.empty()) {
+    int gap=res.candidates.size()>1?res.candidates[0].value-res.candidates[1].value:INF;
+    double share1=gap<15?0.50:gap<40?0.60:1.0;
+    int count=(share1<1.0&&res.candidates.size()>1)?2:1;
+    auto final_start=Clock::now(); auto remain=hard_end-final_start; std::vector<Candidate> verified;
+    for(int i=0;i<count;i++){
+      auto*r=find_root(res.candidates[i].move); if(!r)continue;
+      auto end=i==0?final_start+std::chrono::duration_cast<Clock::duration>(remain*share1):hard_end;
+      deadline_=end;stop_=false;int vd=std::min(lim.depth,res.depth+1);
+      auto vr=root_pass(root,std::vector<ScoredMove>{*r},&res.candidates[i].move,vd,-INF,INF,{},false);
+      if(!stop_&&vr.has_best)verified.push_back({vr.best,vr.value,vd,pvline(root,vr.best,vd)});
+      stop_=false;
+    }
+    if(!verified.empty()){
+      std::vector<Candidate> all=verified;
+      for(auto&c:res.candidates){bool dup=false;for(auto&v:verified)dup|=same_move(v.move,c.move);if(!dup)all.push_back(c);}
+      std::sort(all.begin(),all.end(),[](auto&A,auto&B){return A.value>B.value;});
+      res.candidates.assign(all.begin(),all.begin()+std::min<size_t>(k,all.size()));res.best=res.candidates[0].move;res.value=res.candidates[0].value;res.depth=std::max(res.depth,res.candidates[0].depth);
+    }
+  }
+  res.nodes=nodes_;res.seldepth=sel_;res.elapsed_ms=(int)std::chrono::duration_cast<std::chrono::milliseconds>(Clock::now()-start).count();
+  return res;
 }
-struct Search::Context{SearchLimits limits;std::chrono::steady_clock::time_point start;std::uint64_t nodes=0;Depth seldepth=0;bool stopped=false;std::vector<int>&history;std::vector<int>&capture_history;std::array<std::array<Move,2>,MaxPly>killers{};std::unordered_map<std::size_t,Move>&countermoves;std::unordered_map<std::uint64_t,int>&continuation;std::unordered_map<std::uint64_t,int>&followup;std::unordered_map<Key,std::uint8_t>pressure_cache;explicit Context(Search&s):history(s.history_),capture_history(s.capture_history_),countermoves(s.countermoves_),continuation(s.continuation_),followup(s.followup_){} bool should_stop(){if(stopped)return true;if(limits.nodes&&nodes>=limits.nodes)return stopped=true;if(limits.movetime.count()>0&&(nodes&63ULL)==0&&std::chrono::steady_clock::now()-start>=limits.movetime)return stopped=true;return false;} int sparse_score(const std::unordered_map<std::uint64_t,int>&t,std::uint64_t k)const{auto it=t.find(k);return it==t.end()?0:it->second;} void bounded_sparse_add(std::unordered_map<std::uint64_t,int>&t,std::uint64_t k,int d){int&v=t[k];bounded_add(v,d);if(t.size()>250000)t.clear();} int history_score(const Move&m)const{return history[move_slot(m)];} int capture_history_score(const Move&m)const{return capture_history[move_slot(m)]/CaptureHistoryScale;} int continuation_score(const Move*prev,const Move*prev2,const Move&m)const{int s=0;if(prev&&prev->path_length)s+=sparse_score(continuation,continuation_key(*prev,m))/ContinuationScale;if(prev2&&prev2->path_length)s+=sparse_score(followup,continuation_key(*prev2,m))/FollowupScale;return s;} bool is_countermove(const Move*prev,const Move&m)const{if(!prev||!prev->path_length)return false;auto it=countermoves.find(move_slot(*prev));return it!=countermoves.end()&&it->second==m;} void record_quiet_cutoff(const Move&m,Depth depth,int ply,const Move*prev,const Move*prev2,const std::vector<Move>&quiets){int bonus=std::max(1,depth*depth);bounded_add(history[move_slot(m)],bonus);if(prev&&prev->path_length){bounded_sparse_add(continuation,continuation_key(*prev,m),2*bonus);countermoves[move_slot(*prev)]=m;if(countermoves.size()>16384)countermoves.clear();}if(prev2&&prev2->path_length)bounded_sparse_add(followup,continuation_key(*prev2,m),bonus);int penalty=std::max(1,bonus/2);for(const auto&q:quiets){if(q==m)continue;bounded_add(history[move_slot(q)],-penalty);if(prev&&prev->path_length)bounded_sparse_add(continuation,continuation_key(*prev,q),-penalty);if(prev2&&prev2->path_length)bounded_sparse_add(followup,continuation_key(*prev2,q),-std::max(1,penalty/2));}if(ply>=0&&ply<MaxPly&&killers[ply][0]!=m){killers[ply][1]=killers[ply][0];killers[ply][0]=m;}} void record_tactical_cutoff(const Move&m,Depth depth){bounded_add(capture_history[move_slot(m)],std::max(1,depth*depth*2));} int capture_pressure(Position&p){Key k=p.search_key();auto it=pressure_cache.find(k);if(it!=pressure_cache.end())return it->second;int pressure=0;for(const auto&m:generate_tactical_moves_info(p))if(m.capture_swing>0&&++pressure>=4)break;if(pressure_cache.size()>50000)pressure_cache.clear();pressure_cache.emplace(k,std::uint8_t(pressure));return pressure;} int capture_pressure_for(const Position&p,Color side){Position copy=p;copy.set_side_to_move(side);return capture_pressure(copy);} };
-Search::Search(TranspositionTable&tt):tt_(tt),history_(HistoryMoveSlots,0),capture_history_(HistoryMoveSlots,0){} void Search::clear_memory(){std::fill(history_.begin(),history_.end(),0);std::fill(capture_history_.begin(),capture_history_.end(),0);countermoves_.clear();continuation_.clear();followup_.clear();root_cache_.clear();root_depth_cache_.clear();}
-Value Search::quiescence(Position&p,Value alpha,Value beta,int ply,Context&c){if(p.remaining_board_plies()==0)return evaluate(p);++c.nodes;c.seldepth=std::max(c.seldepth,ply);if(ply>=MaxPly||c.should_stop())return evaluate(p);if(p.remaining_board_plies()==1){const auto moves=generate_search_moves_info(p);if(moves.empty())return evaluate(p);for(const auto&cur:moves){if(c.should_stop())return alpha;UndoState u;SearchAccess::apply(p,cur.move,cur.final_orientation,cur.captured,cur.has_capture,cur.reset,u);Value score=-evaluate(p);p.undo_move(u);++c.nodes;c.seldepth=std::max(c.seldepth,ply+1);if(score>=beta)return beta;alpha=std::max(alpha,score);}return alpha;}Value stand=evaluate(p);if(stand>=beta)return beta;if(stand>alpha)alpha=stand;auto info=generate_tactical_moves_info(p);std::vector<OrderedMove>ordered;ordered.reserve(info.size());for(const auto&e:info){if(e.capture_swing<0&&!e.reset)continue;ordered.push_back({e.move,e.capture_swing*100000+c.capture_history_score(e.move),e.capture_swing,e.final_orientation,e.captured,e.has_capture,e.reset});}std::stable_sort(ordered.begin(),ordered.end(),[](const auto&a,const auto&b){return a.score>b.score;});for(const auto&cur:ordered){UndoState u;SearchAccess::apply(p,cur.move,cur.final_orientation,cur.captured,cur.has_capture,cur.reset,u);Value score=-quiescence(p,-beta,-alpha,ply+1,c);p.undo_move(u);if(c.stopped)return alpha;if(score>=beta){c.record_tactical_cutoff(cur.move,1);return beta;}if(score>alpha)alpha=score;}return alpha;}
-Value Search::negamax(Position&p,Depth depth,Value alpha,Value beta,int ply,Context&c,bool pv_node,const Move*prev,const Move*prev2,int extensions_used){if(p.remaining_board_plies()==0||ply>=MaxPly)return evaluate(p);if(depth<=0)return quiescence(p,alpha,beta,ply,c);++c.nodes;c.seldepth=std::max(c.seldepth,ply);if(c.should_stop())return evaluate(p);const Value original_alpha=alpha,original_beta=beta,static_eval=evaluate(p);if(!pv_node&&depth<=4){if(static_eval-(60+30*depth)>=beta)return static_eval;if(depth==1&&static_eval+70<=alpha)return quiescence(p,alpha,beta,ply,c);}Key key=p.search_key();const TTEntry*entry=tt_.probe(key);Move tt_move{};bool has_tt=entry&&entry->has_move;if(has_tt)tt_move=entry->best_move;if(entry&&entry->depth>=depth&&!pv_node){if(entry->bound==Bound::Exact)return entry->value;if(entry->bound==Bound::Lower&&entry->value>=beta)return entry->value;if(entry->bound==Bound::Upper&&entry->value<=alpha)return entry->value;}Color mover=p.side_to_move();Move best{};bool has_best=false;int move_index=0;std::vector<Move>quiets;quiets.reserve(20);bool searched_tt=false;if(has_tt&&p.is_legal_path(tt_move)){int own=p.captures(mover),opp=p.captures(opposite(mover));UndoState u;p.do_move(tt_move,u);int swing=(p.captures(mover)-own)-(p.captures(opposite(mover))-opp);bool extend=swing!=0&&extensions_used<MaxSelectiveExtensions;Value score=-negamax(p,depth-1+(extend?1:0),-beta,-alpha,ply+1,c,pv_node,&tt_move,prev,extensions_used+(extend?1:0));p.undo_move(u);searched_tt=true;move_index=1;if(c.stopped)return alpha;if(swing==0)quiets.push_back(tt_move);if(score>alpha){alpha=score;best=tt_move;has_best=true;}if(alpha>=beta){if(swing==0)c.record_quiet_cutoff(tt_move,depth,ply,prev,prev2,quiets);else c.record_tactical_cutoff(tt_move,depth);tt_.store(key,depth,alpha,Bound::Lower,&tt_move);return alpha;}}
-const auto info=generate_search_moves_info(p);if(info.empty()){if(has_best){tt_.store(key,depth,alpha,Bound::Exact,&best);return alpha;}return evaluate(p);}int own_pressure=0;for(const auto&e:info)if(e.capture_swing>0&&++own_pressure>=4)break;int opponent_pressure=-1;std::vector<OrderedMove>ordered;ordered.reserve(info.size());for(const auto&e:info){const Move&m=e.move;if(searched_tt&&m==tt_move)continue;int score=c.history_score(m)+c.continuation_score(prev,prev2,m);if(c.is_countermove(prev,m))score+=CountermoveBonus;if(e.capture_swing>0)score+=500000+e.capture_swing*10000+c.capture_history_score(m);else if(e.capture_swing<0)score+=-250000+c.capture_history_score(m);if(ply<MaxPly&&is_killer(m,c.killers[ply],0))score+=200000;else if(ply<MaxPly&&is_killer(m,c.killers[ply],1))score+=150000;ordered.push_back({m,score,e.capture_swing,e.final_orientation,e.captured,e.has_capture,e.reset});}std::sort(ordered.begin(),ordered.end(),[](const auto&a,const auto&b){return a.score>b.score;});for(const auto&cur:ordered){UndoState u;SearchAccess::apply(p,cur.move,cur.final_orientation,cur.captured,cur.has_capture,cur.reset,u);bool extend=cur.capture_swing!=0&&extensions_used<MaxSelectiveExtensions;int next_ext=extensions_used+(extend?1:0);Depth full=depth-1+(extend?1:0);Value score;if(move_index==0){score=-negamax(p,full,-beta,-alpha,ply+1,c,pv_node,&cur.move,prev,next_ext);}else{int hist=c.history_score(cur.move)+c.continuation_score(prev,prev2,cur.move);bool known=c.is_countermove(prev,cur.move)||(ply<MaxPly&&(is_killer(cur.move,c.killers[ply],0)||is_killer(cur.move,c.killers[ply],1)))||hist>4*depth*depth;bool reducible=!pv_node&&cur.capture_swing==0&&depth>=4&&move_index>=4&&!known;int reduction=1;if(reducible){if(opponent_pressure<0)opponent_pressure=c.capture_pressure_for(p,opposite(mover));int opp_after=opponent_pressure>0?c.capture_pressure(p):0;int own_after=own_pressure<4?c.capture_pressure_for(p,mover):own_pressure;bool defensive=opponent_pressure>0&&opp_after<opponent_pressure;bool threat=own_after>own_pressure;if(defensive||threat)reducible=false;if(reducible){Value child_static=-evaluate(p);bool improving=child_static>=static_eval+8;if(!improving&&cur.move.item==Item::None&&depth>=7&&move_index>=10&&hist<=0)reduction=2;}}if(reducible){Depth rd=std::max<Depth>(0,full-reduction);score=-negamax(p,rd,-alpha-1,-alpha,ply+1,c,false,&cur.move,prev,next_ext);if(score>alpha)score=-negamax(p,full,-alpha-1,-alpha,ply+1,c,false,&cur.move,prev,next_ext);}else score=-negamax(p,full,-alpha-1,-alpha,ply+1,c,false,&cur.move,prev,next_ext);if(score>alpha&&score<beta)score=-negamax(p,full,-beta,-alpha,ply+1,c,pv_node,&cur.move,prev,next_ext);}p.undo_move(u);++move_index;if(c.stopped)return alpha;if(cur.capture_swing==0)quiets.push_back(cur.move);if(score>alpha){alpha=score;best=cur.move;has_best=true;}if(alpha>=beta){if(cur.capture_swing==0)c.record_quiet_cutoff(cur.move,depth,ply,prev,prev2,quiets);else c.record_tactical_cutoff(cur.move,depth);break;}}
-Bound bound=Bound::Exact;if(alpha<=original_alpha)bound=Bound::Upper;else if(alpha>=original_beta)bound=Bound::Lower;tt_.store(key,depth,alpha,bound,has_best?&best:nullptr);return alpha;}
-SearchResult Search::run(Position root,const SearchLimits&limits){tt_.new_search();Context c(*this);c.limits=limits;c.limits.multipv=std::clamp(c.limits.multipv,1,8);c.start=std::chrono::steady_clock::now();c.pressure_cache.reserve(8192);SearchResult result;if(root.remaining_board_plies()==0){result.value=evaluate(root);return result;}const auto root_info=generate_search_moves_info(root);if(root_info.empty())return result;std::vector<Move>root_moves;root_moves.reserve(root_info.size());std::unordered_map<Move,int,MoveHash>root_swing;root_swing.reserve(root_info.size()*2);std::unordered_map<Move,Orientation,MoveHash>root_orientation;std::unordered_map<Move,PieceId,MoveHash>root_captured;std::unordered_map<Move,unsigned,MoveHash>root_flags;root_orientation.reserve(root_info.size()*2);root_captured.reserve(root_info.size()*2);root_flags.reserve(root_info.size()*2);for(const auto&e:root_info){root_moves.push_back(e.move);root_swing.emplace(e.move,e.capture_swing);root_orientation.emplace(e.move,e.final_orientation);root_captured.emplace(e.move,e.captured);root_flags.emplace(e.move,(e.has_capture?1u:0u)|(e.reset?2u:0u));}Key root_key=root.search_key();std::vector<RootLine>prior;if(auto it=root_cache_.find(root_key);it!=root_cache_.end())prior=it->second;Depth cached_depth=0;if(auto it=root_depth_cache_.find(root_key);it!=root_depth_cache_.end())cached_depth=it->second;std::unordered_map<Move,Value,MoveHash>prior_value;auto rebuild=[&]{prior_value.clear();prior_value.reserve(prior.size()*2+1);for(const auto&line:prior)prior_value[line.move]=line.value;};rebuild();Move previous_best=root_moves.front();Value previous_value=0;if(!prior.empty()){auto legal=std::find_if(prior.begin(),prior.end(),[&](const RootLine&line){return std::find(root_moves.begin(),root_moves.end(),line.move)!=root_moves.end();});if(legal!=prior.end()){previous_best=legal->move;previous_value=legal->value;}}result.has_move=true;result.best_move=previous_best;result.value=evaluate(root);result.pv={previous_best};int wanted=std::min<int>(c.limits.multipv,root_moves.size());if(int(prior.size())<wanted)cached_depth=0;if(limits.movetime.count()>0&&!prior.empty()&&cached_depth>0){result.has_move=true;result.best_move=previous_best;result.value=previous_value;result.depth=cached_depth;result.lines.assign(prior.begin(),prior.begin()+wanted);result.pv=result.lines.front().pv;}
-auto build_pv=[&](const Move&first,Depth depth){std::vector<Move>pv;Position p=root;Move m=first;int max=std::min(MaxPly,depth+MaxSelectiveExtensions+2);for(int ply=0;ply<max&&m.path_length;++ply){if(!p.is_legal_path(m))break;pv.push_back(m);UndoState u;p.do_move(m,u);const TTEntry*entry=tt_.probe(p.search_key());m=entry&&entry->has_move?entry->best_move:Move{};}return pv;};struct RootPass{Move best{};Value value=-Infinity;std::vector<RootLine>scores;};auto search_root=[&](Depth depth,Value alpha,Value beta,const std::vector<Move>&excluded,const Move&preferred,const std::vector<Move>*candidate_pool=nullptr){const auto&roots=candidate_pool?*candidate_pool:root_moves;std::vector<OrderedMove>ordered;ordered.reserve(roots.size());for(const auto&m:roots){if(is_excluded(m,excluded))continue;int swing=root_swing[m];int score=c.history_score(m);if(m==preferred)score+=1200000;if(auto it=prior_value.find(m);it!=prior_value.end())score+=1000*it->second;if(swing>0)score+=500000+swing*10000+c.capture_history_score(m);else if(swing<0)score+=-250000+c.capture_history_score(m);unsigned flags=root_flags.at(m);ordered.push_back({m,score,swing,root_orientation.at(m),root_captured.at(m),(flags&1u)!=0,(flags&2u)!=0});}std::stable_sort(ordered.begin(),ordered.end(),[](const auto&a,const auto&b){return a.score>b.score;});RootPass pass;if(ordered.empty())return pass;pass.best=ordered.front().move;int move_index=0;Value current_alpha=alpha;std::array<int,4>family_seen{};for(const auto&cur:ordered){int family=root_action_family(cur.move);int family_index=family_seen[std::size_t(family)]++;UndoState u;SearchAccess::apply(root,cur.move,cur.final_orientation,cur.captured,cur.has_capture,cur.reset,u);bool extend=cur.capture_swing!=0;Depth child=depth-1+(extend?1:0);int ext=extend?1:0;Value score;if(move_index==0)score=-negamax(root,child,-beta,-current_alpha,1,c,true,&cur.move,nullptr,ext);else{Value old=-Infinity;if(auto it=prior_value.find(cur.move);it!=prior_value.end())old=it->second;int quota=family==0?28:20;bool ranked_late=old>-Infinity&&old+12<previous_value;bool reduce=c.limits.multipv==1&&depth>=3&&cur.capture_swing==0&&family_index>=quota&&(ranked_late||move_index>=56);if(reduce){Depth rd=std::max<Depth>(0,child-1);score=-negamax(root,rd,-current_alpha-1,-current_alpha,1,c,false,&cur.move,nullptr,ext);if(score>current_alpha)score=-negamax(root,child,-current_alpha-1,-current_alpha,1,c,false,&cur.move,nullptr,ext);}else score=-negamax(root,child,-current_alpha-1,-current_alpha,1,c,false,&cur.move,nullptr,ext);if(score>current_alpha&&score<beta)score=-negamax(root,child,-beta,-current_alpha,1,c,true,&cur.move,nullptr,ext);}root.undo_move(u);++move_index;if(c.stopped)return pass;pass.scores.push_back({cur.move,score,{}});if(score>pass.value){pass.value=score;pass.best=cur.move;}if(score>current_alpha)current_alpha=score;if(current_alpha>=beta)break;}return pass;};
-Depth start_depth=(limits.movetime.count()>0&&cached_depth>0&&!prior.empty())?cached_depth:1;for(Depth depth=start_depth;depth<=std::max(1,limits.depth);++depth){Value alpha=-Infinity,beta=Infinity,window=AspirationWindow;if(depth>=4&&result.has_move){alpha=std::max(-Infinity,previous_value-window);beta=std::min(Infinity,previous_value+window);}RootPass pass;while(true){pass=search_root(depth,alpha,beta,{},previous_best);if(c.stopped)break;if(pass.value<=alpha&&alpha>-Infinity){window*=2;alpha=std::max(-Infinity,previous_value-window);beta=std::min(Infinity,previous_value+window);continue;}if(pass.value>=beta&&beta<Infinity){window*=2;alpha=std::max(-Infinity,previous_value-window);beta=std::min(Infinity,previous_value+window);continue;}break;}if(c.stopped)break;std::vector<RootLine>completed{{pass.best,pass.value,build_pv(pass.best,depth)}};std::vector<Move>excluded{pass.best};auto ordering=std::move(pass.scores);std::vector<Move>secondary_pool;{constexpr std::size_t SecondaryRootLimit=24;auto ranked=ordering;std::stable_sort(ranked.begin(),ranked.end(),[](const auto&a,const auto&b){return a.value>b.value;});Value cutoff=ranked.empty()?-Infinity:ranked[std::min<std::size_t>(SecondaryRootLimit,ranked.size())-1].value;secondary_pool.reserve(ranked.size());for(const auto&line:ranked)if(line.value>=cutoff)secondary_pool.push_back(line.move);for(const auto&line:result.lines)if(std::find(secondary_pool.begin(),secondary_pool.end(),line.move)==secondary_pool.end())secondary_pool.push_back(line.move);}for(int rank=1;rank<wanted;++rank){Move preferred=rank<int(result.lines.size())?result.lines[rank].move:Move{};auto next=search_root(depth,-Infinity,Infinity,excluded,preferred,&secondary_pool);if(c.stopped||next.best.path_length==0)break;completed.push_back({next.best,next.value,build_pv(next.best,depth)});excluded.push_back(next.best);}if(c.stopped||int(completed.size())!=wanted)break;std::stable_sort(completed.begin(),completed.end(),[](const auto&a,const auto&b){return a.value>b.value;});previous_best=completed.front().move;previous_value=completed.front().value;prior=std::move(ordering);std::stable_sort(prior.begin(),prior.end(),[](const auto&a,const auto&b){return a.value>b.value;});rebuild();result.has_move=true;result.best_move=previous_best;result.value=previous_value;result.depth=depth;result.lines=std::move(completed);result.pv=result.lines.front().pv;root_cache_[root_key]=result.lines;root_depth_cache_[root_key]=depth;if(root.remaining_board_plies()>0&&depth>=root.remaining_board_plies())break;}
-if(root_cache_.size()>256){root_cache_.clear();root_depth_cache_.clear();}result.nodes=c.nodes;result.seldepth=c.seldepth;result.elapsed=std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now()-c.start);return result;}
-}
+
+} // namespace rpsc

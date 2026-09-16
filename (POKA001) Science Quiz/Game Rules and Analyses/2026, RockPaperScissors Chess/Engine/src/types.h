@@ -1,42 +1,78 @@
-#ifndef RPSC_TYPES_H_INCLUDED
-#define RPSC_TYPES_H_INCLUDED
-
+#pragma once
+#include <array>
+#include <chrono>
 #include <cstdint>
+#include <optional>
+#include <string>
+#include <vector>
 
 namespace rpsc {
-using Key = std::uint64_t;
-using Value = int;
-using Depth = int;
-using Square = std::int8_t;
-using Orientation = std::uint8_t;
 
-constexpr Square NoSquare = -1;
-constexpr Value ScoreUnit = 100;
-constexpr Value CaptureValue = 200;
-constexpr Value Infinity = 1000000;
-constexpr int BoardSize = 8;
-constexpr int PieceCount = 8;
-constexpr int MaxMoveSquares = 7;
+enum class Side : uint8_t { White = 0, Black = 1 };
+enum class Gesture : uint8_t { Scissors = 0, Rock = 1, Paper = 2 };
+enum class Dir : uint8_t { N = 0, S = 1, E = 2, W = 3 };
+enum class Item : uint8_t { None = 0, Push, RoN, RoS, RoE, RoW, RoL, RoR, StepShort, StepLong };
 
-enum class Color : std::uint8_t { White = 0, Black = 1 };
-enum class Gesture : std::uint8_t { Scissors = 0, Rock = 1, Paper = 2 };
-enum class Direction : std::uint8_t { North = 0, South = 1, East = 2, West = 3 };
-enum class PieceId : std::uint8_t { W1, W2, W3, W4, B1, B2, B3, B4 };
-enum class Item : std::uint8_t { None = 0, Push, RotateNorth, RotateSouth, RotateEast, RotateWest, RotateLeft, RotateRight, StepShort, StepLong };
-enum class Bound : std::uint8_t { None, Upper, Lower, Exact };
-constexpr Color opposite(Color c) { return c == Color::White ? Color::Black : Color::White; }
-constexpr int color_index(Color c) { return static_cast<int>(c); }
-constexpr int piece_index(PieceId p) { return static_cast<int>(p); }
-constexpr Color piece_color(PieceId p) { return piece_index(p) < 4 ? Color::White : Color::Black; }
-constexpr int file_of(Square s) { return static_cast<int>(s) & 7; }
-constexpr int rank_of(Square s) { return static_cast<int>(s) >> 3; }
-constexpr Square make_square(int f, int r) { return static_cast<Square>(r * 8 + f); }
-constexpr bool valid_square(int f, int r) { return f >= 0 && f < 8 && r >= 0 && r < 8; }
-constexpr int base_roll_length(Gesture g) { return g == Gesture::Scissors ? 3 : g == Gesture::Rock ? 4 : 5; }
-constexpr bool is_rotation(Item item) { return item == Item::RotateNorth || item == Item::RotateSouth || item == Item::RotateEast || item == Item::RotateWest || item == Item::RotateLeft || item == Item::RotateRight; }
-constexpr bool is_step(Item item) { return item == Item::StepShort || item == Item::StepLong; }
-constexpr int item_bucket(Item item) { if (item == Item::Push) return 0; if (is_rotation(item)) return 1; if (is_step(item)) return 2; return -1; }
-constexpr std::size_t item_action_index(Item item) { return static_cast<std::size_t>(item); }
-constexpr std::size_t ItemActionCount = 10;
-}
-#endif
+inline Side other(Side s) { return s == Side::White ? Side::Black : Side::White; }
+inline int side_index(Side s) { return s == Side::White ? 0 : 1; }
+
+struct Piece {
+  int id = 0;                // 0..3 White, 4..7 Black
+  bool alive = true;
+  int x = 0, y = 0;
+  int orientation = 0;       // exact 24-state cube orientation
+};
+
+struct Inventory {
+  int push = 0;
+  int rotation = 0;
+  int step = 0;
+};
+
+struct Move {
+  int piece = -1;
+  Item item = Item::None;
+  int push_x = -1, push_y = -1;
+  std::vector<Dir> dirs;
+  std::vector<std::pair<int,int>> path; // starts at pre-move square
+};
+
+struct ScoredMove {
+  Move move;
+  int tactical = 0; // capture-score delta from mover's perspective
+  bool reset = false;
+};
+
+struct Candidate {
+  Move move;
+  int value = 0;
+  int depth = 0;
+  std::vector<Move> pv;
+};
+
+struct SearchLimits {
+  int depth = 64;
+  int movetime_ms = 10000;
+  int multipv = 3;
+};
+
+struct SearchResult {
+  Move best;
+  bool has_best = false;
+  int value = 0;
+  int depth = 0;
+  int seldepth = 0;
+  uint64_t nodes = 0;
+  int elapsed_ms = 0;
+  std::vector<Candidate> candidates;
+};
+
+std::string side_name(Side s);
+std::string gesture_name(Gesture g);
+std::string dir_name(Dir d);
+std::string item_name(Item i);
+Dir opposite(Dir d);
+int base_distance(Gesture g);
+int fight(Gesture a, Gesture b); // +1 a wins, -1 b wins, 0 tie
+
+} // namespace rpsc

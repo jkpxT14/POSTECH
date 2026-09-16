@@ -1,24 +1,57 @@
 #include "orientation.h"
 #include <algorithm>
-#include <array>
+#include <map>
 #include <queue>
+#include <sstream>
 #include <stdexcept>
-#include <string>
-#include <unordered_map>
-#include <vector>
-namespace rpsc { namespace {
-struct Vec3 { int x,y,z; }; struct Face { char id; int copy; Gesture gesture; Vec3 normal,wrist; }; using Physical=std::array<Face,6>; enum class Op{N,S,E,W,CW,CCW};
-Vec3 transform(Vec3 v,Op op){switch(op){case Op::N:return{v.x,-v.z,v.y};case Op::S:return{v.x,v.z,-v.y};case Op::E:return{v.z,v.y,-v.x};case Op::W:return{-v.z,v.y,v.x};case Op::CW:return{v.y,-v.x,v.z};case Op::CCW:return{-v.y,v.x,v.z};}return v;}
-Physical transformed(const Physical&p,Op op){auto out=p;for(auto&f:out){f.normal=transform(f.normal,op);f.wrist=transform(f.wrist,op);}return out;}
-bool eq(Vec3 a,Vec3 b){return a.x==b.x&&a.y==b.y&&a.z==b.z;}
-std::string key(const Physical&p){auto q=p;std::sort(q.begin(),q.end(),[](const auto&a,const auto&b){return a.id==b.id?a.copy<b.copy:a.id<b.id;});std::string out;for(const auto&f:q){out+=f.id;out+=char('0'+f.copy);out+=':';out+=std::to_string(f.normal.x)+','+std::to_string(f.normal.y)+','+std::to_string(f.normal.z);out+='/';out+=std::to_string(f.wrist.x)+','+std::to_string(f.wrist.y)+','+std::to_string(f.wrist.z)+'|';}return out;}
-const Face& face_on(const Physical&p,Vec3 n){for(const auto&f:p)if(eq(f.normal,n))return f;throw std::logic_error("invalid cube orientation");}
-WristDirection wrist_dir(Vec3 w){if(eq(w,{0,1,0}))return WristDirection::North;if(eq(w,{0,-1,0}))return WristDirection::South;if(eq(w,{1,0,0}))return WristDirection::East;if(eq(w,{-1,0,0}))return WristDirection::West;throw std::logic_error("top wrist is not horizontal");}
-Op dir_op(Direction d){switch(d){case Direction::North:return Op::N;case Direction::South:return Op::S;case Direction::East:return Op::E;case Direction::West:return Op::W;}return Op::N;}
+
+namespace rpsc {
+namespace {
+Vec3 transform(Vec3 v, const std::string& op){
+  int x=v.x,y=v.y,z=v.z;
+  if(op=="N") return {x,-z,y}; if(op=="S") return {x,z,-y};
+  if(op=="E") return {z,y,-x}; if(op=="W") return {-z,y,x};
+  if(op=="CW") return {y,-x,z}; if(op=="CCW") return {-y,x,z};
+  throw std::logic_error("bad cube op");
 }
-const OrientationTable& OrientationTable::instance(){static const OrientationTable table;return table;}
-OrientationTable::OrientationTable(){const Physical base{{{'S',1,Gesture::Scissors,{0,0,1},{0,-1,0}},{'S',2,Gesture::Scissors,{0,0,-1},{0,-1,0}},{'R',1,Gesture::Rock,{0,1,0},{0,0,1}},{'R',2,Gesture::Rock,{0,-1,0},{0,0,-1}},{'P',1,Gesture::Paper,{-1,0,0},{0,-1,0}},{'P',2,Gesture::Paper,{1,0,0},{0,-1,0}}}};std::vector<Physical> all;std::unordered_map<std::string,Orientation> index;std::queue<Orientation> queue;all.push_back(base);index.emplace(key(base),Orientation(0));queue.push(Orientation(0));while(!queue.empty()){auto i=queue.front();queue.pop();for(Op op:{Op::N,Op::S,Op::E,Op::W}){auto next=transformed(all[i],op);auto k=key(next);if(!index.count(k)){auto j=Orientation(all.size());index.emplace(k,j);all.push_back(next);queue.push(j);}}}if(all.size()!=24)throw std::logic_error("cube must have 24 orientations");for(Orientation i=0;i<24;++i){for(Direction d:{Direction::North,Direction::South,Direction::East,Direction::West})roll_[i][int(d)]=index.at(key(transformed(all[i],dir_op(d))));rotate_right_[i]=index.at(key(transformed(all[i],Op::CW)));rotate_left_[i]=index.at(key(transformed(all[i],Op::CCW)));const auto&top=face_on(all[i],{0,0,1});top_[i]=top.gesture;wrist_[i]=wrist_dir(top.wrist);state_[i]={face_on(all[i],{0,0,1}).gesture,face_on(all[i],{0,1,0}).gesture,face_on(all[i],{1,0,0}).gesture};state_id_[i]=std::uint8_t(int(state_[i].ud)*9+int(state_[i].ns)*3+int(state_[i].ew));if(top.copy==1)canonical_[int(top_[i])][int(wrist_[i])]=i;}}
-Orientation OrientationTable::roll(Orientation o,Direction d)const{return roll_[o][int(d)];} Orientation OrientationTable::rotate_left(Orientation o)const{return rotate_left_[o];} Orientation OrientationTable::rotate_right(Orientation o)const{return rotate_right_[o];}
-Orientation OrientationTable::apply_rotation(Orientation o,Item item)const{switch(item){case Item::RotateNorth:return roll(o,Direction::North);case Item::RotateSouth:return roll(o,Direction::South);case Item::RotateEast:return roll(o,Direction::East);case Item::RotateWest:return roll(o,Direction::West);case Item::RotateLeft:return rotate_left(o);case Item::RotateRight:return rotate_right(o);default:return o;}}
-Gesture OrientationTable::top_gesture(Orientation o)const{return top_[o];} WristDirection OrientationTable::wrist_direction(Orientation o)const{return wrist_[o];} GestureState OrientationTable::gesture_state(Orientation o)const{return state_[o];} std::uint8_t OrientationTable::gesture_state_id(Orientation o)const{return state_id_[o];} Orientation OrientationTable::canonical(Gesture g,WristDirection w)const{return canonical_[int(g)][int(w)];}
+Cube transformed(const Cube& c,const std::string& op){ Cube n=c; for(auto& f:n){f.normal=transform(f.normal,op);f.wrist=transform(f.wrist,op);} return n; }
+std::string key(const Cube& c){
+  auto a=c; std::sort(a.begin(),a.end(),[](auto&A,auto&B){return A.id<B.id;}); std::ostringstream o;
+  for(auto&f:a)o<<f.id<<':'<<f.normal.x<<','<<f.normal.y<<','<<f.normal.z<<'/'<<f.wrist.x<<','<<f.wrist.y<<','<<f.wrist.z<<';'; return o.str();
 }
+Gesture gesture_on(const Cube& c,Vec3 n){ for(auto&f:c)if(f.normal==n)return f.gesture; throw std::logic_error("missing face"); }
+const Face& top_face(const Cube& c){ for(auto&f:c)if(f.normal==Vec3{0,0,1})return f; throw std::logic_error("missing top"); }
+std::string wrist_dir(Vec3 w){ if(w==Vec3{0,1,0})return"N";if(w==Vec3{0,-1,0})return"S";if(w==Vec3{1,0,0})return"E";if(w==Vec3{-1,0,0})return"W";if(w==Vec3{0,0,1})return"UP";return"DOWN"; }
+int gidx(Gesture g){return g==Gesture::Scissors?0:g==Gesture::Rock?1:2;}
+}
+
+const OrientationTable& OrientationTable::instance(){ static OrientationTable t; return t; }
+OrientationTable::OrientationTable(){
+  Cube base{{
+    {0,Gesture::Scissors,{0,0,1},{0,-1,0}}, {1,Gesture::Scissors,{0,0,-1},{0,-1,0}},
+    {2,Gesture::Rock,{0,1,0},{0,0,1}}, {3,Gesture::Rock,{0,-1,0},{0,0,-1}},
+    {4,Gesture::Paper,{-1,0,0},{0,-1,0}}, {5,Gesture::Paper,{1,0,0},{0,-1,0}}
+  }};
+  std::map<std::string,int> ids; std::queue<int> q; cubes_.push_back(base);ids[key(base)]=0;q.push(0);
+  const std::array<std::string,4> ops{"N","S","E","W"};
+  while(!q.empty()){
+    int i=q.front();q.pop(); for(auto&op:ops){Cube n=transformed(cubes_[i],op);auto k=key(n);if(!ids.count(k)){int j=(int)cubes_.size();ids[k]=j;cubes_.push_back(n);q.push(j);}}
+  }
+  if(cubes_.size()!=24)throw std::runtime_error("cube orientation generation failed");
+  for(int i=0;i<24;i++){
+    for(int d=0;d<4;d++){Cube n=transformed(cubes_[i],ops[d]);roll_[i][d]=ids.at(key(n));}
+    rot_l_[i]=ids.at(key(transformed(cubes_[i],"CCW"))); rot_r_[i]=ids.at(key(transformed(cubes_[i],"CW")));
+    top_[i]=top_face(cubes_[i]).gesture;
+    reduced_[i]=gesture_name(gesture_on(cubes_[i],{0,0,1}))+gesture_name(gesture_on(cubes_[i],{0,1,0}))+gesture_name(gesture_on(cubes_[i],{1,0,0}));
+  }
+  canonical_.fill(-1);
+  for(Gesture g:{Gesture::Scissors,Gesture::Rock,Gesture::Paper})for(int w=0;w<2;w++){
+    std::string wd=w==0?"S":"N"; int best=-1; for(int i=0;i<24;i++){auto&t=top_face(cubes_[i]);if(t.gesture==g&&wrist_dir(t.wrist)==wd){if(best<0||t.id==gidx(g)*2)best=i;}}
+    canonical_[gidx(g)*2+w]=best;
+  }
+}
+int OrientationTable::rotate(int o,Item item) const{
+  switch(item){case Item::RoN:return roll_[o][0];case Item::RoS:return roll_[o][1];case Item::RoE:return roll_[o][2];case Item::RoW:return roll_[o][3];case Item::RoL:return rot_l_[o];case Item::RoR:return rot_r_[o];default:return o;}
+}
+int OrientationTable::canonical(Gesture g,bool white) const{return canonical_[gidx(g)*2+(white?0:1)];}
+} // namespace rpsc

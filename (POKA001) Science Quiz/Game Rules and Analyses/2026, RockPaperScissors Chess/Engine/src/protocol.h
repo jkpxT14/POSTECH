@@ -1,4 +1,2 @@
-#ifndef RPSC_PROTOCOL_H_INCLUDED
-#define RPSC_PROTOCOL_H_INCLUDED
+#pragma once
 namespace rpsc { int run_protocol(); }
-#endif
