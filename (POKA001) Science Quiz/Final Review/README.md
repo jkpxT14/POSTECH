@@ -2,6 +2,8 @@
 
 2026 KAIST–POSTECH Science War 과학퀴즈 수학 파트를 위한 **최종 회독용 문서**입니다.
 
+Version: **v2.3** · Edition date: **2026-09-17**
+
 ## 목적
 
 - 포카전 전날부터 경기 직전까지 반복해서 읽을 수 있는 분량과 밀도를 목표로 합니다.
@@ -35,3 +37,9 @@ latexmk -xelatex FinalReview.tex
 ```
 
 최종 PDF는 렌더링·전페이지 시각 검토와 PDF preflight를 거쳤습니다.
+
+## Typography
+
+- 본교재와 동일하게 영문 본문은 `Latin Modern Roman`을 사용합니다.
+- 한글 본문은 TeX Live에 포함된 `UnBatang`을 사용해 운영체제의 시스템 폰트 설치 여부에 의존하지 않습니다.
+- 따라서 Windows TeX Live 2026에서도 별도 폰트 설치 없이 XeLaTeX 빌드가 가능합니다.

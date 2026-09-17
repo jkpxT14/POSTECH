@@ -1,4 +1,4 @@
-# Final Review — Final hybrid rebuild
+# v2.3 - Final typography and handbook sync
 
 Edition date: 2026-09-17
 
@@ -48,3 +48,16 @@ Edition date: 2026-09-17
 - LaTeX warning / overfull / underfull / missing-character 점검
 - 43쪽 전체 PDF 렌더링 후 시각 검토
 - PDF preflight 통과
+
+
+## v2.3 typography / design pass
+
+- 43쪽 hybrid Final의 본문 내용은 유지하고 typography와 문서 디자인을 본교재에 다시 맞췄다.
+- 영문 serif/sans/mono를 본교재와 동일한 Latin Modern 계열로 복원했다.
+- 한글은 TeX Live bundled `UnBatang` / `UnDotum`을 사용해 시스템 폰트 의존성을 제거했다.
+- theorem 계열은 본교재처럼 본문을 italic, Definition/Formula/Fact/Algorithm 계열은 upright로 구분했다.
+- 주요 theorem-like heading은 `Theorem. Title` 뒤 줄바꿈을 유지하고, Remark/Strategy/Tactic만 같은 줄에 두었다.
+- Chapter heading의 불필요한 장식 rule을 제거하고 본교재의 `Chapter N` + title hierarchy에 더 가깝게 정리했다.
+- running header의 rule을 제거해 본문보다 header가 눈에 띄지 않도록 했다.
+- 표지 metadata는 `Second Edition · 2026년 9월 17일`로 정리했다.
+- 내용 파일(`MathematicalConcepts.tex`, `FactstoMemorize.tex`, `Mathematicsin2026.tex`)은 직전 43쪽 Final을 그대로 보존했다.
