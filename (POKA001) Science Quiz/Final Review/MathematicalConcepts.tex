@@ -225,6 +225,33 @@ B(p,q)=\int_0^1x^{p-1}(1-x)^{q-1}\,\dd x,
 형태가 보이면 먼저 $f(0)$와 $f(\infty)$를 확인한다.
 \end{formula}
 
+\begin{formula}[Arctangent Telescoping]
+주값 $\arctan\in(-\pi/2,\pi/2)$에서 $1+uv>0$이면
+\[
+\arctan u-\arctan v
+=\arctan\!\left(\frac{u-v}{1+uv}\right).
+\]
+특히 $a,x>0$일 때
+\[
+\arctan\!\left(\frac{a}{x(x+1)+a^2}\right)
+=\arctan\!\left(\frac ax\right)-\arctan\!\left(\frac a{x+1}\right),
+\]
+이므로 연속한 $x$에 대해 합하면 망원합이 된다.
+\end{formula}
+
+\begin{formula}[Logarithmic Moments]
+$a>-1$, $m\in\Nzero$이면
+\[
+\boxed{\displaystyle\int_0^1x^a(\log x)^m\,\dd x
+=\frac{(-1)^m m!}{(a+1)^{m+1}}}.
+\]
+따라서 기하급수와 결합하면
+\[
+\int_0^1\frac{\log x}{1-x}\,\dd x=-\frac{\pi^2}{6}
+\]
+같은 적분을 즉시 급수로 바꿀 수 있다.
+\end{formula}
+
 \finalheading{적분에서 먼저 확인할 것}
 \begin{enumerate}
   \item 구간과 함수의 대칭: 홀함수/짝함수, $x\mapsto a-x$, $x\mapsto1/x$.
@@ -410,9 +437,9 @@ $\mathbf F=\nabla f$이면 항상 $\nabla\times\mathbf F=\mathbf0$이다. 단일
 
 
 \begin{theorem}[Compactness in \(\R^n\)]
-Heine--Borel:
+Heine--Borel 정리:
 \[
-\boxed{K\subset\R^n\text{ compact}\iff K\text{ closed and bounded}.}
+\boxed{K\subset\R^n\text{ 콤팩트}\iff K\text{가 닫히고 유계}.}
 \]
 연속함수는 콤팩트 집합에서 최대ㆍ최소를 갖고, 콤팩트 집합의 연속상은 콤팩트이다.
 \end{theorem}
@@ -437,19 +464,27 @@ $\R$의 연결 부분집합은 정확히 구간이다. 연결집합의 연속상
 
 
 \begin{fact}[Irrational Rotation]
-Circle을 $\R/\Z$로 보고
+원을 $\R/\Z$로 보고
 \[
 x\longmapsto x+\alpha\pmod1
 \]
-를 반복한다. $\alpha\in\Q$이면 모든 orbit은 주기적이고, $\alpha\notin\Q$이면 각 orbit은 원 위에 조밀하다. ``유리수 $\leftrightarrow$ 주기적, 무리수 $\leftrightarrow$ 조밀''를 한 쌍으로 기억한다.
+를 반복한다. $\alpha\in\Q$이면 모든 궤도는 주기적이고, $\alpha\notin\Q$이면 각 궤도는 원 위에 조밀하다. ``유리수 $\leftrightarrow$ 주기적, 무리수 $\leftrightarrow$ 조밀''를 한 쌍으로 기억한다.
 \end{fact}
 
 \begin{fact}[Cantor Set]
 표준 Cantor set은 닫히고 유계이며 콤팩트ㆍ완전ㆍ내부가 조밀하지 않고 비가산이며 Lebesgue 측도 $0$이다. ``구간을 계속 제거했는데도 비가산''이라는 대비가 강한 quiz anchor이다.
 \end{fact}
 
+\begin{theorem}[Uniform Limit Theorem]
+연속함수열 $f_n$이 $f$에 \textbf{균등수렴}하면 $f$도 연속이다.
+\[
+\boxed{f_n\rightrightarrows f,\quad f_n\text{ continuous}\Longrightarrow f\text{ continuous}.}
+\]
+점별수렴만으로는 성립하지 않는다. 미분과 극한의 교환에는 더 강한 가정이 필요하다.
+\end{theorem}
+
 \begin{theorem}[Local Uniform Convergence: Useful Consequence]
-함수열에서 미분과 극한의 순서를 바꾸려면 균등수렴에 가까운 조건을 확인해야 한다. 과거 기출처럼 ``국소 균등수렴 + 도함수 제어''이 주어지면 점별수렴만 보고 판단하지 않는다.
+함수열에서 미분과 극한의 순서를 바꾸려면 균등수렴에 가까운 조건을 확인해야 한다. 기출처럼 ``국소 균등수렴 + 도함수 제어''가 주어지면 점별수렴만 보고 판단하지 않는다.
 \end{theorem}
 
 \finalsection{Complex Analysis}
@@ -465,6 +500,16 @@ z^n=1\Longrightarrow z=e^{2\pi i k/n}\ (k=0,\ldots,n-1).
 \Arg z\in(-\pi,\pi]
 \]
 로 둔다.
+\end{formula}
+
+\begin{formula}[Roots-of-Unity Product]
+$\omega_n=e^{2\pi i/n}$이면
+\[
+x^n-1=\prod_{k=0}^{n-1}(x-\omega_n^k),
+\qquad
+\boxed{\prod_{k=1}^{n-1}(1-\omega_n^k)=n}.
+\]
+두 번째 식은 $(x^n-1)/(x-1)$에 $x=1$을 대입하면 바로 얻는다.
 \end{formula}
 
 \begin{definition}[Holomorphic Function]
@@ -773,6 +818,20 @@ $\mathbf A=\mathbf u\mathbf v^{\mathsf T}$이면
 이항계수로 이루어진 Pascal형 행렬은 행렬식이 $1$로 떨어지는 경우가 많다. 먼저 행ㆍ열 점화와 삼각분해를 찾는다.
 \end{fact}
 
+\begin{formula}[Nilpotent Powers]
+$J_s(0)$가 크기 $s$인 nilpotent Jordan block이면
+\[
+\boxed{\rk(J_s(0)^k)=\max(s-k,0)}.
+\]
+일반 nilpotent matrix의 Jordan block 크기가 $s_1,\ldots,s_r$이면
+\[
+\rk(\mathbf N^k)=\sum_j\max(s_j-k,0),
+\qquad
+\dim\ker(\mathbf N^k)=\sum_j\min(k,s_j).
+\]
+특히 $\rk(\mathbf N)=n-1$이면 Jordan block이 하나이고 $\rk(\mathbf N^k)=\max(n-k,0)$이다.
+\end{formula}
+
 \begin{remark}
 Jordan 표준형은 대각화할 수 없는 행렬에 남는 구조를 기술한다. 파이널에서는 세부 계산보다 ``대각화가 안 되어도 Jordan 표준형이 있다'' 정도만 기억한다.
 \end{remark}
@@ -836,6 +895,15 @@ y'+p(x)y=q(x),\qquad
 \end{fact}
 
 
+\begin{formula}[Bessel Equation and Bessel Functions]
+원통ㆍ원형 대칭의 변수분리에서 자주 나타나는 Bessel 방정식은
+\[
+\boxed{x^2y''+xy'+(x^2-\nu^2)y=0}.
+\]
+대표해는 제1종ㆍ제2종 Bessel 함수 $J_\nu(x),Y_\nu(x)$이다. ``원통 대칭 $\leftrightarrow$ Bessel''을 함께 기억한다.
+\end{formula}
+
+
 \finalchapter{5}{Combinatorics and Discrete Mathematics}
 
 \begin{formula}[Basic Counting]
@@ -871,7 +939,7 @@ y'+p(x)y=q(x),\qquad
 |A\cup B\cup C|
 =\sum|A|-\sum|A\cap B|+|A\cap B\cap C|.
 \]
-``적어도 하나''를 직접 세기 복잡하면 여사건를 먼저 본다.
+``적어도 하나''를 직접 세기 복잡하면 여사건을 먼저 본다.
 \end{formula}
 
 \begin{theorem}[Pigeonhole Principle]
@@ -891,7 +959,7 @@ $(0,0)$에서 $(m,n)$까지 right/up만 허용하면 경로 수는
 \end{formula}
 
 \begin{formula}[Derangements]
-$D_n$을 아무 원소도 제자리에 있지 않는 permutations의 수라 하면
+$D_n$을 아무 원소도 제자리에 있지 않는 순열의 수라 하면
 \[
 D_n=n!\sum_{k=0}^{n}\frac{(-1)^k}{k!},
 \qquad
@@ -908,6 +976,19 @@ D_n=\left\lfloor\frac{n!}{e}+\frac12\right\rfloor.
 x_1+\cdots+x_m=n
 \]
 의 수는 $\binom{n+m-1}{m-1}$이고, 양의 정수해의 수는 $\binom{n-1}{m-1}$이다.
+\end{formula}
+
+
+\begin{formula}[Gap and Block Counting]
+$\{1,\ldots,n\}$에서 서로 이웃하지 않는 $k$개를 고르는 방법 수는
+\[
+\boxed{\binom{n-k+1}{k}}.
+\]
+서로 다른 $n$개를 일렬로 놓을 때 지정된 $r$개가 한 덩어리로 붙어 있어야 하고 내부 순서도 자유라면
+\[
+\boxed{r!(n-r+1)!}.
+\]
+간격을 하나씩 제거하거나, 붙어야 하는 대상을 하나의 block으로 본다.
 \end{formula}
 
 
@@ -932,6 +1013,17 @@ Dyck 경로, 올바른 괄호열, 이진트리 계수 등 여러 문제에 반�
 \boxed{R(3,3)=6}.
 \]
 6명이 있으면 서로 모두 아는 3명 또는 서로 모두 모르는 3명이 반드시 존재한다는 고전적 해석이 있다.
+\end{fact}
+
+
+\begin{fact}[Graph Complement]
+그래프 $G$의 여그래프를 $\overline G$라 하면
+\[
+\boxed{\omega(G)=\alpha(\overline G)},
+\qquad
+\boxed{\alpha(G)=\omega(\overline G)},
+\]
+여기서 $\omega$는 최대 clique 크기, $\alpha$는 최대 independent set 크기이다. clique와 independent set은 여그래프에서 서로 뒤바뀐다.
 \end{fact}
 
 \begin{theorem}[Burnside's Lemma]
@@ -1036,7 +1128,7 @@ V-E+F=2.
 \end{theorem}
 
 \finalheading{경우의 수 문제를 받으면}
-순서가 중요한가, 중복이 허용되는가, 여사건이 쉬운가, 포함배제이 필요한가, 격자경로로 바뀌는가, 대각선 제약가 Catalan/reflection으로 가는가를 순서대로 본다.
+순서가 중요한가, 중복이 허용되는가, 여사건이 쉬운가, 포함배제가 필요한가, 격자경로로 바뀌는가, 대각선 제약이 Catalan/reflection으로 가는가를 순서대로 본다.
 
 
 \finalchapter{6}{Probability and Statistics}
@@ -1081,9 +1173,20 @@ A\perp B
 \Exp\left[\sum_{i=1}^n a_iX_i\right]
 =\sum_{i=1}^n a_i\Exp[X_i].
 \]
-\boxed{\text{Independence는 필요 없다.}}
-개수의 기댓값을 묻는 문제에서는 indicator random variables를 먼저 고려한다.
+\boxed{\text{독립성은 필요 없다.}}
+개수의 기댓값을 묻는 문제에서는 지시확률변수 (indicator variable)를 먼저 고려한다.
 \end{theorem}
+
+\begin{formula}[Cycles in a Uniform Random Permutation]
+$S_n$에서 균등하게 순열을 하나 고르고, $X_r$를 길이 $r$인 순환의 개수라 하면
+\[
+\boxed{\Exp[X_r]=\frac1r}.
+\]
+따라서 전체 순환 수 $C_n$에 대해
+\[
+\boxed{\Exp[C_n]=H_n=1+\frac12+\cdots+\frac1n}.
+\]
+\end{formula}
 
 \begin{proposition}[Product of Independent Variables]
 독립인 적분가능 확률변수에 대해
@@ -1322,7 +1425,7 @@ Concurrent 조건:
 
 
 
-\begin{formula}[평면 and 점--평면 Distance]
+\begin{formula}[평면과 점--평면 거리]
 평면
 \[
 ax+by+cz=d
@@ -1334,7 +1437,7 @@ ax+by+cz=d
 구가 평면에 접하면 중심에서 평면까지의 거리가 반지름과 같다.
 \end{formula}
 
-\begin{formula}[구]
+\begin{formula}[구의 넓이와 부피]
 중심 $\mathbf c$와 반지름 $r$인 sphere:
 \[
 \|\mathbf x-\mathbf c\|^2=r^2.
@@ -1400,7 +1503,7 @@ A=I+\frac B2-1,
 \]
 따라서
 \[
-ax+by=c\text{가 정수해을 가짐}
+ax+by=c\text{가 정수해를 가짐}
 \iff
 \gcd(a,b)\mid c.
 \]
@@ -1442,7 +1545,7 @@ ax\equiv b\pmod n
 \[
 \boxed{\gcd(a,n)\mid b}.
 \]
-$d=\gcd(a,n)$가 $b$를 나누면 modulo $n$에서 정확히 $d$개의 해의 residue classes가 생긴다.
+$d=\gcd(a,n)$가 $b$를 나누면 법 $n$에서 정확히 $d$개의 해의 residue classes가 생긴다.
 \end{theorem}
 
 \begin{formula}[Modular Inverse]
@@ -1451,7 +1554,7 @@ a^{-1}\pmod n\text{ exists}
 \iff
 \gcd(a,n)=1.
 \]
-확장 Euclidean algorithm으로 역원를 실제로 구할 수 있다.
+확장 Euclidean algorithm으로 역원을 실제로 구할 수 있다.
 \end{formula}
 
 \begin{fact}[Small-Modulus Square Residues]
@@ -1466,7 +1569,7 @@ x^2\pmod8\in\{0,1,4\}.
 \finalheading{정수해의 존재성을 물으면}
 작은 modulus를 먼저 본다. 특히 $2,4,8,3,5,9$에서 square/cube residue가 강하게 제한되면 복잡한 factorization보다 훨씬 빨리 끝난다.
 
-\begin{theorem}[Fermat and Euler]
+\begin{theorem}[Fermat와 Euler]
 소수 $p$에서 $p\nmid a$이면
 \[
 a^{p-1}\equiv1\pmod p.
@@ -1488,13 +1591,13 @@ a^{\varphi(n)}\equiv1\pmod n.
 \end{formula}
 
 \begin{theorem}[Chinese Remainder Theorem]
-$m,n$이 coprime이면
+$m,n$이 서로소이면
 \[
 x\equiv a\pmod m,
 \qquad
 x\equiv b\pmod n
 \]
-은 modulo $mn$에서 유일한 solution class를 가진다. 서로소인 여러 moduli에도 동일하게 확장된다.
+은 modulo $mn$에서 유일한 해의 합동류를 가진다. 서로소인 여러 moduli에도 동일하게 확장된다.
 \end{theorem}
 
 \begin{theorem}[Wilson's Theorem]
@@ -1538,7 +1641,7 @@ $a>1$에 대해
 지수가 큰 gcd 문제에서 바로 쓴다.
 \end{formula}
 
-\begin{theorem}[Prime Number Theorem and Bertrand]
+\begin{theorem}[소수정리와 Bertrand 공준]
 \[
 \boxed{\pi(x)\sim\frac{x}{\log x}}.
 \]
@@ -1549,7 +1652,7 @@ $a>1$에 대해
 인 소수 $p$가 존재한다 (Bertrand의 공준).
 \end{theorem}
 
-\begin{theorem}[Two Squares and Perfect Numbers]
+\begin{theorem}[두 제곱수와 완전수]
 소수 $p$에 대해
 \[
 p=x^2+y^2\iff p=2\text{ or }p\equiv1\pmod4.
@@ -1576,7 +1679,17 @@ $A^m-B^n=1$인 $A,B,m,n>1$의 유일한 해는
 \]
 \end{fact}
 
-\begin{fact}[Famous Number-Theory Anchors]
+\begin{fact}[Riemann Zeta: Analytic-Continuation Anchor]
+Riemann zeta 함수의 해석적 연장을 쓰면
+\[
+\boxed{\zeta(-1)=-\frac1{12}},
+\qquad
+\zeta(-2m)=0\quad(m\in\N).
+\]
+중요: $1+2+3+\cdots$가 보통 의미로 $-1/12$에 수렴한다는 뜻은 아니다.
+\end{fact}
+
+\begin{fact}[정수론 주요 암기 단서]
 \begin{itemize}
   \item Goldbach 추측: 모든 짝수 $>2$는 두 소수의 합인가? 아직 미해결.
   \item 쌍둥이 소수 추측: 차이가 $2$인 소수쌍이 무한히 많은가? 아직 미해결.
@@ -1675,13 +1788,13 @@ i^2=j^2=k^2=ijk=-1,
 \[
 A^\circ=\interior A,\qquad \overline A=\closure A,\qquad \partial A=\overline A\setminus A^\circ.
 \]
-위상동형사상 (homeomorphism)은 연속인 전단사이고 역함수도 연속인 사상이다. 정의보다 아래의 불변량과 유명 정리를 우선 기억한다.
+위상동형사상 (위상동형)은 연속인 전단사이고 역함수도 연속인 사상이다. 정의보다 아래의 불변량과 유명 정리를 우선 기억한다.
 \end{formula}
 
 \begin{fact}[Compactness and Connectedness]
 콤팩트 집합의 연속상은 콤팩트이고, 연결집합의 연속상은 연결이다. 특히
 \[
-\boxed{K\subset\R^n\text{ compact}\iff K\text{ closed and bounded}.}
+\boxed{K\subset\R^n\text{ 콤팩트}\iff K\text{가 닫히고 유계}.}
 \]
 연결공간에서 $\Q$처럼 완전비연결인 공간으로 가는 연속함수는 강하게 제한된다.
 \end{fact}
@@ -1715,7 +1828,7 @@ A^\circ=\interior A,\qquad \overline A=\closure A,\qquad \partial A=\overline A\
 \end{theorem}
 
 \begin{fact}[M\"obius Strip and Klein Bottle]
-M\"obius strip은 비가향이며 경계가 하나 있다. Klein bottle은 닫힌 비가향곡면이고 $\R^3$에 자기교차 없이 매장할 수 없다.
+M\"obius strip은 비가향이며 경계가 하나 있다. Klein 병은 닫힌 비가향곡면이고 $\R^3$에 자기교차 없이 매장할 수 없다.
 \end{fact}
 
 \begin{fact}[Poincar\'e Conjecture]
@@ -1730,3 +1843,29 @@ Thurston의 기하화 이론은 $3$차원 다양체를 여덟 가지 모델 기�
 를 우선 기억한다.
 \end{fact}
 
+
+
+\finalchapter{11}{Miscellaneous Topics}
+
+\begin{definition}[Nash Equilibrium]
+전략게임에서 다른 사람의 전략을 고정했을 때 어느 한 사람도 혼자 전략을 바꾸어 자신의 보상을 높일 수 없는 전략조합을 \textbf{Nash 균형}이라 한다.
+\end{definition}
+
+\begin{algorithm}[2×2 영합게임]
+행 플레이어의 보상행렬이
+\[
+\mathbf M=\begin{pmatrix}a&b\\c&d\end{pmatrix},
+\qquad \Delta=a-b-c+d
+\]
+이고 내부 혼합균형이 존재하면
+\[
+\boxed{p=\frac{d-c}{\Delta}},\qquad
+\boxed{q=\frac{d-b}{\Delta}},\qquad
+\boxed{v=\frac{ad-bc}{\Delta}}.
+\]
+$p$는 첫째 행, $q$는 첫째 열을 고를 확률이고 $v$는 행 플레이어의 게임값이다. 공식보다 먼저 \textbf{순수 안장점 (saddle point)가 있는지} 확인하고, 혼합전략에서는 상대가 두 순수전략 사이에서 무차별하도록 확률을 정한다.
+\end{algorithm}
+
+
+
+\par\smallskip\noindent\textbf{Vieta jumping.} 양의 정수해 문제에서 한 변수를 근으로 보는 이차방정식을 만든 뒤 Viète 공식으로 다른 정수근을 구성한다. 더 작은 양의 해를 얻으면 최소해 가정과 모순이다. IMO형 정수론의 대표적인 무한강하 전략이다.

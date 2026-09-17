@@ -141,6 +141,7 @@
   \Needspace{10\baselineskip}%
   \setcounter{finalchapter}{#1}%
   \gdef\CurrentChapter{#1. #2}%
+  \markright{#1. #2}%
   \phantomsection
   \addcontentsline{toc}{section}{#1\space #2}%
   \pdfbookmark[1]{#1. #2}{chapter-#1}%
@@ -222,14 +223,14 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\textit{Final Review}}
-\fancyhead[R]{\small\textit{\CurrentChapter}}
+\fancyhead[R]{\small\textit{Mathematics for Science Quiz}}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.35pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{%
   \fancyhf{}
   \fancyhead[L]{\small\textit{Final Review}}
-  \fancyhead[R]{\small\textit{\CurrentChapter}}
+  \fancyhead[R]{\small\textit{Mathematics for Science Quiz}}
   \fancyfoot[C]{\small\thepage}
   \renewcommand{\headrulewidth}{0.35pt}
   \renewcommand{\footrulewidth}{0pt}%
@@ -246,7 +247,7 @@
   \vspace{0.20cm}%
   {\noindent\small 2026 \KAIST--\POSTECH{} Science War\par}%
   \vspace{0.34cm}%
-  {\noindent\small Second Edition \textperiodcentered{} 2026년 9월 15일\par}%
+  {\noindent\small Second Edition. 2026년 9월 15일\par}%
   \vspace{0.38cm}%
   {\noindent\normalsize Jungwoo Kim\par}%
   {\noindent\small Department of Mathematics, \POSTECH\par}%
