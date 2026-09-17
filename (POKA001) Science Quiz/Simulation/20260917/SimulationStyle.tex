@@ -1,0 +1,101 @@
+% SimulationStyle.tex
+% Standard academic Beamer style for the Science Quiz Simulation.
+% Based on the conventional Madrid Beamer layout used in the Seoul High School lecture deck.
+
+\usetheme{Madrid}
+\useinnertheme{rounded}
+\usefonttheme{professionalfonts}
+
+\usepackage{kotex}
+\usepackage[scaled=0.94]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[version=4]{mhchem}
+\usepackage{xcolor}
+
+\definecolor{POSTECHRed}{RGB}{200,16,46}
+\definecolor{POSTECHDark}{RGB}{25,25,25}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=POSTECHRed}
+\setbeamercolor{alerted text}{fg=POSTECHRed}
+\setbeamercolor{palette primary}{fg=white,bg=POSTECHRed}
+\setbeamercolor{palette secondary}{fg=white,bg=POSTECHDark}
+\setbeamercolor{palette tertiary}{fg=white,bg=POSTECHRed}
+\setbeamercolor{palette quaternary}{fg=white,bg=POSTECHDark}
+\setbeamercolor{frametitle}{fg=white,bg=POSTECHRed}
+\setbeamercolor{title}{fg=white,bg=POSTECHRed}
+\setbeamercolor{titlelike}{fg=white,bg=POSTECHRed}
+\setbeamercolor{block title}{fg=white,bg=POSTECHRed}
+\setbeamercolor{block body}{fg=black,bg=black!5}
+\setbeamercolor{item projected}{fg=white,bg=POSTECHRed}
+\setbeamercolor{subitem projected}{fg=white,bg=POSTECHRed}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setlength{\parskip}{0.22em}
+\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subbody}{size=\small}
+\setbeamerfont{block body}{size=\normalsize}
+
+% Minimal three-part footline, following the same academic Beamer convention.
+\makeatletter
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.36\paperwidth,ht=2.25ex,dp=1ex,leftskip=1.2em]{author in head/foot}%
+      \usebeamerfont{author in head/foot}20260917 Simulation
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.28\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}POSTECH
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.36\paperwidth,ht=2.25ex,dp=1ex,rightskip=1.2em plus1fil]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertframenumber{} / \inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+\makeatother
+
+\newenvironment{problemframe}[2]{%
+  \begin{frame}[t]{Problem #1 -- #2}%
+  \large
+}{%
+  \end{frame}%
+}
+
+\newenvironment{solutionframe}[2]{%
+  \begin{frame}[t]{Solution #1 -- #2}%
+  \normalsize
+}{%
+  \end{frame}%
+}
+
+\newcommand{\answerbox}[1]{%
+  \begin{block}{정답}
+    \centering
+    {\large\bfseries #1}
+  \end{block}
+  \vspace{0.2em}%
+}
+
+\newcommand{\solutionlabel}{%
+  \textbf{해설.}\hspace{0.35em}%
+}
+
+\newcommand{\sourceinfo}[2]{%
+  \par\vspace{0.35em}%
+  {\scriptsize\color{gray}출처: \href{#2}{#1}}%
+}
+
+\newenvironment{simchoices}{%
+  \begin{enumerate}
+    \setlength{\itemsep}{0.42em}%
+    \setlength{\parskip}{0pt}%
+}{%
+  \end{enumerate}%
+}
+
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\Q}{\mathbb{Q}}
