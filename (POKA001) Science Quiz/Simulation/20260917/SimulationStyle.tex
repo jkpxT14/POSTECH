@@ -39,18 +39,21 @@
 \setbeamerfont{itemize/enumerate subbody}{size=\small}
 \setbeamerfont{block body}{size=\normalsize}
 
-% Minimal three-part footline, following the same academic Beamer convention.
+% Four-part footline: document / author / institution / page.
 \makeatletter
 \setbeamertemplate{footline}{%
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[wd=.36\paperwidth,ht=2.25ex,dp=1ex,leftskip=1.2em]{author in head/foot}%
+    \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,leftskip=1.2em]{author in head/foot}%
       \usebeamerfont{author in head/foot}20260917 Simulation
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.28\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-      \usebeamerfont{title in head/foot}POSTECH
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}Jungwoo Kim
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.36\paperwidth,ht=2.25ex,dp=1ex,rightskip=1.2em plus1fil]{date in head/foot}%
+    \begin{beamercolorbox}[wd=.20\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}POSTECH
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,rightskip=1.2em plus1fil]{date in head/foot}%
       \usebeamerfont{date in head/foot}\insertframenumber{} / \inserttotalframenumber
     \end{beamercolorbox}%
   }%
@@ -75,18 +78,13 @@
 \newcommand{\answerbox}[1]{%
   \begin{block}{정답}
     \centering
-    {\large\bfseries #1}
+    {\large #1}
   \end{block}
   \vspace{0.2em}%
 }
 
 \newcommand{\solutionlabel}{%
-  \textbf{해설.}\hspace{0.35em}%
-}
-
-\newcommand{\sourceinfo}[2]{%
-  \par\vspace{0.35em}%
-  {\scriptsize\color{gray}출처: \href{#2}{#1}}%
+  해설.\hspace{0.35em}%
 }
 
 \newenvironment{simchoices}{%
@@ -97,5 +95,8 @@
   \end{enumerate}%
 }
 
+% Mathematical notation follows the project's MATH000 conventions.
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator{\tr}{tr}
