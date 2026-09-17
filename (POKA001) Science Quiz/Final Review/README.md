@@ -1,39 +1,37 @@
-# Final Review
+# Mathematics for Science Quiz — Final Review
 
-Mathematics for Science Quiz - 2026 KAIST-POSTECH Science War.
+2026 KAIST–POSTECH Science War 과학퀴즈 수학 파트를 위한 **최종 회독용 문서**입니다.
 
-Second Edition. September 15, 2026.
+## 목적
 
-## Purpose
+- 포카전 전날부터 경기 직전까지 반복해서 읽을 수 있는 분량과 밀도를 목표로 합니다.
+- 한 번의 완전 회독은 대략 **2–3시간**을 상정합니다.
+- 본교재 전체를 다시 읽는 문서가 아니라, 문제를 보았을 때 필요한 **공식·정리·first idea·암기 단서**를 빠르게 회수하는 문서입니다.
+- 지나치게 쉬운 기본 계산과 일회성 퍼즐은 줄이되, 실제 출제 가치가 있는 개념과 암기 정보는 충분히 보존합니다.
+- 특히 `Facts to Memorize`는 수학사의 흐름, 주요 수학자·저작·상·기관·일화·특수 식별 단서를 비교적 넉넉하게 수록합니다.
 
-A Korean-first, result-first competition-day review document designed for repeated reading and a complete 2-3 hour pass immediately before Science Quiz. It is not a miniature textbook: it keeps the definitions, formulas, theorems, exact values, historical facts, prizes, people, works, and current-mathematics anchors that are plausible quiz material, while removing routine basics, long proofs, overly local technicalities, and low-reuse problem-specific trivia.
+## 구조와 기준
 
-The final selection is based on the completed handbook and was audited against the mathematics questions in the attached rehearsal/simulation PPTX files, the dated 2026 Problem sets, and all 103 Past Problems. The audit is kernel-based: the document is meant to contain the reusable fact, formula, theorem, recognition cue, or first idea needed for a problem, not the problem statement or its full solution.
+- `Mathematics for Science Quiz, 2026 Science War Edition`의 Part / Chapter / Section 흐름을 따릅니다.
+- MATH000과 본교재의 표기·용어·수학적 convention을 따릅니다.
+- 본교재의 theorem-like 시각 문법을 반영하여 `Theorem. Title`, `Formula. Title`, `Fact. Title` 등의 heading 뒤에 본문을 줄바꿈하여 배치합니다.
+- 한국어 문서를 기본으로 하되, 표준 수학 용어·고유명사·원제는 식별에 유리할 때 영어를 병기합니다.
 
-## Baselines
+## 검토 기반
 
-- `(MATH000) Mathematical Language`: notation and mathematical-language constitution.
-- `Mathematics for Science Quiz`, 2026 Science War Edition, FINAL-r4, content cutoff September 15, 2026.
-- FINAL-r4 includes the problem-based study-material supplements identified from the PPTX / Problem-set / Past-Problem audit.
-- Current-mathematics claims remain bounded by September 15, 2026.
+- 본교재 FINAL-r4
+- PPTX 수학 36문항 전수 대조
+- Problem sets 9세트, 90문항 전수 대조
+- Past Problems 103문항 전수 대조
+- 2026-09-15 cutoff의 본교재 Part III 및 프로젝트 자료
+- 2026-09-17까지의 Final Review 관련 프로젝트 결정사항
 
-## Editorial policy
+## 빌드
 
-- Part / Chapter / Section structure follows the completed handbook; no decorative hierarchy is invented merely to subdivide the page.
-- Part I is result-first: immediately usable formulas, standard theorems, exact values, and short computational tools dominate.
-- Part II is chronology-first: years, lifetimes, prize years, works, historical events, firsts, refusals, unusual records, and other distinctive quiz anchors are emphasized.
-- The complete Fields Medal chronology and complete Abel Prize chronology are retained in compact form.
-- Standard Korean names are used where established; original-language or English names are retained when they improve identification or when no stable Korean form is preferable.
-- The body is Korean. English is used mainly for official names, canonical theorem/problem names, source-language book titles, and international recognition terms.
-
-## Notation
-
-Notation follows MATH000: bold lowercase vectors, bold uppercase matrices, upright differential, lowercase `span`, blackboard-bold probability/expectation, current geometric-distribution convention, and the current complex `Arg`/`Log` conventions.
-
-## Build
+XeLaTeX 기준입니다.
 
 ```bash
-latexmk -xelatex -interaction=nonstopmode -halt-on-error FinalReview.tex
+latexmk -xelatex FinalReview.tex
 ```
 
-XeLaTeX is required. The style prefers TeX Live's UnBatang/UnDotum and falls back to standard Windows Korean fonts. No font files are bundled.
+최종 PDF는 렌더링·전페이지 시각 검토와 PDF preflight를 거쳤습니다.

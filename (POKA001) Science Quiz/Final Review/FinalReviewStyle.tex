@@ -1,55 +1,37 @@
 % Final Review shared style
 % Mathematics for Science Quiz -- 2026 Science War
 
-\usepackage[a4paper,margin=1in,headheight=14pt,headsep=17pt]{geometry}
+\usepackage[a4paper,margin=1in,headheight=14pt,headsep=17pt,footskip=16mm]{geometry}
 \usepackage{fontspec}
 \usepackage{xetexko}
-% Korean-font policy: prefer the TeX Live bundled Un fonts so that the
-% document does not depend on Nanum/Noto fonts installed in the operating
-% system.  A standard Windows Korean-font fallback is kept for minimal TeX Live
-% installations that do not include unfonts-core.
-\IfFontExistsTF{UnBatang}{%
+\IfFontExistsTF{Noto Serif CJK KR}{%
+  \setmainhangulfont[BoldFont={Noto Serif CJK KR Bold},ItalicFont={Noto Serif CJK KR}]{Noto Serif CJK KR}%
+}{%
   \setmainhangulfont[ItalicFont={UnBatang}]{UnBatang}%
-}{%
-  \IfFontExistsTF{Batang}{%
-    \setmainhangulfont[ItalicFont={Batang}]{Batang}%
-  }{%
-    \IfFontExistsTF{Malgun Gothic}{%
-      \setmainhangulfont[ItalicFont={Malgun Gothic}]{Malgun Gothic}%
-    }{%
-      \PackageError{FinalReview}{No Korean main font found}{%
-        Install the TeX Live package `unfonts-core' or a standard Korean system font.}%
-    }%
-  }%
 }
-\IfFontExistsTF{UnDotum}{%
-  \setsanshangulfont{UnDotum}%
+\IfFontExistsTF{Noto Sans CJK KR}{\setsanshangulfont{Noto Sans CJK KR}}{\setsanshangulfont{UnDotum}}
+\IfFontExistsTF{Liberation Serif}{%
+  \setmainfont{Liberation Serif}%
 }{%
-  \IfFontExistsTF{Malgun Gothic}{%
-    \setsanshangulfont{Malgun Gothic}%
-  }{%
-    \setsanshangulfont{UnBatang}%
-  }%
+  \IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{}%
+}
+\IfFontExistsTF{Liberation Sans}{%
+  \setsansfont{Liberation Sans}%
+}{%
+  \IfFontExistsTF{Arial}{\setsansfont{Arial}}{}%
 }
 
 \usepackage{microtype}
 \microtypesetup{protrusion=false,expansion=false}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{array,booktabs,longtable,tabularx}
-\usepackage{enumitem}
-\usepackage{multicol}
-\usepackage{ragged2e}
-\usepackage{xcolor}
-\usepackage{fancyhdr}
-\usepackage{tocloft}
-\usepackage{needspace}
-\usepackage{etoolbox}
+\usepackage{enumitem,multicol,ragged2e,xcolor,fancyhdr,tocloft,needspace,etoolbox}
 \usepackage[unicode,hidelinks]{hyperref}
 
 \definecolor{POSTECHRed}{RGB}{166,25,85}
 \definecolor{KAISTBlue}{RGB}{0,65,145}
-\definecolor{SoftGray}{RGB}{95,95,95}
 \definecolor{RuleGray}{RGB}{155,155,155}
+\definecolor{SoftGray}{RGB}{95,95,95}
 \newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
 \DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
 \DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
@@ -61,7 +43,7 @@
   pdfcreator={XeLaTeX}
 }
 
-% Canonical notation used in the handbook / MATH000.
+% Canonical notation synchronized with MATH000 / the handbook.
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Nzero}{\mathbb{N}_0}
 \newcommand{\Z}{\mathbb{Z}}
@@ -69,10 +51,12 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
+\newcommand{\Hquat}{\mathbb{H}}
+\newcommand{\Pow}{\mathcal{P}}
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \newcommand{\Exp}{\mathbb{E}}
 \newcommand{\Prob}{\mathbb{P}}
-\newcommand{\Pow}{\mathcal{P}}
+\newcommand{\indicator}[1]{\mathbf{1}_{#1}}
 \newcommand{\ones}{\mathbf{1}}
 \DeclareMathOperator{\rk}{rk}
 \DeclareMathOperator{\tr}{tr}
@@ -80,8 +64,8 @@
 \DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\Null}{Null}
 \DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\spec}{spec}
 \DeclareMathOperator{\interior}{int}
-\DeclareMathOperator{\closure}{cl}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Log}{Log}
@@ -93,13 +77,6 @@
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
-\DeclareMathOperator{\adj}{adj}
-\DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\proj}{proj}
-\DeclareMathOperator{\Jac}{Jac}
-\DeclareMathOperator{\Hess}{Hess}
-\DeclareMathOperator{\spec}{spec}
-\DeclareMathOperator{\rad}{rad}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Bern}{Bern}
@@ -109,33 +86,32 @@
 \DeclareMathOperator{\Unif}{Unif}
 \DeclareMathOperator{\ExpDist}{Exp}
 \newcommand{\Normal}{\mathcal{N}}
-\newcommand{\indicator}[1]{\mathbf{1}_{#1}}
 
 \setlength{\parindent}{1.18em}
 \setlength{\parskip}{0pt}
 \setlength{\emergencystretch}{1.4em}
 \linespread{1.06}
-\setlist[itemize]{leftmargin=1.5em,itemsep=0.14em,topsep=0.3em,parsep=0pt,partopsep=0pt}
-\setlist[enumerate]{leftmargin=1.7em,itemsep=0.14em,topsep=0.3em,parsep=0pt,partopsep=0pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.12em,topsep=0.28em,parsep=0pt,partopsep=0pt}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0.12em,topsep=0.28em,parsep=0pt,partopsep=0pt}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \setlength{\LTpre}{0.35em}
 \setlength{\LTpost}{0.45em}
 
-% Lightweight document hierarchy: English structure, Korean body.
+% Handbook-derived hierarchy, compressed for the final document.
 \newcounter{finalchapter}
+\newcounter{finalsectionanchor}
 \newcommand{\CurrentChapter}{Final Review}
 \newcommand{\finalpart}[2]{%
-  \clearpage
-  \phantomsection
+  \clearpage\phantomsection
   \addcontentsline{toc}{part}{Part #1\space #2}%
   \pdfbookmark[0]{Part #1. #2}{part-#1}%
   \thispagestyle{plain}%
-  \vspace*{0.20cm}%
+  \vspace*{0.10cm}%
   {\noindent\fontsize{16.5}{20}\selectfont\bfseries Part #1\quad #2\par}%
   \vspace{0.34cm}%
-  \hrule height 0.42pt
-  \vspace{0.62cm}%
+  {\color{RuleGray}\hrule height 0.40pt}%
+  \vspace{0.58cm}%
 }
 \newcommand{\finalchapter}[2]{%
   \Needspace{10\baselineskip}%
@@ -145,18 +121,19 @@
   \phantomsection
   \addcontentsline{toc}{section}{#1\space #2}%
   \pdfbookmark[1]{#1. #2}{chapter-#1}%
-  \vspace{0.46em}%
-  {\noindent\fontsize{15}{18}\selectfont\bfseries #1\quad #2\par}%
-  \vspace{0.16em}%
+  \vspace{0.58em}%
+  {\noindent\fontsize{10.7}{13}\selectfont\bfseries Chapter #1\par}%
+  \vspace{0.02em}%
+  {\noindent\fontsize{15.2}{18.2}\selectfont\bfseries #2\par}%
+  \vspace{0.18em}%
   {\color{RuleGray}\hrule height 0.30pt}%
   \vspace{0.52em}%
 }
-\newcounter{finalsectionanchor}
 \newcommand{\finalsection}[1]{%
   \Needspace{6\baselineskip}%
   \stepcounter{finalsectionanchor}%
   \pdfbookmark[2]{#1}{section-\thefinalchapter-\arabic{finalsectionanchor}}%
-  \vspace{0.48em}%
+  \vspace{0.54em}%
   {\noindent\fontsize{12.4}{15}\selectfont\bfseries #1\par}%
   \vspace{0.14em}%
 }
@@ -166,11 +143,9 @@
   {\noindent\bfseries #1\par}%
   \vspace{0.06em}%
 }
-\newcommand{\memoryline}[1]{%
-  \par\smallskip\noindent\textit{#1}\par\smallskip
-}
 
-% Unnumbered theorem-like environments. Inclusion itself signals importance.
+% Theorem-like environments: same visual grammar as the handbook.
+% Main environments always break after "Theorem. Title" etc.
 \newtheoremstyle{finalplain}
   {4.8pt}{4.8pt}{}{}{\bfseries}{}{\newline}
   {\thmname{#1}\thmnote{. #3}}
@@ -178,7 +153,7 @@
   {4.8pt}{4.8pt}{}{}{\bfseries}{}{\newline}
   {\thmname{#1}\thmnote{. #3}}
 \newtheoremstyle{finalsameline}
-  {3.8pt}{3.8pt}{}{}{\bfseries}{.}{0.5em}
+  {3.8pt}{3.8pt}{}{}{\bfseries}{.}{0.50em}
   {\thmname{#1}\thmnote{. #3}}
 
 \theoremstyle{finaldefinition}
@@ -186,9 +161,11 @@
 \newtheorem*{formula}{Formula}
 \newtheorem*{fact}{Fact}
 \newtheorem*{algorithm}{Algorithm}
+\newtheorem*{openproblem}{Open Problem}
 \theoremstyle{finalplain}
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{proposition}{Proposition}
+\newtheorem*{lemma}{Lemma}
 \newtheorem*{corollary}{Corollary}
 \theoremstyle{finalsameline}
 \newtheorem*{remark}{Remark}
@@ -200,14 +177,16 @@
 \BeforeBeginEnvironment{formula}{\finalblockspace}
 \BeforeBeginEnvironment{fact}{\finalblockspace}
 \BeforeBeginEnvironment{algorithm}{\finalblockspace}
+\BeforeBeginEnvironment{openproblem}{\finalblockspace}
 \BeforeBeginEnvironment{theorem}{\finalblockspace}
 \BeforeBeginEnvironment{proposition}{\finalblockspace}
+\BeforeBeginEnvironment{lemma}{\finalblockspace}
 \BeforeBeginEnvironment{corollary}{\finalblockspace}
 \BeforeBeginEnvironment{remark}{\finalblockspace}
 \BeforeBeginEnvironment{strategy}{\finalblockspace}
 \BeforeBeginEnvironment{tactic}{\finalblockspace}
 
-% Contents: Parts + Chapters only. Section bookmarks remain available in the PDF sidebar.
+% Contents: Parts + Chapters only; Section bookmarks remain in the PDF sidebar.
 \setcounter{tocdepth}{1}
 \renewcommand{\contentsname}{}
 \setlength{\cftbeforepartskip}{0.45em}
@@ -219,7 +198,6 @@
 \setlength{\cftsecindent}{1.25em}
 \setlength{\cftsecnumwidth}{0pt}
 
-% Running header / footer.
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\textit{Final Review}}
@@ -232,8 +210,7 @@
   \fancyhead[L]{\small\textit{Final Review}}
   \fancyhead[R]{\small\textit{Mathematics for Science Quiz}}
   \fancyfoot[C]{\small\thepage}
-  \renewcommand{\headrulewidth}{0.35pt}
-  \renewcommand{\footrulewidth}{0pt}%
+  \renewcommand{\headrulewidth}{0.35pt}%
 }
 
 \newcommand{\FinalOpening}{%
@@ -247,7 +224,7 @@
   \vspace{0.20cm}%
   {\noindent\small 2026 \KAIST--\POSTECH{} Science War\par}%
   \vspace{0.34cm}%
-  {\noindent\small Second Edition. 2026년 9월 15일\par}%
+  {\noindent\small Second Edition. 2026년 9월 17일\par}%
   \vspace{0.38cm}%
   {\noindent\normalsize Jungwoo Kim\par}%
   {\noindent\small Department of Mathematics, \POSTECH\par}%
@@ -265,7 +242,8 @@
   \endgroup
   \vfill
   {\noindent\footnotesize\color{SoftGray}
-    \textit{Mathematics for Science Quiz}, 2026 Science War Edition (2026년 9월 15일 기준)을 바탕으로 작성.\par}
+    \textit{Mathematics for Science Quiz}, 2026 Science War Edition (2026년 9월 15일 기준)을 바탕으로 작성.\par
+    PPTX 36문항, Problem sets 90문항, Past Problems 103문항의 전수 점검에서 확인된 핵심 결과와 식별 단서를 반영.}
   \thispagestyle{empty}%
   \clearpage
   \pagestyle{fancy}%

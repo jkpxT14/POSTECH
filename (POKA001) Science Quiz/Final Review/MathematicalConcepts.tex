@@ -1,174 +1,114 @@
-% Source base: Mathematics for Science Quiz, 2026 Science War Edition (2026-09-15)
-% Selection principle: past-problem kernels + one standard step + high-yield famous results.
+% Part I -- Mathematical Concepts
+% Handbook chapter/section structure preserved; Korean final-review body.
 
 \finalchapter{1}{Set Theory and Logic}
 
 \begin{formula}[Logical Equivalences]
-바로 써야 할 논리 동치만 남긴다.
+즉시 써야 할 동치만 남긴다.
 \[
-(P\Rightarrow Q)\Longleftrightarrow(\neg Q\Rightarrow\neg P),
-\qquad
+(P\Rightarrow Q)\Longleftrightarrow(\neg Q\Rightarrow\neg P),\qquad
 \neg(P\Rightarrow Q)\Longleftrightarrow P\land\neg Q,
 \]
 \[
-\neg(P\land Q)\Longleftrightarrow(\neg P)\lor(\neg Q),
-\qquad
-\neg(P\lor Q)\Longleftrightarrow(\neg P)\land(\neg Q),
+\neg(P\land Q)\Longleftrightarrow(\neg P)\lor(\neg Q),\qquad
+\neg(P\lor Q)\Longleftrightarrow(\neg P)\land(\neg Q).
 \]
+또한
 \[
-\neg(\forall x\in A\, P(x))\Longleftrightarrow\exists x\in A\text{ s.t. }\neg P(x),
-\quad
-\neg(\exists x\in A\text{ s.t. }P(x))\Longleftrightarrow\forall x\in A\,\neg P(x).
+\neg(\forall x\in A\,P(x))\Longleftrightarrow
+\exists x\in A\text{ s.t. }\neg P(x).
 \]
 \end{formula}
 
 \begin{theorem}[Cardinality Anchors]
 \[
-|\N|=|\Z|=|\Q|=\aleph_0,
-\qquad
+|\N|=|\Z|=|\Q|=\aleph_0,\qquad
 |(0,1)|=|\R|=\mathfrak c=2^{\aleph_0}>\aleph_0.
 \]
-유한집합 $A$에 대해 $|\Pow(A)|=2^{|A|}$. 따라서 $\Q$는 가산, $\R$는 비가산이다.
+유한집합 $A$에 대해 $|\Pow(A)|=2^{|A|}$. 소수의 집합은 $\N$의 부분집합이므로 가산이다.
 \end{theorem}
 
 \begin{theorem}[Cantor and Schr\"oder--Bernstein]
-Cantor 정리에 의해 모든 집합 $A$에 대해
-\[
-|A|<|\Pow(A)|.
-\]
-또한 $A\hookrightarrow B$와 $B\hookrightarrow A$인 단사함수가 모두 존재하면
-\[
-\boxed{|A|=|B|}
-\]
-이다 (Schr\"oder--Bernstein theorem).
+모든 집합 $A$에 대해 $|A|<|\Pow(A)|$. 또한 $A\hookrightarrow B$와
+$B\hookrightarrow A$가 모두 존재하면 $|A|=|B|$.
 \end{theorem}
 
 \begin{fact}[Foundational Anchors]
-\begin{itemize}
-  \item \textbf{Russell's paradox}: 순진한 집합론의 모순을 보여 주는 대표 역설.
-  \item \textbf{ZFC}: Zermelo--Fraenkel 집합론에 선택공리 (Axiom of Choice)를 더한 체계.
-  \item 선택공리, Zorn's Lemma, Well-Ordering Theorem은 ZF 위에서 서로 동치.
-  \item 연속체 가설 (CH): $\mathfrak c=\aleph_1$. G\"odel과 Cohen에 의해 ZFC로부터의 독립성이 확립되었다(일관성을 가정).
-\end{itemize}
+Russell's paradox는 순진한 집합론의 대표 모순이다. ZFC는 Zermelo--Fraenkel set theory에
+Axiom of Choice를 더한 체계이다. Choice, Zorn's Lemma, Well-Ordering Theorem은 ZF 위에서 동치이다.
+연속체 가설(CH)은 $\mathfrak c=\aleph_1$이며, Gödel과 Cohen의 결과로 ZFC로부터 독립임이 알려져 있다
+(일관성 가정 아래).
 \end{fact}
 
 \finalchapter{2}{Calculus and Analysis}
-
 \finalsection{One-Variable Calculus}
 
 \begin{formula}[Arithmetic, Geometric, and Power Sums]
 \[
-\sum_{k=1}^{n}k=\frac{n(n+1)}2,
-\qquad
-\sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+1)}6,
+\sum_{k=1}^n k=\frac{n(n+1)}2,\quad
+\sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}6,\quad
+\sum_{k=1}^n k^3=\left(\frac{n(n+1)}2\right)^2,
 \]
 \[
-\sum_{k=1}^{n}k^3=\left(\frac{n(n+1)}2\right)^2,
-\qquad
-\sum_{k=0}^{n-1}ar^k=a\frac{1-r^n}{1-r}.
-\]
-$|r|<1$이면
-\[
-\sum_{k=0}^{\infty}ar^k=\frac{a}{1-r}.
+\sum_{k=0}^{n-1}ar^k=a\frac{1-r^n}{1-r},\qquad
+|r|<1\Rightarrow \sum_{k=0}^{\infty}ar^k=\frac{a}{1-r}.
 \]
 \end{formula}
 
 \begin{formula}[Asymptotic Anchors]
-기본 극한보다 기억 가치가 큰 두 결과를 우선한다.
 \[
-\boxed{n!\sim\sqrt{2\pi n}\left(\frac ne\right)^n}
-\qquad\text{(Stirling)}
+n!\sim\sqrt{2\pi n}\left(\frac ne\right)^n,\qquad
+H_n=\log n+\gamma+o(1).
 \]
-\[
-H_n=1+\frac12+\cdots+\frac1n=\log n+\gamma+o(1).
-\]
-성장률 비교에서는 로그를 취하고, 계승이 보이면 Stirling 공식을 먼저 의심한다.
+계승이 보이면 Stirling, 거듭제곱 비교에는 로그를 먼저 생각한다.
 \end{formula}
 
 \begin{formula}[Derivative Table: 실수하기 쉬운 항목]
-너무 기본적인 항목보다 순간적으로 헷갈리기 쉬운 항목을 우선한다.
 \[
 (\arcsin x)'=\frac1{\sqrt{1-x^2}},\qquad
 (\arccos x)'=-\frac1{\sqrt{1-x^2}},\qquad
 (\arctan x)'=\frac1{1+x^2},
 \]
 \[
-(\operatorname{arcsinh}x)'=\frac1{\sqrt{1+x^2}},\qquad
-(\operatorname{arctanh}x)'=\frac1{1-x^2},
-\]
-\[
-(\sinh x)'=\cosh x,\qquad
-(\cosh x)'=\sinh x,\qquad
-(\tanh x)'=\operatorname{sech}^2x.
-\]
-또한 $a^x$와 $\log_a x$에 대해
-\[
 (a^x)'=a^x\log a,\qquad
 (\log_a x)'=\frac1{x\log a}.
 \]
-곱ㆍ몫ㆍ연쇄법칙은 별도 암기 항목이 아니라 즉시 쓰는 도구로 본다.
-\end{formula}
-
-\begin{formula}[Antiderivative Table: 암기 가치가 큰 형태]
-\[
-\int\frac{\dd x}{a^2+x^2}=\frac1a\arctan\frac xa+C,\qquad
-\int\frac{\dd x}{\sqrt{a^2-x^2}}=\arcsin\frac xa+C,
-\]
-\[
-\int\frac{\dd x}{x^2-a^2}=\frac1{2a}\log\left|\frac{x-a}{x+a}\right|+C,
-\]
-\[
-\int\frac{\dd x}{\sqrt{x^2+a^2}}
-=\operatorname{arcsinh}\frac xa+C
-=\log\!\left|x+\sqrt{x^2+a^2}\right|+C',
-\]
-\[
-\int \sec x\,\dd x=\log|\sec x+\tan x|+C,\qquad
-\int \csc x\,\dd x=\log|\csc x-\cot x|+C.
-\]
-기본적인 거듭제곱ㆍ지수ㆍ삼각함수 적분은 자동화된 것으로 본다.
+곱·몫·연쇄법칙은 별도 암기 항목이 아니라 즉시 쓰는 도구로 본다.
 \end{formula}
 
 \begin{formula}[Taylor and Maclaurin Series]
-반드시 바로 떠올릴 다섯 개:
 \[
-e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!},
+e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!},\qquad
+\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots,
 \]
 \[
-\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots,
-\qquad
 \cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\cdots,
 \]
 \[
-\log(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots\quad(|x|<1),
+\log(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots,\qquad
+\log(1-x)=-\sum_{n=1}^{\infty}\frac{x^n}{n},
 \]
 \[
-\log(1-x)=-\sum_{n=1}^{\infty}\frac{x^n}{n}\quad(|x|<1),
-\]
-\[
-(1+x)^\alpha=\sum_{n=0}^{\infty}\binom{\alpha}{n}x^n\quad(|x|<1).
+(1+x)^\alpha=\sum_{n=0}^{\infty}\binom{\alpha}{n}x^n.
 \]
 \end{formula}
 
 \begin{theorem}[Fundamental Theorem of Calculus]
 연속함수 $f$에 대해
 \[
-\frac{\dd}{\dd x}\int_a^x f(t)\,\dd t=f(x),
-\qquad
+\frac{\dd}{\dd x}\int_a^x f(t)\,\dd t=f(x),\qquad
 \int_a^b f(x)\,\dd x=F(b)-F(a)\quad(F'=f).
 \]
-설명보다 이 두 형태를 바로 쓰는 것이 중요하다.
 \end{theorem}
 
 \begin{theorem}[Rolle and Mean Value Theorems]
-적절한 연속성ㆍ미분가능성 가정 아래
+적절한 연속성·미분가능성 가정 아래
 \[
 f(a)=f(b)\Longrightarrow\exists c\in(a,b):f'(c)=0,
 \]
 \[
 \exists c\in(a,b):\quad f'(c)=\frac{f(b)-f(a)}{b-a}.
 \]
-조건과 결론만 기억한다.
 \end{theorem}
 
 \begin{formula}[Integration by Parts and Substitution]
@@ -177,107 +117,86 @@ f(a)=f(b)\Longrightarrow\exists c\in(a,b):f'(c)=0,
 \qquad
 \int_a^b f(g(t))g'(t)\,\dd t=\int_{g(a)}^{g(b)}f(x)\,\dd x.
 \]
-기법 자체보다 경계와 부호를 정확히 바꾸는 데 주의한다.
+부분적분은 ``미분하면 단순해지는 항''을 먼저 고르고, 정적분 치환에서는 경계도 함께 바꾼다.
 \end{formula}
 
 \begin{formula}[Inverse-Function Derivative]
-$y=f(x)$, $f'(x)\ne0$이면
+$y=f(x)$, $f'(x)\neq0$이면
 \[
-\boxed{(f^{-1})'(y)=\frac1{f'(x)}}.
+(f^{-1})'(y)=\frac1{f'(x)}.
 \]
-역함수를 직접 구하지 않고도 미분값을 계산할 수 있다.
 \end{formula}
 
-\begin{formula}[Gaussian Integral]
+\begin{formula}[Useful Antiderivatives]
 \[
-\boxed{\displaystyle\int_{-\infty}^{\infty}e^{-x^2}\,\dd x=\sqrt\pi},
-\qquad
-\int_0^\infty e^{-ax^2}\,\dd x=\frac12\sqrt{\frac\pi a}\quad(a>0).
+\int\frac{\dd x}{a^2+x^2}=\frac1a\arctan\frac xa+C,\qquad
+\int\frac{\dd x}{\sqrt{a^2-x^2}}=\arcsin\frac xa+C,
 \]
-정규분포, Gamma 함수, 극좌표와 연결되는 대표 결과이다.
+\[
+\int\frac{\dd x}{x^2-a^2}=\frac1{2a}\log\left|\frac{x-a}{x+a}\right|+C.
+\]
 \end{formula}
 
-
-\begin{formula}[Beta--Gamma Toolkit]
+\begin{formula}[Gaussian Integral and Beta--Gamma]
 \[
+\int_{-\infty}^{\infty}e^{-x^2}\,\dd x=\sqrt\pi,\qquad
 \Gamma(s)=\int_0^\infty x^{s-1}e^{-x}\,\dd x,
-\quad
-B(p,q)=\int_0^1x^{p-1}(1-x)^{q-1}\,\dd x,
 \]
 \[
-\boxed{B(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}},
-\qquad
-\Gamma(n+1)=n!,\quad\Gamma\!\left(\frac12\right)=\sqrt\pi.
+B(p,q)=\int_0^1x^{p-1}(1-x)^{q-1}\,\dd x
+=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}.
 \]
-또한
-\[
-\int_0^{\pi/2}\sin^m x\cos^n x\,\dd x
-=\frac12B\!\left(\frac{m+1}{2},\frac{n+1}{2}\right).
-\]
-\end{formula}
-
-\begin{formula}[Frullani's Integral]
-적절한 가정 아래
-\[
-\int_0^\infty\frac{f(ax)-f(bx)}{x}\dd x
-=(f(0)-f(\infty))\log\frac ba.
-\]
-형태가 보이면 먼저 $f(0)$와 $f(\infty)$를 확인한다.
+특히 $\Gamma(n+1)=n!$, $\Gamma(1/2)=\sqrt\pi$.
 \end{formula}
 
 \begin{formula}[Arctangent Telescoping]
-주값 $\arctan\in(-\pi/2,\pi/2)$에서 $1+uv>0$이면
+주값 범위에서 $1+uv>0$이면
 \[
-\arctan u-\arctan v
-=\arctan\!\left(\frac{u-v}{1+uv}\right).
+\arctan u-\arctan v=\arctan\left(\frac{u-v}{1+uv}\right).
 \]
-특히 $a,x>0$일 때
+특히
 \[
-\arctan\!\left(\frac{a}{x(x+1)+a^2}\right)
-=\arctan\!\left(\frac ax\right)-\arctan\!\left(\frac a{x+1}\right),
+\arctan\left(\frac{a}{x(x+1)+a^2}\right)=\arctan\frac ax-\arctan\frac a{x+1}.
 \]
-이므로 연속한 $x$에 대해 합하면 망원합이 된다.
 \end{formula}
 
 \begin{formula}[Logarithmic Moments]
 $a>-1$, $m\in\Nzero$이면
 \[
-\boxed{\displaystyle\int_0^1x^a(\log x)^m\,\dd x
-=\frac{(-1)^m m!}{(a+1)^{m+1}}}.
+\int_0^1x^a(\log x)^m\,\dd x=\frac{(-1)^m m!}{(a+1)^{m+1}}.
 \]
-따라서 기하급수와 결합하면
+따라서
 \[
-\int_0^1\frac{\log x}{1-x}\,\dd x=-\frac{\pi^2}{6}
+\int_0^1\frac{\log x}{1-x}\,\dd x=-\frac{\pi^2}{6}.
 \]
-같은 적분을 즉시 급수로 바꿀 수 있다.
 \end{formula}
 
-\finalheading{적분에서 먼저 확인할 것}
-\begin{enumerate}
-  \item 구간과 함수의 대칭: 홀함수/짝함수, $x\mapsto a-x$, $x\mapsto1/x$.
-  \item 분자에 분모의 미분이 숨어 있는가.
-  \item 치환 또는 부분분수가 즉시 되는가.
-  \item $\sin^m x\cos^n x$, $x^{p-1}(1-x)^{q-1}$ 꼴이면 Beta/Gamma가 보이는가.
-  \item 이상적분이면 수렴부터 확인한다.
-\end{enumerate}
-
-\begin{formula}[Series Tests]
+\begin{formula}[Basel and Alternating Harmonic]
 \[
-\sum_{n=1}^{\infty}\frac1{n^p}
-\begin{cases}
-\text{converges},&p>1,\\
-\text{diverges},&p\le1.
-\end{cases}
+\sum_{n=1}^{\infty}\frac1{n^2}=\frac{\pi^2}{6},\qquad
+1-\frac12+\frac13-\frac14+\cdots=\log2.
 \]
-비율판정법/근판정법에서 극한이 $<1$이면 절대수렴, $>1$이면 발산한다. 교대급수는 항의 크기가 $0$으로 감소하면 수렴한다.
+따라서 홀수 제곱 역수합은 $\pi^2/8$.
+\end{formula}
+
+\begin{formula}[Series Tests and Wallis]
+\[
+\sum_{n=1}^{\infty}\frac1{n^p}\text{ converges iff }p>1.
+\]
+비율판정법과 근판정법은 극한이 $<1$이면 절대수렴, $>1$이면 발산.
+또한
+\[
+\frac{\pi}{2}=\prod_{n=1}^{\infty}\frac{(2n)^2}{(2n-1)(2n+1)}
+\]
+은 Wallis product.
 \end{formula}
 
 \begin{formula}[Two Useful Infinite-Series Anchors]
 \[
-\sum_{n=1}^\infty \frac{x^n}{n}=-\log(1-x)\quad(|x|<1),
+\sum_{n=1}^{\infty}\frac{x^n}{n}=-\log(1-x)\qquad(|x|<1),
 \]
 \[
-\sum_{n=0}^\infty (-1)^n\frac{x^{2n+1}}{2n+1}=\arctan x\quad(|x|\le1\text{ 끝점에서는 조건부수렴}).
+\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{2n+1}=\arctan x.
 \]
 특히 $x=1$에서 Gregory--Leibniz 급수
 \[
@@ -285,80 +204,63 @@ $a>-1$, $m\in\Nzero$이면
 \]
 \end{formula}
 
-\begin{formula}[Wallis Product]
-\[
-\boxed{\displaystyle \frac\pi2=\prod_{n=1}^{\infty}\frac{(2n)^2}{(2n-1)(2n+1)}}.
-\]
-Wallis product는 $\pi$, Beta/Gamma, 삼각함수 적분과 연결되는 유명한 암기 결과이다.
-\end{formula}
-
-
-\begin{fact}[Basel Problem]
-오일러 (Leonhard Euler)의 대표 결과:
-\[
-\boxed{\displaystyle\sum_{n=1}^{\infty}\frac1{n^2}=\frac{\pi^2}{6}}.
-\]
-과학퀴즈에서는 식 자체와 Euler를 함께 기억한다.
-\end{fact}
-
-
-
-
 \begin{fact}[Sophomore's Dream]
-특이하고 외우기 좋은 적분-급수 항등식:
+특이하고 출제하기 좋은 항등식:
 \[
 \boxed{\displaystyle\int_0^1x^{-x}\,\dd x=\sum_{n=1}^{\infty}\frac1{n^n}}.
 \]
 \end{fact}
 
-\begin{fact}[\(e\), \(\pi\), and an Open Trap]
-에르미트 (Charles Hermite)는 $e$의 초월성을, 린데만 (Ferdinand von Lindemann)은 $\pi$의 초월성을 증명했다. 그러나
+\begin{fact}[$e$, $\pi$, and an Open Trap]
+Hermite는 $e$의 초월성을, Lindemann은 $\pi$의 초월성을 증명했다. 그러나
 \[
 e+\pi,\qquad e\pi
 \]
-각각이 무리수인지조차 알려져 있지 않다. 단, 둘이 동시에 대수적일 수는 없으므로 적어도 하나는 초월수이다.
+각각이 무리수인지조차 알려져 있지 않다. 단, 둘이 동시에 대수적일 수는 없다.
 \end{fact}
 
-\begin{formula}[Fibonacci Numbers]
-$F_0=0$, $F_1=1$, $F_{n+1}=F_n+F_{n-1}$이면
+\begin{formula}[Frullani's Integral]
+적절한 가정 아래
 \[
-F_n=\frac{\varphi^n-\psi^n}{\sqrt5},
-\qquad
-\varphi=\frac{1+\sqrt5}{2},\quad\psi=\frac{1-\sqrt5}{2},
+\int_0^\infty\frac{f(ax)-f(bx)}x\,\dd x=(f(0)-f(\infty))\log\frac ba.
 \]
-\[
-\boxed{\sum_{n\ge0}F_nx^n=\frac{x}{1-x-x^2}},
-\qquad
-\frac{F_{n+1}}{F_n}\to\varphi.
-\]
-또한 $F_n$은 $\varphi^n/\sqrt5$에 가장 가까운 정수이다.
+형태가 보이면 $f(0)$와 $f(\infty)$를 먼저 확인한다.
 \end{formula}
 
-\finalheading{수의 크기를 비교할 때}
-거듭제곱 $a^b$와 $b^a$를 비교해야 하면 로그를 취해 $b\log a$와 $a\log b$를 비교한다. 특히
+\begin{strategy}
+정적분에서는 먼저 구간 대칭 $x\mapsto a-x$, $x\mapsto1/x$, 홀짝성을 확인한다.
+분자에 분모의 미분이 보이는지, Beta/Gamma 형태인지도 바로 본다.
+\end{strategy}
+
+\begin{formula}[Comparison of Powers]
+양수 $a,b$에 대해 $a^b$와 $b^a$는 $b\log a$와 $a\log b$를 비교한다.
+함수 $\log x/x$는 $x>e$에서 감소한다.
+\end{formula}
+
+\begin{formula}[Minimum of $x^x$]
+$y=x^x$에 로그를 취하면 $\log y=x\log x$. 따라서
 \[
-f(x)=\frac{\log x}{x}
+\boxed{\min_{x>0}x^x=e^{-1/e}}
 \]
-는 $x=e$에서 최대이고 $x>e$에서는 감소한다. 2025 기출의 $11^9$와 $9^{11}$ 비교가 대표적이다.
+이고 최소점은 $x=e^{-1}$이다.
+\end{formula}
 
 \finalsection{Multivariable Calculus}
 
-\begin{formula}[Gradient and Directional Derivative]
-$f\colon\R^n\to\R$에 대해
+\begin{formula}[Gradient, Directional Derivative, Hessian]
 \[
-\nabla f=(\partial_1f,\ldots,\partial_nf)^{\mathsf T},
-\qquad
-D_{\mathbf u}f(\mathbf a)=\nabla f(\mathbf a)\cdot\mathbf u\quad(\|\mathbf u\|=1).
+\nabla f=(f_{x_1},\dots,f_{x_n})^{\mathsf T},\qquad
+D_{\mathbf u}f=\nabla f\cdot\mathbf u\quad(\|\mathbf u\|=1).
 \]
-Gradient는 가장 빠르게 증가하는 방향을 가리킨다.
+임계점에서는 Hessian의 부호를 이용해 극값을 판정한다.
 \end{formula}
 
 \begin{definition}[Jacobian and Total Derivative]
-$F\colon\R^n\to\R^m$이면
+$F:\R^n\to\R^m$이면
 \[
 JF(\mathbf a)=\left(\frac{\partial F_i}{\partial x_j}(\mathbf a)\right).
 \]
-미분 가능하다는 것은
+미분가능성은
 \[
 F(\mathbf a+\mathbf h)=F(\mathbf a)+DF(\mathbf a)\mathbf h+\mathbf r(\mathbf h),
 \qquad
@@ -371,14 +273,12 @@ F(\mathbf a+\mathbf h)=F(\mathbf a)+DF(\mathbf a)\mathbf h+\mathbf r(\mathbf h),
 \[
 D(G\circ F)(\mathbf a)=DG(F(\mathbf a))\,DF(\mathbf a).
 \]
-야코비 행렬의 곱 순서를 바꾸지 않는다.
+Jacobian matrix의 곱 순서를 바꾸지 않는다.
 \end{theorem}
 
-\begin{formula}[Hessian and Second-Derivative Test]
-\[
-\Hess f=\left(\frac{\partial^2f}{\partial x_i\partial x_j}\right).
-\]
-임계점에서 Hessian이 양의 정부호이면 엄밀한 국소최소, 음의 정부호이면 엄밀한 국소최대, 부정부호이면 안장점이다. 판정 결과를 우선 기억한다.
+\begin{formula}[Second-Derivative Test]
+임계점에서 Hessian이 positive definite이면 strict local minimum, negative definite이면 strict local maximum,
+indefinite이면 saddle point이다.
 \end{formula}
 
 \begin{theorem}[Lagrange Multipliers]
@@ -386,15 +286,15 @@ D(G\circ F)(\mathbf a)=DG(F(\mathbf a))\,DF(\mathbf a).
 \[
 \boxed{\nabla f=\lambda\nabla g}.
 \]
-여러 제약식이면 각 gradient들의 선형결합을 쓴다.
+여러 제약식이면 제약 gradient들의 선형결합을 쓴다.
 \end{theorem}
 
 \begin{formula}[Change of Variables]
-좌표변환 $\mathbf x=F(\mathbf u)$에 대해
+$\mathbf x=F(\mathbf u)$에 대해
 \[
-\dd\mathbf x=\left|\det DF(\mathbf u)\right|\dd\mathbf u.
+\dd\mathbf x=|\det DF(\mathbf u)|\,\dd\mathbf u.
 \]
-극좌표/구면좌표에서는 Jacobian 인자를 빼먹지 않는다:
+특히
 \[
 \dd A=r\,\dd r\,\dd\theta,
 \qquad
@@ -402,475 +302,325 @@ D(G\circ F)(\mathbf a)=DG(F(\mathbf a))\,DF(\mathbf a).
 \]
 \end{formula}
 
-
-\begin{formula}[Vector Calculus Operators]
+\begin{formula}[Vector Calculus]
 \[
-\nabla f,
-\qquad
-\nabla\cdot\mathbf F,
-\qquad
-\nabla\times\mathbf F,
-\qquad
+\nabla\times(\nabla f)=\mathbf0,\qquad
+\nabla\cdot(\nabla\times\mathbf F)=0,\qquad
 \Delta f=\nabla\cdot\nabla f.
 \]
-$\mathbf F=\nabla f$이면 항상 $\nabla\times\mathbf F=\mathbf0$이다. 단일연결 영역에서는 적절한 정칙성 아래 curl이 0인 벡터장이 보존장이다.
+단일연결 영역에서 충분히 매끄러운 $\mathbf F$가 curl-free이면 conservative이다.
 \end{formula}
 
-\begin{theorem}[Green, Stokes, Divergence]
+\begin{theorem}[Green, Stokes, and Divergence]
 형태를 알아보는 것이 핵심이다.
 \[
-\oint_{\partial D}P\dd x+Q\dd y
-=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\dd A,
+\oint_{\partial D}P\,\dd x+Q\,\dd y=\iint_D(Q_x-P_y)\,\dd A,
 \]
 \[
-\int_{\partial S}\mathbf F\cdot\dd\mathbf r
-=\iint_S(\nabla\times\mathbf F)\cdot\mathbf n\dd S,
+\int_{\partial S}\mathbf F\cdot\dd\mathbf r=\iint_S(\nabla\times\mathbf F)\cdot\mathbf n\,\dd S,
 \]
 \[
-\iint_{\partial V}\mathbf F\cdot\mathbf n\dd S
-=\iiint_V\nabla\cdot\mathbf F\dd V.
+\iint_{\partial V}\mathbf F\cdot\mathbf n\,\dd S=\iiint_V\nabla\cdot\mathbf F\,\dd V.
 \]
 \end{theorem}
 
 \finalsection{Real Analysis}
 
-
-
-\begin{theorem}[Compactness in \(\R^n\)]
-Heine--Borel 정리:
-\[
-\boxed{K\subset\R^n\text{ 콤팩트}\iff K\text{가 닫히고 유계}.}
-\]
-연속함수는 콤팩트 집합에서 최대ㆍ최소를 갖고, 콤팩트 집합의 연속상은 콤팩트이다.
+\begin{theorem}[Uniform Limit Theorem]
+연속함수열 $f_n$이 $f$로 균등수렴하면 $f$도 연속이다.
+연속성 보존에는 pointwise convergence가 아니라 uniform convergence가 핵심이다.
 \end{theorem}
 
-\begin{theorem}[Extreme and Intermediate Value Principles]
-연속함수는 콤팩트 구간에서 최댓값과 최솟값을 가지며, 구간에서는 두 함수값 사이의 모든 값을 취한다. 계산보다 ``연속 + 콤팩트/구간''이라는 조건을 보는 것이 핵심이다.
+\begin{fact}[Local Uniform Convergence Cue]
+함수열에서 극한과 미분·적분의 순서를 바꿀 때는 pointwise convergence만으로 판단하지 않는다.
+국소 균등수렴, 도함수의 균등제어, dominated convergence 같은 추가 가정이 보이면 교환 가능성을 확인한다.
+\end{fact}
+
+\begin{theorem}[Compactness and Connectedness Anchors]
+$\R^n$에서 compact는 closed and bounded와 동치이다(Heine--Borel).
+연속함수는 compact set을 compact set으로, connected set을 connected set으로 보낸다.
+따라서 $f:\R\to\Q$가 연속이면 $f$는 상수함수이다.
 \end{theorem}
 
 \begin{formula}[Cauchy--Schwarz and Triangle Inequalities]
 \[
-|\langle \mathbf u,\mathbf v\rangle|\le\|\mathbf u\|\,\|\mathbf v\|,
+|\langle\mathbf u,\mathbf v\rangle|\le\|\mathbf u\|\,\|\mathbf v\|,
 \qquad
 \|\mathbf u+\mathbf v\|\le\|\mathbf u\|+\|\mathbf v\|.
 \]
-Cauchy--Schwarz에서 등호가 성립하는 조건은 선형종속이다.
+Cauchy--Schwarz의 등호 조건은 두 벡터의 선형종속이다.
 \end{formula}
 
-
-\begin{fact}[Connectedness]
-$\R$의 연결 부분집합은 정확히 구간이다. 연결집합의 연속상은 연결이고, 콤팩트 집합의 연속상은 콤팩트이다.
-\end{fact}
-
-
-\begin{fact}[Irrational Rotation]
-원을 $\R/\Z$로 보고
-\[
-x\longmapsto x+\alpha\pmod1
-\]
-를 반복한다. $\alpha\in\Q$이면 모든 궤도는 주기적이고, $\alpha\notin\Q$이면 각 궤도는 원 위에 조밀하다. ``유리수 $\leftrightarrow$ 주기적, 무리수 $\leftrightarrow$ 조밀''를 한 쌍으로 기억한다.
-\end{fact}
-
 \begin{fact}[Cantor Set]
-표준 Cantor set은 닫히고 유계이며 콤팩트ㆍ완전ㆍ내부가 조밀하지 않고 비가산이며 Lebesgue 측도 $0$이다. ``구간을 계속 제거했는데도 비가산''이라는 대비가 강한 quiz anchor이다.
+표준 Cantor set은 closed, bounded, perfect, nowhere dense, uncountable이고 Lebesgue measure $0$이다.
+``구간을 계속 제거했는데도 비가산''이라는 대비가 강한 quiz anchor이다.
 \end{fact}
 
-\begin{theorem}[Uniform Limit Theorem]
-연속함수열 $f_n$이 $f$에 \textbf{균등수렴}하면 $f$도 연속이다.
-\[
-\boxed{f_n\rightrightarrows f,\quad f_n\text{ continuous}\Longrightarrow f\text{ continuous}.}
-\]
-점별수렴만으로는 성립하지 않는다. 미분과 극한의 교환에는 더 강한 가정이 필요하다.
-\end{theorem}
-
-\begin{theorem}[Local Uniform Convergence: Useful Consequence]
-함수열에서 미분과 극한의 순서를 바꾸려면 균등수렴에 가까운 조건을 확인해야 한다. 기출처럼 ``국소 균등수렴 + 도함수 제어''가 주어지면 점별수렴만 보고 판단하지 않는다.
+\begin{theorem}[Density of Irrational Rotations]
+$\alpha\notin\Q$이면 $\{n\alpha\}$는 $[0,1]$에서 조밀하다.
+주기함수에 정수열을 대입하는 문제에서 residue modulo an irrational period를 의심한다.
 \end{theorem}
 
 \finalsection{Complex Analysis}
 
-\begin{formula}[Euler Formula and Roots of Unity]
+\begin{formula}[Euler Formula and Complex Logarithm]
 \[
-e^{i\theta}=\cos\theta+i\sin\theta,
-\qquad
-z^n=1\Longrightarrow z=e^{2\pi i k/n}\ (k=0,\ldots,n-1).
+e^{i\theta}=\cos\theta+i\sin\theta,\qquad z=re^{i\theta}.
 \]
-주값 argument는
+이 문서에서는 principal argument를
 \[
 \Arg z\in(-\pi,\pi]
 \]
-로 둔다.
-\end{formula}
-
-\begin{formula}[Roots-of-Unity Product]
-$\omega_n=e^{2\pi i/n}$이면
+로 두고
 \[
-x^n-1=\prod_{k=0}^{n-1}(x-\omega_n^k),
-\qquad
-\boxed{\prod_{k=1}^{n-1}(1-\omega_n^k)=n}.
+\Log z=\log|z|+i\Arg z
 \]
-두 번째 식은 $(x^n-1)/(x-1)$에 $x=1$을 대입하면 바로 얻는다.
+를 principal logarithm으로 쓴다.
 \end{formula}
 
 \begin{definition}[Holomorphic Function]
-$f(z)=u(x,y)+iv(x,y)$가 복소미분 가능하면 정칙(holomorphic)이라 한다. 실전 판정에서 가장 먼저 보는 것은 Cauchy--Riemann 방정식이다.
+$f(z)=u(x,y)+iv(x,y)$가 복소미분 가능하면 holomorphic이라 한다. 충분히 매끄러운 경우 가장 먼저 보는 판정은 Cauchy--Riemann equations이다.
 \end{definition}
 
 \begin{formula}[Cauchy--Riemann Equations]
-$f=u+iv$가 충분히 매끄러울 때
 \[
 \boxed{u_x=v_y,\qquad u_y=-v_x}.
 \]
-복소미분 가능성의 대표 판정식으로 기억한다.
 \end{formula}
 
-\begin{theorem}[Cauchy's Integral Formula]
-$f$가 적절한 영역에서 holomorphic이고 $a$가 단순 폐곡선 $\gamma$ 내부에 있으면
+\begin{theorem}[Cauchy Integral Formula]
+$f$가 적절한 영역에서 holomorphic이고 $a$가 $C$ 내부에 있으면
 \[
-f(a)=\frac{1}{2\pi i}\int_\gamma\frac{f(z)}{z-a}\dd z.
+f(a)=\frac1{2\pi i}\oint_C\frac{f(z)}{z-a}\,\dd z,
 \]
 더 일반적으로
 \[
-f^{(n)}(a)=\frac{n!}{2\pi i}\int_\gamma\frac{f(z)}{(z-a)^{n+1}}\dd z.
+f^{(n)}(a)=\frac{n!}{2\pi i}\oint_C\frac{f(z)}{(z-a)^{n+1}}\,\dd z.
+\]
+특히
+\[
+\oint_{|z|=1}\frac{\dd z}{z}=2\pi i.
 \]
 \end{theorem}
 
 \begin{theorem}[Residue Theorem]
 \[
-\int_\gamma f(z)\dd z
-=2\pi i\sum \Res(f;a_k)
+\oint_C f(z)\,\dd z=2\pi i\sum_{a_k\text{ inside }C}\Res(f;a_k).
 \]
-($a_k$: $\gamma$ 내부의 고립특이점). 실수 이상적분을 contour integral로 바꾸는 문제의 핵심 결과이다.
-\end{theorem}
-
-\begin{theorem}[Rouch\'e's Theorem]
-단순 폐곡선 $C$ 위에서
-\[
-|g(z)|<|f(z)|
-\]
-이면 $f$와 $f+g$는 $C$ 내부에서 중복도를 포함해 같은 개수의 영점을 갖는다. 복잡한 다항식의 unit-disk 영점 개수를 셀 때 강력하다.
-\end{theorem}
-
-\begin{theorem}[Liouville and Fundamental Theorem of Algebra]
-유계 entire function은 상수함수이다. 그 결과를 이용하면 모든 비상수 복소다항식은 적어도 하나의 복소근을 갖는다.
-\end{theorem}
-
-\begin{formula}[Residues at Simple Poles]
-$f(z)=g(z)/h(z)$이고 $h(a)=0$, $h'(a)\ne0$이면
+simple pole $a$에서 $f=g/h$, $h(a)=0$, $h'(a)\neq0$이면
 \[
 \Res(f;a)=\frac{g(a)}{h'(a)}.
 \]
-또한
-\[
-\Res\left(\frac{g(z)}{z-a};a\right)=g(a).
-\]
-\end{formula}
+\end{theorem}
 
+\begin{theorem}[Rouché's Theorem]
+단순폐곡선 $C$ 위에서 $|g|<|f|$이면 $f$와 $f+g$는 $C$ 내부에 같은 개수의 영점을 갖는다
+(중복도 포함).
+\end{theorem}
 
-\begin{formula}[Principal Logarithm]
-\[
-\Log z=\log|z|+i\Arg z,
-\qquad \Arg z\in(-\pi,\pi].
-\]
-일반 복소로그는 $\log z=\log|z|+i(\arg z+2\pi k)$처럼 다가치를 갖는다.
-\end{formula}
-
+\begin{theorem}[Liouville and Fundamental Theorem of Algebra]
+유계 entire function은 상수함수이다. 모든 비상수 복소다항식은 복소근을 갖는다.
+\end{theorem}
 
 \finalchapter{3}{Linear Algebra}
 
-\begin{theorem}[Rank--Nullity]
-$\mathbf A$가 $m\times n$ 행렬이면
+\begin{formula}[Rank--Nullity and Subspaces]
+$\mathbf A\in\F^{m\times n}$이면
 \[
 \rk\mathbf A+\dim\Null(\mathbf A)=n.
 \]
-열공간 차원과 행공간 차원, 즉 column rank와 row rank는 같다.
-\end{theorem}
-
-\begin{formula}[Subspace Dimension Formula]
 부분공간 $U,V$에 대해
 \[
-\boxed{\dim(U+V)=\dim U+\dim V-\dim(U\cap V)}.
+\dim(U+V)=\dim U+\dim V-\dim(U\cap V),
 \]
-특히 $U,V\subseteq\R^n$이면
+따라서
 \[
-\dim(U\cap V)\ge\dim U+\dim V-n.
+\dim(U\cap V)\ge \dim U+\dim V-n.
 \]
 \end{formula}
 
 \begin{formula}[Determinant Essentials]
 \begin{itemize}
-  \item row swap: determinant의 부호가 바뀐다.
-  \item 한 row에 $c$를 곱하면 determinant도 $c$배.
-  \item 한 row에 다른 row의 multiple을 더해도 determinant는 변하지 않는다.
-  \item 삼각행렬: $\det\mathbf A=\prod_i a_{ii}$.
-  \item $\det(\mathbf A\mathbf B)=\det\mathbf A\det\mathbf B$.
-  \item $\mathbf A$ invertible $\Longleftrightarrow \det\mathbf A\ne0$.
+\item row swap: determinant의 부호가 바뀐다.
+\item 한 row에 $c$를 곱하면 determinant도 $c$배.
+\item 한 row에 다른 row의 multiple을 더해도 determinant는 변하지 않는다.
+\item 삼각행렬에서는 $\det\mathbf A=\prod_i a_{ii}$.
+\item $\det(\mathbf A\mathbf B)=\det\mathbf A\det\mathbf B$.
 \end{itemize}
+처음부터 cofactor expansion하지 말고 삼각·블록·선형종속·특수행렬 구조를 먼저 본다.
 \end{formula}
-
-\finalheading{Determinant를 계산할 때}
-처음부터 cofactor expansion하지 않는다. 먼저 삼각/블록 구조, 0의 배치, 선형종속 또는 비례하는 행ㆍ열, 기본 행연산, 특수행렬 여부를 본다. Cofactor expansion은 0이 많을 때 특히 유리하다.
-
-
-\begin{formula}[Determinant and Trace Identities]
-\[
-\det(\mathbf A^{\mathsf T})=\det\mathbf A,
-\qquad
-\det(\mathbf A^{-1})=\frac1{\det\mathbf A},
-\qquad
-\det(c\mathbf A)=c^n\det\mathbf A,
-\]
-\[
-\tr(\mathbf A+\mathbf B)=\tr\mathbf A+\tr\mathbf B,
-\qquad
-\boxed{\tr(\mathbf A\mathbf B)=\tr(\mathbf B\mathbf A)}.
-\]
-더 일반적으로 cyclic permutation은 trace를 보존한다.
-\end{formula}
-
-
-
-
-\begin{fact}[LU Factorization and Pivoting]
-가우스 소거법이 행 교환 없이 진행되면 $\mathbf A=\mathbf L\mathbf U$ 꼴이 자연스럽게 나온다. 하지만 모든 가역행렬이 피벗팅 없는 LU 분해을 갖는 것은 아니다. 일반적으로 순열행렬를 허용해
-\[
-\mathbf P\mathbf A=\mathbf L\mathbf U
-\]
-형태를 사용한다.
-\end{fact}
 
 \begin{theorem}[Equivalent Invertibility Conditions]
-$n\times n$ 행렬 $\mathbf A$에 대해 다음은 동치이다.
+$n\times n$ 행렬 $\mathbf A$에 대해
 \[
 \det\mathbf A\ne0
-\Longleftrightarrow
-\rk\mathbf A=n
-\Longleftrightarrow
-\Null(\mathbf A)=\{\mathbf0\}
-\Longleftrightarrow
-0\notin\operatorname{spec}(\mathbf A).
+\Longleftrightarrow\rk\mathbf A=n
+\Longleftrightarrow\Null(\mathbf A)=\{\mathbf0\}
+\Longleftrightarrow0\notin\operatorname{spec}(\mathbf A).
 \]
-또한 정사각행렬에서
-\[
-\mathbf A\mathbf B=\mathbf I\Longrightarrow\mathbf B\mathbf A=\mathbf I.
-\]
+또한 $\mathbf A\mathbf B=\mathbf I\Rightarrow\mathbf B\mathbf A=\mathbf I$.
 \end{theorem}
 
-\begin{formula}[Characteristic Polynomial]
+\begin{formula}[Characteristic Polynomial and Standard Operations]
 \[
-p_{\mathbf A}(\lambda)=\det(\lambda\mathbf I-\mathbf A),
-\qquad
-p_{\mathbf A}(\lambda)=0\iff\lambda\text{는 고유값}.
+p_{\mathbf A}(\lambda)=\det(\lambda\mathbf I-\mathbf A).
 \]
-정의보다 trace, determinant, rank와 특수구조를 먼저 본다.
-\end{formula}
-
-\begin{formula}[Trace, Determinant, and Eigenvalues]
-복소수까지 포함해 대수적 중복도로 세면
-\[
-\boxed{\sum_{i=1}^{n}\lambda_i=\tr\mathbf A},
-\qquad
-\boxed{\prod_{i=1}^{n}\lambda_i=\det\mathbf A}.
-\]
-$n\times n$ 행렬이 가질 수 있는 서로 다른 고유값의 최대 개수는 $n$이다.
-\end{formula}
-
-\finalheading{Eigenvalue 문제를 받으면}
-\[
-\boxed{
-\tr\mathbf A
-\;\to\;
-\det\mathbf A
-\;\to\;
-\rk\mathbf A
-\;\to\;
-\text{obvious vector}
-\;\to\;
-\text{structure}
-\;\to\;
-p_{\mathbf A}(\lambda)
-}
-\]
-특성다항식 계산은 마지막 수단에 가깝게 둔다.
-
-\begin{formula}[Eigenvalues under Standard Operations]
 $\mathbf A\mathbf v=\lambda\mathbf v$이면
 \[
 \mathbf A^k\mathbf v=\lambda^k\mathbf v,
 \qquad
 p(\mathbf A)\mathbf v=p(\lambda)\mathbf v.
 \]
-$\mathbf A$가 가역이면 $\mathbf A^{-1}$의 대응 고유값은 $\lambda^{-1}$. 또한 $\mathbf A+c\mathbf I$는 고유값을 $c$만큼 이동시킨다.
+$\mathbf A$가 invertible이면 $\mathbf A^{-1}$의 대응 고유값은 $\lambda^{-1}$이고,
+$\mathbf A+c\mathbf I$는 고유값을 $c$만큼 이동시킨다.
 \end{formula}
 
-\begin{theorem}[Cayley--Hamilton]
-특성다항식 $p_{\mathbf A}(t)$에 대해
+\begin{formula}[Trace, Determinant, Eigenvalues]
+고유값을 중복도 포함 $\lambda_1,\dots,\lambda_n$라 하면
 \[
-\boxed{p_{\mathbf A}(\mathbf A)=\mathbf0}.
+\tr A=\sum_i\lambda_i,\qquad \det A=\prod_i\lambda_i.
 \]
-고차 행렬 거듭제곱을 낮은 차수로 줄이거나 역행렬 식을 얻는 데 즉시 쓸 수 있다.
+$2\times2$에서는
+\[
+\lambda^2-(\tr A)\lambda+\det A=0.
+\]
+가역 $2\times2$ 행렬에 대해
+\[
+\tr(A^{-1})=\frac{\tr A}{\det A}.
+\]
+\end{formula}
+
+\begin{theorem}[AB and BA]
+$AB$와 $BA$는 $0$이 아닌 고유값을 중복도까지 공유한다.
+정사각행렬 $A,B$에 대해서는 characteristic polynomial도 같다.
 \end{theorem}
 
-
-
-
-\begin{fact}[Nonzero Eigenvalues of \(AB\) and \(BA\)]
-$\mathbf A$가 $m\times n$, $\mathbf B$가 $n\times m$이면 $\mathbf A\mathbf B$와 $\mathbf B\mathbf A$의 \textbf{0이 아닌 고유값은 대수적 중복도까지 같다}. 따라서 크기가 달라도 0이 아닌 스펙트럼 정보를 옮길 수 있다.
+\begin{fact}[Rank-One and All-Ones Matrices]
+outer product $\mathbf u\mathbf v^{\mathsf T}$는 rank가 최대 $1$이다.
+\[
+\mathbf J_n=\ones\ones^{\mathsf T}
+\]
+의 고유값은 $n$ 한 개와 $0$ $n-1$개이다. 따라서 $\mathbf J_n-\mathbf I_n$의 고유값은
+$n-1$ 한 개와 $-1$ $n-1$개이다.
 \end{fact}
-
-\begin{fact}[Real Skew-Symmetric Matrices]
-$\mathbf A^{\mathsf T}=-\mathbf A$이면 모든 실수 고유값은 $0$이고 0이 아닌 복소 고유값은 $\pm i\lambda$ 쌍으로 나타난다. 따라서
-\[
-\boxed{\rk\mathbf A\text{ is even}},
-\qquad
-n\text{ odd}\Longrightarrow\det\mathbf A=0.
-\]
-\end{fact}
-
-\begin{formula}[Singular Value Decomposition]
-모든 실수 $m\times n$ 행렬은
-\[
-\boxed{\mathbf A=\mathbf U\boldsymbol\Sigma\mathbf V^{\mathsf T}}
-\]
-로 쓸 수 있다. 특잇값(singular values)은 $\mathbf A^{\mathsf T}\mathbf A$의 고유값의 음이 아닌 제곱근이다.
-\end{formula}
-
-\begin{theorem}[Diagonalizability]
-$\mathbf A$가 $n$개의 선형독립 고유벡터를 가지면
-\[
-\mathbf A=\mathbf P\mathbf D\mathbf P^{-1}
-\]
-으로 대각화 가능하다. 서로 다른 고유값에 대응하는 고유벡터는 선형독립이므로 고유값이 $n$개 모두 다르면 자동으로 대각화 가능하다.
-\end{theorem}
-
-\begin{theorem}[Spectral Theorem for Real Symmetric Matrices]
-실수 대칭행렬은 직교대각화 가능하다.
-\[
-\mathbf A=\mathbf Q\mathbf D\mathbf Q^{\mathsf T},
-\qquad
-\mathbf Q^{\mathsf T}\mathbf Q=\mathbf I.
-\]
-모든 고유값은 실수이고, 서로 다른 고유값의 고유공간은 서로 직교한다.
-\end{theorem}
-
-\begin{formula}[Special Matrices]
-\begin{center}
-\small
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{0.96\textwidth}{@{}L{0.23\textwidth}Y Y@{}}
-\toprule
-구조 & 바로 쓸 결과 & 첫 반응 \\
-\midrule
-$\mathbf J_n$ & rank $1$; 고유값 $n,0,\ldots,0$ & $\ones$와 $\ones^\perp$ \\
-$\mathbf J_n-\mathbf I_n$ & 고유값 $n-1,-1,\ldots,-1$ & 고유값 이동 \\
-$\mathbf u\mathbf v^{\mathsf T}$ & rank $\le1$; 0이 아닌 고유값 $\mathbf v^{\mathsf T}\mathbf u$ & outer product \\
-삼각행렬 & 대각성분이 고유값 & 특성다항식 계산 불필요 \\
-직교행렬 & $\mathbf Q^{\mathsf T}\mathbf Q=\mathbf I$, $|\det\mathbf Q|=1$ & 길이ㆍ각도 보존 \\
-사영행렬 $\mathbf P$ & $\mathbf P^2=\mathbf P$; 고유값 $0,1$ & 상/핵 분해 \\
-멱영행렬 $\mathbf N$ & $\mathbf N^k=0$ for some $k$; 모든 고유값 $0$ & Jordan 연쇄 구조 \\
-\bottomrule
-\end{tabularx}
-\end{center}
-\end{formula}
-
-\begin{formula}[Rank-One Matrix]
-$\mathbf A=\mathbf u\mathbf v^{\mathsf T}$이면
-\[
-\mathbf A\mathbf u=(\mathbf v^{\mathsf T}\mathbf u)\mathbf u.
-\]
-따라서 $\mathbf v^{\mathsf T}\mathbf u\ne0$이면 이것이 유일한 0이 아닌 고유값이고
-\[
-\tr\mathbf A=\mathbf v^{\mathsf T}\mathbf u.
-\]
-\end{formula}
-
 
 \begin{formula}[Sum of Outer Products]
 \[
-\mathbf A=\sum_{i=1}^{k}\mathbf u_i\mathbf v_i^{\mathsf T}
+\mathbf A=\sum_{i=1}^k\mathbf u_i\mathbf v_i^{\mathsf T}
 \quad\Longrightarrow\quad
 \rk\mathbf A\le k.
 \]
-각 outer product의 rank가 최대 $1$이므로 rank의 subadditivity를 바로 적용한다.
+각 outer product의 rank가 최대 $1$이라는 사실과 rank subadditivity를 사용한다.
 \end{formula}
 
-\begin{formula}[Projection]
-0이 아닌 벡터 $\mathbf u$에 대한 직선 위 정사영:
+\begin{fact}[Idempotent, Nilpotent, Skew-Symmetric]
+$A^2=A$이면 고유값은 $0,1$뿐이고 $\tr A=\rk A$.
+$A^k=0$이면 모든 고유값은 $0$.
+실수 skew-symmetric matrix의 rank는 짝수이며 홀수 차수에서는 determinant가 $0$.
+\end{fact}
+
+\begin{formula}[Nilpotent Jordan Blocks]
+nilpotent Jordan block $J_s(0)$에 대해
 \[
-\operatorname{proj}_{\mathbf u}\mathbf v
-=\frac{\mathbf v\cdot\mathbf u}{\mathbf u\cdot\mathbf u}\mathbf u.
+\rk J_s(0)^k=\max(s-k,0).
 \]
-단위벡터 $\mathbf u$이면 정사영 행렬는
-\[
-\mathbf P=\mathbf u\mathbf u^{\mathsf T}.
-\]
+여러 block이면 이를 합한다.
 \end{formula}
 
-\begin{fact}[Rotations in \(\R^3\)]
-고유 회전행렬 $\mathbf R\in SO(3)$는 회전축 방향의 고유값 $1$을 가진다. 나머지 두 고유값은 일반적으로 $e^{\pm i\theta}$이다. 따라서
+\begin{theorem}[Diagonalizability and Spectral Theorem]
+서로 다른 고유값에 대응하는 고유벡터는 선형독립이다.
+실수 대칭행렬은 직교대각화 가능하다:
 \[
-\det\mathbf R=1.
+A=QDQ^{\mathsf T}.
 \]
-3D rotation 문제에서 ``실수 고유벡터 하나''는 회전축을 뜻한다.
+\end{theorem}
+
+\begin{formula}[Projection and SVD]
+\[
+\operatorname{proj}_{\mathbf u}\mathbf v=\frac{\mathbf v\cdot\mathbf u}{\mathbf u\cdot\mathbf u}\mathbf u.
+\]
+SVD:
+\[
+A=U\Sigma V^{\mathsf T},
+\]
+singular values는 $A^{\mathsf T}A$의 고유값의 음이 아닌 제곱근이다.
+\end{formula}
+
+\begin{fact}[Rotations in $\R^3$]
+$R\in SO(3)$인 고유 회전은 회전축 방향의 실수 고유값 $1$을 갖고,
+나머지는 보통 $e^{\pm i\theta}$. 따라서 $\det R=1$.
 \end{fact}
 
 \begin{fact}[Pascal-Type Determinant]
-이항계수로 이루어진 Pascal형 행렬은 행렬식이 $1$로 떨어지는 경우가 많다. 먼저 행ㆍ열 점화와 삼각분해를 찾는다.
+이항계수로 이루어진 Pascal형 행렬은 행·열 점화나 $LL^{\mathsf T}$형 삼각분해를 먼저 찾는다.
+표준 Pascal 행렬의 determinant는 $1$로 떨어지는 경우가 많다.
 \end{fact}
 
-\begin{formula}[Nilpotent Powers]
-$J_s(0)$가 크기 $s$인 nilpotent Jordan block이면
+\begin{fact}[LU Factorization and Pivoting]
+일반적으로
 \[
-\boxed{\rk(J_s(0)^k)=\max(s-k,0)}.
+PA=LU
 \]
-일반 nilpotent matrix의 Jordan block 크기가 $s_1,\ldots,s_r$이면
+형태를 사용한다. row permutation이 바뀌면 pivot 값 자체는 달라질 수 있다.
+\end{fact}
+
+\begin{theorem}[Cayley--Hamilton]
+모든 정사각행렬은 자신의 characteristic polynomial을 만족한다:
 \[
-\rk(\mathbf N^k)=\sum_j\max(s_j-k,0),
-\qquad
-\dim\ker(\mathbf N^k)=\sum_j\min(k,s_j).
+p_A(A)=0.
 \]
-특히 $\rk(\mathbf N)=n-1$이면 Jordan block이 하나이고 $\rk(\mathbf N^k)=\max(n-k,0)$이다.
+따라서 큰 거듭제곱 $A^N$은 낮은 차수의 $I,A,\dots,A^{n-1}$ 조합으로 줄일 수 있다.
+특히 별도의 polynomial relation이 주어지면 그 relation으로 $x^N$의 remainder를 취하는 것이 빠르다.
+\end{theorem}
+
+\begin{formula}[Rank Inequalities]
+\[
+\rk(AB)\le\min(\rk A,\rk B),\qquad \rk(A+B)\le\rk A+\rk B.
+\]
+$A=PQ^{\mathsf T}$에서 $Q^{\mathsf T}$가 surjective이면 $\operatorname{im}(A)=\operatorname{im}(P)$.
 \end{formula}
-
-\begin{remark}
-Jordan 표준형은 대각화할 수 없는 행렬에 남는 구조를 기술한다. 파이널에서는 세부 계산보다 ``대각화가 안 되어도 Jordan 표준형이 있다'' 정도만 기억한다.
-\end{remark}
-
 
 \finalchapter{4}{Differential Equations}
 
+
 \begin{formula}[First-Order Exponential Growth and Decay]
 \[
-y'=ay
-\quad\Longrightarrow\quad
-y=Ce^{ax}.
+y'=ay\quad\Longrightarrow\quad y=Ce^{ax}.
 \]
 $a>0$이면 성장, $a<0$이면 감쇠이다.
 \end{formula}
 
-\begin{theorem}[Constant-Coefficient Second-Order ODE]
+\begin{formula}[Separable Equations]
+\[
+y'=g(x)h(y)\quad\Longrightarrow\quad\int\frac{\dd y}{h(y)}=\int g(x)\,\dd x.
+\]
+logistic equation
+\[
+y'=ry\left(1-\frac yK\right)
+\]
+의 해는
+\[
+y(t)=\frac{K}{1+Ce^{-rt}}.
+\]
+\end{formula}
+
+\begin{formula}[First-Order Linear ODE]
+\[
+y'+p(x)y=q(x),\qquad
+\mu(x)=e^{\int p(x)\,\dd x},
+\]
+\[
+(\mu y)'=\mu q.
+\]
+\end{formula}
+
+\begin{formula}[Constant-Coefficient Linear ODE]
 \[
 ay''+by'+cy=0
 \]
-에는 특성방정식
-\[
-ar^2+br+c=0
-\]
-을 쓴다. 근이 $r_1\ne r_2$이면 $C_1e^{r_1x}+C_2e^{r_2x}$, 중근 $r$이면 $(C_1+C_2x)e^{rx}$, $\alpha\pm i\beta$이면
-\[
-e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x).
-\]
-\end{theorem}
-
-\begin{formula}[Separable and First-Order Linear ODEs]
-\[
-y'=g(x)h(y)\quad\Longrightarrow\quad \int\frac{\dd y}{h(y)}=\int g(x)\,\dd x,
-\]
-\[
-y'+p(x)y=q(x),\qquad
-\mu(x)=e^{\int p(x)\dd x},\qquad
-(\mu y)'=\mu q.
-\]
+에는 characteristic equation $ar^2+br+c=0$을 쓴다.
+중근이면 $(C_1+C_2x)e^{rx}$, 복소근 $\alpha\pm i\beta$이면
+$e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$.
 \end{formula}
 
 \begin{formula}[Constant-Coefficient Systems]
@@ -882,7 +632,6 @@ y'+p(x)y=q(x),\qquad
 대각화 가능하면 $e^{\lambda t}\mathbf v$ 꼴의 고유모드들의 선형결합으로 본다.
 \end{formula}
 
-
 \begin{fact}[Three Fundamental PDEs]
 \[
 \text{Heat: }u_t=\kappa\Delta u,
@@ -891,489 +640,363 @@ y'+p(x)y=q(x),\qquad
 \qquad
 \text{Laplace: }\Delta u=0.
 \]
-열방정식은 확산, 파동방정식은 파동 전파, Laplace 방정식은 조화함수와 평형을 대표한다.
+확산, 파동 전파, 조화함수·평형을 각각 대표한다.
 \end{fact}
 
-
-\begin{formula}[Bessel Equation and Bessel Functions]
-원통ㆍ원형 대칭의 변수분리에서 자주 나타나는 Bessel 방정식은
+\begin{formula}[Bessel Equation]
 \[
-\boxed{x^2y''+xy'+(x^2-\nu^2)y=0}.
+x^2y''+xy'+(x^2-\nu^2)y=0.
 \]
-대표해는 제1종ㆍ제2종 Bessel 함수 $J_\nu(x),Y_\nu(x)$이다. ``원통 대칭 $\leftrightarrow$ Bessel''을 함께 기억한다.
+표준해는 Bessel functions $J_\nu(x),Y_\nu(x)$. 원통대칭 PDE에서 자주 나타난다.
 \end{formula}
-
 
 \finalchapter{5}{Combinatorics and Discrete Mathematics}
 
 \begin{formula}[Basic Counting]
 \[
-{}_nP_r=\frac{n!}{(n-r)!},
-\qquad
-\binom nr=\frac{n!}{r!(n-r)!},
-\qquad
-\left(\!\binom nr\!\right)=\binom{n+r-1}{r}.
+{}_nP_r=\frac{n!}{(n-r)!},\qquad \binom nr=\frac{n!}{r!(n-r)!}.
 \]
-기본식은 이 정도만 남기고, 이후에는 포함배제ㆍCatalanㆍBurnside 같은 구조를 우선 본다.
+중복조합:
+\[
+x_1+\cdots+x_k=n,\ x_i\ge0\quad\Longrightarrow\quad\binom{n+k-1}{k-1}.
+\]
 \end{formula}
 
 \begin{theorem}[Binomial Theorem]
 \[
-(x+y)^n=\sum_{k=0}^{n}\binom nkx^{n-k}y^k.
+(x+y)^n=\sum_{k=0}^n\binom nkx^{n-k}y^k,
 \]
-특히
 \[
-\sum_{k=0}^{n}\binom nk=2^n,
+\sum_{k=0}^n\binom nk=2^n,
 \qquad
-\sum_{k=0}^{n}(-1)^k\binom nk=0\quad(n\ge1).
+\sum_{k=0}^n(-1)^k\binom nk=0\quad(n\ge1).
 \]
-\end{theorem}
-
-\begin{formula}[Inclusion--Exclusion]
-두 집합:
-\[
-|A\cup B|=|A|+|B|-|A\cap B|.
-\]
-세 집합:
-\[
-|A\cup B\cup C|
-=\sum|A|-\sum|A\cap B|+|A\cap B\cap C|.
-\]
-``적어도 하나''를 직접 세기 복잡하면 여사건을 먼저 본다.
-\end{formula}
-
-\begin{theorem}[Pigeonhole Principle]
-$n+1$개의 대상을 $n$개의 상자에 넣으면 어떤 상자에는 최소 두 개가 들어간다. 일반형: $N$개를 $k$개에 넣으면 어떤 상자에는 최소
-\[
-\left\lceil\frac Nk\right\rceil
-\]
-개가 들어간다.
 \end{theorem}
 
 \begin{formula}[Lattice Paths]
-$(0,0)$에서 $(m,n)$까지 right/up만 허용하면 경로 수는
+$(0,0)$에서 $(m,n)$까지 right/up만 허용하면
 \[
-\binom{m+n}{m}.
+\binom{m+n}{m}
 \]
-대각선을 넘지 않는 조건이 붙으면 reflection principle 또는 Catalan number를 의심한다.
+개. 대각선 제약이 붙으면 reflection principle 또는 Catalan number를 먼저 본다.
 \end{formula}
 
 \begin{formula}[Derangements]
-$D_n$을 아무 원소도 제자리에 있지 않는 순열의 수라 하면
 \[
-D_n=n!\sum_{k=0}^{n}\frac{(-1)^k}{k!},
-\qquad
-D_n=\left\lfloor\frac{n!}{e}+\frac12\right\rfloor.
+D_n=n!\sum_{k=0}^n\frac{(-1)^k}{k!}
+=\left\lfloor\frac{n!}{e}+\frac12\right\rfloor.
 \]
 \end{formula}
 
 \begin{formula}[Vandermonde and Stars and Bars]
 \[
-\sum_k\binom{r}{k}\binom{s}{n-k}=\binom{r+s}{n}.
+\sum_k\binom rk\binom s{n-k}=\binom{r+s}{n}.
 \]
-음이 아닌 정수해를 갖는
-\[
-x_1+\cdots+x_m=n
-\]
-의 수는 $\binom{n+m-1}{m-1}$이고, 양의 정수해의 수는 $\binom{n-1}{m-1}$이다.
+$x_1+\cdots+x_m=n$의 음이 아닌 정수해 수는 $\binom{n+m-1}{m-1}$,
+양의 정수해 수는 $\binom{n-1}{m-1}$.
 \end{formula}
 
+\begin{theorem}[Inclusion--Exclusion]
+\[
+\left|\bigcup_{i=1}^nA_i\right|=\sum|A_i|-\sum|A_i\cap A_j|+\cdots.
+\]
+전사함수 개수는
+\[
+\#\operatorname{Surj}([m],[n])=\sum_{j=0}^n(-1)^j\binom nj(n-j)^m.
+\]
+\end{theorem}
+
+\begin{theorem}[Pigeonhole Principle]
+$N$개 물건을 $k$개 상자에 넣으면 어떤 상자에는 적어도 $\lceil N/k\rceil$개가 들어간다.
+\end{theorem}
 
 \begin{formula}[Gap and Block Counting]
-$\{1,\ldots,n\}$에서 서로 이웃하지 않는 $k$개를 고르는 방법 수는
+$n$개 위치에서 서로 이웃하지 않게 $k$개를 고르는 방법:
 \[
-\boxed{\binom{n-k+1}{k}}.
+\binom{n-k+1}{k}.
 \]
-서로 다른 $n$개를 일렬로 놓을 때 지정된 $r$개가 한 덩어리로 붙어 있어야 하고 내부 순서도 자유라면
+서로 다른 $n$개 중 지정된 $r$개가 연속하도록 배열:
 \[
-\boxed{r!(n-r+1)!}.
+r!(n-r+1)!.
 \]
-간격을 하나씩 제거하거나, 붙어야 하는 대상을 하나의 block으로 본다.
 \end{formula}
 
-
-\begin{formula}[Catalan Numbers]
+\begin{formula}[Catalan Numbers and Reflection]
 \[
-\boxed{C_n=\frac1{n+1}\binom{2n}{n}}.
+C_n=\frac1{n+1}\binom{2n}{n}.
 \]
-Dyck 경로, 올바른 괄호열, 이진트리 계수 등 여러 문제에 반복해서 나타난다.
+격자경로가 $y=x$를 넘지 않는 문제, 올바른 괄호, binary trees 등에서 등장한다.
+금지선을 처음 넘는 지점까지 반사하는 reflection principle을 함께 기억한다.
 \end{formula}
 
 \begin{theorem}[Hall's Marriage Theorem]
-이분그래프에서 왼쪽 모든 정점을 서로 다른 오른쪽 정점과 매칭할 수 있을 필요충분조건은 모든 부분집합 $S$에 대해
+이분그래프에서 왼쪽 모든 정점을 서로 다른 오른쪽 정점과 매칭할 수 있을 필요충분조건은 모든 $S$에 대해
 \[
-\boxed{|N(S)|\ge|S|}
+\boxed{|N(S)|\ge|S|}.
 \]
-이다.
 \end{theorem}
 
 \begin{fact}[Ramsey Anchor]
-가장 유명한 정확한 Ramsey number:
 \[
 \boxed{R(3,3)=6}.
 \]
-6명이 있으면 서로 모두 아는 3명 또는 서로 모두 모르는 3명이 반드시 존재한다는 고전적 해석이 있다.
+6명이 있으면 서로 모두 아는 3명 또는 서로 모두 모르는 3명이 반드시 존재한다.
 \end{fact}
 
-
 \begin{fact}[Graph Complement]
-그래프 $G$의 여그래프를 $\overline G$라 하면
 \[
-\boxed{\omega(G)=\alpha(\overline G)},
-\qquad
-\boxed{\alpha(G)=\omega(\overline G)},
+\omega(G)=\alpha(\overline G),\qquad
+\alpha(G)=\omega(\overline G).
 \]
-여기서 $\omega$는 최대 clique 크기, $\alpha$는 최대 independent set 크기이다. clique와 independent set은 여그래프에서 서로 뒤바뀐다.
+clique와 independent set은 complement에서 서로 뒤바뀐다.
 \end{fact}
 
 \begin{theorem}[Burnside's Lemma]
-유한군 $G$가 유한집합 $X$에 작용할 때 orbit의 개수는
+유한군 $G$가 집합 $X$에 작용하면 orbit 수는
 \[
-|X/G|=\frac1{|G|}\sum_{g\in G}|\operatorname{Fix}(g)|.
+\frac1{|G|}\sum_{g\in G}|\operatorname{Fix}(g)|.
 \]
-``회전/대칭을 같은 것으로 본다''는 counting 문제에서 떠올린다.
+회전·대칭을 같은 것으로 보는 coloring 문제에서 바로 쓴다.
 \end{theorem}
 
-\begin{formula}[Linear Recurrence]
-$a_n=c_1a_{n-1}+\cdots+c_ka_{n-k}$에는 특성다항식을 쓴다. Fibonacci의 특성방정식은
+\begin{formula}[Generating Functions and Coefficient Extraction]
 \[
-r^2-r-1=0.
+[x^n]f(x)=\frac{f^{(n)}(0)}{n!}.
 \]
+Fibonacci generating function:
+\[
+\frac1{1-x-x^2}=\sum_{n\ge0}F_{n+1}x^n.
+\]
+Taylor 계수와 recurrence를 연결하는 대표 pattern이다.
+\end{formula}
+
+\begin{formula}[Linear Recurrence]
+\[
+a_n=c_1a_{n-1}+\cdots+c_ka_{n-k}
+\]
+에는 characteristic polynomial을 쓴다. Fibonacci는 $r^2-r-1=0$.
 \end{formula}
 
 \begin{theorem}[Master Theorem for Divide-and-Conquer]
 \[
-T(n)=aT(n/b)+f(n),
-\qquad d=\log_ba.
+T(n)=aT(n/b)+f(n),\qquad d=\log_ba.
 \]
-표준 세 case만 기억한다.
-\begin{enumerate}
-  \item $f(n)=O(n^{d-\varepsilon})$: $T(n)=\Theta(n^d)$.
-  \item $f(n)=\Theta(n^d(\log n)^k)$: $T(n)=\Theta(n^d(\log n)^{k+1})$.
-  \item $f(n)=\Omega(n^{d+\varepsilon})$이고 정칙성 조건이 성립: $T(n)=\Theta(f(n))$.
-\end{enumerate}
-서로 다른 크기의 부분문제에는 그대로 적용하지 않는다.
+표준형에서는 $f(n)$과 $n^d$의 크기를 비교한다. 서로 다른 크기의 부분문제에는 그대로 적용하지 않는다.
 \end{theorem}
 
-\begin{theorem}[Handshaking Lemma]
-그래프에서
+\begin{formula}[Graph Essentials]
+handshaking lemma:
 \[
 \sum_{v\in V}\deg(v)=2|E|.
 \]
-따라서 홀수 차수 꼭짓점의 개수는 항상 짝수이다.
-\end{theorem}
-
-\begin{theorem}[Eulerian Trail Criterion]
-연결 그래프에서 모든 꼭짓점 차수가 짝수이면 Euler 회로가 존재한다. 정확히 두 꼭짓점만 홀수 차수이면 그 두 점을 끝점으로 하는 Euler 경로가 존재한다. K\"onigsberg 다리 문제의 핵심이다.
-\end{theorem}
-
-\begin{formula}[Trees]
-$n$ 꼭짓점을 가진 tree는 정확히
+tree에서는 $|E|=|V|-1$. 완전그래프 $K_n$의 spanning tree 수는 $n^{n-2}$ (Cayley).
+complement에 대해서는
 \[
-|E|=n-1
+|E(G)|+|E(\overline G)|=\binom n2,\qquad
+\deg_G(v)+\deg_{\overline G}(v)=n-1.
 \]
-개의 변을 가진다. 연결 그래프에서 cycle이 없다는 것과 $|E|=|V|-1$은 tree의 대표적 동치 조건이다.
 \end{formula}
 
+\begin{theorem}[Eulerian Trail Criterion]
+연결 그래프에서 모든 꼭짓점 차수가 짝수이면 Euler circuit가 존재한다.
+정확히 두 꼭짓점만 홀수 차수이면 그 두 점을 끝점으로 하는 Euler trail가 존재한다.
+\end{theorem}
+
 \begin{theorem}[Planar Graph Euler Formula]
-연결 평면그래프의 평면 embedding에서
+연결 planar embedding에서
 \[
 V-E+F=2.
 \]
-단순 평면그래프 $(V\ge3)$이면
-\[
-E\le3V-6,
-\]
-삼각형을 포함하지 않으면 $E\le2V-4$.
+단순 평면그래프 $V\ge3$이면 $E\le3V-6$, triangle-free이면 $E\le2V-4$.
 \end{theorem}
-
-\begin{fact}[Spanning Trees]
-트리는 연결되고 순환이 없는 그래프이며, $n$개의 꼭짓점을 가지면 변은 정확히 $n-1$개이다. 완전그래프의 신장트리 수는 Cayley 공식
-\[
-\boxed{T(K_n)=n^{n-2}}.
-\]
-\end{fact}
 
 \begin{formula}[Moser's Circle Problem]
 원 위 $n$점을 모든 현으로 잇고 내부에서 세 현이 한 점에 만나지 않으면 최대 영역 수는
 \[
 \boxed{1+\binom n2+\binom n4}.
 \]
-첫 값은 $1,2,4,8,16,31,\ldots$로 $n=6$에서 $2^{n-1}$ 패턴이 깨진다.
+첫 값은 $1,2,4,8,16,31,\ldots$로 $n=6$에서 $2^{n-1}$ pattern이 깨진다.
 \end{formula}
 
 \begin{fact}[Eulerian vs Hamiltonian]
-Euler 경로는 \textbf{모든 변}을 정확히 한 번, Hamilton 경로는 \textbf{모든 꼭짓점}을 정확히 한 번 방문한다. 이름을 바꿔 쓰지 않는다.
+Euler path는 모든 \textbf{edge}를 정확히 한 번, Hamilton path는 모든 \textbf{vertex}를 정확히 한 번 방문한다.
 \end{fact}
 
 \begin{formula}[Tower of Hanoi]
-$n$개의 원판을 옮기는 최소 이동 횟수는
 \[
-\boxed{2^n-1}.
+T(n)=2T(n-1)+1,\qquad T(n)=2^n-1.
 \]
-점화식 $T_n=2T_{n-1}+1$의 대표 anchor이다.
 \end{formula}
 
-
-\begin{theorem}[Euler's Polyhedron Formula]
-Convex polyhedron에 대해
+\begin{formula}[Cycles in a Uniform Random Permutation]
+$X_r=$ $r$-cycle의 개수라 하면
 \[
-V-E+F=2.
+\Exp[X_r]=\frac1r,\qquad \Exp[C_n]=H_n.
 \]
-각 꼭짓점의 차수가 $3$이고 $f_k$가 $k$각형 면의 수이면
-\[
-\sum_{k\ge3}(6-k)f_k=12.
-\]
-따라서 모든 face가 pentagon 또는 hexagon이면 pentagons는 정확히 $12$개이다.
-\end{theorem}
-
-\finalheading{경우의 수 문제를 받으면}
-순서가 중요한가, 중복이 허용되는가, 여사건이 쉬운가, 포함배제가 필요한가, 격자경로로 바뀌는가, 대각선 제약이 Catalan/reflection으로 가는가를 순서대로 본다.
-
+특히 fixed point의 기대값은 $1$.
+\end{formula}
 
 \finalchapter{6}{Probability and Statistics}
 
 \begin{formula}[Conditional Probability and Bayes]
 \[
-\Prob(A\mid B)=\frac{\Prob(A\cap B)}{\Prob(B)}.
+\Prob(A\mid B)=\frac{\Prob(A\cap B)}{\Prob(B)},\qquad
+\Prob(A\mid B)=\frac{\Prob(B\mid A)\Prob(A)}{\Prob(B)}.
 \]
-Bayes' theorem:
-\[
-\Prob(A_i\mid B)=
-\frac{\Prob(B\mid A_i)\Prob(A_i)}{\sum_j\Prob(B\mid A_j)\Prob(A_j)}.
-\]
-조건부확률에서는 sample space가 바뀐다는 점을 먼저 생각한다.
 \end{formula}
 
 \begin{definition}[Independence]
 \[
-A\perp B
-\quad\Longleftrightarrow\quad
-\Prob(A\cap B)=\Prob(A)\Prob(B).
+A\perp B\Longleftrightarrow\Prob(A\cap B)=\Prob(A)\Prob(B).
 \]
 서로소(disjoint)와 독립(independent)은 다르다. 양의 확률을 갖는 서로소 사건은 독립일 수 없다.
 \end{definition}
 
 \begin{formula}[Expectation and Variance]
-이산확률변수:
 \[
-\Exp[X]=\sum_xx\Prob(X=x).
+\Exp[aX+bY]=a\Exp[X]+b\Exp[Y]
 \]
+은 독립성 없이 성립한다.
 \[
 \Var(X)=\Exp[X^2]-\Exp[X]^2.
 \]
-독립인 $X,Y$에 대해
-\[
-\Var(X+Y)=\Var(X)+\Var(Y).
-\]
-\end{formula}
-
-\begin{theorem}[Linearity of Expectation]
-\[
-\Exp\left[\sum_{i=1}^n a_iX_i\right]
-=\sum_{i=1}^n a_i\Exp[X_i].
-\]
-\boxed{\text{독립성은 필요 없다.}}
-개수의 기댓값을 묻는 문제에서는 지시확률변수 (indicator variable)를 먼저 고려한다.
-\end{theorem}
-
-\begin{formula}[Cycles in a Uniform Random Permutation]
-$S_n$에서 균등하게 순열을 하나 고르고, $X_r$를 길이 $r$인 순환의 개수라 하면
-\[
-\boxed{\Exp[X_r]=\frac1r}.
-\]
-따라서 전체 순환 수 $C_n$에 대해
-\[
-\boxed{\Exp[C_n]=H_n=1+\frac12+\cdots+\frac1n}.
-\]
+독립이면 $\Exp[XY]=\Exp[X]\Exp[Y]$, $\Var(X+Y)=\Var X+\Var Y$.
 \end{formula}
 
 \begin{proposition}[Product of Independent Variables]
 독립인 적분가능 확률변수에 대해
 \[
-\Exp[X_1\cdots X_n]=\prod_{i=1}^n\Exp[X_i].
+\Exp[X_1\cdots X_n]=\prod_i\Exp[X_i].
 \]
 합의 기댓값과 달리 곱의 기댓값에서는 독립성이 중요하다.
 \end{proposition}
 
-\begin{formula}[Total Probability and Total Expectation]
-분할 $B_1,\dots,B_m$에 대해
+\begin{formula}[Total Expectation, Variance, and Covariance]
 \[
-\Prob(A)=\sum_i\Prob(A\mid B_i)\Prob(B_i),
+\Exp[X]=\Exp[\Exp[X\mid Y]],
 \]
 \[
-\Exp[X]=\Exp\!\left[\Exp[X\mid Y]\right].
-\]
-또한
-\[
-\Var(X)=\Exp[\Var(X\mid Y)]+\Var(\Exp[X\mid Y]).
-\]
-\end{formula}
-
-\begin{formula}[Covariance and Independence]
-\[
-\Cov(X,Y)=\Exp[XY]-\Exp[X]\Exp[Y],
+\Var(X)=\Exp[\Var(X\mid Y)]+\Var(\Exp[X\mid Y]),
 \]
 \[
-\Var(X+Y)=\Var X+\Var Y+2\Cov(X,Y).
+\Cov(X,Y)=\Exp[XY]-\Exp[X]\Exp[Y].
 \]
 독립이면 covariance는 $0$이지만 converse는 일반적으로 거짓이다.
 \end{formula}
-
-\begin{fact}[Memoryless Distributions]
-Geometric과 exponential distribution은 무기억성(memoryless)을 가진다:
-\[
-\Prob(X>s+t\mid X>s)=\Prob(X>t).
-\]
-이산형과 연속형의 대표적인 memoryless 분포이다.
-\end{fact}
-
 
 \begin{formula}[Tail-Sum Formula]
 $X\in\Nzero$이면
 \[
 \boxed{\Exp[X]=\sum_{k=1}^{\infty}\Prob(X\ge k)}.
 \]
-Waiting-time 문제에서는 ``아직 끝나지 않았을 확률''을 더하는 방식으로 기억한다.
+waiting-time 문제에서 강력하다.
 \end{formula}
 
-\begin{formula}[Common Distributions: pmf/pdf, Mean, Variance]
+\begin{formula}[Common Distributions]
 \begin{center}
 \small
-\renewcommand{\arraystretch}{1.15}
-\begin{tabularx}{0.98\textwidth}{@{}L{0.20\textwidth}Y L{0.16\textwidth}L{0.16\textwidth}@{}}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabularx}{0.97\textwidth}{@{}L{0.18\textwidth}Y L{0.16\textwidth}L{0.16\textwidth}@{}}
 \toprule
-Distribution & pmf / pdf & $\Exp[X]$ & $\Var(X)$\\
+분포 & pmf / pdf & $\Exp[X]$ & $\Var(X)$\\
 \midrule
-$\Bern(p)$ & $\Prob(X=x)=p^x(1-p)^{1-x}$, $x=0,1$ & $p$ & $p(1-p)$\\
+$\Bern(p)$ & $p^x(1-p)^{1-x}$, $x=0,1$ & $p$ & $p(1-p)$\\
 $\Bin(n,p)$ & $\binom nkp^k(1-p)^{n-k}$ & $np$ & $np(1-p)$\\
 $\Geom(p)$ & $(1-p)^{k-1}p$, $k\in\N$ & $1/p$ & $(1-p)/p^2$\\
 $\Poi(\lambda)$ & $e^{-\lambda}\lambda^k/k!$ & $\lambda$ & $\lambda$\\
 $\Unif(a,b)$ & $1/(b-a)$ on $[a,b]$ & $(a+b)/2$ & $(b-a)^2/12$\\
 $\ExpDist(\lambda)$ & $\lambda e^{-\lambda x}$, $x\ge0$ & $1/\lambda$ & $1/\lambda^2$\\
-$\Normal(\mu,\sigma^2)$ & $\frac1{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}$ & $\mu$ & $\sigma^2$\\
+$\Normal(\mu,\sigma^2)$ & normal density & $\mu$ & $\sigma^2$\\
 \bottomrule
 \end{tabularx}
 \end{center}
 Geometric distribution은 MATH000 convention대로 \textbf{첫 성공이 나온 시행까지 센다}.
-\end{formula}
-
-
-
-
-\begin{formula}[Markov and Chebyshev Inequalities]
-$X\ge0$이면
-\[
-\boxed{\Prob(X\ge a)\le\frac{\Exp[X]}a}.
-\]
-평균 $\mu$, 분산 $\sigma^2$이면
-\[
-\boxed{\Prob(|X-\mu|\ge t)\le\frac{\sigma^2}{t^2}}.
-\]
-\end{formula}
-
-\begin{theorem}[Law of Large Numbers and Central Limit Theorem]
-독립 동일분포, 평균 $\mu$, 분산 $\sigma^2<\infty$인 $X_i$에 대해
-\[
-\bar X_n\to\mu\quad\text{(확률적으로; LLN)},
-\]
-\[
-\boxed{\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\Rightarrow\Normal(0,1)}\quad\text{(CLT)}.
-\]
-정확한 조건보다 ``평균은 $\mu$로 모이고, 중심화ㆍ정규화하면 정규분포''라는 결론을 우선 기억한다.
-\end{theorem}
-
-\begin{formula}[Stationary Distribution]
-Markov chain의 전이행렬이 $\mathbf P$일 때 stationary distribution $\boldsymbol\pi$는
-\[
-\boxed{\boldsymbol\pi\mathbf P=\boldsymbol\pi},
-\qquad
-\sum_i\pi_i=1.
-\]
-2-state 문제는 이 연립방정식으로 즉시 푼다.
+Geometric과 exponential distribution은 memoryless이다.
 \end{formula}
 
 \begin{formula}[Maxima and Minima]
-독립 동일분포인 $X_1,\ldots,X_n$의 CDF가 $F$이면
+i.i.d. $X_i$의 CDF가 $F$이면
 \[
-\Prob\!\left(\max_iX_i\le x\right)=F(x)^n,
+\Prob(\max_iX_i\le x)=F(x)^n,
 \]
 \[
-\Prob\!\left(\min_iX_i>x\right)=(1-F(x))^n.
-\]
-Max/min은 CDF로 바꾸면 곱셈으로 정리된다.
-\end{formula}
-
-\begin{formula}[Birthday Problem]
-$n$명이 $365$일에 균등하게 태어난다고 단순화하면 모두 다른 생일일 확률은
-\[
-\prod_{k=0}^{n-1}\frac{365-k}{365},
-\]
-따라서 생일이 같은 pair가 적어도 하나 있을 확률은
-\[
-1-\prod_{k=0}^{n-1}\frac{365-k}{365}.
-\]
-$n=23$에서 이미 $1/2$를 넘는다.
-\end{formula}
-
-\begin{fact}[Three Famous Probability Anchors]
-\begin{itemize}
-  \item \textbf{Coupon collector}: $n$종류를 모두 모을 때까지의 기댓값은 $\boxed{nH_n\sim n\log n}$.
-  \item \textbf{Broken stick}: 선분을 독립 균등한 두 점에서 자른 세 조각이 삼각형을 이룰 확률은 $\boxed{1/4}$.
-  \item \textbf{Buffon's needle}: 간격 $d$, 길이 $\ell\le d$이면 선을 가로지를 확률은 $\boxed{2\ell/(\pi d)}$.
-\end{itemize}
-\end{fact}
-
-\begin{fact}[Monty Hall]
-문 하나를 고른 뒤 진행자가 항상 goat가 있는 다른 문 하나를 열고 switch를 허용하는 표준 Monty Hall 문제에서
-\[
-\boxed{\Prob(\text{stay wins})=\frac13,
-\qquad
-\Prob(\text{switch wins})=\frac23.}
-\]
-\end{fact}
-
-\begin{formula}[Expected Number of Runs]
-독립 Bernoulli 수열에서 run의 개수는 인접한 값의 변화 지시변수로 쓴다. 공정한 동전을 $n$번 던지면
-\[
-\Exp[R_n]=1+\sum_{i=2}^{n}\Prob(X_i\ne X_{i-1})
-=1+\frac{n-1}{2}=\frac{n+1}{2}.
+\Prob(\min_iX_i>x)=(1-F(x))^n.
 \]
 \end{formula}
 
-\begin{fact}[Two Stopping-Time Anchors from 2025]
-\begin{itemize}
-  \item 공정한 동전을 두 번 연속 같은 결과가 나올 때까지 던지면 기대 시행횟수는 $\boxed{3}$.
-  \item 공정한 주사위를 $6$이 나올 때까지 던져 나온 눈의 합을 더하면 기대합은 $\boxed{21}$.
-\end{itemize}
-두 문제 모두 ``상태를 두고 기댓값 점화식을 세운다''는 공통 핵심을 가진다.
+\begin{fact}[Broken Stick]
+막대를 균등하게 두 점에서 잘라 세 조각을 만들 때 세 조각이 삼각형을 이룰 확률은
+\[
+\boxed{\frac14}.
+\]
+단순 길이독립으로 착각하지 말고 두 절단점의 ordered region을 생각한다.
 \end{fact}
 
-\finalheading{기댓값 문제를 받으면}
-\begin{enumerate}
-  \item ``개수''를 묻는가? $\to$ 지시변수 + 선형성.
-  \item 곱인가? $\to$ 독립성 확인.
-  \item ``적어도 하나''인가? $\to$ 여사건.
-  \item ``~가 나올 때까지 / 처음으로''인가? $\to$ 기하분포, 점화식, 꼬리합 공식.
-  \item 조건이 붙었는가? $\to$ 조건부 표본공간을 다시 만든다.
-\end{enumerate}
+\begin{fact}[Buffon's Needle]
+평행선 간격이 $d$, 바늘 길이가 $\ell\le d$이면 임의로 던진 바늘이 선을 가로지를 확률은
+\[
+\boxed{\frac{2\ell}{\pi d}}.
+\]
+\end{fact}
 
+\begin{fact}[Birthday and Monty Hall]
+$n$명의 생일이 모두 다를 확률:
+\[
+\prod_{k=0}^{n-1}\frac{365-k}{365}.
+\]
+Monty Hall에서 표준 host protocol 아래 stay $=1/3$, switch $=2/3$.
+\end{fact}
+
+\begin{formula}[Expected Runs]
+독립 fair coin을 $n$번 던질 때 run 수 $R$는
+\[
+R=1+\sum_{i=2}^n\indicator{\{X_i\neq X_{i-1}\}},\qquad
+\Exp R=\frac{n+1}{2}.
+\]
+\end{formula}
+
+\begin{formula}[Coupon Collector]
+$n$종류가 균등하게 나올 때 모두 모으기까지 기대 시행 수:
+\[
+nH_n.
+\]
+\end{formula}
+
+\begin{formula}[Markov and Chebyshev]
+$X\ge0$이면
+\[
+\Prob(X\ge a)\le\frac{\Exp X}{a}.
+\]
+\[
+\Prob(|X-\mu|\ge t)\le\frac{\sigma^2}{t^2}.
+\]
+\end{formula}
+
+\begin{theorem}[LLN and CLT]
+i.i.d. 평균 $\mu$ 아래 sample mean은 $\mu$로 수렴한다.
+적절한 유한분산 가정 아래
+\[
+\frac{S_n-n\mu}{\sigma\sqrt n}\Longrightarrow\Normal(0,1).
+\]
+\end{theorem}
+
+\begin{formula}[Finite Markov Chains]
+row-stochastic transition matrix $P$에서 stationary distribution $\pi$는
+\[
+\pi P=\pi,\qquad \sum_i\pi_i=1.
+\]
+\end{formula}
+
+\begin{strategy}[Stopping-Time Expectation]
+반복 시행이 같은 상태로 돌아오면 기대값 $E$에 대한 one-step equation을 세운다.
+독립성과 geometric stopping을 기계적으로 곱하지 말고 어떤 보상이 stopping event와 결합되는지 확인한다.
+\end{strategy}
 
 \finalchapter{7}{Geometry}
-
 \finalsection{Synthetic Geometry}
 
 \begin{formula}[Triangle Essentials]
-\[
-a^2+b^2=c^2\quad\text{(직각삼각형)},
-\]
-\[
-\frac{a}{\sin A}=\frac{b}{\sin B}=\frac{c}{\sin C}=2R,
-\]
-\[
-c^2=a^2+b^2-2ab\cos C.
-\]
-넓이 공식:
+넓이 $K$, 반둘레 $s$, 내접반지름 $r$, 외접반지름 $R$에 대해
 \[
 K=\frac12ab\sin C=rs=\frac{abc}{4R},
 \]
@@ -1382,422 +1005,379 @@ K=\sqrt{s(s-a)(s-b)(s-c)}.
 \]
 \end{formula}
 
-
-
-\begin{formula}[Circle Essentials]
-반지름 $R$인 원에서 중심각 $\theta$ (라디안)에 대해
-\[
-\text{arc length}=R\theta,\qquad \text{sector area}=\frac12R^2\theta.
-\]
-접선은 접점에서 반지름과 수직이고, 원 밖의 한 점에서 그은 두 접선의 길이는 같다.
-\end{formula}
-
-
-\begin{theorem}[Thales' Theorem]
-지름이 만드는 원주각은 $90^\circ$이다. 원과 직각이 함께 나오면 지름을 먼저 의심한다.
-\end{theorem}
-
-\begin{formula}[Ceva and Menelaus]
-삼각형 $ABC$에서 $D\in BC$, $E\in CA$, $F\in AB$.
-Concurrent 조건:
+\begin{theorem}[Ceva and Menelaus]
+Ceva:
 \[
 \frac{BD}{DC}\frac{CE}{EA}\frac{AF}{FB}=1.
 \]
-일직선 조건(Menelaus)은 유향비 convention 아래 대응하는 곱이 $-1$이다.
-\end{formula}
+Menelaus는 유향비 convention에서 대응하는 곱이 $-1$.
+\end{theorem}
 
 \begin{fact}[Triangle Centers and Euler Line]
-무게중심 $G$는 중선의 교점이며 각 중선을 꼭짓점 쪽에서 $2:1$로 나눈다. 외심 $O$, 무게중심 $G$, 수심 $H$는 한 직선 위에 있고
+무게중심 $G$는 중선을 꼭짓점 쪽에서 $2:1$로 나눈다.
+외심 $O$, 무게중심 $G$, 수심 $H$는 일직선이며
 \[
-\boxed{OG:GH=1:2}.
+OG:GH=1:2.
 \]
-내심는 각의 이등분선의 교점이다.
 \end{fact}
 
 \begin{fact}[Platonic Solids]
-정다면체는 정확히 다섯 개: tetrahedron, cube, octahedron, dodecahedron, icosahedron. 면의 수는 각각
+정다면체는 정확히 다섯 개: tetrahedron, cube, octahedron, dodecahedron, icosahedron.
+면의 수는
 \[
 4,\ 6,\ 8,\ 12,\ 20.
 \]
 \end{fact}
 
+\begin{formula}[Circle Essentials]
+반지름 $R$, 중심각 $\theta$ (radian)에 대해
+\[
+\text{arc length}=R\theta,\qquad
+\text{sector area}=\frac12R^2\theta.
+\]
+접선은 접점에서 반지름과 수직이고, 원 밖의 한 점에서 그은 두 접선의 길이는 같다.
+\end{formula}
+
+\begin{theorem}[Thales' Theorem]
+지름이 만드는 원주각은 $90^\circ$이다. 원과 직각이 함께 나오면 지름을 먼저 의심한다.
+\end{theorem}
+
+\begin{theorem}[Euler's Polyhedron Formula]
+convex polyhedron에 대해
+\[
+V-E+F=2.
+\]
+모든 꼭짓점 차수가 $3$이고 $f_k=$ $k$-gon face 수이면
+\[
+\sum_k(6-k)f_k=12.
+\]
+pentagon과 hexagon만 있으면 pentagon은 정확히 $12$개.
+\end{theorem}
+
 \finalsection{Analytic Geometry}
 
-
-
-\begin{formula}[평면과 점--평면 거리]
-평면
+\begin{formula}[Shoelace and Pick]
+격자점 다각형 넓이:
 \[
-ax+by+cz=d
+K=I+\frac B2-1.
 \]
-의 법선벡터는 $(a,b,c)$. 점 $(x_0,y_0,z_0)$에서 평면까지의 거리는
+좌표 다각형에서는 shoelace formula를 즉시 사용한다.
+\end{formula}
+
+\begin{formula}[Cross Product and Area]
+$\mathbf u,\mathbf v\in\R^3$가 만드는 평행사변형 넓이는 $\|\mathbf u\times\mathbf v\|$,
+삼각형 넓이는
+\[
+\frac12\|\mathbf u\times\mathbf v\|.
+\]
+\end{formula}
+
+\begin{formula}[Point-to-Plane Distance]
+평면 $ax+by+cz=d$와 점 $(x_0,y_0,z_0)$ 사이 거리:
 \[
 \frac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}.
 \]
 구가 평면에 접하면 중심에서 평면까지의 거리가 반지름과 같다.
 \end{formula}
 
-\begin{formula}[구의 넓이와 부피]
-중심 $\mathbf c$와 반지름 $r$인 sphere:
-\[
-\|\mathbf x-\mathbf c\|^2=r^2.
-\]
-좌표평면 $x=0,y=0,z=0$에 모두 접하는 제1옥탄트의 구는 중심이 $(r,r,r)$ 꼴이다.
-\end{formula}
-
-
-
-\begin{formula}[Shoelace Formula]
-꼭짓점 $(x_i,y_i)$가 순서대로 주어진 polygon의 넓이는
-\[
-\boxed{A=\frac12\left|\sum_i x_i y_{i+1}-y_i x_{i+1}\right|}.
-\]
-좌표가 주어진 다각형에서는 가장 먼저 확인한다.
-\end{formula}
-
-\begin{fact}[Euclidean, Hyperbolic, Spherical]
+\begin{fact}[Euclidean, Hyperbolic, and Spherical Geometry]
 한 직선 밖의 한 점을 지나는 평행선의 수는 각각
 \[
-1,\quad \text{무한히 많음},\quad 0
+1,\qquad \text{무한히 많음},\qquad 0,
 \]
-이며, 삼각형 내각합은 각각
+삼각형 내각합은 각각
 \[
-180^\circ,\quad <180^\circ,\quad >180^\circ.
+180^\circ,\qquad <180^\circ,\qquad >180^\circ.
 \]
-Euclidean 경우의 ``정확히 하나''는 Playfair's axiom으로 불린다.
 \end{fact}
 
-\begin{fact}[Archimedes' 구 and Cylinder]
+\begin{fact}[Archimedes' Sphere and Cylinder]
 반지름 $r$인 구와 이를 꼭 맞게 둘러싼 반지름 $r$, 높이 $2r$인 원기둥에서
 \[
-V_{\text{sphere}}:V_{\text{cylinder}}=2:3.
+V_{\rm sphere}:V_{\rm cylinder}=2:3.
 \]
-Archimedes와 Fields Medal 뒷면 디자인의 연결까지 함께 기억한다.
+Archimedes와 Fields Medal의 도상을 함께 기억한다.
 \end{fact}
 
-\begin{theorem}[Pick's Theorem]
-lattice polygon의 넓이는
-\[
-A=I+\frac B2-1,
-\]
-여기서 $I$는 내부 격자점, $B$는 경계 격자점의 수이다.
+\begin{theorem}[Cavalieri's Principle]
+두 입체가 같은 높이를 갖고 모든 높이에서 대응하는 단면의 넓이가 같으면 부피가 같다.
+문제에서는 ``단면 넓이가 높이에 무관하게 일정함''을 보인 뒤 적분 또는 Cavalieri로 부피를 계산한다.
 \end{theorem}
-
 
 \finalchapter{8}{Number Theory}
 
-\begin{formula}[Euclidean Algorithm]
+\begin{formula}[Euclidean Algorithm and Bézout]
 \[
 \gcd(a,b)=\gcd(b,a\bmod b).
 \]
-또한
 \[
-\boxed{\gcd(a,b)\lcm(a,b)=|ab|}.
+\gcd(a,b)=d\Longleftrightarrow \exists x,y\in\Z:\ ax+by=d.
 \]
 \end{formula}
 
-\begin{theorem}[B\'ezout's Identity]
-어떤 $x,y\in\Z$가 존재하여
-\[
-\gcd(a,b)=ax+by.
-\]
-따라서
-\[
-ax+by=c\text{가 정수해를 가짐}
-\iff
-\gcd(a,b)\mid c.
-\]
-\end{theorem}
-
-\begin{formula}[Prime Factorization and Divisor Functions]
-$n=\prod p_i^{a_i}$이면
-\[
-\boxed{\tau(n)=\prod_i(a_i+1)},
-\qquad
-\boxed{\sigma(n)=\prod_i\frac{p_i^{a_i+1}-1}{p_i-1}}.
-\]
-또한
-\[
-\tau(n)\text{ odd}\iff n\text{ is a perfect square}.
-\]
-\end{formula}
-
-\begin{formula}[Legendre's Formula]
-소수 $p$에 대해
-\[
-v_p(n!)=\sum_{k\ge1}\left\lfloor\frac{n}{p^k}\right\rfloor.
-\]
-계승의 나눗셈 가능성과 소인수 지수를 묻는 문제에서 즉시 쓴다.
-\end{formula}
-
-\begin{formula}[Congruence]
-\[
-a\equiv b\pmod n\iff n\mid(a-b).
-\]
-덧셈ㆍ뺄셈ㆍ곱셈은 그대로 가능하지만 나눗셈은 역원의 존재를 확인한다.
-\end{formula}
-
-\begin{theorem}[Linear Congruence]
+\begin{theorem}[Linear Congruence and Modular Inverse]
 \[
 ax\equiv b\pmod n
 \]
 이 풀릴 필요충분조건은
 \[
-\boxed{\gcd(a,n)\mid b}.
+\gcd(a,n)\mid b.
 \]
-$d=\gcd(a,n)$가 $b$를 나누면 법 $n$에서 정확히 $d$개의 해의 residue classes가 생긴다.
-\end{theorem}
-
-\begin{formula}[Modular Inverse]
+또한
 \[
-a^{-1}\pmod n\text{ exists}
-\iff
-\gcd(a,n)=1.
+a^{-1}\pmod n\text{ exists}\Longleftrightarrow\gcd(a,n)=1.
 \]
-확장 Euclidean algorithm으로 역원을 실제로 구할 수 있다.
-\end{formula}
+\end{theorem}
 
 \begin{fact}[Small-Modulus Square Residues]
 \[
-x^2\pmod4\in\{0,1\},
-\qquad
+x^2\pmod4\in\{0,1\},\qquad
 x^2\pmod8\in\{0,1,4\}.
 \]
-따라서 두 squares의 합은 modulo $4$에서 $3$이 될 수 없다. 2010 과학퀴즈의 $x^2+y^2=963$ 불가능성의 핵심이다.
+정수해 존재성 문제에서는 $2,4,8,3,5,9$ 같은 작은 modulus를 먼저 본다.
 \end{fact}
 
-\finalheading{정수해의 존재성을 물으면}
-작은 modulus를 먼저 본다. 특히 $2,4,8,3,5,9$에서 square/cube residue가 강하게 제한되면 복잡한 factorization보다 훨씬 빨리 끝난다.
-
-\begin{theorem}[Fermat와 Euler]
-소수 $p$에서 $p\nmid a$이면
+\begin{formula}[Euler Totient]
 \[
-a^{p-1}\equiv1\pmod p.
+\varphi(n)=n\prod_{p\mid n}\left(1-\frac1p\right).
 \]
-일반적으로 $\gcd(a,n)=1$이면
+특히 $p$ prime이면 $\varphi(p^k)=p^k-p^{k-1}$.
+\end{formula}
+
+\begin{formula}[Multiplicative Order]
+$\gcd(a,n)=1$일 때 $\ord_n(a)$는 $a^k\equiv1\pmod n$인 최소 양의 $k$이며
 \[
-a^{\varphi(n)}\equiv1\pmod n.
+\ord_n(a)\mid\varphi(n).
+\]
+큰 지수는 order로 줄인다.
+\end{formula}
+
+\begin{theorem}[Fermat--Euler]
+\[
+a^{p-1}\equiv1\pmod p\quad(p\nmid a),
+\]
+\[
+a^{\varphi(n)}\equiv1\pmod n\quad(\gcd(a,n)=1).
 \]
 \end{theorem}
 
-\begin{formula}[Euler's Totient]
-\[
-\boxed{\varphi(n)=n\prod_{p\mid n}\left(1-\frac1p\right)}.
-\]
-특히 $p$가 소수이면 $\varphi(p)=p-1$이고
-\[
-\varphi(p^k)=p^k-p^{k-1}.
-\]
-\end{formula}
-
 \begin{theorem}[Chinese Remainder Theorem]
-$m,n$이 서로소이면
+pairwise coprime moduli $n_i$에 대한 congruence system은 $\prod n_i$ modulo에서 유일한 해를 갖는다.
+\end{theorem}
+
+\begin{theorem}[Prime Number Theorem]
 \[
-x\equiv a\pmod m,
-\qquad
-x\equiv b\pmod n
+\pi(x)\sim\frac{x}{\log x}.
 \]
-은 modulo $mn$에서 유일한 해의 합동류를 가진다. 서로소인 여러 moduli에도 동일하게 확장된다.
+Hadamard와 de la Vallée Poussin이 1896년에 독립적으로 증명했다.
+\end{theorem}
+
+\begin{theorem}[Bertrand's Postulate]
+모든 $n>1$에 대해
+\[
+n<p<2n
+\]
+인 소수 $p$가 존재한다.
 \end{theorem}
 
 \begin{theorem}[Wilson's Theorem]
 $p>1$에 대해
 \[
-p\text{ prime}
-\iff
-(p-1)!\equiv-1\pmod p.
+p\text{ prime}\Longleftrightarrow (p-1)!\equiv-1\pmod p.
 \]
-유명하고 짧은 소수 판정식으로 기억한다.
 \end{theorem}
 
-
-
-
-\begin{formula}[Multiplicative Order]
-$\gcd(a,n)=1$일 때 $\ord_n(a)$는 $a^k\equiv1\pmod n$인 최소 양의 $k$. 항상
+\begin{theorem}[Quadratic Reciprocity]
+서로 다른 홀수 소수 $p,q$에 대해
 \[
-\ord_n(a)\mid\varphi(n).
+\left(\frac pq\right)\left(\frac qp\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}.
 \]
-위수를 알면 큰 지수를 빠르게 줄일 수 있다.
-\end{formula}
+보조법칙:
+\[
+\left(\frac{-1}{p}\right)=(-1)^{(p-1)/2},\qquad
+\left(\frac2p\right)=(-1)^{(p^2-1)/8}.
+\]
+\end{theorem}
 
-\begin{fact}[Euler Criterion and Quadratic Residues]
+\begin{fact}[Euler Criterion]
 홀수 소수 $p\nmid a$에 대해
 \[
 a^{(p-1)/2}\equiv\left(\frac ap\right)\pmod p.
 \]
-이차상호법칙은 홀수 소수 $p,q$에 대해
-\[
-\left(\frac pq\right)\left(\frac qp\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}.
-\]
+quadratic residue 판정과 quadratic reciprocity를 연결한다.
 \end{fact}
 
-
-\begin{formula}[GCD of Exponential Differences]
-$a>1$에 대해
+\begin{formula}[Divisor Count and Sum]
 \[
-\boxed{\gcd(a^m-1,a^n-1)=a^{\gcd(m,n)}-1}.
+n=\prod p_i^{a_i}\quad\Longrightarrow\quad\tau(n)=\prod(a_i+1).
 \]
-지수가 큰 gcd 문제에서 바로 쓴다.
+$\tau(n)$이 홀수 iff $n$은 perfect square.
+고정된 $\tau(n)$에서 최소 $n$을 찾을 때 큰 지수를 작은 소수부터 배치한다.
 \end{formula}
 
-\begin{theorem}[소수정리와 Bertrand 공준]
+\begin{formula}[Legendre and Kummer]
 \[
-\boxed{\pi(x)\sim\frac{x}{\log x}}.
+v_p(n!)=\sum_{k\ge1}\left\lfloor\frac n{p^k}\right\rfloor.
 \]
-또한 모든 $n>1$에 대해
+Kummer: $v_p\binom nk$는 base-$p$에서 $k+(n-k)$를 더할 때 발생하는 carry의 개수와 같다.
+\end{formula}
+
+\begin{formula}[Exponential-Difference GCD]
 \[
-\boxed{n<p<2n}
+\gcd(a^m-1,a^n-1)=a^{\gcd(m,n)}-1.
 \]
-인 소수 $p$가 존재한다 (Bertrand의 공준).
+\end{formula}
+
+\begin{theorem}[Finite Fields and Power Maps]
+$\F_q$는 $q=p^r$일 때 존재하며 동형까지 유일하다.
+\[
+\F_q^\times\text{ is cyclic of order }q-1.
+\]
+따라서 $x\mapsto x^m$ on $\F_q^\times$가 bijective iff
+\[
+\gcd(m,q-1)=1.
+\]
 \end{theorem}
 
-\begin{theorem}[두 제곱수와 완전수]
+\begin{formula}[General Linear Group over a Finite Field]
+\[
+|\GL_n(\F_q)|=\prod_{k=0}^{n-1}(q^n-q^k).
+\]
+\end{formula}
+
+\begin{theorem}[Two Squares and Even Perfect Numbers]
 소수 $p$에 대해
 \[
-p=x^2+y^2\iff p=2\text{ or }p\equiv1\pmod4.
+p=x^2+y^2\Longleftrightarrow p=2\text{ or }p\equiv1\pmod4.
 \]
-짝수 완전수는 정확히
+짝수 perfect number는 정확히
 \[
-\boxed{2^{p-1}(2^p-1)}
+2^{p-1}(2^p-1)
 \]
-꼴이며 $2^p-1$이 소수여야 한다 (Euclid--Euler theorem).
+꼴이며 $2^p-1$이 prime이다 (Euclid--Euler).
 \end{theorem}
 
-\begin{fact}[Mih\u{a}ilescu / Catalan]
-$A^m-B^n=1$인 $A,B,m,n>1$의 유일한 해는
-\[
-\boxed{3^2-2^3=1}.
-\]
-즉 $8$과 $9$가 연속한 유일한 자명하지 않은 완전거듭제곱이다.
-\end{fact}
-
 \begin{fact}[Continued Fractions]
-단순 연분수는 유리수에서 유한하게 끝난다. 반대로 이차무리수에서는 결국 주기적이다 (Lagrange theorem). 대표적으로
+단순 continued fraction은 rational number에서 유한하게 끝나며,
+quadratic irrational에서는 eventually periodic이다 (Lagrange theorem).
+대표적으로
 \[
 \varphi=[1;1,1,1,\ldots].
 \]
 \end{fact}
 
-\begin{fact}[Riemann Zeta: Analytic-Continuation Anchor]
-Riemann zeta 함수의 해석적 연장을 쓰면
-\[
-\boxed{\zeta(-1)=-\frac1{12}},
-\qquad
-\zeta(-2m)=0\quad(m\in\N).
-\]
-중요: $1+2+3+\cdots$가 보통 의미로 $-1/12$에 수렴한다는 뜻은 아니다.
-\end{fact}
-
-\begin{fact}[정수론 주요 암기 단서]
-\begin{itemize}
-  \item Goldbach 추측: 모든 짝수 $>2$는 두 소수의 합인가? 아직 미해결.
-  \item 쌍둥이 소수 추측: 차이가 $2$인 소수쌍이 무한히 많은가? 아직 미해결.
-  \item 이차상호법칙: 가우스 (Carl Friedrich Gauss)의 대표적인 정수론 결과.
-  \item Fermat의 마지막 정리: $n>2$에서 $x^n+y^n=z^n$의 0이 아닌 정수해가 없으며 앤드루 와일스 (Andrew Wiles)가 증명했다.
-\end{itemize}
-\end{fact}
-
-
 \finalchapter{9}{Algebra}
 
-\begin{theorem}[Lagrange and Orbit--Stabilizer]
-유한군 $G$의 부분군 $H$에 대해
+\begin{fact}[Finite Groups]
 \[
-|H|\mid|G|.
+|S_n|=n!,\qquad |A_n|=\frac{n!}{2}\quad(n\ge2).
 \]
-군 $G$가 집합 $X$에 작용하면
+Lagrange theorem에 의해 subgroup의 order는 group order를 나눈다.
+\end{fact}
+
+\begin{theorem}[Orbit--Stabilizer]
+군 $G$가 $X$에 작용하면 유한군의 경우
 \[
-\boxed{|G\cdot x|=[G:G_x]=\frac{|G|}{|G_x|}}.
+|Gx|=\frac{|G|}{|G_x|}.
 \]
-따라서 원소의 위수도 $|G|$를 나눈다.
 \end{theorem}
 
 \begin{theorem}[First Isomorphism Theorem]
 군 준동형 $\varphi:G\to H$에 대해
 \[
-\boxed{G/\ker\varphi\cong\im\varphi}.
+\boxed{G/\ker\varphi\cong\operatorname{im}\varphi}.
 \]
-특히 $\varphi$가 단사일 필요충분조건은 $\ker\varphi=\{e\}$이다.
+특히 $\varphi$가 injective iff $\ker\varphi=\{e\}$.
 \end{theorem}
 
-\begin{formula}[Cyclic Groups and Homomorphisms]
+\begin{formula}[Cyclic-Group Homomorphisms]
 \[
-|\Z/n\Z|=n,
-\qquad
-\#\{\text{generators of }\Z/n\Z\}=\varphi(n).
+|\operatorname{Hom}(\Z/m\Z,\Z/n\Z)|=\gcd(m,n).
 \]
-가법군 사이에서는
-\[
-\boxed{|\operatorname{Hom}(\Z/m\Z,\Z/n\Z)|=\gcd(m,n)}.
-\]
+$\Z/n\Z$의 generator 수는 $\varphi(n)$.
 \end{formula}
 
 \begin{formula}[Permutations]
-순열의 위수는 서로소 순환 길이들의 최소공배수이다:
+순열의 order는 서로소 cycle lengths의 최소공배수:
 \[
 \boxed{\ord(\sigma)=\lcm(\ell_1,\ldots,\ell_r)}.
 \]
-\[
-|S_n|=n!,\qquad |A_n|=\frac{n!}{2}\quad(n\ge2).
-\]
 \end{formula}
 
-\begin{formula}[Finite Fields and Classical Groups]
-유한체는 정확히 소수 거듭제곱 크기에서 존재하며, 주어진 $q=p^r$에 대해 동형까지 유일하다:
+\begin{fact}[Finitely Generated Groups]
+유한군은 finitely generated이다. finitely generated group은 at most countable이다.
+따라서 uncountable group인 $\C^\times$는 finitely generated일 수 없다.
+또한 puncture가 유한개인 disk의 fundamental group은 유한 rank free group이다.
+\end{fact}
+
+\begin{theorem}[Conjugate Root Theorem]
+$p(x)\in\R[x]$이고 $p(\alpha)=0$이면
 \[
-\boxed{|\F_q|=q=p^r}.
+p(\overline\alpha)=0.
 \]
+중복도도 같다. 따라서 실수계수 다항식의 비실수근은 켤레쌍으로 나타난다.
+\end{theorem}
+
+\begin{formula}[Viète and Logarithmic Derivative]
+$p(x)=a\prod_i(x-r_i)$이면 계수와 근의 기본대칭식은 Viète 관계를 만족한다.
+또한
 \[
-\boxed{|\GL_n(\F_q)|=\prod_{k=0}^{n-1}(q^n-q^k)}.
+\frac{p'(x)}{p(x)}=\sum_i\frac1{x-r_i}.
 \]
-$\SL_n(\F_q)$는 행렬식이 $1$인 부분군이다.
+근의 역수합 같은 문제에 매우 빠르다.
 \end{formula}
 
-\begin{formula}[Vi\`ete and Root Identities]
+\begin{formula}[Roots of Unity]
 \[
-x^n+a_{n-1}x^{n-1}+\cdots+a_0=\prod_{i=1}^n(x-r_i)
+\omega_n=e^{2\pi i/n},\qquad 1+\omega_n+\cdots+\omega_n^{n-1}=0.
 \]
-이면
+그리고
 \[
-\sum_i r_i=-a_{n-1},\qquad \prod_i r_i=(-1)^n a_0.
+\prod_{k=1}^{n-1}(1-\omega_n^k)=n.
 \]
-또한 $p(a)\ne0$이면
-\[
-\boxed{\frac{p'(a)}{p(a)}=\sum_i\frac1{a-r_i}}.
-\]
-근을 직접 구하지 않고 대칭식을 계산하는 데 강력하다.
 \end{formula}
 
 \begin{theorem}[Abel--Ruffini]
-5차 이상의 일반 다항방정식에는 사칙연산과 근호만으로 모든 해를 나타내는 보편적 공식이 존재하지 않는다. ``모든 5차방정식이 풀리지 않는다''는 뜻은 아니다.
+5차 이상의 일반 다항방정식에는 사칙연산과 근호만으로 모든 해를 나타내는 보편적 공식이 존재하지 않는다.
+``모든 5차방정식이 풀리지 않는다''는 뜻은 아니다.
 \end{theorem}
 
 \begin{fact}[Quaternions]
-Hamilton의 quaternion $\mathbb H$에서는
+Hamilton의 quaternion $\Hquat$에서는
 \[
 i^2=j^2=k^2=ijk=-1,
 \qquad ij=k,\quad ji=-k.
 \]
-대표적인 비가환 나눗셈대수이다.
+대표적인 noncommutative division algebra이다.
 \end{fact}
 
 \finalchapter{10}{Topology}
 
-\begin{formula}[Basic Notation]
+
+\begin{formula}[Basic Topological Notation]
 \[
-A^\circ=\interior A,\qquad \overline A=\closure A,\qquad \partial A=\overline A\setminus A^\circ.
+A^\circ=\interior A,\qquad
+\overline A=\text{closure of }A,\qquad
+\partial A=\overline A\setminus A^\circ.
 \]
-위상동형사상 (위상동형)은 연속인 전단사이고 역함수도 연속인 사상이다. 정의보다 아래의 불변량과 유명 정리를 우선 기억한다.
+homeomorphism은 continuous bijection with continuous inverse이다.
 \end{formula}
 
-\begin{fact}[Compactness and Connectedness]
-콤팩트 집합의 연속상은 콤팩트이고, 연결집합의 연속상은 연결이다. 특히
-\[
-\boxed{K\subset\R^n\text{ 콤팩트}\iff K\text{가 닫히고 유계}.}
-\]
-연결공간에서 $\Q$처럼 완전비연결인 공간으로 가는 연속함수는 강하게 제한된다.
+\begin{fact}[Homeomorphism Invariants]
+compactness, connectedness, number of connected components 등은 homeomorphism invariant이다.
+$\R$은 noncompact, $S^1$은 compact이므로 homeomorphic하지 않다.
 \end{fact}
+
+\begin{formula}[Euler Characteristic]
+finite cell decomposition에서
+\[
+\chi=V-E+F.
+\]
+닫힌 orientable surface $S_g$에 대해
+\[
+\chi(S_g)=2-2g.
+\]
+\end{formula}
 
 \begin{fact}[Fundamental Group Anchors]
 \[
@@ -1807,65 +1387,113 @@ A^\circ=\interior A,\qquad \overline A=\closure A,\qquad \partial A=\overline A\
 \qquad
 \pi_1(T^2)\cong\Z^2.
 \]
-원의 감김수 (winding number), 구면의 단일연결성, 원환면의 두 독립 루프를 연결해 기억한다.
+원의 winding number, 구면의 simply connectedness, torus의 두 독립 loop를 연결한다.
 \end{fact}
 
-\begin{formula}[Euler Characteristic]
-\[
-\chi=V-E+F,
-\qquad
-\boxed{\chi(\Sigma_g)=2-2g}
-\]
-닫힌 가향곡면 $\Sigma_g$에 대해. 따라서 구면은 $2$, 원환면은 $0$이다.
-\end{formula}
-
 \begin{theorem}[Three Famous Topological Theorems]
+세 정리를 한 묶음으로 기억한다.
 \begin{itemize}
-  \item \textbf{Brouwer 고정점정리}: 닫힌 공의 연속 자기함수는 고정점을 갖는다.
-  \item \textbf{Hairy Ball 정리}: 짝수차원 구면, 특히 $S^2$에는 어디서도 0이 되지 않는 연속 접벡터장이 없다.
-  \item \textbf{Borsuk--Ulam 정리}: 연속함수 $f:S^n\to\R^n$에는 $f(x)=f(-x)$인 대척점 쌍이 존재한다.
+\item \textbf{Brouwer fixed point}: 닫힌 공의 연속 자기함수는 고정점을 갖는다.
+\item \textbf{Hairy Ball}: $S^2$에는 nowhere-zero continuous tangent vector field가 없다.
+\item \textbf{Borsuk--Ulam}: $f:S^n\to\R^n$ 연속이면 어떤 $x$에 대해 $f(x)=f(-x)$.
 \end{itemize}
 \end{theorem}
 
-\begin{fact}[M\"obius Strip and Klein Bottle]
-M\"obius strip은 비가향이며 경계가 하나 있다. Klein 병은 닫힌 비가향곡면이고 $\R^3$에 자기교차 없이 매장할 수 없다.
+\begin{fact}[Möbius Strip and Klein Bottle]
+Möbius strip은 non-orientable surface with boundary, Klein bottle은 non-orientable closed surface.
+polygon-edge identification 문제가 나오면 orientability와 boundary의 유무를 먼저 본다.
 \end{fact}
 
-\begin{fact}[Poincar\'e Conjecture]
-닫힌 단일연결 $3$차원 다양체는 $S^3$와 위상동형이다. 그리고리 페렐만 (Grigori Perelman)이 Ricci 흐름을 이용해 해결했고 2006년 필즈상을 거부했다.
+\begin{fact}[Poincaré Conjecture]
+닫힌 simply connected $3$-manifold는 $S^3$와 homeomorphic이다.
+Grigori Perelman이 Ricci flow를 이용해 해결했고 2006 Fields Medal을 거부했다.
 \end{fact}
 
 \begin{fact}[Thurston's Eight Geometries]
-Thurston의 기하화 이론은 $3$차원 다양체를 여덟 가지 모델 기하와 연결한다. 과학퀴즈에서는
 \[
-\boxed{\text{Thurston}\longleftrightarrow 8\text{ geometries}\longleftrightarrow 3\text{-manifolds}}
+S^3,\ \R^3,\ \mathbb H^3,\ S^2\times\R,\ \mathbb H^2\times\R,\
+\widetilde{\SL_2(\R)},\ \mathrm{Nil},\ \mathrm{Sol}.
 \]
-를 우선 기억한다.
+3-manifold geometrization의 여덟 model geometries.
 \end{fact}
-
-
 
 \finalchapter{11}{Miscellaneous Topics}
 
+\begin{formula}[Fibonacci Numbers]
+\[
+F_0=0,\quad F_1=1,\quad F_n=\frac{\varphi^n-\psi^n}{\sqrt5},
+\]
+\[
+\varphi=\frac{1+\sqrt5}{2},\qquad \psi=\frac{1-\sqrt5}{2},\qquad
+\frac{F_{n+1}}{F_n}\to\varphi.
+\]
+\end{formula}
+
+\begin{fact}[Conway Constant]
+look-and-say sequence의 연속한 항 길이 비는 일반적으로
+\[
+\lambda_{\rm Conway}\approx1.303577269
+\]
+로 수렴한다. John Conway와 함께 외울 만한 특수 숫자이다.
+\end{fact}
+
+\begin{fact}[Riemann Zeta Anchors]
+\[
+\zeta(2)=\frac{\pi^2}{6}.
+\]
+analytic continuation으로
+\[
+\zeta(-1)=-\frac1{12}.
+\]
+단 $s=1$에는 pole이 있으며, ``원래 급수가 $-1/12$로 수렴한다''는 뜻이 아니다.
+\end{fact}
+
+\begin{strategy}[Vieta Jumping]
+대칭적인 정수조건에서 한 변수를 근으로 보는 이차방정식을 만든다.
+다른 정수근을 얻어 더 작은 양의 해로 내려가고 minimality와 모순시키는 것이 기본 구조이다.
+\end{strategy}
+
+\begin{strategy}[Möbius-Type Recurrence]
+\[
+a_{n+1}=\frac{\alpha a_n+\beta}{\gamma a_n+\delta}
+\]
+꼴에서는 fixed point를 찾고, 그 fixed point와의 차이의 reciprocal 또는 cross-ratio를 시도한다.
+예:
+\[
+a_{n+1}=\frac1{2-a_n}\quad\Rightarrow\quad b_n=\frac1{1-a_n}
+\]
+이면 $b_{n+1}=b_n+1$.
+\end{strategy}
+
+\begin{formula}[Useful Inequalities]
+$a,b,c>0$에서
+\[
+\frac{a+b+c}{3}\ge(abc)^{1/3}\qquad\text{(AM--GM)},
+\]
+\[
+(a_1^2+\cdots+a_n^2)(b_1^2+\cdots+b_n^2)\ge(a_1b_1+\cdots+a_nb_n)^2
+\qquad\text{(Cauchy--Schwarz)}.
+\]
+또한
+\[
+\frac a{b+c}+\frac b{c+a}+\frac c{a+b}\ge\frac32
+\]
+(Nesbitt).
+\end{formula}
+
+
 \begin{definition}[Nash Equilibrium]
-전략게임에서 다른 사람의 전략을 고정했을 때 어느 한 사람도 혼자 전략을 바꾸어 자신의 보상을 높일 수 없는 전략조합을 \textbf{Nash 균형}이라 한다.
+다른 플레이어들의 전략을 고정했을 때 어느 한 플레이어도 혼자 전략을 바꾸어 자신의 payoff를 높일 수 없는 전략조합이다.
 \end{definition}
 
-\begin{algorithm}[2×2 영합게임]
-행 플레이어의 보상행렬이
+\begin{algorithm}[2×2 Zero-Sum Game]
+row player payoff matrix가
 \[
-\mathbf M=\begin{pmatrix}a&b\\c&d\end{pmatrix},
-\qquad \Delta=a-b-c+d
+M=\begin{pmatrix}a&b\\ c&d\end{pmatrix},\qquad \Delta=a-b-c+d\neq0
 \]
-이고 내부 혼합균형이 존재하면
+이고 interior mixed equilibrium이 존재하면
 \[
-\boxed{p=\frac{d-c}{\Delta}},\qquad
-\boxed{q=\frac{d-b}{\Delta}},\qquad
-\boxed{v=\frac{ad-bc}{\Delta}}.
+p=\frac{d-c}{\Delta},\qquad q=\frac{d-b}{\Delta},\qquad v=\frac{ad-bc}{\Delta}.
 \]
-$p$는 첫째 행, $q$는 첫째 열을 고를 확률이고 $v$는 행 플레이어의 게임값이다. 공식보다 먼저 \textbf{순수 안장점 (saddle point)가 있는지} 확인하고, 혼합전략에서는 상대가 두 순수전략 사이에서 무차별하도록 확률을 정한다.
+확률이 $[0,1]$ 안에 있는지 반드시 확인한다.
 \end{algorithm}
-
-
-
-\par\smallskip\noindent\textbf{Vieta jumping.} 양의 정수해 문제에서 한 변수를 근으로 보는 이차방정식을 만든 뒤 Viète 공식으로 다른 정수근을 구성한다. 더 작은 양의 해를 얻으면 최소해 가정과 모순이다. IMO형 정수론의 대표적인 무한강하 전략이다.
