@@ -18,28 +18,27 @@
 
 \begin{document}
 
-\begin{frame}[plain]
+\begin{frame}[plain,noframenumbering]
   \titlepage
 \end{frame}
+\addtocounter{framenumber}{1}
 
-% 01 Physics - 문제
+% 01 Physics
 \begin{problemframe}{01}{Physics}
 길이 $L$, 질량 $m$인 균일한 막대의 한쪽 끝을 마찰 없는 축으로 고정하였다. 막대를 수평으로 놓은 뒤 정지 상태에서 놓았을 때, 막대가 처음으로 수직 아래 방향을 지나는 순간의 각속력 $\omega$를 구하시오. 중력가속도는 $g$이고 공기저항은 무시한다.
 \end{problemframe}
 
-% 01 Physics - 정답
 \begin{solutionframe}{01}{Physics}
 \answerbox{$\displaystyle \omega=\sqrt{\frac{3g}{L}}$}
-\solutionlabel
 질량중심은 $L/2$만큼 내려가므로 잃은 위치에너지는 $mgL/2$이다. 한쪽 끝을 지나는 축에 대한 균일한 막대의 관성모멘트는 $I=mL^2/3$이므로
 \[
 \frac{mgL}{2}=\frac12 I\omega^2
 =\frac16 mL^2\omega^2.
 \]
-따라서 $\omega^2=3g/L$이다. 핵심은 병진운동이 아니라 고정축 회전의 에너지 보존으로 보는 것이다.
+따라서 $\omega^2=3g/L$이다.
 \end{solutionframe}
 
-% 02 Chemistry - 문제
+% 02 Chemistry
 \begin{problemframe}{02}{Chemistry}
 $25\,^{\circ}\mathrm{C}$에서 다음 아연 농도전지가 있다.
 \[
@@ -48,61 +47,55 @@ $25\,^{\circ}\mathrm{C}$에서 다음 아연 농도전지가 있다.
 활동도는 농도로 근사하고, $25\,^{\circ}\mathrm{C}$에서 $2.303RT/F=0.0592\,\mathrm{V}$라 하자. 이 전지의 전위차 $E_{\mathrm{cell}}$의 크기를 구하시오.
 \end{problemframe}
 
-% 02 Chemistry - 정답
 \begin{solutionframe}{02}{Chemistry}
 \answerbox{$\displaystyle E_{\mathrm{cell}}=0.0592\,\mathrm{V}$}
-\solutionlabel
 아연의 반쪽 반응은 $\ce{Zn^{2+}+2e^- -> Zn}$이므로 $n=2$이다. 농도전지에서는 높은 $\ce{Zn^{2+}}$ 농도 쪽이 환원전극이 되고
 \[
 E_{\mathrm{cell}}
-=\frac{0.0592}{2}\log_{10}\!\left(\frac{1.0}{0.010}\right)
+=\frac{0.0592}{2}\lg\!\left(\frac{1.0}{0.010}\right)
 =\frac{0.0592}{2}\times2
 =0.0592\,\mathrm{V}.
 \]
-같은 redox couple을 쓰므로 $E^\circ$가 상쇄된다는 점이 핵심이다.
+같은 redox couple을 쓰므로 $E^{\circ}$가 상쇄된다.
 \end{solutionframe}
 
-% 03 Life Science - 문제
+% 03 Life Science
 \begin{problemframe}{03}{Life Science}
 100\%의 증폭 효율을 갖는 qPCR에서 같은 primer pair를 사용하였다. Sample A의 $C_t$가 18, Sample B의 $C_t$가 21이었다. 다른 조건이 모두 같을 때, 초기 target DNA 양 $N_A/N_B$를 구하시오.
 \end{problemframe}
 
-% 03 Life Science - 정답
 \begin{solutionframe}{03}{Life Science}
 \answerbox{$\displaystyle \frac{N_A}{N_B}=8$}
-\solutionlabel
 100\% 효율이면 한 cycle마다 target DNA가 두 배가 된다. 같은 threshold에 도달하는 데 A가 B보다 3 cycles 적게 필요했으므로
 \[
 \frac{N_A}{N_B}=2^{21-18}=2^3=8.
 \]
-즉 $C_t$가 작을수록 초기 template 양이 많다.
+따라서 A의 초기 template 양은 B의 8배이다.
 \end{solutionframe}
 
-% 04 Mathematics - 문제
+% 04 Mathematics
 \begin{problemframe}{04}{Mathematics}
-실수 $8\times8$ 행렬 $A$가
+실수 $8\times8$ 행렬 $\mathbf A$가
 \[
-A^2=A,
+\mathbf A^2=\mathbf A,
 \qquad
-\tr A=5
+\tr(\mathbf A)=5
 \]
 를 만족한다. 다음 값을 구하시오.
 \[
-\det(3I-2A).
+\det(3\mathbf I_8-2\mathbf A).
 \]
 \end{problemframe}
 
-% 04 Mathematics - 정답
 \begin{solutionframe}{04}{Mathematics}
 \answerbox{$\displaystyle 27$}
-\solutionlabel
-$A^2=A$이므로 $A$의 eigenvalue는 $0$ 또는 $1$이다. 또한 $x(x-1)$의 두 근이 서로 다르므로 $A$는 diagonalizable이다. $\tr A=5$이므로 eigenvalue $1$의 multiplicity는 $5$, $0$의 multiplicity는 $3$이다. 따라서 $3I-2A$의 eigenvalues는 $1$이 다섯 개, $3$이 세 개이므로
+$\mathbf A^2=\mathbf A$이므로 $\mathbf A$의 eigenvalue는 $0$ 또는 $1$이다. 또한 $\tr(\mathbf A)=5$이므로 $1$의 multiplicity는 $5$, $0$의 multiplicity는 $3$이다. 따라서 $3\mathbf I_8-2\mathbf A$의 eigenvalues는 $1$이 5개, $3$이 3개이므로
 \[
-\det(3I-2A)=1^5 3^3=27.
+\det(3\mathbf I_8-2\mathbf A)=1^5\cdot3^3=27.
 \]
 \end{solutionframe}
 
-% 05 Computer Science - 문제
+% 05 Computer Science
 \begin{problemframe}{05}{Computer Science}
 삭제 연산을 사용하지 않는 표준 Bloom filter에 대한 설명 중 옳은 것을 모두 고르시오.
 \begin{simchoices}
@@ -113,26 +106,22 @@ $A^2=A$이므로 $A$의 eigenvalue는 $0$ 또는 $1$이다. 또한 $x(x-1)$의 �
 \end{simchoices}
 \end{problemframe}
 
-% 05 Computer Science - 정답
 \begin{solutionframe}{05}{Computer Science}
 \answerbox{(1), (3)}
-\solutionlabel
-Bloom filter는 여러 hash가 가리키는 bit를 $1$로 세우며, 표준형에서는 삽입된 원소의 bit가 다시 $0$으로 돌아가지 않는다. 따라서 false positive는 가능하지만 false negative는 없다. 그러므로 negative query는 확정적이지만 positive query는 확률적이다.
+표준 Bloom filter에서는 삽입된 원소가 가리키는 bit가 삭제 없이 다시 $0$으로 돌아가지 않는다. 따라서 false positive는 가능하지만 false negative는 발생하지 않는다. Negative query는 확정적이지만 positive query는 확률적이다.
 \end{solutionframe}
 
-% 06 Physics - 문제
+% 06 Physics
 \begin{problemframe}{06}{Physics}
 2025 Nobel Prize in Physics는 전기회로에서의 macroscopic quantum mechanical tunnelling과 energy quantisation의 발견에 수여되었다. 해당 실험에서 두 초전도체 사이에 매우 얇은 절연층을 둔 핵심 소자의 이름을 쓰시오.
 \end{problemframe}
 
-% 06 Physics - 정답
 \begin{solutionframe}{06}{Physics}
 \answerbox{Josephson junction}
-\solutionlabel
-두 초전도체를 얇은 절연 장벽으로 분리하면 Cooper pair가 장벽을 quantum tunnelling할 수 있다. 이러한 구조가 Josephson junction이며, 2025 Nobel Physics의 macroscopic quantum circuit 실험의 핵심 요소였다.
+두 초전도체를 얇은 절연 장벽으로 분리하면 Cooper pair가 장벽을 quantum tunnelling할 수 있다. 이러한 구조가 Josephson junction이며, 2025 Nobel Physics의 macroscopic quantum circuit 실험에서 핵심적으로 사용되었다.
 \end{solutionframe}
 
-% 07 Chemistry - 문제
+% 07 Chemistry
 \begin{problemframe}{07}{Chemistry}
 다음 species 중 aromatic으로 분류되는 것을 모두 고르시오.
 \begin{simchoices}
@@ -143,74 +132,64 @@ Bloom filter는 여러 hash가 가리키는 bit를 $1$로 세우며, 표준형�
 \end{simchoices}
 \end{problemframe}
 
-% 07 Chemistry - 정답
 \begin{solutionframe}{07}{Chemistry}
 \answerbox{(1), (3)}
-\solutionlabel
-Hückel rule에 따라 planar, cyclic, fully conjugated system이 $(4n+2)\pi$ electrons를 가지면 aromatic하다. $\ce{C3H3+}$는 $2\pi$ electrons, $\ce{C5H5-}$는 $6\pi$ electrons이므로 aromatic이다. Cyclobutadiene은 $4\pi$로 antiaromatic하고, cyclooctatetraene은 nonplanar tub conformation을 취해 nonaromatic하다.
+Hückel rule에 따라 planar, cyclic, fully conjugated system이 $(4n+2)\pi$ electrons를 가지면 aromatic하다. $\ce{C3H3+}$는 $2\pi$ electrons, $\ce{C5H5-}$는 $6\pi$ electrons를 갖는다. Cyclobutadiene은 $4\pi$ system이고, cyclooctatetraene은 nonplanar conformation을 취한다.
 \end{solutionframe}
 
-% 08 Life Science - 문제
+% 08 Life Science
 \begin{problemframe}{08}{Life Science}
-2025 Nobel Prize in Physiology or Medicine는 peripheral immune tolerance에 관한 발견에 수여되었다. 사람에서 FOXP3의 loss-of-function mutation이 가장 직접적으로 발달과 기능을 손상시키는 면역세포 집단은 무엇인가?
+20세기 후반, 위궤양의 원인에 관한 통념에 도전한 Barry Marshall과 Robin Warren은 이 연구로 2005 Nobel Prize in Physiology or Medicine을 받았다. Marshall은 배양한 이 세균을 스스로 섭취하는 자기실험도 했다. 위염과 소화성 궤양의 주요 원인으로 밝혀진 이 세균의 이름을 쓰시오.
 \end{problemframe}
 
-% 08 Life Science - 정답
 \begin{solutionframe}{08}{Life Science}
-\answerbox{Regulatory T cell (Treg)}
-\solutionlabel
-FOXP3는 regulatory T cell의 발달과 억제 기능을 지휘하는 핵심 transcription factor이다. 기능성 FOXP3가 없으면 Treg-mediated peripheral tolerance가 무너져 심한 autoimmunity가 나타날 수 있다.
+\answerbox{Helicobacter pylori}
+Robin Warren은 위 점막에서 곡선형 세균을 관찰했고, Barry Marshall과 함께 이 세균이 chronic gastritis와 peptic ulcer disease에 밀접하게 관련됨을 밝혔다. Marshall의 유명한 self-experiment는 이 가설을 강하게 뒷받침했다.
 \end{solutionframe}
 
-% 09 Mathematics - 문제
+% 09 Mathematics
 \begin{problemframe}{09}{Mathematics}
-다음 이상적분(improper integral)의 값을 구하시오.
+다음 improper integral의 값을 구하시오.
 \[
-\int_0^1 x^x(1+\log x)\,\dd x.
+\int_0^1 x^x(1+\ln x)\,\dd x.
 \]
 \end{problemframe}
 
-% 09 Mathematics - 정답
 \begin{solutionframe}{09}{Mathematics}
 \answerbox{$\displaystyle 0$}
-\solutionlabel
-$x>0$에서
 \[
-\frac{\dd}{\dd x}x^x=x^x(1+\log x).
+\frac{\dd}{\dd x}x^x=x^x(1+\ln x).
 \]
-따라서
+또한
 \[
-\int_0^1 x^x(1+\log x)\,\dd x
-=\left[x^x\right]_{0^+}^{1}.
+\lim_{x\to0^+}x^x
+=\lim_{x\to0^+}e^{x\ln x}=1,
+\qquad
+1^1=1.
 \]
-한편 $\lim_{x\to0^+}x\log x=0$이므로 $\lim_{x\to0^+}x^x=1$이다. 따라서 적분값은 $1-1=0$이다.
+따라서 improper integral의 값은 $1-1=0$이다.
 \end{solutionframe}
 
-% 10 Computer Science - 문제
+% 10 Computer Science
 \begin{problemframe}{10}{Computer Science}
 단일 단계 page table을 사용하는 시스템에서 TLB lookup은 $10\,\mathrm{ns}$, main memory access는 $100\,\mathrm{ns}$이고 TLB hit rate는 $90\%$이다. Page fault는 없으며, TLB miss 시 page table entry를 memory에서 한 번 읽은 뒤 실제 data를 한 번 더 읽는다. Effective memory access time을 구하시오.
 \end{problemframe}
 
-% 10 Computer Science - 정답
 \begin{solutionframe}{10}{Computer Science}
 \answerbox{$\displaystyle 120\,\mathrm{ns}$}
-\solutionlabel
 TLB hit이면 $10+100=110\,\mathrm{ns}$, miss이면 $10+100+100=210\,\mathrm{ns}$가 걸린다. 따라서
 \[
 0.9(110)+0.1(210)=99+21=120\,\mathrm{ns}.
 \]
-Virtual memory 계산에서는 hit와 miss에서 필요한 memory access 횟수를 먼저 세는 것이 핵심이다.
 \end{solutionframe}
 
-% 11 Physics - 문제
+% 11 Physics
 \begin{problemframe}{11}{Physics}
-한 변의 길이가 $a$, 저항이 $R$인 정사각형 도선고리가 속력 $v$로 오른쪽으로 움직이며, 종이면 안쪽 방향의 균일한 자기장 $B$가 존재하는 영역으로 들어가고 있다. 자기장 영역의 경계는 도선고리의 세로변과 평행하다. 고리가 자기장 영역에 부분적으로 들어가는 동안, self-inductance를 무시할 때 운동을 방해하는 자기력의 크기를 구하시오.
+한 변의 길이가 $a$, 저항이 $R$인 정사각형 도선고리가 속력 $v$로 오른쪽으로 움직이며, 종이면 안쪽 방향의 균일한 자기장 $B$가 존재하는 영역으로 들어가고 있다. 자기장 영역의 경계는 고리의 세로변과 평행하다. 고리가 자기장 영역에 부분적으로 들어가는 동안 self-inductance를 무시할 때, 운동을 방해하는 자기력의 크기를 구하시오.
 \end{problemframe}
 
-% 11 Physics - 정답
 \begin{solutionframe}{11}{Physics}
 \answerbox{$\displaystyle F=\frac{B^2a^2v}{R}$}
-\solutionlabel
 자기선속 증가율은 $\dd\Phi/\dd t=Bav$이므로
 \[
 \mathcal E=Bav,
@@ -219,24 +198,21 @@ I=\frac{Bav}{R},
 \qquad
 F=IaB=\frac{B^2a^2v}{R}.
 \]
-Lenz's law에 따라 이 힘은 운동 반대쪽으로 작용한다.
+Lenz's law에 따라 힘은 운동 반대 방향으로 작용한다.
 \end{solutionframe}
 
-% 12 Chemistry - 문제
+% 12 Chemistry
 \begin{problemframe}{12}{Chemistry}
 Octahedral complex $\ce{[Fe(CN)6]^4-}$와 $\ce{[FeF6]^4-}$에서 Fe의 oxidation state는 모두 $+2$이다. $\ce{CN^-}$는 strong-field ligand, $\ce{F^-}$는 weak-field ligand라 할 때, 두 complex의 unpaired electron 수를 순서대로 쓰시오.
 \end{problemframe}
 
-% 12 Chemistry - 정답
 \begin{solutionframe}{12}{Chemistry}
 \answerbox{$\displaystyle 0,\ 4$}
-\solutionlabel
-$\ce{Fe^{2+}}$는 $d^6$이다. Strong-field $\ce{CN^-}$에서는 low-spin $t_{2g}^6$가 되어 unpaired electron이 $0$개이다. Weak-field $\ce{F^-}$에서는 high-spin $t_{2g}^4e_g^2$가 되어 unpaired electron이 $4$개이다. 즉 전자는 같아도 ligand-field splitting의 크기가 spin state를 바꾼다.
+$\ce{Fe^{2+}}$는 $d^6$이다. Strong-field $\ce{CN^-}$에서는 low-spin $t_{2g}^6$가 되어 unpaired electron이 $0$개이다. Weak-field $\ce{F^-}$에서는 high-spin $t_{2g}^4e_g^2$가 되어 unpaired electron이 $4$개이다.
 \end{solutionframe}
 
-% 13 Life Science - 문제
+% 13 Life Science
 \begin{problemframe}{13}{Life Science}
-\normalsize
 산소, 기질, ADP와 $P_i$가 충분한 isolated mitochondria에 protonophore인 2,4-dinitrophenol (DNP)을 첨가하였다. Proton motive force를 $\Delta p$라 할 때, 첨가 직후의 변화를 가장 잘 나타낸 것을 고르시오.
 \begin{simchoices}
 \item $\mathrm{O_2}$ consumption $\downarrow$, ATP synthesis $\uparrow$, $\Delta p\uparrow$
@@ -246,45 +222,36 @@ $\ce{Fe^{2+}}$는 $d^6$이다. Strong-field $\ce{CN^-}$에서는 low-spin $t_{2g
 \end{simchoices}
 \end{problemframe}
 
-% 13 Life Science - 정답
 \begin{solutionframe}{13}{Life Science}
 \answerbox{(2)}
-\solutionlabel
-DNP는 inner mitochondrial membrane을 가로질러 proton을 운반해 proton motive force를 소실시키는 uncoupler이다. ATP synthase가 이용할 gradient가 줄어 ATP synthesis는 감소한다. 반면 electron transport chain에 걸리던 ``back pressure''가 줄어 respiration과 $\mathrm{O_2}$ consumption은 증가한다.
+DNP는 inner mitochondrial membrane을 가로질러 proton을 운반하여 proton motive force를 소실시키는 uncoupler이다. 따라서 ATP synthesis는 감소한다. 반면 electron transport chain에 걸리던 back pressure가 줄어 respiration과 $\mathrm{O_2}$ consumption은 증가한다.
 \end{solutionframe}
 
-% 14 Mathematics - 문제
+% 14 Mathematics
 \begin{problemframe}{14}{Mathematics}
 Congruence
 \[
 x^2\equiv1\pmod{105}
 \]
-를 만족하는 residue class $x\pmod{105}$의 개수를 구하시오.
+를 만족하는 residue classes $[x]_{105}$의 개수를 구하시오.
 \end{problemframe}
 
-% 14 Mathematics - 정답
 \begin{solutionframe}{14}{Mathematics}
 \answerbox{$\displaystyle 8$}
-\solutionlabel
-$105=3\cdot5\cdot7$이고 서로 다른 odd primes의 곱이다. 각 prime $p\in\{3,5,7\}$에 대해
+$105=3\cdot5\cdot7$이다. 각 prime $p\in\{3,5,7\}$에 대해
 \[
 x^2\equiv1\pmod p
 \]
-의 해는 $x\equiv\pm1$ 두 개이다. Chinese Remainder Theorem에 의해 세 선택을 독립적으로 조합할 수 있으므로 해의 개수는
-\[
-2^3=8.
-\]
+의 해는 $x\equiv\pm1\pmod p$ 두 개이다. Chinese Remainder Theorem에 의해 세 선택을 독립적으로 조합할 수 있으므로 해의 개수는 $2^3=8$이다.
 \end{solutionframe}
 
-% 15 Computer Science - 문제
+% 15 Computer Science
 \begin{problemframe}{15}{Computer Science}
-어떤 block code의 minimum Hamming distance가 $d_{\min}=7$이다. 이 code가 항상 검출할 수 있는 오류 bit 수의 최댓값과 항상 정정할 수 있는 오류 bit 수의 최댓값을 순서대로 쓰시오.
+Error-detecting and error-correcting codes의 선구자 Richard Hamming의 이름을 딴 Hamming distance를 생각하자. 어떤 block code의 minimum Hamming distance가 $d_{\min}=7$일 때, 이 code가 항상 검출할 수 있는 오류 bit 수의 최댓값과 항상 정정할 수 있는 오류 bit 수의 최댓값을 순서대로 쓰시오.
 \end{problemframe}
 
-% 15 Computer Science - 정답
 \begin{solutionframe}{15}{Computer Science}
 \answerbox{검출 $6$ bits, 정정 $3$ bits}
-\solutionlabel
 Minimum distance가 $d_{\min}$이면 최대 $d_{\min}-1$개의 오류를 항상 detect할 수 있고,
 \[
 \left\lfloor\frac{d_{\min}-1}{2}\right\rfloor
@@ -292,71 +259,59 @@ Minimum distance가 $d_{\min}$이면 최대 $d_{\min}-1$개의 오류를 항상 
 개의 오류를 항상 correct할 수 있다. $d_{\min}=7$이므로 각각 $6$과 $3$이다.
 \end{solutionframe}
 
-% 16 Physics - 문제
+% 16 Physics
 \begin{problemframe}{16}{Physics}
 두 별 A와 B를 모두 blackbody로 근사하며 반지름은 서로 같다. B의 blackbody spectrum에서 peak wavelength가 A의 정확히 절반이라면, B의 total luminosity는 A의 몇 배인가? Wien's law와 Stefan-Boltzmann law를 사용할 수 있다.
 \end{problemframe}
 
-% 16 Physics - 정답
 \begin{solutionframe}{16}{Physics}
 \answerbox{$\displaystyle \frac{L_B}{L_A}=16$}
-\solutionlabel
-Wien's law $\lambda_{\max}T=\text{const.}$에 의해 peak wavelength가 절반이면
+Wien's law $\lambda_{\max}T=\mathrm{const.}$에 의해 peak wavelength가 절반이면 $T_B=2T_A$이다. 반지름이 같으므로 Stefan-Boltzmann law에서
 \[
-T_B=2T_A.
-\]
-반지름이 같으므로 Stefan-Boltzmann law $L=4\pi R^2\sigma T^4$에서
-\[
-\frac{L_B}{L_A}=\left(\frac{T_B}{T_A}\right)^4=2^4=16.
+\frac{L_B}{L_A}
+=\left(\frac{T_B}{T_A}\right)^4
+=2^4=16.
 \]
 \end{solutionframe}
 
-% 17 Chemistry - 문제
+% 17 Chemistry
 \begin{problemframe}{17}{Chemistry}
 2025 Nobel Prize in Chemistry는 metal-organic frameworks (MOFs)의 개발에 수여되었다. 전형적인 MOF의 crystalline porous framework를 구성하는 두 종류의 building block을 쓰시오.
 \end{problemframe}
 
-% 17 Chemistry - 정답
 \begin{solutionframe}{17}{Chemistry}
 \answerbox{Metal ions/clusters + multidentate organic linkers}
-\solutionlabel
-MOF는 metal ion 또는 metal cluster를 node로 하고, 여러 배위점을 갖는 organic ligand/linker가 이들을 연결하여 만든 porous coordination network이다. Building block을 바꾸면 pore size와 chemical environment를 조절할 수 있어 gas storage, $\ce{CO2}$ capture, catalysis 등에 활용된다.
+MOF는 metal ion 또는 metal cluster를 node로 하고, 여러 배위점을 갖는 organic ligand/linker가 이들을 연결하여 만든 porous coordination network이다. Building block을 바꾸면 pore size와 chemical environment를 조절할 수 있다.
 \end{solutionframe}
 
-% 18 Life Science - 문제
+% 18 Life Science
 \begin{problemframe}{18}{Life Science}
-두 유전자 $A$와 $B$의 recombination frequency가 $20\%$이다. Heterozygote의 haplotype이 $AB/ab$이고 이를 $aabb$와 testcross하였다. 자손이 $aabb$일 확률을 구하시오.
+Thomas Hunt Morgan의 Drosophila 연구로 대표되는 genetic linkage를 생각하자. 두 유전자 $A$와 $B$의 recombination frequency가 $20\%$이고, heterozygote의 haplotype이 $AB/ab$이다. 이를 $aabb$와 testcross했을 때 자손이 $aabb$일 확률을 구하시오.
 \end{problemframe}
 
-% 18 Life Science - 정답
 \begin{solutionframe}{18}{Life Science}
 \answerbox{$\displaystyle 40\%$}
-\solutionlabel
-Recombinant gametes $Ab$, $aB$의 총 비율이 $20\%$이므로 각각 $10\%$이다. 따라서 nonrecombinant gametes $AB$, $ab$는 총 $80\%$, 각각 $40\%$이다. Tester는 항상 $ab$ gamete를 주므로 $aabb$ 자손은 heterozygote가 $ab$를 줄 때 생기며 그 확률은 $40\%$이다.
+Recombinant gametes $Ab$, $aB$의 총 비율이 $20\%$이므로 각각 $10\%$이다. 따라서 nonrecombinant gametes $AB$, $ab$는 각각 $40\%$이다. Tester는 항상 $ab$ gamete를 주므로 $aabb$ 자손이 생길 확률은 $40\%$이다.
 \end{solutionframe}
 
-% 19 Mathematics - 문제
+% 19 Mathematics
 \begin{problemframe}{19}{Mathematics}
-2026 Fields Medalist 중 harmonic analysis와 geometric measure theory에서의 업적으로 알려져 있으며, Fourier restriction, Falconer distance sets, Furstenberg sets와 3차원 Kakeya problem에 중요한 진전을 이룬 수학자의 이름을 쓰시오.
+2026 Fields Medalist 중 harmonic analysis와 geometric measure theory에서의 연구, 특히 3차원 Kakeya problem에 대한 주요 진전으로 알려진 수학자의 이름을 쓰시오.
 \end{problemframe}
 
-% 19 Mathematics - 정답
 \begin{solutionframe}{19}{Mathematics}
 \answerbox{Hong Wang}
-\solutionlabel
-Hong Wang은 harmonic analysis와 geometric measure theory에서 multiscale 및 decoupling 기법을 발전시켰고, Fourier restriction, Falconer distance sets, Furstenberg sets와 3차원 Kakeya problem에 중요한 진전을 이룬 공로로 2026 Fields Medal을 받았다.
+Hong Wang은 harmonic analysis와 geometric measure theory에서 multiscale 및 decoupling techniques를 발전시켰고, Fourier restriction, Falconer distance sets, Furstenberg sets와 3차원 Kakeya problem에 중요한 진전을 이루어 2026 Fields Medal을 받았다.
 \end{solutionframe}
 
-% 20 Computer Science - 문제
+% 20 Computer Science
 \begin{problemframe}{20}{Computer Science}
-완전히 asynchronous한 distributed system에서 단 하나의 process가 crash할 수 있는 경우에도, deterministic consensus algorithm이 모든 admissible execution에서 반드시 종료하도록 보장할 수 없음을 보인 고전적인 impossibility result의 이름을 쓰시오.
+1985년에 발표된 distributed computing의 고전적 결과로, 완전히 asynchronous한 reliable message-passing system에서 단 하나의 process가 crash할 수 있어도 deterministic consensus algorithm이 모든 admissible execution에서 termination을 보장할 수 없음을 말한다. 이 impossibility result의 이름을 쓰시오.
 \end{problemframe}
 
-% 20 Computer Science - 정답
 \begin{solutionframe}{20}{Computer Science}
-\answerbox{FLP impossibility theorem}
-\solutionlabel
-Fischer, Lynch, Paterson이 보인 결과로, 완전히 asynchronous한 message-passing system에서는 단 하나의 crash failure만 허용해도 deterministic consensus protocol의 termination을 모든 admissible execution에서 보장할 수 없다. 이는 consensus가 항상 실패한다는 뜻이 아니라, 모든 admissible execution에서 종료를 deterministic하게 보장할 수 없다는 뜻이다.
+\answerbox{FLP impossibility result}
+Fischer, Lynch, Paterson이 보인 결과로, 완전한 asynchrony와 단 하나의 possible crash failure만으로도 deterministic consensus의 termination을 모든 admissible execution에서 보장할 수 없다. Agreement나 validity가 아니라 termination guarantee에 관한 impossibility라는 점이 핵심이다.
 \end{solutionframe}
 
 \end{document}

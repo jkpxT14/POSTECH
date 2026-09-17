@@ -1,6 +1,5 @@
 % SimulationStyle.tex
-% Standard academic Beamer style for the Science Quiz Simulation.
-% Based on the conventional Madrid Beamer layout used in the Seoul High School lecture deck.
+% Final academic Beamer style for the 20260917 Science Quiz Simulation.
 
 \usetheme{Madrid}
 \useinnertheme{rounded}
@@ -9,6 +8,7 @@
 \usepackage{kotex}
 \usepackage[scaled=0.94]{helvet}
 \renewcommand{\familydefault}{\sfdefault}
+
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage[version=4]{mhchem}
 \usepackage{xcolor}
@@ -30,36 +30,61 @@
 \setbeamercolor{block body}{fg=black,bg=black!5}
 \setbeamercolor{item projected}{fg=white,bg=POSTECHRed}
 \setbeamercolor{subitem projected}{fg=white,bg=POSTECHRed}
+\setbeamercolor{footer red}{fg=white,bg=POSTECHRed}
+\setbeamercolor{footer dark}{fg=white,bg=POSTECHDark}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{items}[circle]
 \setbeamertemplate{blocks}[rounded][shadow=false]
 \setlength{\parskip}{0.22em}
-\setbeamerfont{itemize/enumerate body}{size=\normalsize}
-\setbeamerfont{itemize/enumerate subbody}{size=\small}
+\setbeamerfont{itemize/enumerate body}{size=\large}
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
 \setbeamerfont{block body}{size=\normalsize}
+\setbeamerfont{author in head/foot}{size=\scriptsize,series=\mdseries}
+\setbeamerfont{title in head/foot}{size=\scriptsize,series=\mdseries}
+\setbeamerfont{date in head/foot}{size=\scriptsize,series=\mdseries}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{subtitle}{size=\large,series=\mdseries}
 
-% Four-part footline: document / author / institution / page.
-\makeatletter
+% Clean title page: author, institution, and date share one typographic level.
+\setbeamertemplate{title page}{%
+  \vbox{}
+  \vfill
+  \begin{centering}
+    \begin{beamercolorbox}[sep=11pt,center,rounded=true]{title}
+      {\usebeamerfont{title}\inserttitle\par}
+      \vspace{0.32em}
+      {\usebeamerfont{subtitle}\insertsubtitle\par}
+    \end{beamercolorbox}
+    \vspace{1.35em}
+    {\normalsize\mdseries\insertauthor\par}
+    \vspace{0.24em}
+    {\normalsize\mdseries\insertinstitute\par}
+    \vspace{0.24em}
+    {\normalsize\mdseries\insertdate\par}
+  \end{centering}
+  \vfill
+}
+
+% Four-part footer requested for the simulation.
 \setbeamertemplate{footline}{%
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,leftskip=1.2em]{author in head/foot}%
+    \begin{beamercolorbox}[wd=.31\paperwidth,ht=2.55ex,dp=1.05ex,leftskip=1.05em]{footer red}%
       \usebeamerfont{author in head/foot}20260917 Simulation
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \begin{beamercolorbox}[wd=.27\paperwidth,ht=2.55ex,dp=1.05ex,center]{footer dark}%
       \usebeamerfont{title in head/foot}Jungwoo Kim
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.20\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-      \usebeamerfont{author in head/foot}POSTECH
+    \begin{beamercolorbox}[wd=.20\paperwidth,ht=2.55ex,dp=1.05ex,center]{footer red}%
+      \usebeamerfont{title in head/foot}POSTECH
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,rightskip=1.2em plus1fil]{date in head/foot}%
+    \begin{beamercolorbox}[wd=.22\paperwidth,ht=2.55ex,dp=1.05ex,rightskip=1.05em plus1fil]{footer dark}%
       \usebeamerfont{date in head/foot}\insertframenumber{} / \inserttotalframenumber
     \end{beamercolorbox}%
   }%
   \vskip0pt%
 }
-\makeatother
 
 \newenvironment{problemframe}[2]{%
   \begin{frame}[t]{Problem #1 -- #2}%
@@ -83,10 +108,6 @@
   \vspace{0.2em}%
 }
 
-\newcommand{\solutionlabel}{%
-  해설.\hspace{0.35em}%
-}
-
 \newenvironment{simchoices}{%
   \begin{enumerate}
     \setlength{\itemsep}{0.42em}%
@@ -95,8 +116,12 @@
   \end{enumerate}%
 }
 
-% Mathematical notation follows the project's MATH000 conventions.
+% MATH000-compatible notation used in this document.
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
 \DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rk}{rk}
