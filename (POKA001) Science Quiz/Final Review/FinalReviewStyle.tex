@@ -1,6 +1,6 @@
 % Final Review shared style
 % Mathematics for Science Quiz -- 2026 Science War
-% v2.3 typography sync: handbook visual language + TeX Live bundled fonts
+% 2026 Science War Edition final release: handbook visual language + TeX Live bundled fonts
 
 \usepackage[a4paper,margin=1in,headheight=14pt,headsep=15pt,footskip=16mm]{geometry}
 \usepackage{lmodern}
@@ -19,6 +19,12 @@
 \usepackage{microtype}
 \microtypesetup{protrusion=false,expansion=false}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
+\IfFileExists{dsfont.sty}{%
+  \usepackage{dsfont}%
+}{%
+  \newcommand{\mathds}[1]{\mathbf{#1}}%
+}
+\usepackage{graphicx}
 \usepackage{array,booktabs,longtable,tabularx}
 \usepackage{enumitem,multicol,ragged2e,xcolor,fancyhdr,tocloft,needspace,etoolbox}
 \usepackage[unicode,hidelinks]{hyperref}
@@ -51,7 +57,7 @@
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \newcommand{\Exp}{\mathbb{E}}
 \newcommand{\Prob}{\mathbb{P}}
-\newcommand{\indicator}[1]{\mathbf{1}_{#1}}
+\newcommand{\indicator}[1]{\mathds{1}_{#1}}
 \newcommand{\ones}{\mathbf{1}}
 \DeclareMathOperator{\rk}{rk}
 \DeclareMathOperator{\tr}{tr}
@@ -61,6 +67,7 @@
 \DeclareMathOperator{\Col}{Col}
 \DeclareMathOperator{\spec}{spec}
 \DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\closure}{cl}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Log}{Log}
@@ -68,7 +75,7 @@
 \DeclareMathOperator{\ImPart}{Im}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
-\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\lcmop}{lcm}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
@@ -164,6 +171,7 @@
 \newtheorem*{corollary}{Corollary}
 \theoremstyle{finalsameline}
 \newtheorem*{remark}{Remark}
+\newtheorem*{idea}{Idea}
 \newtheorem*{strategy}{Strategy}
 \newtheorem*{tactic}{Tactic}
 
@@ -178,8 +186,37 @@
 \BeforeBeginEnvironment{lemma}{\finalblockspace}
 \BeforeBeginEnvironment{corollary}{\finalblockspace}
 \BeforeBeginEnvironment{remark}{\finalblockspace}
+\BeforeBeginEnvironment{idea}{\finalblockspace}
 \BeforeBeginEnvironment{strategy}{\finalblockspace}
 \BeforeBeginEnvironment{tactic}{\finalblockspace}
+
+% Selected Past Problems: handbook-derived problem/solution grammar.
+\newcommand{\problemheading}[1]{%
+  \par\Needspace{5\baselineskip}\vspace{5.5pt}\noindent
+  \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
+}
+\newenvironment{pastproblem}[1]
+  {\problemheading{#1}}
+  {\par\vspace{4.5pt}}
+\newenvironment{solution}
+  {\par\Needspace{4\baselineskip}\vspace{4.5pt}\noindent
+   \textit{Solution.}\hspace{0.5em}\ignorespaces}
+  {\par\nobreak\noindent\hfill$\square$\par\vspace{4.5pt}}
+\newenvironment{hint}
+  {\par\Needspace{3\baselineskip}\vspace{3pt}\noindent
+   \textit{Hint.}\hspace{0.5em}\ignorespaces}
+  {\par\vspace{3pt}}
+\newlist{problemchoices}{enumerate}{1}
+\setlist[problemchoices]{
+  label=(\arabic*),
+  leftmargin=2.5em,
+  labelsep=0.6em,
+  itemsep=0.10em,
+  topsep=0.28em,
+  parsep=0pt,
+  partopsep=0pt,
+  align=left
+}
 
 % Contents: Parts + Chapters only; Section bookmarks remain in the PDF sidebar.
 \setcounter{tocdepth}{1}
@@ -219,9 +256,11 @@
   {\noindent\fontsize{12.2}{15}\selectfont\itshape Mathematics for Science Quiz\par}%
   \vspace{0.20cm}%
   {\noindent\small 2026 \KAIST--\POSTECH{} Science War\par}%
-  \vspace{0.31cm}%
-  {\noindent\small Second Edition · 2026년 9월 17일\par}%
-  \vspace{0.36cm}%
+  \vspace{0.23cm}%
+  {\noindent\small 2026 Science War Edition\par}%
+  \vspace{0.08cm}%
+  {\noindent\small 2026년 9월 17일\par}%
+  \vspace{0.34cm}%
   {\noindent\normalsize Jungwoo Kim\par}%
   {\noindent\small Department of Mathematics, \POSTECH\par}%
   {\noindent\small 2026 Science Quiz Mathematics Representative\par}%
@@ -238,8 +277,8 @@
   \endgroup
   \vfill
   {\noindent\footnotesize\color{SoftGray}
-    \textit{Mathematics for Science Quiz}, 2026 Science War Edition (2026년 9월 15일 기준)을 바탕으로 작성.\par
-    PPTX 36문항, Problem sets 90문항, Past Problems 103문항의 전수 점검에서 확인된 핵심 결과와 식별 단서를 반영.}
+    \textit{Mathematics for Science Quiz}, 2026 Science War Edition을 바탕으로 2026년 9월 17일까지 최종 정리.\par
+    PPTX 36문항, Problem sets 90문항, Past Problems 103문항의 전수 점검을 반영하고, 주요 기출 35문항을 Part IV에 선별 수록.}
   \thispagestyle{empty}%
   \clearpage
   \pagestyle{fancy}%

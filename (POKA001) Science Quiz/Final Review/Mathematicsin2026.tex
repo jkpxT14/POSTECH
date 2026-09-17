@@ -1,19 +1,19 @@
 % Part III -- Mathematics in 2026
-% Cutoff: 2026-09-15, following the main handbook.
+% Cutoff: 2026-09-17. Final pre-Science-War review.
 
 \finalchapter{16}{Prizes and Congresses in 2026}
 
 \begin{fact}[상태 표현]
-최근 수학에서는 status를 구분한다.
+최신 수학에서는 결과의 상태를 반드시 구분한다.
 \begin{itemize}
-\item \textbf{published}: scholarly publication에 게재.
-\item \textbf{accepted}: journal acceptance가 공표되었지만 final issue는 아직일 수 있음.
-\item \textbf{preprint}: 공개 manuscript, ordinary journal publication 전.
-\item \textbf{announced}: authors/institution이 결과를 공개 발표; publication status는 별도.
-\item \textbf{formally verified}: proof assistant가 formal proof term을 검사; ordinary peer review와 다름.
-\item \textbf{scheduled}: 공식 발표된 미래 행사·임명.
+\item \textbf{published}: 학술지 또는 학술 출판물에 정식 게재된 상태.
+\item \textbf{accepted}: 게재 승인이 공식적으로 알려졌지만 최종 호(issue)는 아직 나오지 않았을 수 있는 상태.
+\item \textbf{preprint}: 정식 게재 전에 공개된 원고.
+\item \textbf{announced}: 저자나 책임 있는 기관이 결과를 공개 발표한 상태; publication status는 별도로 확인한다.
+\item \textbf{formally verified}: Lean 등의 proof assistant가 형식화된 증명을 검사한 상태; ordinary peer review와는 다른 주장이다.
+\item \textbf{scheduled}: 공식 발표된 미래 행사 또는 임명.
 \end{itemize}
-numerical evidence, preprint, formal verification, published theorem을 서로 바꾸어 말하지 않는다.
+수치적 증거, 발표, preprint, formal verification, 정식 publication은 서로 바꾸어 말하지 않는다.
 \end{fact}
 
 \begin{center}
@@ -122,7 +122,7 @@ numerical evidence, preprint, formal verification, published theorem을 서로 �
 \endfirsthead
 \toprule 주제 & 인물·상태 & 최종 암기 포인트\\ \midrule \endhead
 \bottomrule\endlastfoot
-Navier--Stokes & OpenAI announcement; Clay evaluation pending at cutoff & forced 3D finite-time singularity manuscript + Lean formalization; Clay-recognized solution이라고 단정하지 않음\\
+Navier--Stokes & OpenAI, Sep. 8 announcement & forced 3D finite-time singularity manuscript + Lean formalization 공개; Clay의 공식 인정과 ordinary publication은 별도\\
 3D Kakeya & Hong Wang; Joshua Zahl; 2025 preprint, 2026 Clay Research Award & every Kakeya set in $\R^3$ has Hausdorff and Minkowski dimension $3$\\
 Hilbert 10 over rings of integers & Alpöge--Bhargava--Ho--Shnidman; independently Koymans--Pagano & number fields의 integer rings에서도 general decision algorithm 없음\\
 Boltzmann from hard spheres & Yu Deng; Zaher Hani; Xiao Ma & long-time rigorous derivation; Hilbert's sixth problem program\\
@@ -140,11 +140,11 @@ Ravenel Telescope & Burklund--Hahn--Levy--Schlank & chromatic homotopy theory의
 \end{center}
 
 \begin{fact}[Navier--Stokes Status Trap]
-안전한 표현은
+2026년 9월 8일 OpenAI가 finite-time singularity를 보이는 solution manuscript와 Lean formalization을 공개했다. Final에서는
 \[
-\boxed{\text{해결 발표·원고/형식화 공개; Clay 평가 진행 중}}.
+\boxed{\text{해결 발표 + 원고 공개 + Lean 형식화 공개}}
 \]
-formal verification, ordinary publication, Clay recognition, credit determination을 서로 같은 상태로 취급하지 않는다.
+까지를 확인된 상태로 기억한다. formal verification, ordinary publication, Clay의 공식 인정, 그리고 최종 credit determination은 서로 별개의 주장이다.
 \end{fact}
 
 \begin{fact}[Jacobian Conjecture Status]
@@ -192,8 +192,8 @@ Google DeepMind가 2025 공개. evolutionary coding agent로 algorithm/construct
 \begin{fact}[GPT-5.6 Sol and Cycle Double Cover]
 Cycle Double Cover Conjecture는 every finite bridgeless loopless multigraph의 각 edge가 정확히 두 번 포함되는 cycle multiset의 존재를 묻는다.
 2026년 7월 OpenAI는 GPT-5.6 Sol Ultra가 생성한 affirmative proof 자료를 공개했고,
-Sang-il Oum과 Jim Geelen이 독립 expository write-ups를 게시했다.
-ordinary journal publication과는 구분한다.
+Sang-il Oum과 Jim Geelen이 독립 expository write-ups를 게시했다. 공개 Lean formalization도 존재하지만,
+이 사실들은 ordinary journal publication과 구분한다.
 \end{fact}
 
 \begin{fact}[First Proof]
@@ -212,8 +212,7 @@ exact asymptotic order를 결정한 결과는 아니다.
 \end{fact}
 
 \begin{fact}[Palomar]
-2026년 8월 Jeremy Avigad, Terence Tao, Ravi Vakil, Akshay Venkatesh 등이 포함된 group이
-Lean-verified mathematics registry \textbf{Palomar}를 발표.
+2026년 8월 18일 Lean FRO와 ICARM이 incubate한 Lean-verified mathematics registry \textbf{Palomar}가 submissions를 받기 시작했다. Jeremy Avigad, Terence Tao, Ravi Vakil, Akshay Venkatesh 등이 advisory/review 생태계에 참여한다.
 fixed source versions, exact formal statements, dependencies, review comments를 기록한다.
 kernel checking은 novelty나 ordinary peer review를 자동으로 보증하지 않는다.
 \end{fact}
@@ -229,8 +228,7 @@ Darmon--Diamond--Taylor exposition을 따라 Wiles의 argument를 Lean으로 com
 \[
 \liminf_{n\to\infty}(p_{n+1}-p_n)\le186
 \]
-의 Lean derivation을 다루지만 explicit input axioms와 numerical certificate에 의존하는 conditional formalization.
-Twin Prime Conjecture가 해결된 것은 아니다.
+의 Lean derivation을 다루지만 세 개의 명시적 project input axiom과 numerical certificate에 의존하는 conditional formalization이다. certificate가 그 axioms 자체를 Lean에서 증명하는 것은 아니다. Twin Prime Conjecture가 해결된 것도 아니다.
 \end{fact}
 
 \begin{fact}[Leiden Declaration]
@@ -250,7 +248,7 @@ AI 관련 문제에서는
 
 
 \begin{fact}[Ten AI-Generated Research Advances]
-2026년 8월 OpenAI는 internal Astra 계열 model이 생성하고 Lean certificate까지 붙인 10개 research-result manuscripts를 공개했다. 대표 주제는 sphere packing, binary/spherical codes, non-sofic groups, Connes rigidity, arithmetic-circuit lower bounds, quantum parallel repetition, closest vector hardness, Ehrhart volume, multicolor Ramsey, extremal graph theory. cutoff에서는 \textbf{recently released manuscripts + formal certificates}로 기억한다.
+2026년 8월 OpenAI는 내부 연구 시스템이 생성하고 Lean certificate까지 붙인 10개 research-result manuscripts를 공개했다. 대표 주제는 sphere packing, binary/spherical codes, non-sofic groups, Connes rigidity, arithmetic-circuit lower bounds, quantum parallel repetition, closest vector hardness, Ehrhart volume, multicolor Ramsey, extremal graph theory. cutoff에서는 \textbf{recently released manuscripts + formal certificates}로 기억한다.
 \end{fact}
 
 \begin{fact}[Claude and the Zeta Critical-Line Record]

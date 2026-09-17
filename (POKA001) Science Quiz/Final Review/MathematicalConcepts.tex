@@ -58,7 +58,7 @@ Axiom of Choice를 더한 체계이다. Choice, Zorn's Lemma, Well-Ordering Theo
 \begin{formula}[Asymptotic Anchors]
 \[
 n!\sim\sqrt{2\pi n}\left(\frac ne\right)^n,\qquad
-H_n=\log n+\gamma+o(1).
+H_n=\ln n+\gamma+o(1).
 \]
 계승이 보이면 Stirling, 거듭제곱 비교에는 로그를 먼저 생각한다.
 \end{formula}
@@ -70,8 +70,8 @@ H_n=\log n+\gamma+o(1).
 (\arctan x)'=\frac1{1+x^2},
 \]
 \[
-(a^x)'=a^x\log a,\qquad
-(\log_a x)'=\frac1{x\log a}.
+(a^x)'=a^x\ln a,\qquad
+(\log_a x)'=\frac1{x\ln a}.
 \]
 곱·몫·연쇄법칙은 별도 암기 항목이 아니라 즉시 쓰는 도구로 본다.
 \end{formula}
@@ -85,8 +85,8 @@ e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!},\qquad
 \cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\cdots,
 \]
 \[
-\log(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots,\qquad
-\log(1-x)=-\sum_{n=1}^{\infty}\frac{x^n}{n},
+\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots,\qquad
+\ln(1-x)=-\sum_{n=1}^{\infty}\frac{x^n}{n},
 \]
 \[
 (1+x)^\alpha=\sum_{n=0}^{\infty}\binom{\alpha}{n}x^n.
@@ -133,7 +133,7 @@ $y=f(x)$, $f'(x)\neq0$이면
 \int\frac{\dd x}{\sqrt{a^2-x^2}}=\arcsin\frac xa+C,
 \]
 \[
-\int\frac{\dd x}{x^2-a^2}=\frac1{2a}\log\left|\frac{x-a}{x+a}\right|+C.
+\int\frac{\dd x}{x^2-a^2}=\frac1{2a}\ln\left|\frac{x-a}{x+a}\right|+C.
 \]
 \end{formula}
 
@@ -163,18 +163,18 @@ B(p,q)=\int_0^1x^{p-1}(1-x)^{q-1}\,\dd x
 \begin{formula}[Logarithmic Moments]
 $a>-1$, $m\in\Nzero$이면
 \[
-\int_0^1x^a(\log x)^m\,\dd x=\frac{(-1)^m m!}{(a+1)^{m+1}}.
+\int_0^1x^a(\ln x)^m\,\dd x=\frac{(-1)^m m!}{(a+1)^{m+1}}.
 \]
 따라서
 \[
-\int_0^1\frac{\log x}{1-x}\,\dd x=-\frac{\pi^2}{6}.
+\int_0^1\frac{\ln x}{1-x}\,\dd x=-\frac{\pi^2}{6}.
 \]
 \end{formula}
 
 \begin{formula}[Basel and Alternating Harmonic]
 \[
 \sum_{n=1}^{\infty}\frac1{n^2}=\frac{\pi^2}{6},\qquad
-1-\frac12+\frac13-\frac14+\cdots=\log2.
+1-\frac12+\frac13-\frac14+\cdots=\ln 2.
 \]
 따라서 홀수 제곱 역수합은 $\pi^2/8$.
 \end{formula}
@@ -193,7 +193,7 @@ $a>-1$, $m\in\Nzero$이면
 
 \begin{formula}[Two Useful Infinite-Series Anchors]
 \[
-\sum_{n=1}^{\infty}\frac{x^n}{n}=-\log(1-x)\qquad(|x|<1),
+\sum_{n=1}^{\infty}\frac{x^n}{n}=-\ln(1-x)\qquad(|x|<1),
 \]
 \[
 \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{2n+1}=\arctan x.
@@ -222,7 +222,7 @@ e+\pi,\qquad e\pi
 \begin{formula}[Frullani's Integral]
 적절한 가정 아래
 \[
-\int_0^\infty\frac{f(ax)-f(bx)}x\,\dd x=(f(0)-f(\infty))\log\frac ba.
+\int_0^\infty\frac{f(ax)-f(bx)}x\,\dd x=(f(0)-f(\infty))\ln\frac ba.
 \]
 형태가 보이면 $f(0)$와 $f(\infty)$를 먼저 확인한다.
 \end{formula}
@@ -233,12 +233,12 @@ e+\pi,\qquad e\pi
 \end{strategy}
 
 \begin{formula}[Comparison of Powers]
-양수 $a,b$에 대해 $a^b$와 $b^a$는 $b\log a$와 $a\log b$를 비교한다.
-함수 $\log x/x$는 $x>e$에서 감소한다.
+양수 $a,b$에 대해 $a^b$와 $b^a$는 $b\ln a$와 $a\ln b$를 비교한다.
+함수 $\ln x/x$는 $x>e$에서 감소한다.
 \end{formula}
 
 \begin{formula}[Minimum of $x^x$]
-$y=x^x$에 로그를 취하면 $\log y=x\log x$. 따라서
+$y=x^x$에 로그를 취하면 $\ln y=x\ln x$. 따라서
 \[
 \boxed{\min_{x>0}x^x=e^{-1/e}}
 \]
@@ -373,7 +373,7 @@ e^{i\theta}=\cos\theta+i\sin\theta,\qquad z=re^{i\theta}.
 \]
 로 두고
 \[
-\Log z=\log|z|+i\Arg z
+\Log z=\ln|z|+i\Arg z
 \]
 를 principal logarithm으로 쓴다.
 \end{formula}
@@ -1042,6 +1042,26 @@ OG:GH=1:2.
 지름이 만드는 원주각은 $90^\circ$이다. 원과 직각이 함께 나오면 지름을 먼저 의심한다.
 \end{theorem}
 
+
+\begin{theorem}[Power of a Point]
+한 점 $P$를 지나는 두 직선이 원과 각각 $A,B$ 및 $C,D$에서 만나면, 해당 configuration의 유향거리로
+\[
+PA\cdot PB=PC\cdot PD.
+\]
+특히 $P$에서 그은 접선의 접점을 $T$라 하면
+\[
+PT^2=PA\cdot PB.
+\]
+\end{theorem}
+
+\begin{theorem}[Ptolemy's Theorem]
+원에 내접하는 사각형 $ABCD$에 대해
+\[
+AC\cdot BD=AB\cdot CD+BC\cdot DA.
+\]
+cyclic quadrilateral과 대각선의 곱이 함께 보이면 가장 먼저 떠올린다.
+\end{theorem}
+
 \begin{theorem}[Euler's Polyhedron Formula]
 convex polyhedron에 대해
 \[
@@ -1167,7 +1187,7 @@ pairwise coprime moduli $n_i$에 대한 congruence system은 $\prod n_i$ modulo�
 
 \begin{theorem}[Prime Number Theorem]
 \[
-\pi(x)\sim\frac{x}{\log x}.
+\pi(x)\sim\frac{x}{\ln x}.
 \]
 Hadamard와 de la Vallée Poussin이 1896년에 독립적으로 증명했다.
 \end{theorem}
@@ -1221,6 +1241,27 @@ v_p(n!)=\sum_{k\ge1}\left\lfloor\frac n{p^k}\right\rfloor.
 \]
 Kummer: $v_p\binom nk$는 base-$p$에서 $k+(n-k)$를 더할 때 발생하는 carry의 개수와 같다.
 \end{formula}
+
+
+\begin{theorem}[Lifting the Exponent (LTE)]
+홀수 소수 $p$에 대해 $p\mid a-b$이고 $p\nmid ab$이면, 모든 $n\in\N$에 대해
+\[
+v_p(a^n-b^n)=v_p(a-b)+v_p(n).
+\]
+또한 $p\mid a+b$이고 $n$이 홀수이면 $a^n+b^n$에도 같은 형태를 쓴다. $p=2$에는 별도의 보정항이 있으므로 조건을 확인한다.
+\end{theorem}
+
+\begin{theorem}[Lucas' Theorem]
+$p$가 소수이고
+\[
+n=\sum_i n_ip^i,\qquad k=\sum_i k_ip^i\qquad(0\le n_i,k_i<p)
+\]
+이면
+\[
+\binom nk\equiv\prod_i\binom{n_i}{k_i}\pmod p.
+\]
+큰 이항계수를 소수 modulo로 물으면 base-$p$ digit로 분해한다.
+\end{theorem}
 
 \begin{formula}[Exponential-Difference GCD]
 \[
@@ -1300,7 +1341,7 @@ $\Z/n\Z$의 generator 수는 $\varphi(n)$.
 \begin{formula}[Permutations]
 순열의 order는 서로소 cycle lengths의 최소공배수:
 \[
-\boxed{\ord(\sigma)=\lcm(\ell_1,\ldots,\ell_r)}.
+\boxed{\ord(\sigma)=\lcmop(\ell_1,\ldots,\ell_r)}.
 \]
 \end{formula}
 
@@ -1316,6 +1357,15 @@ $p(x)\in\R[x]$이고 $p(\alpha)=0$이면
 p(\overline\alpha)=0.
 \]
 중복도도 같다. 따라서 실수계수 다항식의 비실수근은 켤레쌍으로 나타난다.
+\end{theorem}
+
+
+\begin{theorem}[Rational Root Theorem and Eisenstein Criterion]
+정수계수 다항식
+\[
+p(x)=a_nx^n+\cdots+a_0
+\]
+의 기약분수형 유리근 $r/s$에 대해 $r\mid a_0$, $s\mid a_n$이다. 또한 어떤 소수 $p$가 모든 비최고차항 계수를 나누고, $p\nmid a_n$, $p^2\nmid a_0$이면 $p(x)$는 $\Q$ 위에서 irreducible이다 (Eisenstein).
 \end{theorem}
 
 \begin{formula}[Viète and Logarithmic Derivative]

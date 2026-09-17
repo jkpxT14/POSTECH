@@ -1,63 +1,75 @@
-# v2.3 - Final typography and handbook sync
+# 2026 Science War Edition - Final Release
 
-Edition date: 2026-09-17
+Edition date: **2026-09-17**
 
-## 방향
+이 revision은 2026 KAIST-POSTECH Science War 전 마지막 Final Review release를 목적으로 한다. v2.3에서 확립한 내용 breadth와 typography를 모체로 삼고, 새로운 실험보다 누락, 오류, 불일치, 번역투, 조판 문제를 제거하는 데 초점을 맞췄다.
 
-- GitHub `main`의 44쪽 v2.2를 정보량의 기준으로 삼고, 이전 29쪽 재작성본에서 실제로 개선된 요소만 흡수했다.
-- 페이지 수를 줄이는 것을 목표로 하지 않았다. 필요한 개념·공식·정리·암기 요소를 보존한 뒤 중복과 장황한 설명을 정리했고, 최종 결과는 43쪽이다.
-- 목표는 경기 전날 또는 경기 직전 2–3시간 내 1회독 가능한 고밀도 Final이다.
+## Final identity
 
-## 복원·보존
+- Main title: `Final Review`
+- Subtitle: `Mathematics for Science Quiz`
+- Edition: `2026 Science War Edition`
+- Date: `2026년 9월 17일`
+- 목표 회독 시간: 약 3시간
+- 페이지 수를 줄이기 위해 중요한 내용을 삭제하지 않는다.
 
-29쪽 버전에서 지나치게 줄어들었던 내용을 복원했다. 특히 다음 영역의 고효율 toolkit을 보존했다.
+## Content pass
 
-- 미적분/해석: 부분적분·치환, 급수, Wallis, Sophomore's Dream, multivariable chain rule, Lagrange multipliers, change of variables, Cantor set, Cauchy–Riemann 등
-- 선형대수: determinant toolkit, invertibility equivalents, characteristic polynomial, Cayley–Hamilton, special matrices, outer products 등
-- 조합/이산: lattice paths, derangements, Vandermonde, Hall, Ramsey, graph complement, Master theorem, Eulerian/planar graph, Moser 등
-- 확률: independence, total expectation/variance, covariance, memorylessness, tail-sum, standard distributions, stopping-time anchors 등
-- 기하/정수론/대수/위상: 기존 v2.2의 재사용성 높은 핵심 결과를 폭넓게 보존
-- 암기: Fields/Abel chronology, 수학자 연대기, 저작, 역사, 일화, 기관, famous problems를 충분히 보존
+- v2.3의 고밀도 Part I-III 내용을 기본적으로 보존했다.
+- 기존 전수 audit에서 보강된 finite-field power map, coefficient extraction, Fibonacci generating function, Conjugate Root Theorem, Cavalieri principle, Kummer carry interpretation, finitely generated group countability, Möbius/fractional-linear recurrence 등의 핵심을 유지했다.
+- Final robustness를 위해 기존 Chapter/Section 안에만 다음 고효율 결과를 짧게 보강했다.
+  - Power of a Point
+  - Ptolemy's Theorem
+  - LTE의 홀수 소수 핵심형
+  - Lucas' Theorem
+  - Rational Root Theorem / Eisenstein Criterion
+- 과거 audit에서 배제한 불안정하거나 잘못된 항목은 다시 추가하지 않았다.
 
-## 세 번의 전수 audit에서 반영한 보강
+## Part IV - Selected Past Problems
 
-- finite-field multiplicative power map criterion
-- coefficient extraction + Fibonacci generating function
-- Conjugate Root Theorem
-- Shou-Wu Zhang ↔ Andrew Wiles Medal
-- John Charles Fields = Canadian mathematician
-- Cavalieri's principle
-- Kummer carry interpretation
-- finitely generated group countability anchor
-- Möbius / fractional-linear recurrence recognition cue
+본교재 Past Problems에서 사용자가 직접 선별한 다음 35문항을 새 Part IV에 수록했다.
 
-잘못되었거나 불안정한 source item은 넣지 않았다. 예: Collatz `77671`, 모순인 functional equation, 불안정한 topology 보기, 과도하게 특수한 exact group enumeration.
+`2011.7, 2011.8, 2014.3, 2014.4, 2015.2, 2015.3, 2015.6, 2015.12, 2015.17, 2017.2, 2017.3, 2018.3, 2019.2, 2020.2, 2020.4, 2021.2, 2021.3, 2021.4, 2022.1, 2022.3, 2022.7, 2023.2, 2023.3, 2023.4, 2024.3, 2024.4, 2025.1, 2025.3, 2025.4, 2025.5, 2025.6, 2025.8, 2025.13, 2025.17, 2025.19`
 
-## 디자인·표기
+- 문제 번호, 조건, 수치, 선택지의 수학적 의미를 본교재와 대조했다.
+- 문제와 해설은 한국어 중심으로 다시 작성했다.
+- 해설은 정답만 남기지 않고 경기 직전 풀이가 복원될 만큼의 핵심 논리를 유지했다.
+- 2024.3의 도형은 본교재 figure를 그대로 포함했다.
+- 임의의 추가 기출이나 임의 삭제는 하지 않았다.
 
-- 본교재의 Chapter / Section 계층을 문서형 Final에 맞게 적용했다.
-- main theorem-like environments는 `Theorem. Title` 뒤 줄바꿈 후 본문이 시작되도록 통일했다.
-- heading과 본문 사이를 가운데점으로 잇는 디자인을 제거했다.
-- 잘못된 U+318D `ㆍ`는 제거하고, 표준 가운데점 `·`는 실제 병렬 나열에만 제한적으로 사용했다.
-- MATH000 convention을 반영: `int A` / `A^\circ`, closure `\overline A`, principal `Arg z\in(-\pi,\pi]`, `log z` / `Log z`, geometric distribution은 첫 성공 시행까지 센다.
-- 암기 파트는 한국어 문서성을 강화하고, 주요 수학자 이름은 한국어 표기와 원어 식별을 함께 사용할 수 있게 정리했다.
+## Korean-language pass
 
-## QA
+- 문장 골격을 한국어로 두고, 표준 수학 용어와 식별에 유리한 영어는 필요한 곳에서 유지했다.
+- 최신 수학의 `published / accepted / preprint / announced / formally verified / scheduled` 상태 구분을 한국어 설명 중심으로 정리했다.
+- Part IV의 문제/해설에서 직역투를 줄이고 자연스러운 한국어 수학 문장으로 통일했다.
 
-- XeLaTeX clean build
-- LaTeX warning / overfull / underfull / missing-character 점검
-- 43쪽 전체 PDF 렌더링 후 시각 검토
-- PDF preflight 통과
+## 2026 current-math pass
 
+- Part III cutoff를 **2026-09-17**로 갱신했다.
+- Navier-Stokes는 2026-09-08 공개된 solution manuscript와 Lean formalization까지를 확인된 상태로 표현하고, ordinary publication / Clay 공식 인정 / credit determination을 별도 주장으로 분리했다.
+- PrimeGaps186은 세 개의 명시적 project input axiom과 numerical certificate에 의존하는 conditional formalization이라는 점을 명확히 했다.
+- Palomar는 2026-08-18 submissions 개시와 Lean FRO / ICARM incubated registry라는 상태를 반영했다.
+- `Ten AI-Generated Research Advances`의 모델 표현은 공개 근거보다 강한 특정 모델명 귀속을 피하고 `OpenAI 내부 연구 시스템`으로 정정했다.
+- Cycle Double Cover 항목에는 공개 Lean formalization의 존재를 반영하되 ordinary journal publication과 구별했다.
 
-## v2.3 typography / design pass
+## MATH000 sync
 
-- 43쪽 hybrid Final의 본문 내용은 유지하고 typography와 문서 디자인을 본교재에 다시 맞췄다.
-- 영문 serif/sans/mono를 본교재와 동일한 Latin Modern 계열로 복원했다.
-- 한글은 TeX Live bundled `UnBatang` / `UnDotum`을 사용해 시스템 폰트 의존성을 제거했다.
-- theorem 계열은 본교재처럼 본문을 italic, Definition/Formula/Fact/Algorithm 계열은 upright로 구분했다.
-- 주요 theorem-like heading은 `Theorem. Title` 뒤 줄바꿈을 유지하고, Remark/Strategy/Tactic만 같은 줄에 두었다.
-- Chapter heading의 불필요한 장식 rule을 제거하고 본교재의 `Chapter N` + title hierarchy에 더 가깝게 정리했다.
-- running header의 rule을 제거해 본문보다 header가 눈에 띄지 않도록 했다.
-- 표지 metadata는 `Second Edition · 2026년 9월 17일`로 정리했다.
-- 내용 파일(`MathematicalConcepts.tex`, `FactstoMemorize.tex`, `Mathematicsin2026.tex`)은 직전 43쪽 Final을 그대로 보존했다.
+최신 GitHub `(MATH000) Mathematical Language`를 다시 대조했다.
+
+- vectors: bold lowercase; matrices: bold uppercase
+- natural logarithm: `\ln`; arbitrary-base logarithm: `\log_a`
+- principal argument: `\Arg z\in(-\pi,\pi]`
+- principal complex logarithm: `\Log z=\ln|z|+i\Arg z`
+- interior / closure / boundary: `A^\circ` / `\operatorname{int} A`, `\overline A`, `\partial A`
+- probability/expectation: blackboard-bold convention
+- geometric distribution: first successful trial included
+- least common multiple: upright `lcm` operator
+- indicator symbol: dsfont `\mathds{1}` when available, safe fallback otherwise
+
+## Typography and build
+
+- v2.3에서 확립한 Latin Modern + UnBatang/UnDotum 조합을 유지했다.
+- 본교재의 theorem-like grammar를 유지했다: main theorem/fact/formula heading 뒤 줄바꿈, Remark/Idea/Strategy/Tactic은 same-line.
+- Part IV의 Problem / Solution / Hint / choices 환경을 본교재의 visual grammar에 맞게 추가했다.
+- 불필요한 장식이나 새 Chapter/Section을 만들지 않았다.
+- 배포 ZIP에는 source, figure, PDF, README/REVISION, `.latexmkrc`만 포함하고 build artifacts는 제외한다.

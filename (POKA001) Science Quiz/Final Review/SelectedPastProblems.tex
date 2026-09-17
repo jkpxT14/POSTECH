@@ -1,0 +1,884 @@
+% Part IV -- Selected Past Problems
+% Selected for the 2026 Science War Final Review. Problems and solutions are
+% rewritten in Korean while preserving the mathematical content of the handbook.
+
+본교재의 Past Problems 가운데 경기 직전 다시 볼 가치가 큰 문항만 선별하였다. 문제 번호와 수학적 조건은 본교재를 그대로 따르며, 해설은 핵심 발상과 계산이 빠르게 복원되도록 한국어 중심으로 압축하였다.
+
+\begin{pastproblem}{2011.7}
+숫자
+\[
+1,2,3,4,6,7,8,9
+\]
+를 각각 적어도 한 번씩 사용하여 정수를 만든다. 같은 숫자를 여러 번 사용해도 된다. 이 정수가
+\[
+1,2,3,4,6,7,8,9
+\]
+모두로 나누어떨어지도록 할 때, 가능한 가장 작은 정수를 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+필요한 최소공배수는
+\[
+\lcmop(1,2,3,4,6,7,8,9)=504.
+\]
+각 숫자를 한 번씩만 쓰면 자릿수 합이 $40$이므로 $9$의 배수가 아니어서 $8$자리 수는 불가능하다. 한 자리만 더 반복하면 자릿수 합이 $40+d$인데 $9\mid 40+d$이려면 $d\equiv5\pmod9$여야 하므로 허용된 숫자로는 $9$자리 수도 불가능하다.
+
+따라서 최소 $10$자리이고, 추가되는 두 숫자의 합은 $5\pmod9$이다. 가능한 쌍은
+\[
+(1,4),(2,3),(6,8),(7,7).
+\]
+가장 작은 수를 만들려면 $(1,4)$를 택하여 숫자 multiset을
+\[
+1,1,2,3,4,4,6,7,8,9
+\]
+로 두는 것이 최선이다. 가장 작은 앞부분은 $112344$이고, 마지막 세 자리가 $8$의 배수가 되도록 $6,7,8,9$를 배열하면 후보는
+\[
+1123449768,\ 1123447896,\ 1123447968,\ 1123448976.
+\]
+이 중 $7$로도 나누어떨어지는 것은
+\[
+1123449768=504\cdot2229067
+\]
+뿐이다. 따라서 답은
+\[
+\boxed{1123449768}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2011.8}
+다음을 넘지 않는 가장 큰 정수를 구하여라.
+\[
+-\frac{1}{\ln(365/366)}.
+\]
+\begin{hint}
+$\ln(1-x)$의 Taylor 전개를 이용한다.
+\end{hint}
+\end{pastproblem}
+
+\begin{solution}
+$x=1/366$이라 두면
+\[
+-\ln(1-x)=x+\frac{x^2}{2}+\frac{x^3}{3}+\cdots.
+\]
+$0<x<1$에서
+\[
+x<-\ln(1-x)<\frac{x}{1-x}
+\]
+이므로
+\[
+\frac1{366}<-\ln\frac{365}{366}<\frac1{365}.
+\]
+양수들의 역수를 취하면
+\[
+365<-\frac1{\ln(365/366)}<366.
+\]
+따라서 답은
+\[
+\boxed{365}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2014.3}
+대각성분은 모두 $0$, 비대각성분은 모두 $1$인 $2014\times2014$ 행렬의 모든 eigenvalue를 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+모든 성분이 $1$인 행렬을 $\mathbf J_{2014}$라 두면
+\[
+\mathbf A=\mathbf J_{2014}-\mathbf I_{2014}.
+\]
+$\ones=(1,\ldots,1)^{\mathsf T}$에 대해
+\[
+\mathbf A\ones=(2014-1)\ones=2013\ones,
+\]
+이므로 $2013$은 multiplicity $1$의 eigenvalue이다. 한편 좌표합이 $0$인 $2013$차원 부분공간에서는 $\mathbf J_{2014}\mathbf v=\mathbf0$이므로
+\[
+\mathbf A\mathbf v=-\mathbf v.
+\]
+따라서
+\[
+\boxed{2013\text{ (multiplicity }1),\qquad -1\text{ (multiplicity }2013)}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2014.4}
+$m,n\ge3$이고
+\[
+\{\mathbf v_1,\mathbf v_2,\mathbf v_3\}\subseteq\R^m,
+\qquad
+\{\mathbf w_1,\mathbf w_2,\mathbf w_3\}\subseteq\R^n
+\]
+라 하자. $V=\Span(\mathbf v_1,\mathbf v_2,\mathbf v_3)$의 차원이 $2$이고, $W=\Span(\mathbf w_1,\mathbf w_2,\mathbf w_3)$의 차원이 $3$이다. 다음 $m\times n$ 행렬의 rank를 구하여라.
+\[
+\mathbf A=\mathbf v_1\mathbf w_1^{\mathsf T}+\mathbf v_2\mathbf w_2^{\mathsf T}+\mathbf v_3\mathbf w_3^{\mathsf T}.
+\]
+\end{pastproblem}
+
+\begin{solution}
+\[
+\mathbf P=(\mathbf v_1\ \mathbf v_2\ \mathbf v_3),
+\qquad
+\mathbf Q=(\mathbf w_1\ \mathbf w_2\ \mathbf w_3)
+\]
+라 두면 $\mathbf A=\mathbf P\mathbf Q^{\mathsf T}$. 가정에서 $\rk(\mathbf P)=2$, $\rk(\mathbf Q)=3$이다. 따라서 $\mathbf Q^{\mathsf T}:\R^n\to\R^3$는 surjective이고
+\[
+\operatorname{im}(\mathbf A)
+=\mathbf P(\operatorname{im}\mathbf Q^{\mathsf T})
+=\mathbf P(\R^3)
+=\Span(\mathbf v_1,\mathbf v_2,\mathbf v_3).
+\]
+이 공간의 차원이 $2$이므로
+\[
+\boxed{\rk(\mathbf A)=2}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2015.2}
+가역 정방행렬 $\mathbf A$에 대해, 어떤 permutation matrix $\mathbf P$를 사용한 Gaussian elimination이
+\[
+\mathbf P\mathbf A=\mathbf L\mathbf U
+\]
+를 준다고 하자. 다른 permutation matrix $\widetilde{\mathbf P}$를 사용하면
+\[
+\widetilde{\mathbf P}\mathbf A=\widetilde{\mathbf L}\widetilde{\mathbf U}
+\]
+가 될 수도 있다. 두 경우의 pivot 절댓값 집합이 서로 달라질 수 있음을 예로 보여라.
+\begin{hint}
+$2\times2$ counterexample을 찾는다.
+\end{hint}
+\end{pastproblem}
+
+\begin{solution}
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1/2\\[2pt]
+1/3&1
+\end{pmatrix}
+\]
+를 보자. 행 교환 없이
+\[
+\mathbf A=
+\begin{pmatrix}1&0\\1/3&1\end{pmatrix}
+\begin{pmatrix}1&1/2\\0&5/6\end{pmatrix},
+\]
+따라서 pivot 절댓값은 $\{1,5/6\}$이다. 두 행을 바꾸면
+\[
+\widetilde{\mathbf P}\mathbf A=
+\begin{pmatrix}1/3&1\\1&1/2\end{pmatrix}
+=
+\begin{pmatrix}1&0\\3&1\end{pmatrix}
+\begin{pmatrix}1/3&1\\0&-5/2\end{pmatrix},
+\]
+이므로 pivot 절댓값은 $\{1/3,5/2\}$이다. 따라서 두 집합은 서로 다르다.
+\end{solution}
+
+\begin{pastproblem}{2015.3}
+$\R^2$의 Mercedes--Benz system을
+\[
+\mathbf v_k=
+\begin{pmatrix}
+\cos(2k\pi/3)\\
+\sin(2k\pi/3)
+\end{pmatrix}
+\qquad(k=0,1,2)
+\]
+로 정의한다. 길이가 서로 같고, 서로 직교하며, $z$-좌표가 모두 양수이고,
+\[
+P_{xy}(\mathbf w_k)=\mathbf v_k
+\]
+를 만족하는 $\mathbf w_0,\mathbf w_1,\mathbf w_2\in\R^3$를 구하여라. 여기서 $P_{xy}$는 $xy$-평면으로의 projection이다.
+\end{pastproblem}
+
+\begin{solution}
+모든 $\mathbf v_k$의 길이가 $1$이고 $\mathbf w_k$의 길이가 같으며 높이가 양수이므로
+\[
+\mathbf w_k=
+\begin{pmatrix}
+\cos(2k\pi/3)\\
+\sin(2k\pi/3)\\
+c
+\end{pmatrix}
+\quad(c>0)
+\]
+로 둘 수 있다. $i\ne j$이면 $\mathbf v_i\cdot\mathbf v_j=\cos120^\circ=-1/2$이므로
+\[
+\mathbf w_i\cdot\mathbf w_j=-\frac12+c^2.
+\]
+서로 직교하려면 $c^2=1/2$이어야 한다. 따라서
+\[
+\boxed{
+\mathbf w_k=
+\begin{pmatrix}
+\cos(2k\pi/3)\\
+\sin(2k\pi/3)\\
+1/\sqrt2
+\end{pmatrix}
+\quad(k=0,1,2)}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2015.6}
+$f:\R\to\R$가 주기 $2\pi$인 함수이고, $x\in(0,2\pi]$에서
+\[
+f(x)=\left\lceil\max(3,|\pi-x|)-3\right\rceil
+\]
+로 정의한 뒤 주기적으로 연장한다. 다음 극한이 수렴하는지 판정하여라.
+\[
+\lim_{n\to\infty}f(n).
+\]
+\begin{hint}
+$3.14<\pi<3.145$를 이용할 수 있다.
+\end{hint}
+\end{pastproblem}
+
+\begin{solution}
+한 주기에서
+\[
+f(x)=1\quad\text{if }0<x<\pi-3\text{ or }\pi+3<x\le2\pi,
+\]
+이고 그 밖에서는 $f(x)=0$이다. $1/(2\pi)$가 irrational이므로 정수들의 $2\pi$에 대한 residue는 $(0,2\pi]$에서 dense하다. 따라서 $f(n)=1$인 정수 $n$도 무한히 많고 $f(n)=0$인 정수 $n$도 무한히 많다. 즉 서로 다른 극한을 갖는 두 subsequence가 존재하므로
+\[
+\boxed{\lim_{n\to\infty}f(n)\text{은 존재하지 않는다}}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2015.12}
+$\R^3$에서 원점과 $(1,1,2)$를 지나는 직선을 축으로 하여 공간을 $30^\circ$ 회전시키는 행렬을 생각하자. 이 행렬의 real eigenvalue의 개수를 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+회전축 방향 벡터
+\[
+\mathbf v=(1,1,2)^{\mathsf T}
+\]
+는 고정되므로 eigenvalue $1$을 갖는다. 축에 수직인 $2$차원 평면에서는 $30^\circ$ 회전이므로 나머지 두 eigenvalue는 non-real complex conjugates이다. 따라서 real eigenvalue는 $1$ 하나뿐이고 답은
+\[
+\boxed{1}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2015.17}
+행벡터 (row vector)
+\[
+\mathbf v=\mathbf w=(1\ 2\ 3\ 4)
+\]
+에 대해 $4\times4$ 행렬 $\mathbf v^{\mathsf T}\mathbf w$의 eigenvalue들의 합과 곱을 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+eigenvalue들의 합은 trace이므로
+\[
+\sum_{i=1}^4\lambda_i
+=\tr(\mathbf v^{\mathsf T}\mathbf w)
+=1^2+2^2+3^2+4^2=30.
+\]
+한편 $\mathbf v^{\mathsf T}\mathbf w$는 rank-one outer product이므로 determinant가 $0$이다. 따라서 eigenvalue들의 곱은 $0$이다. 답은
+\[
+\boxed{30\text{과 }0}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2017.2}
+Fibonacci sequence가
+\[
+F_0=0,\qquad F_1=1,\qquad F_{n+1}=F_n+F_{n-1}\quad(n\ge1)
+\]
+로 정의될 때,
+\[
+\lim_{n\to\infty}\frac{F_{n+1}}{F_n}
+\]
+을 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+Binet formula
+\[
+F_n=\frac{\varphi^n-\psi^n}{\sqrt5},
+\quad
+\varphi=\frac{1+\sqrt5}{2},\quad
+\psi=\frac{1-\sqrt5}{2}
+\]
+를 쓰면 $|\psi/\varphi|<1$이므로
+\[
+\frac{F_{n+1}}{F_n}
+=\varphi\frac{1-(\psi/\varphi)^{n+1}}{1-(\psi/\varphi)^n}
+\longrightarrow\varphi.
+\]
+따라서
+\[
+\boxed{\frac{1+\sqrt5}{2}}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2017.3}
+양의 정수 $n$에 대해 $n\times n$ 행렬 $\mathbf C=(c_{ij})$를
+\[
+c_{ij}=\binom{i+j-2}{i-1}
+\]
+로 정의한다. $\mathbf B=(b_{ij})$는 $(n,n)$ 성분만 $c_{nn}+2016$이고 나머지 성분은 $\mathbf C$와 같다고 하자. $\det(\mathbf B)$를 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+Vandermonde identity로
+\[
+\binom{i+j-2}{i-1}
+=\sum_k\binom{i-1}{k-1}\binom{j-1}{k-1}
+\]
+이므로 $\mathbf C=\mathbf L\mathbf L^{\mathsf T}$로 쓸 수 있다. 여기서 $\mathbf L$은 diagonal이 모두 $1$인 lower triangular matrix이므로
+\[
+\det\mathbf C=1.
+\]
+또한 $\mathbf B$는 $(n,n)$ 성분만 $2016$만큼 증가하므로 determinant의 그 성분에 대한 선형성을 쓰면
+\[
+\det\mathbf B=\det\mathbf C+2016M_{nn}.
+\]
+$M_{nn}$은 같은 형태의 $(n-1)\times(n-1)$ 행렬의 determinant이므로 역시 $1$이다. 따라서
+\[
+\boxed{\det\mathbf B=2017}.
+\]
+($n=1$에서도 바로 성립한다.)
+\end{solution}
+
+\begin{pastproblem}{2018.3}
+다음 무한급수의 합을 구하여라.
+\[
+\frac12-\frac14+\frac16-\frac18+\frac1{10}-\frac1{12}+\cdots.
+\]
+\end{pastproblem}
+
+\begin{solution}
+이는 alternating harmonic series의 절반이다.
+\[
+1-\frac12+\frac13-\frac14+\cdots=\ln2
+\]
+이므로
+\[
+\boxed{\frac{\ln2}{2}}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2019.2}
+다음을 계산하여라.
+\[
+\int_{-\infty}^{\infty}\frac{8}{1+4x^2}\,\dd x.
+\]
+\end{pastproblem}
+
+\begin{solution}
+$u=2x$로 두면
+\[
+\int_{-\infty}^{\infty}\frac{8}{1+4x^2}\,\dd x
+=4\int_{-\infty}^{\infty}\frac{1}{1+u^2}\,\dd u
+=\boxed{4\pi}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2020.2}
+공정한 육면체 주사위의 면에 $-2,0,2,3,4,5$가 적혀 있다. 이를 독립적으로 $10$번 던져 나온 수들의 곱을 $X$라 할 때 $\Exp[X]$를 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+한 번의 결과를 $Y$라 하면
+\[
+\Exp[Y]=\frac{-2+0+2+3+4+5}{6}=2.
+\]
+독립인 결과를 $Y_1,\ldots,Y_{10}$이라 하면 $X=Y_1\cdots Y_{10}$이므로
+\[
+\Exp[X]=\prod_{i=1}^{10}\Exp[Y_i]=2^{10}=\boxed{1024}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2020.4}
+3차원 중력장에서 물체가 점 $\mathbf a$에서 $\mathbf b$로 이동할 때 potential energy의 변화가 경로와 무관하다고 하자. 다음 중 이 현상과 가장 직접적인 관련이 적은 수학적 사실을 고르라.
+\begin{problemchoices}
+\item simply connected domain에서 $C^1$ curl-free vector field는 potential의 gradient이다.
+\item Stokes' theorem.
+\item $1/\|\mathbf x\|$의 Laplacian은 상수배를 제외하면 delta distribution이다.
+\item gradient의 curl은 항상 $0$이다.
+\end{problemchoices}
+\end{pastproblem}
+
+\begin{solution}
+경로 독립성은 force field가 conservative라는 뜻이다. $\mathbf F=-\nabla U$이면
+\[
+U(\mathbf b)-U(\mathbf a)=-\int_{\mathbf a}^{\mathbf b}\mathbf F\cdot\dd\mathbf r
+\]
+는 끝점에만 의존한다. (1), (4)는 conservative field의 기본 성질이고, (2)는 zero curl과 closed-loop circulation을 연결한다. 반면
+\[
+\Delta\!\left(\frac1{\|\mathbf x\|}\right)=-4\pi\delta_0
+\]
+는 Newtonian gravity에서 중요하지만 path independence의 직접적 이유는 아니다. 따라서
+\[
+\boxed{(3)}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2021.2}
+\[
+A(n)=\frac1{\sqrt5}\left(\frac{1+\sqrt5}{2}\right)^{n+1}
+\]
+라 할 때 $A(7)$에 가장 가까운 정수를 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+$\varphi=(1+\sqrt5)/2$, $\psi=(1-\sqrt5)/2$라 하면 Binet formula에서
+\[
+F_8=\frac{\varphi^8-\psi^8}{\sqrt5},
+\qquad
+A(7)=F_8+\frac{\psi^8}{\sqrt5}.
+\]
+$|\psi|<1$이고 correction의 절댓값이 $1/2$보다 작으므로 가장 가까운 정수는
+\[
+\boxed{F_8=21}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2021.3}
+다음 중 finitely generated가 아닌 group을 모두 고르라.
+\begin{problemchoices}
+\item 유한개의 puncture를 가진 open unit disk의 fundamental group.
+\item $\SL_2(\Z)$.
+\item 곱셈에 대한 $\C^\times$.
+\item 가장 큰 sporadic finite simple group인 Monster group.
+\end{problemchoices}
+\end{pastproblem}
+
+\begin{solution}
+(1)은 puncture 수만큼의 generator를 갖는 finite-rank free group이다. (2)는 예를 들어
+\[
+\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad
+\begin{pmatrix}1&1\\0&1\end{pmatrix}
+\]
+로 생성된다. (4)는 finite group이므로 finitely generated이다. 반면 finitely generated group은 at most countable인데 $\C^\times$는 uncountable이다. 따라서 답은
+\[
+\boxed{(3)\ \C^\times}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2021.4}
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&3\\
+1&2&3\\
+1&2&3
+\end{pmatrix}
+\]
+의 모든 고유값 (eigenvalue)과 중복도 (multiplicity)를 구하고, $\mathbf A$가 diagonalizable인지 판정하여라.
+\end{pastproblem}
+
+\begin{solution}
+\[
+\mathbf A=
+\begin{pmatrix}1\\1\\1\end{pmatrix}(1\ 2\ 3)
+\]
+이므로 $\rk(\mathbf A)=1$, 따라서 nullity는 $2$이고 $0$의 eigenspace 차원은 $2$이다. 또한
+\[
+\mathbf A(1,1,1)^{\mathsf T}=6(1,1,1)^{\mathsf T},
+\]
+따라서 $6$도 eigenvalue이다. trace가 $6$이므로 eigenvalue는
+\[
+6,0,0.
+\]
+$6$의 eigenspace 차원 $1$과 $0$의 eigenspace 차원 $2$의 합이 $3$이므로 diagonalizable이다. 즉
+\[
+\boxed{6\text{ (mult. }1),\quad0\text{ (mult. }2),\quad\mathbf A\text{ is diagonalizable}}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2022.1}
+다음 중 가장 큰 수를 고르라.
+\begin{problemchoices}
+\item $e^\pi$
+\item $\pi^e$
+\item $7\pi$
+\item $\binom72$
+\item $4!$
+\end{problemchoices}
+\end{pastproblem}
+
+\begin{solution}
+\[
+e^\pi\approx23.1407,\quad
+\pi^e\approx22.4592,\quad
+7\pi\approx21.9911,\quad
+\binom72=21,\quad
+4!=24.
+\]
+따라서
+\[
+\boxed{(5)\ 4!}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2022.3}
+다음을 계산하여라.
+\[
+\int_{-\infty}^{\infty}\frac{3}{(x-2)^2+7}\,\dd x.
+\]
+\end{pastproblem}
+
+\begin{solution}
+$u=x-2$로 두고
+\[
+\int_{-\infty}^{\infty}\frac{1}{u^2+a^2}\,\dd u=\frac\pi a
+\]
+를 쓰면 $a=\sqrt7$이므로
+\[
+\boxed{\frac{3\pi}{\sqrt7}}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2022.7}
+공정한 동전 두 개를 각각 세 번씩 독립적으로 던진다. 두 동전에서 나온 앞면의 개수를 각각 $X,Y$라 할 때 $\Prob(X=Y)$를 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+\[
+X,Y\sim\Bin\left(3,\frac12\right)
+\]
+이고 서로 독립이므로
+\[
+\Prob(X=Y)
+=\sum_{k=0}^3\Prob(X=k)\Prob(Y=k)
+=\frac1{64}\sum_{k=0}^3\binom3k^2
+=\boxed{\frac5{16}}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2023.2}
+$(0,0)$에서 $(6,6)$까지 매번 오른쪽 또는 위로 한 칸씩 이동한다. 경로가 직선 $x=y$ 위쪽으로 올라가지 않도록, 즉 항상 $y\le x$를 만족하도록 하는 경로의 수를 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+제약이 없으면 경로 수는 $\binom{12}{6}$이다. 처음으로 $y=x+1$에 도달할 때까지의 경로를 대각선에 대해 반사하는 reflection principle을 쓰면 금지된 경로 수는 $\binom{12}{5}$이다. 따라서
+\[
+\binom{12}{6}-\binom{12}{5}=924-792=\boxed{132}.
+\]
+이는 Catalan number $C_6$와 같다.
+\end{solution}
+
+\begin{pastproblem}{2023.3}
+지구 표면의 한 점에서 출발하여 남쪽으로 $5\,\mathrm{km}$, 동쪽으로 $5\,\mathrm{km}$, 북쪽으로 $5\,\mathrm{km}$ 이동했더니 처음 점으로 돌아왔다. 이러한 점의 개수를 구하여라.
+
+지구는 완전한 구라고 가정한다. 북극에서는 north/east/west, 남극에서는 south/east/west 방향이 정의되지 않으며, 이동 중 이런 정의되지 않은 방향이 필요한 시작점은 제외한다.
+\end{pastproblem}
+
+\begin{solution}
+북극은 하나의 해이다. 또한 남극 부근에서, 남쪽으로 $5\,\mathrm{km}$ 이동한 뒤 도달하는 위도원의 둘레가
+\[
+\frac5n\,\mathrm{km}\qquad(n\in\N)
+\]
+가 되도록 시작점을 잡으면 동쪽으로 $5\,\mathrm{km}$ 이동하는 동안 정확히 $n$바퀴를 돌아 같은 점으로 돌아온다. 그 뒤 북쪽으로 $5\,\mathrm{km}$ 이동하면 출발점으로 복귀한다. 남극에 가까워질수록 위도원의 둘레는 $0$으로 가므로 이런 위도원이 무한히 존재하고, 각 경우 시작점은 한 위도원 전체를 이룬다. 따라서 답은
+\[
+\boxed{\text{무한히 많다}}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2023.4}
+연속함수 $f:(-1,1)\to\R$에 대해 $\lambda>0$일 때
+\[
+f_\lambda(x)=\lambda f\left(\frac{x}{\lambda}\right)
+\]
+를 $x\in(-\lambda,\lambda)$에서 정의한다. 모든 $\lambda_i\to\infty$에 대해 $f_{\lambda_i}\to0$가 $\R$에서 locally uniformly 성립한다고 하자. 다음 명제의 참·거짓을 판정하여라.
+\[
+f\text{는 }0\text{에서 미분 가능하고 }f'(0)=0.
+\]
+\end{pastproblem}
+
+\begin{solution}
+고정된 점에서의 수렴을 쓰면 먼저
+\[
+\lambda f(0)\to0
+\]
+이므로 $f(0)=0$. 또한 $x=1,-1$에서
+\[
+\lambda f(1/\lambda)\to0,\qquad
+\lambda f(-1/\lambda)\to0.
+\]
+$h=1/\lambda>0$이면
+\[
+\frac{f(h)-f(0)}h=\lambda f(1/\lambda)\to0,
+\]
+$h=-1/\lambda<0$이면
+\[
+\frac{f(h)-f(0)}h=-\lambda f(-1/\lambda)\to0.
+\]
+양쪽 미분계수가 모두 $0$이므로 명제는
+\[
+\boxed{\text{참}}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2024.3}
+삼각형 $ABC$에서 $D$는 $\overline{AB}$의 중점이다. 또한
+\[
+\angle BCD=15^\circ,
+\qquad
+\angle ADC=45^\circ
+\]
+이다. $\theta=\angle ACD$를 구하여라.
+
+\begin{center}
+\includegraphics[width=0.48\textwidth]{Figures/PastProblems/Problem2024.3/ProblemFigure.pdf}
+\end{center}
+\end{pastproblem}
+
+\begin{solution}
+$A,D,B$가 일직선이므로 $\angle BDC=135^\circ$, 따라서 $\triangle BCD$에서 $\angle CBD=30^\circ$이다. Sine Rule로
+\[
+\frac{DB}{CD}=\frac{\sin15^\circ}{\sin30^\circ}=2\sin15^\circ.
+\]
+한편 $\triangle ACD$에서 $\angle CAD=135^\circ-\theta$이므로
+\[
+\frac{AD}{CD}=\frac{\sin\theta}{\sin(135^\circ-\theta)}.
+\]
+$D$가 $AB$의 중점이어서 $AD=DB$이므로
+\[
+\frac{\sin\theta}{\sin(135^\circ-\theta)}=2\sin15^\circ.
+\]
+정리하면 $\tan\theta=1/\sqrt3$이고, $\theta$는 삼각형의 내각이므로
+\[
+\boxed{\theta=30^\circ}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2024.4}
+$C\subseteq\R^3$가 convex이고 다음을 만족한다고 하자.
+\begin{problemchoices}
+\item
+\[
+C\cap\{z=0\}=\{(x,y,0)\mid x^2+4y^2\le1\}.
+\]
+\item $C$는 $z$-axis를 포함한다.
+\end{problemchoices}
+$-1\le z\le1$에서 $C$의 부피를 구하여라. 주어진 정보만으로 결정할 수 없다면 그렇게 답하여라.
+\begin{problemchoices}
+\item 결정할 수 없다.
+\item $\pi$
+\item $2\pi$
+\item $4\pi$
+\end{problemchoices}
+\end{pastproblem}
+
+\begin{solution}
+\[
+E=\{(x,y)\in\R^2\mid x^2+4y^2\le1\}
+\]
+라 두면 $E$의 넓이는 $\pi/2$이다. 높이 $z$에서의 단면을 $C_z$라 하자.
+
+먼저 $(x,y,z)\in C$인데 $(x,y)\notin E$라고 가정한다. $C$가 $z$-axis 전체를 포함하므로 적절한 $(0,0,t)\in C$와의 선분을 취해 $z=0$ 평면과 만나는 점을 $(\alpha x,\alpha y,0)$로 만들 수 있고, $\alpha<1$을 $1$에 충분히 가깝게 잡으면 이 점도 $E$ 밖이다. 이는 $C\cap\{z=0\}=E\times\{0\}$에 모순이다. 따라서 $C_z\subseteq E$.
+
+반대로 $(x,y)\in E^\circ$이면 $\alpha<1$을 $1$에 충분히 가깝게 잡아 $(x/\alpha,y/\alpha,0)\in C$로 만들 수 있다. 이를 $z$-axis 위의 $(0,0,z/(1-\alpha))\in C$와 convex combination하면 $(x,y,z)\in C$이므로 $E^\circ\subseteq C_z$이다. 따라서 모든 $z$에서
+\[
+E^\circ\subseteq C_z\subseteq E,
+\]
+즉 단면 넓이는 항상 $\pi/2$이다. Cavalieri 또는 적분으로
+\[
+\operatorname{Vol}(C\cap\{-1\le z\le1\})
+=\int_{-1}^1\frac\pi2\,\dd z
+=\boxed{\pi}.
+\]
+따라서 선택지는 $\boxed{(2)}$이다.
+\end{solution}
+
+\begin{pastproblem}{2025.1}
+공정한 동전을 연속으로 던져 처음으로 $HH$ 또는 $TT$가 나타나는 순간 멈춘다. 멈출 때까지 던지는 횟수의 기댓값을 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+첫 시행 뒤에는 매 시행마다 직전 결과와 같은 면이 나오면 멈추며 그 확률은 $1/2$이다. 첫 시행 이후 추가 횟수를 $G$라 하면, 성공 시행을 포함해서 세는 convention에서
+\[
+G\sim\Geom(1/2),\qquad \Exp[G]=2.
+\]
+따라서 총 시행 횟수의 기댓값은
+\[
+1+\Exp[G]=\boxed{3}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2025.3}
+네 평면
+\[
+x=0,\qquad y=0,\qquad z=0,\qquad x+y+z=3
+\]
+에 모두 접하는 구 중 반지름이 가장 작은 구의 방정식을 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+세 좌표평면에 접하는 반지름 $r>0$인 구의 중심은
+\[
+(\sigma_1r,\sigma_2r,\sigma_3r),\qquad \sigma_i\in\{-1,1\}
+\]
+꼴이다. $k=\sigma_1+\sigma_2+\sigma_3\in\{-3,-1,1,3\}$라 두면 네 번째 평면과의 접선 조건은
+\[
+\frac{|kr-3|}{\sqrt3}=r.
+\]
+가능한 양의 해를 비교하면 최소는 $k=3$에서
+\[
+r=\frac3{3+\sqrt3}=\frac{3-\sqrt3}{2}
+\]
+이다. 따라서 중심도 각 좌표가 $r$이고, 구의 방정식은
+\[
+\boxed{
+\left(x-\frac{3-\sqrt3}{2}\right)^2+
+\left(y-\frac{3-\sqrt3}{2}\right)^2+
+\left(z-\frac{3-\sqrt3}{2}\right)^2
+=\left(\frac{3-\sqrt3}{2}\right)^2}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2025.4}
+$1$부터 $200$까지 번호가 적힌 카드 $200$장이 모두 앞면을 보고 있다. $1,2,\ldots,200$을 차례로 부르며, 숫자 $k$를 부를 때마다 번호가 $k$의 배수인 모든 카드를 뒤집는다. 마지막에 앞면을 보고 있는 카드의 수를 구하여라.
+\begin{problemchoices}
+\item 142
+\item 153
+\item 164
+\item 175
+\item 186
+\end{problemchoices}
+\end{pastproblem}
+
+\begin{solution}
+번호가 $n$인 카드는 $n$의 양의 약수 개수 $\tau(n)$만큼 뒤집힌다. $\tau(n)$이 홀수인 경우는 $n$이 완전제곱수 (perfect square)일 때뿐이다. $200$ 이하의 제곱수는
+\[
+1^2,2^2,\ldots,14^2
+\]
+의 $14$개이므로 이 카드들만 뒷면이 된다. 따라서 앞면 카드 수는
+\[
+200-14=\boxed{186},
+\]
+즉 $\boxed{(5)}$이다.
+\end{solution}
+
+\begin{pastproblem}{2025.5}
+$11^9$과 $9^{11}$ 중 더 큰 수를 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+로그를 취하면 $9\ln11$과 $11\ln9$를 비교하면 된다. 함수
+\[
+f(x)=\frac{\ln x}{x}
+\]
+는 $x>e$에서 감소한다. $9<11$이므로
+\[
+\frac{\ln9}{9}>\frac{\ln11}{11},
+\]
+즉 $11\ln9>9\ln11$이다. 따라서
+\[
+\boxed{9^{11}>11^9}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2025.6}
+공정한 육면체 주사위를 $6$이 처음 나올 때까지 반복해서 던진다. 마지막 $6$을 포함하여 나온 모든 눈의 합의 기댓값을 구하여라.
+\end{pastproblem}
+
+\begin{solution}
+원하는 기댓값을 $E$라 하자. 첫 눈이 $6$이면 끝나고, $k\in\{1,\ldots,5\}$이면 $k$를 더한 뒤 같은 상태로 돌아간다. 따라서
+\[
+E=\frac16\cdot6+\frac16\sum_{k=1}^5(k+E)
+=1+\frac{15+5E}{6}.
+\]
+정리하면
+\[
+\boxed{E=21}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2025.8}
+다음 중 가장 큰 수를 고르라.
+\begin{problemchoices}
+\item $e^\pi$
+\item $\pi^e$
+\item $\sqrt{500}$
+\item $7\pi$
+\end{problemchoices}
+\end{pastproblem}
+
+\begin{solution}
+\[
+e^\pi\approx23.14,\qquad
+\pi^e\approx22.46,\qquad
+\sqrt{500}\approx22.36,\qquad
+7\pi\approx21.99.
+\]
+따라서
+\[
+\boxed{(1)\ e^\pi}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2025.13}
+공정한 동전을 $50$번 던져 $H$ 또는 $T$로 기록한다. 같은 결과가 연속해서 나타나는 최대 연속 구간 (run)을 run이라 하자. 예를 들어 $HHTTTH$에는 $HH,TTT,H$의 $3$개 run이 있다. run의 개수의 기댓값을 구하여라.
+\begin{problemchoices}
+\item 24.5
+\item 25
+\item 25.5
+\item 26
+\end{problemchoices}
+\end{pastproblem}
+
+\begin{solution}
+첫 시행은 항상 하나의 run을 시작한다. $2\le i\le50$에서 $i$번째 시행이 직전 시행과 다를 때 새 run이 시작한다고 하고 그 indicator를 $I_i$라 하면
+\[
+R=1+\sum_{i=2}^{50}I_i,
+\qquad
+\Exp[I_i]=\frac12.
+\]
+기댓값의 선형성 (linearity of expectation)으로
+\[
+\Exp[R]=1+49\cdot\frac12=\boxed{25.5}.
+\]
+따라서 선택지는 $\boxed{(3)}$이다.
+\end{solution}
+
+\begin{pastproblem}{2025.17}
+공정한 육면체 주사위를 모든 $6$개 면이 적어도 한 번씩 나올 때까지 던진다. 모든 even-numbered face가 한 번씩 나오기 전에 odd-numbered face가 한 번도 나오지 않을 확률을 구하여라.
+\begin{problemchoices}
+\item $20\%$
+\item $15\%$
+\item $10\%$
+\item $5\%$
+\end{problemchoices}
+\end{pastproblem}
+
+\begin{solution}
+반복해서 나온 면은 무시하고 새로운 면이 처음 등장하는 순서만 본다. 조건은 처음 세 distinct faces가 정확히 $2,4,6$인 것이다. 따라서
+\[
+\frac36\cdot\frac25\cdot\frac14
+=\frac1{20}=5\%.
+\]
+답은
+\[
+\boxed{(4)\ 5\%}.
+\]
+\end{solution}
+
+\begin{pastproblem}{2025.19}
+$7^{123}$의 마지막 두 자리를 두 자리 수로 나타내어라.
+\begin{problemchoices}
+\item 37
+\item 41
+\item 43
+\item 49
+\end{problemchoices}
+\end{pastproblem}
+
+\begin{solution}
+mod $100$에서
+\[
+7^4=2401\equiv1\pmod{100},
+\qquad
+123=4\cdot30+3.
+\]
+따라서
+\[
+7^{123}\equiv(7^4)^{30}7^3\equiv343\equiv43\pmod{100}.
+\]
+답은
+\[
+\boxed{(3)\ 43}.
+\]
+\end{solution}
