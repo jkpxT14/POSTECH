@@ -1,0 +1,348 @@
+% !TeX program = pdflatex
+% !TeX encoding = UTF-8
+\documentclass[12pt,aspectratio=169]{beamer}
+\input{SimulationStyle.tex}
+
+\hypersetup{
+  pdftitle={20260918 Science Quiz Simulation},
+  pdfauthor={Jungwoo Kim},
+  pdfsubject={2026 KAIST-POSTECH Science War Science Quiz Simulation},
+  pdfcreator={pdfLaTeX}
+}
+
+\title[Science Quiz Simulation]{Science Quiz Simulation}
+\subtitle{2026 KAIST-POSTECH Science War}
+\author{Jungwoo Kim}
+\institute{POSTECH}
+\date{2026년 9월 18일}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+\end{frame}
+\addtocounter{framenumber}{1}
+
+% 01 Physics
+\begin{problemframe}{01}{Physics}
+평행판 축전기를 전압 $V$까지 충전한 뒤 battery에서 분리하였다. 이후 판의 넓이는 그대로 둔 채 판 사이 거리를 $d$에서 $2d$로 늘린다. Fringe effect를 무시할 때, 변화 후 capacitance, potential difference, stored electrostatic energy는 각각 처음의 몇 배인가?
+\end{problemframe}
+
+\begin{solutionframe}{01}{Physics}
+\answerbox{$\displaystyle \frac{C'}{C}=\frac12,\qquad \frac{V'}{V}=2,\qquad \frac{U'}{U}=2$}
+Battery에서 분리한 뒤에는 축전기의 charge $Q$가 일정하다. 평행판 축전기에서
+\[
+C=\frac{\varepsilon A}{d}
+\]
+이므로 판 사이 거리를 두 배로 하면 $C'=C/2$이다. 따라서
+\[
+V'=\frac{Q}{C'}=2V,
+\qquad
+U'=\frac{Q^2}{2C'}=2U.
+\]
+증가한 electrostatic energy는 판을 벌리는 데 한 external work에서 온다.
+\end{solutionframe}
+
+% 02 Chemistry
+\begin{problemframe}{02}{Chemistry}
+$0.10\,\mathrm{mol}$의 weak acid $\ce{HA}$와 $0.20\,\mathrm{mol}$의 conjugate base $\ce{A^-}$가 들어 있는 buffer가 있다. $\mathrm pK_a=4.76$이고, 여기에 $0.050\,\mathrm{mol}$의 $\ce{HCl}$을 넣었다. 부피 변화와 활동도 보정은 무시할 때, 최종 $\mathrm{pH}$를 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{02}{Chemistry}
+\answerbox{$\displaystyle \mathrm{pH}=4.76$}
+첨가한 $\ce{H+}$는 먼저 $\ce{A^-}$를 $\ce{HA}$로 바꾼다. 따라서
+\[
+ n(\ce{HA})=0.10+0.050=0.150,
+ \qquad
+ n(\ce{A^-})=0.20-0.050=0.150.
+\]
+Henderson-Hasselbalch equation에 의해
+\[
+\mathrm{pH}=\mathrm pK_a+\lg\frac{[\ce{A^-}]}{[\ce{HA}]}
+=4.76+\lg 1=4.76.
+\]
+\end{solutionframe}
+
+% 03 Life Science
+\begin{problemframe}{03}{Life Science}
+어떤 enzyme은 Michaelis-Menten kinetics를 따른다. Competitive inhibitor를 넣었더니 apparent $K_m$이 $2\,\mathrm{mM}$에서 $6\,\mathrm{mM}$으로 증가했지만 $V_{\max}$는 변하지 않았다. Inhibitor가 있는 조건에서 $[S]=3\,\mathrm{mM}$일 때 $v/V_{\max}$를 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{03}{Life Science}
+\answerbox{$\displaystyle \frac{v}{V_{\max}}=\frac13$}
+Inhibitor가 있는 조건에서 apparent $K_m=6\,\mathrm{mM}$를 사용한다. Michaelis-Menten equation은
+\[
+\frac{v}{V_{\max}}=\frac{[S]}{K_m^{\mathrm{app}}+[S]}.
+\]
+따라서
+\[
+\frac{v}{V_{\max}}=\frac{3}{6+3}=\frac13.
+\]
+\end{solutionframe}
+
+% 04 Mathematics
+\begin{problemframe}{04}{Mathematics}
+집합 $\{1,2,\dots,10\}$의 permutation $\sigma$를 uniformly random하게 하나 선택한다. Fixed point의 개수
+\[
+X=\#\{i\in\{1,\dots,10\}:\sigma(i)=i\}
+\]
+의 expectation $\mathbb{E}[X]$를 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{04}{Mathematics}
+\answerbox{$\displaystyle \mathbb{E}[X]=1$}
+Indicator random variables를
+\[
+X_i=\begin{cases}
+1,&\sigma(i)=i,\\
+0,&\sigma(i)\ne i
+\end{cases}
+\]
+로 두면 $X=X_1+\cdots+X_{10}$이다. 각 $i$에 대해 $\mathbb{P}(\sigma(i)=i)=1/10$이므로
+\[
+\mathbb{E}[X]=\sum_{i=1}^{10}\mathbb{E}[X_i]=10\cdot\frac1{10}=1.
+\]
+\end{solutionframe}
+
+% 05 Computer Science
+\begin{problemframe}{05}{Computer Science}
+어떤 프로그램의 실행 시간 중 $80\%$는 완전히 parallelizable하고, 나머지 $20\%$는 serial part이다. Processor 수를 무한히 늘릴 수 있다고 할 때, Amdahl's law에 따른 maximum speedup을 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{05}{Computer Science}
+\answerbox{$\displaystyle 5$}
+Parallel part는 processor 수가 무한히 커지면 시간 기여가 $0$에 가까워진다. 그러나 serial part $20\%$는 줄일 수 없으므로
+\[
+S_{\max}=\frac{1}{0.20}=5.
+\]
+Amdahl's law는 병렬화되지 않는 부분이 전체 speedup의 상한을 결정함을 보여준다.
+\end{solutionframe}
+
+% 06 Physics
+\begin{problemframe}{06}{Physics}
+Einstein의 1921 Nobel Prize in Physics는 relativity가 아니라 photoelectric effect의 법칙과 관련되어 수여되었다. 어떤 금속의 work function이 $\phi=2.0\,\mathrm{eV}$이고, 파장 $400\,\mathrm{nm}$의 빛을 비추었다. $hc=1240\,\mathrm{eV\,nm}$일 때 stopping potential의 크기를 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{06}{Physics}
+\answerbox{$\displaystyle 1.1\,\mathrm{V}$}
+Photon energy는
+\[
+E=\frac{hc}{\lambda}=\frac{1240}{400}\,\mathrm{eV}=3.1\,\mathrm{eV}
+\]
+이다. 최대 운동에너지는 $K_{\max}=3.1-2.0=1.1\,\mathrm{eV}$이므로 stopping potential의 크기는 $1.1\,\mathrm{V}$이다.
+\end{solutionframe}
+
+% 07 Chemistry
+\begin{problemframe}{07}{Chemistry}
+다른 proton과의 coupling은 무시하고, first-order splitting만 고려한다. Isolated isopropyl fragment $\ce{-CH(CH3)2}$의 $^{1}\mathrm H$ NMR에서 methyl protons와 methine proton의 multiplicity와 integration을 각각 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{07}{Chemistry}
+\answerbox{Methyl: doublet, $6\mathrm H$; methine: septet, $1\mathrm H$}
+두 methyl group은 equivalent하므로 methyl signal의 integration은 $6\mathrm H$이다. 각 methyl proton은 인접한 methine proton 하나와 coupling하여 doublet을 만든다. Methine proton은 equivalent한 여섯 methyl protons와 coupling하므로 $n+1=7$, 즉 septet을 만든다.
+\end{solutionframe}
+
+% 08 Life Science
+\begin{problemframe}{08}{Life Science}
+2025 Nobel Prize in Physiology or Medicine은 peripheral immune tolerance에 관한 발견에 수여되었다. Transcription factor FOXP3의 loss-of-function이 직접적으로 손상시키는 immune-cell population과, 이들이 주로 담당하는 tolerance의 종류를 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{08}{Life Science}
+\answerbox{Regulatory T cells; peripheral immune tolerance}
+FOXP3는 regulatory T cells의 development와 function에 핵심적인 transcription factor이다. Regulatory T cells는 peripheral tissues에서 self-reactive immune response를 억제하여 autoimmunity를 막는 데 중요하다.
+\end{solutionframe}
+
+% 09 Mathematics
+\begin{problemframe}{09}{Mathematics}
+$C$를 ellipse
+\[
+\frac{x^2}{4}+\frac{y^2}{9}=1
+\]
+의 counterclockwise orientation이라 하자. 다음 line integral의 값을 구하시오.
+\[
+\oint_C (-y\,\dd x+x\,\dd y).
+\]
+\end{problemframe}
+
+\begin{solutionframe}{09}{Mathematics}
+\answerbox{$\displaystyle 12\pi$}
+Green's theorem을 적용하면
+\[
+\oint_C (-y\,\dd x+x\,\dd y)
+=\iint_D\left(\frac{\partial x}{\partial x}-\frac{\partial(-y)}{\partial y}\right)\,\dd A
+=\iint_D 2\,\dd A.
+\]
+Ellipse의 semiaxes는 $2,3$이므로 area는 $6\pi$이다. 따라서 integral은 $2\cdot6\pi=12\pi$이다.
+\end{solutionframe}
+
+% 10 Computer Science
+\begin{problemframe}{10}{Computer Science}
+다음 recurrence를 만족하는 algorithm의 asymptotic time complexity를 구하시오.
+\[
+T(n)=2T(n/2)+n\lg n,
+\qquad
+T(1)=\Theta(1).
+\]
+\end{problemframe}
+
+\begin{solutionframe}{10}{Computer Science}
+\answerbox{$\displaystyle \Theta(n\lg^2 n)$}
+여기서 $a=2$, $b=2$이므로 $n^{\log_b a}=n$이다. 또한
+\[
+f(n)=n\lg n=\Theta(n\lg^1 n).
+\]
+Master theorem의 case 2에 의해
+\[
+T(n)=\Theta(n\lg^{1+1}n)=\Theta(n\lg^2 n).
+\]
+\end{solutionframe}
+
+% 11 Physics
+\begin{problemframe}{11}{Physics}
+Monatomic ideal gas가 reversible adiabatic하게 $V_1$에서 $8V_1$까지 팽창한다. Monatomic ideal gas에 대해 $\gamma=5/3$이라 할 때, 최종 온도와 초기 온도의 비 $T_2/T_1$을 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{11}{Physics}
+\answerbox{$\displaystyle \frac{T_2}{T_1}=\frac14$}
+Reversible adiabatic process에서는
+\[
+TV^{\gamma-1}=\mathrm{const.}
+\]
+이다. 따라서
+\[
+\frac{T_2}{T_1}
+=\left(\frac{V_1}{V_2}\right)^{\gamma-1}
+=\left(\frac18\right)^{2/3}
+=\frac14.
+\]
+\end{solutionframe}
+
+% 12 Chemistry
+\begin{problemframe}{12}{Chemistry}
+Haber-Bosch process의 핵심 equilibrium을 생각하자.
+\[
+\ce{N2(g) + 3H2(g) <=> 2NH3(g)},
+\qquad \Delta H<0.
+\]
+다음 조작 중 equilibrium에서 $\ce{NH3}$ yield를 증가시키는 것을 모두 고르시오.
+\begin{simchoices}
+\item 압력을 증가시킨다.
+\item 온도를 감소시킨다.
+\item Fe catalyst를 첨가한다.
+\item 생성된 $\ce{NH3}$를 계속 제거한다.
+\end{simchoices}
+\end{problemframe}
+
+\begin{solutionframe}{12}{Chemistry}
+\answerbox{(1), (2), (4)}
+오른쪽은 gas moles가 $4$에서 $2$로 줄어드는 방향이므로 압력 증가는 $\ce{NH3}$ 형성을 유리하게 한다. 정반응은 exothermic이므로 온도 감소도 equilibrium yield를 증가시킨다. $\ce{NH3}$ 제거는 평형을 오른쪽으로 이동시킨다. Catalyst는 도달 속도를 바꾸지만 equilibrium constant는 바꾸지 않는다.
+\end{solutionframe}
+
+% 13 Life Science
+\begin{problemframe}{13}{Life Science}
+FRAP experiment에서 background-corrected fluorescence intensity를 측정하였다. Prebleach intensity를 $100\%$, bleach 직후 intensity를 $0\%$라 할 때, 장시간 후 plateau가 $70\%$였다. 이 membrane protein의 mobile fraction과 fluorescence recovery의 직접적인 원인을 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{13}{Life Science}
+\answerbox{$\displaystyle 70\%$; lateral diffusion}
+FRAP에서 recovery plateau는 bleaching된 영역으로 unbleached fluorescent molecules가 이동해 들어온 정도를 반영한다. 이 문제에서는 완전 bleach 후 $70\%$까지 회복되므로 mobile fraction은 $70\%$이다. Membrane protein의 recovery는 주로 membrane plane 안에서의 lateral diffusion 때문이다.
+\end{solutionframe}
+
+% 14 Mathematics
+\begin{problemframe}{14}{Mathematics}
+1900년 David Hilbert가 제시한 23 problems 중 하나는, 정수계수 다항방정식이 정수해를 갖는지를 유한한 절차로 판정하는 general algorithm의 존재 여부를 물었다. Davis--Putnam--Robinson의 연구를 바탕으로 Yuri Matiyasevich가 1970년 그러한 algorithm은 존재하지 않음을 완성하여 보였다. 이 문제는 Hilbert's 몇 번째 problem인가?
+\end{problemframe}
+
+\begin{solutionframe}{14}{Mathematics}
+\answerbox{Hilbert's tenth problem}
+Hilbert's tenth problem은 주어진 Diophantine equation이 integer solution을 갖는지를 판정하는 보편적인 algorithm이 존재하는지를 묻는다. Davis, Putnam, Robinson의 연구에 Matiyasevich의 결과가 더해져 1970년 그러한 algorithm은 존재하지 않는다는 부정적 해답이 완성되었다. 이 결과는 흔히 MRDP theorem과 연결하여 부른다.
+\end{solutionframe}
+
+% 15 Computer Science
+\begin{problemframe}{15}{Computer Science}
+$1\,\mathrm{Gbit/s}$ network link의 round-trip time이 $20\,\mathrm{ms}$이다. Sender가 ACK를 기다리는 동안에도 link를 쉬지 않고 사용하려면, 최소 얼마의 unacknowledged data가 in flight 상태로 유지되어야 하는가?
+\end{problemframe}
+
+\begin{solutionframe}{15}{Computer Science}
+\answerbox{$\displaystyle 20\,\mathrm{Mbit}=2.5\,\mathrm{MB}$}
+필요한 in-flight data는 bandwidth-delay product이다.
+\[
+(1\,\mathrm{Gbit/s})(20\,\mathrm{ms})
+=10^9\cdot 0.020\,\mathrm{bit}=2.0\times10^7\,\mathrm{bit}.
+\]
+따라서 $20\,\mathrm{Mbit}=2.5\,\mathrm{MB}$가 필요하다.
+\end{solutionframe}
+
+% 16 Physics
+\begin{problemframe}{16}{Physics}
+Muon의 proper lifetime은 약 $2.2\,\mu\mathrm{s}$이다. Laboratory frame에서 어떤 muon의 Lorentz factor가 $\gamma=10$이고 속력은 $v\simeq c$라 하자. 이 muon이 붕괴하기 전 평균적으로 이동하는 거리를 구하시오. $c=3.0\times10^8\,\mathrm{m/s}$를 사용한다.
+\end{problemframe}
+
+\begin{solutionframe}{16}{Physics}
+\answerbox{$\displaystyle 6.6\,\mathrm{km}$}
+Laboratory frame에서 lifetime은 time dilation에 의해
+\[
+\tau_{\mathrm{lab}}=\gamma\tau_0=10\cdot2.2\,\mu\mathrm{s}=22\,\mu\mathrm{s}
+\]
+이다. 따라서 평균 이동거리는
+\[
+d\simeq c\tau_{\mathrm{lab}}
+=(3.0\times10^8)(22\times10^{-6})\,\mathrm{m}
+=6.6\times10^3\,\mathrm{m}.
+\]
+\end{solutionframe}
+
+% 17 Chemistry
+\begin{problemframe}{17}{Chemistry}
+반응 속도식이 $r=k[A]^m[B]^n$ 꼴이라고 하자. 실험 결과, $[B]$를 고정하고 $[A]$만 2배로 하면 rate가 4배가 되었고, $[A]$를 고정하고 $[B]$만 2배로 하면 rate가 2배가 되었다. Rate law와 overall order를 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{17}{Chemistry}
+\answerbox{$\displaystyle r=k[A]^2[B]$, overall order $3$}
+$[A]$를 2배로 할 때 rate가 4배가 되므로 $2^m=4$, 즉 $m=2$이다. $[B]$를 2배로 할 때 rate가 2배가 되므로 $2^n=2$, 즉 $n=1$이다. 따라서 rate law는 $r=k[A]^2[B]$이고 overall order는 $2+1=3$이다.
+\end{solutionframe}
+
+% 18 Life Science
+\begin{problemframe}{18}{Life Science}
+Meselson-Stahl experiment를 생각하자. Heavy nitrogen $^{15}\mathrm N$에서 배양한 bacteria를 light nitrogen $^{14}\mathrm N$ medium으로 옮겼다. Semiconservative replication이 일어난다면, 정확히 two generations 후 density-gradient centrifugation에서 관찰되는 DNA band의 비율은 어떻게 되는가?
+\end{problemframe}
+
+\begin{solutionframe}{18}{Life Science}
+\answerbox{Hybrid : light $=1:1$, heavy band 없음}
+첫 generation 후에는 모든 DNA가 hybrid $^{15}\mathrm N/{}^{14}\mathrm N$이다. 두 번째 generation에서는 각 hybrid duplex가 하나의 hybrid duplex와 하나의 light duplex를 만든다. 따라서 two generations 후에는 hybrid와 light band가 같은 양으로 관찰되고 heavy band는 없다.
+\end{solutionframe}
+
+% 19 Mathematics
+\begin{problemframe}{19}{Mathematics}
+$C$를 circle $|z|=2$의 counterclockwise orientation이라 하자. 다음 contour integral의 값을 구하시오.
+\[
+\oint_C \frac{e^{2z}}{(z-1)^3}\,\dd z.
+\]
+\end{problemframe}
+
+\begin{solutionframe}{19}{Mathematics}
+\answerbox{$\displaystyle 4\pi i e^2$}
+Cauchy's differentiation formula에 의해
+\[
+\oint_C \frac{f(z)}{(z-a)^{n+1}}\,\dd z
+=\frac{2\pi i}{n!}f^{(n)}(a).
+\]
+여기서 $f(z)=e^{2z}$, $a=1$, $n=2$이므로 $f''(z)=4e^{2z}$이다. 따라서
+\[
+\oint_C \frac{e^{2z}}{(z-1)^3}\,\dd z
+=\frac{2\pi i}{2!}\cdot4e^2
+=4\pi i e^2.
+\]
+\end{solutionframe}
+
+% 20 Computer Science
+\begin{problemframe}{20}{Computer Science}
+Whitfield Diffie와 Martin Hellman은 1976년 public-key cryptography의 기초가 된 key exchange 방법을 제안했다. Classical finite-field setting에서 prime $p$, generator $g$, 그리고 $g^a\bmod p$가 주어졌을 때 exponent $a$를 구하는 계산 문제의 이름을 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{20}{Computer Science}
+\answerbox{Discrete logarithm problem}
+Finite field에서 $g^a\bmod p$를 계산하는 것은 쉽지만, $p$, $g$, $g^a\bmod p$로부터 exponent $a$를 복원하는 문제는 discrete logarithm problem이다. Classical finite-field Diffie--Hellman key exchange의 security는 이 문제의 계산적 어려움과 밀접하게 관련된다.
+\end{solutionframe}
+
+\end{document}
