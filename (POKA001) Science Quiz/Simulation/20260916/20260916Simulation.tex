@@ -1,0 +1,344 @@
+% !TeX program = pdflatex
+% !TeX encoding = UTF-8
+\documentclass[12pt,aspectratio=169]{beamer}
+\input{SimulationStyle.tex}
+
+\hypersetup{
+  pdftitle={20260916 Science Quiz Simulation},
+  pdfauthor={Jungwoo Kim},
+  pdfsubject={2026 KAIST-POSTECH Science War Science Quiz Simulation},
+  pdfcreator={pdfLaTeX}
+}
+
+\title[Science Quiz Simulation]{Science Quiz Simulation}
+\subtitle{2026 KAIST-POSTECH Science War}
+\author{Jungwoo Kim}
+\institute{POSTECH}
+\date{2026년 9월 16일}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+\end{frame}
+\addtocounter{framenumber}{1}
+
+% 01 Physics
+\begin{problemframe}{01}{Physics}
+물 위에 떠 있는 얼음 위에 물보다 밀도가 큰 작은 금속구가 놓여 있다. 얼음과 금속구로 이루어진 전체 계는 처음에 물 위에 떠 있다. 얼음이 완전히 녹은 뒤 금속구가 물속 바닥으로 가라앉는다면, 수면은 처음보다 높아지는가, 낮아지는가, 아니면 변하지 않는가?
+\end{problemframe}
+
+\begin{solutionframe}{01}{Physics}
+\answerbox{수면은 처음보다 낮아진다.}
+처음에는 얼음과 금속구의 전체 무게만큼 물이 밀려난다. 따라서 금속구 때문에 추가로 밀려나는 물의 부피는 금속구의 질량을 $m$이라 할 때 $m/\rho_{\mathrm w}$에 해당한다.
+
+녹은 뒤 금속구는 잠긴 자기 부피 $m/\rho_{\mathrm{metal}}$만큼만 물을 밀어낸다. 금속구의 밀도는 물보다 크므로
+\[
+\frac{m}{\rho_{\mathrm{metal}}}<\frac{m}{\rho_{\mathrm w}}.
+\]
+따라서 최종적으로 밀려나는 물의 부피가 줄어 수면은 낮아진다.
+\end{solutionframe}
+
+% 02 Chemistry
+\begin{problemframe}{02}{Chemistry}
+물에 녹인 $0.10\,m$ \ce{CaCl2} 용액과 $0.20\,m$ glucose 용액이 있다. \ce{CaCl2}는 완전히 해리하고 두 용액은 이상용액이라고 가정한다. 물의 freezing-point depression constant가 $K_f=1.86\,{}^\circ\mathrm C\,\mathrm{kg}\,\mathrm{mol}^{-1}$일 때, 어느 용액의 freezing point가 더 낮고 두 freezing point의 차이는 얼마인가?
+\end{problemframe}
+
+\begin{solutionframe}{02}{Chemistry}
+\answerbox{\ce{CaCl2} 용액이 $0.186\,{}^\circ\mathrm C$ 더 낮다.}
+Freezing-point depression은
+\[
+\Delta T_f=iK_fm
+\]
+이다. \ce{CaCl2}는 $i=3$이므로
+\[
+\Delta T_f=3(1.86)(0.10)=0.558\,{}^\circ\mathrm C.
+\]
+Glucose는 비전해질이므로 $i=1$이고
+\[
+\Delta T_f=(1)(1.86)(0.20)=0.372\,{}^\circ\mathrm C.
+\]
+따라서 \ce{CaCl2} 용액의 freezing point가 더 낮고 차이는 $0.186\,{}^\circ\mathrm C$이다.
+\end{solutionframe}
+
+% 03 Life Science
+\begin{problemframe}{03}{Life Science}
+운동 중인 조직에서 혈액의 pH가 감소하고 \ce{CO2} 농도가 증가하였다. 이때 hemoglobin-oxygen dissociation curve, $P_{50}$, hemoglobin의 \ce{O2} affinity는 각각 어떻게 변하는가?
+\end{problemframe}
+
+\begin{solutionframe}{03}{Life Science}
+\answerbox{Right shift, $P_{50}$ 증가, \ce{O2} affinity 감소}
+이 현상은 Bohr effect이다. \ce{CO2} 증가와 pH 감소는 hemoglobin이 산소를 더 쉽게 방출하도록 만들어 dissociation curve를 오른쪽으로 이동시킨다.
+
+$P_{50}$은 hemoglobin이 $50\%$ 포화되는 데 필요한 \ce{O2} partial pressure이다. Affinity가 낮아지면 같은 포화도에 더 큰 \ce{O2} partial pressure가 필요하므로 $P_{50}$은 증가한다.
+\end{solutionframe}
+
+% 04 Mathematics
+\begin{problemframe}{04}{Mathematics}
+정사각형의 네 꼭짓점을 각각 black 또는 white로 칠한다. 회전에 의해 일치하는 coloring은 같은 것으로 보지만, reflection에 의해 일치하는 coloring은 같은 것으로 보지 않는다. 서로 다른 coloring의 개수를 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{04}{Mathematics}
+\answerbox{$\displaystyle 6$}
+Burnside's lemma를 사용한다. 항등 회전은 모든 $2^4=16$가지 coloring을 고정한다. $90^\circ$와 $270^\circ$ 회전은 네 꼭짓점이 모두 같은 경우만 고정하므로 각각 $2$가지이다. $180^\circ$ 회전은 마주 보는 꼭짓점끼리 같으면 되므로 $2^2=4$가지를 고정한다.
+
+따라서 orbit의 개수는
+\[
+\frac{16+2+4+2}{4}=6.
+\]
+\end{solutionframe}
+
+% 05 Computer Science
+\begin{problemframe}{05}{Computer Science}
+두 object $A,B$가 서로를 참조하고 있지만, program root에서는 더 이상 $A$와 $B$ 어느 쪽에도 도달할 수 없다고 하자. 단순 reference counting garbage collection과 tracing mark-and-sweep garbage collection은 이 cyclic garbage를 각각 회수할 수 있는가?
+\end{problemframe}
+
+\begin{solutionframe}{05}{Computer Science}
+\answerbox{Reference counting은 못 할 수 있고, tracing mark-and-sweep은 회수할 수 있다.}
+Reference counting은 각 object의 reference 개수만 본다. $A$와 $B$가 서로를 참조하면 root에서 도달 불가능해도 count가 $0$이 되지 않아 회수되지 않을 수 있다.
+
+Tracing mark-and-sweep은 root에서 출발해 reachable object만 mark한다. $A,B$는 root에서 도달할 수 없으므로 mark되지 않고 sweep 단계에서 회수될 수 있다.
+\end{solutionframe}
+
+% 06 Physics
+\begin{problemframe}{06}{Physics}
+굴절률 $n=1.50$인 투명 매질에서 charged particle이 속력 $0.80c$로 움직이고 있다. 매질 속 빛의 phase velocity가 $c/n$일 때, Cherenkov radiation이 발생하는가? 또한 threshold speed를 $c$의 배수로 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{06}{Physics}
+\answerbox{발생한다. Threshold speed는 $\displaystyle \frac{2c}{3}$이다.}
+Cherenkov radiation은 charged particle이 매질 속 빛의 phase velocity보다 빠르게 움직일 때 발생한다. 조건은
+\[
+v>\frac{c}{n}.
+\]
+여기서
+\[
+\frac{c}{n}=\frac{c}{1.50}=\frac{2c}{3}\simeq0.667c.
+\]
+주어진 입자의 속력은 $0.80c$이므로 threshold를 넘고 Cherenkov radiation이 발생한다.
+\end{solutionframe}
+
+% 07 Chemistry
+\begin{problemframe}{07}{Chemistry}
+Cyclopentadiene와 maleic anhydride는 concerted $[4+2]$ cycloaddition을 통해 bicyclic adduct를 만든다. 이 반응의 이름을 쓰고, 일반적인 kinetic-control 조건에서 선호되는 adduct orientation이 exo인지 endo인지 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{07}{Chemistry}
+\answerbox{Diels-Alder reaction, endo adduct}
+Conjugated diene와 dienophile이 한 단계에서 $[4+2]$ cycloaddition을 하는 대표적인 반응이 Diels-Alder reaction이다.
+
+Cyclopentadiene와 maleic anhydride의 고전적인 Diels-Alder 반응에서는 일반적인 kinetic-control 조건에서 endo adduct가 선호된다. 이는 secondary orbital interaction으로 설명하는 대표적인 예이다.
+\end{solutionframe}
+
+% 08 Life Science
+\begin{problemframe}{08}{Life Science}
+Victor Ambros와 Gary Ruvkun의 \textit{C. elegans} 연구에서 발견되었고, 2024 Nobel Prize in Physiology or Medicine의 주제가 된 작은 non-coding RNA class는 무엇인가? 또한 이 RNA class가 주로 관여하는 gene regulation level을 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{08}{Life Science}
+\answerbox{microRNA, post-transcriptional gene regulation}
+microRNA는 mRNA와 염기쌍을 이루어 translation을 억제하거나 mRNA degradation을 촉진한다. 따라서 주된 작용 단계는 DNA에서 RNA가 만들어진 뒤의 post-transcriptional regulation이다.
+
+Ambros와 Ruvkun의 발견은 작은 RNA가 gene expression을 조절할 수 있음을 보여준 landmark result이다.
+\end{solutionframe}
+
+% 09 Mathematics
+\begin{problemframe}{09}{Mathematics}
+Hamilton이 quaternion multiplication rule을 떠올린 일화는 수학사에서 유명하다. Quaternion units가
+\[
+i^2=j^2=k^2=ijk=-1
+\]
+을 만족할 때, 다음 값을 구하시오.
+\[
+(i+j+k)^2.
+\]
+\end{problemframe}
+
+\begin{solutionframe}{09}{Mathematics}
+\answerbox{$\displaystyle -3$}
+Quaternion multiplication에서는
+\[
+\begin{aligned}
+ij&=k, & jk&=i, & ki&=j
+\end{aligned}
+\]
+이고 순서를 바꾸면 부호가 바뀐다. 따라서
+\[
+(i+j+k)^2=i^2+j^2+k^2+(ij+ji)+(jk+kj)+(ki+ik).
+\]
+여기서 교차항은 모두 상쇄되고 $i^2=j^2=k^2=-1$이므로
+\[
+(i+j+k)^2=-3.
+\]
+\end{solutionframe}
+
+% 10 Computer Science
+\begin{problemframe}{10}{Computer Science}
+CVE-2024-3094는 upstream tarball에 악성 코드가 삽입되어 \texttt{liblzma} build 과정을 변조한 대표적인 software supply-chain compromise였다. 이 사건이 발생한 compression software의 이름을 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{10}{Computer Science}
+\answerbox{XZ Utils}
+CVE-2024-3094는 XZ Utils의 release tarball에 악성 코드가 들어간 사건이다. 이 코드는 build 과정에서 \texttt{liblzma}를 변조해 특정 Linux 환경에서 심각한 security risk를 만들 수 있었다.
+
+핵심은 단순한 memory bug가 아니라 open-source supply-chain compromise였다는 점이다.
+\end{solutionframe}
+
+% 11 Physics
+\begin{problemframe}{11}{Physics}
+물탱크의 물 표면이 지면으로부터 높이 $H$에 있다. 탱크의 측면에 지면으로부터 높이 $y$인 작은 구멍을 내면 물이 수평으로 분출된다. 이상유체이고 공기저항은 무시한다. 물줄기의 horizontal range가 최대가 되도록 하는 $y$를 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{11}{Physics}
+\answerbox{$\displaystyle y=\frac{H}{2}$}
+Torricelli law와 projectile motion을 함께 쓰면
+\[
+v=\sqrt{2g(H-y)},\qquad t=\sqrt{\frac{2y}{g}}.
+\]
+따라서 horizontal range는
+\[
+R=vt=2\sqrt{y(H-y)}.
+\]
+이 값은 $y(H-y)$가 최대일 때 최대이므로 $y=H/2$이다.
+\end{solutionframe}
+
+% 12 Chemistry
+\begin{problemframe}{12}{Chemistry}
+Molecular orbital theory를 이용해 \ce{O2+}, \ce{O2}, \ce{O2-}의 bond order를 각각 구하시오. 또한 이 셋 중 O-O bond length가 가장 짧은 species를 고르시오.
+\end{problemframe}
+
+\begin{solutionframe}{12}{Chemistry}
+\answerbox{$\ce{O2+}:2.5,\quad \ce{O2}:2,\quad \ce{O2-}:1.5$; 가장 짧은 것은 \ce{O2+}}
+\ce{O2}의 bond order는 $2$이다. \ce{O2+}는 antibonding electron을 하나 잃으므로 bond order가 $1/2$ 증가해 $2.5$가 된다. 반대로 \ce{O2-}는 antibonding electron을 하나 더 얻으므로 bond order가 $1/2$ 감소해 $1.5$가 된다.
+
+Bond order가 클수록 bond length는 짧아지므로 \ce{O2+}가 가장 짧은 O-O bond를 갖는다.
+\end{solutionframe}
+
+% 13 Life Science
+\begin{problemframe}{13}{Life Science}
+Flow cytometry에서 forward scatter (FSC)와 side scatter (SSC)는 각각 세포의 어떤 물리적 특성을 주로 반영하는가?
+\end{problemframe}
+
+\begin{solutionframe}{13}{Life Science}
+\answerbox{FSC: cell size, SSC: granularity 또는 internal complexity}
+Forward scatter는 빛이 작은 각도로 앞으로 산란되는 정도를 측정하므로 주로 세포 크기와 관련된다.
+
+Side scatter는 측면으로 산란되는 빛을 측정하므로 세포 내부 구조의 복잡성, granularity, organelle content와 더 밀접하게 관련된다.
+\end{solutionframe}
+
+% 14 Mathematics
+\begin{problemframe}{14}{Mathematics}
+1983년 Mordell conjecture를 해결했고, arithmetic geometry 및 Mordell-Lang conjecture 관련 업적으로 2026 Abel Prize를 받은 수학자의 이름을 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{14}{Mathematics}
+\answerbox{Gerd Faltings}
+Faltings는 Mordell conjecture를 증명하여 현재 Faltings' theorem으로 불리는 결과를 세웠다. 이 정리는 genus가 $1$보다 큰 algebraic curve의 rational points가 finite하다는 내용을 담고 있다.
+
+2026 Abel Prize는 arithmetic geometry와 Mordell, Lang의 Diophantine conjectures 해결에 대한 공로로 수여되었다.
+\end{solutionframe}
+
+% 15 Computer Science
+\begin{problemframe}{15}{Computer Science}
+Deadlock이 발생하기 위한 Coffman conditions를 모두 고르시오.
+\begin{simchoices}
+  \item Mutual exclusion
+  \item Hold and wait
+  \item No preemption
+  \item Circular wait
+  \item Bounded waiting
+\end{simchoices}
+\end{problemframe}
+
+\begin{solutionframe}{15}{Computer Science}
+\answerbox{1, 2, 3, 4}
+Deadlock의 네 가지 Coffman conditions는 mutual exclusion, hold and wait, no preemption, circular wait이다.
+
+Bounded waiting은 starvation 방지나 fairness와 관련된 조건으로 등장할 수 있지만, deadlock의 Coffman condition은 아니다.
+\end{solutionframe}
+
+% 16 Physics
+\begin{problemframe}{16}{Physics}
+Exoplanet transit 중 별의 관측 flux가 $1.0\%$ 감소하였다. 별의 표면 밝기는 균일하고 행성 반지름 $R_p$가 별 반지름 $R_\star$보다 충분히 작다고 가정한다. $R_p/R_\star$를 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{16}{Physics}
+\answerbox{$\displaystyle \frac{R_p}{R_\star}=0.10$}
+Transit depth는 가려지는 면적의 비로 근사된다.
+\[
+\delta\simeq\left(\frac{R_p}{R_\star}\right)^2.
+\]
+관측 flux 감소가 $1.0\%=0.010$이므로
+\[
+\frac{R_p}{R_\star}=\sqrt{0.010}=0.10.
+\]
+\end{solutionframe}
+
+% 17 Chemistry
+\begin{problemframe}{17}{Chemistry}
+Mendeleev는 주기율표의 빈칸에 아직 발견되지 않은 원소를 두고 이를 eka-aluminium이라고 불렀으며, 그 밀도와 화학적 성질을 예측하였다. 뒤에 실제로 발견되어 Mendeleev의 예측을 유명하게 만든 이 원소의 이름을 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{17}{Chemistry}
+\answerbox{Gallium}
+Eka-aluminium은 훗날 발견된 gallium에 해당한다. Mendeleev는 주기율표의 빈칸을 이용해 아직 발견되지 않은 원소의 성질을 예측했고, gallium의 발견은 주기율표의 예측력을 보여주는 대표적 사례가 되었다.
+\end{solutionframe}
+
+% 18 Life Science
+\begin{problemframe}{18}{Life Science}
+어떤 glutamate receptor는 glutamate가 결합해도 postsynaptic membrane이 충분히 depolarize되어 \ce{Mg^{2+}} block이 제거되어야 ion channel이 충분히 열린다. Synaptic plasticity와 coincidence detection에서 중요하게 다루어지는 이 receptor의 이름을 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{18}{Life Science}
+\answerbox{NMDA receptor}
+NMDA receptor는 ligand-gated ion channel이지만 voltage-dependent \ce{Mg^{2+}} block을 갖는다. 따라서 glutamate binding과 postsynaptic depolarization이 함께 필요하다.
+
+이 성질 때문에 NMDA receptor는 synaptic plasticity와 coincidence detection에서 중요한 역할을 한다.
+\end{solutionframe}
+
+% 19 Mathematics
+\begin{problemframe}{19}{Mathematics}
+Closed connected orientable surface의 triangulation에서 vertices, edges, faces의 수가 각각
+\[
+V=10,\qquad E=30,\qquad F=16
+\]
+이라고 하자. 이 surface의 genus $g$를 구하시오.
+\end{problemframe}
+
+\begin{solutionframe}{19}{Mathematics}
+\answerbox{$\displaystyle g=3$}
+Euler characteristic은
+\[
+\chi=V-E+F=10-30+16=-4.
+\]
+Closed connected orientable surface의 genus가 $g$이면
+\[
+\chi=2-2g.
+\]
+따라서
+\[
+2-2g=-4,
+\qquad g=3.
+\]
+\end{solutionframe}
+
+% 20 Computer Science
+\begin{problemframe}{20}{Computer Science}
+Capacity $1$인 dynamic array가 비어 있는 상태에서 시작한다. Array가 가득 찬 상태에서 새 element를 append해야 하면, capacity를 두 배로 늘리고 기존 element를 모두 새 공간으로 복사한 뒤 append한다. 총 $1025$개의 element를 순서대로 append할 때, reallocation 과정에서 기존 element가 복사되는 총 횟수와 append operation의 amortized time complexity를 쓰시오.
+\end{problemframe}
+
+\begin{solutionframe}{20}{Computer Science}
+\answerbox{$\displaystyle 2047,\qquad O(1)$ amortized time}
+Reallocation은 기존 size가
+\[
+1,2,4,8,\dots,1024
+\]
+일 때 발생한다. 따라서 복사되는 기존 element의 총 횟수는
+\[
+1+2+4+\cdots+1024=2047.
+\]
+
+개별 append는 reallocation 때문에 가끔 비싸지만, 전체 복사 비용이 geometric series로 bounded되므로 append의 amortized time complexity는 $O(1)$이다.
+\end{solutionframe}
+
+\end{document}
