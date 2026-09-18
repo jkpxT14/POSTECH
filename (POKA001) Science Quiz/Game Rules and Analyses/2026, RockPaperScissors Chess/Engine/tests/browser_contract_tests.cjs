@@ -5,8 +5,10 @@ const path = require('path');
 
 const base = path.resolve(__dirname, '../..');
 const html = fs.readFileSync(path.join(base, 'RockPaperScissorsChess.html'), 'utf8');
-assert.ok(html.includes('<meta name="rpsc-version" content="0.24.2">'));
-assert.ok(html.includes('ANALYSIS_ENGINE_SIGNATURE="0.24.2-pb3-timeplan-resign"'));
+assert.ok(html.includes('<meta name="rpsc-version" content="0.25.0">'));
+assert.ok(html.includes('ANALYSIS_ENGINE_SIGNATURE="0.25.0-swe-transition4-pb3-resign"'));
+assert.ok(html.includes('<meta name="rpsc-edition" content="2026 Science War Edition">'));
+assert.ok(html.includes('<meta name="rpsc-edition-date" content="2026-09-17">'));
 assert.ok(html.includes('ms:10000,multipv:3'), 'default analysis keeps Top 3 for 10 s');
 assert.ok(html.includes('20000-seedElapsed'), 'Analyze continues cached search toward cumulative 20 s');
 
@@ -69,9 +71,10 @@ const sig = m => JSON.stringify(m);
 assert.strictEqual(new Set(result.candidates.slice(0,3).map(c => sig(c.move))).size, 3, 'Top 3 must be distinct');
 
 // Embedded worker must remain the exact strength-tested reference core modulo HTML newlines.
-const ref = fs.readFileSync(path.join(base, 'Engine/reference/rpsc_engine_0.24.0.js'), 'utf8').replace(/^\n+|\n+$/g, '');
+const ref = fs.readFileSync(path.join(base, 'Engine/rpsc_engine_0.25.0.js'), 'utf8').replace(/^\n+|\n+$/g, '');
 const embedded = scripts[0].replace(/^\n+|\n+$/g, '');
 assert.ok(!/resign/i.test(embedded), 'embedded search worker must never auto-resign');
-assert.strictEqual(embedded, ref, 'embedded worker diverged from strength-tested reference');
+assert.ok(embedded.includes('if(transition)extra=Math.max(extra,4)'), 'Science War engine must retain the selected low-material transition extension');
+assert.strictEqual(embedded, ref, 'embedded worker diverged from production Science War engine');
 
 console.log('Browser/engine contract tests passed.');

@@ -1,9 +1,8 @@
 # Engine reference / regression material
 
-- `rpsc_engine_0.24.0.js`: exact 0.24.0 worker core embedded in the Analysis Board.
-- `baseline_0.23.0.js`: previous baseline used for paired strength comparison.
-- `arena.js`: local paired-board benchmark harness.
-- `results/paired_regression_56.jsonl`: exact 56-game regression records.
-- `results/SUMMARY.txt`: aggregate result.
+- `rpsc_engine_0.24.1.js`: previous production champion used as the direct 0.25 strength baseline.
+- `baseline_0.23.0.js`: earlier baseline retained for historical paired regression.
+- `arena.js`: local paired-board benchmark harness; by default it loads the final `../rpsc_engine_0.25.0.js` as candidate.
+- `results/paired_regression_56.jsonl` and `results/SUMMARY.txt`: historical 0.24-vs-0.23 regression records retained for reproducibility.
 
-These files exist to make the 55%+ engine-strength gate auditable; the production Analysis Board is the HTML file at the project root, `../rpsc_engine_0.24.1.js` is the directly reusable production search core, and the native engine source is in `../src/`.
+The production Science War engine is `../rpsc_engine_0.25.0.js`. The Analysis Board embeds that file exactly.

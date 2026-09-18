@@ -37,7 +37,9 @@ struct InitialChoiceResult {
 
 class Engine {
 public:
-  static constexpr const char* VERSION = "0.24.1";
+  static constexpr const char* VERSION = "0.25.0";
+  static constexpr const char* EDITION = "2026 Science War Edition";
+  static constexpr const char* EDITION_DATE = "2026-09-17";
 
   Engine() = default;
   void new_game();

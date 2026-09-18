@@ -9,7 +9,7 @@ function makeEngine(src,label){
   vm.runInContext(src+`\n;globalThis.__api={search,chooseItem,chooseInitial,cloneState,doMoveWithUndo,uniqueMoves,evalW,key};`,ctx,{timeout:10000});
   return {label,api:ctx.__api};
 }
-function candidateSource(){return fs.readFileSync(path.join(HERE,'rpsc_engine_0.24.0.js'),'utf8');}
+function candidateSource(){return fs.readFileSync(path.join(HERE,'..','rpsc_engine_0.25.0.js'),'utf8');}
 
 // orientation/rules constants, copied from app's exact definitions
 const DIR_ORDER=['N','S','E','W'];

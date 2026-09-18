@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="rpsc-version" content="0.24.2">
+<meta name="rpsc-version" content="0.25.0">
+<meta name="rpsc-edition" content="2026 Science War Edition">
+<meta name="rpsc-edition-date" content="2026-09-17">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
@@ -15,7 +17,7 @@
 </head>
 <body>
 <div id="app">
-<header><div><h1 class="title">RockPaperScissors Chess</h1><div class="subtitle">Analysis Board</div></div><div class="byline">Jungwoo Kim (<span class="postech">POSTECH</span>)</div></header>
+<header><div><h1 class="title">RockPaperScissors Chess</h1><div class="subtitle">Analysis Board · 2026 Science War Edition · 2026-09-17</div></div><div class="byline">Jungwoo Kim (<span class="postech">POSTECH</span>)</div></header>
 <main class="main-grid">
 <section class="board-column" aria-label="RPSC board"><div id="topRole" class="board-role"></div><div class="board-wrap"><svg id="board" viewBox="-42 -42 644 644" role="img" aria-label="8 by 8 RockPaperScissors Chess board"></svg></div><div id="bottomRole" class="board-role bottom"></div><div id="boardNote" class="board-note"></div></section>
 <aside class="panel">
@@ -35,6 +37,7 @@
 </div>
 
 <script id="engineWorkerSource" type="text/plain">
+// RPSC Engine 0.25.0 - 2026 Science War Edition - 2026-09-17
 "use strict";
 const D={N:[0,1],S:[0,-1],E:[1,0],W:[-1,0]},OP={N:"S",S:"N",E:"W",W:"E"},DIR=["N","S","E","W"],ROT=["RoN","RoS","RoE","RoW","RoL","RoR"],DIST={S:3,R:4,P:5},MAXPLY=64;
 let NODE=0,SEL=0,STOP=0,DEADLINE=0,TT=new Map(),MC=new Map(),TC=new Map(),HIST=new Int32Array(8*64*10),CAPH=new Int32Array(8*64*10),CONT=new Map(),FOLLOW=new Map(),COUNTER=new Map(),KILL=[],UNDO=Array.from({length:MAXPLY+2},()=>new Int16Array(44)),REACH=null,ROOTRANK=new Map();
@@ -87,7 +90,7 @@ function ab(s,d,a,b,ply,pv,prev,prev2,extUsed=0){
   let st0=ev(s);if(!pv&&d<=4){if(st0-(60+30*d)>=b)return st0;if(d===1&&st0+70<=a)return q(s,a,b,ply)}let mover=s.side,k=key(s),e=TT.get(k),tm=e&&e.m,oa=a,ob=b;if(e&&e.d>=d&&!pv){if(e.bd===0)return e.v;if(e.bd===1&&e.v>=b)return e.v;if(e.bd===-1&&e.v<=a)return e.v}
   let ms=uniqueMoves(s);if(!ms.length)return ev(s);let ownBefore=0;for(let x of ms)if(x.t>0&&++ownBefore>=4)break;let oppBefore=null;
   let ord=ms.map(x=>({x,sc:(tm&&same(x.m,tm)?1000000:0)+(x.t>0?500000+x.t*10000+captureHistoryScore(x.m):x.t<0?-250000+captureHistoryScore(x.m):0)+killerScore(x.m,ply)+historyScore(x.m,prev,prev2)})).sort((x,y)=>y.sc-x.sc),bm=null,j=0,quiets=[];
-  for(let z of ord){let x=z.x,sc,alive0=aliveCount(s);doMove(s,x.m,ply);let alive1=aliveCount(s),transition=x.t!==0&&alive0>2&&alive1===2,extra=(x.t!==0&&extUsed<1)?1:0;if((x.reset||transition)&&extUsed+extra<2)extra++;let nextExt=Math.min(2,extUsed+extra),childDepth=d-1+extra;
+  for(let z of ord){let x=z.x,sc,alive0=aliveCount(s);doMove(s,x.m,ply);let alive1=aliveCount(s),transition=x.t!==0&&alive0>2&&alive1===2,extra=(x.t!==0&&extUsed<1)?1:0;if(x.reset&&extUsed+extra<2)extra++;if(transition&&extUsed+extra<4)extra=Math.max(extra,4-extUsed);let nextExt=Math.min(4,extUsed+extra),childDepth=d-1+extra;
     if(j===0)sc=-ab(s,childDepth,-b,-a,ply+1,pv,x.m,prev,nextExt);else{
       let hv=historyScore(x.m,prev,prev2),known=(prev&&COUNTER.get(moveSlot(prev))&&same(x.m,COUNTER.get(moveSlot(prev))))||killerScore(x.m,ply)>0||hv>4*d*d,red=!pv&&x.t===0&&d>=4&&j>=4&&!known,r=1;
       if(red){if(oppBefore===null)oppBefore=pressureFor(s,mover==="W"?"B":"W");let oppAfter=oppBefore>0?pressure(s):0,ownAfter=ownBefore<4?pressureFor(s,mover):ownBefore,defensive=oppBefore>0&&oppAfter<oppBefore,creates=ownAfter>ownBefore;if(defensive||creates)red=0;else if(!x.m.item&&-ev(s)<st0+8&&d>=7&&j>=10&&hv<=0)r=2}
@@ -100,7 +103,7 @@ function ab(s,d,a,b,ply,pv,prev,prev2,extUsed=0){
 }
 function pvline(s,best,d){let x=cloneState(s),out=[],m=best;for(let i=0;i<Math.min(MAXPLY,d+4)&&m;i++){out.push(m);doMove(x,m,i);let e=TT.get(key(x));m=e&&e.m}return out}
 function actionFamily(m){if(!m.item)return 0;if(m.item==="Pu")return 1;if(isRotation(m.item))return 2;return 3}function moveSig(m){return JSON.stringify(m)}function rootPrior(m){let v=ROOTRANK.get(moveSig(m));return Number.isFinite(v)?1000*v:0}function installRootRanking(lines){ROOTRANK=new Map((lines||[]).map(x=>[moveSig(x.move),x.value]))}
-function rootPass(s,roots,preferred,d,a,b,skip,multi=false){let ord=roots.filter(x=>!excluded(x.m,skip)).map(x=>({x,sc:(same(x.m,preferred)?1200000:0)+(x.t>0?500000+x.t*10000+captureHistoryScore(x.m):x.t<0?-250000+captureHistoryScore(x.m):0)+historyScore(x.m,null,null)+rootPrior(x.m)})).sort((x,y)=>y.sc-x.sc);if(!ord.length)return{best:null,value:-1e9,scores:[]};let best=ord[0].x.m,bv=-1e9,j=0,alpha=a,scores=[],fam=[0,0,0,0];for(let z of ord){let x=z.x,v,alive0=aliveCount(s),fi=actionFamily(x.m),fidx=fam[fi]++,mi=j++;doMove(s,x.m,0);let alive1=aliveCount(s),transition=x.t!==0&&alive0>2&&alive1===2,extra=x.t!==0?1:0;if(x.reset||transition)extra=Math.max(extra,2);let ext=Math.min(2,extra),childDepth=d-1+extra;if(mi===0)v=-ab(s,childDepth,-b,-alpha,1,1,x.m,null,ext);else{let quota=fi===0?32:24,reduce=!multi&&d>=3&&x.t===0&&fidx>=quota&&mi>=64;if(reduce){v=-ab(s,Math.max(0,childDepth-1),-alpha-1,-alpha,1,0,x.m,null,ext);if(v>alpha)v=-ab(s,childDepth,-alpha-1,-alpha,1,0,x.m,null,ext)}else v=-ab(s,childDepth,-alpha-1,-alpha,1,0,x.m,null,ext);if(v>alpha&&v<b)v=-ab(s,childDepth,-b,-alpha,1,1,x.m,null,ext)}restoreUndo(s,0);if(STOP)break;scores.push({move:x.m,value:v});if(v>bv){bv=v;best=x.m}if(v>alpha)alpha=v;if(alpha>=b)break}return{best,value:bv,scores}}
+function rootPass(s,roots,preferred,d,a,b,skip,multi=false){let ord=roots.filter(x=>!excluded(x.m,skip)).map(x=>({x,sc:(same(x.m,preferred)?1200000:0)+(x.t>0?500000+x.t*10000+captureHistoryScore(x.m):x.t<0?-250000+captureHistoryScore(x.m):0)+historyScore(x.m,null,null)+rootPrior(x.m)})).sort((x,y)=>y.sc-x.sc);if(!ord.length)return{best:null,value:-1e9,scores:[]};let best=ord[0].x.m,bv=-1e9,j=0,alpha=a,scores=[],fam=[0,0,0,0];for(let z of ord){let x=z.x,v,alive0=aliveCount(s),fi=actionFamily(x.m),fidx=fam[fi]++,mi=j++;doMove(s,x.m,0);let alive1=aliveCount(s),transition=x.t!==0&&alive0>2&&alive1===2,extra=x.t!==0?1:0;if(x.reset)extra=Math.max(extra,2);if(transition)extra=Math.max(extra,4);let ext=Math.min(4,extra),childDepth=d-1+extra;if(mi===0)v=-ab(s,childDepth,-b,-alpha,1,1,x.m,null,ext);else{let quota=fi===0?32:24,reduce=!multi&&d>=3&&x.t===0&&fidx>=quota&&mi>=64;if(reduce){v=-ab(s,Math.max(0,childDepth-1),-alpha-1,-alpha,1,0,x.m,null,ext);if(v>alpha)v=-ab(s,childDepth,-alpha-1,-alpha,1,0,x.m,null,ext)}else v=-ab(s,childDepth,-alpha-1,-alpha,1,0,x.m,null,ext);if(v>alpha&&v<b)v=-ab(s,childDepth,-b,-alpha,1,1,x.m,null,ext)}restoreUndo(s,0);if(STOP)break;scores.push({move:x.m,value:v});if(v>bv){bv=v;best=x.m}if(v>alpha)alpha=v;if(alpha>=b)break}return{best,value:bv,scores}}
 function search(s,lim,progress){
   let start=performance.now(),total=Math.max(1,lim.ms||1000),seed=lim.seedResult,hasSeed=!!(seed&&seed.depth>0),hardEnd=start+total;
   // Time policy: default 10 s = 20% broad + 50% primary + 20% Top-3 + 10% verify.
@@ -162,7 +165,7 @@ const ENGINE_ROLL=ALL_ORIENTATIONS.map(o=>DIR_ORDER.map(d=>ORIENTATION_INDEX.get
 function initialPieces(whiteTeam,blackTeam){let W=[["W1","a1","S"],["W2","c1","R"],["W3","e1","P"],["W4","g1","S"]],B=[["B1","h8","S"],["B2","f8","R"],["B3","d8","P"],["B4","b8","S"]],out=[];for(let[id,sq,g]of W){let p=xy(sq);out.push({id,team:whiteTeam,alive:true,x:p.x,y:p.y,orientation:canonicalOrientation(g,"S")})}for(let[id,sq,g]of B){let p=xy(sq);out.push({id,team:blackTeam,alive:true,x:p.x,y:p.y,orientation:canonicalOrientation(g,"N")})}return out}
 function previewPieces(){return initialPieces(C.POSTECH,C.KAIST)}function todayString(){let d=new Date();return`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`}
 function freshGame(){return{meta:{event:"RPSC Analysis",site:"Local",date:todayString()},players:{W:"White",B:"Black"},order:{white:null,black:null,source:null},teams:{POSTECH:{quiz:0,captures:0,items:{Pu:0,Ro:0,St:0}},KAIST:{quiz:0,captures:0,items:{Pu:0,Ro:0,St:0}}},pieces:null,rounds:[],overtime:[],phase:"QUIZ",orderChoiceTeam:null,itemTeam:null,moveRole:null,result:null,resultReason:"",termination:null,lastAction:""}}
-const ANALYSIS_ENGINE_SIGNATURE="0.24.2-pb3-timeplan-resign";
+const ANALYSIS_ENGINE_SIGNATURE="0.25.0-swe-transition4-pb3-resign";
 let game=freshGame(),history=null,ui={boardRotation:0,selectedItem:null,selectedPieceId:null,draft:null,rotationOpen:false,resignOpen:false},app={mode:"hvh",humanTeam:C.POSTECH,engineThinking:false,pendingPurpose:null,pendingKey:null,pendingState:null,pendingMoveNumber:null,pendingRootSide:null,pendingSeedElapsed:0,deepRequested:false,engineAnalysis:null,analysisKey:null,analysisState:null,analysisMoveNumber:null,lastItemDecision:null,lastInitialDecision:null,lastLiveEval:null,pendingInitialItem:null,engineError:null,requestId:0,animating:false,variationActive:false,analysisCache:new Map(),analysisStartedAt:new Map()};
 function score(t,g=game){return g.teams[t].quiz+2*g.teams[t].captures}function roleOfTeam(t){if(!game.order.white)return null;return game.order.white===t?"W":"B"}function teamOfRole(r){if(!game.order.white)return null;return r==="W"?game.order.white:game.order.black}function controllerForTeam(t){if(history&&history.current!==history.head)return"Human";if(app.mode==="hvh")return"Human";if(app.mode==="eve")return"Engine";return t===app.humanTeam?"Human":"Engine"}function currentMoveTeam(){return game.phase==="MOVE"?teamOfRole(game.moveRole):null}function pieceById(id,g=game){return g.pieces?.find(p=>p.id===id)||null}function occupiedAt(x,y,exclude=null,g=game){return g.pieces?.find(p=>p.alive&&p.id!==exclude&&p.x===x&&p.y===y)||null}function aliveEnemiesAdjacent(x,y,team,exclude=null,g=game){return(g.pieces||[]).filter(p=>p.alive&&p.id!==exclude&&p.team!==team&&Math.abs(p.x-x)+Math.abs(p.y-y)===1)}function clearMoveUI(){ui.selectedItem=null;ui.selectedPieceId=null;ui.draft=null;ui.rotationOpen=false}function engineMoveBusy(){return app.animating||(app.engineThinking&&app.pendingPurpose==="move")}function currentRound(){if(!game.rounds.length)return null;let r=game.rounds.at(-1);return r.complete?null:r}function snapshot(){return clone(game)}function pushUndo(){prepareMutation()}
 function initHistory(){history={nodes:[{id:0,parent:null,children:[],mainChild:null,state:snapshot(),kind:"root",event:{label:"Start"},onMain:true}],head:0,current:0,nextId:1,preferred:{}};app.variationActive=false}

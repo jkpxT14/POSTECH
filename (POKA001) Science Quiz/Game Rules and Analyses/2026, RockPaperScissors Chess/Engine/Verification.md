@@ -1,49 +1,45 @@
-# Verification - RPSC 0.24.1
+# Verification - RPSC 0.25.0
+
+**2026 Science War Edition - 2026-09-17**
 
 ## Browser engine strength gate
 
-The Analysis Board keeps the 0.24 primary-biased MultiPV-3 JavaScript search core selected against the previous 0.23 baseline. The exact reference core is stored in `reference/rpsc_engine_0.24.0.js`; 0.24.1 is an integration/packaging revision and does not weaken that worker core.
+The final JavaScript engine keeps the established primary-biased MultiPV-3 framework and adds the selected four-ply cap for low-material transition extensions. This change was selected from the handbook-game regression work because the previous core could remain horizon-blind in capture -> two-piece -> recapture/Reset sequences.
 
-Recorded paired accelerated regression:
+Paired accelerated measurements previously recorded for this transition candidate against the exact 0.24.1 production core were:
 
-- games: **56**
-- wins: **34**
-- losses: **21**
-- draws: **1**
-- raw win rate: **60.7%**
-- score rate (draw = 0.5): **61.6%**
+- 50 ms board-move control: **100 games, 58 wins, 40 losses, 2 draws (58.0% raw wins)**;
+- 150 ms board-move control: **60 games, 34 wins, 24 losses, 2 draws (56.7% raw wins)**.
 
-The records are in `reference/results/paired_regression_56.jsonl`. Controls are 30/50/80/150 ms per board move with paired role reversal. This is a candidate-selection/regression gate, not a guarantee that every machine reproduces the same percentage at literal 10-second wall-clock control.
+The benchmark uses paired role reversal and the same seeded exogenous Quiz/item streams. It is a candidate-selection gate, not a claim that literal 10-second wall-clock play on every machine reproduces the same percentage. Actual 10-second regression positions from Games 7, 9, 10, and 11 were also used to verify that the transition safeguard fixes the known horizon case without losing the established item, quiet-move, and Reset recommendations.
+
+The previous production champion is preserved as `reference/rpsc_engine_0.24.1.js`.
 
 ## Analysis time policy
 
 Default 10 s:
 
-- 0-2 s broad root search
-- 2-7 s primary-biased championship search
-- 7-9 s Top-3 stabilization
-- 9-10 s final #1 verification
+- 0-2 s broad root search;
+- 2-7 s primary-biased championship search;
+- 7-9 s Top-3 stabilization;
+- 9-10 s final verification.
 
-Analyze continuation to 20 s cumulative:
+Analyze continues cached search toward 20 s cumulative rather than restarting from an empty position analysis.
 
-- 10-11.5 s challenger refresh
-- 11.5-17.5 s deep primary search
-- 17.5-19 s deep Top-3 stabilization
-- 19-20 s final verification
+## Regression gate
 
-## Native engine regression gate
-
-`ctest` checks:
+`ctest` checks the native rules/protocol suite plus the browser contract, including:
 
 - 24 exact cube orientations and the RPS cycle;
 - legal initial position and move generation;
 - Push -> first Roll return legality;
-- W/B role separation;
+- W/B role separation and fixed P/K Quiz order;
 - three distinct MultiPV recommendations;
-- item and initial order/item choice APIs;
-- one-ply exact search correctness;
-- `teams W KAIST B POSTECH` + `matchpk 11 10 6` -> internal `quiz 10-11`;
-- browser/analyzer contract: Top 3, 10 -> 20 s continuation, fixed `Q[POSTECH, KAIST]`, reverse school-role mapping, manual resignation record round-trip, no auto-resign in the embedded search worker, and embedded-worker identity;
-- all 11 handbook games, including the 11-round resignation game for unilateral-item P/K -> W/B mapping.
+- item and initial order/item-choice APIs;
+- reverse `teams W KAIST B POSTECH` mapping;
+- manual resignation record round-trip with no engine auto-resign;
+- embedded worker identity with `rpsc_engine_0.25.0.js`;
+- the Science War low-material transition extension;
+- all 11 handbook games, including the 11-round resignation game.
 
-The source package deliberately excludes compiled executables, build directories, logs, `.synctex.gz`, and historical patch artifacts.
+The release package excludes compiled executables, build directories, logs, SyncTeX files, and temporary research/candidate files.

@@ -115,7 +115,7 @@ int run_protocol() {
 
     if (command == "rpsc" || command == "uci") {
       std::cout << "id name RPSC Engine " << Engine::VERSION
-                << "\nid author Jungwoo Kim / POKA001\nrpscok\n" << std::flush;
+                << "\nid edition " << Engine::EDITION << "\nid edition-date " << Engine::EDITION_DATE << "\nid author Jungwoo Kim / POKA001\nrpscok\n" << std::flush;
     } else if (command == "isready") {
       std::cout << "readyok\n" << std::flush;
     } else if (command == "newgame" || line == "position startpos") {
