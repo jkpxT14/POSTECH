@@ -1,8 +1,8 @@
 # 2026, RockPaperScissors Chess
 
-Synchronized release **0.24.1** (2026-09-17), `.rpsc` **Format 3**, ruleset `2026-rpsc-rotation6-push-return`.
+Synchronized release **0.24.2** (2026-09-18), `.rpsc` **Format 3**, ruleset `2026-rpsc-rotation6-push-return`.
 
-This package contains the latest handbook, the self-contained Analysis Board, and the restored/upgraded native engine source. The Analysis Board keeps the established visual design and Top-3 workflow while using the strengthened primary-biased MultiPV engine and the 10 s -> 20 s continuation policy.
+This package contains the latest handbook, the self-contained Analysis Board, and the restored/upgraded native engine source. The Analysis Board keeps the established visual design and Top-3 workflow while using the strengthened primary-biased MultiPV engine and the 10 s -> 20 s continuation policy. Release 0.24.2 adds a manual practice/analysis resignation workflow and preserves it in Format 3 records without changing the engine search core.
 
 ## Invariants
 
@@ -11,12 +11,14 @@ This package contains the latest handbook, the self-contained Analysis Board, an
 - Every quiz token is `Q[POSTECH, KAIST]`, independent of White/Black assignment.
 - `WhiteTeam` / `BlackTeam` record the school-to-role assignment.
 - Numeric engine evaluation is from the White-role perspective.
+- Practice/analysis resignation is a manual record/UI action, not an official Science War rule; `[Termination "Resignation"]` records the reason while `Result` records the winner.
+- The engine never auto-resigns from an evaluation threshold or search result.
 - Push permits the first Roll to return to the pre-Push square.
 - All six Rotation directions are distinguished in exact orientation and notation.
 
 ## Contents
 
-- `RockPaperScissorsChess.pdf` / `.tex`: current handbook and source, including Games 1–9.
+- `RockPaperScissorsChess.pdf` / `.tex`: current handbook and source, including Games 1–11.
 - `RockPaperScissorsChess.html`: self-contained Analysis Board with the strengthened embedded 0.24 search core, Top 3 live analysis, history/variations, cache reuse, and 10 s -> 20 s continuation.
 - `Engine/`: native C++ engine source with restored full RPSC protocol, item/order/initial-choice interfaces, regression tests, and strength-reference material.
 - `Examples/`: legacy Format 2 and canonical Format 3 Game 6 records.

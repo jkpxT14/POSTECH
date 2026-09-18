@@ -2,8 +2,6 @@
 % Selected for the 2026 Science War Final Review. Problems and solutions are
 % rewritten in Korean while preserving the mathematical content of the handbook.
 
-본교재의 Past Problems 가운데 경기 직전 다시 볼 가치가 큰 문항만 선별하였다. 문제 번호와 수학적 조건은 본교재를 그대로 따르며, 해설은 핵심 발상과 계산이 빠르게 복원되도록 한국어 중심으로 압축하였다.
-
 \begin{pastproblem}{2011.7}
 숫자
 \[
@@ -17,29 +15,29 @@
 \end{pastproblem}
 
 \begin{solution}
-필요한 최소공배수는
+핵심은 자릿수 조건으로 최소 자릿수를 먼저 결정한 뒤, $7$과 $8$의 배수 조건만 남기는 것이다. 필요한 최소공배수는
 \[
 \lcmop(1,2,3,4,6,7,8,9)=504.
 \]
-각 숫자를 한 번씩만 쓰면 자릿수 합이 $40$이므로 $9$의 배수가 아니어서 $8$자리 수는 불가능하다. 한 자리만 더 반복하면 자릿수 합이 $40+d$인데 $9\mid 40+d$이려면 $d\equiv5\pmod9$여야 하므로 허용된 숫자로는 $9$자리 수도 불가능하다.
+각 숫자를 한 번씩만 쓰면 자릿수 합이 $40$이라 $9$의 배수가 아니므로 $8$자리 수는 불가능하다. 한 자리만 더 쓰면 자릿수 합은 $40+d$인데 $9\mid40+d$이려면 $d\equiv5\pmod9$여야 한다. 허용된 숫자에 $5$가 없으므로 $9$자리 수도 불가능하다.
 
-따라서 최소 $10$자리이고, 추가되는 두 숫자의 합은 $5\pmod9$이다. 가능한 쌍은
+따라서 최소 $10$자리이다. 추가되는 두 숫자의 합은 $5\pmod9$여야 하므로 가능한 쌍은
 \[
 (1,4),(2,3),(6,8),(7,7).
 \]
-가장 작은 수를 만들려면 $(1,4)$를 택하여 숫자 multiset을
+가장 작은 수를 만들려면 $(1,4)$를 추가해야 하므로 숫자는
 \[
 1,1,2,3,4,4,6,7,8,9
 \]
-로 두는 것이 최선이다. 가장 작은 앞부분은 $112344$이고, 마지막 세 자리가 $8$의 배수가 되도록 $6,7,8,9$를 배열하면 후보는
+가 된다. 가장 작은 앞부분 $112344$를 고정하고, 마지막 세 자리가 $8$의 배수가 되도록 $6,7,8,9$를 배열하면 확인할 후보는
 \[
 1123449768,\ 1123447896,\ 1123447968,\ 1123448976.
 \]
-이 중 $7$로도 나누어떨어지는 것은
+이 가운데 $7$로도 나누어떨어지는 최소값은
 \[
-1123449768=504\cdot2229067
+1123449768=504\cdot2229067.
 \]
-뿐이다. 따라서 답은
+따라서
 \[
 \boxed{1123449768}.
 \]
@@ -62,42 +60,42 @@ $x=1/366$이라 두면
 \]
 $0<x<1$에서
 \[
-x<-\ln(1-x)<\frac{x}{1-x}
+x<-\ln(1-x)<x+x^2+x^3+\cdots=\frac{x}{1-x}.
 \]
-이므로
+$x=1/366$을 대입하면
 \[
 \frac1{366}<-\ln\frac{365}{366}<\frac1{365}.
 \]
-양수들의 역수를 취하면
+모두 양수이므로 역수를 취해
 \[
 365<-\frac1{\ln(365/366)}<366.
 \]
-따라서 답은
+따라서 가장 큰 정수는
 \[
 \boxed{365}.
 \]
 \end{solution}
 
 \begin{pastproblem}{2014.3}
-대각성분은 모두 $0$, 비대각성분은 모두 $1$인 $2014\times2014$ 행렬의 모든 eigenvalue를 구하여라.
+대각성분은 모두 $0$, 비대각성분은 모두 $1$인 $2014\times2014$ 행렬의 모든 고유값을 구하여라.
 \end{pastproblem}
 
 \begin{solution}
-모든 성분이 $1$인 행렬을 $\mathbf J_{2014}$라 두면
+행렬의 모양을 먼저 본다. 모든 성분이 $1$인 행렬을 $\mathbf J_{2014}$라 하면
 \[
 \mathbf A=\mathbf J_{2014}-\mathbf I_{2014}.
 \]
-$\ones=(1,\ldots,1)^{\mathsf T}$에 대해
+$\ones=(1,\ldots,1)^{\mathsf T}$에 대해서는
 \[
-\mathbf A\ones=(2014-1)\ones=2013\ones,
+\mathbf A\ones=2013\ones,
 \]
-이므로 $2013$은 multiplicity $1$의 eigenvalue이다. 한편 좌표합이 $0$인 $2013$차원 부분공간에서는 $\mathbf J_{2014}\mathbf v=\mathbf0$이므로
+이므로 $2013$이 고유값이다. 한편 좌표합이 $0$인 $2013$차원 부분공간에서는 $\mathbf J_{2014}\mathbf v=\mathbf0$이므로
 \[
 \mathbf A\mathbf v=-\mathbf v.
 \]
 따라서
 \[
-\boxed{2013\text{ (multiplicity }1),\qquad -1\text{ (multiplicity }2013)}.
+\boxed{2013\text{ (중복도 }1),\qquad -1\text{ (중복도 }2013)}.
 \]
 \end{solution}
 
@@ -108,61 +106,66 @@ $m,n\ge3$이고
 \qquad
 \{\mathbf w_1,\mathbf w_2,\mathbf w_3\}\subseteq\R^n
 \]
-라 하자. $V=\Span(\mathbf v_1,\mathbf v_2,\mathbf v_3)$의 차원이 $2$이고, $W=\Span(\mathbf w_1,\mathbf w_2,\mathbf w_3)$의 차원이 $3$이다. 다음 $m\times n$ 행렬의 rank를 구하여라.
+라 하자. $V=\Span(\mathbf v_1,\mathbf v_2,\mathbf v_3)$의 차원이 $2$이고, $W=\Span(\mathbf w_1,\mathbf w_2,\mathbf w_3)$의 차원이 $3$이다. 다음 $m\times n$ 행렬의 계수를 구하여라.
 \[
 \mathbf A=\mathbf v_1\mathbf w_1^{\mathsf T}+\mathbf v_2\mathbf w_2^{\mathsf T}+\mathbf v_3\mathbf w_3^{\mathsf T}.
 \]
 \end{pastproblem}
 
 \begin{solution}
+외적의 합을 행렬곱으로 묶는 것이 핵심이다. 열벡터를 모아
 \[
-\mathbf P=(\mathbf v_1\ \mathbf v_2\ \mathbf v_3),
-\qquad
+\mathbf P=(\mathbf v_1\ \mathbf v_2\ \mathbf v_3),\qquad
 \mathbf Q=(\mathbf w_1\ \mathbf w_2\ \mathbf w_3)
 \]
-라 두면 $\mathbf A=\mathbf P\mathbf Q^{\mathsf T}$. 가정에서 $\rk(\mathbf P)=2$, $\rk(\mathbf Q)=3$이다. 따라서 $\mathbf Q^{\mathsf T}:\R^n\to\R^3$는 surjective이고
+라 두면
 \[
-\operatorname{im}(\mathbf A)
-=\mathbf P(\operatorname{im}\mathbf Q^{\mathsf T})
+\mathbf A=\mathbf P\mathbf Q^{\mathsf T}.
+\]
+가정에서 $\rk(\mathbf P)=2$, $\rk(\mathbf Q)=3$이다. 따라서 $\mathbf Q^{\mathsf T}:\R^n\to\R^3$는 전사이고
+\[
+\im(\mathbf A)
+=\mathbf P\bigl(\im(\mathbf Q^{\mathsf T})\bigr)
 =\mathbf P(\R^3)
 =\Span(\mathbf v_1,\mathbf v_2,\mathbf v_3).
 \]
-이 공간의 차원이 $2$이므로
+마지막 공간의 차원이 $2$이므로
 \[
 \boxed{\rk(\mathbf A)=2}.
 \]
 \end{solution}
 
 \begin{pastproblem}{2015.2}
-가역 정방행렬 $\mathbf A$에 대해, 어떤 permutation matrix $\mathbf P$를 사용한 Gaussian elimination이
+가역 정방행렬 $\mathbf A$에 대해, 어떤 순열행렬 $\mathbf P$를 사용한 가우스 소거법이
 \[
 \mathbf P\mathbf A=\mathbf L\mathbf U
 \]
-를 준다고 하자. 다른 permutation matrix $\widetilde{\mathbf P}$를 사용하면
+를 준다고 하자. 다른 순열행렬 $\widetilde{\mathbf P}$를 사용하면
 \[
 \widetilde{\mathbf P}\mathbf A=\widetilde{\mathbf L}\widetilde{\mathbf U}
 \]
-가 될 수도 있다. 두 경우의 pivot 절댓값 집합이 서로 달라질 수 있음을 예로 보여라.
+가 될 수도 있다. 두 경우의 피벗 절댓값 집합이 서로 달라질 수 있음을 예로 보여라.
 \begin{hint}
-$2\times2$ counterexample을 찾는다.
+$2\times2$ 반례를 찾는다.
 \end{hint}
 \end{pastproblem}
 
 \begin{solution}
+작은 $2\times2$ 반례 하나면 충분하다. 예를 들어
 \[
 \mathbf A=
 \begin{pmatrix}
 1&1/2\\[2pt]
 1/3&1
-\end{pmatrix}
+\end{pmatrix}.
 \]
-를 보자. 행 교환 없이
+행 교환 없이 소거하면
 \[
 \mathbf A=
 \begin{pmatrix}1&0\\1/3&1\end{pmatrix}
 \begin{pmatrix}1&1/2\\0&5/6\end{pmatrix},
 \]
-따라서 pivot 절댓값은 $\{1,5/6\}$이다. 두 행을 바꾸면
+따라서 피벗의 절댓값은 $\{1,5/6\}$이다. 두 행을 바꾸면
 \[
 \widetilde{\mathbf P}\mathbf A=
 \begin{pmatrix}1/3&1\\1&1/2\end{pmatrix}
@@ -170,11 +173,11 @@ $2\times2$ counterexample을 찾는다.
 \begin{pmatrix}1&0\\3&1\end{pmatrix}
 \begin{pmatrix}1/3&1\\0&-5/2\end{pmatrix},
 \]
-이므로 pivot 절댓값은 $\{1/3,5/2\}$이다. 따라서 두 집합은 서로 다르다.
+이므로 피벗의 절댓값은 $\{1/3,5/2\}$이다. 두 집합이 다르므로 원하는 반례가 된다.
 \end{solution}
 
 \begin{pastproblem}{2015.3}
-$\R^2$의 Mercedes--Benz system을
+$\R^2$의 메르세데스--벤츠 계(Mercedes--Benz system)를
 \[
 \mathbf v_k=
 \begin{pmatrix}
@@ -187,11 +190,11 @@ $\R^2$의 Mercedes--Benz system을
 \[
 P_{xy}(\mathbf w_k)=\mathbf v_k
 \]
-를 만족하는 $\mathbf w_0,\mathbf w_1,\mathbf w_2\in\R^3$를 구하여라. 여기서 $P_{xy}$는 $xy$-평면으로의 projection이다.
+를 만족하는 $\mathbf w_0,\mathbf w_1,\mathbf w_2\in\R^3$를 구하여라. 여기서 $P_{xy}$는 $xy$-평면으로의 정사영이다.
 \end{pastproblem}
 
 \begin{solution}
-모든 $\mathbf v_k$의 길이가 $1$이고 $\mathbf w_k$의 길이가 같으며 높이가 양수이므로
+평면으로의 정사영이 이미 주어졌으므로 세 번째 좌표만 정하면 된다. 길이가 서로 같고 $z$-좌표가 모두 양수이므로
 \[
 \mathbf w_k=
 \begin{pmatrix}
@@ -199,13 +202,17 @@ P_{xy}(\mathbf w_k)=\mathbf v_k
 \sin(2k\pi/3)\\
 c
 \end{pmatrix}
-\quad(c>0)
+\qquad(c>0)
 \]
-로 둘 수 있다. $i\ne j$이면 $\mathbf v_i\cdot\mathbf v_j=\cos120^\circ=-1/2$이므로
+로 둘 수 있다. $i\ne j$이면 평면에서 두 벡터의 각이 $120^\circ$이므로
+\[
+\mathbf v_i\cdot\mathbf v_j=\cos120^\circ=-\frac12.
+\]
+따라서
 \[
 \mathbf w_i\cdot\mathbf w_j=-\frac12+c^2.
 \]
-서로 직교하려면 $c^2=1/2$이어야 한다. 따라서
+직교 조건에서 $c^2=1/2$, 그리고 $c>0$이므로 $c=1/\sqrt2$. 따라서
 \[
 \boxed{
 \mathbf w_k=
@@ -233,54 +240,63 @@ $3.14<\pi<3.145$를 이용할 수 있다.
 \end{pastproblem}
 
 \begin{solution}
-한 주기에서
+한 주기에서 식을 먼저 단순화하면
 \[
-f(x)=1\quad\text{if }0<x<\pi-3\text{ or }\pi+3<x\le2\pi,
+f(x)=1\qquad\bigl(x\in(0,\pi-3)\cup(\pi+3,2\pi]\bigr),
 \]
-이고 그 밖에서는 $f(x)=0$이다. $1/(2\pi)$가 irrational이므로 정수들의 $2\pi$에 대한 residue는 $(0,2\pi]$에서 dense하다. 따라서 $f(n)=1$인 정수 $n$도 무한히 많고 $f(n)=0$인 정수 $n$도 무한히 많다. 즉 서로 다른 극한을 갖는 두 subsequence가 존재하므로
+이고 나머지에서는 $f(x)=0$이다. $1/(2\pi)$가 무리수이므로 정수들을 $2\pi$로 나눈 나머지는 $(0,2\pi]$에서 조밀하다. 따라서 위의 $f=1$인 구간과 $f=0$인 구간을 각각 무한히 자주 지난다.
+
+즉 $f(n)=1$인 부분수열과 $f(n)=0$인 부분수열이 모두 존재하므로
 \[
 \boxed{\lim_{n\to\infty}f(n)\text{은 존재하지 않는다}}.
 \]
 \end{solution}
 
 \begin{pastproblem}{2015.12}
-$\R^3$에서 원점과 $(1,1,2)$를 지나는 직선을 축으로 하여 공간을 $30^\circ$ 회전시키는 행렬을 생각하자. 이 행렬의 real eigenvalue의 개수를 구하여라.
+$\R^3$에서 원점과 $(1,1,2)$를 지나는 직선을 축으로 하여 공간을 $30^\circ$ 회전시키는 행렬을 생각하자. 이 행렬의 실수 고유값의 개수를 구하여라.
 \end{pastproblem}
 
 \begin{solution}
-회전축 방향 벡터
+3차원 회전은 회전축 방향을 고정한다. 따라서 축 방향 벡터
 \[
 \mathbf v=(1,1,2)^{\mathsf T}
 \]
-는 고정되므로 eigenvalue $1$을 갖는다. 축에 수직인 $2$차원 평면에서는 $30^\circ$ 회전이므로 나머지 두 eigenvalue는 non-real complex conjugates이다. 따라서 real eigenvalue는 $1$ 하나뿐이고 답은
+는 고유값 $1$의 고유벡터이다. 축에 수직인 $2$차원 평면에서는 $30^\circ$ 회전이므로 나머지 두 고유값은
+\[
+e^{\pm i\pi/6}
+\]
+이고 실수가 아니다. 따라서 실수 고유값은 $1$ 하나뿐이므로
 \[
 \boxed{1}.
 \]
 \end{solution}
 
 \begin{pastproblem}{2015.17}
-행벡터 (row vector)
+행벡터
 \[
 \mathbf v=\mathbf w=(1\ 2\ 3\ 4)
 \]
-에 대해 $4\times4$ 행렬 $\mathbf v^{\mathsf T}\mathbf w$의 eigenvalue들의 합과 곱을 구하여라.
+에 대해 $4\times4$ 행렬 $\mathbf v^{\mathsf T}\mathbf w$의 고유값들의 합과 곱을 구하여라.
 \end{pastproblem}
 
 \begin{solution}
-eigenvalue들의 합은 trace이므로
+\[
+\mathbf A=\mathbf v^{\mathsf T}\mathbf w
+\]
+는 계수가 $1$인 외적이다. 고유값의 합은 대각합이므로
 \[
 \sum_{i=1}^4\lambda_i
-=\tr(\mathbf v^{\mathsf T}\mathbf w)
+=\tr(\mathbf A)
 =1^2+2^2+3^2+4^2=30.
 \]
-한편 $\mathbf v^{\mathsf T}\mathbf w$는 rank-one outer product이므로 determinant가 $0$이다. 따라서 eigenvalue들의 곱은 $0$이다. 답은
+또한 $4\times4$ 행렬인데 $\rk(\mathbf A)=1$이므로 $\det(\mathbf A)=0$이다. 따라서 고유값의 곱은 $0$이고 답은
 \[
 \boxed{30\text{과 }0}.
 \]
 \end{solution}
 
 \begin{pastproblem}{2017.2}
-Fibonacci sequence가
+피보나치 수열이
 \[
 F_0=0,\qquad F_1=1,\qquad F_{n+1}=F_n+F_{n-1}\quad(n\ge1)
 \]
@@ -292,14 +308,13 @@ F_0=0,\qquad F_1=1,\qquad F_{n+1}=F_n+F_{n-1}\quad(n\ge1)
 \end{pastproblem}
 
 \begin{solution}
-Binet formula
+비네 공식
 \[
-F_n=\frac{\varphi^n-\psi^n}{\sqrt5},
-\quad
+F_n=\frac{\varphi^n-\psi^n}{\sqrt5},\qquad
 \varphi=\frac{1+\sqrt5}{2},\quad
 \psi=\frac{1-\sqrt5}{2}
 \]
-를 쓰면 $|\psi/\varphi|<1$이므로
+을 쓰면 $|\psi/\varphi|<1$이므로
 \[
 \frac{F_{n+1}}{F_n}
 =\varphi\frac{1-(\psi/\varphi)^{n+1}}{1-(\psi/\varphi)^n}
@@ -320,24 +335,27 @@ c_{ij}=\binom{i+j-2}{i-1}
 \end{pastproblem}
 
 \begin{solution}
-Vandermonde identity로
+파스칼형 행렬에서는 삼각분해를 찾는 것이 가장 빠르다. 방데르몽 항등식으로
 \[
 \binom{i+j-2}{i-1}
 =\sum_k\binom{i-1}{k-1}\binom{j-1}{k-1}
 \]
-이므로 $\mathbf C=\mathbf L\mathbf L^{\mathsf T}$로 쓸 수 있다. 여기서 $\mathbf L$은 diagonal이 모두 $1$인 lower triangular matrix이므로
+이므로
 \[
-\det\mathbf C=1.
+\mathbf C=\mathbf L\mathbf L^{\mathsf T},
 \]
-또한 $\mathbf B$는 $(n,n)$ 성분만 $2016$만큼 증가하므로 determinant의 그 성분에 대한 선형성을 쓰면
+여기서 $\mathbf L$은 대각성분이 모두 $1$인 하삼각행렬이다. 따라서
 \[
-\det\mathbf B=\det\mathbf C+2016M_{nn}.
+\det(\mathbf C)=1.
 \]
-$M_{nn}$은 같은 형태의 $(n-1)\times(n-1)$ 행렬의 determinant이므로 역시 $1$이다. 따라서
+$\mathbf B$는 $(n,n)$ 성분만 $2016$만큼 바뀌므로 그 성분에 대한 행렬식의 선형성으로
 \[
-\boxed{\det\mathbf B=2017}.
+\det(\mathbf B)=\det(\mathbf C)+2016M_{nn}.
 \]
-($n=1$에서도 바로 성립한다.)
+$M_{nn}$은 같은 형태의 $(n-1)\times(n-1)$ 행렬식이므로 역시 $1$이다. 따라서
+\[
+\boxed{\det(\mathbf B)=2017}.
+\]
 \end{solution}
 
 \begin{pastproblem}{2018.3}
@@ -348,11 +366,12 @@ $M_{nn}$은 같은 형태의 $(n-1)\times(n-1)$ 행렬의 determinant이므로 �
 \end{pastproblem}
 
 \begin{solution}
-이는 alternating harmonic series의 절반이다.
+분모가 모두 짝수이므로 교대조화급수의 정확히 절반이다:
 \[
-1-\frac12+\frac13-\frac14+\cdots=\ln2
+\frac12-\frac14+\frac16-\frac18+\cdots
+=\frac12\left(1-\frac12+\frac13-\frac14+\cdots\right).
 \]
-이므로
+교대조화급수의 합이 $\ln2$이므로
 \[
 \boxed{\frac{\ln2}{2}}.
 \]
@@ -366,11 +385,15 @@ $M_{nn}$은 같은 형태의 $(n-1)\times(n-1)$ 행렬의 determinant이므로 �
 \end{pastproblem}
 
 \begin{solution}
-$u=2x$로 두면
+표준 $\arctan$ 적분으로 바로 맞춘다. $u=2x$이면 $\dd x=\dd u/2$이므로
 \[
 \int_{-\infty}^{\infty}\frac{8}{1+4x^2}\,\dd x
 =4\int_{-\infty}^{\infty}\frac{1}{1+u^2}\,\dd u
-=\boxed{4\pi}.
+=4\pi.
+\]
+따라서
+\[
+\boxed{4\pi}.
 \]
 \end{solution}
 
@@ -379,36 +402,43 @@ $u=2x$로 두면
 \end{pastproblem}
 
 \begin{solution}
-한 번의 결과를 $Y$라 하면
+곱의 분포를 구할 필요가 없다. 한 번의 결과를 $Y$라 하면
 \[
 \Exp[Y]=\frac{-2+0+2+3+4+5}{6}=2.
 \]
-독립인 결과를 $Y_1,\ldots,Y_{10}$이라 하면 $X=Y_1\cdots Y_{10}$이므로
+독립인 열 번의 결과를 $Y_1,\ldots,Y_{10}$이라 하면 $X=Y_1\cdots Y_{10}$이므로 독립성에 의해
 \[
-\Exp[X]=\prod_{i=1}^{10}\Exp[Y_i]=2^{10}=\boxed{1024}.
+\Exp[X]=\prod_{i=1}^{10}\Exp[Y_i]=2^{10}.
+\]
+따라서
+\[
+\boxed{1024}.
 \]
 \end{solution}
 
 \begin{pastproblem}{2020.4}
-3차원 중력장에서 물체가 점 $\mathbf a$에서 $\mathbf b$로 이동할 때 potential energy의 변화가 경로와 무관하다고 하자. 다음 중 이 현상과 가장 직접적인 관련이 적은 수학적 사실을 고르라.
+3차원 중력장에서 물체가 점 $\mathbf a$에서 $\mathbf b$로 이동할 때 퍼텐셜 에너지의 변화가 경로와 무관하다고 하자. 다음 중 이 현상과 가장 직접적인 관련이 적은 수학적 사실을 고르라.
 \begin{problemchoices}
-\item simply connected domain에서 $C^1$ curl-free vector field는 potential의 gradient이다.
-\item Stokes' theorem.
-\item $1/\|\mathbf x\|$의 Laplacian은 상수배를 제외하면 delta distribution이다.
-\item gradient의 curl은 항상 $0$이다.
+\item 단일연결 영역에서 $C^1$ 벡터장이 회전이 $0$이면 퍼텐셜의 그래디언트이다.
+\item 스토크스 정리.
+\item $1/\|\mathbf x\|$의 라플라시안은 상수배를 제외하면 델타분포이다.
+\item 그래디언트의 회전은 항상 $0$이다.
 \end{problemchoices}
 \end{pastproblem}
 
 \begin{solution}
-경로 독립성은 force field가 conservative라는 뜻이다. $\mathbf F=-\nabla U$이면
+경로 독립성의 핵심은 힘장이 보존장이라는 것이다. $\mathbf F=-\nabla U$이면
 \[
-U(\mathbf b)-U(\mathbf a)=-\int_{\mathbf a}^{\mathbf b}\mathbf F\cdot\dd\mathbf r
+U(\mathbf b)-U(\mathbf a)
+=-\int_{\mathbf a}^{\mathbf b}\mathbf F\cdot\dd\mathbf r
 \]
-는 끝점에만 의존한다. (1), (4)는 conservative field의 기본 성질이고, (2)는 zero curl과 closed-loop circulation을 연결한다. 반면
+는 끝점에만 의존한다. (1), (4)는 보존장의 기본 성질이고, (2)는 스토크스 정리를 통해 회전과 폐곡선 순환을 연결한다.
+
+반면
 \[
 \Delta\!\left(\frac1{\|\mathbf x\|}\right)=-4\pi\delta_0
 \]
-는 Newtonian gravity에서 중요하지만 path independence의 직접적 이유는 아니다. 따라서
+는 뉴턴 중력에서 중요한 사실이지만 경로 독립성의 직접적인 이유는 아니다. 따라서
 \[
 \boxed{(3)}.
 \]
@@ -422,35 +452,36 @@ A(n)=\frac1{\sqrt5}\left(\frac{1+\sqrt5}{2}\right)^{n+1}
 \end{pastproblem}
 
 \begin{solution}
-$\varphi=(1+\sqrt5)/2$, $\psi=(1-\sqrt5)/2$라 하면 Binet formula에서
+비네 공식에서
 \[
-F_8=\frac{\varphi^8-\psi^8}{\sqrt5},
-\qquad
-A(7)=F_8+\frac{\psi^8}{\sqrt5}.
+F_8=\frac{\varphi^8-\psi^8}{\sqrt5},\qquad
+\varphi=\frac{1+\sqrt5}{2},\quad
+\psi=\frac{1-\sqrt5}{2}.
 \]
-$|\psi|<1$이고 correction의 절댓값이 $1/2$보다 작으므로 가장 가까운 정수는
+주어진 값은
+\[
+A(7)=\frac{\varphi^8}{\sqrt5}=F_8+\frac{\psi^8}{\sqrt5}.
+\]
+$|\psi|<1$이므로 보정항의 절댓값은 $1/2$보다 작다. 따라서 가장 가까운 정수는
 \[
 \boxed{F_8=21}.
 \]
 \end{solution}
 
 \begin{pastproblem}{2021.3}
-다음 중 finitely generated가 아닌 group을 모두 고르라.
+다음 중 유한생성군이 아닌 것을 모두 고르라.
 \begin{problemchoices}
-\item 유한개의 puncture를 가진 open unit disk의 fundamental group.
+\item 유한개의 점을 뺀 열린 단위원판의 기본군.
 \item $\SL_2(\Z)$.
 \item 곱셈에 대한 $\C^\times$.
-\item 가장 큰 sporadic finite simple group인 Monster group.
+\item 가장 큰 산재 유한단순군인 몬스터군.
 \end{problemchoices}
 \end{pastproblem}
 
 \begin{solution}
-(1)은 puncture 수만큼의 generator를 갖는 finite-rank free group이다. (2)는 예를 들어
-\[
-\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad
-\begin{pmatrix}1&1\\0&1\end{pmatrix}
-\]
-로 생성된다. (4)는 finite group이므로 finitely generated이다. 반면 finitely generated group은 at most countable인데 $\C^\times$는 uncountable이다. 따라서 답은
+(1)은 뺀 점의 수만큼의 생성원을 갖는 자유군이고, (2) $\SL_2(\Z)$도 유한생성이다. (4) 몬스터군은 유한군이므로 당연히 유한생성이다.
+
+반면 유한생성군은 유한개의 유한 문자열로 원소를 표현하므로 많아야 가산집합이다. $\C^\times$는 비가산이므로 유한생성일 수 없다. 따라서
 \[
 \boxed{(3)\ \C^\times}.
 \]
@@ -465,25 +496,26 @@ $|\psi|<1$이고 correction의 절댓값이 $1/2$보다 작으므로 가장 가�
 1&2&3
 \end{pmatrix}
 \]
-의 모든 고유값 (eigenvalue)과 중복도 (multiplicity)를 구하고, $\mathbf A$가 diagonalizable인지 판정하여라.
+의 모든 고유값과 중복도를 구하고, $\mathbf A$가 대각화 가능한지 판정하여라.
 \end{pastproblem}
 
 \begin{solution}
+행렬을 외적으로 보면 구조가 바로 드러난다:
 \[
 \mathbf A=
-\begin{pmatrix}1\\1\\1\end{pmatrix}(1\ 2\ 3)
+\begin{pmatrix}1\\1\\1\end{pmatrix}(1\ 2\ 3).
 \]
-이므로 $\rk(\mathbf A)=1$, 따라서 nullity는 $2$이고 $0$의 eigenspace 차원은 $2$이다. 또한
+따라서 $\rk(\mathbf A)=1$이고 영공간의 차원은 $2$이므로 $0$의 고유공간 차원은 $2$이다. 또
 \[
 \mathbf A(1,1,1)^{\mathsf T}=6(1,1,1)^{\mathsf T},
 \]
-따라서 $6$도 eigenvalue이다. trace가 $6$이므로 eigenvalue는
+이므로 $6$도 고유값이다. 따라서 고유값은
 \[
 6,0,0.
 \]
-$6$의 eigenspace 차원 $1$과 $0$의 eigenspace 차원 $2$의 합이 $3$이므로 diagonalizable이다. 즉
+서로 독립인 고유벡터가 $1+2=3$개 존재하므로 $\mathbf A$는 대각화 가능하다. 즉
 \[
-\boxed{6\text{ (mult. }1),\quad0\text{ (mult. }2),\quad\mathbf A\text{ is diagonalizable}}.
+\boxed{6\text{ (중복도 }1),\quad0\text{ (중복도 }2),\quad\mathbf A\text{는 대각화 가능}}.
 \]
 \end{solution}
 
@@ -499,14 +531,16 @@ $6$의 eigenspace 차원 $1$과 $0$의 eigenspace 차원 $2$의 합이 $3$이므
 \end{pastproblem}
 
 \begin{solution}
+이 문제는 필요한 정도의 수치 비교가 가장 빠르다:
 \[
-e^\pi\approx23.1407,\quad
-\pi^e\approx22.4592,\quad
-7\pi\approx21.9911,\quad
-\binom72=21,\quad
-4!=24.
+e^\pi\approx23.1407,\qquad
+\pi^e\approx22.4592,\qquad
+7\pi\approx21.9911,
 \]
-따라서
+\[
+\binom72=21,\qquad 4!=24.
+\]
+따라서 가장 큰 수는
 \[
 \boxed{(5)\ 4!}.
 \]
@@ -520,11 +554,16 @@ e^\pi\approx23.1407,\quad
 \end{pastproblem}
 
 \begin{solution}
-$u=x-2$로 두고
+평행이동은 적분값을 바꾸지 않는다. $u=x-2$라 두면
 \[
-\int_{-\infty}^{\infty}\frac{1}{u^2+a^2}\,\dd u=\frac\pi a
+\int_{-\infty}^{\infty}\frac{3}{(x-2)^2+7}\,\dd x
+=3\int_{-\infty}^{\infty}\frac{1}{u^2+(\sqrt7)^2}\,\dd u.
 \]
-를 쓰면 $a=\sqrt7$이므로
+표준식
+\[
+\int_{-\infty}^{\infty}\frac{\dd u}{u^2+a^2}=\frac\pi a
+\]
+을 쓰면
 \[
 \boxed{\frac{3\pi}{\sqrt7}}.
 \]
@@ -535,15 +574,19 @@ $u=x-2$로 두고
 \end{pastproblem}
 
 \begin{solution}
-\[
-X,Y\sim\Bin\left(3,\frac12\right)
-\]
-이고 서로 독립이므로
+$X,Y\sim\Bin(3,1/2)$이고 서로 독립이다. 따라서
 \[
 \Prob(X=Y)
 =\sum_{k=0}^3\Prob(X=k)\Prob(Y=k)
-=\frac1{64}\sum_{k=0}^3\binom3k^2
-=\boxed{\frac5{16}}.
+=\frac1{64}\sum_{k=0}^3\binom3k^2.
+\]
+방데르몽 항등식으로
+\[
+\sum_{k=0}^3\binom3k^2=\binom63=20.
+\]
+따라서
+\[
+\boxed{\frac{20}{64}=\frac5{16}}.
 \]
 \end{solution}
 
@@ -552,25 +595,32 @@ $(0,0)$에서 $(6,6)$까지 매번 오른쪽 또는 위로 한 칸씩 이동한�
 \end{pastproblem}
 
 \begin{solution}
-제약이 없으면 경로 수는 $\binom{12}{6}$이다. 처음으로 $y=x+1$에 도달할 때까지의 경로를 대각선에 대해 반사하는 reflection principle을 쓰면 금지된 경로 수는 $\binom{12}{5}$이다. 따라서
+제약이 없으면 경로는 $\binom{12}{6}$개이다. 금지된 경로, 즉 처음으로 $y=x+1$에 도달하는 경로의 앞부분을 직선 $y=x$에 대해 반사하면 $\binom{12}{5}$개의 경로와 일대일 대응한다. 따라서
 \[
-\binom{12}{6}-\binom{12}{5}=924-792=\boxed{132}.
+\binom{12}{6}-\binom{12}{5}
+=924-792
+=132.
 \]
-이는 Catalan number $C_6$와 같다.
+이는 카탈란 수 $C_6$이므로
+\[
+\boxed{132}.
+\]
 \end{solution}
 
 \begin{pastproblem}{2023.3}
 지구 표면의 한 점에서 출발하여 남쪽으로 $5\,\mathrm{km}$, 동쪽으로 $5\,\mathrm{km}$, 북쪽으로 $5\,\mathrm{km}$ 이동했더니 처음 점으로 돌아왔다. 이러한 점의 개수를 구하여라.
 
-지구는 완전한 구라고 가정한다. 북극에서는 north/east/west, 남극에서는 south/east/west 방향이 정의되지 않으며, 이동 중 이런 정의되지 않은 방향이 필요한 시작점은 제외한다.
+지구는 완전한 구라고 가정한다. 북극에서는 북쪽·동쪽·서쪽, 남극에서는 남쪽·동쪽·서쪽 방향이 정의되지 않으며, 이동 중 이런 정의되지 않은 방향이 필요한 시작점은 제외한다.
 \end{pastproblem}
 
 \begin{solution}
-북극은 하나의 해이다. 또한 남극 부근에서, 남쪽으로 $5\,\mathrm{km}$ 이동한 뒤 도달하는 위도원의 둘레가
+북극은 하나의 해이다. 남쪽으로 $5\,\mathrm{km}$ 간 뒤 동쪽 이동이 정확히 정수 바퀴가 되면 다시 같은 경도점으로 돌아오므로, 이후 북쪽으로 $5\,\mathrm{km}$ 가서 출발점으로 복귀한다.
+
+남극 부근에서 남쪽으로 $5\,\mathrm{km}$ 이동한 뒤 만나는 위도원의 둘레가
 \[
 \frac5n\,\mathrm{km}\qquad(n\in\N)
 \]
-가 되도록 시작점을 잡으면 동쪽으로 $5\,\mathrm{km}$ 이동하는 동안 정확히 $n$바퀴를 돌아 같은 점으로 돌아온다. 그 뒤 북쪽으로 $5\,\mathrm{km}$ 이동하면 출발점으로 복귀한다. 남극에 가까워질수록 위도원의 둘레는 $0$으로 가므로 이런 위도원이 무한히 존재하고, 각 경우 시작점은 한 위도원 전체를 이룬다. 따라서 답은
+가 되도록 시작점을 잡으면 동쪽으로 $5\,\mathrm{km}$ 이동하는 동안 정확히 $n$바퀴 돈다. 남극에 가까워질수록 위도원의 둘레가 $0$으로 가므로 이런 위도원이 무한히 많고, 각 조건에 대응하는 출발 위도원의 모든 점이 가능하다. 따라서
 \[
 \boxed{\text{무한히 많다}}.
 \]
@@ -581,31 +631,37 @@ $(0,0)$에서 $(6,6)$까지 매번 오른쪽 또는 위로 한 칸씩 이동한�
 \[
 f_\lambda(x)=\lambda f\left(\frac{x}{\lambda}\right)
 \]
-를 $x\in(-\lambda,\lambda)$에서 정의한다. 모든 $\lambda_i\to\infty$에 대해 $f_{\lambda_i}\to0$가 $\R$에서 locally uniformly 성립한다고 하자. 다음 명제의 참·거짓을 판정하여라.
+를 $x\in(-\lambda,\lambda)$에서 정의한다. 모든 $\lambda_i\to\infty$에 대해 $f_{\lambda_i}\to0$가 $\R$에서 국소 균등하게 성립한다고 하자. 다음 명제의 참·거짓을 판정하여라.
 \[
 f\text{는 }0\text{에서 미분 가능하고 }f'(0)=0.
 \]
 \end{pastproblem}
 
 \begin{solution}
-고정된 점에서의 수렴을 쓰면 먼저
+국소 균등수렴은 특히 각 고정점에서의 수렴을 준다. $x=0$을 대입하면
 \[
-\lambda f(0)\to0
+\lambda f(0)\to0,
 \]
-이므로 $f(0)=0$. 또한 $x=1,-1$에서
+이므로 $f(0)=0$이다.
+
+이제 임의의 $h_n\to0$ ($h_n\ne0$)를 잡고
 \[
-\lambda f(1/\lambda)\to0,\qquad
-\lambda f(-1/\lambda)\to0.
+\lambda_n=\frac1{|h_n|}\to\infty,
+\qquad
+x_n=\sgn(h_n)\in\{-1,1\}
 \]
-$h=1/\lambda>0$이면
+라 두자. $\{-1,1\}$은 콤팩트이고 $f_{\lambda_n}\to0$가 국소 균등이므로
 \[
-\frac{f(h)-f(0)}h=\lambda f(1/\lambda)\to0,
+f_{\lambda_n}(x_n)=\lambda_n f(h_n)\to0.
 \]
-$h=-1/\lambda<0$이면
+따라서
 \[
-\frac{f(h)-f(0)}h=-\lambda f(-1/\lambda)\to0.
+\frac{f(h_n)-f(0)}{h_n}
+=\frac{f(h_n)}{h_n}
+=\sgn(h_n)\lambda_n f(h_n)
+\to0.
 \]
-양쪽 미분계수가 모두 $0$이므로 명제는
+임의의 $h_n\to0$에 대해 성립하므로 $f$는 $0$에서 미분 가능하고 $f'(0)=0$이다. 따라서
 \[
 \boxed{\text{참}}.
 \]
@@ -626,32 +682,36 @@ $h=-1/\lambda<0$이면
 \end{pastproblem}
 
 \begin{solution}
-$A,D,B$가 일직선이므로 $\angle BDC=135^\circ$, 따라서 $\triangle BCD$에서 $\angle CBD=30^\circ$이다. Sine Rule로
+$A,D,B$가 일직선이므로 $\angle BDC=135^\circ$. 따라서 $\triangle BCD$에서
+\[
+\angle CBD=180^\circ-135^\circ-15^\circ=30^\circ.
+\]
+사인법칙으로
 \[
 \frac{DB}{CD}=\frac{\sin15^\circ}{\sin30^\circ}=2\sin15^\circ.
 \]
-한편 $\triangle ACD$에서 $\angle CAD=135^\circ-\theta$이므로
+한편 $\theta=\angle ACD$라 하면 $\triangle ACD$에서 $\angle CAD=135^\circ-\theta$이므로
 \[
 \frac{AD}{CD}=\frac{\sin\theta}{\sin(135^\circ-\theta)}.
 \]
-$D$가 $AB$의 중점이어서 $AD=DB$이므로
+$D$가 $AB$의 중점이어서 $AD=DB$이므로 두 식을 같게 놓는다:
 \[
 \frac{\sin\theta}{\sin(135^\circ-\theta)}=2\sin15^\circ.
 \]
-정리하면 $\tan\theta=1/\sqrt3$이고, $\theta$는 삼각형의 내각이므로
+정리하면 $\tan\theta=1/\sqrt3$. 내각이므로
 \[
 \boxed{\theta=30^\circ}.
 \]
 \end{solution}
 
 \begin{pastproblem}{2024.4}
-$C\subseteq\R^3$가 convex이고 다음을 만족한다고 하자.
+$C\subseteq\R^3$가 볼록이고 다음을 만족한다고 하자.
 \begin{problemchoices}
 \item
 \[
 C\cap\{z=0\}=\{(x,y,0)\mid x^2+4y^2\le1\}.
 \]
-\item $C$는 $z$-axis를 포함한다.
+\item $C$는 $z$축을 포함한다.
 \end{problemchoices}
 $-1\le z\le1$에서 $C$의 부피를 구하여라. 주어진 정보만으로 결정할 수 없다면 그렇게 답하여라.
 \begin{problemchoices}
@@ -666,21 +726,24 @@ $-1\le z\le1$에서 $C$의 부피를 구하여라. 주어진 정보만으로 결
 \[
 E=\{(x,y)\in\R^2\mid x^2+4y^2\le1\}
 \]
-라 두면 $E$의 넓이는 $\pi/2$이다. 높이 $z$에서의 단면을 $C_z$라 하자.
+라 두면 $\area(E)=\pi/2$이다. 높이 $z$의 수평단면을 $C_z$라 하자.
 
-먼저 $(x,y,z)\in C$인데 $(x,y)\notin E$라고 가정한다. $C$가 $z$-axis 전체를 포함하므로 적절한 $(0,0,t)\in C$와의 선분을 취해 $z=0$ 평면과 만나는 점을 $(\alpha x,\alpha y,0)$로 만들 수 있고, $\alpha<1$을 $1$에 충분히 가깝게 잡으면 이 점도 $E$ 밖이다. 이는 $C\cap\{z=0\}=E\times\{0\}$에 모순이다. 따라서 $C_z\subseteq E$.
+먼저 $C_z\subseteq E$를 보인다. 만약 $(x,y,z)\in C$인데 $(x,y)\notin E$라면, $C$가 $z$축 전체를 포함하므로 적절한 $(0,0,t)\in C$와 잇는 선분이 $z=0$에서 $(\alpha x,\alpha y,0)$을 지나도록 할 수 있다. $\alpha<1$을 $1$에 충분히 가깝게 잡으면 이 점도 $E$ 밖이므로 $C\cap\{z=0\}=E\times\{0\}$에 모순이다.
 
-반대로 $(x,y)\in E^\circ$이면 $\alpha<1$을 $1$에 충분히 가깝게 잡아 $(x/\alpha,y/\alpha,0)\in C$로 만들 수 있다. 이를 $z$-axis 위의 $(0,0,z/(1-\alpha))\in C$와 convex combination하면 $(x,y,z)\in C$이므로 $E^\circ\subseteq C_z$이다. 따라서 모든 $z$에서
+반대로 $(x,y)\in E^\circ$라 하자. $\alpha<1$을 $1$에 충분히 가깝게 잡아 $(x/\alpha,y/\alpha,0)\in C$로 만들고, 이를 $z$축 위의 $(0,0,z/(1-\alpha))\in C$와 볼록결합하면 $(x,y,z)\in C$이다. 따라서
 \[
-E^\circ\subseteq C_z\subseteq E,
+E^\circ\subseteq C_z\subseteq E.
 \]
-즉 단면 넓이는 항상 $\pi/2$이다. Cavalieri 또는 적분으로
+모든 $z$에서 단면 넓이가 $\pi/2$이므로 카발리에리 원리 또는 적분으로
 \[
-\operatorname{Vol}(C\cap\{-1\le z\le1\})
+\vol\bigl(C\cap\{-1\le z\le1\}\bigr)
 =\int_{-1}^1\frac\pi2\,\dd z
-=\boxed{\pi}.
+=\pi.
 \]
-따라서 선택지는 $\boxed{(2)}$이다.
+따라서
+\[
+\boxed{(2)\ \pi}.
+\]
 \end{solution}
 
 \begin{pastproblem}{2025.1}
@@ -688,7 +751,7 @@ E^\circ\subseteq C_z\subseteq E,
 \end{pastproblem}
 
 \begin{solution}
-첫 시행 뒤에는 매 시행마다 직전 결과와 같은 면이 나오면 멈추며 그 확률은 $1/2$이다. 첫 시행 이후 추가 횟수를 $G$라 하면, 성공 시행을 포함해서 세는 convention에서
+첫 시행은 반드시 필요하다. 그 뒤에는 매 시행에서 직전 결과와 같은 면이 나오면 멈추며 그 확률은 $1/2$이다. 첫 시행 이후 필요한 추가 시행 횟수를 $G$라 하면, 성공 시행을 포함해서 세는 규약에서
 \[
 G\sim\Geom(1/2),\qquad \Exp[G]=2.
 \]
@@ -707,19 +770,19 @@ x=0,\qquad y=0,\qquad z=0,\qquad x+y+z=3
 \end{pastproblem}
 
 \begin{solution}
-세 좌표평면에 접하는 반지름 $r>0$인 구의 중심은
+반지름을 $r$라 하자. 세 좌표평면에 모두 접하려면 중심의 각 좌표 절댓값이 $r$이어야 한다. 가능한 부호 선택 가운데 $x+y+z$가 가장 큰 경우가 네 번째 평면에 가장 빨리 닿으므로, 최소 반지름은 제1옥탄트의 중심
 \[
-(\sigma_1r,\sigma_2r,\sigma_3r),\qquad \sigma_i\in\{-1,1\}
+(r,r,r)
 \]
-꼴이다. $k=\sigma_1+\sigma_2+\sigma_3\in\{-3,-1,1,3\}$라 두면 네 번째 평면과의 접선 조건은
+에서 얻어진다. 이 중심에서 평면까지의 거리가 다시 $r$이므로
 \[
-\frac{|kr-3|}{\sqrt3}=r.
+\frac{3-3r}{\sqrt3}=r.
 \]
-가능한 양의 해를 비교하면 최소는 $k=3$에서
+따라서
 \[
-r=\frac3{3+\sqrt3}=\frac{3-\sqrt3}{2}
+r=\frac3{3+\sqrt3}=\frac{3-\sqrt3}{2}.
 \]
-이다. 따라서 중심도 각 좌표가 $r$이고, 구의 방정식은
+그러므로 가장 작은 구는
 \[
 \boxed{
 \left(x-\frac{3-\sqrt3}{2}\right)^2+
@@ -741,11 +804,13 @@ $1$부터 $200$까지 번호가 적힌 카드 $200$장이 모두 앞면을 보�
 \end{pastproblem}
 
 \begin{solution}
-번호가 $n$인 카드는 $n$의 양의 약수 개수 $\tau(n)$만큼 뒤집힌다. $\tau(n)$이 홀수인 경우는 $n$이 완전제곱수 (perfect square)일 때뿐이다. $200$ 이하의 제곱수는
+번호가 $n$인 카드는 $n$의 양의 약수 하나마다 한 번씩, 즉 $\tau(n)$번 뒤집힌다. $\tau(n)$이 홀수인 것은 약수가 짝을 이루지 않는 완전제곱수일 때뿐이다.
+
+$200$ 이하의 완전제곱수는
 \[
 1^2,2^2,\ldots,14^2
 \]
-의 $14$개이므로 이 카드들만 뒷면이 된다. 따라서 앞면 카드 수는
+의 $14$개이므로 이 카드들만 처음 상태와 반대인 뒷면이 된다. 따라서 앞면 카드 수는
 \[
 200-14=\boxed{186},
 \]
@@ -757,15 +822,19 @@ $11^9$과 $9^{11}$ 중 더 큰 수를 구하여라.
 \end{pastproblem}
 
 \begin{solution}
-로그를 취하면 $9\ln11$과 $11\ln9$를 비교하면 된다. 함수
+양의 거듭제곱 비교에서는 로그를 취한다. $11^9$과 $9^{11}$을 비교하는 것은
+\[
+9\ln11\quad\text{과}\quad11\ln9
+\]
+을 비교하는 것과 같다. 함수
 \[
 f(x)=\frac{\ln x}{x}
 \]
-는 $x>e$에서 감소한다. $9<11$이므로
+는 $x>e$에서 감소하고 $9<11$이므로
 \[
-\frac{\ln9}{9}>\frac{\ln11}{11},
+\frac{\ln9}{9}>\frac{\ln11}{11}.
 \]
-즉 $11\ln9>9\ln11$이다. 따라서
+따라서 $11\ln9>9\ln11$이고
 \[
 \boxed{9^{11}>11^9}.
 \]
@@ -776,7 +845,7 @@ f(x)=\frac{\ln x}{x}
 \end{pastproblem}
 
 \begin{solution}
-원하는 기댓값을 $E$라 하자. 첫 눈이 $6$이면 끝나고, $k\in\{1,\ldots,5\}$이면 $k$를 더한 뒤 같은 상태로 돌아간다. 따라서
+첫 단계 분석이 가장 직접적이다. 원하는 기댓값을 $E$라 하자. 첫 눈이 $6$이면 $6$을 더하고 끝난다. $k\in\{1,\ldots,5\}$이면 $k$를 더한 뒤 다시 같은 상태로 돌아간다. 따라서
 \[
 E=\frac16\cdot6+\frac16\sum_{k=1}^5(k+E)
 =1+\frac{15+5E}{6}.
@@ -798,20 +867,21 @@ E=\frac16\cdot6+\frac16\sum_{k=1}^5(k+E)
 \end{pastproblem}
 
 \begin{solution}
+필요한 정밀도까지만 비교한다:
 \[
 e^\pi\approx23.14,\qquad
 \pi^e\approx22.46,\qquad
 \sqrt{500}\approx22.36,\qquad
 7\pi\approx21.99.
 \]
-따라서
+따라서 가장 큰 수는
 \[
 \boxed{(1)\ e^\pi}.
 \]
 \end{solution}
 
 \begin{pastproblem}{2025.13}
-공정한 동전을 $50$번 던져 $H$ 또는 $T$로 기록한다. 같은 결과가 연속해서 나타나는 최대 연속 구간 (run)을 run이라 하자. 예를 들어 $HHTTTH$에는 $HH,TTT,H$의 $3$개 run이 있다. run의 개수의 기댓값을 구하여라.
+공정한 동전을 $50$번 던져 $H$ 또는 $T$로 기록한다. 같은 결과가 이어지는 최대 연속 구간을 런(run)이라 하자. 예를 들어 $HHTTTH$에는 $HH,TTT,H$의 $3$개의 런이 있다. 런의 개수의 기댓값을 구하여라.
 \begin{problemchoices}
 \item 24.5
 \item 25
@@ -821,21 +891,21 @@ e^\pi\approx23.14,\qquad
 \end{pastproblem}
 
 \begin{solution}
-첫 시행은 항상 하나의 run을 시작한다. $2\le i\le50$에서 $i$번째 시행이 직전 시행과 다를 때 새 run이 시작한다고 하고 그 indicator를 $I_i$라 하면
+첫 시행은 항상 첫 번째 런을 시작한다. $2\le i\le50$에서 $i$번째 결과가 직전 결과와 다를 때 새 런이 시작한다고 하고 그 지시변수를 $I_i$라 하자. 그러면
 \[
 R=1+\sum_{i=2}^{50}I_i,
 \qquad
 \Exp[I_i]=\frac12.
 \]
-기댓값의 선형성 (linearity of expectation)으로
+기댓값의 선형성으로
 \[
 \Exp[R]=1+49\cdot\frac12=\boxed{25.5}.
 \]
-따라서 선택지는 $\boxed{(3)}$이다.
+따라서 $\boxed{(3)}$이다.
 \end{solution}
 
 \begin{pastproblem}{2025.17}
-공정한 육면체 주사위를 모든 $6$개 면이 적어도 한 번씩 나올 때까지 던진다. 모든 even-numbered face가 한 번씩 나오기 전에 odd-numbered face가 한 번도 나오지 않을 확률을 구하여라.
+공정한 육면체 주사위를 모든 $6$개 면이 적어도 한 번씩 나올 때까지 던진다. 모든 짝수 눈이 한 번씩 나오기 전에 홀수 눈이 한 번도 나오지 않을 확률을 구하여라.
 \begin{problemchoices}
 \item $20\%$
 \item $15\%$
@@ -845,12 +915,12 @@ R=1+\sum_{i=2}^{50}I_i,
 \end{pastproblem}
 
 \begin{solution}
-반복해서 나온 면은 무시하고 새로운 면이 처음 등장하는 순서만 본다. 조건은 처음 세 distinct faces가 정확히 $2,4,6$인 것이다. 따라서
+반복해서 나온 면은 모두 무시하고, 여섯 면이 \emph{처음 등장하는 순서}만 본다. 모든 순서는 대칭적으로 동일한 확률을 가진다. 원하는 사건은 처음 등장한 서로 다른 세 면이 $2,4,6$인 경우이므로
 \[
 \frac36\cdot\frac25\cdot\frac14
 =\frac1{20}=5\%.
 \]
-답은
+따라서
 \[
 \boxed{(4)\ 5\%}.
 \]
@@ -867,7 +937,7 @@ $7^{123}$의 마지막 두 자리를 두 자리 수로 나타내어라.
 \end{pastproblem}
 
 \begin{solution}
-mod $100$에서
+큰 지수는 법을 정한 뒤 주기를 먼저 찾는다. 법 $100$에서
 \[
 7^4=2401\equiv1\pmod{100},
 \qquad
@@ -875,9 +945,11 @@ mod $100$에서
 \]
 따라서
 \[
-7^{123}\equiv(7^4)^{30}7^3\equiv343\equiv43\pmod{100}.
+7^{123}\equiv(7^4)^{30}7^3
+\equiv343
+\equiv43\pmod{100}.
 \]
-답은
+마지막 두 자리는
 \[
 \boxed{(3)\ 43}.
 \]

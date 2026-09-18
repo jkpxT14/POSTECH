@@ -43,7 +43,7 @@ Analyze continuation to 20 s cumulative:
 - item and initial order/item choice APIs;
 - one-ply exact search correctness;
 - `teams W KAIST B POSTECH` + `matchpk 11 10 6` -> internal `quiz 10-11`;
-- browser/analyzer contract: Top 3, 10 -> 20 s continuation, fixed `Q[POSTECH, KAIST]`, reverse school-role mapping, and embedded-worker identity;
-- all 9 handbook games / 180 quiz rows for unilateral-item P/K -> W/B mapping.
+- browser/analyzer contract: Top 3, 10 -> 20 s continuation, fixed `Q[POSTECH, KAIST]`, reverse school-role mapping, manual resignation record round-trip, no auto-resign in the embedded search worker, and embedded-worker identity;
+- all 11 handbook games, including the 11-round resignation game for unilateral-item P/K -> W/B mapping.
 
 The source package deliberately excludes compiled executables, build directories, logs, `.synctex.gz`, and historical patch artifacts.

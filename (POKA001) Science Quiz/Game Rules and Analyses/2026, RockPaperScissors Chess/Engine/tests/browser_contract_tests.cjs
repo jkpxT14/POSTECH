@@ -5,8 +5,8 @@ const path = require('path');
 
 const base = path.resolve(__dirname, '../..');
 const html = fs.readFileSync(path.join(base, 'RockPaperScissorsChess.html'), 'utf8');
-assert.ok(html.includes('<meta name="rpsc-version" content="0.24.1">'));
-assert.ok(html.includes('ANALYSIS_ENGINE_SIGNATURE="0.24.1-pb3-timeplan"'));
+assert.ok(html.includes('<meta name="rpsc-version" content="0.24.2">'));
+assert.ok(html.includes('ANALYSIS_ENGINE_SIGNATURE="0.24.2-pb3-timeplan-resign"'));
 assert.ok(html.includes('ms:10000,multipv:3'), 'default analysis keeps Top 3 for 10 s');
 assert.ok(html.includes('20000-seedElapsed'), 'Analyze continues cached search toward cumulative 20 s');
 
@@ -35,6 +35,28 @@ assert.strictEqual(run('rg.teams.POSTECH.items.St'), 1);
 assert.strictEqual(run('rg.teams.KAIST.items.Ro'), 1);
 assert.ok(run('recordText(rg)').includes('[QOrder "POSTECH, KAIST"]'));
 
+ui.resignation = `[Format "3"]
+[Event "Resignation Test"]
+[Date "2026.09.17"]
+[White "Engine"]
+[Black "Squad"]
+[WhiteTeam "KAIST"]
+[BlackTeam "POSTECH"]
+[Result "1-0"]
+[Termination "Resignation"]
+[Score "1-0"]
+[Quiz "1-0"]
+[Captures "0-0"]
+[QOrder "POSTECH, KAIST"]
+
+1. Q[0, 1] W+Pu`;
+run('rr=parseAndReplayDetailed(resignation).game');
+assert.strictEqual(run('rr.result'), 'KAIST');
+assert.strictEqual(run('rr.termination.type'), 'Resignation');
+assert.strictEqual(run('rr.termination.resignedTeam'), 'POSTECH');
+assert.ok(run('recordText(rr)').includes('[Termination "Resignation"]'));
+assert.ok(html.includes('id="resignBtn"'), 'Analysis Board must expose a manual Resign control');
+
 // Build a normal analyzable position with the UI's exact state encoder.
 run(`game=freshGame(); game.order={white:C.POSTECH,black:C.KAIST,source:'test'}; game.pieces=initialPieces(C.POSTECH,C.KAIST); game.phase='MOVE'; game.moveRole='W'; game.rounds=[{n:1,q:{POSTECH:true,KAIST:true},itemGain:null,moves:[],complete:false}]`);
 ui.state = JSON.parse(JSON.stringify(run('toEngineState()')));
@@ -49,6 +71,7 @@ assert.strictEqual(new Set(result.candidates.slice(0,3).map(c => sig(c.move))).s
 // Embedded worker must remain the exact strength-tested reference core modulo HTML newlines.
 const ref = fs.readFileSync(path.join(base, 'Engine/reference/rpsc_engine_0.24.0.js'), 'utf8').replace(/^\n+|\n+$/g, '');
 const embedded = scripts[0].replace(/^\n+|\n+$/g, '');
+assert.ok(!/resign/i.test(embedded), 'embedded search worker must never auto-resign');
 assert.strictEqual(embedded, ref, 'embedded worker diverged from strength-tested reference');
 
 console.log('Browser/engine contract tests passed.');

@@ -31,3 +31,7 @@ No compiled binaries are committed in this package; build them locally from sour
 - Format 3 quiz notation in the Analysis Board remains `Q[POSTECH, KAIST]` regardless of which school is White.
 
 Use `help` in `rpsc-engine` for supported commands.
+
+## Resignation boundary
+
+Practice/analysis resignation is intentionally handled by the Analysis Board and Format 3 record layer. The engine does not auto-resign, does not convert an evaluation threshold into a result, and continues to search for the best move in arbitrarily unfavorable positions.
