@@ -1,0 +1,254 @@
+\pdfminorversion=7
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ChemistryProblemsStyle}[2026/09/21 Problem-document formatting for Science Quiz]
+
+% Page layout and typography
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T5,T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{etoolbox}
+\usepackage{needspace}
+\usepackage{fancyhdr}
+
+% Mathematics and scientific notation
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+
+% Tables and lists
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+
+% Figures
+\usepackage{graphicx}
+
+% Institution colors and PDF support
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+% Institution colors
+% Full-name commands reproduce official English names exactly. Short-name
+% commands are reserved for established abbreviations or institutional brands.
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\definecolor{KoreaCrimson}{RGB}{140,0,40}
+\definecolor{YonseiBlue}{RGB}{0,55,120}
+\definecolor{UTokyoYellow}{RGB}{255,205,0}
+\definecolor{KyotoUBlue}{RGB}{0,32,91}
+\definecolor{ScienceBlue}{RGB}{28,49,119}
+\definecolor{HitotsubashiCrimson}{RGB}{170,34,42}
+\definecolor{MITRed}{RGB}{117,0,20}
+\definecolor{OxfordBlue}{RGB}{0,33,71}
+\definecolor{WasedaRed}{RGB}{142,23,40}
+\definecolor{CambridgeBlue}{RGB}{142,232,216}
+
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+
+% Institution names
+% POSTECH
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+
+% KAIST
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{%
+    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
+}
+
+% Seoul National University
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{%
+    \institutiontext{SNUBlue}{Seoul National University}%
+}
+
+% Korea University
+\DeclareRobustCommand{\KU}{\institutiontext{KoreaCrimson}{KU}}
+\DeclareRobustCommand{\KoreaUniversity}{%
+    \institutiontext{KoreaCrimson}{Korea University}%
+}
+
+% Yonsei University
+\DeclareRobustCommand{\Yonsei}{\institutiontext{YonseiBlue}{Yonsei}}
+\DeclareRobustCommand{\YonseiUniversity}{%
+    \institutiontext{YonseiBlue}{Yonsei University}%
+}
+
+% The University of Tokyo
+\DeclareRobustCommand{\UTokyo}{\institutiontext{UTokyoYellow}{UTokyo}}
+\DeclareRobustCommand{\TheUniversityOfTokyo}{%
+    \institutiontext{UTokyoYellow}{The University of Tokyo}%
+}
+
+% Kyoto University
+\DeclareRobustCommand{\KyotoU}{\institutiontext{KyotoUBlue}{KyotoU}}
+\DeclareRobustCommand{\KyotoUniversity}{%
+    \institutiontext{KyotoUBlue}{Kyoto University}%
+}
+
+% Tokyo Institute of Technology (historical name and brand)
+\DeclareRobustCommand{\TokyoTech}{\institutiontext{ScienceBlue}{Tokyo Tech}}
+\DeclareRobustCommand{\TokyoInstituteOfTechnology}{%
+    \institutiontext{ScienceBlue}{Tokyo Institute of Technology}%
+}
+
+% Institute of Science Tokyo (current name and brand)
+\DeclareRobustCommand{\ScienceTokyo}{\institutiontext{ScienceBlue}{Science Tokyo}}
+\DeclareRobustCommand{\InstituteOfScienceTokyo}{%
+    \institutiontext{ScienceBlue}{Institute of Science Tokyo}%
+}
+
+% Hitotsubashi University
+% The digital color is an approximation of the official DIC 2489 school color.
+\DeclareRobustCommand{\Hitotsubashi}{%
+    \institutiontext{HitotsubashiCrimson}{Hitotsubashi}%
+}
+\DeclareRobustCommand{\HitotsubashiUniversity}{%
+    \institutiontext{HitotsubashiCrimson}{Hitotsubashi University}%
+}
+
+% Massachusetts Institute of Technology
+\DeclareRobustCommand{\MIT}{\institutiontext{MITRed}{MIT}}
+\DeclareRobustCommand{\MassachusettsInstituteOfTechnology}{%
+    \institutiontext{MITRed}{Massachusetts Institute of Technology}%
+}
+
+% University of Oxford
+\DeclareRobustCommand{\Oxford}{\institutiontext{OxfordBlue}{Oxford}}
+\DeclareRobustCommand{\UniversityOfOxford}{%
+    \institutiontext{OxfordBlue}{University of Oxford}%
+}
+
+% Waseda University
+\DeclareRobustCommand{\Waseda}{\institutiontext{WasedaRed}{Waseda}}
+\DeclareRobustCommand{\WasedaUniversity}{%
+    \institutiontext{WasedaRed}{Waseda University}%
+}
+
+% University of Cambridge
+\DeclareRobustCommand{\UniversityOfCambridge}{%
+    \institutiontext{CambridgeBlue}{University of Cambridge}%
+}
+
+% Table columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% Problem environments
+% Problems are numbered automatically, restarting from 1 in each of the two
+% sections: Past Problems and Expected Problems. Each problem is stored next to
+% its solution. When one problem has genuinely different solution methods, wrap
+% its solution environments in solutions; they are then labeled Solution 1,
+% Solution 2, ... automatically. Ordinary solutions remain labeled simply
+% Solution. Solution numbering is local to the alternative methods for one
+% problem and is never tied to the problem number.
+%
+% The optional argument contains only a compact, independently verifiable
+% official source and/or an established standard problem name. Internal study
+% documents and invented descriptive labels are not sources; omit the optional
+% argument when no qualifying attribution is known.
+\newcommand{\problemheading}[1]{%
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+    \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
+}
+
+% Independent choices, clues, assumptions, and ordered statements use
+% (1), (2), (3), ...; connected subparts use (a), (b), (c), ....
+\newlist{problemchoices}{enumerate}{1}
+\setlist[problemchoices]{
+    label=(\arabic*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+\newlist{problemsubparts}{enumerate}{1}
+\setlist[problemsubparts]{
+    label=(\alph*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+\newcounter{problemsection}
+\newcounter{problem}
+\renewcommand{\theHproblem}{%
+    \arabic{problemsection}.\arabic{problem}%
+}
+
+\newenvironment{problem}[1][]
+    {%
+        \refstepcounter{problem}%
+        \if\relax\detokenize{#1}\relax
+            \problemheading{\theproblem}%
+        \else
+            \problemheading{\theproblem.\ (#1)}%
+        \fi
+    }
+    {\par\vspace{6pt}}
+
+\newbool{multiplesolutions}
+\newcounter{solutionmethod}
+
+\newenvironment{solutions}
+    {%
+        \setcounter{solutionmethod}{0}%
+        \booltrue{multiplesolutions}%
+    }
+    {%
+        \boolfalse{multiplesolutions}%
+    }
+
+\newcommand{\solutionheading}{%
+    \ifbool{multiplesolutions}
+        {%
+            \stepcounter{solutionmethod}%
+            \textit{Solution \arabic{solutionmethod}.}%
+        }
+        {%
+            \textit{Solution.}%
+        }%
+}
+
+\newenvironment{solution}
+    {%
+        \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
+        \solutionheading
+        \hspace{0.5em}\ignorespaces
+    }
+    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+
+% Numbered document sections with unnumbered running heads. Problem numbering
+% restarts from 1 in each section.
+\newcommand{\problemsection}[1]{%
+    \clearpage
+    \section{#1}%
+    \markboth{#1}{#1}%
+    \stepcounter{problemsection}%
+    \setcounter{problem}{0}%
+}
+
+% Running design for the standalone problem collection
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Chemistry Problems}}
+\fancyhead[R]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\raggedbottom
