@@ -189,6 +189,25 @@
   \end{longtable}%
 }
 
+\newenvironment{phrasetable}{%
+  \par\vspace{0.05em}%
+  \small
+  \renewcommand{\arraystretch}{1.18}%
+  \begin{longtable}{@{}L{0.36\textwidth}L{0.56\textwidth}@{}}%
+  \toprule
+  Phrase & Use \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Phrase & Use \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+}{%
+  \end{longtable}%
+}
+
 % Contents
 \setlength{\cftbeforepartskip}{0.52em}
 \setlength{\cftbeforesecskip}{0.11em}
