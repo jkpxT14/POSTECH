@@ -13,6 +13,12 @@
 \usepackage{mathtools}
 \usepackage{dsfont}
 \usepackage{mathrsfs}
+
+% Contradiction symbol used in proofs.  The glyph is taken from the
+% St Mary Road symbol font without loading its full math-symbol family.
+\DeclareFontFamily{U}{stmry}{}
+\DeclareFontShape{U}{stmry}{m}{n}{<-> stmary10}{}
+\newcommand{\lightning}{\mathord{\text{\usefont{U}{stmry}{m}{n}\char32}}}
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{booktabs}
