@@ -246,8 +246,31 @@
     }
     {\par\vspace{4pt}}
 
+\newbool{multiplesolutions}
+\newcounter{solutionmethod}
+
+\newenvironment{solutions}
+    {%
+        \setcounter{solutionmethod}{0}%
+        \booltrue{multiplesolutions}%
+    }
+    {%
+        \boolfalse{multiplesolutions}%
+    }
+
+\newcommand{\solutionheading}{%
+    \ifbool{multiplesolutions}
+        {%
+            \stepcounter{solutionmethod}%
+            \textit{Solution \arabic{solutionmethod}.}%
+        }
+        {%
+            \textit{Solution.}%
+        }%
+}
+
 \newenvironment{expectedsubsolution}
-    {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
+    {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent\solutionheading\hspace{0.5em}\ignorespaces}
     {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
 
 \newcommand{\expectedproblemsection}[1]{%
@@ -263,7 +286,7 @@
 \newenvironment{solution}
     {%
         \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
-        \textit{Solution.}%
+        \solutionheading
         \hspace{0.5em}\ignorespaces
     }
     {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
