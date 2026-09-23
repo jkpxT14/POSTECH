@@ -5,8 +5,8 @@ $y'$ & First derivative with respect to the understood independent variable. \\
 $y''$ & Second derivative. \\
 $\dot{x}$ & First derivative of $x$ with respect to time. \\
 $\ddot{x}$ & Second derivative of $x$ with respect to time. \\
-$\begin{aligned}F(t,y,y',\dots,\\ y^{(n)})&=0\end{aligned}$ & General $n$th-order ordinary differential equation. \\
-$\begin{aligned}y^{(n)}=f(t,y,y',\dots,\\ y^{(n-1)})\end{aligned}$ & $n$th-order ordinary differential equation in normal form. \\
+$F(t,y,y',\dots,y^{(n)})=0$ & General $n$th-order ordinary differential equation. \\
+$y^{(n)}=f(t,y,\dots,y^{(n-1)})$ & $n$th-order ordinary differential equation in normal form. \\
 $y(t_0)=y_0$ & Initial condition for a scalar differential equation. \\
 \addlinespace[0.26em]
 $y'+p(t)y=g(t)$ & Standard form of a first-order linear differential equation. \\
@@ -24,14 +24,14 @@ $\displaystyle\sum_{k=0}^{n}a_k r^k=0$ & Characteristic equation for a constant-
 $r_1,\dots,r_n$ & Characteristic roots; multiplicities are counted when relevant. \\
 $\begin{aligned} &W(y_1,\dots,y_n)(t),\\ &W[y_1,\dots,y_n](t)\end{aligned}$ & Wronskian of $y_1,\dots,y_n$; parentheses are preferred. \\
 \addlinespace[0.26em]
-$\begin{aligned}y(x)&=\sum_{n=0}^{\infty}\\[-0.2em]&\quad a_n(x-x_0)^n\end{aligned}$ & Power-series form about the ordinary point $x_0$. \\
-$\begin{aligned}y(x)&=(x-x_0)^r\sum_{n=0}^{\infty}\\[-0.2em]&\quad a_n(x-x_0)^n\end{aligned}$ & Frobenius-series form about a regular singular point $x_0$; $r$ denotes an indicial exponent. \\
+$\displaystyle y=\sum_{n=0}^{\infty}a_n(x-x_0)^n$ & Power-series form about the ordinary point $x_0$. \\
+$\displaystyle y=\sum_{n=0}^{\infty}a_n(x-x_0)^{n+r}$ & Frobenius-series form about a regular singular point $x_0$; $r$ denotes an indicial exponent. \\
 \addlinespace[0.26em]
 $\mathbf{x}'=\mathbf f(t,\mathbf x)$ & General first-order system. \\
 $\mathbf{x}(t_0)=\mathbf{x}_0$ & Initial condition for a first-order system. \\
 $\begin{aligned} &\mathbf{x}'=\mathbf A\mathbf{x}+\mathbf g(t),\\ &\dot{\mathbf{x}}=\mathbf A\mathbf{x}+\mathbf g(t)\end{aligned}$ & Linear first-order system in state-vector form. \\
 $\mathbf{x}'=\mathbf f(\mathbf x)$ & Autonomous first-order system. \\
-$\mathbf{x}_\ast$ & Equilibrium point; $\mathbf f(\mathbf{x}_\ast)=\mathbf0$. \\
+$\mathbf{x}_e$ & Equilibrium point; $\mathbf f(\mathbf{x}_e)=\mathbf0$. \\
 $\boldsymbol{\Phi}(t)$ & Fundamental matrix of a linear system. \\
 \addlinespace[0.26em]
 $\begin{aligned} &\mathcal{L}\{f(t)\}(s),\\ &\mathcal{L}[f](s)\end{aligned}$ & Laplace transform of $f$. \\
@@ -54,23 +54,23 @@ $a_n$ & $\displaystyle a_n=\frac1L\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}\,\dd x$ 
 $b_n$ & $\displaystyle b_n=\frac1L\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}\,\dd x$ for $n\ge1$. \\
 $\widehat f(\boldsymbol{\xi}),\ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform under the normalization $\displaystyle\widehat f(\boldsymbol{\xi})\coloneqq\int_{\R^n}f(\mathbf x)e^{-2\pi i\mathbf x\cdot\boldsymbol{\xi}}\,\dd\mathbf x$; inversion uses $\displaystyle f(\mathbf x)=\int_{\R^n}\widehat f(\boldsymbol{\xi})e^{2\pi i\mathbf x\cdot\boldsymbol{\xi}}\,\dd\boldsymbol{\xi}$ whenever applicable. \\
 \addlinespace[0.26em]
-$\begin{aligned}-(p(x)y')'+q(x)y\\ =\lambda w(x)y\end{aligned}$ & Sturm--Liouville eigenvalue equation with weight function $w$. \\
-$\lambda_n,\ \phi_n$ & Eigenvalue and corresponding eigenfunction of a Sturm--Liouville problem. \\
+$-(py')'+qy=\lambda wy$ & Sturm--Liouville eigenvalue equation, where $p$, $q$, and $w$ are functions of $x$. \\
+$\lambda_n,\ \phi_n$ & Sturm--Liouville eigenvalue and corresponding eigenfunction. \\
 $\langle f,g\rangle_w$ & Weighted inner product, $\displaystyle\langle f,g\rangle_w\coloneqq\int_a^b\overline{f(x)}g(x)w(x)\,\dd x$. \\
 $\delta_{mn}$ & Kronecker delta: $1$ if $m=n$ and $0$ otherwise. \\
 $\langle\phi_m,\phi_n\rangle_w=\delta_{mn}$ & Weighted orthonormality of eigenfunctions. \\
-$G(x,\xi),\ G(\mathbf x,\boldsymbol\xi)$ & Green's function, with scalar or vector variables according to context. \\
+$G(x,\xi),\ G(\mathbf x,\boldsymbol\xi)$ & Green's function; arguments are scalar or vector as appropriate. \\
 \addlinespace[0.26em]
 $\operatorname{Ai}(x),\ \operatorname{Bi}(x)$ & Airy functions. \\
 $J_\nu(x)$ & Bessel function of the first kind of order $\nu$. \\
-$Y_\nu(x),\ N_\nu(x)$ & Bessel function of the second kind (Neumann function) of order $\nu$; $Y_\nu$ is preferred. \\
+$Y_\nu(x),\ N_\nu(x)$ & Bessel function of the second kind of order $\nu$; $Y_\nu$ is preferred. \\
 $I_\nu(x),\ K_\nu(x)$ & Modified Bessel functions of the first and second kinds. \\
 $H_\nu^{(1)}(x),\ H_\nu^{(2)}(x)$ & Hankel functions of the first and second kinds. \\
 $P_n(x)$ & Legendre polynomial of degree $n$. \\
 $P_\nu(x),\ Q_\nu(x)$ & Legendre functions of the first and second kinds. \\
 $P_\ell^m(x)$ & Associated Legendre function for integer degree $\ell$ and order $m$. \\
 $H_n(x),\ \mathrm{He}_n(x)$ & Physicists' and probabilists' Hermite polynomials, respectively. \\
-$L_n^{(\alpha)}(x),\ L_n(x)$ & Generalized Laguerre polynomial and ordinary Laguerre polynomial, with $L_n(x)=L_n^{(0)}(x)$. \\
+$L_n^{(\alpha)}(x),\ L_n(x)$ & Generalized and ordinary Laguerre polynomials; $L_n(x)=L_n^{(0)}(x)$. \\
 $T_n(x),\ U_n(x)$ & Chebyshev polynomials of the first and second kinds. \\
 $P_n^{(\alpha,\beta)}(x)$ & Jacobi polynomial. \\
 $C_n^{(\lambda)}(x)$ & Gegenbauer (ultraspherical) polynomial. \\

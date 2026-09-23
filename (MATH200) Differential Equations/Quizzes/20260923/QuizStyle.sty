@@ -1,0 +1,102 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{QuizStyle}[2026/09/23 MATH200 quiz style, refined title block]
+
+% Design follows the Mathematics Science Quiz Problem sets, adapted to English.
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+
+% Mathematics
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{dsfont}
+
+% Lists
+\RequirePackage{enumitem}
+
+% Color and PDF metadata
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+
+% Institution colors
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+
+% Quiz title block. Its author and affiliation typography matches the
+% Mathematical Concepts and Past Problems documents.
+\newcommand{\quiztitle}[1]{%
+    \begin{center}
+        \vspace*{1.1cm}
+        {\LARGE\bfseries #1\par}
+        \vspace{0.75cm}
+        {\normalsize
+        Jungwoo Kim\\
+        Department of Mathematics\\
+        \PohangUniversityOfScienceAndTechnology
+        \par}
+    \end{center}
+    \vspace{0.65cm}
+}
+
+% Same-line Problem style from the Science Quiz Problem sets.
+\newcommand{\problemheading}[1]{%
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+    \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
+}
+
+\newenvironment{problem}[2][]
+    {%
+        \if\relax\detokenize{#1}\relax
+            \problemheading{#2}%
+        \else
+            \problemheading{#2.\ (#1)}%
+        \fi
+    }
+    {\par\vspace{6pt}}
+
+\newlist{problemchoices}{enumerate}{1}
+\setlist[problemchoices]{
+    label=(\arabic*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+\newlist{problemsubparts}{enumerate}{1}
+\setlist[problemsubparts]{
+    label=(\alph*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+% Canonical notation used by MATH200 quizzes.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\arccot}{arccot}
