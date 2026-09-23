@@ -14,6 +14,190 @@
 
 \quiztitle{20260923 Quiz}
 
-% Add quiz problems here using \begin{problem}{1} ... \end{problem}.
+\begin{problem}{2.4.1}
+Determine, without solving the problem, an interval in which the solution of the initial value problem
+\[
+    (t-5)y'+(\ln t)y=2t,
+    \qquad
+    y(1)=2,
+\]
+is certain to exist.
+\end{problem}
+
+\begin{solution}
+Dividing by $t-5$ gives the standard form
+\[
+    y'+\frac{\ln t}{t-5}y=\frac{2t}{t-5}.
+\]
+The coefficients are continuous where $t>0$ and $t\neq5$. Thus the largest open interval containing the initial point $t=1$ on which both coefficients are continuous is
+\[
+    \boxed{(0,5)}.
+\]
+By Theorem~2.4.1, the solution is certain to exist throughout this interval.
+\end{solution}
+
+\begin{problem}{2.4.2}
+Determine, without solving the problem, an interval in which the solution of the initial value problem
+\[
+    y'+(\tan t)y=\sin t,
+    \qquad
+    y(2)=0,
+\]
+is certain to exist.
+\end{problem}
+
+\begin{solution}
+Here
+\[
+    p(t)=\tan t,
+    \qquad
+    g(t)=\sin t.
+\]
+The function $g$ is continuous on $\R$, while $p$ is discontinuous at
+\[
+    t=\frac{\pi}{2}+k\pi,
+    \qquad
+    k\in\Z.
+\]
+Since
+\[
+    \frac{\pi}{2}<2<\frac{3\pi}{2},
+\]
+the largest open interval containing the initial point on which both coefficients are continuous is
+\[
+    \boxed{\left(\frac{\pi}{2},\frac{3\pi}{2}\right)}.
+\]
+By Theorem~2.4.1, the solution is certain to exist throughout this interval.
+\end{solution}
+
+\begin{problem}{2.4.5}
+State where in the $ty$-plane the hypotheses of Theorem~2.4.2 are satisfied for
+\[
+    y'=\sqrt{4-t^2-y^2}.
+\]
+\end{problem}
+
+\begin{solution}
+Let
+\[
+    f(t,y)=\sqrt{4-t^2-y^2}.
+\]
+Then
+\[
+    f_y(t,y)=-\frac{y}{\sqrt{4-t^2-y^2}}.
+\]
+The function $f$ is real-valued and continuous where $t^2+y^2\leq4$, while $f_y$ is continuous only where
+\[
+    t^2+y^2<4.
+\]
+Hence both $f$ and $f_y$ are continuous in a rectangle about a point precisely when the point lies in the open disk
+\[
+    \boxed{t^2+y^2<4}.
+\]
+Thus the hypotheses of Theorem~2.4.2 are satisfied exactly in this region.
+\end{solution}
+
+\begin{problem}{2.6.1}
+Determine whether
+\[
+    (4x+3)+(6y-1)y'=0
+\]
+is exact. If it is exact, find the solution.
+\end{problem}
+
+\begin{solution}
+Set
+\[
+    M(x,y)=4x+3,
+    \qquad
+    N(x,y)=6y-1.
+\]
+Then
+\[
+    M_y=0=N_x,
+\]
+so the equation is exact. Let $\psi_x=M$ and $\psi_y=N$. Integrating $\psi_x=M$ with respect to $x$ gives
+\[
+    \psi(x,y)=2x^2+3x+h(y).
+\]
+Therefore
+\[
+    \psi_y=h'(y)=6y-1,
+\]
+so
+\[
+    h(y)=3y^2-y.
+\]
+Hence the solution is given implicitly by
+\[
+    \boxed{2x^2+3x+3y^2-y=c}.
+\]
+\end{solution}
+
+\begin{problem}{2.6.2}
+Determine whether
+\[
+    (3x-y)+(x-3y)y'=0
+\]
+is exact. If it is exact, find the solution.
+\end{problem}
+
+\begin{solution}
+Set
+\[
+    M(x,y)=3x-y,
+    \qquad
+    N(x,y)=x-3y.
+\]
+Then
+\[
+    M_y=-1,
+    \qquad
+    N_x=1.
+\]
+Since $M_y\neq N_x$, the equation is
+\[
+    \boxed{\text{not exact}}.
+\]
+\end{solution}
+
+\begin{problem}{2.6.3}
+Determine whether
+\[
+    (6x^2-2xy+4)+(6y^2-x^2+2)y'=0
+\]
+is exact. If it is exact, find the solution.
+\end{problem}
+
+\begin{solution}
+Set
+\[
+    M(x,y)=6x^2-2xy+4,
+    \qquad
+    N(x,y)=6y^2-x^2+2.
+\]
+Then
+\[
+    M_y=-2x=N_x,
+\]
+so the equation is exact. Let $\psi_x=M$ and $\psi_y=N$. Integrating $\psi_x=M$ with respect to $x$ gives
+\[
+    \psi(x,y)=2x^3-x^2y+4x+h(y).
+\]
+Therefore
+\[
+    \psi_y=-x^2+h'(y)=6y^2-x^2+2,
+\]
+which gives
+\[
+    h'(y)=6y^2+2,
+    \qquad
+    h(y)=2y^3+2y.
+\]
+Hence the solution is given implicitly by
+\[
+    \boxed{2x^3-x^2y+4x+2y^3+2y=c}.
+\]
+\end{solution}
 
 \end{document}

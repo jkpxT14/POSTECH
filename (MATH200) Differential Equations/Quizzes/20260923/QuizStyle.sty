@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{QuizStyle}[2026/09/23 MATH200 quiz style, refined title block]
+\ProvidesPackage{QuizStyle}[2026/09/23 MATH200 quiz style]
 
-% Design follows the Mathematics Science Quiz Problem sets, adapted to English.
+% Design follows the Mathematics for Science Quiz Problem sets, adapted to English.
 \RequirePackage[a4paper,margin=1in]{geometry}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
@@ -67,6 +67,14 @@
     }
     {\par\vspace{6pt}}
 
+% Ordinary solutions follow the current MATH000 convention and end with \square.
+\newenvironment{solution}
+    {%
+        \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
+        \textit{Solution.}\hspace{0.5em}\ignorespaces
+    }
+    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+
 \newlist{problemchoices}{enumerate}{1}
 \setlist[problemchoices]{
     label=(\arabic*),
@@ -91,7 +99,7 @@
     align=left
 }
 
-% Canonical notation used by MATH200 quizzes.
+% Canonical notation used by MATH200 quizzes, following current MATH000.
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Nzero}{\mathbb{N}_0}
 \newcommand{\Z}{\mathbb{Z}}
