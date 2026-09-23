@@ -1,33 +1,79 @@
 \section{Differential Equations}
 
-The Fourier transform uses the normalization
-\[
-\widehat f(\boldsymbol{\xi})\coloneqq\int_{\R^n} f(\mathbf{x})e^{-2\pi i \mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\mathbf{x},
-\qquad
-f(\mathbf{x})=\int_{\R^n}\widehat f(\boldsymbol{\xi})e^{2\pi i \mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\boldsymbol{\xi},
-\]
-whenever the Fourier inversion formula applies.
-
 \begin{notationtable}
 $y'$ & First derivative with respect to the understood independent variable. \\
 $y''$ & Second derivative. \\
 $\dot{x}$ & First derivative of $x$ with respect to time. \\
 $\ddot{x}$ & Second derivative of $x$ with respect to time. \\
-$y_h,\ y_c$ & Homogeneous or complementary part of a solution. \\
+$\begin{aligned}F(t,y,y',\dots,\\ y^{(n)})&=0\end{aligned}$ & General $n$th-order ordinary differential equation. \\
+$\begin{aligned}y^{(n)}=f(t,y,y',\dots,\\ y^{(n-1)})\end{aligned}$ & $n$th-order ordinary differential equation in normal form. \\
+$y(t_0)=y_0$ & Initial condition for a scalar differential equation. \\
+\addlinespace[0.26em]
+$y'+p(t)y=g(t)$ & Standard form of a first-order linear differential equation. \\
+$\mu(t)$ & Integrating factor; for $y'+p(t)y=g(t)$, one may take $\displaystyle\mu(t)=\exp\!\left(\int p(t)\,\dd t\right)$ up to a nonzero constant factor. \\
+$M(x,y)\,\dd x+N(x,y)\,\dd y=0$ & Differential form of a first-order differential equation. \\
+$M_x,M_y,N_x,N_y$ & Subscript notation for the corresponding partial derivatives. \\
+\addlinespace[0.26em]
+$L[y]$ & Linear differential operator applied to $y$; $\mathcal L$ is reserved here for the Laplace transform. \\
+$\displaystyle L[y]=\sum_{k=0}^{n}a_k(t)y^{(k)}$ & General $n$th-order linear differential operator, with $a_n\not\equiv0$. \\
+$L[y]=0,\ L[y]=g$ & Homogeneous and nonhomogeneous linear differential equations, respectively. \\
+$y_h,\ y_c$ & Homogeneous or complementary part of a solution; $y_h$ is preferred. \\
 $y_p$ & Particular solution. \\
 $c_1,c_2,\dots$ & Arbitrary constants in a general solution. \\
-$\begin{aligned} &W(y_1,\dots,y_n)(t),\\ &W[y_1,\dots,y_n](t)\end{aligned}$ & Wronskian of $y_1,\dots,y_n$. \\
+$\displaystyle\sum_{k=0}^{n}a_k r^k=0$ & Characteristic equation for a constant-coefficient homogeneous linear differential equation. \\
+$r_1,\dots,r_n$ & Characteristic roots; multiplicities are counted when relevant. \\
+$\begin{aligned} &W(y_1,\dots,y_n)(t),\\ &W[y_1,\dots,y_n](t)\end{aligned}$ & Wronskian of $y_1,\dots,y_n$; parentheses are preferred. \\
+\addlinespace[0.26em]
+$\begin{aligned}y(x)&=\sum_{n=0}^{\infty}\\[-0.2em]&\quad a_n(x-x_0)^n\end{aligned}$ & Power-series form about the ordinary point $x_0$. \\
+$\begin{aligned}y(x)&=(x-x_0)^r\sum_{n=0}^{\infty}\\[-0.2em]&\quad a_n(x-x_0)^n\end{aligned}$ & Frobenius-series form about a regular singular point $x_0$; $r$ denotes an indicial exponent. \\
+\addlinespace[0.26em]
+$\mathbf{x}'=\mathbf f(t,\mathbf x)$ & General first-order system. \\
+$\mathbf{x}(t_0)=\mathbf{x}_0$ & Initial condition for a first-order system. \\
 $\begin{aligned} &\mathbf{x}'=\mathbf A\mathbf{x}+\mathbf g(t),\\ &\dot{\mathbf{x}}=\mathbf A\mathbf{x}+\mathbf g(t)\end{aligned}$ & Linear first-order system in state-vector form. \\
+$\mathbf{x}'=\mathbf f(\mathbf x)$ & Autonomous first-order system. \\
+$\mathbf{x}_\ast$ & Equilibrium point; $\mathbf f(\mathbf{x}_\ast)=\mathbf0$. \\
 $\boldsymbol{\Phi}(t)$ & Fundamental matrix of a linear system. \\
 \addlinespace[0.26em]
 $\begin{aligned} &\mathcal{L}\{f(t)\}(s),\\ &\mathcal{L}[f](s)\end{aligned}$ & Laplace transform of $f$. \\
 $\begin{aligned} &\mathcal{L}^{-1}\{F(s)\}(t),\\ &\mathcal{L}^{-1}[F](t)\end{aligned}$ & Inverse Laplace transform of $F$. \\
 $(f\ast g)(t)$ & One-sided convolution, $\displaystyle (f\ast g)(t)\coloneqq\int_0^t f(\tau)g(t-\tau)\,\dd\tau$. \\
-$H(t-a),\ u(t-a)$ & Heaviside or unit-step function shifted to $t=a$; its value at the jump is specified when relevant. \\
+$H(t-a),\ u(t-a)$ & Heaviside or unit-step function shifted to $t=a$; $H$ is preferred, and its value at the jump is specified when relevant. \\
+$\delta(t),\ \delta(t-a)$ & Dirac delta distribution, or unit impulse, centered at $0$ or shifted to $t=a$. \\
 \addlinespace[0.26em]
-$G(x,\xi)$ & Green's function; the variables depend on context. \\
+$t_n=t_0+nh$ & Uniform numerical grid with step size $h>0$. \\
+$y_n\approx y(t_n)$ & Numerical approximation to the exact solution at $t_n$. \\
+\addlinespace[0.26em]
+$u_x,u_t,u_{xx},u_{xy},u_{tt},\dots$ & Subscript notation for partial derivatives of a scalar function $u$. \\
+$\partial_{\mathbf n}u$ & Normal derivative, $\partial_{\mathbf n}u\coloneqq\nabla u\cdot\mathbf n$, for a unit normal vector $\mathbf n$. \\
+$u|_{\partial\Omega}=g$ & Dirichlet boundary condition on $\partial\Omega$. \\
+$\partial_{\mathbf n}u|_{\partial\Omega}=g$ & Neumann boundary condition on $\partial\Omega$. \\
+$\alpha u+\beta\,\partial_{\mathbf n}u=g$ & Robin boundary condition on $\partial\Omega$. \\
+\addlinespace[0.26em]
+$a_n,\ b_n$ & Fourier coefficients for the real $2L$-periodic convention $\displaystyle f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}\left(a_n\cos\frac{n\pi x}{L}+b_n\sin\frac{n\pi x}{L}\right)$. \\
+$a_n$ & $\displaystyle a_n=\frac1L\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}\,\dd x$ for $n\ge0$. \\
+$b_n$ & $\displaystyle b_n=\frac1L\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}\,\dd x$ for $n\ge1$. \\
+$\widehat f(\boldsymbol{\xi}),\ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform under the normalization $\displaystyle\widehat f(\boldsymbol{\xi})\coloneqq\int_{\R^n}f(\mathbf x)e^{-2\pi i\mathbf x\cdot\boldsymbol{\xi}}\,\dd\mathbf x$; inversion uses $\displaystyle f(\mathbf x)=\int_{\R^n}\widehat f(\boldsymbol{\xi})e^{2\pi i\mathbf x\cdot\boldsymbol{\xi}}\,\dd\boldsymbol{\xi}$ whenever applicable. \\
+\addlinespace[0.26em]
+$\begin{aligned}-(p(x)y')'+q(x)y\\ =\lambda w(x)y\end{aligned}$ & Sturm--Liouville eigenvalue equation with weight function $w$. \\
+$\lambda_n,\ \phi_n$ & Eigenvalue and corresponding eigenfunction of a Sturm--Liouville problem. \\
+$\langle f,g\rangle_w$ & Weighted inner product, $\displaystyle\langle f,g\rangle_w\coloneqq\int_a^b\overline{f(x)}g(x)w(x)\,\dd x$. \\
+$\delta_{mn}$ & Kronecker delta: $1$ if $m=n$ and $0$ otherwise. \\
+$\langle\phi_m,\phi_n\rangle_w=\delta_{mn}$ & Weighted orthonormality of eigenfunctions. \\
+$G(x,\xi),\ G(\mathbf x,\boldsymbol\xi)$ & Green's function, with scalar or vector variables according to context. \\
+\addlinespace[0.26em]
+$\operatorname{Ai}(x),\ \operatorname{Bi}(x)$ & Airy functions. \\
 $J_\nu(x)$ & Bessel function of the first kind of order $\nu$. \\
-$Y_\nu(x),\ N_\nu(x)$ & Bessel function of the second kind (Neumann function) of order $\nu$. \\
-\addlinespace[0.26em]
-$\widehat f(\boldsymbol{\xi}),\ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform under the normalization above. \\
+$Y_\nu(x),\ N_\nu(x)$ & Bessel function of the second kind (Neumann function) of order $\nu$; $Y_\nu$ is preferred. \\
+$I_\nu(x),\ K_\nu(x)$ & Modified Bessel functions of the first and second kinds. \\
+$H_\nu^{(1)}(x),\ H_\nu^{(2)}(x)$ & Hankel functions of the first and second kinds. \\
+$P_n(x)$ & Legendre polynomial of degree $n$. \\
+$P_\nu(x),\ Q_\nu(x)$ & Legendre functions of the first and second kinds. \\
+$P_\ell^m(x)$ & Associated Legendre function for integer degree $\ell$ and order $m$. \\
+$H_n(x),\ \mathrm{He}_n(x)$ & Physicists' and probabilists' Hermite polynomials, respectively. \\
+$L_n^{(\alpha)}(x),\ L_n(x)$ & Generalized Laguerre polynomial and ordinary Laguerre polynomial, with $L_n(x)=L_n^{(0)}(x)$. \\
+$T_n(x),\ U_n(x)$ & Chebyshev polynomials of the first and second kinds. \\
+$P_n^{(\alpha,\beta)}(x)$ & Jacobi polynomial. \\
+$C_n^{(\lambda)}(x)$ & Gegenbauer (ultraspherical) polynomial. \\
+$\operatorname{erf}(x),\ \operatorname{erfc}(x)$ & Error function and complementary error function. \\
+${}_2F_1(a,b;c;z)$ & Gauss hypergeometric function. \\
 \end{notationtable}
