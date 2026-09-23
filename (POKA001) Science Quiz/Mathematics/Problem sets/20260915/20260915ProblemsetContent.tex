@@ -1,0 +1,246 @@
+% 20260915 Science Quiz mathematics Problem set.
+
+\begin{problem}{1}
+$x>0$에서 함수
+\[
+    f(x)=x^x
+\]
+의 최솟값을 구하시오.
+\end{problem}
+
+\begin{solution}
+$x^x>0$이므로 natural logarithm을 취해
+\[
+    \ln f(x)=x\ln x
+\]
+를 미분한다. 그러면
+\[
+    f'(x)=x^x(\ln x+1).
+\]
+따라서 $f'(x)=0$인 유일한 점은
+\[
+    x=e^{-1}
+\]
+이고, 이 점을 기준으로 $f$는 decreasing에서 increasing으로 바뀐다. 그러므로
+\[
+    \min_{x>0}x^x
+    =\left(e^{-1}\right)^{e^{-1}}
+    =\boxed{e^{-1/e}}.
+\]
+핵심은 $x$가 base와 exponent에 동시에 있을 때 logarithmic differentiation을 먼저 떠올리는 것이다.
+\end{solution}
+
+\begin{problem}{2}
+additive groups 사이의 group homomorphism
+\[
+    \varphi\colon \Z/12\Z\to\Z/18\Z
+\]
+의 개수를 구하시오.
+\end{problem}
+
+\begin{solution}
+cyclic group의 homomorphism은 generator의 image로 결정된다.
+$\varphi([1]_{12})=[a]_{18}$이라 하면
+\[
+    12[a]_{18}=[0]_{18}
+\]
+이어야 하므로
+\[
+    18\mid12a.
+\]
+이는 $3\mid a$와 동치이다. 따라서 $\Z/18\Z$에서 가능한 image는
+\[
+    [0]_{18},[3]_{18},[6]_{18},[9]_{18},[12]_{18},[15]_{18}
+\]
+의 $6$개이고, 정답은
+\[
+    \boxed{6}.
+\]
+일반적으로 additive cyclic groups에 대해
+\[
+    \bigl|\Hom(\Z/m\Z,\Z/n\Z)\bigr|=\gcd(m,n)
+\]
+이다.
+\end{solution}
+
+% Verified against Stanford Mathematics, September 11, 2026:
+% "Professor Ziquan Zhuang Awarded 2026 WLF Prize for Young Scientists."
+\begin{problem}{3}
+2026년 9월, K-stability와 birational geometry에 대한 fundamental contributions로 inaugural WLF Prize for Young Scientists를 수상한 Stanford mathematician의 이름을 쓰시오.
+\end{problem}
+
+\begin{solution}
+Stanford Mathematics의 2026년 9월 11일 발표에 따르면, inaugural WLF Prize for Young Scientists에서 K-stability와 birational geometry에 대한 fundamental contributions로 선정된 수학자는 Ziquan Zhuang이다. 따라서 정답은
+\[
+    \boxed{\text{Ziquan Zhuang}}.
+\]
+\end{solution}
+
+\begin{problem}{4}
+real skew-symmetric matrix
+\[
+    \mathbf{A}\in\R^{2027\times2027},
+    \qquad
+    \mathbf{A}^{\mathsf T}=-\mathbf{A}
+\]
+가 가질 수 있는 최대 rank를 구하시오.
+\end{problem}
+
+\begin{solution}
+$\mathbf{A}^{\mathsf T}=-\mathbf{A}$이고 matrix size가 odd이므로
+\[
+    \det(\mathbf{A})
+    =\det(\mathbf{A}^{\mathsf T})
+    =\det(-\mathbf{A})
+    =(-1)^{2027}\det(\mathbf{A})
+    =-\det(\mathbf{A}).
+\]
+따라서 $\det(\mathbf{A})=0$이고
+\[
+    \rk(\mathbf{A})\leq2026.
+\]
+한편 $2\times2$ skew-symmetric block
+\[
+    \begin{pmatrix}
+        0&1\\
+        -1&0
+    \end{pmatrix}
+\]
+을 $1013$개 두고 마지막에 $0$을 하나 붙인 block diagonal matrix는 rank가 $2026$이다. 따라서 최대 rank는
+\[
+    \boxed{2026}.
+\]
+특히 real skew-symmetric matrix의 rank는 항상 even이다.
+\end{solution}
+
+\begin{problem}{5}
+continuous function
+\[
+    f\colon\R\to\Q
+\]
+가 $f(0)=0$을 만족한다고 하자. $f(2026)$을 구하시오.
+\end{problem}
+
+\begin{solution}
+$f(2026)=q\neq0$이라고 가정하자. $0$과 $q$ 사이에는 irrational number $\alpha$가 존재한다. $f$는 continuous이고
+\[
+    f(0)=0,
+    \qquad
+    f(2026)=q
+\]
+이므로 Intermediate Value Theorem에 의해 어떤 $c$가 존재하여
+\[
+    f(c)=\alpha
+\]
+가 되어야 한다. 그러나 $f$의 codomain은 $\Q$이므로 모순이다. 따라서
+\[
+    \boxed{f(2026)=0}.
+\]
+사실 같은 argument로 $f$는 $\R$ 전체에서 constant이다. 이는 connected set의 continuous image가 connected라는 사실과도 같다.
+\end{solution}
+
+% Verified against the Clay Mathematics Institute's official 2026 Clay Research Awards announcement.
+\begin{problem}{6}
+Robert Burklund, Jeremy Hahn, Ishan Levy, Tomer Schlank는 2026 Clay Research Award를 한 conjecture의 counterexamples를 구성한 업적으로 수상했다. 이 conjecture의 이름을 쓰시오.
+\end{problem}
+
+\begin{solution}
+Clay Mathematics Institute의 2026 Clay Research Award 발표에서 Burklund, Hahn, Levy, Schlank는 Ravenel의 Telescope Conjecture에 대한 counterexamples를 구성한 업적으로 선정되었다. 따라서 정답은
+\[
+    \boxed{\text{Ravenel's Telescope Conjecture}}.
+\]
+이 conjecture는 chromatic homotopy theory의 중심적인 open problem 중 하나였다.
+\end{solution}
+
+\begin{problem}{7}
+$\zeta$가 primitive seventh root of unity일 때 다음 값을 구하시오.
+\[
+    \prod_{k=1}^{6}(1-\zeta^k).
+\]
+\end{problem}
+
+\begin{solution}
+$\zeta$가 primitive seventh root of unity이므로
+\[
+    x^7-1=(x-1)\prod_{k=1}^{6}(x-\zeta^k).
+\]
+따라서
+\[
+    1+x+x^2+\cdots+x^6
+    =\prod_{k=1}^{6}(x-\zeta^k).
+\]
+$x=1$을 대입하면
+\[
+    \prod_{k=1}^{6}(1-\zeta^k)
+    =1+1+\cdots+1
+    =\boxed{7}.
+\]
+roots of unity의 product가 보이면 관련 cyclotomic factorization을 먼저 확인하는 것이 핵심이다.
+\end{solution}
+
+\begin{problem}{8}
+집합
+\[
+    \{1,2,\ldots,100\}
+\]
+에서 서로 다른 정수 $m$개를 고른다. 어떤 선택을 하더라도 합이 $101$인 두 정수가 반드시 존재하도록 하는 최소 $m$을 구하시오.
+\end{problem}
+
+\begin{solution}
+$\{1,2,\ldots,100\}$은 합이 $101$인 $50$개의 pair
+\[
+    \{1,100\},\{2,99\},\ldots,\{50,51\}
+\]
+로 partition된다. 합이 $101$인 두 수를 피하려면 각 pair에서 최대 하나만 고를 수 있으므로 최대 $50$개까지 가능하다. 따라서 $51$개를 고르면 Pigeonhole Principle에 의해 어떤 pair에서는 두 수를 모두 고르게 된다. 정답은
+\[
+    \boxed{51}.
+\]
+\end{solution}
+
+% Verified against the official MAISI website and the IMU's 2026 Fields Medal page.
+\begin{problem}{9}
+2026 Fields Medalist이자 Mathematical AI Safety Institute (MAISI)의 Scientific Director인 수학자의 이름을 쓰시오.
+\end{problem}
+
+\begin{solution}
+International Mathematical Union의 2026 Fields Medal 수상자 중 Jacob Tsimerman은 Mathematical AI Safety Institute (MAISI)의 Scientific Director를 맡고 있다. 따라서 정답은
+\[
+    \boxed{\text{Jacob Tsimerman}}.
+\]
+MAISI는 powerful AI systems의 safety를 위한 mathematical foundations를 연구하는 independent nonprofit이다.
+\end{solution}
+
+\begin{problem}{10}
+다음 값을 구하시오.
+\[
+    \gcd\!\left(2^{2026}-1,\,2^{2024}-1\right).
+\]
+\end{problem}
+
+\begin{solution}
+두 수를
+\[
+    A=2^{2026}-1,
+    \qquad
+    B=2^{2024}-1
+\]
+이라 두자. Euclidean algorithm의 한 단계로
+\[
+    A-4B
+    =(2^{2026}-1)-4(2^{2024}-1)
+    =3.
+\]
+따라서 $\gcd(A,B)$는 $3$의 divisor이다. 한편 $2026$과 $2024$는 모두 even이므로
+\[
+    2^{2026}\equiv2^{2024}\equiv1\pmod3,
+\]
+즉 $3\mid A$이고 $3\mid B$이다. 따라서
+\[
+    \boxed{\gcd\!\left(2^{2026}-1,2^{2024}-1\right)=3}.
+\]
+일반적으로
+\[
+    \gcd(a^m-1,a^n-1)=a^{\gcd(m,n)}-1
+\]
+이라는 identity가 성립하며, 여기서는 $\gcd(2026,2024)=2$이다.
+\end{solution}

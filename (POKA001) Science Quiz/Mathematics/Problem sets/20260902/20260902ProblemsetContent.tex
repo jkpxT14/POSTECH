@@ -1,0 +1,274 @@
+% 20260902 Science Quiz mathematics Problem set.
+
+% Verified against the International Mathematical Union, Chern Medal Award 2026.
+\begin{problem}{1}
+2026 Chern Medal Award 수상자를 쓰시오.
+\end{problem}
+
+\begin{solution}
+2026 Chern Medal Award 수상자는
+\[
+    \boxed{\text{Graeme Segal}}
+\]
+이다. Chern Medal은 ICM에서 4년마다 수여되며, 수학에서의 탁월한 업적에 대해 최고 수준의 인정을 부여하는 IMU의 주요 상 가운데 하나이다.
+\end{solution}
+
+\begin{problem}{2}
+수열 $(a_n)$이
+\[
+    a_0=2,
+    \qquad
+    a_1=\sqrt2,
+    \qquad
+    a_{n+2}=\sqrt2\,a_{n+1}-a_n
+\]
+을 만족한다. $a_{2026}$을 구하시오.
+\end{problem}
+
+\begin{solution}
+수열
+\[
+    b_n\coloneqq 2\cos\left(\frac{n\pi}{4}\right)
+\]
+을 생각하자. 이 수열은 $a_n$과 같은 초기값을 가지며,
+\[
+    b_{n+2}
+    =
+    2\cos\left(\frac{\pi}{4}\right)b_{n+1}-b_n
+    =
+    \sqrt2\,b_{n+1}-b_n
+\]
+을 만족한다. 따라서 $a_n=b_n$이다. $2026\equiv2\pmod8$이므로
+\[
+    \boxed{
+        a_{2026}
+        =
+        2\cos\left(\frac{2026\pi}{4}\right)
+        =0
+    }.
+\]
+\end{solution}
+
+\begin{problem}{3}
+다음 행렬의 determinant를 구하시오.
+\[
+    \mathbf{A}
+    \coloneqq
+    \begin{pmatrix}
+        1&2&3&4\\
+        0&1&1&2\\
+        2&0&1&1\\
+        3&3&5&7
+    \end{pmatrix}.
+\]
+\end{problem}
+
+\begin{solution}
+과퀴 수학 교재에서 사용하는 determinant의 기본 성질에 따라, 행 또는 열이 linearly dependent하면 determinant는 $0$이다. 여기서는 네 번째 행이 앞의 세 행의 합이다:
+\[
+    (3,3,5,7)
+    =
+    (1,2,3,4)
+    +(0,1,1,2)
+    +(2,0,1,1).
+\]
+따라서 행들이 linearly dependent이고,
+\[
+    \boxed{\det(\mathbf{A})=0}.
+\]
+\end{solution}
+
+% Verified against OpenAI's May 2026 announcement and the accompanying
+% mathematical literature on the planar unit-distance problem.
+\begin{problem}{4}
+2026년 5월, 평면 위의 $n$개 점이 만들 수 있는 unit-distance pair의 최대 개수를 $u(n)$이라 할 때
+\[
+    u(n)=n^{1+o(1)}
+\]
+일 것이라는 오랜 추측을 반박하는 결과가 공개되었다. 이 conjecture의 통용 명칭을 쓰시오.
+\end{problem}
+
+\begin{solution}
+1946년 Paul Erdős가 제기한 planar unit distance problem에서, $u(n)=n^{1+o(1)}$일 것이라는 추측을 흔히 Erdős unit-distance conjecture라 부른다. 2026년 5월 공개된 결과는 어떤 고정된 $\delta>0$에 대하여 무한히 많은 $n$에서
+\[
+    u(n)\geq n^{1+\delta}
+\]
+가 되는 구성을 제시하여 이 추측을 반박했다.
+
+따라서 정답은
+\[
+    \boxed{\text{Erd\H{o}s unit-distance conjecture}}
+\]
+이다.
+\end{solution}
+
+\begin{problem}{5}
+다음 적분의 값을 구하시오.
+\[
+    \int_0^1\frac{1}{x^2+x+1}\,\dd x.
+\]
+\end{problem}
+
+\begin{solution}
+분모를 완전제곱하면
+\[
+    x^2+x+1
+    =
+    \left(x+\frac12\right)^2+\frac34.
+\]
+따라서
+\[
+    \int_0^1\frac{1}{x^2+x+1}\,\dd x
+    =
+    \frac{2}{\sqrt3}
+    \left[
+        \arctan\left(\frac{2x+1}{\sqrt3}\right)
+    \right]_0^1.
+\]
+여기서
+\[
+    \arctan\sqrt3=\frac{\pi}{3},
+    \qquad
+    \arctan\frac{1}{\sqrt3}=\frac{\pi}{6}
+\]
+이므로
+\[
+    \boxed{\frac{\pi}{3\sqrt3}}.
+\]
+\end{solution}
+
+\begin{problem}{6}
+\[
+    f(x)\coloneqq \frac{1}{1-x-x^2}
+\]
+라 하자. $f^{(2026)}(0)$을 Fibonacci sequence를 이용하여 나타내시오.
+\end{problem}
+
+\begin{solution}
+Fibonacci sequence를 $F_0=0$, $F_1=1$로 두면 그 ordinary generating function은
+\[
+    \frac{1}{1-x-x^2}
+    =
+    \sum_{n=0}^{\infty}F_{n+1}x^n
+\]
+이다. 따라서 $x^{2026}$의 coefficient는 $F_{2027}$이고,
+\[
+    \boxed{f^{(2026)}(0)=2026!\,F_{2027}}.
+\]
+\end{solution}
+
+% Verified against the International Mathematical Union, Leelavati Prize 2026.
+\begin{problem}{7}
+2026 ICM Closing Ceremony에서 Hannah Fry가 수상한, outstanding public outreach work for mathematics를 기리는 IMU 상의 이름을 쓰시오.
+\end{problem}
+
+\begin{solution}
+IMU가 mathematical outreach에서의 뛰어난 공헌을 기리기 위해 ICM Closing Ceremony에서 수여하는 상은 Leelavati Prize이다. 2026년 수상자는 Hannah Fry이다.
+
+따라서 정답은
+\[
+    \boxed{\text{Leelavati Prize}}
+\]
+이다.
+\end{solution}
+
+\begin{problem}{8}
+가법군 $\Z/2026\Z$의 generator 개수를 구하시오.
+\end{problem}
+
+\begin{solution}
+가법군 $\Z/n\Z$에서 residue class $[k]_n$가 generator가 될 필요충분조건은
+\[
+    \gcd(k,n)=1
+\]
+이다. 따라서 generator의 개수는 Euler's totient function $\varphi(n)$과 같다.
+
+$1013$은 소수이고
+\[
+    2026=2\cdot1013
+\]
+이므로
+\[
+    \varphi(2026)
+    =
+    2026\left(1-\frac12\right)
+    \left(1-\frac{1}{1013}\right)
+    =1012.
+\]
+따라서 generator의 개수는
+\[
+    \boxed{1012}
+\]
+이다.
+\end{solution}
+
+\begin{problem}{9}
+다음 중 $\R$과 homeomorphic하지 않은 공간을 고르시오.
+
+\begin{problemchoices}
+    \item $(0,1)$
+    \item $(0,\infty)$
+    \item $S^1\setminus\{(1,0)\}$
+    \item $S^1$
+\end{problemchoices}
+\end{problem}
+
+\begin{solution}
+$(0,1)$은 예를 들어
+\[
+    x\mapsto\tan\left(\pi x-\frac{\pi}{2}\right)
+\]
+를 통해 $\R$과 homeomorphic하고, $(0,\infty)$는 logarithm을 통해 $\R$과 homeomorphic하다. 또한 $S^1$에서 한 점을 제거한 공간은 stereographic projection을 통해 $\R$과 homeomorphic하다.
+
+반면 $S^1$은 compact하지만 $\R$은 compact하지 않다. Compactness는 homeomorphism에 의해 보존되므로 $S^1$과 $\R$은 homeomorphic할 수 없다.
+
+따라서 정답은
+\[
+    \boxed{(4)}.
+\]
+\end{solution}
+
+\begin{problem}{10}
+집합
+\[
+    S\coloneqq \{1,2,\ldots,2026\}
+\]
+의 permutation $\sigma\colon S\to S$를 uniformly random하게 하나 고른다. fixed point의 개수를
+\[
+    X
+    \coloneqq
+    \left|\{k\in S\mid \sigma(k)=k\}\right|
+\]
+라 할 때, expectation $\Exp[X]$를 구하시오.
+\end{problem}
+
+\begin{solution}
+각 $k\in S$에 대하여
+\[
+    X_k
+    \coloneqq
+    \indicator{\{\sigma(k)=k\}}
+\]
+라 두면
+\[
+    X=\sum_{k=1}^{2026}X_k.
+\]
+Uniformly random permutation에서 임의의 $k$에 대하여
+\[
+    \Prob(\sigma(k)=k)=\frac{1}{2026},
+\]
+이므로
+\[
+    \Exp[X_k]=\frac{1}{2026}.
+\]
+과퀴 수학 교재의 linearity of expectation을 적용하면
+\[
+    \Exp[X]
+    =
+    \sum_{k=1}^{2026}\Exp[X_k]
+    =
+    2026\cdot\frac{1}{2026}
+    =
+    \boxed{1}.
+\]
+\end{solution}

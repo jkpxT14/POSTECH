@@ -1,37 +1,24 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{ProblemsetStyle}[2026/09/03 Science Quiz problem set style]
+\ProvidesPackage{ProblemsetStyle}[2026/09/24 Science Quiz problem set style]
 
-% Standalone problem-set typography based on Mathematics for Science Quiz.
-% Mathematical notation and writing conventions follow the current (MATH000) Mathematical Language.
-% The handbook itself remains English-only. Problem sets may use Korean.
-% This package is intentionally engine-compatible: the same source compiles with
-% the user's ordinary latexmk/pdfLaTeX workflow and also with XeLaTeX/LuaLaTeX.
+% Science Quiz Problem sets use the MATH200 Quiz layout as their visual
+% baseline, adapted to a Korean document. Mathematical notation follows the
+% current (MATH000) Mathematical Language.
 
-% Page layout and typography
+% Page layout and Korean typography
 \RequirePackage[a4paper,margin=1in]{geometry}
-\RequirePackage{iftex}
-\ifPDFTeX
-    % TeX Live's ko.TeX support makes UTF-8 Korean work under pdfLaTeX.
-    \RequirePackage{kotex}
-\else
-    \RequirePackage{fontspec}
-    \ifXeTeX
-        \RequirePackage{xetexko}
-    \else
-        \RequirePackage{luatexko}
-    \fi
-    \IfFontExistsTF{Noto Serif CJK KR}
-        {\setmainhangulfont[AutoFakeSlant=0.2]{Noto Serif CJK KR}}
-        {}
-    \IfFontExistsTF{Noto Sans CJK KR}
-        {\setsanshangulfont{Noto Sans CJK KR}}
-        {}
-\fi
+\RequirePackage{fontspec}
+\RequirePackage{xetexko}
+\IfFontExistsTF{Noto Serif CJK KR}
+    {\setmainhangulfont[AutoFakeSlant=0.2]{Noto Serif CJK KR}}
+    {}
+\IfFontExistsTF{Noto Sans CJK KR}
+    {\setsanshangulfont{Noto Sans CJK KR}}
+    {}
 \RequirePackage{microtype}
-\ifPDFTeX\else
-    \microtypesetup{protrusion=false,expansion=false}
-\fi
+\microtypesetup{protrusion=false,expansion=false}
 \RequirePackage{etoolbox}
+\RequirePackage{environ}
 \RequirePackage{needspace}
 
 % Mathematics
@@ -46,41 +33,50 @@
 \RequirePackage{xcolor}
 \RequirePackage[unicode,hidelinks]{hyperref}
 
-% Institution colors and rendering follow the current handbook source.
+% Institution colors used by the current problem sets
 \definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
 \definecolor{MITRed}{RGB}{117,0,20}
-
 \newcommand{\institutiontext}[2]{%
     \texorpdfstring{\textcolor{#1}{#2}}{#2}%
 }
-
 \DeclareRobustCommand{\POSTECHKorean}{%
     \institutiontext{POSTECHRed}{포항공과대학교}%
 }
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
 \DeclareRobustCommand{\MIT}{\institutiontext{MITRed}{MIT}}
 
-% Problem-set title block
+% Title block: spacing mirrors the MATH200 Quiz document.
 \newcommand{\problemsettitle}[1]{%
+    \thispagestyle{empty}%
     \begin{center}
-        \vspace*{1.15cm}
+        \vspace*{1.1cm}
+
         {\LARGE\bfseries #1\par}
-        \vspace{0.65cm}
-        {\large 김정우\par}
-        \vspace{0.18cm}
-        {\large \POSTECHKorean{} 수학과\par}
+
+        \vspace{0.25cm}
+
+        {\large for Science Quiz\par}
+
+        \vspace{0.75cm}
+
+        {\normalsize
+        김정우\\
+        \POSTECHKorean{} 수학과
+        \par}
     \end{center}
-    \vspace{1.05cm}
+
+    \vspace{0.45cm}
 }
 
-% Problem environments follow the current handbook's same-line Problem style.
+% Problems use the same-line heading style of the MATH200 Quiz.
 \newcommand{\problemheading}[1]{%
     \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
     \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
 }
 
-% As in the handbook, an optional argument is used only for a compact,
-% independently verifiable official source and/or an established problem name.
-% Omit it when no qualifying attribution is known.
+% The optional argument is reserved for a compact official source or an
+% established problem name. The second argument is the displayed problem number.
 \newenvironment{problem}[2][]
     {%
         \if\relax\detokenize{#1}\relax
@@ -91,18 +87,48 @@
     }
     {\par\vspace{6pt}}
 
-% The separate solutions booklet keeps the handbook's italic Solution label,
-% with an explicit problem number so each solution is identifiable on its own.
-\newcommand{\solutionheading}[1]{%
-    \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
-    \textit{Solution #1.}\hspace{0.5em}\ignorespaces
+% One canonical content file produces both documents. Problems mode suppresses
+% solution bodies; Solutions mode prints each problem immediately followed by
+% its solution.
+\newif\ifProblemsetSolutions
+\ProblemsetSolutionsfalse
+
+\newbool{multiplesolutions}
+\newcounter{solutionmethod}
+
+\newcommand{\solutionheading}{%
+    \ifbool{multiplesolutions}
+        {%
+            \stepcounter{solutionmethod}%
+            \textit{Solution \arabic{solutionmethod}.}%
+        }
+        {%
+            \textit{Solution.}%
+        }%
 }
 
-\newenvironment{problemsolution}[1]
-    {\solutionheading{#1}}
-    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+\NewEnviron{solution}{%
+    \ifProblemsetSolutions
+        \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
+        \solutionheading\hspace{0.5em}\ignorespaces
+        \BODY
+        \par\nobreak\noindent\hfill$\square$\par\vspace{6pt}%
+    \fi
+}
 
-% Lists inside problems use the current handbook's role-specific numbering.
+% Use this wrapper only when one problem genuinely has multiple distinct
+% solution methods. Ordinary solutions remain simply "Solution.".
+\NewEnviron{solutions}{%
+    \ifProblemsetSolutions
+        \setcounter{solutionmethod}{0}%
+        \booltrue{multiplesolutions}%
+        \BODY
+        \boolfalse{multiplesolutions}%
+    \fi
+}
+
+% Independent choices and connected subparts follow the shared problem-document
+% convention used elsewhere in the repository.
 \newlist{problemchoices}{enumerate}{1}
 \setlist[problemchoices]{
     label=(\arabic*),
@@ -127,15 +153,107 @@
     align=left
 }
 
-% Canonical notation used across the current problem sets.
-% Definitions below are copied from the current (MATH000) Mathematical Language.
+% -----------------------------------------------------------------------------
+% Canonical notation from the current (MATH000) Mathematical Language
+% -----------------------------------------------------------------------------
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Hquat}{\mathbb{H}}
 \newcommand{\Prob}{\mathbb{P}}
 \newcommand{\Exp}{\mathbb{E}}
 \newcommand{\indicator}[1]{\mathds{1}_{#1}}
-\newcommand{\ones}{\mathbf{1}}
+\newcommand{\Pow}{\mathcal{P}}
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
+
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\PV}{PV}
+\DeclareMathOperator{\lb}{lb}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccoth}{arccoth}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\Row}{Row}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\RePart}{Re}
 \DeclareMathOperator{\ImPart}{Im}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\FieldNorm}{N}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\SE}{SE}
+\DeclareMathOperator{\Bern}{Bern}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Geom}{Geom}
+\DeclareMathOperator{\Poi}{Pois}
+\DeclareMathOperator{\Unif}{Unif}
+\DeclareMathOperator{\ExpDist}{Exp}
+\newcommand{\Normal}{\mathcal{N}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\area}{area}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\lengthop}{length}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\closure}{cl}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator{\lcmop}{lcm}
+\newcommand{\ones}{\mathbf{1}}
+
+\DeclareRobustCommand{\bijarrow}{\mathrel{\lhook\joinrel\twoheadrightarrow}}
+\newcommand{\ptwto}{\to}
+\newcommand{\unifto}{\rightrightarrows}
+\newcommand{\ptwlabelto}{\xrightarrow{\mathrm{ptw}}}
+\newcommand{\uniflabelto}{\xrightarrow{\mathrm{unif}}}
+\newcommand{\aeto}{\xrightarrow{\mathrm{a.e.}}}
+\newcommand{\asto}{\xrightarrow{\mathrm{a.s.}}}
+\newcommand{\probto}{\xrightarrow{\mathbb{P}}}
+\newcommand{\distto}{\xrightarrow{\mathrm{d}}}
+\newcommand{\Lpto}[1]{\xrightarrow{L^{#1}}}
+\newcommand{\indep}{\mathrel{\perp\!\!\!\perp}}
+
+\raggedbottom

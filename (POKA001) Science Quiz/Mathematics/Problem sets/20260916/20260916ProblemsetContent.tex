@@ -1,0 +1,331 @@
+% 20260916 Science Quiz mathematics Problem set.
+
+\begin{problem}{1}
+$U,V$가 $\R^{10}$의 subspaces이고
+\[
+    \dim U=6,
+    \qquad
+    \dim V=7
+\]
+이라 하자. $\dim(U\cap V)$가 가질 수 있는 최솟값을 구하시오.
+\end{problem}
+
+\begin{solution}
+subspace dimension formula에 의해
+\[
+    \dim(U+V)
+    =\dim U+\dim V-\dim(U\cap V).
+\]
+한편 $U+V\subseteq\R^{10}$이므로
+\[
+    \dim(U+V)\leq10.
+\]
+따라서
+\[
+    10
+    \geq6+7-\dim(U\cap V),
+\]
+즉
+\[
+    \dim(U\cap V)\geq3.
+\]
+이 bound는 실제로 attain된다. 예를 들어
+\[
+    U=\Span(\mathbf e_1,\ldots,\mathbf e_6),
+    \qquad
+    V=\Span(\mathbf e_4,\ldots,\mathbf e_{10})
+\]
+로 두면
+\[
+    U\cap V=\Span(\mathbf e_4,\mathbf e_5,\mathbf e_6)
+\]
+이므로 dimension이 $3$이다. 따라서 최솟값은
+\[
+    \boxed{3}.
+\]
+핵심은 두 subspace의 dimension 합이 ambient dimension을 넘으면 그 초과분만큼 intersection이 강제된다는 것이다.
+\end{solution}
+
+% Current handbook anchor: 2026 Fields Medal, John Pardon.
+\begin{problem}{2}
+2026 Fields Medalist 중 symplectic geometry와 topology, holomorphic curves, virtual fundamental cycles, Fukaya categories에 대한 업적으로 알려진 수학자의 이름을 쓰시오.
+\end{problem}
+
+\begin{solution}
+2026 Fields Medalist 네 명 가운데 symplectic geometry와 topology를 주된 분야로 하고, holomorphic curves, virtual fundamental cycles, Fukaya categories 등에 대한 업적으로 알려진 수학자는 John Pardon이다. 따라서 정답은
+\[
+    \boxed{\text{John Pardon}}.
+\]
+2026 Fields Medal의 짧은 association으로는
+\[
+    \text{John Pardon}
+    \quad\longleftrightarrow\quad
+    \text{symplectic geometry and topology}
+\]
+를 기억하면 좋다.
+\end{solution}
+
+\begin{problem}{3}
+함수
+\[
+    f(x)=x^3+x+1
+\]
+의 inverse function을 $g=f^{-1}$라 하자. $g'(3)$을 구하시오.
+\end{problem}
+
+\begin{solution}
+먼저
+\[
+    f(1)=1+1+1=3
+\]
+이므로
+\[
+    g(3)=1.
+\]
+Derivative of an inverse function에 의해
+\[
+    g'(3)
+    =\frac{1}{f'(g(3))}
+    =\frac{1}{f'(1)}.
+\]
+그런데
+\[
+    f'(x)=3x^2+1
+\]
+이므로
+\[
+    f'(1)=4.
+\]
+따라서
+\[
+    \boxed{g'(3)=\frac14}.
+\]
+Inverse function의 derivative를 물으면 inverse를 직접 구하려 하지 말고 원래 함수에서 대응하는 point를 먼저 찾는 것이 핵심이다.
+\end{solution}
+
+\begin{problem}{4}
+집합 $\{1,2,\ldots,6\}$의 permutation을 uniformly random하게 하나 고른다. 숫자 $1,2,3$이 순서에 관계없이 서로 이웃한 세 자리 전체를 차지할 확률을 구하시오.
+\end{problem}
+
+\begin{solution}
+$1,2,3$이 서로 이웃한 세 자리를 차지한다면 이 세 수를 하나의 block으로 볼 수 있다. Block 내부에서는
+\[
+    3!
+\]
+개의 순서가 가능하고, 이 block과 $4,5,6$을 합친 네 objects의 배열은
+\[
+    4!
+\]
+개이다. 따라서 favorable permutations의 수는
+\[
+    4!\,3!
+\]
+이고, 전체 permutation은 $6!$개이므로 확률은
+\[
+    \frac{4!\,3!}{6!}
+    =\boxed{\frac15}.
+\]
+여러 지정된 objects가 consecutive해야 하는 counting에서는 그 objects를 하나의 block으로 묶는 것이 표준적인 첫 단계이다.
+\end{solution}
+
+% Current handbook anchor: POSTECH professor, KAIST Ph.D., 2025 Korea Science Award.
+\begin{problem}{5}
+2025 Korea Science Award를 수상한 \POSTECHKorean{} 교수로, \textup{KAIST}에서 Ph.D.를 받았으며 geometric topology, 특히 four-dimensional topology에 관한 연구로 알려진 수학자의 이름을 쓰시오.
+\end{problem}
+
+\begin{solution}
+최종 본교재의 2026 Republic of Korea section에서 이 association에 해당하는 수학자는 Jae Choon Cha이다. 그는 \POSTECHKorean{} 교수이며 KAIST에서 Ph.D.를 받았고, geometric topology에서의 연구로 2025 Korea Science Award를 수상했다. 따라서 정답은
+\[
+    \boxed{\text{Jae Choon Cha}}.
+\]
+Science Quiz에서는
+\[
+    \text{POSTECH professor}
+    \quad+\quad
+    \text{KAIST Ph.D.}
+    \quad+\quad
+    \text{geometric topology}
+\]
+라는 양교 연결을 함께 기억해 두면 유용하다.
+\end{solution}
+
+\begin{problem}{6}
+다음 정적분의 값을 구하시오.
+\[
+    \int_1^3
+    \frac{1}{\sqrt{x+1}-\sqrt{x-1}}\,\dd x.
+\]
+\end{problem}
+
+\begin{solution}
+분모의 conjugate를 이용하면
+\[
+    \frac{1}{\sqrt{x+1}-\sqrt{x-1}}
+    =\frac{\sqrt{x+1}+\sqrt{x-1}}{(x+1)-(x-1)}
+    =\frac{\sqrt{x+1}+\sqrt{x-1}}{2}.
+\]
+따라서
+\[
+    \begin{aligned}
+    \int_1^3
+    \frac{1}{\sqrt{x+1}-\sqrt{x-1}}\,\dd x
+    &=%
+    \frac12\int_1^3
+    \left(\sqrt{x+1}+\sqrt{x-1}\right)\,\dd x\\
+    &=\frac13
+    \left[(x+1)^{3/2}+(x-1)^{3/2}\right]_1^3\\
+    &=\frac13\left(8+2\sqrt2-2\sqrt2\right)\\
+    &=\boxed{\frac83}.
+    \end{aligned}
+\]
+Radical이 분모에서 차 형태로 나타나면 substitution보다 먼저 conjugate rationalization을 확인하는 것이 좋다.
+\end{solution}
+
+\begin{problem}{7}
+positive divisor가 정확히 $12$개인 가장 작은 positive integer를 구하시오.
+\end{problem}
+
+\begin{solution}
+positive integer의 prime factorization을
+\[
+    n=p_1^{\alpha_1}\cdots p_k^{\alpha_k}
+\]
+라 하면 positive divisor의 개수는
+\[
+    \tau(n)=(\alpha_1+1)\cdots(\alpha_k+1)
+\]
+이다. 따라서 $\tau(n)=12$가 되려면 exponent tuple은
+\[
+    (11),
+    \qquad
+    (5,1),
+    \qquad
+    (3,2),
+    \qquad
+    (2,1,1)
+\]
+중 하나이다. 각 경우에서 가장 작은 integer는 각각
+\[
+    2^{11},
+    \qquad
+    2^5\cdot3,
+    \qquad
+    2^3\cdot3^2,
+    \qquad
+    2^2\cdot3\cdot5.
+\]
+이 가운데 가장 작은 것은
+\[
+    2^2\cdot3\cdot5=60.
+\]
+실제로
+\[
+    \tau(60)=(2+1)(1+1)(1+1)=12.
+\]
+따라서 정답은
+\[
+    \boxed{60}.
+\]
+주어진 divisor count를 factorize하여 exponent pattern으로 바꾸는 것이 핵심이다.
+\end{solution}
+
+% Current handbook anchor: Cleve Moler, died May 20, 2026.
+\begin{problem}{8}
+2026년에 별세한 numerical computing의 pioneer로, MATLAB을 만들고 MathWorks를 공동 설립한 인물의 이름을 쓰시오.
+\end{problem}
+
+\begin{solution}
+최종 본교재의 2026 mathematicians and institutions section에서 2026년 5월 20일 별세한 Cleve Moler는 numerical computing의 pioneer이자 MATLAB의 creator, MathWorks의 cofounder로 정리되어 있다. 따라서 정답은
+\[
+    \boxed{\text{Cleve Moler}}.
+\]
+가장 짧은 quiz association은
+\[
+    \text{Cleve Moler}
+    \quad\longleftrightarrow\quad
+    \text{MATLAB and numerical computing}
+\]
+이다.
+\end{solution}
+
+\begin{problem}{9}
+함수 $y$가 initial value problem
+\[
+    y''-3y'+2y=0,
+    \qquad
+    y(0)=0,
+    \qquad
+    y'(0)=1
+\]
+을 만족한다. $y(\ln 2)$를 구하시오.
+\end{problem}
+
+\begin{solution}
+characteristic equation은
+\[
+    r^2-3r+2=0,
+\]
+즉
+\[
+    (r-1)(r-2)=0
+\]
+이다. 따라서 general solution은
+\[
+    y(x)=c_1e^x+c_2e^{2x}.
+\]
+Initial conditions를 적용하면
+\[
+    c_1+c_2=0
+\]
+이고
+\[
+    c_1+2c_2=1.
+\]
+따라서
+\[
+    c_1=-1,
+    \qquad
+    c_2=1,
+\]
+즉
+\[
+    y(x)=e^{2x}-e^x.
+\]
+그러므로
+\[
+    y(\ln2)
+    =e^{2\ln2}-e^{\ln2}
+    =4-2
+    =\boxed{2}.
+\]
+Constant-coefficient linear ODE에서는 characteristic polynomial을 먼저 세우는 것이 기본이다.
+\end{solution}
+
+\begin{problem}{10}
+어떤 non-equilateral triangle의 circumcenter와 orthocenter가 각각
+\[
+    O=(0,0),
+    \qquad
+    H=(6,3)
+\]
+이다. 이 triangle의 centroid $G$의 좌표를 구하시오.
+\end{problem}
+
+\begin{solution}
+Euler Line Theorem에 의해 non-equilateral triangle의 circumcenter $O$, centroid $G$, orthocenter $H$는 collinear이고
+\[
+    OG:GH=1:2.
+\]
+따라서 $G$는 $\overline{OH}$를 $1:2$로 internal division하는 점이므로
+\[
+    G
+    =O+\frac13(H-O)
+    =\frac13(6,3)
+    =(2,1).
+\]
+따라서
+\[
+    \boxed{G=(2,1)}.
+\]
+Euler line에서는 centroid가 circumcenter에서 orthocenter 방향으로 정확히 one third 지점에 놓인다는 형태로 기억하면 계산이 빠르다.
+\end{solution}

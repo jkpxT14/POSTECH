@@ -1,0 +1,276 @@
+% 20260826 Science Quiz mathematics Problem set.
+
+% Verified against the official 2026 Breakthrough Prize announcement.
+\begin{problem}{1}
+2026 Breakthrough Prize in Mathematics는 nonlinear evolution equations의 stability, singularity formation, 그리고 soliton resolution에 관한 업적으로 한 수학자에게 수여되었다. 수상자를 쓰시오.
+\end{problem}
+
+\begin{solution}
+2026 Breakthrough Prize in Mathematics 수상자는
+\[
+    \boxed{\text{Frank Merle}}
+\]
+이다. 수상 사유는 nonlinear evolution equations의 stability, singularity formation, 그리고 soliton resolution에 관한 획기적인 업적이다.
+\end{solution}
+
+\begin{problem}{2}
+다음 값을 정확히 구하시오.
+\[
+    (1+i)^{2026}.
+\]
+\end{problem}
+
+\begin{solution}
+극형식을 이용하면
+\[
+    1+i=\sqrt2\,e^{i\pi/4}.
+\]
+따라서
+\[
+    (1+i)^{2026}
+    =
+    2^{1013}e^{i2026\pi/4}
+    =
+    \boxed{2^{1013}i}.
+\]
+\end{solution}
+
+\begin{problem}[2026 \MIT{} Integration Bee]{3}
+다음 부정적분을 구하시오.
+\[
+    \int e^{2026e^x+x}\,\dd x.
+\]
+\end{problem}
+
+\begin{solution}
+\[
+    e^{2026e^x+x}
+    =
+    e^{2026e^x}e^x
+\]
+이므로
+\[
+    u\coloneqq 2026e^x,
+    \qquad
+    \dd u=2026e^x\,\dd x
+\]
+로 치환하면
+\[
+    \int e^{2026e^x+x}\,\dd x
+    =
+    \frac{1}{2026}\int e^u\,\dd u
+    =
+    \boxed{\frac{e^{2026e^x}}{2026}+C}.
+\]
+\end{solution}
+
+% Verified against the International Mathematical Union, Abacus Medal 2026.
+\begin{problem}{4}
+2026 IMU Abacus Medal은 approximation algorithms, spanning trees와 matroid bases의 분포, spectral independence를 이용한 Markov Chain Monte Carlo 분석 등에 중요한 업적을 남긴 수학자에게 수여되었다. 수상자를 쓰시오.
+\end{problem}
+
+\begin{solution}
+2026 IMU Abacus Medal 수상자는
+\[
+    \boxed{\text{Shayan Oveis Gharan}}
+\]
+이다. IMU는 algorithms의 이론을 polynomial geometry 등의 도구와 연결하고, travelling salesperson problem의 approximation, spanning trees와 matroid bases의 분포, spectral independence를 통한 sampling algorithm 분석에 기여한 업적을 수상 사유로 들었다.
+\end{solution}
+
+\begin{problem}[Pascal Matrix]{5}
+다음 행렬의 determinant를 구하시오.
+\[
+    \begin{pmatrix}
+        1&1&1&1\\
+        1&2&3&4\\
+        1&3&6&10\\
+        1&4&10&20
+    \end{pmatrix}.
+\]
+\end{problem}
+
+\begin{solution}
+아래에서 위 순서로 인접한 두 행의 차를 취하면 determinant는 변하지 않고
+\[
+    \begin{pmatrix}
+        1&1&1&1\\
+        0&1&2&3\\
+        0&1&3&6\\
+        0&1&4&10
+    \end{pmatrix}
+\]
+을 얻는다. 첫 번째 열로 전개하고 같은 연산을 한 번 더 하면
+\[
+    \det
+    \begin{pmatrix}
+        1&2&3\\
+        1&3&6\\
+        1&4&10
+    \end{pmatrix}
+    =
+    \det
+    \begin{pmatrix}
+        1&2&3\\
+        0&1&3\\
+        0&1&4
+    \end{pmatrix}
+    =
+    \det
+    \begin{pmatrix}
+        1&3\\
+        1&4
+    \end{pmatrix}.
+\]
+따라서
+\[
+    \boxed{1}.
+\]
+\end{solution}
+
+\begin{problem}{6}
+$x>0$에서 함수열 $(f_n)$이
+\[
+    f_1(x)\coloneqq x,
+    \qquad
+    f_{n+1}(x)\coloneqq x^{f_n(x)}
+\]
+으로 정의된다. $f_{2026}''(1)$을 구하시오.
+\end{problem}
+
+\begin{solution}
+모든 $n$에 대하여 $f_n(1)=1$이다. 로그를 취하면
+\[
+    \ln f_{n+1}(x)=f_n(x)\ln x.
+\]
+미분하여 $x=1$을 대입하면
+\[
+    f_{n+1}'(1)=f_n(1)=1
+\]
+이므로, 귀납적으로 $f_n'(1)=1$이다.
+
+이제
+\[
+    g(x)\coloneqq \ln f_{n+1}(x)=f_n(x)\ln x
+\]
+라 두자. 그러면
+\[
+    g'(1)=1,
+\]
+그리고
+\[
+    g''(1)
+    =
+    2f_n'(1)-f_n(1)
+    =1.
+\]
+$f_{n+1}=e^g$이므로
+\[
+    f_{n+1}''(1)
+    =
+    f_{n+1}(1)\bigl(g'(1)^2+g''(1)\bigr)
+    =2.
+\]
+따라서
+\[
+    \boxed{f_{2026}''(1)=2}.
+\]
+\end{solution}
+
+% Verified against the International Mathematical Union, Gauss Prize 2026.
+\begin{problem}{7}
+2026 Carl Friedrich Gauss Prize 수상자인 Yurii Nesterov가 획기적인 업적을 남긴 핵심 연구 분야를 쓰시오.
+\end{problem}
+
+\begin{solution}
+IMU는 2026 Carl Friedrich Gauss Prize를 Yurii Nesterov에게 수여하며, 핵심 수상 사유를 mathematical optimization에 대한 획기적인 연구로 제시했다. 그의 연구는 여러 numerical 및 data-driven 분야의 이론적 기반과 알고리즘적 핵심을 제공했다.
+
+따라서 정답은
+\[
+    \boxed{\text{mathematical optimization}}
+\]
+이다.
+\end{solution}
+
+\begin{problem}{8}
+구
+\[
+    x^2+y^2+z^2=25
+\]
+와 평면
+\[
+    2x-y+2z=5
+\]
+의 교선은 원이다. 이 원의 반지름을 구하시오.
+\end{problem}
+
+\begin{solution}
+구의 중심은 원점이고 반지름은 $5$이다. 원점에서 평면까지의 거리는
+\[
+    d
+    =
+    \frac{|5|}{\sqrt{2^2+(-1)^2+2^2}}
+    =
+    \frac{5}{3}.
+\]
+교선인 원의 반지름을 $r$라 하면 직각삼각형 관계에 의해
+\[
+    r^2+d^2=5^2.
+\]
+따라서
+\[
+    r
+    =
+    \sqrt{25-\frac{25}{9}}
+    =
+    \boxed{\frac{10\sqrt2}{3}}.
+\]
+\end{solution}
+
+\begin{problem}{9}
+$d\times d$ 행렬 $\mathbf{A}$가
+\[
+    \mathbf{A}^2-3\mathbf{A}+2\mathbf{I}_d=\mathbf{0}
+\]
+을 만족한다. $\mathbf{A}^{2026}$을 $\mathbf{A}$와 $\mathbf{I}_d$의 linear combination으로 나타내시오.
+\end{problem}
+
+\begin{solution}
+다항식 $x^{2026}$을
+\[
+    (x-1)(x-2)=x^2-3x+2
+\]
+로 나눈 나머지를 $r(x)\coloneqq ux+v$라 하자. 그러면
+\[
+    r(1)=1,
+    \qquad
+    r(2)=2^{2026}.
+\]
+따라서
+\[
+    u=2^{2026}-1,
+    \qquad
+    v=2-2^{2026}.
+\]
+$x$에 $\mathbf{A}$를 대입하면
+\[
+    \boxed{
+        \mathbf{A}^{2026}
+        =
+        (2^{2026}-1)\mathbf{A}
+        +(2-2^{2026})\mathbf{I}_d
+    }.
+\]
+\end{solution}
+
+% Verified against the International Mathematical Union announcement of ICM 2030.
+\begin{problem}{10}
+2026년 7월 제20차 IMU General Assembly에서 2030 International Congress of Mathematicians의 개최 도시가 결정되었다. 어느 도시인가?
+\end{problem}
+
+\begin{solution}
+2030 International Congress of Mathematicians의 개최 도시는
+\[
+    \boxed{\text{Glasgow, United Kingdom}}
+\]
+이다. 같은 결정에 따라 제21차 IMU General Assembly는 Dublin, Ireland에서 열린다.
+\end{solution}

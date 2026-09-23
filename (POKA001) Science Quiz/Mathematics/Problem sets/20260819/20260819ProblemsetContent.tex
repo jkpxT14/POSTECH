@@ -1,0 +1,253 @@
+% 20260819 Science Quiz mathematics Problem set.
+% Problem statements and solutions share this canonical source so that the
+% Problems and Solutions documents cannot drift apart.
+
+% Verified against the International Mathematical Union, Fields Medals 2026.
+\begin{problem}{1}
+2026년 필즈상 수상자 네 명은 Yu Deng, John Pardon, Jacob Tsimerman, Hong Wang이다. 다음 업적으로 가장 잘 알려진 수상자를 고르시오.
+
+조화해석과 기하측도론을 연구했으며, Furstenberg set, Fourier restriction, Falconer distance problem, 그리고 3차원 Kakeya problem에 중요한 업적을 남겼다.
+
+\begin{problemchoices}
+    \item Yu Deng
+    \item John Pardon
+    \item Jacob Tsimerman
+    \item Hong Wang
+\end{problemchoices}
+\end{problem}
+
+\begin{solution}
+International Mathematical Union의 2026 Fields Medal 공식 발표에 따르면, Hong Wang은 조화해석과 기하측도론에서의 연구와 함께 Fourier restriction, Falconer distance sets, 평면의 Furstenberg sets, 그리고 3차원 Kakeya problem에 대한 주요 진전으로 필즈상을 받았다.
+
+따라서 정답은
+\[
+    \boxed{\text{Hong Wang}}
+\]
+이다.
+\end{solution}
+
+\begin{problem}{2}
+다음 적분의 값을 구하시오.
+\[
+    \int_0^1
+    \frac{x^{2026}}{x^{2026}+(1-x)^{2026}}
+    \,\dd x.
+\]
+\end{problem}
+
+\begin{solution}
+적분을
+\[
+    I\coloneqq \int_0^1
+    \frac{x^{2026}}{x^{2026}+(1-x)^{2026}}
+    \,\dd x
+\]
+라 하자. $x\mapsto1-x$를 대입하면
+\[
+    I=\int_0^1
+    \frac{(1-x)^{2026}}{(1-x)^{2026}+x^{2026}}
+    \,\dd x.
+\]
+두 식을 더하면
+\[
+    2I
+    =\int_0^1 1\,\dd x
+    =1.
+\]
+따라서
+\[
+    \boxed{I=\frac12}.
+\]
+\end{solution}
+
+\begin{problem}{3}
+$4\times4$ real matrix $\mathbf{A}$가
+\[
+    \mathbf{A}^2=\mathbf{A},
+    \qquad
+    \rk(\mathbf{A})=3
+\]
+을 만족한다. 다음 determinant를 구하시오.
+\[
+    \det\!\left(\mathbf{I}_4+\mathbf{A}\right).
+\]
+\end{problem}
+
+\begin{solution}
+$\mathbf{A}^2=\mathbf{A}$이므로 $\mathbf{A}$는 image에서는 identity로, kernel에서는 $0$으로 작용한다. Rank가 $3$이므로 image는 3차원이고, rank--nullity theorem에 의해 kernel은 1차원이다. 따라서 $\mathbf{I}_4+\mathbf{A}$는 image에서 $2$배, kernel에서 $1$배로 작용한다. 그러므로
+\[
+    \det\!\left(\mathbf{I}_4+\mathbf{A}\right)
+    =2^3\cdot1
+    =\boxed{8}.
+\]
+\end{solution}
+
+% Verified against the official Abel Prize 2026 announcement.
+\begin{problem}{4}
+2026년 아벨상을 수상한 수학자는 누구인가? 이 수학자는 산술기하학에 강력한 도구를 도입하고 Mordell과 Lang의 오래된 디오판토스 추측들을 해결한 업적으로 수상했으며, 과거 필즈상도 받은 바 있다.
+\end{problem}
+
+\begin{solution}
+2026 Abel Prize의 공식 수상 사유는 산술기하학에 강력한 도구를 도입하고 Mordell과 Lang의 오래된 디오판토스 추측들을 해결한 공로이며, 해당 수상자는 1986년 필즈상 수상자이기도 하다.
+
+따라서 정답은
+\[
+    \boxed{\text{Gerd Faltings}}
+\]
+이다.
+\end{solution}
+
+\begin{problem}{5}
+\[
+    \mathbf{x}\coloneqq (3,1,-1),
+    \qquad
+    \mathbf{v}\coloneqq (1,2,2)
+\]
+일 때, $\mathbf{x}$를 $\mathbf{v}$가 생성하는 직선 위로 정사영한 벡터 $\proj_{\mathbf{v}}\mathbf{x}$를 구하시오.
+\end{problem}
+
+\begin{solution}
+정사영 공식에 의해
+\[
+    \proj_{\mathbf{v}}\mathbf{x}
+    =
+    \frac{\langle\mathbf{x},\mathbf{v}\rangle}
+    {\langle\mathbf{v},\mathbf{v}\rangle}\mathbf{v}.
+\]
+여기서
+\[
+    \langle\mathbf{x},\mathbf{v}\rangle
+    =3\cdot1+1\cdot2+(-1)\cdot2
+    =3
+\]
+이고
+\[
+    \langle\mathbf{v},\mathbf{v}\rangle
+    =1^2+2^2+2^2
+    =9.
+\]
+따라서
+\[
+    \proj_{\mathbf{v}}\mathbf{x}
+    =\frac13(1,2,2)
+    =
+    \boxed{\left(\frac13,\frac23,\frac23\right)}.
+\]
+\end{solution}
+
+\begin{problem}{6}
+$2027$이 소수임을 알고 있다고 하자. 다음 수를 $2027$로 나눈 나머지를 구하시오.
+\[
+    3^{2026}+5^{2026}+2026^{2026}.
+\]
+\end{problem}
+
+\begin{solution}
+$2027$은 소수이고 $3,5,2026$은 모두 $2027$의 배수가 아니므로 Fermat's little theorem에 의해
+\[
+    3^{2026}\equiv1\pmod{2027},
+    \qquad
+    5^{2026}\equiv1\pmod{2027}.
+\]
+또한
+\[
+    2026\equiv-1\pmod{2027}
+\]
+이므로
+\[
+    2026^{2026}\equiv(-1)^{2026}=1\pmod{2027}.
+\]
+따라서
+\[
+    3^{2026}+5^{2026}+2026^{2026}
+    \equiv3\pmod{2027}.
+\]
+그러므로 나머지는
+\[
+    \boxed{3}
+\]
+이다.
+\end{solution}
+
+% Verified against the August 2026 characteristic-zero Jacobian-conjecture preprints.
+\begin{problem}{7}
+복소 다항식 사상
+\[
+    \mathbf{F}\colon\C^n\to\C^n
+\]
+의 Jacobian determinant가 0이 아닌 상수이면 $\mathbf{F}$가 다항식 역함수를 가져야 한다는 명제를 Jacobian conjecture라 하자. 2026년 8월 19일 현재 공개된 특성 0에서의 반례 및 후속 프리프린트 결과를 기준으로 다음 중 보고된 내용과 일치하는 것을 고르시오.
+
+\begin{problemchoices}
+    \item 모든 $n$에 대해 참임이 증명되었다.
+    \item 모든 $n\geq2$에서 거짓임이 증명되었다.
+    \item $n\geq3$에서는 반례가 제시되었고, $n=2$는 여전히 미해결이다.
+    \item $n=3$에서만 반례가 제시되었고, 모든 $n\geq4$는 미해결이다.
+\end{problemchoices}
+\end{problem}
+
+\begin{solution}
+2026년 7월에 $\C^3$에서 Jacobian conjecture의 반례가 공개되었고, 이어 공개된 Shuhong Gao의 프리프린트는 이 구성 원리를 일반화하여 모든 차원 $n>2$에서 반례를 제시한다. 반면 복소수체 위의 고전적인 $n=2$ 경우는 2026년 8월 19일 현재 여전히 미해결이다.
+
+따라서 정답은
+\[
+    \boxed{(3)}
+\]
+이다.
+\end{solution}
+
+\begin{problem}{8}
+서로 구별되는 두 개의 공정한 6면체 주사위를 던졌다. 적어도 하나의 주사위가 $6$이라는 조건 아래에서, 두 눈의 합이 $10$ 이상일 조건부확률을 구하시오.
+\end{problem}
+
+\begin{solution}
+적어도 하나의 주사위가 $6$인 순서 있는 결과는 모두 11개이다. 구체적으로
+\[
+    \begin{aligned}
+        &(6,1),(6,2),\ldots,(6,6),\\
+        &(1,6),(2,6),\ldots,(5,6)
+    \end{aligned}
+\]
+이다. 이 중 합이 $10$ 이상인 것은
+\[
+    (6,4),(6,5),(6,6),(4,6),(5,6)
+\]
+의 5개이다. 따라서 조건부확률은
+\[
+    \boxed{\frac5{11}}.
+\]
+\end{solution}
+
+\begin{problem}{9}
+집합 $A\coloneqq \{1,2,3,4\}$, $B\coloneqq \{1,2,3\}$에 대하여 전사함수 $f\colon A\to B$의 개수를 구하시오.
+\end{problem}
+
+\begin{solution}
+$A$에서 $B$로 가는 전체 함수의 수는 $3^4$이다. 전사가 되려면 $B$의 세 원소가 모두 함수값으로 나타나야 하므로 포함배제 원리를 적용하면
+\[
+    3^4
+    -\binom31 2^4
+    +\binom32 1^4
+    =81-48+3
+    =36.
+\]
+따라서 전사함수의 개수는
+\[
+    \boxed{36}
+\]
+이다.
+\end{solution}
+
+% Verified against the official 2026 International Mathematical Olympiad results.
+\begin{problem}{10}
+2026 International Mathematical Olympiad에서 6문제 모두 7점을 받아 42점 만점으로 개인 공동 1위를 기록한 대한민국 대표 학생의 이름을 쓰시오.
+\end{problem}
+
+\begin{solution}
+2026 IMO 공식 개인 결과에서 대한민국 대표 Hyeonjun Lee는 여섯 문제 모두 7점을 받아 총점 42점으로 개인 공동 1위를 기록했다.
+
+따라서 정답은
+\[
+    \boxed{\text{Hyeonjun Lee}}
+\]
+이다.
+\end{solution}
