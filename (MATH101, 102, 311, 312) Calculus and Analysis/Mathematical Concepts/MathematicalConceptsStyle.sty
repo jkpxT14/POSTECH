@@ -1,0 +1,210 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{MathematicalConceptsStyle}[2026/09/24 Calculus and Analysis mathematical-concepts style]
+
+% Visual language follows the current MATH200 Mathematical Concepts document.
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+\RequirePackage{fancyhdr}
+
+% Mathematics
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{dsfont}
+
+% Tables and lists
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{enumitem}
+
+% Figures and PDF support
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+
+% Institution colors
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{\institutiontext{POSTECHRed}{Pohang University of Science and Technology}}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{\institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}}
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{\institutiontext{SNUBlue}{Seoul National University}}
+
+% Canonical notation used by the current Calculus and Analysis material.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\lb}{lb}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\arcsch}{arcsch}
+\DeclareMathOperator{\arsech}{arsech}
+\DeclareMathOperator{\arcoth}{arcoth}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\closure}{cl}
+\DeclareMathOperator{\area}{area}
+\newcommand{\ptwto}{\to}
+\newcommand{\unifto}{\rightrightarrows}
+\newcommand{\ptwlabelto}{\xrightarrow{\mathrm{ptw}}}
+\newcommand{\uniflabelto}{\xrightarrow{\mathrm{unif}}}
+\newcommand{\aeto}{\xrightarrow{\mathrm{a.e.}}}
+
+% Typography
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
+\raggedbottom
+
+% Notation tables retained from the previous Calculus and Analysis document.
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTpre}{0.5em}
+\setlength{\LTpost}{0.62em}
+\newenvironment{notationtable}{%
+  \par\vspace{0.05em}\small
+  \renewcommand{\arraystretch}{1.18}%
+  \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}%
+  \toprule
+  Notation & Meaning \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Notation & Meaning \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+}{\end{longtable}}
+\newenvironment{ruletable}{%
+  \par\vspace{0.05em}\small
+  \renewcommand{\arraystretch}{1.18}%
+  \begin{longtable}{@{}L{0.24\textwidth}L{0.68\textwidth}@{}}%
+  \toprule
+  Item & Convention \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Item & Convention \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+}{\end{longtable}}
+\newcommand{\notationheading}[1]{%
+  \par\Needspace{6\baselineskip}%
+  \vspace{0.45em}%
+  {\noindent\large\bfseries #1\par}%
+  \vspace{0.16em}%
+}
+
+% Four-course structure. Numbered mathematical items use course-local labels.
+\newcounter{course}
+\newcounter{mathitem}
+\renewcommand{\themathitem}{\arabic{course}.\arabic{mathitem}}
+\renewcommand{\theHmathitem}{\arabic{course}.\arabic{mathitem}}
+
+\newcommand{\preliminarypart}[1]{%
+  \clearpage
+  \setcounter{course}{0}%
+  \setcounter{mathitem}{0}%
+  \phantomsection
+  \addcontentsline{toc}{part}{#1}%
+  \thispagestyle{plain}%
+  \vspace*{0.22cm}%
+  {\noindent\LARGE\bfseries #1\par}%
+  \vspace{0.34cm}%
+  \hrule height 0.4pt
+  \vspace{0.52cm}%
+}
+\newcommand{\coursepart}[2]{%
+  \clearpage
+  \setcounter{course}{#1}%
+  \setcounter{mathitem}{0}%
+  \phantomsection
+  \addcontentsline{toc}{part}{Part #1\space #2}%
+  \thispagestyle{plain}%
+  \vspace*{0.22cm}%
+  {\noindent\large\bfseries Part #1\par}%
+  \vspace{0.06cm}%
+  {\noindent\LARGE\bfseries #2\par}%
+  \vspace{0.34cm}%
+  \hrule height 0.4pt
+  \vspace{0.52cm}%
+}
+\newcommand{\relatedbooks}[1]{\ifstrempty{#1}{}{\noindent\small Related Books: #1\par\vspace{0.62cm}}}
+
+% Mathematical environments follow MATH200.
+\newtheoremstyle{conceptplain}{6pt}{6pt}{\itshape}{}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{conceptdefinition}{6pt}{6pt}{}{}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{conceptsameline}{6pt}{6pt}{}{}{\itshape}{.}{0.5em}{\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\theoremstyle{conceptdefinition}
+\newtheorem{definition}[mathitem]{Definition}
+\newtheorem{example}[mathitem]{Example}
+\newtheorem{counterexample}[mathitem]{Counterexample}
+\newtheorem{formula}[mathitem]{Formula}
+\theoremstyle{conceptplain}
+\newtheorem{theorem}[mathitem]{Theorem}
+\newtheorem{proposition}[mathitem]{Proposition}
+\newtheorem{lemma}[mathitem]{Lemma}
+\newtheorem{corollary}[mathitem]{Corollary}
+\theoremstyle{conceptsameline}
+\newtheorem*{remark}{Remark}
+\renewenvironment{proof}[1][Proof]{\par\Needspace{3\baselineskip}\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}{\hfill$\square$\par}
+\newcommand{\conceptblockspace}{\Needspace{4\baselineskip}}
+\BeforeBeginEnvironment{definition}{\conceptblockspace}
+\BeforeBeginEnvironment{example}{\conceptblockspace}
+\BeforeBeginEnvironment{counterexample}{\conceptblockspace}
+\BeforeBeginEnvironment{formula}{\conceptblockspace}
+\BeforeBeginEnvironment{theorem}{\conceptblockspace}
+\BeforeBeginEnvironment{proposition}{\conceptblockspace}
+\BeforeBeginEnvironment{lemma}{\conceptblockspace}
+\BeforeBeginEnvironment{corollary}{\conceptblockspace}
+\BeforeBeginEnvironment{remark}{\conceptblockspace}
+
+% Running design: parent collection on the left, document type on the right.
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{(MATH101, 102, 311, 312) Calculus and Analysis}}
+\fancyhead[R]{\small\textit{Mathematical Concepts}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\small\textit{(MATH101, 102, 311, 312) Calculus and Analysis}}
+  \fancyhead[R]{\small\textit{Mathematical Concepts}}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}%
+}

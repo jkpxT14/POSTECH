@@ -1,0 +1,152 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{PastProblemsStyle}[2026/09/24 Calculus and Analysis past-problems style]
+
+% Visual language follows the current MATH200 Past Problems document.
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+\RequirePackage{fancyhdr}
+
+% Mathematics
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{dsfont}
+
+% Tables and lists
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{enumitem}
+\RequirePackage{multicol}
+
+% Figures
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+
+% Institution colors and PDF support
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{\institutiontext{POSTECHRed}{Pohang University of Science and Technology}}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{\institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}}
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{\institutiontext{SNUBlue}{Seoul National University}}
+
+% Canonical notation needed by the migrated Calculus and Analysis sources.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\lb}{lb}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\arcsch}{arcsch}
+\DeclareMathOperator{\arsech}{arsech}
+\DeclareMathOperator{\arcoth}{arcoth}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\closure}{cl}
+\DeclareMathOperator{\area}{area}
+
+% Problem lists and course-local numbering.
+\newlist{problemchoices}{enumerate}{1}
+\setlist[problemchoices]{label=(\arabic*),leftmargin=2.5em,labelsep=0.6em,itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left}
+\newlist{problemsubparts}{enumerate}{1}
+\setlist[problemsubparts]{label=(\alph*),leftmargin=2.5em,labelsep=0.6em,itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left}
+
+\newcounter{course}
+\newcounter{problemitem}
+\renewcommand{\theproblemitem}{\arabic{course}.\arabic{problemitem}}
+\renewcommand{\theHproblemitem}{\arabic{course}.\arabic{problemitem}}
+
+\newcommand{\problemheading}[1]{%
+  \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+  \textbf{Problem \theproblemitem.}%
+  \ifstrempty{#1}{}{\textbf{ (#1).}}%
+  \hspace{0.5em}\ignorespaces
+}
+\newenvironment{problem}[1][]
+  {\refstepcounter{problemitem}\problemheading{#1}}
+  {\par\vspace{6pt}}
+\newenvironment{solution}
+  {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
+  {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+
+% Compatibility with the previous paired-source shell. The current sources do
+% not contain solution bodies, but keeping this flag makes migration lossless.
+\newif\ifCASolutions
+\CASolutionsfalse
+
+% Four-course division: a minimal extension of the single-course MATH200 design.
+\newcommand{\coursepart}[2]{%
+  \clearpage
+  \setcounter{course}{#1}%
+  \setcounter{problemitem}{0}%
+  \phantomsection
+  \addcontentsline{toc}{part}{Part #1\space #2}%
+  \thispagestyle{plain}%
+  \vspace*{0.22cm}%
+  {\noindent\large\bfseries Part #1\par}%
+  \vspace{0.06cm}%
+  {\noindent\LARGE\bfseries #2\par}%
+  \vspace{0.34cm}%
+  \hrule height 0.4pt
+  \vspace{0.52cm}%
+}
+
+% Compact polar grid used by preserved source problems.
+\newcommand{\polargrid}{%
+  \foreach \r in {1,2,3,4}{\draw[gray!38,line width=0.25pt] (0,0) circle (\r);}%
+  \foreach \a in {0,30,...,330}{\draw[gray!32,line width=0.25pt] (0,0) -- (\a:4);}%
+  \foreach \r in {1,2,3,4}{\node[font=\tiny,fill=white,inner sep=0.25pt] at (0:\r) {\r};}%
+  \foreach \a in {0,30,...,330}{\node[font=\tiny] at (\a:4.42) {\a};}%
+}
+
+% Running design: parent collection on the left, document type on the right.
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{(MATH101, 102, 311, 312) Calculus and Analysis}}
+\fancyhead[R]{\small\textit{Past Problems}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\small\textit{(MATH101, 102, 311, 312) Calculus and Analysis}}
+  \fancyhead[R]{\small\textit{Past Problems}}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}%
+}
+\raggedbottom
