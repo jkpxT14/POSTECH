@@ -38,17 +38,26 @@
 % Quiz title block. Its author and affiliation typography matches the
 % Mathematical Concepts and Past Problems documents.
 \newcommand{\quiztitle}[1]{%
+    \thispagestyle{empty}%
     \begin{center}
         \vspace*{1.1cm}
+
         {\LARGE\bfseries #1\par}
+
+        \vspace{0.25cm}
+
+        {\large for (MATH200) Differential Equations\par}
+
         \vspace{0.75cm}
+
         {\normalsize
         Jungwoo Kim\\
         Department of Mathematics\\
         \PohangUniversityOfScienceAndTechnology
         \par}
     \end{center}
-    \vspace{0.65cm}
+
+    \vspace{0.45cm}
 }
 
 % Same-line Problem style from the Science Quiz Problem sets.
@@ -108,3 +117,6 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \DeclareMathOperator{\arccot}{arccot}
+
+% Keep page bottoms visually consistent with the other MATH200 documents.
+\raggedbottom
