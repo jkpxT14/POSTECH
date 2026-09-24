@@ -1,0 +1,761 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261001 Quiz for MATH102 Calculus II},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH102 Calculus II},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261001 Quiz}
+
+\begin{problem}{1.5}
+Find a linear function $\ell\colon\R^2\to\R$ satisfying
+\[
+    \ell(1,2)=3,
+    \qquad
+    \ell(2,3)=5.
+\]
+\end{problem}
+
+\begin{solution}
+By Theorem~1.2, every linear function $\ell\colon\R^2\to\R$ has the form
+\[
+    \ell(x,y)=px+qy
+\]
+for some $p,q\in\R$. The given values yield
+\[
+    p+2q=3,
+    \qquad
+    2p+3q=5.
+\]
+Thus $p=q=1$, and hence
+\[
+    \boxed{\ell(x,y)=x+y}.
+\]
+\end{solution}
+
+\begin{problem}{1.6}
+Let $\mathbf u=(u_1,u_2)$, $\mathbf v=(v_1,v_2)$, and $\mathbf w=(w_1,w_2)$ be vectors in $\R^2$, and let $a,b,c\in\R$. Using the definitions
+\[
+    \mathbf u+\mathbf v=(u_1+v_1,u_2+v_2),
+    \qquad
+    c\mathbf u=(cu_1,cu_2),
+    \qquad
+    -\mathbf u=(-u_1,-u_2),
+\]
+show the following properties.
+\begin{problemsubparts}
+    \item $\mathbf u+\mathbf v=\mathbf v+\mathbf u$.
+    \item $\mathbf u+(\mathbf v+\mathbf w)=(\mathbf u+\mathbf v)+\mathbf w$.
+    \item $c(\mathbf u+\mathbf v)=c\mathbf u+c\mathbf v$.
+    \item $(a+b)\mathbf u=a\mathbf u+b\mathbf u$.
+    \item $\mathbf u+(-\mathbf u)=\mathbf 0$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+Each identity follows componentwise from the definitions.
+\begin{problemsubparts}
+    \item
+    \[
+        \mathbf u+\mathbf v
+        =(u_1+v_1,u_2+v_2)
+        =(v_1+u_1,v_2+u_2)
+        =\mathbf v+\mathbf u.
+    \]
+    \item
+    \[
+        \mathbf u+(\mathbf v+\mathbf w)
+        =(u_1+v_1+w_1,u_2+v_2+w_2)
+        =(\mathbf u+\mathbf v)+\mathbf w.
+    \]
+    \item
+    \[
+        c(\mathbf u+\mathbf v)
+        =(cu_1+cv_1,cu_2+cv_2)
+        =c\mathbf u+c\mathbf v.
+    \]
+    \item
+    \[
+        (a+b)\mathbf u
+        =(au_1+bu_1,au_2+bu_2)
+        =a\mathbf u+b\mathbf u.
+    \]
+    \item
+    \[
+        \mathbf u+(-\mathbf u)=(0,0)=\mathbf 0.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{1.16}
+Let
+\[
+    \mathbf u=(1,3),
+    \qquad
+    \mathbf v=(3,1).
+\]
+\begin{problemsubparts}
+    \item Determine whether $\mathbf u$ and $\mathbf v$ are linearly independent.
+    \item Express $(4,4)$ as a linear combination of $\mathbf u$ and $\mathbf v$.
+    \item Express $(4,5)$ as a linear combination of $\mathbf u$ and $\mathbf v$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item If $a\mathbf u+b\mathbf v=\mathbf 0$, then
+    \[
+        a+3b=0,
+        \qquad
+        3a+b=0.
+    \]
+    These equations give $a=b=0$. Thus $\mathbf u$ and $\mathbf v$ are linearly independent.
+
+    \item Solving
+    \[
+        a+3b=4,
+        \qquad
+        3a+b=4
+    \]
+    gives $a=b=1$. Hence
+    \[
+        \boxed{(4,4)=\mathbf u+\mathbf v}.
+    \]
+
+    \item Solving
+    \[
+        a+3b=4,
+        \qquad
+        3a+b=5
+    \]
+    gives
+    \[
+        a=\frac{11}{8},
+        \qquad
+        b=\frac{7}{8}.
+    \]
+    Therefore
+    \[
+        \boxed{(4,5)=\frac{11}{8}\mathbf u+\frac{7}{8}\mathbf v}.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{1.21}
+Let $\mathbf u=(u_1,u_2)$, $\mathbf v=(v_1,v_2)$, and $\mathbf w=(w_1,w_2)$. Prove the following properties of the dot product.
+\begin{problemsubparts}
+    \item $\mathbf u\cdot(\mathbf v+\mathbf w)=\mathbf u\cdot\mathbf v+\mathbf u\cdot\mathbf w$.
+    \item $\mathbf u\cdot\mathbf v=\mathbf v\cdot\mathbf u$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+Using the definition of the dot product,
+\begin{problemsubparts}
+    \item
+    \begin{align*}
+        \mathbf u\cdot(\mathbf v+\mathbf w)
+        &=u_1(v_1+w_1)+u_2(v_2+w_2)\\
+        &=(u_1v_1+u_2v_2)+(u_1w_1+u_2w_2)\\
+        &=\mathbf u\cdot\mathbf v+\mathbf u\cdot\mathbf w.
+    \end{align*}
+    \item
+    \[
+        \mathbf u\cdot\mathbf v
+        =u_1v_1+u_2v_2
+        =v_1u_1+v_2u_2
+        =\mathbf v\cdot\mathbf u.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{1.25}
+Let $\ell\colon\R^2\to\R$ be linear and satisfy
+\[
+    \ell(2,1)=3,
+    \qquad
+    \ell(1,1)=2.
+\]
+Find a vector $\mathbf c\in\R^2$ such that
+\[
+    \ell(\mathbf u)=\mathbf c\cdot\mathbf u
+\]
+for every $\mathbf u\in\R^2$.
+\end{problem}
+
+\begin{solution}
+By Theorem~1.3, such a vector has the form $\mathbf c=(p,q)$. The given values yield
+\[
+    2p+q=3,
+    \qquad
+    p+q=2.
+\]
+Thus $p=q=1$, so
+\[
+    \boxed{\mathbf c=(1,1)}.
+\]
+\end{solution}
+
+\begin{problem}{1.26}
+Find the cosine of the angle between the vectors
+\[
+    \mathbf u=(1,2),
+    \qquad
+    \mathbf v=(3,1).
+\]
+\end{problem}
+
+\begin{solution}
+By Theorem~1.5,
+\[
+    \cos\theta
+    =\frac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}.
+\]
+Here
+\[
+    \mathbf u\cdot\mathbf v=5,
+    \qquad
+    \|\mathbf u\|=\sqrt5,
+    \qquad
+    \|\mathbf v\|=\sqrt{10}.
+\]
+Therefore
+\[
+    \boxed{\cos\theta=\frac{5}{\sqrt{50}}=\frac{1}{\sqrt2}=\frac{\sqrt2}{2}}.
+\]
+\end{solution}
+
+\begin{problem}{1.41}
+Show that the vectors
+\[
+    (1,1,1,1),
+    \quad
+    (0,1,1,1),
+    \quad
+    (0,0,1,1),
+    \quad
+    (0,0,0,1)
+\]
+are linearly independent in $\R^4$.
+\end{problem}
+
+\begin{solution}
+Let these vectors be $\mathbf v_1,\mathbf v_2,\mathbf v_3,\mathbf v_4$, respectively, and suppose
+\[
+    c_1\mathbf v_1+c_2\mathbf v_2+c_3\mathbf v_3+c_4\mathbf v_4=\mathbf 0.
+\]
+The first coordinate gives $c_1=0$. The second then gives $c_2=0$, the third gives $c_3=0$, and the fourth gives $c_4=0$. Hence the only linear combination equal to $\mathbf 0$ is the trivial one, so the four vectors are linearly independent.
+\end{solution}
+
+\begin{problem}{1.42}
+Determine whether the vectors
+\[
+    (1,2,1),
+    \quad
+    (1,2,2),
+    \quad
+    (1,2,3),
+    \quad
+    (1,2,4)
+\]
+are linearly dependent or linearly independent. Identify the theorem of this section that is particularly applicable.
+\end{problem}
+
+\begin{solution}
+There are four vectors in $\R^3$. By Theorem~1.8, any $n+1$ vectors in $\R^n$ are linearly dependent. Taking $n=3$, these four vectors are therefore
+\[
+    \boxed{\text{linearly dependent}}.
+\]
+The applicable result is Theorem~1.8.
+\end{solution}
+
+\begin{problem}{1.47}
+Show that the vectors
+\[
+    (1,1,1),
+    \qquad
+    (1,2,3),
+    \qquad
+    (3,2,1)
+\]
+are linearly dependent.
+\end{problem}
+
+\begin{solution}
+Let
+\[
+    \mathbf v_1=(1,1,1),
+    \qquad
+    \mathbf v_2=(1,2,3),
+    \qquad
+    \mathbf v_3=(3,2,1).
+\]
+We find the nontrivial relation
+\[
+    -4\mathbf v_1+\mathbf v_2+\mathbf v_3=\mathbf 0.
+\]
+Hence the vectors are linearly dependent.
+\end{solution}
+
+\begin{problem}{1.62}
+Let
+\[
+    \mathbf c=(c_1,\dots,c_n)\in\R^n,
+    \qquad
+    \mathbf x=(x_1,\dots,x_n)\in\R^n.
+\]
+Show that the function
+\[
+    f(\mathbf x)=x_1+\mathbf c\cdot\mathbf x
+\]
+is linear by finding $\mathbf d=(d_1,\dots,d_n)$ such that
+\[
+    f(\mathbf x)=\mathbf d\cdot\mathbf x.
+\]
+\end{problem}
+
+\begin{solution}
+Since
+\[
+    f(\mathbf x)
+    =(1+c_1)x_1+c_2x_2+\cdots+c_nx_n,
+\]
+take
+\[
+    \boxed{\mathbf d=(1+c_1,c_2,\dots,c_n)=\mathbf e_1+\mathbf c}.
+\]
+Then $f(\mathbf x)=\mathbf d\cdot\mathbf x$. The dot product with a fixed vector is linear in $\mathbf x$, so $f$ is linear.
+\end{solution}
+
+\begin{problem}{1.84}
+Evaluate each of the following products.
+\begin{problemsubparts}
+    \item
+    \[
+        \begin{pmatrix}
+            1&0&0\\
+            0&2&0\\
+            0&0&6
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1\\x_2\\x_3
+        \end{pmatrix}.
+    \]
+    \item
+    \[
+        \begin{pmatrix}
+            3&-4\\
+            4&3
+        \end{pmatrix}
+        \begin{pmatrix}
+            6\\6
+        \end{pmatrix}.
+    \]
+    \item
+    \[
+        \begin{pmatrix}
+            \cos\theta&-\sin\theta\\
+            \sin\theta&\cos\theta
+        \end{pmatrix}
+        \begin{pmatrix}
+            1\\0
+        \end{pmatrix}.
+    \]
+    \item
+    \[
+        \begin{pmatrix}
+            \cos\theta&-\sin\theta\\
+            \sin\theta&\cos\theta
+        \end{pmatrix}^{2}.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+Using the definition of matrix multiplication,
+\begin{problemsubparts}
+    \item
+    \[
+        \boxed{
+        \begin{pmatrix}
+            x_1\\2x_2\\6x_3
+        \end{pmatrix}}.
+    \]
+    \item
+    \[
+        \begin{pmatrix}
+            3&-4\\4&3
+        \end{pmatrix}
+        \begin{pmatrix}
+            6\\6
+        \end{pmatrix}
+        =
+        \boxed{
+        \begin{pmatrix}
+            -6\\42
+        \end{pmatrix}}.
+    \]
+    \item
+    \[
+        \boxed{
+        \begin{pmatrix}
+            \cos\theta\\
+            \sin\theta
+        \end{pmatrix}}.
+    \]
+    \item
+    \begin{align*}
+        \begin{pmatrix}
+            \cos\theta&-\sin\theta\\
+            \sin\theta&\cos\theta
+        \end{pmatrix}^{2}
+        &=
+        \begin{pmatrix}
+            \cos^2\theta-\sin^2\theta&-2\sin\theta\cos\theta\\
+            2\sin\theta\cos\theta&\cos^2\theta-\sin^2\theta
+        \end{pmatrix}\\
+        &=
+        \boxed{
+        \begin{pmatrix}
+            \cos(2\theta)&-\sin(2\theta)\\
+            \sin(2\theta)&\cos(2\theta)
+        \end{pmatrix}}.
+    \end{align*}
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{1.95}
+Find an equation of each plane in the form
+\[
+    ax+by+cz=d.
+\]
+\begin{problemsubparts}
+    \item The plane through the origin with normal vector $(1,0,0)$.
+    \item The plane through $(0,0,0)$, $(0,1,1)$, and $(-3,0,0)$.
+    \item The plane containing $(1,1,1)$ and parallel to the plane
+    \[
+        x-3y+5z=60.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item A normal vector is $(1,0,0)$, and the plane passes through the origin. Hence
+    \[
+        \boxed{x=0}.
+    \]
+
+    \item Two vectors in the plane are
+    \[
+        \mathbf v=(0,1,1),
+        \qquad
+        \mathbf w=(-3,0,0).
+    \]
+    Their cross product is
+    \[
+        \mathbf v\times\mathbf w=(0,-3,3),
+    \]
+    so a normal vector is $(0,-1,1)$. Since the plane passes through the origin,
+    \[
+        \boxed{-y+z=0}.
+    \]
+
+    \item A parallel plane has the same normal vector $(1,-3,5)$, so it has the form
+    \[
+        x-3y+5z=d.
+    \]
+    Substituting $(1,1,1)$ gives $d=3$. Therefore
+    \[
+        \boxed{x-3y+5z=3}.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{1.104}
+Using the formula
+\[
+    \mathbf v\times\mathbf w
+    =(v_2w_3-v_3w_2,\,v_3w_1-v_1w_3,\,v_1w_2-v_2w_1),
+\]
+evaluate the following cross products.
+\begin{problemsubparts}
+    \item $(1,0,0)\times(0,1,0)$.
+    \item $(0,1,0)\times(1,0,0)$.
+    \item $(0,0,1)\times(a,b,c)$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+Substituting directly into the given formula,
+\begin{problemsubparts}
+    \item
+    \[
+        \boxed{(1,0,0)\times(0,1,0)=(0,0,1)}.
+    \]
+    \item
+    \[
+        \boxed{(0,1,0)\times(1,0,0)=(0,0,-1)}.
+    \]
+    \item
+    \[
+        \boxed{(0,0,1)\times(a,b,c)=(-b,a,0)}.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{1.105}
+Using
+\[
+    \mathbf e_1\times\mathbf e_2=\mathbf e_3,
+    \qquad
+    \mathbf e_2\times\mathbf e_3=\mathbf e_1,
+    \qquad
+    \mathbf e_3\times\mathbf e_1=\mathbf e_2,
+\]
+and the distributive and anticommutative laws
+\[
+    \mathbf u\times(\mathbf v+\mathbf w)
+    =\mathbf u\times\mathbf v+\mathbf u\times\mathbf w,
+    \qquad
+    \mathbf v\times\mathbf w=-\mathbf w\times\mathbf v,
+\]
+evaluate the following cross products.
+\begin{problemsubparts}
+    \item $\mathbf e_1\times\mathbf e_2$.
+    \item $\mathbf e_2\times(\mathbf e_1+\mathbf e_3)$.
+    \item $(2\mathbf e_1+3\mathbf e_3)\times(a\mathbf e_1+b\mathbf e_2+c\mathbf e_3)$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item
+    \[
+        \boxed{\mathbf e_1\times\mathbf e_2=\mathbf e_3}.
+    \]
+    \item
+    \begin{align*}
+        \mathbf e_2\times(\mathbf e_1+\mathbf e_3)
+        &=\mathbf e_2\times\mathbf e_1+\mathbf e_2\times\mathbf e_3\\
+        &=-\mathbf e_3+\mathbf e_1.
+    \end{align*}
+    Thus
+    \[
+        \boxed{\mathbf e_2\times(\mathbf e_1+\mathbf e_3)=\mathbf e_1-\mathbf e_3}.
+    \]
+    \item Using distributivity and anticommutativity,
+    \begin{align*}
+        &(2\mathbf e_1+3\mathbf e_3)\times(a\mathbf e_1+b\mathbf e_2+c\mathbf e_3)\\
+        &\qquad=2b\mathbf e_3-2c\mathbf e_2+3a\mathbf e_2-3b\mathbf e_1\\
+        &\qquad=-3b\mathbf e_1+(3a-2c)\mathbf e_2+2b\mathbf e_3.
+    \end{align*}
+    Hence
+    \[
+        \boxed{-3b\mathbf e_1+(3a-2c)\mathbf e_2+2b\mathbf e_3}.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{2.4}
+Show that a constant function $\mathbf F\colon\R^n\to\R^m$ is linear if and only if
+\[
+    \mathbf F(\mathbf x)=\mathbf 0
+\]
+for every $\mathbf x\in\R^n$.
+\end{problem}
+
+\begin{solution}
+Suppose first that $\mathbf F$ is linear. Since $\mathbf F$ is constant,
+\[
+    \mathbf F(\mathbf x)=\mathbf F(\mathbf 0)
+\]
+for every $\mathbf x$. By linearity,
+\[
+    \mathbf F(\mathbf 0)
+    =\mathbf F(0\mathbf x)
+    =0\mathbf F(\mathbf x)
+    =\mathbf 0.
+\]
+Thus $\mathbf F$ is the zero function.
+
+Conversely, if $\mathbf F(\mathbf x)=\mathbf 0$ for every $\mathbf x$, then
+\[
+    \mathbf F(c\mathbf x)=\mathbf 0=c\mathbf F(\mathbf x)
+\]
+and
+\[
+    \mathbf F(\mathbf x+\mathbf y)=\mathbf 0
+    =\mathbf F(\mathbf x)+\mathbf F(\mathbf y).
+\]
+Hence $\mathbf F$ is linear.
+\end{solution}
+
+\begin{problem}{2.5}
+The plane in $\R^3$ given by
+\[
+    z=2x+3y
+\]
+is the $0$ level set of a linear function $\ell\colon\R^3\to\R$. Find such a function $\ell$.
+\end{problem}
+
+\begin{solution}
+Rewrite the plane equation as
+\[
+    2x+3y-z=0.
+\]
+Thus the linear function
+\[
+    \boxed{\ell(x,y,z)=2x+3y-z}
+\]
+has exactly this plane as its $0$ level set.
+\end{solution}
+
+\begin{problem}{2.13}
+Sketch or describe the $c$ level sets $f(\mathbf x)=c$ in $\R^3$ for the following functions $f\colon\R^3\to\R$ and values of $c$.
+\begin{problemsubparts}
+    \item $f(\mathbf x)=\|\mathbf x\|^2$, for $c=\frac12,1,2$.
+    \item $f(\mathbf x)=\|\mathbf x\|$, for $c=\frac12,1,2$.
+    \item $f(\mathbf x)=\dfrac{1}{\|\mathbf x\|^2}$, for $c=\frac12,1,2$.
+    \item $f(\mathbf x)=\mathbf u\cdot\mathbf x$, for $c=\frac12,1,2$, where $\mathbf u$ is a unit vector. Hint: write $\mathbf x$ as the sum of a vector parallel to $\mathbf u$ and a vector orthogonal to $\mathbf u$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item The equation $\|\mathbf x\|^2=c$ describes a sphere centered at the origin with radius $\sqrt c$. Thus the radii are
+    \[
+        \boxed{\frac{1}{\sqrt2},\ 1,\ \sqrt2}.
+    \]
+
+    \item The equation $\|\mathbf x\|=c$ describes a sphere centered at the origin with radius $c$. Thus the radii are
+    \[
+        \boxed{\frac12,\ 1,\ 2}.
+    \]
+
+    \item The equation
+    \[
+        \frac{1}{\|\mathbf x\|^2}=c
+    \]
+    is equivalent to $\|\mathbf x\|=1/\sqrt c$. Thus the level sets are spheres centered at the origin with radii
+    \[
+        \boxed{\sqrt2,\ 1,\ \frac{1}{\sqrt2}}.
+    \]
+
+    \item Write
+    \[
+        \mathbf x=t\mathbf u+\mathbf y,
+        \qquad
+        \mathbf y\perp\mathbf u.
+    \]
+    Since $\|\mathbf u\|=1$,
+    \[
+        \mathbf u\cdot\mathbf x=t.
+    \]
+    Hence the level set $\mathbf u\cdot\mathbf x=c$ is the plane perpendicular to $\mathbf u$ through the point $c\mathbf u$. For $c=\frac12,1,2$, the three planes pass through
+    \[
+        \boxed{\frac12\mathbf u,\ \mathbf u,\ 2\mathbf u},
+    \]
+    respectively.
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{2.35}
+Show that the set
+\[
+    S=\{(x,y,z)\in\R^3\mid x^2+y^2<1\}
+\]
+is open.
+\end{problem}
+
+\begin{solution}
+Let $\mathbf p=(a,b,c)\in S$ and set
+\[
+    \rho=\sqrt{a^2+b^2}<1,
+    \qquad
+    r=1-\rho>0.
+\]
+If $\mathbf q=(x,y,z)$ satisfies $\|\mathbf q-\mathbf p\|<r$, then by the triangle inequality in the $xy$-plane,
+\begin{align*}
+    \sqrt{x^2+y^2}
+    &\leq \sqrt{(x-a)^2+(y-b)^2}+\sqrt{a^2+b^2}\\
+    &\leq \|\mathbf q-\mathbf p\|+\rho\\
+    &<r+\rho=1.
+\end{align*}
+Thus $\mathbf q\in S$, so $B_r(\mathbf p)\subseteq S$. Every point of $S$ is therefore an interior point, and $S$ is open by Definition~2.14.
+\end{solution}
+
+\begin{problem}{2.36}
+Let
+\[
+    S=\R^2\setminus\{\mathbf 0\}.
+\]
+Show that $\mathbf 0$ is a boundary point of $S$.
+\end{problem}
+
+\begin{solution}
+Let $r>0$. The open ball $B_r(\mathbf 0)$ contains $\mathbf 0$, which is not in $S$, and it also contains, for example,
+\[
+    \left(\frac r2,0\right)\in S.
+\]
+Thus every ball centered at $\mathbf 0$ contains a point of $S$ and a point not in $S$. By Definition~2.15, $\mathbf 0$ is a boundary point of $S$.
+\end{solution}
+
+\begin{problem}{2.37}
+Let
+\[
+    T=\{(x,y)\in\R^2\mid x\geq0,\ y\geq0,\ x+y\leq1\}.
+\]
+\begin{problemsubparts}
+    \item Describe the boundary of $T$.
+    \item Show that the point $(0.0001,0.9998)$ is an interior point of $T$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item The boundary consists of the three line segments
+    \[
+        \boxed{
+        \partial T
+        =\{(0,y)\mid 0\leq y\leq1\}
+        \cup\{(x,0)\mid 0\leq x\leq1\}
+        \cup\{(x,y)\mid x\geq0,\ y\geq0,\ x+y=1\}}.
+    \]
+
+    \item Let
+    \[
+        \mathbf p=(0.0001,0.9998),
+        \qquad
+        r=0.00005.
+    \]
+    If $\mathbf q=(x,y)$ satisfies $\|\mathbf q-\mathbf p\|<r$, then
+    \[
+        |x-0.0001|<r,
+        \qquad
+        |y-0.9998|<r.
+    \]
+    Therefore
+    \[
+        x>0.00005>0,
+        \qquad
+        y>0.99975>0,
+    \]
+    and
+    \[
+        x+y
+        <0.0001+0.9998+2r
+        =1.
+    \]
+    Hence $B_r(\mathbf p)\subseteq T$. By Definition~2.13, $\mathbf p$ is an interior point of $T$.
+\end{problemsubparts}
+\end{solution}
+
+\end{document}
