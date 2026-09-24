@@ -1,10 +1,10 @@
 % Mathematical Language style and canonical notation
 % (MATH000) Mathematical Language - Notation and Conventions
 %
-% Design baseline: Mathematics for Science Quiz, with a lighter reference-document
-% shell. Institution colors are reserved for institution names only.
+% Design baseline: the MATH200 Mathematical Concepts / Past Problems document family,
+% adapted for a compact reference document. Institution colors are reserved for institution names only.
 
-\usepackage[a4paper,margin=1in,headheight=14pt,headsep=18pt]{geometry}
+\usepackage[a4paper,margin=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{microtype}
@@ -26,7 +26,7 @@
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{tocloft}
-\usepackage{fancyhdr}
+\usepackage[topmarks]{titleps}
 \usepackage{needspace}
 \usepackage{etoolbox}
 \usepackage[hidelinks]{hyperref}
@@ -161,6 +161,7 @@
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{1.5em}
 \linespread{1.0}
+\raggedbottom
 
 % Table columns and spacing
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
@@ -261,14 +262,14 @@
   {}
 \titlespacing*{\subsection}{0pt}{1.1em}{0.45em}
 
-% Running identity
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\small\textit{(MATH000) Mathematical Language}}
-\fancyhead[R]{\small\textit{Notation and Conventions}}
-\fancyfoot[C]{\small\thepage}
-\renewcommand{\headrulewidth}{0.35pt}
-\renewcommand{\footrulewidth}{0pt}
+% Running identity.
+\setlength{\headheight}{14pt}
+\newpagestyle{mathlanguage}{%
+  \sethead{\small\textit{(MATH000) Mathematical Language}}{}{\small\textit{\sectiontitle}}%
+  \setfoot{}{\small\thepage}{}%
+  \setheadrule{0.4pt}%
+}
+\pagestyle{mathlanguage}
 
 \setlist[itemize]{leftmargin=1.4em,itemsep=0.15em,topsep=0.25em}
 \setlist[enumerate]{leftmargin=1.6em,itemsep=0.15em,topsep=0.25em}
