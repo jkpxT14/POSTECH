@@ -6,17 +6,29 @@ The differential $\dd$ is upright; $\varepsilon$ is the default small positive q
 $\displaystyle\lim_{x\to a} f(x)$ & Limit as $x$ approaches $a$. \\
 $\displaystyle\lim_{x\to a^-} f(x)$ & Left-hand limit as $x$ approaches $a$. \\*
 $\displaystyle\lim_{x\to a^+} f(x)$ & Right-hand limit as $x$ approaches $a$. \\
+$\displaystyle\lim_{x\to\infty} f(x),\ \lim_{x\to-\infty} f(x)$ & Limits as $x$ tends to positive or negative infinity. \\
+$\displaystyle\lim_{x\to a} f(x)=\infty,\ \lim_{x\to a} f(x)=-\infty$ & Infinite limits. \\
 $\min A$ & Minimum of $A$. \\*
 $\max A$ & Maximum of $A$. \\
 $\inf A$ & Infimum of $A$. \\*
 $\sup A$ & Supremum of $A$. \\
+$\overline{\R}=\R\cup\{-\infty,+\infty\}$ & Extended real line. \\
 \addlinespace[0.26em]
 $f'(a)$ & First derivative of $f$ at $a$. \\
 $f^{(n)}(a)$ & $n$th derivative of $f$ at $a$. \\
 $\displaystyle\frac{\dd y}{\dd x}$ & Derivative of $y$ with respect to $x$. \\
-$\displaystyle\frac{\partial f}{\partial x_i},\ \partial_i f$ & Partial derivative with respect to $x_i$. \\
+$\displaystyle\frac{\dd^n y}{\dd x^n}$ & $n$th derivative of $y$ with respect to $x$ in Leibniz notation. \\
+$\displaystyle\frac{\partial f}{\partial x_i},\ \partial_i f,\ f_{x_i}$ & Partial derivative with respect to $x_i$. \\
+$\displaystyle\frac{\partial^2 f}{\partial x_i\partial x_j},\ \partial_{ij}f,\ f_{x_i x_j}$ & Second or mixed partial derivative. \\
+$D_{\mathbf v}f(\mathbf a),\ \partial_{\mathbf v}f(\mathbf a)$ & Directional derivative of $f$ at $\mathbf a$ in the direction $\mathbf v$; when $f$ is differentiable, $D_{\mathbf v}f(\mathbf a)=Df(\mathbf a)\mathbf v=\nabla f(\mathbf a)\cdot\mathbf v$. \\
+$\displaystyle\dd f=\sum_{i=1}^n\frac{\partial f}{\partial x_i}\,\dd x_i$ & Total differential of a scalar function of $n$ variables. \\
 \addlinespace[0.26em]
+$\displaystyle\int f(x)\,\dd x$ & Indefinite integral; a family of antiderivatives, with an additive constant understood. \\
 $\displaystyle\int_a^b f(x)\,\dd x$ & Definite integral over $[a,b]$. \\
+$\begin{aligned} &\displaystyle\int_a^\infty f(x)\,\dd x,\\[-0.15em] &\displaystyle\int_{-\infty}^b f(x)\,\dd x,\ \int_{-\infty}^{\infty}f(x)\,\dd x \end{aligned}$ & Improper integrals over unbounded intervals. \\
+$\displaystyle\int_a^b f\,\dd\alpha$ & Riemann--Stieltjes integral of $f$ with respect to $\alpha$. \\
+$P=\{x_0,\dots,x_n\},\ a=x_0<\cdots<x_n=b$ & Partition of the interval $[a,b]$. \\
+$\displaystyle\sum_{i=1}^n f(\xi_i)\Delta x_i,\quad \Delta x_i=x_i-x_{i-1}$ & Tagged Riemann sum, with $\xi_i\in[x_{i-1},x_i]$. \\
 $\displaystyle\iint_D f\,\dd A$ & Double integral over $D$. \\
 $\displaystyle\iiint_\Omega f\,\dd V$ & Triple integral over $\Omega$. \\
 $\displaystyle\int_C f(z)\,\dd z$ & Contour integral along an oriented contour $C$. \\
@@ -28,6 +40,8 @@ $\PV,\ \mathrm{P.V.}$ & Principal value; in particular, the Cauchy principal val
 $\displaystyle\sum_{k=1}^{n} a_k$ & Finite sum. \\
 $\displaystyle\sum_{k=1}^{\infty} a_k$ & Infinite series. \\
 $\displaystyle\prod_{k=1}^{n} a_k$ & Finite product. \\
+$\displaystyle\sum_{n=0}^{\infty}a_n(x-a)^n$ & Power series centered at $a$. \\
+$\displaystyle\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & $n$th Taylor polynomial of $f$ about $a$; no single letter for the polynomial is imposed globally. \\
 \addlinespace[0.26em]
 $e^x,\ \exp x$ & Exponential function. \\
 $\ln x,\ \log_e x$ & Logarithm to base $e$. \\
@@ -68,35 +82,54 @@ $B(x,y)$ & Beta function. \\
 $\zeta(s)$ & Riemann zeta function. \\
 \addlinespace[0.26em]
 $D\mathbf{F}(\mathbf{a})$ & Total derivative; Jacobian matrix in coordinates. \\
-$\Jac(\mathbf{F})$ & Jacobian determinant. \\
+$J_{\mathbf F}(\mathbf a),\ \det D\mathbf F(\mathbf a),\ \Jac\mathbf F(\mathbf a)$ & Jacobian determinant of $\mathbf F$ at $\mathbf a$, in preferred order. \\
 $\Hess f$ & Hessian matrix of $f$. \\
-$\nabla f$ & Gradient of $f$. \\
-$\nabla\cdot\mathbf{F}$ & Divergence of $\mathbf{F}$. \\
-$\nabla\times\mathbf{F}$ & Curl of $\mathbf{F}$. \\
+$\nabla f,\ \operatorname{grad}f$ & Gradient of $f$. \\
+$\nabla\cdot\mathbf{F},\ \operatorname{div}\mathbf F$ & Divergence of $\mathbf{F}$. \\
+$\nabla\times\mathbf{F},\ \operatorname{curl}\mathbf F$ & Curl of $\mathbf{F}$. \\
 $\Delta f$ & Laplacian of $f$. \\
 $\mathbf{r}(t)$ & Parametrized curve. \\
 $\dd s$ & Element of arc length. \\
-$\displaystyle\int_C\mathbf{F}\cdot\dd\mathbf{r}$ & Line integral along $C$. \\
+$\displaystyle\int_C f\,\dd s$ & Scalar line integral along $C$ with respect to arc length. \\
+$\displaystyle\int_C\mathbf{F}\cdot\dd\mathbf{r}$ & Line integral of the vector field $\mathbf F$ along $C$. \\
+$\displaystyle\iint_S f\,\dd S$ & Scalar surface integral over $S$. \\
 $\displaystyle\iint_S\mathbf{F}\cdot\mathbf{n}\,\dd S$ & Flux integral through $S$. \\
 \addlinespace[0.26em]
-$x_n\to x$ & Convergence of a sequence. \\
+$x_n\to x,\ \displaystyle\lim_{n\to\infty}x_n=x$ & Convergence of a sequence. \\
+$(x_{n_k})$ & Subsequence of the sequence $(x_n)$. \\
 $a_n\nearrow L$ & Monotone increasing convergence to $L$. \\*
 $a_n\searrow L$ & Monotone decreasing convergence to $L$. \\
 $\limsup a_n$ & Limit superior. \\*
 $\liminf a_n$ & Limit inferior. \\
+$f(x)\sim g(x)$ & Asymptotic equivalence in the stated limiting regime, typically meaning $f(x)/g(x)\to1$. \\
 $f_n\to f,\ f_n\ptwlabelto f$ & Pointwise convergence. \\*
 $f_n\rightrightarrows f,\ f_n\uniflabelto f$ & Uniform convergence. \\
 $f_n\aeto f$ & Convergence almost everywhere. \\
 \addlinespace[0.26em]
+$\mu(E)$ & Measure of a measurable set $E$. \\
+$\displaystyle\int_E f\,\dd\mu$ & Integral of $f$ over $E$ with respect to the measure $\mu$. \\
+$f=g\ \text{a.e.},\quad f=g\ \mu\text{-a.e.}$ & Equality almost everywhere, with the measure omitted when understood. \\
+$\displaystyle\esssup_{x\in E} f(x)$ & Essential supremum of $f$ on $E$. \\
+$\displaystyle\essinf_{x\in E} f(x)$ & Essential infimum of $f$ on $E$. \\
+\addlinespace[0.26em]
 $C(\Omega),\ C^0(\Omega)$ & Continuous functions on $\Omega$. \\*
 $C^k(\Omega)$ & $k$ times continuously differentiable functions on $\Omega$. \\*
 $C^\infty(\Omega)$ & Smooth functions on $\Omega$. \\
+$\operatorname{supp}f$ & Support of $f$, the closure of the set on which $f$ is nonzero. \\
+$C_c(\Omega),\ C_c^\infty(\Omega)$ & Continuous and smooth functions on $\Omega$ with compact support, respectively. \\
 $\mathcal{R}([a,b])$ & Riemann-integrable functions on $[a,b]$. \\
-$L^p(\Omega)$ & Lebesgue $L^p$ space on $\Omega$. \\*
-$L^\infty(\Omega)$ & Lebesgue space of essentially bounded functions on $\Omega$. \\
+$L^p(\Omega),\ L^p(X,\mu)$ & Lebesgue $L^p$ spaces; the measure is displayed when it is not understood. \\*
+$L^\infty(\Omega),\ L^\infty(X,\mu)$ & Lebesgue spaces of essentially bounded functions. \\
+$\ell^p$ & Space of scalar sequences $(x_n)$ with $\sum_{n=1}^{\infty}|x_n|^p<\infty$, for $1\le p<\infty$. \\
+$\ell^\infty$ & Space of bounded scalar sequences. \\
 $\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{x\in\Omega}|f(x)|$, when finite. \\
 $\|f\|_{L^p(\Omega)},\ \|f\|_p$ & $L^p$-norm $\displaystyle\left(\int_\Omega |f(x)|^p\,\dd x\right)^{1/p}$ for $1\le p<\infty$. \\
 $\|f\|_{L^\infty(\Omega)}$ & $L^\infty$-norm $\displaystyle\esssup_{x\in\Omega}|f(x)|$. \\
+\addlinespace[0.26em]
+$\alpha=(\alpha_1,\dots,\alpha_n)\in\Nzero^n$ & Multi-index; $\alpha$ is not treated as a vector for typographic purposes. \\
+$|\alpha|=\alpha_1+\cdots+\alpha_n,\quad \alpha!=\alpha_1!\cdots\alpha_n!$ & Order and factorial of a multi-index. \\
+$\mathbf x^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial for $\mathbf x=(x_1,\dots,x_n)$. \\
+$D^\alpha f,\ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$. \\
 \addlinespace[0.26em]
 $B_r(x)$ & Open ball of radius $r$ centered at $x$. \\*
 $\overline{B}_r(x)$ & Closed ball of radius $r$ centered at $x$. \\
