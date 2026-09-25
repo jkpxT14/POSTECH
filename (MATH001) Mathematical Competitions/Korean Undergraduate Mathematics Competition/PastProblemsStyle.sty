@@ -1,0 +1,129 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{PastProblemsStyle}[2026/09/25 KUMC past-problems style]
+
+% Visual language follows the current MATH200 and Calculus and Analysis documents.
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+\RequirePackage{fancyhdr}
+
+% Mathematics
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{dsfont}
+
+% Lists
+\RequirePackage{enumitem}
+
+% Figures
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+
+% Institution colors and PDF support
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{%
+    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
+}
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{%
+    \institutiontext{SNUBlue}{Seoul National University}%
+}
+
+% Canonical notation. Extend only when a source problem requires it.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+
+% Problem lists.
+\newlist{problemchoices}{enumerate}{1}
+\setlist[problemchoices]{
+    label=(\arabic*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+\newlist{problemsubparts}{enumerate}{1}
+\setlist[problemsubparts]{
+    label=(\alph*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+% KUMC problem identifiers use YYYY.Division.Problem, e.g. 2025.2.1.
+% No visible year or division heading is required in the final document.
+\makeatletter
+\newcommand{\problemheading}[3]{%
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+    \phantomsection
+    \def\@currentlabel{#1.#2.#3}%
+    \label{kumc:#1:#2:#3}%
+    \textbf{#1.#2.#3.}%
+    \hspace{0.5em}\ignorespaces
+}
+\makeatother
+
+\newenvironment{problem}[3]
+    {\problemheading{#1}{#2}{#3}}
+    {\par\vspace{6pt}}
+
+% Optional year bookmark for navigation without a printed section heading.
+\newcommand{\competitionyear}[1]{%
+    \phantomsection
+    \pdfbookmark[1]{#1}{kumc-year-#1}%
+    \par\addvspace{8pt}%
+}
+
+% Kept available if a separate solution document is introduced later.
+\newenvironment{solution}
+    {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
+    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+
+% Running design: competition on the left, document type on the right.
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Korean Undergraduate Mathematics Competition}}
+\fancyhead[R]{\small\textit{Past Problems}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyhead[L]{\small\textit{Korean Undergraduate Mathematics Competition}}
+    \fancyhead[R]{\small\textit{Past Problems}}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}%
+}
+\raggedbottom

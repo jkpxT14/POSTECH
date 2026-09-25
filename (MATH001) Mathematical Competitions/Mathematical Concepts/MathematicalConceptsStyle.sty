@@ -1,0 +1,174 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{MathematicalConceptsStyle}[2026/09/25 MATH001 mathematical-competitions concepts style]
+
+% Visual language follows the current MATH200 and Calculus and Analysis documents.
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+\RequirePackage{fancyhdr}
+
+% Mathematics
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{dsfont}
+
+% Tables and lists
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{enumitem}
+
+% Figures and PDF support
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+
+% Institution colors
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{%
+    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
+}
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{%
+    \institutiontext{SNUBlue}{Seoul National University}%
+}
+
+% Canonical notation. Extend only when competition material requires it.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+
+% Typography
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
+\raggedbottom
+
+% Tables retained for future notation and convention sections.
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTpre}{0.5em}
+\setlength{\LTpost}{0.62em}
+\newenvironment{notationtable}{%
+    \par\vspace{0.05em}\small
+    \renewcommand{\arraystretch}{1.18}%
+    \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}%
+    \toprule
+    Notation & Meaning \\
+    \midrule
+    \endfirsthead
+    \toprule
+    Notation & Meaning \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endlastfoot
+}{\end{longtable}}
+
+\newenvironment{ruletable}{%
+    \par\vspace{0.05em}\small
+    \renewcommand{\arraystretch}{1.18}%
+    \begin{longtable}{@{}L{0.24\textwidth}L{0.68\textwidth}@{}}%
+    \toprule
+    Item & Convention \\
+    \midrule
+    \endfirsthead
+    \toprule
+    Item & Convention \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endlastfoot
+}{\end{longtable}}
+
+\newcommand{\notationheading}[1]{%
+    \par\Needspace{6\baselineskip}%
+    \vspace{0.45em}%
+    {\noindent\large\bfseries #1\par}%
+    \vspace{0.16em}%
+}
+
+% Top-level concept divisions can be introduced as content is added.
+\newcommand{\conceptpart}[1]{%
+    \clearpage
+    \phantomsection
+    \section*{#1}%
+    \addcontentsline{toc}{section}{#1}%
+    \markboth{#1}{#1}%
+}
+
+% Mathematical environments follow the MATH200 family.
+\newcounter{mathitem}
+\renewcommand{\themathitem}{\arabic{mathitem}}
+\newtheoremstyle{conceptplain}
+    {6pt}{6pt}{\itshape}{}{\bfseries}{}{\newline}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{conceptdefinition}
+    {6pt}{6pt}{}{}{\bfseries}{}{\newline}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{conceptsameline}
+    {6pt}{6pt}{}{}{\itshape}{.}{0.5em}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+
+\theoremstyle{conceptdefinition}
+\newtheorem{definition}[mathitem]{Definition}
+\newtheorem{example}[mathitem]{Example}
+\newtheorem{counterexample}[mathitem]{Counterexample}
+\newtheorem{formula}[mathitem]{Formula}
+\theoremstyle{conceptplain}
+\newtheorem{theorem}[mathitem]{Theorem}
+\newtheorem{proposition}[mathitem]{Proposition}
+\newtheorem{lemma}[mathitem]{Lemma}
+\newtheorem{corollary}[mathitem]{Corollary}
+\theoremstyle{conceptsameline}
+\newtheorem*{remark}{Remark}
+
+\renewenvironment{proof}[1][Proof]
+    {\par\Needspace{3\baselineskip}\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}
+    {\hfill$\square$\par}
+
+\newcommand{\conceptblockspace}{\Needspace{4\baselineskip}}
+\BeforeBeginEnvironment{definition}{\conceptblockspace}
+\BeforeBeginEnvironment{example}{\conceptblockspace}
+\BeforeBeginEnvironment{counterexample}{\conceptblockspace}
+\BeforeBeginEnvironment{formula}{\conceptblockspace}
+\BeforeBeginEnvironment{theorem}{\conceptblockspace}
+\BeforeBeginEnvironment{proposition}{\conceptblockspace}
+\BeforeBeginEnvironment{lemma}{\conceptblockspace}
+\BeforeBeginEnvironment{corollary}{\conceptblockspace}
+\BeforeBeginEnvironment{remark}{\conceptblockspace}
+
+% Running design: parent collection on the left, document type on the right.
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{(MATH001) Mathematical Competitions}}
+\fancyhead[R]{\small\textit{Mathematical Concepts}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyhead[L]{\small\textit{(MATH001) Mathematical Competitions}}
+    \fancyhead[R]{\small\textit{Mathematical Concepts}}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}%
+}
