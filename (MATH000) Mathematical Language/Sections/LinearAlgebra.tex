@@ -1,34 +1,44 @@
 \section{Linear Algebra}
 
 \begin{notationtable}
+$M_{m\times n}(\F),\ \F^{m\times n}$ & Space of $m\times n$ matrices over the field $\F$; $M_{m\times n}(\F)$ is preferred. \\
+$M_n(\F)$ & Space (and matrix algebra) of $n\times n$ matrices over $\F$. \\
 $\mathbf{A}=(a_{ij}),\ \mathbf{A}=[a_{ij}]$ & Matrix with $(i,j)$-entry $a_{ij}$; parentheses are preferred. \\
 $\mathbf{A}^{\mathsf T}$ & Transpose of $\mathbf A$. \\
 $\mathbf{A}^{\mathsf H}$ & Conjugate transpose of $\mathbf A$. \\
 $\mathbf{A}^{-1}$ & Inverse of $\mathbf A$. \\
 $\mathbf{I}_n,\ \mathbf{I}$ & Identity matrix; the dimension subscript is preferred when readily available and useful. \\
 $\mathbf{0}$ & Zero vector or zero matrix, with dimension understood. \\
-$\mathbf{D}$ & Diagonal matrix when a local name is required. \\
-$\mathbf{P}$ & Projection matrix when a local name is required. \\
-$\diag(d_1,\dots,d_n)$ & Diagonal matrix with entries $d_1,\dots,d_n$. \\
+$\mathbf e_i$ & $i$th standard basis vector. \\
 $\ones$ & All-ones vector. \\
-$e^{\mathbf A},\ \exp(\mathbf A)$ & Matrix exponential; $e^{t\mathbf A}$ is the standard time-dependent form. \\
+$\mathbf{D}$ & Diagonal matrix when a local name is required. \\
+$\diag(d_1,\dots,d_n)$ & Diagonal matrix with entries $d_1,\dots,d_n$. \\
+$\mathbf{P}$ & Projection matrix when a local name is required. \\
 \addlinespace[0.35em]
-$\det(\mathbf A),\ |\mathbf A|$ & Determinant. \\
-$\rk(\mathbf A),\ \operatorname{rank}(\mathbf A)$ & Rank. \\
+$\det(\mathbf A),\ |\mathbf A|$ & Determinant; $\det(\mathbf A)$ is preferred. \\
+$\rk(\mathbf A),\ \operatorname{rank}(\mathbf A)$ & Rank; $\rk(\mathbf A)$ is preferred. \\
 $\tr(\mathbf A)$ & Trace. \\
 $\adj(\mathbf A)$ & Adjugate matrix. \\
+$M_{ij}$ & Minor of the $(i,j)$-entry, when the matrix is understood. \\
+$C_{ij}=(-1)^{i+j}M_{ij}$ & Cofactor of the $(i,j)$-entry. \\
 $\Col(\mathbf A)$ & Column space. \\
 $\Row(\mathbf A)$ & Row space. \\
-$\Null(\mathbf A),\ \ker\mathbf A$ & Null space. \\
+$\Null(\mathbf A),\ \ker\mathbf A$ & Null space; $\Null(\mathbf A)$ is preferred for a matrix. \\
 \addlinespace[0.35em]
-$\ker T$ & Kernel of a linear map $T$. \\
-$\im T$ & Image of a linear map $T$. \\
-$\mathbf e_i$ & $i$th standard basis vector. \\
+$V,W$ & Vector spaces, usually over an understood field $\F$. \\
 $\dim V$ & Dimension of $V$. \\
 $\Span(\mathbf v_1,\dots,\mathbf v_k)$ & Span of the listed vectors. \\
 $U\oplus V$ & Direct sum. \\
+$\ker T$ & Kernel of a linear map $T$. \\
+$\im T$ & Image of a linear map $T$. \\
+$\mathcal B=(\mathbf b_1,\dots,\mathbf b_n)$ & Ordered basis. \\
+$[\mathbf v]_{\mathcal B}$ & Coordinate vector of $\mathbf v$ with respect to the ordered basis $\mathcal B$. \\
+$[T]_{\mathcal C\leftarrow\mathcal B}$ & Matrix of $T\colon V\to W$ with respect to domain basis $\mathcal B$ and codomain basis $\mathcal C$; thus $[T(\mathbf v)]_{\mathcal C}=[T]_{\mathcal C\leftarrow\mathcal B}[\mathbf v]_{\mathcal B}$. \\
+$[T]_{\mathcal B}$ & Matrix of an endomorphism $T\colon V\to V$ when the same basis $\mathcal B$ is used in the domain and codomain. \\
+$\mathbf P_{\mathcal C\leftarrow\mathcal B}$ & Change-of-coordinate matrix from $\mathcal B$-coordinates to $\mathcal C$-coordinates; $[\mathbf v]_{\mathcal C}=\mathbf P_{\mathcal C\leftarrow\mathcal B}[\mathbf v]_{\mathcal B}$. \\
+$V^*$ & Dual space of $V$. \\
 \addlinespace[0.35em]
-$\langle\mathbf u,\mathbf v\rangle,\ (\mathbf u,\mathbf v)$ & Inner product; over complex spaces, conjugate-linear in the first argument and linear in the second. \\
+$\langle\mathbf u,\mathbf v\rangle,\ (\mathbf u,\mathbf v)$ & Inner product; angle brackets are preferred. Over complex spaces, the inner product is conjugate-linear in the first argument and linear in the second. \\
 $\mathbf u\cdot\mathbf v,\ \mathbf u^{\mathsf T}\mathbf v$ & Standard Euclidean inner product on $\R^n$. \\
 $\mathbf u^{\mathsf H}\mathbf v$ & Standard Hermitian inner product on $\C^n$. \\
 $\|\mathbf v\|$ & Norm of $\mathbf v$. \\
@@ -38,12 +48,42 @@ $\proj_U\mathbf x$ & Orthogonal projection of $\mathbf x$ onto the subspace $U$.
 $\proj_{\mathbf v}\mathbf x$ & Orthogonal projection of $\mathbf x$ onto $\Span(\mathbf v)$. \\
 $\mathbf u\times\mathbf v$ & Cross product in $\R^3$. \\
 \addlinespace[0.35em]
-$p_{\mathbf A}(\lambda),\ \chi_{\mathbf A}(\lambda)$ & Characteristic polynomial of $\mathbf A$. \\*
-$m_{\mathbf A}(\lambda),\ \mu_{\mathbf A}(\lambda)$ & Minimal polynomial of $\mathbf A$. \\
+$\mathbf A^{\mathsf T}=\mathbf A$ & Real symmetric matrix. \\
+$\mathbf A^{\mathsf T}=-\mathbf A$ & Real skew-symmetric matrix. \\
+$\mathbf A^{\mathsf H}=\mathbf A$ & Hermitian matrix. \\
+$\mathbf A^{\mathsf H}=-\mathbf A$ & Skew-Hermitian matrix. \\
+$\mathbf Q^{\mathsf T}\mathbf Q=\mathbf I$ & Real orthogonal matrix $\mathbf Q$. \\
+$\mathbf U^{\mathsf H}\mathbf U=\mathbf I$ & Unitary matrix $\mathbf U$. \\
+$\mathbf A\mathbf A^{\mathsf H}=\mathbf A^{\mathsf H}\mathbf A$ & Normal matrix. \\
+$\mathbf P^2=\mathbf P$ & Projection matrix. \\
+$\mathbf P^2=\mathbf P=\mathbf P^{\mathsf T}$ & Orthogonal projection matrix over $\R$. \\
+$\mathbf P^2=\mathbf P=\mathbf P^{\mathsf H}$ & Orthogonal projection matrix over $\C$. \\
+\addlinespace[0.35em]
+$\chi_{\mathbf A}(t),\ p_{\mathbf A}(t)$ & Characteristic polynomial of $\mathbf A$, with $\chi_{\mathbf A}(t)=\det(t\mathbf I-\mathbf A)$; $\chi_{\mathbf A}$ is preferred. \\*
+$m_{\mathbf A}(t),\ \mu_{\mathbf A}(t)$ & Minimal polynomial of $\mathbf A$; $m_{\mathbf A}$ is preferred. \\
 $\lambda,\ \lambda_i$ & Eigenvalue of $\mathbf A$. \\
 $\mathbf v,\ \mathbf v_i$ & Eigenvector of $\mathbf A$. \\
-$E_\lambda(\mathbf A),\ V_\lambda(\mathbf A)$ & Eigenspace of $\mathbf A$ associated with $\lambda$. \\
-$\sigma(\mathbf A),\ \spec(\mathbf A)$ & Spectrum of $\mathbf A$. \\
+$E_\lambda(\mathbf A),\ V_\lambda(\mathbf A)$ & Eigenspace associated with $\lambda$; $E_\lambda(\mathbf A)=\ker(\mathbf A-\lambda\mathbf I)$. \\
+$\sigma(\mathbf A),\ \spec(\mathbf A)$ & Spectrum of $\mathbf A$; $\sigma(\mathbf A)$ is preferred. \\
 $\rho(\mathbf A)$ & Spectral radius. \\
+$\mathbf P_\lambda$ & Spectral projection associated with the eigenvalue $\lambda$, when defined. \\
+\addlinespace[0.35em]
+$\mathbf A=\mathbf P\mathbf D\mathbf P^{-1}$ & Diagonalization of a diagonalizable matrix. \\
+$\mathbf A=\mathbf Q\mathbf D\mathbf Q^{\mathsf T}$ & Orthogonal diagonalization of a real symmetric matrix, with $\mathbf Q^{\mathsf T}\mathbf Q=\mathbf I$. \\
+$\mathbf A=\mathbf U\mathbf D\mathbf U^{\mathsf H}$ & Unitary diagonalization of a complex normal matrix, with $\mathbf U^{\mathsf H}\mathbf U=\mathbf I$. \\
+$\displaystyle\mathbf A=\sum_\lambda \lambda\mathbf P_\lambda$ & Spectral decomposition of a diagonalizable matrix, with the sum over distinct eigenvalues. \\
+$e^{\mathbf A},\ \exp(\mathbf A)$ & Matrix exponential; $e^{t\mathbf A}$ is the standard time-dependent form. \\
+\addlinespace[0.35em]
+$\mathbf A=\mathbf L\mathbf U$ & LU factorization, with $\mathbf L$ lower triangular and $\mathbf U$ upper triangular. \\
+$\mathbf A=\mathbf Q\mathbf R$ & QR factorization, with $\mathbf Q$ orthogonal or unitary and $\mathbf R$ upper triangular. \\
+$\mathbf A=\mathbf U\boldsymbol\Sigma\mathbf V^{\mathsf H}$ & Singular value decomposition (SVD); over $\R$, $\mathbf V^{\mathsf H}=\mathbf V^{\mathsf T}$. \\
 $\sigma_i(\mathbf A)$ & $i$th singular value of $\mathbf A$. \\
+$\mathbf A^\dagger$ & Moore--Penrose pseudoinverse of $\mathbf A$. \\
+\addlinespace[0.35em]
+$\mathbf A\succ0$ & Positive definite Hermitian matrix (real symmetric in the real case). \\
+$\mathbf A\succeq0$ & Positive semidefinite Hermitian matrix. \\
+$\mathbf A\prec0$ & Negative definite Hermitian matrix. \\
+$\mathbf A\preceq0$ & Negative semidefinite Hermitian matrix. \\
+$\mathbf A\succeq\mathbf B$ & L\"owner order: $\mathbf A-\mathbf B\succeq0$, for Hermitian matrices of the same size. \\
+$\mathbf A=\mathbf L\mathbf L^{\mathsf H}$ & Cholesky factorization of a positive definite Hermitian matrix; over $\R$, $\mathbf L^{\mathsf H}=\mathbf L^{\mathsf T}$. \\
 \end{notationtable}
