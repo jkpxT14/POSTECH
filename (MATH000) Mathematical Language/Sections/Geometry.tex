@@ -1,20 +1,64 @@
 \section{Geometry}
 
-In triangle notation, $A,B,C$ denote vertices and $a,b,c$ the opposite side lengths.
+In triangle notation, $A,B,C$ denote vertices and $a,b,c$ the opposite side lengths. Lowercase Greek letters such as $\ell,m,n$ may denote lines. The notation $\overrightarrow{AB}$ may denote either the ray from $A$ through $B$ or the vector from $A$ to $B$, according to context. In differential geometry, the Frenet frame follows the standard uppercase convention $\mathbf T,\mathbf N,\mathbf B$, typeset in bold to emphasize that these are vectors; uppercase italic letters such as $X,Y$ may denote vector fields in the usual field-specific convention.
 
 \begin{notationtable}
 $\triangle ABC$ & Triangle with vertices $A,B,C$. \\
-$\angle ABC$ & Angle with vertex $B$. \\
+$\angle ABC$ & Geometric angle with vertex $B$. \\
+$m\angle ABC$ & Measure of the angle $\angle ABC$. \\
 $\overline{AB}$ & Segment joining $A$ and $B$. \\
 $AB$ & Length of $\overline{AB}$. \\
+$\overrightarrow{AB}$ & Ray from $A$ through $B$, or vector from $A$ to $B$, according to context. \\
+$\overrightarrow{AB}=\mathbf b-\mathbf a$ & Vector from $A$ to $B$ when $\mathbf a$ and $\mathbf b$ are the corresponding position vectors. \\
+$\overleftrightarrow{AB}$ & Line through $A$ and $B$. \\
+$\ell\parallel m$ & Lines $\ell$ and $m$ are parallel. \\
+$\ell\perp m$ & Lines $\ell$ and $m$ are perpendicular. \\
+$\triangle ABC\cong\triangle DEF$ & Congruent triangles; corresponding vertices are listed in the same order. \\
+$\triangle ABC\sim\triangle DEF$ & Similar triangles; corresponding vertices are listed in the same order. \\
 $[ABC]$ & Area of $\triangle ABC$. \\
+$C(O,r)$ & Circle with center $O$ and radius $r$. \\
+$\odot O$ & Circle centered at $O$, especially in elementary geometry when the radius is understood. \\
+$\widehat{AB},\ \widehat{ACB}$ & Arcs specified by their endpoints, with an additional point used when needed to distinguish the intended arc. \\
+$O,I,H,G$ & Circumcenter, incenter, orthocenter, and centroid of a triangle, respectively. \\
+$R,r$ & Circumradius and inradius of a triangle, respectively. \\
+$\displaystyle s=\frac{a+b+c}{2}$ & Semiperimeter of a triangle with side lengths $a,b,c$. \\
+\addlinespace[0.35em]
+$d(P,Q)$ & Distance between the points $P$ and $Q$. \\
+$\dist(P,S)$ & Distance from the point $P$ to the set $S$. \\
 $\lengthop(C),\ \ell(C)$ & Length of $C$. \\
 $\area(S)$ & Area of $S$. \\
 $\vol(S)$ & Volume of $S$. \\
-$\dist(P,S)$ & Distance from $P$ to $S$. \\
+$\diamop(S)$ & Diameter of $S$. \\
 $\conv(S)$ & Convex hull of $S$. \\
+$\aff(S)$ & Affine hull of $S$. \\
+$\mathbf x=\mathbf p+t\mathbf v$ & Parametric equation of a line through $\mathbf p$ in the direction $\mathbf v$. \\
+$\mathbf n\cdot(\mathbf x-\mathbf p)=0$ & Hyperplane through $\mathbf p$ with normal vector $\mathbf n$. \\
 $\R^n$ & $n$-dimensional real Euclidean space. \\
+$S^n=\{\mathbf x\in\R^{n+1}\mid\|\mathbf x\|=1\}$ & Unit $n$-sphere. \\
+$S_r^{n-1}(\mathbf a)$ & Sphere of radius $r$ centered at $\mathbf a\in\R^n$. \\
+$\Isom(X)$ & Isometry group of the metric or geometric space $X$. \\
+\addlinespace[0.35em]
+$\mathbb{RP}^n$ & Real projective $n$-space. \\
+$\mathbb{CP}^n$ & Complex projective $n$-space. \\
+$[x_0:\cdots:x_n]$ & Homogeneous coordinates in projective space. \\
 $\mathbb{H}^n$ & $n$-dimensional hyperbolic space. \\
-$\parallel$ & Parallel. \\
-$\perp$ & Perpendicular or orthogonal. \\
+$d_{\mathbb H}$ & Hyperbolic distance, when the hyperbolic metric is understood. \\
+\addlinespace[0.35em]
+$\gamma\colon I\to\R^n$ & Parametrized curve, where $I\subseteq\R$ is an interval. \\
+$s$ & Arc-length parameter, when so specified. \\
+$\mathbf T,\ \mathbf N,\ \mathbf B$ & Unit tangent, principal normal, and binormal vectors of the Frenet frame. \\
+$\kappa$ & Curvature of a regular curve. \\
+$\tau$ & Torsion of a space curve. \\
+$T_pM$ & Tangent space of the manifold or regular surface $M$ at $p$. \\
+$\mathbf n\colon M\to S^2$ & Gauss map of an oriented surface $M\subseteq\R^3$, assigning its unit normal vector. \\
+$\mathrm{I},\ \mathrm{II}$ & First and second fundamental forms of a regular surface. \\
+$\kappa_1,\ \kappa_2$ & Principal curvatures of a regular surface. \\
+$K=\kappa_1\kappa_2$ & Gaussian curvature of a regular surface. \\
+$\displaystyle H=\frac{\kappa_1+\kappa_2}{2}$ & Mean curvature of a regular surface under the average convention. \\
+$(M,g)$ & Riemannian manifold $M$ with Riemannian metric $g$. \\
+$g_p$ & Riemannian inner product on $T_pM$. \\
+$\nabla_XY$ & Covariant derivative of the vector field $Y$ in the direction of the vector field $X$; in Riemannian geometry, $\nabla$ commonly denotes the Levi--Civita connection. \\
+$\Gamma^k_{ij}$ & Christoffel symbols of a connection in local coordinates. \\
+$\exp_p\colon T_pM\to M$ & Riemannian exponential map at $p$, on its domain of definition. \\
+$\nabla_{\dot\gamma}\dot\gamma=0$ & Geodesic equation for an affinely parametrized curve $\gamma$. \\
 \end{notationtable}
