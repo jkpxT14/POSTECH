@@ -1,6 +1,6 @@
 \section{Probability and Statistics}
 
-Probability and expectation are written in blackboard bold by default. For gamma distributions, $\beta$ denotes a rate parameter and $\theta$ a scale parameter, so $\theta=1/\beta$. The geometric distribution counts the number of trials up to and including the first success.
+Probability and expectation are written in blackboard bold by default. Parameter symbols are local to the relevant context: for gamma distributions, $\beta$ denotes a rate parameter and $\theta$ a scale parameter, so $\theta=1/\beta$, while in hypothesis testing $\beta$ denotes a Type II error probability. The geometric distribution counts the number of trials up to and including the first success.
 
 \begin{notationtable}
 $\Prob(A),\ P(A)$ & Probability of event $A$. \\
@@ -34,7 +34,7 @@ $\hat p$ & Estimator or estimate of a probability parameter $p$; commonly the sa
 $\SE(\hat\theta)$ & Standard error of an estimator $\hat\theta$. \\
 \addlinespace[0.35em]
 $L(\theta;\mathbf{x})$ & Likelihood function for parameter $\theta$ given observed data $\mathbf{x}$. \\
-$\ell(\theta;\mathbf{x})=\log L(\theta;\mathbf{x})$ & Log-likelihood function. \\
+$\ell(\theta;\mathbf{x})=\ln L(\theta;\mathbf{x})$ & Log-likelihood function. \\
 $H_0$ & Null hypothesis. \\
 $H_1,\ H_a$ & Alternative hypothesis; $H_1$ is preferred. \\
 $\alpha$ & Significance level; an upper bound on the Type I error probability under the specified test. \\
@@ -47,8 +47,8 @@ $\begin{aligned} &X\sim\Geom(p),\\ &\Prob(X=k)=(1-p)^{k-1}p \end{aligned}$ & Geo
 $X\sim\Poi(\lambda)$ & Poisson distribution with parameter $\lambda$. \\
 $X\sim\Unif(a,b)$ & Continuous uniform distribution on $[a,b]$. \\
 $X\sim\ExpDist(\lambda)$ & Exponential distribution with rate $\lambda$. \\
-$X\sim\Gamma(\alpha,\beta)$ & Gamma distribution with shape $\alpha$ and rate $\beta$. \\
-$X\sim\Gamma(\alpha,\theta)$ & Gamma distribution with shape $\alpha$ and scale $\theta$; here $\theta=1/\beta$. \\
+$X\sim\Gamma(\alpha,\beta)$ & Gamma distribution with shape $\alpha>0$ and rate $\beta>0$; $\displaystyle f_X(x)=\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}$ for $x>0$. \\
+$X\sim\Gamma(\alpha,\theta)$ & Gamma distribution with shape $\alpha>0$ and scale $\theta>0$; $\displaystyle f_X(x)=\frac{1}{\Gamma(\alpha)\theta^\alpha}x^{\alpha-1}e^{-x/\theta}$ for $x>0$, with $\theta=1/\beta$. \\
 $\begin{aligned} &X\sim\Normal(\mu,\sigma^2),\\ &X\sim N(\mu,\sigma^2)\end{aligned}$ & Normal distribution with mean $\mu$ and variance $\sigma^2$. \\
 $X\sim\chi^2_\nu$ & Chi-squared distribution with $\nu$ degrees of freedom. \\
 $X\sim t_\nu$ & Student's $t$ distribution with $\nu$ degrees of freedom. \\

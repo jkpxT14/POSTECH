@@ -20,7 +20,7 @@ $\displaystyle\frac{\dd y}{\dd x}$ & Derivative of $y$ with respect to $x$. \\
 $\displaystyle\frac{\dd^n y}{\dd x^n}$ & $n$th derivative of $y$ with respect to $x$ in Leibniz notation. \\
 $\displaystyle\frac{\partial f}{\partial x_i},\ \partial_i f,\ f_{x_i}$ & Partial derivative with respect to $x_i$. \\
 $\displaystyle\frac{\partial^2 f}{\partial x_i\partial x_j},\ \partial_{ij}f,\ f_{x_i x_j}$ & Second or mixed partial derivative. \\
-$D_{\mathbf v}f(\mathbf a),\ \partial_{\mathbf v}f(\mathbf a)$ & Directional derivative of $f$ at $\mathbf a$ in the direction $\mathbf v$; when $f$ is differentiable, $D_{\mathbf v}f(\mathbf a)=Df(\mathbf a)\mathbf v=\nabla f(\mathbf a)\cdot\mathbf v$. \\
+$D_{\mathbf v}f(\mathbf a),\ \partial_{\mathbf v}f(\mathbf a)$ & Directional derivative along the vector $\mathbf v$, which need not be a unit vector: $\displaystyle D_{\mathbf v}f(\mathbf a)=\left.\frac{\dd}{\dd t}f(\mathbf a+t\mathbf v)\right|_{t=0}=Df(\mathbf a)[\mathbf v]=\nabla f(\mathbf a)\cdot\mathbf v$ when $f$ is differentiable. For the unit direction determined by $\mathbf v\ne\mathbf0$, use $\mathbf u=\mathbf v/\|\mathbf v\|$. \\
 $\displaystyle\dd f=\sum_{i=1}^n\frac{\partial f}{\partial x_i}\,\dd x_i$ & Total differential of a scalar function of $n$ variables. \\
 \addlinespace[0.35em]
 $\displaystyle\int f(x)\,\dd x$ & Indefinite integral; a family of antiderivatives, with an additive constant understood. \\
@@ -56,12 +56,12 @@ $\csc x$ & Cosecant. \\*
 $\sec x$ & Secant. \\*
 $\cot x$ & Cotangent. \\
 \addlinespace[0.35em]
-$\arcsin x,\ \sin^{-1}x$ & Principal inverse sine. \\*
-$\arccos x,\ \cos^{-1}x$ & Principal inverse cosine. \\*
-$\arctan x,\ \tan^{-1}x$ & Principal inverse tangent. \\*
-$\arccsc x,\ \csc^{-1}x$ & Principal inverse cosecant. \\*
-$\arcsec x,\ \sec^{-1}x$ & Principal inverse secant. \\*
-$\arccot x,\ \cot^{-1}x$ & Principal inverse cotangent. \\
+$\arcsin x,\ \sin^{-1}x$ & Principal inverse sine, $[-1,1]\to[-\pi/2,\pi/2]$. \\*
+$\arccos x,\ \cos^{-1}x$ & Principal inverse cosine, $[-1,1]\to[0,\pi]$. \\*
+$\arctan x,\ \tan^{-1}x$ & Principal inverse tangent, $\R\to(-\pi/2,\pi/2)$. \\*
+$\arccsc x,\ \csc^{-1}x$ & Principal inverse cosecant, defined by $\arccsc x=\arcsin(1/x)$ for $|x|\ge1$; its range is $[-\pi/2,0)\cup(0,\pi/2]$. \\*
+$\arcsec x,\ \sec^{-1}x$ & Principal inverse secant, defined by $\arcsec x=\arccos(1/x)$ for $|x|\ge1$; its range is $[0,\pi/2)\cup(\pi/2,\pi]$. \\*
+$\arccot x,\ \cot^{-1}x$ & Principal real inverse cotangent, $\R\to(0,\pi)$. \\
 \addlinespace[0.35em]
 $\sinh x$ & Hyperbolic sine. \\*
 $\cosh x$ & Hyperbolic cosine. \\*
@@ -70,19 +70,19 @@ $\csch x$ & Hyperbolic cosecant. \\*
 $\sech x$ & Hyperbolic secant. \\*
 $\coth x$ & Hyperbolic cotangent. \\
 \addlinespace[0.35em]
-$\arcsinh x,\ \sinh^{-1}x$ & Principal inverse hyperbolic sine. \\*
-$\arccosh x,\ \cosh^{-1}x$ & Principal inverse hyperbolic cosine. \\*
-$\arctanh x,\ \tanh^{-1}x$ & Principal inverse hyperbolic tangent. \\*
-$\arccsch x,\ \csch^{-1}x$ & Principal inverse hyperbolic cosecant. \\*
-$\arcsech x,\ \sech^{-1}x$ & Principal inverse hyperbolic secant. \\*
-$\arccoth x,\ \coth^{-1}x$ & Principal inverse hyperbolic cotangent. \\
+$\arcsinh x,\ \sinh^{-1}x$ & Principal real inverse hyperbolic sine, $\R\to\R$. \\*
+$\arccosh x,\ \cosh^{-1}x$ & Principal real inverse hyperbolic cosine, $[1,\infty)\to[0,\infty)$. \\*
+$\arctanh x,\ \tanh^{-1}x$ & Principal real inverse hyperbolic tangent, $(-1,1)\to\R$. \\*
+$\arccsch x,\ \csch^{-1}x$ & Principal real inverse hyperbolic cosecant, defined by $\arccsch x=\arcsinh(1/x)$ on $\R\setminus\{0\}$; its range is $\R\setminus\{0\}$. \\*
+$\arcsech x,\ \sech^{-1}x$ & Principal real inverse hyperbolic secant, defined by $\arcsech x=\arccosh(1/x)$ on $(0,1]$; its range is $[0,\infty)$. \\*
+$\arccoth x,\ \coth^{-1}x$ & Principal real inverse hyperbolic cotangent, defined by $\arccoth x=\arctanh(1/x)$ for $|x|>1$; its range is $\R\setminus\{0\}$. \\
 \addlinespace[0.35em]
 $\Gamma(z)$ & Gamma function. \\
 $B(x,y)$ & Beta function. \\
 $\zeta(s)$ & Riemann zeta function. \\
 \addlinespace[0.35em]
-$D\mathbf{F}(\mathbf{a})$ & Total derivative; Jacobian matrix in coordinates. \\
-$J_{\mathbf F}(\mathbf a),\ \det D\mathbf F(\mathbf a),\ \Jac\mathbf F(\mathbf a)$ & Jacobian determinant of $\mathbf F$ at $\mathbf a$, in preferred order. \\
+$\mathbf J_{\mathbf F}(\mathbf a),\ D\mathbf F(\mathbf a)$ & Jacobian matrix of $\mathbf F=(F_1,\dots,F_m)\colon\R^n\to\R^m$ at $\mathbf a$, with $\displaystyle\mathbf J_{\mathbf F}(\mathbf a)=\left(\frac{\partial F_i}{\partial x_j}(\mathbf a)\right)_{i,j}$. The notation $D\mathbf F(\mathbf a)$ denotes the total derivative, identified with this matrix in standard coordinates. \\
+$\begin{aligned} &\det\mathbf J_{\mathbf F}(\mathbf a),\ \det D\mathbf F(\mathbf a),\\[-0.15em] &\displaystyle\left.\frac{\partial(F_1,\dots,F_n)}{\partial(x_1,\dots,x_n)}\right|_{\mathbf a} \end{aligned}$ & Jacobian determinant of $\mathbf F\colon\R^n\to\R^n$ at $\mathbf a$, in preferred order. \\
 $\Hess f$ & Hessian matrix of $f$. \\
 $\nabla f,\ \operatorname{grad}f$ & Gradient of $f$. \\
 $\nabla\cdot\mathbf{F},\ \operatorname{div}\mathbf F$ & Divergence of $\mathbf{F}$. \\
@@ -102,8 +102,8 @@ $a_n\searrow L$ & Monotone decreasing convergence to $L$. \\
 $\limsup a_n$ & Limit superior. \\*
 $\liminf a_n$ & Limit inferior. \\
 $f(x)\sim g(x)$ & Asymptotic equivalence in the stated limiting regime, typically meaning $f(x)/g(x)\to1$. \\
-$f_n\to f,\ f_n\ptwlabelto f$ & Pointwise convergence. \\*
-$f_n\rightrightarrows f,\ f_n\uniflabelto f$ & Uniform convergence. \\
+$f_n\ptwto f,\ f_n\ptwlabelto f$ & Pointwise convergence of functions on a common domain by default when no ambient topology, metric, or norm is specified. If such a structure is specified, the ordinary arrow $\to$ refers to convergence in that structure. \\*
+$f_n\unifto f,\ f_n\uniflabelto f$ & Uniform convergence. \\
 $f_n\aeto f$ & Convergence almost everywhere. \\
 \addlinespace[0.35em]
 $\mu(E)$ & Measure of a measurable set $E$. \\
@@ -122,9 +122,9 @@ $L^p(\Omega),\ L^p(X,\mu)$ & Lebesgue $L^p$ spaces; the measure is displayed whe
 $L^\infty(\Omega),\ L^\infty(X,\mu)$ & Lebesgue spaces of essentially bounded functions. \\
 $\ell^p$ & Space of scalar sequences $(x_n)$ with $\sum_{n=1}^{\infty}|x_n|^p<\infty$, for $1\le p<\infty$. \\
 $\ell^\infty$ & Space of bounded scalar sequences. \\
-$\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{x\in\Omega}|f(x)|$, when finite. \\
+$\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{x\in\Omega}|f(x)|$ for an actual bounded function, especially in bounded- or continuous-function spaces. \\
 $\|f\|_{L^p(\Omega)},\ \|f\|_p$ & $L^p$-norm $\displaystyle\left(\int_\Omega |f(x)|^p\,\dd x\right)^{1/p}$ for $1\le p<\infty$. \\
-$\|f\|_{L^\infty(\Omega)}$ & $L^\infty$-norm $\displaystyle\esssup_{x\in\Omega}|f(x)|$. \\
+$\|f\|_{L^\infty(\Omega)}$ & $L^\infty$-norm $\displaystyle\esssup_{x\in\Omega}|f(x)|$; this notation is preferred when distinguishing the essential-supremum norm from an ordinary supremum norm. \\
 \addlinespace[0.35em]
 $\alpha=(\alpha_1,\dots,\alpha_n)\in\Nzero^n$ & Multi-index; $\alpha$ is not treated as a vector for typographic purposes. \\
 $\begin{aligned} &|\alpha|=\alpha_1+\cdots+\alpha_n,\\[-0.15em] &\alpha!=\alpha_1!\cdots\alpha_n! \end{aligned}$ & Order and factorial of a multi-index. \\
@@ -142,8 +142,8 @@ $\overline{z}$ & Complex conjugate. \\
 $|z|$ & Complex modulus. \\
 $\arg z$ & Argument of a nonzero complex number $z$; its values differ by integer multiples of $2\pi$. \\
 $\Arg z$ & Principal argument of $z\ne0$, with $-\pi<\Arg z\le\pi$. \\
-$\log z$ & Complex logarithm of $z\ne0$; a branch is specified when a single-valued logarithm is required. \\
-$\Log z=\ln|z|+i\Arg z$ & Principal complex logarithm for $z\ne0$. \\
+$\Ln z$ & General multivalued complex logarithm for $z\ne0$: $\displaystyle\Ln z=\{\ln|z|+i(\Arg z+2\pi k)\mid k\in\Z\}$. \\
+$\ln z=\ln|z|+i\Arg z$ & Principal value of the complex logarithm for $z\ne0$. On $\C\setminus(-\infty,0]$, it is the analytic principal branch, with $-\pi<\Arg z<\pi$. \\
 $\Res(f;a),\ \operatorname{Res}_{z=a}f(z)$ & Residue of $f$ at a finite point $a$. \\
 $\Res(f;\infty),\ \operatorname{Res}_{z=\infty}f(z)$ & Residue of $f$ at infinity. \\
 \end{notationtable}
