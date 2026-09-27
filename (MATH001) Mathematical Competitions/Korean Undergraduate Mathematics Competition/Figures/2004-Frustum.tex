@@ -1,0 +1,29 @@
+\begin{center}
+\begin{tikzpicture}[scale=0.72,line cap=round,line join=round]
+    \coordinate (T1) at (-1.55,1.55);
+    \coordinate (T2) at (-0.80,2.05);
+    \coordinate (T3) at (0.80,2.05);
+    \coordinate (T4) at (1.55,1.55);
+    \coordinate (T5) at (0.95,1.05);
+    \coordinate (T6) at (-0.95,1.05);
+
+    \coordinate (B1) at (-3.05,-0.55);
+    \coordinate (B2) at (-1.20,0.15);
+    \coordinate (B3) at (1.20,0.15);
+    \coordinate (B4) at (3.05,-0.55);
+    \coordinate (B5) at (1.45,-1.75);
+    \coordinate (B6) at (-1.45,-1.75);
+
+    \draw (T1)--(T2)--(T3)--(T4)--(T5)--(T6)--cycle;
+
+    \draw (T1)--(B1);
+    \draw[dashed] (T2)--(B2);
+    \draw[dashed] (T3)--(B3);
+    \draw (T4)--(B4);
+    \draw (T5)--(B5);
+    \draw (T6)--(B6);
+
+    \draw[dashed] (B1)--(B2)--(B3)--(B4);
+    \draw (B4)--(B5)--(B6)--(B1);
+\end{tikzpicture}
+\end{center}
