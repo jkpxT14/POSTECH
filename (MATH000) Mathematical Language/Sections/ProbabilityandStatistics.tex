@@ -3,6 +3,11 @@
 Probability and expectation are written in blackboard bold by default. Parameter symbols are local to the relevant context: for gamma distributions, $\beta$ denotes a rate parameter and $\theta$ a scale parameter, so $\theta=1/\beta$, while in hypothesis testing $\beta$ denotes a Type II error probability. The geometric distribution counts the number of trials up to and including the first success.
 
 \begin{notationtable}
+$(\Omega,\mathcal F,\Prob)$ & Probability space, with sample space $\Omega$, event $\sigma$-algebra $\mathcal F$, and probability measure $\Prob$. \\
+$\omega\in\Omega$ & Outcome or sample point. \\
+$A\in\mathcal F$ & Event. \\
+$X\colon\Omega\to\R$ & Real-valued random variable; measurability from $(\Omega,\mathcal F)$ to $(\R,\mathcal B(\R))$ is understood. \\
+\addlinespace[0.35em]
 $\Prob(A),\ P(A)$ & Probability of event $A$. \\
 $\Prob(A\mid B),\ P(A\mid B)$ & Conditional probability of $A$ given $B$. \\
 $X\indep Y$ & $X$ and $Y$ are independent. \\*
@@ -17,7 +22,9 @@ $F^{-1}(p)$ & Generalized inverse of a cdf $F$, $\displaystyle F^{-1}(p)=\inf\{x
 \addlinespace[0.35em]
 $\Exp[X],\ E[X]$ & Expectation of random variable $X$. \\
 $\Exp[X\mid Y],\ E[X\mid Y]$ & Conditional expectation of $X$ given $Y$. \\
+$\Exp[X\mid\mathcal G],\ E[X\mid\mathcal G]$ & Conditional expectation of $X$ with respect to a sub-$\sigma$-algebra $\mathcal G\subseteq\mathcal F$. \\
 $\Var(X)$ & Variance of $X$. \\
+$\sigma_X=\sqrt{\Var(X)}$ & Population standard deviation of $X$. \\
 $\Cov(X,Y)$ & Covariance of $X$ and $Y$. \\
 $\rho_{X,Y}$ & Population correlation coefficient of $X$ and $Y$. \\
 $r$ & Sample correlation coefficient, when the sample is understood. \\

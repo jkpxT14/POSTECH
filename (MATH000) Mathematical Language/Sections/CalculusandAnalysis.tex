@@ -106,7 +106,10 @@ $f_n\ptwto f,\ f_n\ptwlabelto f$ & Pointwise convergence of functions on a commo
 $f_n\unifto f,\ f_n\uniflabelto f$ & Uniform convergence. \\
 $f_n\aeto f$ & Convergence almost everywhere. \\
 \addlinespace[0.35em]
-$\mu(E)$ & Measure of a measurable set $E$. \\
+$(X,\mathcal A,\mu)$ & Measure space, where $\mathcal A$ is a $\sigma$-algebra on $X$ and $\mu$ is a measure on $\mathcal A$. \\
+$\mathcal A$ & $\sigma$-algebra of measurable subsets of $X$, when the underlying set is understood. \\
+$\mathcal B(X)$ & Borel $\sigma$-algebra of a topological space $X$. \\
+$\mu(E)$ & Measure of a measurable set $E\in\mathcal A$. \\
 $\displaystyle\int_E f\,\dd\mu$ & Integral of $f$ over $E$ with respect to the measure $\mu$. \\
 $f=g\ \text{a.e.},\quad f=g\ \mu\text{-a.e.}$ & Equality almost everywhere, with the measure omitted when understood. \\
 $\displaystyle\esssup_{x\in E} f(x)$ & Essential supremum of $f$ on $E$. \\
@@ -123,7 +126,8 @@ $L^\infty(\Omega),\ L^\infty(X,\mu)$ & Lebesgue spaces of essentially bounded fu
 $\ell^p$ & Space of scalar sequences $(x_n)$ with $\sum_{n=1}^{\infty}|x_n|^p<\infty$, for $1\le p<\infty$. \\
 $\ell^\infty$ & Space of bounded scalar sequences. \\
 $\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{x\in\Omega}|f(x)|$ for an actual bounded function, especially in bounded- or continuous-function spaces. \\
-$\|f\|_{L^p(\Omega)},\ \|f\|_p$ & $L^p$-norm $\displaystyle\left(\int_\Omega |f(x)|^p\,\dd x\right)^{1/p}$ for $1\le p<\infty$. \\
+$\|f\|_{L^p(X,\mu)}$ & $L^p$-norm $\displaystyle\left(\int_X |f|^p\,\dd\mu\right)^{1/p}$ for $1\le p<\infty$ on a measure space $(X,\mathcal A,\mu)$. \\
+$\|f\|_{L^p(\Omega)},\ \|f\|_p$ & $L^p$-norm $\displaystyle\left(\int_\Omega |f(x)|^p\,\dd x\right)^{1/p}$ for $1\le p<\infty$ when the underlying measure is understood. \\
 $\|f\|_{L^\infty(\Omega)}$ & $L^\infty$-norm $\displaystyle\esssup_{x\in\Omega}|f(x)|$; this notation is preferred when distinguishing the essential-supremum norm from an ordinary supremum norm. \\
 \addlinespace[0.35em]
 $\alpha=(\alpha_1,\dots,\alpha_n)\in\Nzero^n$ & Multi-index; $\alpha$ is not treated as a vector for typographic purposes. \\

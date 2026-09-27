@@ -3,14 +3,11 @@
 \begin{notationtable}
 $\displaystyle\binom{n}{r},\ {}_nC_r$ & Number of $r$-element subsets of an $n$-element set. \\*
 $\displaystyle\left(\!\binom{n}{r}\!\right),\ {}_nH_r$ & $r$-combinations with repetition from $n$ types; equals $\displaystyle\binom{n+r-1}{r}$. \\
+$\displaystyle\binom{n}{n_1,\dots,n_k}=\frac{n!}{n_1!\cdots n_k!}$ & Multinomial coefficient, for nonnegative integers $n_1,\dots,n_k$ with $n_1+\cdots+n_k=n$. \\
 $n!$ & Factorial. \\
 $n^{\underline{k}}$ & Falling factorial, $n(n-1)\cdots(n-k+1)$. \\*
 $n^{\overline{k}}$ & Rising factorial, $n(n+1)\cdots(n+k-1)$. \\
 $(a)_k$ & Rising Pochhammer symbol $a(a+1)\cdots(a+k-1)$ in special-functions contexts; it is not used here for the falling factorial. \\
-$O(g(n))$ & Big-O upper asymptotic bound. \\
-$o(g(n))$ & Little-o strict asymptotic bound. \\
-$\Theta(g(n))$ & Two-sided asymptotic order. \\
-$\Omega(g(n))$ & Asymptotic lower bound. \\
 \addlinespace[0.35em]
 $(X,\preceq)$ & Partially ordered set (poset). \\
 $\prec,\ \succeq,\ \succ$ & Strict and reverse order relations associated with $\preceq$. \\
@@ -25,16 +22,22 @@ $N(v),\ \Gamma(v)$ & Neighborhood of vertex $v$. \\
 $\deg_G(v),\ \deg(v)$ & Degree of vertex $v$; the graph subscript may be omitted when clear. \\
 $\deg^+(v),\ \deg^-(v)$ & Out-degree and in-degree of $v$ in a directed graph. \\
 $d_G(u,v),\ d(u,v)$ & Graph distance between vertices $u$ and $v$. \\
+$G[S]$ & Subgraph of $G$ induced by the vertex set $S\subseteq V(G)$. \\
+$G-v,\ G-S$ & Graph obtained by deleting the vertex $v$, or all vertices in $S$, together with their incident edges. \\
+$G-e$ & Graph obtained by deleting the edge $e$. \\
+$G/e$ & Graph obtained by contracting the edge $e$. \\
+$\overline G$ & Complement of the graph $G$. \\
 $K_n$ & Complete graph on $n$ vertices. \\
 $K_{m,n}$ & Complete bipartite graph with parts of sizes $m$ and $n$. \\
 $P_n$ & Path graph on $n$ vertices. \\
 $C_n$ & Cycle graph on $n$ vertices. \\
 $\mathbf A(G),\ \mathbf A_G$ & Adjacency matrix of $G$. \\
+$\mathbf D(G),\ \mathbf D_G$ & Degree matrix of $G$, the diagonal matrix of vertex degrees in the chosen vertex order. \\
 $\mathbf L(G),\ \mathbf L_G$ & Graph Laplacian, usually $\mathbf D(G)-\mathbf A(G)$. \\
-$G-e$ & Graph obtained by deleting the edge $e$. \\
-$G/e,\ G:e$ & Graph obtained by contracting the edge $e$; $G/e$ is the preferred notation. \\
-$T(G),\ \tau(G)$ & Number of spanning trees of $G$; $T(G)$ is preferred here to avoid conflict with the standard number-theoretic $\tau(n)$. \\
+$\chi(G)$ & Chromatic number of $G$. \\
+$\tau(G),\ T(G)$ & Number of spanning trees of $G$; $\tau(G)$ is preferred. \\
 \addlinespace[0.35em]
-$r(k,\ell),\ r(k)$ & Ramsey numbers; $r(k)=r(k,k)$. \\
+$\begin{aligned} &R(k,\ell),\ r(k,\ell),\\[-0.15em] &R(k),\ r(k) \end{aligned}$ & Ramsey numbers; uppercase $R$ is preferred, and $R(k)=R(k,k)$ in the diagonal case. \\
 $\displaystyle A(x)=\sum_{n=0}^{\infty}a_nx^n$ & Ordinary generating function of the sequence $(a_n)_{n\ge0}$. \\
+$\displaystyle\sum_{n=0}^{\infty}a_n\frac{x^n}{n!}$ & Exponential generating function of the sequence $(a_n)_{n\ge0}$; the function name is chosen locally when needed. \\
 \end{notationtable}
