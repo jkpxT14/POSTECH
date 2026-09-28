@@ -529,7 +529,7 @@ and the distributive and anticommutative laws
 \]
 evaluate the following cross products.
 \begin{problemsubparts}
-    \item $\mathbf e_1\times\mathbf e_2$.
+    \item $(1,0,0)\times(0,1,0)$.
     \item $\mathbf e_2\times(\mathbf e_1+\mathbf e_3)$.
     \item $(2\mathbf e_1+3\mathbf e_3)\times(a\mathbf e_1+b\mathbf e_2+c\mathbf e_3)$.
 \end{problemsubparts}
@@ -537,9 +537,9 @@ evaluate the following cross products.
 
 \begin{solution}
 \begin{problemsubparts}
-    \item
+    \item Since $(1,0,0)=\mathbf e_1$ and $(0,1,0)=\mathbf e_2$,
     \[
-        \boxed{\mathbf e_1\times\mathbf e_2=\mathbf e_3}.
+        \boxed{(1,0,0)\times(0,1,0)=\mathbf e_3=(0,0,1)}.
     \]
     \item
     \begin{align*}
@@ -724,10 +724,12 @@ Let
     \item The boundary consists of the three line segments
     \[
         \boxed{
+        \begin{aligned}
         \partial T
-        =\{(0,y)\mid 0\leq y\leq1\}
-        \cup\{(x,0)\mid 0\leq x\leq1\}
-        \cup\{(x,y)\mid x\geq0,\ y\geq0,\ x+y=1\}}.
+        ={}&\{(x,y)\in\R^2\mid x=0,\ 0\leq y\leq1\}\\
+        &\cup\{(x,y)\in\R^2\mid y=0,\ 0\leq x\leq1\}\\
+        &\cup\{(x,y)\in\R^2\mid x\geq0,\ y\geq0,\ x+y=1\}.
+        \end{aligned}}
     \]
 
     \item Let
