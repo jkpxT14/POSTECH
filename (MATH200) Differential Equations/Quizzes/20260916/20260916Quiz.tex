@@ -1,0 +1,250 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20260916 Quiz for MATH200 Differential Equations},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH200 Differential Equations},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20260916 Quiz}
+
+% Boyce Section 2.1, Problem 3(c), treated here as the complete quiz problem.
+\begin{problem}{2.1.3}
+Find the general solution of the differential equation
+\[
+    y'+y=te^{-t}+2,
+\]
+and use it to determine how solutions behave as $t\to\infty$.
+\end{problem}
+
+\begin{solution}
+The integrating factor is
+\[
+    \mu(t)=\exp\!\left(\int 1\,\dd t\right)=e^t.
+\]
+Multiplying the equation by $e^t$ gives
+\[
+    (e^t y)'=t+2e^t.
+\]
+Hence
+\[
+    e^t y=\frac{t^2}{2}+2e^t+c,
+\]
+so the general solution is
+\[
+    \boxed{y=2+\left(\frac{t^2}{2}+c\right)e^{-t}}.
+\]
+Since $t^2e^{-t}\to0$ and $e^{-t}\to0$ as $t\to\infty$, every solution satisfies
+\[
+    \boxed{y(t)\to2\quad\text{as }t\to\infty}.
+\]
+\end{solution}
+
+\begin{problem}{2.1.12}
+Find the solution of the initial value problem
+\[
+    ty'+2y=2\sin t,
+    \qquad
+    y\left(\frac{\pi}{2}\right)=1,
+    \qquad
+    t>0.
+\]
+\end{problem}
+
+\begin{solution}
+Dividing by $t$ gives the standard form
+\[
+    y'+\frac{2}{t}y=\frac{2\sin t}{t}.
+\]
+Since $t>0$, an integrating factor is
+\[
+    \mu(t)=\exp\!\left(\int\frac{2}{t}\,\dd t\right)=t^2.
+\]
+Thus
+\[
+    (t^2y)'=2t\sin t.
+\]
+Integrating by parts gives
+\[
+    t^2y=-2t\cos t+2\sin t+c.
+\]
+Using $y(\pi/2)=1$ yields
+\[
+    \frac{\pi^2}{4}=2+c,
+    \qquad
+    c=\frac{\pi^2}{4}-2.
+\]
+Therefore
+\[
+    \boxed{
+        y(t)=\frac{-2t\cos t+2\sin t+\frac{\pi^2}{4}-2}{t^2},
+        \qquad t>0
+    }.
+\]
+\end{solution}
+
+\begin{problem}{2.2.5}
+Solve the differential equation
+\[
+    \frac{\dd y}{\dd x}=\frac{3x-e^{-x}}{2y+e^y}.
+\]
+\end{problem}
+
+\begin{solution}
+Separating the variables gives
+\[
+    (2y+e^y)\,\dd y=(3x-e^{-x})\,\dd x.
+\]
+Integrating both sides,
+\[
+    y^2+e^y=\frac{3}{2}x^2+e^{-x}+c.
+\]
+Equivalently, the solution is given implicitly by
+\[
+    \boxed{2y^2-3x^2+2e^y-2e^{-x}=c},
+    \qquad
+    2y+e^y\neq0.
+\]
+\end{solution}
+
+\begin{problem}{2.2.9}
+Consider the initial value problem
+\[
+    y'=(1-2x)y^2,
+    \qquad
+    y(0)=-\frac{1}{12}.
+\]
+\begin{problemsubparts}
+    \item Find the solution explicitly.
+    \item Plot the graph of the solution.
+    \item Determine (at least approximately) the interval in which the solution is defined.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} Separating variables gives
+\[
+    y^{-2}\,\dd y=(1-2x)\,\dd x.
+\]
+Thus
+\[
+    -\frac{1}{y}=x-x^2+c.
+\]
+The initial condition gives $c=12$, so
+\[
+    \boxed{y(x)=\frac{1}{x^2-x-12}
+    =\frac{1}{(x+3)(x-4)}}.
+\]
+
+\Needspace{23\baselineskip}
+\medskip
+\noindent\textup{(b)} The graph of the solution branch through $(0,-1/12)$ is shown below. The marked point is the initial point, and the dashed lines indicate the vertical asymptotes $x=-3$ and $x=4$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.76\textwidth,
+    height=0.42\textwidth,
+    axis lines=middle,
+    xmin=-3.5,
+    xmax=4.5,
+    ymin=-1.1,
+    ymax=0.12,
+    xlabel={$x$},
+    ylabel={$y$},
+    xtick={-3,0,4},
+    ytick={-1,-0.5,0},
+    tick label style={font=\small},
+    label style={font=\small},
+    clip=false
+]
+    \addplot[black,thick,domain=-2.93:3.93,samples=500] {1/(x^2-x-12)};
+    \addplot[black!55,dashed] coordinates {(-3,-1.1) (-3,0.12)};
+    \addplot[black!55,dashed] coordinates {(4,-1.1) (4,0.12)};
+    \addplot[only marks,mark=*,mark size=1.8pt,black] coordinates {(0,-0.0833333333)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\noindent\textup{(c)} The denominator vanishes at $x=-3$ and $x=4$. Therefore the largest open interval containing the initial point $x=0$ on which the solution is defined is
+\[
+    \boxed{(-3,4)}.
+\]
+\end{solution}
+
+\begin{problem}{2.3.1}
+Consider a tank used in certain hydrodynamic experiments. After one experiment the tank contains $150\,\mathrm{L}$ of a dye solution with a concentration of $1\,\mathrm{g/L}$. To prepare for the next experiment, the tank is rinsed with fresh water flowing in at a rate of $2\,\mathrm{L/min}$, while the well-stirred solution flows out at the same rate. Find the time that will elapse before the concentration of dye in the tank reaches $1\%$ of its original value.
+\end{problem}
+
+\begin{solution}
+Let $Q(t)$ be the amount of dye in the tank, in grams, at time $t$ minutes. Initially,
+\[
+    Q(0)=150.
+\]
+Since fresh water contains no dye, the dye enters at rate $0$. The volume remains $150\,\mathrm{L}$, so the dye leaves at rate
+\[
+    \frac{Q(t)}{150}\cdot2=\frac{Q(t)}{75}\ \mathrm{g/min}.
+\]
+Hence
+\[
+    Q'=-\frac{1}{75}Q,
+    \qquad
+    Q(0)=150,
+\]
+and therefore
+\[
+    Q(t)=150e^{-t/75}.
+\]
+The concentration is $Q(t)/150=e^{-t/75}\,\mathrm{g/L}$. It reaches $1\%$ of its original value when
+\[
+    e^{-t/75}=0.01.
+\]
+Thus
+\[
+    \boxed{t=75\ln100\ \mathrm{min}\approx345.4\ \mathrm{min}}.
+\]
+\end{solution}
+
+\begin{problem}{2.3.10}
+Newton's law of cooling states that the temperature of an object changes at a rate proportional to the difference between its temperature and that of its surroundings. Suppose that the temperature of a cup of coffee obeys Newton's law of cooling. If the coffee has a temperature of $90^{\circ}\mathrm{C}$ when freshly poured, and $1$ minute later has cooled to $85^{\circ}\mathrm{C}$ in a room at $20^{\circ}\mathrm{C}$, determine when the coffee reaches a temperature of $65^{\circ}\mathrm{C}$.
+\end{problem}
+
+\begin{solution}
+Let $T(t)$ be the temperature of the coffee, in degrees Celsius, at time $t$ minutes. Newton's law gives
+\[
+    T'=-k(T-20),
+    \qquad
+    k>0.
+\]
+Thus
+\[
+    T(t)=20+ce^{-kt}.
+\]
+Since $T(0)=90$, we have $c=70$, so
+\[
+    T(t)=20+70e^{-kt}.
+\]
+Using $T(1)=85$ gives
+\[
+    e^{-k}=\frac{65}{70}=\frac{13}{14}.
+\]
+When $T(t)=65$,
+\[
+    e^{-kt}=\frac{45}{70}=\frac{9}{14}.
+\]
+Therefore
+\[
+    \boxed{
+        t=\frac{\ln(9/14)}{\ln(13/14)}\ \mathrm{min}
+        \approx5.96\ \mathrm{min}
+    }.
+\]
+\end{solution}
+
+\end{document}
