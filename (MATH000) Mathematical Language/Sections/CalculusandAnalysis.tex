@@ -44,7 +44,7 @@ $\displaystyle\sum_{n=0}^{\infty}a_n(x-a)^n$ & Power series centered at $a$. \\
 $\displaystyle\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & $n$th Taylor polynomial of $f$ about $a$; no single letter for the polynomial is imposed globally. \\
 \addlinespace[0.35em]
 $e^x,\ \exp x$ & Exponential function. \\
-$\ln x,\ \log_e x$ & Logarithm to base $e$. \\
+$\ln x,\ \log_e x$ & Natural logarithm of a positive real number; $\ln x$ is preferred. \\
 $\lg x,\ \log_{10} x$ & Logarithm to base $10$. \\
 $\lb x,\ \log_2 x$ & Logarithm to base $2$. \\
 $\log_a x$ & Logarithm to base $a$. \\
@@ -136,7 +136,7 @@ $\mathbf x^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial fo
 $D^\alpha f,\ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$. \\
 \addlinespace[0.35em]
 $B_r(x)$ & Open ball of radius $r$ centered at $x$. \\*
-$\overline{B}_r(x)$ & Closed ball of radius $r$ centered at $x$. \\
+$\overline{B}_r(x)=\{y\mid d(x,y)\le r\}$ & Closed ball of radius $r$ centered at $x$ in a metric space $(X,d)$. The bar is part of the closed-ball notation; in an arbitrary metric space, $\overline{B}_r(x)$ need not equal the closure $\overline{B_r(x)}$ of the open ball. \\
 \addlinespace[0.35em]
 $\widehat{\C}=\C\cup\{\infty\}$ & Extended complex plane, equivalently the Riemann sphere. \\
 $z=x+iy$ & Complex number with real part $x$ and imaginary part $y$. \\
@@ -146,8 +146,8 @@ $\overline{z}$ & Complex conjugate. \\
 $|z|$ & Complex modulus. \\
 $\arg z$ & Argument of a nonzero complex number $z$; its values differ by integer multiples of $2\pi$. \\
 $\Arg z$ & Principal argument of $z\ne0$, with $-\pi<\Arg z\le\pi$. \\
-$\Ln z$ & General multivalued complex logarithm for $z\ne0$: $\displaystyle\Ln z=\{\ln|z|+i(\Arg z+2\pi k)\mid k\in\Z\}$. \\
-$\ln z=\ln|z|+i\Arg z$ & Principal value of the complex logarithm for $z\ne0$. On $\C\setminus(-\infty,0]$, it is the analytic principal branch, with $-\pi<\Arg z<\pi$. \\
+$\log z,\ \Ln z$ & General multivalued complex logarithm for $z\ne0$; $\log z$ is preferred and $\displaystyle\log z=\{\ln|z|+i(\Arg z+2\pi k)\mid k\in\Z\}$. \\
+$\Log z,\ \ln z$ & Principal complex logarithm for $z\ne0$; $\Log z$ is preferred and $\displaystyle\Log z=\ln|z|+i\Arg z$. On $\C\setminus(-\infty,0]$, it is the analytic principal branch, with $-\pi<\Arg z<\pi$. \\
 $\Res(f;a),\ \operatorname{Res}_{z=a}f(z)$ & Residue of $f$ at a finite point $a$. \\
 $\Res(f;\infty),\ \operatorname{Res}_{z=\infty}f(z)$ & Residue of $f$ at infinity. \\
 \end{notationtable}
