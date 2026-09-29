@@ -56,8 +56,10 @@ Using the given probability distribution,
 \[
 \begin{aligned}
     \Exp[X]
-    &=\sum_{x=0}^{5}x f(x) \\
-    &=\frac{1(405)+2(270)+3(90)+4(15)+5(1)}{1024} \\
+    &=\sum_{x=0}^{5}
+      x\binom{5}{x}\left(\frac14\right)^x
+      \left(\frac34\right)^{5-x} \\
+    &=\frac{405+540+270+60+5}{1024} \\
     &=\boxed{\frac54}.
 \end{aligned}
 \]
@@ -69,7 +71,7 @@ In a gambling game, a woman is paid $\$2$ if she draws a jack or a queen and $\$
 \end{exercise}
 
 \begin{solution}
-There are $8$ jacks or queens and $8$ kings or aces. Thus the expected payout is
+Let $X$ denote the amount paid to the player, excluding the entry fee. There are $8$ jacks or queens and $8$ kings or aces. Thus
 \[
     \Exp[X]
     =2\left(\frac{8}{52}\right)
@@ -276,7 +278,7 @@ By the expectation formula for a function of a continuous random variable,
 \[
 \begin{aligned}
     \Exp[g(X)]
-    &=\int_0^\infty e^{x/4}\left(\frac12e^{-x/2}\right)\dd x \\
+    &=\int_0^\infty e^{x/4}\left(\frac12e^{-x/2}\right)\,\dd x \\
     &=\frac12\int_0^\infty e^{-x/4}\,\dd x \\
     &=\boxed{2}.
 \end{aligned}
@@ -357,7 +359,11 @@ Using the joint density,
 \begin{aligned}
     \Exp[Z]
     &=\int_0^1\int_0^1 4xy\sqrt{x^2+y^2}\,\dd x\,\dd y \\
-    &=\frac43\int_0^1 y\left[(1+y^2)^{3/2}-y^3\right]\dd y \\
+    &=\frac43\int_0^1 y\left[(1+y^2)^{3/2}-y^3\right] \,\dd y \\
+    &=\frac43\left(
+        \frac15\left[(1+y^2)^{5/2}\right]_0^1
+        -\left[\frac{y^5}{5}\right]_0^1
+      \right) \\
     &=\frac43\left(\frac{4\sqrt2-1}{5}-\frac15\right) \\
     &=\boxed{\frac{16\sqrt2-8}{15}}.
 \end{aligned}
@@ -406,8 +412,10 @@ Consider the information in Exercise 3.28 on page 113. The problem deals with th
     \addplot[black,thick] coordinates {(23.2,0) (23.75,0)};
     \addplot[black,thick] coordinates {(23.75,0.4) (26.25,0.4)};
     \addplot[black,thick] coordinates {(26.25,0) (26.8,0)};
-    \addplot[black,thin] coordinates {(23.75,0) (23.75,0.4)};
-    \addplot[black,thin] coordinates {(26.25,0) (26.25,0.4)};
+    \addplot[only marks,mark=o,mark size=2pt,black,fill=white]
+        coordinates {(23.75,0) (26.25,0)};
+    \addplot[only marks,mark=*,mark size=1.8pt,black]
+        coordinates {(23.75,0.4) (26.25,0.4)};
 \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -417,7 +425,7 @@ Consider the information in Exercise 3.28 on page 113. The problem deals with th
 \[
 \begin{aligned}
     \Exp[X]
-    &=\int_{23.75}^{26.25}x\left(\frac25\right)\dd x \\
+    &=\int_{23.75}^{26.25}x\left(\frac25\right)\,\dd x \\
     &=\frac15\left(26.25^2-23.75^2\right) \\
     &=\boxed{25\text{ ounces}}.
 \end{aligned}
