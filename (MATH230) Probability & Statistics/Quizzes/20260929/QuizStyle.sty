@@ -1,0 +1,131 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{QuizStyle}[2026/09/29 MATH230 quiz style]
+
+% Design follows the established MATH200 quiz document family.
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+
+% Mathematics
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{dsfont}
+
+% Lists and tables
+\RequirePackage{enumitem}
+\RequirePackage{booktabs}
+
+% Graphs
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Color and PDF metadata
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+
+% Institution colors
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+
+% Quiz title block. Its author and affiliation typography matches the
+% Mathematical Concepts and Past Problems documents.
+\newcommand{\quiztitle}[1]{%
+    \thispagestyle{empty}%
+    \begin{center}
+        \vspace*{1.1cm}
+
+        {\LARGE\bfseries #1\par}
+
+        \vspace{0.25cm}
+
+        {\large for (MATH230) Probability \& Statistics\par}
+
+        \vspace{0.75cm}
+
+        {\normalsize
+        Jungwoo Kim\\
+        Department of Mathematics\\
+        \PohangUniversityOfScienceAndTechnology
+        \par}
+    \end{center}
+
+    \vspace{0.45cm}
+}
+
+% Same-line Exercise style from the established MATH200 Problem style.
+\newcommand{\exerciseheading}[1]{%
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+    \textbf{Exercise #1.}\hspace{0.5em}\ignorespaces
+}
+
+\newenvironment{exercise}[2][]
+    {%
+        \if\relax\detokenize{#1}\relax
+            \exerciseheading{#2}%
+        \else
+            \exerciseheading{#2.\ (#1)}%
+        \fi
+    }
+    {\par\vspace{6pt}}
+
+% Ordinary solutions follow the current MATH000 convention and end with \square.
+\newenvironment{solution}
+    {%
+        \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
+        \textit{Solution.}\hspace{0.5em}\ignorespaces
+    }
+    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+
+\newlist{exercisechoices}{enumerate}{1}
+\setlist[exercisechoices]{
+    label=(\arabic*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+\newlist{exercisesubparts}{enumerate}{1}
+\setlist[exercisesubparts]{
+    label=(\alph*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+% Canonical notation used by MATH230 quizzes, following current MATH000.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Exp}{\mathbb{E}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\arccot}{arccot}
+
+% Keep page bottoms visually consistent with the other MATH200 documents.
+\raggedbottom
