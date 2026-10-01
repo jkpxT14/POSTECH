@@ -1,0 +1,365 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261001 Quiz for MATH261 Discrete Mathematics},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH261 Discrete Mathematics},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261001 Quiz}
+
+\begin{problem}{1}
+Using mathematical induction, prove that
+\[
+    2^n\geq n^2
+\]
+for every $n\in\N$ with $n\geq4$.
+\end{problem}
+
+\begin{solution}
+For $n=4$,
+\[
+    2^4=16=4^2,
+\]
+so the statement holds in the base case.
+
+Assume that, for some $m\geq4$,
+\[
+    2^m\geq m^2.
+\]
+Then
+\[
+    2^{m+1}=2\cdot2^m\geq2m^2.
+\]
+Since $m\geq4$,
+\[
+    2m^2-(m+1)^2
+    =m^2-2m-1
+    =(m-1)^2-2>0.
+\]
+Hence
+\[
+    2^{m+1}\geq2m^2>(m+1)^2.
+\]
+Therefore, by mathematical induction,
+\[
+    2^n\geq n^2
+\]
+for every $n\in\N$ with $n\geq4$.
+\end{solution}
+
+\begin{problem}{2}
+Let $n,k\in\Nzero$ with $n\geq k$. Prove that
+\[
+    \sum_{i=k}^{n}\binom{i}{k}
+    =\binom{n+1}{k+1}.
+\]
+\end{problem}
+
+\begin{solution}[1]
+Count the $(k+1)$-element subsets of $[n+1]$ according to their largest element.
+If the largest element is $i+1$, where $k\leq i\leq n$, then the other $k$ elements must be chosen from $[i]$, giving
+\[
+    \binom{i}{k}
+\]
+choices. These cases are disjoint and exhaustive. Therefore,
+\[
+    \sum_{i=k}^{n}\binom{i}{k}
+    =\binom{n+1}{k+1}.
+\]
+\end{solution}
+
+\begin{solution}[2]
+Fix $k\in\Nzero$ and use induction on $n\geq k$.
+For $n=k$,
+\[
+    \sum_{i=k}^{k}\binom{i}{k}
+    =\binom{k}{k}
+    =1
+    =\binom{k+1}{k+1}.
+\]
+
+Assume that, for some $m\geq k$,
+\[
+    \sum_{i=k}^{m}\binom{i}{k}
+    =\binom{m+1}{k+1}.
+\]
+Then, by Pascal's identity,
+\[
+\begin{aligned}
+    \sum_{i=k}^{m+1}\binom{i}{k}
+    &=\sum_{i=k}^{m}\binom{i}{k}+\binom{m+1}{k}\\
+    &=\binom{m+1}{k+1}+\binom{m+1}{k}\\
+    &=\binom{m+2}{k+1}.
+\end{aligned}
+\]
+Hence the identity holds for every $n\geq k$.
+\end{solution}
+
+\begin{remark}
+This identity is commonly called the \emph{hockey-stick identity}, since the corresponding entries in Pascal's triangle form a hockey-stick pattern.
+\end{remark}
+
+\begin{problem}{3}
+Show that every postage amount of at least $12$ cents can be formed using only $3$-cent and $7$-cent stamps.
+\end{problem}
+
+\begin{solution}[1]
+Let $n\geq12$. We distinguish the three possible residues of $n$ modulo $3$.
+\begin{problemchoices}
+    \item If $n\equiv0\pmod3$, then $n$ can be formed using only $3$-cent stamps.
+    \item If $n\equiv1\pmod3$, then $n\geq13$ and
+    \[
+        n=7+(n-7),
+    \]
+    where $n-7$ is a nonnegative multiple of $3$.
+    \item If $n\equiv2\pmod3$, then $n\geq14$ and
+    \[
+        n=14+(n-14),
+    \]
+    where $n-14$ is a nonnegative multiple of $3$.
+\end{problemchoices}
+Thus every $n\geq12$ can be formed from $3$-cent and $7$-cent stamps.
+\end{solution}
+
+\begin{solution}[2]
+Use generalized induction. The first three cases are
+\[
+    12=3+3+3+3,
+    \qquad
+    13=3+3+7,
+    \qquad
+    14=7+7.
+\]
+Now let $m\geq14$ and assume that the postage amounts $m-2$, $m-1$, and $m$ can all be formed. In particular, $m-2$ can be formed, so adding one $3$-cent stamp gives
+\[
+    m+1=(m-2)+3.
+\]
+Hence $m+1$ can also be formed. Therefore every postage amount of at least $12$ cents can be formed.
+\end{solution}
+
+\begin{remark}
+This is a special case of the \emph{Frobenius coin problem}. For relatively prime positive integers $a$ and $b$, the largest nonnegative integer not representable as
+\[
+    ax+by,
+    \qquad x,y\in\Nzero,
+\]
+is the Frobenius number $g(a,b)$. In the two-denomination case, Sylvester's formula gives
+\[
+    g(a,b)=ab-a-b.
+\]
+Thus $g(3,7)=11$, which explains the threshold $12$ in this problem.
+\end{remark}
+
+\begin{problem}{4}
+Let $d\in\N$. Define a relation $R$ on $\Z$ by
+\[
+    xRy
+    \quad\Longleftrightarrow\quad
+    d\mid(x-y).
+\]
+Show that $R$ is an equivalence relation and determine its equivalence classes.
+\end{problem}
+
+\begin{solution}
+For every $x\in\Z$,
+\[
+    d\mid(x-x)=0,
+\]
+so $R$ is reflexive.
+
+If $xRy$, then $d\mid(x-y)$. Since $y-x=-(x-y)$, we have $d\mid(y-x)$, so $yRx$. Thus $R$ is symmetric.
+
+If $xRy$ and $yRz$, then $d\mid(x-y)$ and $d\mid(y-z)$. Hence
+\[
+    d\mid\bigl((x-y)+(y-z)\bigr)=x-z,
+\]
+so $xRz$. Thus $R$ is transitive, and therefore $R$ is an equivalence relation.
+
+For $a\in\Z$,
+\[
+\begin{aligned}
+    [a]_R
+    &=\{x\in\Z\mid d\mid(x-a)\}\\
+    &=\{a+qd\mid q\in\Z\}.
+\end{aligned}
+\]
+Thus the distinct equivalence classes are
+\[
+    [0]_R,[1]_R,\ldots,[d-1]_R.
+\]
+These are precisely the residue classes modulo $d$, and $xRy$ is the congruence relation $x\equiv y\pmod d$.
+\end{solution}
+
+\begin{problem}{5}
+Prove the following identities. We use the convention $\binom{a}{b}=0$ when $a,b\in\Nzero$ and $b>a$.
+\begin{problemsubparts}
+    \item For $n,m\in\Nzero$ with $n\geq m$,
+    \[
+        \sum_{k=0}^{m}\binom{n-k}{m-k}
+        =\binom{n+1}{m}.
+    \]
+
+    \item For $u,v,m\in\Nzero$,
+    \[
+        \sum_{k=0}^{m}\binom{u}{k}\binom{v}{m-k}
+        =\binom{u+v}{m}.
+    \]
+
+    \item For $n,m\in\Nzero$ with $n\geq m$,
+    \[
+        \sum_{k=m}^{n}\binom{k}{m}\binom{n}{k}
+        =\binom{n}{m}2^{n-m}.
+    \]
+
+    \item For $n\in\N$ and $0\leq m\leq n$,
+    \[
+        \sum_{k=0}^{m}(-1)^k\binom{n}{k}
+        =(-1)^m\binom{n-1}{m}.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}[1]
+\begin{problemsubparts}
+    \item Count the $m$-element subsets of $[n+1]$ according to the first element of $[m+1]$ that is omitted. If $k+1$ is the first omitted element, then $1,\ldots,k$ are selected, $k+1$ is not selected, and the remaining $m-k$ elements are chosen from
+    \[
+        \{k+2,\ldots,n+1\},
+    \]
+    which has $n-k$ elements. Hence this case contributes
+    \[
+        \binom{n-k}{m-k}.
+    \]
+    Since an $m$-element subset cannot contain all of $[m+1]$, these cases are disjoint and exhaustive. Therefore
+    \[
+        \sum_{k=0}^{m}\binom{n-k}{m-k}
+        =\binom{n+1}{m}.
+    \]
+
+    \item Let $U$ and $V$ be disjoint sets with $|U|=u$ and $|V|=v$. Count the $m$-element subsets of $U\cup V$ according to the number $k$ of selected elements from $U$. For a fixed $k$, there are
+    \[
+        \binom{u}{k}\binom{v}{m-k}
+    \]
+    choices. Summing over $k$ gives the left-hand side, while choosing the $m$ elements directly from $U\cup V$ gives the right-hand side. Hence
+    \[
+        \sum_{k=0}^{m}\binom{u}{k}\binom{v}{m-k}
+        =\binom{u+v}{m}.
+    \]
+
+    \item Count the pairs $(M,K)$ satisfying
+    \[
+        M\subseteq K\subseteq[n],
+        \qquad
+        |M|=m.
+    \]
+    If $|K|=k$, first choose $K$ and then choose $M\subseteq K$, giving
+    \[
+        \binom{n}{k}\binom{k}{m}
+    \]
+    choices. Summing over $k=m,\ldots,n$ gives the left-hand side.
+
+    Alternatively, first choose $M$ in $\binom{n}{m}$ ways. Each of the remaining $n-m$ elements may independently be included in $K$ or not, giving $2^{n-m}$ choices for $K$. Therefore
+    \[
+        \sum_{k=m}^{n}\binom{k}{m}\binom{n}{k}
+        =\binom{n}{m}2^{n-m}.
+    \]
+
+    \item Consider all subsets $A\subseteq[n]$ with $|A|\leq m$, assigning weight $(-1)^{|A|}$ to $A$. Their total weight is
+    \[
+        \sum_{k=0}^{m}(-1)^k\binom{n}{k}.
+    \]
+    Pair every $A\subseteq[n-1]$ with $|A|\leq m-1$ with $A\cup\{n\}$. The two members of each pair have opposite weights and cancel. This is a sign-reversing involution. The only unpaired subsets are the $m$-element subsets of $[n-1]$, of which there are $\binom{n-1}{m}$, each with weight $(-1)^m$. Hence
+    \[
+        \sum_{k=0}^{m}(-1)^k\binom{n}{k}
+        =(-1)^m\binom{n-1}{m}.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{solution}[2]
+\begin{problemsubparts}
+    \item By symmetry of binomial coefficients,
+    \[
+        \binom{n-k}{m-k}=\binom{n-k}{n-m}.
+    \]
+    Setting $i=n-k$ and applying Problem~2 gives
+    \[
+    \begin{aligned}
+        \sum_{k=0}^{m}\binom{n-k}{m-k}
+        &=\sum_{i=n-m}^{n}\binom{i}{n-m}\\
+        &=\binom{n+1}{n-m+1}\\
+        &=\binom{n+1}{m}.
+    \end{aligned}
+    \]
+
+    \item By the binomial theorem,
+    \[
+        (1+x)^u=\sum_{k=0}^{u}\binom{u}{k}x^k,
+        \qquad
+        (1+x)^v=\sum_{j=0}^{v}\binom{v}{j}x^j.
+    \]
+    Therefore the coefficient of $x^m$ in their product is
+    \[
+        \sum_{k=0}^{m}\binom{u}{k}\binom{v}{m-k}.
+    \]
+    Since
+    \[
+        (1+x)^u(1+x)^v=(1+x)^{u+v},
+    \]
+    the same coefficient is $\binom{u+v}{m}$, proving the identity.
+
+    \item We have
+    \[
+    \begin{aligned}
+        \binom{k}{m}\binom{n}{k}
+        &=\frac{k!}{m!(k-m)!}\frac{n!}{k!(n-k)!}\\
+        &=\binom{n}{m}\binom{n-m}{k-m}.
+    \end{aligned}
+    \]
+    Hence, with $j=k-m$,
+    \[
+    \begin{aligned}
+        \sum_{k=m}^{n}\binom{k}{m}\binom{n}{k}
+        &=\binom{n}{m}\sum_{k=m}^{n}\binom{n-m}{k-m}\\
+        &=\binom{n}{m}\sum_{j=0}^{n-m}\binom{n-m}{j}\\
+        &=\binom{n}{m}2^{n-m},
+    \end{aligned}
+    \]
+    where the last equality follows from the binomial theorem.
+
+    \item Using Pascal's identity,
+    \[
+        \binom{n}{k}
+        =\binom{n-1}{k}+\binom{n-1}{k-1},
+    \]
+    we obtain
+    \[
+    \begin{aligned}
+        \sum_{k=0}^{m}(-1)^k\binom{n}{k}
+        &=\sum_{k=0}^{m}(-1)^k\binom{n-1}{k}
+          +\sum_{k=1}^{m}(-1)^k\binom{n-1}{k-1}\\
+        &=\sum_{k=0}^{m}(-1)^k\binom{n-1}{k}
+          -\sum_{k=0}^{m-1}(-1)^k\binom{n-1}{k}\\
+        &=(-1)^m\binom{n-1}{m}.
+    \end{aligned}
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{remark}
+Part (b) is commonly known as \emph{Vandermonde's identity}, or \emph{Vandermonde's convolution}. More generally, for $n_1,\ldots,n_r,m\in\Nzero$,
+\[
+    \sum_{k_1+\cdots+k_r=m}
+    \binom{n_1}{k_1}\cdots\binom{n_r}{k_r}
+    =\binom{n_1+\cdots+n_r}{m},
+\]
+with the same zero convention for out-of-range binomial coefficients. Combinatorially, this counts an $m$-element subset chosen from $r$ disjoint blocks of sizes $n_1,\ldots,n_r$.
+\end{remark}
+
+\end{document}
