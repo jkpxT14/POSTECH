@@ -18,13 +18,13 @@
 \begin{problem}{2.45}
 Consider the polar coordinate mapping
 \[
-    F(r,\theta)=(r\cos\theta,r\sin\theta),
+    \mathbf F(r,\theta)=(r\cos\theta,r\sin\theta),
     \qquad
     r\geq0,
     \quad
     0\leq\theta\leq2\pi.
 \]
-Sketch a region in the $r,\theta$ plane that corresponds to the upper half-plane $y>0$.
+Sketch a region in the $(r,\theta)$-plane that corresponds to the upper half-plane $y>0$.
 \end{problem}
 
 \begin{solution}
@@ -38,23 +38,25 @@ Thus the required region is
 \[
     \boxed{\{(r,\theta)\in\R^2\mid r>0,\ 0<\theta<\pi\}}.
 \]
-A sketch in the $r,\theta$ plane is shown below.
+A sketch in the $(r,\theta)$-plane is shown below.
 
 \begin{center}
 \begin{tikzpicture}[x=1.05cm,y=0.75cm]
-    \fill[black!8] (0.08,0.08) rectangle (4.0,2.0);
-    \draw[->] (0,0) -- (4.4,0) node[right] {$r$};
+    \fill[black!8] (0,0) rectangle (4.32,2.0);
+    \draw[dashed] (0,2) -- (4.18,2);
+    \draw[->] (0,0) -- (4.45,0) node[right] {$r$};
     \draw[->] (0,0) -- (0,4.35) node[above] {$\theta$};
-    \draw[dashed] (0,2) -- (4.0,2);
-    \node[left] at (0,2) {$\pi$};
-    \node[left] at (0,4) {$2\pi$};
+    \draw (-0.08,2) -- (0.08,2);
+    \draw (-0.08,4) -- (0.08,4);
+    \node[left] at (-0.08,2) {$\pi$};
+    \node[left] at (-0.08,4) {$2\pi$};
     \node at (2.2,1.05) {$r>0,\ 0<\theta<\pi$};
 \end{tikzpicture}
 \end{center}
 \end{solution}
 
 \begin{problem}{2.46}
-Sketch the region in the $x,y$ plane that corresponds to the polar coordinate rectangle
+Sketch the region in the $(x,y)$-plane that corresponds to the polar coordinate rectangle
 \[
     1\leq r\leq2,
     \qquad
@@ -63,8 +65,11 @@ Sketch the region in the $x,y$ plane that corresponds to the polar coordinate re
 Find the polar coordinates of the point $(x,y)=(0,1.5)$.
 \end{problem}
 
+\Needspace{22\baselineskip}
 \begin{solution}
-The condition $1\leq r\leq2$ places the points between the circles of radii $1$ and $2$, while $0\leq\theta\leq\pi$ restricts them to the upper half-plane. Hence the image is
+The condition $1\leq r\leq2$ places the points between the circles of radii $1$ and $2$, while $0\leq\theta\leq\pi$ restricts them to the upper half-plane.
+
+Hence the image is
 \[
     \boxed{\{(x,y)\in\R^2\mid y\geq0,\ 1\leq x^2+y^2\leq4\}},
 \]
@@ -80,6 +85,10 @@ the closed upper half-annulus shown below.
     \draw (-1,0) arc[start angle=180,end angle=0,radius=1];
     \draw (-2,0) -- (-1,0);
     \draw (1,0) -- (2,0);
+    \draw (1,-0.07) -- (1,0.07);
+    \draw (2,-0.07) -- (2,0.07);
+    \node[below] at (1,-0.08) {$1$};
+    \node[below] at (2,-0.08) {$2$};
     \fill (0,1.5) circle (1.5pt);
     \node[right] at (0.08,1.5) {$(0,\frac32)$};
 \end{tikzpicture}
@@ -228,22 +237,26 @@ Using this approximation,
     f(2.01,4.03)
     \approx L(2.01,4.03)
     =16+4(0.01)+3(0.03)
-    =\boxed{16.13}.
+    =16.13.
+\]
+Thus the requested estimate is
+\[
+    \boxed{f(2.01,4.03)\approx16.13}.
 \]
 \end{solution}
 
 \begin{problem}{3.3}
 Find the indicated partial derivatives of the functions.
 \begin{problemsubparts}
-    \item Find $f_x(x,y)$ and $f_y(2,0)$ if
+    \item $f_x(x,y)$ and $f_y(2,0)$ if
     \[
         f(x,y)=e^{-x^2-y^2}.
     \]
-    \item Find
+    \item
     \[
         \frac{\partial}{\partial y}\left(xe^y+ye^x\right).
     \]
-    \item Find
+    \item
     \[
         \frac{\partial}{\partial x}
         \left(
@@ -322,7 +335,7 @@ Now let $\mathbf x=(x,y,z)$ lie in the level set $\ell=0$. Then
     =ax+by+cz
     =0.
 \]
-Thus $\nabla\ell$ is orthogonal to every vector in the plane $\ell=0$. Since $a,b,c$ are not all zero, $\nabla\ell\neq\mathbf 0$, and hence $\nabla\ell$ is a normal vector to the level set.
+Thus the level set $\ell=0$ is the plane through the origin orthogonal to $\nabla\ell$. Since $a,b,c$ are not all zero, $\nabla\ell\neq\mathbf 0$, so $\nabla\ell$ is a normal vector to the level set.
 \end{solution}
 
 \begin{problem}{3.11}
