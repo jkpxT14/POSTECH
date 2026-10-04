@@ -1,0 +1,278 @@
+\competitionyear{2025}
+
+\begin{problem}{2025}{2}{1}
+Let $f\colon\R^2\to\R$ be differentiable and satisfy
+\[
+    f(0,0)=0,
+    \qquad
+    \lim_{t\to0}\frac{f(t,t)}{t}=2,
+    \qquad
+    \lim_{t\to0}\frac{f(t,2t)}{t}=-1.
+\]
+For real numbers $a,b$ satisfying
+\[
+    a^2+b^2=1,
+\]
+find the maximum and minimum possible values of
+\[
+    \lim_{t\to0}\frac{f(at,bt)}{t}.
+\]
+\end{problem}
+
+\begin{problem}{2025}{2}{2}
+Solve the differential equation
+\[
+    f''(x)+2f'(x)+f(x)=2x^{-2}e^{-x},
+    \qquad
+    f(1)=f'(1)=0.
+\]
+\end{problem}
+
+\begin{problem}{2025}{2}{3}
+Five points $A,B,C,D,E$ lie in a plane in three-dimensional vector space and satisfy the following conditions:
+\begin{problemclauses}
+    \item
+    \[
+        |\overrightarrow{AB}|
+        =|\overrightarrow{BC}|
+        =|\overrightarrow{CD}|
+        =|\overrightarrow{DE}|
+        =|\overrightarrow{EA}|=1.
+    \]
+    \item
+    \[
+        \overrightarrow{AB}\times\overrightarrow{BC}
+        =\overrightarrow{BC}\times\overrightarrow{CD}
+        =\overrightarrow{CD}\times\overrightarrow{DE}
+        =\overrightarrow{DE}\times\overrightarrow{EA}
+        =\overrightarrow{EA}\times\overrightarrow{AB}
+        \ne\mathbf0.
+    \]
+    \item
+    \[
+        \overrightarrow{AB}\cdot\overrightarrow{BC}
+        =\overrightarrow{BC}\cdot\overrightarrow{CD}
+        =\overrightarrow{CD}\cdot\overrightarrow{DE}
+        =\overrightarrow{DE}\cdot\overrightarrow{EA}
+        =\overrightarrow{EA}\cdot\overrightarrow{AB}.
+    \]
+\end{problemclauses}
+\begin{problemsubparts}
+    \item Prove that $\overrightarrow{CE}$ is a scalar multiple of $\overrightarrow{AB}$.
+    \item Determine all possible values of $k$ such that
+    \[
+        \overrightarrow{CE}=k\overrightarrow{AB},
+    \]
+    and describe the figure $ABCDE$ in each case.
+\end{problemsubparts}
+\end{problem}
+
+\begin{problem}{2025}{2}{4}
+Let $n$ be a positive integer and let $a_{ij}>0$ for $1\le i,j\le n$. Define
+\[
+    A_n=
+    \left(\sum_{i=1}^n\sum_{j=1}^n a_{ij}\right)^2,
+\]
+\[
+    B_n=
+    \sum_{i=1}^n\sum_{j=1}^n
+    a_{ij}
+    \left(\sum_{k=1}^n a_{ik}\right)^{1/2}
+    \left(\sum_{k=1}^n a_{kj}\right)^{1/2},
+\]
+and
+\[
+    C_n=
+    \sum_{i=1}^n\sum_{j=1}^n a_{ij}^2.
+\]
+Prove that
+\[
+    A_n\le nB_n\le n^2C_n.
+\]
+\end{problem}
+
+\begin{problem}{2025}{2}{5}
+Let $n$ be a positive integer and let
+\[
+    \alpha=\frac\pi{n+1}.
+\]
+Define the $n\times n$ matrix
+\[
+    \mathbf A=
+    \begin{pmatrix}
+        \sin\alpha & \sin(2\alpha) & \cdots & \sin(n\alpha)\\
+        \sin(2\alpha) & \sin(4\alpha) & \cdots & \sin(2n\alpha)\\
+        \vdots & \vdots & \ddots & \vdots\\
+        \sin(n\alpha) & \sin(2n\alpha) & \cdots & \sin(n^2\alpha)
+    \end{pmatrix}.
+\]
+Find $|\det(\mathbf A)|$.
+\end{problem}
+
+\begin{problem}{2025}{2}{6}
+Let $\mathbf A=(a_{jk})$ be an $(n+1)\times(n+1)$ real matrix and let $\mathbf B=(b_{jk})$ be an $n\times n$ matrix whose entries are polynomials in the $n$ variables $x_1,\dots,x_n$. Define
+\[
+    a_{jk}=j^{(n+1-k)^2},
+    \qquad
+    b_{jk}=b_{jk}(x_1,\dots,x_n)
+    =x_j^{(n+1-k)^2-1}.
+\]
+Prove that
+\[
+    \det(\mathbf A)
+    =(-1)^n(n!)^2
+    \int_n^{n+1}\cdots
+    \int_2^3\int_1^2
+    \det(\mathbf B)\,
+    \dd x_1\,\dd x_2\cdots\dd x_n.
+\]
+\end{problem}
+
+\begin{problem}{2025}{2}{7}
+Let $n,k\ge2$ be positive integers, and define
+\[
+    F\colon(0,1)^n\to\R
+\]
+by
+\[
+    F(x_1,\dots,x_n)
+    =
+    \int_{-\infty}^{\infty}
+    \frac{1}{|t|^k+|t-x_1|^k+\cdots+|t-x_n|^k}\,\dd t.
+\]
+Find the range of positive real numbers $p$ for which
+\[
+    \int_0^1\cdots\int_0^1
+    F(x_1,\dots,x_n)^p\,
+    \dd x_1\cdots\dd x_n
+\]
+converges.
+\end{problem}
+
+\begin{problem}{2025}{1}{1}
+Let $f\colon\R^2\to\R$ be differentiable and satisfy
+\[
+    f(0,0)=0,
+    \qquad
+    \lim_{t\to0}\frac{f(t,t)}{t}=2,
+    \qquad
+    \lim_{t\to0}\frac{f(t,2t)}{t}=-1.
+\]
+For real numbers $a,b$ satisfying
+\[
+    a^2+b^2=1,
+\]
+find the maximum and minimum possible values of
+\[
+    \lim_{t\to0}\frac{f(at,bt)}{t}.
+\]
+\end{problem}
+
+\begin{problem}{2025}{1}{2}
+Find the least positive integer $k$ satisfying the following condition: for any $k$ distinct integers, there always exist two distinct integers $m,n$ among them such that
+\[
+    7\mid(m^2+13n^2).
+\]
+\end{problem}
+
+\begin{problem}{2025}{1}{3}
+For $2\times2$ real matrices $\mathbf A$ and $\mathbf B$, define
+\[
+    U(\mathbf A,\mathbf B)
+    =\mathbf A\mathbf B\mathbf A\mathbf B
+    -\mathbf B\mathbf A\mathbf B\mathbf A.
+\]
+Find all real numbers $a$ for which there exist $2\times2$ real matrices $\mathbf X$ and $\mathbf Y$ satisfying
+\[
+    U(\mathbf X,\mathbf Y)^{2025}
+    -U(\mathbf X,\mathbf Y)^{1101}
+    =a\mathbf I,
+\]
+where $\mathbf I$ is the $2\times2$ identity matrix.
+\end{problem}
+
+\begin{problem}{2025}{1}{4}
+Let $n$ be a positive integer and let $a_{ij}>0$ for $1\le i,j\le n$. Define
+\[
+    A_n=
+    \left(\sum_{i=1}^n\sum_{j=1}^n a_{ij}\right)^2,
+\]
+\[
+    B_n=
+    \sum_{i=1}^n\sum_{j=1}^n
+    a_{ij}
+    \left(\sum_{k=1}^n a_{ik}\right)^{1/2}
+    \left(\sum_{k=1}^n a_{kj}\right)^{1/2},
+\]
+and
+\[
+    C_n=
+    \sum_{i=1}^n\sum_{j=1}^n a_{ij}^2.
+\]
+Prove that
+\[
+    A_n\le nB_n\le n^2C_n.
+\]
+\end{problem}
+
+\begin{problem}{2025}{1}{5}
+For positive integers $n,k$, define the point
+\[
+    P_{n,k}
+    =
+    \left(
+        n\cos\frac{2k\pi}{n},
+        n\sin\frac{2k\pi}{n}
+    \right).
+\]
+Let $D_{n,k}$ be the interior of the circle centered at $P_{n,k}$ with radius $n+1$, and define
+\[
+    D_n=\bigcap_{k=1}^n D_{n,k}.
+\]
+Evaluate
+\[
+    \lim_{n\to\infty}
+    \iint_{D_n}
+    x^2e^{-(x^2+y^2)}\,\dd x\,\dd y.
+\]
+\end{problem}
+
+\begin{problem}{2025}{1}{6}
+Let $n$ be a positive integer and $\alpha\in\R$. Define the $n\times n$ matrix
+\[
+    \mathbf A=
+    \begin{pmatrix}
+        \sin\alpha & \sin(2\alpha) & \cdots & \sin(n\alpha)\\
+        \sin(2\alpha) & \sin(4\alpha) & \cdots & \sin(2n\alpha)\\
+        \vdots & \vdots & \ddots & \vdots\\
+        \sin(n\alpha) & \sin(2n\alpha) & \cdots & \sin(n^2\alpha)
+    \end{pmatrix}.
+\]
+For even $n$ and
+\[
+    \alpha=\frac\pi{n+1},
+\]
+find $\det(\mathbf A)$.
+\end{problem}
+
+\begin{problem}{2025}{1}{7}
+For a positive integer $n$, let $a_n$ be the number of permutations $\pi$ of $\{1,2,\dots,n\}$ satisfying both of the following conditions:
+\begin{problemclauses}
+    \item For every integer $i$ with $1\le i\le n$,
+    \[
+        (\pi\circ\pi)(i)=i.
+    \]
+    \item There do not exist integers $a,b,c,d$ such that
+    \[
+        1\le a<b<c<d\le n
+    \]
+    and
+    \[
+        \pi(a)>\pi(b)>\pi(c)>\pi(d).
+    \]
+\end{problemclauses}
+Evaluate
+\[
+    \lim_{n\to\infty}a_n^{1/n}.
+\]
+\end{problem}

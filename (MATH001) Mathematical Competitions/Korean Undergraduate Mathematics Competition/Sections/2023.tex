@@ -1,0 +1,188 @@
+\competitionyear{2023}
+
+\begin{problem}{2023}{2}{1}
+Let $D$ be the region on the unit sphere $x^2+y^2+z^2=1$ defined by
+\[
+    D=
+    \left\{
+        (x,y,z)\,\middle|\,
+        x^2+y^2+z^2=1,
+        \quad x,y\ge0,
+        \quad \frac12\le z\le\frac{\sqrt3}{2}
+    \right\}.
+\]
+A light source is placed at $(0,0,1)$. The region $D$ is projected from this light source onto the $xy$-plane. Find the ratio of the area of the projected region to the area of $D$.
+\end{problem}
+
+\begin{problem}{2023}{2}{2}
+Find the function $y=y(x)$ defined on the open interval $(1/e,e)$ that satisfies
+\[
+    xy'=\sqrt{x^2-y^2}+y,
+    \qquad
+    -x<y<x,
+    \qquad
+    y(1)=\frac12.
+\]
+\end{problem}
+
+\begin{problem}{2023}{2}{3}
+Let
+\[
+    f(x)=e^{x^8}\sec(x^4).
+\]
+Find
+\[
+    \frac{f^{(16)}(0)}{16!},
+\]
+where $f^{(n)}$ denotes the $n$th derivative of $f$.
+\end{problem}
+
+\begin{problem}{2023}{2}{4}
+Let $\mathbf A=(a_{ij})$ be a $2\times n$ real matrix, where $n\ge4$. For an ordered pair $(p,q)$ with $1\le p,q\le n$ and $p\ne q$, define
+\[
+    f(p,q)
+    =
+    \det
+    \begin{pmatrix}
+        a_{1p}&a_{1q}\\
+        a_{2p}&a_{2q}
+    \end{pmatrix}.
+\]
+\begin{problemsubparts}
+    \item Prove that for distinct $p,q,r,s$,
+    \[
+        f(p,q)f(r,s)
+        =f(r,q)f(p,s)+f(s,q)f(r,p).
+    \]
+    \item Suppose that for every $q$ with $2\le q\le n$,
+    \[
+        f(1,q)>0
+        \qquad\text{and}\qquad
+        f(q-1,q)>0.
+    \]
+    Prove that
+    \[
+        f(p,q)>0
+    \]
+    for every ordered pair $(p,q)$ with $1\le p<q\le n$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{problem}{2023}{2}{5}
+Let $\mathbf A$ be an $n\times n$ real matrix. Prove that there exists a diagonal matrix
+\[
+    \mathbf D=\operatorname{diag}(d_1,\dots,d_n),
+    \qquad
+    d_1,\dots,d_n\in\{-1,1\},
+\]
+such that
+\[
+    \det(\mathbf A+\mathbf D)\ne0.
+\]
+\end{problem}
+
+\begin{problem}{2023}{2}{6}
+Players A and B play a game in which the first player to climb a staircase of $12$ steps wins. They alternately roll a fair $12$-sided die whose faces are labeled $1,2,\dots,12$, according to the following rules:
+\begin{problemchoices}
+    \item If A rolls a multiple of $4$, A climbs $4$ steps.
+    \item If B rolls a multiple of $6$, B climbs $6$ steps.
+    \item Otherwise, the player does not move.
+\end{problemchoices}
+A rolls first. Find the probability that A wins. The players continue alternating rolls until one of them wins.
+\end{problem}
+
+\begin{problem}{2023}{2}{7}
+Let $(a_n)_{n\ge0}$ be defined by
+\[
+    \sqrt[4]{\frac{1+4x}{1-4x}}
+    =
+    \sum_{n=0}^{\infty}a_nx^n,
+    \qquad
+    |x|<\frac14.
+\]
+Prove that $a_n$ is a nonnegative integer for every $n\ge0$.
+\end{problem}
+
+\begin{problem}{2023}{1}{1}
+Find the area of the region satisfying
+\[
+    2-2\cos\theta\le r\le1
+\]
+in polar coordinates.
+\end{problem}
+
+\begin{problem}{2023}{1}{2}
+Let $V=M_2(\R)$ be the vector space of all $2\times2$ real matrices. Define the linear map
+\[
+    T\colon V\to V,
+    \qquad
+    T(\mathbf A)=\mathbf A^{\mathsf T}.
+\]
+Find all eigenvalues of $T$ and all eigenvectors corresponding to each eigenvalue.
+\end{problem}
+
+\begin{problem}{2023}{1}{3}
+A point $X$ moves in the coordinate plane with position
+\[
+    X(t)=3(\cos t,\sin t)+(\cos15t,\sin15t),
+    \qquad
+    t\in\left[0,\frac\pi6\right].
+\]
+Determine the set of times $t$ at which the polar angle of $X$ with respect to the origin is changing clockwise.
+\end{problem}
+
+\begin{problem}{2023}{1}{4}
+Let
+\[
+    S=\{2^k\mid k\text{ is a nonnegative integer}\}
+    =\{1,2,4,8,\dots\}.
+\]
+For a positive integer $n$, let $f(n)$ be the number of ways to express $n$ as a sum of elements of $S$, with each element used at most three times. For example,
+\[
+    7=1+1+1+4
+    =1+1+1+2+2
+    =1+2+2+2
+    =1+2+4,
+\]
+so $f(7)=4$. Express $f(n)$ as a function of $n$.
+\end{problem}
+
+\begin{problem}{2023}{1}{5}
+\begin{problemsubparts}
+    \item Let $\mathbf A$ and $\mathbf B$ be $n\times n$ real matrices. Prove that every eigenvalue of $\mathbf A\mathbf B$ is an eigenvalue of $\mathbf B\mathbf A$.
+    \item Let $n$ be an odd positive integer, and suppose that $n\times n$ real matrices $\mathbf A$ and $\mathbf B$ satisfy
+    \[
+        2\mathbf A\mathbf B=(\mathbf B\mathbf A)^2+\mathbf I_n.
+    \]
+    Prove that
+    \[
+        \det(\mathbf I_n-\mathbf A\mathbf B)=0.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{problem}{2023}{1}{6}
+Let
+\[
+    S=\{k\in\Z\mid 1\le k\le2023,\ \gcd(k,2023)=1\},
+\]
+and define
+\[
+    N=
+    \sum_{a\in S}\sum_{b\in S}
+    \left\{\frac{ab}{2023}\right\},
+\]
+where $\{t\}=t-\lfloor t\rfloor$ and $\lfloor t\rfloor$ denotes the greatest integer not exceeding $t$. Prove that $N$ is a positive integer and find the prime factorization of $N$.
+\end{problem}
+
+\begin{problem}{2023}{1}{7}
+Let $(a_n)_{n\ge0}$ be defined by
+\[
+    \sqrt[4]{\frac{1+4x}{1-4x}}
+    =
+    \sum_{n=0}^{\infty}a_nx^n,
+    \qquad
+    |x|<\frac14.
+\]
+Prove that $a_n$ is a nonnegative integer for every $n\ge0$.
+\end{problem}
