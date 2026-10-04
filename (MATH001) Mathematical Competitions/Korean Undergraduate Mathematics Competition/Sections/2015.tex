@@ -1,0 +1,209 @@
+\competitionyear{2015}
+
+\begin{problem}{2015}{2}{1}
+Evaluate
+\[
+    \int_0^{\infty}
+    \left(x^2+1-x\sqrt{x^2+2}\right)\,\dd x.
+\]
+\end{problem}
+
+\begin{problem}{2015}{2}{2}
+For a positive integer $n$, let $\mathbf A=(a_{ij})$ be the $n\times n$ matrix defined by
+\[
+    a_{ij}=\max\{i,j\}.
+\]
+Find $\det(\mathbf A)$.
+\end{problem}
+
+\begin{problem}{2015}{2}{3}
+Determine whether the series
+\[
+    \sum_{n=1}^{\infty}
+    \left((2n+1)e^{-1/n}-(2n-1)\right)
+\]
+converges.
+\end{problem}
+
+\begin{problem}{2015}{2}{4}
+Let $\mathbf A$ be a $5\times5$ matrix with rational entries having the eigenvector
+\[
+    (1,\sqrt2,\sqrt3,\sqrt4,\sqrt5)^{\mathsf T}.
+\]
+Prove that $\mathbf A^{\mathsf T}$ has an eigenvector all of whose entries are rational. Here $\mathbf A^{\mathsf T}$ denotes the transpose of $\mathbf A$.
+\end{problem}
+
+\begin{problem}{2015}{2}{5}
+Let $f\colon(-1,\infty)\to\R$ be infinitely differentiable and suppose that, for every positive integer $n$,
+\[
+    f\!\left(\frac1n\right)=\frac{n}{n+1}.
+\]
+Find $f'''(0)$.
+\end{problem}
+
+\begin{problem}{2015}{2}{6}
+Let $f\colon[a,b]\to\R$ be continuous. Prove that there exists a constant $c\in[a,b]$ such that
+\[
+    \int_a^b f(x)e^x\,\dd x
+    =
+    e^a\int_a^c f(x)\,\dd x
+    +e^b\int_c^b f(x)\,\dd x.
+\]
+\end{problem}
+
+\begin{problem}{2015}{2}{7}
+Let $n$ be a positive integer, and let $\mathbf A=(a_{ij})$ be an $n\times n$ complex matrix satisfying the following conditions.
+\begin{problemclauses}
+    \item $a_{ii}=1$ for $1\le i\le n$.
+    \item $a_{ij}=0$ for $1\le j<i\le n$.
+    \item $\overline{\mathbf A}\mathbf A=\mathbf I_n$.
+\end{problemclauses}
+Prove that there exists an $n\times n$ complex matrix $\mathbf B=(b_{ij})$ satisfying the following conditions.
+\begin{problemclauses}
+    \item $b_{ii}=1$ for $1\le i\le n$.
+    \item $b_{ij}=0$ for $1\le j<i\le n$.
+    \item $\overline{\mathbf B}\mathbf A=\mathbf B$.
+\end{problemclauses}
+Here $\overline{\mathbf A}=(\overline{a_{ij}})$.
+\end{problem}
+
+\begin{problem}{2015}{2}{8}
+Let $n$ be a positive integer, and let $\mathbf X=(x_{ij})$ be an $n\times n$ real matrix whose entries vary over a domain on which $\mathbf X$ is invertible. Write
+\[
+    \mathbf Y=\mathbf X^{-1}=(y_{pq}),
+\]
+and regard each entry as a function
+\[
+    y_{pq}=y_{pq}(x_{11},x_{12},\dots,x_{nn}).
+\]
+Prove that
+\[
+    \frac{\partial y_{pq}}{\partial x_{ij}}
+    =-y_{pi}y_{jq}.
+\]
+\end{problem}
+
+\begin{problem}{2015}{1}{1}
+Evaluate
+\[
+    \lim_{n\to\infty}
+    \left(1+\frac{\ln n}{n-1}\right)^n.
+\]
+\end{problem}
+
+\begin{problem}{2015}{1}{2}
+Let $d$ be a positive integer and let
+\[
+    \phi(x,y)=\sum_{i=0}^{2d}a_i x^i y^{2d-i}
+\]
+be an arbitrary polynomial with real coefficients. Prove that
+\[
+    \left(\frac{\partial^2}{\partial x^2}
+    +\frac{\partial^2}{\partial y^2}\right)^d
+    \left(y\frac{\partial\phi}{\partial x}\right)
+    =
+    \left(\frac{\partial^2}{\partial x^2}
+    +\frac{\partial^2}{\partial y^2}\right)^d
+    \left(x\frac{\partial\phi}{\partial y}\right).
+\]
+\end{problem}
+
+\begin{problem}{2015}{1}{3}
+Let $n\ge3$ be an integer, and let $\mathbf A=(a_{ij})$ be the $n^2\times n^2$ matrix defined by
+\[
+    a_{ij}
+    =
+    \begin{cases}
+        1, & n\mid i+j,\\
+        0, & n\nmid i+j.
+    \end{cases}
+\]
+Find all eigenvalues of $\mathbf A$ and the dimension of the eigenspace corresponding to each eigenvalue.
+\end{problem}
+
+\begin{problem}{2015}{1}{4}
+Let $V=M_{100}(\R)$, the real vector space of all $100\times100$ real matrices. For $\mathbf A\in V$, let
+\[
+    d_{\mathbf A}
+    =\dim\{\mathbf B\in V\mid \mathbf A\mathbf B=\mathbf B\mathbf A\}.
+\]
+Suppose that $\mathbf A\in V$ satisfies
+\[
+    \mathbf A^4-5\mathbf A^2+4\mathbf I=\mathbf0.
+\]
+Find the minimum possible value of $d_{\mathbf A}$.
+\end{problem}
+
+\begin{problem}{2015}{1}{5}
+Let $f\colon\R\to\R$ be differentiable and satisfy
+\[
+    \lim_{x\to\infty}f(x)
+    =\lim_{x\to-\infty}f(x)=0,
+\]
+\[
+    \int_{-\infty}^{\infty}|f(x)|^2\,\dd x<\infty,
+    \qquad
+    \int_{-\infty}^{\infty}|f'(x)|^2\,\dd x<\infty.
+\]
+Prove that
+\[
+    \max_{x\in\R}|f(x)|
+    \le
+    \left(\int_{-\infty}^{\infty}|f(x)|^2\,\dd x\right)^{1/4}
+    \left(\int_{-\infty}^{\infty}|f'(x)|^2\,\dd x\right)^{1/4}.
+\]
+\end{problem}
+
+\begin{problem}{2015}{1}{6}
+Let $x(t),y(t),z(t)$ be relatively prime polynomials with real coefficients, each of degree at least $1$. Suppose that, for some positive integer $d$,
+\[
+    x(t)^d+y(t)^d=z(t)^d.
+\]
+Prove that $x(t)^{d-1}$ divides
+\[
+    y(t)z'(t)-z(t)y'(t),
+\]
+and that $d\le2$.
+\end{problem}
+
+\begin{problem}{2015}{1}{7}
+Let $\mathbf A$ and $\mathbf B$ be $2\times2$ real symmetric matrices with eigenvalues
+\[
+    \lambda_1\ge\lambda_2\ge0
+    \qquad\text{and}\qquad
+    \mu_1\ge\mu_2\ge0,
+\]
+respectively. Prove that
+\[
+    \tr(\mathbf A\mathbf B)
+    \le
+    \lambda_1\mu_1+\lambda_2\mu_2.
+\]
+\end{problem}
+
+\begin{problem}{2015}{1}{8}
+For a positive integer $n$, call an $n\times n$ real matrix $\mathbf M$ orthogonal if
+\[
+    \mathbf M^{\mathsf T}\mathbf M=\mathbf I_n,
+\]
+and call $\mathbf M$ \emph{similar to an orthogonal matrix} if there exists an invertible real matrix $\mathbf P$ such that
+\[
+    \mathbf P\mathbf M\mathbf P^{-1}
+\]
+is orthogonal.
+\begin{problemsubparts}
+    \item Let $\mathbf S$ be a real symmetric matrix all of whose eigenvalues are positive. Prove that every matrix $\mathbf A$ satisfying
+    \[
+        \mathbf A^{\mathsf T}\mathbf S\mathbf A=\mathbf S
+    \]
+    is similar to an orthogonal matrix.
+    \item Let $\mathbf A$ and $\mathbf B$ be matrices such that both $\mathbf A$ and
+    \[
+        \begin{pmatrix}
+            \mathbf A&\mathbf0\\
+            \mathbf0&\mathbf B
+        \end{pmatrix}
+    \]
+    are similar to orthogonal matrices. Prove that $\mathbf B$ is also similar to an orthogonal matrix.
+\end{problemsubparts}
+\end{problem}

@@ -1,0 +1,201 @@
+\competitionyear{2014}
+
+\begin{problem}{2014}{2}{1}
+For a positive integer $n$, let
+\[
+    f(x)=\frac{e^x}{x-1},
+\]
+and define the polynomial $P_n(x)$ by
+\[
+    f^{(n)}(x)=\frac{P_n(x)e^x}{(x-1)^{n+1}}.
+\]
+Find $P_n(1)$ and $P_n'(1)$.
+\end{problem}
+
+\begin{problem}{2014}{2}{2}
+Let $(a_n)$ and $(b_n)$ be real sequences satisfying
+\[
+    \lim_{n\to\infty}(a_n+b_n)=0,
+    \qquad
+    \lim_{n\to\infty}(e^{a_n}+e^{b_n})=2.
+\]
+Prove that $(a_n)$ converges.
+\end{problem}
+
+\begin{problem}{2014}{2}{3}
+Let $m$ be a positive integer. Prove that every $n\times n$ real matrix $\mathbf A$ satisfying
+\[
+    \mathbf A^m=\mathbf0
+\]
+also satisfies
+\[
+    \rk(\mathbf A)
+    \le
+    \frac{m-1}{m}n.
+\]
+\end{problem}
+
+\begin{problem}{2014}{2}{4}
+Evaluate
+\[
+    \iiint_{\R^3}
+    e^{-3x^2-3y^2-2z^2-2xz+2yz}
+    \,\dd x\,\dd y\,\dd z.
+\]
+\end{problem}
+
+\begin{problem}{2014}{2}{5}
+Let $n\ge2$ be an integer, and let $M_n(\R)$ denote the real vector space of all $n\times n$ real matrices. Let $V\subseteq M_n(\R)$ satisfy the following conditions, where $\mathbf E_{ij}$ denotes the matrix whose $(i,j)$-entry is $1$ and whose other entries are $0$.
+\begin{problemclauses}
+    \item $V$ is a subspace of $M_n(\R)$.
+    \item If $\mathbf A,\mathbf B\in V$, then $\mathbf A\mathbf B\in V$.
+    \item
+    \[
+        \mathbf E_{12}+\mathbf E_{23}+\cdots+\mathbf E_{n-1,n}\in V,
+    \]
+    and
+    \[
+        \mathbf E_{21}+\mathbf E_{32}+\cdots+\mathbf E_{n,n-1}\in V.
+    \]
+\end{problemclauses}
+Prove that
+\[
+    V=M_n(\R).
+\]
+\end{problem}
+
+\begin{problem}{2014}{2}{6}
+Let $f\colon\R\to\R$ be twice differentiable and satisfy $f(0)=0$. Prove that
+\[
+    \int_0^1|f(x)f'(x)|\,\dd x
+    \le
+    \frac12\int_0^1|f'(x)|^2\,\dd x.
+\]
+\end{problem}
+
+\begin{problem}{2014}{2}{7}
+Let $\mathbf A$ and $\mathbf B$ be $n\times n$ real symmetric matrices all of whose eigenvalues are positive. Prove that, for every $n\times n$ real matrix $\mathbf C$, the block matrix
+\[
+    \begin{pmatrix}
+        \mathbf A&\mathbf C\\
+        \mathbf C^{\mathsf T}&-\mathbf B
+    \end{pmatrix}
+\]
+is invertible. Here $\mathbf C^{\mathsf T}$ denotes the transpose of $\mathbf C$.
+\end{problem}
+
+\begin{problem}{2014}{2}{8}
+Let $f\colon[a,b]\to\R$ be continuous, with $a<b$, and suppose that
+\[
+    f(tx+(1-t)y)
+    \le
+    tf(x)+(1-t)f(y)
+\]
+for every $t\in[0,1]$ and $x,y\in[a,b]$. Prove that
+\[
+    f\!\left(\frac{a+b}{2}\right)
+    \le
+    \frac1{b-a}\int_a^b f(x)\,\dd x
+    \le
+    \frac{f(a)+f(b)}2.
+\]
+\end{problem}
+
+\begin{problem}{2014}{1}{1}
+Evaluate
+\[
+    \lim_{n\to\infty}
+    \left(\frac1{n!}\right)^{1/(n\ln n)}.
+\]
+\end{problem}
+
+\begin{problem}{2014}{1}{2}
+Let $\mathbf A$ and $\mathbf B$ be $n\times n$ real matrices, and for $t\in\R$ define
+\[
+    \mathbf C_t=
+    \begin{pmatrix}
+        \mathbf A&t^2\mathbf B\\
+        \mathbf B&\mathbf A
+    \end{pmatrix}.
+\]
+Prove that
+\[
+    \det(\mathbf C_t)
+    =
+    \det(\mathbf A+t\mathbf B)\det(\mathbf A-t\mathbf B).
+\]
+\end{problem}
+
+\begin{problem}{2014}{1}{3}
+Find all continuous functions $f\colon[0,\infty)\to(0,\infty)$ satisfying
+\[
+    f(x)f(y)
+    =
+    \max\{f(t)\mid |x-y|\le t\le x+y\}
+\]
+for all $x,y\ge0$.
+\end{problem}
+
+\begin{problem}{2014}{1}{4}
+Let $M_n(\C)$ be the complex vector space of all $n\times n$ complex matrices. Suppose $\mathbf A\in M_n(\C)$ satisfies
+\[
+    \mathbf A^6-\mathbf A^3+\mathbf I_n=\mathbf0.
+\]
+Define the linear map
+\[
+    T\colon M_n(\C)\to M_n(\C),
+    \qquad
+    T(\mathbf B)=\mathbf A\mathbf B.
+\]
+Prove that $T$ is diagonalizable.
+\end{problem}
+
+\begin{problem}{2014}{1}{5}
+Let $f\colon\R\to\R$ be twice differentiable and satisfy $f(0)=0$. Prove that
+\[
+    \int_0^1|f(x)f'(x)|\,\dd x
+    \le
+    \frac12\int_0^1|f'(x)|^2\,\dd x.
+\]
+\end{problem}
+
+\begin{problem}{2014}{1}{6}
+Let $n$ be a positive integer, and let $\mathbf A$ and $\mathbf B$ be $n\times n$ real matrices satisfying
+\[
+    x\mathbf A+y\mathbf B=\mathbf I_n,
+    \qquad
+    \mathbf A\mathbf B=\mathbf0,
+\]
+where $x,y\in\R\setminus\{0\}$. Prove that
+\[
+    \det(\mathbf A+\mathbf B)
+    =
+    \frac{1}{x^{\rk(\mathbf A)}y^{\rk(\mathbf B)}}.
+\]
+\end{problem}
+
+\begin{problem}{2014}{1}{7}
+Let $f\colon[a,b]\to\R$ be continuous, with $a<b$, and suppose that
+\[
+    f(tx+(1-t)y)
+    \le
+    tf(x)+(1-t)f(y)
+\]
+for every $t\in[0,1]$ and $x,y\in[a,b]$. Prove that
+\[
+    f\!\left(\frac{a+b}{2}\right)
+    \le
+    \frac1{b-a}\int_a^b f(x)\,\dd x
+    \le
+    \frac{f(a)+f(b)}2.
+\]
+\end{problem}
+
+\begin{problem}{2014}{1}{8}
+Let $\alpha$ be a positive irrational number and define
+\[
+    q_n=\frac{\lfloor n\alpha\rfloor}{n}
+    \qquad(n\ge1).
+\]
+Prove that the sequence $(q_n)$ is not monotonically increasing. Here $\lfloor x\rfloor$ denotes the greatest integer not exceeding $x$.
+\end{problem}
