@@ -1,0 +1,613 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261007 Quiz for MATH200 Differential Equations},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH200 Differential Equations},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261007 Quiz}
+
+\begin{problem}{3.5.4}
+Find the general solution of the differential equation
+\[
+    y''-2y'-3y=-6te^{-t}.
+\]
+\end{problem}
+
+\begin{solution}
+The corresponding homogeneous equation has characteristic equation
+\[
+    r^2-2r-3=(r-3)(r+1)=0,
+\]
+so
+\[
+    y_h=c_1e^{3t}+c_2e^{-t}.
+\]
+The forcing term is a degree-one polynomial times $e^{-t}$. Since $r=-1$ is a simple characteristic root, the usual trial $(At+B)e^{-t}$ overlaps with the homogeneous solution and must be multiplied by $t$. Thus set
+\[
+    y_p=t(At+B)e^{-t}.
+\]
+Substitution gives
+\[
+    y_p''-2y_p'-3y_p
+    =\bigl(-8At+2A-4B\bigr)e^{-t}.
+\]
+Matching coefficients with $-6te^{-t}$ yields
+\[
+    -8A=-6,
+    \qquad
+    2A-4B=0,
+\]
+so
+\[
+    A=\frac34,
+    \qquad
+    B=\frac38.
+\]
+Therefore
+\[
+    \boxed{
+        y=c_1e^{3t}+c_2e^{-t}
+        +\frac38te^{-t}+\frac34t^2e^{-t}
+    }.
+\]
+\end{solution}
+
+\begin{problem}{3.5.5}
+Find the general solution of the differential equation
+\[
+    y''+2y'=5+4\sin(2t).
+\]
+\end{problem}
+
+\begin{solution}
+The characteristic equation of the corresponding homogeneous equation is
+\[
+    r^2+2r=r(r+2)=0,
+\]
+so
+\[
+    y_h=c_1+c_2e^{-2t}.
+\]
+Because the forcing term is a sum, we choose a trial particular solution by treating the constant and trigonometric terms together. A constant trial would duplicate the homogeneous solution $1$, so the constant forcing requires a factor of $t$. The trigonometric forcing has no such duplication. Hence let
+\[
+    y_p=At+B\cos(2t)+C\sin(2t).
+\]
+Then
+\[
+    y_p''+2y_p'
+    =2A+(4C-4B)\cos(2t)+(-4B-4C)\sin(2t).
+\]
+Matching coefficients with $5+4\sin(2t)$ gives
+\[
+    2A=5,
+    \qquad
+    C-B=0,
+    \qquad
+    -B-C=1.
+\]
+Thus
+\[
+    A=\frac52,
+    \qquad
+    B=C=-\frac12.
+\]
+Therefore
+\[
+    \boxed{
+        y=c_1+c_2e^{-2t}
+        +\frac52t-\frac12\sin(2t)-\frac12\cos(2t)
+    }.
+\]
+\end{solution}
+
+\begin{problem}{3.5.6}
+Find the general solution of the differential equation
+\[
+    y''+2y'+y=4e^{-t}.
+\]
+\end{problem}
+
+\begin{solution}
+The characteristic equation is
+\[
+    r^2+2r+1=(r+1)^2=0,
+\]
+so
+\[
+    y_h=(c_1+c_2t)e^{-t}.
+\]
+The forcing term is proportional to $e^{-t}$, and $r=-1$ is a characteristic root of multiplicity two. Therefore the trial must be multiplied by $t^2$:
+\[
+    y_p=At^2e^{-t}.
+\]
+A direct substitution gives
+\[
+    y_p''+2y_p'+y_p=2Ae^{-t}.
+\]
+Hence $2A=4$, so $A=2$. Therefore
+\[
+    \boxed{
+        y=c_1e^{-t}+c_2te^{-t}+2t^2e^{-t}
+    }.
+\]
+\end{solution}
+
+% Boyce Section 3.5, Problem 16(a), treated here as the complete quiz problem.
+\begin{problem}{3.5.16}
+Determine a suitable form for $Y(t)$ if the method of undetermined coefficients is to be used for
+\[
+    y''+3y'=2t^4+t^2e^{-3t}+2\sin(3t).
+\]
+\end{problem}
+
+\begin{solution}
+The characteristic equation of the corresponding homogeneous equation is
+\[
+    r^2+3r=r(r+3)=0,
+\]
+with roots $0$ and $-3$.
+
+For the polynomial forcing $2t^4$, the usual degree-four polynomial trial overlaps with the homogeneous solution corresponding to $r=0$, so it must be multiplied by $t$. For the term $t^2e^{-3t}$, the exponential factor corresponds to the simple root $r=-3$, so this trial also requires one factor of $t$. The term $2\sin(3t)$ has no duplication with the homogeneous solution and requires both sine and cosine terms. Thus a suitable form is
+\[
+    \boxed{
+    \begin{aligned}
+        Y(t)={}&t(A_0t^4+A_1t^3+A_2t^2+A_3t+A_4)\\
+        &+t(B_0t^2+B_1t+B_2)e^{-3t}\\
+        &+D\sin(3t)+E\cos(3t).
+    \end{aligned}}
+\]
+\end{solution}
+
+% Boyce Section 3.5, Problem 18(a), treated here as the complete quiz problem.
+\begin{problem}{3.5.18}
+Determine a suitable form for $Y(t)$ if the method of undetermined coefficients is to be used for
+\[
+    y''+2y'+2y
+    =2e^{-t}+2e^{-t}\cos t+4e^{-t}t^2\sin t.
+\]
+\end{problem}
+
+\begin{solution}
+The characteristic equation of the corresponding homogeneous equation is
+\[
+    r^2+2r+2=0,
+\]
+with roots $-1\pm i$. Thus $e^{-t}\cos t$ and $e^{-t}\sin t$ belong to the homogeneous solution family.
+
+The forcing term $2e^{-t}$ alone has no duplication with the homogeneous solution, so it contributes $Ae^{-t}$. The remaining two forcing terms belong to the common family $e^{-t}P_2(t)\cos t$ and $e^{-t}P_2(t)\sin t$. Since differentiation mixes the sine and cosine terms, both degree-two polynomial factors must be included. Because $-1\pm i$ are simple characteristic roots, the entire trigonometric trial must also be multiplied by $t$. Hence a suitable form is
+\[
+    \boxed{
+    \begin{aligned}
+        Y(t)={}&Ae^{-t}\\
+        &+t(B_0t^2+B_1t+B_2)e^{-t}\cos t\\
+        &+t(D_0t^2+D_1t+D_2)e^{-t}\sin t.
+    \end{aligned}}
+\]
+\end{solution}
+
+% Boyce Section 3.5, Problem 21(a), treated here as the complete quiz problem.
+\begin{problem}{3.5.21}
+Determine a suitable form for $Y(t)$ if the method of undetermined coefficients is to be used for
+\[
+    y''-4y'+4y=4t^2+4te^{2t}+t\sin(2t).
+\]
+\end{problem}
+
+\begin{solution}
+The characteristic equation of the corresponding homogeneous equation is
+\[
+    r^2-4r+4=(r-2)^2=0,
+\]
+so $r=2$ is a double root.
+
+The polynomial forcing $4t^2$ requires a general quadratic polynomial. For $4te^{2t}$, the usual trial $e^{2t}(B_0t+B_1)$ duplicates the homogeneous solution with multiplicity two, so it must be multiplied by $t^2$. Finally, the forcing $t\sin(2t)$ requires both sine and cosine terms with degree-one polynomial coefficients, and there is no resonance at $\pm2i$. Therefore a suitable form is
+\[
+    \boxed{
+    \begin{aligned}
+        Y(t)={}&A_0t^2+A_1t+A_2\\
+        &+t^2(B_0t+B_1)e^{2t}\\
+        &+(D_0t+D_1)\sin(2t)\\
+        &+(E_0t+E_1)\cos(2t).
+    \end{aligned}}
+\]
+\end{solution}
+
+\begin{problem}{3.6.2}
+Use the method of variation of parameters to find a particular solution of
+\[
+    y''-y'-2y=4e^{-t}.
+\]
+Then check your answer by using the method of undetermined coefficients.
+\end{problem}
+
+\begin{solution}
+The corresponding homogeneous equation has characteristic equation
+\[
+    r^2-r-2=(r+1)(r-2)=0.
+\]
+Choose the fundamental solutions
+\[
+    y_1=e^{-t},
+    \qquad
+    y_2=e^{2t}.
+\]
+Their Wronskian is
+\[
+    W(y_1,y_2)(t)
+    =\begin{vmatrix}
+        e^{-t} & e^{2t}\\
+        -e^{-t} & 2e^{2t}
+    \end{vmatrix}
+    =3e^t.
+\]
+For variation of parameters, write
+\[
+    y_p=u_1y_1+u_2y_2.
+\]
+Since $g(t)=4e^{-t}$,
+\[
+    u_1'
+    =-\frac{y_2g}{W(y_1,y_2)}
+    =-\frac43,
+    \qquad
+    u_2'
+    =\frac{y_1g}{W(y_1,y_2)}
+    =\frac43e^{-3t}.
+\]
+Taking convenient antiderivatives,
+\[
+    u_1=-\frac43t,
+    \qquad
+    u_2=-\frac49e^{-3t}.
+\]
+Thus
+\[
+    u_1y_1+u_2y_2
+    =-\frac43te^{-t}-\frac49e^{-t}.
+\]
+The second term is a homogeneous solution, so it may be absorbed into $y_h$. Hence we may take
+\[
+    \boxed{y_p=-\frac43te^{-t}}.
+\]
+
+To check by undetermined coefficients, note that $e^{-t}$ is already a homogeneous solution and $r=-1$ is a simple characteristic root. Therefore use the resonant trial
+\[
+    y_p=Ate^{-t}.
+\]
+Substitution gives
+\[
+    y_p''-y_p'-2y_p=-3Ae^{-t}.
+\]
+Thus $-3A=4$, so $A=-4/3$, confirming the result.
+\end{solution}
+
+\begin{problem}{3.6.11}
+Verify that
+\[
+    y_1(t)=t,
+    \qquad
+    y_2(t)=te^t
+\]
+satisfy the corresponding homogeneous equation; then find a particular solution of
+\[
+    t^2y''-t(t+2)y'+(t+2)y=6t^3,
+    \qquad
+    t>0.
+\]
+\end{problem}
+
+\begin{solution}
+For $y_1=t$, we have $y_1'=1$ and $y_1''=0$, so
+\[
+    t^2y_1''-t(t+2)y_1'+(t+2)y_1
+    =-t(t+2)+t(t+2)=0.
+\]
+For $y_2=te^t$,
+\[
+    y_2'=(t+1)e^t,
+    \qquad
+    y_2''=(t+2)e^t,
+\]
+and hence
+\[
+\begin{aligned}
+    &t^2y_2''-t(t+2)y_2'+(t+2)y_2\\
+    &\qquad=t^2(t+2)e^t-t(t+2)(t+1)e^t+t(t+2)e^t=0.
+\end{aligned}
+\]
+Thus both functions solve the homogeneous equation.
+
+Before applying variation of parameters, divide the differential equation by $t^2$; this is valid because $t>0$. The standard form is
+\[
+    y''-\frac{t+2}{t}y'
+    +\frac{t+2}{t^2}y
+    =6t,
+\]
+so the forcing term in the variation-of-parameters formula is $g(t)=6t$. The Wronskian is
+\[
+\begin{aligned}
+    W(y_1,y_2)(t)
+    &=\begin{vmatrix}
+        t & te^t\\
+        1 & (t+1)e^t
+    \end{vmatrix}\\
+    &=t^2e^t,
+\end{aligned}
+\]
+which is nonzero for $t>0$. Therefore $y_1$ and $y_2$ form a fundamental set on this interval.
+
+With $y_p=u_1y_1+u_2y_2$,
+\[
+    u_1'
+    =-\frac{y_2g}{W(y_1,y_2)}
+    =-6,
+    \qquad
+    u_2'
+    =\frac{y_1g}{W(y_1,y_2)}
+    =6e^{-t}.
+\]
+Taking antiderivatives,
+\[
+    u_1=-6t,
+    \qquad
+    u_2=-6e^{-t}.
+\]
+This gives
+\[
+    y_p=-6t^2-6t.
+\]
+Particular solutions are not unique: the term $-6t$ is a homogeneous solution because $y_1=t$. Absorbing it into the homogeneous part gives the simpler particular solution
+\[
+    \boxed{y_p=-6t^2}.
+\]
+\end{solution}
+
+\begin{problem}{7.1.3}
+Transform the differential equation
+\[
+    u^{(4)}-3u=0
+\]
+into a system of first-order equations.
+\end{problem}
+
+\begin{solution}
+Introduce one state variable for each derivative up to order three:
+\[
+    x_1=u,
+    \qquad
+    x_2=u',
+    \qquad
+    x_3=u'',
+    \qquad
+    x_4=u'''.
+\]
+This choice makes each derivative of a state variable equal to the next state variable, except for the last equation, which is supplied by the original differential equation. Thus
+\[
+    \boxed{
+    \begin{aligned}
+        x_1'&=x_2,\\
+        x_2'&=x_3,\\
+        x_3'&=x_4,\\
+        x_4'&=3x_1.
+    \end{aligned}}
+\]
+Equivalently, with
+\[
+    \mathbf{x}=\begin{pmatrix}x_1\\x_2\\x_3\\x_4\end{pmatrix},
+\]
+the system can be written in state-vector form as
+\[
+    \boxed{
+    \mathbf{x}'=
+    \begin{pmatrix}
+        0&1&0&0\\
+        0&0&1&0\\
+        0&0&0&1\\
+        3&0&0&0
+    \end{pmatrix}
+    \mathbf{x}
+    }.
+\]
+\end{solution}
+
+\begin{problem}{7.1.4}
+Transform the initial value problem
+\[
+    u''+2u'+4u=2\cos(3t),
+    \qquad
+    u(0)=1,
+    \qquad
+    u'(0)=-2
+\]
+into an initial value problem for two first-order equations.
+\end{problem}
+
+\begin{solution}
+Let
+\[
+    x_1=u,
+    \qquad
+    x_2=u'.
+\]
+Then $x_1'=x_2$, while the original differential equation gives
+\[
+    x_2'=u''=-4u-2u'+2\cos(3t)
+    =-4x_1-2x_2+2\cos(3t).
+\]
+The initial conditions become $x_1(0)=1$ and $x_2(0)=-2$. Hence the required first-order initial value problem is
+\[
+    \boxed{
+    \begin{aligned}
+        x_1'&=x_2,\\
+        x_2'&=-4x_1-2x_2+2\cos(3t),\\
+        x_1(0)&=1,
+        \qquad
+        x_2(0)=-2.
+    \end{aligned}}
+\]
+In state-vector form,
+\[
+    \boxed{
+    \mathbf{x}'
+    =\begin{pmatrix}
+        0&1\\
+        -4&-2
+    \end{pmatrix}\mathbf{x}
+    +\begin{pmatrix}
+        0\\
+        2\cos(3t)
+    \end{pmatrix},
+    \qquad
+    \mathbf{x}(0)=\begin{pmatrix}1\\-2\end{pmatrix}
+    }.
+\]
+\end{solution}
+
+\begin{problem}{7.4.2}
+Consider the homogeneous system
+\[
+    \mathbf{x}'
+    =\begin{pmatrix}
+        2&-1\\
+        3&-2
+    \end{pmatrix}\mathbf{x}
+\]
+and the vector-valued functions
+\[
+    \mathbf{x}^{(1)}(t)
+    =\begin{pmatrix}1\\1\end{pmatrix}e^t,
+    \qquad
+    \mathbf{x}^{(2)}(t)
+    =\begin{pmatrix}1\\3\end{pmatrix}e^{-t}.
+\]
+\begin{problemsubparts}
+    \item Show that the given functions are solutions of the given system of differential equations.
+    \item Show that $\mathbf{x}=c_1\mathbf{x}^{(1)}+c_2\mathbf{x}^{(2)}$ is also a solution of the given system for any values of $c_1$ and $c_2$.
+    \item Show that the given functions form a fundamental set of solutions of the given system.
+    \item Find the solution of the given system that satisfies the initial condition
+    \[
+        \mathbf{x}(0)=\begin{pmatrix}1\\2\end{pmatrix}.
+    \]
+    \item Find $W(\mathbf{x}^{(1)},\mathbf{x}^{(2)})(t)$.
+    \item Show that the Wronskian $W=W(\mathbf{x}^{(1)},\mathbf{x}^{(2)})$ found in part (e) is a solution of Abel's equation
+    \[
+        W'=(p_{11}(t)+p_{22}(t))W.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+Let
+\[
+    \mathbf{A}=\begin{pmatrix}2&-1\\3&-2\end{pmatrix}.
+\]
+
+\noindent\textup{(a)} For the first vector,
+\[
+    \mathbf{A}\begin{pmatrix}1\\1\end{pmatrix}
+    =\begin{pmatrix}1\\1\end{pmatrix},
+\]
+so
+\[
+    \mathbf{A}\mathbf{x}^{(1)}(t)
+    =\begin{pmatrix}1\\1\end{pmatrix}e^t
+    =(\mathbf{x}^{(1)})'(t).
+\]
+For the second vector,
+\[
+    \mathbf{A}\begin{pmatrix}1\\3\end{pmatrix}
+    =-\begin{pmatrix}1\\3\end{pmatrix},
+\]
+and therefore
+\[
+    \mathbf{A}\mathbf{x}^{(2)}(t)
+    =-\begin{pmatrix}1\\3\end{pmatrix}e^{-t}
+    =(\mathbf{x}^{(2)})'(t).
+\]
+Thus both functions are solutions of $\mathbf{x}'=\mathbf{A}\mathbf{x}$.
+
+\medskip
+\noindent\textup{(b)} By linearity,
+\[
+\begin{aligned}
+    \mathbf{x}'
+    &=c_1(\mathbf{x}^{(1)})'+c_2(\mathbf{x}^{(2)})'\\
+    &=c_1\mathbf{A}\mathbf{x}^{(1)}+c_2\mathbf{A}\mathbf{x}^{(2)}\\
+    &=\mathbf{A}\bigl(c_1\mathbf{x}^{(1)}+c_2\mathbf{x}^{(2)}\bigr)\\
+    &=\mathbf{A}\mathbf{x}.
+\end{aligned}
+\]
+Hence every linear combination $c_1\mathbf{x}^{(1)}+c_2\mathbf{x}^{(2)}$ is also a solution.
+
+\medskip
+\noindent\textup{(c)} Their Wronskian is
+\[
+\begin{aligned}
+    W(\mathbf{x}^{(1)},\mathbf{x}^{(2)})(t)
+    &=\det\begin{pmatrix}
+        e^t&e^{-t}\\
+        e^t&3e^{-t}
+    \end{pmatrix}\\
+    &=3-1=2.
+\end{aligned}
+\]
+Since the Wronskian is nonzero, the two solutions are linearly independent and therefore form a fundamental set of solutions.
+
+\medskip
+\noindent\textup{(d)} Since the two functions form a fundamental set, write
+\[
+    \mathbf{x}(t)=c_1\mathbf{x}^{(1)}(t)+c_2\mathbf{x}^{(2)}(t).
+\]
+At $t=0$, the initial condition gives
+\[
+    c_1\begin{pmatrix}1\\1\end{pmatrix}
+    +c_2\begin{pmatrix}1\\3\end{pmatrix}
+    =\begin{pmatrix}1\\2\end{pmatrix},
+\]
+so
+\[
+    c_1+c_2=1,
+    \qquad
+    c_1+3c_2=2.
+\]
+Thus
+\[
+    c_1=c_2=\frac12,
+\]
+and
+\[
+    \boxed{
+        \mathbf{x}(t)
+        =\frac12\begin{pmatrix}1\\1\end{pmatrix}e^t
+        +\frac12\begin{pmatrix}1\\3\end{pmatrix}e^{-t}
+    }.
+\]
+
+\medskip
+\noindent\textup{(e)} From part (c),
+\[
+    \boxed{W(\mathbf{x}^{(1)},\mathbf{x}^{(2)})(t)=2}.
+\]
+
+\medskip
+\noindent\textup{(f)} Here
+\[
+    p_{11}(t)+p_{22}(t)=2+(-2)=0
+    =\operatorname{tr}(\mathbf{A}).
+\]
+Since $W(t)=2$ is constant,
+\[
+    W'(t)=0=(p_{11}(t)+p_{22}(t))W(t).
+\]
+Thus the Wronskian satisfies Abel's equation.
+\end{solution}
+
+\end{document}
