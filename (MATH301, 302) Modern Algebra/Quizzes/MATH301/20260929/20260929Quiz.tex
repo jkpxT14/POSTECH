@@ -31,7 +31,7 @@ The multiplicative identity gives
 \[
     1\cdot a=a.
 \]
-Hence $F^\times$ acts on $F$. The action axioms use associativity and the multiplicative identity; the field axioms also ensure that $F^\times$ is a group under multiplication.
+Hence $F^\times$ acts on $F$. The action axioms use associativity of multiplication and the multiplicative identity. The field axioms also ensure that the nonzero elements are closed under multiplication and inverses, so $F^\times$ is a group.
 \end{solution}
 
 \begin{exercise}{1.7.16}
@@ -39,7 +39,7 @@ Let $G$ be any group and let $A=G$. Show that the maps defined by
 \[
     g\cdot a=gag^{-1}
 \]
-for all $g,a\in G$ satisfy the axioms of a left group action. This action of $G$ on itself is called conjugation.
+for all $g,a\in G$ satisfy the axioms of a left group action. This action of $G$ on itself is called \emph{conjugation}.
 \end{exercise}
 
 \begin{solution}
@@ -62,9 +62,9 @@ Thus conjugation defines a left group action of $G$ on itself.
 \begin{exercise}{1.7.17}
 Let $G$ be a group and let $G$ act on itself by left conjugation, so each $g\in G$ maps $G$ to $G$ by
 \[
-    x\longmapsto gxg^{-1}.
+    x\mapsto gxg^{-1}.
 \]
-For fixed $g\in G$, prove that conjugation by $g$ is an isomorphism from $G$ onto itself, i.e., an automorphism of $G$ (cf. Exercise 1.6.20). Deduce that $x$ and $gxg^{-1}$ have the same order for all $x$ in $G$ and that for any subset $A$ of $G$,
+For fixed $g\in G$, prove that conjugation by $g$ is an isomorphism from $G$ onto itself, i.e., an automorphism of $G$ (cf.\ Exercise 1.6.20). Deduce that $x$ and $gxg^{-1}$ have the same order for all $x$ in $G$ and that for any subset $A$ of $G$,
 \[
     |A|=|gAg^{-1}|,
 \]
@@ -106,7 +106,7 @@ In each of (a)--(e), prove that the specified subset is not a subgroup of the gi
 \end{exercise}
 
 \begin{notation}
-Following MATH000, $D_n$ denotes the dihedral group of symmetries of a regular $n$-gon, so $|D_n|=2n$. Dummit--Foote denotes this group by $D_{2n}$.
+Following MATH000, $D_n$ denotes the dihedral group of symmetries of a regular $n$-gon, so $|D_n|=2n$. Dummit--Foote denotes the same group by $D_{2n}$.
 \end{notation}
 
 \begin{solution}
@@ -121,11 +121,11 @@ Following MATH000, $D_n$ denotes the dihedral group of symmetries of a regular $
     \]
     Thus $x$ belongs to the set but $x^s$ does not. A subgroup containing $x$ must contain all powers of $x$, so the set is not a subgroup.
 
-    \item We have $1$ and $1$ in the set, but
+    \item The element $1$ belongs to the set, but
     \[
         1+1=2
     \]
-    is not in the set. Hence it is not closed under addition.
+    does not. Hence the set is not closed under addition.
 
     \item Both $1$ and $\sqrt2$ belong to the set, but
     \[
@@ -181,7 +181,7 @@ Let $G$ be an abelian group. Prove that
 \[
     \{g\in G\mid |g|<\infty\}
 \]
-is a subgroup of $G$, called the torsion subgroup of $G$. Give an explicit example where this set is not a subgroup when $G$ is nonabelian.
+is a subgroup of $G$, called the \emph{torsion subgroup} of $G$. Give an explicit example where this set is not a subgroup when $G$ is nonabelian.
 \end{exercise}
 
 \begin{solution}
@@ -241,7 +241,7 @@ Find all subgroups of $C_{45}=\langle x\rangle$, giving a generator for each. De
 \end{exercise}
 
 \begin{notation}
-Following MATH000, $C_n$ denotes a cyclic group of order $n$. Dummit--Foote denotes this abstract cyclic group by $Z_n$. The residue-class group is written $\Z/n\Z$, with residue classes denoted by $[a]_n$.
+Following MATH000, $C_n$ denotes a cyclic group of order $n$. Dummit--Foote denotes the same abstract cyclic group by $Z_n$. The notation $\Z/n\Z$ denotes the residue classes modulo $n$; when used here as a group, it is understood with addition. Residue classes are denoted by $[a]_n$.
 \end{notation}
 
 \begin{solution}
@@ -276,7 +276,7 @@ This completely describes the containments.
 \begin{exercise}{2.3.8}
 Let $C_{48}=\langle x\rangle$. For which integers $a$ does the map $\varphi_a$ defined by
 \[
-    \varphi_a:[1]_{48}\longmapsto x^a
+    \varphi_a:[1]_{48}\mapsto x^a
 \]
 extend to an isomorphism from $\Z/48\Z$ onto $C_{48}$?
 \end{exercise}
@@ -307,7 +307,7 @@ The elements of $D_4$ are
 \[
     1,r,r^2,r^3,s,sr,sr^2,sr^3,
 \]
-with $|r|=4$, $|r^2|=2$, and every reflection of order $2$. Hence the distinct cyclic subgroups are
+where $|r|=4$, $|r^2|=2$, and every reflection has order $2$. Hence the distinct cyclic subgroups are
 \[
     \{1\},
     \qquad
@@ -360,7 +360,7 @@ Prove that the following groups are not cyclic:
 \begin{exercise}{2.3.19}
 Show that if $H$ is any group and $h$ is an element of $H$, then there is a unique homomorphism from $\Z$ to $H$ such that
 \[
-    1\longmapsto h.
+    1\mapsto h.
 \]
 \end{exercise}
 
@@ -394,6 +394,8 @@ but
     (1+p)^{p^{n-2}}\not\equiv1\pmod{p^n}.
 \]
 Deduce that $1+p$ is an element of order $p^{n-1}$ in the multiplicative group $(\Z/p^n\Z)^\times$.
+
+\textit{Clarification.} The second congruence is understood for $n\ge2$. For $n=1$, the final order statement is immediate.
 \end{exercise}
 
 \begin{solution}
@@ -436,7 +438,9 @@ Let $G$ be a finite group and let $x\in G$.
     \]
     for some $a\in\Z$.
 
-    \item Prove conversely that if $gxg^{-1}=x^a$ for some $a\in\Z$, then $g\in N_G(\langle x\rangle)$. First show that $gx^kg^{-1}=(gxg^{-1})^k=x^{ak}$ for any integer $k$, so that $g\langle x\rangle g^{-1}\le\langle x\rangle$. If $x$ has order $n$, show that the elements $gx^ig^{-1}$, $i=0,1,\ldots,n-1$, are distinct, so that
+    \item Prove conversely that if $gxg^{-1}=x^a$ for some $a\in\Z$, then $g\in N_G(\langle x\rangle)$.
+
+    \textit{Hint.} First show that $gx^kg^{-1}=(gxg^{-1})^k=x^{ak}$ for any integer $k$, so that $g\langle x\rangle g^{-1}\le\langle x\rangle$. If $x$ has order $n$, show that the elements $gx^ig^{-1}$, $i=0,1,\ldots,n-1$, are distinct, so that
     \[
         |g\langle x\rangle g^{-1}|=|\langle x\rangle|=n,
     \]
@@ -472,7 +476,7 @@ Let $G$ be a finite group and let $x\in G$.
     \[
         |g\langle x\rangle g^{-1}|=n=|\langle x\rangle|.
     \]
-    Since $G$ is finite, the inclusion above is therefore an equality. Hence
+    The subgroup $g\langle x\rangle g^{-1}$ is contained in $\langle x\rangle$ and has the same finite order, so the inclusion is an equality. Hence
     \[
         g\langle x\rangle g^{-1}=\langle x\rangle,
     \]
@@ -489,12 +493,12 @@ Let $C_n$ be a cyclic group of order $n$, and for each integer $a$ let
 \]
 for all $x\in C_n$.
 \begin{exercisesubparts}
-    \item Prove that $\sigma_a$ is an automorphism of $C_n$ if and only if $a$ and $n$ are relatively prime (cf. Exercise 1.6.20).
+    \item Prove that $\sigma_a$ is an automorphism of $C_n$ if and only if $a$ and $n$ are relatively prime (cf.\ Exercise 1.6.20).
     \item Prove that $\sigma_a=\sigma_b$ if and only if $a\equiv b\pmod n$.
     \item Prove that every automorphism of $C_n$ is equal to $\sigma_a$ for some integer $a$.
     \item Prove that $\sigma_a\circ\sigma_b=\sigma_{ab}$. Deduce that the map
     \[
-        [a]_n\longmapsto\sigma_a
+        [a]_n\mapsto\sigma_a
     \]
     is an isomorphism of $(\Z/n\Z)^\times$ onto $\Aut(C_n)$. Thus $\Aut(C_n)$ is an abelian group of order $\varphi(n)$.
 \end{exercisesubparts}
@@ -536,7 +540,7 @@ Let $C_n=\langle z\rangle$.
     \[
         (\Z/n\Z)^\times\to\Aut(C_n),
         \qquad
-        [a]_n\longmapsto\sigma_a,
+        [a]_n\mapsto\sigma_a,
     \]
     is well defined, bijective, and a homomorphism. Therefore
     \[

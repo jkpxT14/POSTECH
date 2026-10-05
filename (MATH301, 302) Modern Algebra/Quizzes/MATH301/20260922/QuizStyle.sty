@@ -79,13 +79,14 @@
     {\par\vspace{6pt}}
 
 % Ordinary solutions end with the current MATH000 proof-ending convention.
+\newcommand{\ordinaryqed}{\ensuremath{\square}}
 \newenvironment{solution}[1][]
     {%
         \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
         \ifstrempty{#1}{\textit{Solution.}}{\textit{Solution #1.}}%
         \hspace{0.5em}\ignorespaces
     }
-    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+    {\par\nobreak\noindent\hfill\ordinaryqed\par\vspace{6pt}}
 
 % Reserved for genuinely useful notation disambiguation.
 \newenvironment{notation}

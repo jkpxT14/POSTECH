@@ -42,15 +42,17 @@ Thus $G$ is abelian.
 \end{solution}
 
 \begin{exercise}{1.1.31}
-Prove that any finite group $G$ of even order contains an element of order $2$. Let
+Prove that any finite group $G$ of even order contains an element of order $2$.
+
+\textit{Hint.} Let
 \[
     t(G)=\{g\in G\mid g\neq g^{-1}\}.
 \]
-Show that $t(G)$ has an even number of elements and every nonidentity element of $G-t(G)$ has order $2$.
+Show that $t(G)$ has an even number of elements and every nonidentity element of $G\setminus t(G)$ has order $2$.
 \end{exercise}
 
 \begin{solution}
-If $g\in t(G)$, then $g^{-1}\in t(G)$ and $g\neq g^{-1}$. Thus the elements of $t(G)$ occur in disjoint pairs $\{g,g^{-1}\}$, so $|t(G)|$ is even. If $x\in G-t(G)$, then $x=x^{-1}$; hence every nonidentity element of $G-t(G)$ satisfies $x^2=1$ and has order $2$. Since $|G|$ and $|t(G)|$ are even, $|G-t(G)|$ is even. As $1\in G-t(G)$, this set contains at least one nonidentity element, and therefore $G$ contains an element of order $2$.
+If $g\in t(G)$, then $g^{-1}\in t(G)$ and $g\neq g^{-1}$. Thus the elements of $t(G)$ occur in disjoint pairs $\{g,g^{-1}\}$, so $|t(G)|$ is even. If $x\in G\setminus t(G)$, then $x=x^{-1}$; hence every nonidentity element of $G\setminus t(G)$ satisfies $x^2=1$ and has order $2$. Since $|G|$ and $|t(G)|$ are even, $|G\setminus t(G)|$ is even. As $1\in G\setminus t(G)$, this set contains at least one nonidentity element, and therefore $G$ contains an element of order $2$.
 \end{solution}
 
 \begin{exercise}{1.1.34}
@@ -74,7 +76,7 @@ to show that every element of $D_n$ which is not a power of $r$ has order $2$. D
 \end{exercise}
 
 \begin{notation}
-Following MATH000, $D_n$ denotes the dihedral group of symmetries of a regular $n$-gon, so $|D_n|=2n$. Dummit--Foote denotes this group by $D_{2n}$.
+Following MATH000, $D_n$ denotes the dihedral group of symmetries of a regular $n$-gon, so $|D_n|=2n$. Dummit--Foote denotes the same group by $D_{2n}$.
 \end{notation}
 
 \begin{solution}
@@ -120,7 +122,9 @@ Show that
 \[
     \langle a,b\mid a^2=b^2=(ab)^n=1\rangle
 \]
-gives a presentation for $D_n$ in terms of the two generators $a=s$ and $b=sr$ of order $2$. Show that the relations for $r$ and $s$ follow from the relations for $a$ and $b$, and conversely, that the relations for $a$ and $b$ follow from those for $r$ and $s$.
+gives a presentation for $D_n$ in terms of the two generators $a=s$ and $b=sr$ of order $2$.
+
+\textit{Hint.} Show that the relations for $r$ and $s$ follow from the relations for $a$ and $b$, and conversely, that the relations for $a$ and $b$ follow from those for $r$ and $s$.
 \end{exercise}
 
 \begin{solution}
@@ -207,7 +211,9 @@ has order $4$, but its cycle decomposition is not a product solely of $4$-cycles
 \end{solution}
 
 \begin{exercise}{1.3.15}
-Prove that the order of an element in $S_n$ equals the least common multiple of the lengths of the cycles in its cycle decomposition. Use Exercise 10 and Exercise 24 of Section 1.1.
+Prove that the order of an element in $S_n$ equals the least common multiple of the lengths of the cycles in its cycle decomposition.
+
+\textit{Hint.} Use Exercise 1.3.10 and Exercise 1.1.24.
 \end{exercise}
 
 \begin{solution}
@@ -226,7 +232,9 @@ This is the identity if and only if each $\sigma_i^k$ is the identity, which hol
 \end{solution}
 
 \begin{exercise}{1.3.18}
-Find all numbers $n$ such that $S_5$ contains an element of order $n$. Use Exercise 15.
+Find all numbers $n$ such that $S_5$ contains an element of order $n$.
+
+\textit{Hint.} Use Exercise 1.3.15.
 \end{exercise}
 
 \begin{solution}
@@ -245,19 +253,19 @@ Including the identity, the possible orders are therefore
 \end{solution}
 
 \begin{exercise}{1.6.4}
-Prove that the multiplicative groups $\R-\{0\}$ and $\C-\{0\}$ are not isomorphic.
+Prove that the multiplicative groups $\R\setminus\{0\}$ and $\C\setminus\{0\}$ are not isomorphic.
 \end{exercise}
 
 \begin{solution}
-The element $i\in\C-\{0\}$ has order $4$. If the two groups were isomorphic, $\R-\{0\}$ would also contain an element of order $4$, since isomorphisms preserve element orders. But if $x\in\R-\{0\}$ satisfies $x^4=1$, then $x=\pm1$, so $x$ has order $1$ or $2$. This is a contradiction.
+The element $i\in\C\setminus\{0\}$ has order $4$. If the two groups were isomorphic, $\R\setminus\{0\}$ would also contain an element of order $4$, since isomorphisms preserve element orders. But if $x\in\R\setminus\{0\}$ satisfies $x^4=1$, then $x=\pm1$, so $x$ has order $1$ or $2$. This is a contradiction.
 \end{solution}
 
 \begin{exercise}{1.6.14}
-Let $G$ and $H$ be groups and let $\varphi\colon G\to H$ be a homomorphism. Define the kernel of $\varphi$ to be
+Let $G$ and $H$ be groups and let $\varphi\colon G\to H$ be a homomorphism. Define the \emph{kernel} of $\varphi$ to be
 \[
     \ker\varphi=\{g\in G\mid \varphi(g)=1_H\}.
 \]
-Prove that $\ker\varphi$ is a subgroup of $G$ (cf. Exercise 1.1.26). Prove that $\varphi$ is injective if and only if $\ker\varphi$ is the identity subgroup of $G$.
+Prove that $\ker\varphi$ is a subgroup of $G$ (cf.\ Exercise 1.1.26). Prove that $\varphi$ is injective if and only if $\ker\varphi$ is the identity subgroup of $G$.
 \end{exercise}
 
 \begin{solution}
@@ -289,7 +297,7 @@ Let
 \]
 Prove that for any fixed integer $k>1$, the map from $G$ to itself defined by
 \[
-    z\longmapsto z^k
+    z\mapsto z^k
 \]
 is a surjective homomorphism but is not an isomorphism.
 \end{exercise}
@@ -317,7 +325,7 @@ Hence $\varphi$ is not injective and therefore is not an isomorphism.
 \begin{exercise}{1.6.22}
 Let $A$ be an abelian group and fix some $k\in\Z$. Prove that the map
 \[
-    a\longmapsto a^k
+    a\mapsto a^k
 \]
 is a homomorphism from $A$ to itself. If $k=-1$, prove that this homomorphism is an isomorphism, i.e., an automorphism of $A$.
 \end{exercise}
@@ -350,7 +358,7 @@ Let $n\in\N$, let $r$ and $s$ be the usual generators of $D_n$, and let $\theta=
             \sin\theta & \cos\theta
         \end{pmatrix}
     \]
-    is the matrix of the linear transformation which rotates the $x,y$ plane about the origin in a counterclockwise direction by $\theta$ radians.
+    is the matrix of the linear transformation which rotates the $xy$-plane about the origin in a counterclockwise direction by $\theta$ radians.
 
     \item Prove that the map $\varphi\colon D_n\to\GL_2(\R)$ defined on generators by
     \[
