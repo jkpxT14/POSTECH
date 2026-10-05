@@ -1,0 +1,549 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20260929 Quiz for MATH301 Modern Algebra I},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH301 Modern Algebra I},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20260929 Quiz}
+
+\begin{exercise}{1.7.1}
+Let $F$ be a field. Show that the multiplicative group of nonzero elements of $F$, denoted by $F^\times$, acts on the set $F$ by
+\[
+    g\cdot a=ga,
+\]
+where $g\in F^\times$, $a\in F$, and $ga$ is the usual product in $F$ of the two field elements. State clearly which axioms in the definition of a field are used.
+\end{exercise}
+
+\begin{solution}
+For $g_1,g_2\in F^\times$ and $a\in F$, associativity of multiplication gives
+\[
+    g_1\cdot(g_2\cdot a)=g_1(g_2a)=(g_1g_2)a=(g_1g_2)\cdot a.
+\]
+The multiplicative identity gives
+\[
+    1\cdot a=a.
+\]
+Hence $F^\times$ acts on $F$. The action axioms use associativity and the multiplicative identity; the field axioms also ensure that $F^\times$ is a group under multiplication.
+\end{solution}
+
+\begin{exercise}{1.7.16}
+Let $G$ be any group and let $A=G$. Show that the maps defined by
+\[
+    g\cdot a=gag^{-1}
+\]
+for all $g,a\in G$ satisfy the axioms of a left group action. This action of $G$ on itself is called conjugation.
+\end{exercise}
+
+\begin{solution}
+For $g_1,g_2,a\in G$,
+\[
+\begin{aligned}
+    g_1\cdot(g_2\cdot a)
+    &=g_1(g_2ag_2^{-1})g_1^{-1}\\
+    &=(g_1g_2)a(g_1g_2)^{-1}\\
+    &=(g_1g_2)\cdot a.
+\end{aligned}
+\]
+Also
+\[
+    1\cdot a=1a1^{-1}=a.
+\]
+Thus conjugation defines a left group action of $G$ on itself.
+\end{solution}
+
+\begin{exercise}{1.7.17}
+Let $G$ be a group and let $G$ act on itself by left conjugation, so each $g\in G$ maps $G$ to $G$ by
+\[
+    x\longmapsto gxg^{-1}.
+\]
+For fixed $g\in G$, prove that conjugation by $g$ is an isomorphism from $G$ onto itself, i.e., an automorphism of $G$ (cf. Exercise 1.6.20). Deduce that $x$ and $gxg^{-1}$ have the same order for all $x$ in $G$ and that for any subset $A$ of $G$,
+\[
+    |A|=|gAg^{-1}|,
+\]
+where $gAg^{-1}=\{gag^{-1}\mid a\in A\}$.
+\end{exercise}
+
+\begin{solution}
+For fixed $g\in G$, define $\varphi_g(x)=gxg^{-1}$. Then
+\[
+    \varphi_g(xy)=gxyg^{-1}=(gxg^{-1})(gyg^{-1})
+    =\varphi_g(x)\varphi_g(y),
+\]
+so $\varphi_g$ is a homomorphism. Conjugation by $g^{-1}$ is its inverse, since
+\[
+    \varphi_{g^{-1}}(\varphi_g(x))=x.
+\]
+Thus $\varphi_g$ is an automorphism. Isomorphisms preserve element orders, so
+\[
+    |x|=|gxg^{-1}|.
+\]
+Moreover, the restriction of $\varphi_g$ gives a bijection from $A$ onto $gAg^{-1}$, hence
+\[
+    |A|=|gAg^{-1}|.
+\]
+\end{solution}
+
+\begin{exercise}{2.1.2}
+In each of (a)--(e), prove that the specified subset is not a subgroup of the given group.
+\begin{exercisesubparts}
+    \item The set of $2$-cycles in $S_n$ for $n\ge3$.
+    \item The set of reflections in $D_n$ for $n\ge3$.
+    \item For a composite integer $n>1$ and a group $G$ containing an element of order $n$, the set
+    \[
+        \{x\in G\mid |x|=n\}\cup\{1\}.
+    \]
+    \item The set of positive and negative odd integers in $\Z$, together with $0$, under addition.
+    \item The set of real numbers whose square is a rational number, under addition.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{notation}
+Following MATH000, $D_n$ denotes the dihedral group of symmetries of a regular $n$-gon, so $|D_n|=2n$. Dummit--Foote denotes this group by $D_{2n}$.
+\end{notation}
+
+\begin{solution}
+\begin{exercisesubparts}
+    \item The identity permutation is not a $2$-cycle, so the set does not contain the identity.
+
+    \item The identity is not a reflection, so the set does not contain the identity.
+
+    \item Let $x\in G$ have order $n$. Since $n$ is composite, write $n=st$ with $1<s,t<n$. Then Exercise 1.1.23 gives
+    \[
+        |x^s|=t.
+    \]
+    Thus $x$ belongs to the set but $x^s$ does not. A subgroup containing $x$ must contain all powers of $x$, so the set is not a subgroup.
+
+    \item We have $1$ and $1$ in the set, but
+    \[
+        1+1=2
+    \]
+    is not in the set. Hence it is not closed under addition.
+
+    \item Both $1$ and $\sqrt2$ belong to the set, but
+    \[
+        (1+\sqrt2)^2=3+2\sqrt2\notin\Q.
+    \]
+    Hence $1+\sqrt2$ does not belong to the set, so it is not closed under addition.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{2.1.3}
+Show that the following subsets of the dihedral group $D_4$ are subgroups:
+\[
+    \{1,r^2,s,sr^2\},
+    \qquad
+    \{1,r^2,sr,sr^3\}.
+\]
+\end{exercise}
+
+\begin{solution}
+Let
+\[
+    H=\{r^{2i},sr^{2i}\mid i=0,1\}.
+\]
+For $i,j\in\{0,1\}$, using $r^4=s^2=1$ and $r^is=sr^{-i}$,
+\[
+\begin{aligned}
+    r^{2i}r^{2j}&=r^{2(i+j)},&
+    r^{2i}(sr^{2j})&=sr^{2(j-i)},\\
+    (sr^{2i})r^{2j}&=sr^{2(i+j)},&
+    (sr^{2i})(sr^{2j})&=r^{2(j-i)}.
+\end{aligned}
+\]
+Thus $H$ is closed under multiplication. Since $H$ is finite and nonempty, $H\le D_4$.
+
+Similarly, let
+\[
+    K=\{r^{2i},sr^{2i+1}\mid i=0,1\}.
+\]
+Then
+\[
+\begin{aligned}
+    r^{2i}r^{2j}&=r^{2(i+j)},&
+    r^{2i}(sr^{2j+1})&=sr^{2(j-i)+1},\\
+    (sr^{2i+1})r^{2j}&=sr^{2(i+j)+1},&
+    (sr^{2i+1})(sr^{2j+1})&=r^{2(j-i)}.
+\end{aligned}
+\]
+Hence $K$ is closed under multiplication, and since $K$ is finite and nonempty, $K\le D_4$.
+\end{solution}
+
+\begin{exercise}{2.1.6}
+Let $G$ be an abelian group. Prove that
+\[
+    \{g\in G\mid |g|<\infty\}
+\]
+is a subgroup of $G$, called the torsion subgroup of $G$. Give an explicit example where this set is not a subgroup when $G$ is nonabelian.
+\end{exercise}
+
+\begin{solution}
+Let
+\[
+    H=\{g\in G\mid |g|<\infty\}.
+\]
+Clearly $1\in H$. If $x,y\in H$ with $|x|=m$ and $|y|=n$, then, since $G$ is abelian,
+\[
+    (xy^{-1})^{mn}=x^{mn}y^{-mn}=1.
+\]
+Thus $xy^{-1}\in H$, so the Subgroup Criterion gives $H\le G$.
+
+For a nonabelian example, in $\GL_2(\R)$ let
+\[
+    \mathbf A=\begin{pmatrix}0&1\\1&0\end{pmatrix},
+    \qquad
+    \mathbf B=\begin{pmatrix}0&2\\\frac12&0\end{pmatrix}.
+\]
+Then $\mathbf A^2=\mathbf B^2=\mathbf I$, but
+\[
+    \mathbf A\mathbf B=\begin{pmatrix}\frac12&0\\0&2\end{pmatrix},
+    \qquad
+    (\mathbf A\mathbf B)^k
+    =\begin{pmatrix}2^{-k}&0\\0&2^k\end{pmatrix}\neq\mathbf I
+\]
+for every $k>0$, so $\mathbf A\mathbf B$ has infinite order. Hence the finite-order elements need not form a subgroup in a nonabelian group.
+\end{solution}
+
+\begin{exercise}{2.1.13}
+Let $H$ be a subgroup of the additive group of rational numbers with the property that $1/x\in H$ for every nonzero element $x$ of $H$. Prove that
+\[
+    H=\{0\}\quad\text{or}\quad H=\Q.
+\]
+\end{exercise}
+
+\begin{solution}
+Assume $H\neq\{0\}$ and choose
+\[
+    0\neq x=\frac ab\in H,
+\]
+where $b>0$ and $\gcd(|a|,b)=1$. By hypothesis, $1/x=b/a\in H$. Since $H$ is an additive subgroup,
+\[
+    bx=a\in H,
+    \qquad
+    a\left(\frac1x\right)=b\in H.
+\]
+By B\'ezout's identity there exist $m,n\in\Z$ such that $ma+nb=1$, so $1\in H$. Hence every integer belongs to $H$. For any nonzero $q\in\Z$, the hypothesis then gives $1/q\in H$, and therefore
+\[
+    \frac pq=p\left(\frac1q\right)\in H
+\]
+for every $p/q\in\Q$. Thus $H=\Q$.
+\end{solution}
+
+\begin{exercise}{2.3.1}
+Find all subgroups of $C_{45}=\langle x\rangle$, giving a generator for each. Describe the containments between these subgroups.
+\end{exercise}
+
+\begin{notation}
+Following MATH000, $C_n$ denotes a cyclic group of order $n$. Dummit--Foote denotes this abstract cyclic group by $Z_n$. The residue-class group is written $\Z/n\Z$, with residue classes denoted by $[a]_n$.
+\end{notation}
+
+\begin{solution}
+The positive divisors of $45$ are
+\[
+    1,3,5,9,15,45.
+\]
+A cyclic group has exactly one subgroup of order $d$ for each divisor $d$ of its order, namely $\langle x^{45/d}\rangle$. Thus the subgroups are
+\[
+\begin{array}{c@{\qquad}c}
+\toprule
+\text{order} & \text{subgroup}\\
+\midrule
+1 & \{1\}=\langle x^{45}\rangle\\
+3 & \langle x^{15}\rangle\\
+5 & \langle x^9\rangle\\
+9 & \langle x^5\rangle\\
+15 & \langle x^3\rangle\\
+45 & \langle x\rangle\\
+\bottomrule
+\end{array}
+\]
+If $H_d$ denotes the subgroup of order $d$, then
+\[
+    H_d\le H_e
+    \quad\Longleftrightarrow\quad
+    d\mid e.
+\]
+This completely describes the containments.
+\end{solution}
+
+\begin{exercise}{2.3.8}
+Let $C_{48}=\langle x\rangle$. For which integers $a$ does the map $\varphi_a$ defined by
+\[
+    \varphi_a:[1]_{48}\longmapsto x^a
+\]
+extend to an isomorphism from $\Z/48\Z$ onto $C_{48}$?
+\end{exercise}
+
+\begin{solution}
+For every integer $a$, the relation $48[1]_{48}=[0]_{48}$ is respected because $(x^a)^{48}=1$, so $[1]_{48}\mapsto x^a$ extends to a homomorphism. It is an isomorphism exactly when $x^a$ is a generator of $C_{48}$. For a cyclic group of order $48$,
+\[
+    |x^a|=\frac{48}{\gcd(a,48)}.
+\]
+Hence
+\[
+    \varphi_a\text{ is an isomorphism}
+    \quad\Longleftrightarrow\quad
+    \gcd(a,48)=1.
+\]
+Equivalently,
+\[
+    a\equiv1,5,7,11,13,17,19,23,25,29,31,35,37,41,43,47\pmod{48}.
+\]
+\end{solution}
+
+\begin{exercise}{2.3.11}
+Find all cyclic subgroups of $D_4$. Find a proper subgroup of $D_4$ which is not cyclic.
+\end{exercise}
+
+\begin{solution}
+The elements of $D_4$ are
+\[
+    1,r,r^2,r^3,s,sr,sr^2,sr^3,
+\]
+with $|r|=4$, $|r^2|=2$, and every reflection of order $2$. Hence the distinct cyclic subgroups are
+\[
+    \{1\},
+    \qquad
+    \langle r\rangle,
+    \qquad
+    \langle r^2\rangle,
+    \qquad
+    \langle s\rangle,
+    \qquad
+    \langle sr\rangle,
+    \qquad
+    \langle sr^2\rangle,
+    \qquad
+    \langle sr^3\rangle.
+\]
+By Exercise 2.1.3,
+\[
+    H=\{1,r^2,s,sr^2\}
+\]
+is a proper subgroup of $D_4$. Every nonidentity element of $H$ has order $2$, so no element generates $H$. Thus $H$ is not cyclic.
+\end{solution}
+
+\begin{exercise}{2.3.12}
+Prove that the following groups are not cyclic:
+\begin{exercisesubparts}
+    \item $(\Z/2\Z)\times(\Z/2\Z)$,
+    \item $(\Z/2\Z)\times\Z$,
+    \item $\Z\times\Z$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\begin{exercisesubparts}
+    \item Every nonidentity element of $(\Z/2\Z)\times(\Z/2\Z)$ has order $2$. A cyclic group of order $4$ would have an element of order $4$, so this group is not cyclic.
+
+    \item Suppose $(\Z/2\Z)\times\Z=\langle(a,m)\rangle$. Since $(0,1)$ must be generated, there is $k\in\Z$ such that
+    \[
+        k(a,m)=(0,1),
+    \]
+    so $km=1$. Hence $m=\pm1$. But then the only multiple of $(a,m)$ with second coordinate $0$ is the zero multiple, so $(1,0)$ cannot be generated. This is a contradiction.
+
+    \item Suppose $\Z\times\Z=\langle(a,b)\rangle$. Since $(1,0)$ must be generated, there is $k\in\Z$ such that
+    \[
+        k(a,b)=(1,0).
+    \]
+    Thus $ka=1$ and $kb=0$, so $k=\pm1$ and $b=0$. Then every multiple of $(a,b)$ has second coordinate $0$, so $(0,1)$ cannot be generated. Hence $\Z\times\Z$ is not cyclic.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{2.3.19}
+Show that if $H$ is any group and $h$ is an element of $H$, then there is a unique homomorphism from $\Z$ to $H$ such that
+\[
+    1\longmapsto h.
+\]
+\end{exercise}
+
+\begin{solution}
+Define
+\[
+    \varphi\colon\Z\to H,
+    \qquad
+    \varphi(n)=h^n.
+\]
+Then
+\[
+    \varphi(m+n)=h^{m+n}=h^mh^n=\varphi(m)\varphi(n),
+\]
+so $\varphi$ is a homomorphism and $\varphi(1)=h$.
+
+If $\psi\colon\Z\to H$ is any homomorphism with $\psi(1)=h$, then for every $n\in\Z$,
+\[
+    \psi(n)=\psi(1)^n=h^n=\varphi(n).
+\]
+Thus $\varphi$ is unique.
+\end{solution}
+
+\begin{exercise}{2.3.21}
+Let $p$ be an odd prime and let $n$ be a positive integer. Use the Binomial Theorem to show that
+\[
+    (1+p)^{p^{n-1}}\equiv1\pmod{p^n}
+\]
+but
+\[
+    (1+p)^{p^{n-2}}\not\equiv1\pmod{p^n}.
+\]
+Deduce that $1+p$ is an element of order $p^{n-1}$ in the multiplicative group $(\Z/p^n\Z)^\times$.
+\end{exercise}
+
+\begin{solution}
+For $m\ge0$, we claim that
+\[
+    (1+p)^{p^m}\equiv1+p^{m+1}\pmod{p^{m+2}}.
+\]
+The case $m=0$ is immediate. Suppose it holds for $m$, so
+\[
+    (1+p)^{p^m}=1+p^{m+1}+cp^{m+2}=1+u
+\]
+for some $c\in\Z$. By the Binomial Theorem,
+\[
+    (1+u)^p
+    =1+pu+\sum_{j=2}^{p-1}\binom pj u^j+u^p.
+\]
+Since $p$ is prime, $p\mid\binom pj$ for $1\le j\le p-1$, and all terms after $pu$ are divisible by $p^{m+3}$. Hence
+\[
+    (1+p)^{p^{m+1}}\equiv1+p^{m+2}\pmod{p^{m+3}},
+\]
+proving the claim.
+
+Taking $m=n-1$ gives
+\[
+    (1+p)^{p^{n-1}}\equiv1\pmod{p^n}.
+\]
+For $n\ge2$, taking $m=n-2$ gives
+\[
+    (1+p)^{p^{n-2}}\equiv1+p^{n-1}\not\equiv1\pmod{p^n}.
+\]
+Thus, for $n\ge2$, the order of $1+p$ divides $p^{n-1}$ but does not divide $p^{n-2}$, so it is $p^{n-1}$. For $n=1$, $1+p\equiv1\pmod p$, whose order is $1=p^0$.
+\end{solution}
+
+\begin{exercise}{2.3.24}
+Let $G$ be a finite group and let $x\in G$.
+\begin{exercisesubparts}
+    \item Prove that if $g\in N_G(\langle x\rangle)$, then
+    \[
+        gxg^{-1}=x^a
+    \]
+    for some $a\in\Z$.
+
+    \item Prove conversely that if $gxg^{-1}=x^a$ for some $a\in\Z$, then $g\in N_G(\langle x\rangle)$. First show that $gx^kg^{-1}=(gxg^{-1})^k=x^{ak}$ for any integer $k$, so that $g\langle x\rangle g^{-1}\le\langle x\rangle$. If $x$ has order $n$, show that the elements $gx^ig^{-1}$, $i=0,1,\ldots,n-1$, are distinct, so that
+    \[
+        |g\langle x\rangle g^{-1}|=|\langle x\rangle|=n,
+    \]
+    and conclude that $g\langle x\rangle g^{-1}=\langle x\rangle$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\begin{exercisesubparts}
+    \item If $g\in N_G(\langle x\rangle)$, then
+    \[
+        g\langle x\rangle g^{-1}=\langle x\rangle.
+    \]
+    Since $x\in\langle x\rangle$, it follows that $gxg^{-1}\in\langle x\rangle$, so
+    \[
+        gxg^{-1}=x^a
+    \]
+    for some $a\in\Z$.
+
+    \item Suppose $gxg^{-1}=x^a$. For every $k\in\Z$,
+    \[
+        gx^kg^{-1}=(gxg^{-1})^k=x^{ak}\in\langle x\rangle,
+    \]
+    hence
+    \[
+        g\langle x\rangle g^{-1}\le\langle x\rangle.
+    \]
+    Let $|x|=n$. If
+    \[
+        gx^ig^{-1}=gx^jg^{-1}
+    \]
+    for $0\le i,j<n$, cancellation gives $x^i=x^j$, hence $i=j$. Thus
+    \[
+        |g\langle x\rangle g^{-1}|=n=|\langle x\rangle|.
+    \]
+    Since $G$ is finite, the inclusion above is therefore an equality. Hence
+    \[
+        g\langle x\rangle g^{-1}=\langle x\rangle,
+    \]
+    so $g\in N_G(\langle x\rangle)$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{2.3.26}
+Let $C_n$ be a cyclic group of order $n$, and for each integer $a$ let
+\[
+    \sigma_a\colon C_n\to C_n,
+    \qquad
+    \sigma_a(x)=x^a
+\]
+for all $x\in C_n$.
+\begin{exercisesubparts}
+    \item Prove that $\sigma_a$ is an automorphism of $C_n$ if and only if $a$ and $n$ are relatively prime (cf. Exercise 1.6.20).
+    \item Prove that $\sigma_a=\sigma_b$ if and only if $a\equiv b\pmod n$.
+    \item Prove that every automorphism of $C_n$ is equal to $\sigma_a$ for some integer $a$.
+    \item Prove that $\sigma_a\circ\sigma_b=\sigma_{ab}$. Deduce that the map
+    \[
+        [a]_n\longmapsto\sigma_a
+    \]
+    is an isomorphism of $(\Z/n\Z)^\times$ onto $\Aut(C_n)$. Thus $\Aut(C_n)$ is an abelian group of order $\varphi(n)$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Let $C_n=\langle z\rangle$.
+\begin{exercisesubparts}
+    \item Since $C_n$ is abelian,
+    \[
+        \sigma_a(xy)=(xy)^a=x^ay^a=\sigma_a(x)\sigma_a(y),
+    \]
+    so $\sigma_a$ is a homomorphism. Its image is $\langle z^a\rangle$. Hence $\sigma_a$ is an automorphism if and only if $z^a$ generates $C_n$, which holds if and only if
+    \[
+        \gcd(a,n)=1.
+    \]
+
+    \item If $\sigma_a=\sigma_b$, then evaluating at $z$ gives $z^a=z^b$, so
+    \[
+        z^{a-b}=1.
+    \]
+    Since $|z|=n$, this is equivalent to $n\mid(a-b)$, i.e., $a\equiv b\pmod n$. The converse follows immediately from $x^n=1$ for every $x\in C_n$.
+
+    \item Let $\sigma\in\Aut(C_n)$. Since $z$ has order $n$ and automorphisms preserve element orders, $\sigma(z)$ is a generator of $C_n$. Thus
+    \[
+        \sigma(z)=z^a
+    \]
+    for some integer $a$. For every $k\in\Z$,
+    \[
+        \sigma(z^k)=\sigma(z)^k=z^{ak}=\sigma_a(z^k),
+    \]
+    so $\sigma=\sigma_a$.
+
+    \item For every $x\in C_n$,
+    \[
+        (\sigma_a\circ\sigma_b)(x)=\sigma_a(x^b)=x^{ab}=\sigma_{ab}(x).
+    \]
+    Hence $\sigma_a\circ\sigma_b=\sigma_{ab}$. By parts (a)--(c), the map
+    \[
+        (\Z/n\Z)^\times\to\Aut(C_n),
+        \qquad
+        [a]_n\longmapsto\sigma_a,
+    \]
+    is well defined, bijective, and a homomorphism. Therefore
+    \[
+        (\Z/n\Z)^\times\cong\Aut(C_n).
+    \]
+    Consequently $\Aut(C_n)$ is abelian and has order $\varphi(n)$.
+\end{exercisesubparts}
+\end{solution}
+
+\end{document}
