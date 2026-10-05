@@ -1,0 +1,730 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261006 Quiz for MATH230 Probability \& Statistics},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH230 Probability \& Statistics},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261006 Quiz}
+
+\begin{exercise}{4.34}
+Let $X$ be a random variable with the following probability distribution:
+\[
+\begin{array}{c@{\qquad}ccc}
+\toprule
+x & -2 & 3 & 5 \\
+\midrule
+f(x) & 0.3 & 0.3 & 0.4 \\
+\bottomrule
+\end{array}
+\]
+Find the standard deviation of $X$.
+\end{exercise}
+
+\begin{solution}
+By Theorem 4.2,
+\[
+\begin{aligned}
+    \Exp[X]
+    &=(-2)(0.3)+(3)(0.3)+(5)(0.4)=\frac{23}{10},\\
+    \Exp[X^2]
+    &=(-2)^2(0.3)+3^2(0.3)+5^2(0.4)=\frac{139}{10}.
+\end{aligned}
+\]
+Hence,
+\[
+    \Var(X)=\frac{139}{10}-\left(\frac{23}{10}\right)^2
+    =\frac{861}{100},
+\]
+so
+\[
+    \boxed{\sigma_X=\frac{\sqrt{861}}{10}\approx2.93}.
+\]
+\end{solution}
+
+\begin{exercise}{4.35}
+The random variable $X$, representing the number of errors per 100 lines of software code, has the following probability distribution:
+\[
+\begin{array}{c@{\qquad}ccccc}
+\toprule
+x & 2 & 3 & 4 & 5 & 6 \\
+\midrule
+f(x) & 0.01 & 0.25 & 0.4 & 0.3 & 0.04 \\
+\bottomrule
+\end{array}
+\]
+Using Theorem 4.2 on page 141, find the variance of $X$.
+\end{exercise}
+
+\begin{solution}
+Theorem 4.2 gives
+\[
+    \Var(X)=\Exp[X^2]-\Exp[X]^2.
+\]
+Here,
+\[
+\begin{aligned}
+    \Exp[X]
+    &=(2)(0.01)+(3)(0.25)+(4)(0.4)+(5)(0.3)+(6)(0.04)
+      =4.11,\\
+    \Exp[X^2]
+    &=2^2(0.01)+3^2(0.25)+4^2(0.4)+5^2(0.3)+6^2(0.04)
+      =17.63.
+\end{aligned}
+\]
+Therefore,
+\[
+    \boxed{\Var(X)=17.63-(4.11)^2=0.7379\approx0.74}.
+\]
+\end{solution}
+
+\begin{exercise}{4.36}
+Suppose that the probabilities are $0.4$, $0.3$, $0.2$, and $0.1$, respectively, that $0$, $1$, $2$, or $3$ power failures will strike a certain subdivision in any given year. Find the mean and variance of the random variable $X$ representing the number of power failures striking this subdivision.
+\end{exercise}
+
+\begin{solution}
+The distribution is
+\[
+    p_X(0)=0.4,\quad p_X(1)=0.3,\quad p_X(2)=0.2,\quad p_X(3)=0.1.
+\]
+Thus,
+\[
+\begin{aligned}
+    \Exp[X]&=(1)(0.3)+(2)(0.2)+(3)(0.1)=1,\\
+    \Exp[X^2]&=(1)^2(0.3)+(2)^2(0.2)+(3)^2(0.1)=2.
+\end{aligned}
+\]
+By Theorem 4.2,
+\[
+    \Var(X)=2-1^2=1.
+\]
+Hence,
+\[
+    \boxed{\mu_X=1,\qquad \Var(X)=1}.
+\]
+\end{solution}
+
+\begin{exercise}{4.37}
+A dealer's profit, in units of $\$5000$, on a new automobile is a random variable $X$ having the density function given in Exercise 4.12 on page 137. Find the variance of $X$.
+\end{exercise}
+
+\begin{solution}
+From Exercise 4.12,
+\[
+    f(x)=
+    \begin{cases}
+        2(1-x), & 0<x<1,\\
+        0, & \text{elsewhere}.
+    \end{cases}
+\]
+Direct integration gives
+\[
+\begin{aligned}
+    \Exp[X]
+    &=\int_0^1 2x(1-x)\,\dd x=\frac13,\\
+    \Exp[X^2]
+    &=\int_0^1 2x^2(1-x)\,\dd x=\frac16.
+\end{aligned}
+\]
+Therefore,
+\[
+    \boxed{\Var(X)=\frac16-\left(\frac13\right)^2=\frac1{18}}.
+\]
+\end{solution}
+
+\begin{exercise}{4.40}
+Referring to Exercise 4.14 on page 137, find $\sigma_{g(X)}^2$ for the function $g(X)=3X+4$.
+\end{exercise}
+
+\begin{solution}
+From Exercise 4.14,
+\[
+    f(x)=
+    \begin{cases}
+        \dfrac{2(x+2)}{5}, & 0<x<1,\\
+        0, & \text{elsewhere}.
+    \end{cases}
+\]
+Using Theorem 4.3,
+\[
+\begin{aligned}
+    \Exp[g(X)]
+    &=\int_0^1 (3x+4)\frac{2(x+2)}5\,\dd x
+      =\frac{28}{5},\\
+    \Exp[g(X)^2]
+    &=\int_0^1 (3x+4)^2\frac{2(x+2)}5\,\dd x
+      =\frac{321}{10}.
+\end{aligned}
+\]
+Hence,
+\[
+    \boxed{\Var(g(X))
+    =\frac{321}{10}-\left(\frac{28}{5}\right)^2
+    =\frac{37}{50}=0.74}.
+\]
+\end{solution}
+
+\begin{exercise}{4.41}
+Find the standard deviation of the random variable $h(X)=(3X+1)^2$ in Exercise 4.17 on page 138.
+\end{exercise}
+
+\begin{solution}
+From Exercise 4.17,
+\[
+\begin{array}{c@{\qquad}ccc}
+\toprule
+x & -3 & 6 & 9 \\
+\midrule
+p_X(x) & \frac16 & \frac12 & \frac13 \\
+\bottomrule
+\end{array}
+\]
+and
+\[
+    h(-3)=64,\qquad h(6)=361,\qquad h(9)=784.
+\]
+By Theorem 4.3,
+\[
+\begin{aligned}
+    \Exp[h(X)]
+    &=64\left(\frac16\right)
+      +361\left(\frac12\right)
+      +784\left(\frac13\right)
+      =\frac{905}{2},\\
+    \Exp[h(X)^2]
+    &=64^2\left(\frac16\right)
+      +361^2\left(\frac12\right)
+      +784^2\left(\frac13\right)
+      =\frac{541457}{2}.
+\end{aligned}
+\]
+Thus,
+\[
+    \Var(h(X))
+    =\frac{541457}{2}-\left(\frac{905}{2}\right)^2
+    =\frac{263889}{4},
+\]
+and therefore
+\[
+    \boxed{\sigma_{h(X)}=\frac{\sqrt{263889}}{2}\approx256.85}.
+\]
+\end{solution}
+
+\begin{exercise}{4.43}
+The length of time, in minutes, for an airplane to obtain clearance for takeoff at a certain airport is a random variable $Y=3X-2$, where $X$ has the density function
+\[
+    f(x)=
+    \begin{cases}
+        \dfrac14 e^{-x/4}, & x>0,\\
+        0, & \text{elsewhere}.
+    \end{cases}
+\]
+Find the mean and variance of the random variable $Y$.
+\end{exercise}
+
+\begin{solution}
+Applying the expectation formulas directly to $Y=3X-2$,
+\[
+\begin{aligned}
+    \Exp[Y]
+    &=\int_0^\infty (3x-2)\frac14e^{-x/4}\,\dd x
+      =10,\\
+    \Exp[Y^2]
+    &=\int_0^\infty (3x-2)^2\frac14e^{-x/4}\,\dd x
+      =244.
+\end{aligned}
+\]
+Therefore,
+\[
+    \Var(Y)=244-10^2=144,
+\]
+so
+\[
+    \boxed{\mu_Y=10,\qquad \Var(Y)=144}.
+\]
+\end{solution}
+
+\begin{exercise}{4.44}
+Find the covariance of the random variables $X$ and $Y$ of Exercise 3.39 on page 125.
+\end{exercise}
+
+\begin{solution}
+In Exercise 3.39, four pieces are selected from $3$ oranges, $2$ apples, and $3$ bananas, with $X$ and $Y$ denoting the numbers of oranges and apples selected. Hence
+\[
+    p_{X,Y}(x,y)
+    =\frac{\binom{3}{x}\binom{2}{y}\binom{3}{4-x-y}}{\binom{8}{4}}
+\]
+for the admissible values of $x$ and $y$. Summing over this joint distribution gives
+\[
+    \Exp[X]=\frac32,\qquad
+    \Exp[Y]=1,\qquad
+    \Exp[XY]=\frac97.
+\]
+By Theorem 4.4,
+\[
+    \boxed{\Cov(X,Y)
+    =\Exp[XY]-\Exp[X]\Exp[Y]
+    =\frac97-\frac32
+    =-\frac3{14}}.
+\]
+\end{solution}
+
+\begin{exercise}{4.45}
+Find the covariance of the random variables $X$ and $Y$ of Exercise 3.49 on page 126.
+\end{exercise}
+
+\begin{solution}
+From the joint distribution in Exercise 3.49, the marginal distributions are
+\[
+\begin{aligned}
+    p_X(1)&=0.10, & p_X(2)&=0.35, & p_X(3)&=0.55,\\
+    p_Y(1)&=0.20, & p_Y(3)&=0.50, & p_Y(5)&=0.30.
+\end{aligned}
+\]
+Thus,
+\[
+    \Exp[X]=\frac{49}{20},\qquad
+    \Exp[Y]=\frac{16}{5},
+\]
+and direct summation over the joint distribution gives
+\[
+    \Exp[XY]=\frac{157}{20}.
+\]
+Therefore, by Theorem 4.4,
+\[
+    \boxed{\Cov(X,Y)
+    =\frac{157}{20}-\left(\frac{49}{20}\right)\left(\frac{16}{5}\right)
+    =\frac1{100}=0.01}.
+\]
+\end{solution}
+
+\begin{exercise}{4.48}
+Given a random variable $X$, with standard deviation $\sigma_X$, and a random variable $Y=a+bX$, show that if $b<0$, the correlation coefficient $\rho_{XY}=-1$, and if $b>0$, $\rho_{XY}=1$.
+\end{exercise}
+
+\begin{solution}
+Assume $\sigma_X>0$, as required for the correlation coefficient to be defined. Since
+\[
+    \Exp[Y]=a+b\Exp[X],
+\]
+we have
+\[
+    Y-\Exp[Y]=b\bigl(X-\Exp[X]\bigr).
+\]
+Hence, directly from the definitions,
+\[
+\begin{aligned}
+    \Cov(X,Y)
+    &=b\Var(X)=b\sigma_X^2,\\
+    \sigma_Y
+    &=|b|\sigma_X.
+\end{aligned}
+\]
+Therefore,
+\[
+    \rho_{X,Y}
+    =\frac{\Cov(X,Y)}{\sigma_X\sigma_Y}
+    =\frac{b}{|b|}
+    =
+    \begin{cases}
+        -1, & b<0,\\
+        1, & b>0.
+    \end{cases}
+\]
+\end{solution}
+
+\begin{exercise}{4.52}
+Random variables $X$ and $Y$ follow a joint distribution
+\[
+    f(x,y)=
+    \begin{cases}
+        2, & 0<x\leq y<1,\\
+        0, & \text{otherwise}.
+    \end{cases}
+\]
+Determine the correlation coefficient between $X$ and $Y$.
+\end{exercise}
+
+\begin{solution}
+Over the support $0<x\leq y<1$,
+\[
+\begin{aligned}
+    \Exp[X]
+    &=\int_0^1\int_0^y 2x\,\dd x\,\dd y=\frac13,
+    &
+    \Exp[Y]
+    &=\int_0^1\int_0^y 2y\,\dd x\,\dd y=\frac23,\\
+    \Exp[X^2]
+    &=\int_0^1\int_0^y 2x^2\,\dd x\,\dd y=\frac16,
+    &
+    \Exp[Y^2]
+    &=\int_0^1\int_0^y 2y^2\,\dd x\,\dd y=\frac12,\\
+    \Exp[XY]
+    &=\int_0^1\int_0^y 2xy\,\dd x\,\dd y=\frac14.
+\end{aligned}
+\]
+Thus,
+\[
+    \Var(X)=\Var(Y)=\frac1{18},
+    \qquad
+    \Cov(X,Y)=\frac14-\left(\frac13\right)\left(\frac23\right)=\frac1{36}.
+\]
+Therefore,
+\[
+    \boxed{\rho_{X,Y}
+    =\frac{1/36}{\sqrt{(1/18)(1/18)}}
+    =\frac12}.
+\]
+\end{solution}
+
+\begin{exercise}{4.57}
+Let $X$ be a random variable with the following probability distribution:
+\[
+\begin{array}{c@{\qquad}ccc}
+\toprule
+x & -3 & 6 & 9 \\
+\midrule
+f(x) & \frac16 & \frac13 & \frac12 \\
+\bottomrule
+\end{array}
+\]
+Find $E(X)$ and $E(X^2)$ and then, using these values, evaluate $E[(2X+1)^2]$.
+\end{exercise}
+
+\begin{solution}
+Directly from the distribution,
+\[
+\begin{aligned}
+    \Exp[X]
+    &=(-3)\left(\frac16\right)
+      +6\left(\frac13\right)
+      +9\left(\frac12\right)
+      =6,\\
+    \Exp[X^2]
+    &=9\left(\frac16\right)
+      +36\left(\frac13\right)
+      +81\left(\frac12\right)
+      =54.
+\end{aligned}
+\]
+Since $(2X+1)^2=4X^2+4X+1$, Theorem 4.6 gives
+\[
+    \boxed{\Exp[(2X+1)^2]
+    =4\Exp[X^2]+4\Exp[X]+1
+    =241}.
+\]
+\end{solution}
+
+\begin{exercise}{4.58}
+The total time, measured in units of 100 hours, that a teenager runs their hair dryer over a period of one year is a continuous random variable $X$ that has the density function
+\[
+    f(x)=
+    \begin{cases}
+        x, & 0<x<1,\\
+        2-x, & 1\leq x<2,\\
+        0, & \text{elsewhere}.
+    \end{cases}
+\]
+Use Theorem 4.6 to evaluate the mean of the random variable $Y=60X^2+48X$, where $Y$ is equal to the number of kilowatt hours expended annually.
+\end{exercise}
+
+\begin{solution}
+First,
+\[
+\begin{aligned}
+    \Exp[X]
+    &=\int_0^1 x^2\,\dd x+\int_1^2 x(2-x)\,\dd x=1,\\
+    \Exp[X^2]
+    &=\int_0^1 x^3\,\dd x+\int_1^2 x^2(2-x)\,\dd x=\frac76.
+\end{aligned}
+\]
+By Theorem 4.6,
+\[
+    \Exp[Y]
+    =60\Exp[X^2]+48\Exp[X]
+    =60\left(\frac76\right)+48
+    =\boxed{118}.
+\]
+Thus, the mean annual energy expenditure is $118$ kilowatt hours.
+\end{solution}
+
+\begin{exercise}{4.60}
+Suppose that $X$ and $Y$ are independent random variables having the joint probability distribution
+\[
+\begin{array}{c@{\qquad}cc}
+\toprule
+f(x,y) & \multicolumn{2}{c}{x} \\
+\cmidrule(lr){2-3}
+y & 2 & 4 \\
+\midrule
+1 & 0.15 & 0.10 \\
+3 & 0.25 & 0.25 \\
+5 & 0.15 & 0.10 \\
+\bottomrule
+\end{array}
+\]
+Find
+\begin{exercisesubparts}
+    \item $E(2X-3Y)$;
+    \item $E(XY)$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+The marginal means are
+\[
+    \Exp[X]=(2)(0.55)+(4)(0.45)=\frac{29}{10},
+    \qquad
+    \Exp[Y]=(1)(0.25)+(3)(0.50)+(5)(0.25)=3.
+\]
+
+\noindent\textup{(a)} By Theorem 4.7,
+\[
+    \boxed{\Exp[2X-3Y]
+    =2\Exp[X]-3\Exp[Y]
+    =-\frac{16}{5}}.
+\]
+
+\medskip
+\noindent\textup{(b)} Using the displayed joint distribution directly,
+\[
+\begin{aligned}
+    \Exp[XY]
+    &=\sum_x\sum_y xyf(x,y)\\
+    &=(2)(1)(0.15)+(4)(1)(0.10)
+      +(2)(3)(0.25)+(4)(3)(0.25)\\
+    &\qquad +(2)(5)(0.15)+(4)(5)(0.10)\\
+    &=\boxed{\frac{87}{10}}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{4.61}
+Use Theorem 4.7 to evaluate $E(2XY^2-X^2Y)$ for the joint probability distribution shown in Table 3.1 on page 116.
+\end{exercise}
+
+\begin{solution}
+By Theorem 4.7,
+\[
+    \Exp[2XY^2-X^2Y]
+    =2\Exp[XY^2]-\Exp[X^2Y].
+\]
+From Table 3.1, the only nonzero joint probability with both $x$ and $y$ positive is
+\[
+    p_{X,Y}(1,1)=\frac3{14}.
+\]
+Hence,
+\[
+    \Exp[XY^2]=\frac3{14},
+    \qquad
+    \Exp[X^2Y]=\frac3{14},
+\]
+and therefore
+\[
+    \boxed{\Exp[2XY^2-X^2Y]=\frac3{14}}.
+\]
+\end{solution}
+
+\begin{exercise}{4.65}
+Let $X$ represent the number that occurs when a red die is tossed and $Y$ the number that occurs when a green die is tossed. Find
+\begin{exercisesubparts}
+    \item $E(2X+Y)$;
+    \item $E(X-2Y)$;
+    \item $E(2XY)$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+For each die,
+\[
+    \Exp[X]=\Exp[Y]=\frac16\sum_{k=1}^6 k=\frac72.
+\]
+Therefore, by Theorem 4.7,
+\[
+\begin{aligned}
+    \textup{(a)}\quad
+    \Exp[2X+Y]
+    &=2\Exp[X]+\Exp[Y]
+      =\boxed{\frac{21}{2}},\\[0.4em]
+    \textup{(b)}\quad
+    \Exp[X-2Y]
+    &=\Exp[X]-2\Exp[Y]
+      =\boxed{-\frac72}.
+\end{aligned}
+\]
+For part (c), the two die outcomes are independent, so their joint pmf is $1/36$ on $\{1,\ldots,6\}^2$. Thus
+\[
+\begin{aligned}
+    \Exp[XY]
+    &=\frac1{36}
+      \left(\sum_{x=1}^6x\right)
+      \left(\sum_{y=1}^6y\right)
+      =\frac{49}{4},\\
+    \textup{(c)}\quad
+    \Exp[2XY]
+    &=\boxed{\frac{49}{2}}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{4.69}
+Consider Review Exercise 3.77 on page 128. The random variables $X$ and $Y$ represent the number of vehicles that arrive at two separate street corners during a certain 2-minute period in the day. The joint distribution is
+\[
+    f(x,y)=\left(\frac{1}{4^{x+y}}\right)\left(\frac{9}{16}\right),
+\]
+for $x=0,1,2,\ldots$ and $y=0,1,2,\ldots$.
+\begin{exercisesubparts}
+    \item Give $E(X)$, $E(Y)$, $\operatorname{Var}(X)$, and $\operatorname{Var}(Y)$.
+    \item Consider $Z=X+Y$, the sum of the two. Find $E(Z)$ and $\operatorname{Var}(Z)$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+The joint pmf factors as
+\[
+    f(x,y)
+    =\left[\frac34\left(\frac14\right)^x\right]
+     \left[\frac34\left(\frac14\right)^y\right].
+\]
+Thus $X$ and $Y$ are independent and have the same marginal pmf. Using the standard power-series sums,
+\[
+\begin{aligned}
+    \Exp[X]=\Exp[Y]
+    &=\frac34\sum_{k=0}^\infty k\left(\frac14\right)^k
+      =\frac13,\\
+    \Exp[X^2]=\Exp[Y^2]
+    &=\frac34\sum_{k=0}^\infty k^2\left(\frac14\right)^k
+      =\frac59.
+\end{aligned}
+\]
+Hence,
+\[
+    \boxed{\Exp[X]=\Exp[Y]=\frac13,
+    \qquad
+    \Var(X)=\Var(Y)=\frac49}.
+\]
+For $Z=X+Y$,
+\[
+    \Exp[Z]=\Exp[X]+\Exp[Y]=\frac23.
+\]
+Also, the factorization of the joint pmf gives
+\[
+    \Exp[XY]=\Exp[X]\Exp[Y]=\frac19,
+\]
+so
+\[
+\begin{aligned}
+    \Exp[Z^2]
+    &=\Exp[X^2]+2\Exp[XY]+\Exp[Y^2]
+      =\frac43,\\
+    \Var(Z)
+    &=\frac43-\left(\frac23\right)^2
+      =\frac89.
+\end{aligned}
+\]
+Therefore,
+\[
+    \boxed{\Exp[Z]=\frac23,\qquad \Var(Z)=\frac89}.
+\]
+\end{solution}
+
+\begin{exercise}{4.70}
+Consider Review Exercise 3.64 on page 127. There are two service lines. The random variables $X$ and $Y$ are the proportions of time that line 1 and line 2 are in use, respectively. The joint probability density function for $(X,Y)$ is given by
+\[
+    f(x,y)=
+    \begin{cases}
+        \dfrac32(x^2+y^2), & 0\leq x,y\leq1,\\
+        0, & \text{elsewhere}.
+    \end{cases}
+\]
+\begin{exercisesubparts}
+    \item Determine whether or not $X$ and $Y$ are independent.
+    \item It is of interest to know something about the proportion of $Z=X+Y$, the sum of the two proportions. Find $E(X+Y)$. Also find $E(XY)$.
+    \item Find $\operatorname{Var}(X)$, $\operatorname{Var}(Y)$, and $\operatorname{Cov}(X,Y)$.
+    \item Find $\operatorname{Var}(X+Y)$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} The marginal densities are
+\[
+\begin{aligned}
+    f_X(x)
+    &=\int_0^1 \frac32(x^2+y^2)\,\dd y
+      =\frac{1+3x^2}{2},\\
+    f_Y(y)
+    &=\int_0^1 \frac32(x^2+y^2)\,\dd x
+      =\frac{1+3y^2}{2},
+\end{aligned}
+\]
+for $0\leq x,y\leq1$. Since $f(x,y)\neq f_X(x)f_Y(y)$ in general,
+\[
+    \boxed{X\text{ and }Y\text{ are not independent}.}
+\]
+
+\medskip
+\noindent\textup{(b)} By symmetry,
+\[
+    \Exp[X]=\Exp[Y]
+    =\int_0^1 x\frac{1+3x^2}{2}\,\dd x
+    =\frac58.
+\]
+Hence,
+\[
+    \boxed{\Exp[X+Y]=\frac54}.
+\]
+Also,
+\[
+    \boxed{\Exp[XY]
+    =\int_0^1\int_0^1 xy\frac32(x^2+y^2)\,\dd x\,\dd y
+    =\frac38}.
+\]
+
+\medskip
+\noindent\textup{(c)} Again by symmetry,
+\[
+    \Exp[X^2]=\Exp[Y^2]
+    =\int_0^1 x^2\frac{1+3x^2}{2}\,\dd x
+    =\frac7{15}.
+\]
+Therefore,
+\[
+    \Var(X)=\Var(Y)
+    =\frac7{15}-\left(\frac58\right)^2
+    =\frac{73}{960},
+\]
+and, by Theorem 4.4,
+\[
+    \Cov(X,Y)
+    =\frac38-\left(\frac58\right)^2
+    =-\frac1{64}.
+\]
+Thus,
+\[
+    \boxed{\Var(X)=\Var(Y)=\frac{73}{960},
+    \qquad
+    \Cov(X,Y)=-\frac1{64}}.
+\]
+
+\medskip
+\noindent\textup{(d)} Using the moments already found,
+\[
+\begin{aligned}
+    \Exp[(X+Y)^2]
+    &=\Exp[X^2]+2\Exp[XY]+\Exp[Y^2]
+      =\frac{101}{60},\\
+    \Var(X+Y)
+    &=\frac{101}{60}-\left(\frac54\right)^2
+      =\boxed{\frac{29}{240}}.
+\end{aligned}
+\]
+\end{solution}
+
+\end{document}
