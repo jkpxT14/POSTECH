@@ -1,0 +1,295 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261015 Quiz for MATH261 Discrete Mathematics},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH261 Discrete Mathematics},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261015 Quiz}
+
+
+\begin{problem}{1}
+Let $m,n\in\N$.
+\begin{problemsubparts}
+    \item Let $k_1,\ldots,k_m\in\N$ with $k_1+\cdots+k_m=n$. Prove that
+    \[
+        \binom{n}{k_1,k_2,\ldots,k_m}
+        =\sum_{j=1}^{m}
+        \binom{n-1}{k_1,\ldots,k_j-1,\ldots,k_m}.
+    \]
+
+    \item Prove the multinomial theorem by induction on $n$: for arbitrary $x_1,\ldots,x_m\in\R$,
+    \[
+        (x_1+\cdots+x_m)^n
+        =\sum_{\substack{k_1+\cdots+k_m=n\\k_1,\ldots,k_m\in\Nzero}}
+        \binom{n}{k_1,\ldots,k_m}
+        x_1^{k_1}\cdots x_m^{k_m}.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+
+\begin{solution}
+\begin{problemsubparts}
+    \item Count the strings of length $n$ containing exactly $k_j$ copies of the symbol $j$ for each $j\in[m]$. The total number of such strings is
+    \[
+        \binom{n}{k_1,k_2,\ldots,k_m}.
+    \]
+    Classify these strings according to their last symbol. If the last symbol is $j$, then the first $n-1$ positions contain $k_j-1$ copies of $j$ and $k_i$ copies of each $i\neq j$, giving
+    \[
+        \binom{n-1}{k_1,\ldots,k_j-1,\ldots,k_m}
+    \]
+    strings. The $m$ cases are disjoint and exhaustive, so summing them gives the desired identity.
+
+    \item We use induction on $n$. For $n=1$,
+    \[
+        x_1+\cdots+x_m
+        =\sum_{j=1}^{m}x_j,
+    \]
+    which is the multinomial formula in the base case.
+
+    Assume the formula holds for some $n\in\N$. Multiplying the induction hypothesis by $x_1+\cdots+x_m$, consider a monomial
+    \[
+        x_1^{\ell_1}\cdots x_m^{\ell_m},
+        \qquad
+        \ell_1+\cdots+\ell_m=n+1.
+    \]
+    Its coefficient is
+    \[
+        \sum_{\substack{1\leq j\leq m\\\ell_j>0}}
+        \binom{n}{\ell_1,\ldots,\ell_j-1,\ldots,\ell_m}.
+    \]
+    Using the factorial formula for multinomial coefficients,
+    \[
+    \begin{aligned}
+        \sum_{\substack{1\leq j\leq m\\\ell_j>0}}
+        \binom{n}{\ell_1,\ldots,\ell_j-1,\ldots,\ell_m}
+        &=\frac{n!}{\ell_1!\cdots\ell_m!}
+          \sum_{j=1}^{m}\ell_j\\
+        &=\frac{(n+1)!}{\ell_1!\cdots\ell_m!}\\
+        &=\binom{n+1}{\ell_1,\ldots,\ell_m}.
+    \end{aligned}
+    \]
+    Therefore the multinomial formula holds for $n+1$, and hence for every $n\in\N$ by mathematical induction.
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{2}
+There are $10$ couples, each with one child. The $10$ children are lost in a dark cave, and each couple retrieves exactly one child, so that every child is retrieved once. How many assignments pair at least one child with their own parents?
+\end{problem}
+
+\begin{solution}
+Label the couples and their children by $[10]$, with child $i$ belonging to couple $i$. An assignment of the children to the couples is a permutation of $[10]$. For $i\in[10]$, let $A_i$ be the set of assignments in which couple $i$ retrieves child $i$.
+
+If $k$ specified couples are correctly paired, then the remaining $10-k$ children may be assigned arbitrarily to the remaining couples, giving $(10-k)!$ assignments. Hence, by inclusion-exclusion,
+\[
+\begin{aligned}
+    |A_1\cup\cdots\cup A_{10}|
+    &=\sum_{k=1}^{10}(-1)^{k+1}\binom{10}{k}(10-k)!\\
+    &=10!\sum_{k=1}^{10}\frac{(-1)^{k+1}}{k!}\\
+    &=2{,}293{,}839.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{problem}{3}
+Find the number of integer solutions of
+\[
+    x_1+x_2+x_3+x_4=15
+\]
+satisfying
+\[
+    2\leq x_1\leq6,
+    \qquad
+    -2\leq x_2\leq1,
+    \qquad
+    0\leq x_3\leq6,
+    \qquad
+    3\leq x_4\leq8.
+\]
+\textit{Hint.} Use the inclusion-exclusion principle.
+\end{problem}
+
+\begin{solution}
+Set
+\[
+    y_1=x_1-2,
+    \qquad
+    y_2=x_2+2,
+    \qquad
+    y_3=x_3,
+    \qquad
+    y_4=x_4-3.
+\]
+Then
+\[
+    y_1+y_2+y_3+y_4=12,
+\]
+with
+\[
+    0\leq y_1\leq4,
+    \qquad
+    0\leq y_2\leq3,
+    \qquad
+    0\leq y_3\leq6,
+    \qquad
+    0\leq y_4\leq5.
+\]
+Without the upper bounds, stars and bars gives
+\[
+    \binom{12+4-1}{4-1}=\binom{15}{3}
+\]
+nonnegative solutions.
+
+Let $A_i$ be the set of solutions violating the upper bound on $y_i$. The single intersections have sizes
+\[
+    |A_1|=\binom{10}{3},
+    \quad
+    |A_2|=\binom{11}{3},
+    \quad
+    |A_3|=\binom{8}{3},
+    \quad
+    |A_4|=\binom{9}{3}.
+\]
+The nonzero pairwise intersections have sizes
+\[
+\begin{aligned}
+    |A_1\cap A_2|&=\binom{6}{3},&
+    |A_1\cap A_3|&=\binom{3}{3},&
+    |A_1\cap A_4|&=\binom{4}{3},\\
+    |A_2\cap A_3|&=\binom{4}{3},&
+    |A_2\cap A_4|&=\binom{5}{3}.&&
+\end{aligned}
+\]
+All other pairwise intersections and all intersections of three or more of the $A_i$ are empty. Therefore, by inclusion-exclusion, the required number is
+\[
+\begin{aligned}
+    \binom{15}{3}
+    &-\left(
+        \binom{10}{3}+\binom{11}{3}+\binom{8}{3}+\binom{9}{3}
+      \right)\\
+    &+\left(
+        \binom{6}{3}+\binom{3}{3}+\binom{4}{3}
+        +\binom{4}{3}+\binom{5}{3}
+      \right)\\
+    &=69.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{problem}{4}
+Let $n\in\N$ and $k\in\Z$ with $0\leq k\leq n$. Prove that the number of $k$-element subsets of $[n]$ containing no two consecutive integers is
+\[
+    \binom{n-k+1}{k}.
+\]
+\end{problem}
+
+\begin{solution}
+The case $k=0$ is immediate. Assume $k\geq1$, and write such a subset as
+\[
+    \{a_1<a_2<\cdots<a_k\}.
+\]
+Since no two selected integers are consecutive,
+\[
+    a_{i+1}\geq a_i+2
+\]
+for every $1\leq i<k$. Define
+\[
+    b_i=a_i-(i-1),
+    \qquad 1\leq i\leq k.
+\]
+Then
+\[
+    1\leq b_1<b_2<\cdots<b_k\leq n-k+1,
+\]
+so $\{b_1,\ldots,b_k\}$ is a $k$-element subset of $[n-k+1]$.
+
+Conversely, from any
+\[
+    1\leq b_1<b_2<\cdots<b_k\leq n-k+1,
+\]
+defining $a_i=b_i+(i-1)$ gives a $k$-element subset of $[n]$ with no two consecutive elements. These constructions are inverse to each other. Hence the desired subsets are in bijection with the $k$-element subsets of $[n-k+1]$, and their number is
+\[
+    \binom{n-k+1}{k}.
+\]
+\end{solution}
+
+\begin{remark}
+The cyclic analogue is commonly known as \emph{Cayley's problem}: one selects $k$ vertices of a regular $n$-gon with no two selected vertices consecutive.
+\end{remark}
+
+\begin{problem}{5}
+Let $n\in\N$. An $n$-derangement is a permutation $\pi\in S_n$ with no fixed point, i.e.
+\[
+    \pi(i)\neq i
+    \qquad\text{for every }i\in[n].
+\]
+Let $D_n$ denote the number of $n$-derangements.
+\begin{problemsubparts}
+    \item Prove that
+    \[
+        D_n=n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}.
+    \]
+
+    \item Prove that, for every $n\geq2$,
+    \[
+        D_n=nD_{n-1}+(-1)^n.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item For each $i\in[n]$, let
+    \[
+        A_i=\{\pi\in S_n\mid \pi(i)=i\}.
+    \]
+    The permutations that are not derangements are precisely the elements of $A_1\cup\cdots\cup A_n$. For any distinct indices $i_1,\ldots,i_k$,
+    \[
+        |A_{i_1}\cap\cdots\cap A_{i_k}|=(n-k)!,
+    \]
+    since those $k$ points are fixed and the remaining $n-k$ elements may be permuted arbitrarily. Hence inclusion-exclusion gives
+    \[
+    \begin{aligned}
+        |A_1\cup\cdots\cup A_n|
+        &=\sum_{k=1}^{n}(-1)^{k+1}\binom{n}{k}(n-k)!\\
+        &=n!\sum_{k=1}^{n}\frac{(-1)^{k+1}}{k!}.
+    \end{aligned}
+    \]
+    Therefore
+    \[
+    \begin{aligned}
+        D_n
+        &=n!-|A_1\cup\cdots\cup A_n|\\
+        &=n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}.
+    \end{aligned}
+    \]
+
+    \item Using part (a),
+    \[
+    \begin{aligned}
+        nD_{n-1}
+        &=n!\sum_{k=0}^{n-1}\frac{(-1)^k}{k!}\\
+        &=n!\left(
+            \sum_{k=0}^{n}\frac{(-1)^k}{k!}
+            -\frac{(-1)^n}{n!}
+          \right)\\
+        &=D_n-(-1)^n.
+    \end{aligned}
+    \]
+    Rearranging yields
+    \[
+        D_n=nD_{n-1}+(-1)^n.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+
+\end{document}
