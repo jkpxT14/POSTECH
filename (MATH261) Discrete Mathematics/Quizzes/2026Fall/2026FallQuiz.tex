@@ -1,0 +1,63 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={2026Fall Quiz for MATH261 Discrete Mathematics},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH261 Discrete Mathematics},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{2026Fall Quiz}
+
+\begin{problem}{1.1}
+Let $X=\R$ and let $R=\varnothing$ be the void relation on $X$. Determine whether $R$ is reflexive, symmetric, and transitive, and hence whether $R$ is an equivalence relation. Justify each answer.
+\end{problem}
+
+\begin{solution}
+The relation $R$ is not reflexive, since $(x,x)\notin R$ for every $x\in X$.
+
+The relation $R$ is symmetric: the implication $xRy\Rightarrow yRx$ is vacuously true because $xRy$ never occurs. Likewise, $R$ is transitive because the premise $xRy\land yRz$ never occurs, so
+\[
+    (xRy\land yRz)\Rightarrow xRz
+\]
+is vacuously true.
+
+Thus $R$ is symmetric and transitive but not reflexive. Therefore $R$ is not an equivalence relation.
+\end{solution}
+
+\begin{problem}{1.2}
+For $n\in\Nzero$, prove that
+\[
+    \sum_{i=0}^{n}\binom{n}{i}^2
+    =\binom{2n}{n}.
+\]
+\end{problem}
+
+\begin{solution}[1]
+Let $U$ and $V$ be disjoint sets with $|U|=|V|=n$. Count the $n$-element subsets of $U\cup V$ according to the number $i$ of selected elements from $U$. If exactly $i$ elements are chosen from $U$, then $n-i$ elements must be chosen from $V$, giving
+\[
+    \binom{n}{i}\binom{n}{n-i}
+    =\binom{n}{i}^2
+\]
+choices. Summing over $i=0,\ldots,n$ counts all $n$-element subsets of the $2n$-element set $U\cup V$. Hence
+\[
+    \sum_{i=0}^{n}\binom{n}{i}^2
+    =\binom{2n}{n}.
+\]
+\end{solution}
+
+\begin{solution}[2]
+By symmetry of binomial coefficients and Vandermonde's identity,
+\[
+    \sum_{i=0}^{n}\binom{n}{i}^2
+    =\sum_{i=0}^{n}\binom{n}{i}\binom{n}{n-i}
+    =\binom{2n}{n}.
+\]
+\end{solution}
+
+\end{document}
