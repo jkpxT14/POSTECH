@@ -1,0 +1,322 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={2026Fall Quiz for MATH230 Probability \& Statistics},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH230 Probability \& Statistics},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{2026Fall Quiz}
+
+\begin{problem}{1.1}
+Four married couples have bought 8 seats in the same row for a concert. In how many different ways can they be seated
+\begin{problemsubparts}
+    \item with no restrictions?
+    \item if each couple is to sit together?
+    \item if at least one couple cannot sit next to each other?
+    \item if all the men sit together to the right of all the women?
+\end{problemsubparts}
+
+\textit{Note.} You can write your answer in calculator-ready form. You don't have to calculate the exact value of fractions or combinations. For example, $8!$, $(4!)^4$, and $\binom{8}{3}/\binom{10}{3}$ are acceptable forms.
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item With no restrictions, the 8 people can be arranged in
+    \[
+        \boxed{8!}
+    \]
+    ways.
+
+    \item Treat each couple as a single block. The four couple-blocks can be arranged in $4!$ ways, and the two people within each couple can be arranged in $2!$ ways. Hence the number of arrangements is
+    \[
+        \boxed{4!(2!)^4}.
+    \]
+
+    \item The complement consists of the arrangements in which all four couples sit together. By parts (a) and (b), the required number is
+    \[
+        \boxed{8!-4!(2!)^4}.
+    \]
+
+    \item The four women must occupy the four leftmost seats and the four men the four rightmost seats. Each group can be arranged independently in $4!$ ways, giving
+    \[
+        \boxed{4!\cdot4!}.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\Needspace{21\baselineskip}
+\begin{problem}{1.2}
+A paint-store chain produces and sells latex and semigloss paint. Based on long-range sales, the probability that a customer will purchase latex paint is $0.25$. Of those that purchase latex paint, $75\%$ also purchase rollers. But only $25\%$ of semigloss paint buyers purchase rollers. A randomly selected buyer purchases a roller and a can of paint. What is the probability that the paint is latex?
+
+\textit{Note.} If you introduce symbols (e.g., $A$, $B$) in your solution, you must clearly define what each symbol represents.
+\end{problem}
+
+\begin{solution}
+Let
+\[
+    L=\{\text{the buyer purchases latex paint}\},\qquad
+    S=\{\text{the buyer purchases semigloss paint}\},
+\]
+and
+\[
+    R=\{\text{the buyer purchases a roller}\}.
+\]
+Then
+\[
+    \Prob(L)=\frac14,
+    \qquad
+    \Prob(R\mid L)=\frac34,
+    \qquad
+    \Prob(R\mid S)=\frac14,
+\]
+and, since the paint is either latex or semigloss,
+\[
+    \Prob(S)=1-\Prob(L)=\frac34.
+\]
+By the law of total probability,
+\[
+\begin{aligned}
+    \Prob(R)
+    &=\Prob(R\mid L)\Prob(L)+\Prob(R\mid S)\Prob(S)\\
+    &=\frac34\cdot\frac14+\frac14\cdot\frac34
+      =\frac38.
+\end{aligned}
+\]
+Therefore, by Bayes' rule,
+\[
+    \boxed{
+    \Prob(L\mid R)
+    =\frac{\Prob(R\mid L)\Prob(L)}{\Prob(R)}
+    =\frac{(3/4)(1/4)}{3/8}
+    =\frac12
+    }.
+\]
+Thus the probability that the paint is latex is $50\%$.
+\end{solution}
+
+\Needspace{23\baselineskip}
+\begin{problem}{2.1}
+For a laboratory assignment, if the equipment is working, the density function of the observed outcome $X$ is
+\[
+    f_X(x)=
+    \begin{cases}
+        c(2-x), & 0<x<2,\\
+        0, & \text{elsewhere}.
+    \end{cases}
+\]
+\begin{problemsubparts}
+    \item Find the value of $c$ so that $f_X$ is a valid density function.
+    \item Find $\Prob(X<1)$.
+    \item Given that $X\geq1$, what is the probability that $X$ will be less than $1.5$?
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item A probability density must integrate to $1$. Thus
+    \[
+        1=\int_{-\infty}^{\infty}f_X(x)\,\dd x
+        =\int_0^2 c(2-x)\,\dd x
+        =2c,
+    \]
+    so
+    \[
+        \boxed{c=\frac12}.
+    \]
+
+    \item Using $c=1/2$,
+    \[
+        \boxed{
+        \Prob(X<1)
+        =\int_0^1 \frac12(2-x)\,\dd x
+        =\frac34
+        }.
+    \]
+
+    \item By the definition of conditional probability,
+    \[
+        \Prob(X<1.5\mid X\geq1)
+        =\frac{\Prob(1\leq X<1.5)}{\Prob(X\geq1)}.
+    \]
+    Here,
+    \[
+        \Prob(1\leq X<1.5)
+        =\int_1^{3/2}\frac12(2-x)\,\dd x
+        =\frac3{16},
+    \]
+    while
+    \[
+        \Prob(X\geq1)=1-\Prob(X<1)=\frac14.
+    \]
+    Therefore,
+    \[
+        \boxed{\Prob(X<1.5\mid X\geq1)=\frac{3/16}{1/4}=\frac34}.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\Needspace{29\baselineskip}
+\begin{problem}{2.2}
+The amount of kerosene, in thousands of liters, in a tank at the beginning of any day is a random amount $Y$ from which a random amount $X$ is sold during that day. Suppose that the tank is not resupplied during the day so that $x\leq y$, and assume that the joint density function of these variables is
+\[
+    f_{X,Y}(x,y)=
+    \begin{cases}
+        2, & 0<x\leq y<1,\\
+        0, & \text{elsewhere}.
+    \end{cases}
+\]
+\begin{problemsubparts}
+    \item Find the marginal density function of $X$.
+    \item Find the marginal density function of $Y$.
+    \item Determine if $X$ and $Y$ are independent.
+    \item Find $\Prob(1/2<Y<3/4\mid X=1/4)$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item For fixed $x$ with $0<x<1$, the support has $x\leq y<1$. Hence
+    \[
+        f_X(x)=\int_x^1 f_{X,Y}(x,y)\,\dd y
+        =\int_x^1 2\,\dd y
+        =2(1-x).
+    \]
+    Therefore,
+    \[
+        \boxed{
+        f_X(x)=
+        \begin{cases}
+            2(1-x), & 0<x<1,\\
+            0, & \text{elsewhere}.
+        \end{cases}}
+    \]
+
+    \item For fixed $y$ with $0<y<1$, the support has $0<x\leq y$. Thus
+    \[
+        f_Y(y)=\int_0^y f_{X,Y}(x,y)\,\dd x
+        =\int_0^y 2\,\dd x
+        =2y.
+    \]
+    Therefore,
+    \[
+        \boxed{
+        f_Y(y)=
+        \begin{cases}
+            2y, & 0<y<1,\\
+            0, & \text{elsewhere}.
+        \end{cases}}
+    \]
+
+    \item If $X$ and $Y$ were independent, then $f_{X,Y}(x,y)=f_X(x)f_Y(y)$ almost everywhere. But for $0<y<x<1$,
+    \[
+        f_{X,Y}(x,y)=0,
+        \qquad
+        f_X(x)f_Y(y)=4y(1-x)>0.
+    \]
+    Hence
+    \[
+        \boxed{X\text{ and }Y\text{ are not independent}.}
+    \]
+
+    \item For $0<x<1$, the conditional density of $Y$ given $X=x$ is
+    \[
+        f_{Y\mid X}(y\mid x)
+        =\frac{f_{X,Y}(x,y)}{f_X(x)}
+        =\frac{1}{1-x},
+        \qquad x<y<1.
+    \]
+    When $X=1/4$,
+    \[
+        f_{Y\mid X}(y\mid1/4)=\frac43,
+        \qquad \frac14<y<1.
+    \]
+    Therefore,
+    \[
+        \boxed{
+        \Prob\left(\frac12<Y<\frac34\,\middle|\,X=\frac14\right)
+        =\int_{1/2}^{3/4}\frac43\,\dd y
+        =\frac13
+        }.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\Needspace{16\baselineskip}
+\begin{problem}{3.1}
+The probability distribution of the discrete random variable $X$ is
+\[
+    p_X(x)=\binom{5}{x}
+    \left(\frac15\right)^x
+    \left(\frac45\right)^{5-x},
+    \qquad x=0,1,2,3,4,5.
+\]
+Find the mean of $X$.
+\end{problem}
+
+\begin{solution}
+By the definition of expectation for a discrete random variable,
+\[
+\begin{aligned}
+    \Exp[X]
+    &=\sum_{x=0}^{5}x\,p_X(x)\\
+    &=\sum_{x=0}^{5}
+      x\binom{5}{x}
+      \left(\frac15\right)^x
+      \left(\frac45\right)^{5-x}\\
+    &=\frac{1280+1280+480+80+5}{3125}\\
+    &=\boxed{1}.
+\end{aligned}
+\]
+\end{solution}
+
+\Needspace{20\baselineskip}
+\begin{problem}{3.2}
+Let $X$ and $Y$ be random variables with joint density function
+\[
+    f_{X,Y}(x,y)=
+    \begin{cases}
+        4xy, & 0<x,y<1,\\
+        0, & \text{elsewhere}.
+    \end{cases}
+\]
+\begin{problemsubparts}
+    \item Find the expected value of $X+Y$.
+    \item Find the expected value of $XY$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item By the definition of expectation for a function of jointly continuous random variables,
+    \[
+    \begin{aligned}
+        \Exp[X+Y]
+        &=\int_0^1\int_0^1 (x+y)f_{X,Y}(x,y)\,\dd y\,\dd x\\
+        &=\int_0^1\int_0^1 (4x^2y+4xy^2)\,\dd y\,\dd x\\
+        &=\int_0^1\left(2x^2+\frac43x\right)\,\dd x\\
+        &=\boxed{\frac43}.
+    \end{aligned}
+    \]
+
+    \item Again using the definition of expectation,
+    \[
+    \begin{aligned}
+        \Exp[XY]
+        &=\int_0^1\int_0^1 xy\,f_{X,Y}(x,y)\,\dd y\,\dd x\\
+        &=4\int_0^1\int_0^1 x^2y^2\,\dd y\,\dd x\\
+        &=4\left(\int_0^1x^2\,\dd x\right)
+             \left(\int_0^1y^2\,\dd y\right)\\
+        &=\boxed{\frac49}.
+    \end{aligned}
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\end{document}
