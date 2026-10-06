@@ -1,0 +1,130 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={2026Fall Quiz for MATH301 Modern Algebra I},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH301 Modern Algebra I},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{2026Fall Quiz}
+
+\begin{problem}{1.1}
+Let $G$ be a finite group. Suppose that $G$ has no element of order $2$. Prove that $|G|$ is odd.
+\end{problem}
+
+\begin{solution}
+For every $g\in G\setminus\{1_G\}$, we have $g\neq g^{-1}$; otherwise $g^2=1_G$, so $g$ would have order $2$. Hence the elements of $G\setminus\{1_G\}$ occur in disjoint pairs
+\[
+    \{g,g^{-1}\}.
+\]
+Thus $|G|-1$ is even, and therefore $|G|$ is odd.
+\end{solution}
+
+\begin{problem}{1.2}
+Let $\sigma\in S_n$ have order $6$. Prove that if the cycle decomposition of $\sigma$ contains no $6$-cycle, then it must contain both a $2$-cycle and a $3$-cycle.
+\end{problem}
+
+\begin{solution}
+Write the disjoint cycle decomposition of $\sigma$ as
+\[
+    \sigma=c_1c_2\cdots c_r,
+\]
+where the nontrivial cycles $c_i$ have lengths $m_i$. Then
+\[
+    |\sigma|=\lcmop(m_1,\ldots,m_r)=6.
+\]
+Hence each $m_i$ divides $6$. Since there is no $6$-cycle, every $m_i$ is $2$ or $3$. If there were no $2$-cycle, then $|\sigma|$ would divide $3$; if there were no $3$-cycle, then $|\sigma|$ would divide $2$. Both contradict $|\sigma|=6$. Therefore the cycle decomposition contains both a $2$-cycle and a $3$-cycle.
+\end{solution}
+
+\begin{problem}{2.1}
+Let $G$ be a group and let $\mathcal S$ be the set of all subgroups of $G$. Show that
+\[
+    g\cdot H=gHg^{-1},
+\]
+for $g\in G$ and $H\in\mathcal S$, defines a left group action of $G$ on $\mathcal S$.
+\end{problem}
+
+\begin{solution}
+First, the action is well defined. For $g\in G$ and $H\le G$, we have
+\[
+    1_G=g1_Gg^{-1}\in gHg^{-1}.
+\]
+If $gh_1g^{-1},gh_2g^{-1}\in gHg^{-1}$, then
+\[
+    (gh_1g^{-1})(gh_2g^{-1})^{-1}
+    =g(h_1h_2^{-1})g^{-1}\in gHg^{-1},
+\]
+since $h_1h_2^{-1}\in H$. By the Subgroup Criterion, $gHg^{-1}\le G$.
+
+Now let $g_1,g_2\in G$ and $H\in\mathcal S$. Then
+\[
+\begin{aligned}
+    g_1\cdot(g_2\cdot H)
+    &=g_1(g_2Hg_2^{-1})g_1^{-1}\\
+    &=(g_1g_2)H(g_1g_2)^{-1}\\
+    &=(g_1g_2)\cdot H,
+\end{aligned}
+\]
+and
+\[
+    1_G\cdot H=1_GH1_G^{-1}=H.
+\]
+Thus $g\cdot H=gHg^{-1}$ defines a left group action of $G$ on $\mathcal S$.
+\end{solution}
+
+\begin{problem}{2.2}
+Let $C_{12}=\langle x\rangle$ and $C_{18}=\langle y\rangle$ be cyclic groups of orders $12$ and $18$, respectively. Find, with proof, the number of homomorphisms
+\[
+    \varphi\colon C_{12}\to C_{18}.
+\]
+\end{problem}
+
+\begin{notation}
+Following MATH000, $C_n$ denotes an abstract cyclic group of order $n$. The original quiz uses $Z_n$ for the same object.
+\end{notation}
+
+\begin{solution}
+A homomorphism $\varphi\colon C_{12}\to C_{18}$ is determined by the image of the generator $x$. Write
+\[
+    \varphi(x)=y^a,
+    \qquad 0\le a<18.
+\]
+Since $x^{12}=1$, we must have
+\[
+    1=\varphi(x^{12})=y^{12a},
+\]
+so
+\[
+    18\mid12a
+    \quad\Longleftrightarrow\quad
+    3\mid a.
+\]
+Thus the only possible values are
+\[
+    a=0,3,6,9,12,15.
+\]
+
+Conversely, for each such $a$, define
+\[
+    \varphi_a(x^k)=y^{ak}.
+\]
+If $x^k=x^\ell$, then $12\mid(k-\ell)$; since $18\mid12a$, it follows that $18\mid a(k-\ell)$, so $y^{ak}=y^{a\ell}$. Hence $\varphi_a$ is well defined, and
+\[
+    \varphi_a(x^{k+\ell})
+    =y^{a(k+\ell)}
+    =y^{ak}y^{a\ell}
+    =\varphi_a(x^k)\varphi_a(x^\ell),
+\]
+so $\varphi_a$ is a homomorphism. These six homomorphisms are distinct because they send $x$ to distinct elements of $C_{18}$. Therefore the number of homomorphisms is
+\[
+    \boxed{6}.
+\]
+\end{solution}
+
+\end{document}

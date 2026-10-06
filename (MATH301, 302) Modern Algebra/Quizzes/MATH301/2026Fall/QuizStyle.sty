@@ -1,0 +1,101 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{QuizStyle}[2026/10/06 MATH301 quiz style]
+
+% Design follows the established MATH200/MATH230/MATH261 quiz document family.
+% Mathematical notation follows the current (MATH000) Mathematical Language.
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+
+% Mathematics
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{dsfont}
+
+% Lists and tables
+\RequirePackage{enumitem}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+
+% Color and PDF metadata
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+
+% Institution colors
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+
+% Quiz title block
+\newcommand{\quiztitle}[1]{%
+    \thispagestyle{empty}%
+    \begin{center}
+        \vspace*{1.1cm}
+
+        {\LARGE\bfseries #1\par}
+
+        \vspace{0.25cm}
+
+        {\large for (MATH301) Modern Algebra I\par}
+
+        \vspace{0.75cm}
+
+        {\normalsize
+        Jungwoo Kim\\
+        Department of Mathematics\\
+        \PohangUniversityOfScienceAndTechnology
+        \par}
+    \end{center}
+
+    \vspace{0.45cm}
+}
+
+% Actual-quiz problem style, parallel to the established MATH301 quiz documents.
+\newcommand{\problemheading}[1]{%
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+    \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
+}
+
+\newenvironment{problem}[1]
+    {\problemheading{#1}}
+    {\par\vspace{6pt}}
+
+% Ordinary solutions end with the current MATH000 proof-ending convention.
+\newcommand{\ordinaryqed}{\ensuremath{\square}}
+\newenvironment{solution}[1][]
+    {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent
+     \ifstrempty{#1}{\textit{Solution.}}{\textit{Solution #1.}}%
+     \hspace{0.5em}\ignorespaces}
+    {\par\nobreak\noindent\hfill\ordinaryqed\par\vspace{6pt}}
+
+% Reserved for genuinely useful notation disambiguation.
+\newenvironment{notation}
+    {\par\Needspace{3\baselineskip}\vspace{2pt}\noindent
+     \textit{Notation.}\hspace{0.5em}\ignorespaces}
+    {\par\vspace{4pt}}
+
+% Canonical notation following current MATH000.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcmop}{lcm}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\im}{im}
+
+\raggedbottom
