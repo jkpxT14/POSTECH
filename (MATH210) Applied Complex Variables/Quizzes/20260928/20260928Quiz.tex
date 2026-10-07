@@ -1,0 +1,563 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20260928 Quiz for MATH210 Applied Complex Variables},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH210 Applied Complex Variables},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20260928 Quiz}
+
+\begin{exercise}{26.4}
+In each case, determine the singular points of the function and state why the function is analytic everywhere else:
+\begin{exercisesubparts}
+    \item \(\displaystyle f(z)=\frac{2z+1}{z(z^2+1)}\).
+    \item \(\displaystyle f(z)=\frac{z^3+i}{z^2-3z+2}\).
+    \item \(\displaystyle f(z)=\frac{z^2+1}{(z+2)(z^2+2z+2)}\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Each function is rational, so by the differentiation rules it is analytic wherever its denominator is nonzero.
+\begin{exercisesubparts}
+    \item
+    \[
+        z(z^2+1)=z(z-i)(z+i),
+    \]
+    so the singular points are
+    \[
+        \boxed{z=0,\ \pm i}.
+    \]
+
+    \item
+    \[
+        z^2-3z+2=(z-1)(z-2),
+    \]
+    so the singular points are
+    \[
+        \boxed{z=1,\ 2}.
+    \]
+
+    \item Since
+    \[
+        z^2+2z+2=(z+1)^2+1=(z+1-i)(z+1+i),
+    \]
+    the singular points are
+    \[
+        \boxed{z=-2,\ -1\pm i}.
+    \]
+\end{exercisesubparts}
+In each case the function is analytic at every other point.
+\end{solution}
+
+\begin{exercise}{26.6}
+Use results in Sec.~24 to verify that the function
+\[
+    g(z)=\ln r+i\theta
+    \qquad(r>0,\ 0<\theta<2\pi)
+\]
+is analytic in the indicated domain of definition, with derivative \(g'(z)=1/z\). Then show that the composite function
+\[
+    G(z)=g(z^2+1)
+\]
+is analytic in the quadrant \(x>0\), \(y>0\), with derivative
+\[
+    G'(z)=\frac{2z}{z^2+1}.
+\]
+\begin{suggestion}
+Observe that \(\Im(z^2+1)>0\) when \(x>0\), \(y>0\).
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+For
+\[
+    g(z)=u(r,\theta)+iv(r,\theta),
+    \qquad
+    u=\ln r,\quad v=\theta,
+\]
+we have
+\[
+    r u_r=1=v_\theta,
+    \qquad
+    u_\theta=0=-r v_r.
+\]
+The relevant partial derivatives are continuous for \(r>0\), \(0<\theta<2\pi\). Hence the theorem in Sec.~24 gives
+\[
+    g'(z)=e^{-i\theta}(u_r+i v_r)
+    =\frac{e^{-i\theta}}r
+    =\boxed{\frac1z}.
+\]
+Now let \(z=x+iy\) with \(x>0\) and \(y>0\). Since
+\[
+    z^2+1=(x^2-y^2+1)+2xyi,
+\]
+we have
+\[
+    \Im(z^2+1)=2xy>0.
+\]
+Thus \(z^2+1\) lies in the domain of the chosen branch of \(g\). The inner function \(z^2+1\) is entire, so the composition is analytic in the quadrant. By the chain rule,
+\[
+    \boxed{G'(z)=g'(z^2+1)\cdot2z=\frac{2z}{z^2+1}}.
+\]
+\end{solution}
+
+\begin{exercise}{26.7}
+Let a function \(f\) be analytic everywhere in a domain \(D\). Prove that if \(f(z)\) is real-valued for all \(z\) in \(D\), then \(f(z)\) must be constant throughout \(D\).
+\end{exercise}
+
+\begin{solution}
+Write
+\[
+    f(z)=u(x,y)+iv(x,y).
+\]
+Since \(f\) is real-valued throughout \(D\),
+\[
+    v(x,y)=0
+\]
+there, so \(v_x=v_y=0\). Because \(f\) is analytic, the Cauchy--Riemann equations give
+\[
+    u_x=v_y=0,
+    \qquad
+    u_y=-v_x=0.
+\]
+Consequently
+\[
+    f'(z)=u_x+i v_x=0
+\]
+throughout \(D\). By the theorem in Sec.~25, an analytic function whose derivative vanishes throughout a domain is constant. Hence \(f\) is constant on \(D\).
+\end{solution}
+
+\begin{exercise}{27.2}
+Let the function \(f(z)=u(x,y)+iv(x,y)\) be analytic in a domain \(D\), and consider the families of level curves \(u(x,y)=c_1\) and \(v(x,y)=c_2\), where \(c_1\) and \(c_2\) are arbitrary real constants. Prove that these families are orthogonal. More precisely, show that if \(z_0=(x_0,y_0)\) is a point in \(D\) which is common to two particular curves \(u(x,y)=c_1\) and \(v(x,y)=c_2\) and if \(f'(z_0)\ne0\), then the lines tangent to those curves at \((x_0,y_0)\) are perpendicular.
+\begin{suggestion}
+Note how it follows from the pair of equations \(u(x,y)=c_1\) and \(v(x,y)=c_2\) that
+\[
+    u_x+u_y\frac{\dd y}{\dd x}=0
+    \qquad\text{and}\qquad
+    v_x+v_y\frac{\dd y}{\dd x}=0.
+\]
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+At \(z_0\), the Cauchy--Riemann equations give
+\[
+    u_x=v_y,
+    \qquad
+    u_y=-v_x.
+\]
+Also,
+\[
+    |f'(z_0)|^2=u_x^2+u_y^2,
+\]
+so \(f'(z_0)\ne0\) implies that \(u_x\) and \(u_y\) are not both zero.
+
+Suppose first that \(u_xu_y\ne0\). Implicit differentiation gives the slopes
+\[
+    m_u=-\frac{u_x}{u_y},
+    \qquad
+    m_v=-\frac{v_x}{v_y}.
+\]
+Using the Cauchy--Riemann equations,
+\[
+    m_v=-\frac{-u_y}{u_x}=\frac{u_y}{u_x},
+\]
+and therefore
+\[
+    m_um_v=-1.
+\]
+Thus the tangent lines are perpendicular.
+
+If \(u_y=0\), then \(u_x\ne0\). The level curve of \(u\) has a vertical tangent, while the Cauchy--Riemann equations give \(v_x=0\) and \(v_y=u_x\ne0\), so the level curve of \(v\) has a horizontal tangent. The case \(u_x=0\) is analogous. Hence the two families are orthogonal wherever \(f'(z_0)\ne0\).
+\end{solution}
+
+\begin{exercise}{29.1}
+Use the theorem in Sec.~28 to show that if \(f(z)\) is analytic and not constant throughout a domain \(D\), then it cannot be constant throughout any neighborhood lying in \(D\).
+\begin{suggestion}
+Suppose that \(f(z)\) does have a constant value \(w_0\) throughout some neighborhood in \(D\).
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Suppose, to the contrary, that \(f(z)=w_0\) throughout some neighborhood contained in \(D\). Let
+\[
+    g(z)=w_0
+\]
+for all \(z\in D\). Then \(g\) is analytic in \(D\), and \(f\) and \(g\) agree throughout that neighborhood. By the uniqueness theorem in Sec.~28,
+\[
+    f(z)=g(z)=w_0
+\]
+throughout \(D\). This contradicts the assumption that \(f\) is not constant on \(D\). Therefore \(f\) cannot be constant throughout any neighborhood lying in \(D\).
+\end{solution}
+
+\begin{exercise}{29.5}
+Show that if the condition that \(f(x)\) is real in the reflection principle (Sec.~29) is replaced by the condition that \(f(x)\) is pure imaginary, then equation (1) in the statement of the principle is changed to
+\[
+    \overline{f(\overline z)}=-f(z).
+\]
+\end{exercise}
+
+\begin{solution}
+Define
+\[
+    h(z)=-if(z).
+\]
+If \(f(x)\) is pure imaginary on the segment of the real axis, then \(h(x)\) is real there. Since \(h\) is analytic in the same domain, the reflection principle applied to \(h\) gives
+\[
+    \overline{h(\overline z)}=h(z).
+\]
+Substituting \(h=-if\),
+\[
+    i\,\overline{f(\overline z)}=-if(z),
+\]
+so
+\[
+    \boxed{\overline{f(\overline z)}=-f(z)}.
+\]
+Conversely, if this identity holds, then for real \(x\),
+\[
+    \overline{f(x)}=-f(x),
+\]
+which means that the real part of \(f(x)\) is zero. Hence \(f(x)\) is pure imaginary, as required.
+\end{solution}
+
+\begin{exercise}{30.5}
+Write \(|\exp(2z+i)|\) and \(|\exp(iz^2)|\) in terms of \(x\) and \(y\). Then show that
+\[
+    |\exp(2z+i)+\exp(iz^2)|\le e^{2x}+e^{-2xy}.
+\]
+\end{exercise}
+
+\begin{solution}
+For any complex number \(w\),
+\[
+    |e^w|=e^{\Re w}.
+\]
+Since \(z=x+iy\),
+\[
+    \Re(2z+i)=2x,
+\]
+so
+\[
+    |\exp(2z+i)|=e^{2x}.
+\]
+Also,
+\[
+    z^2=x^2-y^2+2xyi,
+\]
+and hence
+\[
+    iz^2=-2xy+i(x^2-y^2).
+\]
+Therefore
+\[
+    |\exp(iz^2)|=e^{-2xy}.
+\]
+The triangle inequality now gives
+\[
+    \boxed{|\exp(2z+i)+\exp(iz^2)|\le e^{2x}+e^{-2xy}}.
+\]
+\end{solution}
+
+\begin{exercise}{30.13}
+Let the function \(f(z)=u(x,y)+iv(x,y)\) be analytic in some domain \(D\). State why the functions
+\[
+    U(x,y)=e^{u(x,y)}\cos v(x,y),
+    \qquad
+    V(x,y)=e^{u(x,y)}\sin v(x,y)
+\]
+are harmonic in \(D\).
+\end{exercise}
+
+\begin{solution}
+Since \(f\) is analytic in \(D\) and the exponential function is entire, the composition \(e^{f(z)}\) is analytic in \(D\). Moreover,
+\[
+\begin{aligned}
+    e^{f(z)}
+    &=e^{u+iv}\\
+    &=e^u(\cos v+i\sin v)\\
+    &=U+iV.
+\end{aligned}
+\]
+By the theorem in Sec.~27, the real and imaginary components of an analytic function are harmonic. Therefore \(U\) and \(V\) are harmonic throughout \(D\).
+\end{solution}
+
+\begin{exercise}{33.2}
+Show that
+\begin{exercisesubparts}
+    \item \(\log e=1+2n\pi i\), \(n=0,\pm1,\pm2,\ldots\);
+    \item \(\displaystyle \log i=\left(2n+\frac12\right)\pi i\), \(n=0,\pm1,\pm2,\ldots\);
+    \item \(\displaystyle \log(-1+\sqrt3\,i)=\ln2+2\left(n+\frac13\right)\pi i\), \(n=0,\pm1,\pm2,\ldots\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+For \(z\ne0\),
+\[
+    \log z=\ln|z|+i(\Arg z+2n\pi),
+    \qquad n\in\Z.
+\]
+\begin{exercisesubparts}
+    \item Since \(|e|=e\) and \(\Arg e=0\),
+    \[
+        \boxed{\log e=1+2n\pi i}.
+    \]
+
+    \item Since \(|i|=1\) and \(\Arg i=\pi/2\),
+    \[
+        \boxed{\log i=i\left(\frac\pi2+2n\pi\right)
+        =\left(2n+\frac12\right)\pi i}.
+    \]
+
+    \item The number \(-1+\sqrt3\,i\) has modulus \(2\) and principal argument \(2\pi/3\). Thus
+    \[
+    \begin{aligned}
+        \log(-1+\sqrt3\,i)
+        &=\ln2+i\left(\frac{2\pi}{3}+2n\pi\right)\\
+        &=\boxed{\ln2+2\left(n+\frac13\right)\pi i}.
+    \end{aligned}
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{33.4}
+Show that
+\[
+    \log(i^2)\ne2\log i
+\]
+when the branch
+\[
+    \log z=\ln r+i\theta
+    \qquad
+    \left(r>0,\ \frac{3\pi}{4}<\theta<\frac{11\pi}{4}\right)
+\]
+is used. (Compare this with the example in Sec.~33.)
+\end{exercise}
+
+\begin{solution}
+For \(i\), the arguments are \(\pi/2+2k\pi\). The unique one in the branch interval
+\[
+    \frac{3\pi}{4}<\theta<\frac{11\pi}{4}
+\]
+is \(5\pi/2\). Hence
+\[
+    \log i=\frac{5\pi}{2}i,
+    \qquad
+    2\log i=5\pi i.
+\]
+On the other hand, \(i^2=-1\), and the unique argument of \(-1\) in the same interval is \(\pi\). Thus
+\[
+    \log(i^2)=\log(-1)=\pi i.
+\]
+Therefore
+\[
+    \boxed{\log(i^2)=\pi i\ne5\pi i=2\log i}.
+\]
+\end{solution}
+
+\begin{exercise}{33.11}
+Show in two ways that the function
+\[
+    \ln(x^2+y^2)
+\]
+is harmonic in every domain that does not contain the origin.
+\end{exercise}
+
+\begin{solution}
+Let
+\[
+    H(x,y)=\ln(x^2+y^2).
+\]
+First, direct differentiation gives
+\[
+    H_x=\frac{2x}{x^2+y^2},
+    \qquad
+    H_y=\frac{2y}{x^2+y^2},
+\]
+and, for \((x,y)\ne(0,0)\),
+\[
+    H_{xx}=\frac{2(y^2-x^2)}{(x^2+y^2)^2},
+    \qquad
+    H_{yy}=\frac{2(x^2-y^2)}{(x^2+y^2)^2}.
+\]
+Hence
+\[
+    H_{xx}+H_{yy}=0.
+\]
+All first- and second-order partial derivatives are continuous away from the origin, so \(H\) is harmonic there.
+
+For a second argument, fix any \(z_0\ne0\). A sufficiently small neighborhood of \(z_0\) avoids the origin and admits an analytic branch of the logarithm. In that neighborhood,
+\[
+    \Re(\log z)=\ln|z|=\frac12\ln(x^2+y^2).
+\]
+The real part of an analytic function is harmonic, so \(\ln(x^2+y^2)=2\Re(\log z)\) is harmonic near \(z_0\). Since \(z_0\) was arbitrary, the function is harmonic in every domain not containing the origin.
+\end{solution}
+
+\begin{exercise}{34.1}
+Show that for any two nonzero complex numbers \(z_1\) and \(z_2\),
+\[
+    \Log(z_1z_2)=\Log z_1+\Log z_2+2N\pi i,
+\]
+where \(N\) has one of the values \(0,\pm1\). (Compare with Example 2 in Sec.~34.)
+\end{exercise}
+
+\begin{solution}
+Let
+\[
+    \theta_1=\Arg z_1,
+    \qquad
+    \theta_2=\Arg z_2,
+    \qquad
+    S=\theta_1+\theta_2.
+\]
+Since \(-\pi<\theta_j\le\pi\),
+\[
+    -2\pi<S\le2\pi.
+\]
+The principal argument of the product is obtained by bringing \(S\) into \((-\pi,\pi]\):
+\[
+    \Arg(z_1z_2)=S+2N\pi,
+\]
+where
+\[
+    N=
+    \begin{cases}
+        -1, & S>\pi,\\
+        0, & -\pi<S\le\pi,\\
+        1, & S\le-\pi.
+    \end{cases}
+\]
+Thus \(N\in\{0,\pm1\}\). Since \(|z_1z_2|=|z_1||z_2|\),
+\[
+\begin{aligned}
+    \Log(z_1z_2)
+    &=\ln|z_1z_2|+i\Arg(z_1z_2)\\
+    &=\ln|z_1|+\ln|z_2|+i(\theta_1+\theta_2+2N\pi)\\
+    &=\boxed{\Log z_1+\Log z_2+2N\pi i}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{34.2}
+Verify expression (4), Sec.~34, for \(\log(z_1/z_2)\) by
+\begin{exercisesubparts}
+    \item using the fact that \(\arg(z_1/z_2)=\arg z_1-\arg z_2\) (Sec.~9);
+    \item showing that \(\log(1/z)=-\log z\), \(z\ne0\), in the sense that \(\log(1/z)\) and \(-\log z\) have the same set of values, and then referring to expression (1), Sec.~34, for \(\log(z_1z_2)\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+The identities here are identities of multiple-valued logarithms, so equality means equality of the corresponding sets of values, with compatible values selected.
+\begin{exercisesubparts}
+    \item Using \(|z_1/z_2|=|z_1|/|z_2|\) and the argument identity from Sec.~9,
+    \[
+    \begin{aligned}
+        \log\left(\frac{z_1}{z_2}\right)
+        &=\ln\left|\frac{z_1}{z_2}\right|
+          +i\arg\left(\frac{z_1}{z_2}\right)\\
+        &=\bigl(\ln|z_1|+i\arg z_1\bigr)
+          -\bigl(\ln|z_2|+i\arg z_2\bigr)\\
+        &=\boxed{\log z_1-\log z_2}.
+    \end{aligned}
+    \]
+
+    \item Write \(z=re^{i\theta}\). The values of \(\log(1/z)\) are
+    \[
+        -\ln r+i(-\theta+2k\pi),
+        \qquad k\in\Z.
+    \]
+    The values of \(-\log z\) are
+    \[
+        -\ln r-i(\theta+2n\pi)
+        =-\ln r+i(-\theta-2n\pi),
+        \qquad n\in\Z.
+    \]
+    These are the same set of values, so
+    \[
+        \log(1/z)=-\log z.
+    \]
+    Since
+    \[
+        \frac{z_1}{z_2}=z_1\frac1{z_2},
+    \]
+    expression (1), Sec.~34, gives
+    \[
+        \log\left(\frac{z_1}{z_2}\right)
+        =\log z_1+\log(1/z_2)
+        =\boxed{\log z_1-\log z_2}.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{34.5}
+Let \(z\) denote any nonzero complex number, written
+\[
+    z=re^{i\Theta}
+    \qquad(-\pi<\Theta\le\pi),
+\]
+and let \(n\) denote any fixed positive integer. Show that all of the values of \(\log(z^{1/n})\) are given by
+\[
+    \log(z^{1/n})
+    =\frac1n\ln r
+    +i\frac{\Theta+2(pn+k)\pi}{n},
+\]
+where \(p=0,\pm1,\pm2,\ldots\) and \(k=0,1,2,\ldots,n-1\). Then, after writing
+\[
+    \frac1n\log z
+    =\frac1n\ln r+i\frac{\Theta+2q\pi}{n},
+    \qquad q=0,\pm1,\pm2,\ldots,
+\]
+show that the set of values of \(\log(z^{1/n})\) is the same as the set of values of \((1/n)\log z\). Thus show that
+\[
+    \log(z^{1/n})=\frac1n\log z,
+\]
+where, corresponding to a value of \(\log(z^{1/n})\) taken on the left, the appropriate value of \(\log z\) is to be selected on the right, and conversely. [The result in Exercise 5, Sec.~33, is a special case of this one.]
+\begin{suggestion}
+Use the fact that the remainder upon dividing an integer by a positive integer \(n\) is always an integer between \(0\) and \(n-1\), inclusive; that is, any integer \(q\) can be written \(q=pn+k\), where \(p\in\Z\) and \(k\in\{0,1,\ldots,n-1\}\).
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+The \(n\) distinct values of \(z^{1/n}\) are
+\[
+    w_k=r^{1/n}\exp\left(i\frac{\Theta+2k\pi}{n}\right),
+    \qquad k=0,1,\ldots,n-1.
+\]
+For each fixed \(k\), all values of \(\log w_k\) are
+\[
+\begin{aligned}
+    \log w_k
+    &=\frac1n\ln r
+      +i\left(\frac{\Theta+2k\pi}{n}+2p\pi\right)\\
+    &=\frac1n\ln r
+      +i\frac{\Theta+2(pn+k)\pi}{n},
+      \qquad p\in\Z.
+\end{aligned}
+\]
+Thus these formulas give all values of \(\log(z^{1/n})\).
+
+On the other hand, the values of \((1/n)\log z\) are
+\[
+    \frac1n\ln r+i\frac{\Theta+2q\pi}{n},
+    \qquad q\in\Z.
+\]
+By the division algorithm, every integer \(q\) can be written uniquely as
+\[
+    q=pn+k,
+    \qquad p\in\Z,
+    \qquad 0\le k\le n-1.
+\]
+Hence the two displayed families of values are exactly the same. Therefore, in the multiple-valued sense described in Sec.~34,
+\[
+    \boxed{\log(z^{1/n})=\frac1n\log z}.
+\]
+\end{solution}
+
+\end{document}

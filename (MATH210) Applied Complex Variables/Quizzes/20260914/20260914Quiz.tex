@@ -1,0 +1,450 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20260914 Quiz for MATH210 Applied Complex Variables},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH210 Applied Complex Variables},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20260914 Quiz}
+
+\begin{exercise}{3.1}
+Reduce each of these quantities to a real number:
+\begin{exercisesubparts}
+    \item \(\displaystyle \frac{1+2i}{3-4i}+\frac{2-i}{5i}\).
+    \item \(\displaystyle \frac{5i}{(1-i)(2-i)(3-i)}\).
+    \item \((1-i)^4\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\begin{exercisesubparts}
+    \item Multiplying the first denominator by its conjugate and simplifying the second term,
+    \[
+    \begin{aligned}
+        \frac{1+2i}{3-4i}
+        &=\frac{(1+2i)(3+4i)}{25}
+        =-\frac15+\frac25i,\\
+        \frac{2-i}{5i}
+        &=\frac{(2-i)(-i)}5
+        =-\frac15-\frac25i.
+    \end{aligned}
+    \]
+    Hence
+    \[
+        \boxed{\frac{1+2i}{3-4i}+\frac{2-i}{5i}=-\frac25}.
+    \]
+
+    \item Since
+    \[
+        (1-i)(2-i)=1-3i
+    \]
+    and
+    \[
+        (1-3i)(3-i)=-10i,
+    \]
+    we obtain
+    \[
+        \boxed{\frac{5i}{(1-i)(2-i)(3-i)}=-\frac12}.
+    \]
+
+    \item We have
+    \[
+        (1-i)^2=-2i,
+    \]
+    so
+    \[
+        \boxed{(1-i)^4=(-2i)^2=-4}.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{5.4}
+Verify that
+\[
+    \sqrt{2}\,|z|\ge |\Re z|+|\Im z|.
+\]
+\begin{suggestion}
+Reduce this inequality to \((|x|-|y|)^2\ge0\).
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Write \(z=x+iy\). Both sides are nonnegative, so it is enough to compare their squares. The desired inequality is equivalent to
+\[
+    2(x^2+y^2)\ge (|x|+|y|)^2,
+\]
+which reduces to
+\[
+    x^2+y^2-2|xy|=(|x|-|y|)^2\ge0.
+\]
+Therefore
+\[
+    \boxed{\sqrt{2}\,|z|\ge |\Re z|+|\Im z|}.
+\]
+\end{solution}
+
+\begin{exercise}{5.7}
+Show that for \(R\) sufficiently large, the polynomial \(P(z)\) in Example 3, Sec.~5, satisfies the inequality
+\[
+    |P(z)|<2|a_n||z|^n
+    \qquad\text{whenever }|z|>R.
+\]
+\begin{suggestion}
+Observe that there is a positive number \(R\) such that the modulus of each quotient in inequality (9), Sec.~5, is less than \(|a_n|/n\) when \(|z|>R\).
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+As in Example 3, Sec.~5, write
+\[
+    P(z)=(a_n+w)z^n,
+\]
+where
+\[
+    w=\frac{a_0}{z^n}+\frac{a_1}{z^{n-1}}+\cdots+\frac{a_{n-1}}{z}.
+\]
+For sufficiently large \(R\), each of the \(n\) terms on the right has modulus less than \(|a_n|/n\) whenever \(|z|>R\). Hence
+\[
+    |w|<|a_n|.
+\]
+Using the triangle inequality,
+\[
+    |P(z)|=|a_n+w||z|^n
+    \le (|a_n|+|w|)|z|^n
+    <2|a_n||z|^n.
+\]
+Thus the stated inequality holds for all \(|z|>R\).
+\end{solution}
+
+\begin{exercise}{6.7}
+Show that
+\[
+    \left|\Re\bigl(2+\overline z+z^3\bigr)\right|\le4
+    \qquad\text{when }|z|\le1.
+\]
+\end{exercise}
+
+\begin{solution}
+For every complex number \(w\), \(|\Re w|\le |w|\). Hence, using the triangle inequality and \(|\overline z|=|z|\),
+\[
+\begin{aligned}
+    \left|\Re\bigl(2+\overline z+z^3\bigr)\right|
+    &\le \left|2+\overline z+z^3\right|\\
+    &\le 2+|\overline z|+|z|^3\\
+    &=2+|z|+|z|^3\\
+    &\le4,
+\end{aligned}
+\]
+since \(|z|\le1\).
+\end{solution}
+
+\begin{exercise}{6.13}
+Show that the equation \(|z-z_0|=R\) of a circle, centered at \(z_0\) with radius \(R\), can be written
+\[
+    |z|^2-2\Re\bigl(z\overline{z_0}\bigr)+|z_0|^2=R^2.
+\]
+\end{exercise}
+
+\begin{solution}
+Squaring \(|z-z_0|=R\) gives
+\[
+\begin{aligned}
+    R^2
+    &=|z-z_0|^2\\
+    &=(z-z_0)(\overline z-\overline{z_0})\\
+    &=|z|^2-z\overline{z_0}-\overline z z_0+|z_0|^2.
+\end{aligned}
+\]
+The middle two terms are conjugates, so
+\[
+    z\overline{z_0}+\overline z z_0
+    =2\Re\bigl(z\overline{z_0}\bigr).
+\]
+Therefore
+\[
+    \boxed{|z|^2-2\Re\bigl(z\overline{z_0}\bigr)+|z_0|^2=R^2}.
+\]
+\end{solution}
+
+\begin{exercise}{9.9}
+Establish the identity
+\[
+    1+z+z^2+\cdots+z^n=\frac{1-z^{n+1}}{1-z}
+    \qquad(z\ne1)
+\]
+and then use it to derive Lagrange's trigonometric identity:
+\[
+    1+\cos\theta+\cos2\theta+\cdots+\cos n\theta
+    =\frac12+\frac{\sin((2n+1)\theta/2)}{2\sin(\theta/2)}
+    \qquad(0<\theta<2\pi).
+\]
+\begin{suggestion}
+As for the first identity, write \(S=1+z+z^2+\cdots+z^n\) and consider the difference \(S-zS\). To derive the second identity, write \(z=e^{i\theta}\) in the first one.
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Let
+\[
+    S=1+z+z^2+\cdots+z^n.
+\]
+Then
+\[
+    S-zS=1-z^{n+1},
+\]
+so, when \(z\ne1\),
+\[
+    \boxed{S=\frac{1-z^{n+1}}{1-z}}.
+\]
+Now let \(z=e^{i\theta}\), where \(0<\theta<2\pi\). Then
+\[
+\begin{aligned}
+    1+e^{i\theta}+\cdots+e^{in\theta}
+    &=\frac{1-e^{i(n+1)\theta}}{1-e^{i\theta}}\\
+    &=e^{in\theta/2}
+      \frac{\sin((n+1)\theta/2)}{\sin(\theta/2)}.
+\end{aligned}
+\]
+Taking real parts gives
+\[
+    1+\cos\theta+\cdots+\cos n\theta
+    =\frac{\sin((n+1)\theta/2)\cos(n\theta/2)}{\sin(\theta/2)}.
+\]
+Using
+\[
+    2\sin\frac{(n+1)\theta}{2}\cos\frac{n\theta}{2}
+    =\sin\frac{(2n+1)\theta}{2}+\sin\frac\theta2,
+\]
+we obtain
+\[
+    \boxed{
+    1+\cos\theta+\cdots+\cos n\theta
+    =\frac12+\frac{\sin((2n+1)\theta/2)}{2\sin(\theta/2)}
+    }.
+\]
+\end{solution}
+
+\begin{exercise}{11.6}
+Find the four zeros of the polynomial \(z^4+4\), one of them being
+\[
+    z_0=\sqrt2\,e^{i\pi/4}=1+i.
+\]
+Then use those zeros to factor \(z^2+4\) into quadratic factors with real coefficients.
+\end{exercise}
+
+\begin{remark}
+The second polynomial in the printed statement is a typographical error. The four zeros requested are the zeros of \(z^4+4\), and the printed answer factors \(z^4+4\). Accordingly, the intended factorization is that of \(z^4+4\).
+\end{remark}
+
+\begin{solution}
+The equation \(z^4+4=0\) is
+\[
+    z^4=4e^{i(\pi+2k\pi)}.
+\]
+Thus its four roots are
+\[
+    z=\sqrt2\,e^{i(\pi/4+k\pi/2)},
+    \qquad k=0,1,2,3,
+\]
+namely
+\[
+    1+i,\quad -1+i,\quad -1-i,\quad 1-i.
+\]
+Pairing conjugate roots gives real quadratic factors:
+\[
+\begin{aligned}
+    z^4+4
+    &=[z-(1+i)][z-(1-i)][z-(-1+i)][z-(-1-i)]\\
+    &=(z^2-2z+2)(z^2+2z+2).
+\end{aligned}
+\]
+Hence
+\[
+    \boxed{z^4+4=(z^2+2z+2)(z^2-2z+2)}.
+\]
+\end{solution}
+
+\begin{exercise}{12.7}
+Determine the accumulation points of each of the following sets:
+\begin{exercisesubparts}
+    \item \(z_n=i^n\), \(n=1,2,\ldots\).
+    \item \(z_n=i^n/n\), \(n=1,2,\ldots\).
+    \item \(0\le \arg z<\pi/2\), \(z\ne0\).
+    \item \(\displaystyle z_n=(-1)^n(1+i)\frac{n-1}{n}\), \(n=1,2,\ldots\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\begin{exercisesubparts}
+    \item The set consists only of the four points \(1,i,-1,-i\). A finite set has no accumulation points. Thus there are none.
+
+    \item Since \(|z_n|=1/n\to0\), every neighborhood of \(0\) contains infinitely many points of the set. Any point different from \(0\) has a sufficiently small neighborhood containing at most finitely many of them. Hence the only accumulation point is
+    \[
+        \boxed{0}.
+    \]
+
+    \item The set is the sector consisting of the nonzero points with angle from \(0\) up to, but not including, \(\pi/2\). Every point of the closed first quadrant can be approached by points of this sector, and no point outside that closed quadrant can. Thus the set of accumulation points is
+    \[
+        \boxed{\{x+iy\mid x\ge0,\ y\ge0\}}.
+    \]
+
+    \item For even \(n\),
+    \[
+        z_n=(1+i)\frac{n-1}{n}\longrightarrow 1+i,
+    \]
+    while for odd \(n\),
+    \[
+        z_n=-(1+i)\frac{n-1}{n}\longrightarrow -(1+i).
+    \]
+    These are the only two accumulation points, so
+    \[
+        \boxed{\pm(1+i)}.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{14.2}
+In each case, write the function \(f(z)\) in the form \(f(z)=u(x,y)+iv(x,y)\):
+\begin{exercisesubparts}
+    \item \(f(z)=z^3+z+1\).
+    \item \(\displaystyle f(z)=\frac{\overline z^{\,2}}{z}\), \(z\ne0\).
+\end{exercisesubparts}
+\begin{suggestion}
+In part (b), start by multiplying the numerator and denominator by \(\overline z\).
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Write \(z=x+iy\).
+\begin{exercisesubparts}
+    \item Expanding \((x+iy)^3\),
+    \[
+    \begin{aligned}
+        f(z)
+        &=(x+iy)^3+(x+iy)+1\\
+        &=(x^3-3xy^2+x+1)+i(3x^2y-y^3+y).
+    \end{aligned}
+    \]
+    Therefore
+    \[
+        \boxed{u=x^3-3xy^2+x+1,
+        \qquad v=3x^2y-y^3+y}.
+    \]
+
+    \item Since \(z\ne0\),
+    \[
+        \frac{\overline z^{\,2}}{z}
+        =\frac{\overline z^{\,3}}{|z|^2}.
+    \]
+    Now
+    \[
+        \overline z^{\,3}
+        =(x-iy)^3
+        =(x^3-3xy^2)+i(y^3-3x^2y),
+    \]
+    and hence
+    \[
+        \boxed{
+        f(z)=\frac{x^3-3xy^2}{x^2+y^2}
+        +i\frac{y^3-3x^2y}{x^2+y^2}
+        }.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{14.3}
+Suppose that
+\[
+    f(z)=x^2-y^2-2y+i(2x-2xy),
+    \qquad z=x+iy.
+\]
+Use the expressions
+\[
+    x=\frac{z+\overline z}{2}
+    \qquad\text{and}\qquad
+    y=\frac{z-\overline z}{2i}
+\]
+to write \(f(z)\) in terms of \(z\), and simplify the result.
+\end{exercise}
+
+\begin{solution}
+Using
+\[
+    x=\frac{z+\overline z}{2},
+    \qquad
+    y=\frac{z-\overline z}{2i},
+\]
+we obtain
+\[
+    x^2-y^2=\frac{z^2+\overline z^{\,2}}2,
+    \qquad
+    -2y=i(z-\overline z),
+\]
+and
+\[
+\begin{aligned}
+    i(2x-2xy)
+    &=i(z+\overline z)-\frac{z^2-\overline z^{\,2}}2.
+\end{aligned}
+\]
+Therefore
+\[
+\begin{aligned}
+    f(z)
+    &=\frac{z^2+\overline z^{\,2}}2+i(z-\overline z)
+      +i(z+\overline z)-\frac{z^2-\overline z^{\,2}}2\\
+    &=\overline z^{\,2}+2iz.
+\end{aligned}
+\]
+Thus, for the function as printed,
+\[
+    \boxed{f(z)=\overline z^{\,2}+2iz}.
+\]
+\end{solution}
+
+\begin{remark}
+The printed answer in the textbook is \(z^2+2iz\), which does not agree with the printed function. The direct algebra above gives \(\overline z^{\,2}+2iz\).
+\end{remark}
+
+\begin{exercise}{14.4}
+Write the function
+\[
+    f(z)=z+\frac1z
+    \qquad(z\ne0)
+\]
+in the form \(f(z)=u(r,\theta)+iv(r,\theta)\).
+\end{exercise}
+
+\begin{solution}
+With \(z=re^{i\theta}\),
+\[
+    \frac1z=\frac1r e^{-i\theta}.
+\]
+Hence
+\[
+\begin{aligned}
+    f(z)
+    &=r(\cos\theta+i\sin\theta)
+      +\frac1r(\cos\theta-i\sin\theta)\\
+    &=\left(r+\frac1r\right)\cos\theta
+      +i\left(r-\frac1r\right)\sin\theta.
+\end{aligned}
+\]
+Therefore
+\[
+    \boxed{
+    u(r,\theta)=\left(r+\frac1r\right)\cos\theta,
+    \qquad
+    v(r,\theta)=\left(r-\frac1r\right)\sin\theta
+    }.
+\]
+\end{solution}
+
+\end{document}

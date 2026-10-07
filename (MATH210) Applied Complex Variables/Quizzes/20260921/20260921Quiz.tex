@@ -1,0 +1,520 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20260921 Quiz for MATH210 Applied Complex Variables},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH210 Applied Complex Variables},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20260921 Quiz}
+
+\begin{exercise}{18.6}
+Prove statement (8) in Theorem 2 of Sec.~16 using
+\begin{exercisesubparts}
+    \item Theorem 1 in Sec.~16 and properties of limits of real-valued functions of two real variables;
+    \item definition (2), Sec.~15, of limit.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Statement (8) is the sum law
+\[
+    \lim_{z\to z_0}[f(z)+F(z)]=w_0+W_0,
+\]
+provided that
+\[
+    \lim_{z\to z_0}f(z)=w_0,
+    \qquad
+    \lim_{z\to z_0}F(z)=W_0.
+\]
+\begin{exercisesubparts}
+    \item Write
+    \[
+        f=u+iv,\qquad F=U+iV,
+    \]
+    and
+    \[
+        w_0=u_0+iv_0,\qquad W_0=U_0+iV_0.
+    \]
+    By Theorem 1 in Sec.~16,
+    \[
+        u\to u_0,\quad v\to v_0,\quad U\to U_0,\quad V\to V_0
+    \]
+    as \((x,y)\to(x_0,y_0)\). The usual sum law for real-valued functions gives
+    \[
+        u+U\to u_0+U_0,
+        \qquad
+        v+V\to v_0+V_0.
+    \]
+    Applying Theorem 1 again,
+    \[
+        f+F=(u+U)+i(v+V)\longrightarrow
+        (u_0+U_0)+i(v_0+V_0)=w_0+W_0.
+    \]
+
+    \item Let \(\varepsilon>0\). There are positive numbers \(\delta_1\) and \(\delta_2\) such that
+    \[
+        |f(z)-w_0|<\frac\varepsilon2
+        \quad\text{when }0<|z-z_0|<\delta_1,
+    \]
+    and
+    \[
+        |F(z)-W_0|<\frac\varepsilon2
+        \quad\text{when }0<|z-z_0|<\delta_2.
+    \]
+    Set \(\delta=\min\{\delta_1,\delta_2\}\). Then, whenever \(0<|z-z_0|<\delta\),
+    \[
+    \begin{aligned}
+        |[f(z)+F(z)]-(w_0+W_0)|
+        &\le |f(z)-w_0|+|F(z)-W_0|\\
+        &<\frac\varepsilon2+\frac\varepsilon2
+        =\varepsilon.
+    \end{aligned}
+    \]
+    Hence the desired limit follows directly from the definition.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{18.8}
+Write \(\Delta z=z-z_0\) and show that
+\[
+    \lim_{z\to z_0}f(z)=w_0
+    \quad\text{if and only if}\quad
+    \lim_{\Delta z\to0}f(z_0+\Delta z)=w_0.
+\]
+\end{exercise}
+
+\begin{solution}
+Since
+\[
+    \Delta z=z-z_0,
+\]
+we have
+\[
+    z\to z_0
+    \quad\Longleftrightarrow\quad
+    \Delta z\to0,
+\]
+and \(z=z_0+\Delta z\). Also,
+\[
+    |z-z_0|=|\Delta z|.
+\]
+Thus the condition
+\[
+    |f(z)-w_0|<\varepsilon
+    \quad\text{whenever}\quad
+    0<|z-z_0|<\delta
+\]
+is exactly the condition
+\[
+    |f(z_0+\Delta z)-w_0|<\varepsilon
+    \quad\text{whenever}\quad
+    0<|\Delta z|<\delta.
+\]
+Therefore the two limit statements are equivalent.
+\end{solution}
+
+\begin{exercise}{18.9}
+Show that
+\[
+    \lim_{z\to z_0}f(z)g(z)=0
+    \qquad\text{if}\qquad
+    \lim_{z\to z_0}f(z)=0
+\]
+and if there exists a positive number \(M\) such that \(|g(z)|\le M\) for all \(z\) in some neighborhood of \(z_0\).
+\end{exercise}
+
+\begin{solution}
+Let \(\varepsilon>0\). Since \(f(z)\to0\), there is a positive number \(\delta_1\) such that
+\[
+    |f(z)|<\frac\varepsilon M
+    \qquad\text{when }0<|z-z_0|<\delta_1.
+\]
+Also, by hypothesis, there is a neighborhood of \(z_0\) on which \(|g(z)|\le M\). Choose \(\delta>0\) small enough that both conditions hold whenever \(0<|z-z_0|<\delta\). Then
+\[
+    |f(z)g(z)|=|f(z)|\,|g(z)|
+    \le M|f(z)|
+    <\varepsilon.
+\]
+Hence
+\[
+    \boxed{\lim_{z\to z_0}f(z)g(z)=0}.
+\]
+\end{solution}
+
+\begin{exercise}{20.3}
+Using results in Sec.~20, show that
+\begin{exercisesubparts}
+    \item a polynomial
+    \[
+        P(z)=a_0+a_1z+a_2z^2+\cdots+a_nz^n
+        \qquad(a_n\ne0)
+    \]
+    of degree \(n\), \(n\ge1\), is differentiable everywhere, with derivative
+    \[
+        P'(z)=a_1+2a_2z+\cdots+na_nz^{n-1};
+    \]
+    \item the coefficients in the polynomial \(P(z)\) in part (a) can be written
+    \[
+        a_0=P(0),\qquad
+        a_1=\frac{P'(0)}{1!},\qquad
+        a_2=\frac{P''(0)}{2!},\qquad
+        \ldots,\qquad
+        a_n=\frac{P^{(n)}(0)}{n!}.
+    \]
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\begin{exercisesubparts}
+    \item Each monomial \(z^k\) is differentiable everywhere and
+    \[
+        \frac{\dd}{\dd z}z^k=kz^{k-1}.
+    \]
+    Using the constant-multiple and sum rules from Sec.~20,
+    \[
+        \boxed{P'(z)=a_1+2a_2z+\cdots+na_nz^{n-1}}.
+    \]
+    Thus \(P\) is differentiable everywhere.
+
+    \item Repeated differentiation gives, for \(m=0,1,\ldots,n\),
+    \[
+        P^{(m)}(0)=m!\,a_m,
+    \]
+    since every term of degree greater than \(m\) still contains a positive power of \(z\), while terms of degree less than \(m\) have vanished. Therefore
+    \[
+        \boxed{a_m=\frac{P^{(m)}(0)}{m!}}
+        \qquad(m=0,1,\ldots,n),
+    \]
+    with \(P^{(0)}=P\).
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{20.5}
+Derive expression (3), Sec.~20, for the derivative of the sum of two functions.
+\end{exercise}
+
+\begin{solution}
+Suppose \(f'(z)\) and \(g'(z)\) exist. From the definition of derivative,
+\[
+\begin{aligned}
+    (f+g)'(z)
+    &=\lim_{\Delta z\to0}
+      \frac{[f(z+\Delta z)+g(z+\Delta z)]-[f(z)+g(z)]}{\Delta z}\\
+    &=\lim_{\Delta z\to0}
+      \left(
+      \frac{f(z+\Delta z)-f(z)}{\Delta z}
+      +
+      \frac{g(z+\Delta z)-g(z)}{\Delta z}
+      \right).
+\end{aligned}
+\]
+By the sum law for limits in Sec.~16,
+\[
+    \boxed{(f+g)'(z)=f'(z)+g'(z)}.
+\]
+\end{solution}
+
+\begin{exercise}{20.6}
+Derive expression (2), Sec.~20, for the derivative of \(z^n\) when \(n\) is a positive integer by using
+\begin{exercisesubparts}
+    \item mathematical induction and expression (4), Sec.~20, for the derivative of the product of two functions;
+    \item definition (3), Sec.~19, of derivative and the binomial formula (Sec.~3).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+We prove
+\[
+    \frac{\dd}{\dd z}z^n=nz^{n-1}.
+\]
+\begin{exercisesubparts}
+    \item For \(n=1\), the formula gives \((z)'=1\). Assume that
+    \[
+        (z^m)'=mz^{m-1}
+    \]
+    for some positive integer \(m\). By the product rule,
+    \[
+    \begin{aligned}
+        (z^{m+1})'
+        &=(z^m z)'\\
+        &=(z^m)'z+z^m(z)'\\
+        &=mz^m+z^m\\
+        &=(m+1)z^m.
+    \end{aligned}
+    \]
+    Hence the formula follows for all positive integers \(n\) by induction.
+
+    \item From the definition of derivative,
+    \[
+        (z^n)'=\lim_{\Delta z\to0}
+        \frac{(z+\Delta z)^n-z^n}{\Delta z}.
+    \]
+    By the binomial formula,
+    \[
+        (z+\Delta z)^n-z^n
+        =nz^{n-1}\Delta z
+        +\binom n2 z^{n-2}(\Delta z)^2
+        +\cdots+(\Delta z)^n.
+    \]
+    Therefore
+    \[
+    \begin{aligned}
+        (z^n)'
+        &=\lim_{\Delta z\to0}
+        \left[
+        nz^{n-1}
+        +\binom n2 z^{n-2}\Delta z
+        +\cdots+(\Delta z)^{n-1}
+        \right]\\
+        &=\boxed{nz^{n-1}}.
+    \end{aligned}
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{24.1}
+Use the theorem in Sec.~21 to show that \(f'(z)\) does not exist at any point if
+\begin{exercisesubparts}
+    \item \(f(z)=\overline z\);
+    \item \(f(z)=z-\overline z\);
+    \item \(f(z)=2x+ixy^2\);
+    \item \(f(z)=e^x e^{-iy}\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+The Cauchy--Riemann equations
+\[
+    u_x=v_y,
+    \qquad
+    u_y=-v_x
+\]
+are necessary for the existence of \(f'(z)\).
+\begin{exercisesubparts}
+    \item Here \(u=x\) and \(v=-y\). Thus
+    \[
+        u_x=1,
+        \qquad
+        v_y=-1,
+    \]
+    so the first Cauchy--Riemann equation fails everywhere.
+
+    \item Since \(z-\overline z=2iy\), we have \(u=0\) and \(v=2y\). Hence
+    \[
+        u_x=0,
+        \qquad
+        v_y=2,
+    \]
+    so the first equation fails everywhere.
+
+    \item Here \(u=2x\) and \(v=xy^2\). The second equation requires
+    \[
+        0=u_y=-v_x=-y^2,
+    \]
+    so \(y=0\). But then the first equation would require
+    \[
+        2=u_x=v_y=2xy=0,
+    \]
+    a contradiction. Thus no point satisfies both equations.
+
+    \item Since
+    \[
+        f(z)=e^x(\cos y-i\sin y),
+    \]
+    we have \(u=e^x\cos y\) and \(v=-e^x\sin y\). The Cauchy--Riemann equations become
+    \[
+        e^x\cos y=-e^x\cos y,
+        \qquad
+        -e^x\sin y=e^x\sin y.
+    \]
+    These would require \(\cos y=0\) and \(\sin y=0\) simultaneously, which is impossible.
+\end{exercisesubparts}
+Therefore \(f'(z)\) exists nowhere in every case.
+\end{solution}
+
+\begin{exercise}{24.2}
+Use the theorem in Sec.~23 to show that \(f'(z)\) and its derivative \(f''(z)\) exist everywhere, and find \(f''(z)\) when
+\begin{exercisesubparts}
+    \item \(f(z)=iz+2\);
+    \item \(f(z)=e^{-x}e^{-iy}\);
+    \item \(f(z)=z^3\);
+    \item \(f(z)=\cos x\cosh y-i\sin x\sinh y\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+In each case the first-order partial derivatives involved below are continuous everywhere, so the theorem in Sec.~23 applies once the Cauchy--Riemann equations are verified.
+\begin{exercisesubparts}
+    \item Since
+    \[
+        f(z)=(2-y)+ix,
+    \]
+    the Cauchy--Riemann equations hold and
+    \[
+        f'(z)=i.
+    \]
+    The derivative \(f'\) is constant, so the same theorem gives
+    \[
+        \boxed{f''(z)=0}.
+    \]
+
+    \item Write
+    \[
+        u=e^{-x}\cos y,
+        \qquad
+        v=-e^{-x}\sin y.
+    \]
+    Then
+    \[
+        u_x=v_y=-e^{-x}\cos y,
+        \qquad
+        u_y=-v_x=-e^{-x}\sin y.
+    \]
+    Hence
+    \[
+        f'(z)=u_x+iv_x
+        =-e^{-x}\cos y+i e^{-x}\sin y
+        =-f(z).
+    \]
+    The components of \(-f\) again have continuous first partial derivatives satisfying the Cauchy--Riemann equations, so \(f''\) exists and
+    \[
+        \boxed{f''(z)=-f'(z)=f(z)}.
+    \]
+
+    \item Expanding
+    \[
+        z^3=(x^3-3xy^2)+i(3x^2y-y^3),
+    \]
+    we have
+    \[
+        u_x=3x^2-3y^2=v_y,
+        \qquad
+        u_y=-6xy=-v_x.
+    \]
+    Hence
+    \[
+        f'(z)=u_x+i v_x
+        =3(x^2-y^2)+i6xy
+        =3z^2.
+    \]
+    For \(f'(z)=U+iV\), where \(U=3(x^2-y^2)\) and \(V=6xy\),
+    \[
+        U_x=6x=V_y,
+        \qquad
+        U_y=-6y=-V_x.
+    \]
+    Applying the theorem again,
+    \[
+        \boxed{f''(z)=6x+i6y=6z}.
+    \]
+
+    \item Let
+    \[
+        u=\cos x\cosh y,
+        \qquad
+        v=-\sin x\sinh y.
+    \]
+    Then
+    \[
+        u_x=v_y=-\sin x\cosh y,
+        \qquad
+        u_y=-v_x=\cos x\sinh y.
+    \]
+    Hence
+    \[
+        f'(z)=-\sin x\cosh y-i\cos x\sinh y.
+    \]
+    Its real and imaginary components again satisfy the Cauchy--Riemann equations with continuous first partial derivatives, and therefore
+    \[
+        \boxed{f''(z)=-\cos x\cosh y+i\sin x\sinh y=-f(z)}.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{24.4}
+Use the theorem in Sec.~24 to show that each of these functions is differentiable in the indicated domain of definition, and also to find \(f'(z)\):
+\begin{exercisesubparts}
+    \item \(\displaystyle f(z)=\frac1{z^4}\), \(z\ne0\);
+    \item \(\displaystyle f(z)=e^{-\theta}\cos(\ln r)+i e^{-\theta}\sin(\ln r)\), \(r>0\), \(0<\theta<2\pi\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+We use the polar Cauchy--Riemann equations
+\[
+    r u_r=v_\theta,
+    \qquad
+    u_\theta=-r v_r,
+\]
+and the derivative formula
+\[
+    f'(z)=e^{-i\theta}(u_r+i v_r).
+\]
+All first-order partial derivatives below are continuous in the stated domains.
+\begin{exercisesubparts}
+    \item Since
+    \[
+        f(z)=r^{-4}e^{-4i\theta},
+    \]
+    we have
+    \[
+        u=r^{-4}\cos4\theta,
+        \qquad
+        v=-r^{-4}\sin4\theta.
+    \]
+    Then
+    \[
+        r u_r=-4r^{-4}\cos4\theta=v_\theta,
+        \qquad
+        u_\theta=-4r^{-4}\sin4\theta=-r v_r.
+    \]
+    Thus \(f\) is differentiable for \(z\ne0\), and
+    \[
+    \begin{aligned}
+        f'(z)
+        &=e^{-i\theta}
+          \left(-4r^{-5}\cos4\theta+i4r^{-5}\sin4\theta\right)\\
+        &=-4r^{-5}e^{-5i\theta}
+        =\boxed{-\frac4{z^5}}.
+    \end{aligned}
+    \]
+
+    \item Let
+    \[
+        u=e^{-\theta}\cos(\ln r),
+        \qquad
+        v=e^{-\theta}\sin(\ln r).
+    \]
+    Then
+    \[
+        r u_r=-e^{-\theta}\sin(\ln r)=v_\theta,
+    \]
+    and
+    \[
+        u_\theta=-e^{-\theta}\cos(\ln r)=-r v_r.
+    \]
+    Hence \(f\) is differentiable throughout the stated branch domain. Moreover,
+    \[
+    \begin{aligned}
+        u_r+i v_r
+        &=\frac{e^{-\theta}}r
+          \left[-\sin(\ln r)+i\cos(\ln r)\right]\\
+        &=\frac{i}{r}f(z).
+    \end{aligned}
+    \]
+    Since \(z=re^{i\theta}\),
+    \[
+        \boxed{f'(z)=e^{-i\theta}\frac{i}{r}f(z)
+        =i\frac{f(z)}z}.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\end{document}
