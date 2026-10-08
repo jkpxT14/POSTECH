@@ -9,6 +9,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{needspace}
 \RequirePackage{fancyhdr}
+\RequirePackage{tocloft}
 
 % Mathematics
 \RequirePackage{amsmath,amssymb,amsthm}
@@ -102,26 +103,25 @@
   {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
   {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
 
-% Compatibility with the previous paired-source shell. The current sources do
-% not contain solution bodies, but keeping this flag makes migration lossless.
-\newif\ifCASolutions
-\CASolutionsfalse
+% Short, consistent four-part table of contents.
+\setlength{\cftbeforepartskip}{0.48em}
+\setlength{\cftpartindent}{0pt}
+\renewcommand{\cftpartfont}{\normalfont\bfseries}
+\renewcommand{\cftpartpagefont}{\normalfont\bfseries}
 
-% Four-course division: a minimal extension of the single-course MATH200 design.
+% Each course title is a single typographic unit.
 \newcommand{\coursepart}[2]{%
   \clearpage
   \setcounter{course}{#1}%
   \setcounter{problemitem}{0}%
   \phantomsection
-  \addcontentsline{toc}{part}{Part #1\space #2}%
+  \addcontentsline{toc}{part}{Part #1.\space #2}%
   \thispagestyle{plain}%
   \vspace*{0.22cm}%
-  {\noindent\large\bfseries Part #1\par}%
-  \vspace{0.06cm}%
-  {\noindent\LARGE\bfseries #2\par}%
-  \vspace{0.34cm}%
+  {\noindent\Large\bfseries Part #1.\enspace #2\par}%
+  \vspace{0.20cm}%
   \hrule height 0.4pt
-  \vspace{0.52cm}%
+  \vspace{0.35cm}%
 }
 
 % Compact polar grid used by preserved source problems.
@@ -129,7 +129,7 @@
   \foreach \r in {1,2,3,4}{\draw[gray!38,line width=0.25pt] (0,0) circle (\r);}%
   \foreach \a in {0,30,...,330}{\draw[gray!32,line width=0.25pt] (0,0) -- (\a:4);}%
   \foreach \r in {1,2,3,4}{\node[font=\tiny,fill=white,inner sep=0.25pt] at (0:\r) {\r};}%
-  \foreach \a in {0,30,...,330}{\node[font=\tiny] at (\a:4.42) {\a};}%
+  \foreach \a in {0,90,180,270}{\node[font=\scriptsize,fill=white,inner sep=0.3pt] at (\a:4.47) {\a};}%
 }
 
 % Running design: parent collection on the left, document type on the right.
