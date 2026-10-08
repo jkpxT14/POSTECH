@@ -1,0 +1,570 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261012 Quiz for MATH210 Applied Complex Variables},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH210 Applied Complex Variables},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261012 Quiz}
+
+\begin{exercise}{36.6}
+Show that if \(z\ne0\) and \(a\) is a real number, then
+\[
+    |z^a|=\exp(a\ln|z|)=|z|^a,
+\]
+where the principal value of \(|z|^a\) is to be taken.
+\end{exercise}
+
+\begin{solution}
+For \(z\ne0\), every value of \(\log z\) has the form
+\[
+    \ln|z|+i(\Arg z+2k\pi),\qquad k\in\Z.
+\]
+Since \(a\in\R\), each value of \(z^a\) is
+\[
+    \exp(a\log z)
+    =\exp(a\ln|z|)\exp(ia(\Arg z+2k\pi)).
+\]
+The second factor has modulus \(1\), so every value of \(z^a\) has modulus \(\exp(a\ln|z|)\). Since \(|z|>0\), its ordinary real power is
+\[
+    |z|^a=\exp(a\ln|z|).
+\]
+Thus
+\[
+    \boxed{|z^a|=\exp(a\ln|z|)=|z|^a}.
+\]
+\end{solution}
+
+\begin{exercise}{36.8}
+Let \(c,c_1,c_2,z\) be complex numbers with \(z\ne0\). Prove that, if all the powers involved are principal values, then
+\begin{exercisesubparts}
+    \item \(z^{c_1}z^{c_2}=z^{c_1+c_2}\);
+    \item \(\displaystyle\frac{z^{c_1}}{z^{c_2}}=z^{c_1-c_2}\);
+    \item \((z^c)^n=z^{cn}\), where \(n=1,2,\dots\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Use the principal-value convention \(z^w=\exp(w\Log z)\) throughout this exercise.
+\begin{exercisesubparts}
+    \item By the exponential addition law,
+    \[
+        z^{c_1}z^{c_2}
+        =e^{c_1\Log z}e^{c_2\Log z}
+        =e^{(c_1+c_2)\Log z}
+        =\boxed{z^{c_1+c_2}}.
+    \]
+    \item The denominator is nonzero; hence
+    \[
+        \frac{z^{c_1}}{z^{c_2}}
+        =\frac{e^{c_1\Log z}}{e^{c_2\Log z}}
+        =e^{(c_1-c_2)\Log z}
+        =\boxed{z^{c_1-c_2}}.
+    \]
+    \item Since \(n\) is a positive integer, raising a complex number to its \(n\)th power has its ordinary single-valued meaning. Thus
+    \[
+        (z^c)^n=(e^{c\Log z})^n
+        =e^{nc\Log z}=\boxed{z^{cn}}.
+    \]
+\end{exercisesubparts}
+The common choice of \(\Log z\) is essential to these identities; arbitrary independent choices of the multivalued powers need not satisfy them.
+\end{solution}
+
+\begin{exercise}{36.9}
+Assuming that \(f'(z)\) exists, state the formula for the derivative of \(c^{f(z)}\).
+\end{exercise}
+
+\begin{solution}
+For a nonzero constant \(c\), fix a value \(L\) of \(\log c\). By Sec.~35,
+\[
+    c^{f(z)}=\exp(f(z)L).
+\]
+The chain rule gives
+\[
+    \boxed{\frac{\dd}{\dd z}c^{f(z)}
+    =c^{f(z)}f'(z)\,L
+    =c^{f(z)}f'(z)\log c},
+\]
+where the last expression uses the same fixed value of \(\log c\) on both sides. In particular, principal values correspond to \(L=\Log c\).
+\end{solution}
+
+\begin{exercise}{38.1}
+Give details in the derivation of expressions (2), Sec.~37, for the derivatives of \(\sin z\) and \(\cos z\).
+\end{exercise}
+
+\begin{solution}
+By their definitions in Sec.~37,
+\[
+    \sin z=\frac{e^{iz}-e^{-iz}}{2i},
+    \qquad
+    \cos z=\frac{e^{iz}+e^{-iz}}2.
+\]
+Applying the exponential differentiation rule and the chain rule,
+\[
+\begin{aligned}
+    \frac{\dd}{\dd z}\sin z
+    &=\frac{ie^{iz}+ie^{-iz}}{2i}
+      =\frac{e^{iz}+e^{-iz}}2
+      =\boxed{\cos z},\\
+    \frac{\dd}{\dd z}\cos z
+    &=\frac{ie^{iz}-ie^{-iz}}2
+      =-\frac{e^{iz}-e^{-iz}}{2i}
+      =\boxed{-\sin z}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{38.4}
+Verify the identity \(\sin^2z+\cos^2z=1\) using
+\begin{exercisesubparts}
+    \item identity (6) and relations (3) in Sec.~37;
+    \item the lemma in Sec.~28 and the fact that the entire function
+    \(f(z)=\sin^2z+\cos^2z-1\) has zero values along the real axis.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\begin{exercisesubparts}
+    \item Setting \(z_1=z\) and \(z_2=-z\) in the addition formula
+    \[
+        \cos(z_1+z_2)=\cos z_1\cos z_2-\sin z_1\sin z_2
+    \]
+    and using \(\cos(-z)=\cos z\), \(\sin(-z)=-\sin z\), we get
+    \[
+        1=\cos0=\cos^2z+\sin^2z.
+    \]
+    \item The function \(f(z)=\sin^2z+\cos^2z-1\) is entire. For every real \(x\), the real trigonometric identity gives \(f(x)=0\). Since the real axis contains a sequence of distinct zeros converging to, for example, \(0\), the lemma in Sec.~28 implies \(f\equiv0\) throughout \(\C\). Thus \(\sin^2z+\cos^2z=1\) for all \(z\in\C\).
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{38.15}
+Find all roots of \(\sin z=\cosh4\) by equating the real parts and then the imaginary parts of \(\sin z\) and \(\cosh4\).
+\end{exercise}
+
+\begin{solution}
+Write \(z=x+iy\), with \(x,y\in\R\). Formula (13), Sec.~37, gives
+\[
+    \sin z=\sin x\cosh y+i\cos x\sinh y.
+\]
+Consequently,
+\[
+    \sin x\cosh y=\cosh4,
+    \qquad \cos x\sinh y=0.
+\]
+If \(y=0\), the first equation becomes \(\sin x=\cosh4>1\), which is impossible. Hence \(\cos x=0\), so \(x=\pi/2+n\pi\). The first equation now reads \((-1)^n\cosh y=\cosh4>0\), forcing \(n\) to be even and \(\cosh y=\cosh4\). Since \(\cosh y\) is even and strictly increasing for \(y>0\), \(y=\pm4\). All roots are therefore
+\[
+    \boxed{z=\frac\pi2+2n\pi\pm4i\qquad(n\in\Z)}.
+\]
+\end{solution}
+
+\begin{exercise}{39.1}
+Verify that the derivatives of \(\sinh z\) and \(\cosh z\) are as stated in equations (2), Sec.~39.
+\end{exercise}
+
+\begin{solution}
+From the definitions
+\[
+    \sinh z=\frac{e^z-e^{-z}}2,
+    \qquad
+    \cosh z=\frac{e^z+e^{-z}}2,
+\]
+we obtain
+\[
+\begin{aligned}
+    \frac{\dd}{\dd z}\sinh z
+    &=\frac{e^z+e^{-z}}2=\boxed{\cosh z},\\
+    \frac{\dd}{\dd z}\cosh z
+    &=\frac{e^z-e^{-z}}2=\boxed{\sinh z}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{39.8}
+Give details showing that the zeros of \(\sinh z\) and \(\cosh z\) are as in the theorem in Sec.~39.
+\end{exercise}
+
+\begin{solution}
+The identities from Sec.~39 yield
+\[
+    \sinh z=-i\sin(iz),\qquad \cosh z=\cos(iz).
+\]
+By the zero sets of sine and cosine in Sec.~38,
+\[
+    \sinh z=0\iff iz=n\pi\iff z=-n\pi i
+    \qquad(n\in\Z),
+\]
+which is exactly the set \(z=n\pi i\), since \(n\) ranges over all integers. Similarly,
+\[
+    \cosh z=0\iff iz=\frac\pi2+n\pi
+    \iff z=-\left(\frac\pi2+n\pi\right)i.
+\]
+Reindexing with \(m=-n-1\) gives the equivalent form
+\[
+    \boxed{z=\left(\frac\pi2+m\pi\right)i\qquad(m\in\Z)}.
+\]
+Conversely, the displayed identities show directly that every listed point is a zero, and no others are possible.
+\end{solution}
+
+\begin{exercise}{39.16}
+By using one of the identities (9) and (10) in Sec.~39 and then proceeding as in Exercise 15, Sec.~38, find all roots of
+\begin{exercisesubparts}
+    \item \(\sinh z=i\);
+    \item \(\displaystyle\cosh z=\frac12\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Write \(z=x+iy\), where \(x,y\in\R\). From Sec.~39,
+\[
+\begin{aligned}
+    \sinh z&=\sinh x\cos y+i\cosh x\sin y,\\
+    \cosh z&=\cosh x\cos y+i\sinh x\sin y.
+\end{aligned}
+\]
+\begin{exercisesubparts}
+    \item The equation \(\sinh z=i\) becomes
+    \[
+        \sinh x\cos y=0,\qquad \cosh x\sin y=1.
+    \]
+    Since \(\cosh x\ge1\), if \(\cos y=0\), then \(\sin y=\pm1\); the second equation requires \(\sin y=1\) and \(\cosh x=1\), hence \(x=0\). If instead \(\sinh x=0\), we again have \(x=0\), and the second equation gives \(\sin y=1\). Thus every root is
+    \[
+        \boxed{z=\left(\frac\pi2+2n\pi\right)i\qquad(n\in\Z)}.
+    \]
+    \item The equation \(\cosh z=1/2\) gives
+    \[
+        \cosh x\cos y=\frac12,\qquad \sinh x\sin y=0.
+    \]
+    If \(\sin y=0\), then \(\cos y=\pm1\), and the first equation would require \(\cosh x=1/2\) or \(-1/2\), both impossible. Therefore \(\sinh x=0\), i.e. \(x=0\), and \(\cos y=1/2\). It follows that
+    \[
+        \boxed{z=\left(2n\pi\pm\frac\pi3\right)i\qquad(n\in\Z)}.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{40.2}
+Solve the equation \(\sin z=2\) for \(z\) by
+\begin{exercisesubparts}
+    \item equating real parts and then imaginary parts in that equation;
+    \item using expression (2), Sec.~40, for \(\sin^{-1}z\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\begin{exercisesubparts}
+    \item Let \(z=x+iy\). Equating components of
+    \(\sin z=\sin x\cosh y+i\cos x\sinh y=2\) gives
+    \[
+        \sin x\cosh y=2,
+        \qquad \cos x\sinh y=0.
+    \]
+    If \(y=0\), then \(\sin x=2\), which is impossible. Thus \(\cos x=0\), so \(x=\pi/2+n\pi\). Positivity of \(2\) forces \(n\) to be even, and \(\cosh y=2\). Solving \(e^y+e^{-y}=4\) yields
+    \[
+        y=\pm\ln(2+\sqrt3).
+    \]
+    \item Expression (2), Sec.~40, gives the multivalued inverse formula
+    \[
+        \sin^{-1}2=-i\log\bigl(2i+(1-4)^{1/2}\bigr)
+        =-i\log\bigl(i(2\pm\sqrt3)\bigr).
+    \]
+    Both \(2\pm\sqrt3\) are positive, so all logarithmic values are
+    \[
+        \ln(2\pm\sqrt3)+i\left(\frac\pi2+2n\pi\right),
+        \qquad n\in\Z.
+    \]
+    Multiplication by \(-i\), together with
+    \(\ln(2-\sqrt3)=-\ln(2+\sqrt3)\), gives the same solutions as in part (a).
+\end{exercisesubparts}
+Therefore
+\[
+    \boxed{z=\frac\pi2+2n\pi\pm i\ln(2+\sqrt3)
+    \qquad(n\in\Z)}.
+\]
+\end{solution}
+
+\begin{exercise}{40.3}
+Solve the equation \(\cos z=2\) for \(z\).
+\end{exercise}
+
+\begin{solution}
+For \(z=x+iy\), use the identity
+\[
+    \cos z=\cos x\cosh y-i\sin x\sinh y.
+\]
+The equation \(\cos z=2\) is therefore equivalent to
+\[
+    \cos x\cosh y=2,
+    \qquad \sin x\sinh y=0.
+\]
+The case \(y=0\) is impossible because then \(\cos x=2\). Hence \(\sin x=0\), so \(x=n\pi\). As \(\cosh y>0\), the real-part equation forces \(n\) to be even and \(\cosh y=2\). Thus
+\[
+    \boxed{z=2n\pi\pm i\ln(2+\sqrt3)
+    \qquad(n\in\Z)}.
+\]
+\end{solution}
+
+\begin{exercise}{42.2}
+Evaluate the following integrals:
+\begin{exercisesubparts}
+    \item \(\displaystyle\int_0^1(1+it)^2\,\dd t\);
+    \item \(\displaystyle\int_1^2\left(\frac1t-i\right)^2\,\dd t\);
+    \item \(\displaystyle\int_0^{\pi/6}e^{i2t}\,\dd t\);
+    \item \(\displaystyle\int_0^\infty e^{-zt}\,\dd t\), where \(\RePart z>0\).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+The integrals of complex-valued functions of a real variable are evaluated componentwise (Sec.~42).
+\begin{exercisesubparts}
+    \item Expanding the integrand,
+    \[
+        \int_0^1(1+it)^2\,\dd t
+        =\int_0^1(1-t^2+2it)\,\dd t
+        =\boxed{\frac23+i}.
+    \]
+    \item Since \((t^{-1}-i)^2=t^{-2}-1-2i/t\),
+    \[
+    \begin{aligned}
+        \int_1^2\left(\frac1t-i\right)^2\,\dd t
+        &=\left(-\frac1t-t-2i\ln t\right)\bigg|_1^2\\
+        &=\boxed{-\frac12-i\ln4}.
+    \end{aligned}
+    \]
+    \item Using \(\frac{\dd}{\dd t}e^{2it}=2ie^{2it}\),
+    \[
+    \begin{aligned}
+        \int_0^{\pi/6}e^{2it}\,\dd t
+        &=\frac{e^{i\pi/3}-1}{2i}
+         =\frac{\frac12+i\frac{\sqrt3}{2}-1}{2i}\\
+        &=\boxed{\frac{\sqrt3}{4}+\frac i4}.
+    \end{aligned}
+    \]
+    \item Write \(z=x+iy\) with \(x>0\). Then
+    \[
+        \left|e^{-zT}\right|=e^{-xT}\longrightarrow0
+        \qquad(T\to\infty).
+    \]
+    Since \(z\ne0\), the improper integral converges and
+    \[
+        \int_0^\infty e^{-zt}\,\dd t
+        =\lim_{T\to\infty}\frac{1-e^{-zT}}z
+        =\boxed{\frac1z}.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{42.3}
+Show that if \(m\) and \(n\) are integers, then
+\[
+    \int_0^{2\pi}e^{im\theta}e^{-in\theta}\,\dd\theta
+    =\begin{cases}
+        0&\text{when }m\ne n,\\
+        2\pi&\text{when }m=n.
+      \end{cases}
+\]
+\end{exercise}
+
+\begin{solution}
+Put \(k=m-n\in\Z\). If \(k=0\), the integrand is \(1\), so the integral is \(2\pi\). If \(k\ne0\), then
+\[
+    \int_0^{2\pi}e^{ik\theta}\,\dd\theta
+    =\frac{e^{2\pi ik}-1}{ik}=0,
+\]
+because \(e^{2\pi ik}=1\) for every integer \(k\). This proves both cases.
+\end{solution}
+
+\begin{exercise}{43.4}
+Verify expression (14), Sec.~43, for the derivative of \(Z(\tau)=z(\phi(\tau))\).
+\begin{suggestion}
+Write \(Z(\tau)=x(\phi(\tau))+iy(\phi(\tau))\) and apply the chain rule for real-valued functions of a real variable.
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Write \(z(t)=x(t)+iy(t)\) and \(t=\phi(\tau)\). By the chain rule in real calculus,
+\[
+\begin{aligned}
+    Z'(\tau)
+    &=\frac{\dd}{\dd\tau}x(\phi(\tau))
+      +i\frac{\dd}{\dd\tau}y(\phi(\tau))\\
+    &=x'(\phi(\tau))\phi'(\tau)
+      +iy'(\phi(\tau))\phi'(\tau)\\
+    &=\bigl(x'(\phi(\tau))+iy'(\phi(\tau))\bigr)\phi'(\tau).
+\end{aligned}
+\]
+Therefore
+\[
+    \boxed{Z'(\tau)=z'(\phi(\tau))\phi'(\tau)},
+\]
+which is expression (14) in Sec.~43.
+\end{solution}
+
+\begin{exercise}{43.5}
+Suppose that a function \(f(z)\) is analytic at a point \(z_0=z(t_0)\) lying on a smooth arc \(z=z(t)\) \((a\le t\le b)\). Show that if \(w(t)=f(z(t))\), then
+\[
+    w'(t)=f'(z(t))z'(t)
+\]
+when \(t=t_0\).
+\begin{suggestion}
+Write \(f(z)=u(x,y)+iv(x,y)\) and \(z(t)=x(t)+iy(t)\), so that
+\[
+    w(t)=u(x(t),y(t))+iv(x(t),y(t)).
+\]
+Then apply the chain rule in calculus for functions of two real variables to write
+\[
+    w'=(u_xx'+u_yy')+i(v_xx'+v_yy'),
+\]
+and use the Cauchy--Riemann equations.
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+At \(t=t_0\), the real-variable chain rule gives
+\[
+\begin{aligned}
+    w'(t)
+    &=(u_xx'+u_yy')+i(v_xx'+v_yy')\\
+    &=(u_x+iv_x)x'+(u_y+iv_y)y',
+\end{aligned}
+\]
+where the partial derivatives are evaluated at \((x(t_0),y(t_0))\) and \(x',y'\) at \(t_0\). Since \(f\) is analytic at \(z_0\), the Cauchy--Riemann equations imply
+\[
+    u_y=-v_x,\qquad v_y=u_x,
+\]
+and therefore
+\[
+    u_y+iv_y=-v_x+iu_x=i(u_x+iv_x).
+\]
+Moreover, \(f'(z_0)=u_x+iv_x\). It follows that
+\[
+\begin{aligned}
+    w'(t_0)
+    &=f'(z_0)(x'(t_0)+iy'(t_0))\\
+    &=\boxed{f'(z(t_0))z'(t_0)}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{46.3}
+Let \(f(z)=\pi\exp(\pi\overline z)\), and let \(C\) be the boundary of the square with vertices \(0,1,1+i,i\), oriented counterclockwise. Evaluate \(\int_C f(z)\,\dd z\).
+\end{exercise}
+
+\begin{solution}
+Parametrize the four directed sides, in order, by
+\[
+\begin{array}{ll}
+    C_1:\ z=t, & 0\le t\le1,\\
+    C_2:\ z=1+it, & 0\le t\le1,\\
+    C_3:\ z=1-t+i, & 0\le t\le1,\\
+    C_4:\ z=i(1-t), & 0\le t\le1.
+\end{array}
+\]
+Using the conjugate of each parametrization, the contour-integral definition in Sec.~44 gives
+\[
+\begin{aligned}
+    \int_{C_1}f(z)\,\dd z
+        &=\pi\int_0^1e^{\pi t}\,\dd t=e^\pi-1,\\
+    \int_{C_2}f(z)\,\dd z
+        &=i\pi e^\pi\int_0^1e^{-i\pi t}\,\dd t=2e^\pi,\\
+    \int_{C_3}f(z)\,\dd z
+        &=\pi\int_0^1e^{\pi(1-t)}\,\dd t=e^\pi-1,\\
+    \int_{C_4}f(z)\,\dd z
+        &=-i\pi\int_0^1e^{-i\pi(1-t)}\,\dd t=-2.
+\end{aligned}
+\]
+Adding the four contributions,
+\[
+    \boxed{\int_C\pi e^{\pi\overline z}\,\dd z=4(e^\pi-1)}.
+\]
+\end{solution}
+
+\begin{exercise}{46.9}
+Let \(C\) denote the positively oriented unit circle \(|z|=1\) about the origin.
+\begin{exercisesubparts}
+    \item Show that if \(f(z)\) is the principal branch
+    \[
+        z^{-3/4}=\exp\left(-\frac34\Log z\right)
+        \qquad(|z|>0,\ -\pi<\Arg z<\pi)
+    \]
+    of \(z^{-3/4}\), then
+    \[
+        \int_Cf(z)\,\dd z=4\sqrt2\,i.
+    \]
+    \item Show that if \(g(z)\) is the branch
+    \[
+        z^{-3/4}=\exp\left(-\frac34\log z\right)
+        \qquad(|z|>0,\ 0<\arg z<2\pi)
+    \]
+    of the same power function, then
+    \[
+        \int_Cg(z)\,\dd z=-4+4i.
+    \]
+\end{exercisesubparts}
+This exercise demonstrates how the value of an integral of a power function depends in general on the branch that is used.
+\end{exercise}
+
+\begin{solution}
+We evaluate the contour integrals using arguments in the intervals defining the respective branches. At a point where the circle meets a branch cut, the corresponding integral is interpreted by the one-sided limits of the parametrized integrals; isolated endpoint values do not affect those limits.
+\begin{exercisesubparts}
+    \item Take \(z=e^{i\theta}\) with \(-\pi<\theta<\pi\). Then \(\Log z=i\theta\), \(\dd z=ie^{i\theta}\,\dd\theta\), and
+    \[
+    \begin{aligned}
+        \int_Cf(z)\,\dd z
+        &=\int_{-\pi}^{\pi}e^{-3i\theta/4}ie^{i\theta}\,\dd\theta\\
+        &=\int_{-\pi}^{\pi}ie^{i\theta/4}\,\dd\theta\\
+        &=4(e^{i\pi/4}-e^{-i\pi/4})
+        =\boxed{4\sqrt2\,i}.
+    \end{aligned}
+    \]
+    \item Let \(h(z)=\ln|z|+i\theta\), where \(0<\theta<2\pi\), denote the single-valued logarithmic branch written as \(\log z\) in the exercise. Parametrize \(C\) by \(z=e^{i\theta}\), \(0<\theta<2\pi\). Then \(h(z)=i\theta\), so
+    \[
+    \begin{aligned}
+        \int_Cg(z)\,\dd z
+        &=\int_0^{2\pi}e^{-3i\theta/4}ie^{i\theta}\,\dd\theta\\
+        &=4(e^{i\pi/2}-1)
+        =\boxed{-4+4i}.
+    \end{aligned}
+    \]
+\end{exercisesubparts}
+The difference results from the distinct argument intervals used for the two branches.
+\end{solution}
+
+\begin{exercise}{46.10}
+With the aid of the result in Exercise 3, Sec.~42, evaluate
+\[
+    \int_C z^m\overline z^{\,n}\,\dd z,
+\]
+where \(m,n\in\Z\) and \(C\) is the unit circle \(|z|=1\), oriented counterclockwise.
+\end{exercise}
+
+\begin{solution}
+Use the parametrization \(z=e^{i\theta}\), \(0\le\theta\le2\pi\). On \(C\),
+\[
+    \overline z=e^{-i\theta},\qquad
+    \dd z=ie^{i\theta}\,\dd\theta.
+\]
+Thus
+\[
+\begin{aligned}
+    \int_Cz^m\overline z^{\,n}\,\dd z
+    &=i\int_0^{2\pi}e^{im\theta}e^{-in\theta}e^{i\theta}\,\dd\theta\\
+    &=i\int_0^{2\pi}e^{i(m+1)\theta}e^{-in\theta}\,\dd\theta.
+\end{aligned}
+\]
+By Exercise 42.3, the last integral is \(2\pi\) when \(m+1=n\) and \(0\) otherwise. Hence
+\[
+    \boxed{\int_Cz^m\overline z^{\,n}\,\dd z
+    =\begin{cases}
+        2\pi i&\text{if }n=m+1,\\
+        0&\text{if }n\ne m+1.
+      \end{cases}}
+\]
+\end{solution}
+
+\end{document}
