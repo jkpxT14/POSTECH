@@ -65,10 +65,11 @@ Reduce each of these quantities to a real number:
 \end{exercisesubparts}
 \end{solution}
 
+\Needspace{12\baselineskip}
 \begin{exercise}{5.4}
 Verify that
 \[
-    \sqrt{2}\,|z|\ge |\Re z|+|\Im z|.
+    \sqrt{2}\,|z|\ge |\RePart z|+|\ImPart z|.
 \]
 \begin{suggestion}
 Reduce this inequality to \((|x|-|y|)^2\ge0\).
@@ -86,7 +87,7 @@ which reduces to
 \]
 Therefore
 \[
-    \boxed{\sqrt{2}\,|z|\ge |\Re z|+|\Im z|}.
+    \boxed{\sqrt{2}\,|z|\ge |\RePart z|+|\ImPart z|}.
 \]
 \end{solution}
 
@@ -126,16 +127,16 @@ Thus the stated inequality holds for all \(|z|>R\).
 \begin{exercise}{6.7}
 Show that
 \[
-    \left|\Re\bigl(2+\overline z+z^3\bigr)\right|\le4
+    \left|\RePart\bigl(2+\overline z+z^3\bigr)\right|\le4
     \qquad\text{when }|z|\le1.
 \]
 \end{exercise}
 
 \begin{solution}
-For every complex number \(w\), \(|\Re w|\le |w|\). Hence, using the triangle inequality and \(|\overline z|=|z|\),
+For every complex number \(w\), \(|\RePart w|\le |w|\). Hence, using the triangle inequality and \(|\overline z|=|z|\),
 \[
 \begin{aligned}
-    \left|\Re\bigl(2+\overline z+z^3\bigr)\right|
+    \left|\RePart\bigl(2+\overline z+z^3\bigr)\right|
     &\le \left|2+\overline z+z^3\right|\\
     &\le 2+|\overline z|+|z|^3\\
     &=2+|z|+|z|^3\\
@@ -148,7 +149,7 @@ since \(|z|\le1\).
 \begin{exercise}{6.13}
 Show that the equation \(|z-z_0|=R\) of a circle, centered at \(z_0\) with radius \(R\), can be written
 \[
-    |z|^2-2\Re\bigl(z\overline{z_0}\bigr)+|z_0|^2=R^2.
+    |z|^2-2\RePart\bigl(z\overline{z_0}\bigr)+|z_0|^2=R^2.
 \]
 \end{exercise}
 
@@ -165,11 +166,11 @@ Squaring \(|z-z_0|=R\) gives
 The middle two terms are conjugates, so
 \[
     z\overline{z_0}+\overline z z_0
-    =2\Re\bigl(z\overline{z_0}\bigr).
+    =2\RePart\bigl(z\overline{z_0}\bigr).
 \]
 Therefore
 \[
-    \boxed{|z|^2-2\Re\bigl(z\overline{z_0}\bigr)+|z_0|^2=R^2}.
+    \boxed{|z|^2-2\RePart\bigl(z\overline{z_0}\bigr)+|z_0|^2=R^2}.
 \]
 \end{solution}
 
@@ -239,10 +240,6 @@ Find the four zeros of the polynomial \(z^4+4\), one of them being
 Then use those zeros to factor \(z^2+4\) into quadratic factors with real coefficients.
 \end{exercise}
 
-\begin{remark}
-The second polynomial in the printed statement is a typographical error. The four zeros requested are the zeros of \(z^4+4\), and the printed answer factors \(z^4+4\). Accordingly, the intended factorization is that of \(z^4+4\).
-\end{remark}
-
 \begin{solution}
 The equation \(z^4+4=0\) is
 \[
@@ -261,7 +258,7 @@ Pairing conjugate roots gives real quadratic factors:
 \[
 \begin{aligned}
     z^4+4
-    &=[z-(1+i)][z-(1-i)][z-(-1+i)][z-(-1-i)]\\
+    &=(z-(1+i))(z-(1-i))(z-(-1+i))(z-(-1-i))\\
     &=(z^2-2z+2)(z^2+2z+2).
 \end{aligned}
 \]
@@ -270,6 +267,10 @@ Hence
     \boxed{z^4+4=(z^2+2z+2)(z^2-2z+2)}.
 \]
 \end{solution}
+
+\begin{remark}
+The second polynomial in the printed statement is a typographical error. The four zeros requested are the zeros of \(z^4+4\), and the printed answer factors \(z^4+4\). Accordingly, the intended factorization is that of \(z^4+4\).
+\end{remark}
 
 \begin{exercise}{12.7}
 Determine the accumulation points of each of the following sets:
@@ -285,7 +286,7 @@ Determine the accumulation points of each of the following sets:
 \begin{exercisesubparts}
     \item The set consists only of the four points \(1,i,-1,-i\). A finite set has no accumulation points. Thus there are none.
 
-    \item Since \(|z_n|=1/n\to0\), every neighborhood of \(0\) contains infinitely many points of the set. Any point different from \(0\) has a sufficiently small neighborhood containing at most finitely many of them. Hence the only accumulation point is
+    \item Since \(|z_n|=1/n\to0\), every neighborhood of \(0\) contains points of the set other than \(0\). Conversely, fix \(a\ne0\) and choose \(N\) so large that \(|z_n|<|a|/2\) for all \(n>N\). A sufficiently small deleted neighborhood of \(a\) excludes these terms and also the finitely many distinct points among \(z_1,\ldots,z_N\). Hence the only accumulation point is
     \[
         \boxed{0}.
     \]
@@ -359,6 +360,7 @@ Write \(z=x+iy\).
 \end{exercisesubparts}
 \end{solution}
 
+\Needspace{17\baselineskip}
 \begin{exercise}{14.3}
 Suppose that
 \[

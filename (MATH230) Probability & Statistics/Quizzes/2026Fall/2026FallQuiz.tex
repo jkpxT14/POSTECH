@@ -319,4 +319,135 @@ Let $X$ and $Y$ be random variables with joint density function
 \end{problemsubparts}
 \end{solution}
 
+\Needspace{24\baselineskip}
+\begin{problem}{4.1}
+From a sack of fruit containing 2 oranges, 1 apple, and 2 bananas, a random sample of 3 pieces of fruit is selected. If $X$ is the number of oranges and $Y$ is the number of apples in the sample, find the covariance of the random variables $X$ and $Y$.
+\end{problem}
+
+\begin{solution}
+There are $\binom{5}{3}=10$ equally likely samples. To obtain $X=x$ oranges and $Y=y$ apples, the sample must contain $3-x-y$ bananas. Hence the joint probability distribution is
+\[
+    p_{X,Y}(x,y)
+    =\frac{\binom{2}{x}\binom{1}{y}\binom{2}{3-x-y}}{\binom{5}{3}}
+\]
+for the admissible values of $x$ and $y$, giving
+\[
+\begin{array}{c@{\qquad}ccc}
+\toprule
+p_{X,Y}(x,y)&\multicolumn{3}{c}{x}\\
+\cmidrule(lr){2-4}
+y&0&1&2\\
+\midrule
+0&0&\frac{2}{10}&\frac{2}{10}\\
+1&\frac{1}{10}&\frac{4}{10}&\frac{1}{10}\\
+\bottomrule
+\end{array}
+\]
+The marginal probabilities give
+\[
+\begin{aligned}
+    \Exp[X]
+    &=(1)\left(\frac{2+4}{10}\right)
+      +(2)\left(\frac{2+1}{10}\right)
+      =\frac65,\\
+    \Exp[Y]
+    &=(1)\left(\frac{1+4+1}{10}\right)
+      =\frac35.
+\end{aligned}
+\]
+Also, only the pairs $(1,1)$ and $(2,1)$ contribute to $\Exp[XY]$:
+\[
+\begin{aligned}
+    \Exp[XY]
+    &=\sum_x\sum_y xy\,p_{X,Y}(x,y)\\
+    &=(1)(1)\frac4{10}+(2)(1)\frac1{10}
+      =\frac35.
+\end{aligned}
+\]
+Therefore, by the covariance formula,
+\[
+    \boxed{
+    \Cov(X,Y)
+    =\Exp[XY]-\Exp[X]\Exp[Y]
+    =\frac35-\left(\frac65\right)\left(\frac35\right)
+    =-\frac3{25}
+    }.
+\]
+\end{solution}
+
+\Needspace{23\baselineskip}
+\begin{problem}{4.2}
+Let $X$ and $Y$ be random variables with joint density function
+\[
+    f_{X,Y}(x,y)=
+    \begin{cases}
+        \dfrac12, & 0<x\leq y<2,\\
+        0, & \text{elsewhere}.
+    \end{cases}
+\]
+\begin{problemsubparts}
+    \item Find $\Var(X)$ and $\Var(Y)$.
+    \item Find $\Cov(X,Y)$.
+    \item Find $\rho_{X,Y}$, the correlation coefficient between $X$ and $Y$.
+    \item Find $\Var(X+Y)$.
+\end{problemsubparts}
+
+\textit{Hint:} You may use $\Exp[X]=\frac23$, $\Exp[Y]=\frac43$, $\Exp[X^2]=\frac23$, and $\Exp[Y^2]=2$.
+\end{problem}
+
+\begin{solution}
+The support is the triangular region $0<x\leq y<2$.
+\begin{problemsubparts}
+    \item Using the given moments and the variance formula,
+    \[
+    \begin{aligned}
+        \Var(X)
+        &=\Exp[X^2]-\bigl(\Exp[X]\bigr)^2
+          =\frac23-\left(\frac23\right)^2
+          =\boxed{\frac29},\\
+        \Var(Y)
+        &=\Exp[Y^2]-\bigl(\Exp[Y]\bigr)^2
+          =2-\left(\frac43\right)^2
+          =\boxed{\frac29}.
+    \end{aligned}
+    \]
+
+    \item We first calculate the mixed moment using the joint density:
+    \[
+    \begin{aligned}
+        \Exp[XY]
+        &=\int_0^2\int_0^y xy\,f_{X,Y}(x,y)\,\dd x\,\dd y\\
+        &=\int_0^2\int_0^y\frac{xy}{2}\,\dd x\,\dd y\\
+        &=\frac14\int_0^2y^3\,\dd y
+          =1.
+    \end{aligned}
+    \]
+    Therefore,
+    \[
+        \boxed{\Cov(X,Y)
+        =\Exp[XY]-\Exp[X]\Exp[Y]
+        =1-\left(\frac23\right)\left(\frac43\right)
+        =\frac19}.
+    \]
+
+    \item Since both variances are positive, the correlation coefficient is
+    \[
+        \boxed{\rho_{X,Y}
+        =\frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}}
+        =\frac{1/9}{\sqrt{(2/9)(2/9)}}
+        =\frac12}.
+    \]
+
+    \item Using the variance of a sum,
+    \[
+    \begin{aligned}
+        \Var(X+Y)
+        &=\Var(X)+\Var(Y)+2\Cov(X,Y)\\
+        &=\frac29+\frac29+2\left(\frac19\right)
+          =\boxed{\frac23}.
+    \end{aligned}
+    \]
+\end{problemsubparts}
+\end{solution}
+
 \end{document}

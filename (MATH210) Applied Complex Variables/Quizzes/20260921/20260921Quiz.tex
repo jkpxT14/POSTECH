@@ -25,7 +25,7 @@ Prove statement (8) in Theorem 2 of Sec.~16 using
 \begin{solution}
 Statement (8) is the sum law
 \[
-    \lim_{z\to z_0}[f(z)+F(z)]=w_0+W_0,
+    \lim_{z\to z_0}(f(z)+F(z))=w_0+W_0,
 \]
 provided that
 \[
@@ -71,7 +71,7 @@ provided that
     Set \(\delta=\min\{\delta_1,\delta_2\}\). Then, whenever \(0<|z-z_0|<\delta\),
     \[
     \begin{aligned}
-        |[f(z)+F(z)]-(w_0+W_0)|
+        |(f(z)+F(z))-(w_0+W_0)|
         &\le |f(z)-w_0|+|F(z)-W_0|\\
         &<\frac\varepsilon2+\frac\varepsilon2
         =\varepsilon.
@@ -173,11 +173,11 @@ Using results in Sec.~20, show that
 
 \begin{solution}
 \begin{exercisesubparts}
-    \item Each monomial \(z^k\) is differentiable everywhere and
+    \item For every positive integer \(k\), the monomial \(z^k\) is differentiable everywhere, with
     \[
         \frac{\dd}{\dd z}z^k=kz^{k-1}.
     \]
-    Using the constant-multiple and sum rules from Sec.~20,
+    The constant term \(a_0\) has derivative zero. Thus the constant-multiple and sum rules from Sec.~20 give
     \[
         \boxed{P'(z)=a_1+2a_2z+\cdots+na_nz^{n-1}}.
     \]
@@ -206,7 +206,7 @@ Suppose \(f'(z)\) and \(g'(z)\) exist. From the definition of derivative,
 \begin{aligned}
     (f+g)'(z)
     &=\lim_{\Delta z\to0}
-      \frac{[f(z+\Delta z)+g(z+\Delta z)]-[f(z)+g(z)]}{\Delta z}\\
+      \frac{(f(z+\Delta z)+g(z+\Delta z))-(f(z)+g(z))}{\Delta z}\\
     &=\lim_{\Delta z\to0}
       \left(
       \frac{f(z+\Delta z)-f(z)}{\Delta z}
@@ -251,31 +251,24 @@ We prove
     \]
     Hence the formula follows for all positive integers \(n\) by induction.
 
-    \item From the definition of derivative,
-    \[
-        (z^n)'=\lim_{\Delta z\to0}
-        \frac{(z+\Delta z)^n-z^n}{\Delta z}.
-    \]
-    By the binomial formula,
+    \item When \(n=1\), the definition immediately gives \((z)'=1\). Now let \(n\ge2\). By the binomial formula,
     \[
         (z+\Delta z)^n-z^n
-        =nz^{n-1}\Delta z
-        +\binom n2 z^{n-2}(\Delta z)^2
-        +\cdots+(\Delta z)^n.
+        =\sum_{k=1}^{n}\binom nk z^{n-k}(\Delta z)^k.
     \]
-    Therefore
+    Thus, for \(\Delta z\ne0\),
     \[
     \begin{aligned}
-        (z^n)'
-        &=\lim_{\Delta z\to0}
-        \left[
-        nz^{n-1}
-        +\binom n2 z^{n-2}\Delta z
-        +\cdots+(\Delta z)^{n-1}
-        \right]\\
-        &=\boxed{nz^{n-1}}.
+        \frac{(z+\Delta z)^n-z^n}{\Delta z}
+        &=nz^{n-1}
+          +\sum_{k=2}^{n}\binom nk z^{n-k}(\Delta z)^{k-1}.
     \end{aligned}
     \]
+    Every term in the finite sum tends to zero as \(\Delta z\to0\). Therefore the definition of derivative yields
+    \[
+        \boxed{(z^n)'=nz^{n-1}}
+    \]
+    for all positive integers \(n\).
 \end{exercisesubparts}
 \end{solution}
 
@@ -431,9 +424,15 @@ In each case the first-order partial derivatives involved below are continuous e
     \[
         f'(z)=-\sin x\cosh y-i\cos x\sinh y.
     \]
-    Its real and imaginary components again satisfy the Cauchy--Riemann equations with continuous first partial derivatives, and therefore
+    For \(f'(z)=U+iV\), where \(U=-\sin x\cosh y\) and \(V=-\cos x\sinh y\),
     \[
-        \boxed{f''(z)=-\cos x\cosh y+i\sin x\sinh y=-f(z)}.
+        U_x=-\cos x\cosh y=V_y,
+        \qquad
+        U_y=-\sin x\sinh y=-V_x.
+    \]
+    The first partial derivatives are continuous, so the theorem applies again and gives
+    \[
+        \boxed{f''(z)=U_x+iV_x=-\cos x\cosh y+i\sin x\sinh y=-f(z)}.
     \]
 \end{exercisesubparts}
 \end{solution}
@@ -505,7 +504,7 @@ All first-order partial derivatives below are continuous in the stated domains.
     \begin{aligned}
         u_r+i v_r
         &=\frac{e^{-\theta}}r
-          \left[-\sin(\ln r)+i\cos(\ln r)\right]\\
+          \left(-\sin(\ln r)+i\cos(\ln r)\right)\\
         &=\frac{i}{r}f(z).
     \end{aligned}
     \]

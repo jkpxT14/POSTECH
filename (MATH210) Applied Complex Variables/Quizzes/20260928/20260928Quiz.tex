@@ -56,6 +56,7 @@ Each function is rational, so by the differentiation rules it is analytic wherev
 In each case the function is analytic at every other point.
 \end{solution}
 
+\Needspace{12\baselineskip}
 \begin{exercise}{26.6}
 Use results in Sec.~24 to verify that the function
 \[
@@ -71,7 +72,7 @@ is analytic in the quadrant \(x>0\), \(y>0\), with derivative
     G'(z)=\frac{2z}{z^2+1}.
 \]
 \begin{suggestion}
-Observe that \(\Im(z^2+1)>0\) when \(x>0\), \(y>0\).
+Observe that \(\ImPart(z^2+1)>0\) when \(x>0\), \(y>0\).
 \end{suggestion}
 \end{exercise}
 
@@ -100,7 +101,7 @@ Now let \(z=x+iy\) with \(x>0\) and \(y>0\). Since
 \]
 we have
 \[
-    \Im(z^2+1)=2xy>0.
+    \ImPart(z^2+1)=2xy>0.
 \]
 Thus \(z^2+1\) lies in the domain of the chosen branch of \(g\). The inner function \(z^2+1\) is entire, so the composition is analytic in the quadrant. By the chain rule,
 \[
@@ -238,11 +239,11 @@ Write \(|\exp(2z+i)|\) and \(|\exp(iz^2)|\) in terms of \(x\) and \(y\). Then sh
 \begin{solution}
 For any complex number \(w\),
 \[
-    |e^w|=e^{\Re w}.
+    |e^w|=e^{\RePart w}.
 \]
 Since \(z=x+iy\),
 \[
-    \Re(2z+i)=2x,
+    \RePart(2z+i)=2x,
 \]
 so
 \[
@@ -342,23 +343,23 @@ is used. (Compare this with the example in Sec.~33.)
 \end{exercise}
 
 \begin{solution}
-For \(i\), the arguments are \(\pi/2+2k\pi\). The unique one in the branch interval
+Let \(g\) denote the single-valued logarithmic branch specified in the exercise, written as \(\log\) in the textbook. For \(i\), the arguments are \(\pi/2+2k\pi\). The unique one in the branch interval
 \[
     \frac{3\pi}{4}<\theta<\frac{11\pi}{4}
 \]
 is \(5\pi/2\). Hence
 \[
-    \log i=\frac{5\pi}{2}i,
+    g(i)=\frac{5\pi}{2}i,
     \qquad
-    2\log i=5\pi i.
+    2g(i)=5\pi i.
 \]
 On the other hand, \(i^2=-1\), and the unique argument of \(-1\) in the same interval is \(\pi\). Thus
 \[
-    \log(i^2)=\log(-1)=\pi i.
+    g(i^2)=g(-1)=\pi i.
 \]
 Therefore
 \[
-    \boxed{\log(i^2)=\pi i\ne5\pi i=2\log i}.
+    \boxed{g(i^2)=\pi i\ne5\pi i=2g(i)}.
 \]
 \end{solution}
 
@@ -393,11 +394,13 @@ Hence
 \]
 All first- and second-order partial derivatives are continuous away from the origin, so \(H\) is harmonic there.
 
-For a second argument, fix any \(z_0\ne0\). A sufficiently small neighborhood of \(z_0\) avoids the origin and admits an analytic branch of the logarithm. In that neighborhood,
+For a second argument, fix any \(z_0\ne0\). A sufficiently small disk about \(z_0\) avoids the origin and admits an analytic branch \(g\) of the logarithm. For a continuous choice \(\theta(z)\) of argument on that disk,
 \[
-    \Re(\log z)=\ln|z|=\frac12\ln(x^2+y^2).
+    g(z)=\ln|z|+i\theta(z),
+    \qquad
+    \RePart g(z)=\ln|z|=\frac12\ln(x^2+y^2).
 \]
-The real part of an analytic function is harmonic, so \(\ln(x^2+y^2)=2\Re(\log z)\) is harmonic near \(z_0\). Since \(z_0\) was arbitrary, the function is harmonic in every domain not containing the origin.
+By the theorem in Sec.~27, the real part of an analytic function is harmonic. Consequently \(H=2\RePart g\) is harmonic near \(z_0\). Since \(z_0\) was arbitrary, \(H\) is harmonic throughout every domain that excludes the origin; a global logarithm branch on that domain is not required.
 \end{solution}
 
 \begin{exercise}{34.1}
@@ -456,16 +459,17 @@ Verify expression (4), Sec.~34, for \(\log(z_1/z_2)\) by
 \begin{solution}
 The identities here are identities of multiple-valued logarithms, so equality means equality of the corresponding sets of values, with compatible values selected.
 \begin{exercisesubparts}
-    \item Using \(|z_1/z_2|=|z_1|/|z_2|\) and the argument identity from Sec.~9,
+    \item Choose arguments \(\theta_1\in\arg z_1\) and \(\theta_2\in\arg z_2\). The argument identity in Sec.~9 states that all arguments of \(z_1/z_2\) have the form \(\theta_1-\theta_2+2k\pi\), where \(k\in\Z\). Therefore all logarithmic values of the quotient are
     \[
-    \begin{aligned}
-        \log\left(\frac{z_1}{z_2}\right)
-        &=\ln\left|\frac{z_1}{z_2}\right|
-          +i\arg\left(\frac{z_1}{z_2}\right)\\
-        &=\bigl(\ln|z_1|+i\arg z_1\bigr)
-          -\bigl(\ln|z_2|+i\arg z_2\bigr)\\
-        &=\boxed{\log z_1-\log z_2}.
-    \end{aligned}
+        \ln\frac{|z_1|}{|z_2|}
+        +i(\theta_1-\theta_2+2k\pi),
+        \qquad k\in\Z.
+    \]
+    These are precisely the differences of the values
+    \(\ln|z_1|+i(\theta_1+2m\pi)\) and
+    \(\ln|z_2|+i(\theta_2+2n\pi)\), because \(m-n\) ranges over \(\Z\). Hence, as sets of values,
+    \[
+        \boxed{\log\left(\frac{z_1}{z_2}\right)=\log z_1-\log z_2}.
     \]
 
     \item Write \(z=re^{i\theta}\). The values of \(\log(1/z)\) are
@@ -496,6 +500,7 @@ The identities here are identities of multiple-valued logarithms, so equality me
 \end{exercisesubparts}
 \end{solution}
 
+\Needspace{23\baselineskip}
 \begin{exercise}{34.5}
 Let \(z\) denote any nonzero complex number, written
 \[

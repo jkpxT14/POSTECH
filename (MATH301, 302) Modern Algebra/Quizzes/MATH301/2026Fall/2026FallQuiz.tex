@@ -42,6 +42,7 @@ where the nontrivial cycles $c_i$ have lengths $m_i$. Then
 Hence each $m_i$ divides $6$. Since there is no $6$-cycle, every $m_i$ is $2$ or $3$. If there were no $2$-cycle, then $|\sigma|$ would divide $3$; if there were no $3$-cycle, then $|\sigma|$ would divide $2$. Both contradict $|\sigma|=6$. Therefore the cycle decomposition contains both a $2$-cycle and a $3$-cycle.
 \end{solution}
 
+\Needspace{24\baselineskip}
 \begin{problem}{2.1}
 Let $G$ be a group and let $\mathcal S$ be the set of all subgroups of $G$. Show that
 \[
@@ -51,7 +52,7 @@ for $g\in G$ and $H\in\mathcal S$, defines a left group action of $G$ on $\mathc
 \end{problem}
 
 \begin{solution}
-First, the action is well defined. For $g\in G$ and $H\le G$, we have
+First, the proposed map is well defined. For $g\in G$ and $H\le G$, we have
 \[
     1_G=g1_Gg^{-1}\in gHg^{-1}.
 \]
@@ -125,6 +126,73 @@ so $\varphi_a$ is a homomorphism. These six homomorphisms are distinct because t
 \[
     \boxed{6}.
 \]
+\end{solution}
+
+
+\Needspace{18\baselineskip}
+\begin{problem}{3.1}
+Let $G$ act on a nonempty set $A$. For $a\in A$, define the orbit of $a$ by
+\[
+    G\cdot a=\{g\cdot a\mid g\in G\}.
+\]
+Prove that if $b\in G\cdot a$, then $G\cdot b=G\cdot a$. Deduce that the distinct orbits form a partition of $A$.
+\end{problem}
+
+\begin{solution}
+Suppose that $b\in G\cdot a$, so $b=g\cdot a$ for some $g\in G$. Then
+\[
+\begin{aligned}
+    G\cdot b
+    &=\{h\cdot(g\cdot a)\mid h\in G\}\\
+    &=\{(hg)\cdot a\mid h\in G\}\\
+    &=G\cdot a,
+\end{aligned}
+\]
+since $\{hg\mid h\in G\}=G$.
+
+Every $a\in A$ lies in $G\cdot a$, so the orbits cover $A$. If two orbits $G\cdot a$ and $G\cdot b$ intersect, choose $c\in(G\cdot a)\cap(G\cdot b)$. By the first part,
+\[
+    G\cdot a=G\cdot c=G\cdot b.
+\]
+Hence any two distinct orbits are disjoint, and the distinct orbits form a partition of $A$.
+\end{solution}
+
+\begin{problem}{3.2}
+Let $G$ be a group and let $\varphi\in\Aut(G)$. Define
+\[
+    \operatorname{Fix}(\varphi)=\{g\in G\mid\varphi(g)=g\}.
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=2.5em,itemsep=0.25em,topsep=0.4em]
+    \item Prove that $\operatorname{Fix}(\varphi)$ is a subgroup of $G$.
+    \item Let $G=\langle x\rangle$ be cyclic of order $12$, and let $\varphi$ be the automorphism determined by $\varphi(x)=x^5$. Determine $\operatorname{Fix}(\varphi)$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*),leftmargin=2.5em,itemsep=0.45em,topsep=0.2em]
+    \item Since $\varphi(1_G)=1_G$, the set $\operatorname{Fix}(\varphi)$ is nonempty. If $a,b\in\operatorname{Fix}(\varphi)$, then
+    \[
+        \varphi(ab^{-1})=\varphi(a)\varphi(b)^{-1}=ab^{-1}.
+    \]
+    Thus $ab^{-1}\in\operatorname{Fix}(\varphi)$, so $\operatorname{Fix}(\varphi)\le G$ by the Subgroup Criterion.
+
+    \item Every element of $G$ has the form $x^k$, and
+    \[
+    \begin{aligned}
+        x^k\in\operatorname{Fix}(\varphi)
+        &\iff x^{5k}=x^k\\
+        &\iff x^{4k}=1_G\\
+        &\iff 12\mid4k\\
+        &\iff 3\mid k.
+    \end{aligned}
+    \]
+    Therefore
+    \[
+        \operatorname{Fix}(\varphi)
+        =\langle x^3\rangle
+        =\{1_G,x^3,x^6,x^9\}.
+    \]
+\end{enumerate}
 \end{solution}
 
 \end{document}
