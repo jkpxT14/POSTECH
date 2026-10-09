@@ -6,25 +6,19 @@
 \hypersetup{
     pdftitle={Past Problems for MATH200 Differential Equations},
     pdfauthor={Jungwoo Kim},
-    pdfsubject={Past problems for MATH200 Differential Equations},
+    pdfsubject={Past examination problems for MATH200 Differential Equations},
     pdfcreator={LaTeX}
 }
 
 \begin{document}
-
 \thispagestyle{empty}
 
 \begin{center}
     \vspace*{1.1cm}
-
     {\LARGE\bfseries Past Problems\par}
-
     \vspace{0.25cm}
-
     {\large for (MATH200) Differential Equations\par}
-
     \vspace{0.75cm}
-
     {\normalsize
     Jungwoo Kim\\
     Department of Mathematics\\
@@ -32,19 +26,2088 @@
     \par}
 \end{center}
 
-\vspace{0.45cm}
+\vspace{0.8cm}
 
-This document collects past examination problems for (MATH200) Differential Equations.
+% 2012 Spring POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+In the theory of memory, we assume that the rate at which a subject is memorized is proportional to the amount that is left to be memorized. Suppose that $M$ is the total amount of a subject to be memorized and $A(t)$ is the amount memorized in time $t$. Write a differential equation for the amount $A(t)$ and solve that equation.
+\end{problem}
 
-\vspace{0.35cm}
+% 2012 Spring POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Find the general solutions of the following ordinary differential equations.
+\begin{problemsubparts}
+\item $\displaystyle y'=\frac{x-2y}{3x-6y+4}$.
+\item $\displaystyle y'=\frac{3x-y-9}{x+y+1}$.
+\item $L[y]=x^2y''-xy'+y=\ln x$, $x>0$. (For the solution of $L[y]=0$, guess solutions of the form $y(x)=x^r$.)
+\item $\displaystyle (2y^2+3x)\,\dd x+(2xy)\,\dd y=0$.
+\end{problemsubparts}
+\end{problem}
 
-% The material below is migrated verbatim from the previous
-% Parts/ProblemsAndSolutions/MATH200.tex source.
-\coursepart{1}{(MATH200) Differential Equations}
-\ifCourseSolutions\else
-{\noindent\small\itshape Problems are arranged chronologically by year and semester, with the midterm preceding the final examination within the same semester, while preserving the original problem order within each source.\par}
-\vspace{0.22cm}
-\fi
+% 2012 Spring POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Find two solutions of Bessel's equation
+\[
+x^2y''+xy'+\left(x^2-\frac14\right)y=0,\qquad 0<x<\infty,
+\]
+using the series solution method. Derive the recurrence relation and use it to find two solutions.
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[
+3t^2y+8ty^2+(t^3+8t^2y+12y^2)\frac{\dd y}{\dd t}=0,\qquad y(2)=1.
+\]
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Consider the differential equation
+\[
+y''+ty'+y=0 \tag{1}
+\]
+on the interval $-\infty<t<\infty$.
+\begin{problemsubparts}
+\item Show that one solution is $y_1(t)=e^{-t^2/2}$ and use reduction of order to show that a second solution is
+\[
+y_2(t)=e^{-t^2/2}\int_0^t e^{s^2/2}\,\dd s.
+\]
+\item Compute $W(y_1,y_2)(t)$.
+\item Show that $y_1$ and $y_2$ form a fundamental set of solutions of (1) on $-\infty<t<\infty$.
+\item Solve the initial-value problem $y''+ty'+y=0$, $y(0)=0$, $y'(0)=1$.
+\end{problemsubparts}
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Consider the second-order differential equation $y''+y=8\cos t$.
+\begin{problemsubparts}
+\item Find a fundamental set of solutions of the homogeneous equation $y''+y=0$ (check the Wronskian at some point).
+\item Find a particular solution of the inhomogeneous equation.
+\item Assume that the particular solution found in part (b) describes the movement of a bridge. What will happen to the bridge for large $t$?
+\end{problemsubparts}
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Consider the initial-value problem
+\[
+y''-3y'+2y=e^{3t},\qquad y(0)=1,\quad y'(0)=0.
+\]
+\begin{problemsubparts}
+\item Solve the equation without using the Laplace transform.
+\item Solve the equation using the Laplace transform.
+\end{problemsubparts}
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Solve the boundary-value problem for $0<t<1$:
+\[
+y''+\frac1t y'=-1,\qquad y(1)=0,
+\]
+with $y(t)$ bounded for $0<t<1$.
+\item Determine the condition on initial values so that all solutions of
+\[
+\mathbf x'=\begin{pmatrix}-1&6\\1&-2\end{pmatrix}\mathbf x
+\]
+are bounded for all $t\ge0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Solve
+\[
+\mathbf x'=\begin{pmatrix}7&-1\\1&5\end{pmatrix}\mathbf x
++\begin{pmatrix}2e^{6t}\\6te^{6t}\end{pmatrix}.
+\]
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Find the Fourier-series solution $y(t)$ satisfying
+\[
+y''+4y=f(t),\qquad y(0)=1,\quad y'(0)=0,
+\]
+where $f$ is periodic with period $2$ and
+\[
+f(t)=\begin{cases}-t+1,&0\le t<1,\\t-1,&1\le t<2.\end{cases}
+\]
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Solve the heat equation
+\[
+\frac{\partial u}{\partial t}=k\frac{\partial^2u}{\partial x^2},
+\qquad 0<x<L,\quad t>0,\quad k>0,
+\]
+where
+\[
+u(x,0)=\sin\frac{\pi x}{L}\quad(0\le x\le L),
+\qquad u(0,t)=u(L,t)=0\quad(t\ge0),
+\]
+and describe how the temperature changes as time progresses.
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Consider the two-dimensional wave equation
+\[
+c^2(u_{xx}+u_{yy})=u_{tt},\qquad 0<x<a,\quad 0<y<b,\quad t>0,
+\]
+with
+\[
+u(x,y,0)=f(x,y),\qquad u_t(x,y,0)=g(x,y),
+\quad 0\le x\le a,\quad 0\le y\le b,
+\]
+and
+\[
+u(0,y,t)=u(a,y,t)=u(x,0,t)=u(x,b,t)=0
+\]
+for $0\le x\le a$, $0\le y\le b$, $t\ge0$. By separation of variables, put $u(x,y,t)=X(x)Y(y)T(t)$.
+\begin{problemsubparts}
+\item Find three ordinary differential equations satisfied by $X$, $Y$, and $T$. \textit{(Hint. You may start with $u(x,y,t)=F(x,y)T(t)$.)}
+\item Express the conditions in terms of eigenvalues and find the boundary conditions of the differential equations satisfied by $X,Y$ for nontrivial solutions.
+\item \textit{(Bonus)} Express the solution $u(x,y,t)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2012 Spring POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2012 Spring \POSTECH{} Differential Equations]
+Find the solution $u(r,\theta)$ of Laplace's equation
+\[
+u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}=0
+\]
+outside the circle $r=a$, satisfying
+\[
+u(a,\theta)=f(\theta),\qquad 0\le\theta\le2\pi.
+\]
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Solve
+\[
+\frac{\dd y}{\dd x}=\frac{x+y+2}{x-y+4},\qquad y(-2)=1.
+\]
+\textit{(Hint. Let $x=X-a$, $y=Y-b$, and choose $a,b$ suitably to remove the constants $2$ and $4$.)}
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Find an integrating factor and solve
+\[
+(y^2+4ye^x)+2(y+e^x)\frac{\dd y}{\dd x}=0.
+\]
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+A tank originally contains $12$ liters of fresh water. Water containing $2$ g of salt per liter is poured into the tank at a rate of $3$ liters per minute, and the well-stirred mixture is allowed to leave at the same rate. After $8$ minutes the process is stopped, and fresh water is poured into the tank at a rate of $2$ liters per minute, with the mixture leaving at the same rate. Find the amount of salt in the tank at $t$ minutes after the first $8$ minutes (that is, at $t+8$ minutes from the beginning).
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Find a second solution of
+\[
+x^2y''+(x^2-2x)y'-(x-2)y=0,
+\]
+given $y_1(x)=x$.
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Find a general solution using the method of undetermined coefficients:
+\[
+y''+4y'+4y=7t+6te^{-2t},\qquad y(0)=0,\quad y'(0)=0.
+\]
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Using variation of parameters, find a general solution of
+\[
+y''-3y'+2y=\sin(e^{-t}).
+\]
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Answer the following questions.
+\begin{problemsubparts}
+\item Let $y(x)=\sum_{n=0}^{\infty}a_nx^n$ be a series solution of
+\[
+y''-x^2y'-xy=0.
+\]
+Find two solutions $y_1(x)$ and $y_2(x)$ such that $y(x)=a_0y_1(x)+a_1y_2(x)$.
+\item Show that $y_1$ and $y_2$ form a fundamental set of solutions for all $x$.
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 8
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Determine the lower bound for the radius of convergence of the series solutions of
+\[
+(1+x^2)y''+y'+(\sin x)(1+x^2)y=0
+\]
+about $x=0$.
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 9
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Answer the following questions.
+\begin{problemsubparts}
+\item Show that
+\[
+4x^2y''+8\ln(1+x)y'+y=0
+\]
+has a regular singular point at $x=0$. \textit{(Hint. Note that $\ln(1+x)=\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}n x^n$, $-1<x\le1$.)}
+\item Let $y_1(x)=\sum_{n=0}^{\infty}a_nx^{r+n}$ be a solution ($x>0$, $a_0\ne0$). Determine $r$.
+\item Show that the second solution is of the form
+\[
+y_2(x)=y_1(x)\ln x+x^r\sum_{n=1}^{\infty}b_nx^n\qquad(x>0),
+\]
+where $y_1(x)$ and $r$ are given in part (b).
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 10
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Use the Laplace transform to solve the following problems.
+\begin{problemsubparts}
+\item $y''+9y=\cos(\omega t)$, $y(0)=0$, $y'(0)=1$, where $\omega\ne3$ and $\omega>0$.
+\item $y''+9y=\cos(3t)$, $y(0)=0$, $y'(0)=1$.
+\item In which of the above two cases is it possible for the magnitude (or absolute value) of a solution to grow arbitrarily large? Explain mathematically.
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 11
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Find the inverse Laplace transform of
+\[
+F(s)=\frac1{(s^2+9)^2}.
+\]
+\textit{(Hint. Consider the derivative of $s/(s^2+9)$.)}
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Midterm, Problem 12
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Compute the Laplace transform of
+\[
+f(t)=\begin{cases}t^2,&0\le t<2,\\4t,&2\le t<\infty\end{cases}
+\]
+using a unit-step function.
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Find the solution of the initial-value problem
+\[
+y''-y=\delta(t-1),\qquad y(0)=1,\quad y'(0)=0.
+\]
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Find the solution, in terms of a convolution integral, of the initial-value problem
+\[
+y''+9y=g(t),\qquad y(0)=0,\quad y'(0)=1.
+\]
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Solve the system
+\[
+t\mathbf x'=\begin{pmatrix}6&2\\4&4\end{pmatrix}\mathbf x.
+\]
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Find two real-valued independent solutions (and show their independence) of the system
+\[
+\mathbf x'=\mathbf A\mathbf x,\qquad
+\mathbf A=\begin{pmatrix}2&-4\\1&2\end{pmatrix}.
+\]
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Consider the system
+\[
+\mathbf x'=\mathbf A\mathbf x,\qquad
+\mathbf A=\begin{pmatrix}1&0&3\\0&1&2\\0&0&1\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Solve the system and find the fundamental matrix $\boldsymbol\Phi(t)$ such that $\boldsymbol\Phi(0)=\mathbf I$ (the identity matrix).
+\item Write the solution $\mathbf x(t)$ satisfying
+\[
+\mathbf x(0)=\begin{pmatrix}-3\\1\\2\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Two tanks are interconnected. Tank 1 initially contains $2$ L of water with $150$ g of salt, and Tank 2 initially contains $1$ L of water with $50$ g of salt. At $t=0$, pure water begins to flow into Tank 1 at $3$ L/min, and well-mixed salt water is exchanged from Tank 1 to Tank 2 at $4$ L/min and from Tank 2 to Tank 1 at $3$ L/min. Salt water is drained at $2$ L/min from Tank 1 and at $1$ L/min from Tank 2.
+\begin{problemsubparts}
+\item Formulate the system of differential equations for the quantities of salt $x_1(t)$ and $x_2(t)$ in Tanks 1 and 2 at time $t>0$.
+\item Solve the system, finding $x_1(t)$ and $x_2(t)$ and their limits as $t\to\infty$.
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Assume that all eigenvalues are real. Find the eigenvalues and eigenfunctions of the following boundary-value problem ($x>0$):
+\[
+x^2y''+xy'-\lambda y=0,\qquad y(1)=0,\quad y(3)=0.
+\]
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 8
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Suppose that $f(x)=2-2x$ for $0\le x\le1$.
+\begin{problemsubparts}
+\item Find the Fourier series of the even periodic extension of $f$ with period $2$.
+\item Briefly explain why the Fourier series in part (a) converges to the even periodic extension of $f$ for all real $x$.
+\item Show that
+\[
+\frac{\pi^2}{8}=\sum_{n=0}^{\infty}\frac1{(2n+1)^2}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 9
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Consider a metal rod of length $10$, for which $\alpha^2=1$. Suppose the initial temperature distribution is $f(x)=x$, and the boundary conditions are $u(0,t)=20$ and $u(10,t)=0$ for $t>0$. Find the temperature $u(x,t)$ in the rod.
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 10
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Answer the following questions.
+\begin{problemsubparts}
+\item Show that the eigenvalues of the following boundary-value problem are real:
+\[
+y''+\lambda y=0,\qquad y(0)=0,\quad y(L)=0\quad(L\ne0).
+\]
+\item Consider an elastic string of length $2\pi$, whose ends are held fixed. The string is set in motion from its equilibrium position with initial velocity $u_t(x,0)=f(x)$. Take $a=1$ and $f(x)=1$ if $\pi-1<x<\pi+1$, and $f(x)=0$ otherwise. Find the displacement $u(x,t)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Spring POSTECH Differential Equations Final, Problem 11
+\begin{problem}[2013 Spring \POSTECH{} Differential Equations]
+Find the solution $u(x,y)$ of Laplace's equation in the rectangle $0<x<2$, $0<y<1$, satisfying the boundary conditions
+\[
+u(0,y)=u(2,y)=0\quad(0<y<1),\qquad
+u(x,0)=0,\quad u(x,1)=f(x)\quad(0<x<2),
+\]
+where
+\[
+f(x)=\begin{cases}x,&0\le x\le1,\\2-x,&1<x\le2.\end{cases}
+\]
+\end{problem}
+
+% 2013 Fall POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2013 Fall \POSTECH{} Differential Equations]
+Let $y_1(t)=t^2+1$, $y_2(t)=t^2-1$ on $I=(-2,1)$.
+\begin{problemsubparts}
+\item Compute $W(y_1,y_2)(t)$.
+\item Are $y_1(t)$ and $y_2(t)$ linearly independent on $I$? Why?
+\item Can $y_1(t)$ and $y_2(t)$ form a fundamental set of solutions of an equation
+\[
+y''+p(t)y'+q(t)y=0\qquad\text{on }I,
+\]
+with $p(t)$ and $q(t)$ continuous on $I$? Justify with complete details.
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Fall POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2013 Fall \POSTECH{} Differential Equations]
+Find the general solutions of the following ordinary differential equations.
+\begin{problemsubparts}
+\item $y'''-y''+y'-y=\sin x$.
+\item $\displaystyle\frac{\dd^4y}{\dd t^4}+2\frac{\dd^2y}{\dd t^2}+y=0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Fall POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2013 Fall \POSTECH{} Differential Equations]
+Solve the initial-value problems and indicate the maximal intervals of existence.
+\begin{problemsubparts}
+\item $y'+y=e^{-t}t^{-1}$, with $y(2)=1$.
+\item $(2x-y)\,\dd x+(2y-x)\,\dd y=0$, with $y(1)=3$.
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Fall POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2013 Fall \POSTECH{} Differential Equations]
+Consider the third-order linear ordinary differential equation
+\[
+y'''+p(t)y''+q(t)y'+r(t)y=0\tag{$*$}
+\]
+on $I=(-1,1)$, where $p(t)$, $q(t)$, and $r(t)$ are continuous on $I$.
+\begin{problemsubparts}
+\item State Abel's theorem for equation ($*$).
+\item Prove the stated Abel's theorem.
+\item Can $y=t^4$ be a solution of ($*$) satisfying $y(0)=y'(0)=y''(0)=0$? Justify with complete details.
+\end{problemsubparts}
+\end{problem}
+
+% 2013 Fall POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2013 Fall \POSTECH{} Differential Equations]
+Find all solutions of
+\[
+\left(y''+\frac3x y'+\frac1{x^2}y\right)
+\left(y''+\frac{3}{2x}y'-\frac1{2x^2}y\right)=0,
+\qquad x\in(0,\infty).
+\]
+\end{problem}
+
+% 2013 Fall POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2013 Fall \POSTECH{} Differential Equations]
+On $I=(0,2)$, solve
+\[
+y''+(x-1)^2y'+(x^2-1)y=0,
+\qquad y(1)=0,\quad y'(1)=1.
+\]
+\end{problem}
+
+% 2013 Fall POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2013 Fall \POSTECH{} Differential Equations]
+Determine whether each statement is true or false.
+\begin{problemchoices}
+\item $y''+e^{\sin x}y'+y^2=x^4$ is a linear ordinary differential equation.
+\item In the population model $y'=r(y-T)(K-y)y$, with $r>0$ and $K>T>0$, $y=T$ is an unstable equilibrium solution.
+\item If $f$ and $\frac{\partial f}{\partial t}$ are bounded on $I$ and $t_0\in I$, then $y'=f(t,y)$ with $y(t_0)=1$ has a unique solution on $I$.
+\item $x=0$ is not an irregular singular point for $(x+1)^2y''+6y=0$.
+\item We can determine a series solution about $x=0$ for $y''+(\sin x)y'+(x+x^3)y=0$.
+\end{problemchoices}
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[
+4t^3e^{t+y}+t^4e^{t+y}+2t+
+\left(t^4e^{t+y}+2y\right)\frac{\dd y}{\dd t}=0,
+\qquad y(0)=1.
+\]
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Consider the ordinary differential equation
+\[
+2t^2y''+3ty'-y=0,\qquad 0<t<\infty.
+\]
+\begin{problemsubparts}
+\item Show that $y_1(t)=\sqrt t$ and $y_2(t)=1/t$ are solutions.
+\item Compute $W(y_1,y_2)(t)$. What happens as $t$ approaches zero?
+\item Show that $y_1$ and $y_2$ form a fundamental set of solutions on $0<t<\infty$.
+\item Solve the equation with $y(1)=2$ and $y'(1)=1$.
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Solve the following problems.
+\begin{problemsubparts}
+\item Find the general solution of $y''-y=0$.
+\item Use variation of parameters to find general solutions of
+\[
+L[y]=y''-5y'+6y=4e^t.
+\]
+\item Solve
+\[
+y''+4y=3\sin(2t),\qquad y(0)=0,\quad y'(0)=0.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Consider
+\[
+t^2\frac{\dd^2y}{\dd t^2}+5t\frac{\dd y}{\dd t}+3y=0.\tag{1}
+\]
+\begin{problemsubparts}
+\item Determine the type of the point $t=0$.
+\item Find the solution of (1) subject to $y(1)=1$ and $y'(1)=5$.
+\item Rewrite (1) using the change of variable $x=\ln t$ on $0<t<\infty$.
+\item Find the general solution of (1) on $0<t<\infty$.
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Midterm, Problem 5
+% Source note: Source uses the convolution symbol t * y; the solution handout contains an inconsistent + sign in an intermediate calculation. The displayed question has a minus sign.
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Using the table of Laplace transforms, solve the initial-value problem
+\[
+y'-t\ast y=\delta(t-1),\qquad y(0)=0,
+\]
+where $\ast$ denotes convolution.
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Midterm, Problem 6
+% Source note: The supplied solution/rubric PDF gives only a worked answer, not the original question wording for Problem 6. This question is reconstructed from the displayed transformed equation, the listed initial coefficients, and its series calculation; original wording remains unverified.
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Find a power-series solution about $x=1$ of
+\[
+y''+(x-1)^2y'+\bigl((x-1)^2+2(x-1)\bigr)y=0,
+\]
+with $y(1)=1$, $y'(1)=0$.
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Consider the following initial-value problem:
+\[
+y''-3y'+2y=e^{3t},\qquad y(0)=1,\quad y'(0)=0.
+\]
+\begin{problemsubparts}
+\item Solve the equation without using the Laplace transform.
+\item Solve the equation using the Laplace transform.
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Let
+\[
+\mathbf A=\begin{pmatrix}1&-1&0\\1&3&0\\0&0&\alpha\end{pmatrix},
+\]
+where $\alpha$ is a constant. Let $W(t)$ be a Wronskian for
+\[
+\mathbf x'=\mathbf A\mathbf x.\tag{1}
+\]
+Given that $W(t)$ satisfies $W'(t)+2W(t)=0$,
+\begin{problemsubparts}
+\item Find $e^{\mathbf A t}$.
+\item Solve (1) with initial condition
+\[
+\mathbf x(0)=\begin{pmatrix}1\\2\\3\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Let $u(x,t)$ be the temperature in a uniform rod of length $L$ and thermal diffusivity $\alpha^2=\frac{\kappa}{\rho s}$. Given initial temperature
+\[
+u(x,0)=\sin\frac{\pi x}{L},\qquad 0\le x\le L,
+\]
+assume both ends of the rod are insulated:
+\[
+u_x(0,t)=u_x(L,t)=0\qquad(t>0).
+\]
+\begin{problemsubparts}
+\item Find the temperature $u(x,t)$.
+\item What is the steady-state temperature as $t\to\infty$?
+\item Briefly describe how the temperature changes as time progresses.
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Find the solution $u(r,\theta)$ of Laplace's equation in polar coordinates
+\[
+u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}=0,\qquad r>a,
+\]
+outside the circle $r=a$ for a constant $a>0$, satisfying
+\[
+u(a,\theta)=f(\theta),\qquad 0\le\theta<2\pi,
+\]
+and the asymptotic behavior
+\[
+u(r,\theta)\to0\qquad(r\to+\infty).
+\]
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Discuss solutions of the initial-boundary-value problem
+\[
+\begin{cases}
+u_t=u_{xx}-x,&x\in(0,1),\ t>0,\\
+u(0,t)=0,&t>0,\\
+u_x(1,t)=0,&t>0,\\
+u(x,0)=\sin(\pi x/2),&x\in[0,1].
+\end{cases}
+\]
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Consider the initial-boundary-value problem for the wave equation
+\[
+\begin{cases}
+u_{tt}-u_{xx}=0,&0<x<1,\ t>0,\\
+u_x(0,t)=0,\quad u(1,t)=1,&t>0,\\
+u(x,0)=\cos(2\pi x),&0\le x\le1,\\
+u_t(x,0)=0,&0\le x\le1.
+\end{cases}\tag{2}
+\]
+\begin{problemsubparts}
+\item Find a solution of (2).
+\item Prove that the solution is unique. \textit{(Hint. Assume that $u_1(x,t)$ and $u_2(x,t)$ are two solutions of (2), and try to show that $v=u_1-u_2\equiv0$.)}
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Spring POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2014 Spring \POSTECH{} Differential Equations]
+Consider the eigenvalue problem
+\[
+\begin{cases}
+-y''=\lambda y,&x\in(0,1),\\
+y(0)-3y'(0)=0,\quad y'(1)=0.
+\end{cases}\tag{3}
+\]
+\begin{problemsubparts}
+\item Find the eigenvalues of (3).
+\item Determine the corresponding normalized eigenfunctions. \textit{(Hint. A function $\phi$ is normalized if $\int_0^1\phi^2(x)\,\dd x=1$.)}
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Solve the Bernoulli equation
+\[
+t^2y'+ty=y^4,\qquad y(1)=2.
+\]
+Give $y$ explicitly as a function of $t$. \textit{(Hint. Let $y=v^a$ and choose $a$ to obtain a linear equation.)}
+\item State the largest interval on which the solution is valid, and briefly explain why no other solution exists there.
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Solve
+\[
+\frac{\dd y}{\dd x}=\frac{x+y+1}{x-y+3},\qquad x>-2.
+\]
+\textit{(Hint. Let $x=X+a$, $y=Y+b$, and choose $a,b$ to remove the constant terms.)}
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Find an integrating factor to solve
+\[
+(y^2+3ye^x)+(y+e^x)\frac{\dd y}{\dd x}=0.
+\]
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Write an integral equation equivalent to the initial-value problem
+\[
+y'=t^2+y^2,\qquad y(0)=1.
+\]
+Then find the successive approximations $\phi_1(t)$ and $\phi_2(t)$ starting from $\phi_0(t)=0$.
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Consider the differential equation
+\[
+y''-3ty'+3y=0,\qquad t>0.
+\]
+\begin{problemsubparts}
+\item First find one solution by guessing.
+\item Use reduction of order to find the general solution. Your solution may involve a definite integral beginning at $t_0=1$.
+\item Use the Wronskian to verify that there are no other solutions.
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Use the method of undetermined coefficients to find the general solution of
+\[
+y''-4y'+4y=t+e^{2t}.
+\]
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+A mass weighing $16$ lb stretches a spring $2$ ft (assume $g=32$ ft/s$^2$). The mass is in a medium that exerts a viscous resistance of $4$ lb when it has a velocity of $2$ ft/s. If the mass is set in motion from its equilibrium position with downward velocity of $3$ ft/s, find its position $y$ at time $t$.
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 8
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Consider $y''+p(t)y'+q(t)y=g(t)$. Assuming $y=c_1y_1+c_2y_2$ is the general solution of the homogeneous equation, derive an expression for a particular solution using variation of parameters.
+\item Find a particular solution of
+\[
+y''+y=\tan t,\qquad 0<t<\frac\pi2.
+\]
+\textit{(Recall that $\frac{\dd}{\dd t}\ln|\sec t+\tan t|=\sec t$.)}
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 9
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Show that
+\[
+2x^2y''-xy'+(x+1)y=0
+\]
+has a regular singular point at $x=0$, and find a series solution corresponding to the larger root of the indicial equation (the characteristic equation of the corresponding Euler equation). Find a simplified expression for the $n$th term in the series.
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 10
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Use the Laplace transform to solve
+\[
+y''+9y=\cos(3t),\qquad y(0)=0,\quad y'(0)=1.
+\]
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 11
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Let $f(t)=t$ for $t<3$ and $f(t)=0$ for $t\ge3$. Use the Laplace transform to solve
+\[
+y''+4y=f(t),\qquad y(0)=0,\quad y'(0)=0.
+\]
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Midterm, Problem 12
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[
+y''-2y=\delta(t-1),\qquad y(0)=1,\quad y'(0)=1.
+\]
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Use the method of undetermined coefficients to find the general solution of
+\[
+y''-9y'+9y=t^2+e^{3t}.
+\]
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+A tank originally contains $8$ liters of fresh water. Water containing $2$ g of salt per liter is poured into the tank at a rate of $3$ liters per minute, and the well-stirred mixture leaves at the same rate. After $12$ minutes the process is stopped, and fresh water is poured into the tank at a rate of $2$ liters per minute, with the mixture leaving at the same rate. Find the amount of salt in the tank at $t$ minutes after the first $12$ minutes (that is, at $t+12$ minutes from the beginning).
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Find the general solution of $\mathbf x'=\mathbf A\mathbf x$, where $\mathbf x=\mathbf x(t)$ and
+\[
+\mathbf A=\begin{pmatrix}1&1&2\\1&2&1\\2&1&1\end{pmatrix}.
+\]
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Find a fundamental matrix $\boldsymbol\Phi(t)$ with $\boldsymbol\Phi(0)=\mathbf I$ for
+\[
+\mathbf x'=\begin{pmatrix}1&4\\1&-2\end{pmatrix}\mathbf x,
+\qquad\mathbf x=\mathbf x(t).
+\]
+\item Use the result of part (a) to find the solution satisfying
+\[
+\mathbf x(0)=\begin{pmatrix}2\\1\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Find the solution of $\mathbf x'=\mathbf A\mathbf x$, where $\mathbf x=\mathbf x(t)$,
+\[
+\mathbf A=\begin{pmatrix}1&-4\\4&-7\end{pmatrix},\qquad
+\mathbf x(0)=\begin{pmatrix}1\\3\end{pmatrix}.
+\]
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Assume that the $2\pi$-periodic function $f(x)$ has the Fourier series
+\[
+\frac{a_0}{2}+\sum_{n=1}^{\infty}(a_n\cos nx+b_n\sin nx).
+\]
+\begin{problemsubparts}
+\item Formally (assuming that integration and summation can be interchanged), show Parseval's equation:
+\[
+\frac1\pi\int_{-\pi}^{\pi}|f(x)|^2\,\dd x
+=\frac{a_0^2}{2}+\sum_{n=1}^{\infty}(a_n^2+b_n^2).
+\]
+\item Find the Fourier series of $f(x)=x$, $-\pi\le x<\pi$, extended to be $2\pi$-periodic.
+\item Show that
+\[
+\sum_{n=1}^{\infty}\frac1{n^2}=\frac{\pi^2}{6}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Derive the heat equation $u_{xx}(x,t)=u_t(x,t)$. Consider a straight metal rod of length $\pi$, placed so that $0<x<\pi$, with uniform cross-sectional area $A$ and insulated sides. Assume thermal conductivity $\kappa=1$, specific heat $s=1$, and density $\rho=1$, so that $\alpha^2=\kappa/(\rho s)=1$. Show that the temperature $u(x,t)$ satisfies $u_{xx}(x,t)=u_t(x,t)$ for $0<x<\pi$, $t>0$.
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 8
+% Source note: The scanned source has an ambiguous endpoint after 0<x<, with a handwritten correction 2; the rod length and boundary x=2 determine the intended interval 0<x<2.
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Consider a metal rod of length $2$, with $\alpha^2=1$. Suppose the initial temperature distribution is $f(x)=x^2$ on $0<x<2$, and the boundary conditions are $u(0,t)=6$ and $u(2,t)=0$ for $t>0$. Find the temperature $u(x,t)$ in the rod.
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 9
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Consider an elastic string of length $4\pi$, whose ends are held fixed. The string is set in motion from its equilibrium position with initial velocity $u_t(x,0)=g(x)$. Take $a=1$, and let $g(x)=2$ if $\pi<x<3\pi$, and $g(x)=0$ for $0<x<\pi$ and $3\pi<x<4\pi$. Find the displacement $u(x,t)$.
+\end{problem}
+
+% 2014 Fall POSTECH Differential Equations Final, Problem 10
+\begin{problem}[2014 Fall \POSTECH{} Differential Equations]
+Find the solution $u(x,y)$ of Laplace's equation in the rectangle $0<x<4$, $0<y<1$, satisfying
+\[
+u(0,y)=u(4,y)=0\quad(0<y<1),\qquad
+u(x,0)=0,\quad u(x,1)=f(x)\quad(0<x<4),
+\]
+where
+\[
+f(x)=\begin{cases}x,&0\le x\le2,\\4-x,&2<x\le4.\end{cases}
+\]
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Consider the initial-value problem
+\[\frac{\dd y}{\dd t}=f(t,y),\qquad y(t_0)=y_0.\]
+\begin{problemsubparts}
+\item State the conditions for existence and uniqueness of solutions to the initial-value problem.
+\item Set $f(t,y)=(y-1)^{2/3}$ for $t\ge0$ and $(t_0,y_0)=(0,1)$. Find the solution to the initial-value problem. What can you say about uniqueness of the solution?
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Solve the following equations.
+\begin{problemsubparts}
+\item $(y\cos x+2xe^y)+(\sin x+x^2e^y-1)y'=0$, $y(0)=1$.
+\item $3xy+y^2+(x^2+xy)y'=0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Solve the following equations.
+\begin{problemsubparts}
+\item $xy'=\dfrac{y^2}{x}+y$, $y(1)=-1$.
+\item $y'+\dfrac{1}{x}y=3x^2y^3$, $y(1)=1$.
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Given that $y_1(x)=x$ is a solution of
+\[(x-1)y''-xy'+y=0,\qquad x>1,\]
+find a fundamental set of solutions.
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[y''+y'+y=f(t),\qquad y(0)=3,\quad y'(0)=5,\]
+without using the Laplace transform.
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Solve the nonhomogeneous Bessel equation
+\[x^2y''+xy'+\left(x^2-\frac14\right)y=x\sqrt{x},\qquad x>0,\quad y(\pi)=0,\quad y'(\pi)=1.\]
+\textit{Hint.} Use the substitution $y=x^{-1/2}v$.
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Consider the second-order differential equation
+\[y''+p(x)y'+q(x)y=0,\]
+where $p(x)=\dfrac{x^2+1}{x-3}$ and $q(x)=(x-3)^{-2}$. Find the regular singular point $x_0$ and the indicial equation, its roots, the series solution, and the radius of convergence.
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Midterm, Problem 8
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Consider the initial-value problem
+\[y''+y'+y=\delta(t-5),\qquad y(0)=y'(0)=0,\]
+where $\delta$ is the Dirac delta function. Find the solution.
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Find all $y$ satisfying the following conditions for some $\lambda\in\R$:
+\[y''+\lambda y=0,\qquad y(0)-y'(0)=0,\quad y(1)=0.\]
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Find all $y(x)$ such that, for some constant $\lambda\in\R$,
+\[x^2y''+xy'+\lambda y=0,\qquad\lim_{x\to0}y(x)\text{ exists and is finite}.\]
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 3.1
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Determine a fundamental matrix for
+\[\mathbf A=\begin{pmatrix}1&-5\\1&-3\end{pmatrix}.\]
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 3.2
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Determine the solution to
+\[\mathbf x'(t)=\begin{pmatrix}1&-5\\1&-3\end{pmatrix}\mathbf x(t)+\begin{pmatrix}e^{-t}\\e^{-t}\end{pmatrix},\qquad\mathbf x(0)=\begin{pmatrix}2\\1\end{pmatrix}.\]
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 3.3
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Let $\mathbf A$ be a real $n\times n$ matrix and $\mathbf A^{\mathsf T}$ its transpose. Denote the inner product by $\langle\mathbf x,\mathbf y\rangle$. Show that if $\det\mathbf A=0$ and $\mathbf A\mathbf x=\mathbf b$ has a solution, then $\langle\mathbf b,\mathbf y\rangle=0$ for every solution $\mathbf y$ of $\mathbf A^{\mathsf T}\mathbf y=\mathbf0$.
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 3.4
+% SOURCE CHECK: The bottom-right printed matrix entry is partly obscured by handwriting on the source scan; transcribed as 3 from the visible annotation. Recheck against clean source if available.
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Let
+\[\mathbf A=\begin{pmatrix}1&-2&3\\-1&1&-2\\2&-1&3\end{pmatrix}.\]
+Compute $\det\mathbf A$. Find the condition on $\mathbf b$ such that $\mathbf A\mathbf x=\mathbf b$ has a solution, and find $\mathbf x$.
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Find the general solution of the system $\mathbf x'(t)=\mathbf A\mathbf x(t)$, where
+\[\mathbf A=\begin{pmatrix}3&1\\-4&-1\end{pmatrix}.\]
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Let $f(x)=x$ for $-1<x<1$, with $f(-1)=f(1)=0$. Find the Fourier series of $f(x)$ and show that
+\[\frac{\pi^2}{6}=\sum_{n=1}^{\infty}\frac{1}{n^2}.\]
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Find the solution of the heat equation
+\[4u_t=u_{xx},\qquad 0<x<2,\quad t>0,\]
+subject to
+\[u(0,t)=u(2,t)=0,\qquad u(x,0)=2\sin\frac{\pi x}{2}-\sin(\pi x)+4\sin(2\pi x).\]
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Let $a>0$, and let $f(x)$ and $g(x)$ be smooth functions. Set
+\[u(x,t)=\frac12\bigl(f(x-at)+f(x+at)\bigr)+\frac{1}{2a}\int_{x-at}^{x+at}g(s)\,\dd s.\]
+Show that $u(x,t)$ satisfies the wave equation
+\[a^2u_{xx}=u_{tt},\qquad -\infty<x<\infty,\quad t>0,\]
+with $u(x,0)=f(x)$ and $u_t(x,0)=g(x)$ for all $x\in\R$.
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 8
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Consider the Laplace equation
+\[u_{xx}+u_{yy}=0,\qquad 0<x,y<1,\]
+with boundary conditions
+\[u(x,0)=0=u(x,1),\quad 0<x<1,\]
+\[u(0,y)=0,\quad u(1,y)=e^y,\quad 0\le y\le1.\]
+Solve the equation and explain why the solution series converges.
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 9
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Let $x=r\cos\theta$, $y=r\sin\theta$ be the polar-coordinate transformation. Show that $u_{xx}+u_{yy}$ becomes
+\[u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}.\]
+\item Describe the solution to
+\[u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}=0,\qquad 0<r<a,\]
+with $u(a,\theta)=g(\theta)$, where $a>0$ and $g$ is continuous and $2\pi$-periodic, and $(r,\theta)$ are the polar coordinates on $\R^2$.
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Spring POSTECH Differential Equations Final, Problem 10
+\begin{problem}[2015 Spring \POSTECH{} Differential Equations]
+Consider the Sturm--Liouville boundary-value problem
+\[-u''(x)+u(x)=\lambda u(x),\quad 0<x<1,\qquad u'(0)=0,\quad u(1)=0.\]
+Define $L[u]=-u''+u$. Suppose $u$ and $v$ both satisfy the boundary conditions above.
+\begin{problemsubparts}
+\item Show that
+\[\int_0^1 L[u]v\,\dd x=\int_0^1 L[v]u\,\dd x.\]
+\item Show that the eigenvalues $\lambda$ of the problem are real.
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+Solve the following differential equations.
+\begin{problemsubparts}
+\item $\displaystyle\frac{\dd y}{\dd x}=\frac{x+y}{x-y}$, $y(1)=0$.
+\item $\displaystyle\frac{\dd y}{\dd x}=\frac{2x-5y}{6x-15y+4}$. \textit{Hint.} Note that $\dd/\dd x$ is linear, and change the equation to a convenient form.
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+Find an integrating factor and solve each equation. \textit{Hint.} Choose a proper variable $t$ such that $\mu=\mu(t)$.
+\begin{problemsubparts}
+\item $\displaystyle 2(x+e^y)+(x^2+4xe^y)\frac{\dd y}{\dd x}=0$.
+\item $\displaystyle\left(3x+\frac6y\right)+\left(\frac{x^2}{y}+\frac{3y}{x}\right)\frac{\dd y}{\dd x}=0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+A tank originally contains $12$ liters of fresh water. Then water containing $2$ grams of salt per liter is poured into the tank at a rate of $3$ liters per minute, and the well-stirred mixture is allowed to leave at the same rate. After $8$ minutes the process is stopped, and fresh water is poured into the tank at a rate of $2$ liters per minute, with the mixture leaving at the same rate. Find the amount of salt in the tank at $t$ minutes after the first $8$ minutes (i.e. at $t+8$ minutes from the beginning).
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+Using reduction of order, find a second solution $y_2(x)$ to
+\[y''+xy'+y=0,\qquad y_1(x)=e^{-x^2/2},\]
+and show that the two solutions are linearly independent.
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+Find a solution of the initial-value problem using the method of undetermined coefficients:
+\[y''+2y'+y=\sin t+6te^{-t},\qquad y(0)=0,\quad y'(0)=0.\]
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+Determine the lower bound for the radius of convergence of the series solutions of
+\[
+(1+x^2)y''+y'+(\sin x)(1+x^2)y=0
+\]
+about $x=0$.
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+(Variation of parameters.) Let $y_1(t)$ and $y_2(t)$ form a fundamental set of solutions of
+\[y''+p(t)y'+q(t)y=0.\]
+\begin{problemsubparts}
+\item Prove that if $\psi(t)=u(t)y_1(t)+v(t)y_2(t)$ is a particular solution to
+\[y''+p(t)y'+q(t)y=g(t),\]
+then the coefficient functions can be chosen to satisfy
+\[u'(t)=-\frac{g(t)y_2(t)}{W(y_1,y_2)(t)},\qquad v'(t)=\frac{y_1(t)g(t)}{W(y_1,y_2)(t)}.\]
+Use the condition $u'(t)y_1(t)+v'(t)y_2(t)=0$ introduced by Lagrange.
+\item Using part (a), find a general solution to
+\[y''-3y'+2y=\sin(e^{-t}).\]
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 8
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+Use the properties of the Laplace transform.
+\begin{problemsubparts}
+\item Find $f(t)=\mathcal L^{-1}\{F(s)\}(t)$ corresponding to
+\[F(s)=\sum_{n=0}^{\infty}\frac{1}{s^{n+1}},\qquad s>1.\]
+\item Find $F(s)=\mathcal L\{f(t)\}(s)$ corresponding to
+\[f(t)=e^t\frac{\dd^n}{\dd t^n}(t^ne^{-t}).\]
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 9
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+Use the Laplace transform to solve the following problems.
+\begin{problemsubparts}
+\item $y''-2y'-3y=f(t)$, $y(0)=1$, $y'(0)=0$, where
+\[f(t)=\begin{cases}0,&0\le t<4,\\1,&t\ge4.\end{cases}\]
+\item $y''+9y=\cos3t$, $y(0)=0$, $y'(0)=1$.
+\end{problemsubparts}
+\end{problem}
+
+% 2015 Fall POSTECH Differential Equations Midterm, Problem 10
+\begin{problem}[2015 Fall \POSTECH{} Differential Equations]
+Consider the equation
+\[x^2y''+5xy'+(x+4)y=0,\]
+which has a regular singular point at $x=0$.
+\begin{problemsubparts}
+\item By Fuchs' theorem there is at least one solution of the form $y_1(x)=\sum_{n=0}^{\infty}a_nx^{r+n}$ ($x>0$, $a_0\ne0$). Determine $r$.
+\item Show that the second solution is of the form
+\[y_2(x)=y_1(x)\ln x+x^r\sum_{n=1}^{\infty}b_nx^n,\qquad x>0,\]
+where $y_1(x)$ and $r$ are given in part (a).
+\end{problemsubparts}
+\end{problem}
+
+% 2016 Spring POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2016 Spring \POSTECH{} Differential Equations]
+Express the solution of
+\[y''+3y'+2y=\delta(t-1),\qquad y(0)=2,\quad y'(0)=-1,\]
+in terms of a convolution integral.
+\end{problem}
+
+% 2016 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2016 Spring \POSTECH{} Differential Equations]
+Find a fundamental matrix $\boldsymbol\Phi(t)$ for the system
+\[\mathbf x'=\begin{pmatrix}3&1&-2\\-1&0&5\\-1&-1&4\end{pmatrix}\mathbf x.\]
+\end{problem}
+
+% 2016 Spring POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2016 Spring \POSTECH{} Differential Equations]
+Consider a uniform bar of length $L=20$ and thermal diffusivity $\alpha^2=1$ with initial temperature $f(x)=20-x$ for $0\le x\le20$. Assume that the end at $x=0$ is insulated, while the temperature at $x=20$ is held at $0\,{}^\circ\mathrm C$.
+\begin{problemsubparts}
+\item Find the fundamental solutions of this heat-conduction problem.
+\item Find the temperature $u(x,t)$ of the bar as a formal series.
+\end{problemsubparts}
+\end{problem}
+
+% 2016 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2016 Spring \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Using the change of variables $x=r\cos\theta$, $y=r\sin\theta$, compute and show that the Laplace operator $\Delta u=u_{xx}+u_{yy}$ becomes
+\[u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}.\]
+\item Find the solution $u(r,\theta)$ of Laplace's equation
+\[u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}=0\]
+outside the circle $r=a$ satisfying $u(a,\theta)=f(\theta)$, $0\le\theta\le2\pi$.
+\end{problemsubparts}
+\end{problem}
+
+% 2016 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2016 Spring \POSTECH{} Differential Equations]
+Solve the nonhomogeneous boundary-value problem
+\[\begin{cases}u_t=u_{xx}-2,&0<x<1,\ t>0,\\u(0,t)=2,\quad u(1,t)=0,\\u(x,0)=x^2-3x+3.\end{cases}\]
+\end{problem}
+
+% 2016 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2016 Spring \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Transform the equation into an equivalent self-adjoint form:
+\[(1-x^2)y''-xy'+\alpha^2y=0.\]
+\item Determine the normalized eigenfunctions of
+\[y''-2y'+(1+\lambda)y=0,\qquad y(0)=y(1)=0.\]
+\end{problemsubparts}
+\end{problem}
+
+% 2016 Spring POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2016 Spring \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Suppose the functions $p(x),p'(x),q(x),r(x)$ are continuous and $p(x),r(x)>0$. Let $\lambda_n$ be an eigenvalue of the Sturm--Liouville problem
+\[\begin{cases}(p(x)y')'-q(x)y+\lambda r(x)y=0,&0<x<1,\\\alpha_1y(0)+\alpha_2y'(0)=0,\\\beta_1y(1)+\beta_2y'(1)=0,\end{cases}\]
+where the real numbers $\alpha_1,\alpha_2$ are not both zero, nor are $\beta_1,\beta_2$. If $\phi_1$ and $\phi_2$ are eigenfunctions corresponding to $\lambda_n$, show that $W(\phi_1,\phi_2)(0)=0$.
+\item Show that the eigenfunction $\phi$ of the Sturm--Liouville problem is real-valued.
+\end{problemsubparts}
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Solve the following first-order differential equations.
+\begin{problemsubparts}
+\item $y'+y^2\cos t=0$.
+\item $(6x^2-2xy+4)+(6y^2-x^2+2)y'=0$.
+\item $ty'+2y=2\sin t$, $y(\pi/2)=1$, for $t>0$.
+\item $\displaystyle y'=\frac yt+\frac ty$, $t>0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+(Mixing problem.) A tank that can contain $500$ L of water originally contains $100$ L of salt water in which $5$ kg of salt is dissolved. Then water containing $2$ kg of salt per L is poured into the tank at $5$ L/min, and the well-stirred mixture is allowed to leave at $3$ L/min. Determine the quantity of salt when the salt water begins to overflow.
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Solve the following second-order differential equations.
+\begin{problemsubparts}
+\item $y''+y'-2y=2t$, $y(0)=0$, $y'(0)=2$.
+\item $t^2y''-2y=4t^2-3$, $t>0$, given two homogeneous solutions $y_1(t)=t^2$ and $y_2(t)=1/t$.
+\item $(x-1)^2y''+8(x-1)y'+12y=0$, $x>1$.
+\end{problemsubparts}
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Find the general solution using the method of undetermined coefficients:
+\[y''+y=x+2e^{-2x}+\sin x.\]
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Use the Laplace transform to solve the following problems.
+\begin{problemsubparts}
+\item $y''+3y'+2y=e^t$, $y(0)=0$, $y'(0)=2$.
+\item $y''+y=g(t)$, $y(0)=0$, $y'(0)=2$, where
+\[g(t)=\begin{cases}t/2,&0\le t<6,\\3,&t\ge6.\end{cases}\]
+\item $y^{(4)}-y=0$, $y(0)=1$, $y'(0)=0$, $y''(0)=1$, $y^{(3)}(0)=0$.
+\item Find $f(t)$ satisfying
+\[f(t)=2t^2+\int_0^t f(t-\tau)e^{-2\tau}\,\dd\tau.\]
+\end{problemsubparts}
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Consider the differential equation
+\[xy''+xy'+y=0.\]
+\begin{problemsubparts}
+\item Using the Laplace transform, find the solution satisfying $y(0)=0$, $y'(0)=1$. \textit{Hint.} Use $\mathcal L\{xf(x)\}(s)=-\dfrac{\dd}{\dd s}\mathcal L\{f(x)\}(s)$.
+\item $y_1(x)=xe^{-x}$ is a solution of the differential equation. Using this and reduction of order, find a second series solution. Express the answer in the form $y_2=f(x)+P(x)$, where $f(x)$ involves a logarithm and $P(x)$ is a power series about $x=0$. Show the power-series expansion through the cubic term. \textit{Hint.} Use the Taylor expansion.
+\end{problemsubparts}
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Find the first four nonzero terms of each of two linearly independent series solutions about $x=0$ of
+\[x^2y''+x(x-2)y'+(x^2+2)y=0,\qquad x>0.\]
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Find the fundamental matrix $\boldsymbol\Phi(t)$ for the system
+\[\mathbf x'=\begin{pmatrix}1&-4\\4&-7\end{pmatrix}\mathbf x\]
+satisfying $\boldsymbol\Phi(0)=\mathbf I$.
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Let $f(x)=x$ for $-1<x<1$, $f(1)=f(-1)=0$, and $f(x+2)=f(x)$ for all $x$.
+\begin{problemsubparts}
+\item Find the Fourier series of $f(x)$.
+\item Show that $\displaystyle\frac{\pi^2}{6}=\sum_{n=1}^{\infty}\frac1{n^2}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+A metal rod with $\alpha^2=1$ and length $50$ initially has a uniform temperature of $20\,{}^\circ\mathrm C$ throughout. For $t>0$, the end $x=0$ is held at $10\,{}^\circ\mathrm C$, while the end $x=50$ is held at $60\,{}^\circ\mathrm C$. Find the temperature $u(x,t)$ at position $x$ and time $t$.
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Find the solution $u(x,t)$ of the wave equation
+\[c^2u_{xx}=u_{tt},\qquad 0<x<L,\quad t>0,\]
+subject to the boundary and initial conditions
+\[u(0,t)=u(L,t)=0,\quad t\ge0,\qquad u_t(x,0)=0,\quad u(x,0)=f(x),\quad 0\le x\le L,\]
+where $f$ is a function on $\R$ with a continuous second derivative that is not identically zero. Express the solution $u(x,t)$ in terms of $f(x+ct)$ and $f(x-ct)$.
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Find a trigonometric series solution $u(x,y)$ of Laplace's equation
+\[u_{xx}+u_{yy}=0\]
+in the rectangle $0<x<1$, $0<y<1$, with boundary conditions
+\[u(x,0)=0,\quad u(x,1)=e^x,\quad 0\le x\le1,\]
+\[u(0,y)=0,\quad u(1,y)=0,\quad 0\le y\le1.\]
+Explain why the series solution converges.
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Show that in polar coordinates $(r,\theta)$ Laplace's equation $u_{xx}+u_{yy}=0$ becomes
+\[u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}=0.\]
+Assume that $u$ has continuous partial derivatives of all orders.
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Let $a>0$. Find a bounded solution $u(r,\theta)$ of
+\[u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}=0\]
+in the polar region $0<r<a$ with boundary condition $u(a,\theta)=f(\theta)$ for $0\le\theta<2\pi$, where $f$ is a continuous $2\pi$-periodic function on $\R$ that is not identically zero.
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 8
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Consider the Sturm--Liouville problem
+\[y''-y+\lambda y=0,\quad 0<x<1,\qquad y'(0)=0,\quad y(1)=0.\]
+Define $L[y]=-y''+y$. Show by direct computation that if $u(x)$ and $v(x)$ are twice differentiable functions on $(0,1)$ satisfying the boundary conditions, then
+\[\int_0^1 L[u]v\,\dd x=\int_0^1 L[v]u\,\dd x.\]
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 9
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+The Sturm--Liouville problem
+\[y''+\lambda y=0,\qquad y(0)=0,\quad y(1)+y'(1)=0\]
+has a sequence of real eigenvalues $(\lambda_n)_{n\ge1}$ such that $0<\lambda_1<\lambda_2<\cdots$.
+\begin{problemsubparts}
+\item Show that $\lambda_n$ must satisfy $\tan\sqrt{\lambda_n}=-\sqrt{\lambda_n}$.
+\item Show that the normalized eigenfunction $\phi_n(x)$ corresponding to $\lambda_n$ is
+\[\phi_n(x)=\frac{\sqrt2}{\bigl(1+\cos^2\sqrt{\lambda_n}\bigr)^{1/2}}\sin\!\left(\sqrt{\lambda_n}\,x\right).\]
+\item Find the coefficients $a_n$ such that $\displaystyle 2=\sum_{n=1}^{\infty}a_n\phi_n(x)$ for all $x\in(0,1)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2017 Spring POSTECH Differential Equations Final, Problem 10
+\begin{problem}[2017 Spring \POSTECH{} Differential Equations]
+Let $u(x,t)$ be a solution of
+\[u_t-ku_{xx}=f(x,t)\]
+subject to $u(0,t)=u(L,t)=0$ for $t>0$ and $u(x,0)=0$ for $0\le x\le L$. Show that if
+\[u(x,t)=\sum_{n=1}^{\infty}b_n(t)\sin\frac{n\pi x}{L},\qquad f(x,t)=\sum_{n=1}^{\infty}c_n(t)\sin\frac{n\pi x}{L}\]
+for $0\le x\le L$, $t>0$, then
+\[b_n(t)=\int_0^t e^{-kn^2\pi^2(t-s)/L^2}c_n(s)\,\dd s.\]
+Assume that the coefficients $b_n$ and $c_n$ decay sufficiently rapidly as $n\to\infty$ so that the series converge uniformly and can be differentiated term by term.
+\end{problem}
+
+% 2018 Spring POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2018 Spring \POSTECH{} Differential Equations]
+Let $\mathbf x^{(1)}$, $\mathbf x^{(2)}$ and $\mathbf x^{(3)}$ in $\R^3$ be solutions of the homogeneous system
+\[\mathbf x'=\mathbf A(t)\mathbf x,\]
+where each entry of the $3\times3$ matrix $\mathbf A(t)$ is continuous on an interval $I$. Let $\mathbf X(t)$ be the $3\times3$ matrix whose columns are $\mathbf x^{(k)}(t)$. Show that the Wronskian
+\[W(t)=W(\mathbf x^{(1)},\mathbf x^{(2)},\mathbf x^{(3)})(t)=\det\mathbf X(t)\]
+satisfies
+\[W'(t)=(a_{11}(t)+a_{22}(t)+a_{33}(t))W(t).\]
+For the $3\times3$ case, you may use properties of determinants or direct calculation.
+\end{problem}
+
+% 2018 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2018 Spring \POSTECH{} Differential Equations]
+Consider the system
+\[\mathbf x'=\mathbf A\mathbf x,\qquad\mathbf A=\begin{pmatrix}0&6&0\\1&0&1\\1&1&0\end{pmatrix}.\]
+Solve the system and write a fundamental matrix $\boldsymbol\Phi(t)$.
+\end{problem}
+
+% 2018 Spring POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2018 Spring \POSTECH{} Differential Equations]
+Find the general solution of
+\[\mathbf x'=\begin{pmatrix}3&-18\\2&-9\end{pmatrix}\mathbf x.\]
+\end{problem}
+
+% 2018 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2018 Spring \POSTECH{} Differential Equations]
+Find two linearly independent real-valued solutions of
+\[\mathbf x'=\begin{pmatrix}1&-1\\5&-3\end{pmatrix}\mathbf x.\]
+\end{problem}
+
+% 2018 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2018 Spring \POSTECH{} Differential Equations]
+Suppose that $f(x)=e^{2x}$ for $0\le x\le1$.
+\begin{problemsubparts}
+\item Find the Fourier cosine series of the even periodic extension $g_e$ of $f$ with period $2$.
+\item Find the Fourier sine series of the odd periodic extension $g_o$ of $f$ with period $2$.
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2018 Spring \POSTECH{} Differential Equations]
+Let $(\phi_n(x))_{n\ge0}$ be an orthonormal system of real-valued functions on $[a,b]$ with the inner product
+\[\langle f,g\rangle=\int_a^b f(x)g(x)\,\dd x,\qquad\langle\phi_n,\phi_m\rangle=\delta_{nm}.\]
+Assume continuity of the inner product: ${\langle f,\lim_{n\to\infty}g_n\rangle}=\lim_{n\to\infty}\langle f,g_n\rangle$.
+\begin{problemsubparts}
+\item Prove that if $f=\sum_{n=0}^{\infty}a_n\phi_n$ and $g=\sum_{n=0}^{\infty}b_n\phi_n$, then
+\[\langle f,g\rangle=\sum_{n=0}^{\infty}a_nb_n.\]
+\item Find the inner product $\displaystyle(f,g)=\frac2L\int_0^L f(x)g(x)\,\dd x$ if
+\[f=\frac{a_0}{2}+\sum_{n=1}^{\infty}a_n\cos\frac{n\pi x}{L},\qquad g=\frac{b_0}{2}+\sum_{n=1}^{\infty}b_n\cos\frac{n\pi x}{L}.\]
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Spring POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2018 Spring \POSTECH{} Differential Equations]
+Solve the heat equation with a source:
+\[u_{xx}+x=u_t,\qquad 0<x<1,\quad t>0,\]
+subject to $u(0,t)=u(1,t)=0$ for $t>0$ and $u(x,0)=x$ for $0<x<1$.
+\end{problem}
+
+% 2018 Spring POSTECH Differential Equations Final, Problem 8
+\begin{problem}[2018 Spring \POSTECH{} Differential Equations]
+Suppose that $u(x,t)$ satisfies the wave equation
+\[u_{xx}=u_{tt},\qquad 0<x<L,\quad t>0.\]
+Solve for $u(x,t)$ with the conditions
+\[u(0,t)=u(L,t)=0,\qquad u(x,0)=0,\quad u_t(x,0)=x(L-x).\]
+\end{problem}
+
+% 2018 Spring POSTECH Differential Equations Final, Problem 9
+\begin{problem}[2018 Spring \POSTECH{} Differential Equations]
+Given $a>0$ and $0<L<\pi/2$, find the solution $u(r,\theta)$ of
+\[\nabla^2u=u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}=0,\qquad 0<r<a,\quad 0<\theta<L,\]
+subject to
+\[u(0,0)=0,\quad u(r,0)=0,\quad u_\theta(r,L)=0,\quad 0<r<a,\]
+\[u(a,\theta)=f(\theta),\qquad 0<\theta<L.\]
+\end{problem}
+
+% 2018 Fall POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2018 Fall \POSTECH{} Differential Equations]
+Consider the initial-value problem
+\[y''-2y'+2y=e^{-t},\qquad y(0)=1,\quad y'(0)=1.\]
+\begin{problemsubparts}
+\item Solve the equation without using the Laplace transform.
+\item Solve the equation using the Laplace transform.
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2018 Fall \POSTECH{} Differential Equations]
+Let
+\[\mathbf A=\begin{pmatrix}1&-1&4\\3&2&-1\\2&1&-1\end{pmatrix}.\]
+Find all solutions of $\mathbf x'=\mathbf A\mathbf x$.
+\end{problem}
+
+% 2018 Fall POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2018 Fall \POSTECH{} Differential Equations]
+Let $u(x,t)$ be the temperature function of a uniform rod of length $L$ with thermal diffusivity $\alpha^2=k/(\rho s)$. Given an initial temperature $u(x,0)=\cos(\pi x/L)$ for $0\le x\le L$, assume both ends of the rod are insulated: $u_x(0,t)=u_x(L,t)=0$ for $t>0$.
+\begin{problemsubparts}
+\item Find the temperature $u(x,t)$.
+\item What is the steady-state temperature as $t\to\infty$?
+\item Describe briefly how the temperature in the rod changes as time progresses.
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2018 Fall \POSTECH{} Differential Equations]
+Solve the initial-boundary value problem
+\[u_{xx}-u_y=-Ae^{-\alpha x},\qquad A\ge0,\ \alpha>0,\]
+with conditions
+\[u(0,y)=0,\quad u(L,y)=0,\quad y>0,\qquad u(x,0)=f(x),\quad 0<x<L.\]
+\textit{Hint.} Let $u(x,y)=v(x,y)+w(x,y)$ so that $v$ satisfies the homogeneous equation
+\[v_{xx}-v_y=0\]
+and homogeneous boundary conditions $v(0,y)=v(L,y)=0$.
+\end{problem}
+
+% 2018 Fall POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2018 Fall \POSTECH{} Differential Equations]
+Solve the initial-boundary value problem
+\[\begin{cases}u_{tt}=c^2u_{xx}+u,&x\in(0,1),\ t>0,\\u(0,t)=u(1,t)=0,&t>0,\\u(x,0)=f(x),&x\in(0,1),\\u_t(x,0)=0,&x\in(0,1).\end{cases}\]
+\end{problem}
+
+% 2018 Fall POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2018 Fall \POSTECH{} Differential Equations]
+Solve the system
+\[\begin{cases}\dfrac{\dd x}{\dd t}-6x+3y=8e^t,\\[0.3em]\dfrac{\dd y}{\dd t}-2x-y=4e^t,\end{cases}\qquad x(0)=-1,\quad y(0)=0.\]
+\end{problem}
+
+% 2018 Fall POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2018 Fall \POSTECH{} Differential Equations]
+Consider the eigenvalue problem
+\[
+\begin{cases}
+-y''=\lambda y,&x\in(0,1),\\
+y(0)-3y'(0)=0,\quad y'(1)=0.
+\end{cases}\tag{1}
+\]
+\begin{problemsubparts}
+\item Find the eigenvalues of (1).
+\item Determine the corresponding normalized eigenfunctions. \textit{(Hint. A function $\phi$ is normalized if $\int_0^1\phi^2(x)\,\dd x=1$.)}
+\end{problemsubparts}
+\end{problem}
+
+% 2018 Fall POSTECH Differential Equations Final, Problem 8
+\begin{problem}[2018 Fall \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[\mathbf x'=\begin{pmatrix}1&4\\1&1\end{pmatrix}\mathbf x+\begin{pmatrix}1\\1\end{pmatrix}e^t,\qquad\mathbf x(0)=\begin{pmatrix}2\\1\end{pmatrix}.\]
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Solve the following differential equations.
+\begin{problemsubparts}
+\item $\displaystyle\frac{\dd y}{\dd x}=\frac{y}{x}+2\frac{x}{y}$, $y(1)=2$.
+\item $\displaystyle(4xy^2+3y)+(2x^2y+x)\frac{\dd y}{\dd x}=0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+At time $t=0$, a tank contains $Q_0$ grams of salt dissolved in $100$ L of water. Assume that water containing $\gamma$ grams of salt per liter is pumped into the tank at a rate of $5$ L/min and the well-stirred mixture leaves the tank at the same rate. Find an expression for the amount $Q(t)$ of salt in the tank at time $t$ in terms of $\gamma$ and $Q_0$. Compute $\displaystyle\lim_{t\to\infty}Q(t)$.
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Find all possible values of $b$ for which the solution $y(t)$ of
+\[
+y''-2by'+4y=0,\qquad y(0)=0,\quad y'(0)=1
+\]
+remains finite as $t\to\infty$.
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Solve the following differential equations.
+\begin{problemsubparts}
+\item $y''-2y'+y=0$.
+\item $y''-2y'+y=e^t+2\sin t$.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Consider
+\[
+t^2y''-t(t+2)y'+(t+2)y=t^3,\qquad t>0.
+\]
+\begin{problemsubparts}
+\item Show that $y_1(t)=t$ is a solution of the corresponding homogeneous equation
+\[
+t^2y''-t(t+2)y'+(t+2)y=0.
+\]
+\item Use reduction of order to find a second solution of the homogeneous equation.
+% Source correction mark over the printed coefficient of t^3 is difficult to decipher; see source scan before revising.
+\item Use variation of parameters to solve
+\[
+t^2y''-t(t+2)y'+(t+2)y=4t^3,\qquad y(1)=e,\quad y'(1)=2e-1.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Find two series solutions of
+\[
+y''+(t-1)y'+2y=0
+\]
+about $t_0=1$ which form a fundamental set of solutions. (You may use the notation $n!!=n(n-2)\cdots(n-2\ell)$, where $n-2\ell=1$ or $2$; for example, $6!!=6\cdot4\cdot2$ and $7!!=7\cdot5\cdot3\cdot1$.)
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[
+2t^2y''+ty'-3y=0,\qquad y(1)=1,\quad y'(1)=2.
+\]
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 8
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+We seek Frobenius series solutions of the form $\displaystyle y=\sum_{n=0}^{\infty}a_nx^{n+r}$ to
+\[
+4xy''+y'+xy=0,\qquad x>0.
+\]
+\begin{problemsubparts}
+\item Determine the indicial equation and its roots.
+\item Write the first three nonzero terms of each solution.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 9
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Find the inverse Laplace transform of $\displaystyle\frac{1}{(s^2+1)^2}$.
+\item Solve
+\[
+y''+y=\sin t+H(t-\pi)\sin(t-\pi),\qquad y(0)=1,\quad y'(0)=0.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 10
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Let $y(t)$ solve
+\[
+y''+2y'+2y=\delta(t-\pi),\qquad y(0)=1,\quad y'(0)=3.
+\]
+Find $\displaystyle y\left(\frac{3\pi}{2}\right)$.
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Midterm, Problem 11
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Find the inverse Laplace transform of $\displaystyle\frac{1}{s^3-1}$.
+\item Find the solution of
+\[
+y^{(3)}-y=g(t),\qquad y(0)=y'(0)=y''(0)=0
+\]
+in terms of a convolution integral.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Final, Problem 1
+\Needspace{27\baselineskip}
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Consider the two interconnected tanks shown below.
+\begin{center}
+\begin{tikzpicture}[x=0.92cm,y=0.92cm,>=Latex]
+  % Fluid levels, inflows, outflows, and inter-tank exchanges (all grayscale).
+  \fill[black!10] (0.06,0.07) rectangle (2.44,1.55);
+  \fill[black!10] (5.06,0.07) rectangle (7.44,1.55);
+  \draw[line width=0.65pt] (0,0) -- (0,1.8) -- (2.5,1.8) -- (2.5,0) -- cycle;
+  \draw[line width=0.65pt] (5,0) -- (5,1.8) -- (7.5,1.8) -- (7.5,0) -- cycle;
+  \node at (1.25,0.9) {$Q_1(t)$};
+  \node at (6.25,0.9) {$Q_2(t)$};
+  \node[below=3pt] at (1.25,0) {Tank 1};
+  \node[below=3pt] at (6.25,0) {Tank 2};
+  % External feed to Tank 1.
+  \draw[->,line width=0.7pt] (-1.7,2.25) -- (0.6,2.25) -- (0.6,1.6);
+  \node at (-0.65,3.02) {$3\,\mathrm{L/min}$};
+  \node at (-0.65,2.68) {$0.1\,\mathrm{kg/L}$};
+  % External feed to Tank 2.
+  \draw[->,line width=0.7pt] (9.3,2.25) -- (6.92,2.25) -- (6.92,1.6);
+  \node at (8.26,3.02) {$2\,\mathrm{L/min}$};
+  \node at (8.26,2.68) {$0.15\,\mathrm{kg/L}$};
+  % Inter-tank transport.
+  \draw[->,line width=0.8pt] (2.5,1.25) -- (5,1.25);
+  \node[above=2pt] at (3.75,1.25) {$6\,\mathrm{L/min}$};
+  \draw[->,line width=0.8pt] (5,0.52) -- (2.5,0.52);
+  \node[below=2pt] at (3.75,0.52) {$3\,\mathrm{L/min}$};
+  % Tank 2 drainage.
+  \draw[->,line width=0.7pt] (7.5,0.76) -- (9.5,0.76);
+  \node[above=3pt] at (8.55,0.76) {$5\,\mathrm{L/min}$};
+\end{tikzpicture}
+\end{center}
+Tank 1 initially contains $10$ liters of water, and Tank 2 initially contains $5$ liters of water. Water containing $0.1\,\mathrm{kg/L}$ of salt flows into Tank 1 at a rate of $3\,\mathrm{L/min}$. The mixture in Tank 1 flows into Tank 2 at a rate of $6\,\mathrm{L/min}$. At the same time, the mixture in Tank 2 flows into Tank 1 at a rate of $3\,\mathrm{L/min}$ and drains from Tank 2 at a rate of $5\,\mathrm{L/min}$. Water containing $0.15\,\mathrm{kg/L}$ of salt also flows into Tank 2 at a rate of $2\,\mathrm{L/min}$.
+Let $Q_1(t)$ and $Q_2(t)$ be the respective amounts of salt in each tank at time $t$.
+\begin{problemsubparts}
+\item Write the differential equations modelling the flow process.
+\item Find $Q_1$ and $Q_2$ for which the system is in equilibrium (unchanging with time).
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Find the general solution of
+\[
+\mathbf x'=\begin{pmatrix}-1&2\\-2&-1\end{pmatrix}\mathbf x.
+\]
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Find all real numbers $a$ such that the solution $\mathbf x(t)$ of
+\[
+\mathbf x'=\begin{pmatrix}a&-1\\1&a\end{pmatrix}\mathbf x,\qquad
+\mathbf x(0)=\begin{pmatrix}1\\0\end{pmatrix}
+\]
+satisfies $\displaystyle\lim_{t\to\infty}\mathbf x(t)=\begin{pmatrix}0\\0\end{pmatrix}$.
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Solve the homogeneous system
+\[
+\mathbf x'=\begin{pmatrix}2&3\\-1&-2\end{pmatrix}\mathbf x.
+\]
+\item Solve the nonhomogeneous system
+\[
+\mathbf y'=\begin{pmatrix}2&3\\-1&-2\end{pmatrix}\mathbf y
++\begin{pmatrix}2\\-2\end{pmatrix}e^t,\qquad
+\mathbf y(0)=\begin{pmatrix}3\\-1\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Find the general solution of
+\[
+\mathbf x'=\begin{pmatrix}-1&0&0\\-4&-1&0\\3&6&1\end{pmatrix}\mathbf x.
+\]
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Solve the heat conduction problem
+\[
+\begin{cases}
+9u_{xx}=u_t,&0<x<10,\ t>0,\\
+u_x(0,t)=1,\quad u(10,t)=0,&t>0,\\
+u(x,0)=0,&0\le x\le10.
+\end{cases}
+\]
+\textit{(Hint. Seek a solution of the form $u(x,t)=v(x)+w(x,t)$.)}
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Use separation of variables to solve
+\[
+u_{tt}+u=u_{xx},\qquad 0<x<\pi,\quad t>0,
+\]
+subject to the boundary conditions $u(0,t)=u(\pi,t)=0$ and the initial conditions $u(x,0)=0$, $u_t(x,0)=f(x)$.
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Final, Problem 8
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Find the solution $u(x,y)$ of Laplace's equation in the rectangle $0<x<2$, $0<y<4$, with boundary conditions
+\[
+\begin{aligned}
+u(0,y)&=0,&u(2,y)&=f(y),&0<y<4,\\
+u(x,0)&=0,&u(x,4)&=0,&0<x<2,
+\end{aligned}
+\]
+where $f(y)=(y-2)^2-4=y^2-4y$.
+\end{problem}
+
+% 2019 Spring POSTECH Differential Equations Final, Problem 9
+\begin{problem}[2019 Spring \POSTECH{} Differential Equations]
+Find the solution $u(r,\theta)$ of Laplace's equation
+\[
+u_{rr}+\frac1r u_r+\frac1{r^2}u_{\theta\theta}=0
+\]
+in the circular sector $0<r<1$, $0<\theta<\frac\pi4$, satisfying
+\[
+\begin{aligned}
+u_\theta(r,0)&=0,&u_\theta\left(r,\frac\pi4\right)&=0,&0<r<1,\\
+u(1,\theta)&=f(\theta),&&&0<\theta<\frac\pi4.
+\end{aligned}
+\]
+Assume $u$ is single-valued and bounded in the region.
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[y'=y+e^t,\qquad y(0)=2.\]
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Consider the initial-value problem
+\[(2+x^2)y''-xy'+4y=0,\qquad y(1)=2,\quad y'(1)=3.\]
+\begin{problemsubparts}
+\item Find the longest interval on which the solution is certain to exist.
+\item Determine a lower bound for the radius of convergence of the power-series solution centered at $x=1$.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Consider the initial-value problem
+\[\frac{\dd y}{\dd t}=y^4+1,\qquad y(0)=1.\]
+What can you say about existence, uniqueness, and the interval on which the solution exists? You may use a theorem; be as precise and concise as possible.
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Consider the differential equation
+\[xy''+(1-x)y'+2y=0,\qquad x>0.\]
+\begin{problemsubparts}
+\item Explain why $x=0$ is a singular point and is a regular one.
+\item Write the indicial equation and find its roots.
+\item Write the form of a first series solution $y_1(x)$ with undetermined coefficients (do not determine the coefficients, but determine the exponents). For what values of $x$ does the series converge?
+\item Write the form of a second series solution $y_2(x)$ with undetermined coefficients (do not determine the coefficients). For what values of $x$ does the series converge?
+\item Show that $y_1(x)$ and $y_2(x)$ are linearly independent.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Consider the differential equation
+\[y''+4y'+4y=te^{-2t}.\]
+\begin{problemsubparts}
+\item Let $y_p$ be a particular solution, and $y_1,y_2$ be linearly independent solutions of the corresponding homogeneous equation. Write down the general solution in terms of $y_1,y_2,y_p$.
+\item Find $y_1$ and $y_2$.
+\item Write down a form for $y_p$ using undetermined coefficients. Do not determine the coefficients.
+\item Use variation of parameters to find $y_p$.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Find the general solution of
+\[4x^2y''+8xy'+17y=0,\qquad x>0.\]
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[(2x-y)+(2y-x)y'=0,\qquad y(1)=4.\]
+Express the solution explicitly as a function of $x$.
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Midterm, Problem 8
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+The function $y_1(x)=e^x$ is a solution of
+\[(x-1)y''-xy'+y=0,\qquad x>1.\]
+Use reduction of order to find a second solution.
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Let $\mathbf x_1,\dots,\mathbf x_n$ be real-valued solutions of $\mathbf x'=\mathbf A\mathbf x$, where $\mathbf A$ is a real $n\times n$ matrix. Determine whether each statement is true or false. No justification is required.
+\begin{problemchoices}
+\item If $\mathbf x_1(1),\dots,\mathbf x_n(1)\in\R^n$ are linearly independent, then $\{\mathbf x_1,\dots,\mathbf x_n\}$ is a fundamental set of solutions.
+\item If $\{\mathbf x_1,\dots,\mathbf x_n\}$ is a fundamental set of solutions, then $e^{t\mathbf A}=[\mathbf x_1\ \cdots\ \mathbf x_n]$.
+\item The columns of $e^{t\mathbf A}$ form a fundamental set of solutions.
+\item The general solution is $\mathbf c e^{t\mathbf A}$, where $\mathbf c\in\R^n$ is an arbitrary vector.
+\item $W(\mathbf x_1,\dots,\mathbf x_n)(t)=\det(e^{t\mathbf A})$.
+\end{problemchoices}
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Transform
+\[\begin{pmatrix}x''(t)\\y''(t)\end{pmatrix}=\begin{pmatrix}-2&1\\1&-2\end{pmatrix}\begin{pmatrix}x(t)\\y(t)\end{pmatrix}\]
+into a system of first-order equations. Do not solve it. Express the answer using matrices; define any newly introduced functions clearly.
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[4y''+4y'+17y=g(t),\qquad y(0)=0,\quad y'(0)=1,\]
+using the Laplace transform. Express the solution as a convolution integral.
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Find linearly independent real-valued solutions $\mathbf u(t)$ and $\mathbf v(t)$ of
+\[\mathbf x'=\begin{pmatrix}1&-5\\1&-3\end{pmatrix}\mathbf x.\]
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Solve the initial-value problem
+\[\mathbf x'=\begin{pmatrix}0&1&1\\1&0&1\\1&1&0\end{pmatrix}\mathbf x,\qquad\mathbf x(0)=\begin{pmatrix}2\\2\\-1\end{pmatrix}.\]
+Express the solution as a column vector. \textit{Hint.} First find the general solution and determine the coefficients.
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+Let $f\colon\R\to\R$ be an odd function of class $C^2$ with period $2L$. Consider the boundary-value problem
+\[\begin{cases}a^2u_{xx}=u_{tt},&0<x<L,\quad t>0,\\u(0,t)=u(L,t)=0,&t\ge0,\\u(x,0)=f(x),\quad u_t(x,0)=0,&0\le x\le L.\end{cases}\]
+\begin{problemsubparts}
+\item Write down a series solution and determine its coefficients. No justification is required.
+\item Show that the series in part (a) satisfies $a^2u_{xx}=u_{tt}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+A $20$-cm-long bar is made of a material with thermal diffusivity $\alpha^2=3$. Initially it is at a uniform temperature of $100\,{}^\circ\mathrm C$. At $t=0$, the end $x=0$ is cooled to $50\,{}^\circ\mathrm C$, while the end $x=20$ is heated to $150\,{}^\circ\mathrm C$; thereafter, both ends remain at those temperatures.
+\begin{problemsubparts}
+\item Set up a boundary-value problem (differential equation and boundary conditions).
+\item Using separation of variables and Fourier series, derive a series solution. Write formulas for the coefficients without computing their numerical values. You need not justify convergence or term-by-term differentiation.
+\end{problemsubparts}
+\end{problem}
+
+% 2019 Fall POSTECH Differential Equations Final, Problem 8
+\begin{problem}[2019 Fall \POSTECH{} Differential Equations]
+The electrostatic potential $\varphi(r,\theta)$ inside a circular disk $r\le a$ is a solution of
+\[\begin{cases}\nabla^2\varphi=0,&0<r<a,\quad 0<\theta<2\pi,\\\varphi(a,\theta)=f(\theta),&0<\theta<2\pi.\end{cases}\]
+Using separation of variables and Fourier series, derive the series solution
+\[\varphi(r,\theta)=\frac{c_0}{2}+\sum_{n=1}^{\infty}r^n(c_n\cos n\theta+k_n\sin n\theta).\]
+Write formulas for the coefficients without computing numerical values. You need not justify convergence or term-by-term differentiation.
+\end{problem}
+
+
+% 2020 Spring POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2020 Spring \POSTECH{} Differential Equations]
+Find a nonconstant solution of
+\[
+(x^2y+y^3)+(x^3+2x^2y-3xy^2)y'=0.
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2020 Spring \POSTECH{} Differential Equations]
+Let $b\ge0$, and suppose $y=\phi(t)$ solves
+\[
+y''-by'+4y=\sin t,\qquad y(0)=y'(0)=0.
+\]
+If $\phi(t)$ remains finite as $t\to\infty$, find $b$ and $\phi(t)$.
+\end{problem}
+
+% 2020 Spring POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2020 Spring \POSTECH{} Differential Equations]
+We seek solutions by the Frobenius method in the form $\displaystyle y=\sum_{n=0}^\infty a_nx^{n+r}$ to
+\[
+5xy''+y'+xy=0,\qquad x>0.
+\]
+\begin{problemsubparts}
+\item Determine the indicial equation and its roots.
+\item Write the first three nonzero terms of each of two solutions.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2020 Spring \POSTECH{} Differential Equations]
+There are $78$ stairs along the POSTECH school road from Jigok restaurant. Let $f(x)$ denote the function describing these $78$ stairs.
+\begin{problemsubparts}
+\item Express $f(x)$ in terms of the unit-step or Heaviside function.
+\item Find the Laplace transform $F(s)$ of $f(x)$.
+\item Solve the initial-value problem
+\[
+u''(x)+4u(x)=f(x),\qquad x>0,\quad u(0)=0,\quad u'(0)=0.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2020 Spring \POSTECH{} Differential Equations]
+Find the general solution of
+\[
+\mathbf x'=\begin{pmatrix}3&5&0\\0&0&1\\-2&0&-1\end{pmatrix}\mathbf x.
+\]
+\end{problem}
+
+% 2020 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2020 Spring \POSTECH{} Differential Equations]
+Consider Laplace's equation $u_{xx}+u_{yy}=0$ on the rectangle $R=(0,1)\times(0,1)$, with boundary conditions
+\[
+\begin{aligned}
+u(x,0)&=0,&u(x,1)&=e^{-x},&0<x<1,\\
+u(0,y)&=0,&u(1,y)&=0,&0<y<1.
+\end{aligned}
+\]
+\begin{problemsubparts}
+\item Find $u(x,y)$ satisfying the boundary-value problem.
+\item Show that the solution satisfies the equation and boundary conditions.
+\item Discuss convergence of the solution series.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Solve $y'=ty+t$, $y(0)=0$.
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Consider $y''-2y'+2y=0$. Find a complex-valued solution and then use it to find two linearly independent real-valued solutions.
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Find the general solution of $x^2y''-2xy'+2y=0$.
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Consider
+\[
+(y\sin x+x)+(y-\cos x)\frac{\dd y}{\dd x}=0.
+\]
+\begin{problemsubparts}
+\item Determine whether this differential equation is exact.
+\item Find a solution satisfying $y(0)=1$. (You may give it in implicit form.)
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Consider
+\[
+(x^2+2)y''+(x^3+3)y'+(x^4+4)y=0,\qquad y(1)=2,\quad y'(1)=3.
+\]
+\begin{problemsubparts}
+\item Find the longest interval on which you are certain that a solution exists.
+\item Find the longest interval on which you are certain that the power-series solution centered at $x=1$ converges.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Find the integral equation equivalent to $y'=t+y^2$, $y(0)=0$.
+\item Find the first three Picard iterates $\phi_0(t)$, $\phi_1(t)$ and $\phi_2(t)$ approximating the solution.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Solve $y''-6y'+9y=e^{3t}$, $y(0)=0$, $y'(0)=1$.
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 8
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Find the general solution of $y''+4y=\cot t$ for $0<t<\pi$.
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 9
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Consider
+\[
+t^2y''-t(t+3)y'+(t+3)y=0,\qquad t>0.
+\]
+\begin{problemsubparts}
+\item Find a first solution $y_1$ by guessing.
+\item Use $y_1$ to find a second solution $y_2$. Simplify your answer so that it contains no definite integrals.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Midterm, Problem 10
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Verify that $x=0$ is a regular singular point of
+\[
+2x^2y''-3xy'+(2+x)y=0.
+\]
+\item Find two series solutions $y_1$ and $y_2$. Check that they form a fundamental set of solutions and write the general solution.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Find the solution of
+\[
+y''+2y'+3y=\delta(t-2),\qquad y(0)=0,\quad y'(0)=0.
+\]
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Find the inverse Laplace transform of
+\[
+F(s)=\frac{1}{(s+1)(s^2+4)}
+\]
+in two ways:
+\begin{problemsubparts}
+\item Using partial fractions.
+\item Evaluating a convolution integral. \textit{(Suggestion. Integrate by parts twice.)}
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Let $g\colon\R\to\R$ be piecewise continuous with $|g(t)|\le e^t$ for sufficiently large $t$. Solve using the Laplace transform
+\[
+y'''+3y''+3y'+y=g(t),\qquad y(1)=y'(1)=y''(1)=0.
+\]
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Consider the system
+\[
+\mathbf x'=\begin{pmatrix}0&1\\-1&1\end{pmatrix}\mathbf x+
+\begin{pmatrix}2\cos t\\2\sin t\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Suppose $\mathbf x=\mathbf u+i\mathbf v$ is a complex-valued solution with $\mathbf u$ and $\mathbf v$ real-valued. Is $\mathbf u$ a solution? Is $\mathbf v$ a solution? Justify your answers.
+\item Use diagonalization to find a real-valued particular solution. Your final answer must not contain $i$.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Consider
+\[
+\mathbf x'=\begin{pmatrix}1&2&0\\0&1&0\\0&0&2\end{pmatrix}\mathbf x.
+\]
+\begin{problemsubparts}
+\item Find a fundamental matrix explicitly.
+\item Find the solution satisfying $\displaystyle\mathbf x(0)=\begin{pmatrix}1\\1\\1\end{pmatrix}$, computing it explicitly.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Find the Fourier series of $f(x)=x$ for $-\pi<x<\pi$, extended $2\pi$-periodically to $\R$. What value of $f(\pi)$ makes the Fourier series converge to $f(x)$ for every $x\in\R$?
+\item Use part (a) to find $\displaystyle S=1-\frac13+\frac15-\frac17+\cdots$.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+Find $u(x,y)$ satisfying Laplace's equation in $0<x<1$, $0<y<1$ and
+\[
+\begin{aligned}
+u(0,y)&=0,&u(1,y)&=0,&0<y<1,\\
+u(x,0)&=0,&u(x,1)&=f(x),&0<x<1,
+\end{aligned}
+\]
+where $f(x)=\sin(3\pi x)$. Give a detailed argument and simplify the final answer as much as possible.
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Final, Problem 8
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+A metal bar $10\,\mathrm{cm}$ long has thermal diffusivity $\alpha^2=1$ and is initially at a uniform temperature of $0^\circ\mathrm C$. At $t=0$ the end $x=0$ is insulated, while the end $x=10$ is heated to $100^\circ\mathrm C$.
+\begin{problemsubparts}
+\item Without calculation, find the steady-state temperature distribution at thermodynamic equilibrium.
+\item Estimate the temperature at $x=5$ when $t=40$.
+\end{problemsubparts}
+\end{problem}
+
+% 2020 Fall POSTECH Differential Equations Final, Problem 9
+\begin{problem}[2020 Fall \POSTECH{} Differential Equations]
+A string of length $3$ satisfies
+\[
+u_{xx}=u_{tt},\qquad 0<x<3,\quad t>0.
+\]
+Its ends are fixed, and it is released from initial displacement $f(x)$ with zero initial velocity. Assume that $f'$ is piecewise continuous (and $f$ is continuous).
+\begin{problemsubparts}
+\item Write down a formal series solution $u(x,t)$, determining its coefficients. You need not derive the series.
+\item Justify that the series from part (a) solves the boundary-value problem. In particular, show that it converges and satisfies the wave equation and boundary conditions. (Term-by-term differentiation of a trigonometric series is not always permitted.)
+\end{problemsubparts}
+\end{problem}
 
 % 2021 Spring KAIST Differential Equations and Applications Midterm, Problem 1
 \begin{problem}[2021 Spring \KAIST{} Differential Equations and Applications]
@@ -340,14 +2403,14 @@ Parabolas have the reflective property that whenever an incident ray parallel to
   \pgfmathsetmacro{\xP}{\yP*\yP/(4*\p)}
   \draw[->,line width=0.45pt] (-0.25,0) -- (3.55,0) node[right] {$x$};
   \draw[->,line width=0.45pt] (0,-2.15) -- (0,2.75) node[above] {$y$};
-  \draw[KAISTBlue,line width=0.9pt,domain=-2.0:2.25,samples=100,smooth,variable=\t]
+  \draw[black,line width=0.9pt,domain=-2.0:2.25,samples=100,smooth,variable=\t]
     plot ({\t*\t/(4*\p)},{\t});
   \fill (\xP,\yP) circle (1.2pt) node[above left=1pt] {$P(x_0,y_0)$};
   \fill (\p,0) circle (1.2pt) node[below=2pt] {$F(p,0)$};
-  \draw[black!55,dashed,->,line width=0.65pt] (3.25,\yP) -- (\xP+0.04,\yP) node[midway,above=2pt] {$L$};
-  \draw[POSTECHRed,->,line width=0.75pt] (\xP,\yP) -- (\p+0.03,0.05);
+  \draw[black!70,dashed,->,line width=0.65pt] (3.25,\yP) -- (\xP+0.04,\yP) node[midway,above=2pt] {$L$};
+  \draw[black,->,line width=0.75pt] (\xP,\yP) -- (\p+0.03,0.05);
   \draw[black!45,line width=0.6pt] ({\xP-0.55},{\yP-0.37}) -- ({\xP+1.05},{\yP+0.70});
-  \node[KAISTBlue] at (2.25,-1.55) {$y^2=4px$};
+  \node[black] at (2.25,-1.55) {$y^2=4px$};
 \end{tikzpicture}
 \end{center}
 
@@ -361,6 +2424,211 @@ More precisely, a solution $y=f(x)$ of the above differential equation is intend
 \item Find a one-parameter family of solutions of the given differential equation. \textit{(Hint. Use the substitution $w=y^2$. Then differentiate the modified equation with respect to the independent variable $x$.)}
 \item Characterize a common geometric property of the one-parameter family of solutions you obtained.
 \end{problemsubparts}
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Find a solution of
+\[
+\frac{\dd y}{\dd x}=\frac{y}{x-y}.
+\]
+\textit{(Suggestion. Substitute $v=y/x$ to obtain a familiar type of differential equation.)}
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Find an integrating factor and solve
+\[
+(y^2+4ye^x)+(2y+2e^x)\frac{\dd y}{\dd x}=0,\qquad y(0)=1.
+\]
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+A tank initially contains $24$ liters of fresh water. Beginning at $t=0$, water containing $2$ g of salt per liter enters at a rate of $4$ liters per minute, while the well-stirred mixture leaves at the same rate. Find the amount of salt in the tank at time $t$.
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item State the integral equation equivalent to
+\[
+y'=y^2+2t,\qquad y(0)=0.
+\]
+\item Find the first three Picard iterates $\phi_0(t)$, $\phi_1(t)$, $\phi_2(t)$ approximating $y=\phi(t)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Solve $y''+9y=\cos3t$, $y(0)=y'(0)=0$.
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Find the general solution of $y''-4y'+4y=e^{2t}$.
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Midterm, Problem 7
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Find a particular solution of $y''+y=\tan t$ on $0<t<\frac\pi2$. (Recall $\displaystyle\frac{\dd}{\dd t}\ln|\sec t+\tan t|=\sec t$.)
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Midterm, Problem 8
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Consider
+\[
+t^2y''-t(t+2)y'+(t+2)y=0,\qquad t>0.
+\]
+\begin{problemsubparts}
+\item Find a first solution $y_1$ by guessing. Try simple functions.
+\item Use $y_1$ to find a second solution $y_2$. Simplify your answer so that it contains no definite integrals.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Midterm, Problem 9
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Verify that $x=0$ is a regular singular point of
+\[
+2x^2y''-3xy'+(2+x)y=0.
+\]
+\item Find two series solutions $y_1$ and $y_2$. Check that they form a fundamental set and state the general solution.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Find the solution of
+\[
+y''+y'-2y=\delta(t-2),\qquad y(0)=1,\quad y'(0)=0.
+\]
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Find the solution, in terms of a convolution integral, of
+\[
+y''+4y=g(t),\qquad y(0)=0,\quad y'(0)=1.
+\]
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Find the inverse Laplace transform of
+\[
+F(s)=\frac{1}{(s+3)(s^2+4)}
+\]
+in two ways:
+\begin{problemsubparts}
+\item By using partial fractions.
+\item By evaluating a convolution integral. \textit{(Suggestion. Integrate by parts twice.)}
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Let $\displaystyle\mathbf A=\begin{pmatrix}-3&1\\1&-3\end{pmatrix}$.
+\begin{problemsubparts}
+\item Find an invertible matrix $\mathbf T$ such that $\mathbf T^{-1}\mathbf A\mathbf T=\mathbf D$ with $\mathbf D$ diagonal.
+\item Compute $e^{t\mathbf A}$.
+\item Find a fundamental matrix $\boldsymbol{\Phi}(t)$ satisfying $\boldsymbol{\Phi}(0)=\mathbf I$.
+\item Find the solution of $\mathbf X'=\mathbf A\mathbf X$ with $\displaystyle\mathbf X(0)=\begin{pmatrix}1\\2\end{pmatrix}$.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Consider
+\[
+\mathbf X'=\mathbf A\mathbf X+\mathbf g(t)
+=\begin{pmatrix}1&-1\\1&3\end{pmatrix}\mathbf X+
+\begin{pmatrix}e^t\\2\end{pmatrix}.
+\]
+Find the Jordan form $\mathbf J$ of $\mathbf A$ and use it to find the general solution. \textit{(Suggestion. Find an invertible $\mathbf T$ such that $\mathbf T^{-1}\mathbf A\mathbf T=\mathbf J$.)}
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+\begin{problemsubparts}
+\item Find the Fourier series of $f(x)=x$ for $-1<x<1$, extended $2$-periodically to $\R$. Define $f(1)$ so that its Fourier series converges to $f(x)$ everywhere.
+\item Use part (a) to evaluate $\displaystyle S=1-\frac13+\frac15-\frac17+\cdots$.
+\end{problemsubparts}
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Final, Problem 7
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+A metal rod of length $20$ has thermal diffusivity $\alpha^2=1$. Its initial temperature distribution is $f(x)=x$. The boundary temperatures are $u(0,t)=10$ and $u(20,t)=0$ for $t>0$. Find $u(x,t)$ in the rod.
+\end{problem}
+
+% 2021 Fall POSTECH Differential Equations Final, Problem 8
+\begin{problem}[2021 Fall \POSTECH{} Differential Equations]
+Find $u(x,y)$ satisfying Laplace's equation in the square $0<x<2$, $0<y<2$ and
+\[
+\begin{aligned}
+u(0,y)&=0,&u(2,y)&=0,&0<y<2,\\
+u(x,0)&=0,&u(x,2)&=f(x),&0<x<2,
+\end{aligned}
+\]
+where $f(x)=\sin(4\pi x)$. Give a detailed argument and simplify the final answer as much as possible.
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Midterm, Problem 1
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Determine whether each statement is true or false. No justification is required.
+\begin{problemsubparts}
+\item There exists a second-order linear homogeneous differential equation, whose coefficient functions are continuous on all of $\R$, with a fundamental set of solutions consisting of $y_1(x)=x^2$ and $y_2(x)=x^4$.
+\item Consider $2y''+4y'+6.5y=0$. Let $x_1=y$ and $x_2=y'$ to obtain a first-order system. The origin of the resulting phase portrait is a spiral point.
+\item A population $y$ is modelled by $\displaystyle\frac{\dd y}{\dd t}=-\frac1{2500}(y^3-55y^2+250y)$. Then $y(t)=5$ is a solution and is asymptotically stable.
+\item Suppose $y'=f(t,y)$, $y(0)=0$, with $f$ continuous on $R=\{(t,y)\mid |t|\le1,\ |y|\le1\}$ and $|f(t,y)|\le0.5$ on $R$. Then a solution exists and is defined on $(-1,1)$.
+\item A solution to $\displaystyle y'=\sqrt{|y|}$, $y(0)=0$, is unique.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Midterm, Problem 2
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Solve the initial-value problem and find the interval of existence of the solution:
+\[
+y'+\frac4x y=x^3y^2,\qquad y(2)=-1,\quad x>0.
+\]
+\textit{(Hint. You may use $2e^{-1/16}\approx1.8788$, or proceed without it.)}
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Midterm, Problem 3
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Consider $M(x,y)+N(x,y)y'=0$, with
+\[
+M(x,y)=\frac{-y}{x^2+y^2},\qquad N(x,y)=\frac{x}{x^2+y^2}.
+\]
+\begin{problemsubparts}
+\item Show that $M_y(x,y)=N_x(x,y)$ on $\R^2\setminus\{(0,0)\}$.
+\item Nevertheless, the solution of the differential equation does not exist. Explain why.
+\item Restrict the domains of $M$ and $N$ to $D=\{(x,y)\in\R^2\mid x>0,\ y>0\}$. Find the solution of the differential equation on $D$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Midterm, Problem 4
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Find the general solution of
+\[
+(1+x^2)y''+xy'-y=0.
+\]
+\textit{(Hint. What is meant by an exact second-order linear differential equation?)}
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Midterm, Problem 5
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Find a particular solution of the nonhomogeneous system
+\[
+\mathbf x'=\mathbf A\mathbf x+\mathbf g(t)
+=\begin{pmatrix}-3&1\\-1&-5\end{pmatrix}\mathbf x+
+\begin{pmatrix}1\\1\end{pmatrix}te^{-4t}.
+\]
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Midterm, Problem 6
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Two tanks initially contain $100$ gallons of water each, with $80$ lb of salt dissolved in Tank $T_1$ and $20$ lb in Tank $T_2$. The liquid is stirred to remain uniform. Fresh water enters $T_1$ at $9.6$ gal/min; liquid flows from $T_1$ to $T_2$ at $10$ gal/min and from $T_2$ to $T_1$ at $0.4$ gal/min; liquid drains out of $T_2$ at $9.6$ gal/min. Find the masses of salt $y_1(t)$ and $y_2(t)$ in $T_1$ and $T_2$.
 \end{problem}
 
 % 2022 Spring KAIST Differential Equations and Applications Midterm, Problem 1
@@ -603,6 +2871,71 @@ y(0)=a_0,
 y'(0)=a_1,
 \]
 on $(0,\infty)$ by using the Laplace transform.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Final, Problem 1
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Determine whether each statement is true or false. No justification is required.
+\begin{problemsubparts}
+\item Let $D\subset\R^2$ be a closed set with simply connected boundary and open interior $D\setminus\partial D$. If $u\colon D\to\R$ is harmonic, then both its maximum and minimum occur only on the boundary of $D$.
+\item The radius of convergence of the Taylor series for $\displaystyle\frac{1}{1-x}$ about $x=5$ is $5$.
+\item The Laplace transform of $\displaystyle\frac{\sin x}{x}$ equals $\displaystyle\frac\pi2-\arctan s$. \textit{(Hint. $\mathcal L\{-xf(x)\}(s)=F'(s)$ if $F(s)=\mathcal L\{f(x)\}(s)$.)}
+\item Suppose $f$ and $f'$ are continuous for $t\ge0$ and are of exponential order at infinity. If $F(s)=\mathcal L\{f(x)\}(s)$, then $\displaystyle\lim_{s\to\infty}F(s)=0$.
+\end{problemsubparts}
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Final, Problem 2
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Show that
+\[
+\frac{\pi^2}{6}=1+\frac1{2^2}+\frac1{3^2}+\frac1{4^2}+\cdots.
+\]
+\textit{(Hint. Consider the Fourier series of $f(x)=x^2$ for $-1\le x\le1$, with $f(x+2)=f(x)$.)}
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Final, Problem 3
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Consider a bar of length $L$. Its end at $x=L$ is maintained at $0^\circ\mathrm C$, and its end at $x=0$ is insulated. If $u(x,t)$ is the temperature at position $x$ and time $t$, with initial temperature $\displaystyle u(x,0)=\frac{L-x}{L}$ and thermal diffusivity $\alpha^2=1$, find $u(x,t)$.
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Final, Problem 4
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Let $D=\{(x,y)\in\R^2\mid x\ge0,\ 0\le y\le1\}$. Find a solution $u(x,y)$ of Laplace's equation on $D$ satisfying
+\[
+\begin{cases}
+u(0,y)=y(1-y),\\
+u_y(x,0)=0,\\
+u_y(x,1)=0,
+\end{cases}
+\qquad\text{and}\qquad\lim_{x\to\infty}u(x,y)=0.
+\]
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Final, Problem 5
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Consider
+\[
+xy''+(2-2x)y'+(x-2)y=0.
+\]
+Show that $x=0$ is a regular singular point and find the general solution.
+\end{problem}
+
+% 2022 Spring POSTECH Differential Equations Final, Problem 6
+\begin{problem}[2022 Spring \POSTECH{} Differential Equations]
+Consider
+\[
+\begin{cases}
+2x'+y'-y=t,\\
+x'+y'=t^2,
+\end{cases}
+\qquad x(0)=1,\quad y(0)=0.
+\]
+\begin{problemsubparts}
+% Original source misprints Y(x) for the Laplace-domain variable; use Y(s) consistently.
+\item Apply the Laplace transform to the system, writing $X(s)=\mathcal L\{x(t)\}(s)$ and $Y(s)=\mathcal L\{y(t)\}(s)$.
+\item Solve the transformed equations for $X(s)$ and $Y(s)$.
+\item Find the inverse transforms of $X(s)$ and $Y(s)$.
 \end{problemsubparts}
 \end{problem}
 
