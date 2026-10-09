@@ -1,0 +1,480 @@
+
+
+\usepackage{iftex}
+\ifPDFTeX
+    \pdfminorversion=7
+\fi
+
+% Page layout and typography
+\usepackage[a4paper,margin=1in]{geometry}
+\ifPDFTeX
+    \usepackage[T1]{fontenc}
+    \usepackage{lmodern}
+\else
+    \usepackage{fontspec}
+    \setmainfont{Latin Modern Roman}[
+        SmallCapsFont={Latin Modern Roman Caps}
+    ]
+    \setsansfont{Latin Modern Sans}
+    \setmonofont{Latin Modern Mono}
+\fi
+\usepackage{microtype}
+\usepackage{etoolbox}
+\usepackage{needspace}
+
+% Mathematics
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\IfFileExists{dsfont.sty}{%
+    \usepackage{dsfont}%
+}{%
+    % AMS blackboard-bold fonts do not contain digits. Use a clear bold
+    % fallback rather than letting \mathbb{1} select an unrelated glyph.
+    \newcommand{\mathds}[1]{\mathbf{##1}}%
+}
+
+% Tables
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+
+% Figures
+\usepackage{graphicx}
+
+% Color and PDF metadata
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+    pdftitle={Mathematics for Science Quiz},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Mathematics preparation handbook for Science Quiz},
+    pdfcreator={LaTeX}
+}
+
+% Canonical personal-name rendering when an additional font encoding is needed.
+\ifPDFTeX
+    \DeclareRobustCommand{\NgoBaoChau}{Ng\^o B\~ao Ch\^au}
+\else
+    \DeclareRobustCommand{\NgoBaoChau}{Ngô Bảo Châu}
+\fi
+
+% Institution colors
+% Full-name commands reproduce official English names exactly. Short-name
+% commands are reserved for established abbreviations or institutional brands.
+% To add an institution, define its color here and declare its official names
+% below through \institutiontext.
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\definecolor{KoreaCrimson}{RGB}{140,0,40}
+\definecolor{YonseiBlue}{RGB}{0,55,120}
+\definecolor{UTokyoYellow}{RGB}{255,205,0}
+\definecolor{KyotoUBlue}{RGB}{0,32,91}
+\definecolor{ScienceBlue}{RGB}{28,49,119}
+\definecolor{HitotsubashiCrimson}{RGB}{170,34,42}
+\definecolor{MITRed}{RGB}{117,0,20}
+\definecolor{OxfordBlue}{RGB}{0,33,71}
+\definecolor{WasedaRed}{RGB}{142,23,40}
+\definecolor{CambridgeBlue}{RGB}{142,232,216}
+
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+
+% Institution names
+% POSTECH
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+
+% KAIST
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{%
+    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
+}
+
+% Seoul National University
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{%
+    \institutiontext{SNUBlue}{Seoul National University}%
+}
+
+% Korea University
+\DeclareRobustCommand{\KU}{\institutiontext{KoreaCrimson}{KU}}
+\DeclareRobustCommand{\KoreaUniversity}{%
+    \institutiontext{KoreaCrimson}{Korea University}%
+}
+
+% Yonsei University
+\DeclareRobustCommand{\Yonsei}{\institutiontext{YonseiBlue}{Yonsei}}
+\DeclareRobustCommand{\YonseiUniversity}{%
+    \institutiontext{YonseiBlue}{Yonsei University}%
+}
+
+% The University of Tokyo
+\DeclareRobustCommand{\UTokyo}{\institutiontext{UTokyoYellow}{UTokyo}}
+\DeclareRobustCommand{\TheUniversityOfTokyo}{%
+    \institutiontext{UTokyoYellow}{The University of Tokyo}%
+}
+
+% Kyoto University
+\DeclareRobustCommand{\KyotoU}{\institutiontext{KyotoUBlue}{KyotoU}}
+\DeclareRobustCommand{\KyotoUniversity}{%
+    \institutiontext{KyotoUBlue}{Kyoto University}%
+}
+
+% Tokyo Institute of Technology (historical name and brand)
+\DeclareRobustCommand{\TokyoTech}{\institutiontext{ScienceBlue}{Tokyo Tech}}
+\DeclareRobustCommand{\TokyoInstituteOfTechnology}{%
+    \institutiontext{ScienceBlue}{Tokyo Institute of Technology}%
+}
+
+% Institute of Science Tokyo (current name and brand)
+\DeclareRobustCommand{\ScienceTokyo}{\institutiontext{ScienceBlue}{Science Tokyo}}
+\DeclareRobustCommand{\InstituteOfScienceTokyo}{%
+    \institutiontext{ScienceBlue}{Institute of Science Tokyo}%
+}
+
+% Hitotsubashi University
+% The digital color is an approximation of the official DIC 2489 school color.
+\DeclareRobustCommand{\Hitotsubashi}{%
+    \institutiontext{HitotsubashiCrimson}{Hitotsubashi}%
+}
+\DeclareRobustCommand{\HitotsubashiUniversity}{%
+    \institutiontext{HitotsubashiCrimson}{Hitotsubashi University}%
+}
+
+% Massachusetts Institute of Technology
+\DeclareRobustCommand{\MIT}{\institutiontext{MITRed}{MIT}}
+\DeclareRobustCommand{\MassachusettsInstituteOfTechnology}{%
+    \institutiontext{MITRed}{Massachusetts Institute of Technology}%
+}
+
+% University of Oxford
+\DeclareRobustCommand{\Oxford}{\institutiontext{OxfordBlue}{Oxford}}
+\DeclareRobustCommand{\UniversityOfOxford}{%
+    \institutiontext{OxfordBlue}{University of Oxford}%
+}
+
+% Waseda University
+\DeclareRobustCommand{\Waseda}{\institutiontext{WasedaRed}{Waseda}}
+\DeclareRobustCommand{\WasedaUniversity}{%
+    \institutiontext{WasedaRed}{Waseda University}%
+}
+
+% University of Cambridge
+\DeclareRobustCommand{\UniversityOfCambridge}{%
+    \institutiontext{CambridgeBlue}{University of Cambridge}%
+}
+
+% Table columns
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% Chapter metadata
+\newcommand{\relatedcourses}[1]{%
+    \if\relax\detokenize{#1}\relax
+    \else
+        \noindent Related \POSTECH{} Courses: #1\par
+    \fi
+}
+\newcommand{\relatedbooks}[1]{%
+    \if\relax\detokenize{#1}\relax
+    \else
+        \noindent Related Books: #1\par
+    \fi
+}
+
+% Typography follows standard mathematical conventions throughout the book:
+% theorem statements are italic, definitions and expository statements are
+% upright, proof and solution labels are italic, and problem/source headings
+% are bold upright. In running text, italics are reserved for titles and terms
+% being defined, while bold is reserved for genuine structural headings.
+% Theorem styles
+\newtheoremstyle{sciencequizplain}
+    {6pt}
+    {6pt}
+    {\itshape}
+    {}
+    {\bfseries}
+    {}
+    {\newline}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+
+\newtheoremstyle{sciencequizdefinition}
+    {6pt}
+    {6pt}
+    {}
+    {}
+    {\bfseries}
+    {}
+    {\newline}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+
+\newtheoremstyle{sciencequizsameline}
+    {6pt}
+    {6pt}
+    {}
+    {}
+    {\itshape}
+    {.}
+    {0.5em}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+
+\renewenvironment{proof}[1][Proof]
+    {\par\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}
+    {\hfill$\square$\par}
+
+\theoremstyle{sciencequizdefinition}
+\newtheorem{definition}{Definition}[chapter]
+
+\theoremstyle{sciencequizplain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{conjecture}[definition]{Conjecture}
+\newtheorem{hypothesis}[definition]{Hypothesis}
+
+\theoremstyle{sciencequizdefinition}
+\newtheorem{formula}[definition]{Formula}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{openproblem}[definition]{Open Problem}
+\newtheorem{algorithm}[definition]{Algorithm}
+
+\theoremstyle{sciencequizsameline}
+\newtheorem*{remark}{Remark}
+\newtheorem*{idea}{Idea}
+\newtheorem*{strategy}{Strategy}
+\newtheorem*{tactic}{Tactic}
+
+% Readability safeguard: theorem-like labels should never be stranded at the
+% bottom of a page with too little room for the statement that follows.
+\newcommand{\sciencequizblockspace}{\Needspace{4\baselineskip}}
+\BeforeBeginEnvironment{definition}{\sciencequizblockspace}
+\BeforeBeginEnvironment{theorem}{\sciencequizblockspace}
+\BeforeBeginEnvironment{proposition}{\sciencequizblockspace}
+\BeforeBeginEnvironment{lemma}{\sciencequizblockspace}
+\BeforeBeginEnvironment{corollary}{\sciencequizblockspace}
+\BeforeBeginEnvironment{conjecture}{\sciencequizblockspace}
+\BeforeBeginEnvironment{hypothesis}{\sciencequizblockspace}
+\BeforeBeginEnvironment{formula}{\sciencequizblockspace}
+\BeforeBeginEnvironment{fact}{\sciencequizblockspace}
+\BeforeBeginEnvironment{openproblem}{\sciencequizblockspace}
+\BeforeBeginEnvironment{algorithm}{\sciencequizblockspace}
+\BeforeBeginEnvironment{remark}{\sciencequizblockspace}
+\BeforeBeginEnvironment{idea}{\sciencequizblockspace}
+\BeforeBeginEnvironment{strategy}{\sciencequizblockspace}
+\BeforeBeginEnvironment{tactic}{\sciencequizblockspace}
+
+% Problem environments
+% Past Problems keep explicit historical labels.
+% When one problem has genuinely different solution methods, wrap its solution
+% environments in solutions; they are then labeled Solution 1, Solution 2, ...
+% automatically. Ordinary solutions remain labeled simply Solution.
+% The optional argument contains only a compact, independently verifiable
+% official source and/or an established standard problem name. Internal study
+% documents, preparation slides, and invented descriptive labels are not
+% sources; omit the optional argument when no qualifying attribution is known.
+% Use established abbreviations, omit original problem numbers, and do not
+% insert the name of a theorem or method merely used in the solution. Examples
+% are [1988 IMO, Vieta Jumping], [1994 CSAT],
+% [1961 \UTokyo{} Entrance Examination], and [Chomp].
+\newcommand{\problemheading}[1]{%
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+    \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
+}
+
+\newenvironment{problem}[1]
+    {\problemheading{#1}}
+    {\par\vspace{6pt}}
+
+\newenvironment{pastproblem}[1]
+    {\problemheading{#1}}
+    {\par\vspace{6pt}}
+
+% Lists inside problems use role-specific labels throughout the book.
+% Independent choices, clues, assumptions, and ordered statements use
+% (1), (2), (3), ...; connected subparts use (a), (b), (c), ....
+\newlist{problemchoices}{enumerate}{1}
+\setlist[problemchoices]{
+    label=(\arabic*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+\newlist{problemsubparts}{enumerate}{1}
+\setlist[problemsubparts]{
+    label=(\alph*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+% Outside problem statements, independent ordered items and procedural steps use
+% (1), (2), ...; formal axioms, conditions, and parallel logical modes use
+% (i), (ii), .... This keeps each numbering style tied to a stable semantic role.
+\newlist{bookitems}{enumerate}{1}
+\setlist[bookitems]{
+    label=(\arabic*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+\newlist{conditionlist}{enumerate}{1}
+\setlist[conditionlist]{
+    label=(\roman*),
+    leftmargin=2.5em,
+    labelsep=0.6em,
+    itemsep=0.15em,
+    topsep=0.4em,
+    parsep=0pt,
+    partopsep=0pt,
+    align=left
+}
+
+\newif\ifnumberedsolutions
+\numberedsolutionsfalse
+\newcounter{solutionnumber}
+
+\newenvironment{solutions}
+    {\setcounter{solutionnumber}{0}\numberedsolutionstrue}
+    {\numberedsolutionsfalse}
+
+\newenvironment{solution}
+    {%
+        \par\Needspace{3\baselineskip}\vspace{6pt}\noindent
+        \ifnumberedsolutions
+            \stepcounter{solutionnumber}%
+            \textit{Solution \arabic{solutionnumber}.}%
+        \else
+            \textit{Solution.}%
+        \fi
+        \hspace{0.5em}\ignorespaces
+    }
+    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+
+\newenvironment{hint}
+    {\par\Needspace{2\baselineskip}\vspace{4pt}\noindent\textit{Hint.}\hspace{0.5em}\ignorespaces}
+    {\par\vspace{4pt}}
+
+% Standard number systems
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rbar}{\overline{\mathbb{R}}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Hquat}{\mathbb{H}}
+
+% Set theory and logic notation
+\newcommand{\Pow}{\mathcal{P}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\conv}{conv}
+
+% Calculus and analysis notation
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\diff}[2]{\frac{\dd #1}{\dd #2}}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\RePart}{Re}
+\DeclareMathOperator{\ImPart}{Im}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\lb}{lb}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\lengthop}{length}
+\DeclareMathOperator{\area}{area}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\inv}{inv}
+
+% Probability and statistics notation
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Exp}{\mathbb{E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Bern}{Bern}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Geom}{Geom}
+\DeclareMathOperator{\Poi}{Pois}
+\DeclareMathOperator{\Unif}{Unif}
+\DeclareMathOperator{\ExpDist}{Exp}
+\newcommand{\Normal}{\mathcal{N}}
+
+% Convergence arrows
+% Labeled arrows are used only when the mode of convergence should be explicit.
+\newcommand{\ptwto}{\to}
+\newcommand{\unifto}{\rightrightarrows}
+\newcommand{\ptwlabelto}{\xrightarrow{\mathrm{ptw}}}
+\newcommand{\uniflabelto}{\xrightarrow{\mathrm{unif}}}
+\newcommand{\aeto}{\xrightarrow{\mathrm{a.e.}}}
+\newcommand{\asto}{\xrightarrow{\mathrm{a.s.}}}
+\newcommand{\distto}{\xrightarrow{\mathrm{d}}}
+\newcommand{\Lpto}[1]{\xrightarrow{L^{#1}}}
+\newcommand{\probto}{\xrightarrow{\mathbb{P}}}
+
+% Linear algebra operators
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Row}{Row}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\diag}{diag}
+
+% Number theory and algebra operators
+\DeclareMathOperator{\lcmop}{lcm}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Disc}{Disc}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+
+% Combinatorics notation
+\newcommand{\multichoose}[2]{\left(\!\binom{#1}{#2}\!\right)}
+\newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+\newcommand{\indicator}[1]{\mathds{1}_{#1}}
+\newcommand{\ones}{\mathbf{1}}
+\DeclareRobustCommand{\bijarrow}{\mathrel{\lhook\joinrel\twoheadrightarrow}}
+
