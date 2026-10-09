@@ -23,14 +23,14 @@ $\Exp[X\mid\mathcal G]$ & Conditional expectation of $X$ with respect to a sub-$
 $\Var(X)$ & Variance of $X$. \\
 $\sigma_X=\sqrt{\Var(X)}$ & Population standard deviation of $X$. \\
 $\Cov(X,Y)$ & Covariance of $X$ and $Y$. \\
-$\rho_{X,Y}$ & Population correlation coefficient of $X$ and $Y$. \\
+$\rho_{X,Y},\ \Corr(X,Y)$ & Pearson correlation coefficient of $X$ and $Y$ when both have finite positive variances; $\rho_{X,Y}$ is preferred. \\
 $r$ & Sample correlation coefficient, when the sample is understood. \\
 $\varphi_X(t)=\Exp[e^{itX}]$ & Characteristic function of $X$. \\
 $M_X(t)=\Exp[e^{tX}]$ & Moment-generating function (mgf) of $X$, when finite in a neighborhood of $0$. \\
-$\displaystyle\bar X=\frac1n\sum_{i=1}^n X_i$ & Sample mean as a statistic of a random sample $X_1,\dots,X_n$. \\
-$\displaystyle\bar x=\frac1n\sum_{i=1}^n x_i$ & Observed sample mean for data $x_1,\dots,x_n$. \\
-$\displaystyle S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2$ & Sample variance as a statistic. \\
-$\displaystyle s^2=\frac1{n-1}\sum_{i=1}^n(x_i-\bar x)^2$ & Observed sample variance. \\
+$\displaystyle\bar X=\frac1n\sum_{i=1}^n X_i$ & Sample mean as a statistic of a random sample $X_1,\dots,X_n$. \\[0.10em]
+$\displaystyle\bar x=\frac1n\sum_{i=1}^n x_i$ & Observed sample mean for data $x_1,\dots,x_n$. \\[0.10em]
+$\displaystyle S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2$ & Sample variance as a statistic. \\[0.10em]
+$\displaystyle s^2=\frac1{n-1}\sum_{i=1}^n(x_i-\bar x)^2$ & Observed sample variance. \\[0.10em]
 $S=\sqrt{S^2},\ s=\sqrt{s^2}$ & Sample standard deviation as a statistic and its observed value. \\
 $\hat\theta$ & Estimator or estimate of a parameter $\theta$, according to context. \\
 $\hat p$ & Estimator or estimate of a probability parameter $p$; commonly the sample proportion. \\
@@ -51,6 +51,8 @@ $X\sim\ExpDist(\lambda)$ & Exponential distribution with rate $\lambda$. \\
 $X\sim\Gamma(\alpha,\beta)$ & Gamma distribution with shape $\alpha>0$ and rate $\beta>0$; $\displaystyle f_X(x)=\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}$ for $x>0$. \\
 $X\sim\Gamma(\alpha,\theta)$ & Gamma distribution with shape $\alpha>0$ and scale $\theta>0$; $\displaystyle f_X(x)=\frac{1}{\Gamma(\alpha)\theta^\alpha}x^{\alpha-1}e^{-x/\theta}$ for $x>0$, with $\theta=1/\beta$. \\
 $\begin{aligned} &X\sim\Normal(\mu,\sigma^2),\\ &X\sim N(\mu,\sigma^2)\end{aligned}$ & Normal distribution with mean $\mu$ and variance $\sigma^2$. \\
+$\phi(x)$ & Standard normal probability density function, $\displaystyle\phi(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}$. \\
+$\Phi(x)$ & Standard normal cumulative distribution function, $\displaystyle\Phi(x)=\int_{-\infty}^{x}\phi(t)\,\dd t$. \\
 $X\sim\chi^2_\nu$ & Chi-squared distribution with $\nu$ degrees of freedom. \\
 $X\sim t_\nu$ & Student's $t$ distribution with $\nu$ degrees of freedom. \\
 $X\sim F_{\nu_1,\nu_2}$ & $F$ distribution with numerator and denominator degrees of freedom $\nu_1,\nu_2$. \\

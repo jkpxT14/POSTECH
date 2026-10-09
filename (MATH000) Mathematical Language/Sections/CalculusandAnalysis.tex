@@ -10,20 +10,22 @@ $\displaystyle\lim_{x\to\infty} f(x),\ \lim_{x\to-\infty} f(x)$ & Limits as $x$ 
 $\begin{aligned} &\displaystyle\lim_{x\to a} f(x)=\infty,\\[-0.15em] &\displaystyle\lim_{x\to a} f(x)=-\infty \end{aligned}$ & Infinite limits. \\
 $\min A$ & Minimum of $A$. \\*
 $\max A$ & Maximum of $A$. \\
+$\displaystyle\argmin_{x\in A}f(x)$ & Set of minimizers of $f$ over $A$; empty if the infimum is not attained. \\
+$\displaystyle\argmax_{x\in A}f(x)$ & Set of maximizers of $f$ over $A$; empty if the supremum is not attained. \\
 $\inf A$ & Infimum of $A$. \\*
 $\sup A$ & Supremum of $A$. \\
 $\overline{\R}=\R\cup\{-\infty,+\infty\}$ & Extended real line. \\
 $f'(a)$ & First derivative of $f$ at $a$. \\
 $f^{(n)}(a)$ & $n$th derivative of $f$ at $a$. \\
-$\displaystyle\frac{\dd y}{\dd x}$ & Derivative of $y$ with respect to $x$. \\
-$\displaystyle\frac{\dd^n y}{\dd x^n}$ & $n$th derivative of $y$ with respect to $x$ in Leibniz notation. \\
-$\displaystyle\frac{\partial f}{\partial x_i},\ \partial_i f,\ f_{x_i}$ & Partial derivative with respect to $x_i$. \\
-$\displaystyle\frac{\partial^2 f}{\partial x_j\partial x_i},\ \partial_{ji}f,\ f_{x_i x_j}$ & Successive or mixed partial derivative, first with respect to $x_i$ and then $x_j$. When the relevant mixed partial derivatives are continuous, the order may be interchanged. \\
+$\displaystyle\frac{\dd y}{\dd x}$ & Derivative of $y$ with respect to $x$. \\[0.10em]
+$\displaystyle\frac{\dd^n y}{\dd x^n}$ & $n$th derivative of $y$ with respect to $x$ in Leibniz notation. \\[0.10em]
+$\displaystyle\frac{\partial f}{\partial x_i},\ \partial_i f,\ f_{x_i}$ & Partial derivative with respect to $x_i$. \\[0.10em]
+$\displaystyle\frac{\partial^2 f}{\partial x_j\partial x_i},\ \partial_{ji}f,\ f_{x_i x_j}$ & Successive or mixed partial derivative, first with respect to $x_i$ and then $x_j$. When the relevant mixed partial derivatives are continuous, the order may be interchanged. \\[0.10em]
 $D_{\mathbf v}f(\mathbf a),\ \partial_{\mathbf v}f(\mathbf a)$ & Directional derivative along the vector $\mathbf v$, which need not be a unit vector: $\displaystyle D_{\mathbf v}f(\mathbf a)=\left.\frac{\dd}{\dd t}f(\mathbf a+t\mathbf v)\right|_{t=0}=Df(\mathbf a)[\mathbf v]=\nabla f(\mathbf a)\cdot\mathbf v$ when $f$ is differentiable. For the unit direction determined by $\mathbf v\ne\mathbf0$, use $\mathbf u=\mathbf v/\|\mathbf v\|$. \\
 $\displaystyle\dd f=\sum_{i=1}^n\frac{\partial f}{\partial x_i}\,\dd x_i$ & Total differential of a scalar function of $n$ variables. \\
-$\displaystyle\int f(x)\,\dd x$ & Indefinite integral; a family of antiderivatives, with an additive constant understood. \\
-$\displaystyle\int_a^b f(x)\,\dd x$ & Definite integral over $[a,b]$. \\
-$\displaystyle\int_a^\infty f(x)\,\dd x,\ \int_{-\infty}^b f(x)\,\dd x$ & Improper integrals over unbounded intervals. \\
+$\displaystyle\int f(x)\,\dd x$ & Indefinite integral; a family of antiderivatives, with an additive constant understood. \\[0.10em]
+$\displaystyle\int_a^b f(x)\,\dd x$ & Definite integral over $[a,b]$. \\[0.10em]
+$\displaystyle\int_a^\infty f(x)\,\dd x,\ \int_{-\infty}^b f(x)\,\dd x$ & Improper integrals over unbounded intervals. \\[0.10em]
 $\displaystyle\int_a^b f\,\dd\alpha$ & Riemann--Stieltjes integral of $f$ with respect to $\alpha$. \\
 $\begin{aligned} &P=\{x_0,\dots,x_n\},\\[-0.15em] &a=x_0<\cdots<x_n=b \end{aligned}$ & Partition of the interval $[a,b]$. \\
 $\begin{aligned} &\displaystyle\sum_{i=1}^n f(\xi_i)\Delta x_i,\\[-0.15em] &\Delta x_i=x_i-x_{i-1} \end{aligned}$ & Tagged Riemann sum, with $\xi_i\in[x_{i-1},x_i]$. \\
@@ -34,10 +36,11 @@ $\displaystyle\oint_C f(z)\,\dd z$ & Contour integral over a closed contour $C$.
 $-C$ & The contour $C$ with the opposite orientation. \\
 $\gamma^{-1}$ & Reversed parametrized path $\gamma$, when unambiguous; not a functional inverse. \\
 $\PV,\ \mathrm{P.V.}$ & Principal value; in particular, the Cauchy principal value of a singular or improper integral. \\
-$\displaystyle\sum_{k=1}^{n} a_k$ & Finite sum. \\
-$\displaystyle\sum_{k=1}^{\infty} a_k$ & Infinite series. \\
-$\displaystyle\prod_{k=1}^{n} a_k$ & Finite product. \\
-$\displaystyle\sum_{n=0}^{\infty}a_n(x-a)^n$ & Power series centered at $a$. \\
+$\displaystyle\sum_{k=1}^{n} a_k$ & Finite sum. \\[0.10em]
+$\displaystyle\sum_{k=1}^{\infty} a_k$ & Infinite series. \\[0.10em]
+$\displaystyle\prod_{k=1}^{n} a_k$ & Finite product. \\[0.10em]
+$\displaystyle\sum_{n=0}^{\infty}a_n(x-a)^n$ & Power series centered at $a$. \\[0.10em]
+$\displaystyle\sum_{n=-\infty}^{\infty}a_n(z-z_0)^n$ & Laurent series about $z_0$, on an annulus of convergence. \\[0.10em]
 $\displaystyle\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & $n$th Taylor polynomial of $f$ about $a$; no single letter for the polynomial is imposed globally. \\
 $e^x,\ \exp x$ & Exponential function. \\
 $\ln x,\ \log_e x$ & Natural logarithm of a positive real number; $\ln x$ is preferred. \\
@@ -110,7 +113,7 @@ $C_c(\Omega),\ C_c^\infty(\Omega)$ & Continuous and smooth functions on $\Omega$
 $\mathcal{R}([a,b])$ & Riemann-integrable functions on $[a,b]$. \\
 $L^p(\Omega),\ L^p(X,\mu)$ & Lebesgue $L^p$ spaces; the measure is displayed when it is not understood. \\*
 $L^\infty(\Omega),\ L^\infty(X,\mu)$ & Lebesgue spaces of essentially bounded functions. \\
-$\ell^p$ & Space of scalar sequences $(x_n)$ with $\sum_{n=1}^{\infty}|x_n|^p<\infty$, for $1\le p<\infty$. \\
+$\ell^p$ & Space of scalar sequences $(x_n)$ with $\displaystyle\sum_{n=1}^{\infty}|x_n|^p<\infty$, for $1\le p<\infty$. \\
 $\ell^\infty$ & Space of bounded scalar sequences. \\
 $\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{\mathbf x\in\Omega}|f(\mathbf x)|$ for an actual bounded function on a Euclidean domain, especially in bounded- or continuous-function spaces. \\
 $\|f\|_{L^p(X,\mu)}$ & $L^p$-norm $\displaystyle\left(\int_X |f|^p\,\dd\mu\right)^{1/p}$ for $1\le p<\infty$ on a measure space $(X,\mathcal A,\mu)$. \\
