@@ -1,0 +1,427 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261014 Quiz for MATH200 Differential Equations},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH200 Differential Equations},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261014 Quiz}
+
+% Boyce Section 7.5, Problem 5(b), presented as a standalone problem.
+\begin{problem}{7.5.5}
+Find the general solution of the system
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        3 & -1\\
+        6 & -2
+    \end{pmatrix}\mathbf{x}.
+\]
+\end{problem}
+
+\begin{solution}
+Let
+\[
+    \mathbf{A}=\begin{pmatrix}3&-1\\6&-2\end{pmatrix}.
+\]
+The characteristic equation is
+\[
+    \det(\lambda\mathbf{I}_2-\mathbf{A})
+    =\lambda^2-\lambda=\lambda(\lambda-1)=0.
+\]
+For the eigenvalue $\lambda_1=0$, solving $\mathbf{A}\mathbf{v}_1=\mathbf{0}$ gives
+\[
+    \mathbf{v}_1=\begin{pmatrix}1\\3\end{pmatrix}.
+\]
+For $\lambda_2=1$, solving $(\mathbf{A}-\mathbf{I}_2)\mathbf{v}_2=\mathbf{0}$ gives
+\[
+    \mathbf{v}_2=\begin{pmatrix}1\\2\end{pmatrix}.
+\]
+Since the eigenvalues are distinct, the corresponding eigenvectors are linearly independent. Therefore the general solution is
+\[
+    \boxed{
+        \mathbf{x}(t)
+        =c_1\begin{pmatrix}1\\3\end{pmatrix}
+        +c_2e^t\begin{pmatrix}1\\2\end{pmatrix}
+    }.
+\]
+The first term is constant because $e^{0t}=1$.
+\end{solution}
+
+\begin{problem}{7.5.11}
+Solve the initial value problem
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        5&-1\\
+        3&1
+    \end{pmatrix}\mathbf{x},
+    \qquad
+    \mathbf{x}(0)=\begin{pmatrix}3\\-1\end{pmatrix}.
+\]
+Describe the behavior of the solution as $t\to\infty$.
+\end{problem}
+
+\begin{solution}
+The characteristic equation of the coefficient matrix is
+\[
+    \det(\lambda\mathbf{I}_2-\mathbf{A})
+    =\lambda^2-6\lambda+8=(\lambda-2)(\lambda-4)=0.
+\]
+The eigenvalues $\lambda_1=2$ and $\lambda_2=4$ have corresponding eigenvectors
+\[
+    \mathbf{v}_1=\begin{pmatrix}1\\3\end{pmatrix},
+    \qquad
+    \mathbf{v}_2=\begin{pmatrix}1\\1\end{pmatrix}.
+\]
+Thus
+\[
+    \mathbf{x}(t)
+    =c_1e^{2t}\begin{pmatrix}1\\3\end{pmatrix}
+     +c_2e^{4t}\begin{pmatrix}1\\1\end{pmatrix}.
+\]
+The initial condition gives
+\[
+    c_1+c_2=3,
+    \qquad
+    3c_1+c_2=-1,
+\]
+so $c_1=-2$ and $c_2=5$. Hence
+\[
+    \boxed{
+        \mathbf{x}(t)
+        =-2e^{2t}\begin{pmatrix}1\\3\end{pmatrix}
+         +5e^{4t}\begin{pmatrix}1\\1\end{pmatrix}
+    }.
+\]
+As $t\to\infty$, the $e^{4t}$ term dominates:
+\[
+    e^{-4t}\mathbf{x}(t)\longrightarrow
+        5\begin{pmatrix}1\\1\end{pmatrix}.
+\]
+Thus both components tend to $+\infty$, and the trajectory moves away from the origin, asymptotically in the direction $(1,1)^{\mathsf T}$.
+\end{solution}
+
+\begin{problem}{7.5.12}
+Solve the initial value problem
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        1&1&2\\
+        0&2&2\\
+        -1&1&3
+    \end{pmatrix}\mathbf{x},
+    \qquad
+    \mathbf{x}(0)=\begin{pmatrix}2\\0\\3\end{pmatrix}.
+\]
+Describe the behavior of the solution as $t\to\infty$.
+\end{problem}
+
+\begin{solution}
+For the coefficient matrix $\mathbf{A}$, the characteristic equation is
+\[
+    \det(\lambda\mathbf{I}_3-\mathbf{A})
+    =(\lambda-1)(\lambda-2)(\lambda-3)=0.
+\]
+Solving $(\mathbf{A}-\lambda_i\mathbf{I}_3)\mathbf{v}_i=\mathbf{0}$ for $\lambda_1=1$, $\lambda_2=2$, and $\lambda_3=3$ gives
+\[
+    \mathbf{v}_1=\begin{pmatrix}0\\-2\\1\end{pmatrix},
+    \qquad
+    \mathbf{v}_2=\begin{pmatrix}1\\1\\0\end{pmatrix},
+    \qquad
+    \mathbf{v}_3=\begin{pmatrix}2\\2\\1\end{pmatrix}.
+\]
+Since the three eigenvalues are distinct, these eigenvectors form a basis of $\R^3$. The general solution is
+\[
+    \mathbf{x}(t)
+    =c_1e^t\mathbf{v}_1+c_2e^{2t}\mathbf{v}_2+c_3e^{3t}\mathbf{v}_3.
+\]
+Applying the initial condition yields
+\[
+    c_2+2c_3=2,
+    \qquad
+    -2c_1+c_2+2c_3=0,
+    \qquad
+    c_1+c_3=3.
+\]
+Thus $c_1=1$, $c_2=-2$, and $c_3=2$, giving
+\[
+    \boxed{
+    \begin{aligned}
+        \mathbf{x}(t)
+        ={}&e^t\begin{pmatrix}0\\-2\\1\end{pmatrix}
+            -2e^{2t}\begin{pmatrix}1\\1\\0\end{pmatrix}\\
+           &+2e^{3t}\begin{pmatrix}2\\2\\1\end{pmatrix}
+    \end{aligned}
+    }.
+\]
+The term with the largest eigenvalue dominates as $t\to\infty$:
+\[
+    e^{-3t}\mathbf{x}(t)\longrightarrow
+    2\begin{pmatrix}2\\2\\1\end{pmatrix}.
+\]
+Therefore all three components tend to $+\infty$, and the trajectory moves away from the origin, asymptotically in the direction $(2,2,1)^{\mathsf T}$.
+\end{solution}
+
+\begin{problem}{7.6.4}
+Consider the system
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        3&4\\
+        -2&-1
+    \end{pmatrix}\mathbf{x}.
+\]
+\begin{problemsubparts}
+    \item Draw a direction field and sketch a few trajectories.
+    \item Express the general solution of the given system in terms of real-valued functions.
+    \item Describe the behavior of the solutions as $t\to\infty$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} The direction field and representative trajectories in the $x_1x_2$-plane are shown below for
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}3x_1+4x_2\\-2x_1-x_2\end{pmatrix}.
+\]
+\Needspace{11\baselineskip}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.60\textwidth,
+    height=0.60\textwidth,
+    scale only axis,
+    axis equal image,
+    axis lines=middle,
+    xmin=-4, xmax=4,
+    ymin=-4, ymax=4,
+    xlabel={$x_1$}, ylabel={$x_2$},
+    xtick={-3,0,3},
+    ytick={-3,0,3},
+    tick label style={font=\small},
+    label style={font=\small},
+    axis line style={black!65},
+    clip=true,
+    samples=400,
+    enlargelimits=false
+]
+% Normalized direction-field arrows on a sparse Cartesian grid.
+    \addplot[gray!52,thin,-stealth,quiver={u=\thisrow{u},v=\thisrow{v}}] table[x=x,y=y] {
+        x y u v
+        -3.00 -3.00 -0.24817 0.10636
+        -2.00 -3.00 -0.25164 0.09786
+        -1.00 -3.00 -0.25614 0.08538
+        0.00 -3.00 -0.26194 0.06548
+        1.00 -3.00 -0.26835 0.02982
+        2.00 -3.00 -0.26633 -0.04439
+        3.00 -3.00 -0.19092 -0.19092
+        -3.00 -2.00 -0.24430 0.11497
+        -2.00 -2.00 -0.24817 0.10636
+        -1.00 -2.00 -0.25374 0.09227
+        0.00 -2.00 -0.26194 0.06548
+        1.00 -2.00 -0.27000 0.00000
+        2.00 -2.00 -0.19092 -0.19092
+        3.00 -2.00 0.06548 -0.26194
+        -3.00 -1.00 -0.23773 0.12801
+        -2.00 -1.00 -0.24150 0.12075
+        -1.00 -1.00 -0.24817 0.10636
+        0.00 -1.00 -0.26194 0.06548
+        1.00 -1.00 -0.19092 -0.19092
+        2.00 -1.00 0.14977 -0.22465
+        3.00 -1.00 0.19092 -0.19092
+        -3.00 0.00 -0.22465 0.14977
+        -2.00 0.00 -0.22465 0.14977
+        -1.00 0.00 -0.22465 0.14977
+        1.00 0.00 0.22465 -0.14977
+        2.00 0.00 0.22465 -0.14977
+        3.00 0.00 0.22465 -0.14977
+        -3.00 1.00 -0.19092 0.19092
+        -2.00 1.00 -0.14977 0.22465
+        -1.00 1.00 0.19092 0.19092
+        0.00 1.00 0.26194 -0.06548
+        1.00 1.00 0.24817 -0.10636
+        2.00 1.00 0.24150 -0.12075
+        3.00 1.00 0.23773 -0.12801
+        -3.00 2.00 -0.06548 0.26194
+        -2.00 2.00 0.19092 0.19092
+        -1.00 2.00 0.27000 0.00000
+        0.00 2.00 0.26194 -0.06548
+        1.00 2.00 0.25374 -0.09227
+        2.00 2.00 0.24817 -0.10636
+        3.00 2.00 0.24430 -0.11497
+        -3.00 3.00 0.19092 0.19092
+        -2.00 3.00 0.26633 0.04439
+        -1.00 3.00 0.26835 -0.02982
+        0.00 3.00 0.26194 -0.06548
+        1.00 3.00 0.25614 -0.08538
+        2.00 3.00 0.25164 -0.09786
+        3.00 3.00 0.24817 -0.10636
+    };
+% Three trajectories computed from the exact fundamental solutions.
+    \addplot[black,thick,domain=-3.1:1.0]
+        ({exp(x)*(cos(deg(2*x))+sin(deg(2*x)))},
+         {-exp(x)*sin(deg(2*x))});
+    \addplot[black,thick,domain=-3.1:0.65]
+        ({2*exp(x)*sin(deg(2*x))},
+         {exp(x)*(cos(deg(2*x))-sin(deg(2*x))});
+    \addplot[black,thick,domain=-3.1:0.50]
+        ({exp(x)*(-cos(deg(2*x))+sin(deg(2*x)))},
+         {exp(x)*(cos(deg(2*x))+2*sin(deg(2*x))});
+    \addplot[black,thick,-stealth] coordinates {
+        (2.167964,-1.164999) (2.312633,-1.482073)
+    };
+    \addplot[black,thick,-stealth] coordinates {
+        (1.174073,0.540555) (1.766842,0.209028)
+    };
+    \addplot[black,thick,-stealth] coordinates {
+        (-0.896863,1.414625) (-0.698723,1.963970)
+    };
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\medskip
+\noindent\textup{(b)} The characteristic equation is
+\[
+    \det(\lambda\mathbf{I}_2-\mathbf{A})
+    =\lambda^2-2\lambda+5=0,
+\]
+with roots $\lambda=1\pm2i$. For $\lambda=1+2i$, an eigenvector is
+\[
+    \mathbf{v}=\begin{pmatrix}-1-i\\1\end{pmatrix}
+    =\begin{pmatrix}-1\\1\end{pmatrix}
+      +i\begin{pmatrix}-1\\0\end{pmatrix}.
+\]
+By Euler's formula, the real and imaginary parts of the complex solution $e^{(1+2i)t}\mathbf{v}$ are
+\[
+\begin{aligned}
+    \mathbf{x}^{(1)}(t)
+       &=e^t\begin{pmatrix}
+           \sin(2t)-\cos(2t)\\
+           \cos(2t)
+         \end{pmatrix},\\
+    \mathbf{x}^{(2)}(t)
+       &=e^t\begin{pmatrix}
+           -\sin(2t)-\cos(2t)\\
+           \sin(2t)
+         \end{pmatrix}.
+\end{aligned}
+\]
+Both are real-valued solutions, and
+\[
+    \det\bigl(\mathbf{x}^{(1)}(t)\ \mathbf{x}^{(2)}(t)\bigr)
+    =e^{2t}\ne0.
+\]
+Hence they form a fundamental set and the real-valued general solution is
+\[
+    \boxed{
+    \begin{aligned}
+        \mathbf{x}(t)
+        ={}&c_1e^t\begin{pmatrix}
+            \sin(2t)-\cos(2t)\\
+            \cos(2t)
+        \end{pmatrix}\\
+        &+c_2e^t\begin{pmatrix}
+            -\sin(2t)-\cos(2t)\\
+            \sin(2t)
+        \end{pmatrix}
+    \end{aligned}
+    }.
+\]
+
+\medskip
+\noindent\textup{(c)} The eigenvalues have positive real part, so every nonzero solution spirals away from the origin as $t\to\infty$. The rotation is clockwise because
+\[
+    x_1x_2'-x_2x_1'
+    =-2\bigl((x_1+x_2)^2+x_2^2\bigr)<0
+    \qquad (\mathbf{x}\ne\mathbf{0}).
+\]
+Hence the origin is an \(\boxed{\text{unstable clockwise spiral point}}\); the zero solution remains at the origin.
+\end{solution}
+
+\begin{problem}{7.7.2}
+For the system
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        2&1\\
+        -5&-2
+    \end{pmatrix}\mathbf{x},
+\]
+\begin{problemsubparts}
+    \item Find a fundamental matrix.
+    \item Find the fundamental matrix $\boldsymbol{\Phi}(t)$ satisfying $\boldsymbol{\Phi}(0)=\mathbf{I}_2$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} The characteristic equation is
+\[
+    \det(\lambda\mathbf{I}_2-\mathbf{A})=\lambda^2+1=0,
+\]
+so $\lambda=\pm i$. An eigenvector for $\lambda=i$ is
+\[
+    \mathbf{v}=\begin{pmatrix}1\\-2+i\end{pmatrix}.
+\]
+Taking the real and imaginary parts of $e^{it}\mathbf{v}$ gives
+\[
+    \mathbf{x}^{(1)}(t)=
+    \begin{pmatrix}\cos t\\-2\cos t-\sin t\end{pmatrix},
+    \qquad
+    \mathbf{x}^{(2)}(t)=
+    \begin{pmatrix}\sin t\\\cos t-2\sin t\end{pmatrix}.
+\]
+Placing these independent solutions in the columns gives
+\[
+    \boxed{
+        \boldsymbol{\Psi}(t)=
+        \begin{pmatrix}
+            \cos t & \sin t\\
+            -2\cos t-\sin t & \cos t-2\sin t
+        \end{pmatrix}
+    }.
+\]
+Indeed, $\det\boldsymbol{\Psi}(t)=1\ne0$, so $\boldsymbol{\Psi}$ is a fundamental matrix.
+
+\medskip
+\noindent\textup{(b)} To impose the normalization at $t=0$, use
+\[
+    \boldsymbol{\Phi}(t)
+    =\boldsymbol{\Psi}(t)\boldsymbol{\Psi}(0)^{-1}.
+\]
+Since
+\[
+    \boldsymbol{\Psi}(0)
+    =\begin{pmatrix}1&0\\-2&1\end{pmatrix},
+    \qquad
+    \boldsymbol{\Psi}(0)^{-1}
+    =\begin{pmatrix}1&0\\2&1\end{pmatrix},
+\]
+we obtain
+\[
+    \boxed{
+        \boldsymbol{\Phi}(t)=
+        \begin{pmatrix}
+            \cos t+2\sin t & \sin t\\
+            -5\sin t & \cos t-2\sin t
+        \end{pmatrix}
+    }.
+\]
+Direct substitution confirms
+\[
+    \boldsymbol{\Phi}'(t)=\mathbf{A}\boldsymbol{\Phi}(t),
+    \qquad
+    \boldsymbol{\Phi}(0)=\mathbf{I}_2,
+\]
+as required.
+\end{solution}
+
+\end{document}
