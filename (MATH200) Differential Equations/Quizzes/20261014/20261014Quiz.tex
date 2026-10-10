@@ -180,116 +180,13 @@ Consider the system
     \end{pmatrix}\mathbf{x}.
 \]
 \begin{problemsubparts}
-    \item Draw a direction field and sketch a few trajectories.
     \item Express the general solution of the given system in terms of real-valued functions.
     \item Describe the behavior of the solutions as $t\to\infty$.
 \end{problemsubparts}
 \end{problem}
 
 \begin{solution}
-\noindent\textup{(a)} The direction field and representative trajectories in the $x_1x_2$-plane are shown below for
-\[
-    \mathbf{x}'=
-    \begin{pmatrix}3x_1+4x_2\\-2x_1-x_2\end{pmatrix}.
-\]
-\Needspace{11\baselineskip}
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-    width=0.60\textwidth,
-    height=0.60\textwidth,
-    scale only axis,
-    axis equal image,
-    axis lines=middle,
-    xmin=-4, xmax=4,
-    ymin=-4, ymax=4,
-    xlabel={$x_1$}, ylabel={$x_2$},
-    xtick={-3,0,3},
-    ytick={-3,0,3},
-    tick label style={font=\small},
-    label style={font=\small},
-    axis line style={black!65},
-    clip=true,
-    samples=400,
-    enlargelimits=false
-]
-% Normalized direction-field arrows on a sparse Cartesian grid.
-    \addplot[gray!52,thin,-stealth,quiver={u=\thisrow{u},v=\thisrow{v}}] table[x=x,y=y] {
-        x y u v
-        -3.00 -3.00 -0.24817 0.10636
-        -2.00 -3.00 -0.25164 0.09786
-        -1.00 -3.00 -0.25614 0.08538
-        0.00 -3.00 -0.26194 0.06548
-        1.00 -3.00 -0.26835 0.02982
-        2.00 -3.00 -0.26633 -0.04439
-        3.00 -3.00 -0.19092 -0.19092
-        -3.00 -2.00 -0.24430 0.11497
-        -2.00 -2.00 -0.24817 0.10636
-        -1.00 -2.00 -0.25374 0.09227
-        0.00 -2.00 -0.26194 0.06548
-        1.00 -2.00 -0.27000 0.00000
-        2.00 -2.00 -0.19092 -0.19092
-        3.00 -2.00 0.06548 -0.26194
-        -3.00 -1.00 -0.23773 0.12801
-        -2.00 -1.00 -0.24150 0.12075
-        -1.00 -1.00 -0.24817 0.10636
-        0.00 -1.00 -0.26194 0.06548
-        1.00 -1.00 -0.19092 -0.19092
-        2.00 -1.00 0.14977 -0.22465
-        3.00 -1.00 0.19092 -0.19092
-        -3.00 0.00 -0.22465 0.14977
-        -2.00 0.00 -0.22465 0.14977
-        -1.00 0.00 -0.22465 0.14977
-        1.00 0.00 0.22465 -0.14977
-        2.00 0.00 0.22465 -0.14977
-        3.00 0.00 0.22465 -0.14977
-        -3.00 1.00 -0.19092 0.19092
-        -2.00 1.00 -0.14977 0.22465
-        -1.00 1.00 0.19092 0.19092
-        0.00 1.00 0.26194 -0.06548
-        1.00 1.00 0.24817 -0.10636
-        2.00 1.00 0.24150 -0.12075
-        3.00 1.00 0.23773 -0.12801
-        -3.00 2.00 -0.06548 0.26194
-        -2.00 2.00 0.19092 0.19092
-        -1.00 2.00 0.27000 0.00000
-        0.00 2.00 0.26194 -0.06548
-        1.00 2.00 0.25374 -0.09227
-        2.00 2.00 0.24817 -0.10636
-        3.00 2.00 0.24430 -0.11497
-        -3.00 3.00 0.19092 0.19092
-        -2.00 3.00 0.26633 0.04439
-        -1.00 3.00 0.26835 -0.02982
-        0.00 3.00 0.26194 -0.06548
-        1.00 3.00 0.25614 -0.08538
-        2.00 3.00 0.25164 -0.09786
-        3.00 3.00 0.24817 -0.10636
-    };
-% Three trajectories computed from the exact fundamental solutions.
-    \addplot[black,thick,domain=-3.1:1.0]
-        ({exp(x)*(cos(deg(2*x))+sin(deg(2*x)))},
-         {-exp(x)*sin(deg(2*x))});
-    \addplot[black,thick,domain=-3.1:0.65]
-        ({2*exp(x)*sin(deg(2*x))},
-         {exp(x)*(cos(deg(2*x))-sin(deg(2*x))});
-    \addplot[black,thick,domain=-3.1:0.50]
-        ({exp(x)*(-cos(deg(2*x))+sin(deg(2*x)))},
-         {exp(x)*(cos(deg(2*x))+2*sin(deg(2*x))});
-    \addplot[black,thick,-stealth] coordinates {
-        (2.167964,-1.164999) (2.312633,-1.482073)
-    };
-    \addplot[black,thick,-stealth] coordinates {
-        (1.174073,0.540555) (1.766842,0.209028)
-    };
-    \addplot[black,thick,-stealth] coordinates {
-        (-0.896863,1.414625) (-0.698723,1.963970)
-    };
-\end{axis}
-\end{tikzpicture}
-\end{center}
-
-\medskip
-\noindent\textup{(b)} The characteristic equation is
+\noindent\textup{(a)} The characteristic equation is
 \[
     \det(\lambda\mathbf{I}_2-\mathbf{A})
     =\lambda^2-2\lambda+5=0,
@@ -338,7 +235,7 @@ Hence they form a fundamental set and the real-valued general solution is
 \]
 
 \medskip
-\noindent\textup{(c)} The eigenvalues have positive real part, so every nonzero solution spirals away from the origin as $t\to\infty$. The rotation is clockwise because
+\noindent\textup{(b)} The eigenvalues have positive real part, so every nonzero solution spirals away from the origin as $t\to\infty$. The rotation is clockwise because
 \[
     x_1x_2'-x_2x_1'
     =-2\bigl((x_1+x_2)^2+x_2^2\bigr)<0
