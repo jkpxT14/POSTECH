@@ -1,0 +1,665 @@
+\documentclass[11pt,oneside]{article}
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{
+    pdftitle={20261013 Quiz for MATH230 Probability \& Statistics},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH230 Probability \& Statistics},
+    pdfcreator={LaTeX}
+}
+\begin{document}
+\quiztitle{20261013 Quiz}
+\begin{exercise}{4.62}
+Independent random variables $X$ and $Y$ have variances $\Var(X)=5$ and $\Var(Y)=3$. Find the variance of $Z=-2X+4Y-3$.
+\end{exercise}
+
+\begin{solution}
+Independence gives $\Cov(X,Y)=0$. Thus
+\[
+\Var(Z)=(-2)^2\Var(X)+4^2\Var(Y)=4(5)+16(3)=\boxed{68}.
+\]
+\end{solution}
+
+\begin{exercise}{4.63}
+Random variables $X,Y$ satisfy $\Var(X)=5$, $\Var(Y)=3$, and $\Cov(X,Y)=1$. Determine $\Var(-2X+4Y-3)$.
+\end{exercise}
+
+\begin{solution}
+The covariance term must now be included:
+\[
+\Var(-2X+4Y-3)=(-2)^2(5)+4^2(3)+2(-2)(4)(1)
+=68-16=\boxed{52}.
+\]
+\end{solution}
+
+\begin{exercise}{4.64}
+Independent random variables $X,Y$ have respective densities
+\[
+f_X(x)=\begin{cases}24/x^4,&x>2,\\0,&\text{otherwise},\end{cases}
+\qquad
+f_Y(y)=\begin{cases}2y,&0<y<1,\\0,&\text{otherwise}.\end{cases}
+\]
+Find $\Exp[Z]$ for $Z=XY$.
+\end{exercise}
+
+\begin{solution}
+By independence and the product expectation theorem,
+\[
+\begin{aligned}
+\Exp[XY]&=\Exp[X]\Exp[Y]\\
+&=\left(\int_2^\infty \frac{24}{x^3}\,\dd x\right)
+\left(\int_0^1 2y^2\,\dd y\right)
+=(3)\left(\frac23\right)=\boxed2.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{4.66}
+Let $X$ and $Y$ be the independent outcomes of two fair six-sided dice. Find (a) $\Var(3X-Y)$ and (b) $\Var(X+5Y-5)$.
+\end{exercise}
+
+\begin{solution}
+For one fair die,
+\[
+\Exp[X]=\frac72,\qquad \Exp[X^2]=\frac{91}{6},
+\qquad\Var(X)=\Var(Y)=\frac{35}{12}.
+\]
+Thus
+\begin{align*}
+\textup{(a)}\quad&\Var(3X-Y)=(9+1)\frac{35}{12}=\boxed{\frac{175}{6}},\\
+\textup{(b)}\quad&\Var(X+5Y-5)=(1+25)\frac{35}{12}=\boxed{\frac{455}{6}}.
+\end{align*}
+\end{solution}
+
+\begin{exercise}{4.71}
+A human reflex time $Y$ (minutes) has density $f_Y(y)=\frac12 e^{-y/2}$ for $y>0$, and zero otherwise. (a) Find $\Exp[Y]$; (b) find $\Exp[Y^2]$ and $\Var(Y)$.
+\end{exercise}
+
+\begin{solution}
+For an exponential density with rate $1/2$, direct integration yields
+\begin{align*}
+\textup{(a)}\quad&\Exp[Y]=\int_0^\infty\frac y2 e^{-y/2}\,\dd y=\boxed2,\\
+\textup{(b)}\quad&\Exp[Y^2]=\int_0^\infty\frac{y^2}2 e^{-y/2}\,\dd y=\boxed8.
+\end{align*}
+Hence $\Var(Y)=8-2^2=\boxed4$.
+\end{solution}
+
+\begin{exercise}{4.75}
+The lifetime $X$ (hours) of a 100-watt light bulb has mean 800 and standard deviation 50, and its distribution is symmetric about 800. What is the largest possible percentage of bulbs with lifetimes below 700 hours?
+\end{exercise}
+
+\begin{solution}
+Chebyshev's theorem gives
+\[
+\Prob(|X-800|\ge100)\le\frac{50^2}{100^2}=\frac14.
+\]
+By symmetry, the two tails beyond $800\pm100$ have equal probabilities; hence
+\[
+\Prob(X<700)\le\Prob(X\le700)
+\le\frac12\Prob(|X-800|\ge100)\le\boxed{\frac18}.
+\]
+Thus at most $\boxed{12.5\%}$ fail before 700 hours.
+\end{solution}
+
+\begin{exercise}{4.77}
+A random variable $X$ has mean $\mu=10$ and variance $\sigma^2=4$. Apply Chebyshev's theorem to bound
+\par
+\begin{exercisesubparts}
+\item $\Prob(|X-10|\ge4)$;
+\item $\Prob(|X-10|<4)$;
+\item $\Prob(4<X<16)$;
+\item the threshold $c$ ensuring $\Prob(|X-10|\ge c)\le0.05$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Since $\sigma=2$ and $\Prob(|X-\mu|\ge t)\le \sigma^2/t^2$,
+\begin{align*}
+\textup{(a)}\quad&\Prob(|X-10|\ge4)\le\boxed{\frac14},\\
+\textup{(b)}\quad&\Prob(|X-10|<4)\ge\boxed{\frac34},\\
+\textup{(c)}\quad&\Prob(4<X<16)\ge1-\frac4{6^2}=\boxed{\frac89},\\
+\textup{(d)}\quad&\frac4{c^2}\le0.05\ \Longleftarrow\ c\ge\boxed{4\sqrt5}.
+\end{align*}
+The last value is the smallest sufficient threshold supplied by the Chebyshev bound.
+\end{solution}
+
+\begin{exercise}{4.78}
+The random variable $X$ has density $f_X(x)=30x^2(1-x)^2$ on $0<x<1$, and zero otherwise. Compute $\Prob(\mu-2\sigma<X<\mu+2\sigma)$ and compare it with Chebyshev's bound.
+\end{exercise}
+
+\begin{solution}
+By symmetry, $\mu=1/2$. Direct integration gives
+\[
+\Exp[X^2]=\int_0^1 30x^4(1-x)^2\,\dd x=\frac27,
+\qquad \Var(X)=\frac27-\frac14=\frac1{28}.
+\]
+Thus $2\sigma=1/\sqrt7$, and
+\[
+\begin{aligned}
+\Prob\left(\frac12-\frac1{\sqrt7}<X<\frac12+\frac1{\sqrt7}\right)
+&=\int_{1/2-1/\sqrt7}^{1/2+1/\sqrt7}30x^2(1-x)^2\,\dd x\\
+&=\boxed{\frac{503\sqrt7}{1372}\approx0.96998}.
+\end{aligned}
+\]
+This exceeds the distribution-free Chebyshev lower bound $1-1/2^2=\boxed{3/4}$.
+\end{solution}
+
+\begin{exercise}{5.4}
+Seventy-five percent of theft cases in a district are attributed to the need for money to buy drugs. Assuming independent cases with the same probability, find the probability that among the next five thefts (a) exactly two and (b) at most three are attributed to this cause.
+\end{exercise}
+
+\begin{solution}
+With $X\sim\operatorname{Bin}(5,0.75)$,
+\begin{align*}
+\textup{(a)}\quad&\Prob(X=2)=\binom52(0.75)^2(0.25)^3,\\
+\textup{(b)}\quad&\Prob(X\le3)=\sum_{x=0}^3\binom5x(0.75)^x(0.25)^{5-x}.
+\end{align*}
+\[
+\boxed{(a)\approx 0.0879},\qquad \boxed{(b)\approx 0.3672}
+\]
+\end{solution}
+
+\begin{exercise}{5.5}
+Approximately 30% of pipework failures at chemical plants are attributed to operator error. In a sequence of 20 independent failures, find (a) the probability that at least ten are attributed to operator error; (b) the probability that at most four are so attributed; and (c) assess whether observing exactly five failures from operator error is inconsistent with the 30% figure.
+\end{exercise}
+
+\begin{solution}
+Let $X\sim\operatorname{Bin}(20,0.3)$. Then
+\begin{align*}
+\textup{(a)}\quad&\Prob(X\ge10)=\sum_{x=10}^{20}\binom{20}x(0.3)^x(0.7)^{20-x},\\
+\textup{(b)}\quad&\Prob(X\le4)=\sum_{x=0}^{4}\binom{20}x(0.3)^x(0.7)^{20-x}.
+\end{align*}
+\noindent\textup{(c)} The expected count under this model is $20(0.3)=6$, and five is close to six. An observation of five is plausible and does not, by itself, provide strong evidence against $p=0.30$.
+\[
+\boxed{(a)\approx 0.0480},\qquad \boxed{(b)\approx 0.2375}
+\]
+\end{solution}
+
+\begin{exercise}{5.9}
+The probability of a truck-tire blowout during a rugged test run is $0.25$. Among 15 independently tested trucks, find the probabilities that (a) between three and six inclusive have blowouts; (b) fewer than four have blowouts; (c) more than five have blowouts.
+\end{exercise}
+
+\begin{solution}
+If $X\sim\operatorname{Bin}(15,0.25)$,
+\begin{align*}
+\textup{(a)}\quad&\Prob(3\le X\le6)=\sum_{x=3}^{6}\binom{15}x(0.25)^x(0.75)^{15-x},\\
+\textup{(b)}\quad&\Prob(X<4)=\sum_{x=0}^{3}\binom{15}x(0.25)^x(0.75)^{15-x},\\
+\textup{(c)}\quad&\Prob(X>5)=\sum_{x=6}^{15}\binom{15}x(0.25)^x(0.75)^{15-x}.
+\end{align*}
+\[
+\boxed{(a)\approx 0.7073},\qquad \boxed{(b)\approx 0.4613},\qquad \boxed{(c)\approx 0.1484}
+\]
+\end{solution}
+
+\begin{exercise}{5.13}
+A survey finds that 70% of respondents believe antidepressants cover up rather than cure the underlying trouble. Assuming independent respondents, find the probability that at least three of five randomly selected people hold this opinion.
+\end{exercise}
+
+\begin{solution}
+For $X\sim\operatorname{Bin}(5,0.7)$,
+\[
+\Prob(X\ge3)=\sum_{x=3}^{5}\binom5x(0.7)^x(0.3)^{5-x}=\boxed{0.83692}.
+\]
+\end{solution}
+
+\begin{exercise}{5.14}
+The Chicago Bulls entered the 1996--97 playoffs with a winning percentage of $87.7\%$. As directed, approximate each game's win probability by $p=0.90$. For the initial best-of-seven series, find
+\par
+\begin{exercisesubparts}
+\item the probability of a 4--0 sweep;
+\item the probability of winning the series;
+\item the principal probabilistic assumption needed for these calculations.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Assume a constant win probability $p=0.9$ and independence between games.
+\begin{align*}
+\textup{(a)}\quad&\Prob(\text{sweep})=p^4=\boxed{0.6561},\\
+\textup{(b)}\quad&\Prob(\text{series win})
+=\sum_{j=0}^3\binom{3+j}{j}p^4(1-p)^j\\
+&\hspace{4em}=\boxed{0.997272}\quad\text{(approximately)}.
+\end{align*}
+\noindent\textup{(c)} Each game is modeled as an independent Bernoulli trial with the same approximate probability $p=0.9$; actual game outcomes need not satisfy this assumption exactly.
+\end{solution}
+
+\begin{exercise}{5.16}
+Engines operate independently and each fails with probability $0.4$. A plane flies safely if at least half of its engines function. Compare the probabilities of safe flight for a two-engine plane and a four-engine plane.
+\end{exercise}
+
+\begin{solution}
+For two engines, at least one must work:
+\[
+P_2=1-(0.4)^2=\boxed{0.84}.
+\]
+For four engines, at least two must work:
+\[
+P_4=1-(0.4)^4-\binom41(0.6)(0.4)^3=\boxed{0.8208}.
+\]
+The \boxed{\text{two-engine plane}} has the higher modeled probability of safe flight.
+\end{solution}
+
+\begin{exercise}{5.17}
+A survey finds that 70% of respondents believe antidepressants mask rather than cure underlying problems. If $X$ is the number of people holding this opinion among seven independently selected respondents, find $\Exp[X]$ and $\Var(X)$.
+\end{exercise}
+
+\begin{solution}
+Here $X\sim\operatorname{Bin}(7,0.7)$, so
+\[
+\boxed{\Exp[X]=7(0.7)=4.9,\qquad \Var(X)=7(0.7)(0.3)=1.47}.
+\]
+\end{solution}
+
+\begin{exercise}{5.19}
+A traffic signal is green for 35 seconds, yellow for 5 seconds, and red for 60 seconds of each 100-second cycle. On each of $n$ independent weekday trips, a student arrives at a uniformly random phase of the signal cycle and encounters one signal state. Let $X_1,X_2,X_3$ be the respective counts of green, yellow, and red. Find their joint probability distribution.
+\end{exercise}
+
+\begin{solution}
+The category probabilities are $p_1=0.35$, $p_2=0.05$, and $p_3=0.60$. For nonnegative integers $x_i$ satisfying $x_1+x_2+x_3=n$,
+\[
+\boxed{\Prob(X_1=x_1,X_2=x_2,X_3=x_3)
+=\frac{n!}{x_1!x_2!x_3!}(0.35)^{x_1}(0.05)^{x_2}(0.60)^{x_3}}.
+\]
+The joint probability is zero otherwise.
+\end{solution}
+
+\begin{exercise}{5.20}
+Among workers who test positive for drug use, 22.5% use cocaine, 54.4% use marijuana, and the remainder use other drugs. For ten independently sampled workers \emph{who tested positive}, find
+\par
+\begin{exercisesubparts}
+\item the probability that two use cocaine, five use marijuana, and three use other drugs;
+\item the probability that all ten use marijuana.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+The remaining category probability is $1-0.225-0.544=0.231$. Thus
+\begin{align*}
+\textup{(a)}\quad&\frac{10!}{2!5!3!}(0.225)^2(0.544)^5(0.231)^3,\\
+\textup{(b)}\quad&(0.544)^{10}.
+\end{align*}
+\[
+\boxed{(a)\approx 0.0749},\qquad \boxed{(b)\approx 0.0023}
+\]
+\end{solution}
+
+\begin{exercise}{5.21}
+A dart lands in the bull's-eye with probability $0.01$, in a double-score region with probability $0.10$, in a triple-score region with probability $0.05$, or outside the board with probability $0.02$. The remaining probability corresponds to ordinary single-score regions. Assuming independent throws, find the probability that seven throws yield no bull's-eyes, no triples, exactly two doubles, exactly one miss, and four singles.
+\end{exercise}
+
+\begin{solution}
+The probability of a single is $1-0.01-0.10-0.05-0.02=0.82$. By the multinomial formula,
+\[
+\boxed{\Prob(0,2,0,1,4)=\frac{7!}{2!\,1!\,4!}
+(0.10)^2(0.02)(0.82)^4}.
+\]
+\[
+\boxed{\Prob\approx 0.0095}
+\]
+\end{solution}
+
+\begin{exercise}{5.27}
+A fluorescent lamp lasts at least 800 hours with probability $0.9$. Assuming independence for 20 lamps, find the probabilities that
+\par
+\begin{exercisesubparts}
+\item exactly 18 last at least 800 hours;
+\item at least 15 last at least 800 hours;
+\item at least two fail to last 800 hours.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Let $X$ count lamps lasting at least 800 hours, so $X\sim\operatorname{Bin}(20,0.9)$. Then
+\begin{align*}
+\textup{(a)}\quad&\binom{20}{18}(0.9)^{18}(0.1)^2,\\
+\textup{(b)}\quad&\sum_{x=15}^{20}\binom{20}x(0.9)^x(0.1)^{20-x},\\
+\textup{(c)}\quad&\Prob(X\le18)=1-(0.9)^{20}-20(0.9)^{19}(0.1).
+\end{align*}
+\[
+\boxed{(a)\approx 0.2852},\qquad \boxed{(b)\approx 0.9887},\qquad \boxed{(c)\approx 0.6083}
+\]
+\end{solution}
+
+\begin{exercise}{5.28}
+Each toaster independently needs repair within one year with probability $0.20$. Among 20 randomly selected toasters, find integers $x$ and $y$ such that
+\begin{exercisesubparts}
+\item $\Prob(\text{at least }x\text{ need repair})<0.5$;
+\item $\Prob(\text{at least }y\text{ do not need repair})>0.8$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Let $X\sim\operatorname{Bin}(20,0.2)$ count repairs and $Y=20-X$ count nonrepairs. The binomial tails satisfy
+\[
+\begin{array}{ll}
+\Prob(X\ge4)\approx0.58855,&\Prob(X\ge5)\approx0.37035,\\
+\Prob(Y\ge15)\approx0.80421,&\Prob(Y\ge16)\approx0.62965.
+\end{array}
+\]
+Therefore the requested boundary choices are $\boxed{x=5,\qquad y=15}$.
+\end{solution}
+
+\begin{exercise}{5.29}
+Five bulbs are sampled uniformly without replacement from five tulip bulbs and four daffodil bulbs. Find the probability that the sample contains three tulips and two daffodils.
+\end{exercise}
+
+\begin{solution}
+The hypergeometric probability is
+\[
+\frac{\binom53\binom42}{\binom95}=\frac{60}{126}=\boxed{\frac{10}{21}}.
+\]
+\end{solution}
+
+\begin{exercise}{5.31}
+A committee of four is chosen uniformly from four doctors and two nurses. Let $X$ be the number of doctors. Find the pmf of $X$ and $\Prob(2\le X\le3)$.
+\end{exercise}
+
+\begin{solution}
+For $x=2,3,4$,
+\[
+p_X(x)=\boxed{\frac{\binom4x\binom2{4-x}}{\binom64}},
+\]
+and $p_X(x)=0$ otherwise. The probabilities at $x=2,3,4$ are $6/15,8/15,1/15$; hence
+\[
+\Prob(2\le X\le3)=\frac{6+8}{15}=\boxed{\frac{14}{15}}.
+\]
+\end{solution}
+
+\begin{exercise}{5.32}
+A lot contains ten missiles, four of which are defective and cannot fire. Three missiles are chosen uniformly without replacement. Find (a) the probability all three fire; (b) the probability at most two fail to fire.
+\end{exercise}
+
+\begin{solution}
+\begin{align*}
+\textup{(a)}\quad&\frac{\binom63}{\binom{10}3}=\boxed{\frac16},\\
+\textup{(b)}\quad&1-\frac{\binom43}{\binom{10}3}=\boxed{\frac{29}{30}}.
+\end{align*}
+\end{solution}
+
+\begin{exercise}{5.35}
+A shipment contains 50 items, exactly 20% of which are defective. An inspector samples five items uniformly without replacement and accepts the shipment if at most two sampled items are defective. What proportion of such shipments is expected to be accepted?
+\end{exercise}
+
+\begin{solution}
+There are 10 defectives and 40 good items. Thus the acceptance probability is
+\[
+\boxed{\frac{\displaystyle\sum_{x=0}^2\binom{10}x\binom{40}{5-x}}{\binom{50}5}}.
+\]
+\[
+\boxed{\Prob(\text{accept})\approx 0.9517}
+\]
+\end{solution}
+
+\begin{exercise}{5.36}
+A box of 25 items is inspected by sampling three items without replacement. If any sampled item is defective, the box is returned for complete screening; otherwise it ships. Determine
+\par
+\begin{exercisesubparts}
+\item the probability that a box with three defectives ships;
+\item the probability that a box with one defective is returned.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+By hypergeometric sampling,
+\begin{align*}
+\textup{(a)}\quad&\frac{\binom{22}3}{\binom{25}3}=\boxed{\frac{77}{115}},\\
+\textup{(b)}\quad&1-\frac{\binom{24}3}{\binom{25}3}=\boxed{\frac3{25}}.
+\end{align*}
+\end{solution}
+
+\begin{exercise}{5.37}
+A box of 25 items is inspected by three independent inspectors. Each randomly selects one item, inspects it, and \emph{replaces it} before the next inspection. The box is returned for full screening if any inspector finds a defective item; otherwise it ships. Determine
+\par
+\begin{exercisesubparts}
+\item the probability that a box with three defectives ships;
+\item the probability that a box with one defective is returned.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Now the inspections are independent with replacement:
+\begin{align*}
+\textup{(a)}\quad&\left(\frac{22}{25}\right)^3=\boxed{0.681472},\\
+\textup{(b)}\quad&1-\left(\frac{24}{25}\right)^3=\boxed{0.115264}.
+\end{align*}
+\end{solution}
+
+\begin{exercise}{5.38}
+Among 150 employees, 30 are women. Ten employees are selected uniformly without replacement. Using the binomial approximation to the hypergeometric distribution, approximate the probability that at least two selected employees are women.
+\end{exercise}
+
+\begin{solution}
+The approximate model is $X\sim\operatorname{Bin}(10,0.2)$. Hence
+\[
+\Prob(X\ge2)\approx1-(0.8)^{10}-\binom{10}1(0.2)(0.8)^9=\boxed{0.62419\text{ (approximately)}}.
+\]
+\end{solution}
+
+\begin{exercise}{5.44}
+An urn contains three green, two blue, and four red balls. Five balls are sampled without replacement. Find the probability that both blue balls and at least one red ball are included.
+\end{exercise}
+
+\begin{solution}
+Choose both blue balls and three of the remaining seven, excluding the single choice of all three green balls:
+\[
+\Prob=\frac{\binom22\bigl(\binom73-\binom33\bigr)}{\binom95}
+=\frac{34}{126}=\boxed{\frac{17}{63}}.
+\]
+\end{solution}
+
+\begin{exercise}{5.46}
+A batch of 15 compressors contains two faulty units. A random sample of five is inspected without replacement. Find the probabilities of (a) exactly one faulty unit and (b) both faulty units in the sample.
+\end{exercise}
+
+\begin{solution}
+\begin{align*}
+\textup{(a)}\quad&\frac{\binom21\binom{13}4}{\binom{15}5},\\
+\textup{(b)}\quad&\frac{\binom22\binom{13}3}{\binom{15}5}.
+\end{align*}
+\[
+\boxed{(a)\approx 0.4762},\qquad \boxed{(b)\approx 0.0952}
+\]
+\end{solution}
+
+\begin{exercise}{5.47}
+Of 20 manufacturing firms, three violate pollution regulations. Five firms are chosen uniformly for inspection without replacement. Find the probability that (a) no violation and (b) exactly two violations are discovered.
+\end{exercise}
+
+\begin{solution}
+\begin{align*}
+\textup{(a)}\quad&\frac{\binom{17}5}{\binom{20}5},\\
+\textup{(b)}\quad&\frac{\binom32\binom{17}3}{\binom{20}5}.
+\end{align*}
+\[
+\boxed{(a)\approx 0.3991},\qquad \boxed{(b)\approx 0.1316}
+\]
+\end{solution}
+
+\begin{exercise}{5.49}
+Each person interviewed independently owns a dog with probability $0.4$. What is the probability that the tenth person interviewed is the fifth dog owner?
+\end{exercise}
+
+\begin{solution}
+The tenth interview must be a success, and exactly four of the previous nine must be successes:
+\[
+\Prob(X=10)=\boxed{\binom94(0.4)^5(0.6)^5}.
+\]
+\[
+\boxed{\Prob(X=10)\approx 0.1003}
+\]
+\end{solution}
+
+\begin{exercise}{5.50}
+For independent tosses of a fair coin, find the probabilities of (a) the third head on the seventh toss and (b) the first head on the fourth toss.
+\end{exercise}
+
+\begin{solution}
+The final toss must be a head in each case:
+\begin{align*}
+\textup{(a)}\quad&\binom62\left(\frac12\right)^3\left(\frac12\right)^4=\boxed{\frac{15}{128}},\\
+\textup{(b)}\quad&\left(\frac12\right)^3\left(\frac12\right)=\boxed{\frac1{16}}.
+\end{align*}
+\end{solution}
+
+\begin{exercise}{5.52}
+Mice are inoculated sequentially and independently. Each mouse contracts a disease with probability $1/6$, and inoculation stops when the second infected mouse is found. What is the probability that the seventh mouse is the second infected one?
+\end{exercise}
+
+\begin{solution}
+Among the first six mice exactly one must contract the disease, and the seventh must contract it:
+\[
+\boxed{\Prob(X=7)=\binom61\left(\frac16\right)^2\left(\frac56\right)^5}.
+\]
+\[
+\boxed{\Prob(X=7)\approx 0.0670}
+\]
+\end{solution}
+
+\begin{exercise}{5.77}
+A production process is monitored by testing 15 independent units daily. The process is stopped whenever at least two sampled units are defective. Find
+\par
+\begin{exercisesubparts}
+\item the probability of stopping if each unit is defective with probability $0.05$;
+\item the probability of \emph{not} stopping if the defect probability rises to $0.07$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+For $X\sim\operatorname{Bin}(15,p)$, the stopping event is $X\ge2$. Thus
+\begin{align*}
+\textup{(a)}\quad&1-(0.95)^{15}-15(0.05)(0.95)^{14},\\
+\textup{(b)}\quad&(0.93)^{15}+15(0.07)(0.93)^{14}.
+\end{align*}
+\[
+\boxed{(a)\approx 0.1710},\qquad \boxed{(b)\approx 0.7168}
+\]
+\end{solution}
+
+\begin{exercise}{5.78}
+A welding machine will be accepted if it misses no more than three of 100 independent test welds. A good machine succeeds on 99% of welds, while an inefficient machine succeeds on 95%. Find
+\par
+\begin{exercisesubparts}
+\item the probability that a good machine is rejected;
+\item the probability that an inefficient machine is accepted.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Let $X$ count missed welds.
+\begin{align*}
+\textup{(a)}\quad&X\sim\operatorname{Bin}(100,0.01):\quad
+\Prob(X\ge4)=1-\sum_{x=0}^3\binom{100}x(0.01)^x(0.99)^{100-x},\\
+\textup{(b)}\quad&X\sim\operatorname{Bin}(100,0.05):\quad
+\Prob(X\le3)=\sum_{x=0}^3\binom{100}x(0.05)^x(0.95)^{100-x}.
+\end{align*}
+\[
+\boxed{(a)\approx 0.0184},\qquad \boxed{(b)\approx 0.2578}
+\]
+\end{solution}
+
+\begin{exercise}{5.88}
+A buyer accepts an engine after it starts successfully on ten consecutive independent attempts. Each attempt succeeds with probability $0.98$. Find (a) the probability of acceptance after exactly ten starts and (b) the probability that exactly 12 starts are required.
+\end{exercise}
+
+\begin{solution}
+Let $p=0.98$, $q=0.02$.
+\begin{align*}
+\textup{(a)}\quad&\Prob(T=10)=\boxed{p^{10}},\\
+\textup{(b)}\quad&\Prob(T=12)=\boxed{qp^{10}}.
+\end{align*}
+For exactly 12 starts, attempt 2 must fail and attempts 3--12 must all succeed; attempt 1 is unrestricted. This prevents the first run of ten successes from occurring earlier.
+\[
+\boxed{(a)\approx 0.8171},\qquad \boxed{(b)\approx 0.0163}
+\]
+\end{solution}
+
+\begin{exercise}{5.90}
+An oil driller independently succeeds at a location with probability $0.25$. Find (a) the probability of exactly one success in ten drills and (b) the probability of bankruptcy if the company goes bankrupt after ten unsuccessful drills before the first success.
+\end{exercise}
+
+\begin{solution}
+\begin{align*}
+\textup{(a)}\quad&\binom{10}1(0.25)(0.75)^9,\\
+\textup{(b)}\quad&(0.75)^{10}.
+\end{align*}
+\[
+\boxed{(a)\approx 0.1877},\qquad \boxed{(b)\approx 0.0563}
+\]
+\end{solution}
+
+\begin{exercise}{5.91}
+An oil driller succeeds independently at each location with probability $0.25$. It will ``hit it big'' if its second success occurs on or before the sixth attempt. Find the probability.
+\end{exercise}
+
+\begin{solution}
+Let $X$ be the number of successes in the first six attempts. The event is $X\ge2$:
+\[
+\boxed{\Prob(X\ge2)=1-(0.75)^6-\binom61(0.25)(0.75)^5}.
+\]
+\[
+\boxed{\Prob\approx 0.4661}
+\]
+\end{solution}
+
+\begin{exercise}{5.95}
+A production lot of 50 contains exactly two defective items. An inspector samples ten items without replacement and intervenes if at least one defective item is found. Find
+\par
+\begin{exercisesubparts}
+\item the probability of detecting at least one defective item;
+\item what this probability indicates about the effectiveness of the plan;
+\item the mean number of defectives in the sample.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\textup{(a)} The probability of detecting at least one defective is
+\[
+1-\frac{\binom{48}{10}}{\binom{50}{10}}=\boxed{\frac{89}{245}}\approx0.3633.
+\]
+\noindent\textup{(b)} The probability of missing both defects is about $0.6367$, so the plan detects only about 36% of such defective lots; this is a weak detection rate if reliable detection is the objective.\par\medskip
+\noindent\textup{(c)} By the hypergeometric mean formula,
+\[
+\Exp[X]=10\cdot\frac2{50}=\boxed{0.4}.
+\]
+\end{solution}
+
+\begin{exercise}{5.96}
+A production lot of 50 contains exactly two defective items. An inspector samples $n$ items uniformly without replacement. Determine the smallest $n$ such that the probability of finding at least one defective item is at least $0.9$.
+\end{exercise}
+
+\begin{solution}
+The probability of finding no defective is
+\[
+\frac{\binom{48}{n}}{\binom{50}{n}}
+=\frac{(50-n)(49-n)}{50\cdot49}.
+\]
+The required condition is $(50-n)(49-n)\le245$. Setting $m=50-n$, we need $m(m-1)\le245$. Since $16\cdot15=240\le245<17\cdot16$, the smallest sample size is $\boxed{n=34}$.
+\end{solution}
+
+\begin{exercise}{5.102}
+Consider two independent sequences of fair-coin tosses, with $n_1=10$ and $n_2=40$ tosses, respectively. Let $X_i$ be the number of heads in sequence $i$, and put $\hat p_i=X_i/n_i$, the observed proportion of heads.
+
+\par
+\begin{exercisesubparts}
+\item Show that $\Exp[\hat p_1]=\Exp[\hat p_2]=1/2$.
+\item Find $\Var(\hat p_1)$ and $\Var(\hat p_2)$, and show that $\Var(\hat p_1)=4\Var(\hat p_2)$.
+\item Explain which proportion is more concentrated about the probability $1/2$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Because $X_i\sim\operatorname{Bin}(n_i,1/2)$,
+\[
+\Exp[X_i]=\frac{n_i}{2},\qquad\Var(X_i)=\frac{n_i}{4}.
+\]
+Therefore,
+\begin{align*}
+\textup{(a)}\quad&\Exp[\hat p_i]=\frac{\Exp[X_i]}{n_i}=\boxed{\frac12},\quad i=1,2,\\
+\textup{(b)}\quad&\Var(\hat p_i)=\frac{\Var(X_i)}{n_i^2}=\frac1{4n_i},\\
+&\boxed{\Var(\hat p_1)=\frac1{40},\qquad \Var(\hat p_2)=\frac1{160}},
+\end{align*}
+so $\Var(\hat p_1)=4\Var(\hat p_2)$.\par\medskip
+\noindent\textup{(c)} Both proportions are unbiased for $1/2$, but $\hat p_2$ has one-fourth the variance (and half the standard deviation), so it is more concentrated around $1/2$ in the variance sense; this does not assert that every individual 40-toss result is closer.
+\end{solution}
+
+\end{document}
