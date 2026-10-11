@@ -143,7 +143,7 @@ Hence $m+1$ can also be formed. Therefore every postage amount of at least $12$ 
 \end{solution}
 
 \begin{remark}
-This is a special case of the \emph{Frobenius coin problem}. For relatively prime positive integers $a$ and $b$, the largest nonnegative integer not representable as
+This is a special case of the \emph{Frobenius coin problem}. For relatively prime integers $a,b>1$, the largest nonnegative integer not representable as
 \[
     ax+by,
     \qquad x,y\in\Nzero,
@@ -306,12 +306,8 @@ Prove the following identities. We use the convention $\binom{a}{b}=0$ when $a,b
     \]
     by the binomial theorem.
 
-    \item Using Pascal's identity,
-    \[
-        \binom{n}{k}
-        =\binom{n-1}{k}+\binom{n-1}{k-1},
-    \]
-    we obtain
+    \item For $k\geq1$, apply Pascal's identity; the $k=0$ term is
+    $\binom{n}{0}=\binom{n-1}{0}=1$. Hence
     \[
     \begin{aligned}
         \sum_{k=0}^{m}(-1)^k\binom{n}{k}

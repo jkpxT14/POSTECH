@@ -560,6 +560,13 @@ The marginal means are
     &=\boxed{\frac{87}{10}}.
 \end{aligned}
 \]
+
+\medskip
+\noindent\textit{Remark.} The independence assumption in the exercise is inconsistent with the given joint table. Indeed,
+\[
+    p_{X,Y}(2,1)=0.15\ne p_X(2)p_Y(1)=(0.55)(0.25)=0.1375.
+\]
+Thus $X$ and $Y$ are dependent. The answers above use the table directly; the equality $\Exp[XY]=\Exp[X]\Exp[Y]$ in this example does not imply independence.
 \end{solution}
 
 \Needspace{10\baselineskip}
@@ -746,7 +753,7 @@ for $0\leq x,y\leq1$. Since $f(x,y)\neq f_X(x)f_Y(y)$ in general,
 \]
 
 \medskip
-\noindent\textup{(b)} By symmetry,
+\noindent\textup{(b)} Although $X$ and $Y$ are time proportions, $Z=X+Y$ can exceed $1$ and need not itself be a proportion. By symmetry,
 \[
     \Exp[X]=\Exp[Y]
     =\int_0^1 x\frac{1+3x^2}{2}\,\dd x

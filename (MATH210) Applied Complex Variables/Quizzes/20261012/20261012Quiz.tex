@@ -23,16 +23,16 @@ where the principal value of \(|z|^a\) is to be taken.
 \end{exercise}
 
 \begin{solution}
-For \(z\ne0\), every value of \(\log z\) has the form
+For \(z\ne0\), choose any value
 \[
-    \ln|z|+i(\Arg z+2k\pi),\qquad k\in\Z.
+    L=\ln|z|+i(\Arg z+2k\pi),\qquad k\in\Z,
 \]
-Since \(a\in\R\), each value of \(z^a\) is
+of \(\log z\). The corresponding value \(w=e^{aL}\) of \(z^a\) satisfies
 \[
-    \exp(a\log z)
-    =\exp(a\ln|z|)\exp(ia(\Arg z+2k\pi)).
+    |w|=e^{a\ln|z|}\left|e^{ia(\Arg z+2k\pi)}\right|
+    =e^{a\ln|z|},
 \]
-The second factor has modulus \(1\), so every value of \(z^a\) has modulus \(\exp(a\ln|z|)\). Since \(|z|>0\), its ordinary real power is
+since \(a\in\R\). This modulus is independent of the chosen value of \(\log z\). Since \(|z|>0\), its ordinary real power is
 \[
     |z|^a=\exp(a\ln|z|).
 \]
@@ -82,17 +82,16 @@ Assuming that \(f'(z)\) exists, state the formula for the derivative of \(c^{f(z
 \end{exercise}
 
 \begin{solution}
-For a nonzero constant \(c\), fix a value \(L\) of \(\log c\). By Sec.~35,
+Assume \(c\ne0\) and fix one value \(L\) of \(\log c\). For this fixed choice, Sec.~35 defines the corresponding power by
 \[
     c^{f(z)}=\exp(f(z)L).
 \]
-The chain rule gives
+Thus the chain rule gives
 \[
     \boxed{\frac{\dd}{\dd z}c^{f(z)}
-    =c^{f(z)}f'(z)\,L
-    =c^{f(z)}f'(z)\log c},
+    =c^{f(z)}f'(z)\,L}.
 \]
-where the last expression uses the same fixed value of \(\log c\) on both sides. In particular, principal values correspond to \(L=\Log c\).
+This is the textbook formula \((c^{f(z)})'=c^{f(z)}f'(z)\log c\), where \(\log c\) denotes the \emph{same fixed value} \(L\) throughout. For principal values, choose \(L=\Log c\).
 \end{solution}
 
 \begin{exercise}{38.1}
@@ -405,6 +404,7 @@ Therefore
 which is expression (14) in Sec.~43.
 \end{solution}
 
+\Needspace{22\baselineskip}
 \begin{exercise}{43.5}
 Suppose that a function \(f(z)\) is analytic at a point \(z_0=z(t_0)\) lying on a smooth arc \(z=z(t)\) \((a\le t\le b)\). Show that if \(w(t)=f(z(t))\), then
 \[
@@ -484,6 +484,7 @@ Adding the four contributions,
 \]
 \end{solution}
 
+\Needspace{26\baselineskip}
 \begin{exercise}{46.9}
 Let \(C\) denote the positively oriented unit circle \(|z|=1\) about the origin.
 \begin{exercisesubparts}
@@ -510,31 +511,35 @@ This exercise demonstrates how the value of an integral of a power function depe
 \end{exercise}
 
 \begin{solution}
-We evaluate the contour integrals using arguments in the intervals defining the respective branches. At a point where the circle meets a branch cut, the corresponding integral is interpreted by the one-sided limits of the parametrized integrals; isolated endpoint values do not affect those limits.
+The branch in (a) is undefined at \(z=-1\), and the branch in (b) is undefined at \(z=1\). Strictly speaking, neither integral over the entire circle is an ordinary contour integral as defined in Sec.~44. Following the intent of the exercise, we interpret the textbook notation as an improper integral along the circle with the cut point omitted, taking limits from the two sides.
 \begin{exercisesubparts}
-    \item Take \(z=e^{i\theta}\) with \(-\pi<\theta<\pi\). Then \(\Log z=i\theta\), \(\dd z=ie^{i\theta}\,\dd\theta\), and
+    \item Parametrize the circle by \(z=e^{i\theta}\), \(-\pi<\theta<\pi\). On this arc, \(\Log z=i\theta\) and \(\dd z=ie^{i\theta}\,\dd\theta\). The intended integral is
     \[
     \begin{aligned}
-        \int_Cf(z)\,\dd z
-        &=\int_{-\pi}^{\pi}e^{-3i\theta/4}ie^{i\theta}\,\dd\theta\\
-        &=\int_{-\pi}^{\pi}ie^{i\theta/4}\,\dd\theta\\
+        I_f
+        &:=\lim_{\varepsilon\to0^+}
+          \int_{-\pi+\varepsilon}^{\pi-\varepsilon}
+          ie^{i\theta/4}\,\dd\theta\\
         &=4(e^{i\pi/4}-e^{-i\pi/4})
-        =\boxed{4\sqrt2\,i}.
+         =\boxed{4\sqrt2\,i}.
     \end{aligned}
     \]
-    \item Let \(h(z)=\ln|z|+i\theta\), where \(0<\theta<2\pi\), denote the single-valued logarithmic branch written as \(\log z\) in the exercise. Parametrize \(C\) by \(z=e^{i\theta}\), \(0<\theta<2\pi\). Then \(h(z)=i\theta\), so
+    \item Let \(h(z)=\ln|z|+i\theta\), \(0<\theta<2\pi\), denote the single-valued logarithmic branch written as \(\log z\) in the exercise. With \(z=e^{i\theta}\) on this arc, \(h(z)=i\theta\). Hence
     \[
     \begin{aligned}
-        \int_Cg(z)\,\dd z
-        &=\int_0^{2\pi}e^{-3i\theta/4}ie^{i\theta}\,\dd\theta\\
+        I_g
+        &:=\lim_{\varepsilon\to0^+}
+          \int_{\varepsilon}^{2\pi-\varepsilon}
+          ie^{i\theta/4}\,\dd\theta\\
         &=4(e^{i\pi/2}-1)
-        =\boxed{-4+4i}.
+         =\boxed{-4+4i}.
     \end{aligned}
     \]
 \end{exercisesubparts}
-The difference results from the distinct argument intervals used for the two branches.
+These are the values denoted by \(\int_C f(z)\,\dd z\) and \(\int_C g(z)\,\dd z\), respectively, in the exercise. They differ because the branches use different argument intervals.
 \end{solution}
 
+\Needspace{19\baselineskip}
 \begin{exercise}{46.10}
 With the aid of the result in Exercise 3, Sec.~42, evaluate
 \[
