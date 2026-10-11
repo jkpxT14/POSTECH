@@ -85,14 +85,23 @@ Hence $|S|=3(2)+3(4)=\boxed{18}$.
 \end{solution}
 
 \begin{exercise}{2.9}
-In the die-and-coin experiment, the die is tossed first. After an even result the coin is flipped once; after an odd result it is flipped twice. List the elements of (a) the event $A$ that the die shows a number less than 3, (b) the event $B$ of two tails, and (c) the complement $A'$.
+In the die-and-coin experiment, the die is tossed first. After an even result the coin is flipped once; after an odd result it is flipped twice. List the elements of the following events:
+\begin{exercisesubparts}
+\item $A$: the die shows a number less than 3.
+\item $B$: two tails occur.
+\item $A^c$.
+\item $A^c\cap B$.
+\item $A\cup B$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
 \begin{align*}
 \textup{(a)}\quad A&=\{1HH,1HT,1TH,1TT,2H,2T\},\\
 \textup{(b)}\quad B&=\{1TT,3TT,5TT\},\\
-\textup{(c)}\quad A'&=\{3HH,3HT,3TH,3TT,4H,4T,5HH,5HT,5TH,5TT,6H,6T\}.
+\textup{(c)}\quad A^c&=\{3HH,3HT,3TH,3TT,4H,4T,5HH,5HT,5TH,5TT,6H,6T\},\\
+\textup{(d)}\quad A^c\cap B&=\{3TT,5TT\},\\
+\textup{(e)}\quad A\cup B&=\{1HH,1HT,1TH,1TT,2H,2T,3TT,5TT\}.
 \end{align*}
 \end{solution}
 
@@ -103,10 +112,10 @@ Let $S=\{0,1,2,3,4,5,6,7,8,9\}$, $A=\{0,2,4,6,8\}$, $B=\{1,3,5,7,9\}$, $C=\{2,3,
 \begin{exercisesubparts}
 \item $A\cup D$
 \item $A\cap B$
-\item $B'$
-\item $(B'\cap D)\cup A$
-\item $(S\cap D)'$
-\item $A\cap C\cap D'$
+\item $B^c$
+\item $(B^c\cap D)\cup A$
+\item $(S\cap D)^c$
+\item $A\cap C\cap D^c$
 \end{exercisesubparts}
 \end{exercise}
 
@@ -123,7 +132,12 @@ Taking complements relative to $S$ gives
 \end{solution}
 
 \begin{exercise}{2.16}
-Let $S=\{x\in\mathbb R\mid 0<x<12\}$, $M=\{x\in S\mid1<x<8\}$, and $N=\{x\in S\mid0<x<6\}$. Find (a) $M\cup N$, (b) $M\cap N$, and (c) $M'\cap N'$ relative to $S$.
+Let $S=\{x\in\mathbb R\mid 0<x<12\}$, $M=\{x\in S\mid1<x<8\}$, and $N=\{x\in S\mid0<x<6\}$. Find:
+\begin{exercisesubparts}
+\item $M\cup N$.
+\item $M\cap N$.
+\item $M^c\cap N^c$ relative to $S$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -135,14 +149,15 @@ The union and intersection of the intervals give
 \end{align*}
 \end{solution}
 
+\Needspace{24\baselineskip}
 \begin{exercise}{2.19}
 For a family on a camping vacation, let $M$ denote mechanical problems, $T$ a traffic ticket, and $V$ arrival at a campsite with no vacancies. Use the numbered regions in the diagram below.
 \begin{center}
 \begin{tikzpicture}[scale=1.07]
 \draw[thin,gray!70] (-3,-2.8) rectangle (3,2.5);
-\draw[thick,blue!65!black,fill=blue!7] (-1.05,0.35) circle (1.70);
-\draw[thick,blue!65!black,fill=blue!7,fill opacity=0.30] (1.05,0.35) circle (1.70);
-\draw[thick,blue!65!black,fill=blue!7,fill opacity=0.30] (0,-0.75) circle (1.70);
+\draw[thick,black,fill=gray!12] (-1.05,0.35) circle (1.70);
+\draw[thick,black,fill=gray!12,fill opacity=0.30] (1.05,0.35) circle (1.70);
+\draw[thick,black,fill=gray!12,fill opacity=0.30] (0,-0.75) circle (1.70);
 \node at (-1.85,1.25) {$M$}; \node at (1.85,1.25) {$T$};
 \node at (0,-2.12) {$V$};
 \node at (0,-0.10) {1}; \node at (-1.05,-0.80) {2};
@@ -165,22 +180,23 @@ For a family on a camping vacation, let $M$ denote mechanical problems, $T$ a tr
 \begin{solution}
 The regions are, respectively,
 \begin{exercisesubparts}
-\item Mechanical problems, but neither a ticket nor a full campsite ($M\cap T'\cap V'$).
-\item A ticket and a full campsite, but no mechanical problems ($M'\cap T\cap V$).
+\item Mechanical problems, but neither a ticket nor a full campsite ($M\cap T^c\cap V^c$).
+\item A ticket and a full campsite, but no mechanical problems ($M^c\cap T\cap V$).
 \item Mechanical problems and a full campsite, whether or not a ticket occurs ($M\cap V$).
-\item A ticket but no full campsite, regardless of mechanical problems ($T\cap V'$).
-\item No mechanical problems ($M'$).
+\item A ticket but no full campsite, regardless of mechanical problems ($T\cap V^c$).
+\item No mechanical problems ($M^c$).
 \end{exercisesubparts}
 \end{solution}
 
+\Needspace{24\baselineskip}
 \begin{exercise}{2.20}
 For a family on a camping vacation, let $M$ denote mechanical problems, $T$ a traffic ticket, and $V$ arrival at a campsite with no vacancies. Use the numbered regions in the diagram below.
 \begin{center}
 \begin{tikzpicture}[scale=1.07]
 \draw[thin,gray!70] (-3,-2.8) rectangle (3,2.5);
-\draw[thick,blue!65!black,fill=blue!7] (-1.05,0.35) circle (1.70);
-\draw[thick,blue!65!black,fill=blue!7,fill opacity=0.30] (1.05,0.35) circle (1.70);
-\draw[thick,blue!65!black,fill=blue!7,fill opacity=0.30] (0,-0.75) circle (1.70);
+\draw[thick,black,fill=gray!12] (-1.05,0.35) circle (1.70);
+\draw[thick,black,fill=gray!12,fill opacity=0.30] (1.05,0.35) circle (1.70);
+\draw[thick,black,fill=gray!12,fill opacity=0.30] (0,-0.75) circle (1.70);
 \node at (-1.85,1.25) {$M$}; \node at (1.85,1.25) {$T$};
 \node at (0,-2.12) {$V$};
 \node at (0,-0.10) {1}; \node at (-1.05,-0.80) {2};
@@ -222,18 +238,18 @@ By the multiplication rule, the number of classifications is $8\cdot3=\boxed{24}
 \end{solution}
 
 \begin{exercise}{2.26}
-A study lists seven health rules: no smoking, regular exercise, moderate alcohol use, 7--8 hours of sleep, proper weight, eating breakfast, and not eating between meals. In how many ways may someone adopt five of the seven rules if
+A California study concluded that following seven simple health rules can extend a man's life by 11 years on average and a woman's life by 7 years. The rules are: no smoking, regular exercise, moderate use of alcohol, 7--8 hours of sleep, maintaining proper weight, eating breakfast, and not eating between meals. In how many ways can a person choose five rules to follow in each of the following cases?
 \par
 \begin{exercisesubparts}
-\item the person presently violates all seven rules?
-\item the person never drinks and always eats breakfast?
+\item The person presently violates all seven rules.
+\item The person never drinks and always eats breakfast.
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
 \begin{align*}
-\textup{(a)}\quad&\binom75=\boxed{21}.\\
-\textup{(b)}\quad&\binom53=\boxed{10}.
+\textup{(a)}\quad&\binom{7}{5}=\boxed{21}.\\
+\textup{(b)}\quad&\binom{5}{3}=\boxed{10}.
 \end{align*}
 In (b), the rules concerning alcohol and breakfast are already satisfied, so three of the remaining five must be chosen.
 \end{solution}
@@ -258,7 +274,11 @@ In (b), treat the three people as one block; in (c), subtract the arrangements i
 \end{solution}
 
 \begin{exercise}{2.33}
-A multiple-choice examination has six questions, each with four possible answers and exactly one correct answer. How many answer sheets are possible (a) in total, and (b) with every answer wrong?
+A multiple-choice examination has six questions, each with four possible answers and exactly one correct answer. How many answer sheets are possible:
+\begin{exercisesubparts}
+\item in total.
+\item with every answer wrong?
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -312,7 +332,11 @@ Three married couples occupy six consecutive seats in one row. Count the seating
 \end{solution}
 
 \begin{exercise}{2.39}
-A spelling bee has eight distinct finalists, three boys and five girls. Count the possible ordered outcomes for (a) all eight positions and (b) the top three positions.
+A spelling bee has eight distinct finalists, three boys and five girls. Count the possible ordered outcomes for:
+\begin{exercisesubparts}
+\item all eight positions.
+\item the top three positions.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -325,7 +349,10 @@ How many distinguishable arrangements of two oaks, five pines, and three maples 
 \end{exercise}
 
 \begin{solution}
-The multinomial coefficient is $\dfrac{10!}{2!\,5!\,3!}=\boxed{2520}$.
+The multinomial coefficient gives
+\[
+\frac{10!}{2!\,5!\,3!}=\boxed{2520}.
+\]
 \end{solution}
 
 \begin{exercise}{2.49}
@@ -335,7 +362,7 @@ Identify the inconsistency in each probability statement:
 \item For selling 0, 1, 2, or 3 cars, the probabilities are $0.19,0.38,0.29,0.15$.
 \item Rain tomorrow has probability $0.40$, and no rain has probability $0.52$.
 \item For making 0, 1, 2, 3, or at least 4 errors, the probabilities are $0.19,0.34,-0.25,0.43,0.29$.
-\item For one card draw, $P(	ext{heart})=1/4$, $P(	ext{black})=1/2$, and $P(	ext{heart and black})=1/8$.
+\item For one card draw, $\Prob(\text{heart})=1/4$, $\Prob(\text{black})=1/2$, and $\Prob(\text{heart and black})=1/8$.
 \end{exercisesubparts}
 \end{exercise}
 
@@ -344,7 +371,7 @@ Identify the inconsistency in each probability statement:
 \item The probabilities sum to $1.01\ne1$.
 \item Complementary probabilities sum to $0.92\ne1$.
 \item A probability cannot be negative (even though the displayed numbers sum to 1).
-\item Hearts and black cards are disjoint, so $P(\text{heart and black})=0$, not $1/8$.
+\item Hearts and black cards are disjoint, so $\Prob(\text{heart and black})=0$, not $1/8$.
 \end{exercisesubparts}
 \end{solution}
 
@@ -382,7 +409,11 @@ Among 500 students, 210 smoke ($S$), 258 drink alcohol ($D$), and 216 eat betwee
 \end{solution}
 
 \begin{exercise}{2.58}
-Two fair dice are rolled. Find the probabilities of (a) a total of 9 and (b) a total at most 3.
+Two fair dice are rolled. Find the probabilities of:
+\begin{exercisesubparts}
+\item a total of 9.
+\item a total at most 3.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -403,10 +434,10 @@ Three books are chosen uniformly from five novels, three poetry books, and one d
 \end{exercise}
 
 \begin{solution}
-Of $\binom93=84$ equally likely selections,
+Of $\displaystyle \binom{9}{3}=84$ equally likely selections,
 \begin{align*}
-\textup{(a)}&\quad\frac{\binom82}{\binom93}=\boxed{\frac13},\\
-\textup{(b)}&\quad\frac{\binom52\binom31}{\binom93}=\boxed{\frac5{14}}.
+\textup{(a)}&\quad\frac{\binom{8}{2}}{\binom{9}{3}}=\boxed{\frac13},\\
+\textup{(b)}&\quad\frac{\binom{5}{2}\binom{3}{1}}{\binom{9}{3}}=\boxed{\frac5{14}}.
 \end{align*}
 \end{solution}
 
@@ -429,7 +460,12 @@ Of 100 students, 54 studied mathematics ($M$), 69 history ($H$), and 35 both sub
 \end{solution}
 
 \begin{exercise}{2.63}
-The location probabilities for a mobile device at home are: adult bedroom $0.03$, child's bedroom $0.15$, other bedroom $0.14$, office or den $0.40$, and other rooms $0.28$. Find (a) the probability of a bedroom location, (b) the probability of a nonbedroom location, and (c) the most probable room category.
+The location probabilities for a mobile device at home are: adult bedroom $0.03$, child's bedroom $0.15$, other bedroom $0.14$, office or den $0.40$, and other rooms $0.28$. Find:
+\begin{exercisesubparts}
+\item the probability of a bedroom location.
+\item the probability of a nonbedroom location.
+\item the most probable room category.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -457,14 +493,14 @@ Six customers independently choose either gas or electric ovens. Find
 \end{solution}
 
 \begin{exercise}{2.72}
-Prove that $\Prob(A'\cap B')=1+\Prob(A\cap B)-\Prob(A)-\Prob(B)$.
+Prove that $\Prob(A^c\cap B^c)=1+\Prob(A\cap B)-\Prob(A)-\Prob(B)$.
 \end{exercise}
 
 \begin{solution}
 By De Morgan's law and inclusion--exclusion,
 \[
 \begin{aligned}
-\Prob(A'\cap B')&=1-\Prob(A\cup B)\\
+\Prob(A^c\cap B^c)&=1-\Prob(A\cup B)\\
 &=1-\bigl(\Prob(A)+\Prob(B)-\Prob(A\cap B)\bigr)\\
 &=1+\Prob(A\cap B)-\Prob(A)-\Prob(B).
 \end{aligned}
@@ -472,7 +508,12 @@ By De Morgan's law and inclusion--exclusion,
 \end{solution}
 
 \begin{exercise}{2.73}
-Let $R$ be the event that a convict committed armed robbery and $D$ that the convict sold illegal drugs. Explain in words (a) $\Prob(R\mid D)$, (b) $\Prob(D'\mid R)$, and (c) $\Prob(R'\mid D')$.
+Let $R$ be the event that a convict committed armed robbery and $D$ that the convict sold illegal drugs. Explain in words:
+\begin{exercisesubparts}
+\item $\Prob(R\mid D)$.
+\item $\Prob(D^c\mid R)$.
+\item $\Prob(R^c\mid D^c)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -577,7 +618,11 @@ The selection fraction in (d) gives the conditional probability under the stated
 \end{solution}
 
 \begin{exercise}{2.89}
-Two fire engines work independently. Each is available when needed with probability $0.96$. Find the probability that (a) neither is available and (b) at least one is available.
+Two fire engines work independently. Each is available when needed with probability $0.96$. Find the probability that:
+\begin{exercisesubparts}
+\item neither is available.
+\item at least one is available.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -591,23 +636,23 @@ Two fire engines work independently. Each is available when needed with probabil
 Let $A$ mean a river is polluted, $B$ that a water test detects pollution, and $C$ that fishing is permitted. Assume
 \[
 \begin{gathered}
-\Prob(A)=0.3,\quad \Prob(B\mid A)=0.75,\quad \Prob(B\mid A')=0.20,\\
-\Prob(C\mid A\cap B)=0.20,\quad \Prob(C\mid A'\cap B)=0.15,\\
-\Prob(C\mid A\cap B')=0.80,\quad\Prob(C\mid A'\cap B')=0.90.
+\Prob(A)=0.3,\quad \Prob(B\mid A)=0.75,\quad \Prob(B\mid A^c)=0.20,\\
+\Prob(C\mid A\cap B)=0.20,\quad \Prob(C\mid A^c\cap B)=0.15,\\
+\Prob(C\mid A\cap B^c)=0.80,\quad\Prob(C\mid A^c\cap B^c)=0.90.
 \end{gathered}
 \]
 Find
 \par
 \begin{exercisesubparts}
 \item $\Prob(A\cap B\cap C)$;
-\item $\Prob(B'\cap C)$;
+\item $\Prob(B^c\cap C)$;
 \item $\Prob(C)$;
-\item $\Prob(A\mid B'\cap C)$.
+\item $\Prob(A\mid B^c\cap C)$.
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-The four elementary cases $A\cap B$, $A'\cap B$, $A\cap B'$, and $A'\cap B'$ have probabilities
+The four elementary cases $A\cap B$, $A^c\cap B$, $A\cap B^c$, and $A^c\cap B^c$ have probabilities
 \[
 0.225,\quad0.14,\quad0.075,\quad0.56,
 \]
@@ -621,7 +666,11 @@ respectively. Multiplying each by the corresponding conditional probability of $
 \end{solution}
 
 \begin{exercise}{2.91}
-From a cooler containing 20 milk cartons, five are spoiled. Three cartons are drawn successively without replacement. Find the probability that all three are good, using (a) conditional probabilities and (b) a combinatorial count.
+From a cooler containing 20 milk cartons, five are spoiled. Three cartons are drawn successively without replacement. Find the probability that all three are good, using:
+\begin{exercisesubparts}
+\item conditional probabilities.
+\item a combinatorial count.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -629,7 +678,7 @@ From a cooler containing 20 milk cartons, five are spoiled. Three cartons are dr
 \[
 \frac{15}{20}\frac{14}{19}\frac{13}{18}=\boxed{\frac{91}{228}}.
 \]
-\noindent\textup{(b)} All three are good in $\binom{15}{3}$ of the $\binom{20}{3}$ possible samples, and
+\noindent\textup{(b)} All three are good in $\displaystyle \binom{15}{3}$ of the $\displaystyle \binom{20}{3}$ possible samples, and
 \[
 \frac{\binom{15}{3}}{\binom{20}{3}}=\boxed{\frac{91}{228}}.
 \]
@@ -642,7 +691,7 @@ Among adults older than 40, the cancer prevalence is $0.05$. A diagnostic test i
 \begin{solution}
 The law of total probability gives
 \[
-\Prob(+)=\Prob(+\mid C)\Prob(C)+\Prob(+\mid C')\Prob(C')
+\Prob(+)=\Prob(+\mid C)\Prob(C)+\Prob(+\mid C^c)\Prob(C^c)
 =(0.78)(0.05)+(0.06)(0.95)=\boxed{0.096}.
 \]
 \end{solution}

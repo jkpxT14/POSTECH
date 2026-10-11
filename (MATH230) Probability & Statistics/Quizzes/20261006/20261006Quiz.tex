@@ -112,11 +112,15 @@ Hence,
 \end{solution}
 
 \begin{exercise}{4.37}
-A dealer's profit, in units of $\$5000$, on a new automobile is a random variable $X$ having the density function given in Exercise 4.12 on page 137. Find the variance of $X$.
+A dealer's profit on a new automobile, measured in units of $\$5000$, is a random variable $X$ with density
+\[
+f_X(x)=\begin{cases}2(1-x),&0<x<1,\\0,&\text{elsewhere}.\end{cases}
+\]
+Find the variance of $X$.
 \end{exercise}
 
 \begin{solution}
-From Exercise 4.12,
+The given density is
 \[
     f(x)=
     \begin{cases}
@@ -144,11 +148,15 @@ Since $X$ is measured in units of $\$5000$, the variance of the actual profit in
 \end{solution}
 
 \begin{exercise}{4.40}
-Referring to Exercise 4.14 on page 137, find $\Var(g(X))$ for the function $g(X)=3X+4$.
+Let $X$ have density
+\[
+f_X(x)=\begin{cases}\dfrac{2(x+2)}{5},&0<x<1,\\0,&\text{elsewhere}.\end{cases}
+\]
+Find $\Var(g(X))$ for $g(X)=3X+4$.
 \end{exercise}
 
 \begin{solution}
-From Exercise 4.14,
+The given density is
 \[
     f(x)=
     \begin{cases}
@@ -180,11 +188,15 @@ Therefore,
 \end{solution}
 
 \begin{exercise}{4.41}
-Find the standard deviation of the random variable $h(X)=(3X+1)^2$ in Exercise 4.17 on page 138.
+Let $X$ have distribution
+\[
+\begin{array}{c@{\qquad}ccc}\toprule x&-3&6&9\\\midrule p_X(x)&\frac16&\frac12&\frac13\\\bottomrule\end{array}
+\]
+Find the standard deviation of $h(X)=(3X+1)^2$.
 \end{exercise}
 
 \begin{solution}
-From Exercise 4.17,
+The distribution of $X$ is
 \[
 \begin{array}{c@{\qquad}ccc}
 \toprule
@@ -262,11 +274,11 @@ Hence,
 
 \Needspace{19\baselineskip}
 \begin{exercise}{4.44}
-Find the covariance of the random variables $X$ and $Y$ of Exercise 3.39 on page 125.
+Four fruits are sampled without replacement from three oranges, two apples, and three bananas. Let $X$ and $Y$ count the oranges and apples selected, respectively. Find $\Cov(X,Y)$.
 \end{exercise}
 
 \begin{solution}
-In Exercise 3.39, four pieces are selected from $3$ oranges, $2$ apples, and $3$ bananas, with $X$ and $Y$ denoting the numbers of oranges and apples selected. Thus
+Four pieces are selected from $3$ oranges, $2$ apples, and $3$ bananas, with $X$ and $Y$ denoting the numbers of oranges and apples selected. Thus
 \[
     p_{X,Y}(x,y)
     =\frac{\binom{3}{x}\binom{2}{y}\binom{3}{4-x-y}}{\binom{8}{4}}
@@ -305,11 +317,15 @@ Therefore, by Theorem 4.4,
 \end{solution}
 
 \begin{exercise}{4.45}
-Find the covariance of the random variables $X$ and $Y$ of Exercise 3.49 on page 126.
+Let $X$ count machine malfunctions and $Y$ technician calls. Their joint pmf is
+\[
+\begin{array}{c@{\qquad}ccc}\toprule p_{X,Y}(x,y)&x=1&x=2&x=3\\\midrule y=1&0.05&0.05&0.10\\ y=3&0.05&0.10&0.35\\ y=5&0&0.20&0.10\\\bottomrule\end{array}
+\]
+Find $\Cov(X,Y)$.
 \end{exercise}
 
 \begin{solution}
-From Exercise 3.49, the joint distribution is
+The joint distribution is
 \[
 \begin{array}{c@{\qquad}ccc}
 \toprule
@@ -633,7 +649,7 @@ For part (c), the two die outcomes are independent, so their joint pmf is $1/36$
 \end{solution}
 
 \begin{exercise}{4.69}
-Consider Review Exercise 3.77 on page 128. The random variables $X$ and $Y$ represent the number of vehicles that arrive at two separate street corners during a certain 2-minute period in the day. The joint distribution is
+The random variables $X$ and $Y$ represent the number of vehicles that arrive at two separate street corners during a certain 2-minute period in the day. The joint distribution is
 \[
     f(x,y)=\left(\frac{1}{4^{x+y}}\right)\left(\frac{9}{16}\right),
 \]
@@ -713,7 +729,7 @@ Therefore,
 \end{solution}
 
 \begin{exercise}{4.70}
-Consider Review Exercise 3.64 on page 127. There are two service lines. The random variables $X$ and $Y$ are the proportions of time that line 1 and line 2 are in use, respectively. The joint probability density function for $(X,Y)$ is given by
+There are two service lines. The random variables $X$ and $Y$ are the proportions of time that line 1 and line 2 are in use, respectively. The joint probability density function for $(X,Y)$ is given by
 \[
     f(x,y)=
     \begin{cases}

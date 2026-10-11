@@ -23,12 +23,12 @@ A coin is tossed three times. Let $W$ be the number of heads minus the number of
 
 \begin{solution}
 \[
-\begin{array}{c|cccccccc}\toprule
+\begin{array}{c@{\qquad}cccccccc}\toprule
 \omega&HHH&HHT&HTH&THH&HTT&THT&TTH&TTT\\\midrule
 W(\omega)&3&1&1&1&-1&-1&-1&-3\\\bottomrule
 \end{array}
 \]
-The eight rows of outcomes constitute the sample space $S$.
+The eight outcomes displayed in the table constitute the sample space $S$.
 \end{solution}
 
 \begin{exercise}{3.4}
@@ -46,12 +46,13 @@ HTHTHH,\ HTTTHH,\ THTTHH,\ TTHTHH,\ TTTTHH.
 Each string ends in $HH$ with no earlier consecutive $HH$. The complete sample space is countably infinite and is therefore \boxed{\text{discrete}}.
 \end{solution}
 
+\Needspace{10\baselineskip}
 \begin{exercise}{3.5}
 Find the normalization constant $c$ for each discrete pmf on $x=0,1,2$:
 \par
 \begin{exercisesubparts}
 \item $p_X(x)=c(x^2+4)$;
-\item $p_X(x)=c\binom3x\binom3{3-x}$. 
+\item $\displaystyle p_X(x)=c\binom{3}{x}\binom{3}{3-x}$. 
 \end{exercisesubparts}
 \end{exercise}
 
@@ -77,7 +78,11 @@ p_W(w)&1/27&6/27&12/27&8/27\\\bottomrule
 \end{solution}
 
 \begin{exercise}{3.9}
-A continuous response proportion $X$ has density $f_X(x)=2(x+2)/5$ for $0<x<1$, and zero otherwise. (a) Verify that it is a density. (b) Find $\Prob(1/4<X<3/4)$.
+A continuous response proportion $X$ has density $f_X(x)=2(x+2)/5$ for $0<x<1$, and zero otherwise.
+\begin{exercisesubparts}
+\item Verify that it is a density.
+\item Find $\Prob(1/4<X<3/4)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -96,7 +101,7 @@ Of seven television sets, two are defective. A hotel chooses three sets uniforml
 \begin{solution}
 The hypergeometric counting formula gives
 \[
-p_X(x)=\frac{\binom2x\binom5{3-x}}{\binom73},\quad x=0,1,2.
+p_X(x)=\frac{\binom{2}{x}\binom{5}{3-x}}{\binom{7}{3}},\quad x=0,1,2.
 \]
 Hence $p_X(0)=2/7$, $p_X(1)=4/7$, and $p_X(2)=1/7$. The corresponding probability histogram is
 \begin{center}
@@ -110,7 +115,7 @@ Hence $p_X(0)=2/7$, $p_X(1)=4/7$, and $p_X(2)=1/7$. The corresponding probabilit
  axis lines=left,grid=major,grid style={black!12},
  nodes near coords,point meta=explicit symbolic,
  every node near coord/.append style={font=\small,anchor=south}]
-\addplot[fill=blue!30,draw=blue!70!black] table[meta=label,row sep=\\]{x y label\\ 0 0.285714 $2/7$\\ 1 0.571429 $4/7$\\ 2 0.142857 $1/7$\\};
+\addplot[fill=gray!30,draw=black] table[meta=label,row sep=\\]{x y label\\ 0 0.285714 $2/7$\\ 1 0.571429 $4/7$\\ 2 0.142857 $1/7$\\};
 \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -123,7 +128,13 @@ F_T(t)=\begin{cases}
 0,&t<1,\\1/4,&1\le t<3,\\1/2,&3\le t<5,\\3/4,&5\le t<7,\\1,&t\ge7.
 \end{cases}
 \]
-Find (a) $\Prob(T=5)$, (b) $\Prob(T>3)$, (c) $\Prob(1.4<T<6)$, and (d) $\Prob(T\le5\mid T\ge2)$.
+Find:
+\begin{exercisesubparts}
+\item $\Prob(T=5)$.
+\item $\Prob(T>3)$.
+\item $\Prob(1.4<T<6)$.
+\item $\Prob(T\le5\mid T\ge2)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -157,7 +168,11 @@ F_X(x)=\begin{cases}
 \end{solution}
 
 \begin{exercise}{3.14}
-The waiting time $X$ (hours) between speeders has cdf $F_X(x)=0$ for $x<0$ and $F_X(x)=1-e^{-4x}$ for $x\ge0$. Find the probability of a wait of less than 12 minutes (a) from the cdf and (b) from the pdf.
+The waiting time $X$ (hours) between speeders has cdf $F_X(x)=0$ for $x<0$ and $F_X(x)=1-e^{-4x}$ for $x\ge0$. Find the probability of a wait of less than 12 minutes:
+\begin{exercisesubparts}
+\item from the cdf.
+\item from the pdf.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -170,7 +185,12 @@ Both values are about $0.5507$.
 \end{solution}
 
 \begin{exercise}{3.17}
-The continuous variable $X$ has constant density $f_X(x)=1/2$ for $1<x<3$, and zero otherwise. (a) Verify normalization; (b) find $\Prob(2<X<2.5)$; (c) find $\Prob(X\le1.6)$.
+The continuous variable $X$ has constant density $f_X(x)=1/2$ for $1<x<3$, and zero otherwise.
+\begin{exercisesubparts}
+\item Verify normalization.
+\item Find $\Prob(2<X<2.5)$.
+\item Find $\Prob(X\le1.6)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -182,7 +202,11 @@ The continuous variable $X$ has constant density $f_X(x)=1/2$ for $1<x<3$, and z
 \end{solution}
 
 \begin{exercise}{3.18}
-The density of $X$ is $f_X(x)=2(1+x)/27$ for $2<x<5$, and zero otherwise. Find (a) $\Prob(X<4)$ and (b) $\Prob(3\le X<4)$.
+The density of $X$ is $f_X(x)=2(1+x)/27$ for $2<x<5$, and zero otherwise. Find:
+\begin{exercisesubparts}
+\item $\Prob(X<4)$.
+\item $\Prob(3\le X<4)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -194,11 +218,20 @@ An antiderivative is $(x^2+2x)/27$. Thus
 \end{solution}
 
 \begin{exercise}{3.21}
-Let $f_X(x)=k\sqrt{x}$ for $0\le x<4$, and zero otherwise. (a) Determine $k$. (b) Obtain $F_X(x)$ and calculate $\Prob(3<X<4)$.
+Let $f_X(x)=k\sqrt{x}$ for $0\le x<4$, and zero otherwise.
+\begin{exercisesubparts}
+\item Determine $k$.
+\item Obtain $F_X(x)$ and calculate $\Prob(3<X<4)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-Normalization gives $1=k\int_0^4\sqrt{x}\,\dd x=(16/3)k$, hence $\boxed{k=3/16}$. The cdf is
+\noindent\textup{(a)} Normalization gives
+\[
+1=k\int_0^4\sqrt{x}\,\dd x=\frac{16}{3}k,
+\]
+so $\boxed{k=3/16}$.\par\medskip
+\noindent\textup{(b)} The cdf is
 \[
 F_X(x)=\begin{cases}
 0,&x<0,\\x^{3/2}/8,&0\le x<4,\\1,&x\ge4.
@@ -208,7 +241,11 @@ Therefore $\Prob(3<X<4)=1-F_X(3)=\boxed{1-3\sqrt3/8}$.
 \end{solution}
 
 \begin{exercise}{3.23}
-A biased coin has $\Prob(H)=2/3$ and is tossed three times independently. Let $W$ be heads minus tails. Determine its cdf and use it to calculate (a) $\Prob(W>0)$ and (b) $\Prob(-1\le W<3)$.
+A biased coin has $\Prob(H)=2/3$ and is tossed three times independently. Let $W$ be heads minus tails. Determine its cdf and use it to calculate:
+\begin{exercisesubparts}
+\item $\Prob(W>0)$.
+\item $\Prob(-1\le W<3)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -218,23 +255,39 @@ F_W(w)=\begin{cases}
 0,&w<-3,\\1/27,&-3\le w<-1,\\7/27,&-1\le w<1,\\19/27,&1\le w<3,\\1,&w\ge3.
 \end{cases}
 \]
-Hence (a) $\boxed{20/27}$ and (b) $\boxed{2/3}$.
+Hence
+\[
+\textup{(a)}\quad\boxed{\Prob(W>0)=\frac{20}{27}},\qquad
+\textup{(b)}\quad\boxed{\Prob(-1\le W<3)=\frac23}.
+\]
 \end{solution}
 
 \begin{exercise}{3.27}
-An electronic component has lifetime density $f_X(x)=e^{-x/1000}/1000$ for $x\ge0$, and zero otherwise. (a) Find $F_X(x)$; (b) find the probability of surviving beyond 1000 hours; (c) find the probability of failing before 2000 hours.
+An electronic component has lifetime density $f_X(x)=e^{-x/1000}/1000$ for $x\ge0$, and zero otherwise.
+\begin{exercisesubparts}
+\item Find $F_X(x)$.
+\item Find the probability of surviving beyond 1000 hours.
+\item Find the probability of failing before 2000 hours.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-For $x\ge0$,
+\noindent\textup{(a)} For $x\ge0$,
 \[
 F_X(x)=\int_0^x\frac{e^{-t/1000}}{1000}\,\dd t=1-e^{-x/1000},
 \]
-and $F_X(x)=0$ for $x<0$. Thus (b) $\boxed{e^{-1}}$ and (c) $\boxed{1-e^{-2}}$.
+and $F_X(x)=0$ for $x<0$.\par\medskip
+\noindent\textup{(b)} The probability of surviving beyond 1000 hours is $\boxed{e^{-1}}$.\par\medskip
+\noindent\textup{(c)} The probability of failing before 2000 hours is $\boxed{1-e^{-2}}$.
 \end{solution}
 
 \begin{exercise}{3.28}
-The weight $X$ (ounces) of cereal in a box has density $f_X(x)=2/5$ for $23.75\le x\le26.25$, and zero otherwise. (a) Verify the density; (b) find $\Prob(X<24)$; (c) find $\Prob(X>26)$.
+The weight $X$ (ounces) of cereal in a box has density $f_X(x)=2/5$ for $23.75\le x\le26.25$, and zero otherwise.
+\begin{exercisesubparts}
+\item Verify the density.
+\item Find $\Prob(X<24)$.
+\item Find $\Prob(X>26)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -246,7 +299,12 @@ The weight $X$ (ounces) of cereal in a box has density $f_X(x)=2/5$ for $23.75\l
 \end{solution}
 
 \begin{exercise}{3.30}
-A measurement error $X$ has density $f_X(x)=k(3-x^2)$ on $-1\le x\le1$, and zero otherwise. (a) Determine $k$; (b) calculate $\Prob(X<1/2)$; (c) calculate $\Prob(|X|>0.8)$.
+Measurements of physical systems are subject to variation, and modeling measurement error is important in statistics. Suppose that the error $X$ in measuring a physical quantity has density $f_X(x)=k(3-x^2)$ on $-1\le x\le1$, and zero otherwise.
+\begin{exercisesubparts}
+\item Determine $k$.
+\item Calculate $\Prob(X<1/2)$.
+\item Calculate $\Prob(|X|>0.8)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -273,7 +331,12 @@ A company's proportion $Y$ of its budget devoted to pollution control has densit
 \end{solution}
 
 \begin{exercise}{3.36}
-The variable $X$ has density $f_X(x)=2(1-x)$ on $0<x<1$, and zero elsewhere. Find (a) $\Prob(X<0.5)$, (b) $\Prob(X>0.4)$, and (c) $\Prob(X<0.7\mid X\ge0.5)$.
+The variable $X$ has density $f_X(x)=2(1-x)$ on $0<x<1$, and zero elsewhere. Find:
+\begin{exercisesubparts}
+\item $\Prob(X<0.5)$.
+\item $\Prob(X>0.4)$.
+\item $\Prob(X<0.7\mid X\ge0.5)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -326,33 +389,47 @@ Summing the indicated joint masses,
 
 \begin{exercise}{3.39}
 A random sample of four fruits is drawn without replacement from three oranges, two apples, and three bananas. Let $X$ and $Y$ be the numbers of oranges and apples selected.
-Find (a) the joint pmf explicitly, and (b) $\Prob(X+Y\le2)$.
+Find:
+\begin{exercisesubparts}
+\item the joint pmf explicitly.
+\item $\Prob(X+Y\le2)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-\textup{(a)} Every admissible pair $(x,y)$ has joint mass
+\textup{(a)} The joint mass is
 \[
-\boxed{p_{X,Y}(x,y)=\frac{\binom3x\binom2y\binom3{4-x-y}}{70}}.
+\boxed{p_{X,Y}(x,y)=\frac{\binom{3}{x}\binom{2}{y}\binom{3}{4-x-y}}{\binom{8}{4}}}
 \]
+for integers $0\le x\le3$, $0\le y\le2$, $1\le x+y\le4$, and $p_{X,Y}(x,y)=0$ otherwise.
 \noindent\textup{(b)} The event $X+Y\le2$ means at least two bananas are drawn, so
 \[
 \Prob(X+Y\le2)
-=\frac{\binom32\binom52+\binom33\binom51}{\binom84}
+=\frac{\binom{3}{2}\binom{5}{2}+\binom{3}{3}\binom{5}{1}}{\binom{8}{4}}
 =\frac{35}{70}=\boxed{\frac12}.
 \]
 \end{solution}
 
 \begin{exercise}{3.40}
-The proportions of time a fast-food restaurant's drive-through and walk-in services are busy are $X$ and $Y$. Their joint density is $f_{X,Y}(x,y)=\frac23(x+2y)$ on $0<x<1$, $0<y<1$, and zero otherwise. Find (a) $f_X$, (b) $f_Y$, and (c) $\Prob(X<1/2)$.
+The proportions of time a fast-food restaurant's drive-through and walk-in services are busy are $X$ and $Y$. Their joint density is $f_{X,Y}(x,y)=\frac23(x+2y)$ on $0<x<1$, $0<y<1$, and zero otherwise. Find:
+\begin{exercisesubparts}
+\item $f_X$.
+\item $f_Y$.
+\item $\Prob(X<1/2)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-Integrating over the unused variable gives
+\noindent\textup{(a)} Integrating over $y$ gives
 \[
-f_X(x)=\boxed{\frac23(x+1)},\quad 0<x<1;
-\qquad f_Y(y)=\boxed{\frac13(1+4y)},\quad0<y<1,
+\boxed{f_X(x)=\frac23(x+1)},\qquad 0<x<1.
 \]
-with value zero otherwise. Therefore
+\noindent\textup{(b)} Integrating over $x$ gives
+\[
+\boxed{f_Y(y)=\frac13(1+4y)},\qquad 0<y<1.
+\]
+Both densities are zero outside $(0,1)$.\par\medskip
+\noindent\textup{(c)} Therefore
 \[
 \Prob(X<1/2)=\int_0^{1/2}\frac23(x+1)\,\dd x=\boxed{\frac5{12}}.
 \]
@@ -364,7 +441,7 @@ In a one-kilogram box of chocolates, $X$ and $Y$ are the weights in kilograms of
 \begin{exercisesubparts}
 \item the probability that cordials exceed half the box weight;
 \item the marginal density of $X$;
-\item the probability $\Prob(Y<1/8\mid X=3/4)$.
+\item $\Prob(Y<1/8\mid X=3/4)$.
 \end{exercisesubparts}
 \end{exercise}
 
@@ -392,7 +469,11 @@ The joint density factorizes into two exponential marginals, so $X$ and $Y$ are 
 \end{solution}
 
 \begin{exercise}{3.43}
-Let $X$ be a reaction time (seconds) and $Y$ a temperature. Their joint density is $f_{X,Y}(x,y)=4xy$ on $0<x<1$, $0<y<1$ and zero elsewhere. Find (a) $\Prob(0\le X\le1/2,\ 1/4\le Y\le1/2)$ and (b) $\Prob(X<Y)$.
+Let $X$ be a reaction time (seconds) and $Y$ a temperature. Their joint density is $f_{X,Y}(x,y)=4xy$ on $0<x<1$, $0<y<1$ and zero elsewhere. Find:
+\begin{exercisesubparts}
+\item $\Prob(0\le X\le1/2,\ 1/4\le Y\le1/2)$.
+\item $\Prob(X<Y)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -419,7 +500,11 @@ Both functions are zero outside their displayed supports.
 \end{solution}
 
 \begin{exercise}{3.47}
-For the daily amount $Y$ of kerosene available and the amount $X$ sold (both in thousands of liters), the joint density is $f_{X,Y}(x,y)=2$ for $0<x\le y<1$, and zero otherwise. (a) Are $X,Y$ independent? (b) Find $\Prob(1/4<X<1/2\mid Y=3/4)$.
+For the daily amount $Y$ of kerosene available and the amount $X$ sold (both in thousands of liters), the joint density is $f_{X,Y}(x,y)=2$ for $0<x\le y<1$, and zero otherwise.
+\begin{exercisesubparts}
+\item Are $X,Y$ independent?
+\item Find $\Prob(1/4<X<1/2\mid Y=3/4)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -431,48 +516,65 @@ For the daily amount $Y$ of kerosene available and the amount $X$ sold (both in 
 \end{solution}
 
 \begin{exercise}{3.48}
-A random sample of four fruits is drawn without replacement from three oranges, two apples, and three bananas. Let $X$ and $Y$ be the numbers of oranges and apples selected. The joint pmf is $p_{X,Y}(x,y)=\binom3x\binom2y\binom3{4-x-y}/\binom84$ for admissible integer pairs $(x,y)$, and zero otherwise.
-Find (a) the conditional pmf $p_{Y\mid X}(y\mid2)$ and (b) $\Prob(Y=0\mid X=2)$.
+A random sample of four fruits is drawn without replacement from three oranges, two apples, and three bananas. Let $X$ and $Y$ be the numbers of oranges and apples selected. The joint pmf is
+\[
+p_{X,Y}(x,y)=\frac{\binom{3}{x}\binom{2}{y}\binom{3}{4-x-y}}{\binom{8}{4}}
+\]
+for admissible integer pairs $(x,y)$, and zero otherwise.
+Find:
+\begin{exercisesubparts}
+\item the conditional pmf $p_{Y\mid X}(y\mid2)$.
+\item $\Prob(Y=0\mid X=2)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-For $X=2$, the unnormalized counts for $Y=0,1,2$ are $9,18,3$, totaling $30$. Thus
+\noindent\textup{(a)} For $X=2$, the unnormalized counts for $Y=0,1,2$ are $9,18,3$, totaling $30$. Thus
 \[
 \boxed{p_{Y\mid X}(y\mid2)=\begin{cases}3/10,&y=0,\\3/5,&y=1,\\1/10,&y=2,\\0,&\text{otherwise},\end{cases}}
 \]
-and $\boxed{\Prob(Y=0\mid X=2)=3/10}$.
+\par\medskip
+\noindent\textup{(b)} Hence $\boxed{\Prob(Y=0\mid X=2)=3/10}$.
 \end{solution}
 
 \begin{exercise}{3.49}
 The joint pmf of the number $X$ of machine malfunctions and the number $Y$ of technician calls is
 \[
-\begin{array}{c|ccc}\toprule
+\begin{array}{c@{\qquad}ccc}\toprule
 p_{X,Y}(x,y)&x=1&x=2&x=3\\\midrule
 y=1&0.05&0.05&0.10\\
 y=3&0.05&0.10&0.35\\
 y=5&0.00&0.20&0.10\\\bottomrule
 \end{array}
 \]
-Find (a) the marginal pmf of $X$, (b) that of $Y$, and (c) $\Prob(Y=3\mid X=2)$.
+Find:
+\begin{exercisesubparts}
+\item the marginal pmf of $X$.
+\item that of $Y$.
+\item $\Prob(Y=3\mid X=2)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-Summing rows and columns gives
+\noindent\textup{(a)} Summing over $y$ gives the marginal of $X$:
 \[
-\begin{array}{c|ccc}\toprule
+\begin{array}{c@{\qquad}ccc}\toprule
 x&1&2&3\\\midrule p_X(x)&0.10&0.35&0.55\\\bottomrule
-\end{array}\qquad
-\begin{array}{c|ccc}\toprule
+\end{array}
+\]
+\noindent\textup{(b)} Summing over $x$ gives the marginal of $Y$:
+\[
+\begin{array}{c@{\qquad}ccc}\toprule
 y&1&3&5\\\midrule p_Y(y)&0.20&0.50&0.30\\\bottomrule
 \end{array}
 \]
-In addition, $\Prob(Y=3\mid X=2)=0.10/0.35=\boxed{2/7}$.
+\noindent\textup{(c)} Therefore $\Prob(Y=3\mid X=2)=0.10/0.35=\boxed{2/7}$.
 \end{solution}
 
 \begin{exercise}{3.50}
 The joint pmf of $X,Y$ is
 \[
-\begin{array}{c|cc}\toprule
+\begin{array}{c@{\qquad}cc}\toprule
 p_{X,Y}(x,y)&x=2&x=4\\\midrule
 y=1&0.10&0.15\\
 y=3&0.20&0.30\\
@@ -494,20 +596,28 @@ Both pmfs are zero elsewhere.
 \end{solution}
 
 \begin{exercise}{3.52}
-A coin is tossed twice independently with $\Prob(H)=0.30$. Let $Z$ be the indicator of heads on the first toss, and $W$ the total number of heads. Find (a) the joint pmf of $(W,Z)$, (b) the marginal pmf of $W$, (c) the marginal pmf of $Z$, and (d) the probability of at least one head.
+A coin is tossed twice independently with $\Prob(H)=0.30$. Let $Z$ be the indicator of heads on the first toss, and $W$ the total number of heads. Find:
+\begin{exercisesubparts}
+\item the joint pmf of $(W,Z)$.
+\item the marginal pmf of $W$.
+\item the marginal pmf of $Z$.
+\item the probability of at least one head.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-The outcomes $HH,HT,TH,TT$ have probabilities $0.09,0.21,0.21,0.49$, respectively. Therefore
+\noindent\textup{(a)} The outcomes $HH,HT,TH,TT$ have probabilities $0.09,0.21,0.21,0.49$, respectively. Therefore
 \[
-\begin{array}{c|cc}\toprule
+\begin{array}{c@{\qquad}cc}\toprule
 p_{W,Z}(w,z)&z=0&z=1\\\midrule
 w=0&0.49&0\\
 w=1&0.21&0.21\\
 w=2&0&0.09\\\bottomrule
 \end{array}
 \]
-The marginal pmfs are $p_W(0)=0.49$, $p_W(1)=0.42$, $p_W(2)=0.09$ and $p_Z(0)=0.70$, $p_Z(1)=0.30$. Finally,
+\noindent\textup{(b)} The marginal pmf of $W$ is $p_W(0)=0.49$, $p_W(1)=0.42$, $p_W(2)=0.09$.\par\medskip
+\noindent\textup{(c)} The marginal pmf of $Z$ is $p_Z(0)=0.70$, $p_Z(1)=0.30$.\par\medskip
+\noindent\textup{(d)} Finally,
 \[
 \Prob(W\ge1)=1-\Prob(W=0)=\boxed{0.51}.
 \]
@@ -518,7 +628,11 @@ The joint density of $X$ and $Y$ is $f_{X,Y}(x,y)=(6-x-y)/8$ for $0<x<2$ and $2<
 \end{exercise}
 
 \begin{solution}
-Since $f_X(x)=\int_2^4(6-x-y)/8\,\dd y=(3-x)/4$, the conditional density at $x=3/2$ is
+Since
+\[
+f_X(x)=\int_2^4\frac{6-x-y}{8}\,\dd y=\frac{3-x}{4},
+\]
+the conditional density at $x=3/2$ is
 \[
 f_{Y\mid X}(y\mid3/2)=\frac{(9/2-y)/8}{(3-3/2)/4}=\frac{9/2-y}{3},\quad2<y<4.
 \]
@@ -531,7 +645,7 @@ Thus
 \begin{exercise}{3.54}
 For the joint pmf
 \[
-\begin{array}{c|ccc}\toprule
+\begin{array}{c@{\qquad}ccc}\toprule
 p_{X,Y}(x,y)&x=1&x=2&x=3\\\midrule
 y=1&0.05&0.05&0.10\\
 y=3&0.05&0.10&0.35\\
@@ -552,7 +666,7 @@ Therefore $\boxed{X\text{ and }Y\text{ are dependent}}$.
 \begin{exercise}{3.55}
 For the joint pmf
 \[
-\begin{array}{c|cc}\toprule
+\begin{array}{c@{\qquad}cc}\toprule
 p_{X,Y}(x,y)&x=2&x=4\\\midrule
 y=1&0.10&0.15\\
 y=3&0.20&0.30\\
@@ -573,7 +687,11 @@ Every joint mass equals the product of the corresponding marginals. Hence
 \end{solution}
 
 \begin{exercise}{3.56}
-The joint density of $X,Y$ is $f_{X,Y}(x,y)=6x$ for $0<x<1$, $0<y<1-x$, and zero otherwise. (a) Show dependence; (b) find $\Prob(X>0.3\mid Y=0.5)$.
+The joint density of $X,Y$ is $f_{X,Y}(x,y)=6x$ for $0<x<1$, $0<y<1-x$, and zero otherwise.
+\begin{exercisesubparts}
+\item Show dependence.
+\item Find $\Prob(X>0.3\mid Y=0.5)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -587,16 +705,20 @@ The joint density of $X,Y$ is $f_{X,Y}(x,y)=6x$ for $0<x<1$, $0<y<1-x$, and zero
 \end{solution}
 
 \begin{exercise}{3.57}
-The joint density is $f_{X,Y,Z}(x,y,z)=kxy^2z$ on $0<x<1$, $0<y<1$, $0<z<2$, and zero otherwise. (a) Determine $k$; (b) find $\Prob(X<1/4,Y>1/2,1<Z<2)$.
+The joint density is $f_{X,Y,Z}(x,y,z)=kxy^2z$ on $0<x<1$, $0<y<1$, $0<z<2$, and zero otherwise.
+\begin{exercisesubparts}
+\item Determine $k$.
+\item Find $\Prob(X<1/4,Y>1/2,1<Z<2)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-Normalization gives
+\noindent\textup{(a)} Normalization gives
 \[
 1=k\left(\frac12\right)\left(\frac13\right)(2)=\frac k3,
 \quad\boxed{k=3}.
 \]
-The density factors, so
+\noindent\textup{(b)} The density factors, so
 \[
 \Prob(X<1/4,Y>1/2,1<Z<2)
 =\left(\frac1{16}\right)\left(\frac78\right)\left(\frac34\right)
@@ -628,7 +750,12 @@ These apply on $0<x,y<1$ and $0<z<3$ respectively, and vanish elsewhere. The den
 \end{solution}
 
 \begin{exercise}{3.61}
-A one-unit tobacco blend contains Turkish and domestic tobacco in proportions $X,Y$, with the remainder being other tobacco. Their joint density is $f_{X,Y}(x,y)=24xy$ for $x,y\ge0$, $x+y\le1$, and zero elsewhere. Find (a) $\Prob(X>1/2)$; (b) the marginal density of $Y$; (c) $\Prob(X<1/8\mid Y=3/4)$.
+A one-unit tobacco blend contains Turkish and domestic tobacco in proportions $X,Y$, with the remainder being other tobacco. Their joint density is $f_{X,Y}(x,y)=24xy$ for $x,y\ge0$, $x+y\le1$, and zero elsewhere. Find:
+\begin{exercisesubparts}
+\item $\Prob(X>1/2)$.
+\item the marginal density of $Y$.
+\item $\Prob(X<1/8\mid Y=3/4)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -647,7 +774,12 @@ f_Y(y)=\int_0^{1-y}24xy\,\dd x=\boxed{12y(1-y)^2},\quad0<y<1.
 \end{solution}
 
 \begin{exercise}{3.68}
-The joint density is $f_{X,Y}(x,y)=(3x-y)/11$ on $1<x<3$ and $0<y<1$, and zero elsewhere. (a) Find the marginal densities; (b) check independence; (c) find $\Prob(X>2)$.
+The joint density is $f_{X,Y}(x,y)=(3x-y)/11$ on $1<x<3$ and $0<y<1$, and zero elsewhere.
+\begin{exercisesubparts}
+\item Find the marginal densities.
+\item Check independence.
+\item Find $\Prob(X>2)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
@@ -666,7 +798,13 @@ Both vanish outside their stated supports.\par\medskip
 
 \Needspace{15\baselineskip}
 \begin{exercise}{3.75}
-A chemical blend has component proportions $X_1$ and $X_2$ with joint density $f(x_1,x_2)=2$ for $0<x_1<x_2<1$, and zero otherwise. (a) Find $f_{X_1}$; (b) find $f_{X_2}$; (c) calculate $\Prob(X_1<0.2,X_2>0.5)$; (d) determine $f_{X_1\mid X_2}(x_1\mid x_2)$.
+A chemical blend has component proportions $X_1$ and $X_2$ with joint density $f(x_1,x_2)=2$ for $0<x_1<x_2<1$, and zero otherwise.
+\begin{exercisesubparts}
+\item Find $f_{X_1}$.
+\item Find $f_{X_2}$.
+\item Calculate $\Prob(X_1<0.2,X_2>0.5)$.
+\item Determine $f_{X_1\mid X_2}(x_1\mid x_2)$.
+\end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
