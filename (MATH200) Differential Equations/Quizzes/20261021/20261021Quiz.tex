@@ -1,0 +1,306 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261021 Quiz for MATH200 Differential Equations},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH200 Differential Equations},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261021 Quiz}
+
+\begin{problem}{7.8.2}
+Find the general solution of the system
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        1&1&1\\
+        2&1&-1\\
+        0&-1&1
+    \end{pmatrix}\mathbf{x}.
+\]
+\end{problem}
+
+\begin{solution}
+Let
+\[
+    \mathbf{A}=\begin{pmatrix}1&1&1\\2&1&-1\\0&-1&1\end{pmatrix}.
+\]
+The characteristic equation is
+\[
+    \det(\lambda\mathbf{I}_3-\mathbf{A})
+    =(\lambda+1)(\lambda-2)^2=0.
+\]
+For $\lambda_1=-1$, solving $(\mathbf{A}+\mathbf{I}_3)\mathbf{v}_1=\mathbf{0}$ gives
+\[
+    \mathbf{v}_1=\begin{pmatrix}-3\\4\\2\end{pmatrix}.
+\]
+The repeated eigenvalue $\lambda_2=2$ has only one linearly independent eigenvector, since
+\[
+    \ker(\mathbf{A}-2\mathbf{I}_3)
+    =\operatorname{Span}\!\left(\begin{pmatrix}0\\1\\-1\end{pmatrix}\right).
+\]
+Take $\mathbf{v}_2=(0,1,-1)^{\mathsf T}$. To obtain a third solution, find a generalized eigenvector $\mathbf{w}$ satisfying
+\[
+    (\mathbf{A}-2\mathbf{I}_3)\mathbf{w}=\mathbf{v}_2.
+\]
+For $\mathbf{w}=(w_1,w_2,w_3)^{\mathsf T}$, this equation becomes
+\[
+    \begin{pmatrix}-1&1&1\\2&-1&-1\\0&-1&-1\end{pmatrix}
+    \begin{pmatrix}w_1\\w_2\\w_3\end{pmatrix}
+    =\begin{pmatrix}0\\1\\-1\end{pmatrix}.
+\]
+One choice is $\mathbf{w}=(1,0,1)^{\mathsf T}$. The corresponding generalized-eigenvector solution is
+\[
+    e^{2t}(t\mathbf{v}_2+\mathbf{w}),
+\]
+and it is linearly independent of $e^{-t}\mathbf{v}_1$ and $e^{2t}\mathbf{v}_2$. Hence the general solution is
+\[
+    \boxed{\begin{aligned}
+        \mathbf{x}(t)={}&c_1e^{-t}\begin{pmatrix}-3\\4\\2\end{pmatrix}
+        +c_2e^{2t}\begin{pmatrix}0\\1\\-1\end{pmatrix}\\
+        &+c_3e^{2t}\left[
+          t\begin{pmatrix}0\\1\\-1\end{pmatrix}
+          +\begin{pmatrix}1\\0\\1\end{pmatrix}\right].
+    \end{aligned}}
+\]
+\end{solution}
+
+% Boyce Section 7.8, Problem 4(c), presented as a standalone problem.
+\begin{problem}{7.8.4}
+Find the general solution of the system
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        3&1\\
+        -4&-1
+    \end{pmatrix}\mathbf{x}.
+\]
+\end{problem}
+
+\begin{solution}
+Let $\mathbf{A}=\begin{pmatrix}3&1\\-4&-1\end{pmatrix}$. Its characteristic equation is
+\[
+    \det(\lambda\mathbf{I}_2-\mathbf{A})=(\lambda-1)^2=0.
+\]
+The eigenspace corresponding to $\lambda=1$ is determined by
+\[
+    (\mathbf{A}-\mathbf{I}_2)\mathbf{v}=\mathbf{0},
+    \qquad
+    \mathbf{A}-\mathbf{I}_2=\begin{pmatrix}2&1\\-4&-2\end{pmatrix}.
+\]
+Thus it is one-dimensional, and we may take $\mathbf{v}=(-1,2)^{\mathsf T}$. Since the repeated eigenvalue has only one independent eigenvector, choose a generalized eigenvector $\mathbf{w}$ such that
+\[
+    (\mathbf{A}-\mathbf{I}_2)\mathbf{w}=\mathbf{v}.
+\]
+The equation $2w_1+w_2=-1$ is satisfied, for example, by $\mathbf{w}=(-1/2,0)^{\mathsf T}$. Therefore $e^t\mathbf{v}$ and $e^t(t\mathbf{v}+\mathbf{w})$ form a fundamental set, and
+\[
+    \boxed{\begin{aligned}
+       \mathbf{x}(t)={}&c_1e^t\begin{pmatrix}-1\\2\end{pmatrix}\\
+        &+c_2e^t\left[
+        t\begin{pmatrix}-1\\2\end{pmatrix}
+        +\begin{pmatrix}-\frac12\\0\end{pmatrix}\right].
+    \end{aligned}}
+\]
+\end{solution}
+
+% Boyce Section 7.8, Problem 6(a), presented as a standalone problem.
+\begin{problem}{7.8.6}
+Solve the initial value problem
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        3&-1\\
+        9&-3
+    \end{pmatrix}\mathbf{x},
+    \qquad
+    \mathbf{x}(0)=\begin{pmatrix}2\\4\end{pmatrix}.
+\]
+\end{problem}
+
+\begin{solution}
+Let $\mathbf{A}=\begin{pmatrix}3&-1\\9&-3\end{pmatrix}$. The characteristic equation is
+\[
+    \det(\lambda\mathbf{I}_2-\mathbf{A})=\lambda^2=0.
+\]
+The eigenvalue $\lambda=0$ is repeated, and $\ker\mathbf{A}$ is one-dimensional. We may choose
+\[
+    \mathbf{v}=\begin{pmatrix}1\\3\end{pmatrix},
+    \qquad \mathbf{A}\mathbf{v}=\mathbf{0}.
+\]
+A generalized eigenvector satisfies $\mathbf{A}\mathbf{w}=\mathbf{v}$. For example,
+\[
+    \mathbf{w}=\begin{pmatrix}0\\-1\end{pmatrix},
+    \qquad
+    \mathbf{A}\mathbf{w}=\begin{pmatrix}1\\3\end{pmatrix}.
+\]
+Since $e^{0t}=1$, the general solution is
+\[
+    \mathbf{x}(t)
+    =c_1\begin{pmatrix}1\\3\end{pmatrix}
+    +c_2\left[
+        t\begin{pmatrix}1\\3\end{pmatrix}
+        +\begin{pmatrix}0\\-1\end{pmatrix}\right].
+\]
+Applying the initial condition at $t=0$ gives
+\[
+    c_1\begin{pmatrix}1\\3\end{pmatrix}
+    +c_2\begin{pmatrix}0\\-1\end{pmatrix}
+    =\begin{pmatrix}2\\4\end{pmatrix},
+    \qquad
+    c_1=2,\quad c_2=2.
+\]
+Hence the solution of the initial value problem is
+\[
+    \boxed{\mathbf{x}(t)=\begin{pmatrix}2+2t\\4+6t\end{pmatrix}}.
+\]
+\end{solution}
+
+\begin{problem}{7.9.3}
+Find the general solution of the system
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        1&4\\
+        1&-2
+    \end{pmatrix}\mathbf{x}
+    +\begin{pmatrix}e^{-2t}\\-2e^t\end{pmatrix}.
+\]
+\end{problem}
+
+\begin{solution}
+Write the system as $\mathbf{x}'=\mathbf{A}\mathbf{x}+\mathbf{g}(t)$, where
+\[
+    \mathbf{A}=\begin{pmatrix}1&4\\1&-2\end{pmatrix},
+    \qquad
+    \mathbf{g}(t)=\begin{pmatrix}e^{-2t}\\-2e^t\end{pmatrix}.
+\]
+The homogeneous system has characteristic equation
+\[
+    \det(\lambda\mathbf{I}_2-\mathbf{A})
+    =(\lambda+3)(\lambda-2)=0.
+\]
+For $\lambda_1=-3$ and $\lambda_2=2$, we may take the corresponding eigenvectors
+\[
+    \mathbf{v}_1=\begin{pmatrix}-1\\1\end{pmatrix},
+    \qquad
+    \mathbf{v}_2=\begin{pmatrix}4\\1\end{pmatrix}.
+\]
+Thus the complementary solution is
+\[
+    \mathbf{x}_h(t)
+    =c_1e^{-3t}\begin{pmatrix}-1\\1\end{pmatrix}
+    +c_2e^{2t}\begin{pmatrix}4\\1\end{pmatrix}.
+\]
+To find a particular solution by undetermined coefficients, note that neither $-2$ nor $1$ is an eigenvalue of $\mathbf{A}$. Hence take
+\[
+    \mathbf{x}_p(t)=\mathbf{p}e^{-2t}+\mathbf{q}e^t
+\]
+with constant vectors $\mathbf{p}$ and $\mathbf{q}$. Substitution into $\mathbf{x}'=\mathbf{A}\mathbf{x}+\mathbf{g}(t)$ and comparison of the exponential terms give
+\[
+    (-2\mathbf{I}_2-\mathbf{A})\mathbf{p}
+       =\begin{pmatrix}1\\0\end{pmatrix},
+    \qquad
+    (\mathbf{I}_2-\mathbf{A})\mathbf{q}
+       =\begin{pmatrix}0\\-2\end{pmatrix}.
+\]
+Equivalently,
+\[
+    \begin{pmatrix}-3&-4\\-1&0\end{pmatrix}\mathbf{p}
+       =\begin{pmatrix}1\\0\end{pmatrix},
+    \qquad
+    \begin{pmatrix}0&-4\\-1&3\end{pmatrix}\mathbf{q}
+       =\begin{pmatrix}0\\-2\end{pmatrix}.
+\]
+Solving these two systems gives
+\[
+    \mathbf{p}=\begin{pmatrix}0\\-\frac14\end{pmatrix},
+    \qquad
+    \mathbf{q}=\begin{pmatrix}2\\0\end{pmatrix}.
+\]
+Combining $\mathbf{x}_h$ and $\mathbf{x}_p$, we obtain
+\[
+    \boxed{\begin{aligned}
+       \mathbf{x}(t)={}&c_1e^{-3t}\begin{pmatrix}-1\\1\end{pmatrix}
+        +c_2e^{2t}\begin{pmatrix}4\\1\end{pmatrix}\\
+        &+e^{-2t}\begin{pmatrix}0\\-\frac14\end{pmatrix}
+        +e^t\begin{pmatrix}2\\0\end{pmatrix}.
+    \end{aligned}}
+\]
+\end{solution}
+
+\begin{problem}{7.9.7}
+Find the general solution of the system
+\[
+    \mathbf{x}'=
+    \begin{pmatrix}
+        -\frac54&\frac34\\
+        \frac34&-\frac54
+    \end{pmatrix}\mathbf{x}
+    +\begin{pmatrix}4t\\e^t\end{pmatrix}.
+\]
+\end{problem}
+
+\begin{solution}
+Let
+\[
+    \mathbf{A}=\begin{pmatrix}-\frac54&\frac34\\\frac34&-\frac54\end{pmatrix},
+    \qquad
+    \mathbf{g}(t)=\begin{pmatrix}4t\\e^t\end{pmatrix}.
+\]
+The characteristic equation of the corresponding homogeneous system is
+\[
+    \det(\lambda\mathbf{I}_2-\mathbf{A})
+    =(\lambda+2)\left(\lambda+\frac12\right)=0.
+\]
+For $\lambda_1=-2$ and $\lambda_2=-1/2$, the corresponding eigenvectors can be chosen as
+\[
+    \mathbf{v}_1=\begin{pmatrix}-1\\1\end{pmatrix},
+    \qquad
+    \mathbf{v}_2=\begin{pmatrix}1\\1\end{pmatrix}.
+\]
+Therefore the complementary solution is
+\[
+    \mathbf{x}_h(t)
+    =c_1e^{-2t}\begin{pmatrix}-1\\1\end{pmatrix}
+    +c_2e^{-t/2}\begin{pmatrix}1\\1\end{pmatrix}.
+\]
+For a particular solution, the forcing term has a degree-one polynomial component and an $e^t$ component. Since $0$ and $1$ are not eigenvalues of $\mathbf{A}$, use the trial
+\[
+    \mathbf{x}_p(t)=\mathbf{a}t+\mathbf{b}+\mathbf{d}e^t,
+\]
+where $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{d}$ are constant vectors. Substituting and matching the coefficients of $t$, the constant term, and $e^t$ gives
+\[
+    \mathbf{A}\mathbf{a}=-\begin{pmatrix}4\\0\end{pmatrix},
+    \qquad
+    \mathbf{A}\mathbf{b}=\mathbf{a},
+    \qquad
+    (\mathbf{I}_2-\mathbf{A})\mathbf{d}
+        =\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Solving successively yields
+\[
+    \mathbf{a}=\begin{pmatrix}5\\3\end{pmatrix},
+    \qquad
+    \mathbf{b}=\begin{pmatrix}-\frac{17}{2}\\-\frac{15}{2}\end{pmatrix},
+    \qquad
+    \mathbf{d}=\begin{pmatrix}\frac16\\\frac12\end{pmatrix}.
+\]
+Consequently the general solution is
+\[
+    \boxed{\begin{aligned}
+        \mathbf{x}(t)={}&c_1e^{-2t}\begin{pmatrix}-1\\1\end{pmatrix}
+        +c_2e^{-t/2}\begin{pmatrix}1\\1\end{pmatrix}\\
+        &+e^t\begin{pmatrix}\frac16\\\frac12\end{pmatrix}
+        +t\begin{pmatrix}5\\3\end{pmatrix}
+        +\begin{pmatrix}-\frac{17}{2}\\-\frac{15}{2}\end{pmatrix}.
+    \end{aligned}}
+\]
+\end{solution}
+
+\end{document}

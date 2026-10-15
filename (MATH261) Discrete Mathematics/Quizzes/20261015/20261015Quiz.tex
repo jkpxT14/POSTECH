@@ -68,17 +68,21 @@ Let $m,n\in\N$.
         \sum_{\substack{1\leq j\leq m\\\ell_j\geq1}}
         \binom{n}{\ell_1,\ldots,\ell_j-1,\ldots,\ell_m}.
     \]
-    Using the factorial formula for multinomial coefficients, and noting that the indices with $\ell_j=0$ contribute zero after rewriting,
+    Using the factorial formula for multinomial coefficients and
+    $\ell_j!=\ell_j(\ell_j-1)!$ for $\ell_j\geq1$, we obtain
     \[
     \begin{aligned}
         \sum_{\substack{1\leq j\leq m\\\ell_j\geq1}}
         \binom{n}{\ell_1,\ldots,\ell_j-1,\ldots,\ell_m}
+        &=\sum_{\substack{1\leq j\leq m\\\ell_j\geq1}}
+          \frac{n!}{\ell_1!\cdots(\ell_j-1)!\cdots\ell_m!}\\
         &=\frac{n!}{\ell_1!\cdots\ell_m!}
           \sum_{j=1}^{m}\ell_j\\
         &=\frac{(n+1)!}{\ell_1!\cdots\ell_m!}\\
         &=\binom{n+1}{\ell_1,\ldots,\ell_m}.
     \end{aligned}
     \]
+    Here the indices with $\ell_j=0$ contribute zero to the sum after factoring.
     Therefore the multinomial formula holds for $n+1$, and hence for every $n\in\N$ by mathematical induction.
 \end{problemsubparts}
 \end{solution}
@@ -88,17 +92,6 @@ There are $10$ couples, each with one child. The $10$ children are lost in a dar
 \end{problem}
 
 \begin{solution}[1]
-Every assignment is a permutation of $[10]$. Let $D_{10}$ be the number of permutations with no fixed points. The desired assignments are precisely those that are not derangements. Using the derangement formula proved in Problem 5(a), their number is
-\[
-\begin{aligned}
-    10!-D_{10}
-    &=10!-10!\sum_{k=0}^{10}\frac{(-1)^k}{k!}\\
-    &=2293839.
-\end{aligned}
-\]
-\end{solution}
-
-\begin{solution}[2]
 Label the couples and their children by $[10]$, with child $i$ belonging to couple $i$. An assignment of the children to the couples is a permutation of $[10]$. For $i\in[10]$, let $A_i$ be the set of assignments in which couple $i$ retrieves child $i$.
 
 If $k$ specified couples are correctly paired, then the remaining $10-k$ children may be assigned arbitrarily to the remaining couples, giving $(10-k)!$ assignments. Hence, by inclusion-exclusion,
@@ -107,6 +100,17 @@ If $k$ specified couples are correctly paired, then the remaining $10-k$ childre
     |A_1\cup\cdots\cup A_{10}|
     &=\sum_{k=1}^{10}(-1)^{k+1}\binom{10}{k}(10-k)!\\
     &=10!\sum_{k=1}^{10}\frac{(-1)^{k+1}}{k!}\\
+    &=2293839.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{solution}[2]
+Every assignment is a permutation of $[10]$. Let $D_{10}$ be the number of permutations with no fixed points. The desired assignments are precisely those that are not derangements. Using the derangement formula proved in Problem 5(a), their number is
+\[
+\begin{aligned}
+    10!-D_{10}
+    &=10!-10!\sum_{k=0}^{10}\frac{(-1)^k}{k!}\\
     &=2293839.
 \end{aligned}
 \]
@@ -160,7 +164,7 @@ Without the upper bounds, stars and bars gives
 \]
 nonnegative solutions.
 
-Let $A_i$ be the set of solutions violating the upper bound on $y_i$. The single intersections have sizes
+Among these nonnegative solutions, let $A_i$ be the set of solutions violating the upper bound on $y_i$. These sets have sizes
 \[
     |A_1|=\binom{10}{3},
     \quad
@@ -201,13 +205,17 @@ Let $n\in\N$ and $k\in\Z$ with $0\leq k\leq n$. Prove that the number of $k$-ele
 \[
     \binom{n-k+1}{k}.
 \]
-We use the convention $\binom{a}{b}=0$ when $a,b\in\Nzero$ and $b>a$.
+We use the convention
+\[
+    \binom{a}{b}=0
+    \qquad (a,b\in\Nzero,\ b>a).
+\]
 \end{problem}
 
 \begin{solution}
-The case $k=0$ is immediate. Assume $k\geq1$, and write such a subset as
+The case $k=0$ is immediate. Assume $k\geq1$, and let $A=\{a_1,\ldots,a_k\}$ be such a subset, with
 \[
-    \{a_1<a_2<\cdots<a_k\}.
+    1\leq a_1<a_2<\cdots<a_k\leq n.
 \]
 Since no two selected integers are consecutive,
 \[
@@ -313,6 +321,10 @@ Another standard recurrence for derangement numbers is
 \[
     D_n=(n-1)(D_{n-1}+D_{n-2}),
     \qquad n\geq3.
+\]
+For every $n\geq1$, $D_n$ is the nearest integer to $n!/e$:
+\[
+    D_n=\left\lfloor\frac{n!}{e}+\frac12\right\rfloor.
 \]
 The classical \emph{hatcheck lady problem} asks for the probability that no one receives their own hat when $n$ hats are randomly assigned. Under a uniformly random assignment, this probability is $D_n/n!$, and
 \[
