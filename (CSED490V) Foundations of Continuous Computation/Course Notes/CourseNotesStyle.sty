@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{CourseNotesStyle}[2026/10/17 CSED490V course-notes style v3]
+\ProvidesPackage{CourseNotesStyle}[2026/10/18 CSED490V course-notes style v4]
 
 % The page design is adapted from the MATH200/MATH203 document family.
 \RequirePackage[a4paper,margin=1in]{geometry}
@@ -18,12 +18,19 @@
 \RequirePackage{xcolor}
 \RequirePackage[hidelinks]{hyperref}
 
-% U+2A38 CIRCLED DIVISION SIGN, from a single STIX math symbol font.
-% The rest of the mathematics remains in Latin Modern / AMS fonts.
-\DeclareFontEncoding{LS2}{}{}
-\DeclareFontSubstitution{LS2}{stixtt}{m}{n}
-\DeclareSymbolFont{circleddivision}{LS2}{stixtt}{m}{n}
-\DeclareMathSymbol{\odiv}{\mathbin}{circleddivision}{"A9}
+% Circled division: build an obelus inside the same circle as \ominus.
+% This matches the weight and dimensions of the other circled operators.
+\RequirePackage{tikz}
+\makeatletter
+\newcommand{\odiv}{\mathbin{\mathpalette\courseodivaux\relax}}
+\newcommand{\courseodivaux}[2]{%
+  \tikz[baseline=(sym.base),inner sep=0pt]{%
+    \node[inner sep=0pt,outer sep=0pt] (sym) {$\m@th#1\ominus$};%
+    \fill (sym.center) ++(0,0.20em) circle[radius=0.035em];%
+    \fill (sym.center) ++(0,-0.20em) circle[radius=0.035em];%
+  }%
+}
+\makeatother
 
 \definecolor{POSTECHRed}{RGB}{166,25,85}
 \newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
@@ -41,6 +48,7 @@
 \newcommand{\A}{\mathcal{A}}
 \DeclareMathOperator{\rnd}{rnd}
 \DeclareMathOperator{\fma}{fma}
+\DeclareMathOperator{\ulp}{ulp}
 \newcommand{\indicator}[1]{\mathds{1}_{#1}}
 
 % Body and lists; enough room is kept for the beginning of each statement.
@@ -99,7 +107,7 @@
  \renewcommand{\arraystretch}{1.12}%
  \begin{tabular}{@{}p{0.22\linewidth}p{0.71\linewidth}@{}}%
  \toprule Notation & Meaning\\ \midrule}
- {\\[0.3em]\bottomrule\end{tabular}\endgroup\par\vspace{0.5em}}
+ {\\[0.15em]\bottomrule\end{tabular}\endgroup\par\vspace{0.5em}}
 
 \setlength{\headheight}{14pt}
 \pagestyle{fancy}
