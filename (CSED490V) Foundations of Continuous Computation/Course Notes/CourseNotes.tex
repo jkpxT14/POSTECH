@@ -45,9 +45,9 @@ $\fma$ & Fused multiply-add
 
 \begin{definition}[Borel Computability]
 A real number $r$ is \emph{Borel-computable} if there exists a computable
-function $q\colon\Nzero\to\Q$ such that
+sequence $(q_n)_{n\in\Nzero}\subseteq\Q$ such that
 \[
-  |r-q(n)|<2^{-n}\qquad(n\in\Nzero).
+  |r-q_n|<2^{-n}\qquad(n\in\Nzero).
 \]
 \end{definition}
 
@@ -76,19 +76,19 @@ approximation is effective, and the negative case of binary computability is
 defined using the absolute value.
 
 Suppose first that $r$ is Turing-computable, with integer part $a$ and
-computable bits $b_i$. Define
+computable bits $b_i$. Set
 \[
- q(n)=a+\sum_{i=0}^{n}b_i2^{-(i+1)}\in\Q.
+ q_n=a+\sum_{i=0}^{n}b_i2^{-(i+1)}\in\Q.
 \]
 The sum is computable and
 \[
- 0\le r-q(n)\le\sum_{i=n+1}^{\infty}2^{-(i+1)}
+ 0\le r-q_n\le\sum_{i=n+1}^{\infty}2^{-(i+1)}
    =2^{-(n+1)}<2^{-n}.
 \]
 Thus $r$ is Borel-computable.
 
-Conversely, suppose $q\colon\Nzero\to\Q$ computes $r$ with
-$|q(m)-r|<2^{-m}$. Fix the integer part $a=\lfloor r\rfloor$ as part of the
+Conversely, suppose $(q_m)_{m\in\Nzero}$ computes $r$ with
+$|q_m-r|<2^{-m}$. Fix the integer part $a=\lfloor r\rfloor$ as part of the
 existential description of a binary expansion. We distinguish two cases.
 
 If $r$ is dyadic, it admits an eventually zero binary expansion. Its finite
@@ -99,7 +99,7 @@ Now assume $r$ is not dyadic. Fix $n\in\Nzero$. The non-dyadic number $r$
 lies strictly between two consecutive grid points of mesh $2^{-(n+1)}$.
 Search over $m\in\Nzero$ until the rational interval
 \[
-  I_m=(q(m)-2^{-m},\,q(m)+2^{-m})
+  I_m=(q_m-2^{-m},\,q_m+2^{-m})
 \]
 is contained strictly in a single grid cell
 \[
@@ -109,7 +109,7 @@ is contained strictly in a single grid cell
 Containment is decidable by rational arithmetic: for a given $m$ there is
 at most one candidate $k$, which can be found by integer division.
 The search terminates, since $r$ has positive distance from both endpoints
-of its grid cell and $q(m)\to r$ with an effective error bound.
+of its grid cell and $q_m\to r$ with an effective error bound.
 Moreover $r\in I_m$, so the returned $k$ satisfies
 $k=\lfloor2^{n+1}r\rfloor$. The $n$th binary digit of $r$ is therefore
 \[
@@ -143,42 +143,13 @@ The set $\Rc$ is a subfield of $\R$: if $x,y\in\Rc$, then
  \qquad \frac{x}{y}\in\Rc\quad\text{when }y\ne0.
 \]
 \end{proposition}
-\begin{proof}
-Take computable rational approximations to $x$ and $y$ with arbitrarily
-small certified error. Addition and subtraction preserve effective error
-bounds by the triangle inequality. For multiplication, first obtain rational
-upper bounds on $|x|$ and $|y|$, then use
-\[
- |xy-uv|\le |x|\,|y-v|+|v|\,|x-u|
-\]
-to choose sufficiently accurate rational $u,v$. Finally, if $y\ne0$,
-search for an approximation $v$ whose certified error is smaller than $|v|$;
-this eventually succeeds and supplies an effective positive lower bound on
-$|y|$. Rational approximations to $1/y$, and hence $x/y$, follow with
-computable error bounds. All four constructions use only rational arithmetic.
-\end{proof}
 
-\Needspace{11\baselineskip}
+
 \begin{proposition}[Real Algebraic Closure]
 If $p\in\Rc[X]$ is nonzero, then every real root of $p$ lies in $\Rc$.
 In particular, $\Rc$ is a real-closed field.
 \end{proposition}
-\begin{proof}
-Induct on $\deg p$. Constant polynomials have no roots. Let $r$ be a real
-root of $p$ of positive degree. If $p'(r)=0$, then $r$ is a root of the
-nonzero polynomial $p'\in\Rc[X]$, so the induction hypothesis applies.
-Otherwise $r$ is simple. Choose rationals $a<r<b$ so that $r$ is the
-only root in $[a,b]$ and $p(a)p(b)<0$. Since $p(a)$ and $p(b)$ are
-nonzero computable reals, their signs can be determined effectively.
-If $r\in\Q$, it is already computable. Otherwise each rational midpoint
-in a bisection of $[a,b]$ is not a root, and the sign of its polynomial
-value can likewise be computed. Bisection therefore produces rational
-approximations to $r$ with any prescribed error. Hence $r\in\Rc$.
-\end{proof}
-\begin{remark}
-This is closure under \emph{real} algebraic roots, not algebraic closure:
-$\Rc$ is not algebraically closed over $\C$.
-\end{remark}
+
 
 \begin{proposition}[Computability of $\pi$ and $e$]
 The real numbers $\pi$ and $e$ are computable.
@@ -196,17 +167,12 @@ The alternating-series estimate yields
 \[
  |\pi-p_m|\le\frac{4}{2m+3}.
 \]
-Choosing, for instance, $m=2^{n+2}$ gives
+Choosing $m=2^{n+1}$ gives
 $|\pi-p_m|<2^{-n}$ for every $n\in\Nzero$. The finite sum $p_m$ is
 computable from $n$.
 
-Similarly, let $e_m=\sum_{k=0}^{m}1/k!$. For $m\ge1$,
-\[
- 0<e-e_m=\sum_{k=m+1}^{\infty}\frac1{k!}
- \le\frac{2}{(m+1)!}.
-\]
-Taking $m=n+3$ makes the error strictly smaller than $2^{-n}$.
-Thus $e$ is computable as well.
+The computability of $e=\exp(1)$ follows from the computability of
+$\exp\colon\R\to\R$ proved in Theorem~\ref{thm:exp}.
 \end{proof}
 
 \begin{proposition}[Countability of the Computable Reals]
@@ -230,17 +196,17 @@ of integer polynomials admitting an integer solution is not decidable.
 \begin{proposition}[A Noncomputable Real]
 Let $P$ be the set of all integer-coefficient polynomials in finitely
 many variables, and let
-$\phi\colon P\to\Nzero$ be a computable bijective encoding.
+$\phi\colon P\to\Nzero$ be a computable injection.
 Write $P_{\mathrm{root}}$ for the polynomials having an integer zero.
 Then
 \[
  r:=\sum_{p\in P}
- 2^{-(\phi(p)+1)}\,\mathds{1}_{P_{\mathrm{root}}}(p)
+ 2^{-(\phi(p)+1)}\,\indicator{P_{\mathrm{root}}}(p)
 \]
 is a noncomputable real in $[0,1]$.
 \end{proposition}
 \begin{proof}
-The binary digit at position $\phi(p)$ is $1$ precisely when
+Because $\phi$ is injective, the binary digit at position $\phi(p)$ is $1$ precisely when
 $p\in P_{\mathrm{root}}$. Both this set and its complement are infinite;
 for example, among polynomials of one variable there are infinitely many
 with an integer zero and infinitely many without one. Thus the binary
@@ -264,9 +230,9 @@ $x\in D$, every function $\alpha\colon\Nzero\to\Q$ satisfying
 \]
 and every precision $n\in\Nzero$, the algorithm $\A$, given access to
 $\alpha$ and the input $n$, halts and returns a rational number
-$\A^{\alpha}(n)$ such that
+$\A(\alpha,n)$ such that
 \[
- |\A^{\alpha}(n)-f(x)|<2^{-n}.
+ |\A(\alpha,n)-f(x)|<2^{-n}.
 \]
 The algorithm may query finitely many values $\alpha(i)$ during a computation.
 The definition extends componentwise to functions between subsets of
@@ -296,16 +262,7 @@ are computable; division is computable when the divisor is nonzero.
 Let $f\colon D\to E$ and $g\colon E\to\R^m$ be computable, where
 $D\subseteq\R^k$ and $E\subseteq\R^\ell$. Then $g\circ f$ is computable.
 \end{theorem}
-\begin{proof}
-For a name of $\mathbf{x}\in D$, the algorithm for $f$ produces
-$\mathbf{u}_j\in\Q^\ell$ on demand such that
-\[
-\|\mathbf{u}_j-f(\mathbf{x})\|_\infty<2^{-(j+2)}.
-\]
-Thus $j\mapsto\mathbf{u}_j$ is a name of $f(\mathbf{x})$. Supply this
-name to the algorithm for $g$: every query is answered by finitely many
-computations of $f$, so the procedure halts and computes $g(f(\mathbf{x}))$.
-\end{proof}
+
 
 \begin{theorem}[Computability Implies Continuity]
 Every computable function $f\colon D\to\R^m$, with
@@ -314,15 +271,15 @@ $D\subseteq\R^k$, is continuous on $D$ (with the relative topology).
 \begin{proof}
 Fix $\mathbf{x}\in D$ and $\varepsilon>0$; choose $n\in\Nzero$
 with $2^{1-n}<\varepsilon$. Choose a rational name
-$\boldsymbol{\alpha}\colon\Nzero\to\Q^k$ of $\mathbf{x}$ with slack:
+$\alpha\colon\Nzero\to\Q^k$ of $\mathbf{x}$ with slack:
 \[
-\|\boldsymbol{\alpha}(i)-\mathbf{x}\|_\infty<2^{-(i+2)}
+\|\alpha(i)-\mathbf{x}\|_\infty<2^{-(i+2)}
 \qquad(i\in\Nzero).
 \]
 At precision $n$, the algorithm queries a finite set of indices $I$.
 For some $\delta>0$, every $\mathbf{y}\in D$ with
 $\|\mathbf{x}-\mathbf{y}\|_\infty<\delta$ also admits a name agreeing
-with $\boldsymbol{\alpha}$ on $I$. The algorithm therefore returns the
+with $\alpha$ on $I$. The algorithm therefore returns the
 same $\mathbf{q}\in\Q^m$ on both names, whence
 \[
 \|f(\mathbf{x})-f(\mathbf{y})\|_\infty
@@ -341,54 +298,61 @@ point of its domain cannot be computable there.
 \end{remark}
 
 \begin{example}[Discontinuous Functions and Their Domains]
-The step function $x\mapsto\mathds{1}_{\{x>0\}}$ is not computable on
+The step function $x\mapsto\indicator{\{x>0\}}$ is not computable on
 $\R$, since it is discontinuous at $0$. Its restriction to
 $\R\setminus\{0\}$ is computable: approximate the nonzero input until
 its sign can be certified, and return the corresponding bit.
 The same principle applies to strict comparison when $x\ne y$ (see below).
 \end{example}
 
-\begin{theorem}[Computability of the Exponential Function]
+\begin{theorem}[Computability of the Exponential Function]\label{thm:exp}
 The function $\exp\colon\R\to\R$ is computable.
 \end{theorem}
 \begin{proof}
-First, let $x\in[-\tfrac12,\tfrac12]$, with rational name $\alpha$,
-and fix $n\in\Nzero$. Put $m=d=n+4$ and
+First let $x\in[-\tfrac12,\tfrac12]$, let $\alpha$ be a rational name
+of $x$, and fix $n\in\Nzero$. Set $m=d=n+3$ and
 \[
- t=\alpha(m)\in\Q,\qquad
- P_d(t)=\sum_{j=0}^d\frac{t^j}{j!}\in\Q.
+ \widehat{x}=\alpha(m),\qquad
+ \widehat{y}=P_d(\widehat{x}),\qquad
+ P_d(t)=\sum_{j=0}^{d}\frac{t^j}{j!}.
 \]
-Since $|t-x|<2^{-m}$, we have $|t|<1$. The mean value theorem and
-the Taylor remainder give
+The rational $\widehat{y}$ is computed by finite arithmetic. Since
+$|x-\widehat{x}|<2^{-m}$ and $|\widehat{x}|<1$, the mean value theorem
+and $e<3$ give
 \[
-\begin{aligned}
-|e^x-e^t|&\le3\cdot2^{-m}<2^{-(n+1)},\\
-|e^t-P_d(t)|&\le\frac{2}{(d+1)!}<2^{-(n+1)}.
-\end{aligned}
+ |e^x-e^{\widehat{x}}|<3\cdot2^{-m}.
 \]
-Hence $|e^x-P_d(t)|<2^{-n}$, proving computability on the interval.
+For $d\ge3$, the Taylor remainder satisfies
+\[
+ |e^{\widehat{x}}-P_d(\widehat{x})|
+ \le\sum_{j=d+1}^{\infty}\frac{1}{j!}
+ \le\sum_{j=d+1}^{\infty}2^{-j}=2^{-d}.
+\]
+Consequently,
+\[
+ |e^x-\widehat{y}|<(3+1)2^{-(n+3)}<2^{-n}.
+\]
 
-For arbitrary $x\in\R$, choose $k\in\Nzero$ effectively from a coarse
-rational approximation so that $|x/2^k|\le\tfrac12$. Compute
-$u=e^{x/2^k}$ to sufficient precision by the preceding procedure, then
-approximate $u^{2^k}=e^x$ using rational multiplication. Writing $N=2^k$, choose a rational approximation $v$ to $u$ with
-$|u-v|<1$. Since $u\in(0,2)$, the estimate
+For arbitrary $x\in\R$, one can effectively choose $k\in\Nzero$ with
+$|x|/2^k\le\tfrac12$. Write $u=e^{x/2^k}$ and $N=2^k$.
+The preceding algorithm computes $u\in(0,2)$ to arbitrary precision.
+For any rational $v$ with $|u-v|<1$,
 \[
-|u^N-v^N|\le N3^{N-1}|u-v|
+ |u^N-v^N|\le N3^{N-1}|u-v|.
 \]
-shows that a sufficiently accurate $v$ yields any prescribed error.
+Thus a sufficiently accurate rational approximation $v$ gives the
+required approximation $v^N$ to $e^x=u^N$.
 \end{proof}
 
 \begin{theorem}[Noncomputability of Strict Comparison]
-The strict-comparison function
+The strict-comparison map $\R^2\to\{0,1\}$ defined by
 \[
- L\colon\R^2\to\{0,1\},\qquad
- L(x,y)=\begin{cases}1,&x<y,\\0,&x\ge y,\end{cases}
+ (x,y)\mapsto\begin{cases}1,&x<y,\\0,&x\ge y\end{cases}
 \]
 is not computable.
 \end{theorem}
 \begin{proof}
-Suppose an algorithm computes $L$. Because its values lie in $\{0,1\}$,
+Suppose an algorithm computes strict comparison. Because its values lie in $\{0,1\}$,
 requesting an approximation with error below $1/4$ and testing whether the
 result exceeds $1/2$ yields an algorithm returning the exact bit.
 Give this decision algorithm the two names
@@ -410,34 +374,21 @@ $2^{-i}$, and for $i>N$ the distance is zero. Thus $\beta'$ is a valid
 name of $y'=2^{-(N+1)}>0$.
 The algorithm cannot distinguish $(\alpha,\beta')$ from
 $(\alpha,\beta)$ during its finite computation; it still returns $0$.
-But $L(0,y')=1$, a contradiction.
+But strict comparison at $(0,y')$ equals $1$, a contradiction.
 \end{proof}
 
-\begin{proposition}[Comparison of Unequal Real Numbers]
-The restriction
+\begin{theorem}[Comparison of Unequal Real Numbers]
+Strict comparison is computable on
 \[
- L\colon\{(x,y)\in\R^2\mid x\ne y\}\to\{0,1\}
+\{(x,y)\in\R^2\mid x\ne y\}.
 \]
-of strict comparison is computable.
-\end{proposition}
-\begin{proof}
-Given names $\alpha,\beta$ of $x,y$, inspect successively the rational
-intervals
-\[
- I_n=(\alpha(n)-2^{-n},\,\alpha(n)+2^{-n}),\qquad
- J_n=(\beta(n)-2^{-n},\,\beta(n)+2^{-n}).
-\]
-If $\sup I_n<\inf J_n$, output $1$; if
-$\sup J_n<\inf I_n$, output $0$. These comparisons are rational and
-hence decidable. Since $x\ne y$ and the intervals shrink to their
-respective points, eventually one of the tests succeeds. The sign of
-$x-y$ is then certified, so the answer is correct.
-\end{proof}
+\end{theorem}
+
 
 \begin{remark}
-Without the promise $x\ne y$, equality cannot be decided from a finite
-amount of rational approximation data. Under that promise, the separating
-intervals above provide a terminating comparison procedure.
+If $x\ne y$, sufficiently accurate rational approximations eventually
+certify their order. Without this promise, equality cannot in general be
+decided from finite approximation data.
 \end{remark}
 
 
@@ -462,8 +413,9 @@ The interpretation map $\gamma_{E,M}\colon\{0,1\}^{1+E+M}\to
  \mathrm{NaN},&k=2^E-1,\ t\ne0.
 \end{cases}
 \]
-The first two cases give \emph{normal} and \emph{subnormal} values;
-the remaining cases represent infinities and \emph{not a number} (NaN).
+The first case represents \emph{normal} values. The second represents
+\emph{subnormal} values when $t\ne0$ and zero when $t=0$; the
+remaining cases represent infinities and \emph{not a number} (NaN).
 Write
 \[
 \overline{\mathbb F}_{E,M}=\operatorname{im}\gamma_{E,M},\qquad
@@ -486,15 +438,17 @@ Let
  F_{\max}=(2-2^{-M})2^{b_E},\qquad
  K_{E,M}=(2-2^{-M-1})2^{b_E}.
 \]
-The \emph{round-to-nearest, ties-to-even} map
+Here $F_{\max}$ is the largest finite floating-point value and
+$K_{E,M}$ is the positive overflow threshold. The
+\emph{round-to-nearest, ties-to-even} map
 $\rnd_{E,M}\colon\R\to\overline{\mathbb F}_{E,M}$ is defined by
 \[
 \rnd_{E,M}(x)=
 \begin{cases}
- +\infty,&x\ge K_{E,M},\\
  -\infty,&x\le-K_{E,M},\\
  \displaystyle\operatorname*{arg\,min}_{y\in\mathbb F_{E,M}}|x-y|,
- &|x|<K_{E,M}.
+ &|x|<K_{E,M},\\
+ +\infty,&x\ge K_{E,M}.
 \end{cases}
 \]
 If two finite values minimize the distance, choose the one whose least
@@ -510,19 +464,9 @@ For $x,y\in\R$,
 \]
 with the usual order on $\R\cup\{-\infty,+\infty\}$.
 \end{proposition}
-\begin{proof}
-Overflow regions preserve order, so consider finite rounded values
-$u=\rnd_{E,M}(x)$ and $v=\rnd_{E,M}(y)$. If $u>v$, optimality of
-nearest rounding gives
-\[
- |x-u|\le|x-v|\quad\Longrightarrow\quad x\ge\frac{u+v}{2},
-\qquad
- |y-v|\le|y-u|\quad\Longrightarrow\quad y\le\frac{u+v}{2}.
-\]
-Together with $x\le y$, this forces $x=y=(u+v)/2$, contrary to the
-uniqueness of the ties-to-even choice. Hence $u\le v$.
-\end{proof}
 
+
+\Needspace{24\baselineskip}
 \begin{definition}[Floating-Point Operations]
 For $a,b,c\in\mathbb F_{E,M}$, define rounded addition, subtraction,
 and multiplication by
@@ -545,16 +489,13 @@ outside the present finite-input definitions.
 \end{definition}
 
 \begin{remark}
-Rounded arithmetic is not a field. Although $\oplus$ and $\otimes$
-are commutative on finite inputs, they need not be associative, and
-multiplication need not distribute over addition. For example, in the
-format $(E,M)=(3,2)$, ties to even gives
+Rounded arithmetic does not form a field. For $(E,M)=(3,2)$,
 \[
  (1\oplus\tfrac18)\oplus(-1)=0
- \ne\tfrac18=1\oplus(\tfrac18\oplus(-1)).
+ \ne\tfrac18=1\oplus(\tfrac18\oplus(-1)),
 \]
-Also, finite values are not closed under these rounded operations when
-an overflow produces $\pm\infty$.
+so $\oplus$ is not associative. Moreover, overflow can produce
+$\pm\infty$, outside $\mathbb F_{E,M}$.
 \end{remark}
 
 \end{document}

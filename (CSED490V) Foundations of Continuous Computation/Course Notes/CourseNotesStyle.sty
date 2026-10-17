@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{CourseNotesStyle}[2026/10/17 CSED490V course-notes style v2]
+\ProvidesPackage{CourseNotesStyle}[2026/10/17 CSED490V course-notes style v3]
 
 % The page design is adapted from the MATH200/MATH203 document family.
 \RequirePackage[a4paper,margin=1in]{geometry}
@@ -39,12 +39,9 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Rc}{\mathbb{R}_C}
 \newcommand{\A}{\mathcal{A}}
-\newcommand{\B}{\mathcal{B}}
-\newcommand{\dd}{\mathop{}\!\mathrm{d}}
-\DeclareMathOperator{\dom}{dom}
-\DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\rnd}{rnd}
 \DeclareMathOperator{\fma}{fma}
+\newcommand{\indicator}[1]{\mathds{1}_{#1}}
 
 % Body and lists; enough room is kept for the beginning of each statement.
 \setlength{\parskip}{0pt}
@@ -98,9 +95,11 @@
 
 % Lightweight notation block: avoid a longtable when only two entries are needed.
 \newenvironment{coursenotation}{%
- \par\smallskip\noindent\begin{tabular}{@{}p{0.22\linewidth}p{0.71\linewidth}@{}}%
+ \par\smallskip\noindent\begingroup
+ \renewcommand{\arraystretch}{1.12}%
+ \begin{tabular}{@{}p{0.22\linewidth}p{0.71\linewidth}@{}}%
  \toprule Notation & Meaning\\ \midrule}
- {\\[-0.4em]\bottomrule\end{tabular}\par\smallskip}
+ {\\[0.3em]\bottomrule\end{tabular}\endgroup\par\vspace{0.5em}}
 
 \setlength{\headheight}{14pt}
 \pagestyle{fancy}
