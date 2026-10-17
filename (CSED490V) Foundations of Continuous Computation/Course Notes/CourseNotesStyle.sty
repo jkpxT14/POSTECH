@@ -1,0 +1,103 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{CourseNotesStyle}[2026/10/17 CSED490V course-notes style]
+
+% The page design is adapted from the MATH200/MATH203 document family.
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+\RequirePackage{fancyhdr}
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{dsfont}
+\RequirePackage{mathtools}
+\RequirePackage{enumitem}
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+  \institutiontext{POSTECHRed}{Pohang University of Science and Technology}}
+
+% General conventions follow (MATH000) Mathematical Language.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Rc}{\mathbb{R}_C}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\sgn}{sgn}
+
+% Body and lists; enough room is kept for the beginning of each statement.
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
+\raggedbottom
+\setlist[itemize]{leftmargin=2em,topsep=3pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=2.5em,topsep=3pt,itemsep=2pt,parsep=0pt}
+
+% A common theorem counter is reset for each section.
+% The theorem/definition typography follows the Science Quiz mathematical-concepts style.
+\newtheoremstyle{courseplain}
+  {6pt}{6pt}{\itshape}{}{\bfseries}{}{\newline}
+  {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{coursedefinition}
+  {6pt}{6pt}{}{}{\bfseries}{}{\newline}
+  {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{coursesameline}
+  {6pt}{6pt}{}{}{\itshape}{.}{0.5em}
+  {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\theoremstyle{coursedefinition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\newtheorem{counterexample}[definition]{Counterexample}
+\newtheorem{formula}[definition]{Formula}
+\newtheorem{algorithm}[definition]{Algorithm}
+\newtheorem{fact}[definition]{Fact}
+\theoremstyle{courseplain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\theoremstyle{coursesameline}
+\newtheorem*{remark}{Remark}
+
+\renewenvironment{proof}[1][Proof]
+  {\par\Needspace{3\baselineskip}\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}
+  {\unskip\hfill$\square$\par}
+
+\newcommand{\courseblockspace}{\Needspace{4\baselineskip}}
+\BeforeBeginEnvironment{definition}{\courseblockspace}
+\BeforeBeginEnvironment{theorem}{\courseblockspace}
+\BeforeBeginEnvironment{proposition}{\courseblockspace}
+\BeforeBeginEnvironment{lemma}{\courseblockspace}
+\BeforeBeginEnvironment{corollary}{\courseblockspace}
+\BeforeBeginEnvironment{example}{\courseblockspace}
+\BeforeBeginEnvironment{counterexample}{\courseblockspace}
+\BeforeBeginEnvironment{formula}{\courseblockspace}
+\BeforeBeginEnvironment{algorithm}{\courseblockspace}
+\BeforeBeginEnvironment{fact}{\courseblockspace}
+\BeforeBeginEnvironment{remark}{\courseblockspace}
+
+% Lightweight notation block: avoid a longtable when only two entries are needed.
+\newenvironment{coursenotation}{%
+ \par\smallskip\noindent\begin{tabular}{@{}p{0.22\linewidth}p{0.71\linewidth}@{}}%
+ \toprule Notation & Meaning\\ \midrule}
+ {\\[-0.4em]\bottomrule\end{tabular}\par\smallskip}
+
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{(CSED490V) Foundations of Continuous Computation}}
+\fancyhead[R]{\small\textit{Course Notes}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
