@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{CourseNotesStyle}[2026/10/17 CSED490V course-notes style]
+\ProvidesPackage{CourseNotesStyle}[2026/10/17 CSED490V course-notes style v2]
 
 % The page design is adapted from the MATH200/MATH203 document family.
 \RequirePackage[a4paper,margin=1in]{geometry}
@@ -17,6 +17,13 @@
 \RequirePackage{booktabs}
 \RequirePackage{xcolor}
 \RequirePackage[hidelinks]{hyperref}
+
+% U+2A38 CIRCLED DIVISION SIGN, from a single STIX math symbol font.
+% The rest of the mathematics remains in Latin Modern / AMS fonts.
+\DeclareFontEncoding{LS2}{}{}
+\DeclareFontSubstitution{LS2}{stixtt}{m}{n}
+\DeclareSymbolFont{circleddivision}{LS2}{stixtt}{m}{n}
+\DeclareMathSymbol{\odiv}{\mathbin}{circleddivision}{"A9}
 
 \definecolor{POSTECHRed}{RGB}{166,25,85}
 \newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
@@ -36,6 +43,8 @@
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\rnd}{rnd}
+\DeclareMathOperator{\fma}{fma}
 
 % Body and lists; enough room is kept for the beginning of each statement.
 \setlength{\parskip}{0pt}

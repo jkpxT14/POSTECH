@@ -4,7 +4,7 @@
 \hypersetup{
   pdftitle={Course Notes for CSED490V Foundations of Continuous Computation},
   pdfauthor={Jungwoo Kim},
-  pdfsubject={Computable real numbers and computable functions},
+  pdfsubject={Computable reals, computable functions, and floating-point arithmetic},
   pdfcreator={LaTeX}
 }
 
@@ -22,25 +22,26 @@
 \end{center}
 \vspace{0.45cm}
 
-These notes develop the mathematical foundations of continuous computation. General
-mathematical notation and writing follow \textit{(MATH000) Mathematical Language}.
-
 \tableofcontents
+\clearpage
 
+\phantomsection
 \section*{Notation and Conventions}
-\phantomsection\addcontentsline{toc}{section}{Notation and Conventions}
-Only notation specific to this course is listed here. Its mathematical meaning is
-made precise at the point of first use.
+\addcontentsline{toc}{section}{Notation and Conventions}
+General notation and writing follow \textit{(MATH000) Mathematical Language}.
 \begin{coursenotation}
-$\Rc$ & Set of computable real numbers\\
-$\A$ & An algorithm, possibly with access to a real-number name
+$\Rc$ & Computable real numbers\\
+$\A$ & Algorithm (possibly using a real-number name)\\
+$\gamma_{E,M}$ & Floating-point representation map\\
+$\mathbb{F}_{E,M}$, $\overline{\mathbb{F}}_{E,M}$ & Finite and extended floating-point values\\
+$\rnd_{E,M}$ & Round to nearest, ties to even\\
+$\oplus$, $\ominus$ & Rounded addition and subtraction\\
+$\otimes$, $\odot$ & Rounded multiplication (primary, secondary)\\
+$\odiv$, $\oslash$ & Rounded division (primary, secondary)\\
+$\fma$ & Fused multiply-add
 \end{coursenotation}
 
 \section{Computable Reals}
-
-A real number is computable when it can be approximated by rational numbers to
-any prescribed precision through a finite computation. There are two useful
-ways to express this idea: rational approximation and binary expansion.
 
 \begin{definition}[Borel Computability]
 A real number $r$ is \emph{Borel-computable} if there exists a computable
@@ -48,8 +49,6 @@ function $q\colon\Nzero\to\Q$ such that
 \[
   |r-q(n)|<2^{-n}\qquad(n\in\Nzero).
 \]
-Equivalently, an algorithm computes a rational approximation to $r$ within
-$2^{-n}$ when given a precision parameter $n$.
 \end{definition}
 
 \begin{definition}[Turing Computability]
@@ -132,7 +131,7 @@ existence of a computable binary expansion for each Borel-computable real.
 \begin{definition}[Computable Real Numbers]
 The set of \emph{computable real numbers} is
 \[
-  \Rc:=\{r\in\R:r\text{ is computable}\}.
+  \Rc\coloneqq\{r\in\R\mid r\text{ is computable}\}.
 \]
 By the preceding theorem, either notion of computability can be used.
 \end{definition}
@@ -159,14 +158,27 @@ $|y|$. Rational approximations to $1/y$, and hence $x/y$, follow with
 computable error bounds. All four constructions use only rational arithmetic.
 \end{proof}
 
+\Needspace{11\baselineskip}
 \begin{proposition}[Real Algebraic Closure]
-Let $p\in\Rc[X]$ be a nonzero polynomial. Every real root of $p$ is in
-$\Rc$. Equivalently, the field $\Rc$ is real closed.
+If $p\in\Rc[X]$ is nonzero, then every real root of $p$ lies in $\Rc$.
+In particular, $\Rc$ is a real-closed field.
 \end{proposition}
-The real-root statement is the effective real-algebraic closure property;
-it is recorded here without reproducing the considerably longer root-isolation
-argument. It should not be confused with algebraic closure over $\C$:
-$\Rc$ is not an algebraically closed field.
+\begin{proof}
+Induct on $\deg p$. Constant polynomials have no roots. Let $r$ be a real
+root of $p$ of positive degree. If $p'(r)=0$, then $r$ is a root of the
+nonzero polynomial $p'\in\Rc[X]$, so the induction hypothesis applies.
+Otherwise $r$ is simple. Choose rationals $a<r<b$ so that $r$ is the
+only root in $[a,b]$ and $p(a)p(b)<0$. Since $p(a)$ and $p(b)$ are
+nonzero computable reals, their signs can be determined effectively.
+If $r\in\Q$, it is already computable. Otherwise each rational midpoint
+in a bisection of $[a,b]$ is not a root, and the sign of its polynomial
+value can likewise be computed. Bisection therefore produces rational
+approximations to $r$ with any prescribed error. Hence $r\in\Rc$.
+\end{proof}
+\begin{remark}
+This is closure under \emph{real} algebraic roots, not algebraic closure:
+$\Rc$ is not algebraically closed over $\C$.
+\end{remark}
 
 \begin{proposition}[Computability of $\pi$ and $e$]
 The real numbers $\pi$ and $e$ are computable.
@@ -216,20 +228,20 @@ of integer polynomials admitting an integer solution is not decidable.
 \end{fact}
 
 \begin{proposition}[A Noncomputable Real]
-Let $\mathcal P$ be the set of all integer-coefficient polynomials in finitely
+Let $P$ be the set of all integer-coefficient polynomials in finitely
 many variables, and let
-$\phi\colon\mathcal P\to\Nzero$ be a computable bijective encoding.
-Write $\mathcal P_{\mathrm{root}}$ for the polynomials having an integer zero.
+$\phi\colon P\to\Nzero$ be a computable bijective encoding.
+Write $P_{\mathrm{root}}$ for the polynomials having an integer zero.
 Then
 \[
- r:=\sum_{p\in\mathcal P}
- 2^{-(\phi(p)+1)}\,\mathds{1}_{\mathcal P_{\mathrm{root}}}(p)
+ r:=\sum_{p\in P}
+ 2^{-(\phi(p)+1)}\,\mathds{1}_{P_{\mathrm{root}}}(p)
 \]
 is a noncomputable real in $[0,1]$.
 \end{proposition}
 \begin{proof}
 The binary digit at position $\phi(p)$ is $1$ precisely when
-$p\in\mathcal P_{\mathrm{root}}$. Both this set and its complement are infinite;
+$p\in P_{\mathrm{root}}$. Both this set and its complement are infinite;
 for example, among polynomials of one variable there are infinitely many
 with an integer zero and infinitely many without one. Thus the binary
 sequence has infinitely many zeros and ones, so the expansion is neither
@@ -241,17 +253,7 @@ its digit at position $\phi(p)$ could be computed from $p$. This would decide
 whether $p$ has an integer zero, contradicting Hilbert's Tenth Problem.
 \end{proof}
 
-\begin{remark}
-More generally, any undecidable subset of $\Nzero$ can be encoded as the
-binary digits of a noncomputable real, provided its characteristic sequence
-is not eventually constant. Thus undecidability supplies explicit examples
-that cardinality alone does not identify.
-\end{remark}
-
 \section{Computable Functions}
-
-The definition of a computable function must work with approximations to an
-unknown real input, rather than requiring an exact representation of that input.
 
 \begin{definition}[Computable Function]
 Let $D\subseteq\R$. A function $f\colon D\to\R$ is \emph{computable} if
@@ -278,25 +280,16 @@ names of noncomputable reals. What must be computable is the procedure
 transforming such a name into approximations to $f(x)$.
 \end{remark}
 
-If $x\in\Rc$, choosing a computable name $\alpha$ and executing $\A$ gives
-computable rational approximations to $f(x)$. Thus a computable function sends
-computable inputs to computable outputs.
+In particular, every computable $f\colon D\to\R$ satisfies
+$f(D\cap\Rc)\subseteq\Rc$.
 
 \begin{example}[Basic Computable Functions]
-For each $r\in\Rc$, the maps $x\mapsto x+r$ and $x\mapsto rx$ are
-computable. Other standard examples include
-\[
- x\mapsto |x|,\quad x\mapsto e^x,\quad x\mapsto\sin x,\quad
- x\mapsto\sqrt{x},\quad x\mapsto\log x,
-\]
-with the natural domains $\R$, $\R$, $\R$, $[0,\infty)$, and
-$(0,\infty)$, respectively. The exponential function is treated
-constructively below.
+For $r\in\Rc$, both $x\mapsto x+r$ and $x\mapsto rx$ are computable.
+Other examples are $|x|$, $e^x$, $\sin x$, $\sqrt{x}$ (for $x\ge0$),
+and $\log x$ (for $x>0$).
 
-For functions of several real variables, addition, subtraction, multiplication,
-$\min$ and $\max$ are computable; so is division on the domain where the
-denominator is nonzero. In each case, rational input approximations suffice
-to control the output error.
+In several variables, $+$, $-$, multiplication, $\min$, and $\max$
+are computable; division is computable when the divisor is nonzero.
 \end{example}
 
 \begin{theorem}[Closure under Composition]
@@ -304,13 +297,14 @@ Let $f\colon D\to E$ and $g\colon E\to\R^m$ be computable, where
 $D\subseteq\R^k$ and $E\subseteq\R^\ell$. Then $g\circ f$ is computable.
 \end{theorem}
 \begin{proof}
-Given a name of $x\in D$, the algorithm for $f$ produces, on request,
-rational vectors $u_j$ with $\|u_j-f(x)\|_\infty<2^{-(j+2)}$.
-The map $j\mapsto u_j$ is therefore a valid name of $f(x)$, obtained
-on demand from the original input name. Feed this name to the algorithm for
-$g$. Each computation of $g$ makes only finitely many requests, and each
-request to $f$ terminates. The resulting rational output approximates
-$g(f(x))$ to the requested precision.
+For a name of $\mathbf{x}\in D$, the algorithm for $f$ produces
+$\mathbf{u}_j\in\Q^\ell$ on demand such that
+\[
+\|\mathbf{u}_j-f(\mathbf{x})\|_\infty<2^{-(j+2)}.
+\]
+Thus $j\mapsto\mathbf{u}_j$ is a name of $f(\mathbf{x})$. Supply this
+name to the algorithm for $g$: every query is answered by finitely many
+computations of $f$, so the procedure halts and computes $g(f(\mathbf{x}))$.
 \end{proof}
 
 \begin{theorem}[Computability Implies Continuity]
@@ -318,28 +312,25 @@ Every computable function $f\colon D\to\R^m$, with
 $D\subseteq\R^k$, is continuous on $D$ (with the relative topology).
 \end{theorem}
 \begin{proof}
-Fix $x\in D$ and $\varepsilon>0$. Choose $n\in\Nzero$ with
-$2^{1-n}<\varepsilon$. Select a rational name $\alpha$ of $x$ having
-extra precision, namely
+Fix $\mathbf{x}\in D$ and $\varepsilon>0$; choose $n\in\Nzero$
+with $2^{1-n}<\varepsilon$. Choose a rational name
+$\boldsymbol{\alpha}\colon\Nzero\to\Q^k$ of $\mathbf{x}$ with slack:
 \[
- \|\alpha(i)-x\|_\infty<2^{-(i+2)}
- \qquad(i\in\Nzero).
+\|\boldsymbol{\alpha}(i)-\mathbf{x}\|_\infty<2^{-(i+2)}
+\qquad(i\in\Nzero).
 \]
-Run the algorithm for $f$ on $\alpha$ at precision $n$. As it halts, it
-queries only finitely many indices, say those in a finite set $F$.
-There exists $\delta>0$ such that whenever $y\in D$ satisfies
-$\|x-y\|_\infty<\delta$, the same rational values $\alpha(i)$,
-$i\in F$, are also valid approximations to $y$ with error less than
-$2^{-i}$. Extend these finitely many values to a rational name $\beta$
-of $y$. The algorithm receives exactly the same answers to all queries
-and therefore makes the same computation, returning the same rational output
-$q$. Consequently,
+At precision $n$, the algorithm queries a finite set of indices $I$.
+For some $\delta>0$, every $\mathbf{y}\in D$ with
+$\|\mathbf{x}-\mathbf{y}\|_\infty<\delta$ also admits a name agreeing
+with $\boldsymbol{\alpha}$ on $I$. The algorithm therefore returns the
+same $\mathbf{q}\in\Q^m$ on both names, whence
 \[
- \|f(x)-f(y)\|_\infty
- \le \|f(x)-q\|_\infty+\|q-f(y)\|_\infty
- <2^{1-n}<\varepsilon.
+\|f(\mathbf{x})-f(\mathbf{y})\|_\infty
+\le\|f(\mathbf{x})-\mathbf{q}\|_\infty
++\|\mathbf{q}-f(\mathbf{y})\|_\infty
+<2^{1-n}<\varepsilon.
 \]
-Thus $f$ is continuous at $x$.
+Thus $f$ is continuous at $\mathbf{x}$.
 \end{proof}
 
 \begin{remark}
@@ -354,48 +345,39 @@ The step function $x\mapsto\mathds{1}_{\{x>0\}}$ is not computable on
 $\R$, since it is discontinuous at $0$. Its restriction to
 $\R\setminus\{0\}$ is computable: approximate the nonzero input until
 its sign can be certified, and return the corresponding bit.
-The same principle applies to the strict-comparison function on the domain
-$x\ne y$, as shown below. Allowing set-valued outputs is another possible
-way to treat boundary ambiguity, but requires a separate definition of
-computability and is not pursued here.
+The same principle applies to strict comparison when $x\ne y$ (see below).
 \end{example}
 
 \begin{theorem}[Computability of the Exponential Function]
-The restriction $\exp\colon[-\tfrac12,\tfrac12]\to\R$ is computable.
+The function $\exp\colon\R\to\R$ is computable.
 \end{theorem}
 \begin{proof}
-Let $x\in[-\tfrac12,\tfrac12]$, let $\alpha$ be any rational name of
-$x$, and fix $n\in\Nzero$. Put $m=n+4$, $d=n+4$, and
+First, let $x\in[-\tfrac12,\tfrac12]$, with rational name $\alpha$,
+and fix $n\in\Nzero$. Put $m=d=n+4$ and
 \[
- \widehat{x}=\alpha(m)\in\Q,\qquad
- P_d(t)=\sum_{j=0}^{d}\frac{t^j}{j!}\in\Q[t].
+ t=\alpha(m)\in\Q,\qquad
+ P_d(t)=\sum_{j=0}^d\frac{t^j}{j!}\in\Q.
 \]
-The algorithm returns $P_d(\widehat{x})$, which is rational and can be
-computed using finite rational arithmetic. Since
-$|\widehat{x}-x|<2^{-m}\le1/16$, we have $|\widehat{x}|<1$.
+Since $|t-x|<2^{-m}$, we have $|t|<1$. The mean value theorem and
+the Taylor remainder give
+\[
+\begin{aligned}
+|e^x-e^t|&\le3\cdot2^{-m}<2^{-(n+1)},\\
+|e^t-P_d(t)|&\le\frac{2}{(d+1)!}<2^{-(n+1)}.
+\end{aligned}
+\]
+Hence $|e^x-P_d(t)|<2^{-n}$, proving computability on the interval.
 
-By the mean value theorem and $e<3$, the error due to approximating the
-input satisfies
+For arbitrary $x\in\R$, choose $k\in\Nzero$ effectively from a coarse
+rational approximation so that $|x/2^k|\le\tfrac12$. Compute
+$u=e^{x/2^k}$ to sufficient precision by the preceding procedure, then
+approximate $u^{2^k}=e^x$ using rational multiplication. Writing $N=2^k$, choose a rational approximation $v$ to $u$ with
+$|u-v|<1$. Since $u\in(0,2)$, the estimate
 \[
- |e^x-e^{\widehat{x}}|
- \le 3|x-\widehat{x}|<3\cdot 2^{-m}
- <2^{-(n+1)}.
+|u^N-v^N|\le N3^{N-1}|u-v|
 \]
-Meanwhile, the Taylor remainder obeys
-\[
- |e^{\widehat{x}}-P_d(\widehat{x})|
- \le\sum_{j=d+1}^{\infty}\frac{|\widehat{x}|^j}{j!}
- <\sum_{j=d+1}^{\infty}\frac1{j!}
- \le\frac{2}{(d+1)!}<2^{-(n+1)}.
-\]
-The triangle inequality therefore gives
-$|e^x-P_d(\widehat{x})|<2^{-n}$, as required.
+shows that a sufficiently accurate $v$ yields any prescribed error.
 \end{proof}
-
-For arbitrary real $x$, one can effectively choose $k\in\Nzero$ such
-that $|x/2^k|\le\tfrac12$, using a coarse rational approximation to $x$.
-The identity $e^x=(e^{x/2^k})^{2^k}$ and closure under multiplication then
-extend computability of the exponential function to all of $\R$.
 
 \begin{theorem}[Noncomputability of Strict Comparison]
 The strict-comparison function
@@ -434,7 +416,7 @@ But $L(0,y')=1$, a contradiction.
 \begin{proposition}[Comparison of Unequal Real Numbers]
 The restriction
 \[
- L\colon\{(x,y)\in\R^2:x\ne y\}\to\{0,1\}
+ L\colon\{(x,y)\in\R^2\mid x\ne y\}\to\{0,1\}
 \]
 of strict comparison is computable.
 \end{proposition}
@@ -453,11 +435,126 @@ $x-y$ is then certified, so the answer is correct.
 \end{proof}
 
 \begin{remark}
-The obstruction to comparison is equality, not numerical closeness.
-Without a promise that $x\ne y$, no finite amount of approximation data
-can always determine whether two real inputs are equal. With the promise,
-refining the approximations eventually separates them. The same distinction
-applies to $\le$, $\ge$ and equality tests.
+Without the promise $x\ne y$, equality cannot be decided from a finite
+amount of rational approximation data. Under that promise, the separating
+intervals above provide a terminating comparison procedure.
+\end{remark}
+
+
+\section{Floating-Point Arithmetic}
+
+\begin{definition}[Floating-Point Representation]
+Fix $E\ge2$ and $M\ge1$. A floating-point bit string consists of a sign
+bit $s$, $E$ exponent bits, and $M$ fraction bits. Let
+\[
+ k=(e_1\cdots e_E)_2,\qquad
+ t=(0.m_1\cdots m_M)_2=\sum_{j=1}^M m_j2^{-j},
+ \qquad b_E=2^{E-1}-1.
+\]
+The interpretation map $\gamma_{E,M}\colon\{0,1\}^{1+E+M}\to
+\R\cup\{-\infty,+\infty,\mathrm{NaN}\}$ is defined by
+\[
+\gamma_{E,M}(s,e_1,\ldots,e_E,m_1,\ldots,m_M)=
+\begin{cases}
+ (-1)^s2^{k-b_E}(1+t),&1\le k\le2^E-2,\\
+ (-1)^s2^{1-b_E}t,&k=0,\\
+ (-1)^s\infty,&k=2^E-1,\ t=0,\\
+ \mathrm{NaN},&k=2^E-1,\ t\ne0.
+\end{cases}
+\]
+The first two cases give \emph{normal} and \emph{subnormal} values;
+the remaining cases represent infinities and \emph{not a number} (NaN).
+Write
+\[
+\overline{\mathbb F}_{E,M}=\operatorname{im}\gamma_{E,M},\qquad
+\mathbb F_{E,M}=\overline{\mathbb F}_{E,M}
+\setminus\{-\infty,+\infty,\mathrm{NaN}\}.
+\]
+Thus $\mathbb F_{E,M}\subseteq\R$ is the set of finite floating-point values.
+\end{definition}
+
+\begin{remark}
+The two signed-zero bit strings both represent $0\in\mathbb F_{E,M}$,
+while several distinct bit strings represent NaN. The map $\gamma_{E,M}$
+identifies these representations as values. In the usual binary32 and
+binary64 formats, $(E,M)=(8,23)$ and $(11,52)$, respectively.
+\end{remark}
+
+\begin{definition}[Rounding]
+Let
+\[
+ F_{\max}=(2-2^{-M})2^{b_E},\qquad
+ K_{E,M}=(2-2^{-M-1})2^{b_E}.
+\]
+The \emph{round-to-nearest, ties-to-even} map
+$\rnd_{E,M}\colon\R\to\overline{\mathbb F}_{E,M}$ is defined by
+\[
+\rnd_{E,M}(x)=
+\begin{cases}
+ +\infty,&x\ge K_{E,M},\\
+ -\infty,&x\le-K_{E,M},\\
+ \displaystyle\operatorname*{arg\,min}_{y\in\mathbb F_{E,M}}|x-y|,
+ &|x|<K_{E,M}.
+\end{cases}
+\]
+If two finite values minimize the distance, choose the one whose least
+significant stored significand bit is even. In particular, halfway cases
+near $0$ round to $0$; the chosen value always exists and is unique.
+\end{definition}
+
+\begin{proposition}[Monotonicity of Rounding]
+For $x,y\in\R$,
+\[
+ x\le y\quad\Longrightarrow\quad
+ \rnd_{E,M}(x)\le\rnd_{E,M}(y),
+\]
+with the usual order on $\R\cup\{-\infty,+\infty\}$.
+\end{proposition}
+\begin{proof}
+Overflow regions preserve order, so consider finite rounded values
+$u=\rnd_{E,M}(x)$ and $v=\rnd_{E,M}(y)$. If $u>v$, optimality of
+nearest rounding gives
+\[
+ |x-u|\le|x-v|\quad\Longrightarrow\quad x\ge\frac{u+v}{2},
+\qquad
+ |y-v|\le|y-u|\quad\Longrightarrow\quad y\le\frac{u+v}{2}.
+\]
+Together with $x\le y$, this forces $x=y=(u+v)/2$, contrary to the
+uniqueness of the ties-to-even choice. Hence $u\le v$.
+\end{proof}
+
+\begin{definition}[Floating-Point Operations]
+For $a,b,c\in\mathbb F_{E,M}$, define rounded addition, subtraction,
+and multiplication by
+\[
+\begin{aligned}
+ a\oplus b&=\rnd_{E,M}(a+b),&
+ a\ominus b&=\rnd_{E,M}(a-b),\\
+ a\otimes b&=\rnd_{E,M}(ab),&
+ a\odiv b&=\rnd_{E,M}(a/b)\quad(b\ne0).
+\end{aligned}
+\]
+The secondary notations are $\odot$ for multiplication and $\oslash$
+for division. \emph{Fused multiply-add} performs only one rounding:
+\[
+ \fma(a,b,c)=\rnd_{E,M}(ab+c).
+\]
+These operations have values in $\overline{\mathbb F}_{E,M}$;
+operations involving infinities, NaN, or signed-zero bit patterns are
+outside the present finite-input definitions.
+\end{definition}
+
+\begin{remark}
+Rounded arithmetic is not a field. Although $\oplus$ and $\otimes$
+are commutative on finite inputs, they need not be associative, and
+multiplication need not distribute over addition. For example, in the
+format $(E,M)=(3,2)$, ties to even gives
+\[
+ (1\oplus\tfrac18)\oplus(-1)=0
+ \ne\tfrac18=1\oplus(\tfrac18\oplus(-1)).
+\]
+Also, finite values are not closed under these rounded operations when
+an overflow produces $\pm\infty$.
 \end{remark}
 
 \end{document}
