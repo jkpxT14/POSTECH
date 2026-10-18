@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{CourseNotesStyle}[2026/10/18 CSED490V course-notes style v4]
+\ProvidesPackage{CourseNotesStyle}[2026/10/18 CSED490V course-notes style v5]
 
 % The page design is adapted from the MATH200/MATH203 document family.
 \RequirePackage[a4paper,margin=1in]{geometry}
@@ -13,21 +13,20 @@
 \RequirePackage{dsfont}
 \RequirePackage{mathtools}
 \RequirePackage{enumitem}
-\RequirePackage{array}
 \RequirePackage{booktabs}
 \RequirePackage{xcolor}
 \RequirePackage[hidelinks]{hyperref}
 
 % Circled division: build an obelus inside the same circle as \ominus.
-% This matches the weight and dimensions of the other circled operators.
+% Tune the two dots while retaining the same circle and horizontal stroke.
 \RequirePackage{tikz}
 \makeatletter
 \newcommand{\odiv}{\mathbin{\mathpalette\courseodivaux\relax}}
 \newcommand{\courseodivaux}[2]{%
   \tikz[baseline=(sym.base),inner sep=0pt]{%
     \node[inner sep=0pt,outer sep=0pt] (sym) {$\m@th#1\ominus$};%
-    \fill (sym.center) ++(0,0.20em) circle[radius=0.035em];%
-    \fill (sym.center) ++(0,-0.20em) circle[radius=0.035em];%
+    \fill (sym.center) ++(0,0.195em) circle[radius=0.053em];%
+    \fill (sym.center) ++(0,-0.195em) circle[radius=0.053em];%
   }%
 }
 \makeatother
@@ -40,10 +39,8 @@
 % General conventions follow (MATH000) Mathematical Language.
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Nzero}{\mathbb{N}_0}
-\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
 \newcommand{\Rc}{\mathbb{R}_C}
 \newcommand{\A}{\mathcal{A}}
 \DeclareMathOperator{\rnd}{rnd}
@@ -72,14 +69,10 @@
 \theoremstyle{coursedefinition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}[definition]{Example}
-\newtheorem{counterexample}[definition]{Counterexample}
-\newtheorem{formula}[definition]{Formula}
-\newtheorem{algorithm}[definition]{Algorithm}
 \newtheorem{fact}[definition]{Fact}
 \theoremstyle{courseplain}
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{proposition}[definition]{Proposition}
-\newtheorem{lemma}[definition]{Lemma}
 \newtheorem{corollary}[definition]{Corollary}
 \theoremstyle{coursesameline}
 \newtheorem*{remark}{Remark}
@@ -92,16 +85,12 @@
 \BeforeBeginEnvironment{definition}{\courseblockspace}
 \BeforeBeginEnvironment{theorem}{\courseblockspace}
 \BeforeBeginEnvironment{proposition}{\courseblockspace}
-\BeforeBeginEnvironment{lemma}{\courseblockspace}
 \BeforeBeginEnvironment{corollary}{\courseblockspace}
 \BeforeBeginEnvironment{example}{\courseblockspace}
-\BeforeBeginEnvironment{counterexample}{\courseblockspace}
-\BeforeBeginEnvironment{formula}{\courseblockspace}
-\BeforeBeginEnvironment{algorithm}{\courseblockspace}
 \BeforeBeginEnvironment{fact}{\courseblockspace}
 \BeforeBeginEnvironment{remark}{\courseblockspace}
 
-% Lightweight notation block: avoid a longtable when only two entries are needed.
+% Compact notation table; separate meanings occupy separate rows.
 \newenvironment{coursenotation}{%
  \par\smallskip\noindent\begingroup
  \renewcommand{\arraystretch}{1.12}%
@@ -113,7 +102,17 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small\textit{(CSED490V) Foundations of Continuous Computation}}
-\fancyhead[R]{\small\textit{Course Notes}}
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+\fancyhead[R]{\small\textit{\nouppercase{\leftmark}}}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{coursenotationpage}{%
+ \fancyhf{}%
+ \fancyhead[L]{\small\textit{(CSED490V) Foundations of Continuous Computation}}%
+ \fancyhead[R]{\small\textit{Notation and Conventions}}%
+ \fancyfoot[C]{\thepage}%
+ \renewcommand{\headrulewidth}{0.4pt}%
+ \renewcommand{\footrulewidth}{0pt}%
+}

@@ -27,22 +27,30 @@
 
 \phantomsection
 \section*{Notation and Conventions}
+\thispagestyle{coursenotationpage}
+\markboth{Notation and Conventions}{}
 \addcontentsline{toc}{section}{Notation and Conventions}
 General notation and writing follow \textit{(MATH000) Mathematical Language}.
 \begin{coursenotation}
 $\Rc$ & Computable real numbers\\
-$\A$ & Algorithm (possibly using a real-number name)\\
+$\A$ & Oracle algorithm\\
 $\gamma_{E,M}$ & Floating-point representation map\\
-$\mathbb{F}_{E,M}$, $\overline{\mathbb{F}}_{E,M}$ & Finite and extended floating-point values\\
-$e_{\min}$, $e_{\max}$ & Minimum and maximum normal exponents\\
-$F_{\max}$, $K_{E,M}$ & Largest finite value and overflow threshold\\
+$\mathbb{F}_{E,M}$ & Finite floating-point values\\
+$\overline{\mathbb{F}}_{E,M}$ & Extended floating-point values\\
+$e_{\min}$ & Minimum normal exponent\\
+$e_{\max}$ & Maximum normal exponent\\
+$F_{\max}$ & Largest finite floating-point value\\
+$K_{E,M}$ & Overflow threshold\\
 $\rnd_{E,M}$ & Round to nearest, ties to even\\
-$\oplus$, $\ominus$ & Rounded addition and subtraction\\
-$\otimes$, $\odot$ & Rounded multiplication (primary, secondary)\\
-$\odiv$, $\oslash$ & Rounded division (primary, secondary)\\
+$\oplus$ & Rounded addition\\
+$\ominus$ & Rounded subtraction\\
+$\otimes$, $\odot$ & Rounded multiplication\\
+$\odiv$, $\oslash$ & Rounded division\\
 $\fma$ & Fused multiply-add\\
-$\operatorname{err}_{\mathrm{abs}}$, $\operatorname{err}_{\mathrm{rel}}$ & Absolute and relative errors\\
-$\ulp$, $\operatorname{err}_{\mathrm{ulp}}$ & Unit in the last place and ULP error\\
+$\operatorname{err}_{\mathrm{abs}}$ & Absolute error\\
+$\operatorname{err}_{\mathrm{rel}}$ & Relative error\\
+$\ulp$ & Unit in the last place\\
+$\operatorname{err}_{\mathrm{ulp}}$ & ULP error\\
 $\varepsilon$ & Machine epsilon (unit roundoff)
 \end{coursenotation}
 
@@ -142,19 +150,17 @@ By the preceding theorem, either notion of computability can be used.
 \end{definition}
 
 \begin{proposition}[Closure under Arithmetic]
-The set $\Rc$ is a subfield of $\R$: if $x,y\in\Rc$, then
+The set $\Rc$ is a subfield of $\R$. In particular,
 \[
- x+y,\quad x-y,\quad xy\in\Rc,
- \qquad \frac{x}{y}\in\Rc\quad\text{when }y\ne0.
+ x,y\in\Rc\implies x+y,\ x-y,\ xy\in\Rc,
+ \qquad y\ne0\implies\frac{x}{y}\in\Rc.
 \]
 \end{proposition}
-
 
 \begin{proposition}[Real Algebraic Closure]
 If $p\in\Rc[X]$ is nonzero, then every real root of $p$ lies in $\Rc$.
 In particular, $\Rc$ is a real-closed field.
 \end{proposition}
-
 
 \begin{proposition}[Computability of $\pi$ and $e$]
 The real numbers $\pi$ and $e$ are computable.
@@ -201,29 +207,31 @@ of integer polynomials admitting an integer solution is not decidable.
 \begin{proposition}[A Noncomputable Real]
 Let $P$ be the set of all integer-coefficient polynomials in finitely
 many variables, and let
-$\phi\colon P\to\Nzero$ be a computable injection.
+$\phi\colon P\to\N$ be a computable injection.
 Write $P_{\mathrm{root}}$ for the polynomials having an integer zero.
 Then
 \[
- r:=\sum_{p\in P}
- 2^{-(\phi(p)+1)}\,\indicator{P_{\mathrm{root}}}(p)
+ r\coloneqq\sum_{p\in P}
+ 2^{-\phi(p)}\,\indicator{P_{\mathrm{root}}}(p)
 \]
 is a noncomputable real in $[0,1]$.
 \end{proposition}
 \begin{proof}
-Because $\phi$ is injective, the binary digit at position $\phi(p)$ is $1$ precisely when
-$p\in P_{\mathrm{root}}$. Both this set and its complement are infinite;
-for example, among polynomials of one variable there are infinitely many
-with an integer zero and infinitely many without one. Thus the binary
-sequence has infinitely many zeros and ones, so the expansion is neither
-eventually zero nor eventually one and $r$ is not dyadic.
-
-If $r$ were computable, the equivalence theorem would give a computable
-binary expansion. Because $r$ is not dyadic, its binary expansion is unique;
-its digit at position $\phi(p)$ could be computed from $p$. This would decide
-whether $p$ has an integer zero, contradicting Hilbert's Tenth Problem.
+Injectivity gives the binary coefficient at $2^{-\phi(p)}$:
+\[
+ b_{\phi(p)}=\indicator{P_{\mathrm{root}}}(p).
+\]
+Both $P_{\mathrm{root}}$ and $P\setminus P_{\mathrm{root}}$ are infinite,
+so the expansion has infinitely many zeros and ones; in particular,
+$r$ is not dyadic. If $r\in\Rc$, its unique binary expansion is
+computable by the equivalence theorem. Hence
+\[
+ p\longmapsto b_{\phi(p)}=\indicator{P_{\mathrm{root}}}(p)
+\]
+would decide Hilbert's Tenth Problem, a contradiction.
 \end{proof}
 
+\Needspace{8\baselineskip}
 \section{Computable Functions}
 
 \begin{definition}[Computable Function]
@@ -245,10 +253,10 @@ $\R^k$ and $\R^m$.
 \end{definition}
 
 \begin{remark}
-The input name $\alpha$ need not itself be computable: the algorithm must
-work for \emph{every} sufficiently accurate rational name of $x$, including
-names of noncomputable reals. What must be computable is the procedure
-transforming such a name into approximations to $f(x)$.
+A name $\alpha$ need not be computable: $\A$ must work for
+\emph{every} rational name, even one naming a noncomputable real.
+Unlike a binary-digit oracle, rational approximation does not require
+a uniform decision at dyadic boundaries (cf. Section~1).
 \end{remark}
 
 In particular, every computable $f\colon D\to\R$ satisfies
@@ -268,6 +276,14 @@ Let $f\colon D\to E$ and $g\colon E\to\R^m$ be computable, where
 $D\subseteq\R^k$ and $E\subseteq\R^\ell$. Then $g\circ f$ is computable.
 \end{theorem}
 
+\begin{corollary}[Computable Function Operations]
+If $f,g\colon D\to\R$ are computable, then so are
+\[
+ |f|,\quad f+g,\quad fg,\quad\min(f,g),\quad\max(f,g),
+ \quad\exp\circ f.
+\]
+Moreover, $f/g$ is computable on $\{x\in D\mid g(x)\ne0\}$.
+\end{corollary}
 
 \begin{theorem}[Computability Implies Continuity]
 Every computable function $f\colon D\to\R^m$, with
@@ -304,10 +320,20 @@ point of its domain cannot be computable there.
 
 \begin{example}[Discontinuous Functions and Their Domains]
 The step function $x\mapsto\indicator{\{x>0\}}$ is not computable on
-$\R$, since it is discontinuous at $0$. Its restriction to
-$\R\setminus\{0\}$ is computable: approximate the nonzero input until
-its sign can be certified, and return the corresponding bit.
-The same principle applies to strict comparison when $x\ne y$ (see below).
+$\R$ but is computable on $\R\setminus\{0\}$: refine an input
+approximation until its sign is certified. The same principle applies
+to strict comparison on $x\ne y$.
+
+A set-valued extension, outside the single-valued definition above, can
+instead allow both outputs at the discontinuity:
+\[
+\operatorname{sgn}'(x)=
+\begin{cases}
+\{1\},&x>0,\\
+\{0\},&x<0,\\
+\{0,1\},&x=0.
+\end{cases}
+\]
 \end{example}
 
 \begin{theorem}[Computability of the Exponential Function]\label{thm:exp}
@@ -389,14 +415,14 @@ Strict comparison is computable on
 \]
 \end{theorem}
 
-
 \begin{remark}
 If $x\ne y$, sufficiently accurate rational approximations eventually
-certify their order. Without this promise, equality cannot in general be
-decided from finite approximation data.
+certify their order. Without this promise, neither equality nor strict
+comparison is decidable on all of $\R^2$: their indicator maps are
+discontinuous along $x=y$.
 \end{remark}
 
-
+\Needspace{8\baselineskip}
 \section{Floating-Point Arithmetic}
 
 \begin{definition}[Floating-Point Representation]
@@ -475,11 +501,8 @@ For $x,y\in\R$,
 with the usual order on $\R\cup\{-\infty,+\infty\}$.
 \end{proposition}
 
-
-\Needspace{24\baselineskip}
 \begin{definition}[Floating-Point Operations]
-For $a,b,c\in\mathbb F_{E,M}$, define rounded addition, subtraction,
-and multiplication by
+For $a,b,c\in\mathbb F_{E,M}$, define rounded arithmetic by
 \[
 \begin{aligned}
  a\oplus b&=\rnd_{E,M}(a+b),&
@@ -498,22 +521,33 @@ operations involving infinities, NaN, or signed-zero bit patterns are
 outside the present finite-input definitions.
 \end{definition}
 
-\begin{remark}
-Rounded arithmetic does not form a field. For $(E,M)=(3,2)$,
+\begin{remark}[Algebraic Properties]
+Rounded addition and multiplication are commutative, with identities
+$0$ and $1$, but generally neither associative nor distributive. For
+$(E,M)=(3,2)$, ties-to-even gives
 \[
- (1\oplus\tfrac18)\oplus(-1)=0
- \ne\tfrac18=1\oplus(\tfrac18\oplus(-1)),
+\begin{aligned}
+ (1\oplus\tfrac18)\oplus(-1)&=0
+     \ne\tfrac18=1\oplus(\tfrac18\oplus(-1)),\\
+ 2\otimes(\tfrac34\otimes\tfrac18)&=\tfrac14
+     \ne\tfrac3{16}=(2\otimes\tfrac34)\otimes\tfrac18,\\
+ 3\otimes(1\oplus\tfrac32)&=8
+     \ne7=(3\otimes1)\oplus(3\otimes\tfrac32).
+\end{aligned}
 \]
-so $\oplus$ is not associative. Additive inverses are unique:
-$a\oplus b=0$ holds exactly when $b=-a$, since sums of finite
-floating-point values are integer multiples of the least subnormal spacing.
-Multiplicative inverses need not be unique; in the same format,
+Every $a\in\mathbb F_{E,M}$ has the unique additive inverse $-a$,
+since $a\oplus b=0\iff b=-a$ (all finite values are integer
+multiples of the smallest subnormal spacing). Multiplicative inverses
+need not exist or be unique. In the same format,
 \[
- \tfrac32\otimes\tfrac58=1=\tfrac32\otimes\tfrac34.
+ \tfrac32\otimes\tfrac58=1=\tfrac32\otimes\tfrac34,
+ \qquad \tfrac1{16}\otimes b\ne1\quad(b\in\mathbb F_{3,2}).
 \]
-Moreover, overflow can produce $\pm\infty$, outside $\mathbb F_{E,M}$.
+Moreover, rounded operations may overflow to $\pm\infty$, outside
+$\mathbb F_{E,M}$; hence they do not form a field.
 \end{remark}
 
+\Needspace{8\baselineskip}
 \section{Floating-Point Errors}
 
 Fix the format $(E,M)$ of Section 3. In this section write
@@ -693,7 +727,6 @@ Consequently, with $x=abc$ and $\widehat{x}=(a\otimes b)\otimes c$,
 To first order the relative error is at most $2\varepsilon$.
 \end{example}
 
-\Needspace{32\baselineskip}
 \begin{example}[Error in Repeated Addition]
 Let $a,b,c\in\mathbb F$ and set $s=a+b$, $u=a+b+c\ne0$.
 Assume $|s|, |(a\oplus b)+c|\le F_{\max}$. For rounded addition,
@@ -741,8 +774,9 @@ then even when their subtraction is exact,
  |(\widehat{x}-\widehat{y})-(x-y)|
  \le |\widehat{x}-x|+|\widehat{y}-y|.
 \]
-For $x\ne y$, dividing by $|x-y|$ shows why the relative error
-can be large when $x\approx y$.
+For $x\ne y$, dividing by $|x-y|$ gives the relative error;
+dividing by $\ulp(x-y)$ gives the ULP error. Both can be large
+when $x\approx y$, even if the subtraction itself is exact.
 \end{remark}
 
 \end{document}
