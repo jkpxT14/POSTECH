@@ -195,4 +195,67 @@ Let $G$ be a group and let $\varphi\in\Aut(G)$. Define
 \end{enumerate}
 \end{solution}
 
+
+\Needspace{17\baselineskip}
+\begin{problem}{4.1}
+Let $G$ be a group and let $H\le G$. Prove that $H$ is abelian if and only if
+\[
+    \langle H,C_G(H)\rangle=C_G(H).
+\]
+\end{problem}
+
+\begin{solution}
+By definition, $H$ is abelian if and only if every element of $H$ commutes with every element of $H$, which is equivalent to $H\le C_G(H)$. Since $C_G(H)$ is a subgroup of $G$, we also have
+\[
+    H\le C_G(H)
+    \quad\Longleftrightarrow\quad
+    \langle H,C_G(H)\rangle=C_G(H).
+\]
+Combining these equivalences proves the claim.
+\end{solution}
+
+\begin{problem}{4.2}
+Let $\varphi\colon G\to H$ be a group homomorphism. Determine whether each of the following statements is true or false. For each false statement, give a counterexample.
+\begin{enumerate}[label=(\alph*),leftmargin=2.5em,itemsep=0.25em,topsep=0.4em]
+    \item $\varphi(1_G)=1_H$.
+    \item If $A\trianglelefteq G$, then $\varphi(A)\trianglelefteq H$.
+    \item If $E\le H$, then $\varphi^{-1}(E)\le G$.
+    \item If $E\trianglelefteq H$, then $\varphi^{-1}(E)\trianglelefteq G$.
+    \item If $x\in G$ has finite order, then $|x|$ divides $|\varphi(x)|$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*),leftmargin=2.5em,itemsep=0.55em,topsep=0.2em]
+    \item \textbf{True.} Since $\varphi(1_G)^2=\varphi(1_G)$, cancellation in $H$ gives $\varphi(1_G)=1_H$.
+
+    \item \textbf{False.} Define $\varphi\colon\Z/2\Z\to S_3$ by $\varphi([k]_2)=(12)^k$ and take $A=\Z/2\Z$. Although $A\trianglelefteq\Z/2\Z$, its image $\langle(12)\rangle$ is not normal in $S_3$, since
+    \[
+        (13)\langle(12)\rangle(13)^{-1}
+        =\langle(23)\rangle\neq\langle(12)\rangle.
+    \]
+    The image of a normal subgroup is normal in $\varphi(G)$, but need not be normal in $H$.
+
+    \item \textbf{True.} The set $\varphi^{-1}(E)$ contains $1_G$. If $x,y\in\varphi^{-1}(E)$, then
+    \[
+        \varphi(xy^{-1})=\varphi(x)\varphi(y)^{-1}\in E,
+    \]
+    so $xy^{-1}\in\varphi^{-1}(E)$. Thus $\varphi^{-1}(E)\le G$.
+
+    \item \textbf{True.} By (c), $\varphi^{-1}(E)\le G$. For $g\in G$ and $x\in\varphi^{-1}(E)$,
+    \[
+        \varphi(gxg^{-1})
+        =\varphi(g)\varphi(x)\varphi(g)^{-1}\in E
+    \]
+    because $E\trianglelefteq H$. Hence $gxg^{-1}\in\varphi^{-1}(E)$, proving normality.
+
+    \item \textbf{False.} The reduction homomorphism
+    \[
+        \varphi\colon\Z/4\Z\to\Z/2\Z,
+        \qquad [k]_4\mapsto[k]_2
+    \]
+    sends the element $[1]_4$ of order $4$ to $[1]_2$ of order $2$, and $4\nmid2$. In general, the correct divisibility is $|\varphi(x)|\mid|x|$ for an element $x$ of finite order.
+\end{enumerate}
+\end{solution}
+
 \end{document}

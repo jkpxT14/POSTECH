@@ -450,4 +450,102 @@ The support is the triangular region $0<x\leq y<2$.
 \end{problemsubparts}
 \end{solution}
 
+
+\begin{problem}{5.1}
+Let $X$ be a random variable with mean $\mu=12$ and variance $\sigma^2=9$. Using Chebyshev's inequality, answer the following questions.
+\begin{problemsubparts}
+\item Find an upper bound for $\Prob(|X-12|\ge6)$.
+\item Find a lower bound for $\Prob(3<X<21)$.
+\item Find the smallest positive constant $c$ for which Chebyshev's inequality guarantees that
+\[
+\Prob(|X-12|<c)\ge\frac{15}{16}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+Since $\Exp[X]=12$ and $\Var(X)=9$, Chebyshev's inequality gives, for every $t>0$,
+\[
+\Prob(|X-12|\ge t)\le\frac9{t^2},\qquad
+\Prob(|X-12|<t)\ge1-\frac9{t^2}.
+\]
+\begin{problemsubparts}
+\item Setting $t=6$ yields
+\[
+\boxed{\Prob(|X-12|\ge6)\le\frac9{6^2}=\frac14}.
+\]
+\item Since $3<X<21$ is equivalent to $|X-12|<9$,
+\[
+\boxed{\Prob(3<X<21)\ge1-\frac9{9^2}=\frac89}.
+\]
+\item The guaranteed lower bound must be at least $15/16$:
+\[
+1-\frac9{c^2}\ge\frac{15}{16}
+\iff \frac9{c^2}\le\frac1{16}
+\iff c^2\ge144.
+\]
+For $c>0$, the smallest permitted constant is $\boxed{c=12}$.
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{5.2}
+According to a study, approximately $30\%$ of pipework failures in a chemical plant are due to operator error. Assume that the causes of successive failures are independent and that each failure is due to operator error with probability $0.30$. Let $X$ denote the number of operator-error failures among the next $8$ failures. Use the binomial probability table below to answer the questions.
+
+\begin{center}
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\renewcommand{\arraystretch}{1.18}
+\noindent\textbf{Table A.1 (continued).} Binomial probability sums $B(r;n,p)=\displaystyle\sum_{x=0}^{r}\binom nx p^x(1-p)^{n-x}$.
+\par\smallskip
+\begin{tabular}{@{}cc*{10}{r}@{}}
+\toprule
+&&\multicolumn{10}{c}{$p$}\\
+\cmidrule(l){3-12}
+$n$ & $r$ & $0.10$ & $0.20$ & $0.25$ & $0.30$ & $0.40$ & $0.50$ & $0.60$ & $0.70$ & $0.80$ & $0.90$\\
+\midrule
+$8$ & $0$ & $0.4305$ & $0.1678$ & $0.1001$ & $0.0576$ & $0.0168$ & $0.0039$ & $0.0007$ & $0.0001$ & $0.0000$ & {}\\
+& $1$ & $0.8131$ & $0.5033$ & $0.3671$ & $0.2553$ & $0.1064$ & $0.0352$ & $0.0085$ & $0.0013$ & $0.0001$ & {}\\
+& $2$ & $0.9619$ & $0.7969$ & $0.6785$ & $0.5518$ & $0.3154$ & $0.1445$ & $0.0498$ & $0.0113$ & $0.0012$ & $0.0000$\\
+& $3$ & $0.9950$ & $0.9437$ & $0.8862$ & $0.8059$ & $0.5941$ & $0.3633$ & $0.1737$ & $0.0580$ & $0.0104$ & $0.0004$\\
+& $4$ & $0.9996$ & $0.9896$ & $0.9727$ & $0.9420$ & $0.8263$ & $0.6367$ & $0.4059$ & $0.1941$ & $0.0563$ & $0.0050$\\
+& $5$ & $1.0000$ & $0.9988$ & $0.9958$ & $0.9887$ & $0.9502$ & $0.8555$ & $0.6846$ & $0.4482$ & $0.2031$ & $0.0381$\\
+& $6$ & {} & $0.9999$ & $0.9996$ & $0.9987$ & $0.9915$ & $0.9648$ & $0.8936$ & $0.7447$ & $0.4967$ & $0.1869$\\
+& $7$ & {} & $1.0000$ & $1.0000$ & $0.9999$ & $0.9993$ & $0.9961$ & $0.9832$ & $0.9424$ & $0.8322$ & $0.5695$\\
+& $8$ & {} & {} & {} & $1.0000$ & $1.0000$ & $1.0000$ & $1.0000$ & $1.0000$ & $1.0000$ & $1.0000$\\
+\bottomrule
+\end{tabular}
+\endgroup
+\end{center}
+
+\begin{problemsubparts}
+\item State the distribution of $X$ and write its probability mass function.
+\item What is the probability that at most $2$ of the next $8$ failures are due to operator error?
+\item What is the probability that at least $4$ of the next $8$ failures are due to operator error?
+\item Find $\Prob(2\le X\le5)$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+\item There are $8$ independent Bernoulli trials, each with operator-error probability $0.30$. Therefore,
+\[
+\boxed{X\sim\Bin(8,0.30)},\qquad
+\boxed{\Prob(X=x)=\displaystyle\binom8x(0.30)^x(0.70)^{8-x}},\quad x=0,1,\ldots,8.
+\]
+\item The table gives the cumulative probability for $n=8$, $p=0.30$, and $r=2$:
+\[
+\boxed{\Prob(X\le2)=B(2;8,0.30)=0.5518}.
+\]
+\item By the complement rule and the table entry at $r=3$,
+\[
+\boxed{\Prob(X\ge4)=1-\Prob(X\le3)=1-0.8059=0.1941}.
+\]
+\item Subtract cumulative probabilities at $r=5$ and $r=1$:
+\[
+\boxed{\Prob(2\le X\le5)=\Prob(X\le5)-\Prob(X\le1)=0.9887-0.2553=0.7334}.
+\]
+\end{problemsubparts}
+\end{solution}
+
 \end{document}

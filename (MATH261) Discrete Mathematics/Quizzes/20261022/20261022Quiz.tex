@@ -1,0 +1,253 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261022 Quiz for MATH261 Discrete Mathematics},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH261 Discrete Mathematics},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261022 Quiz}
+
+\begin{problem}{1}
+Solve the following recurrence relations subject to the given initial conditions.
+\begin{problemsubparts}
+    \item For $n\geq2$,
+    \[
+        a_n=6a_{n-1}-8a_{n-2},
+        \qquad a_0=1,\quad a_1=0.
+    \]
+
+    \item For $n\geq2$,
+    \[
+        2a_n=7a_{n-1}-3a_{n-2},
+        \qquad a_0=1,\quad a_1=1.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item The characteristic equation is
+    \[
+        r^2-6r+8=(r-2)(r-4)=0.
+    \]
+    Since the roots $2$ and $4$ are distinct, the general solution is
+    \[
+        a_n=\alpha 2^n+\beta 4^n.
+    \]
+    The initial conditions give
+    \[
+        \alpha+\beta=1,\qquad 2\alpha+4\beta=0,
+    \]
+    whence $\alpha=2$ and $\beta=-1$. Therefore
+    \[
+        a_n=2^{n+1}-4^n.
+    \]
+
+    \item Substituting $a_n=r^n$ gives the characteristic equation
+    \[
+        2r^2-7r+3=(2r-1)(r-3)=0.
+    \]
+    Its distinct roots are $3$ and $\frac12$, so
+    \[
+        a_n=\alpha3^n+\beta\left(\frac12\right)^n.
+    \]
+    From $a_0=1$ and $a_1=1$,
+    \[
+        \alpha+\beta=1,\qquad 3\alpha+\frac{\beta}{2}=1.
+    \]
+    Thus $\alpha=\frac15$ and $\beta=\frac45$, giving
+    \[
+        a_n=\frac{3^n+4(1/2)^n}{5}.
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{2}
+Solve the following recurrence relations subject to the given initial conditions.
+\begin{problemsubparts}
+    \item For $n\geq2$,
+    \[
+        a_n=-2na_{n-1}+3n(n-1)a_{n-2},
+        \qquad a_0=1,\quad a_1=2.
+    \]
+
+    \item For $n\geq2$,
+    \[
+        c_n=2+\sum_{i=1}^{n-1}c_i,
+        \qquad c_1=1.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item Define $b_n=a_n/n!$ for $n\geq0$. Dividing the recurrence by $n!$ and using $n!=n(n-1)!$ yields
+    \[
+    \begin{aligned}
+        b_n&=-2\frac{a_{n-1}}{(n-1)!}
+             +3\frac{a_{n-2}}{(n-2)!}\\
+           &=-2b_{n-1}+3b_{n-2},\qquad n\geq2.
+    \end{aligned}
+    \]
+    The initial values are $b_0=1$ and $b_1=2$. The characteristic equation is
+    \[
+        r^2+2r-3=(r-1)(r+3)=0,
+    \]
+    so $b_n=\alpha+\beta(-3)^n$. Applying the initial conditions gives
+    \[
+        \alpha+\beta=1,\qquad \alpha-3\beta=2,
+    \]
+    and hence $\alpha=\frac54$, $\beta=-\frac14$. Returning to $a_n=n!b_n$, we obtain
+    \[
+        a_n=\frac{n!}{4}\bigl(5-(-3)^n\bigr).
+    \]
+
+    \item The equation at $n=2$ gives
+    \[
+        c_2=2+c_1=3.
+    \]
+    For $n\geq3$, subtract the recurrence at $n-1$ from the one at $n$:
+    \[
+    \begin{aligned}
+        c_n-c_{n-1}
+        &=\left(2+\sum_{i=1}^{n-1}c_i\right)
+          -\left(2+\sum_{i=1}^{n-2}c_i\right)\\
+        &=c_{n-1}.
+    \end{aligned}
+    \]
+    Thus $c_n=2c_{n-1}$ for $n\geq3$. Together with $c_1=1$ and $c_2=3$, this gives
+    \[
+        c_1=1,\qquad c_n=3\cdot2^{n-2}\quad(n\geq2).
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\Needspace{13\baselineskip}
+\begin{problem}{3}
+Find the general solutions of the following recurrence relations.
+\begin{problemsubparts}
+    \item For $n\geq2$,
+    \[
+        2a_n=7a_{n-1}-3a_{n-2}+2^n.
+    \]
+
+    \item For $n\geq2$,
+    \[
+        9a_n=6a_{n-1}-a_{n-2}+5n^2.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item The associated homogeneous recurrence has characteristic equation
+    \[
+        2r^2-7r+3=(2r-1)(r-3)=0,
+    \]
+    so its general solution is $a_n^{(h)}=\alpha3^n+\beta(1/2)^n$.
+    Since $2$ is not a characteristic root, seek a particular solution of the form $a_n^{(p)}=C2^n$. Substitution gives
+    \[
+        2C=\frac{7C}{2}-\frac{3C}{4}+1,
+        \qquad C=-\frac43.
+    \]
+    Therefore the general solution is
+    \[
+        a_n=\alpha3^n+\beta\left(\frac12\right)^n-\frac43\,2^n,
+    \]
+    where $\alpha,\beta\in\R$ are arbitrary.
+
+    \item The characteristic equation of the associated homogeneous recurrence is
+    \[
+        9r^2-6r+1=(3r-1)^2=0.
+    \]
+    The root $\frac13$ has multiplicity two, so
+    \[
+        a_n^{(h)}=(\alpha+\beta n)\left(\frac13\right)^n.
+    \]
+    Seek a polynomial particular solution $a_n^{(p)}=An^2+Bn+C$. Substitution into
+    \[
+        9a_n^{(p)}-6a_{n-1}^{(p)}+a_{n-2}^{(p)}=5n^2
+    \]
+    and expansion give
+    \[
+        4An^2+(8A+4B)n+(-2A+4B+4C)=5n^2.
+    \]
+    Comparing coefficients yields
+    \[
+        4A=5,\qquad 8A+4B=0,\qquad -2A+4B+4C=0,
+    \]
+    hence $A=\frac54$, $B=-\frac52$, and $C=\frac{25}{8}$. Thus
+    \[
+        a_n=(\alpha+\beta n)\left(\frac13\right)^n
+            +\frac54n^2-\frac52n+\frac{25}{8},
+    \]
+    where $\alpha,\beta\in\R$ are arbitrary.
+\end{problemsubparts}
+\end{solution}
+
+\Needspace{13\baselineskip}
+\begin{problem}{4}
+Find a solution of the linear nonhomogeneous recurrence relation
+\[
+    a_{n+3}-7a_{n+2}+16a_{n+1}-12a_n=n4^n,
+    \qquad n\geq0,
+\]
+subject to $a_0=-2$, $a_1=0$, and $a_2=5$.
+\end{problem}
+
+\begin{solution}
+The characteristic polynomial of the associated homogeneous recurrence factors as
+\[
+    r^3-7r^2+16r-12=(r-2)^2(r-3).
+\]
+Thus its general solution is
+\[
+    a_n^{(h)}=(\alpha+\beta n)2^n+\gamma3^n.
+\]
+Since $4$ is not a characteristic root and the nonhomogeneous term is $n4^n$, seek a particular solution $a_n^{(p)}=(An+B)4^n$. Substitution gives
+\[
+\begin{aligned}
+    &a_{n+3}^{(p)}-7a_{n+2}^{(p)}
+       +16a_{n+1}^{(p)}-12a_n^{(p)}\\
+    &\quad=4^n\bigl[64(A(n+3)+B)-112(A(n+2)+B)\\
+    &\qquad\qquad\quad+64(A(n+1)+B)-12(An+B)\bigr]\\
+    &\quad=4^n(4An+32A+4B).
+\end{aligned}
+\]
+Matching this with $n4^n$ gives
+\[
+    4A=1,\qquad 32A+4B=0,
+    \qquad\text{so}\qquad A=\frac14,\quad B=-2.
+\]
+Consequently,
+\[
+    a_n=(\alpha+\beta n)2^n+\gamma3^n
+        +\left(\frac{n}{4}-2\right)4^n.
+\]
+Applying the three initial conditions yields
+\[
+\begin{aligned}
+    \alpha+\gamma&=0,\\
+    2\alpha+2\beta+3\gamma&=7,\\
+    4\alpha+8\beta+9\gamma&=29.
+\end{aligned}
+\]
+Using $\gamma=-\alpha$, the remaining equations reduce to
+\[
+    2\beta-\alpha=7,\qquad 8\beta-5\alpha=29.
+\]
+Thus $\alpha=-1$, $\beta=3$, and $\gamma=1$. Therefore
+\[
+    a_n=(3n-1)2^n+3^n
+        +\left(\frac{n}{4}-2\right)4^n.
+\]
+\end{solution}
+
+\end{document}

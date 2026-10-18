@@ -43,7 +43,7 @@ For $\lambda_1=-1$, solving $(\mathbf{A}+\mathbf{I}_3)\mathbf{v}_1=\mathbf{0}$ g
 The repeated eigenvalue $\lambda_2=2$ has only one linearly independent eigenvector, since
 \[
     \ker(\mathbf{A}-2\mathbf{I}_3)
-    =\operatorname{Span}\!\left(\begin{pmatrix}0\\1\\-1\end{pmatrix}\right).
+    =\operatorname{span}\!\left(\begin{pmatrix}0\\1\\-1\end{pmatrix}\right).
 \]
 Take $\mathbf{v}_2=(0,1,-1)^{\mathsf T}$. To obtain a third solution, find a generalized eigenvector $\mathbf{w}$ satisfying
 \[
@@ -64,9 +64,9 @@ and it is linearly independent of $e^{-t}\mathbf{v}_1$ and $e^{2t}\mathbf{v}_2$.
     \boxed{\begin{aligned}
         \mathbf{x}(t)={}&c_1e^{-t}\begin{pmatrix}-3\\4\\2\end{pmatrix}
         +c_2e^{2t}\begin{pmatrix}0\\1\\-1\end{pmatrix}\\
-        &+c_3e^{2t}\left[
+        &+c_3e^{2t}\left(
           t\begin{pmatrix}0\\1\\-1\end{pmatrix}
-          +\begin{pmatrix}1\\0\\1\end{pmatrix}\right].
+          +\begin{pmatrix}1\\0\\1\end{pmatrix}\right).
     \end{aligned}}
 \]
 \end{solution}
@@ -102,9 +102,9 @@ The equation $2w_1+w_2=-1$ is satisfied, for example, by $\mathbf{w}=(-1/2,0)^{\
 \[
     \boxed{\begin{aligned}
        \mathbf{x}(t)={}&c_1e^t\begin{pmatrix}-1\\2\end{pmatrix}\\
-        &+c_2e^t\left[
+        &+c_2e^t\left(
         t\begin{pmatrix}-1\\2\end{pmatrix}
-        +\begin{pmatrix}-\frac12\\0\end{pmatrix}\right].
+        +\begin{pmatrix}-\frac12\\0\end{pmatrix}\right).
     \end{aligned}}
 \]
 \end{solution}
@@ -143,9 +143,9 @@ Since $e^{0t}=1$, the general solution is
 \[
     \mathbf{x}(t)
     =c_1\begin{pmatrix}1\\3\end{pmatrix}
-    +c_2\left[
+    +c_2\left(
         t\begin{pmatrix}1\\3\end{pmatrix}
-        +\begin{pmatrix}0\\-1\end{pmatrix}\right].
+        +\begin{pmatrix}0\\-1\end{pmatrix}\right).
 \]
 Applying the initial condition at $t=0$ gives
 \[

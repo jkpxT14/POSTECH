@@ -1,0 +1,393 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261019 Quiz for MATH210 Applied Complex Variables},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH210 Applied Complex Variables},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261019 Quiz}
+
+\begin{exercise}{47.3}
+Show that if $C$ is the boundary of the triangle with vertices at the points $0$, $3i$, and $-4$, oriented in the counterclockwise direction (see Fig.~50), then
+\[
+    \left|\int_C (e^z-\overline z)\,\dd z\right|\le60.
+\]
+\begin{suggestion}
+Note that $|e^z-\overline z|\le e^x+\sqrt{x^2+y^2}$ when $z=x+iy$.
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Every point $z=x+iy$ in the closed triangle satisfies $x\le0$ and $|z|\le4$. Indeed, each point is a convex combination of $0$, $3i$, and $-4$, so the triangle inequality gives $|z|\le4$. Hence, on $C$,
+\[
+    |e^z-\overline z|\le |e^z|+|z|=e^x+|z|\le1+4=5.
+\]
+The three sides have lengths $3$, $4$, and $5$, respectively; thus $L(C)=12$. The ML inequality now yields
+\[
+    \boxed{\left|\int_C(e^z-\overline z)\,\dd z\right|\le 5\cdot12=60.}
+\]
+\end{solution}
+
+\begin{exercise}{47.4}
+Let $C_R$ denote the upper half of the circle $|z|=R$ ($R>2$), taken in the counterclockwise direction. Show that
+\[
+    \left|\int_{C_R}\frac{2z^2-1}{z^4+5z^2+4}\,\dd z\right|
+    \le\frac{\pi R(2R^2+1)}{(R^2-1)(R^2-4)}.
+\]
+Then, by dividing the numerator and denominator on the right here by $R^4$, show that the value of the integral tends to zero as $R$ tends to infinity. (Compare with Example~2 in Sec.~47.)
+\end{exercise}
+
+\begin{solution}
+Since $z^4+5z^2+4=(z^2+1)(z^2+4)$, for $|z|=R>2$ we have
+\[
+    |2z^2-1|\le2R^2+1,\qquad
+    |z^2+1|\ge R^2-1,\qquad
+    |z^2+4|\ge R^2-4.
+\]
+The length of $C_R$ is $\pi R$. Therefore the ML inequality gives
+\[
+    \boxed{\left|\int_{C_R}\frac{2z^2-1}{z^4+5z^2+4}\,\dd z\right|
+    \le\frac{\pi R(2R^2+1)}{(R^2-1)(R^2-4)}.}
+\]
+Writing the upper bound as
+\[
+    \frac{\pi(2/R+1/R^3)}{(1-1/R^2)(1-4/R^2)}\longrightarrow0
+    \qquad(R\to\infty),
+\]
+we conclude by the squeeze theorem that the contour integral tends to $0$.
+\end{solution}
+
+\begin{exercise}{47.5}
+Let $C_R$ be the circle $|z|=R$ ($R>1$), described in the counterclockwise direction. Show that
+\[
+    \left|\int_{C_R}\frac{\Log z}{z^2}\,\dd z\right|
+    <2\pi\left(\frac{\pi+\ln R}{R}\right),
+\]
+and then use l'Hospital's rule to show that the value of this integral tends to zero as $R$ tends to infinity.
+\end{exercise}
+
+\begin{solution}
+On $C_R$, write $\Log z=\ln R+i\Arg z$, where $-\pi<\Arg z\le\pi$. Since $\ln R>0$,
+\[
+    |\Log z|\le\sqrt{(\ln R)^2+\pi^2}<\ln R+\pi.
+\]
+Thus the modulus of the integrand is strictly less than $(\ln R+\pi)/R^2$. Since $L(C_R)=2\pi R$, the ML inequality gives
+\[
+    \boxed{\left|\int_{C_R}\frac{\Log z}{z^2}\,\dd z\right|
+      <2\pi\frac{\pi+\ln R}{R}.}
+\]
+Here the principal logarithm has a jump at $z=-R$; the integral is understood piecewise along the parametrized circle, with the one-sided limiting values at that point. This does not affect the estimate. Finally,
+\[
+    \lim_{R\to\infty}\frac{\ln R}{R}
+    \overset{\mathrm{L'H\hat{o}pital}}{=}
+    \lim_{R\to\infty}\frac{1/R}{1}=0,
+\]
+so the integral tends to $0$.
+\end{solution}
+
+\begin{exercise}{47.6}
+Let $C_\rho$ denote a circle $|z|=\rho$ ($0<\rho<1$), oriented in the counterclockwise direction, and suppose that $f(z)$ is analytic in the disk $|z|\le1$. Show that if $z^{-1/2}$ represents any particular branch of that power of $z$, then there is a nonnegative constant $M$, independent of $\rho$, such that
+\[
+    \left|\int_{C_\rho}z^{-1/2}f(z)\,\dd z\right|\le 2\pi M\sqrt\rho.
+\]
+Thus show that the value of the integral here approaches $0$ as $\rho$ tends to $0$.
+\begin{suggestion}
+Note that since $f(z)$ is analytic, and therefore continuous, throughout the disk $|z|\le1$, it is bounded there (Sec.~18).
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+By continuity on the closed unit disk, there is a constant
+\[
+    M=\max_{|z|\le1}|f(z)|\ge0.
+\]
+For $|z|=\rho$, every value of the power $z^{-1/2}$ has modulus $\rho^{-1/2}$. Consequently,
+\[
+    |z^{-1/2}f(z)|\le\frac{M}{\sqrt\rho}.
+\]
+As $L(C_\rho)=2\pi\rho$, the ML inequality yields
+\[
+    \boxed{\left|\int_{C_\rho}z^{-1/2}f(z)\,\dd z\right|
+      \le\frac{M}{\sqrt\rho}(2\pi\rho)=2\pi M\sqrt\rho.}
+\]
+A fixed analytic branch of $z^{-1/2}$ cannot be defined on a neighborhood of the entire circle; if its cut meets $C_\rho$, the integral is interpreted on the resulting arcs using one-sided values. The bound is valid for every such choice. Since $M$ does not depend on $\rho$, the integral tends to $0$ as $\rho\to0^+$.
+\end{solution}
+
+\begin{exercise}{49.2}
+By finding an antiderivative, evaluate each of these integrals, where the path is any contour between the indicated limits of integration:
+\begin{exercisesubparts}
+\item $\displaystyle\int_0^{1+i}z^2\,\dd z$;
+\item $\displaystyle\int_0^{\pi+2i}\cos\left(\frac z2\right)\,\dd z$;
+\item $\displaystyle\int_1^3(z-2)^3\,\dd z$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Each integrand has an entire antiderivative, so the integral depends only on its endpoints.
+\begin{exercisesubparts}
+\item With $F(z)=z^3/3$,
+\[
+    \int_0^{1+i}z^2\,\dd z=\frac{(1+i)^3}{3}
+    =\boxed{\frac23(-1+i)}.
+\]
+\item With $F(z)=2\sin(z/2)$,
+\[
+    \int_0^{\pi+2i}\cos\left(\frac z2\right)\,\dd z
+    =2\sin\left(\frac\pi2+i\right)=2\cosh1
+    =\boxed{e+e^{-1}}.
+\]
+\item With $F(z)=(z-2)^4/4$,
+\[
+    \int_1^3(z-2)^3\,\dd z
+    =\frac{(3-2)^4-(1-2)^4}{4}=\boxed{0}.
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{49.3}
+Use the theorem in Sec.~48 to show that
+\[
+    \int_{C_0}(z-z_0)^{n-1}\,\dd z=0\qquad(n=\pm1,\pm2,\ldots)
+\]
+when $C_0$ is any closed contour which does not pass through the point $z_0$. (Compare with Exercise~13, Sec.~46.)
+\end{exercise}
+
+\begin{solution}
+For every nonzero integer $n$, the function
+\[
+    F(z)=\frac{(z-z_0)^n}{n}
+\]
+is single-valued and analytic on $\C\setminus\{z_0\}$, with
+\[
+    F'(z)=(z-z_0)^{n-1}.
+\]
+Since $C_0$ lies in this domain, the antiderivative theorem of Sec.~48 applies even if $C_0$ surrounds $z_0$. The initial and terminal points coincide, and hence
+\[
+    \boxed{\int_{C_0}(z-z_0)^{n-1}\,\dd z=0\qquad(n\in\Z\setminus\{0\}).}
+\]
+\end{solution}
+
+\begin{exercise}{49.5}
+Show that
+\[
+    \int_{-1}^{1}z^i\,\dd z=\frac{1+e^{-\pi}}{2}(1-i),
+\]
+where the integrand denotes the principal branch
+\[
+    z^i=\exp(i\Log z)\qquad(|z|>0,\ -\pi<\Arg z<\pi)
+\]
+of $z^i$ and where the path of integration is any contour from $z=-1$ to $z=1$ that, except for its end points, lies above the real axis. (Compare with Exercise~6, Sec.~46.)
+\begin{suggestion}
+Use an antiderivative of the branch
+\[
+    z^i=\exp(i\log z)\qquad\left(|z|>0,\ -\frac\pi2<\arg z<\frac{3\pi}{2}\right)
+\]
+of the same power function.
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Choose the analytic logarithm $L$ with
+\[
+    L(z)=\ln|z|+i\theta(z),\qquad -\frac\pi2<\theta(z)<\frac{3\pi}{2}.
+\]
+Its domain contains both endpoints and the entire given contour, since the latter lies in the upper half-plane except at its endpoints. Moreover, $L$ agrees with the principal logarithm at points strictly above the real axis. Put
+\[
+    f(z)=e^{iL(z)},\qquad
+    F(z)=\frac{e^{(1+i)L(z)}}{1+i}.
+\]
+Since $L'(z)=1/z$, differentiation gives
+\[
+    F'(z)=\frac{1+i}{1+i}\frac{e^{(1+i)L(z)}}{z}
+    =e^{iL(z)}=f(z).
+\]
+The endpoint values are $L(1)=0$ and $L(-1)=i\pi$; hence
+\[
+    F(1)=\frac1{1+i},\qquad
+    F(-1)=\frac{e^{(1+i)i\pi}}{1+i}=-\frac{e^{-\pi}}{1+i}.
+\]
+Thus
+\[
+    \boxed{\int_{-1}^{1}z^i\,\dd z=F(1)-F(-1)
+       =\frac{1+e^{-\pi}}{1+i}=\frac{1+e^{-\pi}}2(1-i).}
+\]
+Strictly speaking, the principal branch in the question is undefined at $-1$. The displayed integral uses its limit from the upper half-plane; the branch $L$ supplies its continuous extension there.
+\end{solution}
+
+\begin{exercise}{53.2}
+Let $C_1$ denote the positively oriented boundary of the square whose sides lie along the lines $x=\pm1$, $y=\pm1$ and let $C_2$ be the positively oriented circle $|z|=4$ (Fig.~65). With the aid of the corollary in Sec.~53, point out why
+\[
+    \int_{C_1}f(z)\,\dd z=\int_{C_2}f(z)\,\dd z
+\]
+when
+\begin{exercisesubparts}
+\item $\displaystyle f(z)=\frac1{3z^2+1}$;
+\item $\displaystyle f(z)=\frac{z+2}{\sin(z/2)}$;
+\item $\displaystyle f(z)=\frac z{1-e^z}$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+The square is strictly inside the circle. By the corollary in Sec.~53, it suffices in each case to check that $f$ is analytic on and throughout the closed region between $C_1$ and $C_2$.
+\begin{exercisesubparts}
+\item The only singularities occur at $z=\pm i/\sqrt3$. Both lie strictly inside $C_1$, since $1/\sqrt3<1$.
+\item The zeros of $\sin(z/2)$ are $z=2k\pi$, $k\in\Z$. The origin lies inside $C_1$, while $|2k\pi|\ge2\pi>4$ for $k\ne0$.
+\item The zeros of $1-e^z$ are $z=2k\pi i$, $k\in\Z$. The apparent singularity at $z=0$ is removable because
+\[
+    \lim_{z\to0}\frac z{1-e^z}=-1.
+\]
+All other singularities lie outside $C_2$, since $|2k\pi i|\ge2\pi>4$ for $k\ne0$.
+\end{exercisesubparts}
+Therefore the required analyticity condition holds in all three cases, and
+\[
+    \boxed{\int_{C_1}f(z)\,\dd z=\int_{C_2}f(z)\,\dd z.}
+\]
+\end{solution}
+
+\begin{exercise}{53.3}
+If $C_0$ denotes a positively oriented circle $|z-z_0|=R$, then
+\[
+    \int_{C_0}(z-z_0)^{n-1}\,\dd z=
+    \begin{cases}
+       0,&n=\pm1,\pm2,\ldots,\\
+       2\pi i,&n=0,
+    \end{cases}
+\]
+according to Exercise~13, Sec.~46. Use that result and the corollary in Sec.~53 to show that if $C$ is the boundary of the rectangle $0\le x\le3$, $0\le y\le2$, described in the positive sense, then
+\[
+    \int_C(z-2-i)^{n-1}\,\dd z=
+    \begin{cases}
+       0,&n=\pm1,\pm2,\ldots,\\
+       2\pi i,&n=0.
+    \end{cases}
+\]
+\end{exercise}
+
+\begin{solution}
+Put $z_0=2+i$. This point is strictly inside the rectangle, so choose $0<R<1$ and let $C_0$ be the positively oriented circle $|z-z_0|=R$. Then $C_0$ lies strictly inside $C$. For every integer $n$, the function $(z-z_0)^{n-1}$ is analytic at every point between and on $C_0$ and $C$. The deformation corollary in Sec.~53 therefore gives
+\[
+    \int_C(z-z_0)^{n-1}\,\dd z
+    =\int_{C_0}(z-z_0)^{n-1}\,\dd z.
+\]
+Applying the supplied circle integral yields
+\[
+    \boxed{\int_C(z-2-i)^{n-1}\,\dd z=
+    \begin{cases}
+        0,&n\in\Z\setminus\{0\},\\
+        2\pi i,&n=0.
+    \end{cases}}
+\]
+\end{solution}
+
+\begin{exercise}{53.4}
+Use the following method to derive the integration formula
+\[
+    \int_0^\infty e^{-x^2}\cos(2bx)\,\dd x
+    =\frac{\sqrt\pi}{2}e^{-b^2}\qquad(b>0).
+\]
+\begin{exercisesubparts}
+\item Show that the sum of the integrals of $e^{-z^2}$ along the lower and upper horizontal legs of the rectangular path in Fig.~66 (with vertices $-a$, $a$, $a+ib$, and $-a+ib$, in counterclockwise order) can be written
+\[
+    2\int_0^a e^{-x^2}\,\dd x
+    -2e^{b^2}\int_0^a e^{-x^2}\cos(2bx)\,\dd x,
+\]
+and that the sum of the integrals along the vertical legs on the right and left can be written
+\[
+    ie^{-a^2}\int_0^b e^{y^2}e^{-i2ay}\,\dd y
+    -ie^{-a^2}\int_0^b e^{y^2}e^{i2ay}\,\dd y.
+\]
+Thus, with the aid of the Cauchy--Goursat theorem, show that
+\[
+    \int_0^a e^{-x^2}\cos(2bx)\,\dd x
+    =e^{-b^2}\int_0^a e^{-x^2}\,\dd x
+     +e^{-(a^2+b^2)}\int_0^b e^{y^2}\sin(2ay)\,\dd y.
+\]
+\item By accepting the fact that
+\[
+    \int_0^\infty e^{-x^2}\,\dd x=\frac{\sqrt\pi}{2}
+\]
+and observing that
+\[
+    \left|\int_0^b e^{y^2}\sin(2ay)\,\dd y\right|
+    \le\int_0^b e^{y^2}\,\dd y,
+\]
+obtain the desired integration formula by letting $a$ tend to infinity in the equation at the end of part (a).
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Let $C$ be the positively oriented rectangle with vertices $-a$, $a$, $a+ib$, and $-a+ib$, where $a,b>0$.
+\begin{exercisesubparts}
+\item On the lower edge $z=x$ with $-a\le x\le a$, and on the upper edge $z=x+ib$ with $a\ge x\ge-a$. Hence the sum of the two horizontal integrals is
+\begin{align*}
+    &\int_{-a}^{a}e^{-x^2}\,\dd x
+       -e^{b^2}\int_{-a}^{a}e^{-x^2}e^{-2ibx}\,\dd x\\
+    &\qquad=2\int_0^a e^{-x^2}\,\dd x
+       -2e^{b^2}\int_0^a e^{-x^2}\cos(2bx)\,\dd x,
+\end{align*}
+since the imaginary part of the second integral is odd in $x$.
+On the right edge $z=a+iy$ with $0\le y\le b$, and on the left edge $z=-a+iy$ with $b\ge y\ge0$. Their sum is
+\begin{align*}
+    &ie^{-a^2}\int_0^b e^{y^2}e^{-2iay}\,\dd y
+     -ie^{-a^2}\int_0^b e^{y^2}e^{2iay}\,\dd y\\
+    &\qquad=2e^{-a^2}\int_0^b e^{y^2}\sin(2ay)\,\dd y,
+\end{align*}
+using $e^{-it}-e^{it}=-2i\sin t$. As $e^{-z^2}$ is entire, the Cauchy--Goursat theorem shows that the sum of all four integrals is zero. Dividing the resulting equality by $2e^{b^2}$ gives
+\[
+    \boxed{\int_0^a e^{-x^2}\cos(2bx)\,\dd x
+    =e^{-b^2}\int_0^a e^{-x^2}\,\dd x
+    +e^{-(a^2+b^2)}\int_0^b e^{y^2}\sin(2ay)\,\dd y.}
+\]
+\item For fixed $b>0$, the last term satisfies
+\[
+    \left|e^{-(a^2+b^2)}\int_0^b e^{y^2}\sin(2ay)\,\dd y\right|
+    \le e^{-(a^2+b^2)}\int_0^b e^{y^2}\,\dd y\longrightarrow0
+\]
+as $a\to\infty$. Also, $e^{-x^2}|\cos(2bx)|\le e^{-x^2}$, so the integral on the left converges absolutely. Taking the limit in part (a) and using the given Gaussian integral, we obtain
+\[
+    \boxed{\int_0^\infty e^{-x^2}\cos(2bx)\,\dd x
+     =e^{-b^2}\frac{\sqrt\pi}{2}.}
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{53.7}
+Show that if $C$ is a positively oriented simple closed contour, then the area of the region enclosed by $C$ can be written
+\[
+    \frac1{2i}\int_C\overline z\,\dd z.
+\]
+\begin{suggestion}
+Note that expression (4), Sec.~50, can be used here even though the function $f(z)=\overline z$ is not analytic anywhere [see Example~2, Sec.~19].
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Write $f(z)=\overline z=x-iy=u(x,y)+iv(x,y)$, so $u=x$ and $v=-y$. Expression (4) of Sec.~50 follows from Green's theorem and remains valid for this continuously differentiable, nonanalytic function:
+\[
+    \int_C f(z)\,\dd z
+     =\iint_D(-v_x-u_y)\,\dd A
+      +i\iint_D(u_x-v_y)\,\dd A,
+\]
+where $D$ is the region enclosed by $C$. Since
+\[
+    -v_x-u_y=0,\qquad u_x-v_y=1-(-1)=2,
+\]
+we get
+\[
+    \int_C\overline z\,\dd z
+      =2i\iint_D\dd A=2i\operatorname{Area}(D).
+\]
+Thus
+\[
+    \boxed{\operatorname{Area}(D)=\frac1{2i}\int_C\overline z\,\dd z.}
+\]
+\end{solution}
+
+\end{document}

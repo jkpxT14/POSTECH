@@ -1,0 +1,772 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\usepackage{tikz}
+
+\hypersetup{
+    pdftitle={20261022 Quiz for MATH102 Calculus II},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH102 Calculus II},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261022 Quiz}
+
+\begin{problem}{3.46}
+Let $\mathbf F(x,y,z)=(xy^2,yz^2,zx^2)$. Find
+$\operatorname{curl}\mathbf F(1,2,3)$ and
+$\operatorname{div}\mathbf F(1,2,3)$.
+\end{problem}
+\begin{solution}
+Using the definitions of curl and divergence,
+\[
+\begin{aligned}
+\nabla\times\mathbf F
+ &=\left(\frac{\partial(zx^2)}{\partial y}-\frac{\partial(yz^2)}{\partial z},
+          \frac{\partial(xy^2)}{\partial z}-\frac{\partial(zx^2)}{\partial x},
+          \frac{\partial(yz^2)}{\partial x}-\frac{\partial(xy^2)}{\partial y}\right)\\
+ &=(-2yz,-2xz,-2xy),\\
+\nabla\cdot\mathbf F
+ &=\frac{\partial(xy^2)}{\partial x}
+   +\frac{\partial(yz^2)}{\partial y}
+   +\frac{\partial(zx^2)}{\partial z}
+ =y^2+z^2+x^2.
+\end{aligned}
+\]
+Consequently,
+\[
+\boxed{\nabla\times\mathbf F(1,2,3)=(-12,-6,-4)},
+\qquad
+\boxed{\nabla\cdot\mathbf F(1,2,3)=14}.
+\]
+\end{solution}
+
+\begin{problem}{3.48}
+Verify that
+\[
+\operatorname{curl}(u(x,y),v(x,y),0)=(0,0,v_x-u_y).
+\]
+\end{problem}
+\begin{solution}
+Regard $(u(x,y),v(x,y),0)$ as a vector field on $\R^3$ independent
+of $z$. Then
+\[
+\begin{aligned}
+\nabla\times(u,v,0)
+ &=\left(\frac{\partial 0}{\partial y}-\frac{\partial v}{\partial z},
+          \frac{\partial u}{\partial z}-\frac{\partial 0}{\partial x},
+          \frac{\partial v}{\partial x}-\frac{\partial u}{\partial y}\right)\\
+ &=\boxed{(0,0,v_x-u_y)},
+\end{aligned}
+\]
+as required.
+\end{solution}
+
+\begin{problem}{4.1}
+Compute the following partial derivatives.
+\begin{problemsubparts}
+\item $f_{xx}$ and $f_{zz}$ for $(x,y,z)\ne(0,0,0)$ if
+      $f(x,y,z)=(x^2+y^2+z^2)^{-1/2}$.
+\item $f_{xyz}$ if $f(x,y,z)=xy+yz+zx$.
+\item $g_{xxy}-g_{xyx}$ if $g\colon\R^3\to\R$ is three times
+      continuously differentiable.
+\item $h_{x_j}$ and $h_{x_jx_k}$ if $h(\mathbf X)=\mathbf A\cdot\mathbf X$,
+      where $\mathbf A=(a_1,\dots,a_n)$ is constant and
+      $\mathbf X=(x_1,\dots,x_n)$.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+\begin{problemsubparts}
+\item Write $r^2=x^2+y^2+z^2$. For $r>0$,
+\[
+ f_x=-xr^{-3},\qquad f_z=-zr^{-3},
+\]
+so the product and chain rules give
+\[
+\begin{aligned}
+ f_{xx}&=-r^{-3}+3x^2r^{-5}
+      =\boxed{\frac{3x^2-r^2}{r^5}},\\
+ f_{zz}&=-r^{-3}+3z^2r^{-5}
+      =\boxed{\frac{3z^2-r^2}{r^5}}.
+\end{aligned}
+\]
+\item Since $f_x=y+z$, we have $f_{xy}=1$ and hence
+$\boxed{f_{xyz}=0}$.
+\item Theorem~4.1 applies to the $C^3$ function $g$.
+Both derivatives differentiate twice with respect to $x$ and once
+with respect to $y$, so $g_{xxy}=g_{xyx}$ and
+$\boxed{g_{xxy}-g_{xyx}=0}$.
+\item Since $h(\mathbf X)=\sum_{i=1}^n a_ix_i$,
+\[
+ \boxed{h_{x_j}=a_j},\qquad \boxed{h_{x_jx_k}=0}
+ \quad(1\le j,k\le n).
+\]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{4.3}
+Let $f(x,y)=(x^2+y^2)^{3/2}$. Find $f_{xy}$.
+\end{problem}
+\begin{solution}
+The first partial derivative is
+\[
+ f_x(x,y)=3x\sqrt{x^2+y^2},
+\]
+including at the origin, where direct differentiation gives $f_x(0,0)=0$.
+For $(x,y)\ne(0,0)$, the chain rule yields
+\[
+ f_{xy}(x,y)=\frac{3xy}{\sqrt{x^2+y^2}}.
+\]
+At the origin, the definition of the partial derivative gives
+\[
+ f_{xy}(0,0)=\lim_{h\to0}\frac{f_x(0,h)-f_x(0,0)}{h}=0.
+\]
+Thus
+\[
+\boxed{f_{xy}(x,y)=
+ \begin{cases}
+ \dfrac{3xy}{\sqrt{x^2+y^2}},&(x,y)\ne(0,0),\\[5pt]
+ 0,&(x,y)=(0,0).
+ \end{cases}}
+\]
+\end{solution}
+
+\begin{problem}{4.13}
+Let
+\[
+ f(x,y)=(x-1)^2+2(y-2)^2+(y-2)^3
+       =1-2x+x^2+4y-4y^2+y^3.
+\]
+\begin{problemsubparts}
+\item Calculate $\nabla f$ and find the two points where $\nabla f=0$.
+\item Calculate the Hessian matrix of $f$ at the two points in part (a).
+\item Determine whether $f$ has a local maximum, minimum, or saddle
+at the points you found.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+\begin{problemsubparts}
+\item Differentiating the expression in shifted coordinates gives
+\[
+ \nabla f(x,y)=\bigl(2(x-1),\,4(y-2)+3(y-2)^2\bigr).
+\]
+Thus $x=1$ and $(y-2)(3y-2)=0$, so
+\[
+ \boxed{\mathbf P=(1,2),\qquad \mathbf Q=(1,\tfrac23)}.
+\]
+\item The Hessian is
+\[
+ \operatorname{Hess}f(x,y)=
+ \begin{pmatrix}2&0\\0&4+6(y-2)\end{pmatrix}.
+\]
+In particular,
+\[
+ \boxed{\operatorname{Hess}f(\mathbf P)=\begin{pmatrix}2&0\\0&4\end{pmatrix}},
+ \qquad
+ \boxed{\operatorname{Hess}f(\mathbf Q)=\begin{pmatrix}2&0\\0&-4\end{pmatrix}}.
+\]
+\item The first Hessian is positive definite, so $\mathbf P$ is a
+\boxed{\text{strict local minimum}}. The second is indefinite,
+so $\mathbf Q$ is a \boxed{\text{saddle}}.
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{4.15}
+Write each quadratic function in the form
+$\mathbf X\cdot\mathbf S\mathbf X$ for some symmetric matrix $\mathbf S$.
+\begin{problemsubparts}
+\item $3x_1^2+4x_1x_2+x_2^2$.
+\item $-x_1^2+5x_1x_2+3x_2^2$.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+For $\mathbf X=(x_1,x_2)$ and symmetric
+$\mathbf S=(s_{ij})$, the quadratic form is
+\[
+ \mathbf X\cdot\mathbf S\mathbf X
+ =s_{11}x_1^2+2s_{12}x_1x_2+s_{22}x_2^2.
+\]
+Therefore the coefficients give
+\begin{problemsubparts}
+\item $\displaystyle\boxed{\mathbf S=\begin{pmatrix}3&2\\2&1\end{pmatrix}}$.
+\item $\displaystyle\boxed{\mathbf S=\begin{pmatrix}-1&\frac52\\[2pt]\frac52&3\end{pmatrix}}$.
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{4.16}
+Let $f(x,y)=x^2+2xy+y^3$. Determine all local extrema.
+\end{problem}
+\begin{solution}
+The critical points satisfy
+\[
+ f_x=2x+2y=0,\qquad f_y=2x+3y^2=0.
+\]
+Substituting $x=-y$ into the second equation gives
+$y(3y-2)=0$. Hence the only critical points are
+\[
+ \mathbf P=(0,0),\qquad \mathbf Q=(-\tfrac23,\tfrac23).
+\]
+The Hessian is
+\[
+ \operatorname{Hess}f(x,y)=\begin{pmatrix}2&2\\2&6y\end{pmatrix},
+ \qquad \det(\operatorname{Hess}f)=12y-4.
+\]
+At $\mathbf P$, its determinant is $-4<0$, so $\mathbf P$ is a saddle.
+At $\mathbf Q$, the leading principal minors are $2>0$ and $4>0$,
+so $\mathbf Q$ is a strict local minimum. Moreover,
+\[
+ f(\mathbf Q)=\frac49-\frac89+\frac8{27}=-\frac4{27}.
+\]
+Thus the only local extremum is
+\[
+ \boxed{\text{a strict local minimum at }(-\tfrac23,\tfrac23),
+ \quad f=-\tfrac4{27}};
+\]
+there is no local maximum.
+\end{solution}
+
+\begin{problem}{4.17}
+Let $f(x,y)=-x^3+x^2+xy+3y^2$.
+Show that $f(0,0)$ is a local minimum.
+\end{problem}
+\begin{solution}
+We have
+\[
+ \nabla f(x,y)=(-3x^2+2x+y,\,x+6y),
+ \qquad \nabla f(0,0)=\mathbf0.
+\]
+The Hessian at the origin is
+\[
+ \operatorname{Hess}f(0,0)
+ =\begin{pmatrix}2&1\\1&6\end{pmatrix}.
+\]
+Its leading principal minors are $2>0$ and $12-1=11>0$,
+so the Hessian is positive definite. The second derivative test
+therefore shows that $\boxed{f(0,0)=0}$ is a strict local minimum.
+\end{solution}
+
+\begin{problem}{4.20}
+Suppose a $C^2$ function $f(x,y)$ satisfies
+\[
+ f_{xx}+f_{yy}=0.
+\]
+\begin{problemsubparts}
+\item Suppose also that $f_{xx}$ is not zero at any point.
+Show that $f$ does not have any local maximum or minimum values.
+\item Suppose that at every point $(x,y)$ at least one of $f_{xx}$,
+$f_{xy}$, or $f_{yy}$ is not zero. Show that $f$ does not have any
+local maximum or minimum values.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+The given equation says $f_{yy}=-f_{xx}$, so
+\[
+ \operatorname{Hess}f=
+ \begin{pmatrix}f_{xx}&f_{xy}\\f_{xy}&-f_{xx}\end{pmatrix},
+ \qquad
+ \det(\operatorname{Hess}f)=-f_{xx}^2-f_{xy}^2.
+\]
+\begin{problemsubparts}
+\item Since $f_{xx}\ne0$, the determinant is negative everywhere.
+Thus the Hessian is indefinite at every point, ruling out both
+local maxima and local minima of a $C^2$ function.
+\item Because $f_{yy}=-f_{xx}$, the stated assumption ensures
+that $f_{xx}$ and $f_{xy}$ cannot both vanish. Hence again
+$\det(\operatorname{Hess}f)<0$ everywhere. The Hessian is indefinite,
+so there are no local extrema.
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{4.21}
+Let $f(x,y)=x^2+2y^2$ and $g(x,y)=x^4+2y^2$.
+Show that $f$ and $g$ attain strict local minimums at the origin.
+Show that $\operatorname{Hess}f(0,0)$ is positive definite but
+$\operatorname{Hess}g(0,0)$ is not positive definite.
+\end{problem}
+\begin{solution}
+Both functions are positive away from the origin and vanish there:
+for $(x,y)\ne(0,0)$,
+\[
+ f(x,y)=x^2+2y^2>0,
+ \qquad g(x,y)=x^4+2y^2>0.
+\]
+Thus both have strict (indeed, global) minima at $(0,0)$.
+On the other hand,
+\[
+ \operatorname{Hess}f(0,0)=\begin{pmatrix}2&0\\0&4\end{pmatrix},
+ \qquad
+ \operatorname{Hess}g(0,0)=\begin{pmatrix}0&0\\0&4\end{pmatrix}.
+\]
+The first matrix is positive definite. The second is not,
+since its quadratic form is zero on every vector $(t,0)$.
+This shows that a positive definite Hessian is sufficient,
+but not necessary, for a strict local minimum.
+\end{solution}
+
+\begin{problem}{4.22}
+Find the point on the plane
+\[
+ z=x-2y+3
+\]
+that is closest to the origin, by finding where the square of the
+distance between the origin and a point of the plane is a local minimum.
+\end{problem}
+\begin{solution}
+For a point $(x,y,x-2y+3)$ on the plane, the squared distance is
+\[
+ D(x,y)=x^2+y^2+(x-2y+3)^2.
+\]
+The equations for a critical point are
+\[
+ \begin{aligned}
+ D_x&=2x+2(x-2y+3)=0,\\
+ D_y&=2y-4(x-2y+3)=0.
+ \end{aligned}
+\]
+Equivalently,
+$2x-2y+3=0$ and $-2x+5y-6=0$, giving
+$x=-\frac12$, $y=1$, and $z=\frac12$.
+Moreover,
+\[
+ \operatorname{Hess}D=\begin{pmatrix}4&-4\\-4&10\end{pmatrix}
+\]
+is positive definite because its leading principal minors are
+$4$ and $24$. Since $D$ is a positive definite quadratic polynomial
+up to translation, this critical point is its unique global minimum.
+Thus the closest point is
+\[
+ \boxed{\left(-\frac12,1,\frac12\right)}.
+\]
+\end{solution}
+
+\begin{problem}{4.24}
+Let $f(\mathbf X)=\mathbf C\cdot\mathbf X$ be a linear function
+from $\R^n$ to $\R$, and let $\mathbf A\in\R^n$.
+Show that the first- and second-order Taylor approximations to $f$
+at $\mathbf A$, $p_1$ and $p_2$, are equal to $f$.
+\end{problem}
+\begin{solution}
+Since $f$ is linear,
+\[
+ \nabla f(\mathbf X)=\mathbf C,
+ \qquad \operatorname{Hess}f(\mathbf X)=\mathbf0.
+\]
+For every increment $\mathbf H$,
+\[
+ \begin{aligned}
+ p_1(\mathbf A+\mathbf H)
+  &=f(\mathbf A)+\nabla f(\mathbf A)\cdot\mathbf H\\
+  &=\mathbf C\cdot\mathbf A+\mathbf C\cdot\mathbf H
+   =f(\mathbf A+\mathbf H),\\
+ p_2(\mathbf A+\mathbf H)
+  &=p_1(\mathbf A+\mathbf H)
+    +\tfrac12\mathbf H^{\mathsf T}
+       (\operatorname{Hess}f(\mathbf A))\mathbf H
+   =p_1(\mathbf A+\mathbf H).
+ \end{aligned}
+\]
+Thus $\boxed{p_1=p_2=f}$.
+\end{solution}
+
+\begin{problem}{4.25}
+Let $f(x,y,z)=e^y\ln(1+x)+\sin z$, defined for $x>-1$.
+\begin{problemsubparts}
+\item Show that $f$ has no local extrema.
+\item Find the second-order Taylor approximation
+$p_2(h_1,h_2,h_3)$ to $f$ at $(0,0,0)$.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+\begin{problemsubparts}
+\item We have
+\[
+ f_x(x,y,z)=\frac{e^y}{1+x}>0\qquad(x>-1).
+\]
+Thus $\nabla f$ never vanishes on the open domain,
+so $f$ has no local extrema.
+\item At the origin,
+\[
+ f(\mathbf0)=0,\qquad \nabla f(\mathbf0)=(1,0,1),
+\]
+and
+\[
+ \operatorname{Hess}f(\mathbf0)
+  =\begin{pmatrix}-1&1&0\\1&0&0\\0&0&0\end{pmatrix}.
+\]
+For $\mathbf H=(h_1,h_2,h_3)$, Taylor's formula gives
+\[
+ \begin{aligned}
+ p_2(\mathbf H)
+  &=f(\mathbf0)+\nabla f(\mathbf0)\cdot\mathbf H
+    +\tfrac12\mathbf H^{\mathsf T}
+       (\operatorname{Hess}f(\mathbf0))\mathbf H\\
+  &=\boxed{h_1+h_3-\frac12h_1^2+h_1h_2}.
+ \end{aligned}
+\]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{4.26}
+Let
+\[
+ f(x,y,z)=\frac1{1-xyz}.
+\]
+Find the first-order Taylor approximation to $f$ at
+$\mathbf A=(\frac12,\frac12,\frac12)$.
+\end{problem}
+\begin{solution}
+The point satisfies $xyz=\frac18$, so
+\[
+ f(\mathbf A)=\frac1{1-\frac18}=\frac87.
+\]
+By the chain rule,
+\[
+ \nabla f(x,y,z)=
+ \frac{(yz,xz,xy)}{(1-xyz)^2},
+ \qquad
+ \nabla f(\mathbf A)=\left(\frac{16}{49},\frac{16}{49},\frac{16}{49}\right).
+\]
+Consequently, for $\mathbf H=(h_1,h_2,h_3)$,
+\[
+ \boxed{p_1(\mathbf A+\mathbf H)
+ =\frac87+\frac{16}{49}(h_1+h_2+h_3)}.
+\]
+\end{solution}
+
+\begin{problem}{4.27}
+Let $f(x,y,z)=x^2+xy+\frac12y^2+2yz+z^3$.
+\begin{problemsubparts}
+\item Show that $\nabla f$ is the zero vector at $\mathbf0$ and at
+one other point $\mathbf A$.
+\item Use Theorem~4.10 to show that $f$ has a local minimum at $\mathbf A$.
+\item Find points arbitrarily near $(0,0,0)$ where $f$ is positive
+and where $f$ is negative, to show that $f$ has a saddle at $(0,0,0)$.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+\begin{problemsubparts}
+\item The critical-point equations are
+\[
+ \nabla f(x,y,z)=(2x+y,\,x+y+2z,\,2y+3z^2)=\mathbf0.
+\]
+The first two imply $y=-2x$ and $z=x/2$. Substituting into
+the third gives
+\[
+ -4x+\frac34x^2=0
+ \quad\Longleftrightarrow\quad x=0\ \text{or}\ x=\frac{16}{3}.
+\]
+Therefore the two critical points are
+\[
+ \boxed{\mathbf0=(0,0,0),\qquad
+ \mathbf A=(\tfrac{16}{3},-\tfrac{32}{3},\tfrac83)}.
+\]
+\item The Hessian is
+\[
+ \operatorname{Hess}f(x,y,z)=
+ \begin{pmatrix}2&1&0\\1&1&2\\0&2&6z\end{pmatrix}.
+\]
+At $\mathbf A$, its leading principal minors are
+\[
+ 2>0,\qquad
+ \det\begin{pmatrix}2&1\\1&1\end{pmatrix}=1>0,\qquad
+ \det(\operatorname{Hess}f(\mathbf A))=8>0.
+\]
+Thus Theorem~4.10 implies that $\operatorname{Hess}f(\mathbf A)$
+is positive definite. By the second derivative test,
+$\boxed{\mathbf A\text{ is a strict local minimum}}$.
+\item Along the $z$-axis,
+$f(0,0,z)=z^3$, which is positive for $z>0$ and negative
+for $z<0$. Both occur arbitrarily close to the origin, where
+$f(\mathbf0)=0$. Hence $\boxed{\mathbf0\text{ is a saddle}}$.
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{4.29}
+Let $f(\mathbf X)=\|\mathbf X\|^{-1}$ for $\mathbf X\ne\mathbf0$
+in $\R^3$, and let $\mathbf A$ be a nonzero vector in $\R^3$.
+\begin{problemsubparts}
+\item Find all first- and second-order partial derivatives of $f$.
+\item Find the second-order Taylor approximation to $f$ at $\mathbf A$.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+Write $\mathbf X=(x_1,x_2,x_3)$, $r=\|\mathbf X\|>0$,
+and let $\delta_{jk}$ be $1$ if $j=k$ and $0$ otherwise.
+\begin{problemsubparts}
+\item Differentiating $f=r^{-1}$ yields, for $1\le j,k\le3$,
+\[
+ \boxed{f_{x_j}(\mathbf X)=-\frac{x_j}{r^3}}.
+\]
+Differentiating once more gives
+\[
+ \begin{aligned}
+ f_{x_jx_k}(\mathbf X)
+  &=-\delta_{jk}r^{-3}+3x_jx_kr^{-5}\\
+  &=\boxed{\frac{3x_jx_k-r^2\delta_{jk}}{r^5}}.
+ \end{aligned}
+\]
+Equivalently,
+\[
+ \nabla f(\mathbf X)=-\frac{\mathbf X}{r^3},\qquad
+ \operatorname{Hess}f(\mathbf X)
+  =\frac{3\mathbf X\mathbf X^{\mathsf T}-r^2\mathbf I_3}{r^5}.
+\]
+\item For $\mathbf H\in\R^3$ near $\mathbf0$, the second-order
+Taylor polynomial is
+\[
+ \begin{aligned}
+ p_2(\mathbf A+\mathbf H)
+  &=f(\mathbf A)+\nabla f(\mathbf A)\cdot\mathbf H
+    +\tfrac12\mathbf H^{\mathsf T}
+      (\operatorname{Hess}f(\mathbf A))\mathbf H\\
+  &=\boxed{\frac1{\|\mathbf A\|}
+    -\frac{\mathbf A\cdot\mathbf H}{\|\mathbf A\|^3}
+    +\frac{3(\mathbf A\cdot\mathbf H)^2
+      -\|\mathbf A\|^2\|\mathbf H\|^2}{2\|\mathbf A\|^5}}.
+ \end{aligned}
+\]
+In particular, the linear term has a minus sign.
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{4.30}
+Use Theorem~4.10 to show that the following matrices are positive definite.
+\begin{problemsubparts}
+\item $\displaystyle\mathbf A=\begin{pmatrix}2&-1\\-1&1\end{pmatrix}$.
+\item $\displaystyle\mathbf B=\begin{pmatrix}2&-1&0\\-1&1&0\\0&0&4\end{pmatrix}$.
+\item $\displaystyle\mathbf C=\begin{pmatrix}2&-1&0\\-1&1&k\\0&k&6\end{pmatrix}$,
+      where $k^2<3$.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+Theorem~4.10 characterizes positive definiteness of a symmetric
+matrix by the positivity of all leading principal minors.
+\begin{problemsubparts}
+\item For $\mathbf A$, these minors are
+$2>0$ and $\det(\mathbf A)=2-1=1>0$.
+Thus $\boxed{\mathbf A\succ0}$.
+\item For $\mathbf B$, they are
+$2>0$, $1>0$, and $\det(\mathbf B)=4>0$.
+Thus $\boxed{\mathbf B\succ0}$.
+\item For $\mathbf C$, the first two are $2>0$ and $1>0$, while
+\[
+ \det(\mathbf C)
+ =2(6-k^2)-6=2(3-k^2)>0
+\]
+by the hypothesis $k^2<3$. Hence $\boxed{\mathbf C\succ0}$.
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{4.33}
+Show using Theorem~4.11 that the maximum value of
+\[
+ Q(x,y)=3x^2+2xy+3y^2
+\]
+on the unit circle $x^2+y^2=1$ is $4$.
+\end{problem}
+\begin{solution}
+The unit circle is compact, and its constraint
+$g(x,y)=x^2+y^2$ has $\nabla g\ne\mathbf0$ on the circle.
+Thus a constrained maximum satisfies Theorem~4.11:
+\[
+ (6x+2y,2x+6y)=\lambda(2x,2y).
+\]
+The resulting homogeneous linear system is
+\[
+ \begin{pmatrix}3-\lambda&1\\1&3-\lambda\end{pmatrix}
+ \begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}.
+\]
+A nonzero solution requires
+$(3-\lambda)^2-1=0$, so $\lambda=2$ or $4$.
+For $\lambda=4$, $y=x$ and the unit circle gives
+$(x,y)=\pm(1/\sqrt2,1/\sqrt2)$, at which $Q=4$.
+For $\lambda=2$, $y=-x$ and $Q=2$.
+Comparing the candidates proves
+\[
+ \boxed{\max_{x^2+y^2=1}Q(x,y)=4},
+\]
+attained at $\boxed{(x,y)=\pm(1/\sqrt2,1/\sqrt2)}$.
+\end{solution}
+
+\begin{problem}{4.35}
+Use the Lagrange multiplier method to find the point of the hyperplane
+\[
+ \mathbf C\cdot\mathbf X=0
+\]
+that is closest to a given point $\mathbf A\in\R^n$.
+\end{problem}
+\begin{solution}
+Suppose first that $\mathbf C\ne\mathbf0$, as required for a
+hyperplane. Minimize the squared distance
+$f(\mathbf X)=\|\mathbf X-\mathbf A\|^2$ under
+$g(\mathbf X)=\mathbf C\cdot\mathbf X=0$.
+The Lagrange multiplier equations give
+\[
+ 2(\mathbf X-\mathbf A)=\lambda\mathbf C,
+ \qquad \mathbf C\cdot\mathbf X=0.
+\]
+Thus $\mathbf X=\mathbf A+\frac\lambda2\mathbf C$,
+and the constraint yields
+\[
+ 0=\mathbf C\cdot\mathbf A+\frac\lambda2\|\mathbf C\|^2,
+ \qquad \lambda=-\frac{2\mathbf C\cdot\mathbf A}{\|\mathbf C\|^2}.
+\]
+Hence the nearest point, the orthogonal projection of $\mathbf A$
+onto the hyperplane, is
+\[
+ \boxed{\mathbf X=\mathbf A-
+  \frac{\mathbf C\cdot\mathbf A}{\|\mathbf C\|^2}\mathbf C}.
+\]
+Indeed, $\mathbf A-\mathbf X$ is normal to the hyperplane,
+so this is the unique global minimizer, and the distance is
+$\boxed{|\mathbf C\cdot\mathbf A|/\|\mathbf C\|}$.
+If $\mathbf C=\mathbf0$, the constraint is all of $\R^n$
+and the nearest point is simply $\mathbf A$.
+\end{solution}
+
+\begin{problem}{4.38}
+Use the Lagrange multiplier method to find the points of the curve
+\[
+ x^3+y^2=1
+\]
+that are closest to the point $(-1,0)$. See the sketch below.
+\begin{center}
+\begin{tikzpicture}[x=1.22cm,y=0.94cm,>=stealth]
+  \draw[->,thin] (-2.02,0)--(1.47,0) node[right] {$x$};
+  \draw[->,thin] (0,-2.33)--(0,2.40) node[above] {$y$};
+  \draw[thick,smooth,domain=-1.48:1,samples=190]
+      plot (\x,{sqrt(1-\x*\x*\x)});
+  \draw[thick,smooth,domain=-1.48:1,samples=190]
+      plot (\x,{-sqrt(1-\x*\x*\x)});
+  \fill (-1,0) circle (1.4pt);
+  \node[below left] at (-1,0) {$(-1,0)$};
+  \node[below right] at (1,0) {$1$};
+\end{tikzpicture}
+\end{center}
+\end{problem}
+\begin{solution}
+Minimize the squared distance
+$D(x,y)=(x+1)^2+y^2$ subject to $g(x,y)=x^3+y^2=1$.
+Since $\nabla g=(3x^2,2y)$ does not vanish on the curve,
+Theorem~4.11 applies. Its equations are
+\[
+ 2(x+1)=3\lambda x^2,
+ \qquad 2y=2\lambda y,
+ \qquad x^3+y^2=1.
+\]
+If $y=0$, then $x=1$ and $D(1,0)=4$.
+If $y\ne0$, then $\lambda=1$, so
+\[
+ 3x^2-2x-2=0,
+ \qquad x=\frac{1\pm\sqrt7}{3}.
+\]
+The positive root exceeds $1$ and is incompatible with
+$y^2=1-x^3\ge0$. Hence
+\[
+ t=\frac{1-\sqrt7}{3},\qquad
+ y=\pm\sqrt{1-t^3}
+  =\pm\sqrt{\frac{5+10\sqrt7}{27}}.
+\]
+To verify global minimality, the constraint requires $x\le1$,
+and on the curve
+\[
+ D(x,y)=(x+1)^2+1-x^3=x^2+2x+2-x^3.
+\]
+This tends to $\infty$ as $x\to-\infty$, and its only critical
+point on $(-\infty,1]$ is $t$ (the other root exceeds $1$).
+Since $D(t)<D(1)=4$, these are the global minimizers.
+Thus the closest points are
+\[
+ \boxed{\left(\frac{1-\sqrt7}{3},\ \pm\sqrt{\frac{5+10\sqrt7}{27}}\right)},
+\]
+with minimum squared distance
+$\boxed{D_{\min}=(74-14\sqrt7)/27}$.
+\end{solution}
+
+\begin{problem}{4.39}
+Use the Lagrange multiplier method to find points of the level set
+\[
+ x^3+y^2+z^2=1
+\]
+that are closest to the point $(-1,0,0)$.
+\end{problem}
+\begin{solution}
+Minimize $D(x,y,z)=(x+1)^2+y^2+z^2$ subject to
+$g(x,y,z)=x^3+y^2+z^2=1$. The constraint gradient
+$(3x^2,2y,2z)$ never vanishes on the level set.
+The Lagrange equations are
+\[
+ 2(x+1)=3\lambda x^2,
+ \quad 2y=2\lambda y,
+ \quad 2z=2\lambda z.
+\]
+If $y=z=0$, then $x=1$ and $D=4$.
+Otherwise $\lambda=1$, so
+$3x^2-2x-2=0$. As $y^2+z^2=1-x^3\ge0$, the only feasible
+root is
+\[
+ t=\frac{1-\sqrt7}{3}.
+\]
+The corresponding points satisfy
+\[
+ y^2+z^2=1-t^3=\frac{5+10\sqrt7}{27}.
+\]
+For any feasible point, $x\le1$ and
+$D=x^2+2x+2-x^3$. As in the direct one-variable
+minimization, this expression tends to $\infty$ as $x\to-\infty$
+and has its minimum on $(-\infty,1]$ at $t$, with
+$D(t)=(74-14\sqrt7)/27<4$.
+Thus the complete set of closest points is the circle
+\[
+ \boxed{x=\frac{1-\sqrt7}{3},\qquad
+ y^2+z^2=\frac{5+10\sqrt7}{27}}.
+\]
+\end{solution}
+
+\begin{problem}{4.40}
+Let $f(x,y,z)=x^2y^3z^4$. Use the Lagrange multiplier method
+to find the maximum value of $f$ on the plane
+\[
+ 12x+12y+24z=1.
+\]
+\end{problem}
+\begin{solution}
+As stated, the problem has \emph{no maximum}: the plane is unbounded
+and $f$ is unbounded above on it. Indeed, take $y=1$ and $z=t$.
+The plane then requires $x=-\frac{11}{12}-2t$, and
+\[
+ f\left(-\frac{11}{12}-2t,1,t\right)
+ =\left(-\frac{11}{12}-2t\right)^2t^4
+ \longrightarrow\infty\qquad(t\to\infty).
+\]
+Therefore the correct conclusion for the stated constraint is
+\[
+ \boxed{\text{No maximum exists on the plane.}}
+\]
+\emph{If the intended problem also assumes $x,y,z\ge0$,}
+the feasible set is compact. On its boundary $f=0$, while
+$f>0$ in the interior. There the Lagrange equations can be
+written, after dividing by $f$, as
+\[
+ \left(\frac2x,\frac3y,\frac4z\right)
+ =\mu(12,12,24).
+\]
+Thus
+\[
+ x=\frac1{6\mu},\qquad y=\frac1{4\mu},
+ \qquad z=\frac1{6\mu},
+\]
+and substitution into $12x+12y+24z=1$ gives $\mu=9$.
+Under this \emph{additional} condition, the maximum is attained at
+\[
+ \boxed{(x,y,z)=\left(\frac1{54},\frac1{36},\frac1{54}\right)},
+ \qquad
+ \boxed{f_{\max}=\frac1{54^6\,36^3}}.
+\]
+This is not a maximum for the unrestricted plane in the original statement.
+\end{solution}
+
+\end{document}

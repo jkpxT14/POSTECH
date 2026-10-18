@@ -1,0 +1,420 @@
+\documentclass[11pt,oneside]{article}
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{
+    pdftitle={20261020 Quiz for MATH230 Probability \& Statistics},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH230 Probability \& Statistics},
+    pdfcreator={LaTeX}
+}
+\begin{document}
+\quiztitle{20261020 Quiz}
+
+\begin{exercise}{5.55}
+The probability that a student pilot passes the written test for a private pilot's license is $0.7$. Find the probability that a given student will pass the test
+\begin{exercisesubparts}
+\item on the third try;
+\item before the fourth try.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Assuming independent attempts with the same probability of passing, let $T\sim\Geom(0.7)$ denote the trial on which the first pass occurs. Hence $\Prob(T=k)=0.3^{k-1}(0.7)$.
+\begin{align*}
+\textup{(a)}\quad \Prob(T=3)&=(0.3)^2(0.7)=\boxed{0.063},\\
+\textup{(b)}\quad \Prob(T<4)&=1-\Prob(T\ge4)=1-(0.3)^3=\boxed{0.973}.
+\end{align*}
+The second event allows success on any of the first three attempts.
+\end{solution}
+
+\begin{exercise}{5.56}
+On average, $3$ traffic accidents per month occur at a certain intersection. What is the probability that in any given month at this intersection
+\begin{exercisesubparts}
+\item exactly $5$ accidents will occur?
+\item fewer than $3$ accidents will occur?
+\item at least $2$ accidents will occur?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Model the monthly number $X$ of accidents by $X\sim\Poi(3)$, so $\Prob(X=x)=e^{-3}3^x/x!$ for $x=0,1,\ldots$.
+\begin{align*}
+\textup{(a)}\quad \Prob(X=5)&=\frac{e^{-3}3^5}{5!}\approx\boxed{0.1008},\\
+\textup{(b)}\quad \Prob(X<3)&=e^{-3}\left(1+3+\frac{3^2}{2!}\right)\approx\boxed{0.4232},\\
+\textup{(c)}\quad \Prob(X\ge2)&=1-\Prob(X\le1)=1-e^{-3}(1+3)\approx\boxed{0.8009}.
+\end{align*}
+\end{solution}
+
+\Needspace{13\baselineskip}
+\begin{exercise}{5.57}
+On average, a textbook author makes two word-processing errors per page on the first draft of her textbook. What is the probability that on the next page she will make
+\begin{exercisesubparts}
+\item $4$ or more errors?
+\item no errors?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Let $X\sim\Poi(2)$ count errors on the next page.
+\begin{align*}
+\textup{(a)}\quad\Prob(X\ge4)
+ &=1-\Prob(X\le3)
+ =1-e^{-2}\sum_{x=0}^{3}\frac{2^x}{x!}
+ \approx\boxed{0.1429},\\
+\textup{(b)}\quad\Prob(X=0)&=e^{-2}\approx\boxed{0.1353}.
+\end{align*}
+\end{solution}
+
+\begin{exercise}{5.62}
+The probability that a student at a local high school fails the screening test for scoliosis (curvature of the spine) is known to be $0.004$. Of the next $1875$ students at the school who are screened for scoliosis, find the probability that
+\begin{exercisesubparts}
+\item fewer than $5$ fail the test;
+\item $8$, $9$, or $10$ fail the test.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+With independent student outcomes, the exact count is $X\sim\Bin(1875,0.004)$. Since $n$ is large and $p$ is small, use the Poisson approximation $Y\sim\Poi(\mu)$ with
+\[
+\mu=np=(1875)(0.004)=7.5,
+\qquad\Prob(X=x)\approx\Prob(Y=x)=\frac{e^{-7.5}(7.5)^x}{x!}.
+\]
+\begin{align*}
+\textup{(a)}\quad\Prob(X<5)&\approx\Prob(Y\le4)
+ =e^{-7.5}\sum_{x=0}^{4}\frac{7.5^x}{x!}
+ \approx\boxed{0.1321},\\
+\textup{(b)}\quad\Prob(X\in\{8,9,10\})&\approx\sum_{x=8}^{10}\frac{e^{-7.5}7.5^x}{x!}
+ \approx\boxed{0.3376}.
+\end{align*}
+These are approximations, not exact binomial probabilities.
+\end{solution}
+
+\Needspace{21\baselineskip}
+\begin{exercise}{5.66}
+Changes in airport procedures require considerable planning. Arrival rates of aircraft are important factors that must be taken into account. Suppose small aircraft arrive at a certain airport, according to a Poisson process, at the rate of $6$ per hour. Thus, the Poisson parameter for arrivals over a period of $t$ hours is $\mu=6t$.
+\begin{exercisesubparts}
+\item What is the probability that exactly $4$ small aircraft arrive during a $1$-hour period?
+\item What is the probability that at least $4$ arrive during a $1$-hour period?
+\item If we define a working day as $12$ hours, what is the probability that at least $75$ small aircraft arrive during a working day?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+For a period of length $t$ hours, let $N_t\sim\Poi(6t)$.
+\begin{align*}
+\textup{(a)}\quad\Prob(N_1=4)&=\frac{e^{-6}6^4}{4!}\approx\boxed{0.1339},\\
+\textup{(b)}\quad\Prob(N_1\ge4)&=1-\Prob(N_1\le3)
+=1-e^{-6}\sum_{x=0}^{3}\frac{6^x}{x!}
+\approx\boxed{0.8488}.
+\end{align*}
+\noindent\textup{(c)} Since $12$ hours have mean $6(12)=72$ arrivals,
+\[
+\Prob(N_{12}\ge75)=1-\Prob(N_{12}\le74)
+=1-e^{-72}\sum_{x=0}^{74}\frac{72^x}{x!}
+\approx\boxed{0.3773}.
+\]
+The large sum may be evaluated from a cumulative Poisson table or software.
+\end{solution}
+
+\begin{exercise}{5.71}
+For a certain type of copper wire, it is known that, on average, $1.2$ flaws occur per millimeter. Assuming that the number of flaws is a Poisson random variable, what is the probability that no flaws occur in a certain portion of wire of length $5$ millimeters? What is the mean number of flaws in a portion of length $5$ millimeters?
+\end{exercise}
+\begin{solution}
+The expected count over $5$ millimeters is $\mu=(1.2)(5)=6$. If $X\sim\Poi(6)$ counts the flaws in that portion, then
+\[
+\boxed{\Prob(X=0)=e^{-6}\approx0.0025},
+\qquad\boxed{\Exp[X]=6}.
+\]
+\end{solution}
+
+\begin{exercise}{5.73}
+Hospital administrators in large cities anguish about traffic in emergency rooms. At a particular hospital in a large city, the staff on hand cannot accommodate the patient traffic if there are more than $10$ emergency cases in a given hour. It is assumed that patient arrival follows a Poisson process, and historical data suggest that, on the average, $5$ emergencies arrive per hour.
+\begin{exercisesubparts}
+\item What is the probability that in a given hour the staff cannot accommodate the patient traffic?
+\item What is the probability that more than $20$ emergencies arrive during a $3$-hour shift?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+For $t$ hours, let $N_t\sim\Poi(5t)$.
+\begin{align*}
+\textup{(a)}\quad\Prob(N_1>10)&=1-e^{-5}\sum_{x=0}^{10}\frac{5^x}{x!}\approx\boxed{0.0137},\\
+\textup{(b)}\quad\Prob(N_3>20)&=1-e^{-15}\sum_{x=0}^{20}\frac{15^x}{x!}\approx\boxed{0.0830}.
+\end{align*}
+The $3$-hour mean is $5(3)=15$, rather than $5$.
+\end{solution}
+
+\begin{exercise}{5.74}
+It is known that $2\%$ of people whose luggage is screened at an airport have questionable objects in their luggage. What is the probability that a string of $15$ people pass through screening successfully before an individual is caught with a questionable object? What is the expected number of people to pass through before an individual is stopped?
+\end{exercise}
+\begin{solution}
+Assuming independent screenings, let $T\sim\Geom(0.02)$ be the screening number of the first individual caught, and let $Y=T-1$ count people who pass before that individual. The specified sequence is $15$ successful screenings followed by one detection, so
+\[
+\boxed{\Prob(Y=15)=(0.98)^{15}(0.02)\approx0.0148}.
+\]
+Since $\Exp[T]=1/0.02=50$,
+\[
+\boxed{\Exp[Y]=\Exp[T]-1=50-1=49\text{ people}}.
+\]
+\end{solution}
+
+\Needspace{16\baselineskip}
+\begin{exercise}{5.76}
+The refusal rate for telephone polls is known to be approximately $20\%$. A newspaper report indicates that $50$ people were interviewed before the first refusal.
+\begin{exercisesubparts}
+\item Comment on the validity of the report. Use a probability in your argument.
+\item What is the expected number of people interviewed before a refusal?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Assume independent responses with refusal probability $p=0.20$. Let $T\sim\Geom(0.20)$ be the position of the first refusal, and $Y=T-1$ the number of people interviewed before it.
+\begin{exercisesubparts}
+\item The stated event consists of $50$ interviews followed by a refusal:
+\[
+\boxed{\Prob(Y=50)=(0.80)^{50}(0.20)\approx2.85\times10^{-6}}.
+\]
+This is extraordinarily unlikely under the assumed refusal rate, so the report is questionable, although not logically impossible.
+\item The mean number interviewed before the first refusal is
+\[
+\boxed{\Exp[Y]=\Exp[T]-1=\frac{1}{0.20}-1=4}.
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{5.82}
+An electronic switching device occasionally malfunctions, but the device is considered satisfactory if it makes, on average, no more than $0.20$ error per hour. A particular $5$-hour period is chosen for testing the device. If no more than $1$ error occurs during the time period, the device will be considered satisfactory.
+\begin{exercisesubparts}
+\item What is the probability that a satisfactory device will be considered unsatisfactory on the basis of the test? Assume a Poisson process.
+\item What is the probability that a device will be accepted as satisfactory when, in fact, the mean number of errors is $0.25$? Again, assume a Poisson process.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Let $X$ count errors in $5$ hours. The device passes the inspection if $X\le1$ and fails if $X\ge2$.
+\begin{exercisesubparts}
+\item At the satisfactory boundary rate $0.20$ error per hour, $X\sim\Poi(5(0.20))=\Poi(1)$. Thus
+\[
+\boxed{\Prob(X\ge2)=1-\Prob(X\le1)=1-e^{-1}(1+1)\approx0.2642}.
+\]
+For a lower true error rate this false-rejection probability would be smaller.
+\item At the unsatisfactory rate $0.25$ error per hour, $X\sim\Poi(5(0.25))=\Poi(1.25)$. Its erroneous-acceptance probability is
+\[
+\boxed{\Prob(X\le1)=e^{-1.25}(1+1.25)\approx0.6446}.
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\Needspace{14\baselineskip}
+\begin{exercise}{5.93}
+It is known by researchers that $2$ in $100$ people carry a gene that leads to the inheritance of a certain chronic disease. In a random sample of $1000$ individuals, what is the probability that fewer than $11$ individuals carry the gene? Use a Poisson approximation. Again, using the approximation, what is the approximate mean number of people out of $1000$ carrying the gene?
+\end{exercise}
+\begin{solution}
+Under independent sampling, the exact count has distribution $X\sim\Bin(1000,0.02)$. The Poisson approximation is $Y\sim\Poi(np)=\Poi(20)$. Hence
+\[
+\boxed{\Prob(X<11)\approx\Prob(Y\le10)
+=e^{-20}\sum_{x=0}^{10}\frac{20^x}{x!}\approx0.0108}.
+\]
+The approximate mean count is
+\[
+\boxed{\Exp[Y]=np=(1000)(0.02)=20\text{ people}}.
+\]
+\end{solution}
+
+\begin{exercise}{6.1}
+Given a continuous uniform distribution on $[A,B]$ with $A<B$, show that
+\begin{exercisesubparts}
+\item $\mu=\dfrac{A+B}{2}$;
+\item $\sigma^2=\dfrac{(B-A)^2}{12}$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+For $X\sim\Unif(A,B)$, the density is $f_X(x)=1/(B-A)$ for $A\le x\le B$, and zero otherwise.
+\begin{exercisesubparts}
+\item Integrating against the density gives
+\[
+\boxed{\mu=\Exp[X]=\int_A^B\frac{x}{B-A}\,\dd x
+=\frac{B^2-A^2}{2(B-A)}=\frac{A+B}{2}}.
+\]
+\item First calculate the second moment:
+\[
+\Exp[X^2]=\int_A^B\frac{x^2}{B-A}\,\dd x
+=\frac{B^3-A^3}{3(B-A)}=\frac{A^2+AB+B^2}{3}.
+\]
+Consequently,
+\[
+\begin{aligned}
+\sigma^2=\Var(X)
+ &=\Exp[X^2]-(\Exp[X])^2\\
+ &=\frac{A^2+AB+B^2}{3}-\frac{(A+B)^2}{4}
+ =\boxed{\frac{(B-A)^2}{12}}.
+\end{aligned}
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{6.2}
+Suppose $X$ follows a continuous uniform distribution from $0$ to $5$. Determine the conditional probability $\Prob(X<3.5\mid X\ge1)$.
+\end{exercise}
+\begin{solution}
+For $X\sim\Unif(0,5)$, the event $X<3.5$ intersected with $X\ge1$ is the interval $[1,3.5)$. Therefore
+\[
+\begin{aligned}
+\Prob(X<3.5\mid X\ge1)
+ &=\frac{\Prob(1\le X<3.5)}{\Prob(X\ge1)}\\
+ &=\frac{(3.5-1)/5}{(5-1)/5}
+ =\boxed{\frac58=0.625}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{6.3}
+The daily milk consumption, in liters, dispensed by a milk booth located in a city is a random variable $X$, having a continuous uniform distribution with $A=90$ and $B=120$. Find the probability that on a given day, the amount of milk dispensed by this booth will be
+\begin{exercisesubparts}
+\item at most $100$ liters;
+\item more than $105$ liters but less than $115$ liters;
+\item at least $105$ liters.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Since $X\sim\Unif(90,120)$, its probability density is $1/30$ on $[90,120]$; the probability of an interval equals its length divided by $30$.
+\begin{align*}
+\textup{(a)}\quad\Prob(X\le100)&=\frac{100-90}{120-90}=\boxed{\frac13},\\
+\textup{(b)}\quad\Prob(105<X<115)&=\frac{115-105}{120-90}=\boxed{\frac13},\\
+\textup{(c)}\quad\Prob(X\ge105)&=\frac{120-105}{120-90}=\boxed{\frac12}.
+\end{align*}
+Endpoints have probability zero under a continuous distribution.
+\end{solution}
+
+\begin{exercise}{6.4}
+A train arrives at a station every $15$ minutes. It is assumed that the waiting time for a particular individual is a random variable with a continuous uniform distribution.
+\begin{exercisesubparts}
+\item What is the probability that the individual waits more than $10$ minutes?
+\item What is the probability that the individual waits between $6$ and $12$ minutes?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+The waiting time $X\sim\Unif(0,15)$ is uniformly distributed within one train interval.
+\begin{align*}
+\textup{(a)}\quad\Prob(X>10)&=\frac{15-10}{15}=\boxed{\frac13},\\
+\textup{(b)}\quad\Prob(6<X<12)&=\frac{12-6}{15}=\boxed{\frac25}.
+\end{align*}
+\end{solution}
+
+\Needspace{18\baselineskip}
+\begin{exercise}{6.5}
+Given a standard normal distribution, find the area under the curve that lies
+\begin{exercisesubparts}
+\item to the left of $z=-1.10$;
+\item to the right of $z=1.645$;
+\item between $z=-2.43$ and $z=-0.45$;
+\item to the left of $z=0.45$;
+\item to the right of $z=-0.45$;
+\item between $z=-0.45$ and $z=0.45$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Let $Z\sim\Normal(0,1)$ and write $\Phi(z)=\Prob(Z\le z)$. By complementarity and symmetry,
+\begin{align*}
+\textup{(a)}\quad\Prob(Z<-1.10)&=\Phi(-1.10)\approx\boxed{0.1357},\\
+\textup{(b)}\quad\Prob(Z>1.645)&=1-\Phi(1.645)\approx\boxed{0.0500},\\
+\textup{(c)}\quad\Prob(-2.43<Z<-0.45)&=\Phi(-0.45)-\Phi(-2.43)\approx\boxed{0.3188},\\
+\textup{(d)}\quad\Prob(Z<0.45)&=\Phi(0.45)\approx\boxed{0.6736},\\
+\textup{(e)}\quad\Prob(Z>-0.45)&=1-\Phi(-0.45)=\Phi(0.45)\approx\boxed{0.6736},\\
+\textup{(f)}\quad\Prob(-0.45<Z<0.45)&=2\Phi(0.45)-1\approx\boxed{0.3473}.
+\end{align*}
+The displayed decimals use the normal CDF at full precision before rounding; summing rounded table entries can differ in the last digit.
+\end{solution}
+
+\Needspace{15\baselineskip}
+\begin{exercise}{6.6}
+Find the value of $z$ if the area under a standard normal curve
+\begin{exercisesubparts}
+\item to the right of $z$ is $0.3745$;
+\item to the left of $z$ is $0.3050$;
+\item between $-z$ and $0$, with $-z<0$, is $0.4838$;
+\item between $-z$ and $z$, with $z>0$, is $0.90$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Use $\Phi(z)=\Prob(Z\le z)$ for $Z\sim\Normal(0,1)$, together with $\Phi(-z)=1-\Phi(z)$.
+\begin{align*}
+\textup{(a)}\quad\Phi(z)&=1-0.3745=0.6255
+ &&\Longrightarrow\quad\boxed{z\approx0.32},\\
+\textup{(b)}\quad\Phi(z)&=0.3050
+ &&\Longrightarrow\quad\boxed{z\approx-0.51},\\
+\textup{(c)}\quad\Phi(0)-\Phi(-z)&=0.4838
+ &&\Longrightarrow\quad\Phi(-z)=0.0162,\ \boxed{z\approx2.14},\\
+\textup{(d)}\quad\Phi(z)-\Phi(-z)&=0.90
+ &&\Longrightarrow\quad\Phi(z)=0.95,\ \boxed{z\approx1.645}.
+\end{align*}
+In (c), the required left endpoint $-z$ is negative; in (d), the central area leaves $0.05$ in each tail.
+\end{solution}
+
+\begin{exercise}{6.7}
+Given the standard normal distribution, find the value of $k$ such that
+\begin{exercisesubparts}
+\item $\Prob(Z>k)=0.9625$;
+\item $\Prob(Z<k)=0.6255$;
+\item $\Prob(0.17<Z<k)=0.367$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+With $Z\sim\Normal(0,1)$ and $\Phi(k)=\Prob(Z\le k)$,
+\begin{align*}
+\textup{(a)}\quad\Phi(k)&=1-0.9625=0.0375
+ &&\Longrightarrow\quad\boxed{k\approx-1.78},\\
+\textup{(b)}\quad\Phi(k)&=0.6255
+ &&\Longrightarrow\quad\boxed{k\approx0.32},\\
+\textup{(c)}\quad\Phi(k)&=\Phi(0.17)+0.367
+ \approx0.5675+0.367=0.9345
+ &&\Longrightarrow\quad\boxed{k\approx1.51}.
+\end{align*}
+\end{solution}
+
+\Needspace{24\baselineskip}
+\begin{exercise}{6.8}
+Given a normal distribution with $\mu=30$ and $\sigma=6$, find
+\begin{exercisesubparts}
+\item the normal curve area to the right of $x=17$;
+\item the normal curve area to the left of $x=22$;
+\item the normal curve area between $x=32$ and $x=41$;
+\item the value of $x$ that has $80\%$ of the normal curve area to the left;
+\item the two values of $x$ that contain the middle $75\%$ of the normal curve area.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Let $X\sim\Normal(30,6^2)$, so $Z=(X-30)/6\sim\Normal(0,1)$. Use $\Phi(z)=\Prob(Z\le z)$.
+\begin{exercisesubparts}
+\item Since $(17-30)/6=-13/6$,
+\[
+\boxed{\Prob(X>17)=1-\Phi\left(-\frac{13}{6}\right)\approx0.9849}.
+\]
+\item Since $(22-30)/6=-4/3$,
+\[
+\boxed{\Prob(X<22)=\Phi\left(-\frac43\right)\approx0.0912}.
+\]
+\item The standardized endpoints are $(32-30)/6=1/3$ and $(41-30)/6=11/6$, so
+\[
+\boxed{\Prob(32<X<41)=\Phi\left(\frac{11}{6}\right)-\Phi\left(\frac13\right)\approx0.3361}.
+\]
+\item The $80$th percentile of the standard normal is $z_{0.80}\approx0.8416$. Thus
+\[
+\boxed{x=30+6z_{0.80}\approx35.05}.
+\]
+\item The middle $75\%$ leaves $0.125$ in each tail, so its endpoints correspond to $z_{0.125}\approx-1.1503$ and $z_{0.875}\approx1.1503$. Hence
+\[
+\boxed{x_1=30+6z_{0.125}\approx23.10},\qquad
+\boxed{x_2=30+6z_{0.875}\approx36.90}.
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{6.10}
+According to Chebyshev's theorem, the probability that any random variable assumes a value within $2$ standard deviations of the mean is at least $0.75$. If it is known that the probability distribution of a random variable $X$ is normal, with mean $\mu$ and variance $\sigma^2$, what is the exact value of $\Prob(\mu-2\sigma<X<\mu+2\sigma)$?
+\end{exercise}
+\begin{solution}
+Standardize using $Z=(X-\mu)/\sigma\sim\Normal(0,1)$. The exact probability can be expressed in terms of the standard normal CDF:
+\[
+\begin{aligned}
+\Prob(\mu-2\sigma<X<\mu+2\sigma)
+ &=\Prob(-2<Z<2)\\
+ &=\boxed{\Phi(2)-\Phi(-2)=2\Phi(2)-1}\approx\boxed{0.9545}.
+\end{aligned}
+\]
+Chebyshev's $0.75$ is a general lower bound, not the normal probability.
+\end{solution}
+
+\end{document}

@@ -60,4 +60,65 @@ By symmetry of binomial coefficients and Vandermonde's identity,
 \]
 \end{solution}
 
+\begin{problem}{2.1}
+A positive integer $a$ is called \emph{square-free} if it is not divisible by any perfect square other than $1$. For example, $1$, $7$, and $30$ are square-free, whereas $4$ and $63$ are not. Count the square-free positive integers less than or equal to $100$.
+\end{problem}
+
+\begin{solution}
+A positive integer $a\leq100$ is square-free if and only if none of $4$, $9$, $25$, and $49$ divides $a$. If one of these prime squares divides $a$, then $a$ is not square-free. Conversely, if $a$ is not square-free, then $b^2\mid a$ for some integer $b\geq2$. Choose a prime $p\mid b$. Since $p^2\mid a\leq100$, we have $p\leq10$, so $p\in\{2,3,5,7\}$.
+
+For $p\in\{2,3,5,7\}$, define
+\[
+    A_p=\{a\in[100]\mid p^2\mid a\}.
+\]
+The sizes of these sets are
+\[
+    |A_2|=\left\lfloor\frac{100}{4}\right\rfloor=25,
+    \quad |A_3|=\left\lfloor\frac{100}{9}\right\rfloor=11,
+    \quad |A_5|=4,
+    \quad |A_7|=2.
+\]
+The only nonempty pairwise intersections are
+\[
+    |A_2\cap A_3|=\left\lfloor\frac{100}{36}\right\rfloor=2,
+    \qquad
+    |A_2\cap A_5|=\left\lfloor\frac{100}{100}\right\rfloor=1.
+\]
+All other pairwise intersections, and hence all intersections of three or more sets, are empty: the product of the corresponding distinct prime squares exceeds $100$. Therefore, by inclusion-exclusion, the number of square-free positive integers at most $100$ is
+\[
+    100-|A_2\cup A_3\cup A_5\cup A_7|
+    =100-(25+11+4+2)+(2+1)
+    =61.
+\]
+\end{solution}
+
+\begin{problem}{2.2}
+Let $n,k\in\N$. Count the sequences $(a_1,\ldots,a_k)$ satisfying
+\[
+    \{a_1,\ldots,a_k\}\subseteq[n],
+    \qquad a_1<\cdots<a_k,
+    \qquad |a_i-a_j|\geq2\quad(i\neq j).
+\]
+\end{problem}
+
+\begin{solution}
+The conditions imply $a_{i+1}\geq a_i+2$. Since $a_1\geq1$, it follows that $a_k\geq2k-1$. Thus no such sequence exists if $n<2k-1$.
+
+Suppose $n\geq2k-1$. For each admissible sequence, define
+\[
+    b_i=a_i-(i-1),\qquad 1\leq i\leq k.
+\]
+Then
+\[
+    1\leq b_1<b_2<\cdots<b_k\leq n-k+1.
+\]
+Conversely, given any strictly increasing sequence $1\leq b_1<\cdots<b_k\leq n-k+1$, the formula $a_i=b_i+(i-1)$ produces an admissible sequence in $[n]$. These constructions are inverse to each other, so the desired sequences are in bijection with the $k$-element subsets of $[n-k+1]$. Hence their number is
+\[
+    \begin{cases}
+        \displaystyle\binom{n-k+1}{k}, & n\geq2k-1,\\[5pt]
+        0, & n<2k-1.
+    \end{cases}
+\]
+\end{solution}
+
 \end{document}
