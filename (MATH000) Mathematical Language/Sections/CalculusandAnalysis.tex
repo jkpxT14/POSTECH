@@ -3,9 +3,9 @@
 The differential $\dd$ is upright; $\varepsilon$ is the default small positive quantity in analysis. Function spaces take their domains in parentheses, for example $C([a,b])$, $\mathcal{R}([a,b])$, and $L^p(\Omega)$.
 
 \begin{notationtable}
-$\displaystyle\lim_{x\to a} f(x)$ & Limit as $x$ approaches $a$ \\
-$\displaystyle\lim_{x\to a^-} f(x)$ & Left-hand limit as $x$ approaches $a$ \\*
-$\displaystyle\lim_{x\to a^+} f(x)$ & Right-hand limit as $x$ approaches $a$ \\
+$\begin{aligned} &\displaystyle\lim_{x\to a} f(x),\\[-0.15em] &f(a^{\pm})\end{aligned}$ & Two-sided limit at $a$; $f(a^{\pm})$ denotes the common one-sided limit (adopted convention) \\
+$\begin{aligned} &\displaystyle\lim_{x\to a^-} f(x),\\[-0.15em] &f(a^{-})\end{aligned}$ & Left-hand limit at $a$ \\*
+$\begin{aligned} &\displaystyle\lim_{x\to a^+} f(x),\\[-0.15em] &f(a^{+})\end{aligned}$ & Right-hand limit at $a$ \\
 $\displaystyle\lim_{x\to\infty} f(x),\ \lim_{x\to-\infty} f(x)$ & Limits as $x$ tends to positive or negative infinity \\
 $\begin{aligned} &\displaystyle\lim_{x\to a} f(x)=\infty,\\[-0.15em] &\displaystyle\lim_{x\to a} f(x)=-\infty \end{aligned}$ & Infinite limits \\
 $\min A$ & Minimum of $A$ \\*
@@ -41,12 +41,13 @@ $\displaystyle\sum_{k=1}^{\infty} a_k$ & Infinite series \\[0.10em]
 $\displaystyle\prod_{k=1}^{n} a_k$ & Finite product \\[0.10em]
 $\displaystyle\sum_{n=0}^{\infty}a_n(x-a)^n$ & Power series centered at $a$ \\[0.10em]
 $\displaystyle\sum_{n=-\infty}^{\infty}a_n(z-z_0)^n$ & Laurent series about $z_0$, on an annulus of convergence \\[0.10em]
-$\displaystyle\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & $n$th Taylor polynomial of $f$ about $a$; no single letter for the polynomial is imposed globally \\
+$\displaystyle\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & $n$th Taylor polynomial of $f$ about $a$ \\
 $e^x,\ \exp x$ & Exponential function \\
 $\ln x,\ \log_e x$ & Natural logarithm of a positive real number \\
 $\lg x,\ \log_{10} x$ & Logarithm to base $10$ \\
 $\lb x,\ \log_2 x$ & Logarithm to base $2$ \\
 $\log_a x$ & Logarithm to base $a$ \\
+$W_k(z)$ & Lambert $W$-function: $W_k(z)e^{W_k(z)}=z$; $W_0$ is the principal branch \\
 $\sin x$ & Sine \\*
 $\cos x$ & Cosine \\*
 $\tan x$ & Tangent \\*
@@ -72,9 +73,11 @@ $\arccsch x,\ \csch^{-1}x$ & Principal real inverse hyperbolic cosecant, defined
 $\arcsech x,\ \sech^{-1}x$ & Principal real inverse hyperbolic secant, defined by $\arcsech x=\arccosh(1/x)$ on $(0,1]$; its range is $[0,\infty)$ \\*
 $\arccoth x,\ \coth^{-1}x$ & Principal real inverse hyperbolic cotangent, defined by $\arccoth x=\arctanh(1/x)$ for $|x|>1$; its range is $\R\setminus\{0\}$ \\
 $\Gamma(z)$ & Gamma function \\
+$\psi(z)$ & Digamma function, $\psi(z)=\Gamma'(z)/\Gamma(z)$ \\
 $B(x,y)$ & Beta function \\
+$\gamma$ & Euler--Mascheroni constant, $\displaystyle\gamma=\lim_{n\to\infty}\left(\sum_{k=1}^n\frac1k-\ln n\right)$ \\
 $\zeta(s)$ & Riemann zeta function \\
-$\mathbf J_{\mathbf F}(\mathbf a),\ D\mathbf F(\mathbf a)$ & Jacobian matrix of $\mathbf F=(F_1,\dots,F_m)\colon\R^n\to\R^m$ at $\mathbf a$, with $\displaystyle\mathbf J_{\mathbf F}(\mathbf a)=\left(\frac{\partial F_i}{\partial x_j}(\mathbf a)\right)_{i,j}$. The notation $D\mathbf F(\mathbf a)$ denotes the total derivative, identified with this matrix in standard coordinates \\
+$\mathbf J_{\mathbf F}(\mathbf a),\ D\mathbf F(\mathbf a)$ & Jacobian matrix of $\mathbf F=(F_1,\dots,F_m)\colon\R^n\to\R^m$ at $\mathbf a$, with $\displaystyle\mathbf J_{\mathbf F}(\mathbf a)=\left(\frac{\partial F_i}{\partial x_j}(\mathbf a)\right)_{i,j}$. $D\mathbf F(\mathbf a)$ is the total derivative in standard coordinates \\
 $\begin{aligned} &\det\mathbf J_{\mathbf F}(\mathbf a),\ \det D\mathbf F(\mathbf a),\\[-0.15em] &\displaystyle\left.\frac{\partial(F_1,\dots,F_n)}{\partial(x_1,\dots,x_n)}\right|_{\mathbf a} \end{aligned}$ & Jacobian determinant of $\mathbf F\colon\R^n\to\R^n$ at $\mathbf a$ \\
 $\Hess f$ & Hessian matrix of $f$ \\
 $\nabla f,\ \operatorname{grad}f$ & Gradient of $f$ \\
@@ -115,11 +118,11 @@ $L^p(\Omega),\ L^p(X,\mu)$ & Lebesgue $L^p$ spaces; the measure is displayed whe
 $L^\infty(\Omega),\ L^\infty(X,\mu)$ & Lebesgue spaces of essentially bounded functions \\
 $\ell^p$ & Space of scalar sequences $(x_n)$ with $\displaystyle\sum_{n=1}^{\infty}|x_n|^p<\infty$, for $1\le p<\infty$ \\
 $\ell^\infty$ & Space of bounded scalar sequences \\
-$\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{\mathbf x\in\Omega}|f(\mathbf x)|$ for an actual bounded function on a Euclidean domain, especially in bounded- or continuous-function spaces \\
+$\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{\mathbf x\in\Omega}|f(\mathbf x)|$ for an actual bounded function on a Euclidean domain \\
 $\|f\|_{L^p(X,\mu)}$ & $L^p$-norm $\displaystyle\left(\int_X |f|^p\,\dd\mu\right)^{1/p}$ for $1\le p<\infty$ on a measure space $(X,\mathcal A,\mu)$ \\
 $\|f\|_{L^p(\Omega)},\ \|f\|_p$ & $L^p$-norm $\displaystyle\left(\int_\Omega |f(\mathbf x)|^p\,\dd\mathbf x\right)^{1/p}$ for $1\le p<\infty$ on a Euclidean domain when the underlying measure is understood \\
 $\|f\|_{L^\infty(\Omega)}$ & $L^\infty$-norm $\displaystyle\esssup_{\mathbf x\in\Omega}|f(\mathbf x)|$ on a Euclidean domain; distinguished from the ordinary supremum norm \\
-$\alpha=(\alpha_1,\dots,\alpha_n)\in\Nzero^n$ & Multi-index; $\alpha$ is not treated as a vector for typographic purposes \\
+$\alpha=(\alpha_1,\dots,\alpha_n)\in\Nzero^n$ & Multi-index \\
 $\begin{aligned} &|\alpha|=\alpha_1+\cdots+\alpha_n,\\[-0.15em] &\alpha!=\alpha_1!\cdots\alpha_n! \end{aligned}$ & Order and factorial of a multi-index \\
 $\mathbf x^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial for $\mathbf x=(x_1,\dots,x_n)$ \\
 $D^\alpha f,\ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$ \\

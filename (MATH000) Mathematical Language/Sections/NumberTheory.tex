@@ -5,18 +5,19 @@ $a\mid b$ & $a$ divides $b$. \\
 $a\nmid b$ & $a$ does not divide $b$. \\
 $\gcd(a_1,\dots,a_n)$ & Greatest common divisor \\
 $\lcmop(a_1,\dots,a_n)$ & Least common multiple \\
-$p^k\parallel n$ & $p^k$ exactly divides $n$: $p^k\mid n$ and $p^{k+1}\nmid n$; equivalently, $v_p(n)=k$. \\
+$p^k\parallel n$ & $p^k$ exactly divides $n$: $p^k\mid n$ and $p^{k+1}\nmid n$. \\
 $v_p(n),\ \nu_p(n)$ & $p$-adic valuation of $n$ \\
 $a\equiv b\pmod n$ & $a$ is congruent to $b$ modulo $n$. \\
-$[a]_n,\ \overline a$ & Residue class of $a$ modulo $n$; the bar is used when the modulus or quotient ring is clear \\
+$[a]_n,\ \overline a$ & Residue class of $a$ modulo $n$; $\overline a$ when the modulus is clear \\
 $a\bmod n$ & Least nonnegative remainder of $a$ modulo $n$, for $n>0$ \\
 $\Z/n\Z$ & Ring of residue classes modulo $n$ \\
 $(\Z/n\Z)^\times$ & Multiplicative group of units modulo $n$ \\
-$a^{-1}\pmod n$ & Multiplicative inverse of $a$ modulo $n$ \\
-$\ord_n(a)$ & Multiplicative order of $a$ modulo $n$ \\
+$a^{-1}\pmod n$ & Multiplicative inverse of $a$ modulo $n$, for $\gcd(a,n)=1$ \\
+$\ord_n(a)$ & Multiplicative order of $a$ modulo $n$, for $\gcd(a,n)=1$ \\
 $\mathbb F_q,\ \operatorname{GF}(q)$ & Finite field with $q$ elements, where $q$ is a prime power \\
 $\displaystyle\left(\frac ap\right)$ & Legendre symbol, for an odd prime $p$ \\
 $\displaystyle\left(\frac an\right)$ & Jacobi symbol, for an odd positive integer $n$ \\
+$\chi\pmod q$ & Dirichlet character modulo $q$ \\
 $\varphi(n)$ & Euler totient function \\
 $B_n$ & $n$th Bernoulli number, under the convention $B_1=-\tfrac12$ \\
 $\displaystyle\sum_{d\mid n}$ & Sum over the positive divisors $d$ of $n$ \\
@@ -30,7 +31,8 @@ $\Omega(n)$ & Number of prime factors of $n$, counted with multiplicity \\
 $\rad(n)$ & Product of the distinct prime divisors of $n$ \\
 $\displaystyle(f\ast g)(n)=\sum_{d\mid n}f(d)g(n/d)$ & Dirichlet convolution of arithmetic functions $f$ and $g$ \\
 $\pi(x)$ & Number of primes not exceeding $x$ \\
-$\Lambda(n)$ & Von Mangoldt function: $\log p$ if $n=p^k$ for a prime $p$ and an integer $k\ge1$, and $0$ otherwise \\
+$\Lambda(n)$ & Von Mangoldt function: $\ln p$ if $n=p^k$ for a prime $p$ and an integer $k\ge1$, and $0$ otherwise \\
+$L(s,\chi)$ & Dirichlet $L$-function, $\displaystyle L(s,\chi)=\sum_{n=1}^{\infty}\frac{\chi(n)}{n^s}$ for $\Re(s)>1$ \\
 $[a_0;a_1,a_2,\dots]$ & Simple continued fraction \\
 $\displaystyle[a_0;a_1,\dots,a_n]=\frac{p_n}{q_n}$ & $n$th convergent of a continued fraction \\
 $\Phi_n(x)$ & $n$th cyclotomic polynomial \\
