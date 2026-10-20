@@ -1,0 +1,134 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{PastProblemsStyle}[2026/10/21 IMO past-problems style]
+
+% Matched to KUMC's PastProblemsStyle.sty visual language.
+\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+\RequirePackage{fancyhdr}
+
+% Mathematics and figures.
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{dsfont}
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\definecolor{exampleRed}{RGB}{255,140,140}
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{%
+    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
+}
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{%
+    \institutiontext{SNUBlue}{Seoul National University}%
+}
+
+% General notation from (MATH000) Mathematical Language.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\diag}{diag}
+
+% List roles as specified by MATH000.
+\newlist{problemitems}{itemize}{1}
+\setlist[problemitems]{
+    label=\textbullet,leftmargin=2.5em,labelsep=0.6em,
+    itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt
+}
+\newlist{problemchoices}{enumerate}{1}
+\setlist[problemchoices]{
+    label=(\arabic*),leftmargin=2.5em,labelsep=0.6em,
+    itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left
+}
+\newlist{problemsubparts}{enumerate}{1}
+\setlist[problemsubparts]{
+    label=(\alph*),leftmargin=2.5em,labelsep=0.6em,
+    itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left
+}
+\newlist{problemclauses}{enumerate}{1}
+\setlist[problemclauses]{
+    label=(\roman*),leftmargin=2.5em,labelsep=0.6em,
+    itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left
+}
+
+% Both competition and shortlist use YYYY.N identifiers; 
+% shortlist labels are of the form YYYY.A1, YYYY.C1, YYYY.G1, YYYY.N1.
+\newcommand{\problemcategory}{competition}
+\makeatletter
+\newcommand{\problemheading}[2]{%
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+    \phantomsection
+    \def\@currentlabel{#1.#2}%
+    \label{imo:\problemcategory:#1:#2}%
+    \textbf{Problem #1.#2.}%
+    \hspace{0.5em}\ignorespaces
+}
+\makeatother
+\newenvironment{problem}[2]
+    {\problemheading{#1}{#2}}
+    {\par\vspace{6pt}}
+
+% Printed part labels; no separate title page or chapter hierarchy.
+\newcommand{\competitionpart}[2]{%
+    \par\Needspace{6\baselineskip}
+    \phantomsection\pdfbookmark[0]{Part #1. #2}{imo-part-#1}%
+    \vspace{10pt}\noindent{\large\bfseries Part #1. #2}\par\vspace{8pt}%
+}
+\newcommand{\competitionyear}[1]{%
+    \renewcommand{\problemcategory}{competition}%
+    \phantomsection\pdfbookmark[1]{#1}{imo-competition-year-#1}%
+    \par\addvspace{8pt}%
+}
+% Part II activates only when its official year files are added later.
+\newcommand{\shortlistyear}[1]{%
+    \renewcommand{\problemcategory}{shortlist}%
+    \phantomsection\pdfbookmark[1]{#1}{imo-shortlist-year-#1}%
+    \par\addvspace{8pt}%
+}
+\newcommand{\shortlistcategory}[2]{%
+    \phantomsection\pdfbookmark[2]{#2}{imo-shortlist-#1-#2}%
+}
+
+% Running design follows the KUMC document.
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{International Mathematical Olympiad}}
+\fancyhead[R]{\small\textit{Past Problems}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyhead[L]{\small\textit{International Mathematical Olympiad}}
+    \fancyhead[R]{\small\textit{Past Problems}}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}%
+}
+\raggedbottom

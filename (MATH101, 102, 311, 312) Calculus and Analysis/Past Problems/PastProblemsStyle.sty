@@ -106,6 +106,11 @@
 % Short, consistent four-part table of contents.
 \setlength{\cftbeforepartskip}{0.48em}
 \setlength{\cftpartindent}{0pt}
+\setlength{\cftbeforesecskip}{0.08em}
+\setlength{\cftsecindent}{1.35em}
+\setlength{\cftsecnumwidth}{0pt}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
 \renewcommand{\cftpartfont}{\normalfont\bfseries}
 \renewcommand{\cftpartpagefont}{\normalfont\bfseries}
 
@@ -119,9 +124,18 @@
   \thispagestyle{plain}%
   \vspace*{0.22cm}%
   {\noindent\Large\bfseries Part #1.\enspace #2\par}%
-  \vspace{0.20cm}%
-  \hrule height 0.4pt
-  \vspace{0.35cm}%
+  \vspace{0.37cm}%
+}
+
+% Unnumbered institution grouping: abbreviated and colored in the body,
+% official full name in the table of contents. No ornamental rule.
+\newcommand{\schoolsection}[2]{%
+  \par\Needspace{6\baselineskip}%
+  \vspace{0.08em}%
+  \phantomsection
+  \addcontentsline{toc}{section}{#2}%
+  {\noindent\large\bfseries #1\par}%
+  \vspace{0.25em}%
 }
 
 % Compact polar grid used by preserved source problems.
