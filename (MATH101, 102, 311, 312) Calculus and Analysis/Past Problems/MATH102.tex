@@ -69,12 +69,11 @@ Let $f(x,y)=|xy|$. Show that there is no open ball centered at $(0,0)$ in which 
 
 % 2021 Fall POSTECH Calculus II Midterm, Problem 8
 \begin{problem}[2021 Fall \POSTECH{} Calculus II]
-% The source is preserved exactly here: it uses (xy)^alpha rather than |xy|^alpha.
 Let
 \[
 f(x,y)=
 \begin{cases}
-\displaystyle\frac{(xy)^\alpha}{x^2+y^2}, & (x,y)\ne(0,0),\\[0.55em]
+\displaystyle\frac{|xy|^\alpha}{x^2+y^2}, & (x,y)\ne(0,0),\\[0.55em]
 0, & (x,y)=(0,0).
 \end{cases}
 \]
@@ -473,7 +472,7 @@ where
 \[
 \mathbf F(x,y)=\left(-\frac{y}{x^2+y^2},\frac{x}{x^2+y^2}\right),
 \]
-and $C$ is a loop that contains the origin in its interior and is traversed counterclockwise.
+and $C$ is a piecewise smooth, simple closed curve enclosing the origin, oriented counterclockwise.
 \end{problem}
 
 % 2022 Fall POSTECH Calculus II Final, Problem 5
@@ -773,7 +772,7 @@ Let $u\colon\R^2\to\R$ be a $C^2$ function, and define
 \[
 v(r,\theta)\coloneqq u(r\cos\theta,r\sin\theta).
 \]
-Show that
+Show that, for $r>0$,
 \[
 u_{xx}+u_{yy}
 =
@@ -2208,7 +2207,7 @@ e^{-x^2-y^2-z^2}
 \begin{problem}[2022 Spring \KAIST{} Calculus II]
 Consider the function
 \[
-f\colon[0,1]\times[0,1]\subseteq\R^2\to\R
+f\colon[0,1]^2\to\R
 \]
 defined by
 \[
@@ -2438,7 +2437,7 @@ into a sum of two iterated integrals in polar form.
 
 % 2022 Fall KAIST Calculus II Final, Problem 3
 \begin{problem}[2022 Fall \KAIST{} Calculus II]
-Let $R$ be a region in the first octant $(x,y,z>0)$ in $\R^3$ satisfying
+Let $R$ be a region in the first octant $(x>0,\ y>0,\ z>0)$ of $\R^3$ satisfying
 \[
 x+y^2+4z^2\le4.
 \]
@@ -2447,7 +2446,7 @@ x+y^2+4z^2\le4.
 \[
 \iiint_R f(x,y,z)\,\dd V
 \]
-as an iterated integral (i) in the order $\dd x\,\dd y\,\dd z$ and (ii) in the order $\dd y\,\dd z\,\dd x$.
+as an iterated integral (1) in the order $\dd x\,\dd y\,\dd z$ and (2) in the order $\dd y\,\dd z\,\dd x$.
 \item Evaluate
 \[
 \iiint_R yz\,\dd V.
@@ -2556,7 +2555,7 @@ and compute $\mathbf r_\phi\times\mathbf r_\theta$.
 
 % 2022 Fall KAIST Calculus II Final, Problem 8
 \begin{problem}[2022 Fall \KAIST{} Calculus II]
-Let $\mathbf F=M\mathbf i+N\mathbf j+P\mathbf k$ be continuously differentiable, let
+Let $\mathbf F=M\mathbf i+N\mathbf j+P\mathbf k$ be twice continuously differentiable, let
 \[
 S=\{(x,y,z)\in\R^3\mid x^2+y^2+z^2=1\}
 \]

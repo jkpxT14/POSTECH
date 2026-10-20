@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{PastProblemsStyle}[2026/09/24 Calculus and Analysis past-problems style]
+\ProvidesPackage{PastProblemsStyle}[2026/10/21 Calculus and Analysis past-problems style]
 
 % Visual language follows the current MATH200 Past Problems document.
 \RequirePackage[a4paper,margin=1in]{geometry}
@@ -86,6 +86,7 @@
 \setlist[problemsubparts]{label=(\alph*),leftmargin=2.5em,labelsep=0.6em,itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left}
 
 \newcounter{course}
+\newcounter{institutionsection}
 \newcounter{problemitem}
 \renewcommand{\theproblemitem}{\arabic{course}.\arabic{problemitem}}
 \renewcommand{\theHproblemitem}{\arabic{course}.\arabic{problemitem}}
@@ -119,6 +120,7 @@
   \clearpage
   \setcounter{course}{#1}%
   \setcounter{problemitem}{0}%
+  \setcounter{institutionsection}{0}%
   \phantomsection
   \addcontentsline{toc}{part}{Part #1.\space #2}%
   \thispagestyle{plain}%
@@ -130,8 +132,13 @@
 % Unnumbered institution grouping: abbreviated and colored in the body,
 % official full name in the table of contents. No ornamental rule.
 \newcommand{\schoolsection}[2]{%
-  \par\Needspace{6\baselineskip}%
-  \vspace{0.08em}%
+  \par\Needspace{7\baselineskip}%
+  \ifnum\value{institutionsection}=0\relax
+    \vspace{0.08em}%
+  \else
+    \addvspace{1.15em}%
+  \fi
+  \stepcounter{institutionsection}%
   \phantomsection
   \addcontentsline{toc}{section}{#2}%
   {\noindent\large\bfseries #1\par}%

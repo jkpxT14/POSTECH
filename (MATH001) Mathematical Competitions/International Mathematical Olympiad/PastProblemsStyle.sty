@@ -9,6 +9,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{needspace}
 \RequirePackage{fancyhdr}
+\RequirePackage{tocloft}
 
 % Mathematics and figures.
 \RequirePackage{amsmath,amssymb,amsthm}
@@ -76,6 +77,21 @@
     itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left
 }
 
+% Compact contents: parts and years only, without printed year headings.
+\renewcommand{\cfttoctitlefont}{\normalfont\large\bfseries}
+\setlength{\cftbeforetoctitleskip}{0pt}
+\setlength{\cftaftertoctitleskip}{0.65em}
+\setlength{\cftbeforepartskip}{0.25em}
+\setlength{\cftpartindent}{0pt}
+\setlength{\cftpartnumwidth}{0pt}
+\renewcommand{\cftpartfont}{\normalfont\bfseries}
+\renewcommand{\cftpartpagefont}{\normalfont\bfseries}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftsecindent}{1.55em}
+\setlength{\cftsecnumwidth}{0pt}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+
 % Both competition and shortlist use YYYY.N identifiers; 
 % shortlist labels are of the form YYYY.A1, YYYY.C1, YYYY.G1, YYYY.N1.
 \newcommand{\problemcategory}{competition}
@@ -93,22 +109,23 @@
     {\problemheading{#1}{#2}}
     {\par\vspace{6pt}}
 
-% Printed part labels; no separate title page or chapter hierarchy.
+% The only printed headings are the two parts; years remain navigation anchors.
 \newcommand{\competitionpart}[2]{%
-    \par\Needspace{6\baselineskip}
-    \phantomsection\pdfbookmark[0]{Part #1. #2}{imo-part-#1}%
-    \vspace{10pt}\noindent{\large\bfseries Part #1. #2}\par\vspace{8pt}%
+    \par\Needspace{4\baselineskip}%
+    \phantomsection
+    \addcontentsline{toc}{part}{Part #1.\space #2}%
+    \vspace{5pt}\noindent{\large\bfseries Part #1. #2}\par\vspace{1pt}%
 }
 \newcommand{\competitionyear}[1]{%
     \renewcommand{\problemcategory}{competition}%
-    \phantomsection\pdfbookmark[1]{#1}{imo-competition-year-#1}%
-    \par\addvspace{8pt}%
+    \par\phantomsection
+    \addcontentsline{toc}{section}{#1}%
 }
-% Part II activates only when its official year files are added later.
+% Part II is inactive until official shortlist inputs are added.
 \newcommand{\shortlistyear}[1]{%
     \renewcommand{\problemcategory}{shortlist}%
-    \phantomsection\pdfbookmark[1]{#1}{imo-shortlist-year-#1}%
-    \par\addvspace{8pt}%
+    \par\phantomsection
+    \addcontentsline{toc}{section}{#1}%
 }
 \newcommand{\shortlistcategory}[2]{%
     \phantomsection\pdfbookmark[2]{#2}{imo-shortlist-#1-#2}%
