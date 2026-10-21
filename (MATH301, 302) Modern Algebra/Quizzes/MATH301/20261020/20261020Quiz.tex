@@ -1,109 +1,108 @@
 \documentclass[11pt,oneside]{article}
 
 \pdfminorversion=7
+
 \usepackage{QuizStyle}
 
-\hypersetup{
-    pdftitle={20261020 Quiz for MATH301 Modern Algebra I},
-    pdfauthor={Jungwoo Kim},
-    pdfsubject={Quiz for MATH301 Modern Algebra I},
-    pdfcreator={LaTeX}
-}
+\hypersetup{pdftitle={20261020 Quiz for MATH301 Modern Algebra I},pdfauthor={Jungwoo Kim},pdfsubject={Quiz for MATH301 Modern Algebra I},pdfcreator={LaTeX}}
 
 \begin{document}
 
 \quiztitle{20261020 Quiz}
 
 \begin{exercise}{3.1.14}
-Consider the additive quotient group $\Q/\Z$.
+Consider the additive group $\Q/\Z$.
 \begin{exercisesubparts}
-    \item Show that every coset of $\Z$ in $\Q$ contains exactly one representative $q\in\Q$ with $0\le q<1$.
-    \item Show that every element of $\Q/\Z$ has finite order, but that elements of arbitrarily large order exist.
-    \item Show that $\Q/\Z$ is the torsion subgroup of $\R/\Z$ (cf. Exercise 2.1.6).
-    \item Prove that $\Q/\Z$ is isomorphic to the multiplicative group of roots of unity in $\C^\times$.
+\item Show that every coset has a unique representative $q\in\Q$ with $0\le q<1$.
+\item Show every element has finite order, and orders are unbounded.
+\item Show $\Q/\Z$ is the torsion subgroup of $\R/\Z$.
+\item Show $\Q/\Z$ is isomorphic to the group of complex roots of unity.
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
 \begin{exercisesubparts}
-    \item Given $q\in\Q$, let $m=\lfloor q\rfloor$. Then $q-m\in[0,1)\cap\Q$ and $(q-m)+\Z=q+\Z$. If $u,v\in[0,1)$ represent the same coset, then $u-v\in\Z\cap(-1,1)=\{0\}$, so $u=v$.
-    \item Write $q=a/b$ with $a\in\Z$ and $b\in\Z_{>0}$. Then $b(q+\Z)=\Z$, so every element has finite order. Moreover, $1/n+\Z$ has order $n$ for each $n\ge1$.
-    \item For $x\in\R$, the coset $x+\Z$ has finite order if and only if $nx\in\Z$ for some positive integer $n$, equivalently $x\in\Q$. Thus the torsion subgroup is precisely $\Q/\Z$.
-    \item Define
-    \[
-        \varphi\colon\Q/\Z\to\C^\times,
-        \qquad q+\Z\mapsto e^{2\pi iq}.
-    \]
-    This is a well-defined homomorphism because adding an integer to $q$ does not change its image and exponentials turn sums into products. Its kernel is trivial since $e^{2\pi iq}=1$ exactly when $q\in\Z$. Every root of unity $z$ satisfies $z^n=1$ for some $n>0$, hence $z=e^{2\pi ik/n}$ for some $k\in\Z$. Therefore $\varphi$ is an isomorphism onto the group of roots of unity.
+\item For $q\in\Q$, subtract its floor $m=\lfloor q\rfloor$. Then $q-m\in[0,1)\cap\Q$ and represents the same coset. If $u,v\in[0,1)$ represent the same coset, then $u-v\in\Z\cap(-1,1)=\{0\}$, so $u=v$.
+\item For $q=a/b$ with $b>0$, the coset $q+\Z$ satisfies $b(q+\Z)=\Z$, hence has finite order. The coset $1/n+\Z$ has order exactly $n$ for each positive integer $n$, so the orders are unbounded.
+\item An element $x+\Z\in\R/\Z$ has finite order precisely when $nx\in\Z$ for some positive integer $n$, equivalently $x\in\Q$. Hence the torsion subgroup of $\R/\Z$ is $\Q/\Z$.
+\item Define $\varphi:\Q/\Z\to\C^\times$ by $\varphi(q+\Z)=e^{2\pi iq}$. It is well defined because $e^{2\pi i(q+m)}=e^{2\pi iq}$ for $m\in\Z$, and it is a homomorphism because exponentials convert sums into products. Its kernel is trivial since $e^{2\pi iq}=1$ exactly when $q\in\Z$. Every root of unity of order $n$ is $e^{2\pi ik/n}$ for some integer $k$, so $\varphi$ maps onto the group of all roots of unity. This gives the desired isomorphism.
 \end{exercisesubparts}
 \end{solution}
 
 \begin{exercise}{3.1.17}
-Let $G=D_8$ be the dihedral group of order $16$ (whose subgroup lattice appears in \S2.5), with generators $r,s$ satisfying
-\[
-    r^8=s^2=1,\qquad rs=sr^{-1},
-\]
-The subgroup $\langle r^4\rangle=Z(G)$ is normal. Let $\overline G=G/\langle r^4\rangle$, with $\bar r=r\langle r^4\rangle$ and $\bar s=s\langle r^4\rangle$.
+Let $G=D_8=\langle r,s\mid r^8=s^2=1,\ rs=sr^{-1}\rangle$, the dihedral group of order $16$ (whose subgroup lattice appears in Section~2.5). The subgroup $\langle r^4\rangle=Z(G)$ is normal. Let $\overline G=G/\langle r^4\rangle$, and write $\bar r=r\langle r^4\rangle$, $\bar s=s\langle r^4\rangle$.
 \begin{exercisesubparts}
-    \item Show that $|\overline G|=8$.
-    \item Exhibit every element of $\overline G$ in the form $\bar s^a\bar r^b$ for integers $a,b$.
-    \item Find the order of each element listed in part (b).
-    \item Express $\overline{rs}$, $\overline{sr^{-2}s}$, and $\overline{s^{-1}r^{-1}sr}$ in the form $\bar s^a\bar r^b$.
-    \item Prove that $\overline H=\langle\bar s,\bar r^2\rangle$ is normal in $\overline G$ and isomorphic to $V_4$. Determine the isomorphism type of its complete preimage in $G$.
-    \item Find $Z(\overline G)$ and determine the isomorphism type of $\overline G/Z(\overline G)$.
+\item Show $|\overline G|=8$.
+\item List every element as $\bar s^a\bar r^b$.
+\item Give the order of every element in (b).
+\item Express $\overline{rs}$, $\overline{sr^{-2}s}$, and $\overline{s^{-1}r^{-1}sr}$ in this form.
+\item Show $\overline H=\langle\bar s,\bar r^2\rangle$ is normal and isomorphic to $V_4$; identify its complete preimage in $G$.
+\item Find $Z(\overline G)$ and identify $\overline G/Z(\overline G)$.
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{notation}
-Following MATH000, $D_n$ is the symmetry group of a regular $n$-gon and has order $2n$. Thus $D_8$ here is denoted by $D_{16}$ in Dummit--Foote.
+The $D_8$ appearing here is the dihedral group of order $16$ under the MATH000 convention. The textbook may index a dihedral group by its order, writing this group as $D_{16}$.
 \end{notation}
 
 \begin{solution}
-Since $r^4$ commutes with both $r$ and $s$, the subgroup $\langle r^4\rangle$ is central and hence normal.
+The element $r^4$ is central: it commutes with $r$ and $sr^4s^{-1}=r^{-4}=r^4$. Hence $\langle r^4\rangle\trianglelefteq G$, and the quotient is defined.
 \begin{exercisesubparts}
-    \item $|\langle r^4\rangle|=2$, so $|\overline G|=16/2=8$.
-    \item The eight distinct elements are
-    \[
-        1,\bar r,\bar r^2,\bar r^3,
-        \bar s,\bar s\bar r,\bar s\bar r^2,\bar s\bar r^3.
-    \]
-    Indeed, $\bar r^4=\bar s^2=1$ and $\bar r\bar s=\bar s\bar r^{-1}$.
-    \item Their orders, in the order displayed in (b), are $1,4,2,4,2,2,2,2$, respectively.
-    \item Using $r^j s=sr^{-j}$ and $s^{-1}=s$,
-    \[
-        \overline{rs}=\bar s\bar r^3,\qquad
-        \overline{sr^{-2}s}=\bar r^2,\qquad
-        \overline{s^{-1}r^{-1}sr}=\bar r^2.
-    \]
-    \item The subgroup
-    \[
-        \overline H=\{1,\bar r^2,\bar s,\bar s\bar r^2\}
-    \]
-    has order $4$, hence index $2$ in $\overline G$ and is normal. Its three nonidentity elements have order $2$, so $\overline H\cong V_4$. Its complete preimage is $\langle r^2,s\rangle$, where $r^2$ has order $4$ and $s(r^2)s=(r^2)^{-1}$. This subgroup has order $8$ and is isomorphic to $D_4$.
-    \item The central elements are $1$ and $\bar r^2$, so $Z(\overline G)=\langle\bar r^2\rangle$. The quotient has four elements, all of whose nonidentity elements have order $2$, hence $\overline G/Z(\overline G)\cong V_4$.
+\item Since $|\langle r^4\rangle|=2$, Lagrange's theorem gives $|\overline G|=16/2=8$.
+\item The relation $\bar r^4=1$ and the dihedral normal form give
+\[
+1,\bar r,\bar r^2,\bar r^3,\bar s,\bar s\bar r,\bar s\bar r^2,\bar s\bar r^3.
+\]
+These eight elements are distinct: the first four are distinct powers of $\bar r$, and the last four belong to the different coset $\bar s\langle\bar r\rangle$.
+\item The orders in this order are
+\[
+ \boxed{1,4,2,4,2,2,2,2}.
+\]
+Indeed $|\bar r|=4$, so $|\bar r^2|=2$ and $|\bar r^3|=4$. Moreover, $(\bar s\bar r^j)^2=\bar s\bar r^j\bar s\bar r^j=\bar r^{-j}\bar r^j=1$, and none of these reflections is the identity.
+\item Using $r^js=sr^{-j}$ and $s^2=1$, we find
+\[
+\overline{rs}=\bar s\bar r^3,\qquad
+\overline{sr^{-2}s}=\bar r^2,\qquad
+\overline{s^{-1}r^{-1}sr}=\bar r^2.
+\]
+Indeed, $rs=sr^{-1}$ gives
+\[
+rs=sr^{-1},\qquad
+sr^{-2}s=r^2,\qquad
+s^{-1}r^{-1}sr=sr^{-1}sr=r^2.
+\]
+In the quotient, $\bar r^{-1}=\bar r^3$, giving the stated normal forms.
+\item We have
+\[
+\overline H=\{1,\bar r^2,\bar s,\bar s\bar r^2\}.
+\]
+It has index $2$, so it is normal. Since $\bar s$ and $\bar r^2$ are commuting involutions, its three nonidentity elements have order $2$, giving $\overline H\cong V_4$. Its full preimage under $G\to\overline G$ is $\langle r^2,s\rangle$; $r^2$ has order $4$, $s$ has order $2$, and $s r^2s^{-1}=r^{-2}$. It is therefore the dihedral group of order $8$, namely $D_4$ under MATH000.
+\item An element $\bar r^j$ commutes with $\bar s$ precisely when $\bar r^{2j}=1$, so $j$ is even. No reflection can be central because it does not commute with $\bar r$ of order $4$. Thus $Z(\overline G)=\langle\bar r^2\rangle$. In the quotient by this center, the commuting images of $\bar r$ and $\bar s$ are two distinct involutions; the quotient has order $4$, so
+\[
+\overline G/Z(\overline G)\cong V_4.
+\]
 \end{exercisesubparts}
 \end{solution}
 
 \begin{exercise}{3.1.22}
 \begin{exercisesubparts}
-    \item Prove that if $H$ and $K$ are normal subgroups of a group $G$, then $H\cap K\trianglelefteq G$.
-    \item Prove that the intersection of an arbitrary nonempty collection of normal subgroups of a group is normal (the collection need not be countable).
+\item Show that if $H,K\trianglelefteq G$, then $H\cap K\trianglelefteq G$.
+\item Show that any nonempty intersection of normal subgroups of $G$ is normal, even when the collection is infinite.
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
 \begin{exercisesubparts}
-    \item The intersection $H\cap K$ is a subgroup. For each $g\in G$,
-    \[
-        g(H\cap K)g^{-1}=(gHg^{-1})\cap(gKg^{-1})=H\cap K.
-    \]
-    Thus $H\cap K\trianglelefteq G$.
-    \item Let $(N_i)_{i\in I}$ be a nonempty collection with $N_i\trianglelefteq G$. Their intersection $N$ is a subgroup, and for any $g\in G$,
-    \[
-        gNg^{-1}=\bigcap_{i\in I}gN_i g^{-1}
-        =\bigcap_{i\in I}N_i=N.
-    \]
-    Therefore $N\trianglelefteq G$.
+\item The intersection is a subgroup. For $g\in G$,
+\[
+ g(H\cap K)g^{-1}=(gHg^{-1})\cap(gKg^{-1})=H\cap K,
+\]
+so it is normal.
+\item Let $(N_i)_{i\in I}$ be a nonempty family of normal subgroups. Its intersection $N=\bigcap_{i\in I}N_i$ is a subgroup, and for every $g\in G$,
+\[
+ gNg^{-1}=\bigcap_{i\in I}gN_ig^{-1}=\bigcap_{i\in I}N_i=N.
+\]
+Thus $N\trianglelefteq G$ regardless of the size of the index set.
 \end{exercisesubparts}
 \end{solution}
 
@@ -112,249 +111,216 @@ Prove that if $N\trianglelefteq G$ and $H\le G$, then $N\cap H\trianglelefteq H$
 \end{exercise}
 
 \begin{solution}
-The intersection $N\cap H$ is a subgroup of $H$. For $h\in H$ and $x\in N\cap H$, normality of $N$ gives $hxh^{-1}\in N$, while $h,x\in H$ gives $hxh^{-1}\in H$. Hence $h(N\cap H)h^{-1}\subseteq N\cap H$, and the reverse inclusion follows by replacing $h$ with $h^{-1}$. Thus $N\cap H\trianglelefteq H$.
+The intersection is a subgroup of $H$. For $h\in H$ and $x\in N\cap H$, normality of $N$ gives $hxh^{-1}\in N$, while closure of $H$ gives $hxh^{-1}\in H$. Thus $h(N\cap H)h^{-1}\subseteq N\cap H$. Repeating with $h^{-1}$ gives the reverse inclusion, so $N\cap H\trianglelefteq H$.
 \end{solution}
 
 \begin{exercise}{3.1.31}
-Prove that if $H\le G$ and $N\trianglelefteq H$, then $H\le N_G(N)$. Deduce that $N_G(N)$ is the largest subgroup of $G$ in which $N$ is normal, i.e., the join of all subgroups $H$ for which $N\trianglelefteq H$.
+If $H\le G$ and $N\trianglelefteq H$, show $H\le N_G(N)$. Deduce that $N_G(N)$ is the largest subgroup of $G$ in which $N$ is normal.
 \end{exercise}
 
 \begin{solution}
-If $h\in H$, then $hNh^{-1}=N$ because $N\trianglelefteq H$. Thus $h\in N_G(N)$ and $H\le N_G(N)$. Conversely, $N\le N_G(N)$ and $N\trianglelefteq N_G(N)$ by the definition of the normalizer. Therefore $N_G(N)$ itself belongs to the stated family and contains every other member. It is consequently its largest member and its join.
+For $h\in H$, normality of $N$ in $H$ says $hNh^{-1}=N$. Thus every $h\in H$ belongs to $N_G(N)$ and $H\le N_G(N)$. Conversely, by definition $N$ is normal in $N_G(N)$, since every element of the normalizer fixes $N$ by conjugation. Consequently $N_G(N)$ is itself one of the eligible subgroups and contains every other one, making it the largest (and their join).
 \end{solution}
 
 \begin{exercise}{3.1.33}
-Find all normal subgroups of $D_4$ and determine the isomorphism type of each corresponding quotient.
+Find all normal subgroups of $D_4$ and determine the isomorphism type of the corresponding quotients.
 \end{exercise}
 
 \begin{hint}
-You may use the subgroup lattice for $D_4$ in \S2.5.
+Use the subgroup lattice in Section 2.5, together with the fact that subgroups of index $2$ are normal.
 \end{hint}
 
 \begin{solution}
-Write $D_4=\langle r,s\mid r^4=s^2=1,\ srs=r^{-1}\rangle$. Its three subgroups of index $2$ are normal, as are $\{1\}$, $\langle r^2\rangle=Z(D_4)$, and $D_4$. These are all: conjugating a reflection by $r$ changes it by a factor $r^2$, so no reflection subgroup of order $2$ is normal. The normal subgroups and quotients are
+Write $D_4=\langle r,s\mid r^4=s^2=1,\ srs=r^{-1}\rangle$. By Lagrange's theorem a proper nontrivial normal subgroup has order $2$ or $4$.
+
+If a normal subgroup $N$ has order $2$, its unique nonidentity element is fixed by every conjugation (since an automorphism of $C_2$ is trivial), and therefore lies in $Z(D_4)=\{1,r^2\}$. Hence $N=\langle r^2\rangle$. The five subgroups of order $2$ therefore contribute only this one normal subgroup.
+
+Every subgroup of order $4$ has index $2$ and is normal. The only elements of order $4$ in $D_4$ are $r$ and $r^3$, so a cyclic subgroup of order $4$ must be $\langle r\rangle$. If a subgroup of order $4$ is not cyclic, it is isomorphic to $V_4$ and hence contains three involutions. Since the only involutions are $r^2$ and the four reflections, it must contain $r^2$ and a reflection. Reflections differing by a factor of $r^2$ generate the same subgroup together with $r^2$; the even and odd reflections give precisely $\langle r^2,s\rangle$ and $\langle r^2,sr\rangle$. Thus these are all subgroups of order $4$. Adding the trivial group and the whole group gives all normal subgroups. The quotients are
 \[
-\begin{array}{c@{\qquad}c}
-\toprule
-N & D_4/N\\
-\midrule
-\{1\} & D_4\\
-\langle r^2\rangle & V_4\\
-\langle r\rangle & C_2\\
-\langle r^2,s\rangle & C_2\\
-\langle r^2,sr\rangle & C_2\\
-D_4 & \{1\}\\
-\bottomrule
-\end{array}
+\begin{array}{c@{\qquad}c}\toprule
+N&D_4/N\\\midrule
+\{1\}&D_4\\
+\langle r^2\rangle&V_4\\
+\langle r\rangle&C_2\\
+\langle r^2,s\rangle&C_2\\
+\langle r^2,sr\rangle&C_2\\
+D_4&\{1\}\\\bottomrule\end{array}
 \]
-For the central quotient, the images of $r$ and $s$ commute and both have order $2$, giving $V_4$; the index-$2$ quotients have order $2$.
+The three index-$2$ quotients have order $2$. For the central quotient, the images of $r$ and $s$ are distinct commuting involutions, so it is $V_4$.
 \end{solution}
 
 \begin{exercise}{3.1.34}
-Let $n\ge3$ and let
-\[
-    D_n=\langle r,s\mid r^n=s^2=1,\ rs=sr^{-1}\rangle.
-\]
-For each positive divisor $k$ of $n$:
+Let $D_n=\langle r,s\mid r^n=s^2=1,\ rs=sr^{-1}\rangle$, $n\ge3$, and let $k$ be a positive divisor of $n$.
 \begin{exercisesubparts}
-    \item Prove that $\langle r^k\rangle\trianglelefteq D_n$.
-    \item Prove that $D_n/\langle r^k\rangle$ is a dihedral group of order $2k$.
+\item Prove $\langle r^k\rangle\trianglelefteq D_n$.
+\item Show $D_n/\langle r^k\rangle$ is dihedral of order $2k$.
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
 \begin{exercisesubparts}
-    \item The subgroup $\langle r^k\rangle$ is preserved by conjugation by $r$ and by $s$, since
-    \[
-        r(r^k)r^{-1}=r^k,
-        \qquad s(r^k)s^{-1}=r^{-k}.
-    \]
-    As $r,s$ generate $D_n$, it is normal.
-    \item In the quotient let $\bar r=r\langle r^k\rangle$ and $\bar s=s\langle r^k\rangle$. We have
-    \[
-        \bar r^k=\bar s^2=1,
-        \qquad \bar s\bar r\bar s=\bar r^{-1}.
-    \]
-    Since $k\mid n$, the subgroup $\langle r^k\rangle$ has order $n/k$ and the quotient has order $2k$. The elements $\bar r^i$ and $\bar s\bar r^i$ ($0\le i<k$) are distinct, giving the dihedral presentation of order $2k$. For $k\ge3$ this is $D_k$ in MATH000 notation; the degenerate cases $k=1,2$ yield $C_2$ and $V_4$, respectively.
+\item Conjugation by the generators preserves $\langle r^k\rangle$, because $r(r^k)r^{-1}=r^k$ and $s(r^k)s^{-1}=r^{-k}$. Thus $\langle r^k\rangle$ is normal in $D_n$.
+\item Let $\bar r=r\langle r^k\rangle$ and $\bar s=s\langle r^k\rangle$. These satisfy
+\[
+\bar r^k=\bar s^2=1,\qquad \bar s\bar r\bar s^{-1}=\bar r^{-1}.
+\]
+Since $k\mid n$, the subgroup $\langle r^k\rangle$ has order $n/k$, so the quotient has order $2k$. Its elements are the $2k$ distinct cosets $\bar r^j$ and $\bar s\bar r^j$ ($0\le j<k$), giving the dihedral presentation. For $k\ge3$ the quotient is $D_k$ in MATH000; for $k=1,2$ the degenerate cases are $C_2$ and $V_4$. 
 \end{exercisesubparts}
 \end{solution}
 
 \begin{exercise}{3.1.40}
-Let $G$ be a group, let $N\trianglelefteq G$, and write $\overline G=G/N$. Prove that $\bar x$ and $\bar y$ commute in $\overline G$ if and only if $[x,y]\in N$, where $[x,y]=x^{-1}y^{-1}xy$ is the commutator of $x$ and $y$.
+Let $N\trianglelefteq G$ and $\bar G=G/N$. Show that $\bar x$ and $\bar y$ commute if and only if $[x,y]=x^{-1}y^{-1}xy\in N$.
 \end{exercise}
 
 \begin{solution}
-The elements $\bar x$ and $\bar y$ commute if and only if
+The images commute if and only if
 \[
-    (\bar x)^{-1}(\bar y)^{-1}\bar x\bar y=1_{\overline G}.
+\bar x^{-1}\bar y^{-1}\bar x\bar y=1_{G/N}.
 \]
-The left-hand side is $\overline{x^{-1}y^{-1}xy}=\overline{[x,y]}$, which equals the identity if and only if $[x,y]\in N$.
+The left-hand side equals $\overline{x^{-1}y^{-1}xy}=\overline{[x,y]}$, which equals the identity coset precisely when $[x,y]\in N$.
 \end{solution}
 
 \begin{exercise}{3.1.41}
-Let $G$ be a group. Prove that $N=\langle[x,y]\mid x,y\in G\rangle$ is a normal subgroup of $G$ and that $G/N$ is abelian. The subgroup $N$ is called the commutator subgroup of $G$.
+Prove that $[G,G]=\langle[x,y]:x,y\in G\rangle$ is a normal subgroup of $G$ and that $G/[G,G]$ is abelian.
 \end{exercise}
 
 \begin{solution}
-Conjugation preserves commutators: for $g,x,y\in G$,
+Conjugation takes a commutator to a commutator:
 \[
-    g[x,y]g^{-1}=[gxg^{-1},gyg^{-1}].
+ g[x,y]g^{-1}=[gxg^{-1},gyg^{-1}].
 \]
-Thus $gNg^{-1}=N$ for every $g\in G$, so $N\trianglelefteq G$. Every commutator lies in $N$, hence by Exercise 3.1.40 the images of any $x,y\in G$ commute in $G/N$. Therefore $G/N$ is abelian. In MATH000 notation, $N=[G,G]$.
+Consequently conjugation by any $g\in G$ preserves the subgroup generated by all commutators, so $[G,G]\trianglelefteq G$. Every commutator belongs to this subgroup. By Exercise 3.1.40 the images of any two elements of $G$ therefore commute in the quotient $G/[G,G]$, which is abelian.
 \end{solution}
 
 \begin{exercise}{3.2.4}
-Show that if $|G|=pq$ for primes $p,q$ (not necessarily distinct), then either $G$ is abelian or $Z(G)=\{1\}$.
+Show that if $|G|=pq$ for primes $p,q$ (not necessarily distinct), then either $G$ is abelian or $Z(G)=\{1_G\}$.
 \end{exercise}
 
 \begin{hint}
-See Exercise 3.1.36.
+Recall that if $G/Z(G)$ is cyclic, then $G$ is abelian.
 \end{hint}
 
 \begin{solution}
-Suppose $G$ is not abelian. If $Z(G)\neq\{1\}$, then $Z(G)$ is a proper nontrivial subgroup, so Lagrange's Theorem gives $|Z(G)|=p$ or $q$ (when such a proper subgroup exists). Consequently $G/Z(G)$ has prime order and is cyclic. But a group whose quotient by its center is cyclic is abelian: if $G/Z(G)=\langle xZ(G)\rangle$, every pair of elements can be written as $x^az$ and $x^bw$ with $z,w\in Z(G)$, and such elements commute. This contradicts the assumption. Hence $Z(G)=\{1\}$.
+Suppose $Z(G)$ is nontrivial. If it equals $G$, the group is abelian. Otherwise its order is a proper divisor of $pq$ larger than $1$, necessarily $p$ or $q$, so the quotient $G/Z(G)$ has prime order and is cyclic. If $G/Z(G)=\langle xZ(G)\rangle$, every element of $G$ can be written $x^az$ with $z\in Z(G)$. For any $a,b$ and central $z,w$, the elements $x^az$ and $x^bw$ commute. Hence $G$ is abelian. Contrapositively, if $G$ is not abelian its center is trivial.
 \end{solution}
 
 \begin{exercise}{3.2.5}
-Let $H\le G$ and fix $g\in G$.
+For $H\le G$ and $g\in G$:
 \begin{exercisesubparts}
-    \item Prove that $gHg^{-1}$ is a subgroup of $G$ of the same order as $H$.
-    \item Deduce that if $n\ge1$ and $H$ is the unique subgroup of $G$ of order $n$, then $H\trianglelefteq G$.
+\item Show $gHg^{-1}$ is a subgroup of the same order as $H$.
+\item If $H$ is the unique subgroup of order $n$, show $H\trianglelefteq G$.
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
 \begin{exercisesubparts}
-    \item Conjugation $c_g\colon G\to G$, $h\mapsto ghg^{-1}$, is an automorphism. Hence its image $gHg^{-1}$ is a subgroup, and its restriction to $H$ is a bijection onto that subgroup. Thus $|gHg^{-1}|=|H|$, including when $H$ is infinite.
-    \item For every $g\in G$, the subgroup $gHg^{-1}$ has order $n$. By uniqueness, $gHg^{-1}=H$, which is exactly $H\trianglelefteq G$.
+\item Conjugation $c_g(x)=gxg^{-1}$ is an automorphism of $G$. Its restriction to $H$ is a bijection onto $gHg^{-1}$, and the image is a subgroup. Hence $|gHg^{-1}|=|H|$ even if $H$ is infinite.
+\item For each $g\in G$, $gHg^{-1}$ is a subgroup of order $n$. Uniqueness forces $gHg^{-1}=H$. This is exactly the definition of $H\trianglelefteq G$.
 \end{exercisesubparts}
 \end{solution}
 
 \begin{exercise}{3.2.8}
-Prove that if $H$ and $K$ are finite subgroups of $G$ of relatively prime orders, then $H\cap K=\{1_G\}$.
+If $H,K\le G$ are finite subgroups of relatively prime orders, prove $H\cap K=\{1_G\}$.
 \end{exercise}
 
 \begin{solution}
-Since $H\cap K$ is a subgroup of both $H$ and $K$, Lagrange's Theorem implies that $|H\cap K|$ divides both $|H|$ and $|K|$. Their greatest common divisor is $1$, so $|H\cap K|=1$ and $H\cap K=\{1_G\}$.
+The group $H\cap K$ is a subgroup of both $H$ and $K$. By Lagrange's theorem, its order divides both $|H|$ and $|K|$. Since these numbers are coprime, $|H\cap K|=1$, so $H\cap K=\{1_G\}$.
 \end{solution}
 
 \begin{exercise}{3.2.11}
-Let $H\le K\le G$. Prove that
-\[
-    [G:H]=[G:K][K:H],
-\]
-without assuming that $G$ is finite.
+For $H\le K\le G$, prove $[G:H]=[G:K][K:H]$, allowing infinite groups and infinite indices.
 \end{exercise}
 
 \begin{solution}
-Choose representatives $(g_i)_{i\in I}$ for the left cosets of $K$ in $G$, and representatives $(k_j)_{j\in J}$ for the left cosets of $H$ in $K$. Every $g\in G$ has a unique expression at the coset level $g\in g_i k_jH$: first $g\in g_iK$, then $g_i^{-1}g\in k_jH$. Moreover, $g_i k_jH=g_{i'}k_{j'}H$ implies $g_iK=g_{i'}K$, so $i=i'$, and then $k_jH=k_{j'}H$, so $j=j'$. Hence the cosets of $H$ in $G$ are in bijection with $I\times J$, giving $[G:H]=[G:K][K:H]$ (as a cardinal equality, even for infinite indices).
+Choose representatives $g_i$ ($i\in I$) for the left $K$-cosets in $G$, and representatives $k_j$ ($j\in J$) for the left $H$-cosets in $K$. Every $g\in G$ belongs to exactly one coset $g_iK$; within it $g_i^{-1}g$ belongs to exactly one coset $k_jH$. Thus the cosets $g_ik_jH$ cover $G$. If $g_ik_jH=g_{i'}k_{j'}H$, passing to $K$-cosets gives $i=i'$, and cancellation then gives $j=j'$. Consequently the left $H$-cosets in $G$ are in bijection with $I\times J$, so
+\[
+[G:H]=|I\times J|=|I|\,|J|=[G:K][K:H].
+\]
+This is a cardinal equality, also valid for infinite indices.
 \end{solution}
 
 \begin{exercise}{3.2.14}
-Prove that $S_4$ has neither a normal subgroup of order $8$ nor a normal subgroup of order $3$.
+Prove that $S_4$ has no normal subgroup of order $8$ and no normal subgroup of order $3$.
 \end{exercise}
 
 \begin{solution}
-Suppose $N\trianglelefteq S_4$ and $|N|=8$. Then $S_4/N$ has order $3$, so the quotient homomorphism sends every transposition to the identity, since its image has order dividing both $2$ and $3$. Every cycle $(a_1\ a_2\ \cdots\ a_k)$ is a product of transpositions, namely $(a_1\ a_k)\cdots(a_1\ a_2)$. Thus transpositions generate $S_4$, and the quotient map would be trivial, contradicting $|S_4/N|=3$.
+Suppose $N\trianglelefteq S_4$ has order $8$. Then $S_4/N$ has order $3$. Every transposition has order $2$, so its image in this quotient has order dividing both $2$ and $3$, hence is the identity. Since transpositions generate $S_4$, the quotient map would be trivial, contradicting the quotient's order $3$.
 
-If instead $|N|=3$, then $N$ contains a $3$-cycle. All $3$-cycles in $S_4$ are conjugate, so normality forces all eight $3$-cycles to lie in $N$. Together with the identity this gives at least nine elements, a contradiction.
+If $N\trianglelefteq S_4$ has order $3$, it contains a $3$-cycle. All eight $3$-cycles in $S_4$ are conjugate, so normality forces $N$ to contain all eight. Adding the identity gives at least nine elements, contradicting $|N|=3$.
 \end{solution}
 
 \begin{exercise}{3.2.16}
-Use Lagrange's Theorem in $(\Z/p\Z)^\times$ to prove Fermat's Little Theorem: if $p$ is prime, then
-\[
-    a^p\equiv a\pmod p
-    \qquad\text{for every }a\in\Z.
-\]
+Use Lagrange's theorem in $(\Z/p\Z)^\times$ to prove Fermat's little theorem: $a^p\equiv a\pmod p$ for every integer $a$, where $p$ is prime.
 \end{exercise}
 
 \begin{solution}
-If $p\mid a$, both sides are $0$ modulo $p$. Otherwise $[a]_p$ belongs to the multiplicative group $(\Z/p\Z)^\times$, which has order $p-1$. By Lagrange's Theorem,
-\[
-    [a]_p^{p-1}=[1]_p,
-\]
-so $a^{p-1}\equiv1\pmod p$. Multiplying by $a$ gives $a^p\equiv a\pmod p$.
+If $p\mid a$, both sides are zero modulo $p$. Otherwise $[a]_p\in(\Z/p\Z)^\times$, a group of order $p-1$. Lagrange's theorem gives $[a]_p^{p-1}=[1]_p$. Thus $a^{p-1}\equiv1\pmod p$. Multiplying by $a$ yields $a^p\equiv a\pmod p$, as required.
 \end{solution}
 
 \begin{exercise}{3.2.20}
-If $A$ is an abelian normal subgroup of $G$ and $B$ is any subgroup of $G$, prove that $A\cap B\trianglelefteq AB$.
+If $A$ is an abelian normal subgroup of $G$ and $B$ is any subgroup, prove $A\cap B\trianglelefteq AB$.
 \end{exercise}
 
 \begin{solution}
-Since $A\trianglelefteq G$, the product $AB$ is a subgroup of $G$. Set $N=A\cap B$. For $b\in B$ and $x\in N$, normality of $A$ gives $bxb^{-1}\in A$, and subgroup closure gives $bxb^{-1}\in B$. Hence $B$ normalizes $N$. Since $A$ is abelian, each $a\in A$ centralizes $N$. Thus both $A$ and $B$ normalize $N$, so their product $AB$ normalizes $N$. As $N\le AB$, this proves $N\trianglelefteq AB$.
+Because $A\trianglelefteq G$, the product $AB$ is a subgroup of $G$. Put $N=A\cap B$. If $b\in B$, then $bNb^{-1}\subseteq A$ by normality of $A$ and $bNb^{-1}\subseteq B$ by closure of $B$, so $B$ normalizes $N$ (equality using $b^{-1}$). Every $a\in A$ centralizes $N$ because $A$ is abelian. Thus both $A$ and $B$ normalize $N$, hence their product $AB$ does. Since $N\le AB$, it follows that $N\trianglelefteq AB$.
 \end{solution}
 
 \begin{exercise}{3.2.21}
-Prove that $\Q$ has no proper subgroups of finite index. Deduce that $\Q/\Z$ has no proper subgroups of finite index.
+Prove that $(\Q,+)$ has no proper subgroups of finite index; deduce the same for $\Q/\Z$.
 \end{exercise}
 
 \begin{hint}
-Recall Exercises 1.6.21 and 3.1.15.
+The additive group $\Q$ is divisible: for any $x\in\Q$ and positive integer $m$, there is $y$ with $my=x$.
 \end{hint}
 
 \begin{solution}
-Let $H\le(\Q,+)$ have finite index $m$. Since $\Q$ is abelian, $\Q/H$ is a group of order $m$. For any $q\in\Q$, Lagrange's Theorem gives $mq\in H$. As $q=m(q/m)$, applying this to $q/m\in\Q$ shows $q\in H$. Thus $H=\Q$.
+Let $H\le\Q$ and $[\Q:H]=m<\infty$. As $\Q$ is abelian, $\Q/H$ is a group of order $m$, and Lagrange's theorem gives $mq\in H$ for every $q\in\Q$. Given any $x\in\Q$, apply this to $q=x/m$ to obtain $x\in H$. Thus $H=\Q$.
 
-If $K\le\Q/\Z$ has finite index, its preimage under the natural projection $\pi\colon\Q\to\Q/\Z$ has the same finite index in $\Q$. By the first part, $\pi^{-1}(K)=\Q$, so $K=\Q/\Z$.
+If $K\le\Q/\Z$ has finite index, its inverse image under the quotient map $\pi:\Q\to\Q/\Z$ is a subgroup of $\Q$ with the same finite index. It must equal $\Q$, so $K=\Q/\Z$.
 \end{solution}
 
 \begin{exercise}{3.3.3}
-Prove that if $H\trianglelefteq G$ has prime index $p$, then for every $K\le G$ either
-\begin{enumerate}[label=(\roman*),leftmargin=2.5em,itemsep=0.2em]
-    \item $K\le H$, or
-    \item $G=HK$ and $[K:K\cap H]=p$.
-\end{enumerate}
+If $H\trianglelefteq G$ has prime index $p$, prove that for every subgroup $K\le G$ either $K\le H$, or $G=HK$ and $[K:K\cap H]=p$.
 \end{exercise}
 
 \begin{solution}
-Since $H\trianglelefteq G$, the product $HK$ is a subgroup containing $H$. As $[G:H]=p$ is prime, the index formula forces $HK=H$ or $HK=G$. In the first case $K\le H$. In the second, the Second Isomorphism Theorem gives
+Because $H$ is normal, $HK$ is a subgroup containing $H$. The index formula gives
 \[
-    K/(K\cap H)\cong HK/H=G/H,
+ [G:H]=[G:HK][HK:H]=p.
 \]
-so $[K:K\cap H]=|G/H|=p$.
+As $p$ is prime, either $HK=H$, so $K\le H$, or $HK=G$. In the latter case, the Second Isomorphism Theorem gives
+\[
+ K/(K\cap H)\cong HK/H=G/H,
+\]
+whence $[K:K\cap H]=|G/H|=p$.
 \end{solution}
 
 \begin{exercise}{3.3.4}
-Let $C\trianglelefteq A$ and $D\trianglelefteq B$. Prove that
-\[
-    C\times D\trianglelefteq A\times B
-    \quad\text{and}\quad
-    (A\times B)/(C\times D)\cong(A/C)\times(B/D).
-\]
+Suppose $C\trianglelefteq A$ and $D\trianglelefteq B$. Prove $C\times D\trianglelefteq A\times B$ and $(A\times B)/(C\times D)\cong(A/C)\times(B/D)$.
 \end{exercise}
 
 \begin{solution}
-For $(a,b)\in A\times B$,
+Conjugation acts coordinatewise, so
 \[
-    (a,b)(C\times D)(a,b)^{-1}
-    =(aCa^{-1})\times(bDb^{-1})=C\times D,
+(a,b)(C\times D)(a,b)^{-1}=(aCa^{-1})\times(bDb^{-1})=C\times D.
 \]
-so $C\times D\trianglelefteq A\times B$. Define
-\[
-    \varphi\colon A\times B\to(A/C)\times(B/D),
-    \qquad (a,b)\mapsto(aC,bD).
-\]
-This is a surjective homomorphism with kernel $C\times D$. The First Isomorphism Theorem yields the claimed isomorphism.
+Thus the product subgroup is normal. Define $\varphi:A\times B\to(A/C)\times(B/D)$ by $\varphi(a,b)=(aC,bD)$. The map is a surjective homomorphism whose kernel is $C\times D$, and the First Isomorphism Theorem yields the required isomorphism.
 \end{solution}
 
 \begin{exercise}{3.5.3}
-Prove that $S_n$ is generated by the adjacent transpositions
-\[
-    \{(i\ i+1)\mid 1\le i\le n-1\}.
-\]
+Prove that $S_n$ is generated by the adjacent transpositions $s_i=(i\ i+1)$, $1\le i<n$.
 \end{exercise}
 
 \begin{hint}
-Consider conjugates, for example $(2\ 3)(1\ 2)(2\ 3)^{-1}$.
+A conjugate of a transposition is another transposition: $\sigma(a\ b)\sigma^{-1}=(\sigma(a)\ \sigma(b))$.
 \end{hint}
 
 \begin{solution}
-Let $s_i=(i\ i+1)$. For $1\le i<j\le n$,
+Every permutation is a product of transpositions, so it is enough to express an arbitrary transposition through adjacent ones. If $1\le i<j\le n$, then
 \[
-    (i\ j)
-    =s_i s_{i+1}\cdots s_{j-2}s_{j-1}s_{j-2}\cdots s_{i+1}s_i.
+(i\ j)=s_i s_{i+1}\cdots s_{j-2}s_{j-1}s_{j-2}\cdots s_{i+1}s_i.
 \]
-Thus every transposition is generated by adjacent transpositions. Since every permutation is a product of transpositions, these elements generate $S_n$.
+To see this, put $w=s_i\cdots s_{j-2}$. Then $w$ fixes $j$ and sends $j-1$ to $i$ (under right-to-left composition), so $w s_{j-1}w^{-1}$ interchanges $i$ and $j$. The displayed word is exactly $w s_{j-1}w^{-1}$. Thus every transposition, and hence every permutation, is generated by the adjacent transpositions.
 \end{solution}
 
 \begin{exercise}{3.5.4}
@@ -362,116 +328,101 @@ Show that $S_n=\langle(12),(1\ 2\ \cdots\ n)\rangle$ for all $n\ge2$.
 \end{exercise}
 
 \begin{solution}
-Set $s=(12)$ and $c=(1\ 2\ \cdots\ n)$. For $1\le i\le n-1$, conjugation gives
+Put $s=(12)$ and $c=(1\ 2\ \cdots\ n)$. For $1\le i<n$,
 \[
-    c^{i-1}sc^{-(i-1)}=(i\ i+1).
+ c^{i-1}sc^{-(i-1)}=(i\ i+1).
 \]
-Hence $\langle s,c\rangle$ contains all adjacent transpositions. By Exercise 3.5.3 these generate $S_n$, so $\langle s,c\rangle=S_n$.
+Thus $\langle s,c\rangle$ contains every adjacent transposition. By Exercise 3.5.3, these generate the whole $S_n$, proving the claim.
 \end{solution}
 
 \begin{exercise}{5.1.1}
-Show that the center of a direct product is the direct product of its centers:
-\[
-    Z(G_1\times\cdots\times G_n)
-    =Z(G_1)\times\cdots\times Z(G_n).
-\]
-Deduce that a direct product of groups is abelian if and only if each factor is abelian.
+Prove $Z(G_1\times\cdots\times G_n)=Z(G_1)\times\cdots\times Z(G_n)$. Deduce the product is abelian if and only if every factor is abelian.
 \end{exercise}
 
 \begin{solution}
-An element $(g_1,\ldots,g_n)$ commutes with every $(h_1,\ldots,h_n)$ if and only if $g_ih_i=h_ig_i$ for every $i$ and every $h_i\in G_i$. This is equivalent to $g_i\in Z(G_i)$ for all $i$, proving the identity. The product is abelian precisely when its center is the whole product, equivalently $Z(G_i)=G_i$ for every factor.
+Multiplication in a direct product is coordinatewise. An element $(g_1,\ldots,g_n)$ commutes with every $(h_1,\ldots,h_n)$ precisely when $g_ih_i=h_ig_i$ for every $i$ and every $h_i\in G_i$. This means $g_i\in Z(G_i)$ for each coordinate, proving the formula. The product is abelian exactly when its center is the whole product, which by this formula happens exactly when $Z(G_i)=G_i$ for all $i$.
 \end{solution}
 
 \begin{exercise}{5.1.14}
-Let $G=A_1\times\cdots\times A_n$, and for each $i$ let $B_i\trianglelefteq A_i$. Prove that
+For $G=A_1\times\cdots\times A_n$ and $B_i\trianglelefteq A_i$, prove $B_1\times\cdots\times B_n\trianglelefteq G$ and
 \[
-    B_1\times\cdots\times B_n\trianglelefteq G
-\]
-and
-\[
-    \frac{A_1\times\cdots\times A_n}{B_1\times\cdots\times B_n}
-    \cong (A_1/B_1)\times\cdots\times(A_n/B_n).
+ G/(B_1\times\cdots\times B_n)\cong(A_1/B_1)\times\cdots\times(A_n/B_n).
 \]
 \end{exercise}
 
 \begin{solution}
-Conjugation in $G$ acts coordinatewise, so for $(a_i)\in G$,
+Conjugation in the direct product is coordinatewise. Thus
 \[
-    (a_i)(B_1\times\cdots\times B_n)(a_i)^{-1}
-    =(a_1B_1a_1^{-1})\times\cdots\times(a_nB_na_n^{-1})
-    =B_1\times\cdots\times B_n.
+(a_i)(\prod_{i=1}^n B_i)(a_i)^{-1}=\prod_{i=1}^n a_iB_ia_i^{-1}=\prod_{i=1}^n B_i,
 \]
-Define the coordinatewise quotient homomorphism
+so $\prod_iB_i$ is normal. The map
 \[
-    \varphi\colon G\to\prod_{i=1}^n(A_i/B_i),
-    \qquad(a_1,\ldots,a_n)\mapsto(a_1B_1,\ldots,a_nB_n).
+\varphi:G\to\prod_{i=1}^n(A_i/B_i),\qquad(a_i)\mapsto(a_iB_i)
 \]
-It is surjective and has kernel $\prod_{i=1}^nB_i$. The result follows from the First Isomorphism Theorem.
+is a surjective homomorphism: any cosets have representatives in their respective factors. Its kernel is precisely $\prod_iB_i$. The First Isomorphism Theorem proves the result.
 \end{solution}
 
 \begin{exercise}{5.2.2}
-For each of the following orders, give the lists of invariant factors for all abelian groups of that order:
+For each of the following orders, give the invariant-factor lists for all abelian groups of that order:
 \begin{exercisesubparts}
-    \item $270$,
-    \item $9801$,
-    \item $320$,
-    \item $105$,
-    \item $44100$.
+\item $270$;
+\item $9801$;
+\item $320$;
+\item $105$;
+\item $44100$.
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-We write an invariant-factor list as $(n_1,\ldots,n_t)$, with $n_{i+1}\mid n_i$, corresponding to $C_{n_1}\times\cdots\times C_{n_t}$. The Fundamental Theorem of Finite Abelian Groups gives one list for each choice of partitions of the exponents in the prime factorization. The complete lists are:
+We use decreasing invariant factors: $(n_1,\ldots,n_t)$ denotes $C_{n_1}\times\cdots\times C_{n_t}$ with $n_{i+1}\mid n_i$. The classification theorem says to partition the exponents in the prime factorization, combine the corresponding prime powers in aligned columns, and omit factors equal to $1$. We obtain:
 \begin{exercisesubparts}
-    \item 270:
-    \[
-    \begin{gathered}
-        (270)\qquad (90,3)\qquad (30,3,3)
-    \end{gathered}
-    \]
-
-    \item 9801:
-    \[
-    \begin{gathered}
-        (9801)\qquad (3267,3)\qquad (1089,9) \\ (1089,3,3)\qquad (891,11)\qquad (363,3,3,3) \\ (297,33)\qquad (99,99)\qquad (99,33,3) \\ (33,33,3,3)
-    \end{gathered}
-    \]
-
-    \item 320:
-    \[
-    \begin{gathered}
-        (320)\qquad (160,2)\qquad (80,4) \\ (80,2,2)\qquad (40,8)\qquad (40,4,2) \\ (40,2,2,2)\qquad (20,4,4)\qquad (20,4,2,2) \\ (20,2,2,2,2)\qquad (10,2,2,2,2,2)
-    \end{gathered}
-    \]
-
-    \item 105:
-    \[
-    \begin{gathered}
-        (105)
-    \end{gathered}
-    \]
-
-    \item 44100:
-    \[
-    \begin{gathered}
-        (44100)\qquad (22050,2)\qquad (14700,3) \\ (8820,5)\qquad (7350,6)\qquad (6300,7) \\ (4410,10)\qquad (3150,14)\qquad (2940,15) \\ (2100,21)\qquad (1470,30)\qquad (1260,35) \\ (1050,42)\qquad (630,70)\qquad (420,105) \\ (210,210)
-    \end{gathered}
-    \]
+\item $270=2\cdot3^3\cdot5$. Since $3$ has partitions $3$, $2+1$, and $1+1+1$, there are three types:
+\[
+(270),\qquad(90,3),\qquad(30,3,3).
+\]
+\item $9801=3^4\cdot11^2$. There are $p(4)p(2)=5\cdot2=10$ types:
+\[
+\begin{gathered}
+(9801)\qquad(3267,3)\qquad(1089,9)\\
+(1089,3,3)\qquad(891,11)\qquad(363,3,3,3)\\
+(297,33)\qquad(99,99)\qquad(99,33,3)\\
+(33,33,3,3).
+\end{gathered}
+\]
+\item $320=2^6\cdot5$. The exponent $6$ has $p(6)=11$ partitions, hence eleven types:
+\[
+\begin{gathered}
+(320)\qquad(160,2)\qquad(80,4)\\
+(80,2,2)\qquad(40,8)\qquad(40,4,2)\\
+(40,2,2,2)\qquad(20,4,4)\qquad(20,4,2,2)\\
+(20,2,2,2,2)\qquad(10,2,2,2,2,2).
+\end{gathered}
+\]
+\item $105=3\cdot5\cdot7$ has only one type because every exponent is $1$:
+\[
+ (105).
+\]
+\item $44100=2^2\cdot3^2\cdot5^2\cdot7^2$. Each exponent $2$ has two partitions, so there are $2^4=16$ types:
+\[
+\begin{gathered}
+(44100)\qquad(22050,2)\qquad(14700,3)\\
+(8820,5)\qquad(7350,6)\qquad(6300,7)\\
+(4410,10)\qquad(3150,14)\qquad(2940,15)\\
+(2100,21)\qquad(1470,30)\qquad(1260,35)\\
+(1050,42)\qquad(630,70)\qquad(420,105)\\
+(210,210).
+\end{gathered}
+\]
 \end{exercisesubparts}
-There are respectively $3,10,11,1,$ and $16$ lists, in agreement with the products of the partition numbers for the prime-power exponents.
+Every displayed list has product equal to the prescribed order and successive factors dividing preceding ones. The classification theorem gives uniqueness of the invariant-factor type; the partition counts $3,10,11,1,16$ match the displayed lists, so none is missing.
 \end{solution}
 
 \begin{exercise}{5.2.5}
-Let $G$ be a finite abelian group of type $(n_1,n_2,\ldots,n_r)$. Prove that $G$ contains an element of order $m$ if and only if $m\mid n_1$. Deduce that $G$ is of exponent $n_1$.
+If a finite abelian group $G$ has invariant factors $(n_1,n_2,\ldots,n_r)$ with $n_{i+1}\mid n_i$, prove $G$ contains an element of order $m$ if and only if $m\mid n_1$. Deduce that the exponent of $G$ is $n_1$.
 \end{exercise}
 
 \begin{solution}
-In invariant-factor form,
-\[
-    G\cong C_{n_1}\times\cdots\times C_{n_r},
-    \qquad n_r\mid n_{r-1}\mid\cdots\mid n_1.
-\]
-The order of any element $(x_1,\ldots,x_r)$ is the least common multiple of the orders of its coordinates, so it divides $n_1$. Conversely, if $m\mid n_1$, the first factor $C_{n_1}$ has an element of order $m$; inserting this element in the first coordinate and identities elsewhere gives an element of order $m$ in $G$. The largest element order and the least common multiple of all element orders are consequently $n_1$, which is the exponent of $G$.
+Write $G\cong C_{n_1}\times\cdots\times C_{n_r}$. The order of an element is the least common multiple of the orders of its coordinates. Since the order of the $i$th coordinate divides $n_i$ and $n_i\mid n_1$, every element has order dividing $n_1$. Conversely, whenever $m\mid n_1$, the first cyclic factor contains an element of order $m$; adjoining identity elements in the remaining coordinates gives an element of order $m$ in $G$. In particular, the first factor supplies an element of order $n_1$, and every element order divides $n_1$. Hence the exponent (least common multiple of all element orders) is $n_1$.
 \end{solution}
 
 \begin{exercise}{5.2.9}
@@ -479,9 +430,9 @@ Let $A=C_{60}\times C_{45}\times C_{12}\times C_{36}$. Find the number of elemen
 \end{exercise}
 
 \begin{solution}
-Exactly three factors have even order: $C_{60},C_{12},C_{36}$. Each has exactly two solutions of $x^2=1$, while $C_{45}$ has only the identity. Thus there are $2^3=8$ elements satisfying $x^2=1$, of which one is the identity. The number of elements of order $2$ is therefore $\boxed{7}$.
+In a cyclic group of even order, the equation $x^2=1$ has exactly two solutions; in an odd-order cyclic group it has only one. Exactly three factors of $A$ have even order. Hence $2^3=8$ elements satisfy $x^2=1$, and excluding the identity leaves $\boxed{7}$ elements of order exactly $2$.
 
-Every index-$2$ subgroup is the kernel of a surjective homomorphism $A\to C_2$. A homomorphism to $C_2$ has two choices on each even-order cyclic factor and only the trivial choice on the odd-order factor. Hence there are $2^3-1=7$ nontrivial homomorphisms. They are surjective, and distinct ones have distinct kernels because $\Aut(C_2)$ is trivial. Thus the number of index-$2$ subgroups is also $\boxed{7}$.
+Every subgroup of index $2$ is normal and is the kernel of a surjective homomorphism $A\to C_2$. Such a homomorphism is determined by its values on the four cyclic generators: each even-order factor has two choices for the image, while the odd-order factor has only the identity choice. Hence there are $2^3-1=7$ nontrivial homomorphisms, all surjective. Two surjections $A\to C_2$ with the same kernel agree, since their induced maps $A/K\to C_2$ differ by an automorphism of $C_2$, and that group has only the identity automorphism. Thus there are $\boxed{7}$ distinct index-$2$ subgroups.
 \end{solution}
 
 \end{document}

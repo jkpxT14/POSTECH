@@ -1,14 +1,10 @@
 \documentclass[11pt,oneside]{article}
 
 \pdfminorversion=7
+
 \usepackage{QuizStyle}
 
-\hypersetup{
-    pdftitle={20261022 Quiz for MATH301 Modern Algebra I},
-    pdfauthor={Jungwoo Kim},
-    pdfsubject={Quiz for MATH301 Modern Algebra I},
-    pdfcreator={LaTeX}
-}
+\hypersetup{pdftitle={20261022 Quiz for MATH301 Modern Algebra I},pdfauthor={Jungwoo Kim},pdfsubject={Quiz for MATH301 Modern Algebra I},pdfcreator={LaTeX}}
 
 \begin{document}
 
@@ -19,106 +15,94 @@ Prove that a group of order $56$ has a normal Sylow $p$-subgroup for some prime 
 \end{exercise}
 
 \begin{solution}
-Since $56=2^3\cdot7$, Sylow's Theorem gives
-\[
-    n_7\mid8,\qquad n_7\equiv1\pmod7,
-\]
-so $n_7=1$ or $8$. If $n_7=1$, the Sylow $7$-subgroup is normal.
+Since $56=2^3\cdot7$, Sylow's theorem gives $n_7\mid8$ and $n_7\equiv1\pmod7$, so $n_7=1$ or $8$. If $n_7=1$, the Sylow $7$-subgroup is normal.
 
-If $n_7=8$, the eight distinct subgroups of order $7$ intersect pairwise only in the identity and account for $8(7-1)=48$ elements of order $7$. Thus exactly eight elements of $G$ do not have order $7$. Every Sylow $2$-subgroup has order $8$ and contains no element of order $7$, so it consists of precisely these eight elements. Hence the Sylow $2$-subgroup is unique and therefore normal.
+If $n_7=8$, the eight subgroups of order $7$ intersect pairwise only in the identity, because their order is prime. They therefore contain $8(7-1)=48$ distinct nonidentity elements, all of order $7$. The other eight elements consist of the identity and seven elements not of order $7$. Any Sylow $2$-subgroup has order $8$ and cannot contain an element of order $7$, so it is exactly this eight-element set. Consequently all Sylow $2$-subgroups coincide: the unique Sylow $2$-subgroup is normal.
 \end{solution}
 
 \begin{exercise}{4.5.16}
-Let $|G|=pqr$, where $p,q,r$ are primes with $p<q<r$. Prove that $G$ has a normal Sylow subgroup for $p$, $q$, or $r$.
+Let $|G|=pqr$, where $p<q<r$ are primes. Prove that $G$ has a normal Sylow subgroup for at least one of $p,q,r$.
 \end{exercise}
 
 \begin{solution}
-Sylow's Theorem gives $n_r\mid pq$ and $n_r\equiv1\pmod r$. Since $p,q<r$, this forces $n_r=1$ or $pq$. In the first case the Sylow $r$-subgroup is normal.
+Sylow's theorem gives $n_r\mid pq$ and $n_r\equiv1\pmod r$. Because neither $p$ nor $q$ is congruent to $1$ modulo $r$, $n_r=1$ or $pq$. If $n_r=1$, the Sylow $r$-subgroup is normal.
 
-Suppose that $n_r=pq$. These distinct subgroups of order $r$ account for $pq(r-1)$ nonidentity elements, leaving only $pq-1$ nonidentity elements of other orders. On the other hand, $n_q\mid pr$ and $n_q\equiv1\pmod q$. If $n_q>1$, then $n_q\ge r$, since $p<q$; the Sylow $q$-subgroups would consequently contribute at least $r(q-1)$ distinct elements of order $q$. But
+Suppose $n_r=pq$. Its $pq$ distinct subgroups of order $r$ have pairwise trivial intersections and contain $pq(r-1)$ nonidentity elements, leaving only $pq-1$ nonidentity elements outside them. Also $n_q\mid pr$ and $n_q\equiv1\pmod q$. The possible divisors of $pr$ are $1,p,r,pr$; since $p<q$, the value $p$ is not $1$ modulo $q$. Thus if $n_q>1$, necessarily $n_q\ge r$. The distinct Sylow $q$-subgroups would then contribute at least $r(q-1)$ nonidentity elements, disjoint from the elements of order $r$. But
 \[
-    r(q-1)\ge rp>pq-1,
+ r(q-1)\ge rp>pq-1,
 \]
-a contradiction. Hence $n_q=1$, and the Sylow $q$-subgroup is normal.
+since $q-1\ge p$ and $r>q$. This is impossible. Therefore $n_q=1$, so a Sylow $q$-subgroup is normal.
 \end{solution}
 
 \begin{exercise}{4.5.17}
-Prove that if $|G|=105$, then $G$ has a normal Sylow $5$-subgroup and a normal Sylow $7$-subgroup.
+Prove that every group $G$ of order $105$ has a normal Sylow $5$-subgroup and a normal Sylow $7$-subgroup.
 \end{exercise}
 
 \begin{solution}
-Since $105=3\cdot5\cdot7$, Sylow's Theorem gives
-\[
-    n_5\in\{1,21\},\qquad n_7\in\{1,15\}.
-\]
-If both were greater than $1$, the distinct Sylow $5$- and Sylow $7$-subgroups would contain $21(5-1)+15(7-1)=174$ distinct nonidentity elements, which is impossible. Thus at least one is normal.
+Since $105=3\cdot5\cdot7$, Sylow's theorem gives $n_5\in\{1,21\}$ and $n_7\in\{1,15\}$. If both were greater than $1$, the distinct subgroups of orders $5$ and $7$ would contain $21\cdot4+15\cdot6=174$ distinct nonidentity elements. This exceeds $104=|G|-1$, so at least one of the two Sylow subgroups is normal.
 
-\Needspace{15\baselineskip}
-Suppose first that a Sylow $7$-subgroup $P_7$ is normal. The quotient $G/P_7$ has order $15$ and hence has a unique Sylow $5$-subgroup. Its preimage $K$ in $G$ is a normal subgroup of order $35$. In $K$, the number of Sylow $5$-subgroups divides $7$ and is congruent to $1$ modulo $5$, so it equals $1$. Conjugation by any element of $G$ preserves $K$ and therefore its unique Sylow $5$-subgroup. Thus a Sylow $5$-subgroup of $G$ is normal.
+First suppose $P_7\trianglelefteq G$. Then $G/P_7$ has order $15$. The number of its Sylow $5$-subgroups divides $3$ and is $1$ modulo $5$, hence is $1$. Its unique Sylow $5$-subgroup has a normal preimage $K\trianglelefteq G$ of order $35$. In $K$, the number of Sylow $5$-subgroups divides $7$ and is $1$ modulo $5$, hence is $1$. This unique subgroup of order $5$ is invariant under every conjugation by $G$, because $G$ normalizes $K$ and conjugation preserves subgroup orders; thus it is normal in $G$.
 
-Conversely, if a Sylow $5$-subgroup $P_5$ is normal, then $G/P_5$ has order $21$ and a unique Sylow $7$-subgroup. Its preimage is a normal subgroup $K$ of order $35$; in $K$, the Sylow $7$-subgroup is unique, since its number divides $5$ and is $1$ modulo $7$. The same conjugation argument shows that it is normal in $G$.
+Conversely, if $P_5\trianglelefteq G$, then $G/P_5$ has order $21$. Its number of Sylow $7$-subgroups divides $3$ and is $1$ modulo $7$, so equals $1$. Its preimage is again a normal subgroup $K$ of order $35$. The Sylow $7$-subgroup of $K$ is unique (its number divides $5$ and is $1$ modulo $7$). It is consequently invariant under conjugation by all elements of $G$ and normal in $G$. Hence both Sylow subgroups of $G$ are normal.
 \end{solution}
 
 \begin{supplementaryexercise}
-Let $G$ be a group of order $30$. Determine whether $G$ is simple. Justify your answer.
+Let $G$ be a group with $|G|=30$. Determine whether $G$ can be simple. Justify your answer.
 \end{supplementaryexercise}
 
 \begin{solution}
-Sylow's Theorem gives
+Suppose $G$ were simple. Since $|G|=2\cdot3\cdot5$, Sylow's theorem yields
 \[
-    n_5\in\{1,6\},\qquad n_3\in\{1,10\}.
+ n_5\mid6,\quad n_5\equiv1\pmod5
+ \qquad\Longrightarrow\qquad n_5\in\{1,6\},
 \]
-If $G$ were simple, neither Sylow subgroup could be normal, so $n_5=6$ and $n_3=10$. The distinct Sylow $5$-subgroups would then contain $6(5-1)=24$ elements of order $5$, while the distinct Sylow $3$-subgroups would contain $10(3-1)=20$ elements of order $3$. Including the identity gives at least $1+24+20=45$ elements, contradicting $|G|=30$. Hence $G$ is not simple.
+and similarly $n_3\in\{1,10\}$. Simplicity rules out a unique normal Sylow subgroup, so $n_5=6$ and $n_3=10$. Distinct subgroups of prime orders have trivial pairwise intersections. Hence the Sylow $5$-subgroups contribute $6\cdot4=24$ distinct elements of order $5$, and Sylow $3$-subgroups contribute $10\cdot2=20$ distinct elements of order $3$. Counting the identity gives at least $1+24+20=45$ elements, contradicting $|G|=30$. Therefore no group of order $30$ is simple.
 \end{solution}
 
 \begin{exercise}{5.1.18}
-In each of (a) to (e), give an example of a group with the specified properties:
+Give examples of groups with the following properties.
 \begin{exercisesubparts}
-    \item an infinite group in which every element has order $1$ or $2$;
-    \item an infinite group in which every element has finite order but for each positive integer $n$ there is an element of order $n$;
-    \item a group with an element of infinite order and an element of order $2$;
-    \item a group $G$ such that every finite group is isomorphic to some subgroup of $G$;
-    \item a nontrivial group $G$ such that $G\cong G\times G$.
+\item An infinite group in which every element has order $1$ or $2$.
+\item An infinite group in which all elements have finite order, with an element of order $n$ for every positive $n$.
+\item A group with an infinite-order element and an element of order $2$.
+\item A group containing an isomorphic copy of every finite group.
+\item A nontrivial group $G$ with $G\cong G\times G$.
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
 \begin{exercisesubparts}
-    \item Take $G=\bigoplus_{n\ge1}C_2$. It is infinite, and every element has finite support and squares to the identity; thus every nonidentity element has order $2$.
-
-    \item Take $G=\bigoplus_{n\ge1}C_n$. Every element has only finitely many nonidentity coordinates, so its order is finite. The generator in the $n$th factor has order $n$ for each $n\ge1$.
-
-    \item Take $G=\Z\times C_2$. The element $(1,1_{C_2})$ has infinite order, while $(0,t)$ has order $2$ when $t$ is the nonidentity element of $C_2$.
-
-    \item Take $G=\bigcup_{n\ge1}S_n$, where $S_n\le S_{n+1}$ fixes $n+1$. Every finite group $H$ embeds into $S_{|H|}$ by its action on itself by left multiplication (Cayley's Theorem), and hence embeds into $G$.
-
-    \item Take $G=\bigoplus_{n\ge1}C_2$ again. Splitting the coordinates into odd and even indices gives $G\cong G\times G$. The group is nontrivial.
+\item Let $G=\bigoplus_{n\ge1}C_2$. This is infinite, and every element has finite support. Squaring coordinatewise gives the identity, so every nonidentity element has order $2$.
+\item Take $G=\bigoplus_{n\ge1}C_n$. Any element has only finitely many nonidentity coordinates, each of finite order, so its order is the least common multiple of finitely many finite numbers. The generator of the $n$th factor gives an element of order $n$.
+\item Take $G=\Z\times C_2$. The element $(1,1_{C_2})$ has infinite order, while $(0,t)$ has order $2$ for the nonidentity $t\in C_2$.
+\item Take $G=\bigcup_{n\ge1}S_n$, with $S_n\le S_{n+1}$ via permutations fixing $n+1$. This union is a group. Cayley's theorem embeds each finite group $H$ in $S_{|H|}$, hence in $G$.
+\item Take again $G=\bigoplus_{n\ge1}C_2$. Splitting the coordinates into odd and even indices gives a group isomorphism $G\cong G\times G$; $G$ is certainly nontrivial.
 \end{exercisesubparts}
 \end{solution}
 
-\Needspace{24\baselineskip}
 \begin{exercise}{5.2.10}
-Let $n$ and $k$ be positive integers and let $A$ be the free abelian group of rank $n$ (written additively). Prove that $A/kA$ is isomorphic to the direct product of $n$ copies of $\Z/k\Z$, where
-\[
-    kA=\{ka\mid a\in A\}.
-\]
+Let $A$ be a free abelian group of rank $n$ and let $k>0$. Show that $A/kA$ is isomorphic to the direct product of $n$ copies of $\Z/k\Z$, where $kA=\{ka:a\in A\}$.
 \end{exercise}
 
 \begin{hint}
-See Exercise 5.1.14.
+Choose a basis of $A$ and reduce each integer coefficient modulo $k$.
 \end{hint}
 
 \begin{solution}
-Choose a basis $a_1,\ldots,a_n$ of $A$. Each $a\in A$ is uniquely of the form $a=m_1a_1+\cdots+m_na_n$ with $m_i\in\Z$. Define
+Choose a basis $a_1,\ldots,a_n$ of $A$. Every $a\in A$ has a unique representation $a=m_1a_1+\cdots+m_na_n$ with integers $m_i$. Define
 \[
 \begin{aligned}
-    \varphi\colon A&\longrightarrow(\Z/k\Z)^n,\\
-    m_1a_1+\cdots+m_na_n&\longmapsto([m_1]_k,\ldots,[m_n]_k).
+\varphi:A&\longrightarrow(\Z/k\Z)^n,\\
+\sum_{i=1}^n m_i a_i&\longmapsto([m_1]_k,\ldots,[m_n]_k).
 \end{aligned}
 \]
-This is a surjective homomorphism. Moreover, $a\in\ker\varphi$ if and only if $k\mid m_i$ for every $i$, which is equivalent to $a\in kA$. Thus $\ker\varphi=kA$, and the First Isomorphism Theorem gives
+Uniqueness of the coefficients makes the map well defined, and addition of coefficients shows it is a homomorphism. It is surjective because every tuple of residue classes has integer representatives. Moreover,
 \[
-    A/kA\cong(\Z/k\Z)^n.
+\varphi(a)=0\iff k\mid m_i\text{ for every }i\iff a\in kA,
+\]
+so $\ker\varphi=kA$. By the First Isomorphism Theorem,
+\[
+A/kA\cong(\Z/k\Z)^n.
 \]
 \end{solution}
 
