@@ -1,52 +1,56 @@
 \section{Calculus and Analysis}
 
-The differential $\dd$ is upright; $\varepsilon$ is the default small positive quantity in analysis. Function spaces take their domains in parentheses, for example $C([a,b])$, $\mathcal{R}([a,b])$, and $L^p(\Omega)$.
+The differential $\dd$ is upright; $\varepsilon$ is the default small positive quantity in analysis. Function spaces take their domains in parentheses, for example $C([a, b])$, $\mathcal{R}([a, b])$, and $L^p(\Omega)$.
 
 \begin{notationtable}
-$\displaystyle\lim_{x\to a}f(x),\ f(a^{\pm})$ & Two-sided limit at $a$; $f(a^{\pm})$ denotes the common one-sided limit (adopted convention) \\
-$\displaystyle\lim_{x\to a^-}f(x),\ f(a^{-})$ & Left-hand limit at $a$ \\*
-$\displaystyle\lim_{x\to a^+}f(x),\ f(a^{+})$ & Right-hand limit at $a$ \\
-$\displaystyle\lim_{x\to\infty}f(x),\ f(\infty)$ & Limit as $x\to\infty$; $f(\infty)$ is adopted shorthand when the limit exists \\
-$\displaystyle\lim_{x\to-\infty}f(x),\ f(-\infty)$ & Limit as $x\to-\infty$; $f(-\infty)$ is adopted shorthand when the limit exists \\
-$\begin{aligned} &\displaystyle\lim_{x\to a} f(x)=\infty,\\[-0.15em] &\displaystyle\lim_{x\to a} f(x)=-\infty \end{aligned}$ & Infinite limits \\
+$\displaystyle\lim_{x\to a}f(x), \ f(a^{\pm})$ & Two-sided limit at $a$; $f(a^{\pm})$ denotes the common one-sided limit (adopted convention) \\
+$\displaystyle\lim_{x\to a^-}f(x), \ f(a^{-})$ & Left-hand limit at $a$ \\*
+$\displaystyle\lim_{x\to a^+}f(x), \ f(a^{+})$ & Right-hand limit at $a$ \\
+$\displaystyle\lim_{x\to\infty}f(x), \ f(\infty)$ & Limit as $x\to\infty$; $f(\infty)$ is adopted shorthand when the limit exists \\
+$\displaystyle\lim_{x\to-\infty}f(x), \ f(-\infty)$ & Limit as $x\to-\infty$; $f(-\infty)$ is adopted shorthand when the limit exists \\
+$\begin{aligned} &\displaystyle\lim_{x\to a} f(x)=\infty, \\[-0.15em] &\displaystyle\lim_{x\to a} f(x)=-\infty \end{aligned}$ & Infinite limits \\
 $\min A$ & Minimum of $A$ \\*
 $\max A$ & Maximum of $A$ \\
 $\inf A$ & Infimum of $A$ \\*
 $\sup A$ & Supremum of $A$ \\
 $\displaystyle\argmin_{x\in A}f(x)$ & Set of minimizers of $f$ over $A$; empty if the infimum is not attained \\
 $\displaystyle\argmax_{x\in A}f(x)$ & Set of maximizers of $f$ over $A$; empty if the supremum is not attained \\
-$\overline{\R}=\R\cup\{-\infty,+\infty\}$ & Extended real line \\
+$\overline{\R}=\R\cup\{-\infty, +\infty\}$ & Extended real line \\
 $f'(a)$ & First derivative of $f$ at $a$ \\
 $f^{(n)}(a)$ & $n$th derivative of $f$ at $a$ \\
 $\displaystyle\frac{\dd y}{\dd x}$ & Derivative of $y$ with respect to $x$ \\[0.10em]
 $\displaystyle\frac{\dd^n y}{\dd x^n}$ & $n$th derivative of $y$ with respect to $x$ in Leibniz notation \\[0.10em]
-$\displaystyle\frac{\partial f}{\partial x_i},\ \partial_i f,\ f_{x_i}$ & Partial derivative with respect to $x_i$ \\[0.10em]
-$\displaystyle\frac{\partial^2 f}{\partial x_j\partial x_i},\ \partial_{ji}f,\ f_{x_i x_j}$ & Successive or mixed partial derivative, first with respect to $x_i$ and then $x_j$. When the relevant mixed partial derivatives are continuous, the order may be interchanged. \\[0.10em]
-$D_{\mathbf v}f(\mathbf a),\ \partial_{\mathbf v}f(\mathbf a)$ & Directional derivative along the vector $\mathbf v$, which need not be a unit vector: $\displaystyle D_{\mathbf v}f(\mathbf a)=\left.\frac{\dd}{\dd t}f(\mathbf a+t\mathbf v)\right|_{t=0}=Df(\mathbf a)[\mathbf v]=\nabla f(\mathbf a)\cdot\mathbf v$ when $f$ is differentiable. For the unit direction determined by $\mathbf v\ne\mathbf0$, use $\mathbf u=\mathbf v/\|\mathbf v\|$ \\
+$\displaystyle\frac{\partial f}{\partial x_i}, \ \partial_i f, \ f_{x_i}$ & Partial derivative with respect to $x_i$ \\[0.10em]
+$\displaystyle\frac{\partial^2 f}{\partial x_j\partial x_i}, \ \partial_{ji}f, \ f_{x_i x_j}$ & Successive or mixed partial derivative, first with respect to $x_i$ and then $x_j$. When the relevant mixed partial derivatives are continuous, the order may be interchanged. \\[0.10em]
+$D_{\mathbf v}f(\mathbf a), \ \partial_{\mathbf v}f(\mathbf a)$ & Directional derivative along the vector $\mathbf v$, which need not be a unit vector: $\displaystyle D_{\mathbf v}f(\mathbf a)=\left.\frac{\dd}{\dd t}f(\mathbf a+t\mathbf v)\right|_{t=0}=Df(\mathbf a)[\mathbf v]=\nabla f(\mathbf a)\cdot\mathbf v$ when $f$ is differentiable. For the unit direction determined by $\mathbf v\ne\mathbf0$, use $\mathbf u=\mathbf v/\|\mathbf v\|$ \\
 $\displaystyle\dd f=\sum_{i=1}^n\frac{\partial f}{\partial x_i}\,\dd x_i$ & Total differential of a scalar function of $n$ variables \\
 $\displaystyle\int f(x)\,\dd x$ & Indefinite integral; a family of antiderivatives, with an additive constant understood \\[0.10em]
-$\displaystyle\int_a^b f(x)\,\dd x$ & Definite integral over $[a,b]$ \\[0.10em]
-$\displaystyle\int_a^\infty f(x)\,\dd x,\ \int_{-\infty}^b f(x)\,\dd x$ & Improper integrals over unbounded intervals \\[0.10em]
-$\displaystyle\int_a^b f\,\dd\alpha$ & Riemann--Stieltjes integral of $f$ with respect to $\alpha$ \\
-$P=\{x_0,\dots,x_n\}$ & Partition of $[a,b]$, with $a=x_0<\cdots<x_n=b$ \\
-$\displaystyle\sum_{i=1}^n f(\xi_i)\Delta x_i$ & Tagged Riemann sum, where $\Delta x_i=x_i-x_{i-1}$ and $\xi_i\in[x_{i-1},x_i]$ \\
+$\displaystyle\int_a^b f(x)\,\dd x$ & Definite integral over $[a, b]$ \\[0.10em]
+$\displaystyle\int_a^\infty f(x)\,\dd x, \ \int_{-\infty}^b f(x)\,\dd x$ & Improper integrals over unbounded intervals \\[0.10em]
+$\displaystyle\int_a^b f\,\dd\alpha$ & Riemann--Stieltjes integral of $f$ with respect to the integrator $\alpha$; in the classical setup here, $\alpha\colon[a, b]\to\R$ is nondecreasing, not necessarily continuous \\
+$P=\{x_0, \dots, x_n\}$ & Partition of $[a, b]$, with $a=x_0<\cdots<x_n=b$ \\
+$\displaystyle\sum_{i=1}^n f(\xi_i)\Delta x_i$ & Tagged Riemann sum, where $\Delta x_i=x_i-x_{i-1}$ and $\xi_i\in[x_{i-1}, x_i]$ \\
 $\displaystyle\iint_D f\,\dd A$ & Double integral over $D$ \\
 $\displaystyle\iiint_\Omega f\,\dd V$ & Triple integral over $\Omega$ \\
 $\displaystyle\int_C f(z)\,\dd z$ & Contour integral along an oriented contour $C$ \\
 $\displaystyle\oint_C f(z)\,\dd z$ & Contour integral over a closed contour $C$ \\
+$\Ind(\gamma, z)$ & Winding number (index) of a closed piecewise $C^1$ curve $\gamma$ about $z\notin\gamma([a, b])$: $\displaystyle\frac{1}{2\pi i}\int_\gamma\frac{\dd w}{w-z}$ \\
 $-C$ & The contour $C$ with the opposite orientation \\
 $\gamma^{-1}$ & Reversed parametrized path $\gamma$, when unambiguous; not a functional inverse \\
-$\PV,\ \mathrm{P.V.}$ & Principal value; in particular, the Cauchy principal value of a singular or improper integral \\
+$\PV, \ \mathrm{P.V.}$ & Principal value; in particular, the Cauchy principal value of a singular or improper integral \\
 $\displaystyle\sum_{k=1}^{n} a_k$ & Finite sum \\[0.10em]
 $\displaystyle\sum_{k=1}^{\infty} a_k$ & Infinite series \\[0.10em]
 $\displaystyle\prod_{k=1}^{n} a_k$ & Finite product \\[0.10em]
 $\displaystyle\sum_{n=0}^{\infty}a_n(x-a)^n$ & Power series centered at $a$ \\[0.10em]
 $\displaystyle\sum_{n=-\infty}^{\infty}a_n(z-z_0)^n$ & Laurent series about $z_0$, on an annulus of convergence \\[0.10em]
 $\displaystyle\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & $n$th Taylor polynomial of $f$ about $a$ \\
-$e^x,\ \exp x$ & Exponential function \\
-$\ln x,\ \log_e x$ & Natural logarithm of a positive real number \\
-$\lg x,\ \log_{10} x$ & Logarithm to base $10$ \\
-$\lb x,\ \log_2 x$ & Logarithm to base $2$ \\
+$\widehat f(n)$ & $n$th complex Fourier coefficient of an integrable $2\pi$-periodic function $f$: $\displaystyle\widehat f(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}\,\dd x$, for $n\in\Z$ \\
+$S_Nf$ & $N$th symmetric Fourier partial sum under this convention: $\displaystyle S_Nf(x)=\sum_{n=-N}^{N}\widehat f(n)e^{inx}$, for $N\ge0$ \\
+$\sigma_Nf$ & $N$th Ces\`aro (Fej\'er) mean of the Fourier partial sums: $\displaystyle\sigma_Nf(x)=\frac1{N+1}\sum_{k=0}^{N}S_kf(x)$, for $N\ge0$ \\
+$e^x, \ \exp x$ & Exponential function \\
+$\ln x, \ \log_e x$ & Natural logarithm of a positive real number \\
+$\lg x, \ \log_{10} x$ & Logarithm to base $10$ \\
+$\lb x, \ \log_2 x$ & Logarithm to base $2$ \\
 $\log_a x$ & Logarithm to base $a$ \\
 $W_k(z)$ & Lambert $W$-function: $W_k(z)e^{W_k(z)}=z$; $W_0$ is the principal branch \\
 $\sin x$ & Sine \\
@@ -55,35 +59,35 @@ $\tan x$ & Tangent \\
 $\csc x$ & Cosecant \\
 $\sec x$ & Secant \\
 $\cot x$ & Cotangent \\
-$\arcsin x,\ \sin^{-1}x$ & Principal inverse sine, $[-1,1]\to[-\pi/2,\pi/2]$ \\
-$\arccos x,\ \cos^{-1}x$ & Principal inverse cosine, $[-1,1]\to[0,\pi]$ \\
-$\arctan x,\ \tan^{-1}x$ & Principal inverse tangent, $\R\to(-\pi/2,\pi/2)$ \\
-$\arccsc x,\ \csc^{-1}x$ & Principal inverse cosecant, defined by $\arccsc x=\arcsin(1/x)$ for $|x|\ge1$; its range is $[-\pi/2,0)\cup(0,\pi/2]$ \\
-$\arcsec x,\ \sec^{-1}x$ & Principal inverse secant, defined by $\arcsec x=\arccos(1/x)$ for $|x|\ge1$; its range is $[0,\pi/2)\cup(\pi/2,\pi]$ \\
-$\arccot x,\ \cot^{-1}x$ & Principal real inverse cotangent, $\R\to(0,\pi)$ \\
+$\arcsin x, \ \sin^{-1}x$ & Principal inverse sine, $[-1, 1]\to[-\pi/2, \pi/2]$ \\
+$\arccos x, \ \cos^{-1}x$ & Principal inverse cosine, $[-1, 1]\to[0, \pi]$ \\
+$\arctan x, \ \tan^{-1}x$ & Principal inverse tangent, $\R\to(-\pi/2, \pi/2)$ \\
+$\arccsc x, \ \csc^{-1}x$ & Principal inverse cosecant, defined by $\arccsc x=\arcsin(1/x)$ for $|x|\ge1$; its range is $[-\pi/2, 0)\cup(0, \pi/2]$ \\
+$\arcsec x, \ \sec^{-1}x$ & Principal inverse secant, defined by $\arcsec x=\arccos(1/x)$ for $|x|\ge1$; its range is $[0, \pi/2)\cup(\pi/2, \pi]$ \\
+$\arccot x, \ \cot^{-1}x$ & Principal real inverse cotangent, $\R\to(0, \pi)$ \\
 $\sinh x$ & Hyperbolic sine \\
 $\cosh x$ & Hyperbolic cosine \\
 $\tanh x$ & Hyperbolic tangent \\
 $\csch x$ & Hyperbolic cosecant \\
 $\sech x$ & Hyperbolic secant \\
 $\coth x$ & Hyperbolic cotangent \\
-$\arcsinh x,\ \sinh^{-1}x$ & Principal real inverse hyperbolic sine, $\R\to\R$ \\
-$\arccosh x,\ \cosh^{-1}x$ & Principal real inverse hyperbolic cosine, $[1,\infty)\to[0,\infty)$ \\
-$\arctanh x,\ \tanh^{-1}x$ & Principal real inverse hyperbolic tangent, $(-1,1)\to\R$ \\
-$\arccsch x,\ \csch^{-1}x$ & Principal real inverse hyperbolic cosecant, defined by $\arccsch x=\arcsinh(1/x)$ on $\R\setminus\{0\}$; its range is $\R\setminus\{0\}$ \\
-$\arcsech x,\ \sech^{-1}x$ & Principal real inverse hyperbolic secant, defined by $\arcsech x=\arccosh(1/x)$ on $(0,1]$; its range is $[0,\infty)$ \\
-$\arccoth x,\ \coth^{-1}x$ & Principal real inverse hyperbolic cotangent, defined by $\arccoth x=\arctanh(1/x)$ for $|x|>1$; its range is $\R\setminus\{0\}$ \\
+$\arcsinh x, \ \sinh^{-1}x$ & Principal real inverse hyperbolic sine, $\R\to\R$ \\
+$\arccosh x, \ \cosh^{-1}x$ & Principal real inverse hyperbolic cosine, $[1, \infty)\to[0, \infty)$ \\
+$\arctanh x, \ \tanh^{-1}x$ & Principal real inverse hyperbolic tangent, $(-1, 1)\to\R$ \\
+$\arccsch x, \ \csch^{-1}x$ & Principal real inverse hyperbolic cosecant, defined by $\arccsch x=\arcsinh(1/x)$ on $\R\setminus\{0\}$; its range is $\R\setminus\{0\}$ \\
+$\arcsech x, \ \sech^{-1}x$ & Principal real inverse hyperbolic secant, defined by $\arcsech x=\arccosh(1/x)$ on $(0, 1]$; its range is $[0, \infty)$ \\
+$\arccoth x, \ \coth^{-1}x$ & Principal real inverse hyperbolic cotangent, defined by $\arccoth x=\arctanh(1/x)$ for $|x|>1$; its range is $\R\setminus\{0\}$ \\
 $\Gamma(z)$ & Gamma function \\
 $\psi(z)$ & Digamma function, $\psi(z)=\Gamma'(z)/\Gamma(z)$ \\
-$B(x,y)$ & Beta function \\
+$B(x, y)$ & Beta function \\
 $\gamma$ & Euler--Mascheroni constant, $\displaystyle\gamma=\lim_{n\to\infty}\left(\sum_{k=1}^n\frac1k-\ln n\right)$ \\
 $\zeta(s)$ & Riemann zeta function \\
-$\mathbf J_{\mathbf F}(\mathbf a),\ D\mathbf F(\mathbf a)$ & Jacobian matrix of $\mathbf F=(F_1,\dots,F_m)\colon\R^n\to\R^m$ at $\mathbf a$, with $\displaystyle\mathbf J_{\mathbf F}(\mathbf a)=\left(\frac{\partial F_i}{\partial x_j}(\mathbf a)\right)_{i,j}$. $D\mathbf F(\mathbf a)$ is the total derivative in standard coordinates \\
-$\det\mathbf J_{\mathbf F}(\mathbf a),\ \det D\mathbf F(\mathbf a)$ & Jacobian determinant of $\mathbf F\colon\R^n\to\R^n$ at $\mathbf a$; also written $\displaystyle\left.\frac{\partial(F_1,\dots,F_n)}{\partial(x_1,\dots,x_n)}\right|_{\mathbf a}$ \\
+$\mathbf J_{\mathbf F}(\mathbf a), \ D\mathbf F(\mathbf a)$ & Jacobian matrix of $\mathbf F=(F_1, \dots, F_m)\colon\R^n\to\R^m$ at $\mathbf a$, with $\displaystyle\mathbf J_{\mathbf F}(\mathbf a)=\left(\frac{\partial F_i}{\partial x_j}(\mathbf a)\right)_{i, j}$. $D\mathbf F(\mathbf a)$ is the total derivative in standard coordinates \\
+$\det\mathbf J_{\mathbf F}(\mathbf a), \ \det D\mathbf F(\mathbf a)$ & Jacobian determinant of $\mathbf F\colon\R^n\to\R^n$ at $\mathbf a$; also written $\displaystyle\left.\frac{\partial(F_1, \dots, F_n)}{\partial(x_1, \dots, x_n)}\right|_{\mathbf a}$ \\
 $\Hess f$ & Hessian matrix of $f$ \\
-$\nabla f,\ \operatorname{grad}f$ & Gradient of $f$ \\
-$\nabla\cdot\mathbf{F},\ \operatorname{div}\mathbf F$ & Divergence of $\mathbf{F}$ \\
-$\nabla\times\mathbf{F},\ \operatorname{curl}\mathbf F$ & Curl of $\mathbf{F}$ \\
+$\nabla f, \ \operatorname{grad}f$ & Gradient of $f$ \\
+$\nabla\cdot\mathbf{F}, \ \operatorname{div}\mathbf F$ & Divergence of $\mathbf{F}$ \\
+$\nabla\times\mathbf{F}, \ \operatorname{curl}\mathbf F$ & Curl of $\mathbf{F}$ \\
 $\Delta f$ & Laplacian of $f$ \\
 $\mathbf{r}(t)$ & Parametrized curve \\
 $\dd s$ & Element of arc length \\
@@ -91,57 +95,60 @@ $\displaystyle\int_C f\,\dd s$ & Scalar line integral along $C$ with respect to 
 $\displaystyle\int_C\mathbf{F}\cdot\dd\mathbf{r}$ & Line integral of the vector field $\mathbf F$ along $C$ \\
 $\displaystyle\iint_S f\,\dd S$ & Scalar surface integral over $S$ \\
 $\displaystyle\iint_S\mathbf{F}\cdot\mathbf{n}\,\dd S$ & Flux integral through $S$ \\
-$x_n\to x,\ \displaystyle\lim_{n\to\infty}x_n=x$ & Convergence of a sequence \\
+$x_n\to x, \ \displaystyle\lim_{n\to\infty}x_n=x$ & Convergence of a sequence \\
 $(x_{n_k})$ & Subsequence of the sequence $(x_n)$ \\
 $a_n\nearrow L$ & Monotone increasing convergence to $L$ \\*
 $a_n\searrow L$ & Monotone decreasing convergence to $L$ \\
 $\displaystyle\limsup_{n\to\infty}a_n$ & Limit superior of the sequence $(a_n)$ \\*
 $\displaystyle\liminf_{n\to\infty}a_n$ & Limit inferior of the sequence $(a_n)$ \\
 $f(x)\sim g(x)$ & Asymptotic equivalence in the stated limiting regime, typically meaning $f(x)/g(x)\to1$ \\
-$f_n\ptwto f,\ f_n\ptwlabelto f$ & Pointwise convergence of functions on a common domain by default when no ambient topology, metric, or norm is specified. If such a structure is specified, the ordinary arrow $\to$ refers to convergence in that structure \\*
-$f_n\unifto f,\ f_n\uniflabelto f$ & Uniform convergence \\
+$f_n\ptwto f, \ f_n\ptwlabelto f$ & Pointwise convergence of functions on a common domain by default when no ambient topology, metric, or norm is specified. If such a structure is specified, the ordinary arrow $\to$ refers to convergence in that structure \\*
+$f_n\unifto f, \ f_n\uniflabelto f$ & Uniform convergence \\
 $f_n\aeto f$ & Convergence almost everywhere \\
-$(X,\mathcal A,\mu)$ & Measure space, where $\mathcal A$ is a $\sigma$-algebra on $X$ and $\mu$ is a measure on $\mathcal A$ \\
+$(X, \mathcal A, \mu)$ & Measure space, where $\mathcal A$ is a $\sigma$-algebra on $X$ and $\mu$ is a measure on $\mathcal A$ \\
 $\mathcal A$ & $\sigma$-algebra of measurable subsets of $X$, when the underlying set is understood \\
 $\mathcal B(X)$ & Borel $\sigma$-algebra of a topological space $X$ \\
 $\mu(E)$ & Measure of a measurable set $E\in\mathcal A$ \\
 $\displaystyle\int_E f\,\dd\mu$ & Integral of $f$ over $E$ with respect to the measure $\mu$ \\
-$f=g\ \text{a.e.},\quad f=g\ \mu\text{-a.e.}$ & Equality almost everywhere, with the measure omitted when understood \\
+$f=g\ \text{a.e.}, \quad f=g\ \mu\text{-a.e.}$ & Equality almost everywhere, with the measure omitted when understood \\
 $\displaystyle\esssup_{x\in E} f(x)$ & Essential supremum of $f$ on $E$ \\
 $\displaystyle\essinf_{x\in E} f(x)$ & Essential infimum of $f$ on $E$ \\
-$C(\Omega),\ C^0(\Omega)$ & Continuous functions on $\Omega$ \\*
+$C(\Omega), \ C^0(\Omega)$ & Continuous functions on $\Omega$ \\*
 $C^k(\Omega)$ & $k$ times continuously differentiable functions on $\Omega$ \\*
 $C^\infty(\Omega)$ & Smooth functions on $\Omega$ \\
-$C_b(X)$ & Bounded continuous scalar-valued functions on $X$ \\
+$C_b(X)$ & Bounded continuous scalar-valued functions on $X$; the scalar field is given by context, or explicitly by $C_b(X, \R)$ or $C_b(X, \C)$. If $K$ is compact, $C_b(K)=C(K)$ for the same codomain \\
 $\operatorname{supp}f$ & Support of $f$, the closure of the set on which $f$ is nonzero \\
-$C_c(\Omega),\ C_c^\infty(\Omega)$ & Continuous and smooth functions on $\Omega$ with compact support, respectively \\
+$C_c(\Omega), \ C_c^\infty(\Omega)$ & Continuous and smooth functions on $\Omega$ with compact support, respectively \\
 $\mathcal O(U)$ & Holomorphic functions on an open set $U\subseteq\C$ \\
-$\mathcal{R}([a,b])$ & Riemann-integrable functions on $[a,b]$ \\
-$L^p(\Omega),\ L^p(X,\mu)$ & Lebesgue $L^p$ spaces; the measure is displayed when it is not understood \\*
-$L^\infty(\Omega),\ L^\infty(X,\mu)$ & Lebesgue spaces of essentially bounded functions \\
+$V_a^b(f)$ & Total variation of $f$ on $[a, b]$: $\displaystyle\sup_{P}\sum_{i=1}^{n}|f(x_i)-f(x_{i-1})|$, over partitions $P=(a=x_0<\cdots<x_n=b)$ \\
+$\mathrm{BV}([a, b])$ & Space of functions of bounded variation on $[a, b]$, namely those $f$ with $V_a^b(f)<\infty$ \\
+$\mathcal{R}([a, b])$ & Riemann-integrable scalar-valued functions on $[a, b]$; equivalently $\mathcal{R}([a, b], \id)$ for the identity integrator $\id(x)=x$ \\*
+$\mathcal{R}([a, b], \alpha)$ & Riemann--Stieltjes-integrable scalar-valued functions on $[a, b]$ with respect to a nondecreasing real-valued function $\alpha\colon[a, b]\to\R$; $\alpha$ need not be continuous, and complex-valued integrands are handled componentwise \\
+$L^p(\Omega), \ L^p(X, \mu)$ & Lebesgue $L^p$ spaces of measurable functions modulo equality almost everywhere; the measure is displayed when not understood. For $1\le p<\infty$, membership requires $\displaystyle\int_X|f|^p\,\dd\mu<\infty$ \\*
+$L^\infty(\Omega), \ L^\infty(X, \mu)$ & Lebesgue spaces of essentially bounded measurable functions, identified up to equality almost everywhere \\
 $\ell^p$ & Space of scalar sequences $(x_n)$ with $\displaystyle\sum_{n=1}^{\infty}|x_n|^p<\infty$, for $1\le p<\infty$ \\
 $\ell^\infty$ & Space of bounded scalar sequences \\
 $\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{x\in X}|f(x)|$ for an actual bounded scalar-valued function on $X$ \\
-$\|f\|_{L^p(X,\mu)}$ & $L^p$-norm $\displaystyle\left(\int_X |f|^p\,\dd\mu\right)^{1/p}$ for $1\le p<\infty$ on a measure space $(X,\mathcal A,\mu)$ \\
-$\|f\|_{L^p(\Omega)},\ \|f\|_p$ & $L^p$-norm $\displaystyle\left(\int_\Omega |f(\mathbf x)|^p\,\dd\mathbf x\right)^{1/p}$ for $1\le p<\infty$ on a Euclidean domain when the underlying measure is understood \\
+$\|f\|_{L^p(X, \mu)}$ & $L^p$-norm $\displaystyle\left(\int_X |f|^p\,\dd\mu\right)^{1/p}$ for $1\le p<\infty$ on a measure space $(X, \mathcal A, \mu)$ \\
+$\|f\|_{L^p(\Omega)}, \ \|f\|_p$ & $L^p$-norm $\displaystyle\left(\int_\Omega |f(\mathbf x)|^p\,\dd\mathbf x\right)^{1/p}$ for $1\le p<\infty$ on a Euclidean domain when the underlying measure is understood \\
 $\|f\|_{L^\infty(\Omega)}$ & $L^\infty$-norm $\displaystyle\esssup_{\mathbf x\in\Omega}|f(\mathbf x)|$ on a Euclidean domain; distinguished from the ordinary supremum norm \\
-$\alpha=(\alpha_1,\dots,\alpha_n)\in\Nzero^n$ & Multi-index \\
-$|\alpha|,\ \alpha!$ & Order $|\alpha|=\alpha_1+\cdots+\alpha_n$ and factorial $\alpha!=\alpha_1!\cdots\alpha_n!$ of a multi-index \\
-$\mathbf x^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial for $\mathbf x=(x_1,\dots,x_n)$ \\
-$D^\alpha f,\ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$ \\
+$\alpha=(\alpha_1, \dots, \alpha_n)\in\Nzero^n$ & Multi-index \\
+$|\alpha|, \ \alpha!$ & Order $|\alpha|=\alpha_1+\cdots+\alpha_n$ and factorial $\alpha!=\alpha_1!\cdots\alpha_n!$ of a multi-index \\
+$\mathbf x^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial for $\mathbf x=(x_1, \dots, x_n)$ \\
+$D^\alpha f, \ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$ \\
 $B_r(x)$ & Open ball of radius $r$ centered at $x$ \\*
-$\overline{B}_r(x)=\{y\mid d(x,y)\le r\}$ & Closed ball of radius $r$ centered at $x$ in a metric space $(X,d)$. The bar is part of the closed-ball notation; in an arbitrary metric space, $\overline{B}_r(x)$ need not equal the closure $\overline{B_r(x)}$ of the open ball \\
+$\overline{B}_r(x)=\{y\mid d(x, y)\le r\}$ & Closed ball of radius $r$ centered at $x$ in a metric space $(X, d)$. The bar is part of the closed-ball notation; in an arbitrary metric space, $\overline{B}_r(x)$ need not equal the closure $\overline{B_r(x)}$ of the open ball \\
 $\widehat{\C}=\C\cup\{\infty\}$ & Extended complex plane, equivalently the Riemann sphere \\
 $i^2=-1$ & Imaginary unit \\
 $z=x+iy$ & Complex number with real part $x$ and imaginary part $y$ \\
-$\RePart z,\ \Re z$ & Real part of $z$ \\
-$\ImPart z,\ \Im z$ & Imaginary part of $z$; distinct from lowercase $\im$ for image \\
+$\RePart z, \ \Re z$ & Real part of $z$ \\
+$\ImPart z, \ \Im z$ & Imaginary part of $z$; distinct from lowercase $\im$ for image \\
 $\overline{z}$ & Complex conjugate \\
 $|z|$ & Complex modulus \\
 $\arg z$ & Argument of a nonzero complex number $z$; its values differ by integer multiples of $2\pi$ \\
 $\Arg z$ & Principal argument of $z\ne0$, with $-\pi<\Arg z\le\pi$ \\
-$\log z,\ \ln z$ & General multivalued complex logarithm for $z\ne0$; $\displaystyle\log z=\{\ln|z|+i(\Arg z+2\pi k)\mid k\in\Z\}$ \\
-$\Log z,\ \Ln z$ & Principal complex logarithm for $z\ne0$; $\displaystyle\Log z=\ln|z|+i\Arg z$. On $\C\setminus(-\infty,0]$, it is the analytic principal branch, with $-\pi<\Arg z<\pi$ \\
-$\Res(f;a),\ \operatorname{Res}_{z=a}f(z)$ & Residue of $f$ at a finite point $a$ \\
-$\Res(f;\infty),\ \operatorname{Res}_{z=\infty}f(z)$ & Residue of $f$ at infinity \\
+$\log z, \ \ln z$ & General multivalued complex logarithm for $z\ne0$; $\displaystyle\log z=\{\ln|z|+i(\Arg z+2\pi k)\mid k\in\Z\}$ \\
+$\Log z, \ \Ln z$ & Principal complex logarithm for $z\ne0$; $\displaystyle\Log z=\ln|z|+i\Arg z$. On $\C\setminus(-\infty, 0]$, it is the analytic principal branch, with $-\pi<\Arg z<\pi$ \\
+$\Res(f;a), \ \operatorname{Res}_{z=a}f(z)$ & Residue of $f$ at a finite point $a$ \\
+$\Res(f;\infty), \ \operatorname{Res}_{z=\infty}f(z)$ & Residue of $f$ at infinity \\
 \end{notationtable}

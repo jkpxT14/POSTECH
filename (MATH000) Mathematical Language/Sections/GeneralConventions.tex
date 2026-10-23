@@ -2,32 +2,36 @@
 
 Parentheses are preferred for ordinary grouping when delimiters are otherwise interchangeable, including in nested expressions; nesting alone is not a reason to alternate mechanically among parentheses, square brackets, and braces. Square brackets, braces, angle brackets, and other delimiters are used whenever they have an established field-specific, structural, or semantic role.
 
+In LaTeX mathematical source, a punctuation comma is followed by one ordinary source-space, including in tuples, intervals, sets, function arguments, subscripts, and lists of symbols. TeX determines the typeset mathematical spacing; control sequences such as \verb|\,| and syntactic commas in package options are not punctuation commas. Established explicit spacing commands are retained when they serve a typographic purpose.
+
+Notation is selected with regard to established mathematical usage and adopted personal preferences. Distinct concepts may share the same standard symbol, whose meaning is determined by context; such overlap does not by itself require changing either notation. When comparably established choices are available, avoiding ambiguity may be considered without sacrificing mathematical standardness or clarity.
+
 \begin{ruletable}
-Scalars & Ordinary mathematical italic letters, for example $a,b,c,\lambda,t$. \\
-Vectors & Bold letters; generic vectors use lowercase letters such as $\mathbf{u},\mathbf{v},\mathbf{x}$, while established field-specific vector names may use other letter cases. Unless otherwise stated, vectors are column vectors. \\
-Matrices & Bold uppercase letters, for example $\mathbf{A},\mathbf{B},\mathbf{M}$. Parentheses are the preferred matrix delimiters; square brackets are a standard alternative. \\
+Scalars & Ordinary mathematical italic letters, for example $a, b, c, \lambda, t$. \\
+Vectors & Bold letters; generic vectors use lowercase letters such as $\mathbf{u}, \mathbf{v}, \mathbf{x}$, while established field-specific vector names may use other letter cases. Unless otherwise stated, vectors are column vectors. \\
+Matrices & Bold uppercase letters, for example $\mathbf{A}, \mathbf{B}, \mathbf{M}$. Parentheses are the preferred matrix delimiters; square brackets are a standard alternative. \\
 Greek vectors and matrices & Bold Greek letters when a Greek symbol denotes a vector or matrix, for example $\boldsymbol{\xi}$ and $\boldsymbol{\Phi}$. \\
 Dimension subscripts & Prefer dimension subscripts when the dimension is readily available and useful; omit them when it is clear, immaterial, or not readily available rather than inferring a dimension solely to supply a subscript. \\
-Number systems & Blackboard bold, for example $\N,\Z,\Q,\R,\C$. \\
-Fields & Arbitrary or named fields are denoted by ordinary italic uppercase letters such as $F,K,L$. Standard finite fields such as $\mathbb{F}_q$ retain blackboard bold; other established blackboard-bold notation follows the standard convention of the relevant field. \\
-Sets & Ordinary uppercase letters such as $A,B,X,Y$, unless a field-specific convention requires otherwise. \\
-Families and collections & Calligraphic letters when useful, for example $\mathcal{F},\mathcal{T},\mathcal{B}$. \\
+Number systems & Blackboard bold, for example $\N, \Z, \Q, \R, \C$. \\
+Fields & Arbitrary or named fields are denoted by ordinary italic uppercase letters such as $F, K, L$. Standard finite fields such as $\mathbb{F}_q$ retain blackboard bold; other established blackboard-bold notation follows the standard convention of the relevant field. \\
+Sets & Ordinary uppercase letters such as $A, B, X, Y$, unless a field-specific convention requires otherwise. \\
+Families and collections & Calligraphic letters when useful, for example $\mathcal{F}, \mathcal{T}, \mathcal{B}$. Script letters such as $\mathscr{A}$ may denote separately defined families or other objects where context warrants; calligraphic and script letters are not interchangeable by default. \\
 Symbol distinctions & Different mathematical letterforms and alphabets are treated as distinct symbols, even when based on the same letter. For example, $\varepsilon$ and $\epsilon$, $\varphi$ and $\phi$, and $A$, $\mathrm{A}$, $\mathbf{A}$, $\boldsymbol{A}$, $\mathcal{A}$, $\mathscr{A}$, $\mathbb{A}$, $\mathfrak{A}$, $\mathsf{A}$, and $\mathtt{A}$ are distinct symbols. \\
 Named operators & Upright Roman type, for example $\det$, $\ker$, $\im$, $\rk$, and $\tr$. \\
 Large operators & Use display-style sizing and conventional index placement by default throughout mathematical writing, including proofs, solutions, examples, inline expressions, and notation tables. This applies to sums, products, indexed unions and intersections, integrals, limits (including limit superior and inferior), extrema, and analogous operators. Indices for sums, products, and similar operators are placed above and below; those for limits and extrema are placed below; integral bounds remain to the right. Smaller sizes or side-positioned indices are permitted only when clearly justified by readability or deliberate typographic layout, such as in fractions or tightly nested expressions, and not merely for convenience or routine space saving. \\
 \end{ruletable}
 
 \begin{notationtable}
-$(a_1,\dots,a_n)$ & Ordered tuple \\
-$(a_n),\ \{a_n\}$ & Sequence \\
-$(a_i)_{i\in I},\ \{a_i\}_{i\in I}$ & Indexed family over $I$ \\
-$(a,b)$ & Open interval \\
-$[a,b]$ & Closed interval \\
-$[a,b)$ & Left-closed, right-open interval \\
-$(a,b]$ & Left-open, right-closed interval \\
-$\{a_1,\dots,a_n\}$ & Set delimiters \\
+$(a_1, \dots, a_n)$ & Ordered tuple \\
+$(a_n), \ \{a_n\}$ & Sequence \\
+$(a_i)_{i\in I}, \ \{a_i\}_{i\in I}$ & Indexed family over $I$ \\
+$(a, b)$ & Open interval \\
+$[a, b]$ & Closed interval \\
+$[a, b)$ & Left-closed, right-open interval \\
+$(a, b]$ & Left-open, right-closed interval \\
+$\{a_1, \dots, a_n\}$ & Set delimiters \\
 $\begin{aligned} &\{x\in A\mid P(x)\}, \\[-0.15em] &\{x\in A\colon P(x)\} \end{aligned}$ & Set-builder notation \\
-$\langle x,y\rangle$ & Pairing or inner product, according to context \\
+$\langle x, y\rangle$ & Pairing or inner product, according to context \\
 $|x|$ & Absolute value, modulus, cardinality, or order, according to context \\
 $\|x\|$ & Norm \\
 $a=b$ & Equality \\
@@ -37,8 +41,8 @@ $a\cong b$ & Isomorphism or congruence, according to context \\
 $a\approx b$ & Approximation \\
 $f\colon X\to Y$ & Function or map from $X$ to $Y$ \\
 $x\mapsto f(x)$ & Elementwise rule of a map \\
-$f\colon X\to Y,\ x\mapsto f(x)$ & Function with domain, codomain, and mapping rule \\
+$f\colon X\to Y, \ x\mapsto f(x)$ & Function with domain, codomain, and mapping rule \\
 $g\circ f$ & Composition: first $f$, then $g$ \\
-$f|_A,\ f\restriction_A$ & Restriction of $f$ to $A$ \\
+$f|_A, \ f\restriction_A$ & Restriction of $f$ to $A$ \\
 $\id_X$ & Identity map on $X$ \\
 \end{notationtable}
