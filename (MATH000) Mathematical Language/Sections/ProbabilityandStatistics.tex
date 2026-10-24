@@ -1,6 +1,6 @@
 \section{Probability and Statistics}
 
-Probability and expectation are written in blackboard bold by default. Probabilities use parentheses and expectations square brackets by default. Parameter symbols are local to the relevant context: for gamma distributions, $\beta$ denotes a rate parameter and $\theta$ a scale parameter, so $\theta=1/\beta$, while in hypothesis testing $\beta$ denotes a Type II error probability. The geometric distribution counts the number of trials up to and including the first success.
+Parameter symbols are local to the relevant context: for gamma distributions, $\beta$ denotes a rate parameter and $\theta$ a scale parameter, so $\theta=1/\beta$, while in hypothesis testing $\beta$ denotes a Type II error probability. The geometric distribution counts the number of trials up to and including the first success.
 
 \begin{notationtable}
 $(\Omega, \mathcal F, \Prob)$ & Probability space, with sample space $\Omega$, event $\sigma$-algebra $\mathcal F$, and probability measure $\Prob$ \\
@@ -12,7 +12,7 @@ $\Prob(A\mid B)$ & Conditional probability of $A$ given $B$ \\
 $X\indep Y$ & $X$ and $Y$ are independent. \\*
 $X\indep Y\mid Z$ & $X$ and $Y$ are conditionally independent given $Z$. \\
 $p_X(x)=\Prob(X=x)$ & Probability mass function (pmf) of a discrete random variable $X$ \\
-$f_X(x)$ & Probability density function (pdf) of a continuous random variable $X$ \\
+$f_X(x)$ & Probability density function (pdf) of $X$ \\
 $F_X(x)=\Prob(X\le x)$ & Cumulative distribution function (cdf) of $X$ \\
 $p_{X, Y}(x, y), \ f_{X, Y}(x, y)$ & Joint pmf or joint pdf of $(X, Y)$ \\
 $p_{X\mid Y}(x\mid y), \ f_{X\mid Y}(x\mid y)$ & Conditional pmf or conditional pdf of $X$ given $Y=y$ \\
@@ -30,8 +30,8 @@ $\varphi_X(t)=\Exp[e^{itX}]$ & Characteristic function of $X$ \\
 $M_X(t)=\Exp[e^{tX}]$ & Moment-generating function (mgf) of $X$, when finite in a neighborhood of $0$ \\
 $\displaystyle\bar X=\frac1n\sum_{i=1}^n X_i$ & Sample mean as a statistic of a random sample $X_1, \dots, X_n$ \\[0.10em]
 $\displaystyle\bar x=\frac1n\sum_{i=1}^n x_i$ & Observed sample mean for data $x_1, \dots, x_n$ \\[0.10em]
-$\displaystyle S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2$ & Sample variance as a statistic \\[0.10em]
-$\displaystyle s^2=\frac1{n-1}\sum_{i=1}^n(x_i-\bar x)^2$ & Observed sample variance \\[0.10em]
+$\displaystyle S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2$ & Sample variance as a statistic, for $n\ge2$ \\[0.10em]
+$\displaystyle s^2=\frac1{n-1}\sum_{i=1}^n(x_i-\bar x)^2$ & Observed sample variance, for $n\ge2$ \\[0.10em]
 $S=\sqrt{S^2}, \ s=\sqrt{s^2}$ & Sample standard deviation as a statistic and its observed value \\
 $\hat\theta$ & Estimator or estimate of a parameter $\theta$ \\
 $\Bias(\hat\theta)$ & Bias of a real-valued estimator of $\theta$: $\Exp[\hat\theta]-\theta$, when the expectation exists \\
@@ -66,4 +66,5 @@ $X_n\probto X$ & Convergence in probability \\
 $X_n\Lpto{p}X$ & Convergence in $L^p$ \\
 $X\overset{\mathrm d}{=}Y$ & Equality in distribution of the random variables $X$ and $Y$ \\
 $X_n\distto X, \ X_n\Rightarrow X$ & Convergence in distribution \\
+$\mathcal L(X)$ & Distribution (law) of the random variable $X$ \\
 \end{notationtable}
