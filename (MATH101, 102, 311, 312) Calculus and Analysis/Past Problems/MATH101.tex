@@ -48,7 +48,7 @@ Test the convergence of the series
 \begin{problem}[2019 Spring \POSTECH{} Calculus I]
 Determine the values of the real number $\alpha$ for which the series
 \[
-\sum_{n=1}^{\infty}\frac{(\ln n)^\alpha}{n}
+\sum_{n=2}^{\infty}\frac{(\ln n)^\alpha}{n}
 \]
 converges.
 \end{problem}
@@ -558,7 +558,7 @@ for all $x\in[a, b]$, show that $f$ is continuously differentiable.
 
 % 2022 Spring POSTECH Calculus I Final, Problem 6
 \begin{problem}[2022 Spring \POSTECH{} Calculus I]
-Let $f$ be a twice continuously differentiable function on an interval $I$ containing $a$ and $b$. Show that
+Let $a<b$, and let $f$ be a twice continuously differentiable function on an interval $I$ containing $[a, b]$. Show that
 \[
 \left|
 \frac12\bigl(f(a)+f(b)\bigr)-f\!\left(\frac{a+b}{2}\right)
@@ -568,7 +568,7 @@ Let $f$ be a twice continuously differentiable function on an interval $I$ conta
 \]
 where
 \[
-M=\max_{x\in I}|f''(x)|.
+M=\max_{x\in[a, b]}|f''(x)|.
 \]
 
 \textit{Hint.} Use the Taylor expansion of the function at the two points $a$ and $b$.
@@ -878,7 +878,7 @@ Show that the power series
 \]
 can be expressed as
 \[
-\frac{x^2}{(1-x)^3}.
+\frac{2x^2}{(1-x)^3}.
 \]
 \end{problem}
 
@@ -1595,7 +1595,7 @@ y=(1+x^2)^{\sin x}.
 
 % 2024 Spring KAIST Calculus I Midterm, Problem 6
 \begin{problem}[2024 Spring \KAIST{} Calculus I]
-A deposit is left in a bank account for $10$ years under compound interest, and the total amount doubles. Construct a differential equation for the amount and find the annual interest rate.
+A deposit is left in a bank account for $10$ years at a constant annual interest rate compounded continuously, and the total amount doubles. Construct a differential equation for the amount and find the annual interest rate.
 \end{problem}
 
 % 2024 Spring KAIST Calculus I Midterm, Problem 7

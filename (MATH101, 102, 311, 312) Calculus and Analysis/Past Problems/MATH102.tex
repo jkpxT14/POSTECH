@@ -24,7 +24,7 @@ Let $F(x, y, z)$ be differentiable everywhere. Assume that
 \[
 F(1+t^2, 2t, -1-t)=0
 \]
-for all $t$, and that $\nabla F(2, 2, -3)=(a, b, c)$. Show that
+for all $t$, and that $\nabla F(2, 2, -2)=(a, b, c)$. Show that
 \[
 a+b=\frac{c}{2}.
 \]
@@ -415,7 +415,7 @@ Write a Riemann sum for
 \[
 \iint_{[0, 1]\times[0, 1]}x^2y^3\,\dd A
 \]
-using points at the upper-right corner of each $\frac14$-square.
+using the upper-right corner of each subsquare of side length $\frac14$.
 \end{problem}
 
 % 2022 Fall POSTECH Calculus II Final, Problem 2
@@ -565,6 +565,7 @@ y+2z^2=2,
 \qquad 0\le x\le1,
 \qquad 0\le z\le1.
 \]
+Take the outward normal on $S$ to point in the direction of $(0, 1, 4z)$.
 \Needspace{17\baselineskip}
 \begin{center}
 \begin{tikzpicture}[x=1cm,y=1cm,line cap=round,line join=round]
@@ -609,7 +610,7 @@ y+2z^2=2,
 \end{center}
 \begin{problemsubparts}
 \item Find the outward flux of $\mathbf F$ across $S$ by evaluating a surface integral.
-\item Find the counterclockwise circulation of $\mathbf F$ around $\partial S$.
+\item Find the circulation of $\mathbf F$ around $\partial S$, oriented consistently with this normal.
 \end{problemsubparts}
 \end{problem}
 
@@ -666,6 +667,7 @@ y+2z^2=2,
 \qquad 0\le x\le1,
 \qquad 0\le z\le1.
 \]
+Take the outward normal on $S$ to point in the direction of $(0, 1, 4z)$.
 \Needspace{17\baselineskip}
 \begin{center}
 \begin{tikzpicture}[x=1cm,y=1cm,line cap=round,line join=round]
@@ -715,20 +717,21 @@ Using the Divergence theorem, find the outward flux of $\mathbf F$ across $S$.
 
 % 2022 Fall POSTECH Calculus II Final, Problem 13
 \begin{problem}[2022 Fall \POSTECH{} Calculus II]
+Let $D\subseteq\R^3$ be a bounded regular region with piecewise smooth boundary.
 \begin{problemsubparts}
 \item Show that
 \[
 \nabla\cdot(v\nabla u)=v\Delta u+\nabla v\cdot\nabla u
 \]
-for all twice differentiable functions $u$ and $v$ on a regular set $D\subset\R^3$.
-\item Derive the following equality for a twice differentiable function $u$ on $D$:
+for all $u,v\in C^2(\overline D)$.
+\item Derive the following equality for $u\in C^2(\overline D)$:
 \[
 \iiint_D\left(u\Delta u+\|\nabla u\|^2\right)\,\dd V
 =
 \iint_{\partial D}u\nabla u\cdot\mathbf N\,\dd S,
 \]
 where $\mathbf N$ is the unit outward normal vector on the boundary $\partial D$.
-\item Let $u$ be a twice differentiable function satisfying
+\item Let $u\in C^2(\overline D)$ satisfy
 \[
 \Delta u=u\quad\text{in }D,
 \qquad
@@ -811,7 +814,7 @@ f_2(x, y, z, w)
 \]
 Let $P=(0, 0, 0, 0)\in\R^4$.
 \begin{problemsubparts}
-\item Show that there is a differentiable function $\mathbf G\colon\R^2\to\R^2$ defined on a small open set $U$ around $(0, 0)$ satisfying $\mathbf G(0, 0)=(0, 0)$ and
+\item Show that there is a differentiable function $\mathbf G\colon U\to\R^2$ defined on a small open set $U$ around $(0, 0)$ satisfying $\mathbf G(0, 0)=(0, 0)$ and
 \[
 \mathbf F(P)=\mathbf F\bigl(x, y, \mathbf G(x, y)\bigr)
 \]
@@ -1596,7 +1599,7 @@ Use Green's theorem to find the work done by the force
 \[
 \mathbf F(x, y)=(y^3, x^3+3xy^2)
 \]
-on a particle while it travels once around the circle of radius $3$ centered at the origin.
+on a particle while it travels counterclockwise once around the circle of radius $3$ centered at the origin.
 \end{problem}
 
 % 2020 Fall KAIST Calculus II Final, Problem 12
@@ -1832,11 +1835,11 @@ Consider the ellipse
 
 % 2022 Spring KAIST Calculus II Midterm, Problem 4
 \begin{problem}[2022 Spring \KAIST{} Calculus II]
-Let
+Let $f$ be defined at the origin and wherever the denominator below is nonzero by
 \[
 f(x, y)=
 \begin{cases}
-\displaystyle\frac{4x^2y^2}{x^4-2xy^2+y^3}, & (x, y)\ne(0, 0), \\[0.6em]
+\displaystyle\frac{4x^2y^2}{x^4-2xy^2+y^3}, & x^4-2xy^2+y^3\ne0, \\[0.6em]
 0, & (x, y)=(0, 0).
 \end{cases}
 \]
@@ -2201,7 +2204,7 @@ for the vector field
 e^{-x^2-y^2-z^2}
 \right).
 \]
-\textit{Hint.} For $R\colon x^2+y^2\le4$,
+\textit{Hint.} For $R\colon x^2+y^2\le16$,
 \[
 \iint_R e^x\cos(e^x)\,\dd A
 =
@@ -2235,7 +2238,7 @@ exists, and evaluate it.
 
 % 2022 Fall KAIST Calculus II Midterm, Problem 1
 \begin{problem}[2022 Fall \KAIST{} Calculus II]
-The K9 Thunder is a Korean 155 mm self-propelled howitzer (cannon). Its maximum range is $18\,\mathrm{km}$. It depends on the type of cannonball fired.
+The K9 Thunder is a Korean 155 mm self-propelled howitzer (cannon). Its maximum range is $18\,\mathrm{km}$. It depends on the type of cannonball fired. Assume ideal projectile motion with no air resistance and equal launch and landing heights.
 \begin{problemsubparts}
 \item Use the equations for projectile motion studied in class to find the initial speed of the cannonball. Take $g=9.8\,\mathrm{m/s^2}$.
 \item How many seconds does it take to hit the target at the maximum range?
@@ -2522,6 +2525,7 @@ Let $\mathbf F=M\mathbf i+N\mathbf j$, and let $C$ be a simple, closed curve enc
 M=\frac{x^4}{4},
 \qquad
 N=x^3y,
+\qquad a,b>0,
 \qquad
 C=\left\{(x, y)\in\R^2\mid \frac{x^4}{a^4}+\frac{y^2}{b^2}=1\right\}.
 \]
@@ -2786,14 +2790,14 @@ Let the gravitational acceleration on the Earth's surface be $g$. An obstacle of
 \end{center}
 
 \begin{problemsubparts}
-\item Find the relationship between the launch angle $\phi$ and launch speed $v_0$ required to hit the target without striking the obstacle. Give one equality and one inequality.
+\item Find the relationship between the launch angle $\phi$ and launch speed $v_0$ required to hit the target without passing below the top of the obstacle (grazing the top is allowed). Give one equality and one inequality.
 \item Find the minimum launch speed and the corresponding launch angle. The answer is divided into two cases depending on the size of $h$.
 \end{problemsubparts}
 \end{problem}
 
 % 2024 Spring KAIST Calculus I Midterm, Problem 9
 \begin{problem}[2024 Spring \KAIST{} Calculus I]
-The two-body problem is reduced to the equations
+Let $k>0$. The two-body problem is reduced to the equations
 \[
 \ddot r-r\dot\theta^2=-\frac{k}{r^2},
 \qquad
@@ -2821,7 +2825,7 @@ for some constant $C$.
 % 2024 Spring KAIST Calculus I Midterm, Problem 10
 \Needspace{33\baselineskip}
 \begin{problem}[2024 Spring \KAIST{} Calculus I]
-\textit{Trajectory of an Intercontinental Ballistic Missile.} An object is launched from the equator toward the North Pole. Let $G$ be the gravitational constant, $M$ the mass of the Earth, $R$ the radius of the Earth, and $L$ the angular momentum of the orbit. The trajectory is part of an elliptical orbit with the center of the Earth as a focus. In polar coordinates $(r, \theta)$ centered at the Earth, let
+\textit{Trajectory of an Intercontinental Ballistic Missile.} An object is launched from the equator toward the North Pole. Let $G$ be the gravitational constant, $M$ the mass of the Earth, $R$ the radius of the Earth, and $L>0$ the specific angular momentum $r^2\dot\theta$ of the orbit. The trajectory is part of an elliptical orbit with the center of the Earth as a focus. In polar coordinates $(r, \theta)$ centered at the Earth, let
 \[
 u(\theta)=\frac{1}{r(\theta)}.
 \]

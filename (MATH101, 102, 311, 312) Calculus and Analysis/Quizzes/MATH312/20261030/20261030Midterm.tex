@@ -46,7 +46,7 @@ Both terms tend to zero uniformly in $x$, proving $f_ng_n\unifto fg$.
 \end{solution}
 
 \begin{exercise}{7.3}
-Construct sequences $(f_n)$, $(g_n)$ which converge uniformly on some set $E$, but such that $(f_ng_n)$ does not converge uniformly on $E$ (of course, $(f_ng_n)$ must converge on $E$).
+Construct sequences $(f_n)$, $(g_n)$ which converge uniformly on some set $E$, but such that $(f_ng_n)$ does not converge uniformly on $E$.
 \end{exercise}
 \begin{solution}
 Take $E=\R$, $f_n(x)=1/n$, and $g_n(x)=x$ for every $n$. Since $\sup_{x\in\R}|f_n(x)|=1/n\to0$, we have $f_n\unifto0$; the constant sequence $g_n=g$ converges uniformly to $g(x)=x$. However, $f_n(x)g_n(x)=x/n$ converges pointwise to $0$, while
@@ -81,7 +81,7 @@ Thus the tails converge uniformly on every interval in $(-\infty, -a]$ on which 
 
 It fails to converge uniformly on $(0, b)$ for every $b>0$: for each fixed $N$, choosing $x>0$ sufficiently small makes each of the $N$ terms with $n=N, \ldots, 2N-1$ greater than $1/2$, so these tails cannot be uniformly small. No interval containing $0$ lies in $D$.
 
-Every term is continuous on $D$, and the series is locally uniformly convergent there; Theorem 7.12 therefore gives continuity of $f$ at every point of $D$. Finally $f$ is unbounded: $f(x)\to\infty$ as $x\to0^+$, since any fixed number of its positive terms tends to $1$. It is also unbounded in neighborhoods of its negative poles within $D$.
+Every term is continuous on $D$, and the series is locally uniformly convergent there; Theorem 7.12 therefore gives continuity of $f$ at every point of $D$. Finally $f$ is unbounded: $f(x)\to\infty$ as $x\to0^+$, since any fixed number of its positive terms tends to $1$. 
 \end{solution}
 
 \begin{exercise}{7.5}
@@ -208,7 +208,7 @@ Each $f_n$ is continuous. For every fixed $x$, $f_n(x)=0$ for all sufficiently l
 \end{solution}
 
 \begin{exercise}{7.10}
-Letting $\{x\}$ denote the fractional part of the real number $x$ (see Exercise 16, Chap.~4, for the definition), consider the function
+For $x\in\R$, define the fractional part by $\{x\}=x-\lfloor x\rfloor$. Consider the function
 \[
  f(x)=\sum_{n=1}^{\infty}\frac{\{nx\}}{n^2}\qquad(x\in\R).
 \]
@@ -351,7 +351,7 @@ Put $\Phi(t)=(x(t), y(t))$, where
  x(t)=\sum_{n=1}^{\infty}2^{-n}f(3^{2n-1}t), \qquad
  y(t)=\sum_{n=1}^{\infty}2^{-n}f(3^{2n}t).
 \]
-Prove that $\Phi$ is continuous and that $\Phi$ maps $I=[0, 1]$ onto the unit square $I^2\subset\R^2$. In fact, show that $\Phi$ maps the Cantor set onto $I^2$.
+Prove that $\Phi$ is continuous and maps the Cantor set, and hence $I=[0, 1]$, onto the unit square $I^2\subset\R^2$.
 \end{exercise}
 \begin{solution}
 Each summand in $x(t)$ and $y(t)$ is continuous in $t$ and has absolute value at most $2^{-n}$. Since $\sum2^{-n}<\infty$, both series converge uniformly on $\R$ by the M-test (Theorem 7.10). Their limits are continuous by Theorem 7.12, so $\Phi=(x, y)$ is continuous. Moreover $0\le x(t), y(t)\le\sum2^{-n}=1$; thus $\Phi(I)\subset I^2$.
@@ -500,7 +500,7 @@ so it is uniformly bounded and in particular pointwise bounded. Each $F_n$ is co
 \end{solution}
 
 \begin{exercise}{7.19}
-Let $K$ be a compact metric space, let $S$ be a subset of $C(K, \C)$. Prove that $S$ is compact (with respect to the metric defined in Section 7.14) if and only if $S$ is uniformly closed, pointwise bounded, and equicontinuous. (If $S$ is not equicontinuous, then $S$ contains a sequence which has no equicontinuous subsequence, hence has no subsequence that converges uniformly on $K$.)
+Let $K$ be a compact metric space, let $S$ be a subset of $C(K, \C)$. Prove that $S$ is compact in the supremum metric if and only if $S$ is uniformly closed, pointwise bounded, and equicontinuous.
 \end{exercise}
 \begin{solution}
 We use the supremum metric $\rho(f, g)=\|f-g\|_\infty$ on $C(K, \C)$.
@@ -535,11 +535,11 @@ The continuous nonnegative function $|f|^2$ has integral zero, so it vanishes th
 \end{solution}
 
 \begin{exercise}{7.21}
-Let $K$ be the unit circle in the complex plane (i.e., the set of all $z$ with $|z|=1$), and let $\mathcal{A}$ be the algebra of all functions of the form
+Let $K=\{z\in\C:|z|=1\}$, and let $\mathcal{A}$ be the algebra of all functions of the form
 \[
  f(e^{i\theta})=\sum_{n=0}^{N}c_ne^{in\theta}\qquad(\theta\in\R).
 \]
-Then $\mathcal{A}$ separates points on $K$ and $\mathcal{A}$ vanishes at no point of $K$, but nevertheless there are continuous functions on $K$ which are not in the uniform closure of $\mathcal{A}$.
+Prove that $\mathcal{A}$ separates points on $K$ and vanishes at no point of $K$, but is not dense in $C(K, \C)$ in the supremum norm.
 \end{exercise}
 \begin{solution}
 Constant functions and the coordinate function $z\mapsto z$ belong to $\mathcal{A}$. The latter separates any two distinct points of $K$, and the constant function $1$ ensures that $\mathcal{A}$ vanishes at no point of $K$.
@@ -566,14 +566,12 @@ Hence $\overline z$ is not in the uniform closure.
 \end{solution}
 
 \begin{exercise}{7.22}
-Assume $f\in\mathcal{R}([a, b], \alpha)$, and prove that there are polynomials $P_n$ such that
+Let $\alpha$ be nondecreasing on $[a, b]$. If $f\in\mathcal{R}([a, b], \alpha)$, prove that there are polynomials $P_n$ such that
 \[
  \lim_{n\to\infty}\int_a^b|f-P_n|^2\,\dd\alpha=0.
 \]
 \end{exercise}
 \begin{solution}
-Let $\alpha$ be nondecreasing on $[a, b]$. 
-
 Let $M=\sup_{[a, b]}|f|<\infty$. If $M=0$, take $P_n=0$. Otherwise, because $f\in\mathcal{R}([a, b], \alpha)$, the Riemann--Stieltjes criterion (applied to real and imaginary parts) gives, for any $\eta>0$, a partition $a=x_0<\cdots<x_m=b$ such that
 \[
  \sum_{i=1}^{m}\omega_i\bigl(\alpha(x_i)-\alpha(x_{i-1})\bigr)<\eta,
@@ -586,7 +584,7 @@ Let $h$ be the continuous piecewise linear function interpolating $f$ at these p
  \le\sum_{i=1}^{m}\omega_i^2\Delta\alpha_i
  \le2M\sum_{i=1}^{m}\omega_i\Delta\alpha_i<2M\eta.
 \]
-By the Weierstrass approximation theorem (Theorem 7.26), choose a polynomial $P$ satisfying $\|h-P\|_\infty<\delta$. The elementary inequality $|u+v|^2\le2|u|^2+2|v|^2$ then gives
+By the Weierstrass approximation theorem (Theorem 7.26), applied to the real and imaginary parts of $h$ if necessary, choose a polynomial $P$ with $\|h-P\|_\infty<\delta$. The elementary inequality $|u+v|^2\le2|u|^2+2|v|^2$ then gives
 \[
  \begin{aligned}
  \int_a^b|f-P|^2\,\dd\alpha
@@ -656,11 +654,7 @@ Prove that $|f_p(x)|\le d(a, p)$ for all $x\in X$, and that therefore $f_p\in C_
 \]
 for all $p, q\in X$.
 
-If $\Phi(p)=f_p$, it follows that $\Phi$ is an isometry (a distance-preserving mapping) of $X$ onto $\Phi(X)\subset C_b(X)$.
-
-Let $Y$ be the closure of $\Phi(X)$ in $C_b(X)$. Show that $Y$ is complete.
-
-Conclude that $X$ is isometric to a dense subset of a complete metric space.
+Define $\Phi(p)=f_p$, and let $Y$ be the closure of $\Phi(X)$ in $C_b(X)$. Show that $\Phi$ is an isometry, $Y$ is complete, and $\Phi(X)$ is dense in $Y$.
 \end{exercise}
 \begin{solution}
 By the reverse triangle inequality,
@@ -684,7 +678,7 @@ The space $C_b(X)$ with the supremum norm is complete: if $(h_n)$ is uniformly C
 \end{solution}
 
 \begin{exercise}{7.25}
-Suppose $\varphi$ is a continuous bounded real function in the strip defined by $0\le x\le1$, $-\infty<y<\infty$. Prove that the initial-value problem
+Let $\varphi:[0, 1]\times\R\to\R$ be continuous and bounded. Prove that the initial-value problem
 \[
  y'=\varphi(x, y), \qquad y(0)=c
 \]
@@ -745,11 +739,11 @@ Because $t\mapsto\varphi(t, f(t))$ is continuous, the fundamental theorem of cal
 \end{solution}
 
 \begin{exercise}{7.26}
-Prove an analogous existence theorem for the initial-value problem
+Let $k\in\N$, $\mathbf c\in\R^k$, and let $\boldsymbol\varphi:[0, 1]\times\R^k\to\R^k$ be continuous and bounded. Prove that the initial-value problem
 \[
- \mathbf y'=\boldsymbol\varphi(x, \mathbf y), \qquad\mathbf y(0)=\mathbf c,
+ \mathbf y'=\boldsymbol\varphi(x, \mathbf y), \qquad \mathbf y(0)=\mathbf c
 \]
-where now $\mathbf c\in\R^k$, $\mathbf y\in\R^k$, and $\boldsymbol\varphi$ is a continuous bounded mapping of the part of $\R^{k+1}$ defined by $0\le x\le1$, $\mathbf y\in\R^k$ into $\R^k$.
+has a solution on $[0, 1]$.
 \end{exercise}
 \begin{solution}
 The argument of Exercise 7.25 works with vectors and the Euclidean norm. Let $M<\infty$ satisfy $\|\boldsymbol\varphi(x, \mathbf y)\|\le M$ everywhere in the strip. Set $x_i=i/n$ and construct a continuous polygonal path $\mathbf f_n\colon[0, 1]\to\R^k$ recursively by
@@ -783,7 +777,7 @@ All graph points lie in the compact set $[0, 1]\times\{\mathbf y:\|\mathbf y\|\l
  |t-x_i|\le1/n, \qquad
  \|\mathbf f_n(t)-\mathbf f_n(x_i)\|\le M/n,
 \]
-shows that $\|\boldsymbol\Delta_n\|_\infty\to0$. Uniform convergence $\mathbf f_{n_j}\to\mathbf f$ likewise gives
+shows that $\|\boldsymbol\Delta_n\|_\infty\to0$. Uniform convergence $\mathbf f_{n_j}\unifto\mathbf f$ likewise gives
 \[
  \boldsymbol\varphi(t, \mathbf f_{n_j}(t))
  \unifto\boldsymbol\varphi(t, \mathbf f(t)).
@@ -795,7 +789,6 @@ Passing to the limit in the integral identity coordinatewise, justified by Theor
 The fundamental theorem of calculus applied to each component shows that
 $\mathbf f'(x)=\boldsymbol\varphi(x, \mathbf f(x))$ and $\mathbf f(0)=\mathbf c$. Hence a solution exists on $[0, 1]$, as asserted.
 \end{solution}
-
 
 \begin{exercise}{8.1}
 Define
@@ -964,7 +957,7 @@ If $f$ is not identically zero, the functional equation with $y=0$ gives $f(0)=1
  =f(x)f'(0).
 \]
 Setting $c=f'(0)$ gives $(e^{-cx}f(x))'=0$. Since $f(0)=1$, we obtain $f(x)=e^{cx}$.
-\item Suppose only that $f$ is continuous and nonzero. Define
+\item Suppose only that $f$ is continuous and not identically zero. Define
 \[
  F(x)=\int_0^x f(t)\,\dd t.
 \]
@@ -978,7 +971,7 @@ Since $f(0)=1$, choose $y$ sufficiently close to $0$ that $F(y)\ne0$. Then
 \]
 which is differentiable, since $F'=f$. Part (a) now gives $f(x)=e^{cx}$ for some constant $c$.
 \end{exercisesubparts}
-The identically zero function is the only additional continuous solution when the nonzero hypothesis is dropped.
+
 \end{solution}
 
 \begin{exercise}{8.7}
@@ -988,7 +981,7 @@ If $0<x<\pi/2$, prove that
 \]
 \end{exercise}
 \begin{solution}
-For $0<x<\pi/2$, $\sin x<x$ follows by integrating $1-\cos t>0$ from $0$ to $x$, so $\sin x/x<1$. For the lower bound, $\sin''x=-\sin x<0$, so $\sin$ is strictly concave on $[0, \pi/2]$. Its graph lies strictly above the chord joining $(0, 0)$ and $(\pi/2, 1)$ at every interior point:
+For $0<x<\pi/2$, $\sin x<x$ follows by integrating $1-\cos t>0$ from $0$ to $x$, so $\sin x/x<1$. For the lower bound, $(\sin x)''=-\sin x<0$, so $\sin$ is strictly concave on $[0, \pi/2]$. Its graph lies strictly above the chord joining $(0, 0)$ and $(\pi/2, 1)$ at every interior point:
 \[
  \sin x>\frac{2x}{\pi}.
 \]
@@ -996,10 +989,7 @@ Dividing by $x>0$ gives the required lower bound.
 \end{solution}
 
 \begin{exercise}{8.8}
-For $n=0, 1, 2, \ldots$, and $x$ real, prove that $|\sin nx|\le n|\sin x|$.
-
-Note that this inequality may be false for other values of $n$. For instance,
-$|\sin(\tfrac12\pi)|>\tfrac12|\sin\pi|$.
+For every $n\in\Nzero$ and $x\in\R$, prove that $|\sin(nx)|\le n|\sin x|$.
 \end{exercise}
 \begin{solution}
 For $n=0$ both sides are zero, and for $n=1$ equality holds. If the estimate holds for $n$, the addition formula implies
@@ -1052,7 +1042,7 @@ for every $N$. But the harmonic sums $H_N$ tend to infinity. This contradiction 
 \end{solution}
 
 \begin{exercise}{8.11}
-Suppose $f\in\mathcal{R}([0, A])$ on $[0, A]$ for all $A<\infty$, and $f(x)\to1$ as $x\to+\infty$. Prove that
+Suppose $f\in\mathcal{R}([0, A])$ for every $A>0$ and $f(x)\to1$ as $x\to+\infty$. Prove that
 \[
  \lim_{t\to0^+}t\int_0^\infty e^{-tx}f(x)\,\dd x=1\qquad(t>0).
 \]
@@ -1093,12 +1083,12 @@ We use $\widehat f(n)=(2\pi)^{-1}\int_{-\pi}^{\pi}f(x)e^{-inx}\,\dd x$.
  \widehat f(n)=\frac1{2\pi}\int_{-\delta}^\delta e^{-inx}\,\dd x
  =\frac{\sin(n\delta)}{\pi n}\quad(n\ne0).
 \]
-Thus $\widehat f(-n)=\widehat f(n)$ is real, as expected because $f$ is even.
+Thus $\widehat f(-n)=\widehat f(n)\in\R$.
 \item The function is constant in a neighborhood of $0$, so the Fourier convergence theorem (Theorem 8.14) gives $S_N f(0)\to f(0)=1$. Using (a),
 \[
  1=\frac\delta\pi+2\sum_{n=1}^\infty\frac{\sin(n\delta)}{\pi n},
 \]
-which rearranges to the asserted identity. Convergence here is ordinary Fourier-series convergence (not absolute convergence).
+which rearranges to the asserted identity. 
 \item Parseval's theorem (Theorem 8.16), together with $f^2=f$, yields
 \[
  \frac1{2\pi}\int_{-\pi}^\pi |f(x)|^2\,\dd x
@@ -1199,7 +1189,7 @@ for $x\notin2\pi\Z$ (with the value at $2\pi\Z$ defined by continuity), and that
 \item $\displaystyle\frac1{2\pi}\int_{-\pi}^\pi K_N(x)\,\dd x=1$,
 \item $\displaystyle K_N(x)\le\frac1{N+1}\frac2{1-\cos\delta}$ if $0<\delta\le|x|\le\pi$.
 \end{exercisesubparts}
-For a $2\pi$-periodic integrable function $f$, let $S_Nf$ be its $N$th symmetric Fourier partial sum, and define the Ces\`aro means
+For a $2\pi$-periodic function $f\in\mathcal{R}([-\pi, \pi])$, let $S_Nf$ be its $N$th symmetric Fourier partial sum and define the Ces\`aro means
 \[
  \sigma_Nf=\frac1{N+1}\sum_{n=0}^N S_nf.
 \]
@@ -1227,7 +1217,7 @@ The quotient is understood by continuity when $x\in2\pi\Z$; there $K_N(x)=N+1$.
 \item Integrating the trigonometric polynomial term by term, every $e^{ikx}$ with $k\ne0$ has integral zero over $[-\pi, \pi]$, while the constant coefficient is $1$. Thus its normalized integral equals $1$.
 \item When $\delta\le|x|\le\pi$, $1-\cos x\ge1-\cos\delta>0$ and $1-\cos(N+1)x\le2$. The claimed bound follows.
 \end{exercisesubparts}
-The Dirichlet-kernel representation of Fourier partial sums  gives
+The Dirichlet-kernel representation of Fourier partial sums gives
 \[
  S_nf(x)=\frac1{2\pi}\int_{-\pi}^\pi f(x-t)D_n(t)\,\dd t.
 \]
@@ -1238,7 +1228,7 @@ To prove uniform convergence, use (b) to subtract $f(x)$:
  \sigma_Nf(x)-f(x)=\frac1{2\pi}\int_{-\pi}^\pi
  [f(x-t)-f(x)]K_N(t)\,\dd t.
 \]
-Given $\varepsilon>0$, uniform continuity of the periodic function $f$ provides $\delta>0$ such that $|f(x-t)-f(x)|<\varepsilon$ whenever $|t|<\delta$, uniformly in $x$. By (a)--(b), the integral on $|t|<\delta$ has modulus at most $\varepsilon$. On $\delta\le|t|\le\pi$, use $|f(x-t)-f(x)|\le2\|f\|_\infty$ and (c):
+Given $\varepsilon>0$, uniform continuity of the periodic function $f$ provides $\delta>0$ such that $|f(x-t)-f(x)|<\varepsilon$ whenever $|t|<\delta$, uniformly in $x$. By (a) and (b), the integral on $|t|<\delta$ has modulus at most $\varepsilon$. On $\delta\le|t|\le\pi$, use $|f(x-t)-f(x)|\le2\|f\|_\infty$ and (c):
 \[
  \left|\frac1{2\pi}\int_{\delta\le|t|\le\pi}
  [f(x-t)-f(x)]K_N(t)\,\dd t\right|
@@ -1250,7 +1240,7 @@ The last expression tends to $0$ independently of $x$. Since $\varepsilon$ is ar
 \begin{exercise}{8.16}
 Prove a pointwise version of Fej\'er's theorem:
 
-\emph{If $f$ is $2\pi$-periodic, $f\in\mathcal{R}([-\pi, \pi])$, and $f(x+), f(x-)$ exist for some $x$, then}
+\emph{If $f$ is $2\pi$-periodic, $f\in\mathcal{R}([-\pi, \pi])$, and $f(x+), f(x-)$ exist, then}
 \[
  \lim_{N\to\infty}\sigma_Nf(x)=\frac12[f(x+)+f(x-)].
 \]
@@ -1272,8 +1262,8 @@ For $0<t<\delta$, both differences have absolute value less than $\varepsilon$ i
 \begin{exercise}{8.17}
 Assume $f$ is a bounded monotone function on $[-\pi, \pi)$, extended $2\pi$-periodically, with Fourier coefficients $\widehat f(n)$.
 \begin{exercisesubparts}
-\item Use Exercise 17 of Chap.~6 to prove that $(n\widehat f(n))$ is a bounded sequence.
-\item Combine (a) with Exercise 16 and with Exercise 14(e) of Chap.~3, to conclude that
+\item Use Chapter 6, Exercise 17, to prove that $(n\widehat f(n))$ is a bounded sequence.
+\item Combine (a) with Exercise 8.16 and with Chapter 3, Exercise 14(e), to conclude that
 \[
  \lim_{N\to\infty}S_Nf(x)=\frac12[f(x+)+f(x-)]
 \]
@@ -1364,7 +1354,7 @@ By the trigonometric polynomial approximation theorem (Theorem 8.15), given $\va
  \left|\frac1N\sum_{n=1}^N(f-P)(x+n\alpha)\right|\le\varepsilon,
  \qquad\left|\frac1{2\pi}\int_{-\pi}^\pi(f-P)\,\dd t\right|\le\varepsilon.
 \]
-The average for $P$ approaches its integral mean, so the limsup of the error for $f$ is at most $2\varepsilon$. Let $\varepsilon\to0$. The proof actually gives uniform convergence with respect to $x$.
+The average for $P$ approaches its integral mean, so the limsup of the error for $f$ is at most $2\varepsilon$. Let $\varepsilon\to0$. 
 \end{solution}
 
 \begin{exercise}{8.20}
@@ -1437,7 +1427,7 @@ Let
 \]
 Prove that there exists a constant $C>0$ such that $L_n>C\ln n$ for $n=1, 2, 3, \ldots$, or, more precisely, that the sequence
 \[
- \left\{L_n-\frac4{\pi^2}\ln n\right\}
+ \left(L_n-\frac4{\pi^2}\ln n\right)_{n\ge1}
 \]
 is bounded.
 \end{exercise}
@@ -1546,7 +1536,7 @@ For $\gamma(t)=e^{int}$ on $[0, 2\pi]$, $\gamma'/\gamma=in$, and hence
 \end{solution}
 
 \begin{exercise}{8.24}
-Let $\gamma$ be as in Exercise 23, and assume in addition that the range of $\gamma$ does not intersect the negative real axis. Prove that $\Ind(\gamma, 0)=0$.
+Let $\gamma$ be as in Exercise 8.23, and assume in addition that the range of $\gamma$ does not intersect the negative real axis. Prove that $\Ind(\gamma, 0)=0$.
 \end{exercise}
 \begin{solution}
 For every $c\ge0$, the curve $\gamma+c$ is closed, continuously differentiable, and nonvanishing: if $\gamma(t)+c=0$, then $\gamma(t)=-c$ lies on the forbidden negative real axis (including $0$). Thus Exercise 8.23 shows that
@@ -1565,7 +1555,7 @@ Since $I(c)$ is constant and integer-valued, its constant value is $0$. In parti
 \end{solution}
 
 \begin{exercise}{8.25}
-Suppose $\gamma_1$ and $\gamma_2$ are curves as in Exercise 23, and
+Suppose $\gamma_1$ and $\gamma_2$ are curves as in Exercise 8.23, and
 \[
  |\gamma_1(t)-\gamma_2(t)|<|\gamma_1(t)|\qquad(a\le t\le b).
 \]
@@ -1597,11 +1587,11 @@ Choose $\delta>0$ so that $|\gamma(t)|>\delta$ for all $t\in[0, 2\pi]$. If $P_1$
 \[
  \Ind(P_1, 0)=\Ind(P_2, 0)
 \]
-by applying Exercise 25.
+by applying Exercise 8.25.
 
 Define this common value to be $\Ind(\gamma, 0)$.
 
-Prove that the statements of Exercises 24 and 25 hold without any differentiability assumption.
+Prove that the statements of Exercises 8.24 and 8.25 hold without any differentiability assumption.
 \end{exercise}
 \begin{solution}
 The continuous nonvanishing curve $\gamma$ has $m=\min_t|\gamma(t)|>0$, so the stipulated $\delta$ exists. The trigonometric polynomials $P_j$ are continuously differentiable and periodic, and satisfy
@@ -1652,12 +1642,14 @@ Since $[0, \infty)$ is connected, a continuous integer-valued function on it mus
 \end{solution}
 
 \begin{exercise}{8.28}
-Let $D$ be the closed unit disc in the complex plane. (Thus $z\in D$ if and only if $|z|\le1$.) Let $g$ be a continuous mapping of $D$ into the unit circle $T$. (Thus $|g(z)|=1$ for every $z\in D$.)
-
-Prove that $g(z)=-z$ for at least one $z\in T$.
+Let $D=\{z\in\C:|z|\le1\}$ and $T=\{z\in\C:|z|=1\}$. If $g:D\to T$ is continuous, prove that $g(z)=-z$ for some $z\in T$.
 \end{exercise}
 \begin{solution}
-Suppose that $g(z)\ne-z$ for all $z\in T$. The curves $\gamma_r(t)=g(re^{it})$ are continuous, closed, and nonvanishing (indeed, $|\gamma_r|=1$). The same argument as in Exercise 8.27(c), using Exercise 8.26, shows that $r\mapsto\Ind(\gamma_r, 0)$ is continuous and integer-valued. Hence it is constant on $[0, 1]$. Since $\gamma_0$ is the constant curve $g(0)$, we obtain
+Suppose that $g(z)\ne-z$ for all $z\in T$. The curves $\gamma_r(t)=g(re^{it})$ are continuous, closed, and nonvanishing (indeed, $|\gamma_r|=1$). For any $r_0\in[0, 1]$, the minimum $m=\min_{t\in[0, 2\pi]}|\gamma_{r_0}(t)|$ is positive. Uniform continuity of $g$ on $D$ gives, for $r$ sufficiently close to $r_0$,
+\[
+ \sup_{t\in[0, 2\pi]}|\gamma_r(t)-\gamma_{r_0}(t)|<m.
+\]
+The stability result of Exercise 8.26 implies $\Ind(\gamma_r, 0)=\Ind(\gamma_{r_0}, 0)$. Hence the integer-valued function $r\mapsto\Ind(\gamma_r, 0)$ is locally constant, and therefore constant on $[0, 1]$. Since $\gamma_0$ is the constant curve $g(0)$, we obtain
 \[
  \Ind(\gamma_1, 0)=\Ind(\gamma_0, 0)=0.
 \]
@@ -1722,11 +1714,7 @@ Exponentiating proves that the ratio tends to $1$, as required.
 \end{solution}
 
 \begin{exercise}{8.31}
-In the proof of Theorem 7.26 it was shown that
-\[
- \int_{-1}^1(1-x^2)^n\,\dd x\ge\frac4{3\sqrt n}
-\]
-for $n=1, 2, 3, \ldots$. Use Theorem 8.20 and Exercise 30 to show the more precise result
+Use Theorem 8.20 and Exercise 8.30 to prove that
 \[
  \lim_{n\to\infty}\sqrt n\int_{-1}^1(1-x^2)^n\,\dd x=\sqrt\pi.
 \]
