@@ -1,4 +1,4 @@
-\documentclass[11pt,oneside]{article}
+\documentclass[11pt, oneside]{article}
 
 \pdfminorversion=7
 \usepackage{HomeworkStyle}
@@ -10,22 +10,24 @@
 }
 
 \begin{document}
+\sethomeworknumber{1}
 \homeworktitle{Homework 1}
 
 When you prove the computability of a real number or a real function, you should
 explicitly provide an algorithm that is required in the definition of
 computability. In the algorithm, you can only use rational numbers, basic
-operations over rationals (i.e., $+$, $-$, $\times$, $/$, $\mathrm{abs}$),
+operations over rationals (i.e., $+$, $-$, $\times$, $/$, $\code{abs}$),
 comparisons between rationals (e.g., $=$, $<$, $\le$), and basic programming
-constructs (i.e., \texttt{if}, \texttt{for}, \texttt{while}).
+constructs (i.e., \code{if}, \code{for}, \code{while}).
 
 \begin{problem}{1}
 In this problem, ``computable'' means Borel-computable.
 \begin{problemsubparts}
-    \item Prove that if $x,y\in\R$ are computable, then $x+y$ is computable.
+    \item Prove that if $x, y\in\R$ are computable, then $x+y$ is computable.
     \item Prove that $\sqrt{k}$ is computable for all integers $k\ge2$.
 
-    \hintlabel\ Define $(x_m)_{m\in\Nzero}\subseteq\Q$ by
+    \begin{hint}
+    Define $(x_m)_{m\in\Nzero}\subseteq\Q$ by
     $x_0\coloneqq k$ and
     \[
       x_{m+1}\coloneqq\frac12\left(x_m+\frac{k}{x_m}\right).
@@ -33,15 +35,16 @@ In this problem, ``computable'' means Borel-computable.
     Show that there exists $\alpha>0$ such that
     $0<x_m-\sqrt{k}<k\alpha^m$ for all $m\in\Nzero$.
     Use this result to prove the original claim.
+    \end{hint}
     % The original indexes (x_m) by N but specifies x_0; N_0 is intended.
 \end{problemsubparts}
 \end{problem}
 
 \begin{solution}
 \begin{problemsubparts}
-    \item Let $p,r\colon\Nzero\to\Q$ be computable sequences satisfying
+    \item Let $p, r\colon\Nzero\to\Q$ be computable sequences satisfying
     \[
-        |p(n)-x|<2^{-n},\qquad |r(n)-y|<2^{-n}
+        |p(n)-x|<2^{-n}, \qquad |r(n)-y|<2^{-n}
         \quad(n\in\Nzero).
     \]
     On input $n\in\Nzero$, compute $p(n+1)$ and $r(n+1)$ and return
@@ -96,16 +99,16 @@ In this problem, ``computable'' means Borel-computable.
 
 \begin{problem}{2}
 Prove that the following problem is decidable (i.e., there is an algorithm
-solving the problem): Given computable functions $f,g\colon\N\to\Q$
-representing distinct computable reals $x,y\in\R$ (i.e.,
+solving the problem): Given computable functions $f, g\colon\N\to\Q$
+representing distinct computable reals $x, y\in\R$ (i.e.,
 $|f(n)-x|<2^{-n}$ and $|g(n)-y|<2^{-n}$ for all $n\in\N$,
 and $x\ne y$), decide whether $x<y$ or $x>y$.
 \end{problem}
 
 \begin{solution}
-For $n=1,2,3,\ldots$, compute $a\coloneqq f(n)$,
+For $n=1,2,3, \ldots$, compute $a\coloneqq f(n)$,
 $b\coloneqq g(n)$, and $r\coloneqq2^{-n}$, and perform the following tests:
-\begin{enumerate}[label=(\arabic*),leftmargin=2.5em,topsep=4pt,itemsep=2pt]
+\begin{enumerate}[label=(\arabic*), leftmargin=2.5em, topsep=4pt, itemsep=2pt]
     \item If $a+r\le b-r$, return $x<y$.
     \item If $b+r\le a-r$, return $x>y$.
     \item Otherwise, increment $n$ and repeat.
@@ -134,7 +137,7 @@ correct order under the promise $x\ne y$.
     \item Prove that $\exp\colon\R\to\R$ is computable over the entire
     $\R$. Your proof should be self-contained: it must include all details,
     and must not refer to any part of the proof covered in class.
-    \item See \texttt{p3.ipynb}.
+    \item See \code{p3.ipynb}.
 \end{problemsubparts}
 \end{problem}
 
@@ -172,7 +175,7 @@ correct order under the promise $x\ne y$.
       \qquad(-B\le t\le B).
     \]
     In particular, the mean value theorem shows that, for
-    $u,v\in[-B,B]$,
+    $u, v\in[-B, B]$,
     \[
        |\exp(u)-\exp(v)|\le C|u-v|.
        \tag{1}
@@ -221,11 +224,11 @@ correct order under the promise $x\ne y$.
     name $\alpha$ were arbitrary, this proves computability of
     $\exp\colon\R\to\R$.
 
-    \item The accompanying \texttt{p3.ipynb} implements the preceding
-    algorithm as \texttt{creal\_exp(x)}. It first obtains the integer
-    bound $B$ from \texttt{x(0)}; it then chooses $m$ using (3),
+    \item The accompanying \code{p3.ipynb} implements the preceding
+    algorithm as \code{creal\_exp(x)}. It first obtains the integer
+    bound $B$ from \code{x(0)}; it then chooses $m$ using (3),
     chooses $d$ using (4), and evaluates $P_d(\alpha(m))$ using an exact
-    rational recurrence for its terms. The returned \texttt{CReal}
+    rational recurrence for its terms. The returned \code{CReal}
     computes this approximation afresh at each requested precision $n$.
     Thus its correctness and termination follow from part~(a),
     for every valid input approximation sequence.
@@ -240,15 +243,15 @@ covered in class and in Problem~5.
     \item Prove that $f\colon\R\to\R$ defined by
     $f(x)\coloneqq(\text{if }x\ge0\text{ then }1\text{ else }0)$
     is not computable.
-    \item Prove that $g\colon[0,\tfrac12]\to[0,1]$ defined by
+    \item Prove that $g\colon[0, \tfrac12]\to[0,1]$ defined by
     $g(x)\coloneqq x+\tfrac13$ is not computable under Turing's definition:
-    A function $h\colon[0,\tfrac12]\to[0,1]$ is called
+    A function $h\colon[0, \tfrac12]\to[0,1]$ is called
     \emph{computable in Turing's sense} if there exists an algorithm
     $\A$ that takes $(b_i)_{i\in\Nzero}\subseteq\{0,1\}$ and
     $j\in\Nzero$, and returns $0$ or $1$ such that
     \[
        h((0.b_0b_1\ldots)_2)=(0.c_0c_1\ldots)_2,
-       \qquad c_j\coloneqq\A((b_i)_{i\in\Nzero},j).
+       \qquad c_j\coloneqq\A((b_i)_{i\in\Nzero}, j).
     \]
     % The source prints f instead of h on the left and has a misplaced
     % parenthesis. The equation above corrects these evident typos.
@@ -276,7 +279,7 @@ covered in class and in Problem~5.
     \[
        \beta(i)\coloneqq
        \begin{cases}
-           0,&i\le N,\\
+           0,&i\le N, \\
           -t,&i>N.
        \end{cases}
     \]
@@ -302,7 +305,7 @@ covered in class and in Problem~5.
     were inspected). Because $x_0$ is not a dyadic rational, it lies
     strictly inside the dyadic interval specified by its first
     $N+1$ binary digits. Consequently there are numbers
-    $x^-<x_0<x^+$ in $[0,\tfrac12]$ that share those digits with
+    $x^-<x_0<x^+$ in $[0, \tfrac12]$ that share those digits with
     $x_0$. We may choose these inputs to be non-dyadic so that their
     binary expansions are unique.
 
@@ -329,9 +332,11 @@ covered in class and in Problem~5.
 Prove that if $f\colon\R\to\R$ is computable (under Borel's definition),
 then $f$ is continuous.
 
-\hintlabel\ To prove that $f$ is continuous, it suffices to prove the
+\begin{hint}
+To prove that $f$ is continuous, it suffices to prove the
 following: for all $a\in\R$ and $n\in\N$, there exists $m\in\N$ such that
 $|x-a|<2^{-m}$ implies $|f(x)-f(a)|<2^{-n}$ for all $x\in\R$.
+\end{hint}
 \end{problem}
 
 \begin{solution}
@@ -368,7 +373,7 @@ within $2^{-i}$ of $x$.
 This construction need not be uniformly computable: the definition
 requires $\A$ to work for every valid name.
 The names $\alpha$ and $\beta$ give identical answers to every
-query made in the first computation, so $\A(\beta,n+2)=q$.
+query made in the first computation, so $\A(\beta, n+2)=q$.
 It follows that
 \begin{align*}
  |f(x)-f(a)|
