@@ -4,7 +4,7 @@
 \hypersetup{
   pdftitle={Course Notes for CSED490V Foundations of Continuous Computation},
   pdfauthor={Jungwoo Kim},
-  pdfsubject={Computability, floating-point arithmetic, and error analysis},
+  pdfsubject={Computability, floating-point arithmetic, error-free computations, and automatic error analysis},
   pdfcreator={LaTeX}
 }
 
@@ -51,6 +51,14 @@ $\operatorname{err}_{\mathrm{abs}}$ & Absolute error\\
 $\operatorname{err}_{\mathrm{rel}}$ & Relative error\\
 $\ulp$ & Unit in the last place\\
 $\operatorname{err}_{\mathrm{ulp}}$ & ULP error\\
+$e_a$ & Exponent of a nonzero floating-point value $a$\\
+$\fasttwosum$ & Error-free summation algorithm\\
+$\sigma$ & Input valuation\\
+$\Sigma$ & Set of admissible input valuations\\
+$\llbracket e\rrbracket$ & Floating-point semantics of $e$\\
+$\llbracket e\rrbracket_{\mathrm r}$ & Real-valued semantics of $e$\\
+$\operatorname{range}(e)$ & Range enclosure over $\Sigma$\\
+$\operatorname{err}(e)$ & Absolute-error bound over $\Sigma$\\
 $\varepsilon$ & Machine epsilon (unit roundoff)
 \end{coursenotation}
 
@@ -777,6 +785,397 @@ then even when their subtraction is exact,
 For $x\ne y$, dividing by $|x-y|$ gives the relative error;
 dividing by $\ulp(x-y)$ gives the ULP error. Both can be large
 when $x\approx y$, even if the subtraction itself is exact.
+\end{remark}
+
+
+\begin{example}[Stable Evaluation of $a^2-b^2$]
+For $a, b\in\mathbb F$, $a^2\ne b^2$, compare
+\[
+ u=(a\otimes a)\ominus(b\otimes b), \qquad
+ v=(a\ominus b)\otimes(a\oplus b).
+\]
+Assume that the operations do not overflow or underflow and that the
+usual relative-error model applies to all intermediate results.
+Writing $|\delta_i|\le\varepsilon$ and retaining terms through first
+order gives
+\[
+\begin{aligned}
+ u&=(a^2(1+\delta_1)-b^2(1+\delta_2))(1+\delta_3), \\
+ \frac{|u-(a^2-b^2)|}{|a^2-b^2|}
+ &\le\left(1+\frac{a^2+b^2}{|a^2-b^2|}\right)\varepsilon
+   +O(\varepsilon^2), \\
+ v&=(a-b)(a+b)(1+\delta_1)(1+\delta_2)(1+\delta_3), \\
+ \frac{|v-(a^2-b^2)|}{|a^2-b^2|}
+ &\le3\varepsilon+O(\varepsilon^2).
+\end{aligned}
+\]
+For a normal exact result, the corresponding ULP-error bounds are
+$1+(a^2+b^2)/|a^2-b^2|+O(\varepsilon)$ and $3+O(\varepsilon)$,
+respectively. The first can be arbitrarily large when $|a|\approx|b|$;
+the factored expression avoids subtracting two rounded squares.
+\end{example}
+
+\begin{remark}
+For $r, r'\in\R$ with
+$\operatorname{err}_{\mathrm{ulp}}(r, r')\le1$ and finite $\rnd(r')$,
+\[
+ \operatorname{err}_{\mathrm{ulp}}(r, \rnd(r'))
+ \le\operatorname{err}_{\mathrm{ulp}}(r, r')+\tfrac12.
+\]
+Indeed, if $\ulp(r')\le\ulp(r)$, the triangle inequality and nearest
+rounding suffice. Otherwise $r'$ lies across a power-of-two boundary
+from $r$. The one-ULP hypothesis forces $r'$ to round back to that
+boundary, closer to $r$ than $r'$ was. The estimate thus holds in both
+cases.
+\end{remark}
+
+\begin{example}[Stable Quadratic Roots]
+For $a\ne0$ and $\Delta=b^2-4ac\ge0$, the usual quadratic formula is
+\[
+ x_{\pm}=\frac{-b\pm\sqrt\Delta}{2a}.
+\]
+If $b<0$ and $b^2\gg|4ac|$, evaluating
+$(-b-\sqrt\Delta)/(2a)$ may suffer cancellation. Rationalization gives
+\[
+ \frac{-b-\sqrt\Delta}{2a}
+   =\frac{2c}{-b+\sqrt\Delta},
+\]
+provided the denominator is nonzero. The analogous rationalization
+applies to the other root when $b>0$. Moreover, forming $b^2$ can
+overflow even if the roots are finite. For $b\ne0$, the identity
+\[
+ \sqrt{b^2-4ac}=|b|\sqrt{1-\frac{4ac}{b^2}}
+\]
+illustrates a rescaling that avoids directly squaring a large $b$;
+its implementation must also guard the intermediate quotient.
+When $|4ac/b^2|\ll1$, the Taylor approximation
+$\sqrt{1-t}=1-\tfrac12t+O(t^2)$ explains the sensitivity of the
+small root. In particular, for $b^2\gg|4ac|$,
+\[
+ x_-\approx\begin{cases}
+ -b/a+c/b,&b>0, \\
+ -c/b,&b<0.
+ \end{cases}
+\]
+Higher-order terms follow from
+$\sqrt{1-t}=1-\tfrac12t-\tfrac18t^2+O(t^3)$.
+\end{example}
+
+\begin{example}[Two Ways to Compute a Mean]
+For $a, b\in\mathbb F$ compare
+\[
+ \widehat m=(a\oplus b)\odiv2,
+ \qquad \widehat m'=(a\odiv2)\oplus(b\odiv2).
+\]
+If $|a+b|\le F_{\max}$, the first is correctly rounded:
+\[
+ \widehat m=\rnd\!\left(\frac{a+b}{2}\right),
+ \qquad \min(a, b)\le\widehat m\le\max(a, b).
+\]
+It may nevertheless overflow when $|a+b|$ exceeds the finite range,
+even though the mean is representable. The second avoids such
+intermediate overflow; it is correctly rounded when the inputs are
+sufficiently large, and otherwise has ULP error at most $1$.
+\end{example}
+
+\begin{theorem}[Correctly Rounded Mean]
+Let $C\in[2^{e_{\min}+M+3},2^{e_{\max}}]\cap\mathbb F$. For
+$a, b\in\mathbb F$, define
+\[
+ m(a, b)=\begin{cases}
+ (a\oplus b)\odiv2,&|a|<C\ \text{and}\ |b|<C, \\
+ (a\odiv2)\oplus(b\odiv2),&\text{otherwise}.
+ \end{cases}
+\]
+Then, assuming the stated floating-point operations are defined,
+\[
+ m(a, b)=\rnd\!\left(\frac{a+b}{2}\right)
+ \qquad(a, b\in\mathbb F).
+\]
+\end{theorem}
+
+\Needspace{8\baselineskip}
+\section{Error-Free Computations}
+
+Fix $\mathbb F=\mathbb F_{E, M}$ and $\rnd=\rnd_{E, M}$ as before.
+For $a\in\mathbb F\setminus\{0\}$ let $e_a\in[e_{\min}, e_{\max}]\cap\mathbb Z$
+denote its floating-point exponent, taking $e_a=e_{\min}$ for subnormals.
+Set $e_0=e_{\min}$ when an exponent is needed for zero.
+Write $\Delta_{\min}\coloneqq2^{e_{\min}-M}$ for the least positive
+subnormal spacing. All exactness assertions below concern finite
+results with the indicated range conditions.
+
+\begin{lemma}[Integer Significands]
+A real number $a$ is in $\mathbb F$ if and only if there exist
+$m, e\in\mathbb Z$ with
+\[
+ a=m2^{e-M}, \qquad |m|<2^{M+1}, \qquad
+ e_{\min}\le e\le e_{\max}.
+\]
+In particular, every $a\in\mathbb F$ is an integer multiple of
+$\Delta_{\min}$.
+\end{lemma}
+\begin{proof}
+For normal values take $e=e_a$ and let $m$ be the integer encoded
+by the $(M+1)$ significand bits; for subnormals take $e=e_{\min}$
+and $|m|<2^M$. Conversely, for any displayed pair $(m, e)$, a
+significand with at most $M+1$ bits is either normal at a suitable
+exponent or subnormal after shifting to $e_{\min}$. If a shift would
+exceed $e_{\max}$, the bound $|m|<2^{M+1}$ prevents it.
+\end{proof}
+
+\begin{theorem}[Hauser: Exact Addition]
+For $a, b\in\mathbb F$,
+\[
+ |a+b|\le2^{e_{\min}+1}\implies a\oplus b=a+b.
+\]
+\end{theorem}
+\begin{proof}
+Both $a$ and $b$ are integer multiples of $\Delta_{\min}$, hence
+so is $a+b$. Every such multiple in
+$[-2^{e_{\min}+1},2^{e_{\min}+1}]$ is representable. Therefore
+$a+b\in\mathbb F$ and rounding does nothing.
+\end{proof}
+
+\begin{theorem}[Sterbenz: Exact Subtraction]
+For $a, b\in\mathbb F$,
+\[
+ \frac a2\le b\le2a\implies a\ominus b=a-b.
+\]
+Equivalently, one may assume $b/2\le a\le2b$.
+\end{theorem}
+\begin{proof}
+The hypothesis forces $a, b\ge0$. The zero case is immediate.
+By exchanging $a, b$ and changing the sign if necessary, assume
+$a\ge b$, so $b\le a\le2b$.
+Write $a=m_a2^{e_a-M}$ and $b=m_b2^{e_b-M}$ by the lemma.
+As $a\ge b$, we have $e_a\ge e_b$ (with the convention for
+subnormals), and thus
+\[
+ a-b=(m_a2^{e_a-e_b}-m_b)2^{e_b-M}=m'2^{e_b-M},
+ \qquad m'\in\mathbb Z.
+\]
+Since $0\le a-b\le b$, one has $0\le m'\le m_b<2^{M+1}$,
+so $a-b\in\mathbb F$. Thus $a\ominus b=a-b$.
+\end{proof}
+
+\begin{proposition}[Exact Scaling and Multiplication]
+Suppose $a, b\in\mathbb F\setminus\{0\}$ have
+$|a|=(\alpha_0.\alpha_1\dots\alpha_M)_2\,2^{e_a}$ and
+$|b|=2^{e_b}$. If $e_a+e_b\in[e_{\min}, e_{\max}]$, then
+\[
+ a\otimes b=ab.
+\]
+Similarly, if $e_a-e_b\in[e_{\min}, e_{\max}]$, then
+$a\odiv b=a/b$. More generally, a product is exact whenever its
+significand has at most $M+1$ significant binary digits and its
+exponent lies in the representable range.
+\end{proposition}
+
+\begin{remark}
+Sterbenz's theorem does not preclude catastrophic cancellation:
+subtraction of nearby \emph{represented} floats may be exact, while
+an error inherited from earlier rounded operations becomes large
+relative to the small difference.
+\end{remark}
+
+\Needspace{12\baselineskip}
+\markboth{Error-Free Computations}{}
+\begin{theorem}[Dekker: Exact Addition Residual]
+For $a, b\in\mathbb F$ with $|a+b|\le F_{\max}$, put
+\[
+ s=a\oplus b, \qquad r=(a+b)-s.
+\]
+Then $r\in\mathbb F$. If $e_a\ge e_b$, the algorithm
+\[
+ \begin{aligned}
+ s&=a\oplus b, \\
+ b'&=s\ominus a, \\
+ z&=b\ominus b'
+ \end{aligned}
+ \qquad\text{(Fast2Sum)}
+\]
+returns $(s, z)=(a\oplus b, r)$; in particular, $a+b=s+z$
+\emph{exactly}.
+\end{theorem}
+\begin{proof}[Sketch]
+The integer-significand representation shows that the exact sum and
+its rounded value have a common binary grid at the smaller operand's
+exponent. Their difference has at most $M+1$ significant bits, hence
+$r\in\mathbb F$. For Fast2Sum, it suffices to verify
+\[
+ s-a\in\mathbb F, \qquad b-(s\ominus a)\in\mathbb F.
+\]
+Under $e_a\ge e_b$ these exactness properties imply
+$b'=s-a$ and $z=b-b'=r$. The two auxiliary verifications are the
+steps isolated for Homework~2 in the lecture notes.
+\end{proof}
+
+\begin{theorem}[FMA Recovery of a Product Residual]
+For $a, b\in\mathbb F$ with $|ab|\le F_{\max}$, let
+$s=a\otimes b$ and $r=ab-s$. If
+\[
+ e_a+e_b\ge e_{\min}+M,
+\]
+then $r\in\mathbb F$ and
+\[
+ r=\fma(a, b,-s).
+\]
+\end{theorem}
+\begin{remark}
+The exponent condition controls whether the low-order bits of the
+exact product fit in the floating-point format. The corresponding
+failure at the weaker exponent bound $e_a+e_b=e_{\min}+M-1$ is
+examined in Homework~2.
+\end{remark}
+
+\clearpage
+\section{Automatic Error Analysis}
+
+Fix $N\in\N$ input variables and consider expressions generated by
+\[
+ e::=c\mid x_i\mid -e\mid e+e\mid e\times e,
+ \qquad c\in\mathbb F, \quad i\in\{1, \dots, N\}.
+\]
+Only expressions whose floating-point evaluation does not overflow
+are considered. The expression $e$ is syntax; its \emph{semantics}
+is a function of the input valuation
+$\sigma=(\sigma_1, \dots, \sigma_N)\in\mathbb F^N$.
+
+\begin{definition}[Floating-Point and Real-Valued Semantics]
+The \emph{floating-point semantics} and \emph{real-valued semantics}
+of an expression $e$ are functions
+\[
+ \llbracket e\rrbracket\colon\mathbb F^N\to\mathbb F,
+ \qquad
+ \llbracket e\rrbracket_{\mathrm r}\colon\mathbb F^N\to\mathbb R,
+\]
+recursively defined by
+\[
+\begin{aligned}
+ \llbracket c\rrbracket(\sigma)&=c,&
+ \llbracket x_i\rrbracket(\sigma)&=\sigma_i, \\
+ \llbracket-e\rrbracket(\sigma)&=-\llbracket e\rrbracket(\sigma),&
+ \llbracket e_1+e_2\rrbracket(\sigma)
+   &=\llbracket e_1\rrbracket(\sigma)\oplus\llbracket e_2\rrbracket(\sigma), \\
+ \llbracket e_1\times e_2\rrbracket(\sigma)
+   &=\llbracket e_1\rrbracket(\sigma)\otimes\llbracket e_2\rrbracket(\sigma).
+\end{aligned}
+\]
+The real-valued semantics uses the same rules with $+$ and $\times$
+in place of $\oplus$ and $\otimes$, respectively.
+\end{definition}
+
+\begin{example}[Different Semantics]
+For $e=(1+x_1)+(-x_1)$, if $2^{M+1}\in\mathbb F$ and
+$\sigma_1=2^{M+1}$, then ties-to-even gives
+\[
+ \llbracket e\rrbracket(\sigma)=0,
+ \qquad \llbracket e\rrbracket_{\mathrm r}(\sigma)=1.
+\]
+Thus the same expression has different floating-point and real-valued
+evaluations.
+\end{example}
+
+\begin{definition}[Automatic Range and Error Analysis]
+Let $l_i, r_i\in\mathbb F$ with $l_i\le r_i$, and fix the set of
+admissible input valuations
+\[
+ \Sigma\coloneqq\prod_{i=1}^N([l_i, r_i]\cap\mathbb F)
+ \subseteq\mathbb F^N.
+\]
+A \emph{sound range analysis} produces intervals
+$\operatorname{range}(e)\subseteq\mathbb R$ such that
+\[
+ \llbracket e\rrbracket(\sigma)\in\operatorname{range}(e)
+ \qquad(\forall\sigma\in\Sigma).
+\]
+A \emph{sound absolute-error analysis} produces
+$\operatorname{err}(e)\in\mathbb R_{\ge0}$ such that
+\[
+ |\llbracket e\rrbracket(\sigma)
+ -\llbracket e\rrbracket_{\mathrm r}(\sigma)|
+ \le\operatorname{err}(e)
+ \qquad(\forall\sigma\in\Sigma).
+\]
+The dependence on the fixed $\Sigma$ is suppressed in this notation.
+\end{definition}
+
+\Needspace{15\baselineskip}
+\begin{proposition}[Recursive Range Analysis]
+For each subexpression $e$, set
+\[
+\begin{aligned}
+ \operatorname{range}(c)&=[c, c],&
+ \operatorname{range}(x_i)&=[l_i, r_i], \\
+ \operatorname{range}(-e)&=[-b,-a]
+   &&\text{if }\operatorname{range}(e)=[a, b].
+\end{aligned}
+\]
+If $\operatorname{range}(e_i)=[a_i, b_i]$ for $i=1,2$, define
+\[
+ \operatorname{range}(e_1+e_2)
+ \coloneqq[\rnd(a_1+a_2), \rnd(b_1+b_2)].
+\]
+These rules are sound, assuming no overflow in the analysis itself.
+\end{proposition}
+\begin{proof}
+The constant, variable and negation cases follow directly from the
+semantics. By induction,
+$\llbracket e_i\rrbracket(\sigma)\in[a_i, b_i]$, so
+\[
+ a_1+a_2\le\llbracket e_1\rrbracket(\sigma)
+  +\llbracket e_2\rrbracket(\sigma)\le b_1+b_2.
+\]
+Apply monotonicity of $\rnd$ to obtain the asserted enclosure for
+$\llbracket e_1+e_2\rrbracket(\sigma)$.
+\end{proof}
+
+\begin{proposition}[Recursive Absolute-Error Analysis]
+Set
+\[
+ \operatorname{err}(c)=\operatorname{err}(x_i)=0,
+ \qquad \operatorname{err}(-e)=\operatorname{err}(e).
+\]
+If $\operatorname{range}(e_i)=[a_i, b_i]$ for $i=1,2$, define
+\[
+\begin{aligned}
+ \operatorname{err}(e_1+e_2)\coloneqq{}&
+ \operatorname{err}(e_1)+\operatorname{err}(e_2)\\
+ &+\frac12\ulp\!\left(\max\{|a_1+a_2|,|b_1+b_2|\}\right).
+\end{aligned}
+\]
+Under the same no-overflow assumptions, these rules are sound.
+\end{proposition}
+\begin{proof}
+Put $u_i=\llbracket e_i\rrbracket(\sigma)$ and
+$v_i=\llbracket e_i\rrbracket_{\mathrm r}(\sigma)$. Then
+\[
+\begin{aligned}
+ |\rnd(u_1+u_2)-(v_1+v_2)|
+ &\le|\rnd(u_1+u_2)-(u_1+u_2)|
+   +|u_1-v_1|+|u_2-v_2|\\
+ &\le\tfrac12\ulp(u_1+u_2)
+    +\operatorname{err}(e_1)+\operatorname{err}(e_2).
+\end{aligned}
+\]
+Since $u_i\in[a_i, b_i]$,
+$|u_1+u_2|\le\max\{|a_1+a_2|,|b_1+b_2|\}$;
+$\ulp$ is nondecreasing in absolute value, proving the claim.
+The remaining cases are immediate.
+\end{proof}
+
+\begin{remark}[Limitations of Interval Analysis]
+The rules bound subexpressions independently and need not preserve
+dependencies between occurrences of the same variable. For
+$e=x_1-x_1$ (shorthand for $x_1+(-x_1)$) and $x_1\in[-1,1]$,
+ordinary interval arithmetic yields $[-2,2]$, although both
+semantics evaluate to $0$. Likewise, a positive error bound can be
+returned even when the actual rounding error vanishes. Refining the
+analysis to account for dependencies is a separate problem.
+The multiplication and square-root analysis rules discussed as
+exercises in the lecture are addressed in Homework~2, not assumed
+as proved results here.
 \end{remark}
 
 \end{document}

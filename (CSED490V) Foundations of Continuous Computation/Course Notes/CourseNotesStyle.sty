@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{CourseNotesStyle}[2026/10/18 CSED490V course-notes style v5]
+\ProvidesPackage{CourseNotesStyle}[2026/10/26 CSED490V course-notes style v6]
 
 % The page design is adapted from the MATH200/MATH203 document family.
 \RequirePackage[a4paper,margin=1in]{geometry}
@@ -12,21 +12,27 @@
 \RequirePackage{amsmath,amssymb,amsthm}
 \RequirePackage{dsfont}
 \RequirePackage{mathtools}
+\RequirePackage{stmaryrd}
 \RequirePackage{enumitem}
 \RequirePackage{booktabs}
 \RequirePackage{xcolor}
 \RequirePackage[hidelinks]{hyperref}
 
-% Circled division: build an obelus inside the same circle as \ominus.
-% Tune the two dots while retaining the same circle and horizontal stroke.
+% Circled division: inherit the font's circle and stroke from \ominus;
+% scale the obelus dots in the two smaller math styles.
 \RequirePackage{tikz}
 \makeatletter
 \newcommand{\odiv}{\mathbin{\mathpalette\courseodivaux\relax}}
 \newcommand{\courseodivaux}[2]{%
+  \def\courseodivfactor{1}%
+  \ifx#1\scriptstyle\def\courseodivfactor{.7}\fi
+  \ifx#1\scriptscriptstyle\def\courseodivfactor{.5}\fi
   \tikz[baseline=(sym.base),inner sep=0pt]{%
     \node[inner sep=0pt,outer sep=0pt] (sym) {$\m@th#1\ominus$};%
-    \fill (sym.center) ++(0,0.195em) circle[radius=0.053em];%
-    \fill (sym.center) ++(0,-0.195em) circle[radius=0.053em];%
+    \begin{scope}[shift={(sym.center)},scale=\courseodivfactor]
+      \fill (0,0.195em) circle[radius=0.053em];%
+      \fill (0,-0.195em) circle[radius=0.053em];%
+    \end{scope}%
   }%
 }
 \makeatother
@@ -46,6 +52,7 @@
 \DeclareMathOperator{\rnd}{rnd}
 \DeclareMathOperator{\fma}{fma}
 \DeclareMathOperator{\ulp}{ulp}
+\DeclareMathOperator{\fasttwosum}{fast2sum}
 \newcommand{\indicator}[1]{\mathds{1}_{#1}}
 
 % Body and lists; enough room is kept for the beginning of each statement.
@@ -73,6 +80,7 @@
 \theoremstyle{courseplain}
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
 \newtheorem{corollary}[definition]{Corollary}
 \theoremstyle{coursesameline}
 \newtheorem*{remark}{Remark}
@@ -85,6 +93,7 @@
 \BeforeBeginEnvironment{definition}{\courseblockspace}
 \BeforeBeginEnvironment{theorem}{\courseblockspace}
 \BeforeBeginEnvironment{proposition}{\courseblockspace}
+\BeforeBeginEnvironment{lemma}{\courseblockspace}
 \BeforeBeginEnvironment{corollary}{\courseblockspace}
 \BeforeBeginEnvironment{example}{\courseblockspace}
 \BeforeBeginEnvironment{fact}{\courseblockspace}
