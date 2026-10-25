@@ -1,0 +1,674 @@
+\documentclass[11pt,oneside]{article}
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{pdftitle={20261027 Quiz for MATH230 Probability \& Statistics},pdfauthor={Jungwoo Kim},pdfsubject={Quiz for MATH230 Probability \& Statistics},pdfcreator={LaTeX}}
+\begin{document}
+\quiztitle{20261027 Quiz}
+
+\begin{exercise}{6.9}
+Let $X$ be normally distributed with mean $20$ and standard deviation $2$. Find
+\begin{exercisesubparts}
+\item $\Prob(X<16)$.
+\item the value $k$ such that $\Prob(X<k)=0.4090$.
+\item the value $k$ such that $\Prob(X>k)=0.8599$.
+\item $\Prob(17<X<22)$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $z=(16-20)/2=-2$, hence $\Prob(X<16)=\Phi(-2)=\boxed{0.0228}$.
+
+\noindent\textup{(b)} $\Phi((k-20)/2)=0.4090$ gives $z\approx-0.23$, and $\boxed{k\approx19.54}$.
+
+\noindent\textup{(c)} $\Phi((k-20)/2)=1-0.8599=0.1401$ gives $z\approx-1.08$ and $\boxed{k\approx17.84}$.
+
+\noindent\textup{(d)} $\Prob(17<X<22)=\Phi(1)-\Phi(-1.5)=0.8413-0.0668=\boxed{0.7745}$.
+\end{solution}
+
+\begin{exercise}{6.11}
+A soft-drink machine dispenses a normally distributed amount with mean $200$ mL and standard deviation $15$ mL. Find
+\begin{exercisesubparts}
+\item the fraction of cups containing more than $224$ mL.
+\item the probability that a cup contains between $191$ and $209$ mL.
+\item the expected number of overflows if $230$-mL cups are used for the next $1000$ drinks.
+\item the amount below which the smallest $25\%$ of drinks fall.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $\Prob(X>224)=1-\Phi((224-200)/15)=1-\Phi(1.6)=\boxed{0.0548}$.
+
+\noindent\textup{(b)} $\Prob(191<X<209)=\Phi(0.6)-\Phi(-0.6)=\boxed{0.4515}$.
+
+\noindent\textup{(c)} Overflow means $X>230$. The expected count is $1000\Prob(X>230)=1000[1-\Phi(2)]\approx\boxed{22.8\text{ cups}}$ (about $23$ cups on average).
+
+\noindent\textup{(d)} $\Phi(z_{0.25})=0.25$ gives $z_{0.25}\approx-0.6745$. Hence $\boxed{x_{0.25}\approx200+15(-0.6745)=189.9\text{ mL}}$.
+\end{solution}
+
+\Needspace{12\baselineskip}
+\begin{exercise}{6.12}
+Steel-nail lengths are normally distributed with mean $5$ cm and standard deviation $0.05$ cm. Find the percentage of nails
+\begin{exercisesubparts}
+\item longer than $5.05$ cm.
+\item between $4.95$ and $5.05$ cm.
+\item shorter than $4.90$ cm.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $\Prob(X>5.05)=1-\Phi(1)=0.1587$, or $\boxed{15.87\%}$.
+
+\noindent\textup{(b)} $\Prob(4.95<X<5.05)=\Phi(1)-\Phi(-1)=0.6827$, or $\boxed{68.27\%}$.
+
+\noindent\textup{(c)} $\Prob(X<4.90)=\Phi(-2)=0.0228$, or $\boxed{2.28\%}$.
+\end{solution}
+
+\Needspace{11\baselineskip}
+\begin{exercise}{6.14}
+The inside diameter $X$ of a washer is normal with mean $0.60$ cm and standard deviation $0.004$ cm. Find
+\begin{exercisesubparts}
+\item the percentage with diameter greater than $0.61$ cm.
+\item $\Prob(0.595<X<0.605)$.
+\item the diameter below which $20\%$ of washers fall.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $\Prob(X>0.61)=1-\Phi(2.5)=0.0062$, or $\boxed{0.62\%}$.
+
+\noindent\textup{(b)} $\Prob(0.595<X<0.605)=\Phi(1.25)-\Phi(-1.25)=\boxed{0.7887}$.
+
+\noindent\textup{(c)} The $20$th percentile satisfies $\Phi(z)=0.20$, so $z\approx-0.8416$ and \[\boxed{x\approx0.60+0.004(-0.8416)=0.5966\text{ cm}}\].
+\end{solution}
+
+\begin{exercise}{6.15}
+A lawyer\textquotesingle s one-way commute has a normal distribution with mean $24$ minutes and standard deviation $3.8$ minutes. For the last part assume successive trip times are independent. Find
+\begin{exercisesubparts}
+\item the probability that one trip takes at least $30$ minutes.
+\item the percentage of days the lawyer is late if the office opens at 9:00 A.M. and the lawyer leaves at 8:45 A.M.
+\item the probability of missing coffee served from 8:50 to 9:00 A.M. when leaving at 8:35 A.M.
+\item the travel time exceeded by the slowest $15\%$ of trips.
+\item the probability that exactly two of the next three commutes take at least $30$ minutes.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $p=\Prob(X\ge30)=1-\Phi((30-24)/3.8)=1-\Phi(1.579)\approx\boxed{0.0572}$.
+
+\noindent\textup{(b)} Late means the commute lasts more than $15$ minutes. $\Prob(X>15)=1-\Phi((15-24)/3.8)\approx\boxed{99.11\%}$.
+
+\noindent\textup{(c)} Coffee is missed when the commute exceeds $25$ minutes; $\Prob(X>25)=1-\Phi(1/3.8)\approx\boxed{0.3962}$.
+
+\noindent\textup{(d)} The boundary is the $85$th percentile: $\Phi(z)=0.85$, $z\approx1.0364$, so \[\boxed{x\approx24+3.8(1.0364)=27.94\text{ min}}\].
+
+\noindent\textup{(e)} With $p=\Prob(X\ge30)\approx0.057174$, the number of long trips is $Y\sim\Bin(3,p)$. Thus $\Prob(Y=2)=\displaystyle\binom32p^2(1-p)\approx\boxed{0.009246}$.
+\end{solution}
+
+\begin{exercise}{6.17}
+Machine lifetimes are normally distributed with mean $8$ years and standard deviation $2$ years. An engineering firm wants to replace under warranty no more than $5\%$ of its machines. Determine the warranty duration.
+\end{exercise}
+
+\begin{solution}
+Let $w$ denote the warranty cutoff. Set $\Prob(X\le w)=0.05$, so $z_{0.05}\approx-1.6449$ and $\boxed{w=8+2z_{0.05}\approx4.71\text{ years}}$. A longer warranty would result in more than $5\%$ expected replacements.
+\end{solution}
+
+\begin{exercise}{6.18}
+The weights of $1000$ students are normally distributed with mean $62.5$ kg and standard deviation $2.7$ kg. Reported weights are rounded to the nearest $0.5$ kg. Determine the expected number whose \emph{reported} weights are
+\begin{exercisesubparts}
+\item less than $55$ kg.
+\item between $60$ and $65$ kg, inclusive.
+\item exactly $63$ kg.
+\item greater than $61$ kg.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} Reported $R<55$ means $X<54.75$. Thus \[1000\Phi\!\left(\frac{54.75-62.5}{2.7}\right)\approx\boxed{2.05\text{ students}}\].
+
+\noindent\textup{(b)} $60\le R\le65$ corresponds to $59.75\le X<65.25$. The expected count is \[1000\left[\Phi\!\left(\frac{65.25-62.5}{2.7}\right)-\Phi\!\left(\frac{59.75-62.5}{2.7}\right)\right]\approx\boxed{691.57\text{ students}}\].
+
+\noindent\textup{(c)} $R=63$ corresponds to $62.75\le X<63.25$. The expected count is $1000[\Phi(0.75/2.7)-\Phi(0.25/2.7)]\approx\boxed{72.52\text{ students}}$.
+
+\noindent\textup{(d)} $R>61$ corresponds to $X\ge61.25$. The expected count is $1000[1-\Phi((61.25-62.5)/2.7)]\approx\boxed{678.30\text{ students}}$.
+\end{solution}
+
+\begin{exercise}{6.19}
+Hourly power charges are approximately normal with mean $\$18.60$ and standard deviation $\$1.80$, and charges are recorded to the nearest cent. Find
+\begin{exercisesubparts}
+\item the percentage of hours with a \emph{recorded} charge less than $\$16.50$.
+\item the approximate hourly charge marking the lowest $10\%$ of operating hours.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} Recorded $R<16.50$ means true charge $X<16.495$. Thus $\Prob(R<16.50)=\Phi((16.495-18.60)/1.80)\approx\boxed{12.11\%}$.
+
+\noindent\textup{(b)} $x_{0.10}=18.60+1.80\Phi^{-1}(0.10)\approx16.2932$. Rounded to the nearest cent, the cutoff is approximately $\boxed{\$16.29}$.
+\end{solution}
+
+\begin{exercise}{6.20}
+The weights of miniature poodles are approximately normally distributed with mean $8$ kg and standard deviation $0.9$ kg. Measurements are rounded to the nearest $0.1$ kg. Find the fraction whose \emph{recorded} weights are
+\begin{exercisesubparts}
+\item over $9.5$ kg.
+\item at most $8.6$ kg.
+\item between $7.3$ and $9.1$ kg, inclusive.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $R>9.5$ means $X\ge9.55$, giving $\Prob(R>9.5)=1-\Phi((9.55-8)/0.9)\approx\boxed{0.0425}$.
+
+\noindent\textup{(b)} $R\le8.6$ means $X<8.65$, giving $\Phi((8.65-8)/0.9)\approx\boxed{0.7649}$.
+
+\noindent\textup{(c)} $7.3\le R\le9.1$ means $7.25\le X<9.15$, giving $\Phi((9.15-8)/0.9)-\Phi((7.25-8)/0.9)\approx\boxed{0.6970}$.
+\end{solution}
+
+\begin{exercise}{6.21}
+Tensile strength is normally distributed with mean $10{,}000$ and standard deviation $100$ kg/cm$^2$. Measurements are reported to the nearest $50$ kg/cm$^2$. Find
+\begin{exercisesubparts}
+\item the fraction whose \emph{recorded} strength exceeds $10\,150$ kg/cm$^2$.
+\item the fraction scrapped when reported strength must lie between $9800$ and $10\,200$ kg/cm$^2$, inclusive.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} Above $10\,150$ as recorded means true strength at least $10\,175$. Hence $1-\Phi(1.75)\approx\boxed{0.0401}$.
+
+\noindent\textup{(b)} Acceptance of recorded values $9800$ through $10{,}200$ corresponds to $9775\le X<10225$. Rejection probability is $2\Phi(-2.25)\approx\boxed{0.0244}$.
+\end{solution}
+
+\begin{exercise}{6.23}
+Scores of $1000$ college applicants are approximately normal with mean $125$ and standard deviation $15$, and are recorded as integers. Applicants with recorded scores of at least $100$ are considered. Find the expected number rejected.
+\end{exercise}
+
+\begin{solution}
+Recorded score below $100$ corresponds to underlying score $X<99.5$. Hence \[1000\Phi\!\left(\frac{99.5-125}{15}\right)\approx\boxed{44.57\text{ applicants}}\], or about $45$ applicants.
+\end{solution}
+
+\begin{exercise}{6.29}
+Assume $20\%$ of residents prefer a white cell phone and $1000$ purchases may be modeled as independent choices. Approximate the probabilities that the number $X$ of white phones purchased is
+\begin{exercisesubparts}
+\item between $170$ and $185$, inclusive.
+\item at least $210$ but at most $225$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $X\sim\Bin(1000,0.2)$, with $\mu=200$ and $\sigma=\sqrt{160}$. By continuity correction, $\Prob(170\le X\le185)\approx\Phi((185.5-200)/\sqrt{160})-\Phi((169.5-200)/\sqrt{160})\approx\boxed{0.1179}$.
+
+\noindent\textup{(b)} $\Prob(210\le X\le225)\approx\Phi((225.5-200)/\sqrt{160})-\Phi((209.5-200)/\sqrt{160})\approx\boxed{0.2044}$.
+\end{solution}
+
+\begin{exercise}{6.30}
+A village administrator claims that $75\%$ of villagers are literate. Among $100$ independently sampled villagers the claim is accepted if at least $70$ are literate. Using a normal approximation, find
+\begin{exercisesubparts}
+\item the probability of rejecting the claim when the true literacy rate is $0.75$.
+\item the probability of accepting the claim when the true literacy rate is $0.65$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} For $X\sim\Bin(100,0.75)$, rejection is $X\le69$. With $\mu=75$ and $\sigma=\sqrt{18.75}$, $\Prob(X\le69)\approx\Phi((69.5-75)/\sqrt{18.75})\approx\boxed{0.1020}$.
+
+\noindent\textup{(b)} For $X\sim\Bin(100,0.65)$, acceptance is $X\ge70$. With $\mu=65$, $\sigma=\sqrt{22.75}$, $\Prob(X\ge70)\approx1-\Phi((69.5-65)/\sqrt{22.75})\approx\boxed{0.1727}$.
+\end{solution}
+
+\Needspace{10\baselineskip}
+\begin{exercise}{6.31}
+One-sixth of male freshmen entering a large state school are from out of state. Students are randomly assigned to dormitories, $180$ per building. Under the usual binomial approximation, find the probability that at least one-fifth of a dormitory is from out of state.
+\end{exercise}
+
+\begin{solution}
+Approximate $X\sim\Bin(180,1/6)$; $\mu=30$, $\sigma=\sqrt{25}=5$. At least $36$ students means $X\ge36$. With continuity correction, $\Prob(X\ge36)\approx1-\Phi((35.5-30)/5)=\boxed{0.1357}$. A finite-population correction would require the total number of freshmen.
+\end{solution}
+
+\begin{exercise}{6.32}
+Each manufactured pin is defective with probability $0.04$, independently. A package has $250$ pins, and the manufacturer promises at most $10$ defectives. Use the normal approximation to estimate the probability that a package meets the promise.
+\end{exercise}
+
+\begin{solution}
+$X\sim\Bin(250,0.04)$, so $\mu=10$ and $\sigma=\sqrt{9.6}$. With the $10.5$ continuity boundary, $\Prob(X\le10)\approx\Phi((10.5-10)/\sqrt{9.6})\approx\boxed{0.5641}$.
+\end{solution}
+
+\begin{exercise}{6.33}
+On an average weekend night approximately one in ten drivers on the road is drunk. For $400$ independently sampled drivers, approximate the probability that the number of drunk drivers is
+\begin{exercisesubparts}
+\item less than $32$.
+\item more than $49$.
+\item at least $35$ but less than $47$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $X\sim\Bin(400,0.1)$, $\mu=40$, $\sigma=6$. Thus $\Prob(X\le31)\approx\Phi((31.5-40)/6)\approx\boxed{0.0783}$.
+
+\noindent\textup{(b)} $\Prob(X\ge50)\approx1-\Phi((49.5-40)/6)\approx\boxed{0.0567}$.
+
+\noindent\textup{(c)} $\Prob(35\le X\le46)\approx\Phi((46.5-40)/6)-\Phi((34.5-40)/6)\approx\boxed{0.6810}$.
+\end{solution}
+
+\begin{exercise}{6.34}
+A pair of fair dice is rolled independently $360$ times. Use the normal approximation to find the probability of obtaining a sum of $12$
+\begin{exercisesubparts}
+\item at least $5$ times.
+\item between $12$ and $18$ times, inclusive.
+\item exactly $6$ times.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $X\sim\Bin(360,1/36)$; $\mu=10$ and $\sigma=\sqrt{350/36}$. $\Prob(X\ge5)\approx1-\Phi((4.5-10)/\sigma)\approx\boxed{0.9611}$.
+
+\noindent\textup{(b)} $\Prob(12\le X\le18)\approx\Phi((18.5-10)/\sigma)-\Phi((11.5-10)/\sigma)\approx\boxed{0.3120}$.
+
+\noindent\textup{(c)} $\Prob(X=6)\approx\Phi((6.5-10)/\sigma)-\Phi((5.5-10)/\sigma)\approx\boxed{0.0563}$.
+\end{solution}
+
+\Needspace{12\baselineskip}
+\begin{exercise}{6.37}
+The systolic blood pressure of a $30$-year-old man is approximately normal with mean $123$ mmHg and standard deviation $6$ mmHg. Assume independently sampled men when counting exceedances. Use the normal approximation to the binomial for the second question.
+\begin{exercisesubparts}
+\item Find the probability that a randomly selected man has systolic pressure greater than $127$ mmHg.
+\item Among $250$ randomly selected men, find the probability that at least $80$ have pressure greater than $127$ mmHg.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $p=\Prob(X>127)=1-\Phi((127-123)/6)=1-\Phi(2/3)\approx\boxed{0.2525}$.
+
+\noindent\textup{(b)} Let $Y\sim\Bin(250,p)$ for $p\approx0.252493$. Then $\mu_Y=250p$ and $\sigma_Y=\sqrt{250p(1-p)}$. Thus $\Prob(Y\ge80)\approx1-\Phi((79.5-250p)/\sqrt{250p(1-p)})\approx\boxed{0.0086}$.
+\end{solution}
+
+\begin{exercise}{6.39}
+Using the substitution $y=\sqrt{2x}$ in the gamma-function integral, prove that $\Gamma(1/2)=\sqrt{\pi}$.
+\end{exercise}
+
+\begin{solution}
+By $x=y^2/2$, $\dd x=y\,\dd y$, and $x^{-1/2}=\sqrt{2}/y$,
+\[
+\Gamma(1/2)=\int_0^\infty x^{-1/2}e^{-x}\,\dd x
+=\sqrt2\int_0^\infty e^{-y^2/2}\,\dd y
+=\sqrt2\,\sqrt{\frac\pi2}=\boxed{\sqrt\pi}.
+\]
+The last integral is one-half of the Gaussian integral $\sqrt{2\pi}$.
+\end{solution}
+
+\begin{exercise}{6.40}
+Daily water consumption $X$, in millions of liters, is approximately gamma with shape $\alpha=2$ and scale $\theta=3$ (the textbook calls the scale $\beta=3$). If daily capacity is $9$ million liters, find the probability of inadequate supply.
+\end{exercise}
+
+\begin{solution}
+For shape $2$ and scale $3$, $\Prob(X>t)=e^{-t/3}(1+t/3)$. Therefore $\Prob(X>9)=e^{-3}(1+3)=\boxed{0.1991}$.
+\end{solution}
+
+\begin{exercise}{6.42}
+Service time $X$ for a motorbike has a gamma distribution with shape $\alpha=2$ and scale $\theta=1/2$ hour. Find the probability that the next service call requires
+\begin{exercisesubparts}
+\item at most $2$ hours.
+\item at least $1$ hour.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} For shape $2$, $F_X(t)=1-e^{-t/\theta}(1+t/\theta)$. Hence $\Prob(X\le2)=1-e^{-4}(1+4)=\boxed{0.9084}$.
+
+\noindent\textup{(b)} $\Prob(X\ge1)=e^{-2}(1+2)=\boxed{0.4060}$.
+\end{solution}
+
+\begin{exercise}{6.44}
+A family consumes a gamma-distributed amount $X$ of drinking water daily. The mean is $20$ liters and standard deviation is $\sqrt{200}$ liters. Using shape $\alpha$ and scale $\theta$ (the textbook denotes scale by $\beta$), find
+\begin{exercisesubparts}
+\item $\alpha$ and $\theta$.
+\item the probability that daily use exceeds $20$ liters.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} The moment equations are $\alpha\theta=20$ and $\alpha\theta^2=200$. Hence $\boxed{\theta=10,\quad\alpha=2}$.
+
+\noindent\textup{(b)} $\Prob(X>20)=e^{-20/10}(1+20/10)=3e^{-2}\approx\boxed{0.4060}$.
+\end{solution}
+
+\Needspace{14\baselineskip}
+\begin{exercise}{6.46}
+A city initially installs $1000$ street bulbs whose independent lifetimes are exponentially distributed with mean $3$ years. Failed bulbs are replaced. Find the probability that \emph{at most $250$ of the original $1000$ bulbs} need their first replacement during year one.
+\end{exercise}
+
+\begin{solution}
+An original bulb fails in the first year with probability $p=1-e^{-1/3}\approx0.283469$. The number of original bulbs needing replacement is $X\sim\Bin(1000,p)$. Thus
+\[
+\Prob(X\le250)=\sum_{k=0}^{250}\displaystyle\binom{1000}{k}p^k(1-p)^{1000-k}
+\approx\boxed{0.009719}.
+\]
+This counts original bulbs needing first replacement; it does not count repeat failures of newly installed replacements.
+\end{solution}
+
+\begin{exercise}{6.48}
+Derive the mean and variance of a beta distribution with positive shape parameters $\alpha$ and $\beta$.
+\end{exercise}
+
+\begin{solution}
+For $X\sim\BetaDist(\alpha,\beta)$, the beta-integral identity gives
+\[
+\Exp[X^r]=\frac{B(\alpha+r,\beta)}{B(\alpha,\beta)}.
+\]
+Using $\Gamma(u+1)=u\Gamma(u)$,
+\[
+\Exp[X]=\frac\alpha{\alpha+\beta},\qquad
+\Exp[X^2]=\frac{\alpha(\alpha+1)}{(\alpha+\beta)(\alpha+\beta+1)}.
+\]
+Subtracting the square of the mean and simplifying yields
+\[
+\boxed{\Exp[X]=\frac\alpha{\alpha+\beta}},\qquad
+\boxed{\Var(X)=\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}}.
+\]
+\end{solution}
+
+\begin{exercise}{6.49}
+Let $X\sim\BetaDist(1,3)$, with density $f_X(x)=3(1-x)^2$ for $0<x<1$. Find
+\begin{exercisesubparts}
+\item the mean and median of $X$.
+\item the variance of $X$.
+\item $\Prob(X>1/3)$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} The mean is $\boxed{\Exp[X]=1/4}$. Since $F_X(x)=1-(1-x)^3$, the median $m$ solves $(1-m)^3=1/2$, hence $\boxed{m=1-2^{-1/3}\approx0.2063}$.
+
+\noindent\textup{(b)} The beta variance formula gives $\boxed{\Var(X)=\frac{1\cdot3}{4^2\cdot5}=\frac3{80}=0.0375}$.
+
+\noindent\textup{(c)} $\Prob(X>1/3)=(1-1/3)^3=\boxed{8/27\approx0.2963}$.
+\end{solution}
+
+\Needspace{12\baselineskip}
+\begin{exercise}{6.50}
+The fraction $X$ of a television brand requiring service in its first year follows a beta distribution with $\alpha=3$ and $\beta=2$. Find the probability that at least $80\%$ of new televisions require service.
+\end{exercise}
+
+\begin{solution}
+The density is $f_X(x)=12x^2(1-x)$, $0<x<1$. Thus
+\[
+\Prob(X\ge0.8)=\int_{0.8}^1 12x^2(1-x)\,\dd x
+=\bigl[4x^3-3x^4\bigr]_{0.8}^1
+=\boxed{0.1808}.
+\]
+\end{solution}
+
+\Needspace{11\baselineskip}
+\begin{exercise}{6.53}
+Animal survival time $X$, in weeks, follows a gamma distribution with shape $\alpha=5$ and scale $\theta=10$ weeks. Find
+\begin{exercisesubparts}
+\item the mean survival time.
+\item the standard deviation.
+\item the probability of survival beyond $30$ weeks.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $\boxed{\Exp[X]=\alpha\theta=5(10)=50\text{ weeks}}$.
+
+\noindent\textup{(b)} $\boxed{\sigma_X=\sqrt{\alpha\theta^2}=10\sqrt5\approx22.36\text{ weeks}}$.
+
+\noindent\textup{(c)} For integer shape $5$, $\Prob(X>30)=e^{-3}\displaystyle\sum_{j=0}^4\frac{3^j}{j!}\approx\boxed{0.8153}$.
+\end{solution}
+
+\begin{exercise}{6.54}
+Transistor lifetime $X$ in weeks is gamma-distributed with mean $10$ weeks and standard deviation $\sqrt{50}$ weeks. Find
+\begin{exercisesubparts}
+\item the probability that a transistor lasts at most $50$ weeks.
+\item the probability that a transistor fails within the first $10$ weeks.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} From $\alpha\theta=10$ and $\alpha\theta^2=50$, $\alpha=2$ and $\theta=5$. Then $\Prob(X\le50)=1-e^{-10}(1+10)\approx\boxed{0.999501}$.
+
+\noindent\textup{(b)} $\Prob(X\le10)=1-e^{-2}(1+2)\approx\boxed{0.5940}$.
+\end{solution}
+
+\begin{exercise}{6.56}
+A company\textquotesingle s hourly power usage $X$ (in the textbook\textquotesingle s units, dB per hour) follows a lognormal distribution with $\ln X\sim\Normal(4,2^2)$. Find the probability that its usage exceeds $270$ during an hour.
+\end{exercise}
+
+\begin{solution}
+$\Prob(X>270)=\Prob(\ln X>\ln270)=1-\Phi((\ln270-4)/2)\approx\boxed{0.2121}$.
+\end{solution}
+
+\begin{exercise}{6.57}
+Hourly power usage $X$ follows the lognormal model $\ln X\sim\Normal(4,2^2)$ (as in Exercise 6.56). Find its mean and variance.
+\end{exercise}
+
+\begin{solution}
+For $\ln X\sim\Normal(\mu,\sigma^2)$, $\Exp[X]=e^{\mu+\sigma^2/2}$ and $\Var(X)=(e^{\sigma^2}-1)e^{2\mu+\sigma^2}$. With $\mu=4$ and $\sigma^2=4$,
+\[
+\boxed{\Exp[X]=e^6\approx403.43},\qquad
+\boxed{\Var(X)=(e^4-1)e^{12}\approx8723355.73}.
+\]
+\end{solution}
+
+\Needspace{13\baselineskip}
+\begin{exercise}{6.58}
+Automobiles reach an intersection according to a Poisson process at rate $5$ per minute. Let $N(t)$ be the count in $t$ minutes and $T_{10}$ the arrival time of the tenth automobile. Find
+\begin{exercisesubparts}
+\item the probability that more than $10$ automobiles arrive in one minute.
+\item the probability that more than $2$ minutes elapse before $10$ automobiles have arrived.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $N(1)\sim\Poi(5)$. Therefore $\Prob(N(1)>10)=1-e^{-5}\displaystyle\sum_{j=0}^{10}\frac{5^j}{j!}\approx\boxed{0.013695}$.
+
+\noindent\textup{(b)} $T_{10}>2$ if and only if $N(2)\le9$. Since $N(2)\sim\Poi(10)$, $\Prob(T_{10}>2)=e^{-10}\displaystyle\sum_{j=0}^9\frac{10^j}{j!}\approx\boxed{0.4579}$.
+\end{solution}
+
+\Needspace{10\baselineskip}
+\begin{exercise}{6.59}
+Automobiles arrive independently according to a Poisson process at rate $5$ per minute, as in Exercise 6.58. Find
+\begin{exercisesubparts}
+\item the probability that the waiting time between successive arrivals exceeds one minute.
+\item the mean waiting time in minutes between successive arrivals.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} Interarrival time $T\sim\ExpDist(5)$, where $5$ is the rate per minute. Hence $\Prob(T>1)=e^{-5}\approx\boxed{0.0067}$.
+
+\noindent\textup{(b)} $\boxed{\Exp[T]=1/5=0.2\text{ min}}$.
+\end{solution}
+
+\begin{exercise}{6.62}
+Calls arrive at a telephone answering service according to a Poisson process at a rate of $6$ per hour. Find the probability that the interval between successive calls exceeds $15$ minutes.
+\end{exercise}
+
+\begin{solution}
+The interarrival time $T\sim\ExpDist(6)$ in hours. Since $15$ minutes is $1/4$ hour, $\Prob(T>1/4)=e^{-6(1/4)}=e^{-3/2}\approx\boxed{0.2231}$.
+\end{solution}
+
+\begin{exercise}{6.63}
+Calls arrive at a telephone answering service according to a Poisson process at rate $6$ per hour (the setting of Exercise 6.62). Let $T_3$ be the waiting time for the next three calls. Find the probability that all three arrive within $30$ minutes.
+\end{exercise}
+
+\begin{solution}
+$T_3\sim\Gamma(3,\theta=1/6\text{ hour})$ (Erlang). Equivalently the half-hour count is $N(1/2)\sim\Poi(3)$. Hence $\Prob(T_3\le1/2)=\Prob(N(1/2)\ge3)=1-e^{-3}(1+3+3^2/2)\approx\boxed{0.5768}$.
+\end{solution}
+
+\begin{exercise}{6.64}
+Two manufacturers supply rivets with normally distributed breaking strength. Manufacturer A has mean $14{,}000$ psi and standard deviation $2000$ psi; manufacturer B has mean $13{,}000$ psi and standard deviation $1000$ psi. A rivet is defective if its strength does not exceed $10{,}000$ psi. Which manufacturer has the smaller defect fraction?
+\end{exercise}
+
+\begin{solution}
+For A, $\Prob(X_A\le10{,}000)=\Phi(-2)\approx0.0228$. For B, $\Prob(X_B\le10{,}000)=\Phi(-3)\approx0.00135$. Therefore $\boxed{\text{manufacturer B}}$ has fewer defectives on average.
+\end{solution}
+
+\begin{exercise}{6.66}
+A device has a constant failure rate of $0.01$ per hour, so its lifetime $T$ is exponential with rate $\lambda=0.01$ per hour. Find
+\begin{exercisesubparts}
+\item the mean time to failure.
+\item the probability that it operates for $200$ hours before failing.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $\boxed{\Exp[T]=1/\lambda=100\text{ hours}}$.
+
+\noindent\textup{(b)} $\Prob(T>200)=e^{-\lambda(200)}=e^{-2}\approx\boxed{0.1353}$.
+\end{solution}
+
+\begin{exercise}{6.68}
+Patient consultation times are independent exponential random variables with mean $15$ minutes. Find
+\begin{exercisesubparts}
+\item the expected total consultation time for two patients.
+\item the probability that their total consultation time exceeds $40$ minutes.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} Each waiting time has mean $15$ min, so $\boxed{\Exp[S]=15+15=30\text{ min}}$.
+
+\noindent\textup{(b)} With independent exponential times, $S\sim\Gamma(2,\theta=15\text{ min})$. Thus $\Prob(S>40)=e^{-40/15}(1+40/15)\approx\boxed{0.2548}$.
+\end{solution}
+
+\begin{exercise}{6.72}
+Devices fail according to a Poisson process with constant rate $0.01$ failures per hour (as in Exercise 6.66). Find the probability that the second failure occurs before $200$ hours.
+\end{exercise}
+
+\begin{solution}
+Let $T_2$ be the time of the second failure. Then $T_2\sim\Gamma(2,\theta=100\text{ hours})$. The event $T_2<200$ is $N(200)\ge2$, where $N(200)\sim\Poi(2)$. Therefore $\Prob(T_2<200)=1-e^{-2}(1+2)\approx\boxed{0.5940}$.
+\end{solution}
+
+\begin{exercise}{6.73}
+Devices fail in a Poisson process at rate $0.01$ per hour. Let $T_2$ be the waiting time until the second failure, as in Exercise 6.72. Find its mean and variance.
+\end{exercise}
+
+\begin{solution}
+Here $T_2\sim\Gamma(2,\theta=100\text{ hours})$. Thus
+\[
+\boxed{\Exp[T_2]=2(100)=200\text{ hours}},\qquad
+\boxed{\Var(T_2)=2(100)^2=20{,}000\text{ hours}^2}.
+\]
+\end{solution}
+
+\begin{exercise}{6.76}
+A transistor lifetime $X$ has mean $10$ weeks and standard deviation $\sqrt{50}$ weeks, as in Exercise 6.54. Instead of the gamma model, assume $X\sim\Normal(10,50)$. Find
+\begin{exercisesubparts}
+\item the probability that a transistor lasts at most $50$ weeks.
+\item the probability that it fails in its first $10$ weeks.
+\item how the normal-model answers differ from the gamma-model answers with shape $2$ and scale $5$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $\Prob(X\le50)=\Phi((50-10)/\sqrt{50})=\Phi(4\sqrt2)\approx\boxed{0.999999992}$.
+
+\noindent\textup{(b)} $\Prob(X\le10)=\Phi(0)=\boxed{0.5}$.
+
+\noindent\textup{(c)} The gamma model gives $1-11e^{-10}\approx0.99950$ in (a) and $1-3e^{-2}\approx0.5940$ in (b). Despite identical means and variances, the normal and gamma shapes differ, so their probabilities need not agree.
+\end{solution}
+
+\Needspace{20\baselineskip}
+\begin{exercise}{6.77}
+The proportion $Y$ of impurities in a batch of chemical product has density $f_Y(y)=10(1-y)^9$ for $0\le y\le1$, and $0$ otherwise. A batch is unacceptable when $Y>0.6$. Find
+\begin{exercisesubparts}
+\item proof that $f_Y$ is a valid probability density.
+\item the probability of an unacceptable batch.
+\item the beta-distribution parameters $\alpha,\beta$.
+\item the mean impurity proportion.
+\item the variance of the impurity proportion.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $f_Y\ge0$, and $\displaystyle\int_0^1 10(1-y)^9\,\dd y=\bigl[-(1-y)^{10}\bigr]_0^1=1$.
+
+\noindent\textup{(b)} $\Prob(Y>0.6)=\displaystyle\int_{0.6}^1 10(1-y)^9\,\dd y=(0.4)^{10}=\boxed{0.0001048576}$.
+
+\noindent\textup{(c)} Since $f_Y(y)\propto y^{\alpha-1}(1-y)^{\beta-1}$, $\boxed{\alpha=1,\quad\beta=10}$.
+
+\noindent\textup{(d)} $\boxed{\Exp[Y]=\alpha/(\alpha+\beta)=1/11\approx0.0909}$.
+
+\noindent\textup{(e)} $\boxed{\Var(Y)=\alpha\beta/[(\alpha+\beta)^2(\alpha+\beta+1)]=10/(121\cdot12)\approx0.006887}$.
+\end{solution}
+
+\begin{exercise}{6.78}
+The time $Z$ between calls to an electrical supply store has density $f_Z(z)=\frac1{10}e^{-z/10}$ for $z>0$, and $0$ otherwise. Find
+\begin{exercisesubparts}
+\item the mean interarrival time.
+\item the variance of the interarrival time.
+\item the probability that the interarrival time exceeds its mean.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $Z\sim\ExpDist(1/10)$, where the rate is per minute. Thus $\boxed{\Exp[Z]=10\text{ min}}$.
+
+\noindent\textup{(b)} $\boxed{\Var(Z)=10^2=100\text{ min}^2}$.
+
+\noindent\textup{(c)} $\Prob(Z>10)=e^{-10/10}=e^{-1}\approx\boxed{0.3679}$.
+\end{solution}
+
+\begin{exercise}{6.81}
+The time $T$ between breakdowns of a generator is modeled as exponential with mean $15$ days. Find
+\begin{exercisesubparts}
+\item the probability of another breakdown within the next $21$ days, beginning immediately after a breakdown.
+\item the probability of uninterrupted operation for $30$ days.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $\Prob(T\le21)=1-e^{-21/15}\approx\boxed{0.7534}$.
+
+\noindent\textup{(b)} $\Prob(T>30)=e^{-30/15}=e^{-2}\approx\boxed{0.1353}$.
+\end{solution}
+
+\begin{exercise}{6.85}
+Using the relationship between chi-squared and gamma random variables, prove that a chi-squared variable with $\nu>0$ degrees of freedom has mean $\nu$ and variance $2\nu$.
+\end{exercise}
+
+\begin{solution}
+If $X\sim\chi_\nu^2$, then $X\sim\Gamma(\alpha=\nu/2,\theta=2)$ under the shape--scale convention. Therefore
+\[
+\boxed{\Exp[X]=\alpha\theta=(\nu/2)2=\nu},\qquad
+\boxed{\Var(X)=\alpha\theta^2=(\nu/2)4=2\nu}.
+\]
+\end{solution}
+
+\begin{exercise}{6.86}
+A computer user\textquotesingle s e-mail reading time $X$ in seconds is lognormal with $\ln X\sim\Normal(1.8,4)$. Find
+\begin{exercisesubparts}
+\item the probability that reading takes more than $20$ seconds, and the probability that it takes more than one minute.
+\item the probability that reading time is exactly equal to the mean of $X$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} $\Prob(X>20)=1-\Phi((\ln20-1.8)/2)\approx\boxed{0.2750}$ and $\Prob(X>60)=1-\Phi((\ln60-1.8)/2)\approx\boxed{0.1257}$.
+
+\noindent\textup{(b)} Since $X$ is continuous, the probability at any single exact value---including $\Exp[X]=e^{1.8+4/2}=e^{3.8}$---is $\boxed{\Prob(X=\Exp[X])=0}$.
+\end{solution}
+
+\Needspace{22\baselineskip}
+\begin{exercise}{6.87}
+Customers enter a coffee shop according to a homogeneous Poisson process. Let $\lambda>0$ be the mean number of arrivals per half hour, and let $N(t)$ count arrivals over $t$ minutes. Let $T$ be the waiting time between consecutive arrivals in the ongoing process. Answer the following theoretical questions.
+\begin{exercisesubparts}
+\item Find the distribution, mean, and variance of the number of customers arriving in a half-hour interval.
+\item Find the distribution of $T$, including its parameter in arrivals per minute.
+\item Find the probability that the waiting time between arrivals is less than $15$ minutes.
+\item Find the probability that the waiting time between arrivals exceeds $10$ minutes.
+\item Find the probability of zero customers arriving during the first $20$ minutes of observation.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+\noindent\textup{(a)} The half-hour count $X=N(30)\sim\Poi(\lambda)$, so $\boxed{\Exp[X]=\Var(X)=\lambda}$. Equality of mean and variance alone would not establish a Poisson model from real data.
+
+\noindent\textup{(b)} The arrival rate per minute is $\lambda/30$. Hence $\boxed{T\sim\ExpDist(\lambda/30)}$ (rate parameter), with mean $30/\lambda$ minutes.
+
+\noindent\textup{(c)} $\Prob(T<15)=1-e^{-(\lambda/30)15}=\boxed{1-e^{-\lambda/2}}$.
+
+\noindent\textup{(d)} $\Prob(T>10)=e^{-(\lambda/30)10}=\boxed{e^{-\lambda/3}}$.
+
+\noindent\textup{(e)} Here $N(20)\sim\Poi((\lambda/30)20)$, so $\Prob(N(20)=0)=e^{-2\lambda/3}=\boxed{e^{-2\lambda/3}}$.
+\end{solution}
+
+\end{document}

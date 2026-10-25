@@ -1,0 +1,303 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261026 Quiz for MATH210 Applied Complex Variables},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH210 Applied Complex Variables},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261026 Quiz}
+
+\begin{problem}{1}
+Find all $z\in\C$ such that $\sin z=1$.
+\end{problem}
+
+\begin{solution}
+Using the exponential definition of the complex sine, set $w=e^{iz}\ne0$. Then
+\[
+    \sin z=\frac{e^{iz}-e^{-iz}}{2i}=1
+    \quad\Longleftrightarrow\quad
+    w^2-2iw-1=(w-i)^2=0.
+\]
+Thus $e^{iz}=i$. Writing $z=x+iy$, we have
+\[
+    e^{iz}=e^{-y}(\cos x+i\sin x)=i.
+\]
+Comparison of moduli gives $e^{-y}=1$, hence $y=0$; comparison of arguments then gives $x=\pi/2+2\pi k$ for $k\in\Z$. Therefore all solutions are
+\[
+    \boxed{z=\frac{\pi}{2}+2\pi k,\qquad k\in\Z.}
+\]
+\end{solution}
+
+\begin{problem}{2}
+Find $a, b\in\R$ such that
+\[
+    \frac{(\sqrt3+i)^{20}}{(1-i)^{10}}=a+bi.
+\]
+\end{problem}
+
+\begin{solution}
+The polar forms of the two bases are
+\[
+    \sqrt3+i=2e^{i\pi/6},
+    \qquad
+    1-i=\sqrt2\,e^{-i\pi/4}.
+\]
+Consequently, by De Moivre's theorem,
+\[
+\begin{aligned}
+    \frac{(\sqrt3+i)^{20}}{(1-i)^{10}}
+    &=\frac{2^{20}e^{i10\pi/3}}{2^5e^{-i5\pi/2}}
+      =2^{15}e^{i35\pi/6}\\
+    &=2^{15}\left(\frac{\sqrt3}{2}-\frac{i}{2}\right)
+      =2^{14}(\sqrt3-i).
+\end{aligned}
+\]
+Hence
+\[
+    \boxed{a=2^{14}\sqrt3,\qquad b=-2^{14}.}
+\]
+\end{solution}
+
+\begin{problem}{3}
+Find an entire function $f(z)$ such that
+\[
+    \RePart f(z)=x^2-y^2+y,
+    \qquad z=x+iy,
+\]
+and $f(0)=i$.
+\end{problem}
+
+\begin{solution}
+Since
+\[
+    \RePart(z^2)=x^2-y^2,
+    \qquad
+    \RePart(-iz)=y,
+\]
+the polynomial $z^2-iz$ has the prescribed real part. An imaginary constant does not change its real part, and $f(0)=i$ fixes that constant. Thus
+\[
+    \boxed{f(z)=z^2-iz+i.}
+\]
+This function is entire, has the required real part, and satisfies $f(0)=i$.
+\end{solution}
+
+\begin{problem}{4}
+Evaluate
+\[
+    \lim_{R\to\infty}\int_{C_R}
+    \frac{2z^2-1}{z^4+z^2+1}\,\dd z,
+\]
+where $C_R$ is the circle $|z-1|=R$ with counterclockwise orientation.
+\end{problem}
+
+\begin{solution}
+For $z\in C_R$, the reverse triangle inequality gives
+\[
+    R-1\le|z|\le R+1.
+\]
+For sufficiently large $R$, in particular for $R\ge5$, the denominator satisfies
+\[
+\begin{aligned}
+    |z^4+z^2+1|
+    &\ge |z|^4-|z|^2-1\\
+    &\ge (R-1)^4-(R+1)^2-1>0,
+\end{aligned}
+\]
+while $|2z^2-1|\le 2(R+1)^2+1$. Since the length of $C_R$ is $2\pi R$, the ML inequality yields
+\[
+\begin{aligned}
+    \left|\int_{C_R}\frac{2z^2-1}{z^4+z^2+1}\,\dd z\right|
+    &\le\frac{2\pi R(2(R+1)^2+1)}{(R-1)^4-(R+1)^2-1}
+    \longrightarrow0.
+\end{aligned}
+\]
+Therefore
+\[
+    \boxed{\lim_{R\to\infty}\int_{C_R}
+    \frac{2z^2-1}{z^4+z^2+1}\,\dd z=0.}
+\]
+\end{solution}
+
+\begin{problem}{5}
+\begin{problemsubparts}
+    \item Evaluate
+    \[
+        \int_C\frac{e^{z^2}}{z}\,\dd z,
+    \]
+    where $C$ is the circle $|z|=1$, oriented counterclockwise.
+    \item Use part (a) to evaluate
+    \[
+        \int_0^{2\pi}e^{\cos 2\theta}\cos(\sin 2\theta)\,\dd\theta.
+    \]
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item The function $g(z)=e^{z^2}$ is entire, and $C$ is positively oriented with $0$ in its interior. By the Cauchy integral formula,
+    \[
+        \boxed{\int_C\frac{e^{z^2}}{z}\,\dd z
+        =2\pi i\,g(0)=2\pi i.}
+    \]
+    \item Parametrize $C$ by $z=e^{i\theta}$, $0\le\theta\le2\pi$, so that $\dd z/z=i\,\dd\theta$. Part (a) becomes
+    \[
+        2\pi i=i\int_0^{2\pi}e^{e^{2i\theta}}\,\dd\theta.
+    \]
+    Euler's formula gives the essential decomposition
+    \[
+        e^{e^{2i\theta}}
+        =e^{\cos 2\theta}
+          \bigl(\cos(\sin 2\theta)+i\sin(\sin 2\theta)\bigr).
+    \]
+    Dividing by $i$ and taking real parts, we obtain
+    \[
+        \boxed{\int_0^{2\pi}e^{\cos 2\theta}
+          \cos(\sin 2\theta)\,\dd\theta=2\pi.}
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{6}
+Evaluate
+\[
+    \int_C\frac{e^z+\cos z}{(z-i)^{2025}}\,\dd z,
+\]
+where $C$ is the boundary of the square with vertices
+$4\exp(i2k\pi/4)$ ($k=0, 1, 2, 3$), oriented clockwise.
+\end{problem}
+
+\begin{solution}
+The vertices are $4, 4i, -4, -4i$, so $i$ lies inside $C$. Set $g(z)=e^z+\cos z$, which is entire. The exponent $2025$ in the denominator corresponds to the $2024$th derivative in the generalized Cauchy integral formula. Since $2024$ is divisible by $4$,
+\[
+    g^{(2024)}(z)=e^z+\cos z,
+    \qquad
+    g^{(2024)}(i)=e^i+\cos i.
+\]
+The given clockwise orientation reverses the usual sign. Therefore
+\[
+    \boxed{\int_C\frac{e^z+\cos z}{(z-i)^{2025}}\,\dd z
+    =-\frac{2\pi i}{2024!}(e^i+\cos i).}
+\]
+\end{solution}
+
+\begin{problem}{7}
+Let $P(z)$ be a nonconstant polynomial. Describe the image of the set
+\[
+    A:=\{z\in\C\mid P(z)\ne0\}
+\]
+under the map $f(z)=\exp(1/P(z))$.
+\end{problem}
+
+\begin{solution}
+By the fundamental theorem of algebra, every $w\in\C$ is attained by $P$: indeed, the nonconstant polynomial $P(z)-w$ has a root. Restricting to $A$ therefore gives
+\[
+    P(A)=\C\setminus\{0\},
+    \qquad
+    \left\{\frac1{P(z)}\mid z\in A\right\}=\C\setminus\{0\}.
+\]
+The exponential never vanishes, so $f(A)\subseteq\C\setminus\{0\}$. Conversely, take any $w\ne0$. A logarithm $L$ of $w$ can be chosen nonzero: if $w\ne1$, every logarithm is nonzero; if $w=1$, choose $L=2\pi i$. Since $L\ne0$, there exists $z\in A$ with $1/P(z)=L$, and then $f(z)=e^L=w$. Hence
+\[
+    \boxed{f(A)=\C\setminus\{0\}.}
+\]
+\end{solution}
+
+\begin{problem}{8}
+Consider the power series
+\[
+    \sum_{n=1}^{\infty}a_nz^n,
+    \qquad
+    a_n=\begin{cases}
+        n & \text{if $n$ is even},\\
+        1/n & \text{if $n$ is odd}.
+    \end{cases}
+\]
+\begin{problemsubparts}
+    \item Find the radius of convergence of the series.
+    \begin{hint}
+    You may evaluate $\displaystyle\lim_{n\to\infty}a_n^{1/n}$.
+    \end{hint}
+    \item Find all $z$ at which the series converges.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item Along the even and odd indices, respectively,
+    \[
+        a_n^{1/n}=n^{1/n}\longrightarrow1,
+        \qquad
+        a_n^{1/n}=n^{-1/n}\longrightarrow1.
+    \]
+    Thus $\lim_{n\to\infty}a_n^{1/n}=1$. The Cauchy--Hadamard formula gives
+    \[
+        \boxed{R=\frac1{\limsup_{n\to\infty}|a_n|^{1/n}}=1.}
+    \]
+    \item By the root test, the series converges absolutely for $|z|<1$ and diverges for $|z|>1$. If $|z|=1$, its even-index terms satisfy
+    \[
+        |a_{2k}z^{2k}|=2k\longrightarrow\infty,
+    \]
+    so the terms do not tend to zero; the series diverges at every boundary point. Therefore the exact convergence set is
+    \[
+        \boxed{\{z\in\C\mid |z|<1\}.}
+    \]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{9}
+Show that the series
+\[
+    \sum_{n=1}^{\infty}\frac{e^{inz}}{n^2}
+\]
+converges uniformly on $\ImPart z\ge0$.
+\end{problem}
+
+\begin{solution}
+For $z=x+iy$ with $y=\ImPart z\ge0$, we have
+\[
+    \left|\frac{e^{inz}}{n^2}\right|
+    =\frac{|e^{inx-ny}|}{n^2}
+    =\frac{e^{-ny}}{n^2}\le\frac1{n^2}.
+\]
+Since $\sum_{n=1}^{\infty}1/n^2$ converges and its bound is independent of $z$, the Weierstrass M-test proves that
+\[
+    \boxed{\sum_{n=1}^{\infty}\frac{e^{inz}}{n^2}
+      \text{ converges uniformly on }\{z\in\C\mid\ImPart z\ge0\}.}
+\]
+\end{solution}
+
+\Needspace{15\baselineskip}
+\begin{problem}{10}
+Determine whether each statement is true or false, and justify your answer.
+\begin{problemsubparts}
+    \item There exists an analytic function $f(z)$ with
+    $\RePart f(z)=x^3-y^3$, where $z=x+iy$.
+    \item If $f(z)$ is entire and $|f(z)|\ge C>0$ for all $z\in\C$,
+    then $f$ is a constant function.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+    \item \textbf{False.} The real part $u$ of an analytic function is harmonic. But for $u(x, y)=x^3-y^3$,
+    \[
+        u_{xx}+u_{yy}=6x-6y,
+    \]
+    which is not identically zero on any nonempty open set. Thus $u$ cannot be the real part of an analytic function on an open domain.
+
+    \item \textbf{True.} Since $|f(z)|\ge C>0$, the entire function $f$ never vanishes. Hence $h(z)=1/f(z)$ is entire and
+    \[
+        |h(z)|=\frac1{|f(z)|}\le\frac1C
+        \qquad(z\in\C).
+    \]
+    Liouville's theorem makes $h$ constant. Its constant value is nonzero, so $f=1/h$ is constant as well.
+\end{problemsubparts}
+\end{solution}
+
+\end{document}
