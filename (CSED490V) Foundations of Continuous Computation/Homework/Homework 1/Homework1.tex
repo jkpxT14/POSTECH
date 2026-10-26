@@ -16,7 +16,7 @@
 When you prove the computability of a real number or a real function, you should
 explicitly provide an algorithm that is required in the definition of
 computability. In the algorithm, you can only use rational numbers, basic
-operations over rationals (i.e., $+$, $-$, $\times$, $/$, $\code{abs}$),
+operations over rationals (i.e., $+$, $-$, $\times$, $/$, and \code{abs}),
 comparisons between rationals (e.g., $=$, $<$, $\le$), and basic programming
 constructs (i.e., \code{if}, \code{for}, \code{while}).
 
@@ -106,7 +106,7 @@ and $x\ne y$), decide whether $x<y$ or $x>y$.
 \end{problem}
 
 \begin{solution}
-For $n=1,2,3, \ldots$, compute $a\coloneqq f(n)$,
+For $n=1, 2, 3, \ldots$, compute $a\coloneqq f(n)$,
 $b\coloneqq g(n)$, and $r\coloneqq2^{-n}$, and perform the following tests:
 \begin{enumerate}[label=(\arabic*), leftmargin=2.5em, topsep=4pt, itemsep=2pt]
     \item If $a+r\le b-r$, return $x<y$.
@@ -243,11 +243,11 @@ covered in class and in Problem~5.
     \item Prove that $f\colon\R\to\R$ defined by
     $f(x)\coloneqq(\text{if }x\ge0\text{ then }1\text{ else }0)$
     is not computable.
-    \item Prove that $g\colon[0, \tfrac12]\to[0,1]$ defined by
+    \item Prove that $g\colon[0, \tfrac12]\to[0, 1]$ defined by
     $g(x)\coloneqq x+\tfrac13$ is not computable under Turing's definition:
-    A function $h\colon[0, \tfrac12]\to[0,1]$ is called
+    A function $h\colon[0, \tfrac12]\to[0, 1]$ is called
     \emph{computable in Turing's sense} if there exists an algorithm
-    $\A$ that takes $(b_i)_{i\in\Nzero}\subseteq\{0,1\}$ and
+    $\A$ that takes $(b_i)_{i\in\Nzero}\subseteq\{0, 1\}$ and
     $j\in\Nzero$, and returns $0$ or $1$ such that
     \[
        h((0.b_0b_1\ldots)_2)=(0.c_0c_1\ldots)_2,
@@ -279,8 +279,8 @@ covered in class and in Problem~5.
     \[
        \beta(i)\coloneqq
        \begin{cases}
-           0,&i\le N, \\
-          -t,&i>N.
+           0, &i\le N, \\
+          -t, &i>N.
        \end{cases}
     \]
     This is a name of $-t$: for $i\le N$,
@@ -300,7 +300,7 @@ covered in class and in Problem~5.
     \]
     Run $\A$ on the binary expansion of $x_0$ with output index
     $j=0$. It must halt after inspecting only finitely many input
-    digits and output a bit $c_0\in\{0,1\}$.
+    digits and output a bit $c_0\in\{0, 1\}$.
     Let $N$ be at least all inspected indices (take $N=0$ if none
     were inspected). Because $x_0$ is not a dyadic rational, it lies
     strictly inside the dyadic interval specified by its first

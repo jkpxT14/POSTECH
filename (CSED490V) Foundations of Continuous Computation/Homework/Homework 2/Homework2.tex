@@ -26,8 +26,8 @@ Let $\overline{\mathbb F}\coloneqq\mathbb F\cup\{-\infty, +\infty,
 This problem studies interesting properties of floating-point numbers and
 operations.
 \begin{problemsubparts}
-\item Let $\gamma^{-1}\colon\mathbb F\to\{0,1\}^{1+E+M}$ be the inverse
-of $\gamma\colon\{0,1\}^{1+E+M}\to\overline{\mathbb F}$
+\item Let $\gamma^{-1}\colon\mathbb F\to\{0, 1\}^{1+E+M}$ be the inverse
+of $\gamma\colon\{0, 1\}^{1+E+M}\to\overline{\mathbb F}$
 (defined in class) on $\mathbb F$, where we use
 $\gamma^{-1}(0)\coloneqq(0\ldots0)$.
 For $x\in\mathbb F$, let
@@ -62,7 +62,8 @@ Analyze the range of $a(1\oslash a)$.
 There exists a float in $[1, 2)$ that has no multiplicative inverse:
 $a\otimes b\ne1$ for some $a\in[1, 2)\cap\mathbb F$ and all
 $b\in\mathbb F$. This highlights one difference from real arithmetic,
-where every nonzero real number has a unique multiplicative inverse.
+where every real number in $[1, 2)$ does have a (unique)
+multiplicative inverse.
 \end{remark}
 
 \item Let $\operatorname{sqrt}(x)\coloneqq\rnd(\sqrt{x})$ for
@@ -109,7 +110,7 @@ restricts its displayed domain to finite values).
 
 \item Set $h\coloneqq2^{-M}$ and choose
 \[
- a=b=1+h,\qquad c=\frac32.
+ a=b=1+h, \qquad c=\frac32.
 \]
 All three are representable when $M\ge3$. Since
 $(1+h)^2=1+2h+h^2$, and $0<h^2<h/2$, ties-to-even gives
@@ -142,10 +143,10 @@ $2^{-M-2}=\varepsilon/2$. Consequently
 \]
 The float immediately below $1$ is $1-\varepsilon$, while
 the next float above $1$ is $1+2\varepsilon$.
-Every real in $(1-\varepsilon,1+\varepsilon)$ rounds to either
+Every real in $(1-\varepsilon, 1+\varepsilon)$ rounds to either
 $1-\varepsilon$ or $1$ (the midpoint between $1$ and its
 successor is $1+\varepsilon$). Thus
-$a\otimes(1\oslash a)\in\{1-\varepsilon,1\}$.
+$a\otimes(1\oslash a)\in\{1-\varepsilon, 1\}$.
 
 \item Put $u=|x|$. The case $u=0$ is immediate.
 The no-underflow assumption forces $u^2$ into the normal range;
@@ -168,7 +169,7 @@ Here the final inequality uses $u^2<2^{2e+2}$, including the
 binade boundary. Since $u\ge2^e+h$,
 \[
  \begin{aligned}
- u^2-(u-h/2)^2&=uh-h^2/4>2^{2e-M},\\
+ u^2-(u-h/2)^2&=uh-h^2/4>2^{2e-M}, \\
  (u+h/2)^2-u^2&=uh+h^2/4>2^{2e-M}.
  \end{aligned}
 \]
@@ -208,11 +209,12 @@ is the correctly-rounded result:
 Also prove that overflow cannot occur.
 \end{problemsubparts}
 \begin{remark}
-Part (a) shows that $\widehat m\in[\min(a, b),\max(a, b)]$,
-a desirable property for a mean. Parts (b) and (c) show that the best
-possible mean is obtained using $\widehat m$ when both inputs are
-not too large (less than $2^{e_{\min}+M+3}$ in magnitude), and
-$\widehat m'$ otherwise.
+Part (a) shows that $\widehat m\in[\min(a, b), \max(a, b)]$,
+a desirable property for any mean computation. Parts (b) and (c)
+show that the best possible approximation of the mean can be obtained
+by evaluating $\widehat m$ when $|a|, |b|$ are both not too large
+(i.e., less than $2^{e_{\min}+M+3}$), and by using $\widehat m'$
+otherwise.
 \end{remark}
 \end{problem}
 
@@ -223,7 +225,7 @@ $\widehat m=\rnd((a+b)/2)$. Thus it is enough to check that
 rounding a number between two representable endpoints cannot pass
 an endpoint. The exact mean satisfies
 $a\le(a+b)/2\le b$, and $\rnd$ is nondecreasing and fixes
-$a,b\in\mathbb F$ (Lecture 6, and the corresponding CN proposition).
+$a, b\in\mathbb F$ (Lecture 6, and the corresponding CN proposition).
 Hence
 \[
  a=\rnd(a)\le\rnd\!\left(\frac{a+b}{2}\right)
@@ -250,7 +252,7 @@ Consequently $s/2=\rnd(t/2)$ also in this case.
 Write $m=(a+b)/2$. Since $\widehat m=\rnd(m)$ and
 $|m|\le F_{\max}$, the Course Notes' rounding estimate gives
 \[
- \operatorname{err}_{\mathrm{ulp}}(m,\widehat m)\le\frac12.
+ \operatorname{err}_{\mathrm{ulp}}(m, \widehat m)\le\frac12.
 \]
 The bound is attained by $a=0$ and $b=\Delta$:
 $m=\Delta/2$ is exactly halfway between $0$ and $\Delta$,
@@ -284,13 +286,13 @@ No operation in $\widehat m'$ can overflow.
 \end{solution}
 
 \begin{problem}{3}
-This problem studies the variance of $x_1,\ldots,x_n\in\mathbb F$:
+This problem studies the variance of $x_1, \ldots, x_n\in\mathbb F$:
 \[
  s\coloneqq\frac1n\sum_{i=1}^{n}
  \left(x_i-\frac1n\sum_{j=1}^{n}x_j\right)^2.
 \]
 Let $\widehat s\in\mathbb F$ be the result of evaluating $s$ under
-floating-point arithmetic (i.e., $\oplus,\ominus,\otimes,\oslash$
+floating-point arithmetic (i.e., $\oplus, \ominus, \otimes, \oslash$
 are used for $+, -, \times, /$, and each sum is evaluated from
 left to right). Assume that no overflow and underflow occur in all
 floating-point operations.
@@ -300,7 +302,7 @@ floating-point operations.
  (x_1\oplus x_2)\oplus\cdots\oplus x_n
  =\sum_{i=1}^{n}x_i(1+\delta_i)+O(\varepsilon^2)
 \]
-for some $\delta_1,\ldots,\delta_n$ with
+for some $\delta_1, \ldots, \delta_n$ with
 $|\delta_i|<(n-1)\varepsilon$.
 You may ignore all $\varepsilon^2$ terms as $O(\varepsilon^2)$.
 \item Show that
@@ -333,7 +335,7 @@ where \code{fast2sum} is the algorithm from class. Assume that no
 overflow and underflow occur in all floating-point operations.
 Show that
 \[
- \left|\operatorname{ksum}(x_1,\ldots,x_n)
+ \left|\operatorname{ksum}(x_1, \ldots, x_n)
  -\sum_{i=1}^{n}x_i\right|
  \le3\varepsilon\sum_{i=1}^{n}|x_i|+O(\varepsilon^2).
 \]
@@ -351,7 +353,7 @@ We must account for the fact that the inputs to \code{fast2sum} need
 not be ordered by exponent. We first establish the estimate that
 for finite intermediate results,
 \[
- (s,r)=\fasttwosum(a,b)
+ (s, r)=\fasttwosum(a, b)
  \quad\Longrightarrow\quad
  s+r=a+b+d,
  \qquad |d|\le\varepsilon|b|+O(\varepsilon^2)|b|.
@@ -361,7 +363,7 @@ If $e_a\ge e_b$, the Dekker theorem in Lecture 9 (and the CN)
 gives $d=0$. Otherwise $|a|<|b|$, except that $a=0$ is
 trivial. Write
 \[
- s=\rnd(a+b),\quad t=\rnd(s-a),\quad r=\rnd(b-t).
+ s=\rnd(a+b), \quad t=\rnd(s-a), \quad r=\rnd(b-t).
 \]
 The relative error estimate for addition and subtraction holds even
 in the subnormal range, since their exact results are integer
@@ -388,7 +390,7 @@ exact. Consequently
 \]
 which proves (1) without assuming a favorable operand order.
 
-Let $s_i,r_i$ be the values after iteration $i$, with
+Let $s_i, r_i$ be the values after iteration $i$, with
 $s_0=r_0=0$, and let
 $b_i\coloneqq x_i\oplus r_{i-1}$. Define
 \[
@@ -399,8 +401,8 @@ $b_i\coloneqq x_i\oplus r_{i-1}$. Define
 Applying the CN relative-error bound for addition and (1),
 \[
  \begin{aligned}
- |\eta_i|&\le\varepsilon(|x_i|+|r_{i-1}|),\\
- |d_i|&\le\varepsilon|b_i|+O(\varepsilon^2)|b_i|,\\
+ |\eta_i|&\le\varepsilon(|x_i|+|r_{i-1}|), \\
+ |d_i|&\le\varepsilon|b_i|+O(\varepsilon^2)|b_i|, \\
  |\rho_i|&\le\varepsilon|s_{i-1}+b_i|.
  \end{aligned}
  \tag{2}
@@ -454,17 +456,17 @@ This problem studies the computation of rounding errors arising from
 floating-point addition and multiplication. Assume that no overflow
 occurs in all the floating-point operations.
 \begin{problemsubparts}
-\item Let $a,b\in\mathbb F$, and let
-$(s,r)\coloneqq\fasttwosum(a,b)$. Show that
+\item Let $a, b\in\mathbb F$, and let
+$(s, r)\coloneqq\fasttwosum(a, b)$. Show that
 $e_a\ge e_b$ implies $s-a\in\mathbb F$, where $e_x$
 denotes the exponent of $x\in\mathbb F$ as in class.
-\item Find $a,b\in\mathbb F$ with $e_a<e_b$ such that
-$s+r\ne a+b$, where $(s,r)\coloneqq\fasttwosum(a,b)$.
-Write $a,b$ as functions of $M$ and $e_{\min}$.
-\item Find $a,b\in\mathbb F$ with
+\item Find $a, b\in\mathbb F$ with $e_a<e_b$ such that
+$s+r\ne a+b$, where $(s, r)\coloneqq\fasttwosum(a, b)$.
+Write $a, b$ as functions of $M$ and $e_{\min}$.
+\item Find $a, b\in\mathbb F$ with
 $e_a+e_b=e_{\min}+M-1$ such that
 $ab-(a\otimes b)\notin\mathbb F$.
-Write $a,b$ as functions of $M$ and $e_{\min}$.
+Write $a, b$ as functions of $M$ and $e_{\min}$.
 \end{problemsubparts}
 \begin{remark}
 Parts (b) and (c) show that the preconditions discussed in class for
@@ -475,48 +477,61 @@ cannot be weakened.
 
 \begin{solution}
 \begin{problemsubparts}
-\item It is enough to work with $a\ge0$, using sign symmetry;
-put $s=\rnd(a+b)$. We use the integer-significand representation
-and Sterbenz's theorem from Lecture 9.
+\item Put $s\coloneqq\rnd(a+b)$. By symmetry under simultaneous
+negation, we may assume $a\ge0$. When $a=0$, the hypothesis
+$e_a\ge e_b$ forces $e_b=e_{\min}$ under the zero-exponent
+convention of Lecture 9, and $s-a=b\in\mathbb F$ immediately.
+We henceforth take $a>0$.
 
-First suppose $b<0$ and $-b\in[a/2,2a]$.
-Then Sterbenz gives $a+b\in\mathbb F$, so
-$s=a+b$ and $s-a=b\in\mathbb F$.
-If instead $-b<a/2$, the exact sum lies in $(a/2,a)$.
-Except at the subnormal boundary, nearest rounding keeps
-$s\in[a/2,a]$; Sterbenz applied to $a$ and $s$ then gives
-$a-s\in\mathbb F$. At the boundary, a rounded value below $a/2$
-can occur only when $a/2$ is not representable; this forces
-$e_a=e_{\min}$ and the small exact sum is an integer multiple
-of $\Delta$ of magnitude below $2^{e_{\min}+1}$. By Hauser's
-exact-addition theorem it is already representable, so $s=a+b$
-and again $s-a=b$.
-The remaining $b<0$ possibility $-b>2a$ is excluded by
-$e_a\ge e_b$ when $a>0$.
+First suppose $b<0$. If $e_a=e_b=e_{\min}$, then
+$|a|, |b|<2^{e_{\min}+1}$, so
+$|a+b|<2^{e_{\min}+1}$ and Hauser's exact-addition theorem
+implies $s=a+b$. If $e_a=e_b>e_{\min}$, both $a$
+and $-b$ are normal floats in the same binade and hence
+$a/2<-b<2a$. Sterbenz's theorem again gives $s=a+b$.
+In either case $s-a=b\in\mathbb F$.
+If $e_a>e_b$, then $0<-b<2^{e_a}\le a$. When
+$-b\ge a/2$, Sterbenz makes $a+b$ exact. Otherwise,
+$e_a>e_{\min}$ makes $a/2\in\mathbb F$ and
+$a/2<a+b<a$. By monotonicity of rounding,
+$a/2\le s\le a$; applying Sterbenz to $a$ and $s$
+proves $s-a\in\mathbb F$.
 
-If $b\ge0$, the same-sign rounded sum satisfies $s\ge a$.
-If $s\le2a$, Sterbenz gives $s-a\in\mathbb F$.
-If $s>2a$, the exponents of $a$ and $b$ must be equal;
-otherwise $b<a$ and $s\le2a$ by rounding monotonicity.
-Write $h=2^{e_a-M}$.
-Both $s$ and $a$ are integer multiples of $h$, and
+Now suppose $b\ge0$. If $e_a>e_b$, then $0\le b<a$,
+so $a\le a+b<2a$. When $2a\in\mathbb F$, monotonicity
+gives $a\le s\le2a$; if $2a\notin\mathbb F$, then
+$e_a=e_{\max}$ and finite $s\le F_{\max}<2a$.
+In both cases Sterbenz gives $s-a\in\mathbb F$.
+
+Finally suppose $b\ge0$ and $e_a=e_b=e$. Set
+$h\coloneqq2^{e-M}$. The integer-significand lemma in the
+Course Notes shows that $a, b$ are integer multiples of $h$
+and $0\le b\le2^{e+1}-h$, including when $e=e_{\min}$
+and one or both operands are subnormal. The exact sum obeys
+$0<a+b<2^{e+2}$. Nearest rounding in this range has error
+at most $h$, and the rounded sum $s$ is also an integer
+multiple of $h$. Consequently,
 \[
- 0<s-a\le b+\tfrac12\ulp(a+b)\le2^{e_a+1}.
+ 0\le s-a\le b+|s-(a+b)|\le b+h\le2^{e+1},
+ \qquad s-a\in h\mathbb Z.
 \]
-(The last inequality uses $b\le2^{e_a+1}-h$ and the fact
-that the rounding error of a sum of two numbers in this binade
-is at most $h$.) Every nonnegative integer multiple of $h$
-at most $2^{e_a+1}$ is representable whenever this finite
-sum is within the assumed range. Thus $s-a\in\mathbb F$.
-The cases $a=0$ and $b=0$ are immediate, establishing the claim.
+Every nonnegative multiple of $h$ no larger than $2^{e+1}$
+is representable (by the integer-significand lemma, with
+$2^{e+1}$ itself allowed only when within the finite range).
+If $e=e_{\max}$, the same-sign case cannot yield a finite
+rounded sum; thus there is no exception at the largest
+exponent. We conclude $s-a\in\mathbb F$ in every case.
+% The old proof wrongly excluded -b>2a when e_a>=e_b;
+% this is possible for subnormals, e.g. a=Delta,b=-3Delta.
+% Those cases are handled above using Hauser's theorem.
 
 \item Choose
 \[
- a\coloneqq\Delta=2^{e_{\min}-M},\qquad b\coloneqq1.
+ a\coloneqq\Delta=2^{e_{\min}-M}, \qquad b\coloneqq1.
 \]
 Then $e_a=e_{\min}<0=e_b$, and $a$ is too small to affect
 the rounding of $a+b$ at $1$: indeed
-$0<a\le2^{-M-2}<\tfrac12\ulp(1)$ for $E,M\ge3$.
+$0<a\le2^{-M-2}<\tfrac12\ulp(1)$ for $E, M\ge3$.
 Consequently the algorithm computes
 \[
  s=a\oplus b=1,
@@ -538,46 +553,46 @@ to that discussed in class:
 \[
  e::=c\mid x_i\mid-e\mid e+e\mid e\times e\mid\sqrt e,
 \]
-where $c\in\mathbb F$ and $i\in\{0,\ldots,n-1\}$.
+where $c\in\mathbb F$ and $i\in\{0, \ldots, n-1\}$.
 Assume that only expressions that do not overflow and do not evaluate
 $\sqrt{\phantom{x}}$ on negative inputs are considered. The floating-point
 semantics $\llbracket e\rrbracket\colon\mathbb F^n\to\mathbb F$
 and real-valued semantics
 $\llbracket e\rrbracket_{\mathrm r}\colon\mathbb F^n\to\mathbb R$
 are defined as in class. Design functions
-$\operatorname{range}(e,\Sigma)\subseteq\R$ and
-$\operatorname{error}(e,\Sigma)\in\R$ satisfying, for all
+$\operatorname{range}(e, \Sigma)\subseteq\R$ and
+$\operatorname{error}(e, \Sigma)\in\R$ satisfying, for all
 $\sigma\in\Sigma$,
 \[
- \llbracket e\rrbracket(\sigma)\in\operatorname{range}(e,\Sigma),
+ \llbracket e\rrbracket(\sigma)\in\operatorname{range}(e, \Sigma),
  \qquad
  |\llbracket e\rrbracket(\sigma)
    -\llbracket e\rrbracket_{\mathrm r}(\sigma)|
- \le\operatorname{error}(e,\Sigma).
+ \le\operatorname{error}(e, \Sigma).
 \]
-For $\Sigma=[l_0,r_0]\times\cdots\times[l_{n-1},r_{n-1}]$,
+For $\Sigma=[l_0, r_0]\times\cdots\times[l_{n-1}, r_{n-1}]$,
 the elementary cases are defined as follows:
 \[
 \begin{aligned}
- \operatorname{range}(c,\Sigma)&=[c,c], &
- \operatorname{error}(c,\Sigma)&=0,\\
- \operatorname{range}(x_i,\Sigma)&=[l_i,r_i],&
- \operatorname{error}(x_i,\Sigma)&=0,\\
- \operatorname{range}(-e_1,\Sigma)&=[-b,-a]
-   &&\text{if }\operatorname{range}(e_1,\Sigma)=[a,b],\\
- \operatorname{error}(-e_1,\Sigma)&=\operatorname{error}(e_1,\Sigma).
+ \operatorname{range}(c, \Sigma)&=[c, c], &
+ \operatorname{error}(c, \Sigma)&=0, \\
+ \operatorname{range}(x_i, \Sigma)&=[l_i, r_i], &
+ \operatorname{error}(x_i, \Sigma)&=0, \\
+ \operatorname{range}(-e_1, \Sigma)&=[-b, -a]
+   &&\text{if }\operatorname{range}(e_1, \Sigma)=[a, b], \\
+ \operatorname{error}(-e_1, \Sigma)&=\operatorname{error}(e_1, \Sigma).
 \end{aligned}
 \]
-If $\operatorname{range}(e_i,\Sigma)=[a_i,b_i]$, the remaining
+If $\operatorname{range}(e_i, \Sigma)=[a_i, b_i]$, the remaining
 given rules are
 \[
 \begin{aligned}
- \operatorname{range}(e_1+e_2,\Sigma)
-  &=[\rnd(a_1+a_2),\rnd(b_1+b_2)],\\
- \operatorname{error}(e_1+e_2,\Sigma)
-  &=\operatorname{error}(e_1,\Sigma)
-   +\operatorname{error}(e_2,\Sigma)\\
-  &\quad+\tfrac12\ulp\!\left(\max\{|a_1+a_2|,|b_1+b_2|\}\right).
+ \operatorname{range}(e_1+e_2, \Sigma)
+  &=[\rnd(a_1+a_2), \rnd(b_1+b_2)], \\
+ \operatorname{error}(e_1+e_2, \Sigma)
+  &=\operatorname{error}(e_1, \Sigma)
+   +\operatorname{error}(e_2, \Sigma)\\
+  &\quad+\tfrac12\ulp\!\left(\max\{|a_1+a_2|, |b_1+b_2|\}\right).
 \end{aligned}
 \]
 Assume additionally that all computations performed in
@@ -586,15 +601,15 @@ or evaluate a real-valued or floating-point square root on a
 negative input. With this assumption, the displayed addition rule
 is simpler than the general version discussed in class.
 \begin{problemsubparts}
-\item Define $\operatorname{range}(e_1\times e_2,\Sigma)$ and
-$\operatorname{range}(\sqrt{e_1},\Sigma)$, and prove their soundness.
-\item Define $\operatorname{error}(e_1\times e_2,\Sigma)$ and
-$\operatorname{error}(\sqrt{e_1},\Sigma)$, and prove their soundness.
+\item Define $\operatorname{range}(e_1\times e_2, \Sigma)$ and
+$\operatorname{range}(\sqrt{e_1}, \Sigma)$, and prove their soundness.
+\item Define $\operatorname{error}(e_1\times e_2, \Sigma)$ and
+$\operatorname{error}(\sqrt{e_1}, \Sigma)$, and prove their soundness.
 You may assume $\llbracket e\rrbracket_{\mathrm r}(\sigma)
-\in\operatorname{range}(e,\Sigma)$ for all $e,\Sigma,\sigma$,
+\in\operatorname{range}(e, \Sigma)$ for all $e, \Sigma, \sigma$,
 even though this need not hold in general.
 \begin{hint}
-Use $\sqrt a-\sqrt b=(a-b)/(\sqrt a+\sqrt b)$ for $a,b>0$.
+Use $\sqrt a-\sqrt b=(a-b)/(\sqrt a+\sqrt b)$ for $a, b>0$.
 \end{hint}
 \item See \code{p6.ipynb}.
 \end{problemsubparts}
@@ -602,39 +617,39 @@ Use $\sqrt a-\sqrt b=(a-b)/(\sqrt a+\sqrt b)$ for $a,b>0$.
 
 \begin{solution}
 As in the latest CN, fix $\Sigma$ and abbreviate
-$\operatorname{range}(e,\Sigma)$ to $\operatorname{range}(e)$.
+$\operatorname{range}(e, \Sigma)$ to $\operatorname{range}(e)$.
 Similarly, write $\operatorname{err}(e)$ for the assignment's
-$\operatorname{error}(e,\Sigma)$. This is a change of notation only.
+$\operatorname{error}(e, \Sigma)$. This is a change of notation only.
 All intervals below enclose floating-point semantics; part (b) uses
 the additional real-semantics hypothesis stated in the problem.
 \begin{problemsubparts}
 \item Let
-$\operatorname{range}(e_i)=[a_i,b_i]$ and define
+$\operatorname{range}(e_i)=[a_i, b_i]$ and define
 \[
  \begin{aligned}
- L&\coloneqq\min\{a_1a_2,a_1b_2,b_1a_2,b_1b_2\},\\
- U&\coloneqq\max\{a_1a_2,a_1b_2,b_1a_2,b_1b_2\}.
+ L&\coloneqq\min\{a_1a_2, a_1b_2, b_1a_2, b_1b_2\}, \\
+ U&\coloneqq\max\{a_1a_2, a_1b_2, b_1a_2, b_1b_2\}.
  \end{aligned}
 \]
 Set
 \[
  \boxed{\operatorname{range}(e_1\times e_2)
- \coloneqq[\rnd(L),\rnd(U)].}
+ \coloneqq[\rnd(L), \rnd(U)].}
  \tag{1}
 \]
 Indeed, if $u_i=\llbracket e_i\rrbracket(\sigma)$, then
-$u_i\in[a_i,b_i]$. The ordinary real product of two numbers in
-these intervals belongs to $[L,U]$ (the extrema of a bilinear
+$u_i\in[a_i, b_i]$. The ordinary real product of two numbers in
+these intervals belongs to $[L, U]$ (the extrema of a bilinear
 function on a rectangle occur at its corners). The CN
 monotonicity theorem therefore gives
 $\rnd(L)\le\rnd(u_1u_2)\le\rnd(U)$, as required.
 
-For the square root, write $\operatorname{range}(e_1)=[a,b]$
-and put $a_+\coloneqq\max\{0,a\}$. The promised nonnegative
+For the square root, write $\operatorname{range}(e_1)=[a, b]$
+and put $a_+\coloneqq\max\{0, a\}$. The promised nonnegative
 square-root arguments ensure $b\ge0$. Set
 \[
  \boxed{\operatorname{range}(\sqrt{e_1})
- \coloneqq[\rnd(\sqrt{a_+}),\rnd(\sqrt b)].}
+ \coloneqq[\rnd(\sqrt{a_+}), \rnd(\sqrt b)].}
  \tag{2}
 \]
 Every reachable $u=\llbracket e_1\rrbracket(\sigma)$ satisfies
@@ -644,7 +659,7 @@ zero is necessary when a conservative input interval extends below
 zero even though no reachable evaluation does.
 
 \item Put $E_i\coloneqq\operatorname{err}(e_i)$ and
-$U_i\coloneqq\max\{|a_i|,|b_i|\}$.
+$U_i\coloneqq\max\{|a_i|, |b_i|\}$.
 For multiplication, define
 \[
  \boxed{\operatorname{err}(e_1\times e_2)
@@ -668,23 +683,23 @@ rounding bound,
 $|\rnd(u_1u_2)-u_1u_2|\le\tfrac12\ulp(U_1U_2)$.
 The triangle inequality proves (3).
 
-For the square root, let $\operatorname{range}(e_1)=[a,b]$
+For the square root, let $\operatorname{range}(e_1)=[a, b]$
 and $b\ge0$. One sound definition is
 \[
  \boxed{\operatorname{err}(\sqrt{e_1})
  \coloneqq\sqrt{E_1}+\tfrac12\ulp(\sqrt b).}
  \tag{4}
 \]
-Indeed, $u=\llbracket e_1\rrbracket(\sigma)\in[0,b]$,
+Indeed, $u=\llbracket e_1\rrbracket(\sigma)\in[0, b]$,
 and the additional hypothesis ensures
 $v=\llbracket e_1\rrbracket_{\mathrm r}(\sigma)\ge0$.
-For $u,v\ge0$,
+For $u, v\ge0$,
 \[
  |\sqrt u-\sqrt v|
  =\frac{|u-v|}{\sqrt u+\sqrt v}
  \le\sqrt{|u-v|}\le\sqrt{E_1};
 \]
-the inequality also holds when one of $u,v$ is zero, by direct
+the inequality also holds when one of $u, v$ is zero, by direct
 inspection. The rounding of $\sqrt u$ contributes at most
 $\tfrac12\ulp(\sqrt u)\le\tfrac12\ulp(\sqrt b)$,
 which proves (4). Both (3) and (4) are conservative rather than
@@ -704,10 +719,10 @@ endpoint.
 For the degree-$n$ polynomial
 \[
  p_n(x)=\sum_{j=0}^{n}c_jx^j,
- \qquad c_j=\rnd(1/j!),\qquad n\in\{2,3,4,5\},
+ \qquad c_j=\rnd(1/j!), \qquad n\in\{2, 3, 4, 5\},
 \]
 the notebook constructs Horner's nested evaluation and the separate
-power-sum expression, and runs the analysis on $x\in[-1,1]$.
+power-sum expression, and runs the analysis on $x\in[-1, 1]$.
 The resulting absolute-error bounds, displayed here in decimal
 form for comparison, are
 \[
