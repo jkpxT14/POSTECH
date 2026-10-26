@@ -1,0 +1,212 @@
+\section{Error Measures and Basic Bounds}
+
+Fix the format $(E,M)$ of Section 3. In this section write
+$\mathbb F=\mathbb F_{E,M}$ and $\rnd=\rnd_{E,M}$, and let
+$F_{\max}$, $e_{\min}$, and $e_{\max}$ retain their earlier meanings.
+For $x\in\R$, call $x$ in the \emph{normal range} when
+$2^{e_{\min}}\le |x|\le F_{\max}$ and in the \emph{subnormal range}
+when $|x|<2^{e_{\min}}$.
+
+\begin{definition}[Absolute and Relative Errors]
+For an exact value $x\in\R$ and an approximation $\widehat{x}\in\mathbb F$,
+set
+\[
+\begin{aligned}
+ \operatorname{err}_{\mathrm{abs}}(x,\widehat{x})
+   &\coloneqq |x-\widehat{x}|,\\
+ \operatorname{err}_{\mathrm{rel}}(x,\widehat{x})
+   &\coloneqq \frac{|x-\widehat{x}|}{|x|}\qquad(x\ne0).
+\end{aligned}
+\]
+\end{definition}
+
+\begin{definition}[Unit in the Last Place]
+The \emph{unit in the last place} is the function
+$\ulp\colon\R\to\R_{>0}$ defined by
+\[
+\ulp(x)\coloneqq
+\begin{cases}
+ 2^{e-M},&2^e\le|x|<2^{e+1}
+       \text{ for some integer }e\ge e_{\min},\\
+ 2^{e_{\min}-M},&|x|<2^{e_{\min}}.
+\end{cases}
+\]
+The \emph{ULP error} of $\widehat{x}\in\mathbb F$ is
+\[
+ \operatorname{err}_{\mathrm{ulp}}(x,\widehat{x})
+   \coloneqq\frac{|x-\widehat{x}|}{\ulp(x)}.
+\]
+Thus ULP error measures the discrepancy in units of the local
+floating-point spacing (within a common binade). The
+\emph{machine epsilon} (unit roundoff) of the format is
+\[
+ \varepsilon\coloneqq\tfrac12\ulp(1)=2^{-M-1}.
+\]
+\end{definition}
+
+\begin{proposition}[Relative and ULP Errors]
+Let $x\in\R\setminus\{0\}$ and $\widehat{x}\in\mathbb F$.
+Then
+\[
+ \operatorname{err}_{\mathrm{ulp}}(x,\widehat{x})
+ \le\frac{\operatorname{err}_{\mathrm{rel}}(x,\widehat{x})}
+ {\varepsilon}.
+\]
+If $x$ is in the normal range, then also
+\[
+ \operatorname{err}_{\mathrm{ulp}}(x,\widehat{x})
+ \ge\frac{\operatorname{err}_{\mathrm{rel}}(x,\widehat{x})}
+ {2\varepsilon}.
+\]
+\end{proposition}
+\begin{proof}
+The definitions give, without dividing by an error that might vanish,
+\[
+ \operatorname{err}_{\mathrm{ulp}}(x,\widehat{x})
+ =\operatorname{err}_{\mathrm{rel}}(x,\widehat{x})
+   \frac{|x|}{\ulp(x)}.
+\]
+For $2^e\le|x|<2^{e+1}$ with $e\ge e_{\min}$,
+\[
+ 2^M\le\frac{|x|}{\ulp(x)}<2^{M+1}=\frac1\varepsilon.
+\]
+In the subnormal range, the same ratio is at most $2^M$;
+this proves the first inequality. In the normal range its lower
+bound is $2^M=1/(2\varepsilon)$, proving the second.
+
+The normal-range hypothesis cannot be dropped. Indeed, for
+$x=2^{e_{\min}-M}$ and $\widehat{x}=0$, both the relative and ULP
+errors equal $1$, but $1/(2\varepsilon)=2^M>1$.
+\end{proof}
+
+\begin{proposition}[Rounding Error Bounds]
+For round-to-nearest, ties-to-even, the following estimates hold:
+\begin{enumerate}[label=(\roman*)]
+ \item If $x$ is in the normal range, then
+ \[
+ \operatorname{err}_{\mathrm{rel}}(x,\rnd(x))\le\varepsilon.
+ \]
+ \item If $x$ is in the subnormal range, then
+ \[
+ \operatorname{err}_{\mathrm{abs}}(x,\rnd(x))
+ \le 2^{e_{\min}}\varepsilon.
+ \]
+ \item If $|x|\le F_{\max}$, then
+ \[
+ \operatorname{err}_{\mathrm{ulp}}(x,\rnd(x))\le\tfrac12.
+ \]
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+For $2^e\le|x|<2^{e+1}$ in the normal range, consecutive
+floating-point values are separated by at most $2^{e-M}$ locally.
+Thus nearest rounding gives
+\[
+ \frac{|x-\rnd(x)|}{|x|}
+ \le\frac{2^{e-M-1}}{2^e}=\varepsilon.
+\]
+In the subnormal range the spacing is $2^{e_{\min}-M}$, so
+\[
+ |x-\rnd(x)|\le\tfrac12 2^{e_{\min}-M}
+ =2^{e_{\min}}\varepsilon.
+\]
+Finally, for $|x|\le F_{\max}$, nearest rounding is within half
+the local spacing $\ulp(x)$, giving (iii).
+\end{proof}
+
+\begin{definition}[Underflow and Overflow]
+For an exact nonzero arithmetic result $z$, the \emph{underflow range}
+is $0<|z|<2^{e_{\min}}$. A result beyond the finite range satisfies
+$|z|>F_{\max}$; under round-to-nearest, actual \emph{overflow to infinity}
+occurs when $|z|\ge K_{E,M}$. These two upper thresholds need not
+coincide.
+\end{definition}
+
+\begin{theorem}[Error of Floating-Point Operations]
+Let $a,b\in\mathbb F$ and choose corresponding operations
+\[
+ \ast\in\{+,-,\times,\div\},\qquad
+ \circledast\in\{\oplus,\ominus,\otimes,\odiv\},
+\]
+with $b\ne0$ for division. If $z=a\ast b$ satisfies
+$|z|\le F_{\max}$, then
+\[
+ a\circledast b=z(1+\delta)+\delta',\qquad
+ |\delta|\le\varepsilon,\quad
+ |\delta'|\le2^{e_{\min}}\varepsilon,
+\]
+where one may choose $\delta'=0$ in the normal range and
+$\delta=0$ in the subnormal range (including $z=0$).
+For addition and subtraction, one may always choose $\delta'=0$.
+\end{theorem}
+\begin{proof}
+By definition, $a\circledast b=\rnd(z)$. In the normal range,
+the relative rounding bound yields
+$\rnd(z)=z(1+\delta)$ with $|\delta|\le\varepsilon$.
+In the subnormal range, the absolute bound yields
+$\rnd(z)=z+\delta'$ with
+$|\delta'|\le2^{e_{\min}}\varepsilon$.
+
+For $\ast\in\{+,-\}$, every element of $\mathbb F$ is an integer
+multiple of $2^{e_{\min}-M}$, so $a\pm b$ is also such a multiple.
+If this exact sum or difference is in the subnormal range, it is
+representable and rounding is exact. Thus $\delta'=0$ in both ranges.
+\end{proof}
+
+\begin{example}[Error in Repeated Multiplication]
+Let $a,b,c\in\mathbb F\setminus\{0\}$, and suppose both intermediate
+exact products are in the normal range and do not overflow.
+By the preceding theorem, for some $|\delta_1|,|\delta_2|\le\varepsilon$,
+\[
+\begin{aligned}
+ (a\otimes b)\otimes c
+ &=\bigl(ab(1+\delta_1)c\bigr)(1+\delta_2)\\
+ &=abc(1+\delta_1)(1+\delta_2).
+\end{aligned}
+\]
+Consequently, with $x=abc$ and $\widehat{x}=(a\otimes b)\otimes c$,
+\[
+\begin{aligned}
+ \operatorname{err}_{\mathrm{rel}}(x,\widehat{x})
+ &\le |\delta_1|+|\delta_2|+|\delta_1\delta_2|
+ \le 2\varepsilon+\varepsilon^2,\\
+ \operatorname{err}_{\mathrm{ulp}}(x,\widehat{x})
+ &\le 2+\varepsilon.
+\end{aligned}
+\]
+To first order the relative error is at most $2\varepsilon$.
+\end{example}
+
+\begin{example}[Error in Repeated Addition]
+Let $a,b,c\in\mathbb F$ and set $s=a+b$, $u=a+b+c\ne0$.
+Assume $|s|, |(a\oplus b)+c|\le F_{\max}$. For rounded addition,
+the theorem gives $\delta'=0$ even for subnormal results; hence
+\[
+\begin{aligned}
+ (a\oplus b)\oplus c
+ &=\bigl((a+b)(1+\delta_1)+c\bigr)(1+\delta_2)\\
+ &=u(1+\delta_2)+s\delta_1(1+\delta_2),
+ \qquad |\delta_1|,|\delta_2|\le\varepsilon.
+\end{aligned}
+\]
+Writing $x=u$ and $\widehat{x}=(a\oplus b)\oplus c$, we obtain
+\[
+\begin{aligned}
+ \operatorname{err}_{\mathrm{rel}}(x,\widehat{x})
+ &\le\varepsilon\left(1+\frac{|a+b|}{|a+b+c|}\right)
+   +\varepsilon^2\frac{|a+b|}{|a+b+c|},\\
+ \operatorname{err}_{\mathrm{ulp}}(x,\widehat{x})
+ &\le 1+\frac{|a+b|}{|a+b+c|}
+       +\varepsilon\frac{|a+b|}{|a+b+c|}.
+\end{aligned}
+\]
+The ratio $|a+b|/|a+b+c|$ can amplify the first rounding error.
+
+For example, when $2^{M+1}\in\mathbb F$, take
+$a=1$, $b=2^{M+1}$, and $c=-2^{M+1}$. Ties-to-even yields
+\[
+ (a\oplus b)\oplus c=0,
+ \qquad a+b+c=1,
+\]
+with relative error $1$ and ULP error $2^M$.
+\end{example}

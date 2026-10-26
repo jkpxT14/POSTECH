@@ -1,0 +1,197 @@
+\section{Computable Functions}
+
+\begin{definition}[Computable Function]
+Let $D\subseteq\R$. A function $f\colon D\to\R$ is \emph{computable} if
+there exists an oracle algorithm $\A$ with the following property. For every
+$x\in D$, every function $\alpha\colon\Nzero\to\Q$ satisfying
+\[
+ |\alpha(i)-x|<2^{-i}\qquad(i\in\Nzero),
+\]
+and every precision $n\in\Nzero$, the algorithm $\A$, given access to
+$\alpha$ and the input $n$, halts and returns a rational number
+$\A(\alpha,n)$ such that
+\[
+ |\A(\alpha,n)-f(x)|<2^{-n}.
+\]
+The algorithm may query finitely many values $\alpha(i)$ during a computation.
+The definition extends componentwise to functions between subsets of
+$\R^k$ and $\R^m$.
+\end{definition}
+
+\begin{remark}
+A name $\alpha$ need not be computable: $\A$ must work for
+\emph{every} rational name, even one naming a noncomputable real.
+Unlike a binary-digit oracle, rational approximation does not require
+a uniform decision at dyadic boundaries (cf. Section~1).
+\end{remark}
+
+If $f\colon D\to\R$ is computable, then
+$f(D\cap\Rc)\subseteq\Rc$: a computable name of $x$ can be
+supplied to the oracle for $f$.
+
+\begin{example}[Basic Computable Functions]
+For $r\in\Rc$, both $x\mapsto x+r$ and $x\mapsto rx$ are computable.
+The functions $|x|$, $\exp x$, $\sin x$, $\sqrt{x}$ on
+$[0,\infty)$, and $\log x$ on $(0,\infty)$ are computable.
+In several variables, $+$, $-$, $\times$, $\min$, and $\max$ are
+computable, as is division on $\{(x,y)\mid y\ne0\}$.
+\end{example}
+
+\begin{theorem}[Closure under Composition]
+Let $f\colon D\to E$ and $g\colon E\to\R^m$ be computable, where
+$D\subseteq\R^k$ and $E\subseteq\R^\ell$. Then $g\circ f$ is computable.
+\end{theorem}
+
+\begin{corollary}[Computable Function Operations]
+If $f,g\colon D\to\R$ are computable, then so are
+\[
+ |f|,\quad f+g,\quad fg,\quad\min(f,g),\quad\max(f,g),
+ \quad\exp\circ f.
+\]
+Moreover, $f/g$ is computable on $\{x\in D\mid g(x)\ne0\}$.
+\end{corollary}
+
+\begin{theorem}[Computability Implies Continuity]
+Every computable function $f\colon D\to\R^m$, with
+$D\subseteq\R^k$, is continuous on $D$ (with the relative topology).
+\end{theorem}
+\begin{proof}
+Fix $\mathbf{x}\in D$ and $\varepsilon>0$; choose $n\in\Nzero$
+with $2^{1-n}<\varepsilon$. Choose a rational name
+$\alpha\colon\Nzero\to\Q^k$ of $\mathbf{x}$ with slack:
+\[
+\|\alpha(i)-\mathbf{x}\|_\infty<2^{-(i+2)}
+\qquad(i\in\Nzero).
+\]
+At precision $n$, the algorithm queries a finite set of indices $I$.
+For some $\delta>0$, every $\mathbf{y}\in D$ with
+$\|\mathbf{x}-\mathbf{y}\|_\infty<\delta$ also admits a name agreeing
+with $\alpha$ on $I$. The algorithm therefore returns the
+same $\mathbf{q}\in\Q^m$ on both names, whence
+\[
+\|f(\mathbf{x})-f(\mathbf{y})\|_\infty
+\le\|f(\mathbf{x})-\mathbf{q}\|_\infty
++\|\mathbf{q}-f(\mathbf{y})\|_\infty
+<2^{1-n}<\varepsilon.
+\]
+Thus $f$ is continuous at $\mathbf{x}$.
+\end{proof}
+
+\begin{corollary}[Discontinuous Tests]
+The sign function and the predicates $x<y$ and $x=y$, viewed as
+$\{0,1\}$-valued functions on $\R$ and $\R^2$, respectively,
+are not computable on their full domains.
+\end{corollary}
+
+\begin{remark}
+Continuity is necessary, not sufficient, for computability: if
+$c\in\R\setminus\Rc$, the constant function $x\mapsto c$ is continuous
+but not computable. In particular, a function with a discontinuity at a
+point of its domain cannot be computable there.
+\end{remark}
+
+\begin{example}[Discontinuous Functions and Their Domains]
+The step function $x\mapsto\indicator{\{x>0\}}$ is not computable on
+$\R$ but is computable on $\R\setminus\{0\}$: refine an input
+approximation until its sign is certified. The same principle applies
+to strict comparison on $x\ne y$.
+
+A set-valued extension, outside the single-valued definition above, can
+instead allow both outputs at the discontinuity:
+\[
+\operatorname{sgn}'(x)=
+\begin{cases}
+\{1\},&x>0,\\
+\{0\},&x<0,\\
+\{0,1\},&x=0.
+\end{cases}
+\]
+\end{example}
+
+\begin{theorem}[Computability of the Exponential Function]\label{thm:exp}
+The function $\exp\colon\R\to\R$ is computable.
+\end{theorem}
+\begin{proof}
+First let $x\in[-\tfrac12,\tfrac12]$, let $\alpha$ be a rational name
+of $x$, and fix $n\in\Nzero$. Set $m=d=n+3$ and
+\[
+ \widehat{x}=\alpha(m),\qquad
+ \widehat{y}=P_d(\widehat{x}),\qquad
+ P_d(t)=\sum_{j=0}^{d}\frac{t^j}{j!}.
+\]
+The rational $\widehat{y}$ is computed by finite arithmetic. Since
+$|x-\widehat{x}|<2^{-m}$ and $|\widehat{x}|<1$, the mean value theorem
+and $e<3$ give
+\[
+ |e^x-e^{\widehat{x}}|<3\cdot2^{-m}.
+\]
+For $d\ge3$, the Taylor remainder satisfies
+\[
+ |e^{\widehat{x}}-P_d(\widehat{x})|
+ \le\sum_{j=d+1}^{\infty}\frac{1}{j!}
+ \le\sum_{j=d+1}^{\infty}2^{-j}=2^{-d}.
+\]
+Consequently,
+\[
+ |e^x-\widehat{y}|<(3+1)2^{-(n+3)}<2^{-n}.
+\]
+
+For arbitrary $x\in\R$, one can effectively choose $k\in\Nzero$ with
+$|x|/2^k\le\tfrac12$. Write $u=e^{x/2^k}$ and $N=2^k$.
+The preceding algorithm computes $u\in(0,2)$ to arbitrary precision.
+For any rational $v$ with $|u-v|<1$,
+\[
+ |u^N-v^N|\le N3^{N-1}|u-v|.
+\]
+Thus a sufficiently accurate rational approximation $v$ gives the
+required approximation $v^N$ to $e^x=u^N$.
+\end{proof}
+
+\begin{theorem}[Noncomputability of Strict Comparison]
+The strict-comparison map $\R^2\to\{0,1\}$ defined by
+\[
+ (x,y)\mapsto\begin{cases}1,&x<y,\\0,&x\ge y\end{cases}
+\]
+is not computable.
+\end{theorem}
+\begin{proof}
+Suppose an algorithm computes strict comparison. Because its values lie in $\{0,1\}$,
+requesting an approximation with error below $1/4$ and testing whether the
+result exceeds $1/2$ yields an algorithm returning the exact bit.
+Give this decision algorithm the two names
+\[
+ \alpha(i)=0,\qquad \beta(i)=2^{-(i+1)}\qquad(i\in\Nzero),
+\]
+both of which represent the real number $0$. Hence the algorithm must
+halt and output $0$. During this run, only finitely many indices of
+$\beta$ are queried; let $N\in\Nzero$ exceed or equal all of them.
+Define another rational name by
+\[
+ \beta'(i)=\begin{cases}
+    2^{-(i+1)},&i\le N,\\
+    2^{-(N+1)},&i>N.
+ \end{cases}
+\]
+For $i\le N$, its distance from $2^{-(N+1)}$ is strictly smaller than
+$2^{-i}$, and for $i>N$ the distance is zero. Thus $\beta'$ is a valid
+name of $y'=2^{-(N+1)}>0$.
+The algorithm cannot distinguish $(\alpha,\beta')$ from
+$(\alpha,\beta)$ during its finite computation; it still returns $0$.
+But strict comparison at $(0,y')$ equals $1$, a contradiction.
+\end{proof}
+
+\begin{theorem}[Comparison of Unequal Real Numbers]
+Strict comparison is computable on
+\[
+\{(x,y)\in\R^2\mid x\ne y\}.
+\]
+\end{theorem}
+
+\begin{remark}
+If $x\ne y$, sufficiently accurate rational approximations eventually
+certify their order. Without this promise, neither equality nor strict
+comparison is decidable on all of $\R^2$: their indicator maps are
+discontinuous along $x=y$.
+\end{remark}
+
+\Needspace{8\baselineskip}

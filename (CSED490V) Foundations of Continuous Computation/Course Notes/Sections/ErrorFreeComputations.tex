@@ -1,0 +1,168 @@
+\section{Error-Free Computations}
+
+Fix $\mathbb F=\mathbb F_{E, M}$ and $\rnd=\rnd_{E, M}$ as before.
+For $a\in\mathbb F\setminus\{0\}$ let $e_a\in[e_{\min}, e_{\max}]\cap\mathbb Z$
+denote its floating-point exponent, taking $e_a=e_{\min}$ for subnormals.
+Set $e_0=e_{\min}$ when an exponent is needed for zero.
+Write $\Delta_{\min}\coloneqq2^{e_{\min}-M}$ for the least positive
+subnormal spacing. All exactness assertions below concern finite
+results with the indicated range conditions.
+
+\begin{lemma}[Integer Significands]
+A real number $a$ is in $\mathbb F$ if and only if there exist
+$m, e\in\mathbb Z$ with
+\[
+ a=m2^{e-M}, \qquad |m|<2^{M+1}, \qquad
+ e_{\min}\le e\le e_{\max}.
+\]
+In particular, every $a\in\mathbb F$ is an integer multiple of
+$\Delta_{\min}$.
+\end{lemma}
+\begin{proof}
+For normal values take $e=e_a$ and let $m$ be the integer encoded
+by the $(M+1)$ significand bits; for subnormals take $e=e_{\min}$
+and $|m|<2^M$. Conversely, for any displayed pair $(m, e)$, a
+significand with at most $M+1$ bits is either normal at a suitable
+exponent or subnormal after shifting to $e_{\min}$. If a shift would
+exceed $e_{\max}$, the bound $|m|<2^{M+1}$ prevents it.
+\end{proof}
+
+\begin{theorem}[Hauser: Exact Addition]
+For $a, b\in\mathbb F$,
+\[
+ |a+b|\le2^{e_{\min}+1}\implies a\oplus b=a+b.
+\]
+\end{theorem}
+\begin{proof}
+Both $a$ and $b$ are integer multiples of $\Delta_{\min}$, hence
+so is $a+b$. Every such multiple in
+$[-2^{e_{\min}+1},2^{e_{\min}+1}]$ is representable. Therefore
+$a+b\in\mathbb F$ and rounding does nothing.
+\end{proof}
+
+\begin{theorem}[Sterbenz: Exact Subtraction]
+For $a, b\in\mathbb F$,
+\[
+ \frac a2\le b\le2a\implies a\ominus b=a-b.
+\]
+Equivalently, one may assume $b/2\le a\le2b$.
+\end{theorem}
+\begin{proof}
+The hypothesis forces $a, b\ge0$. The zero case is immediate.
+By exchanging $a, b$ and changing the sign if necessary, assume
+$a\ge b$, so $b\le a\le2b$.
+Write $a=m_a2^{e_a-M}$ and $b=m_b2^{e_b-M}$ by the lemma.
+As $a\ge b$, we have $e_a\ge e_b$ (with the convention for
+subnormals), and thus
+\[
+ a-b=(m_a2^{e_a-e_b}-m_b)2^{e_b-M}=m'2^{e_b-M},
+ \qquad m'\in\mathbb Z.
+\]
+Since $0\le a-b\le b$, one has $0\le m'\le m_b<2^{M+1}$,
+so $a-b\in\mathbb F$. Thus $a\ominus b=a-b$.
+\end{proof}
+
+\begin{proposition}[Exact Scaling by Powers of Two]
+Suppose $a, b\in\mathbb F\setminus\{0\}$ have
+$|a|=(\alpha_0.\alpha_1\dots\alpha_M)_2\,2^{e_a}$ and
+$|b|=2^{e_b}$. If $e_a+e_b\in[e_{\min}, e_{\max}]$, then
+\[
+ a\otimes b=ab.
+\]
+Similarly, if $e_a-e_b\in[e_{\min}, e_{\max}]$, then
+$a\odiv b=a/b$. \end{proposition}
+
+\begin{proposition}[Exact Products with Trailing Zeros]
+Let $a,b\in\mathbb F$ be nonzero normal values whose binary significands
+have, respectively, at least $j$ and $j'$ trailing zero bits. If
+\[
+  j+j'\ge M+1,\qquad
+  e_{\min}\le e_a+e_b\le e_{\max}-1,
+\]
+then $ab\in\mathbb F$ and $a\otimes b=ab$.
+\end{proposition}
+\begin{proof}
+Removing the trailing zeros leaves integer significands of at most
+$M+1-j$ and $M+1-j'$ bits. Their product has at most
+$2(M+1)-j-j'\le M+1$ bits. The exact product therefore fits the
+available significand precision; its normalized exponent is either
+$e_a+e_b$ or $e_a+e_b+1$, both representable by hypothesis.
+\end{proof}
+
+\begin{remark}
+Sterbenz's theorem does not preclude catastrophic cancellation:
+subtraction of nearby \emph{represented} floats may be exact, while
+an error inherited from earlier rounded operations becomes large
+relative to the small difference.
+\end{remark}
+
+\begin{theorem}[Dekker's Theorem (Fast2Sum)]
+For $a, b\in\mathbb F$ with $|a+b|\le F_{\max}$, put
+\[
+ s=a\oplus b, \qquad r=(a+b)-s.
+\]
+Then $r\in\mathbb F$. If $e_a\ge e_b$, the algorithm
+\[
+ \begin{aligned}
+ s&=a\oplus b, \\
+ b'&=s\ominus a, \\
+ z&=b\ominus b'
+ \end{aligned}
+ \qquad\text{(Fast2Sum)}
+\]
+returns $(s, z)=(a\oplus b, r)$; in particular, $a+b=s+z$
+\emph{exactly}.
+\end{theorem}
+\begin{proof}
+By symmetry assume $e_a\ge e_b$. We first show $s-a\in\mathbb F$.
+If $a,b$ have the same sign and $|a|\ge|b|$, then $s$ has that sign
+and $|a|\le|s|\le2|a|$; Sterbenz's theorem applies to $s-a$.
+If their signs differ and $|b|\ge|a|/2$, their magnitudes differ
+by at most a factor of two, so Sterbenz makes $a+b$ exact.
+If their signs differ and $|b|<|a|/2$, either the sum is exact
+in the subnormal range by Hauser's theorem, or $s$ and $a$ are
+within a factor of two and Sterbenz applies again.
+In the remaining case, $a,b$ have the same sign with
+$|b|>|a|$, which forces $e_a=e_b$. Both belong to the same
+binade of spacing $h=2^{e_a-M}$; $s-a$ is a multiple of $h$
+with magnitude at most $2^{e_a+1}$, hence is representable.
+Thus $b'=s\ominus a=s-a$.
+
+Moreover, $a$, $b$, and $s$ lie on the grid $2^{e_b-M}\mathbb Z$;
+if the exact sum is smaller than $2^{e_b}$, it is itself
+representable, and otherwise rounding uses a no-finer grid.
+Consequently, $r=b-b'$ is an integer multiple of $2^{e_b-M}$.
+By optimality of nearest rounding, comparison with the
+representable candidate $a$ yields
+\[
+ |r|=|(a+b)-s|\le|(a+b)-a|=|b|.
+\]
+The integer-significand lemma now implies $r\in\mathbb F$.
+Therefore $b\ominus b'=r$, giving $a+b=s+r$ exactly.
+\end{proof}
+
+\begin{theorem}[Boldo's Theorem (Product Residual)]
+For $a, b\in\mathbb F$ with $|ab|\le F_{\max}$, let
+$s=a\otimes b$ and $r=ab-s$. If
+\[
+ e_a+e_b\ge e_{\min}+M,
+\]
+then $r\in\mathbb F$ and
+\[
+ r=\fma(a, b,-s).
+\]
+\end{theorem}
+\begin{proof}
+In the integer-significand representation,
+$ab=m_am_b2^{e_a+e_b-2M}$. The rounded product $s$ lies on the same
+binary grid, so
+$ab-s=k2^{e_a+e_b-2M}$ for some integer $k$. The exact product
+has exponent $e_a+e_b$ or $e_a+e_b+1$; nearest rounding therefore
+gives $|k|\le2^M$. By the hypothesis,
+$e_a+e_b-M\ge e_{\min}$, so the residual has a representable
+significand and exponent. Thus $r\in\mathbb F$, and the
+single-rounding property of FMA gives
+$\fma(a,b,-s)=\rnd(r)=r$.
+\end{proof}
+
+

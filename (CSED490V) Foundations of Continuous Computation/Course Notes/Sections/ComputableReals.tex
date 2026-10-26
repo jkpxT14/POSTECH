@@ -1,0 +1,189 @@
+\section{Computable Reals}
+
+\begin{definition}[Borel Computability]
+A real number $r$ is \emph{Borel-computable} if there exists a computable
+sequence $(q_n)_{n\in\Nzero}\subseteq\Q$ such that
+\[
+  |r-q_n|<2^{-n}\qquad(n\in\Nzero).
+\]
+\end{definition}
+
+\begin{definition}[Turing Computability]
+A nonnegative real number $r$ is \emph{Turing-computable} if it has a binary
+expansion
+\[
+ r=a+\sum_{i=0}^{\infty}b_i2^{-(i+1)},
+ \qquad a\in\Nzero,\quad b_i\in\{0,1\},
+\]
+for which $i\mapsto b_i$ is computable. A negative real number is
+Turing-computable when its absolute value is Turing-computable. For dyadic
+rationals we may use the terminating binary expansion.
+\end{definition}
+
+\begin{theorem}[Equivalence of Computability Definitions]
+For $r\in\R$, the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+ \item $r$ is Borel-computable.
+ \item $r$ is Turing-computable.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We may consider $r\ge0$: changing the sign of a computable rational
+approximation is effective, and the negative case of binary computability is
+defined using the absolute value.
+
+Suppose first that $r$ is Turing-computable, with integer part $a$ and
+computable bits $b_i$. Set
+\[
+ q_n=a+\sum_{i=0}^{n}b_i2^{-(i+1)}\in\Q.
+\]
+The sum is computable and
+\[
+ 0\le r-q_n\le\sum_{i=n+1}^{\infty}2^{-(i+1)}
+   =2^{-(n+1)}<2^{-n}.
+\]
+Thus $r$ is Borel-computable.
+
+Conversely, suppose $(q_m)_{m\in\Nzero}$ computes $r$ with
+$|q_m-r|<2^{-m}$. Fix the integer part $a=\lfloor r\rfloor$ as part of the
+existential description of a binary expansion. We distinguish two cases.
+
+If $r$ is dyadic, it admits an eventually zero binary expansion. Its finite
+sequence of nonzero digits can be built into an algorithm, and hence $r$ is
+Turing-computable.
+
+Now assume $r$ is not dyadic. Fix $n\in\Nzero$. The non-dyadic number $r$
+lies strictly between two consecutive grid points of mesh $2^{-(n+1)}$.
+Search over $m\in\Nzero$ until the rational interval
+\[
+  I_m=(q_m-2^{-m},\,q_m+2^{-m})
+\]
+is contained strictly in a single grid cell
+\[
+ \left(\frac{k}{2^{n+1}},\frac{k+1}{2^{n+1}}\right),
+ \qquad k\in\Nzero.
+\]
+Containment is decidable by rational arithmetic: for a given $m$ there is
+at most one candidate $k$, which can be found by integer division.
+The search terminates, since $r$ has positive distance from both endpoints
+of its grid cell and $q_m\to r$ with an effective error bound.
+Moreover $r\in I_m$, so the returned $k$ satisfies
+$k=\lfloor2^{n+1}r\rfloor$. The $n$th binary digit of $r$ is therefore
+\[
+ b_n=k\bmod 2.
+\]
+This procedure computes each bit, completing the proof.
+\end{proof}
+
+\begin{remark}
+The two definitions characterize the same set of real numbers, but their
+representations do not admit symmetric \emph{uniform} conversions. Given a
+computable binary expansion one can effectively obtain rational approximations.
+In general there is no algorithm that takes an arbitrary rational-approximation
+procedure and uniformly produces its binary digits: the latter operation must
+resolve boundary cases at dyadic rationals. This does not contradict the
+existence of a computable binary expansion for each Borel-computable real.
+\end{remark}
+
+\begin{definition}[Computable Real Numbers]
+The set of \emph{computable real numbers} is
+\[
+  \Rc\coloneqq\{r\in\R\mid r\text{ is computable}\}.
+\]
+By the preceding theorem, either notion of computability can be used.
+\end{definition}
+
+\begin{proposition}[Closure under Arithmetic]
+The set $\Rc$ is a subfield of $\R$. In particular,
+\[
+ x,y\in\Rc\implies x+y,\ x-y,\ xy\in\Rc,
+ \qquad y\ne0\implies\frac{x}{y}\in\Rc.
+\]
+\end{proposition}
+
+\begin{proposition}[Real Closedness of Computable Reals]
+Every real root of a nonzero polynomial in $\Rc[X]$ is computable.
+Consequently, $\Rc$ is a real-closed field.
+\end{proposition}
+
+\begin{proposition}[Computability of $\pi$ and $e$]
+The real numbers $\pi$ and $e$ are computable.
+\end{proposition}
+\begin{proof}
+The alternating arctangent series gives
+\[
+ \frac{\pi}{4}=\arctan 1=\sum_{k=0}^{\infty}\frac{(-1)^k}{2k+1}.
+\]
+For $m\in\Nzero$ put
+\[
+ p_m=4\sum_{k=0}^{m}\frac{(-1)^k}{2k+1}\in\Q.
+\]
+The alternating-series estimate yields
+\[
+ |\pi-p_m|\le\frac{4}{2m+3}.
+\]
+Choosing $m=2^{n+1}$ gives
+$|\pi-p_m|<2^{-n}$ for every $n\in\Nzero$. The finite sum $p_m$ is
+computable from $n$.
+
+The computability of $e=\exp(1)$ follows from the computability of
+$\exp\colon\R\to\R$ proved in Theorem~\ref{thm:exp}.
+\end{proof}
+
+\begin{proposition}[Countability of the Computable Reals]
+The set $\Rc$ is countably infinite. Consequently, there exist
+noncomputable real numbers.
+\end{proposition}
+\begin{proof}
+There are countably many finite descriptions of algorithms, and every
+computable real has at least one such description. Hence $\Rc$ is at most
+countable. On the other hand, every rational number is computable via its
+constant approximation sequence, so $\Q\subseteq\Rc$ and $\Rc$ is infinite.
+Since $\R$ is uncountable, $\R\setminus\Rc\ne\varnothing$.
+\end{proof}
+
+\begin{fact}[Hilbert's Tenth Problem]
+There is no algorithm that decides, for every multivariate polynomial with
+integer coefficients, whether it has an integer zero. In particular, the set
+of integer polynomials admitting an integer solution is not decidable.
+\end{fact}
+
+\begin{proposition}[A Noncomputable Real]
+Let $P$ be the set of all integer-coefficient polynomials in finitely
+many variables, and let
+$\phi\colon P\to\N$ be a computable injection.
+Write $P_{\mathrm{root}}\subseteq P$ for the polynomials having an integer zero.
+Then
+\[
+ r\coloneqq\sum_{p\in P}
+ 2^{-\phi(p)}\,\indicator{P_{\mathrm{root}}}(p)
+\]
+is a noncomputable real in $[0,1]$.
+\end{proposition}
+\begin{proof}
+Injectivity gives the binary coefficient at $2^{-\phi(p)}$:
+\[
+ b_{\phi(p)}=\indicator{P_{\mathrm{root}}}(p).
+\]
+Both $P_{\mathrm{root}}$ and $P\setminus P_{\mathrm{root}}$ are infinite,
+so the expansion has infinitely many zeros and ones; in particular,
+$r$ is not dyadic. If $r\in\Rc$, its unique binary expansion is
+computable by the equivalence theorem. Hence
+\[
+ p\longmapsto b_{\phi(p)}=\indicator{P_{\mathrm{root}}}(p)
+\]
+would decide Hilbert's Tenth Problem, a contradiction.
+\end{proof}
+
+\begin{remark}
+The construction is not specific to $P_{\mathrm{root}}$. If
+$A\subseteq\Nzero$ is noncomputable, then
+\[
+  r_A\coloneqq\sum_{n=0}^{\infty}2^{-(n+1)}\indicator{A}(n)
+\]
+is noncomputable.
+Indeed, a noncomputable set is neither finite nor cofinite, so this
+binary expansion is unique; its computability would decide $A$.
+\end{remark}
+
+\Needspace{8\baselineskip}

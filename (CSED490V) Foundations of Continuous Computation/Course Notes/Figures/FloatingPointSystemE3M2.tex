@@ -1,0 +1,64 @@
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\definecolor{normalgreen}{RGB}{19,130,81}
+\definecolor{subblue}{RGB}{40,105,181}
+\definecolor{thresholdyellow}{RGB}{200,151,20}
+\definecolor{inf orange}{RGB}{221,112,41}
+\definecolor{nanred}{RGB}{188,55,70}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm,>=latex, every node/.style={font=\footnotesize}]
+% Three separate, locally linear intervals. No float lies outside its binade.
+\def\axislen{12.0}
+\foreach \yy/\region in {3.30/{$0\le x<1$},1.95/{$1\le x<4$},0.60/{$4\le x<16$}}{
+  \draw[thin,->] (0,\yy) -- (12.35,\yy);
+  \node[anchor=south west,font=\scriptsize] at (0,\yy+.12) {\region};
+}
+% [0,1), four zero/subnormal encodings, eight normal values
+\foreach \v in {0,0.0625,0.125,0.1875} {
+  \fill[subblue] ({12*\v},3.30) circle (2.1pt);
+}
+\foreach \v in {0.25,0.3125,0.375,0.4375,0.5,0.625,0.75,0.875} {
+  \fill[normalgreen] ({12*\v},3.30) circle (2.1pt);
+}
+% [1,4) eight normal values
+\foreach \v in {1,1.25,1.5,1.75,2,2.5,3,3.5} {
+  \fill[normalgreen] ({4*(\v-1)},1.95) circle (2.1pt);
+}
+% [4,16) eight normal values and the non-floating threshold K=15
+\foreach \v in {4,5,6,7,8,10,12,14} {
+  \fill[normalgreen] ({(\v-4)},0.60) circle (2.1pt);
+}
+\draw[thresholdyellow,line width=0.85pt] (11,0.28)--(11,0.90);
+\fill[thresholdyellow] (11,0.60) circle (2.9pt);
+% A few useful tick labels (not a label for every number)
+\foreach \x/\t in {0/$0$,3/$\frac14$,6/$\frac12$,9/$\frac34$,12/$1$}{
+  \draw[gray!60] (\x,3.21)--(\x,3.11);
+  \node[anchor=north,font=\scriptsize] at (\x,3.10){\t};
+}
+\foreach \x/\t in {0/$1$,4/$2$,8/$3$,12/$4$}{
+  \draw[gray!60] (\x,1.86)--(\x,1.76);
+  \node[anchor=north,font=\scriptsize] at (\x,1.75){\t};
+}
+\foreach \x/\t in {0/$4$,4/$8$,8/$12$,10/$14$,11/$15$,12/$16$}{
+  \draw[gray!60] (\x,0.50)--(\x,0.40);
+  \node[anchor=north,font=\scriptsize] at (\x,0.38){\t};
+}
+\node[anchor=south,font=\scriptsize,text=normalgreen] at (10,0.78){$F_{\max}=14$};
+\node[anchor=south,font=\scriptsize,text=thresholdyellow] at (11.46,1.00){$K_{3,2}=15$};
+% Unordered encodings are not points on the real line.
+\node[anchor=west,font=\scriptsize] at (0,-0.45){Special encodings (not finite real points):};
+\fill[inf orange] (5.95,-0.38) circle (2.6pt);
+\node[anchor=west,font=\scriptsize] at (6.18,-0.38){$+\infty$ (1)};
+\foreach \x in {9.05,9.37,9.69}{\fill[nanred] (\x,-0.38) circle (2.3pt);}
+\node[anchor=west,font=\scriptsize] at (9.94,-0.38){NaN (3 codes)};
+% Compact legend with exact counts, including the extra nonrepresentable boundary.
+\fill[normalgreen] (.1,-1.11) circle (2.2pt);
+\node[anchor=west,font=\scriptsize] at (.34,-1.11){normal (24)};
+\fill[subblue] (3.13,-1.11) circle (2.2pt);
+\node[anchor=west,font=\scriptsize] at (3.37,-1.11){zero / subnormal (4)};
+\fill[thresholdyellow] (7.44,-1.11) circle (2.6pt);
+\node[anchor=west,font=\scriptsize] at (7.68,-1.11){rounding threshold (1 extra)};
+\end{tikzpicture}
+\end{document}

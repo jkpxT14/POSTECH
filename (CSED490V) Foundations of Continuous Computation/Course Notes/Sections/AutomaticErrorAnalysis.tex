@@ -1,0 +1,229 @@
+\section{Automatic Error Analysis}
+
+\begin{definition}[Floating-Point Expression Syntax]
+Fix $N\in\N$ and $\mathbb F=\mathbb F_{E,M}$. Expressions are
+formed according to
+\[
+  e::=c\mid x_i\mid -e\mid e+e\mid e\times e,
+  \qquad c\in\mathbb F,\quad 1\le i\le N.
+\]
+An expression $e$ is a syntactic object, not a function.
+\end{definition}
+
+\begin{definition}[Floating-Point Semantics]
+For an input valuation $\sigma=(\sigma_1,\dots,\sigma_N)\in\mathbb F^N$,
+the floating-point semantics is the function
+$\llbracket e\rrbracket\colon\mathbb F^N\to\mathbb F$ defined by
+\[
+\begin{aligned}
+\llbracket c\rrbracket(\sigma)&=c,
+&\llbracket x_i\rrbracket(\sigma)&=\sigma_i,\\
+\llbracket-e\rrbracket(\sigma)&=-\llbracket e\rrbracket(\sigma),
+&\llbracket e_1+e_2\rrbracket(\sigma)
+  &=\llbracket e_1\rrbracket(\sigma)\oplus\llbracket e_2\rrbracket(\sigma),\\
+\llbracket e_1\times e_2\rrbracket(\sigma)
+  &=\llbracket e_1\rrbracket(\sigma)\otimes\llbracket e_2\rrbracket(\sigma).
+\end{aligned}
+\]
+The interpretation is defined for input valuations at which every
+rounded operation has a finite result.
+\end{definition}
+
+\begin{definition}[Real-Valued Semantics]
+The real-valued interpretation
+$\llbracket e\rrbracket_{\mathrm r}\colon\mathbb F^N\to\R$
+is obtained from the same recursive rules by replacing
+$\oplus$ and $\otimes$ with exact $+$ and $\times$.
+Thus $\llbracket e\rrbracket_{\mathrm r}(\sigma)$ evaluates $e$ over
+$\R$ at the same input $\sigma$.
+\end{definition}
+
+\begin{example}[Different Semantics]
+Let $e=(1+x_1)+(-x_1)$, and assume $2^{M+1}\in\mathbb F$.
+At $\sigma_1=2^{M+1}$, ties-to-even yields
+\[
+  \llbracket e\rrbracket(\sigma)=0,
+  \qquad\llbracket e\rrbracket_{\mathrm r}(\sigma)=1.
+\]
+\end{example}
+
+\begin{definition}[Sound Range and Error Analysis]
+Fix the admissible inputs
+\[
+  \Sigma\coloneqq\prod_{i=1}^N([l_i,r_i]\cap\mathbb F),
+  \qquad l_i,r_i\in\mathbb F,\quad l_i\le r_i.
+\]
+A sound \emph{range analysis} assigns an interval
+$\operatorname{range}(e)$, and a sound \emph{absolute-error analysis}
+assigns $\operatorname{err}(e)\ge0$, such that
+\[
+\begin{aligned}
+ \llbracket e\rrbracket(\sigma)&\in\operatorname{range}(e),\\
+ |\llbracket e\rrbracket(\sigma)-\llbracket e\rrbracket_{\mathrm r}(\sigma)|
+ &\le\operatorname{err}(e)
+\end{aligned}
+\qquad(\forall\sigma\in\Sigma).
+\]
+These bounds are computed recursively from the syntax and the
+rounding estimates; the fixed input set $\Sigma$ is suppressed
+in the notation.
+\end{definition}
+
+\begin{definition}[Recursive Range Bounds]
+Set
+\[
+  \operatorname{range}(c)=[c,c],\qquad
+  \operatorname{range}(x_i)=[l_i,r_i].
+\]
+If $\operatorname{range}(e)=[a,b]$, put
+$\operatorname{range}(-e)=[-b,-a]$. If
+$\operatorname{range}(e_i)=[a_i,b_i]$ for $i=1,2$, put
+\[
+ \operatorname{range}(e_1+e_2)
+ =[\rnd(a_1+a_2),\rnd(b_1+b_2)].
+\]
+\end{definition}
+
+\begin{proposition}[Soundness of Recursive Range Bounds]
+The preceding rules enclose each floating-point evaluation,
+provided the rounded endpoint operations remain finite.
+\end{proposition}
+\begin{proof}
+Constants, variables, and negation follow directly from the semantics.
+If $\llbracket e_i\rrbracket(\sigma)\in[a_i,b_i]$, then
+\[
+ a_1+a_2\le\llbracket e_1\rrbracket(\sigma)
+ +\llbracket e_2\rrbracket(\sigma)\le b_1+b_2.
+\]
+Monotonicity of $\rnd$ gives the asserted range enclosure for the sum.
+Structural induction completes the proof.
+\end{proof}
+
+\begin{definition}[Recursive Absolute-Error Bounds]
+Set
+\[
+ \operatorname{err}(c)=\operatorname{err}(x_i)=0,
+ \qquad\operatorname{err}(-e)=\operatorname{err}(e).
+\]
+If $\operatorname{range}(e_i)=[a_i,b_i]$ for $i=1,2$, define
+\[
+ \operatorname{err}(e_1+e_2)
+ =\operatorname{err}(e_1)+\operatorname{err}(e_2)
+ +\tfrac12\ulp(\max\{|a_1+a_2|,|b_1+b_2|\}).
+\]
+\end{definition}
+
+\begin{proposition}[Soundness of Recursive Error Bounds]
+The preceding recursion bounds the absolute difference of the two
+semantics, provided the rounded operations remain finite.
+\end{proposition}
+\begin{proof}
+Write $u_i=\llbracket e_i\rrbracket(\sigma)$ and
+$v_i=\llbracket e_i\rrbracket_{\mathrm r}(\sigma)$. Then
+\[
+\begin{aligned}
+ |\rnd(u_1+u_2)-(v_1+v_2)|
+ &\le|\rnd(u_1+u_2)-(u_1+u_2)|+|u_1-v_1|+|u_2-v_2|\\
+ &\le\tfrac12\ulp(u_1+u_2)
+   +\operatorname{err}(e_1)+\operatorname{err}(e_2).
+\end{aligned}
+\]
+Since $u_i\in[a_i,b_i]$ and $\ulp$ is nondecreasing in $|x|$,
+\[
+ \ulp(u_1+u_2)
+ \le\ulp(\max\{|a_1+a_2|,|b_1+b_2|\}).
+\]
+The other recursive cases are immediate.
+\end{proof}
+
+
+\begin{definition}[Multiplication Bounds]
+Suppose $\operatorname{range}(e_i)=[a_i,b_i]$ for $i=1,2$. Let
+\[
+  p_-\coloneqq\min\{a_1a_2,a_1b_2,b_1a_2,b_1b_2\},\qquad
+  p_+\coloneqq\max\{a_1a_2,a_1b_2,b_1a_2,b_1b_2\}.
+\]
+Define
+\[
+  \operatorname{range}(e_1\times e_2)
+  =[\rnd(p_-),\rnd(p_+)].
+\]
+For $i=1,2$, write $U_i=\max\{|a_i|,|b_i|\}$ and
+$\eta_i=\operatorname{err}(e_i)$. Set
+\[
+\begin{aligned}
+  \operatorname{err}(e_1\times e_2)
+  ={}& U_1\eta_2+U_2\eta_1+\eta_1\eta_2\\
+     &+\tfrac12\ulp(\max\{|p_-|,|p_+|\}).
+\end{aligned}
+\]
+\end{definition}
+
+\begin{proposition}[Soundness of Multiplication Bounds]
+The multiplication rules are sound if the corresponding rounding
+operations have finite results.
+\end{proposition}
+\begin{proof}
+Let $u_i=\llbracket e_i\rrbracket(\sigma)$ and
+$v_i=\llbracket e_i\rrbracket_{\mathrm r}(\sigma)$. Since
+$u_i\in[a_i,b_i]$, the exact product $u_1u_2$ belongs to
+$[p_-,p_+]$. Rounding monotonicity proves the range enclosure.
+For the error, $|u_i|\le U_i$ and
+$|v_i|\le U_i+\eta_i$ give
+\[
+\begin{aligned}
+ |\rnd(u_1u_2)-v_1v_2|
+ &\le |\rnd(u_1u_2)-u_1u_2|+|u_1u_2-v_1v_2|\\
+ &\le\tfrac12\ulp(u_1u_2)
+   +U_1\eta_2+(U_2+\eta_2)\eta_1.
+\end{aligned}
+\]
+The first term is bounded by
+$\tfrac12\ulp(\max\{|p_-|,|p_+|\})$.
+\end{proof}
+
+\begin{definition}[Square-Root Extension]
+The expression grammar may be extended by $\sqrt e$, on input
+valuations for which both interpretations of $e$ are nonnegative:
+\[
+\begin{aligned}
+ \llbracket\sqrt e\rrbracket(\sigma)
+ &=\rnd\!\bigl(\sqrt{\llbracket e\rrbracket(\sigma)}\bigr),\\
+ \llbracket\sqrt e\rrbracket_{\mathrm r}(\sigma)
+ &=\sqrt{\llbracket e\rrbracket_{\mathrm r}(\sigma)}.
+\end{aligned}
+\]
+If $\operatorname{range}(e)=[a,b]\subseteq[0,F_{\max}]$, set
+\[
+\begin{aligned}
+ \operatorname{range}(\sqrt e)
+ &=[\rnd(\sqrt a),\rnd(\sqrt b)],\\
+ \operatorname{err}(\sqrt e)
+ &=\sqrt{\operatorname{err}(e)}+\tfrac12\ulp(\sqrt b).
+\end{aligned}
+\]
+\end{definition}
+\begin{proposition}[Soundness of the Square-Root Bounds]
+The preceding extension is sound whenever its real and floating-point
+square roots are defined and finite.
+\end{proposition}
+\begin{proof}
+Monotonicity gives the range enclosure. For $u,v\ge0$,
+$|\sqrt u-\sqrt v|\le\sqrt{|u-v|}$; hence
+\[
+\begin{aligned}
+ |\rnd(\sqrt u)-\sqrt v|
+ &\le|\rnd(\sqrt u)-\sqrt u|+|\sqrt u-\sqrt v|\\
+ &\le\tfrac12\ulp(\sqrt b)+\sqrt{\operatorname{err}(e)}.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{remark}[Limitations of Interval Analysis]
+Independent bounds lose dependencies between repeated occurrences
+of the same variable. For $e=x_1-x_1$ (i.e., $x_1+(-x_1)$) and
+$x_1\in[-1,1]$, interval propagation gives $[-2,2]$ although both
+semantics evaluate to $0$. Even a sound error bound can be positive
+when the actual rounding error vanishes; soundness does not imply
+sharpness.
+\end{remark}
