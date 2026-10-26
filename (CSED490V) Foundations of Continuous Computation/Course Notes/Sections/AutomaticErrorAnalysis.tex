@@ -11,9 +11,11 @@ An expression $e$ is a syntactic object, not a function.
 \end{definition}
 
 \begin{definition}[Floating-Point Semantics]
-For an input valuation $\sigma=(\sigma_1,\dots,\sigma_N)\in\mathbb F^N$,
-the floating-point semantics is the function
-$\llbracket e\rrbracket\colon\mathbb F^N\to\mathbb F$ defined by
+For $e$, let $D_e\subseteq\mathbb F^N$ be the set of input
+valuations at which all rounded operations in $e$ yield finite values.
+The floating-point semantics is the function
+$\llbracket e\rrbracket\colon D_e\to\mathbb F$ defined recursively,
+for $\sigma=(\sigma_1,\dots,\sigma_N)\in D_e$, by
 \[
 \begin{aligned}
 \llbracket c\rrbracket(\sigma)&=c,
@@ -25,8 +27,9 @@ $\llbracket e\rrbracket\colon\mathbb F^N\to\mathbb F$ defined by
   &=\llbracket e_1\rrbracket(\sigma)\otimes\llbracket e_2\rrbracket(\sigma).
 \end{aligned}
 \]
-The interpretation is defined for input valuations at which every
-rounded operation has a finite result.
+For constants and variables, $D_e=\mathbb F^N$; for the other
+constructors, the domains are restricted to inputs on which their
+subexpressions and the indicated rounded operations are finite.
 \end{definition}
 
 \begin{definition}[Real-Valued Semantics]
@@ -48,11 +51,14 @@ At $\sigma_1=2^{M+1}$, ties-to-even yields
 \end{example}
 
 \begin{definition}[Sound Range and Error Analysis]
-Fix the admissible inputs
+Fix the input set
 \[
-  \Sigma\coloneqq\prod_{i=1}^N([l_i,r_i]\cap\mathbb F),
-  \qquad l_i,r_i\in\mathbb F,\quad l_i\le r_i.
+  \Sigma\coloneqq\prod_{i=1}^N([l_i,r_i]\cap\mathbb F)
+  \subseteq D_e,\qquad l_i,r_i\in\mathbb F,\quad l_i\le r_i.
 \]
+This condition excludes overflow at every intermediate operation
+for inputs in $\Sigma$. When computing bounds recursively, we also
+assume the endpoint rounding operations used by the analysis remain finite.
 A sound \emph{range analysis} assigns an interval
 $\operatorname{range}(e)$, and a sound \emph{absolute-error analysis}
 assigns $\operatorname{err}(e)\ge0$, such that
@@ -84,20 +90,13 @@ $\operatorname{range}(e_i)=[a_i,b_i]$ for $i=1,2$, put
 \]
 \end{definition}
 
-\begin{proposition}[Soundness of Recursive Range Bounds]
-The preceding rules enclose each floating-point evaluation,
-provided the rounded endpoint operations remain finite.
-\end{proposition}
-\begin{proof}
-Constants, variables, and negation follow directly from the semantics.
-If $\llbracket e_i\rrbracket(\sigma)\in[a_i,b_i]$, then
+The sum rule follows from monotonicity: if
+$\llbracket e_i\rrbracket(\sigma)\in[a_i,b_i]$, then
 \[
  a_1+a_2\le\llbracket e_1\rrbracket(\sigma)
- +\llbracket e_2\rrbracket(\sigma)\le b_1+b_2.
+ +\llbracket e_2\rrbracket(\sigma)\le b_1+b_2,
 \]
-Monotonicity of $\rnd$ gives the asserted range enclosure for the sum.
-Structural induction completes the proof.
-\end{proof}
+and rounding the endpoints preserves this enclosure.
 
 \begin{definition}[Recursive Absolute-Error Bounds]
 Set
@@ -113,28 +112,17 @@ If $\operatorname{range}(e_i)=[a_i,b_i]$ for $i=1,2$, define
 \]
 \end{definition}
 
-\begin{proposition}[Soundness of Recursive Error Bounds]
-The preceding recursion bounds the absolute difference of the two
-semantics, provided the rounded operations remain finite.
-\end{proposition}
-\begin{proof}
-Write $u_i=\llbracket e_i\rrbracket(\sigma)$ and
-$v_i=\llbracket e_i\rrbracket_{\mathrm r}(\sigma)$. Then
+For the addition rule, put $u_i=\llbracket e_i\rrbracket(\sigma)$
+and $v_i=\llbracket e_i\rrbracket_{\mathrm r}(\sigma)$. Then
 \[
 \begin{aligned}
  |\rnd(u_1+u_2)-(v_1+v_2)|
- &\le|\rnd(u_1+u_2)-(u_1+u_2)|+|u_1-v_1|+|u_2-v_2|\\
- &\le\tfrac12\ulp(u_1+u_2)
-   +\operatorname{err}(e_1)+\operatorname{err}(e_2).
+ &\le |\rnd(u_1+u_2)-(u_1+u_2)|+|u_1-v_1|+|u_2-v_2|\\
+ &\le\tfrac12\ulp(u_1+u_2)+\operatorname{err}(e_1)+\operatorname{err}(e_2).
 \end{aligned}
 \]
 Since $u_i\in[a_i,b_i]$ and $\ulp$ is nondecreasing in $|x|$,
-\[
- \ulp(u_1+u_2)
- \le\ulp(\max\{|a_1+a_2|,|b_1+b_2|\}).
-\]
-The other recursive cases are immediate.
-\end{proof}
+the displayed recursion bounds the error.
 
 
 \begin{definition}[Multiplication Bounds]
@@ -159,28 +147,18 @@ $\eta_i=\operatorname{err}(e_i)$. Set
 \]
 \end{definition}
 
-\begin{proposition}[Soundness of Multiplication Bounds]
-The multiplication rules are sound if the corresponding rounding
-operations have finite results.
-\end{proposition}
-\begin{proof}
-Let $u_i=\llbracket e_i\rrbracket(\sigma)$ and
-$v_i=\llbracket e_i\rrbracket_{\mathrm r}(\sigma)$. Since
-$u_i\in[a_i,b_i]$, the exact product $u_1u_2$ belongs to
-$[p_-,p_+]$. Rounding monotonicity proves the range enclosure.
-For the error, $|u_i|\le U_i$ and
-$|v_i|\le U_i+\eta_i$ give
+Indeed, for $u_i=\llbracket e_i\rrbracket(\sigma)$ and
+$v_i=\llbracket e_i\rrbracket_{\mathrm r}(\sigma)$, the exact
+product $u_1u_2$ lies in $[p_-,p_+]$, so monotonicity justifies
+the range rule. The error follows from
 \[
 \begin{aligned}
  |\rnd(u_1u_2)-v_1v_2|
  &\le |\rnd(u_1u_2)-u_1u_2|+|u_1u_2-v_1v_2|\\
- &\le\tfrac12\ulp(u_1u_2)
-   +U_1\eta_2+(U_2+\eta_2)\eta_1.
+ &\le\tfrac12\ulp(\max\{|p_-|,|p_+|\})
+ +U_1\eta_2+(U_2+\eta_2)\eta_1.
 \end{aligned}
 \]
-The first term is bounded by
-$\tfrac12\ulp(\max\{|p_-|,|p_+|\})$.
-\end{proof}
 
 \begin{definition}[Square-Root Extension]
 The expression grammar may be extended by $\sqrt e$, on input
@@ -203,21 +181,12 @@ If $\operatorname{range}(e)=[a,b]\subseteq[0,F_{\max}]$, set
 \end{aligned}
 \]
 \end{definition}
-\begin{proposition}[Soundness of the Square-Root Bounds]
-The preceding extension is sound whenever its real and floating-point
-square roots are defined and finite.
-\end{proposition}
-\begin{proof}
-Monotonicity gives the range enclosure. For $u,v\ge0$,
-$|\sqrt u-\sqrt v|\le\sqrt{|u-v|}$; hence
+The range bound follows from monotonicity of square root and
+rounding. The error rule follows from, for $u,v\ge0$,
 \[
-\begin{aligned}
- |\rnd(\sqrt u)-\sqrt v|
- &\le|\rnd(\sqrt u)-\sqrt u|+|\sqrt u-\sqrt v|\\
- &\le\tfrac12\ulp(\sqrt b)+\sqrt{\operatorname{err}(e)}.
-\end{aligned}
+ |\sqrt{u}-\sqrt{v}|\le\sqrt{|u-v|},
 \]
-\end{proof}
+followed by the triangle inequality and the half-ULP rounding bound.
 
 \begin{remark}[Limitations of Interval Analysis]
 Independent bounds lose dependencies between repeated occurrences

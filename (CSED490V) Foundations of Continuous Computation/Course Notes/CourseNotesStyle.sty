@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{CourseNotesStyle}[2026/10/26 CSED490V course-notes style v7]
+\ProvidesPackage{CourseNotesStyle}[2026/10/26 CSED490V course-notes style v8]
 
 % The page design is adapted from the MATH200/MATH203 document family.
 \RequirePackage[a4paper,margin=1in]{geometry}
@@ -8,7 +8,7 @@
 \RequirePackage{microtype}
 \RequirePackage{etoolbox}
 \RequirePackage{needspace}
-\RequirePackage{fancyhdr}
+\RequirePackage[topmarks]{titleps}
 \RequirePackage{amsmath,amssymb,amsthm}
 \RequirePackage{dsfont}
 \RequirePackage{mathtools}
@@ -108,21 +108,19 @@
  \toprule Notation & Meaning\\ \midrule}
  {\\[0.15em]\bottomrule\end{tabular}\endgroup\par\vspace{0.5em}}
 
-\setlength{\headheight}{14pt}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\small\textit{(CSED490V) Foundations of Continuous Computation}}
-\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
-\fancyhead[R]{\small\textit{\nouppercase{\leftmark}}}
-\fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0pt}
+% The top-of-page section is used, even if another section starts lower.
+% This follows the topmarks/titleps strategy of (MATH000) Mathematical Language.
+\newpagestyle{coursenotes}{%
+  \sethead{\small\textit{CSED490V Foundations of Continuous Computation}}{}%
+    {\small\textit{\sectiontitle}}%
+  \setfoot{}{\thepage}{}%
+  \setheadrule{0.4pt}%
+}
+\pagestyle{coursenotes}
 
-\fancypagestyle{coursenotationpage}{%
- \fancyhf{}%
- \fancyhead[L]{\small\textit{(CSED490V) Foundations of Continuous Computation}}%
- \fancyhead[R]{\small\textit{Notation and Conventions}}%
- \fancyfoot[C]{\thepage}%
- \renewcommand{\headrulewidth}{0.4pt}%
- \renewcommand{\footrulewidth}{0pt}%
+\newpagestyle{coursenotationpage}{%
+  \sethead{\small\textit{CSED490V Foundations of Continuous Computation}}{}%
+    {\small\textit{Notation and Conventions}}%
+  \setfoot{}{\thepage}{}%
+  \setheadrule{0.4pt}%
 }

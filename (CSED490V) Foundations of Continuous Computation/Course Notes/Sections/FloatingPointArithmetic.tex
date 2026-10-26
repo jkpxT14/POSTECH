@@ -45,10 +45,11 @@ binary64 formats, $(E,M)=(8,23)$ and $(11,52)$, respectively.
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.98\linewidth]{Figures/FloatingPointSystemE3M2.pdf}
-  \caption{Nonnegative encodings for $(E,M)=(3,2)$: 24 normal values,
-  $+0$ and three subnormals, $+\infty$, and three NaN bit patterns.
-  The nonrepresentable rounding threshold $K_{3,2}=15$ is shown separately;
-  the largest finite value is $F_{\max}=14$.}
+  \caption{The nonnegative $(E,M)=(3,2)$ format: 24 normal values,
+  zero and three subnormals, one infinity code, and three NaN codes,
+  together with the nonrepresentable threshold $K_{3,2}=15$.
+  The last strip arranges special codes by their bit-pattern slots,
+  not by real values; $F_{\max}=14$.}
   \label{fig:fp-E3M2}
 \end{figure}
 
@@ -85,6 +86,8 @@ For $x,y\in\R$,
 \]
 with the usual order on $\R\cup\{-\infty,+\infty\}$.
 \end{proposition}
+Strict monotonicity does not hold: distinct real numbers can round
+to the same floating-point value.
 
 \begin{definition}[Floating-Point Operations]
 For $a,b,c\in\mathbb F_{E,M}$, define rounded arithmetic by

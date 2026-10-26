@@ -28,6 +28,8 @@
 
 \vspace{0.8cm}
 
+\schoolsection{\POSTECH}{\PohangUniversityOfScienceAndTechnology}
+
 % 2018 Fall POSTECH Applied Linear Algebra Midterm, Problem 1
 \begin{problem}[2018 Fall \POSTECH{} Applied Linear Algebra]
 In this problem, $V$ is a vector space. Determine whether each of the following statements is true or false.
@@ -2276,6 +2278,381 @@ Let $V,W\subseteq\R^n$ be subspaces.
 
 
 
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 1
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether each of the following statements is true or false. You do not need to justify your answers.
+\begin{problemchoices}
+\item Let $\mathbf A$ and $\mathbf B$ be matrices. If both $\mathbf A\mathbf B$ and $\mathbf B\mathbf A$ are defined, then both products are square matrices.
+\item Let $\mathbf A$ be a square matrix. Suppose that
+\[
+\mathbf A=\mathbf L\mathbf D\mathbf U,
+\]
+where $\mathbf L$ is lower triangular with all diagonal entries equal to $1$, $\mathbf U$ is upper triangular with all diagonal entries equal to $1$, and $\mathbf D$ is diagonal with no zero diagonal entries. Then such a decomposition is unique.
+\item If $\mathbf A$ is a square matrix and $\mathbf A^2$ is nonsingular, then $\mathbf A$ is nonsingular.
+\item The set of all $n\times n$ skew-symmetric matrices,
+\[
+\mathbf A^{\mathsf T}=-\mathbf A,
+\]
+forms a subspace of the vector space of $n\times n$ matrices.
+\item Every subspace of $\R^4$ is the null space of some matrix.
+\item Let $H_\theta\colon \R^2\to\R^2$ denote reflection across the line through the origin making angle $\theta$ with the positive $x$-axis. Then $H_{\theta_1}\circ H_{\theta_2}$ is counterclockwise rotation by $2(\theta_1-\theta_2)$.
+\item There exists a nonsquare matrix that has both a left inverse and a right inverse, possibly different from each other.
+\item Let $V$ and $W$ be finite-dimensional vector spaces. If a linear transformation $T\colon V\to W$ is injective, then
+\[
+\dim V\le \dim W.
+\]
+\item Let $T\colon \R^n\to\R^m$ be linear. If the values $T(\mathbf v)$ are known for $n$ distinct nonzero vectors $\mathbf v\in\R^n$, then $T(\mathbf v)$ is determined for every $\mathbf v\in\R^n$.
+\item For a square matrix $\mathbf A$, if the columns of $\mathbf A$ are linearly independent, then the rows of $\mathbf A$ are linearly independent.
+\end{problemchoices}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 2
+\Needspace{11\baselineskip}
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A=(a_{ij})_{n\times n}$ be the matrix defined by
+\[
+a_{ij}=
+\begin{cases}
+1, & j-i=1,\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+\begin{problemsubparts}
+\item Evaluate the sum of all entries of $\mathbf A$,
+\[
+\sum_{1\le i,j\le n} a_{ij}.
+\]
+\item Let $\mathbf B=(b_{ij})$ be
+\[
+\mathbf B=\sum_{k=0}^{n-1}\mathbf A^k
+=\mathbf I_n+\mathbf A+\mathbf A^2+\cdots+\mathbf A^{n-1}.
+\]
+Evaluate the sum of all entries of $\mathbf B$,
+\[
+\sum_{1\le i,j\le n} b_{ij}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 3
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Consider
+\[
+\mathbf A=
+\begin{pmatrix}
+1&-1&0\\
+2&0&-2\\
+0&a&4
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find all $a\in\R$ for which $\mathbf A$ is invertible.
+\item Using the Gauss--Jordan method, find $\mathbf A^{-1}$ when $a=2$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 4
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Consider
+\[
+\mathbf A=
+\begin{pmatrix}
+1&2&3&2\\
+2&4&8&6\\
+-1&-2&1&2
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+b_1\\b_2\\b_3
+\end{pmatrix}.
+\]
+In solving $\mathbf A\mathbf x=\mathbf b$, apply Gaussian elimination to obtain
+\[
+\mathbf U\mathbf x=\mathbf c,
+\]
+and then reduce further to
+\[
+\mathbf R\mathbf x=\mathbf d,
+\]
+where $\mathbf U$ is the echelon matrix obtained from $\mathbf A$ and $\mathbf R$ is the reduced row echelon form of $\mathbf A$. Compute $\mathbf c$ and $\mathbf d$ in terms of $b_1,b_2,b_3$.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 5
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $V=M_2(\R)$ be the vector space of $2\times2$ real matrices, and let $P_3$ be the vector space of real polynomials of degree at most $3$. Consider the linear map $T\colon P_3\to V$ defined by
+\[
+T(a_0+a_1x+a_2x^2+a_3x^3)
+=
+\begin{pmatrix}
+a_0+a_1&-a_0-a_2\\
+-a_1+a_3&a_2-a_3
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find the matrix $\mathbf A$ representing $T$ with respect to the ordered basis
+\[
+(1,x,x^2,x^3)
+\]
+of $P_3$ and the ordered basis $(\mathbf E_1,\mathbf E_2,\mathbf E_3,\mathbf E_4)$ of $V$, where
+\[
+\mathbf E_1=
+\begin{pmatrix}1&0\\0&0\end{pmatrix},\quad
+\mathbf E_2=
+\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad
+\mathbf E_3=
+\begin{pmatrix}0&0\\1&0\end{pmatrix},\quad
+\mathbf E_4=
+\begin{pmatrix}0&0\\0&1\end{pmatrix}.
+\]
+\item Find $\rk(\mathbf A)$ and $\dim\Null(\mathbf A)$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 6
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&-2\\
+1&-1\\
+1&0\\
+1&2
+\end{pmatrix},
+\qquad
+\mathbf b=
+\begin{pmatrix}
+1\\2\\1\\2
+\end{pmatrix}.
+\]
+Decompose
+\[
+\mathbf b=\mathbf b_c+\mathbf b_n,
+\]
+where $\mathbf b_c\in\Col(\mathbf A)$ and $\mathbf b_n\in\Null(\mathbf A^{\mathsf T})$, in the following two ways.
+\begin{problemsubparts}
+\item Solve the normal equation
+\[
+\mathbf A^{\mathsf T}\mathbf A\widehat{\mathbf x}=\mathbf A^{\mathsf T}\mathbf b
+\]
+and compute $\mathbf b_c=\mathbf A\widehat{\mathbf x}$.
+\item Find an orthonormal basis $\{\mathbf q_1,\mathbf q_2\}$ for $\Col(\mathbf A)$ and express $\mathbf b_c$ as a linear combination of $\mathbf q_1$ and $\mathbf q_2$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 7
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Suppose that data are expected to conform to the quadratic relation
+\[
+y(t)=A+Bt+Ct^2.
+\]
+The observed data are
+\[
+\begin{array}{c|ccccc}
+t&-2&-1&0&1&2\\ \hline
+y(t)&-4&1&3&4&6
+\end{array}.
+\]
+Find the parameters $A,B,C$ that minimize the sum of squared errors.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 8
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $V$ be a subspace of $\R^d$. Prove that if
+\[
+\{\mathbf v_1,\dots,\mathbf v_m\}
+\qquad\text{and}\qquad
+\{\mathbf w_1,\dots,\mathbf w_n\}
+\]
+are both bases for $V$, then $m=n$.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 9
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be an $m\times n$ real matrix. Prove that
+\[
+\rk(\mathbf A)=\rk(\mathbf A^{\mathsf T}\mathbf A)=\rk(\mathbf A\mathbf A^{\mathsf T}).
+\]
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 1
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Determine whether each of the following statements is true or false. You do not need to justify your answers.
+\begin{problemchoices}
+\item There exist $3\times3$ matrices $\mathbf A$ and $\mathbf B$ such that
+\[
+\mathbf A\mathbf B-\mathbf B\mathbf A=\mathbf I_3.
+\]
+\item If $\mathbf A$ and $\mathbf B$ are simultaneously diagonalizable, and $\mathbf B$ and $\mathbf C$ are simultaneously diagonalizable, then $\mathbf A$ and $\mathbf C$ are simultaneously diagonalizable.
+\item There exists a real $2\times2$ matrix $\mathbf A\ne\mathbf I_2$ such that
+\[
+\mathbf A^3=\mathbf I_2.
+\]
+\item If a $3\times3$ matrix $\mathbf A$ has eigenvalues $1,2,3$, then
+\[
+(\mathbf A-\mathbf I_3)(\mathbf A-2\mathbf I_3)(\mathbf A-3\mathbf I_3)
+\]
+cannot have a nonzero eigenvalue.
+\item If a real matrix $\mathbf A$ is normal, then
+\[
+(\mathbf A^k)^+=(\mathbf A^+)^k
+\]
+for every positive integer $k$.
+\item If $\det(\mathbf A)>0$ and $\det(\mathbf B)>0$, then
+\[
+\det(\mathbf A+\mathbf B)>0.
+\]
+\item If $\mathbf A=(a_{ij})$ is an $n\times n$ matrix satisfying
+\[
+\sum_{i=1}^n a_{ij}=5
+\]
+for every $j$, then $5$ is an eigenvalue of $\mathbf A$.
+\item If $\mathbf A$ is an $n\times n$ symmetric matrix, then $e^{\mathbf A}$ is positive definite.
+\item Let $\mathbf A$ and $\mathbf B$ be $n\times n$ matrices. If $\lambda$ is an eigenvalue of $\mathbf A$ and $\mu$ is an eigenvalue of $\mathbf B$, then $\lambda+\mu$ is an eigenvalue of $\mathbf A+\mathbf B$.
+\item If a real symmetric matrix $\mathbf A$ is positive definite, then it is nonsingular.
+\end{problemchoices}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 2
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+\begin{problemsubparts}
+\item Find the volume of the parallelepiped determined by the edge vectors from $(0,0,0)$ to
+\[
+(-1,2,2),\qquad (2,-1,2),\qquad (2,2,-1).
+\]
+\item Compute
+\[
+\det
+\begin{pmatrix}
+1&1&1&1\\
+1&-1&1&-1\\
+1&1&-1&-1\\
+1&-1&-1&1
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 3
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A,\mathbf B,\mathbf C$ be $n\times n$ matrices and let $\mathbf 0$ be the $n\times n$ zero matrix. Show that
+\[
+\det
+\begin{pmatrix}
+\mathbf A&\mathbf B\\
+\mathbf 0&\mathbf C
+\end{pmatrix}
+=\det(\mathbf A)\det(\mathbf C).
+\]
+\textit{Hint.} One possible approach is to use the Leibniz formula for the determinant.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 4
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $(a_n)_{n=0}^{\infty}$ and $(b_n)_{n=0}^{\infty}$ be sequences satisfying
+\[
+a_{n+1}=3a_n+2b_n,
+\qquad
+b_{n+1}=a_n+4b_n,
+\qquad
+a_0=1,
+\qquad
+b_0=0.
+\]
+Evaluate
+\[
+\lim_{n\to\infty}\frac{a_n-b_n}{a_n+b_n}.
+\]
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 5
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+1&1&2\\
+0&1&1\\
+0&0&1
+\end{pmatrix},
+\qquad
+\mathbf B=
+\begin{pmatrix}
+1&0&0\\
+1&1&0\\
+2&1&1
+\end{pmatrix},
+\qquad
+\mathbf C=
+\begin{pmatrix}
+1&0&0\\
+1&1&1\\
+0&0&1
+\end{pmatrix}.
+\]
+Find two matrices among $\mathbf A,\mathbf B,\mathbf C$ that are similar to each other. Justify your answer.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 6
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let
+\[
+\mathbf A=
+\begin{pmatrix}
+3&2&2\\
+2&3&-2
+\end{pmatrix}.
+\]
+\begin{problemsubparts}
+\item Find the singular value decomposition of $\mathbf A$.
+\item Find the pseudoinverse $\mathbf A^+$ of $\mathbf A$.
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 7
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+\begin{problemsubparts}
+\item Find all $\alpha\in\R$ such that
+\[
+\mathbf A=
+\begin{pmatrix}
+4&\alpha\\
+\alpha&5
+\end{pmatrix}
+\]
+is positive definite.
+\item For a real number $\alpha$ such that $\mathbf A$ is positive definite, let $d_1(\alpha)$ and $d_2(\alpha)$ be the distances from the origin to, respectively, the closest and farthest points on
+\[
+4x^2+2\alpha xy+5y^2=1.
+\]
+Find the minimum value of
+\[
+f(\alpha)=d_1(\alpha)^2+d_2(\alpha)^2.
+\]
+\end{problemsubparts}
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 8
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+Let $\mathbf A$ be a square matrix with real entries. Show that
+\[
+\tr(\mathbf A^{\mathsf T}\mathbf A)=0
+\]
+if and only if $\mathbf A=\mathbf 0$.
+\end{problem}
+
+% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 9
+\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
+For an $n\times n$ matrix $\mathbf A$, show that
+\[
+\det(e^{\mathbf A})=e^{\tr(\mathbf A)}.
+\]
+\textit{Hint.} By Schur's triangularization theorem over $\C$, there exists an invertible matrix $\mathbf M$ such that $\mathbf M^{-1}\mathbf A\mathbf M$ is upper triangular.
+\end{problem}
+
+\schoolsection{\KAIST}{\KoreaAdvancedInstituteOfScienceAndTechnology}
+
 % 2022 Spring KAIST Introduction to Linear Algebra Midterm, Problem 1
 \begin{problem}[2022 Spring \KAIST{} Introduction to Linear Algebra]
 Describe all possible $2\times4$ reduced row echelon forms whose rows are linearly independent.
@@ -2954,379 +3331,6 @@ What are the outputs of the following commands?
 \item \texttt{disp(u.*[v v])}
 \item \texttt{disp(w)}
 \end{problemsubparts}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 1
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Determine whether each of the following statements is true or false. You do not need to justify your answers.
-\begin{problemchoices}
-\item Let $\mathbf A$ and $\mathbf B$ be matrices. If both $\mathbf A\mathbf B$ and $\mathbf B\mathbf A$ are defined, then both products are square matrices.
-\item Let $\mathbf A$ be a square matrix. Suppose that
-\[
-\mathbf A=\mathbf L\mathbf D\mathbf U,
-\]
-where $\mathbf L$ is lower triangular with all diagonal entries equal to $1$, $\mathbf U$ is upper triangular with all diagonal entries equal to $1$, and $\mathbf D$ is diagonal with no zero diagonal entries. Then such a decomposition is unique.
-\item If $\mathbf A$ is a square matrix and $\mathbf A^2$ is nonsingular, then $\mathbf A$ is nonsingular.
-\item The set of all $n\times n$ skew-symmetric matrices,
-\[
-\mathbf A^{\mathsf T}=-\mathbf A,
-\]
-forms a subspace of the vector space of $n\times n$ matrices.
-\item Every subspace of $\R^4$ is the null space of some matrix.
-\item Let $H_\theta\colon \R^2\to\R^2$ denote reflection across the line through the origin making angle $\theta$ with the positive $x$-axis. Then $H_{\theta_1}\circ H_{\theta_2}$ is counterclockwise rotation by $2(\theta_1-\theta_2)$.
-\item There exists a nonsquare matrix that has both a left inverse and a right inverse, possibly different from each other.
-\item Let $V$ and $W$ be finite-dimensional vector spaces. If a linear transformation $T\colon V\to W$ is injective, then
-\[
-\dim V\le \dim W.
-\]
-\item Let $T\colon \R^n\to\R^m$ be linear. If the values $T(\mathbf v)$ are known for $n$ distinct nonzero vectors $\mathbf v\in\R^n$, then $T(\mathbf v)$ is determined for every $\mathbf v\in\R^n$.
-\item For a square matrix $\mathbf A$, if the columns of $\mathbf A$ are linearly independent, then the rows of $\mathbf A$ are linearly independent.
-\end{problemchoices}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 2
-\Needspace{11\baselineskip}
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let $\mathbf A=(a_{ij})_{n\times n}$ be the matrix defined by
-\[
-a_{ij}=
-\begin{cases}
-1, & j-i=1,\\
-0, & \text{otherwise}.
-\end{cases}
-\]
-\begin{problemsubparts}
-\item Evaluate the sum of all entries of $\mathbf A$,
-\[
-\sum_{1\le i,j\le n} a_{ij}.
-\]
-\item Let $\mathbf B=(b_{ij})$ be
-\[
-\mathbf B=\sum_{k=0}^{n-1}\mathbf A^k
-=\mathbf I_n+\mathbf A+\mathbf A^2+\cdots+\mathbf A^{n-1}.
-\]
-Evaluate the sum of all entries of $\mathbf B$,
-\[
-\sum_{1\le i,j\le n} b_{ij}.
-\]
-\end{problemsubparts}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 3
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Consider
-\[
-\mathbf A=
-\begin{pmatrix}
-1&-1&0\\
-2&0&-2\\
-0&a&4
-\end{pmatrix}.
-\]
-\begin{problemsubparts}
-\item Find all $a\in\R$ for which $\mathbf A$ is invertible.
-\item Using the Gauss--Jordan method, find $\mathbf A^{-1}$ when $a=2$.
-\end{problemsubparts}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 4
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Consider
-\[
-\mathbf A=
-\begin{pmatrix}
-1&2&3&2\\
-2&4&8&6\\
--1&-2&1&2
-\end{pmatrix},
-\qquad
-\mathbf b=
-\begin{pmatrix}
-b_1\\b_2\\b_3
-\end{pmatrix}.
-\]
-In solving $\mathbf A\mathbf x=\mathbf b$, apply Gaussian elimination to obtain
-\[
-\mathbf U\mathbf x=\mathbf c,
-\]
-and then reduce further to
-\[
-\mathbf R\mathbf x=\mathbf d,
-\]
-where $\mathbf U$ is the echelon matrix obtained from $\mathbf A$ and $\mathbf R$ is the reduced row echelon form of $\mathbf A$. Compute $\mathbf c$ and $\mathbf d$ in terms of $b_1,b_2,b_3$.
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 5
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let $V=M_2(\R)$ be the vector space of $2\times2$ real matrices, and let $P_3$ be the vector space of real polynomials of degree at most $3$. Consider the linear map $T\colon P_3\to V$ defined by
-\[
-T(a_0+a_1x+a_2x^2+a_3x^3)
-=
-\begin{pmatrix}
-a_0+a_1&-a_0-a_2\\
--a_1+a_3&a_2-a_3
-\end{pmatrix}.
-\]
-\begin{problemsubparts}
-\item Find the matrix $\mathbf A$ representing $T$ with respect to the ordered basis
-\[
-(1,x,x^2,x^3)
-\]
-of $P_3$ and the ordered basis $(\mathbf E_1,\mathbf E_2,\mathbf E_3,\mathbf E_4)$ of $V$, where
-\[
-\mathbf E_1=
-\begin{pmatrix}1&0\\0&0\end{pmatrix},\quad
-\mathbf E_2=
-\begin{pmatrix}0&1\\0&0\end{pmatrix},\quad
-\mathbf E_3=
-\begin{pmatrix}0&0\\1&0\end{pmatrix},\quad
-\mathbf E_4=
-\begin{pmatrix}0&0\\0&1\end{pmatrix}.
-\]
-\item Find $\rk(\mathbf A)$ and $\dim\Null(\mathbf A)$.
-\end{problemsubparts}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 6
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let
-\[
-\mathbf A=
-\begin{pmatrix}
-1&-2\\
-1&-1\\
-1&0\\
-1&2
-\end{pmatrix},
-\qquad
-\mathbf b=
-\begin{pmatrix}
-1\\2\\1\\2
-\end{pmatrix}.
-\]
-Decompose
-\[
-\mathbf b=\mathbf b_c+\mathbf b_n,
-\]
-where $\mathbf b_c\in\Col(\mathbf A)$ and $\mathbf b_n\in\Null(\mathbf A^{\mathsf T})$, in the following two ways.
-\begin{problemsubparts}
-\item Solve the normal equation
-\[
-\mathbf A^{\mathsf T}\mathbf A\widehat{\mathbf x}=\mathbf A^{\mathsf T}\mathbf b
-\]
-and compute $\mathbf b_c=\mathbf A\widehat{\mathbf x}$.
-\item Find an orthonormal basis $\{\mathbf q_1,\mathbf q_2\}$ for $\Col(\mathbf A)$ and express $\mathbf b_c$ as a linear combination of $\mathbf q_1$ and $\mathbf q_2$.
-\end{problemsubparts}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 7
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Suppose that data are expected to conform to the quadratic relation
-\[
-y(t)=A+Bt+Ct^2.
-\]
-The observed data are
-\[
-\begin{array}{c|ccccc}
-t&-2&-1&0&1&2\\ \hline
-y(t)&-4&1&3&4&6
-\end{array}.
-\]
-Find the parameters $A,B,C$ that minimize the sum of squared errors.
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 8
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let $V$ be a subspace of $\R^d$. Prove that if
-\[
-\{\mathbf v_1,\dots,\mathbf v_m\}
-\qquad\text{and}\qquad
-\{\mathbf w_1,\dots,\mathbf w_n\}
-\]
-are both bases for $V$, then $m=n$.
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Midterm, Problem 9
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let $\mathbf A$ be an $m\times n$ real matrix. Prove that
-\[
-\rk(\mathbf A)=\rk(\mathbf A^{\mathsf T}\mathbf A)=\rk(\mathbf A\mathbf A^{\mathsf T}).
-\]
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 1
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Determine whether each of the following statements is true or false. You do not need to justify your answers.
-\begin{problemchoices}
-\item There exist $3\times3$ matrices $\mathbf A$ and $\mathbf B$ such that
-\[
-\mathbf A\mathbf B-\mathbf B\mathbf A=\mathbf I_3.
-\]
-\item If $\mathbf A$ and $\mathbf B$ are simultaneously diagonalizable, and $\mathbf B$ and $\mathbf C$ are simultaneously diagonalizable, then $\mathbf A$ and $\mathbf C$ are simultaneously diagonalizable.
-\item There exists a real $2\times2$ matrix $\mathbf A\ne\mathbf I_2$ such that
-\[
-\mathbf A^3=\mathbf I_2.
-\]
-\item If a $3\times3$ matrix $\mathbf A$ has eigenvalues $1,2,3$, then
-\[
-(\mathbf A-\mathbf I_3)(\mathbf A-2\mathbf I_3)(\mathbf A-3\mathbf I_3)
-\]
-cannot have a nonzero eigenvalue.
-\item If a real matrix $\mathbf A$ is normal, then
-\[
-(\mathbf A^k)^+=(\mathbf A^+)^k
-\]
-for every positive integer $k$.
-\item If $\det(\mathbf A)>0$ and $\det(\mathbf B)>0$, then
-\[
-\det(\mathbf A+\mathbf B)>0.
-\]
-\item If $\mathbf A=(a_{ij})$ is an $n\times n$ matrix satisfying
-\[
-\sum_{i=1}^n a_{ij}=5
-\]
-for every $j$, then $5$ is an eigenvalue of $\mathbf A$.
-\item If $\mathbf A$ is an $n\times n$ symmetric matrix, then $e^{\mathbf A}$ is positive definite.
-\item Let $\mathbf A$ and $\mathbf B$ be $n\times n$ matrices. If $\lambda$ is an eigenvalue of $\mathbf A$ and $\mu$ is an eigenvalue of $\mathbf B$, then $\lambda+\mu$ is an eigenvalue of $\mathbf A+\mathbf B$.
-\item If a real symmetric matrix $\mathbf A$ is positive definite, then it is nonsingular.
-\end{problemchoices}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 2
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-\begin{problemsubparts}
-\item Find the volume of the parallelepiped determined by the edge vectors from $(0,0,0)$ to
-\[
-(-1,2,2),\qquad (2,-1,2),\qquad (2,2,-1).
-\]
-\item Compute
-\[
-\det
-\begin{pmatrix}
-1&1&1&1\\
-1&-1&1&-1\\
-1&1&-1&-1\\
-1&-1&-1&1
-\end{pmatrix}.
-\]
-\end{problemsubparts}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 3
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let $\mathbf A,\mathbf B,\mathbf C$ be $n\times n$ matrices and let $\mathbf 0$ be the $n\times n$ zero matrix. Show that
-\[
-\det
-\begin{pmatrix}
-\mathbf A&\mathbf B\\
-\mathbf 0&\mathbf C
-\end{pmatrix}
-=\det(\mathbf A)\det(\mathbf C).
-\]
-\textit{Hint.} One possible approach is to use the Leibniz formula for the determinant.
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 4
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let $(a_n)_{n=0}^{\infty}$ and $(b_n)_{n=0}^{\infty}$ be sequences satisfying
-\[
-a_{n+1}=3a_n+2b_n,
-\qquad
-b_{n+1}=a_n+4b_n,
-\qquad
-a_0=1,
-\qquad
-b_0=0.
-\]
-Evaluate
-\[
-\lim_{n\to\infty}\frac{a_n-b_n}{a_n+b_n}.
-\]
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 5
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let
-\[
-\mathbf A=
-\begin{pmatrix}
-1&1&2\\
-0&1&1\\
-0&0&1
-\end{pmatrix},
-\qquad
-\mathbf B=
-\begin{pmatrix}
-1&0&0\\
-1&1&0\\
-2&1&1
-\end{pmatrix},
-\qquad
-\mathbf C=
-\begin{pmatrix}
-1&0&0\\
-1&1&1\\
-0&0&1
-\end{pmatrix}.
-\]
-Find two matrices among $\mathbf A,\mathbf B,\mathbf C$ that are similar to each other. Justify your answer.
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 6
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let
-\[
-\mathbf A=
-\begin{pmatrix}
-3&2&2\\
-2&3&-2
-\end{pmatrix}.
-\]
-\begin{problemsubparts}
-\item Find the singular value decomposition of $\mathbf A$.
-\item Find the pseudoinverse $\mathbf A^+$ of $\mathbf A$.
-\end{problemsubparts}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 7
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-\begin{problemsubparts}
-\item Find all $\alpha\in\R$ such that
-\[
-\mathbf A=
-\begin{pmatrix}
-4&\alpha\\
-\alpha&5
-\end{pmatrix}
-\]
-is positive definite.
-\item For a real number $\alpha$ such that $\mathbf A$ is positive definite, let $d_1(\alpha)$ and $d_2(\alpha)$ be the distances from the origin to, respectively, the closest and farthest points on
-\[
-4x^2+2\alpha xy+5y^2=1.
-\]
-Find the minimum value of
-\[
-f(\alpha)=d_1(\alpha)^2+d_2(\alpha)^2.
-\]
-\end{problemsubparts}
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 8
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-Let $\mathbf A$ be a square matrix with real entries. Show that
-\[
-\tr(\mathbf A^{\mathsf T}\mathbf A)=0
-\]
-if and only if $\mathbf A=\mathbf 0$.
-\end{problem}
-
-% 2023 Spring POSTECH Applied Linear Algebra Final, Problem 9
-\begin{problem}[2023 Spring \POSTECH{} Applied Linear Algebra]
-For an $n\times n$ matrix $\mathbf A$, show that
-\[
-\det(e^{\mathbf A})=e^{\tr(\mathbf A)}.
-\]
-\textit{Hint.} By Schur's triangularization theorem over $\C$, there exists an invertible matrix $\mathbf M$ such that $\mathbf M^{-1}\mathbf A\mathbf M$ is upper triangular.
 \end{problem}
 
 % 2023 Spring KAIST Introduction to Linear Algebra Midterm, Problem 1

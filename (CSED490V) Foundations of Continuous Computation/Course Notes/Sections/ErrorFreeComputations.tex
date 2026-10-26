@@ -114,31 +114,39 @@ returns $(s, z)=(a\oplus b, r)$; in particular, $a+b=s+z$
 \emph{exactly}.
 \end{theorem}
 \begin{proof}
-By symmetry assume $e_a\ge e_b$. We first show $s-a\in\mathbb F$.
-If $a,b$ have the same sign and $|a|\ge|b|$, then $s$ has that sign
-and $|a|\le|s|\le2|a|$; Sterbenz's theorem applies to $s-a$.
-If their signs differ and $|b|\ge|a|/2$, their magnitudes differ
-by at most a factor of two, so Sterbenz makes $a+b$ exact.
-If their signs differ and $|b|<|a|/2$, either the sum is exact
-in the subnormal range by Hauser's theorem, or $s$ and $a$ are
-within a factor of two and Sterbenz applies again.
-In the remaining case, $a,b$ have the same sign with
-$|b|>|a|$, which forces $e_a=e_b$. Both belong to the same
-binade of spacing $h=2^{e_a-M}$; $s-a$ is a multiple of $h$
-with magnitude at most $2^{e_a+1}$, hence is representable.
-Thus $b'=s\ominus a=s-a$.
+We first show $s-a\in\mathbb F$. Since rounding is odd, it
+suffices to take $a\ge0$; the zero case is immediate.
+If $a$ and $b$ have opposite signs, there are three possibilities.
+If $e_a=e_b=e_{\min}$, then $|a+b|\le2^{e_{\min}+1}$,
+so Hauser's theorem makes the sum exact.
+If $e_a=e_b>e_{\min}$, their normal significands differ by a
+factor of less than two, and Sterbenz makes the sum exact.
+If $e_a>e_b$, then $|a|>|b|$. For $|b|\ge a/2$,
+Sterbenz again makes the sum exact; for $|b|<a/2$, the number
+$a/2$ is representable and monotonicity gives $a/2\le s\le a$.
+Thus Sterbenz makes $s-a$ exact in this last case.
 
-Moreover, $a$, $b$, and $s$ lie on the grid $2^{e_b-M}\mathbb Z$;
-if the exact sum is smaller than $2^{e_b}$, it is itself
-representable, and otherwise rounding uses a no-finer grid.
-Consequently, $r=b-b'$ is an integer multiple of $2^{e_b-M}$.
-By optimality of nearest rounding, comparison with the
-representable candidate $a$ yields
+If $a$ and $b$ have the same sign and $e_a>e_b$,
+then $|a|>|b|$ and $a\le s\le2a$; again $s-a$ is exact by
+Sterbenz. Finally, if they have the same sign and $e_a=e_b$,
+write $h=2^{e_a-M}$. Both inputs and $s$ belong to
+$h\mathbb Z$, and the nearest-rounding error has magnitude at
+most $h$ (or less in the subnormal case). Since
+$0\le s-a\le b+h\le2^{e_a+1}$, the integer-significand
+lemma shows $s-a\in\mathbb F$. Hence in all cases
+$b'=s\ominus a=s-a$.
+
+For the residual $r=b-b'=(a+b)-s$, every case with an exact
+sum has $r=0$. Otherwise the preceding cases show that $s$
+lies on a grid no finer than $2^{e_b-M}\mathbb Z$; both inputs
+lie on that grid as well. Therefore
+$r\in2^{e_b-M}\mathbb Z$. By the optimality of nearest
+rounding, with $a$ as a candidate,
 \[
  |r|=|(a+b)-s|\le|(a+b)-a|=|b|.
 \]
-The integer-significand lemma now implies $r\in\mathbb F$.
-Therefore $b\ominus b'=r$, giving $a+b=s+r$ exactly.
+The integer-significand lemma implies $r\in\mathbb F$.
+Thus $z=b\ominus b'=r$ and $a+b=s+z$ exactly.
 \end{proof}
 
 \begin{theorem}[Boldo's Theorem (Product Residual)]

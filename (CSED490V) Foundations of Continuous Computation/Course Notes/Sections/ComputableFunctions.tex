@@ -55,27 +55,7 @@ Moreover, $f/g$ is computable on $\{x\in D\mid g(x)\ne0\}$.
 Every computable function $f\colon D\to\R^m$, with
 $D\subseteq\R^k$, is continuous on $D$ (with the relative topology).
 \end{theorem}
-\begin{proof}
-Fix $\mathbf{x}\in D$ and $\varepsilon>0$; choose $n\in\Nzero$
-with $2^{1-n}<\varepsilon$. Choose a rational name
-$\alpha\colon\Nzero\to\Q^k$ of $\mathbf{x}$ with slack:
-\[
-\|\alpha(i)-\mathbf{x}\|_\infty<2^{-(i+2)}
-\qquad(i\in\Nzero).
-\]
-At precision $n$, the algorithm queries a finite set of indices $I$.
-For some $\delta>0$, every $\mathbf{y}\in D$ with
-$\|\mathbf{x}-\mathbf{y}\|_\infty<\delta$ also admits a name agreeing
-with $\alpha$ on $I$. The algorithm therefore returns the
-same $\mathbf{q}\in\Q^m$ on both names, whence
-\[
-\|f(\mathbf{x})-f(\mathbf{y})\|_\infty
-\le\|f(\mathbf{x})-\mathbf{q}\|_\infty
-+\|\mathbf{q}-f(\mathbf{y})\|_\infty
-<2^{1-n}<\varepsilon.
-\]
-Thus $f$ is continuous at $\mathbf{x}$.
-\end{proof}
+
 
 \begin{corollary}[Discontinuous Tests]
 The sign function and the predicates $x<y$ and $x=y$, viewed as
