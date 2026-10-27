@@ -5,32 +5,25 @@
 General notation and writing follow \textit{(MATH000) Mathematical Language}.
 \begin{coursenotation}
 $\Rc$ & Computable real numbers\\
-$P_{\mathrm{root}}$ & Integer polynomials admitting an integer root\\
+$P_{\mathrm{root}}$ & Integer polynomials admitting an integer zero\\
 $\A$ & Oracle algorithm\\
-$\gamma_{E,M}$ & Floating-point representation map\\
-$\mathbb{F}_{E,M}$ & Finite floating-point values\\
-$\overline{\mathbb{F}}_{E,M}$ & Extended floating-point values\\
-$e_{\min}$ & Minimum normal exponent\\
-$e_{\max}$ & Maximum normal exponent\\
-$F_{\max}$ & Largest finite floating-point value\\
-$K_{E,M}$ & Overflow threshold\\
-$\rnd_{E,M}$ & Round to nearest, ties to even\\
-$\oplus$ & Rounded addition\\
-$\ominus$ & Rounded subtraction\\
-$\otimes$, $\odot$ & Rounded multiplication\\
-$\odiv$, $\oslash$ & Rounded division\\
-$\fma$ & Fused multiply-add\\
-$\operatorname{err}_{\mathrm{abs}}$ & Absolute error\\
-$\operatorname{err}_{\mathrm{rel}}$ & Relative error\\
-$\ulp$ & Unit in the last place\\
-$\operatorname{err}_{\mathrm{ulp}}$ & ULP error\\
-$e_a$ & Exponent of a nonzero floating-point value $a$\\
+$\gamma_{E, M}$ & Floating-point representation map\\
+$\mathbb{F}_{E, M}$ & Finite floating-point values\\
+$\overline{\mathbb{F}}_{E, M}$ & Extended floating-point values\\
+$e_{\min}, \ e_{\max}$ & Minimum and maximum normal exponents\\
+$\max\mathbb{F}_{E, M}, \ F_{\max}$ & Largest finite floating-point value\\
+$K_{E, M}$ & Overflow threshold (rounding to infinity)\\
+$\rnd_{E, M}$ & Round to nearest, ties to even\\
+$\oplus, \ \ominus$ & Rounded addition and subtraction\\
+$\otimes, \ \odot$ & Rounded multiplication\\
+$\odiv, \ \oslash$ & Rounded division\\
+$\fma$ & Fused multiply-add (one rounding)\\
+$\operatorname{err}_{\mathrm{abs}}, \ \operatorname{err}_{\mathrm{rel}}$ & Absolute and relative errors\\
+$\ulp, \ \operatorname{err}_{\mathrm{ulp}}$ & Unit in the last place and ULP error\\
+$\varepsilon$ & Unit roundoff, $2^{-M-1}$\\
+$e_a$ & Exponent assigned to $a\in\mathbb{F}\setminus\{0\}$\\
 $\fasttwosum$ & Error-free summation algorithm\\
-$\sigma$ & Input valuation\\
-$\Sigma$ & Set of admissible input valuations\\
-$\llbracket e\rrbracket$ & Floating-point semantics of $e$\\
-$\llbracket e\rrbracket_{\mathrm r}$ & Real-valued semantics of $e$\\
-$\operatorname{range}(e)$ & Range enclosure over $\Sigma$\\
-$\operatorname{err}(e)$ & Absolute-error bound over $\Sigma$\\
-$\varepsilon$ & Machine epsilon (unit roundoff)
+$\sigma, \ \Sigma$ & Input valuation and admissible input set\\
+$\llbracket e\rrbracket, \ \llbracket e\rrbracket_{\mathrm r}$ & Floating-point and real-valued semantics\\
+$\operatorname{range}(e), \ \operatorname{err}(e)$ & Range enclosure and absolute-error bound over $\Sigma$
 \end{coursenotation}

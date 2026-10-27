@@ -1,7 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{CourseNotesStyle}[2026/10/26 CSED490V course-notes style v8]
-
-% The page design is adapted from the MATH200/MATH203 document family.
+\ProvidesPackage{CourseNotesStyle}[2026/10/27 CSED490V course-notes style v9]
+% Page design follows the established MATH000/MATH200 document family.
 \RequirePackage[a4paper,margin=1in]{geometry}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
@@ -18,9 +17,6 @@
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
 \RequirePackage[hidelinks]{hyperref}
-
-% Circled division: inherit the font's circle and stroke from \ominus;
-% scale the obelus dots in the two smaller math styles.
 \RequirePackage{tikz}
 \makeatletter
 \newcommand{\odiv}{\mathbin{\mathpalette\courseodivaux\relax}}
@@ -37,13 +33,11 @@
   }%
 }
 \makeatother
-
 \definecolor{POSTECHRed}{RGB}{166,25,85}
 \newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
 \DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
   \institutiontext{POSTECHRed}{Pohang University of Science and Technology}}
-
-% General conventions follow (MATH000) Mathematical Language.
+% General mathematical language follows (MATH000) Mathematical Language.
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Nzero}{\mathbb{N}_0}
 \newcommand{\Q}{\mathbb{Q}}
@@ -55,25 +49,14 @@
 \DeclareMathOperator{\ulp}{ulp}
 \DeclareMathOperator{\fasttwosum}{fast2sum}
 \newcommand{\indicator}[1]{\mathds{1}_{#1}}
-
-% Body and lists; enough room is kept for the beginning of each statement.
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{1.5em}
 \raggedbottom
 \setlist[itemize]{leftmargin=2em,topsep=3pt,itemsep=2pt,parsep=0pt}
 \setlist[enumerate]{leftmargin=2.5em,topsep=3pt,itemsep=2pt,parsep=0pt}
-
-% A common theorem counter is reset for each section.
-% The theorem/definition typography follows the Science Quiz mathematical-concepts style.
-\newtheoremstyle{courseplain}
-  {6pt}{6pt}{\itshape}{}{\bfseries}{}{\newline}
-  {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
-\newtheoremstyle{coursedefinition}
-  {6pt}{6pt}{}{}{\bfseries}{}{\newline}
-  {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
-\newtheoremstyle{coursesameline}
-  {6pt}{6pt}{}{}{\itshape}{.}{0.5em}
-  {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{courseplain}{6pt}{6pt}{\itshape}{}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{coursedefinition}{6pt}{6pt}{}{}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{coursesameline}{6pt}{6pt}{}{}{\itshape}{.}{0.5em}{\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
 \theoremstyle{coursedefinition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}[definition]{Example}
@@ -85,11 +68,9 @@
 \newtheorem{corollary}[definition]{Corollary}
 \theoremstyle{coursesameline}
 \newtheorem*{remark}{Remark}
-
 \renewenvironment{proof}[1][Proof]
   {\par\Needspace{3\baselineskip}\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}
   {\unskip\hfill$\square$\par}
-
 \newcommand{\courseblockspace}{\Needspace{4\baselineskip}}
 \BeforeBeginEnvironment{definition}{\courseblockspace}
 \BeforeBeginEnvironment{theorem}{\courseblockspace}
@@ -99,17 +80,12 @@
 \BeforeBeginEnvironment{example}{\courseblockspace}
 \BeforeBeginEnvironment{fact}{\courseblockspace}
 \BeforeBeginEnvironment{remark}{\courseblockspace}
-
-% Compact notation table; separate meanings occupy separate rows.
 \newenvironment{coursenotation}{%
  \par\smallskip\noindent\begingroup
  \renewcommand{\arraystretch}{1.12}%
- \begin{tabular}{@{}p{0.22\linewidth}p{0.71\linewidth}@{}}%
+ \begin{tabular}{@{}p{0.25\linewidth}p{0.68\linewidth}@{}}%
  \toprule Notation & Meaning\\ \midrule}
  {\\[0.15em]\bottomrule\end{tabular}\endgroup\par\vspace{0.5em}}
-
-% The top-of-page section is used, even if another section starts lower.
-% This follows the topmarks/titleps strategy of (MATH000) Mathematical Language.
 \newpagestyle{coursenotes}{%
   \sethead{\small\textit{CSED490V Foundations of Continuous Computation}}{}%
     {\small\textit{\sectiontitle}}%
@@ -117,7 +93,6 @@
   \setheadrule{0.4pt}%
 }
 \pagestyle{coursenotes}
-
 \newpagestyle{coursenotationpage}{%
   \sethead{\small\textit{CSED490V Foundations of Continuous Computation}}{}%
     {\small\textit{Notation and Conventions}}%
