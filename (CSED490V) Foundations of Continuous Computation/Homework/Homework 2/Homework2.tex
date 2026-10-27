@@ -11,7 +11,7 @@
 \sethomeworknumber{2}
 \homeworktitle{Homework 2}
 
-Let $\mathbb F$ be the set of finite floating-point numbers with $E$-bit
+Let $\mathbb F=\mathbb F_{E, M}$ be the set of finite floating-point numbers with $E$-bit
 exponent and $M$-bit mantissa. Let $\varepsilon\coloneqq2^{-M-1}$ be
 the machine epsilon of $\mathbb F$, and
 $e_{\min}\coloneqq-2^{E-1}+2$ be the minimum exponent of $\mathbb F$.
@@ -20,7 +20,10 @@ Let $\overline{\mathbb F}\coloneqq\mathbb F\cup\{-\infty, +\infty,
 % The printed assignment uses \mathbb F with an overbar for the extended set.
 % Its Problem 1(a) evaluates gamma^{-1} at +infinity although its
 % displayed domain is finite F; the proof explains the intended extension.
-% The CN notation table fixes \mathbb F_{E,M}, \overline{\mathbb F}_{E,M}.
+% The source assignment uses the secondary rounded-division symbol
+% \oslash throughout. The document uses the CN v9 PRIMARY symbol \odiv
+% in both the problem transcription and the solutions; only notation changes.
+% CN v9 identifies \mathbb F_{E, M}, \overline{\mathbb F}_{E, M}.
 
 \begin{problem}{1}
 This problem studies interesting properties of floating-point numbers and
@@ -51,12 +54,12 @@ $(a\otimes b)\otimes c\ne a\otimes(b\otimes c)$.
 You should write $a, b, c$ as functions of $M$.
 
 \item Show that for all $a\in[1, 2)\cap\mathbb F$,
-$1\oslash a$ is ``almost'' a multiplicative inverse of $a$:
+$1\odiv a$ is ``almost'' a multiplicative inverse of $a$:
 \[
- a\otimes(1\oslash a)\in\{1, 1-\varepsilon\}.
+ a\otimes(1\odiv a)\in\{1, 1-\varepsilon\}.
 \]
 \begin{hint}
-Analyze the range of $a(1\oslash a)$.
+Analyze the range of $a(1\odiv a)$.
 \end{hint}
 \begin{remark}
 There exists a float in $[1, 2)$ that has no multiplicative inverse:
@@ -78,7 +81,8 @@ Assume that no overflow and underflow occur in $x\otimes x$.
 \begin{solution}
 Throughout, let $e_{\max}=2^{E-1}-1$,
 $\Delta\coloneqq2^{e_{\min}-M}$, and
-$F_{\max}=(2-2^{-M})2^{e_{\max}}$, as in the Course Notes.
+$F_{\max}\coloneqq\max\mathbb F=(2-2^{-M})2^{e_{\max}}$,
+as in the Course Notes.
 The rounding mode is round-to-nearest, ties-to-even.
 \begin{problemsubparts}
 \item Nonnegative finite floats have sign bit zero, so their encodings
@@ -134,7 +138,7 @@ because $2h^2<h/2$. Therefore
  \ne\frac32+4h=a\otimes(b\otimes c).
 \]
 
-\item Write $u=1/a$ and $b=1\oslash a=\rnd(u)$.
+\item Write $u=1/a$ and $b=1\odiv a=\rnd(u)$.
 Because $1/2<u\le1$, the nearest-float error in this range is at most
 $2^{-M-2}=\varepsilon/2$. Consequently
 \[
@@ -146,7 +150,7 @@ the next float above $1$ is $1+2\varepsilon$.
 Every real in $(1-\varepsilon, 1+\varepsilon)$ rounds to either
 $1-\varepsilon$ or $1$ (the midpoint between $1$ and its
 successor is $1+\varepsilon$). Thus
-$a\otimes(1\oslash a)\in\{1-\varepsilon, 1\}$.
+$a\otimes(1\odiv a)\in\{1-\varepsilon, 1\}$.
 
 \item Put $u=|x|$. The case $u=0$ is immediate.
 The no-underflow assumption forces $u^2$ into the normal range;
@@ -183,8 +187,8 @@ $\rnd(\sqrt t)=u=|x|$, as required.
 \begin{problem}{2}
 This problem studies two ways of computing the mean of $a, b\in\mathbb F$:
 \[
- \widehat m\coloneqq(a\oplus b)\oslash2,
- \qquad \widehat m'\coloneqq(a\oslash2)\oplus(b\oslash2).
+ \widehat m\coloneqq(a\oplus b)\odiv2,
+ \qquad \widehat m'\coloneqq(a\odiv2)\oplus(b\odiv2).
 \]
 \begin{problemsubparts}
 \item Show that if $|a+b|\le\max\mathbb F$ and $a\le b$, then
@@ -243,11 +247,16 @@ If $|t|\ge2^{e_{\min}+1}$, then $s/2$ is exactly
 representable: shifting its significand right one binary exponent
 place stays at or above the normal/subnormal boundary (the case
 $|s|=2^{e_{\min}+1}$ gives $s/2=2^{e_{\min}}$).
-Thus $\widehat m=s/2$. Halving preserves the ordering of
-neighboring normal floats, their nearest-point cells, and the parity
-of their significands. The nearest-float choice (including a tie)
-for $t$ therefore halves to the nearest-float choice for $t/2$.
-Consequently $s/2=\rnd(t/2)$ also in this case.
+Thus $\widehat m=s/2$. If $t$ is exactly representable,
+then $s=t$, so the claim is immediate. Otherwise the two consecutive
+normal floats bracketing $t$ have halves that are consecutive
+representable floats bracketing $t/2$: throughout
+$|t|\ge2^{e_{\min}+1}$ the scaled rounding grid remains normal,
+including at the first normal binade. Halving scales the distances
+to the endpoints by the same factor and preserves their significand
+parities. The nearest choice, including ties-to-even, is therefore
+preserved, giving $s/2=\rnd(t/2)$ also in this case.
+The argument for $t<0$ follows from the oddness of $\rnd$.
 
 Write $m=(a+b)/2$. Since $\widehat m=\rnd(m)$ and
 $|m|\le F_{\max}$, the Course Notes' rounding estimate gives
@@ -292,7 +301,7 @@ This problem studies the variance of $x_1, \ldots, x_n\in\mathbb F$:
  \left(x_i-\frac1n\sum_{j=1}^{n}x_j\right)^2.
 \]
 Let $\widehat s\in\mathbb F$ be the result of evaluating $s$ under
-floating-point arithmetic (i.e., $\oplus, \ominus, \otimes, \oslash$
+floating-point arithmetic (i.e., $\oplus, \ominus, \otimes, \odiv$
 are used for $+, -, \times, /$, and each sum is evaluated from
 left to right). Assume that no overflow and underflow occur in all
 floating-point operations.
@@ -542,9 +551,13 @@ Therefore $s+r=1\ne1+\Delta=a+b$.
 \end{problemsubparts}
 \end{solution}
 % Problem 5(c) is intentionally stated without a solution. For example,
-% E=3, M=7 forces e_a+e_b=4>e_max=3, whence any product satisfying
-% the requested exponent equality overflows, conflicting with the
-% assignment's no-overflow hypothesis. An extra restriction is needed.
+% For M>2^E-2, the required exponent sum exceeds e_max, and any
+% qualifying product overflows; E=3, M=7 is one explicit obstruction.
+% For M<=2^E-2 the statement HAS examples, e.g. write
+% t=e_min+M-1, u=floor(t/2), v=t-u and take
+% a=2^u(1+2^{-M}), b=2^v(1+2^{-M}): residual = Delta_min/2.
+% Nevertheless 5(c) has no solution here by the agreed rule: the
+% original unrestricted parameter claim is not uniformly feasible.
 
 \begin{problem}{6}
 This problem studies automatic analyses for bounding the range and
@@ -622,6 +635,10 @@ Similarly, write $\operatorname{err}(e)$ for the assignment's
 $\operatorname{error}(e, \Sigma)$. This is a change of notation only.
 All intervals below enclose floating-point semantics; part (b) uses
 the additional real-semantics hypothesis stated in the problem.
+Since the float semantics is defined on $\mathbb F^n$, the
+quantification over the real box $\Sigma$ is understood on
+$\Sigma\cap\mathbb F^n$, exactly as in the CN's admissible
+valuation set. This does not change the assignment's written box.
 \begin{problemsubparts}
 \item Let
 $\operatorname{range}(e_i)=[a_i, b_i]$ and define
@@ -710,11 +727,11 @@ over the expression tree, in addition to the given constant, variable,
 negation, and addition cases. The binary64 range functions use actual
 floating-point operations for endpoints; the error function converts
 those endpoints exactly to rationals and forms all bounds with rational
-arithmetic. An exact integer-square-root calculation produces a
-\emph{rational upper enclosure} for the square roots in (4),
-so an inexact call to \code{sqrt\_rational()} cannot invalidate
-the bound. The same method bounds the ULP at the square-root upper
-endpoint.
+arithmetic. The notebook refines the provided \code{sqrt\_rational()} helper:
+integer square roots now give a certified \emph{rational upper
+enclosure}, avoiding possible downward rounding in a plain
+\code{math.sqrt()} conversion. The same enclosure safely bounds
+the ULP at the square-root upper endpoint.
 
 For the degree-$n$ polynomial
 \[

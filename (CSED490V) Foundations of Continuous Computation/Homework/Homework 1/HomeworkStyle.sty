@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{HomeworkStyle}[2026/10/27 CSED490V homework style v3]
+\ProvidesPackage{HomeworkStyle}[2026/10/27 CSED490V homework style v4]
 
 % The course identity, notation, typefaces, page margins, and running heads
-% follow CourseNotesStyle v8 (2026/10/26) and (MATH000) Mathematical Language.
+% follow CourseNotesStyle v9 (2026/10/27) and (MATH000) Mathematical Language.
 % Problem/Solution/Hint follow the same-line MATH200/MATH261 document family.
 \RequirePackage[a4paper,margin=1in]{geometry}
 \RequirePackage[T1]{fontenc}
@@ -41,7 +41,7 @@
 \DeclareMathOperator{\fma}{fma}
 \DeclareMathOperator{\ulp}{ulp}
 \DeclareMathOperator{\fasttwosum}{fast2sum}
-% Same circled obelus construction as CourseNotesStyle v8.
+% Same primary circled obelus as CourseNotesStyle v9.
 \newcommand{\odiv}{\mathbin{\mathpalette\courseodivaux\relax}}
 \makeatletter
 \newcommand{\courseodivaux}[2]{%
@@ -109,11 +109,11 @@
 \setlength{\parindent}{1.5em}
 \raggedbottom
 
-% Match CN v8/MATH000 topmarks and page numbers. Homework-specific right head.
+% Match CN v9/MATH000 topmarks and page numbers. Homework-specific right head.
 \newcommand{\homeworkshortname}{Homework}
 \newcommand{\sethomeworknumber}[1]{\renewcommand{\homeworkshortname}{Homework #1}}
 \newpagestyle{homework}{%
-  \sethead{\small\textit{CSED490V Foundations of Continuous Computation}}{}%
+  \sethead{\small\textit{(CSED490V) Foundations of Continuous Computation}}{}%
     {\small\textit{\homeworkshortname}}%
   \setfoot{}{\thepage}{}%
   \setheadrule{0.4pt}%
