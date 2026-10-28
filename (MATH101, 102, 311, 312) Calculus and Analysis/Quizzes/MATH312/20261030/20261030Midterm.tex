@@ -1,4 +1,4 @@
-\documentclass[11pt,oneside]{article}
+\documentclass[11pt, oneside]{article}
 \pdfminorversion=7
 \usepackage{QuizStyle}
 \usepackage{tikz}
@@ -68,7 +68,7 @@ The expression is undefined at $x=-1/n^2$ for any $n\ge1$. For $x=0$ every summa
 \[
  \lim_{n\to\infty}n^2\left|\frac1{1+n^2x}\right|=\frac1{|x|}.
 \]
-Comparison with $\sum n^{-2}$ proves absolute convergence exactly on
+Comparison with $\displaystyle\sum_{n=1}^{\infty}n^{-2}$ proves absolute convergence exactly on
 \[
  D=\R\setminus\bigl(\{0\}\cup\{-1/n^2:n\ge1\}\bigr).
 \]
@@ -93,7 +93,7 @@ Let
  0, &\dfrac1n<x.
  \end{cases}
 \]
-Show that $(f_n)$ converges to a continuous function, but not uniformly. Use the series $\sum f_n$ to show that absolute convergence, even for all $x$, does not imply uniform convergence.
+Show that $(f_n)$ converges to a continuous function, but not uniformly. Use the series $\displaystyle\sum_{n=1}^{\infty}f_n$ to show that absolute convergence, even for all $x$, does not imply uniform convergence.
 \end{exercise}
 \begin{solution}
 The function $f_n$ vanishes outside $[1/(n+1), 1/n]$ and at both endpoints of that interval. Thus each $f_n$ is continuous. For any fixed $x$, at most one $f_n(x)$ can be nonzero, so $f_n(x)\to0$. The limit function $f\equiv0$ is continuous.
@@ -166,7 +166,7 @@ If
 \[
  I(x)=\begin{cases}0, &x\le0, \\1, &x>0, \end{cases}
 \]
-if $(x_n)$ is a sequence of distinct points of $(a, b)$, and if $\sum|c_n|$ converges, prove that the series
+if $(x_n)$ is a sequence of distinct points of $(a, b)$, and if $\displaystyle\sum_{n=1}^{\infty}|c_n|$ converges, prove that the series
 \[
  f(x)=\sum_{n=1}^{\infty}c_n I(x-x_n)\qquad(a\le x\le b)
 \]
@@ -177,7 +177,7 @@ Since $|I(x-x_n)|\le1$,
 \[
  |c_n I(x-x_n)|\le |c_n|\qquad(x\in[a, b]).
 \]
-The numerical series $\sum|c_n|$ converges; hence the Weierstrass M-test (Theorem 7.10) proves uniform convergence.
+The numerical series $\displaystyle\sum_{n=1}^{\infty}|c_n|$ converges; hence the Weierstrass M-test (Theorem 7.10) proves uniform convergence.
 
 For a fixed $x\notin\{x_n:n\ge1\}$, each function $t\mapsto c_n I(t-x_n)$ is continuous at $x$: its only possible discontinuity occurs at $x_n$. Thus every partial sum is continuous at $x$. Uniform convergence allows the limit to be passed through $t\to x$ (Theorem 7.11), proving that $f$ is continuous at $x$.
 \end{solution}
@@ -236,16 +236,16 @@ Finally, on any compact interval, each summand $x\mapsto\{nx\}/n^2$ is bounded a
 \begin{exercise}{7.11}
 Suppose $(f_n)$, $(g_n)$ are defined on $E$, and
 \begin{exercisesubparts}
-\item $\sum f_n$ has uniformly bounded partial sums;
-\item $g_n\to0$ uniformly on $E$;
+\item $\displaystyle\sum_{n=1}^{\infty}f_n$ has uniformly bounded partial sums;
+\item $g_n\unifto0$ on $E$;
 \item $g_1(x)\ge g_2(x)\ge g_3(x)\ge\cdots$ for every $x\in E$.
 \end{exercisesubparts}
-Prove that $\sum f_ng_n$ converges uniformly on $E$.
+Prove that $\displaystyle\sum_{n=1}^{\infty}f_ng_n$ converges uniformly on $E$.
 \end{exercise}
 \begin{solution}
-Let $S_m(x)=\sum_{n=1}^{m}f_n(x)$ and choose $C$ such that $|S_m(x)|\le C$ for every $m$ and $x$. Since $g_n(x)$ decreases to $0$, each $g_n(x)\ge0$.
+Choose $C>0$ such that all partial sums of $\displaystyle\sum_{n=1}^{\infty}f_n(x)$ have modulus at most $C$, uniformly in $x\in E$. Since $g_n(x)\searrow0$, we have $g_n(x)\ge0$.
 
-Fix $N\le M$ and define $A_k(x)=\sum_{n=N}^k f_n(x)=S_k(x)-S_{N-1}(x)$. Then $|A_k(x)|\le2C$. Summation by parts, as in the proof of Dirichlet's test (Theorem 3.42), gives
+For $N\le k\le M$, put $A_k(x)=\sum_{n=N}^{k}f_n(x)$. Then $|A_k(x)|\le2C$. Summation by parts, as in the proof of Dirichlet's test (Theorem 3.42), gives
 \[
  \sum_{n=N}^{M}f_n(x)g_n(x)
  =A_M(x)g_M(x)+\sum_{k=N}^{M-1}A_k(x)\bigl(g_k(x)-g_{k+1}(x)\bigr).
@@ -258,11 +258,11 @@ Because the differences $g_k-g_{k+1}$ are nonnegative,
  &=2C g_N(x).
  \end{aligned}
 \]
-The uniform convergence $g_N\to0$ makes this bound uniformly small for large $N$, independently of $M$ and $x$. The uniform Cauchy criterion (Theorem 7.8) now yields uniform convergence of $\sum f_ng_n$.
+Since $g_N\unifto0$, the bound tends to $0$ uniformly in $x$, independently of $M$. The uniform Cauchy criterion (Theorem 7.8) now yields uniform convergence of $\displaystyle\sum_{n=1}^{\infty}f_ng_n$.
 \end{solution}
 
 \begin{exercise}{7.12}
-Suppose $g$ and $f_n$ ($n=1, 2, 3, \ldots$) are defined on $(0, \infty)$, are Riemann-integrable on $[t, T]$ whenever $0<t<T<\infty$, $|f_n|\le g$, $f_n\to f$ uniformly on every compact subset of $(0, \infty)$, and
+Suppose $g$ and $f_n$ ($n=1, 2, 3, \ldots$) are defined on $(0, \infty)$, are Riemann-integrable on $[t, T]$ whenever $0<t<T<\infty$, $|f_n|\le g$, $f_n\unifto f$ on every compact subset of $(0, \infty)$, and
 \[
  \int_0^{\infty}g(x)\,\dd x<\infty.
 \]
@@ -307,7 +307,7 @@ Assume that $(f_n)$ is a sequence of monotonically increasing functions on $\R$ 
  f(x)=\lim_{k\to\infty}f_{n_k}(x)
 \]
 for every $x\in\R$.
-\item If, moreover, $f$ is continuous, prove that $f_{n_k}\to f$ uniformly on compact sets.
+\item If, moreover, $f$ is continuous, prove that $f_{n_k}\unifto f$ on compact sets.
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
@@ -386,7 +386,7 @@ Equicontinuity at $t=0$ says that, for each $\varepsilon>0$, there is a $\delta>
 \]
 Fix any $x\ge0$. Choose $n$ large enough that $t=x/n<\delta$ and $t\in[0, 1]$. Then $f(nt)=f(x)$, so $|f(x)-f(0)|<\varepsilon$. As $\varepsilon$ is arbitrary, $f(x)=f(0)$ for every $x\ge0$.
 
-Conversely, if $f$ is constant on $[0, \infty)$, then every $f_n$ is constant on $[0, 1]$, and the family is equicontinuous. Thus the exact conclusion is that $f$ is constant on $[0, \infty)$; nothing is forced on $(-\infty, 0)$ beyond continuity at $0$.
+Thus $f$ is constant on $[0, \infty)$; equicontinuity on $[0, 1]$ imposes no further restriction on $(-\infty, 0)$.
 \end{solution}
 
 \begin{exercise}{7.16}
@@ -454,7 +454,7 @@ proves $\lim_{t\to x}f(t)=a$. This reproduces the scalar argument in the metric 
 
 For maps into $\R^k$ we use the Euclidean norm $\|\cdot\|$. All coordinates of a vector-valued map may be treated separately; since $k$ is finite, coordinatewise uniform convergence is equivalent to uniform convergence in norm.
 
-\textit{Theorem 7.10 (the M-test).} If $\|f_n(x)\|\le M_n$ and $\sum M_n<\infty$, then
+\textit{Theorem 7.10 (the M-test).} If $\|f_n(x)\|\le M_n$ and $\displaystyle\sum_{n=1}^{\infty}M_n<\infty$, then
 \[
  \left\|\sum_{n=N}^{M}f_n(x)\right\|\le\sum_{n=N}^{M}M_n.
 \]
@@ -472,7 +472,7 @@ The tails are uniformly Cauchy, and completeness of $\R^k$ yields uniform conver
  \le\|f_n(x_0)-f_m(x_0)\|
  +|x-x_0|\sup_{[a, b]}\|f_n'-f_m'\|.
 \]
-To justify the vector inequality, apply the scalar mean value theorem to $v\cdot(f_n-f_m)$, where $v$ is a unit vector in the direction of $(f_n-f_m)(x)-(f_n-f_m)(x_0)$ (the zero case is immediate). Then $|v\cdot(f_n' - f_m')|\le\|f_n' - f_m'\|$. This makes $(f_n)$ uniformly Cauchy. For the derivative identity, apply the scalar proof to each component: the limit is differentiable and $f'=\lim f_n'$.
+For the first inequality, if $\mathbf w=(f_n-f_m)(x)-(f_n-f_m)(x_0)\ne\mathbf0$, apply the scalar mean value theorem to $t\mapsto\mathbf v\cdot(f_n-f_m)(t)$ with $\mathbf v=\mathbf w/\|\mathbf w\|$; if $\mathbf w=\mathbf0$, the bound is immediate. Hence $\|\mathbf w\|\le|x-x_0|\displaystyle\sup\|f_n'-f_m'\|$. Thus $(f_n)$ is uniformly Cauchy. Applying the scalar differentiation theorem coordinatewise gives $f'=\lim_nf_n'$.
 
 \textit{Theorem 7.24 (equicontinuity).} A uniformly convergent sequence of continuous $\R^k$-valued maps on compact $K$ is equicontinuous: finitely many initial functions are uniformly continuous, and the remaining functions are close in norm to one fixed continuous function.
 
@@ -628,17 +628,11 @@ Starting from $|x|-P_0(x)=|x|$, iteration yields
 \[
  0\le|x|-P_n(x)\le |x|\left(1-\frac{|x|}2\right)^n.
 \]
-To make this bound independent of $x$, put $t=|x|\in[0, 1]$ and set $u=t/2$. Since
+For $n\ge1$, maximizing the right side on $|x|\le1$ yields
 \[
- (n+1)u(1-u)^n\le1\qquad(0\le u\le1),
-\]
-as follows by maximizing $u(1-u)^n$ (whose maximum is attained at $u=1/(n+1)$), we obtain
-\[
- 0\le|x|-P_n(x)\le\frac2{n+1}.
-\]
-For $n\ge1$ the inequality is strict: when $t=0$ the left side is $0$, and for $t>0$ the maximum of $u(1-u)^n$ is strictly less than $1/(n+1)$. Hence
-\[
- \sup_{|x|\le1}|P_n(x)-|x||\le\frac2{n+1}\longrightarrow0.
+ \sup_{|x|\le1}|P_n(x)-|x||
+ \le\frac2{n+1}\left(\frac n{n+1}\right)^n
+ \le\frac2{n+1}\longrightarrow0.
 \]
 Thus $P_n\unifto |\cdot|$ on $[-1, 1]$.
 \end{solution}
@@ -770,7 +764,7 @@ and set $\boldsymbol\Delta_n(x_i)=\mathbf0$ at mesh points. These bounded piecew
 \[
  \mathbf f_n(x)=\mathbf c+
  \int_0^x\bigl[\boldsymbol\varphi(t, \mathbf f_n(t))
- +\boldsymbol\Delta_n(t)\bigr] \dd t.
+ +\boldsymbol\Delta_n(t)\bigr] \,\dd t.
 \]
 All graph points lie in the compact set $[0, 1]\times\{\mathbf y:\|\mathbf y\|\le M_1\}$. Uniform continuity of $\boldsymbol\varphi$ there, together with the mesh estimates
 \[
@@ -1026,7 +1020,7 @@ Thus $m$ should be roughly $44$ (i.e., $N$ of order $10^{44}$).
 \end{solution}
 
 \begin{exercise}{8.10}
-Prove that $\sum 1/p$ diverges; the sum extends over all primes.
+Prove that $\displaystyle\sum_{p\text{ prime}}\frac1p$ diverges; the sum extends over all primes.
 \end{exercise}
 \begin{solution}
 Assume for contradiction that the prime reciprocal series converges, say $\sum_p1/p=M<\infty$. For each $N$ let $p_1, \ldots, p_k$ be the distinct prime divisors of the integers $1, \ldots, N$. Every positive integer $n\le N$ has a prime factorization using only these primes, so expanding the product of geometric series includes every term $1/n$ with $n\le N$. Therefore
@@ -1151,21 +1145,22 @@ and deduce that
 \]
 \end{exercise}
 \begin{solution}
-The function is even, continuous, and piecewise continuously differentiable, and has the same value at the endpoints. Its sine coefficients vanish. Its constant Fourier coefficient is
+The function is even, continuous, and piecewise continuously differentiable, with matching endpoint values. Thus
 \[
- \widehat f(0)=\frac1\pi\int_0^\pi(\pi-x)^2\,\dd x=\frac{\pi^2}{3}.
+ \widehat f(0)=\frac1\pi\int_0^\pi(\pi-x)^2\,\dd x=\frac{\pi^2}{3},
 \]
-For $n\ge1$, twice integrating by parts gives
+and, for $n\ne0$, integration by parts gives
 \[
  \begin{aligned}
- a_n&=\frac2\pi\int_0^\pi(\pi-x)^2\cos nx\,\dd x
- =\frac4{\pi n}\int_0^\pi(\pi-x)\sin nx\,\dd x\\
- &=\frac4{\pi n}\cdot\frac\pi n=\frac4{n^2}.
+ \widehat f(n)
+ &=\frac1\pi\int_0^\pi(\pi-x)^2\cos(nx)\,\dd x\\
+ &=\frac2{\pi n}\int_0^\pi(\pi-x)\sin(nx)\,\dd x
+ =\frac2{n^2}.
  \end{aligned}
 \]
- The Fourier series therefore has the displayed coefficients. The Fourier convergence theorem (Theorem 8.14, since $f$ is Lipschitz locally) gives equality with $f$ at every $x$, including the endpoints; moreover, $\sum4/n^2<\infty$ ensures uniform convergence.
+Pairing the $n$th and $(-n)$th terms gives the stated Fourier series. The Fourier convergence theorem (Theorem 8.14, since $f$ is Lipschitz locally) gives equality with $f$ at every $x$, including the endpoints; moreover, $\sum4/n^2<\infty$ ensures uniform convergence.
 
-At $x=0$ the identity becomes $\pi^2=\pi^2/3+4\sum_{n\ge1}n^{-2}$, giving $\sum n^{-2}=\pi^2/6$. Finally Parseval, with $\widehat f(\pm n)=2/n^2$, gives
+At $x=0$ the identity becomes $\pi^2=\pi^2/3+4\sum_{n\ge1}n^{-2}$, giving $\displaystyle\sum_{n=1}^{\infty}n^{-2}=\pi^2/6$. Finally Parseval, with $\widehat f(\pm n)=2/n^2$, gives
 \[
  \frac1\pi\int_0^\pi(\pi-x)^4\,\dd x
  =\frac{\pi^4}{5}
@@ -1272,25 +1267,33 @@ for every $x$.
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-We regard $f$ as a $2\pi$-periodic function; one-sided limits at $\pm\pi$ are understood periodically.
+One-sided limits at $\pm\pi$ are interpreted periodically.
 \begin{exercisesubparts}
-\item A bounded monotone function has finite total variation on a full period, including its possible endpoint jump. Integration by parts in the Riemann--Stieltjes sense (Chapter 6, Exercise 17), applied to $e^{-inx}$, gives, for $n\ne0$,
+\item Set $f(\pi)=f(\pi^-)$; changing one point does not affect the Fourier coefficients. This representative is monotone on $[-\pi, \pi]$, so Chapter 6, Exercise 17 applies with integrator $f$ (or $-f$ if $f$ is decreasing). For $n\ne0$, integration by parts yields
 \[
  \int_{-\pi}^\pi f(t)e^{-int}\,\dd t
  =\left[\frac{f(t)e^{-int}}{-in}\right]_{-\pi}^\pi
-  +\frac1{in}\int_{-\pi}^\pi e^{-int}\,\dd f(t).
+ +\frac1{in}\int_{-\pi}^\pi e^{-int}\,\dd f(t).
 \]
-The boundary term has modulus at most $2\|f\|_\infty/|n|$, while the Stieltjes integral is bounded in modulus by $V_{-\pi}^{\pi}(f)$, the total variation. Hence
+The boundary term has modulus at most $2\|f\|_\infty/|n|$, and the Stieltjes integral at most $V_{-\pi}^{\pi}(f)$. Consequently
 \[
- |n\widehat f(n)|\le\frac{2\|f\|_\infty+V_{-\pi}^{\pi}(f)}{2\pi},
+ |n\widehat f(n)|\le\frac{2\|f\|_\infty+V_{-\pi}^{\pi}(f)}{2\pi}
+ \qquad(n\ne0).
 \]
-independently of $n\ne0$.
 \item A bounded monotonic function has finite right and left limits at every point. Exercise 8.16 shows that the arithmetic means of its symmetric Fourier partial sums converge to $L_x=\tfrac12[f(x+)+f(x-)]$. Write
 \[
  S_Nf(x)-S_{N-1}f(x)=\widehat f(N)e^{iNx}+\widehat f(-N)e^{-iNx}=:a_N(x).
 \]
 Part (a) implies $|Na_N(x)|\le2\sup_n|n\widehat f(n)|$, uniformly in $x$. The Tauberian criterion in Chapter 3, Exercise 14(e) says that convergence of the arithmetic means together with this bound forces the original partial sums to converge to the same limit. Therefore $S_Nf(x)\to L_x$ at every $x$.
-\item Fix $x\in(\alpha, \beta)$ and choose a smaller interval around $x$ whose closure lies in $(\alpha, \beta)$. Extend the restriction of $f$ on this interval to a bounded monotonic function $g$ on a full period, by keeping it constant outside and taking a suitable periodic endpoint convention. By (b), the Fourier partial sums of $g$ converge at $x$ to the average of its one-sided limits, which are those of $f$. Since $f$ and $g$ agree in a neighborhood of $x$, the localization theorem (the corollary to Theorem 8.14) implies that their Fourier partial sums have the same convergence behavior at $x$. Hence the claimed conclusion holds for $f$.
+\item Fix $x\in(\alpha, \beta)$ and choose $\alpha<u<x<v<\beta$. On $[-\pi, \pi)$ define
+\[
+ g(t)=\begin{cases}
+ f(u), &t<u, \\
+ f(t), &u\le t\le v, \\
+ f(v), &t>v,
+ \end{cases}
+\]
+and extend $g$ periodically. Then $g$ is bounded and monotone on $[-\pi, \pi)$, and $f=g$ near $x$. By (b), $S_Ng(x)\to\frac12[f(x+)+f(x-)]$. The localization theorem (the corollary to Theorem 8.14) gives $S_N(f-g)(x)\to0$, proving the assertion.
 \end{exercisesubparts}
 \end{solution}
 
@@ -1379,22 +1382,26 @@ for $n=2, 3, 4, \ldots$.  Thus
  e^{7/8}<\frac{n!}{(n/e)^n\sqrt n}<e.
 \]
 \end{exercise}
+\Needspace{17\baselineskip}
 \begin{solution}
 The function $f$ is the straight chord joining $(m, \ln m)$ to $(m+1, \ln(m+1))$; $g$ is the tangent line to $\ln x$ at the integer $m$, restricted to the interval centered at $m$. The graphs on $[1, 4]$ are:
 \[
-\begin{tikzpicture}[x=2.2cm,y=1.8cm,baseline=(current bounding box.center)]
+\begin{tikzpicture}[x=2.2cm, y=2.1cm, baseline=(current bounding box.center)]
  \draw[->] (0.9, 0) -- (4.35, 0) node[right] {$x$};
- \draw[->] (1, -0.08) -- (1, 1.75) node[above] {$y$};
+ \draw[->] (1, -0.08) -- (1, 1.85) node[above] {$y$};
  \foreach \m in {1, 2, 3, 4} {\draw (\m, 0.02)--(\m, -0.02) node[below] {\scriptsize $\m$};}
- \draw[thick] plot[domain=1:4.15, samples=75] (\x, {ln(\x)});
- \draw[dashed] (1, 0)--(2, {ln(2)})--(3, {ln(3)})--(4, {ln(4)});
- \draw[dotted, very thick] (1, 0)--(1.5, 0.5);
- \draw[dotted, very thick] (1.5, {1.5/2-1+ln(2)})--(2.5, {2.5/2-1+ln(2)});
- \draw[dotted, very thick] (2.5, {2.5/3-1+ln(3)})--(3.5, {3.5/3-1+ln(3)});
- \draw[dotted, very thick] (3.5, {3.5/4-1+ln(4)})--(4, {ln(4)});
- \node[anchor=west] at (2.45, 0.58) {\footnotesize solid: $\ln x$};
- \node[anchor=west] at (2.45, 0.41) {\footnotesize dashed: $f$};
- \node[anchor=west] at (2.45, 0.24) {\footnotesize dotted: $g$};
+ \draw[very thick] plot[domain=1:4.1, samples=120] (\x, {ln(\x)});
+ \draw[blue!65!black, thick, dashed] (1, 0)--(2, {ln(2)})--(3, {ln(3)})--(4, {ln(4)});
+ \draw[red!65!black, densely dotted, very thick] (1, 0)--(1.5, 0.5);
+ \draw[red!65!black, densely dotted, very thick] (1.5, {1.5/2-1+ln(2)})--(2.5, {2.5/2-1+ln(2)});
+ \draw[red!65!black, densely dotted, very thick] (2.5, {2.5/3-1+ln(3)})--(3.5, {3.5/3-1+ln(3)});
+ \draw[red!65!black, densely dotted, very thick] (3.5, {3.5/4-1+ln(4)})--(4, {ln(4)});
+ \draw[very thick] (1.28, 1.66)--(1.52, 1.66);
+ \node[anchor=west] at (1.56, 1.66) {\scriptsize $\ln x$};
+ \draw[blue!65!black, thick, dashed] (2.05, 1.66)--(2.29, 1.66);
+ \node[anchor=west] at (2.33, 1.66) {\scriptsize $f$};
+ \draw[red!65!black, densely dotted, very thick] (2.8, 1.66)--(3.04, 1.66);
+ \node[anchor=west] at (3.08, 1.66) {\scriptsize $g$};
 \end{tikzpicture}
 \]
 Since $\ln$ is strictly concave, each chord lies below its graph and each tangent lies above it. Thus $f\le\ln x\le g$, with strict inequalities except at certain integers.
@@ -1432,7 +1439,7 @@ Prove that there exists a constant $C>0$ such that $L_n>C\ln n$ for $n=1, 2, 3, 
 is bounded.
 \end{exercise}
 \begin{solution}
-Recall from (77) that $D_n(t)=\sin((n+\frac12)t)/\sin(t/2)$. By evenness, with $m=n+\frac12$,
+The Dirichlet kernel satisfies $D_n(t)=\sin((n+\frac12)t)/\sin(t/2)$ for $t\notin2\pi\Z$. By evenness, with $m=n+\frac12$,
 \[
  L_n=\frac1\pi\int_0^\pi\frac{|\sin(mt)|}{\sin(t/2)}\,\dd t.
 \]
@@ -1645,9 +1652,10 @@ Since $[0, \infty)$ is connected, a continuous integer-valued function on it mus
 Let $D=\{z\in\C:|z|\le1\}$ and $T=\{z\in\C:|z|=1\}$. If $g:D\to T$ is continuous, prove that $g(z)=-z$ for some $z\in T$.
 \end{exercise}
 \begin{solution}
-Suppose that $g(z)\ne-z$ for all $z\in T$. The curves $\gamma_r(t)=g(re^{it})$ are continuous, closed, and nonvanishing (indeed, $|\gamma_r|=1$). For any $r_0\in[0, 1]$, the minimum $m=\min_{t\in[0, 2\pi]}|\gamma_{r_0}(t)|$ is positive. Uniform continuity of $g$ on $D$ gives, for $r$ sufficiently close to $r_0$,
+Suppose that $g(z)\ne-z$ for all $z\in T$. The curves $\gamma_r(t)=g(re^{it})$ are continuous, closed, and nonvanishing (indeed, $|\gamma_r|=1$). For every $r_0\in[0, 1]$, uniform continuity of $g$ on $D$ gives, for $r$ sufficiently close to $r_0$,
 \[
- \sup_{t\in[0, 2\pi]}|\gamma_r(t)-\gamma_{r_0}(t)|<m.
+ \sup_{t\in[0, 2\pi]}|\gamma_r(t)-\gamma_{r_0}(t)|<1
+ \quad\text{and}\quad |\gamma_{r_0}(t)|=1\ \ (0\le t\le2\pi).
 \]
 The stability result of Exercise 8.26 implies $\Ind(\gamma_r, 0)=\Ind(\gamma_{r_0}, 0)$. Hence the integer-valued function $r\mapsto\Ind(\gamma_r, 0)$ is locally constant, and therefore constant on $[0, 1]$. Since $\gamma_0$ is the constant curve $g(0)$, we obtain
 \[
@@ -1683,7 +1691,7 @@ since $|f(z)|\le1$ and $f(z)\ne z$. Thus the nonnegative root is uniquely given 
  s(z)=\frac{-\RePart(z\overline{d(z)})
  +\sqrt{\RePart(z\overline{d(z)})^2+|d(z)|^2(1-|z|^2)}}{|d(z)|^2}.
 \]
-The denominator never vanishes, so this formula shows that $s$ and $g$ are continuous on $D$. By construction $|g(z)|=1$; also $g(z)=z$ for $z\in T$. Hence $g\colon D\to T$ is a continuous map restricting to the identity on $T$.
+The denominator never vanishes, so this formula shows that $s$ and $g$ are continuous on $D$. By construction $|g(z)|=1$; also $g(z)=z$ for $z\in T$. Thus, with $T=\partial D$, the continuous map $g\colon D\to T$ restricts to the identity on $T$.
 
 Exercise 8.28 applied to $g$ asserts that $g(z)=-z$ for some $z\in T$. But there $g(z)=z$, so $z=-z$, impossible when $|z|=1$. The assumption was false, and $f$ has a fixed point.
 \end{solution}
