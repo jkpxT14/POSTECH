@@ -110,7 +110,11 @@
     align=left
 }
 
-% Canonical notation following current MATH000.
+% Canonical notation following (MATH000) Mathematical Language.
+% The bracketed Stirling symbols are preferred over S(n,k) in the text.
+\newcommand{\stirone}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand{\stirtwo}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Nzero}{\mathbb{N}_0}
 \newcommand{\Z}{\mathbb{Z}}

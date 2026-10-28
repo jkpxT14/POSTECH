@@ -30,6 +30,18 @@ If $N$ objects are distributed among $k\ge1$ boxes, at least one box contains at
 If every box contained fewer than $\lceil N/k\rceil$ objects, each would contain at most $\lceil N/k\rceil-1<N/k$ objects. The total would then be less than $N$, a contradiction. The particular case follows by setting $N=k+1$.
 \end{proof}
 
+% Source: Lecture 1-1, pp. 23, 28. General form used for recurrence arguments.
+\begin{theorem}[Mathematical Induction]
+Let $P(n)$ be a statement for each $n\in\N$.
+\begin{enumerate}[label=(\roman*)]
+\item If $P(1)$ holds and $P(n)$ implies $P(n+1)$ for every $n\ge1$, then $P(n)$ holds for every $n\in\N$.
+\item More generally, fix $k\in\N$. If $P(1), \ldots, P(k)$ hold and $P(m-k+1), \ldots, P(m)$ together imply $P(m+1)$ for every $m\ge k$, then $P(n)$ holds for all $n\in\N$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+In either case, suppose a counterexample exists and let $n$ be the least index for which $P(n)$ fails. In (i), the base case gives $n>1$, so $P(n-1)$ holds and the inductive step yields $P(n)$, a contradiction. In (ii), the initial cases give $n>k$, and the $k$ preceding statements are true by minimality of $n$. Applying the inductive step with $m=n-1$ again gives a contradiction.
+\end{proof}
+
 % Source: Lecture 1-2, pp. 10--21.
 \begin{definition}[Binary Relation]
 A \emph{binary relation} $R$ on a set $X$ is a subset of $X\times X$. We write $xRy$ to mean $(x, y)\in R$. The relation $R$ is
@@ -45,7 +57,7 @@ Symmetry and antisymmetry are different conditions; neither is the negation of t
 \begin{definition}[Equivalence Relation and Equivalence Class]
 An \emph{equivalence relation} $\sim$ on $X$ is reflexive, symmetric, and transitive. For $x\in X$, its \emph{equivalence class} is
 \[
-[x]_{\sim}\coloneqq\{y\in X:y\sim x\}.
+[x]_{\sim}\coloneqq\{y\in X\mid y\sim x\}.
 \]
 \end{definition}
 
@@ -84,6 +96,7 @@ If $g, h$ are both greatest, then $g\preceq h$ and $h\preceq g$, so antisymmetry
 \begin{definition}[Sunflower]
 A family of distinct sets $A_1, \ldots, A_r$ is a \emph{sunflower} with $r$ petals if a set $K$ exists such that $A_i\cap A_j=K$ for every $i\ne j$. The set $K$ is the \emph{core}; the sets $A_i\setminus K$ are pairwise disjoint \emph{petals}. In a $k$-uniform family every member has cardinality $k$.
 \end{definition}
+\Needspace{15\baselineskip}
 \begin{lemma}[Sunflower Lemma]\label{lem:sunflower}
 Let $k, r\in\N$ and let $\mathcal F$ be a family of distinct sets, each containing exactly $k$ elements. If
 \[
@@ -123,6 +136,7 @@ For $\pi\in S_n$, the symbol $\pi(i)$ denotes the image of $i$. Its \emph{two-li
 \]
 The composition $\sigma\circ\pi$ sends $i$ to $\sigma(\pi(i))$, so the rightmost map acts first. The identity $\id_{[n]}$ fixes every element, and $\pi^{-1}$ denotes the inverse permutation. The cycle $(i_1\ i_2\ \cdots\ i_\ell)$ sends $i_j$ to $i_{j+1}$ for $1\le j<\ell$, sends $i_\ell$ to $i_1$, and fixes all elements not listed. A fixed point is a cycle of length one.
 \end{notation}
+\Needspace{13\baselineskip}
 \begin{proposition}[Disjoint-Cycle Decomposition]
 Every permutation of $[n]$ is a product of disjoint cycles, unique up to the order of the cycles and cyclic rotation of the entries within each cycle.
 \end{proposition}
@@ -131,12 +145,12 @@ For any $i\in[n]$, the sequence $i, \pi(i), \pi^2(i), \ldots$ eventually repeats
 \end{proof}
 
 \begin{definition}[Combinations]
-An $r$-\emph{combination} of an $n$-element set is an $r$-element subset. Its number is denoted by ${}_nC_r$ or $\binom nr$. We set $\binom nr=0$ when $r<0$ or $r>n$, for $n\in\Nzero$.
+An $r$-\emph{combination} of an $n$-element set is an $r$-element subset. Its number is denoted by $\binom nr$ (also ${}_nC_r$). We set $\binom nr=0$ when $r<0$ or $r>n$, for $n\in\Nzero$.
 \end{definition}
 \begin{proposition}[Number of Combinations]
 For $0\le r\le n$,
 \[
-{}_nC_r=\binom nr=\frac{n!}{r!(n-r)!}.
+\binom nr=\frac{n!}{r!(n-r)!}.
 \]
 \end{proposition}
 \begin{proof}
@@ -149,31 +163,35 @@ For $n\ge1$ and $0\le r\le n$,
 \binom nr=\binom{n-1}{r-1}+\binom{n-1}{r}.
 \]
 \end{proposition}
-\begin{proof}
-Fix an element $x$ of an $n$-element set. An $r$-element subset either contains $x$, leaving $r-1$ elements to be selected from the remaining $n-1$, or excludes $x$, leaving all $r$ elements to be selected. The cases are disjoint and exhaustive.
-
-Algebraically, for $1\le r\le n-1$,
+\begin{proof}[Proof 1]
+Fix an element $x$ of an $n$-element set. An $r$-element subset either contains $x$, leaving $r-1$ elements to be chosen from the other $n-1$, or excludes $x$, leaving $r$ elements to be chosen. These cases are disjoint and exhaustive.
+\end{proof}
+\begin{proof}[Proof 2]
+For $1\le r\le n-1$,
 \[
 \begin{aligned}
 \binom{n-1}{r-1}+\binom{n-1}{r}
 &=\frac{(n-1)!}{(r-1)!(n-r)!}+\frac{(n-1)!}{r!(n-r-1)!}\\
-&=\frac{r(n-1)!+(n-r)(n-1)!}{r!(n-r)!}
-=\frac{n!}{r!(n-r)!}.
+&=\frac{(r+n-r)(n-1)!}{r!(n-r)!}
+=\binom nr.
 \end{aligned}
 \]
-For $r=0$ and $r=n$, the identity follows from the convention for out-of-range binomial coefficients.
+For $r=0$ or $r=n$, the formula follows from the convention for out-of-range coefficients.
 \end{proof}
 
+\Needspace{12\baselineskip}
 \begin{theorem}[Binomial Theorem]\label{thm:binomial}
 For $n\in\Nzero$ and commuting variables $x, y$,
 \[
 (x+y)^n=\sum_{r=0}^n\binom nr x^{n-r}y^r.
 \]
 \end{theorem}
-\begin{proof}
-In the expansion of $n$ factors $(x+y)$, a monomial $x^{n-r}y^r$ is obtained by choosing the $r$ factors from which $y$ is taken. There are $\binom nr$ such choices.
-
-The theorem also follows by induction on $n$. It holds for $n=0$. Assuming the formula at $n$ and multiplying by $x+y$ gives
+\begin{proof}[Proof 1]
+In the product of $n$ factors $(x+y)$, obtaining $x^{n-r}y^r$ amounts to choosing the $r$ factors contributing $y$. There are $\binom nr$ such choices.
+\end{proof}
+\Needspace{17\baselineskip}
+\begin{proof}[Proof 2]
+Use induction on $n$. The identity holds at $n=0$. Assuming it at $n$ and multiplying by $x+y$,
 \[
 \begin{aligned}
 (x+y)^{n+1}
@@ -184,7 +202,7 @@ The theorem also follows by induction on $n$. It holds for $n=0$. Assuming the f
 &=\sum_{r=0}^{n+1}\binom{n+1}{r}x^{n+1-r}y^r,
 \end{aligned}
 \]
-where the last equality uses Pascal's identity.
+where the last step uses Pascal's identity.
 \end{proof}
 
 \begin{definition}[Multinomial Coefficient]
@@ -207,22 +225,26 @@ For $k\in\N$, $n\in\Nzero$, and commuting variables $x_1, \ldots, x_k$,
 \binom{n}{n_1, \ldots, n_k}\prod_{i=1}^k x_i^{n_i}.
 \]
 \end{theorem}
-\begin{proof}
-Choosing one term from each of the $n$ factors determines a monomial $x_1^{n_1}\cdots x_k^{n_k}$. The coefficient is the number of assignments of the factor positions to $k$ labeled groups of sizes $n_1, \ldots, n_k$, namely the multinomial coefficient.
-
-For an inductive proof on $n$, the formula is immediate at $n=0$. Assume it holds at $n$. Multiplying by $x_1+\cdots+x_k$, the coefficient of $x_1^{n_1}\cdots x_k^{n_k}$, where $n_1+\cdots+n_k=n+1$, becomes
+\begin{proof}[Proof 1]
+Choose one term from each of the $n$ factors. The coefficient of $x_1^{n_1}\cdots x_k^{n_k}$ counts assignments of the factor positions to $k$ labeled groups of sizes $n_1, \ldots, n_k$, so it equals $\binom{n}{n_1, \ldots, n_k}$.
+\end{proof}
+\begin{proof}[Proof 2]
+Induct on $n$. The formula is immediate for $n=0$. Assuming it for $n$, multiply by $x_1+\cdots+x_k$. For $n_1+\cdots+n_k=n+1$, the coefficient of $x_1^{n_1}\cdots x_k^{n_k}$ in the resulting product is
 \[
+\begin{aligned}
 \sum_{\substack{1\le j\le k\\n_j\ge1}}
 \binom{n}{n_1, \ldots, n_j-1, \ldots, n_k}
-=\sum_{\substack{1\le j\le k\\n_j\ge1}}
-\frac{n!n_j}{n_1!\cdots n_k!}
-=\frac{(n+1)!}{n_1!\cdots n_k!}.
+&=\sum_{\substack{1\le j\le k\\n_j\ge1}}
+\frac{n!n_j}{n_1!\cdots n_k!}\\
+&=\frac{n!}{n_1!\cdots n_k!}\sum_{j=1}^k n_j
+=\binom{n+1}{n_1, \ldots, n_k}.
+\end{aligned}
 \]
-Thus every coefficient agrees with the multinomial formula at $n+1$.
+Terms with $n_j=0$ contribute nothing, as reflected in the restricted sum. This proves the inductive step.
 \end{proof}
 
 \begin{definition}[Combinations with Repetition]
-For $n\ge1$ and $r\in\Nzero$, a combination with repetition is a multiset of cardinality $r$ drawn from $n$ types. Its number is denoted by ${}_nH_r$ or $\left(\!\binom nr\!\right)$.
+For $n\ge1$ and $r\in\Nzero$, a combination with repetition is a multiset of cardinality $r$ drawn from $n$ types. Its number is denoted by $\left(\!\binom nr\!\right)$ (also ${}_nH_r$).
 \end{definition}
 
 \begin{theorem}[Stars and Bars]\label{thm:starsbars}
@@ -230,13 +252,14 @@ For $n\in\N$ and $r\in\Nzero$, the number of solutions to
 \[
 x_1+\cdots+x_n=r, \qquad (x_1, \ldots, x_n)\in\Nzero^n,
 \]
-is $\binom{n+r-1}{n-1}=\binom{n+r-1}{r}$. It is also the number ${}_nH_r$ of $r$-combinations with repetition from $n$ types.
+is $\binom{n+r-1}{n-1}=\binom{n+r-1}{r}$. It is also the number $\left(\!\binom nr\!\right)$ of $r$-combinations with repetition from $n$ types.
 \end{theorem}
 \begin{proof}
 Represent the solution by $x_1$ stars, a bar, $x_2$ stars, and so on, ending with $x_n$ stars. This gives a string of $r$ stars and $n-1$ bars. Conversely, the numbers of stars between consecutive bars recover the $x_i$ uniquely. Choosing the positions of the $n-1$ bars among $n+r-1$ positions gives the formula. Selecting $x_i$ objects of type $i$ is the same data as the solution vector.
 \end{proof}
 
 % Source: Lecture 4-1, pp. 5--13, 14--15.
+\Needspace{16\baselineskip}
 \begin{theorem}[Inclusion--Exclusion Principle]\label{thm:ie}
 For finite sets $A_1, \ldots, A_n$,
 \[
@@ -251,17 +274,18 @@ Equivalently, if $A_i\subseteq U$ for a finite universe $U$, then
 \qquad\bigcap_{i\in\varnothing}A_i=U.
 \]
 \end{theorem}
-\begin{proof}
-Fix $u\in U$ that lies in exactly $t$ of the sets. If $t=0$, its contribution to the first right-hand side is zero. If $t\ge1$, its contribution is
+\begin{proof}[Proof 1]
+Fix an element $u$, and suppose it belongs to exactly $t$ of the sets. If $t=0$, it contributes zero to both sides of the first identity. Otherwise it contributes
 \[
-\sum_{j=1}^t(-1)^{j+1}\binom tj=1-(1-1)^t=1.
+\sum_{j=1}^t(-1)^{j+1}\binom tj=1-(1-1)^t=1
 \]
-Thus each element of the union is counted exactly once. Subtracting the first identity from $|U|$ proves the complement form.
-
-Alternatively, induct on $n$. The case $n=1$ is immediate. For $n\ge2$, the two-set identity gives
+to the right-hand side. Thus each element of the union is counted exactly once. Subtracting this identity from $|U|$, for the specified finite universe $U$, gives the complement formula.
+\end{proof}
+\begin{proof}[Proof 2]
+Induct on $n$. The case $n=1$ is immediate. For $n\ge2$, the two-set identity and the inductive hypothesis give
 \[
 \begin{aligned}
-\left|\bigcup_{i=1}^nA_i\right|
+\left|\bigcup_{i=1}^n A_i\right|
 &=\left|\bigcup_{i=1}^{n-1}A_i\right|+|A_n|
 -\left|\bigcup_{i=1}^{n-1}(A_i\cap A_n)\right|\\
 &=\sum_{\varnothing\ne I\subseteq[n-1]}(-1)^{|I|+1}
@@ -270,9 +294,10 @@ Alternatively, induct on $n$. The case $n=1$ is immediate. For $n\ge2$, the two-
 \left|A_n\cap\bigcap_{i\in I}A_i\right|.
 \end{aligned}
 \]
-The first sum counts index sets not containing $n$. The term $|A_n|$ corresponds to $\{n\}$, and each summand in the final sum corresponds to $I\cup\{n\}$, with sign $(-1)^{|I|+2}$. These are all nonempty subsets of $[n]$, with exactly the desired signs.
+The first sum represents subsets of indices not containing $n$, the middle term represents $\{n\}$, and the last sum represents $I\cup\{n\}$ with the required sign $(-1)^{|I|+2}$. These cover every nonempty subset of $[n]$. The complement form follows by subtraction from $|U|$.
 \end{proof}
 
+\Needspace{12\baselineskip}
 \begin{proposition}[Number of Surjections]\label{prop:surj}
 Let $n, k\in\Nzero$. For $k\ge1$, the number of surjections $[n]\to[k]$ is
 \[
@@ -287,10 +312,11 @@ For $k\ge1$, there are $k^n$ maps $[n]\to[k]$. Let $A_i$ be those maps whose ima
 \begin{definition}[Euler's Totient Function]
 For $n\in\N$, Euler's totient function is
 \[
-\varphi(n)\coloneqq\#\{k\in[n]:\gcd(k, n)=1\}.
+\varphi(n)\coloneqq\#\{k\in[n]\mid\gcd(k, n)=1\}.
 \]
 In particular, $\varphi(1)=1$.
 \end{definition}
+\Needspace{13\baselineskip}
 \begin{theorem}[Euler's Totient Formula]\label{thm:euler}
 If $n\in\N$ has distinct prime divisors $p_1, \ldots, p_t$, then
 \[
@@ -312,6 +338,7 @@ For $n=1$, the definition and empty-product convention agree.
 \begin{definition}[Derangements]
 A \emph{derangement} of $[n]$ is a permutation $\pi\in S_n$ with no fixed point, so $\pi(i)\ne i$ for every $i\in[n]$. Denote the number of derangements by $D_n$ (also $!n$). The empty permutation is a derangement by convention, so $D_0=1$; furthermore, $D_1=0$ and $D_2=1$.
 \end{definition}
+\Needspace{12\baselineskip}
 \begin{theorem}[Derangement Formula]\label{thm:derformula}
 For every $n\in\Nzero$,
 \[
@@ -319,13 +346,14 @@ D_n=n!\sum_{j=0}^n\frac{(-1)^j}{j!}.
 \]
 \end{theorem}
 \begin{proof}
-For each $i\in[n]$, let $A_i=\{\pi\in S_n:\pi(i)=i\}$. If $I\subseteq[n]$ has cardinality $j$, fixing all elements of $I$ leaves $(n-j)!$ permutations. Inclusion--exclusion therefore gives
+For each $i\in[n]$, let $A_i=\{\pi\in S_n\mid\pi(i)=i\}$. If $I\subseteq[n]$ has cardinality $j$, fixing all elements of $I$ leaves $(n-j)!$ permutations. Inclusion--exclusion therefore gives
 \[
 D_n=\sum_{j=0}^n(-1)^j\binom nj(n-j)!
 =n!\sum_{j=0}^n\frac{(-1)^j}{j!}.
 \]
 The formula also gives $D_0=1$.
 \end{proof}
+\Needspace{14\baselineskip}
 \begin{theorem}[Derangement Recurrences]\label{thm:derrec}
 For $n\ge1$ and $n\ge2$, respectively,
 \[
@@ -334,12 +362,12 @@ D_n=(n-1)(D_{n-1}+D_{n-2}),
 \]
 with $D_0=1$ and $D_1=0$.
 \end{theorem}
-\begin{proof}
-Subtract the formulas for $D_n$ and $nD_{n-1}$ in Theorem~\ref{thm:derformula} to obtain
+\begin{proof}[Proof 1]
+By Theorem~\ref{thm:derformula},
 \[
 D_n-nD_{n-1}=n!\frac{(-1)^n}{n!}=(-1)^n.
 \]
-Applying this identity at $n$ and $n-1$ yields
+For $n\ge2$, using this identity at the consecutive indices $n$ and $n-1$ gives
 \[
 \begin{aligned}
 D_n&=nD_{n-1}+(-1)^n\\
@@ -347,7 +375,21 @@ D_n&=nD_{n-1}+(-1)^n\\
 &=(n-1)(D_{n-1}+D_{n-2}).
 \end{aligned}
 \]
-There is also a combinatorial proof of the second recurrence. Fix $j=\pi(n)\ne n$, with $n-1$ possible choices. If $\pi(j)=n$, the cycle $(n\ j)$ can be removed, leaving a derangement of the other $n-2$ elements. Otherwise the cycle containing $n$ has length at least three. Deleting $n$ from it yields a derangement of $[n-1]$. Conversely, for a given derangement of $[n-1]$, insert $n$ immediately before $j$ in the cycle containing $j$; this uniquely reconstructs the second case. Each choice of $j$ therefore permits $D_{n-2}+D_{n-1}$ permutations.
+\end{proof}
+\begin{proof}[Proof 2]
+We first count derangements combinatorially. Fix $j=\pi(n)\ne n$; there are $n-1$ choices. If $\pi(j)=n$, the two-cycle $(n\ j)$ can be removed, leaving a derangement of the other $n-2$ elements. Otherwise, delete $n$ from its cycle; this gives a derangement of $[n-1]$. Conversely, insert $n$ immediately before $j$ into the cycle containing $j$. This reconstructs the original permutation with $\pi(n)=j$ and $\pi(j)\ne n$. Hence, for $n\ge2$,
+\[
+D_n=(n-1)(D_{n-1}+D_{n-2}).
+\]
+For the other recurrence, rearrange this identity as
+\[
+D_n-nD_{n-1}=-\bigl(D_{n-1}-(n-1)D_{n-2}\bigr).
+\]
+Iterating the identity down to $D_1-D_0=-1$ gives
+\[
+D_n-nD_{n-1}=(-1)^{n-1}(D_1-D_0)=(-1)^n,
+\]
+as required.
 \end{proof}
 
 % Source: Lecture 4-2, pp. 2--9 (the theater problem is reserved for the midterm).
@@ -395,33 +437,35 @@ Consider a nonnegative balanced $\pm1$ word of length $2n$. Let its first return
 \end{proof}
 
 % Source: Lecture 4-2, pp. 10--14.
+\Needspace{15\baselineskip}
 \begin{definition}[Stirling Numbers of the First Kind]
-Let $c(n, k)$ (also $\stirone nk$) be the number of permutations in $S_n$ whose disjoint-cycle decomposition has exactly $k$ cycles. This is the \emph{unsigned Stirling number of the first kind}. The \emph{signed Stirling number of the first kind} is
+Let $\stirone{n}{k}$ (also $c(n, k)$) be the number of permutations in $S_n$ whose disjoint-cycle decomposition has exactly $k$ cycles. This is the \emph{unsigned Stirling number of the first kind}. The \emph{signed Stirling number of the first kind} is
 \[
-s(n, k)\coloneqq(-1)^{n-k}c(n, k).
+s(n, k)\coloneqq(-1)^{n-k}\stirone{n}{k}.
 \]
-The initial and boundary values are $c(0, 0)=s(0, 0)=1$, $c(n, 0)=0$ for $n\ge1$, and $c(n, k)=0$ for $k>n$. The signed values follow from $s(n, k)=(-1)^{n-k}c(n, k)$.
+The initial and boundary values are $\stirone{0}{0}=s(0, 0)=1$, $\stirone{n}{0}=0$ for $n\ge1$, and $\stirone{n}{k}=0$ for $k>n$. The signed values follow from $s(n, k)=(-1)^{n-k}\stirone{n}{k}$.
 \end{definition}
 \begin{proposition}[First-Kind Stirling Recurrences]\label{prop:stirlingfirst}
 For $n\ge1$ and $1\le k\le n$,
 \[
 \begin{aligned}
-c(n, k)&=c(n-1, k-1)+(n-1)c(n-1, k), \\
+\stirone{n}{k}&=\stirone{n-1}{k-1}+(n-1)\stirone{n-1}{k}, \\
 s(n, k)&=s(n-1, k-1)-(n-1)s(n-1, k).
 \end{aligned}
 \]
 \end{proposition}
 \begin{proof}
-In a permutation of $[n]$ with $k$ cycles, either $n$ is a singleton cycle or it is not. In the first case, removing $(n)$ leaves a permutation of $[n-1]$ with $k-1$ cycles. In the second, remove $n$ from its cycle. The remaining permutation has $k$ cycles, and $n$ can be reinserted immediately after any one of the $n-1$ other elements, giving $n-1$ possibilities. This proves the first recurrence. Multiplying it by $(-1)^{n-k}$ and using $s(n, k)=(-1)^{n-k}c(n, k)$ gives the second.
+In a permutation of $[n]$ with $k$ cycles, either $n$ is a singleton cycle or it is not. In the first case, removing $(n)$ leaves a permutation of $[n-1]$ with $k-1$ cycles. In the second, remove $n$ from its cycle. The remaining permutation has $k$ cycles, and $n$ can be reinserted immediately after any one of the $n-1$ other elements, giving $n-1$ possibilities. This proves the first recurrence. Multiplying it by $(-1)^{n-k}$ and using $s(n, k)=(-1)^{n-k}\stirone{n}{k}$ gives the second.
 \end{proof}
 
 \begin{proposition}[First-Kind Stirling Special Values]
-For $n\ge1$, $c(n, n)=1$ and $c(n, 1)=(n-1)!$; for $n\ge2$, $c(n, n-1)=\binom n2$.
+For $n\ge1$, $\stirone{n}{n}=1$ and $\stirone{n}{1}=(n-1)!$; for $n\ge2$, $\stirone{n}{n-1}=\binom n2$.
 \end{proposition}
 \begin{proof}
 Only the identity permutation has $n$ cycles. An $n$-cycle can be written beginning with $1$, followed by any ordering of the remaining $n-1$ elements, yielding $(n-1)!$ permutations. To obtain $n-1$ cycles, exactly one pair of elements must form a transposition, while all other elements are fixed; there are $\binom n2$ choices.
 \end{proof}
 
+\Needspace{14\baselineskip}
 \begin{proposition}[Falling-Factorial Coefficients]\label{prop:fallstir}
 For $n\in\Nzero$,
 \[
@@ -437,15 +481,16 @@ The result is immediate for $n=0$. If it holds for $n-1$, then
 The coefficient of $x^k$ on the right is $s(n-1, k-1)-(n-1)s(n-1, k)=s(n, k)$ by Proposition~\ref{prop:stirlingfirst}.
 \end{proof}
 
+\Needspace{12\baselineskip}
 \begin{definition}[Stirling Numbers of the Second Kind]
-The \emph{Stirling number of the second kind} $S(n, k)$ (also $\stirtwo nk$) is the number of partitions of an $n$-element set into exactly $k$ nonempty, unlabeled blocks. We set
+The \emph{Stirling number of the second kind} $\stirtwo{n}{k}$ (also $S(n, k)$) is the number of partitions of an $n$-element set into exactly $k$ nonempty, unlabeled blocks. We set
 \[
-S(0, 0)=1, \quad S(n, 0)=0\ (n\ge1), \quad S(n, k)=0\ (k>n).
+\stirtwo{0}{0}=1, \quad \stirtwo{n}{0}=0\ (n\ge1), \quad \stirtwo{n}{k}=0\ (k>n).
 \]
-For $n\ge1$, $S(n, 1)=S(n, n)=1$.
+For $n\ge1$, $\stirtwo{n}{1}=\stirtwo{n}{n}=1$.
 \end{definition}
 \begin{proposition}[Second-Kind Stirling Special Value]
-For $n\ge2$, $S(n, n-1)=\binom n2$.
+For $n\ge2$, $\stirtwo{n}{n-1}=\binom n2$.
 \end{proposition}
 \begin{proof}
 A partition of $[n]$ into $n-1$ nonempty blocks consists of one two-element block and $n-2$ singleton blocks. Choosing the pair uniquely determines the partition.
@@ -453,7 +498,7 @@ A partition of $[n]$ into $n-1$ nonempty blocks consists of one two-element bloc
 \begin{theorem}[Second-Kind Stirling Recurrence]\label{thm:stirlingsecond}
 For $n\ge1$ and $1\le k\le n$,
 \[
-S(n, k)=S(n-1, k-1)+kS(n-1, k).
+\stirtwo{n}{k}=\stirtwo{n-1}{k-1}+k\stirtwo{n-1}{k}.
 \]
 \end{theorem}
 \begin{proof}
@@ -462,10 +507,10 @@ Consider the block containing $n$. If it is the singleton $\{n\}$, the other $n-
 \begin{theorem}[Surjections and Stirling Numbers]\label{thm:surjstirling}
 For $n\in\Nzero$ and $k\in\N$,
 \[
-\#\Surj([n], [k])=k!S(n, k), \qquad
-S(n, k)=\frac1{k!}\sum_{j=0}^{k}(-1)^j\binom kj(k-j)^n.
+\#\Surj([n], [k])=k!\stirtwo{n}{k}, \qquad
+\stirtwo{n}{k}=\frac1{k!}\sum_{j=0}^{k}(-1)^j\binom kj(k-j)^n.
 \]
-For $(n, k)=(0, 0)$, the corresponding cardinality identity is $1=0!S(0, 0)$.
+For $(n, k)=(0, 0)$, the corresponding cardinality identity is $1=0!\stirtwo{0}{0}$.
 \end{theorem}
 \begin{proof}
 The nonempty fibers of a surjection $f:[n]\to[k]$ form a partition of $[n]$ into $k$ blocks. Conversely, labeling the blocks of such a partition bijectively by $[k]$ determines a surjection; there are $k!$ such labelings. Combining this counting identity with Proposition~\ref{prop:surj} gives the explicit sum.
@@ -478,10 +523,11 @@ The identities in Proposition~\ref{prop:stirlingfirst} and Theorem~\ref{thm:stir
 \begin{definition}[Bell Numbers]
 The \emph{Bell number} $B_n$ counts all partitions of an $n$-element set. Hence
 \[
-B_n=\sum_{k=0}^nS(n, k), \qquad B_0=1.
+B_n=\sum_{k=0}^n\stirtwo{n}{k}, \qquad B_0=1.
 \]
 The first values are $B_1=1$, $B_2=2$, $B_3=5$, $B_4=15$, and $B_5=52$.
 \end{definition}
+\Needspace{11\baselineskip}
 \begin{theorem}[Bell Recurrence]\label{thm:bellrec}
 For $n\ge1$,
 \[
@@ -491,6 +537,7 @@ B_n=\sum_{k=0}^{n-1}\binom{n-1}{k}B_k.
 \begin{proof}
 Fix one distinguished element $x$ of an $n$-element set. If exactly $n-1-k$ of the remaining elements lie in the block containing $x$, choose them in $\binom{n-1}{n-1-k}=\binom{n-1}{k}$ ways. The other $k$ elements may be partitioned in $B_k$ ways. Every partition determines a unique $k$, so summing proves the recurrence.
 \end{proof}
+\Needspace{12\baselineskip}
 \begin{theorem}[Bell Finite-Sum Formula]\label{thm:bellsum}
 For $n\in\Nzero$,
 \[
@@ -536,6 +583,7 @@ For any prescribed $a_0, \ldots, a_{k-1}$, a recurrence of degree $k$ as above d
 For existence, compute $a_k$ from $a_0, \ldots, a_{k-1}$, and then calculate each subsequent term from the preceding $k$ values. For uniqueness, two solutions with the same initial values agree at indices $0, \ldots, k-1$; if their preceding $k$ terms agree, the recurrence forces their next terms to agree. Induction completes the argument.
 \end{proof}
 
+\Needspace{11\baselineskip}
 \begin{definition}[Characteristic Equation]
 The \emph{characteristic polynomial} of the recurrence
 $a_n=\displaystyle\sum_{j=1}^kc_ja_{n-j}$ is
@@ -594,6 +642,7 @@ Since $r_0\ne0$, coefficient comparison gives $c_1=2r_0$ and $c_2=-r_0^2$. Besid
 By linearity, every displayed combination is a solution. To match arbitrary initial values $a_0, a_1$, choose $\alpha=a_0$ and $\beta=a_1/r_0-a_0$. Uniqueness of the recurrence then establishes that every solution has this form.
 \end{proof}
 
+\Needspace{20\baselineskip}
 \begin{theorem}[General Solution of a Constant-Coefficient Homogeneous Recurrence]\label{thm:generalrec}
 Let $p(r)=r^k-c_1r^{k-1}-\cdots-c_k$, where $c_k\ne0$. Suppose its distinct complex roots are $r_1, \ldots, r_t$ with multiplicities $m_1, \ldots, m_t$, so $m_1+\cdots+m_t=k$. The solutions of the recurrence are exactly
 \[
@@ -634,6 +683,7 @@ a_n=c_1a_{n-1}+\cdots+c_ka_{n-k}+F(n), \qquad n\ge k,
 \]
 where $c_1, \ldots, c_k$ are constants, $c_k\ne0$, and $F$ is a prescribed function. The recurrence obtained by setting $F=0$ is the \emph{associated homogeneous recurrence}. A \emph{particular solution} is any one sequence satisfying the nonhomogeneous recurrence.
 \end{definition}
+\Needspace{12\baselineskip}
 \begin{theorem}[Homogeneous Plus Particular Solution]\label{thm:particular}
 If $a_n^{(p)}$ is a particular solution to a linear nonhomogeneous recurrence, then every solution is of the form
 \[
@@ -655,9 +705,9 @@ where $Q_d$ is a polynomial of degree at most $d$ with undetermined coefficients
 \begin{proof}
 Let $E$ denote the forward shift, $(Ea)_n=a_{n+1}$, and let $\Delta Q(n)=Q(n+1)-Q(n)$. With the recurrence indexed from $n=k$, its operator form is
 \[
-(p(E)a)_n=F(n+k)\qquad(n\ge0),
+(p(E)a)_n=F(n+k)\qquad(n\ge0).
 \]
-not $p(E)a=F(n)$. For $a_n=\lambda^nQ(n)$, direct calculation gives
+For $a_n=\lambda^nQ(n)$, direct calculation gives
 \[
 (p(E)a)_n=\lambda^np\bigl(\lambda(1+\Delta)\bigr)Q(n).
 \]
@@ -706,6 +756,7 @@ If $f(n)\ne0$, one recovers $a_n=b_n/f(n)$; when $f$ vanishes at an index, that 
 \begin{proof}
 Substitute $b_{n-j}=f(n-j)a_{n-j}$ for $0\le j\le k$. The resulting relation has constant coefficients.
 \end{proof}
+\Needspace{22\baselineskip}
 \begin{proposition}[First-Order Variable-Coefficient Recurrences]\label{prop:varfirst}
 Let
 \[
@@ -773,28 +824,33 @@ For $\alpha\in\R$ and $n\in\Nzero$, define
 \]
 When $\alpha$ is a nonnegative integer, this agrees with the usual binomial coefficient and vanishes for $n>\alpha$.
 \end{definition}
+\Needspace{14\baselineskip}
 \begin{theorem}[Generalized Binomial Theorem]\label{thm:genbinomial}
 For every $\alpha\in\R$,
 \[
 (1+x)^\alpha=\sum_{n=0}^{\infty}\binom\alpha n x^n
 \qquad(|x|<1).
 \]
-The coefficient identity also holds as the formal binomial expansion of $(1+x)^\alpha$. For nonnegative integer $\alpha$, the series terminates and is the ordinary Binomial Theorem.
+The same coefficients define the corresponding formal binomial expansion. For nonnegative integer $\alpha$, the series terminates and is the ordinary Binomial Theorem.
 \end{theorem}
-\begin{proof}
-Write $b_n=\binom\alpha n$ and $F(x)=\displaystyle\sum_{n\ge0}b_nx^n$. The coefficients satisfy
+\begin{proof}[Proof 1]
+Set $F(x)=\displaystyle\sum_{n\ge0}\binom\alpha n x^n$. Its coefficients satisfy
 \[
-(n+1)b_{n+1}=(\alpha-n)b_n.
+(n+1)\binom\alpha{n+1}=(\alpha-n)\binom\alpha n.
 \]
-The ratio test shows that $F$ converges absolutely for $|x|<1$ unless it terminates, in which case convergence is automatic. On this interval, termwise differentiation is valid. Comparing coefficients using the displayed recurrence gives
+The ratio test gives absolute convergence for $|x|<1$ unless the sum terminates. Termwise differentiation and comparison of coefficients then yield
 \[
 (1+x)F'(x)=\alpha F(x), \qquad F(0)=1.
 \]
-Since $1+x>0$ for $-1<x<1$,
+It follows that $\frac{d}{dx}((1+x)^{-\alpha}F(x))=0$ for $|x|<1$, so $F(x)=(1+x)^\alpha$. The coefficient recurrence also determines the formal expansion without requiring convergence.
+\end{proof}
+\begin{proof}[Proof 2]
+The Maclaurin coefficients of $f(x)=(1+x)^\alpha$ satisfy
 \[
-\frac{d}{dx}\bigl((1+x)^{-\alpha}F(x)\bigr)=0.
+f^{(n)}(x)=\fall\alpha n (1+x)^{\alpha-n},
+\qquad\frac{f^{(n)}(0)}{n!}=\binom\alpha n.
 \]
-The quantity in parentheses is therefore constant and equals its value $1$ at $x=0$. Thus $F(x)=(1+x)^\alpha$ throughout $|x|<1$. The coefficient recurrence also verifies the formal power-series identity, independently of convergence.
+The function $(1+z)^\alpha=\exp(\alpha\log(1+z))$ is analytic on the complex disk $|z|<1$, with the logarithm branch satisfying $\log 1=0$. Hence its Maclaurin series represents the function throughout that disk. Restricting to real $x$ gives the claimed expansion.
 \end{proof}
 \begin{remark}
 For $m\in\N$, negative exponents give
@@ -803,6 +859,7 @@ The corresponding explicit expansions of $(1+x)^{-m}$ and $(1-x)^{-m}$ may be ob
 \end{remark}
 
 % Source: Lecture 7-1, pp. 18--19.
+\Needspace{25\baselineskip}
 \begin{definition}[Exponential Generating Function]
 For a sequence $(a_n)_{n\ge0}$ over $\R$ or $\C$, its \emph{exponential generating function} (EGF) is
 \[
@@ -810,6 +867,7 @@ For a sequence $(a_n)_{n\ge0}$ over $\R$ or $\C$, its \emph{exponential generati
 \]
 Its coefficients recover the original sequence by $a_n=n![x^n]\widehat A(x)$. As for OGFs, formal power-series manipulations do not require convergence.
 \end{definition}
+\Needspace{13\baselineskip}
 \begin{proposition}[Exponential Generating Function Operations]\label{prop:egfops}
 Let $\widehat A(x)=\displaystyle\sum_{n\ge0}a_nx^n/n!$ and $\widehat B(x)=\displaystyle\sum_{n\ge0}b_nx^n/n!$. Then
 \[
@@ -829,8 +887,5 @@ Differentiation of $a_nx^n/n!$ gives $a_nx^{n-1}/(n-1)!$ for $n\ge1$, yielding t
 \]
 which gives the asserted EGF coefficient formula.
 \end{proof}
-\begin{remark}
-The product rules for ordinary and exponential generating functions differ: ordinary products involve the convolution $\displaystyle\sum_j a_jb_{n-j}$, whereas exponential products involve the binomially weighted convolution $\displaystyle\sum_j\binom nj a_jb_{n-j}$. Deriving the generating functions of Catalan, derangement, Bell, and Stirling sequences constitutes separate worked applications of these rules.
-\end{remark}
 
 \end{document}
