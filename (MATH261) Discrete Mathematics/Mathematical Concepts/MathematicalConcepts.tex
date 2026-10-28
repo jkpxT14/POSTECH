@@ -1,39 +1,739 @@
 \documentclass[11pt,oneside]{article}
-
 \pdfminorversion=7
 \usepackage{MathematicalConceptsStyle}
-
 \hypersetup{
     pdftitle={Mathematical Concepts for MATH261 Discrete Mathematics},
     pdfauthor={Jungwoo Kim},
     pdfsubject={Mathematical concepts for MATH261 Discrete Mathematics},
     pdfcreator={LaTeX}
 }
-
 \begin{document}
-
 \thispagestyle{empty}
-
 \begin{center}
     \vspace*{1.1cm}
-
     {\LARGE\bfseries Mathematical Concepts\par}
-
     \vspace{0.25cm}
-
     {\large for (MATH261) Discrete Mathematics\par}
-
     \vspace{0.75cm}
-
-    {\normalsize
-    Jungwoo Kim\\
+    {\normalsize Jungwoo Kim\\
     Department of Mathematics\\
-    \PohangUniversityOfScienceAndTechnology
-    \par}
+    \PohangUniversityOfScienceAndTechnology\par}
 \end{center}
-
 \vspace{0.45cm}
+This document develops the principal mathematical concepts, definitions, and results from the MATH261 lectures. General mathematical notation and writing follow \textit{(MATH000) Mathematical Language}. Problems and worked applications are collected separately in the midterm preparation document.
 
-This document collects mathematical concepts for (MATH261) Discrete Mathematics. General mathematical notation and writing follow \textit{(MATH000) Mathematical Language}.
+% Source: Lecture 1-2, pp. 2--4. The generalized form is named Pigeonhole Principle.
+\begin{theorem}[Pigeonhole Principle]\label{thm:pigeonhole}
+If $N$ objects are distributed among $k\ge1$ boxes, at least one box contains at least $\lceil N/k\rceil$ objects. In particular, distributing $k+1$ objects among $k$ boxes puts at least two objects in one box.
+\end{theorem}
+\begin{proof}
+If every box contained fewer than $\lceil N/k\rceil$ objects, each would contain at most $\lceil N/k\rceil-1<N/k$ objects. The total would then be less than $N$, a contradiction. The particular case follows by setting $N=k+1$.
+\end{proof}
+
+% Source: Lecture 1-2, pp. 10--21.
+\begin{definition}[Binary Relation]
+A \emph{binary relation} $R$ on a set $X$ is a subset of $X\times X$. We write $xRy$ to mean $(x,y)\in R$. The relation $R$ is
+\begin{enumerate}[label=(\roman*)]
+\item \emph{reflexive} if $xRx$ for every $x\in X$;
+\item \emph{symmetric} if $xRy$ implies $yRx$ for all $x,y\in X$;
+\item \emph{antisymmetric} if $xRy$ and $yRx$ together imply $x=y$;
+\item \emph{transitive} if $xRy$ and $yRz$ together imply $xRz$.
+\end{enumerate}
+Symmetry and antisymmetry are different conditions; neither is the negation of the other.
+\end{definition}
+
+\begin{definition}[Equivalence Relation and Equivalence Class]
+An \emph{equivalence relation} $\sim$ on $X$ is reflexive, symmetric, and transitive. For $x\in X$, its \emph{equivalence class} is
+\[
+[x]_{\sim}\coloneqq\{y\in X:y\sim x\}.
+\]
+\end{definition}
+
+\begin{definition}[Partition]
+A \emph{partition} of a set $X$ is a family $\mathcal P$ of nonempty, pairwise disjoint subsets whose union is $X$. For $X=\varnothing$, the empty family is its unique partition.
+\end{definition}
+
+\begin{theorem}[Equivalence Relations and Partitions]\label{thm:equivpartition}
+The equivalence classes of an equivalence relation on $X$ form a partition of $X$. Conversely, every partition $\mathcal P$ of $X$ induces an equivalence relation given by $x\sim y$ if and only if $x$ and $y$ belong to the same block of $\mathcal P$. These constructions are inverse to each other.
+\end{theorem}
+\begin{proof}
+Reflexivity gives $x\in[x]_{\sim}$, so the classes cover $X$ and are nonempty. If $z\in[x]_{\sim}\cap[y]_{\sim}$, then $x\sim z$ and $z\sim y$ by symmetry, hence $x\sim y$ by transitivity. Every member of $[x]_{\sim}$ is therefore equivalent to $y$, and conversely; thus $[x]_{\sim}=[y]_{\sim}$. Distinct classes are disjoint.
+
+Conversely, every $x\in X$ lies in exactly one block of a partition. Belonging to the same block is reflexive, symmetric, and transitive. Its equivalence class at $x$ is precisely the block containing $x$, establishing both inverse assertions.
+\end{proof}
+
+\begin{definition}[Partial Order, Poset, and Total Order]
+A \emph{partial order} $\preceq$ on $X$ is a reflexive, antisymmetric, and transitive relation. The pair $(X,\preceq)$ is a \emph{partially ordered set} (\emph{poset}). Two elements $x,y$ are \emph{comparable} if $x\preceq y$ or $y\preceq x$; otherwise they are \emph{incomparable}. A partial order is a \emph{total order} if every pair is comparable. We write $x\prec y$ if $x\preceq y$ and $x\ne y$.
+\end{definition}
+
+\begin{definition}[Cover Relation and Hasse Diagram]
+For $x,y$ in a poset, $y$ \emph{covers} $x$, written $x\lessdot y$, if $x\prec y$ and there is no $z$ with $x\prec z\prec y$. A \emph{Hasse diagram} of a finite poset places its elements as vertices, with higher elements drawn above lower elements, and draws a segment between $x$ and $y$ precisely when $x\lessdot y$. Reflexive loops, arrowheads, and edges implied by transitivity are omitted. The order is recovered from upward paths, including paths of length zero.
+\end{definition}
+
+\begin{definition}[Extremal Elements]
+Let $(X,\preceq)$ be a poset and $A\subseteq X$. An element $m\in A$ is \emph{maximal} in $A$ if no $a\in A$ satisfies $m\prec a$, and \emph{minimal} if no $a\in A$ satisfies $a\prec m$. An element $g\in A$ is \emph{greatest} in $A$ if $a\preceq g$ for every $a\in A$, and \emph{least} if $g\preceq a$ for every $a\in A$.
+\end{definition}
+\begin{proposition}[Greatest and Maximal Elements]
+A greatest (respectively, least) element is unique, if it exists, and is maximal (respectively, minimal). A finite nonempty poset has a maximal and a minimal element, but need not have a greatest or a least element.
+\end{proposition}
+\begin{proof}
+If $g,h$ are both greatest, then $g\preceq h$ and $h\preceq g$, so antisymmetry gives $g=h$. If $g\prec a$ for some $a$, greatestness also gives $a\preceq g$, again contradicting antisymmetry. The dual assertions follow similarly. In a finite nonempty poset, start at any element and move to a strictly greater element whenever possible. Finiteness forces termination at a maximal element. Reversing the order gives a minimal element.
+\end{proof}
+
+% Source: Lecture 1-2, pp. 22--23.
+\begin{definition}[Sunflower]
+A family of distinct sets $A_1,\ldots,A_r$ is a \emph{sunflower} with $r$ petals if a set $K$ exists such that $A_i\cap A_j=K$ for every $i\ne j$. The set $K$ is the \emph{core}; the sets $A_i\setminus K$ are pairwise disjoint \emph{petals}. In a $k$-uniform family every member has cardinality $k$.
+\end{definition}
+\begin{lemma}[Sunflower Lemma]\label{lem:sunflower}
+Let $k,r\in\N$ and let $\mathcal F$ be a family of distinct sets, each containing exactly $k$ elements. If
+\[
+|\mathcal F|>k!(r-1)^k,
+\]
+then $\mathcal F$ contains a sunflower with $r$ petals.
+\end{lemma}
+\begin{proof}
+Induct on $k$. For $k=1$, more than $r-1$ distinct singleton sets have pairwise empty intersections, so any $r$ form a sunflower. The case $r=1$ is immediate for every $k$: the inequality guarantees $\mathcal F\ne\varnothing$.
+
+Assume $k\ge2$ and $r\ge2$, and take a maximal pairwise disjoint subfamily $\{F_1,\ldots,F_t\}\subseteq\mathcal F$. If $t\ge r$, its first $r$ members form a sunflower with empty core. Otherwise $t\le r-1$. Put $U=F_1\cup\cdots\cup F_t$, so $|U|\le k(r-1)$. Maximality implies that every $F\in\mathcal F$ meets $U$. Counting pairs $(u,F)$ with $u\in U\cap F$ shows that some $u\in U$ belongs to at least
+\[
+\frac{|\mathcal F|}{|U|}>\frac{k!(r-1)^k}{k(r-1)}=(k-1)!(r-1)^{k-1}
+\]
+members. Removing $u$ from each such member produces distinct $(k-1)$-element sets. By induction these contain a sunflower with $r$ petals and core $K$; reinserting $u$ gives the required sunflower with core $K\cup\{u\}$.
+\end{proof}
+
+% Source: Lecture 2-2, pp. 2--12; MATH000 combinatorics notation.
+\begin{definition}[Ordered Selections and Permutations]
+For $0\le r\le n$, an \emph{ordered selection without repetition} of $r$ elements from an $n$-element set is an injective map $[r]\to[n]$ after identifying the ground set with $[n]$. The number of such selections is
+\[
+{}_nP_r=\fall nr=\frac{n!}{(n-r)!}.
+\]
+A \emph{permutation} of a set $X$ is a bijection $X\to X$. In particular, $S_n$ denotes the set of permutations of $[n]$; it has cardinality $n!={}_nP_n$.
+\end{definition}
+\begin{proof}
+The first position has $n$ choices, the second has $n-1$, and the $r$th has $n-r+1$. Multiplication gives $\fall nr$. For $r=n$, an injection of the finite set $[n]$ into itself is a bijection.
+\end{proof}
+
+\begin{notation}[Permutation Notation]
+For $\pi\in S_n$, the expression $\pi(i)$ is the image of $i$ and
+\[
+\pi=\begin{pmatrix}1&2&\cdots&n\\\pi(1)&\pi(2)&\cdots&\pi(n)\end{pmatrix}
+\]
+is its \emph{two-line notation}. The composition $\sigma\circ\pi$ sends $i$ to $\sigma(\pi(i))$: the rightmost permutation acts first. The identity $\id$ fixes every element, and $\pi^{-1}$ denotes the inverse permutation. A \emph{cycle} $(i_1\ i_2\ \cdots\ i_\ell)$ sends $i_j$ to $i_{j+1}$, with $i_{\ell+1}=i_1$, and fixes elements not listed. Every permutation has a decomposition into disjoint cycles, unique up to the order of cycles and cyclic rotation within each cycle; fixed points are cycles of length one.
+\end{notation}
+\begin{proof}[Proof of Cycle Decomposition]
+Starting from any $i\in[n]$, successive images $i,\pi(i),\pi^2(i),\ldots$ must eventually repeat. Injectivity forces the first repeated element to be $i$, giving a cycle. Remove its elements and repeat with any unused element. The resulting cycles are disjoint and cover $[n]$. Each cycle is the orbit of one of its elements, establishing uniqueness.
+\end{proof}
+
+\begin{definition}[Combinations]
+An $r$-\emph{combination} of an $n$-element set is an $r$-element subset. Its number is
+\[
+{}_nC_r=\binom nr=\frac{n!}{r!(n-r)!},\qquad 0\le r\le n.
+\]
+We use $\binom nr=0$ for integers $r<0$ or $r>n$, when $n\ge0$.
+\end{definition}
+\begin{proof}
+Every $r$-subset has $r!$ orders, so the $n!/(n-r)!$ ordered selections fall into groups of $r!$. Dividing gives the formula.
+\end{proof}
+
+\begin{proposition}[Pascal's Identity]\label{prop:pascal}
+For $n\ge1$ and $0\le r\le n$,
+\[
+\binom nr=\binom{n-1}{r-1}+\binom{n-1}{r}.
+\]
+\end{proposition}
+\begin{proof}
+Fix $x$ in an $n$-element set. Every $r$-subset either contains $x$, in which case its remaining $r-1$ elements come from the other $n-1$, or does not contain $x$, in which case all $r$ elements come from those $n-1$. The alternatives are disjoint and exhaustive. The factorial formula yields the same identity algebraically.
+\end{proof}
+
+\begin{theorem}[Binomial Theorem]\label{thm:binomial}
+For $n\in\Nzero$ and commuting variables $x,y$,
+\[
+(x+y)^n=\sum_{r=0}^n\binom nr x^{n-r}y^r.
+\]
+\end{theorem}
+\begin{proof}
+In expanding $n$ copies of $(x+y)$, a contribution $x^{n-r}y^r$ is determined by choosing precisely the $r$ factors from which $y$ is taken, giving $\binom nr$ contributions. Alternatively, the identity holds at $n=0$; multiplying its $n$th instance by $x+y$, and combining adjacent powers using Pascal's identity, proves the $(n+1)$st instance.
+\end{proof}
+
+\begin{definition}[Multinomial Coefficient]
+For $n_1,\ldots,n_k\in\Nzero$ with $n_1+\cdots+n_k=n$, define
+\[
+\binom{n}{n_1,\ldots,n_k}\coloneqq\frac{n!}{n_1!\cdots n_k!}.
+\]
+It counts assignments of $n$ distinguishable objects to $k$ labeled groups with prescribed sizes $n_1,\ldots,n_k$.
+\end{definition}
+\begin{proof}
+Order the $n$ objects, then place the first $n_1$ in group one, the next $n_2$ in group two, and so on. Every grouping corresponds to exactly $n_1!\cdots n_k!$ orders, one for each ordering within the groups.
+\end{proof}
+
+\begin{theorem}[Multinomial Theorem]\label{thm:multinomial}
+For commuting variables $x_1,\ldots,x_k$ and $n\in\Nzero$,
+\[
+(x_1+\cdots+x_k)^n=
+\sum_{\substack{n_1,\ldots,n_k\ge0\\n_1+\cdots+n_k=n}}
+\binom{n}{n_1,\ldots,n_k}\prod_{i=1}^k x_i^{n_i}.
+\]
+\end{theorem}
+\begin{proof}
+An expansion term is specified by choosing one of the $k$ variables from each of the $n$ factors. For fixed multiplicities $n_1,\ldots,n_k$, the number of choices is the corresponding multinomial coefficient, since this is the number of ways to partition the $n$ factor positions into labeled groups of these sizes. Summing over all multiplicities proves the formula.
+\end{proof}
+
+\begin{definition}[Combinations with Repetition]
+For $n\ge1$ and $r\in\Nzero$, a combination with repetition is a multiset of cardinality $r$ drawn from $n$ types. Its number is denoted
+\[
+{}_nH_r=\left(\!\binom nr\!\right)=\binom{n+r-1}{r}.
+\]
+\end{definition}
+
+\begin{theorem}[Stars and Bars]\label{thm:starsbars}
+For $n\in\N$ and $r\in\Nzero$, the number of solutions to
+\[
+x_1+\cdots+x_n=r,\qquad (x_1,\ldots,x_n)\in\Nzero^n,
+\]
+is $\binom{n+r-1}{n-1}=\binom{n+r-1}{r}$. It is also the number ${}_nH_r$ of $r$-combinations with repetition from $n$ types.
+\end{theorem}
+\begin{proof}
+Represent the solution by $x_1$ stars, a bar, $x_2$ stars, and so on, ending with $x_n$ stars. This gives a string of $r$ stars and $n-1$ bars. Conversely, the numbers of stars between consecutive bars recover the $x_i$ uniquely. Choosing the positions of the $n-1$ bars among $n+r-1$ positions gives the formula. Selecting $x_i$ objects of type $i$ is the same data as the solution vector.
+\end{proof}
+
+% Source: Lecture 4-1, pp. 5--13, 14--15.
+\begin{theorem}[Inclusion--Exclusion Principle]\label{thm:ie}
+For finite sets $A_1,\ldots,A_n$,
+\[
+\left|\bigcup_{i=1}^n A_i\right|=
+\sum_{\varnothing\ne I\subseteq[n]}(-1)^{|I|+1}
+\left|\bigcap_{i\in I}A_i\right|.
+\]
+Equivalently, if $A_i\subseteq U$ for a finite universe $U$, then
+\[
+\left|U\setminus\bigcup_{i=1}^nA_i\right|=
+\sum_{I\subseteq[n]}(-1)^{|I|}\left|\bigcap_{i\in I}A_i\right|,
+\qquad\bigcap_{i\in\varnothing}A_i=U.
+\]
+\end{theorem}
+\begin{proof}
+Fix $u\in U$ that lies in exactly $t$ of the sets. If $t=0$, its contribution to the first right-hand side is zero. If $t\ge1$, its contribution is
+\[
+\sum_{j=1}^t(-1)^{j+1}\binom tj=1-(1-1)^t=1.
+\]
+Thus each element of the union is counted exactly once. Subtracting the first identity from $|U|$ proves the complement form.
+
+For a second proof, induct on $n$. Apply the two-set identity
+$|X\cup Y|=|X|+|Y|-|X\cap Y|$ with $X=\bigcup_{i=1}^{n-1}A_i$ and $Y=A_n$. The induction hypothesis expands $|X|$; applying it to the sets $A_i\cap A_n$ expands $|X\cap A_n|$. The first sum contains exactly the nonempty index sets not containing $n$, while the subtracted sum contains those containing $n$, with the required alternating signs.
+\end{proof}
+
+\begin{proposition}[Number of Surjections]\label{prop:surj}
+Let $n,k\in\Nzero$. For $k\ge1$, the number of surjections $[n]\to[k]$ is
+\[
+\#\Surj([n],[k])=\sum_{j=0}^k(-1)^j\binom kj(k-j)^n.
+\]
+Here $0^0=1$ when an empty domain is counted. For $n=k=0$ there is one surjection $\varnothing\to\varnothing$; for $n>0$ and $k=0$ there are none.
+\end{proposition}
+\begin{proof}
+For $k\ge1$, there are $k^n$ maps $[n]\to[k]$. Let $A_i$ be those maps whose image misses $i$. For any $J\subseteq[k]$, a map missing every element of $J$ has $(k-|J|)^n$ choices. Inclusion--exclusion counts the maps in none of the $A_i$, which are exactly the surjections.
+\end{proof}
+
+\begin{definition}[Euler's Totient Function]
+For $n\in\N$, Euler's totient function is
+\[
+\varphi(n)\coloneqq\#\{k\in[n]:\gcd(k,n)=1\}.
+\]
+In particular, $\varphi(1)=1$.
+\end{definition}
+\begin{theorem}[Euler's Totient Formula]\label{thm:euler}
+If $n\in\N$ has distinct prime divisors $p_1,\ldots,p_t$, then
+\[
+\varphi(n)=n\prod_{i=1}^t\left(1-\frac1{p_i}\right)
+=n\prod_{\substack{p\mid n\\p\text{ prime}}}\left(1-\frac1p\right).
+\]
+The empty product for $n=1$ equals $1$.
+\end{theorem}
+\begin{proof}
+For $n\ge2$, an integer in $[n]$ fails to be coprime to $n$ precisely when it is divisible by at least one of $p_1,\ldots,p_t$. For a subset $I\subseteq[t]$, exactly $n/\prod_{i\in I}p_i$ integers in $[n]$ are divisible by all the primes indexed by $I$. By inclusion--exclusion, the number divisible by none is
+\[
+\sum_{I\subseteq[t]}(-1)^{|I|}\frac{n}{\prod_{i\in I}p_i}
+=n\prod_{i=1}^t\left(1-\frac1{p_i}\right).
+\]
+For $n=1$, the definition and empty-product convention agree.
+\end{proof}
+
+% Source: Lecture 4-1, pp. 16--18; Lecture 4-2, pp. 20--22.
+\begin{definition}[Derangements]
+A \emph{derangement} of $[n]$ is a permutation $\pi\in S_n$ with no fixed point, so $\pi(i)\ne i$ for every $i\in[n]$. Denote the number of derangements by $D_n$ (also $!n$). The empty permutation is a derangement by convention, so $D_0=1$; furthermore, $D_1=0$ and $D_2=1$.
+\end{definition}
+\begin{theorem}[Derangement Formula]\label{thm:derformula}
+For every $n\in\Nzero$,
+\[
+D_n=n!\sum_{j=0}^n\frac{(-1)^j}{j!}.
+\]
+\end{theorem}
+\begin{proof}
+For each $i\in[n]$, let $A_i=\{\pi\in S_n:\pi(i)=i\}$. If $I\subseteq[n]$ has cardinality $j$, fixing all elements of $I$ leaves $(n-j)!$ permutations. Inclusion--exclusion therefore gives
+\[
+D_n=\sum_{j=0}^n(-1)^j\binom nj(n-j)!
+=n!\sum_{j=0}^n\frac{(-1)^j}{j!}.
+\]
+The formula also gives $D_0=1$.
+\end{proof}
+\begin{theorem}[Derangement Recurrences]\label{thm:derrec}
+For $n\ge1$ and $n\ge2$, respectively,
+\[
+D_n=nD_{n-1}+(-1)^n,\qquad
+D_n=(n-1)(D_{n-1}+D_{n-2}),
+\]
+with $D_0=1$ and $D_1=0$.
+\end{theorem}
+\begin{proof}
+Subtract the formulas for $D_n$ and $nD_{n-1}$ in Theorem~\ref{thm:derformula} to obtain
+\[
+D_n-nD_{n-1}=n!\frac{(-1)^n}{n!}=(-1)^n.
+\]
+Applying this identity at $n$ and $n-1$ yields
+\[
+\begin{aligned}
+D_n&=nD_{n-1}+(-1)^n\\
+&=(n-1)D_{n-1}+\bigl((n-1)D_{n-2}+(-1)^{n-1}\bigr)+(-1)^n\\
+&=(n-1)(D_{n-1}+D_{n-2}).
+\end{aligned}
+\]
+For a combinatorial proof of the second recurrence, choose the image $j=\pi(n)$ of $n$ ($n-1$ choices). If $\pi(j)=n$, deleting the two-cycle $(n\ j)$ leaves a derangement of the other $n-2$ elements. Otherwise, delete $n$ from the cycle containing it, producing a derangement of the remaining $n-1$ elements. These constructions are reversible, giving $(n-1)(D_{n-2}+D_{n-1})$.
+\end{proof}
+
+% Source: Lecture 4-2, pp. 2--9 (the theater problem is reserved for the midterm).
+\begin{definition}[Catalan Numbers]
+The \emph{Catalan numbers} are
+\[
+C_n\coloneqq\frac1{n+1}\binom{2n}{n},\qquad n\in\Nzero.
+\]
+Thus $C_0=1$, $C_1=1$, $C_2=2$, $C_3=5$, and $C_4=14$.
+\end{definition}
+\begin{theorem}[Catalan Words]\label{thm:catalanwords}
+For $n\in\Nzero$, the number of words $a_1\cdots a_{2n}$ with $a_i\in\{-1,1\}$, exactly $n$ entries of each sign, and
+\[
+\sum_{j=1}^i a_j\ge0\qquad(1\le i\le 2n)
+\]
+is $C_n$.
+\end{theorem}
+\begin{proof}
+The assertion for $n=0$ concerns the single empty word. Let $n\ge1$. There are $\binom{2n}{n}$ words with $n$ entries of each sign. Call a word \emph{bad} if some prefix sum is negative. Locate the first prefix whose sum is $-1$ and reverse the signs of all entries in that prefix. Since that prefix contains one more $-1$ than $+1$, the resulting word has $n+1$ positive entries and $n-1$ negative entries.
+
+This map is a bijection: a word with $n+1$ positive entries first reaches prefix sum $+1$ at a unique position, and reversing the signs up to that position reconstructs a bad word. Hence the number of bad words is $\binom{2n}{n+1}$, and the desired number is
+\[
+\binom{2n}{n}-\binom{2n}{n+1}
+=\left(1-\frac{n}{n+1}\right)\binom{2n}{n}
+=C_n.
+\]
+\end{proof}
+\begin{corollary}[Catalan Lattice Paths]\label{cor:catpaths}
+The number of paths from $(0,0)$ to $(n,n)$ consisting of $n$ right steps and $n$ upward steps that never pass above the diagonal $y=x$ is $C_n$.
+\end{corollary}
+\begin{proof}
+Replace each right step by $+1$ and each upward step by $-1$. At every prefix, the partial sum equals the current horizontal coordinate minus the vertical coordinate. Thus remaining on or below the diagonal is equivalent to the condition in Theorem~\ref{thm:catalanwords}.
+\end{proof}
+\begin{remark}
+The same word can be read as a balanced parenthesis string, with $+1$ an opening parenthesis and $-1$ a closing parenthesis. Nonnegative prefix sums guarantee that no closing parenthesis occurs before its matching opening parenthesis. This is a bijective interpretation, not a separate counting problem.
+\end{remark}
+\begin{theorem}[Catalan Recurrence]\label{thm:catalanrec}
+With $C_0=1$, for every $n\ge1$,
+\[
+C_n=\sum_{j=0}^{n-1}C_jC_{n-1-j}.
+\]
+\end{theorem}
+\begin{proof}
+Consider a nonnegative balanced $\pm1$ word of length $2n$. Let its first return to partial sum zero occur after $2(j+1)$ entries, where $0\le j\le n-1$. Its initial block is a $+1$, followed by a nonnegative balanced word of length $2j$, followed by a $-1$. The remaining suffix is independently a nonnegative balanced word of length $2(n-1-j)$. For this fixed $j$ there are $C_jC_{n-1-j}$ choices by Theorem~\ref{thm:catalanwords}. Summing over the unique first-return index proves the recurrence.
+\end{proof}
+
+% Source: Lecture 4-2, pp. 10--14.
+\begin{definition}[Stirling Numbers of the First Kind]
+Let $c(n,k)$ (also $\stirone nk$) be the number of permutations in $S_n$ whose disjoint-cycle decomposition has exactly $k$ cycles. This is the \emph{unsigned Stirling number of the first kind}. The \emph{signed Stirling number of the first kind} is
+\[
+s(n,k)\coloneqq(-1)^{n-k}c(n,k).
+\]
+The conventions are $c(0,0)=s(0,0)=1$, $c(n,0)=0$ for $n\ge1$, and $c(n,k)=0$ for $k>n$. In particular, $c(n,n)=1$, $c(n,1)=(n-1)!$ for $n\ge1$, and $c(n,n-1)=\binom n2$ for $n\ge2$.
+\end{definition}
+\begin{proposition}[First-Kind Stirling Recurrences]\label{prop:stirlingfirst}
+For $n\ge1$ and $1\le k\le n$,
+\[
+\begin{aligned}
+c(n,k)&=c(n-1,k-1)+(n-1)c(n-1,k),\\
+s(n,k)&=s(n-1,k-1)-(n-1)s(n-1,k).
+\end{aligned}
+\]
+\end{proposition}
+\begin{proof}
+In a permutation of $[n]$ with $k$ cycles, either $n$ is a singleton cycle or it is not. In the first case, removing $(n)$ leaves a permutation of $[n-1]$ with $k-1$ cycles. In the second, remove $n$ from its cycle. The remaining permutation has $k$ cycles, and $n$ can be reinserted immediately after any one of the $n-1$ other elements, giving $n-1$ possibilities. This proves the first recurrence. Multiplying it by $(-1)^{n-k}$ and using $s(n,k)=(-1)^{n-k}c(n,k)$ gives the second.
+\end{proof}
+\begin{proposition}[Falling-Factorial Coefficients]\label{prop:fallstir}
+For $n\in\Nzero$,
+\[
+\fall xn=x(x-1)\cdots(x-n+1)=\sum_{k=0}^ns(n,k)x^k,
+\]
+with $\fall x0=1$.
+\end{proposition}
+\begin{proof}
+The result is immediate for $n=0$. If it holds for $n-1$, then
+\[
+\fall xn=(x-n+1)\sum_{k=0}^{n-1}s(n-1,k)x^k.
+\]
+The coefficient of $x^k$ on the right is $s(n-1,k-1)-(n-1)s(n-1,k)=s(n,k)$ by Proposition~\ref{prop:stirlingfirst}.
+\end{proof}
+
+\begin{definition}[Stirling Numbers of the Second Kind]
+The \emph{Stirling number of the second kind} $S(n,k)$ (also $\stirtwo nk$) is the number of partitions of an $n$-element set into exactly $k$ nonempty, unlabeled blocks. We set
+\[
+S(0,0)=1,\quad S(n,0)=0\ (n\ge1),\quad S(n,k)=0\ (k>n).
+\]
+For $n\ge1$, $S(n,1)=S(n,n)=1$; for $n\ge2$, $S(n,n-1)=\binom n2$.
+\end{definition}
+\begin{proof}[Proof of the Special Value]
+A partition of $[n]$ into $n-1$ nonempty blocks has precisely one block of size two and $n-2$ singleton blocks. Choosing the pair determines the partition and yields $\binom n2$ choices.
+\end{proof}
+\begin{theorem}[Second-Kind Stirling Recurrence]\label{thm:stirlingsecond}
+For $n\ge1$ and $1\le k\le n$,
+\[
+S(n,k)=S(n-1,k-1)+kS(n-1,k).
+\]
+\end{theorem}
+\begin{proof}
+Consider the block containing $n$. If it is the singleton $\{n\}$, the other $n-1$ elements form $k-1$ blocks. Otherwise, first partition $[n-1]$ into $k$ blocks and then insert $n$ into exactly one of these $k$ blocks. The two cases are disjoint and exhaustive.
+\end{proof}
+\begin{theorem}[Surjections and Stirling Numbers]\label{thm:surjstirling}
+For $n\in\Nzero$ and $k\in\N$,
+\[
+\#\Surj([n],[k])=k!S(n,k),\qquad
+S(n,k)=\frac1{k!}\sum_{j=0}^{k}(-1)^j\binom kj(k-j)^n.
+\]
+For $(n,k)=(0,0)$, the corresponding cardinality identity is $1=0!S(0,0)$.
+\end{theorem}
+\begin{proof}
+The nonempty fibers of a surjection $f:[n]\to[k]$ form a partition of $[n]$ into $k$ blocks. Conversely, labeling the blocks of such a partition bijectively by $[k]$ determines a surjection; there are $k!$ such labelings. Combining this counting identity with Proposition~\ref{prop:surj} gives the explicit sum.
+\end{proof}
+\begin{remark}
+The identities in Proposition~\ref{prop:stirlingfirst} and Theorem~\ref{thm:stirlingsecond} have similar forms but count different objects: cycles of permutations versus blocks of set partitions. Their initial conditions and signs must not be interchanged.
+\end{remark}
+
+% Source: Lecture 4-2, pp. 16--19.
+\begin{definition}[Bell Numbers]
+The \emph{Bell number} $B_n$ counts all partitions of an $n$-element set. Hence
+\[
+B_n=\sum_{k=0}^nS(n,k),\qquad B_0=1.
+\]
+The first values are $B_1=1$, $B_2=2$, $B_3=5$, $B_4=15$, and $B_5=52$.
+\end{definition}
+\begin{theorem}[Bell Recurrence]\label{thm:bellrec}
+For $n\ge1$,
+\[
+B_n=\sum_{k=0}^{n-1}\binom{n-1}{k}B_k.
+\]
+\end{theorem}
+\begin{proof}
+Fix one distinguished element $x$ of an $n$-element set. If exactly $n-1-k$ of the remaining elements lie in the block containing $x$, choose them in $\binom{n-1}{n-1-k}=\binom{n-1}{k}$ ways. The other $k$ elements may be partitioned in $B_k$ ways. Every partition determines a unique $k$, so summing proves the recurrence.
+\end{proof}
+\begin{theorem}[Bell Finite-Sum Formula]\label{thm:bellsum}
+For $n\in\Nzero$,
+\[
+B_n=\sum_{k=0}^n\frac{k^n}{k!}
+\left(\sum_{j=0}^{n-k}\frac{(-1)^j}{j!}\right),
+\]
+where $0^0=1$ for the term occurring at $n=k=0$.
+\end{theorem}
+\begin{proof}
+For $n\ge1$, use the explicit formula in Theorem~\ref{thm:surjstirling} and rearrange the finite sums:
+\[
+\begin{aligned}
+B_n
+&=\sum_{m=0}^n\frac1{m!}\sum_{j=0}^m(-1)^j\binom mj(m-j)^n\\
+&=\sum_{m=0}^n\sum_{k=0}^m\frac{(-1)^{m-k}k^n}{(m-k)!k!}\\
+&=\sum_{k=0}^n\frac{k^n}{k!}\sum_{j=0}^{n-k}\frac{(-1)^j}{j!}.
+\end{aligned}
+\]
+For $n=0$, both sides equal $1$.
+\end{proof}
+
+% Source: Lecture 5-2 / Lecture 6-1, pp. 2--12. These files are identical.
+\begin{definition}[Linear Homogeneous Recurrence Relation]
+A \emph{linear homogeneous recurrence relation of degree $k$ with constant coefficients} is
+\[
+a_n=c_1a_{n-1}+\cdots+c_ka_{n-k},\qquad n\ge k,
+\]
+where $k\ge1$, $c_1,\ldots,c_k\in\R$, and $c_k\ne0$. A \emph{solution} is a sequence satisfying the relation for every indicated $n$.
+\end{definition}
+\begin{proposition}[Linearity of Homogeneous Solutions]\label{prop:linrec}
+If $(a_n)$ and $(b_n)$ solve the same linear homogeneous recurrence, then so does $(\alpha a_n+\beta b_n)$ for any constants $\alpha,\beta\in\R$.
+\end{proposition}
+\begin{proof}
+For each $n\ge k$, multiply the recurrence for $a_n$ by $\alpha$, the recurrence for $b_n$ by $\beta$, and add. The result is
+\[
+\alpha a_n+\beta b_n=\sum_{j=1}^kc_j(\alpha a_{n-j}+\beta b_{n-j}).
+\]
+\end{proof}
+\begin{proposition}[Existence and Uniqueness from Initial Values]\label{prop:unique}
+For any prescribed $a_0,\ldots,a_{k-1}$, a recurrence of degree $k$ as above determines exactly one sequence $(a_n)_{n\ge0}$.
+\end{proposition}
+\begin{proof}
+The recurrence determines $a_k$ from the initial values, then $a_{k+1}$ from the preceding $k$ terms, and so on, establishing existence. If two solutions share the initial terms, induction on $n$ shows that the recurrence forces their remaining terms to agree.
+\end{proof}
+
+\begin{definition}[Characteristic Equation]
+The \emph{characteristic polynomial} of the recurrence
+$a_n=\sum_{j=1}^kc_ja_{n-j}$ is
+\[
+p(r)\coloneqq r^k-c_1r^{k-1}-\cdots-c_{k-1}r-c_k.
+\]
+The equation $p(r)=0$ is its \emph{characteristic equation}. If $r\ne0$ satisfies this equation, then $(r^n)$ solves the recurrence, since substituting $a_n=r^n$ reduces the recurrence to $r^{n-k}p(r)=0$.
+\end{definition}
+
+\begin{theorem}[Second-Order Recurrences with Distinct Roots]\label{thm:distinct2}
+Suppose $c_2\ne0$ and $r^2-c_1r-c_2$ has two distinct roots $r_1,r_2\in\C$. Then the solutions of
+\[
+a_n=c_1a_{n-1}+c_2a_{n-2}\qquad(n\ge2)
+\]
+are precisely
+\[
+a_n=\alpha r_1^n+\beta r_2^n,\qquad\alpha,\beta\in\C.
+\]
+For real initial values, the resulting sequence is real; nonreal roots occur in conjugate pairs.
+\end{theorem}
+\begin{proof}
+Each $(r_i^n)$ is a solution by the characteristic equation, and linearity gives every displayed combination. Conversely, given $a_0,a_1$, the equations
+\[
+\alpha+\beta=a_0,\qquad\alpha r_1+\beta r_2=a_1
+\]
+have the unique solution
+\[
+\alpha=\frac{a_1-a_0r_2}{r_1-r_2},\qquad
+\beta=\frac{a_0r_1-a_1}{r_1-r_2}.
+\]
+The resulting combination agrees with the prescribed initial values, hence with the original solution by Proposition~\ref{prop:unique}.
+\end{proof}
+
+\begin{theorem}[Second-Order Recurrences with a Repeated Root]\label{thm:repeated2}
+Suppose $c_2\ne0$ and $r^2-c_1r-c_2=(r-r_0)^2$. Then all solutions of the associated second-order recurrence are
+\[
+a_n=(\alpha+\beta n)r_0^n,\qquad\alpha,\beta\in\C.
+\]
+\end{theorem}
+\begin{proof}
+Since $r_0\ne0$, coefficient comparison gives $c_1=2r_0$ and $c_2=-r_0^2$. Besides $r_0^n$, the sequence $nr_0^n$ is a solution, because
+\[
+2r_0(n-1)r_0^{n-1}-r_0^2(n-2)r_0^{n-2}
+=nr_0^n.
+\]
+By linearity, every displayed combination is a solution. To match arbitrary initial values $a_0,a_1$, choose $\alpha=a_0$ and $\beta=a_1/r_0-a_0$. Uniqueness of the recurrence then establishes that every solution has this form.
+\end{proof}
+
+\begin{theorem}[General Solution of a Constant-Coefficient Homogeneous Recurrence]\label{thm:generalrec}
+Let $p(r)=r^k-c_1r^{k-1}-\cdots-c_k$, where $c_k\ne0$. Suppose its distinct complex roots are $r_1,\ldots,r_t$ with multiplicities $m_1,\ldots,m_t$, so $m_1+\cdots+m_t=k$. The solutions of the recurrence are exactly
+\[
+a_n=\sum_{i=1}^t P_i(n)r_i^n,
+\qquad\deg P_i<m_i,
+\]
+where each $P_i$ is a polynomial over $\C$. The $k$ polynomial coefficients are uniquely determined by $k$ initial values. For real recurrence coefficients and real initial values, the expression can be chosen in conjugate pairs to yield a real-valued sequence.
+\end{theorem}
+\begin{proof}
+Let $E$ be the forward shift operator on sequences, $(Ea)_n=a_{n+1}$, and let $\Delta P(n)=P(n+1)-P(n)$. The recurrence is equivalent to $p(E)a=0$ (with the equation indexed starting at $n=0$). For $r\ne0$,
+\[
+(E-r)\bigl(P(n)r^n\bigr)=r^{n+1}\Delta P(n).
+\]
+Consequently, $(E-r)^m(P(n)r^n)=r^{n+m}\Delta^mP(n)=0$ whenever $\deg P<m$. Since the factors of
+$p(E)=\prod_{i=1}^t(E-r_i)^{m_i}$ commute, every sequence in the displayed form is a solution.
+
+These $k$ basic solutions are linearly independent. Indeed, suppose
+$\sum_iP_i(n)r_i^n=0$ for all $n\ge0$, with $\deg P_i<m_i$. Fix $i$ and apply $\prod_{j\ne i}(E-r_j)^{m_j}$. All terms except the $i$th disappear. On sequences $P(n)r_i^n$, each factor $E-r_j$, for $j\ne i$, transforms $P$ into
+\[
+(r_i-r_j)P+r_i\Delta P.
+\]
+On the vector space of polynomials of degree less than $m_i$, this map is triangular in the monomial basis with nonzero diagonal $r_i-r_j$, hence invertible. Therefore the surviving term can vanish only if $P_i=0$. As $i$ was arbitrary, all $P_i$ vanish.
+
+Thus the $k$ basic solutions have independent initial-value vectors $(a_0,\ldots,a_{k-1})\in\C^k$: otherwise their linear combination would have $k$ zero initial terms and hence be identically zero by Proposition~\ref{prop:unique}. These $k$ vectors form a basis of $\C^k$, so every choice of initial values determines exactly one linear combination of the proposed form.
+\end{proof}
+
+% Source: Lecture 5-2 / Lecture 6-1, pp. 14--20.
+\begin{definition}[Linear Nonhomogeneous Recurrence Relation]
+A \emph{linear nonhomogeneous recurrence relation of degree $k$ with constant coefficients} is
+\[
+a_n=c_1a_{n-1}+\cdots+c_ka_{n-k}+F(n),\qquad n\ge k,
+\]
+where the $c_j$ are constants and $F$ is a prescribed function. The recurrence obtained by setting $F=0$ is the \emph{associated homogeneous recurrence}. A \emph{particular solution} is any one sequence satisfying the nonhomogeneous recurrence.
+\end{definition}
+\begin{theorem}[Homogeneous Plus Particular Solution]\label{thm:particular}
+If $a_n^{(p)}$ is a particular solution to a linear nonhomogeneous recurrence, then every solution is of the form
+\[
+a_n=a_n^{(p)}+a_n^{(h)},
+\]
+where $a_n^{(h)}$ is an arbitrary solution of the associated homogeneous recurrence.
+\end{theorem}
+\begin{proof}
+Subtract the recurrence satisfied by $a_n^{(p)}$ from the recurrence satisfied by any other solution $a_n$. Their difference $b_n=a_n-a_n^{(p)}$ satisfies $b_n=\sum_{j=1}^kc_jb_{n-j}$ because the forcing terms cancel. Conversely, adding a homogeneous solution to the particular solution preserves the forcing term $F(n)$, yielding another solution.
+\end{proof}
+
+\begin{proposition}[Method of Undetermined Coefficients]\label{prop:undetermined}
+Let $p(r)$ be the characteristic polynomial of a linear recurrence with constant coefficients, and suppose its forcing term is $F(n)=P_d(n)\lambda^n$, where $\lambda\in\C\setminus\{0\}$ and $P_d$ is a polynomial of degree at most $d$. If $\lambda$ is a root of $p$ of multiplicity $m$ (and $m=0$ if it is not a root), a particular solution may be sought in the form
+\[
+a_n^{(p)}=n^mQ_d(n)\lambda^n,
+\]
+where $Q_d$ is a polynomial of degree at most $d$ with undetermined coefficients. For a sum of such forcing terms, particular solutions may be added.
+\end{proposition}
+\begin{proof}
+Writing the recurrence using the shift operator as $p(E)a=F$ and substituting $a_n=\lambda^n Q(n)$ shows that
+\[
+p(E)\bigl(\lambda^nQ(n)\bigr)=\lambda^n p\bigl(\lambda(I+\Delta)\bigr)Q(n).
+\]
+If $\lambda$ has multiplicity $m$, then $p(\lambda(1+z))=z^mh(z)$ with $h(0)\ne0$. On polynomials, the operator $h(\Delta)$ is invertible because $\Delta$ lowers degree and $h(0)\ne0$. Moreover, $\Delta^m$ maps polynomials of the form $n^mQ_d(n)$, $\deg Q_d\le d$, bijectively onto polynomials of degree at most $d$: its action on monomials is triangular with nonzero leading coefficients. Hence coefficients of $Q_d$ can be chosen uniquely to match $P_d$. Superposition follows from linearity.
+\end{proof}
+
+\begin{center}
+\Needspace{12\baselineskip}
+\small
+\renewcommand{\arraystretch}{1.22}
+\begin{tabular}{@{}p{0.35\linewidth}p{0.53\linewidth}@{}}
+\toprule
+Forcing term $F(n)$ & Particular-solution trial \\
+\midrule
+$P_d(n)$ & $n^mQ_d(n)$, where $m$ is the multiplicity of $1$ as a characteristic root \\
+$\lambda^n$ ($\lambda\ne0$) & $n^mC\lambda^n$, where $m$ is the multiplicity of $\lambda$ \\
+$P_d(n)\lambda^n$ ($\lambda\ne0$) & $n^mQ_d(n)\lambda^n$ \\
+Sum of terms of these forms & Add the corresponding particular-solution trials \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{remark}
+The method specifies a finite-dimensional trial family, not a guess without justification. After finding its coefficients, add the general homogeneous solution from Theorem~\ref{thm:generalrec} and use the initial conditions. Here $P_d$ is prescribed, whereas $Q_d$ has coefficients to be determined. A constant or polynomial forcing term corresponds to $\lambda=1$.
+\end{remark}
+
+% Source: Lecture 5-2 / Lecture 6-1, pp. 21--26.
+\begin{definition}[Linear Recurrences with Variable Coefficients]
+A \emph{linear recurrence with variable coefficients} has the form
+\[
+a_n=\sum_{j=1}^kc_j(n)a_{n-j}+F(n),
+\]
+with prescribed coefficient functions $c_j(n)$. In contrast to constant-coefficient recurrences, a single characteristic polynomial generally does not determine the solutions. A useful \emph{reduction strategy} is to introduce a transformed sequence $b_n=u(n)a_n$ so that the recurrence for $b_n$ has simpler, preferably constant, coefficients.
+\end{definition}
+\begin{proposition}[First-Order Variable-Coefficient Recurrences]\label{prop:varfirst}
+Let
+\[
+a_{n+1}=f(n)a_n+g(n),\qquad n\in\Nzero,
+\]
+where $a_0$ is given. With the convention that empty products equal $1$, the unique solution is
+\[
+\boxed{\displaystyle
+a_n=a_0\prod_{j=0}^{n-1}f(j)
++\sum_{m=0}^{n-1}g(m)\prod_{j=m+1}^{n-1}f(j).}
+\]
+This formula remains valid even if some $f(j)=0$. If $f(j)\ne0$ for $0\le j<n$, it can also be written as
+\[
+a_n=\left(\prod_{j=0}^{n-1}f(j)\right)
+\left(a_0+\sum_{m=0}^{n-1}\frac{g(m)}{\prod_{j=0}^{m}f(j)}\right).
+\]
+\end{proposition}
+\begin{proof}
+For $n=0$, the first formula gives $a_0$. Suppose it holds at $n$. Multiplying by $f(n)$ and adding $g(n)$ yields
+\[
+\begin{aligned}
+a_{n+1}
+&=a_0\prod_{j=0}^{n}f(j)
++\sum_{m=0}^{n-1}g(m)\prod_{j=m+1}^{n}f(j)+g(n)\\
+&=a_0\prod_{j=0}^{n}f(j)
++\sum_{m=0}^{n}g(m)\prod_{j=m+1}^{n}f(j),
+\end{aligned}
+\]
+which is the same formula at $n+1$. Hence it holds by induction, and uniqueness follows from forward recursion. When the factors are nonzero, factor out $\prod_{j=0}^{n-1}f(j)$ to obtain the second expression. Equivalently, divide the recurrence by the cumulative product and telescope.
+\end{proof}
+\begin{remark}
+The product--sum formula is preferable to a quotient formula when some coefficient vanishes. In particular, a recurrence with $f(0)=0$ must not be solved by dividing by $f(0)$; one may use the first formula or begin the quotient argument after the exceptional index.
+\end{remark}
+
+% Source: Lecture 7-1, pp. 2--3.
+\begin{definition}[Ordinary Generating Function]
+For a sequence $(a_n)_{n\ge0}$ over $\R$ or $\C$, its \emph{ordinary generating function} (OGF) is the formal power series
+\[
+A(x)\coloneqq\sum_{n=0}^{\infty}a_nx^n.
+\]
+The notation $[x^n]A(x)$ denotes the coefficient $a_n$. Unless convergence is explicitly asserted, an identity of generating functions is an identity of formal power series, and does not require assigning a numerical value to $x$.
+\end{definition}
+\begin{proposition}[Ordinary Generating Function Operations]\label{prop:ogfops}
+Let $A(x)=\sum_{n\ge0}a_nx^n$ and $B(x)=\sum_{n\ge0}b_nx^n$. Then
+\[
+\begin{aligned}
+A'(x)&=\sum_{n\ge0}(n+1)a_{n+1}x^n,\\
+A(x)+B(x)&=\sum_{n\ge0}(a_n+b_n)x^n,\\
+A(x)B(x)&=\sum_{n\ge0}\left(\sum_{j=0}^na_jb_{n-j}\right)x^n.
+\end{aligned}
+\]
+In particular, $[x^n](AB)=\sum_{j=0}^na_jb_{n-j}$ is the \emph{Cauchy product} formula.
+\end{proposition}
+\begin{proof}
+Formal differentiation gives $\sum_{n\ge1}na_nx^{n-1}$, and reindexing yields the first equality. Addition is coefficientwise. In the product, a monomial $x^n$ arises precisely by multiplying $a_jx^j$ by $b_{n-j}x^{n-j}$ for $j=0,\ldots,n$, proving the third equality. Each coefficient of a product involves only finitely many summands, so no convergence assumption is needed.
+\end{proof}
+
+% Source: Lecture 7-1, pp. 5--7.
+\begin{definition}[Generalized Binomial Coefficient]
+For $\alpha\in\R$ and $n\in\Nzero$, define
+\[
+\binom\alpha0\coloneqq1,\qquad
+\binom\alpha n\coloneqq\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}
+=\frac{\fall\alpha n}{n!}\quad(n\ge1).
+\]
+When $\alpha$ is a nonnegative integer, this agrees with the usual binomial coefficient and vanishes for $n>\alpha$.
+\end{definition}
+\begin{theorem}[Generalized Binomial Theorem]\label{thm:genbinomial}
+For every $\alpha\in\R$,
+\[
+(1+x)^\alpha=\sum_{n=0}^{\infty}\binom\alpha n x^n
+\qquad(|x|<1).
+\]
+The coefficient identity also holds as the formal binomial expansion of $(1+x)^\alpha$. For nonnegative integer $\alpha$, the series terminates and is the ordinary Binomial Theorem.
+\end{theorem}
+\begin{proof}
+Write $b_n=\binom\alpha n$ and $F(x)=\sum_{n\ge0}b_nx^n$. The coefficients satisfy
+\[
+(n+1)b_{n+1}=(\alpha-n)b_n.
+\]
+The ratio test shows that $F$ converges absolutely for $|x|<1$ unless it terminates, in which case convergence is automatic. On this interval, termwise differentiation is valid. Comparing coefficients using the displayed recurrence gives
+\[
+(1+x)F'(x)=\alpha F(x),\qquad F(0)=1.
+\]
+Since $1+x>0$ for $-1<x<1$,
+\[
+\frac{d}{dx}\bigl((1+x)^{-\alpha}F(x)\bigr)=0.
+\]
+The quantity in parentheses is therefore constant and equals its value $1$ at $x=0$. Thus $F(x)=(1+x)^\alpha$ throughout $|x|<1$. The coefficient recurrence also verifies the formal power-series identity, independently of convergence.
+\end{proof}
+\begin{remark}
+For $m\in\N$, negative exponents give
+$\binom{-m}{n}=(-1)^n\binom{m+n-1}{n}$.
+The corresponding explicit expansions of $(1+x)^{-m}$ and $(1-x)^{-m}$ may be obtained from Theorem~\ref{thm:genbinomial}; their derivation as worked examples belongs in the midterm document.
+\end{remark}
+
+% Source: Lecture 7-1, pp. 18--19.
+\begin{definition}[Exponential Generating Function]
+For a sequence $(a_n)_{n\ge0}$, its \emph{exponential generating function} (EGF) is
+\[
+\widehat A(x)\coloneqq\sum_{n=0}^{\infty}a_n\frac{x^n}{n!}.
+\]
+Its coefficients recover the original sequence by $a_n=n![x^n]\widehat A(x)$. As for OGFs, formal power-series manipulations do not require convergence.
+\end{definition}
+\begin{proposition}[Exponential Generating Function Operations]\label{prop:egfops}
+Let $\widehat A(x)=\sum_{n\ge0}a_nx^n/n!$ and $\widehat B(x)=\sum_{n\ge0}b_nx^n/n!$. Then
+\[
+\begin{aligned}
+\widehat A'(x)&=\sum_{n\ge0}a_{n+1}\frac{x^n}{n!},\\
+\widehat A(x)+\widehat B(x)&=\sum_{n\ge0}(a_n+b_n)\frac{x^n}{n!},\\
+\widehat A(x)\widehat B(x)&=\sum_{n\ge0}
+\left(\sum_{j=0}^n\binom nj a_jb_{n-j}\right)\frac{x^n}{n!}.
+\end{aligned}
+\]
+\end{proposition}
+\begin{proof}
+Differentiation of $a_nx^n/n!$ gives $a_nx^{n-1}/(n-1)!$ for $n\ge1$, yielding the first identity after reindexing. The second follows coefficientwise. For the third, the coefficient of $x^n$ in the product is
+\[
+\sum_{j=0}^n\frac{a_j}{j!}\frac{b_{n-j}}{(n-j)!}
+=\frac1{n!}\sum_{j=0}^n\binom nj a_jb_{n-j},
+\]
+which gives the asserted EGF coefficient formula.
+\end{proof}
+\begin{remark}
+The product rules for ordinary and exponential generating functions differ: ordinary products involve the convolution $\sum_j a_jb_{n-j}$, whereas exponential products involve the binomially weighted convolution $\sum_j\binom nj a_jb_{n-j}$. Deriving the generating functions of Catalan, derangement, Bell, and Stirling sequences constitutes separate worked applications of these rules.
+\end{remark}
 
 \end{document}

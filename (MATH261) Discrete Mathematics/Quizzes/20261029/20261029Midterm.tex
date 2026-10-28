@@ -1,0 +1,531 @@
+\documentclass[11pt,oneside]{article}
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{
+  pdftitle={20261029 Midterm for MATH261 Discrete Mathematics},
+  pdfauthor={Jungwoo Kim},
+  pdfsubject={Selected lecture problems and complete solutions for MATH261 Discrete Mathematics},
+  pdfcreator={LaTeX}
+}
+\begin{document}
+\quiztitle{20261029 Midterm}
+
+% Questions are selected from the instructor's lecture notes.
+% General definitions and theorems (and their proofs) are collected separately
+% in Mathematical Concepts. Elementary substitution examples are omitted.
+
+% Source: Lecture 1-1, p. 19.
+\begin{problem}
+Prove that $\sqrt{2}$ is irrational.
+\end{problem}
+\begin{solution}
+Suppose that $\sqrt{2}=p/q$ for relatively prime positive integers $p,q$.
+Then $p^2=2q^2$, so $p^2$ and hence $p$ are even. Write $p=2r$.
+Substitution gives $4r^2=2q^2$, or $q^2=2r^2$, so $q$ is even as well.
+Thus $2$ divides both $p$ and $q$, contrary to $\gcd(p,q)=1$.
+\end{solution}
+
+% Source: Lecture 1-1, p. 22.
+\begin{problem}
+Prove that there exist irrational real numbers $x,y$ such that $x^y$ is rational.
+\end{problem}
+\begin{solution}
+Set $a=(\sqrt{2})^{\sqrt{2}}$. If $a\in\Q$, take
+$x=y=\sqrt{2}$, obtaining $x^y=a\in\Q$.
+Otherwise $a$ is irrational; take $x=a$ and $y=\sqrt{2}$. Then
+\[
+x^y=\bigl((\sqrt{2})^{\sqrt{2}}\bigr)^{\sqrt{2}}
+=(\sqrt{2})^2=2\in\Q.
+\]
+In either case both $x$ and $y$ are irrational, as required.
+\end{solution}
+
+% Source: Lecture 1-2, p. 7.
+\begin{problem}
+Prove that among any $n+1$ distinct positive integers not exceeding $2n$,
+there are two such that one divides the other.
+\end{problem}
+\begin{solution}
+Each integer $m\in[2n]$ has a unique representation $m=2^ku$,
+where $k\in\Nzero$ and $u$ is odd. There are exactly $n$ possible
+odd values of $u$ in $[2n]$. By the Pigeonhole Principle, two of the
+$n+1$ selected integers have the same odd part, say $2^au$ and $2^bu$.
+Assuming $a<b$, we have $2^bu=2^{b-a}(2^au)$, so the first divides
+the second.
+\end{solution}
+
+% Source: Lecture 1-2, pp. 8--9.
+\begin{problem}
+Prove that every sequence of $n^2+1$ distinct real numbers contains a
+strictly increasing subsequence of length $n+1$ or a strictly decreasing
+subsequence of length $n+1$.
+\end{problem}
+\begin{solution}
+Write the sequence as $a_1,\ldots,a_{n^2+1}$. For each $i$, let
+$u_i$ be the maximum length of a strictly increasing subsequence ending
+at $a_i$, and let $v_i$ be the corresponding maximum length for a strictly
+decreasing subsequence. Suppose neither type of subsequence has length
+$n+1$. Then $u_i,v_i\in[n]$ for every $i$, so there are only $n^2$
+possible pairs $(u_i,v_i)$.
+
+These pairs must, however, be distinct. Indeed, if $i<j$ and $a_i<a_j$,
+appending $a_j$ to a longest increasing subsequence ending at $a_i$
+gives $u_j\ge u_i+1$. If $a_i>a_j$, the analogous argument gives
+$v_j\ge v_i+1$. In either case $(u_i,v_i)\ne(u_j,v_j)$.
+This produces $n^2+1$ distinct pairs in $[n]\times[n]$, a contradiction.
+\end{solution}
+
+% Source: Lecture 2-2, pp. 2--3.
+\begin{problem}
+Construct a bijection between $\N$ and $\Z$, and hence prove that
+$|\N|=|\Z|$.
+\end{problem}
+\begin{solution}
+Define $f\colon\N\to\Z$ by
+\[
+f(n)=\begin{cases}
+0,&n=1,\\
+k,&n=2k\quad(k\ge1),\\
+-k,&n=2k+1\quad(k\ge1).
+\end{cases}
+\]
+Every integer has a preimage: $0=f(1)$, $k=f(2k)$, and
+$-k=f(2k+1)$ for $k\ge1$. Thus $f$ is surjective.
+The three displayed cases have disjoint images (zero, positive integers,
+and negative integers, respectively), and within each case the rule is
+injective. Hence $f$ is injective as well, so it is a bijection.
+\end{solution}
+
+% Source: Lecture 4-2, p. 9.
+\begin{problem}
+There are $2n$ people waiting in line to buy theater tickets costing $50$
+cents each. Of these, $n$ have one $50$-cent coin each and the other $n$
+have one $1$ bill each. The cashier initially has no change. How many
+orders of the line allow every customer to purchase a ticket without a
+shortage of change? Give the answer both when people with the same form
+of payment are indistinguishable and when all $2n$ people are distinct.
+\end{problem}
+\begin{solution}
+Write $+1$ for a customer who pays $50$ cents and $-1$ for one who
+pays $1$. The cashier can serve everyone precisely when each initial
+partial sum is nonnegative, since a $1$-bill customer consumes one
+$50$-cent coin in change. The line therefore corresponds to a
+Catalan word with $n$ entries of each type. The number of payment-type
+sequences is
+\[
+C_n=\frac{1}{n+1}\binom{2n}{n}.
+\]
+Thus the answer for indistinguishable people of each type is $C_n$.
+If all people are distinct, there are $n!$ assignments of the
+$50$-cent customers and $n!$ assignments of the $1$-bill customers
+to the corresponding positions of every admissible payment-type sequence.
+The answer is therefore
+\[
+n!^2C_n=\frac{(2n)!}{n+1}.
+\]
+\end{solution}
+
+% Source: Lecture 6-1 (same content as Lecture 5-2), pp. 7--8.
+\begin{problem}
+Let $f_0=0$, $f_1=1$, and $f_n=f_{n-1}+f_{n-2}$ for $n\ge2$.
+Find an explicit formula for $f_n$.
+\end{problem}
+\begin{solution}
+The characteristic polynomial is $r^2-r-1$, with distinct roots
+\[
+\alpha=\frac{1+\sqrt5}{2},\qquad
+\beta=\frac{1-\sqrt5}{2}.
+\]
+Consequently $f_n=A\alpha^n+B\beta^n$ for constants $A,B$.
+The initial conditions yield
+$A+B=0$ and $A\alpha+B\beta=1$.
+Since $\alpha-\beta=\sqrt5$, we obtain
+$A=1/\sqrt5$ and $B=-1/\sqrt5$. Thus
+\[
+f_n=\frac{\alpha^n-\beta^n}{\sqrt5}
+=\frac1{\sqrt5}\left[
+\left(\frac{1+\sqrt5}{2}\right)^n-
+\left(\frac{1-\sqrt5}{2}\right)^n\right].
+\]
+\end{solution}
+
+% Source: Lecture 6-1, p. 10.
+\begin{problem}
+Solve $a_n=6a_{n-1}-9a_{n-2}$ for $n\ge2$, with
+$a_0=1$ and $a_1=6$.
+\end{problem}
+\begin{solution}
+The characteristic equation is $(r-3)^2=0$, so the general solution is
+$a_n=(A+Bn)3^n$. Since $a_0=A=1$ and
+$a_1=3(A+B)=6$, we find $B=1$. Hence
+\[
+a_n=(n+1)3^n\qquad(n\ge0).
+\]
+\end{solution}
+
+% Source: Lecture 6-1, p. 13.
+\begin{problem}
+Solve
+\[
+a_n=-3a_{n-1}-3a_{n-2}-a_{n-3}\qquad(n\ge3),
+\]
+where $a_0=1$, $a_1=-2$, and $a_2=-1$.
+\end{problem}
+\begin{solution}
+The characteristic polynomial is
+$r^3+3r^2+3r+1=(r+1)^3$. The root $-1$ has multiplicity three,
+so
+\[
+a_n=(A+Bn+Cn^2)(-1)^n.
+\]
+Substitution of the initial conditions gives
+\[
+A=1,\qquad A+B+C=2,\qquad A+2B+4C=-1.
+\]
+Thus $B+C=1$ and $B+2C=-1$, giving $B=3$ and $C=-2$.
+Therefore
+\[
+a_n=(1+3n-2n^2)(-1)^n\qquad(n\ge0).
+\]
+\end{solution}
+
+% Source: Lecture 6-1, pp. 17--18.
+\begin{problem}
+Find all solutions of $a_n=3a_{n-1}+2n$ for $n\ge2$,
+and determine the solution satisfying $a_1=3$.
+\end{problem}
+\begin{solution}
+The associated homogeneous recurrence has solutions $A3^n$.
+As the forcing term is linear in $n$, seek a particular solution
+$p_n=cn+d$. Substitution gives
+\[
+cn+d=3\bigl(c(n-1)+d\bigr)+2n,
+\]
+so $c=3c+2$ and $d=-3c+3d$.
+Thus $c=-1$ and $d=-\tfrac32$, and every solution is
+\[
+a_n=A3^n-n-\frac32.
+\]
+The condition $a_1=3$ yields
+$3=3A-1-\tfrac32$, hence $A=\tfrac{11}{6}$.
+The required solution is
+\[
+a_n=\frac{11}{6}3^n-n-\frac32.
+\]
+\end{solution}
+
+% Source: Lecture 6-1, p. 19.
+\begin{problem}
+Find all solutions of
+\[
+a_n=5a_{n-1}-6a_{n-2}+7^n\qquad(n\ge2).
+\]
+\end{problem}
+\begin{solution}
+The characteristic polynomial of the associated homogeneous recurrence
+is $(r-2)(r-3)$, so its solutions are $A2^n+B3^n$.
+As $7$ is not a characteristic root, try $p_n=C7^n$.
+Substitution gives
+\[
+C7^n=5C7^{n-1}-6C7^{n-2}+7^n,
+\]
+which, upon division by $7^{n-2}$, becomes
+$49C=35C-6C+49$. Hence $20C=49$ and
+$C=\tfrac{49}{20}$. All solutions are therefore
+\[
+a_n=A2^n+B3^n+\frac{49}{20}7^n.
+\]
+\end{solution}
+
+% Source: Lecture 6-1, pp. 22 and 25--26: the same recurrence, two methods.
+\begin{problem}
+Let $a_0=0$ and
+\[
+a_n=\frac{2(n-1)}{n}a_{n-1}+\frac1n\qquad(n\ge1).
+\]
+Find an explicit formula for $a_n$ by two different methods.
+\end{problem}
+\begin{solution}[1]
+Set $b_n=na_n$ for $n\ge1$. Multiplying the recurrence by $n$
+shows that $b_1=1$ and
+\[
+b_n=2b_{n-1}+1\qquad(n\ge2).
+\]
+Thus $b_n+1=2(b_{n-1}+1)$, whence
+$b_n+1=2^{n-1}(b_1+1)=2^n$.
+Therefore
+\[
+a_n=\frac{2^n-1}{n}\qquad(n\ge1),\qquad a_0=0.
+\]
+\end{solution}
+\begin{solution}[2]
+The first step gives $a_1=1$. For $n\ge2$, the coefficient
+$2(n-1)/n$ is nonzero, so the first-order variable-coefficient
+solution formula can be applied starting at $n=2$:
+\[
+\begin{aligned}
+a_n&=a_1\prod_{j=2}^{n}\frac{2(j-1)}j
++\sum_{k=2}^{n}\frac1k\prod_{j=k+1}^{n}\frac{2(j-1)}j\\
+&=\frac{2^{n-1}}n+\frac1n\sum_{k=2}^{n}2^{n-k}\\
+&=\frac{2^{n-1}}n+\frac{2^{n-1}-1}{n}
+=\frac{2^n-1}{n}.
+\end{aligned}
+\]
+Empty products are $1$, so the computation also covers $n=2$.
+The case $n=1$ holds directly and $a_0=0$ is the given initial value.
+\end{solution}
+
+% Source: Lecture 7-1, pp. 6--7.
+\begin{problem}
+Let $m\in\N$. Prove the following identities for $|x|<1$:
+\begin{problemsubparts}
+\item $\displaystyle(1+x)^{-m}=\sum_{n=0}^{\infty}
+  \binom{m+n-1}{n}(-x)^n$.
+\item $\displaystyle(1-x)^{-m}=\sum_{n=0}^{\infty}
+  \binom{m+n-1}{n}x^n$.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+The generalized binomial coefficient satisfies
+\[
+\binom{-m}{n}
+=\frac{(-m)(-m-1)\cdots(-m-n+1)}{n!}
+=(-1)^n\frac{(m+n-1)!}{(m-1)!n!}
+=(-1)^n\binom{m+n-1}{n}.
+\]
+By the Generalized Binomial Theorem,
+\[
+(1+x)^{-m}=\sum_{n=0}^{\infty}\binom{-m}{n}x^n
+=\sum_{n=0}^{\infty}\binom{m+n-1}{n}(-x)^n,
+\]
+which proves (a). Replacing $x$ by $-x$ proves (b).
+Both expansions converge for $|x|<1$.
+\end{solution}
+
+% Source: Lecture 7-1, pp. 8--9.
+\begin{problem}
+Use an ordinary generating function to solve
+$a_n=5a_{n-1}-6a_{n-2}$ for $n\ge2$, where $a_0=0$ and $a_1=2$.
+\end{problem}
+\begin{solution}
+Let $F(x)=\sum_{n\ge0}a_nx^n$. Multiplying the recurrence by $x^n$
+and summing over $n\ge2$ gives
+\[
+F(x)-2x=5x\bigl(F(x)-a_0\bigr)-6x^2F(x).
+\]
+Since $a_0=0$, it follows that
+\[
+F(x)=\frac{2x}{1-5x+6x^2}
+=\frac{-2}{1-2x}+\frac{2}{1-3x}.
+\]
+The geometric-series identity
+$(1-cx)^{-1}=\sum_{n\ge0}c^nx^n$ gives
+\[
+a_n=-2\cdot2^n+2\cdot3^n
+=2(3^n-2^n)\qquad(n\ge0).
+\]
+\end{solution}
+
+% Source: Lecture 7-1, pp. 10--11.
+\begin{problem}
+Use an ordinary generating function to solve
+$a_n=-a_{n-1}+6a_{n-2}$ for $n\ge2$, where $a_0=1$ and $a_1=3$.
+\end{problem}
+\begin{solution}
+Let $F(x)=\sum_{n\ge0}a_nx^n$. After multiplying by $x^n$
+and summing for $n\ge2$,
+\[
+F(x)-1-3x=-x\bigl(F(x)-1\bigr)+6x^2F(x).
+\]
+Thus
+\[
+F(x)=\frac{1+4x}{1+x-6x^2}
+=\frac{6}{5}\frac1{1-2x}-\frac15\frac1{1+3x}.
+\]
+Extracting coefficients yields
+\[
+a_n=\frac65\,2^n-\frac15(-3)^n\qquad(n\ge0).
+\]
+\end{solution}
+
+% Source: Lecture 7-1, pp. 12--13.
+\begin{problem}
+Use an ordinary generating function to solve
+\[
+b_n=b_{n-1}+2b_{n-2}+2^n\qquad(n\ge2),
+\]
+where $b_0=2$ and $b_1=1$.
+\end{problem}
+\begin{solution}
+Set $F(x)=\sum_{n\ge0}b_nx^n$. As
+$\sum_{n\ge2}2^nx^n=(1-2x)^{-1}-1-2x$, summation of the
+recurrence gives
+\[
+F(x)-2-x=x(F(x)-2)+2x^2F(x)
++\frac1{1-2x}-1-2x.
+\]
+Rearranging and simplifying,
+\[
+\begin{aligned}
+F(x)(1-x-2x^2)&=1-3x+\frac1{1-2x},\\
+F(x)&=\frac{2-5x+6x^2}{(1-2x)^2(1+x)}\\
+&=-\frac1{9(1-2x)}
++\frac2{3(1-2x)^2}+\frac{13}{9(1+x)}.
+\end{aligned}
+\]
+Using $[x^n](1-2x)^{-2}=(n+1)2^n$, we obtain
+\[
+b_n=-\frac19 2^n+\frac23(n+1)2^n
++\frac{13}{9}(-1)^n\qquad(n\ge0).
+\]
+\end{solution}
+
+% Source: Lecture 7-1, pp. 14--17.
+\begin{problem}
+Let $(C_n)_{n\ge0}$ denote the Catalan numbers, characterized by
+$C_0=1$ and
+\[
+C_n=\sum_{j=0}^{n-1}C_jC_{n-1-j}\qquad(n\ge1).
+\]
+\begin{problemsubparts}
+\item Find the ordinary generating function $F(x)=\sum_{n\ge0}C_nx^n$.
+\item Using the generating function and the Generalized Binomial Theorem,
+  prove that $\displaystyle C_n=\frac1{n+1}\binom{2n}{n}$.
+\item Set $a_n=nC_n$. Find $G(x)=\sum_{n\ge0}a_nx^n$.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+\begin{problemsubparts}
+\item Multiplying the recurrence by $x^n$ and summing over $n\ge1$ yields
+\[
+F(x)-1=x\sum_{m\ge0}\left(\sum_{j=0}^{m}C_jC_{m-j}\right)x^m
+=xF(x)^2.
+\]
+Hence $xF(x)^2-F(x)+1=0$, giving
+$F(x)=(1\pm\sqrt{1-4x})/(2x)$. The positive sign has a pole at
+$x=0$, whereas $F(0)=1$; thus
+\[
+\boxed{F(x)=\frac{1-\sqrt{1-4x}}{2x}.}
+\]
+\item The Generalized Binomial Theorem gives
+\[
+\sqrt{1-4x}=\sum_{j\ge0}\binom{1/2}{j}(-4x)^j.
+\]
+Consequently, for $n\ge0$,
+\[
+\begin{aligned}
+C_n&=[x^n]F(x)
+=-\frac12\binom{1/2}{n+1}(-4)^{n+1}\\
+&=\frac{2^n(2n-1)!!}{(n+1)!}
+=\frac{(2n)!}{n!(n+1)!}
+=\frac1{n+1}\binom{2n}{n},
+\end{aligned}
+\]
+where $(-1)!!=1$ for $n=0$.
+\item By formal differentiation,
+\[
+G(x)=\sum_{n\ge0}nC_nx^n=xF'(x).
+\]
+Writing $s=\sqrt{1-4x}$ and $F(x)=2/(1+s)$ gives
+\[
+G(x)=\frac{4x}{s(1+s)^2}
+=\frac{1-s}{s(1+s)}
+=\frac1{\sqrt{1-4x}}-\frac{1-\sqrt{1-4x}}{2x}.
+\]
+\end{problemsubparts}
+\end{solution}
+
+% Source: Lecture 7-1, pp. 20--21.
+\begin{problem}
+Let $D_n$ denote the number of derangements of an $n$-element set,
+with $D_0=1$ and
+$D_n=nD_{n-1}+(-1)^n$ for $n\ge1$.
+Find the exponential generating function of $(D_n)_{n\ge0}$.
+\end{problem}
+\begin{solution}
+Let $F(x)=\sum_{n\ge0}D_nx^n/n!$. Multiplying the recurrence
+by $x^n/n!$ and summing for $n\ge1$ gives
+\[
+\begin{aligned}
+F(x)-1
+&=\sum_{n\ge1}D_{n-1}\frac{x^n}{(n-1)!}
++\sum_{n\ge1}(-1)^n\frac{x^n}{n!}\\
+&=xF(x)+(e^{-x}-1).
+\end{aligned}
+\]
+Therefore $(1-x)F(x)=e^{-x}$ and
+\[
+\boxed{F(x)=\frac{e^{-x}}{1-x}.}
+\]
+\end{solution}
+
+% Source: Lecture 7-1, pp. 21--22.
+\begin{problem}
+Let $B_0=1$ and let the Bell numbers satisfy
+\[
+B_{n+1}=\sum_{k=0}^{n}\binom nk B_k\qquad(n\ge0).
+\]
+Find the exponential generating function of $(B_n)_{n\ge0}$.
+\end{problem}
+\begin{solution}
+Let $G(x)=\sum_{n\ge0}B_nx^n/n!$. Termwise differentiation and
+the Bell recurrence give
+\[
+\begin{aligned}
+G'(x)
+&=\sum_{n\ge0}B_{n+1}\frac{x^n}{n!}\\
+&=\sum_{n\ge0}\left(\sum_{k=0}^{n}\binom nk B_k\right)\frac{x^n}{n!}
+=e^xG(x),
+\end{aligned}
+\]
+where the last equality is the exponential generating function
+product formula. Since $G(0)=1$, the differential equation implies
+$\frac{d}{dx}(e^{-e^x}G(x))=0$, hence
+$e^{-e^x}G(x)=e^{-1}$. Thus
+\[
+\boxed{G(x)=e^{e^x-1}.}
+\]
+\end{solution}
+
+% Source: Lecture 7-1, pp. 23--25.
+\begin{problem}
+For each $k\in\Nzero$, let $S(n,k)$ be the Stirling number of the
+second kind, with $S(0,0)=1$ and $S(n,0)=0$ for $n\ge1$.
+\begin{problemsubparts}
+\item For fixed $k$, find the ordinary generating function
+$F_k(x)=\sum_{n\ge0}S(n,k)x^n$.
+\item For fixed $k$, find the exponential generating function
+$G_k(x)=\sum_{n\ge0}S(n,k)x^n/n!$.
+\end{problemsubparts}
+\end{problem}
+\begin{solution}
+\begin{problemsubparts}
+\item The recurrence
+$S(n,k)=kS(n-1,k)+S(n-1,k-1)$ for $n\ge1$
+(with $S(0,k)=0$ when $k\ge1$) implies
+\[
+F_k(x)=kxF_k(x)+xF_{k-1}(x).
+\]
+Since $F_0(x)=1$, iteration yields, for $k\ge1$,
+\[
+\boxed{F_k(x)=\frac{x^k}{\prod_{j=1}^{k}(1-jx)}.}
+\]
+The empty-product convention makes this valid for $k=0$ as well.
+\item The surjection-counting formula is
+\[
+k!S(n,k)=\sum_{j=0}^{k}(-1)^{k-j}\binom kj j^n.
+\]
+Multiplying by $x^n/n!$ and summing over $n\ge0$ gives
+\[
+\begin{aligned}
+G_k(x)&=\frac1{k!}\sum_{j=0}^{k}(-1)^{k-j}\binom kj
+  \sum_{n\ge0}\frac{(jx)^n}{n!}\\
+&=\frac1{k!}\sum_{j=0}^{k}(-1)^{k-j}\binom kj e^{jx}
+=\boxed{\frac{(e^x-1)^k}{k!}}.
+\end{aligned}
+\]
+The formula is also valid at $k=0$, when $G_0(x)=1$.
+\end{problemsubparts}
+\end{solution}
+
+\end{document}

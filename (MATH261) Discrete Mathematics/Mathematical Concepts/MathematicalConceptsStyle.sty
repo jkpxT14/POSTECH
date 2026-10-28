@@ -1,8 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{MathematicalConceptsStyle}[2026/10/01 MATH261 mathematical-concepts style]
-
-% Visual language follows the current MATH200 Mathematical Concepts document.
-% Mathematical notation follows (MATH000) Mathematical Language.
+\ProvidesPackage{MathematicalConceptsStyle}[2026/10/29 MATH261 mathematical concepts]
+% Visual language follows the existing MATH261/MATH200 family and CSED490V Course Notes.
+% Mathematical notation and terminology follow (MATH000) Mathematical Language.
 \RequirePackage[a4paper,margin=1in]{geometry}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
@@ -10,46 +9,27 @@
 \RequirePackage{etoolbox}
 \RequirePackage{needspace}
 \RequirePackage{fancyhdr}
-
-% Mathematics
 \RequirePackage{amsmath,amssymb,amsthm}
 \RequirePackage{mathtools}
 \RequirePackage{dsfont}
-
-% Tables and lists
-\RequirePackage{array}
-\RequirePackage{booktabs}
-\RequirePackage{longtable}
-\RequirePackage{enumitem}
-
-% Figures and PDF support
-\RequirePackage{graphicx}
-\RequirePackage{tikz}
+\RequirePackage{array,booktabs,longtable,enumitem}
+\RequirePackage{graphicx,tikz,xcolor}
 \usetikzlibrary{arrows.meta,calc}
-\RequirePackage{xcolor}
 \RequirePackage[hidelinks]{hyperref}
 
-% Institution colors
+% Institution colors, retained from the current MATH261 style.
 \definecolor{POSTECHRed}{RGB}{166,25,85}
 \definecolor{KAISTBlue}{RGB}{0,65,145}
 \definecolor{SNUBlue}{RGB}{15,15,112}
-\newcommand{\institutiontext}[2]{%
-    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
-}
+\newcommand{\institutiontext}[2]{\texorpdfstring{\textcolor{#1}{#2}}{#2}}
 \DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
-\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
-    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
-}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{\institutiontext{POSTECHRed}{Pohang University of Science and Technology}}
 \DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
-\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{%
-    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
-}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{\institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}}
 \DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
-\DeclareRobustCommand{\SeoulNationalUniversity}{%
-    \institutiontext{SNUBlue}{Seoul National University}%
-}
+\DeclareRobustCommand{\SeoulNationalUniversity}{\institutiontext{SNUBlue}{Seoul National University}}
 
-% Canonical notation inherited from (MATH000) Mathematical Language.
+% MATH000 notation.
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Nzero}{\mathbb{N}_0}
 \newcommand{\Z}{\mathbb{Z}}
@@ -64,79 +44,32 @@
 \DeclareMathOperator{\codom}{codom}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Surj}{Surj}
+\newcommand{\fall}[2]{#1^{\underline{#2}}}
+\newcommand{\rise}[2]{#1^{\overline{#2}}}
+\newcommand{\stirone}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand{\stirtwo}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
 
-% Typography
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{1.5em}
 \raggedbottom
-
-% Notation tables
+\setlist[itemize]{leftmargin=2em,topsep=3pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=2.5em,topsep=3pt,itemsep=2pt,parsep=0pt}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \setlength{\LTpre}{0.5em}
 \setlength{\LTpost}{0.62em}
-\newenvironment{notationtable}{%
-    \par\vspace{0.05em}\small
-    \renewcommand{\arraystretch}{1.18}%
-    \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}%
-    \toprule
-    Notation & Meaning \\
-    \midrule
-    \endfirsthead
-    \toprule
-    Notation & Meaning \\
-    \midrule
-    \endhead
-    \bottomrule
-    \endlastfoot
-}{\end{longtable}}
+\newenvironment{notationtable}{\par\vspace{0.05em}\small\renewcommand{\arraystretch}{1.18}\begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}\toprule Notation & Meaning \\\midrule\endfirsthead\toprule Notation & Meaning \\\midrule\endhead\bottomrule\endlastfoot}{\end{longtable}}
+\newenvironment{ruletable}{\par\vspace{0.05em}\small\renewcommand{\arraystretch}{1.18}\begin{longtable}{@{}L{0.24\textwidth}L{0.68\textwidth}@{}}\toprule Item & Convention \\\midrule\endfirsthead\toprule Item & Convention \\\midrule\endhead\bottomrule\endlastfoot}{\end{longtable}}
 
-\newenvironment{ruletable}{%
-    \par\vspace{0.05em}\small
-    \renewcommand{\arraystretch}{1.18}%
-    \begin{longtable}{@{}L{0.24\textwidth}L{0.68\textwidth}@{}}%
-    \toprule
-    Item & Convention \\
-    \midrule
-    \endfirsthead
-    \toprule
-    Item & Convention \\
-    \midrule
-    \endhead
-    \bottomrule
-    \endlastfoot
-}{\end{longtable}}
-
-\newcommand{\notationheading}[1]{%
-    \par\Needspace{6\baselineskip}%
-    \vspace{0.45em}%
-    {\noindent\large\bfseries #1\par}%
-    \vspace{0.16em}%
-}
-
-% Optional top-level concept division for future development.
-\newcommand{\preliminarypart}[1]{%
-    \par\Needspace{6\baselineskip}%
-    \phantomsection
-    \section*{#1}%
-    \addcontentsline{toc}{section}{#1}%
-    \markboth{#1}{#1}%
-}
-
-% Mathematical environments
+% All numbered mathematical items share one counter; no chapter/section division.
 \newcounter{mathitem}
 \renewcommand{\themathitem}{\arabic{mathitem}}
-\newtheoremstyle{conceptplain}
-    {6pt}{6pt}{\itshape}{}{\bfseries}{}{\newline}
-    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
-\newtheoremstyle{conceptdefinition}
-    {6pt}{6pt}{}{}{\bfseries}{}{\newline}
-    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
-\newtheoremstyle{conceptsameline}
-    {6pt}{6pt}{}{}{\itshape}{.}{0.5em}
-    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
-
+\newtheoremstyle{conceptplain}{6pt}{6pt}{\itshape}{}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{conceptdefinition}{6pt}{6pt}{}{}{\bfseries}{}{\newline}{\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{conceptsameline}{6pt}{6pt}{}{}{\itshape}{.}{0.5em}{\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
 \theoremstyle{conceptdefinition}
 \newtheorem{definition}[mathitem]{Definition}
+\newtheorem{notation}[mathitem]{Notation}
 \newtheorem{example}[mathitem]{Example}
 \newtheorem{counterexample}[mathitem]{Counterexample}
 \newtheorem{formula}[mathitem]{Formula}
@@ -147,13 +80,10 @@
 \newtheorem{corollary}[mathitem]{Corollary}
 \theoremstyle{conceptsameline}
 \newtheorem*{remark}{Remark}
-
-\renewenvironment{proof}[1][Proof]
-    {\par\Needspace{3\baselineskip}\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}
-    {\hfill$\square$\par}
-
+\renewenvironment{proof}[1][Proof]{\par\Needspace{3\baselineskip}\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}{\unskip\hfill$\square$\par}
 \newcommand{\conceptblockspace}{\Needspace{4\baselineskip}}
 \BeforeBeginEnvironment{definition}{\conceptblockspace}
+\BeforeBeginEnvironment{notation}{\conceptblockspace}
 \BeforeBeginEnvironment{example}{\conceptblockspace}
 \BeforeBeginEnvironment{counterexample}{\conceptblockspace}
 \BeforeBeginEnvironment{formula}{\conceptblockspace}
@@ -162,8 +92,6 @@
 \BeforeBeginEnvironment{lemma}{\conceptblockspace}
 \BeforeBeginEnvironment{corollary}{\conceptblockspace}
 \BeforeBeginEnvironment{remark}{\conceptblockspace}
-
-% Running design mirrors the MATH200 document family.
 \setlength{\headheight}{14pt}
 \pagestyle{fancy}
 \fancyhf{}
