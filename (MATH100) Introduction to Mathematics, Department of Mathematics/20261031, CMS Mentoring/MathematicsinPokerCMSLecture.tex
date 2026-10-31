@@ -2,8 +2,8 @@
 % !TeX encoding = UTF-8
 % 게임 속 수학 — 20261031, CMS Mentoring
 % Based on the latest MATH100 CMS source; self-contained Beamer/TikZ.
-% The lecture uses an explicitly simplified, current-pot comparison on Flop/Turn.
-% Every showdown count is verified by independent five-of-seven-card enumeration.
+% Flop and turn use a clearly stated current-pot comparison without future wagers.
+% Flop: certified lower bound by a counted sufficient event; turn: exact enumeration of 44 rivers.
 \documentclass[12pt,aspectratio=169]{beamer}
 \usepackage{kotex}
 \usepackage[T1]{fontenc}
@@ -295,42 +295,34 @@
  \vfill\begin{center}\smallnote{7$\heartsuit$와 Q$\heartsuit$는 하트 9장에 이미 포함된다.}\end{center}
 \end{frame}
 
-\begin{frame}{플랍 — 두 가지 가능성}
- \vspace{.18cm}
- \begin{center}{\large B의 패에 따라 다음 카드에서 앞설 확률이 달라진다.}\end{center}
- \vspace{.10cm}
- \begin{overlayarea}{\textwidth}{3.01cm}\centering
-  \only<2>{\[\begin{aligned}
-    \Prob(\text{앞섬}\mid H=h_1)&=\frac{18}{45},\\[5pt]
-    \Prob(\text{앞섬}\mid H=h_2)&=\frac{40}{45}.
-   \end{aligned}\]}
-  \only<3->{\[\begin{aligned}
-    \Prob(\text{다음 카드에서 앞섬})
-     &=\frac45\cdot\frac{18}{45}+\frac15\cdot\frac{40}{45}\\[5pt]
-     &=\redans{\frac{112}{225}\approx49.78\%}.
-   \end{aligned}\]}
- \end{overlayarea}
- \vfill\begin{center}\smallnote{이 확률은 다음 카드가 공개된 순간의 비교이며, 최종 승률이 아니다.}\end{center}
-\end{frame}
-
-\begin{frame}{플랍 — 최종 승리 가능성}
+% Flop: count only sufficient winning cases; no brute-force table.
+% With both private hands and the flop known, there are C(45,2)=990
+% equally likely unordered turn/river pairs under either H=h_1 or H=h_2.
+% Exactly 360 contain at least one heart. For h_1, exactly 13 of those
+% lose to a full house or four-of-a-kind:
+% J-heart with (three 8s, three 9s, J-diamond, three remaining Ks): 10;
+% K-heart with (J-diamond, K-club, K-spade): 3.
+% For h_2 there are zero exceptions. Hence P(W)>=874/2475.
+\begin{frame}{플랍 — 승리 확률의 하한}
  \vspace{.12cm}
- \begin{center}{\large Call의 손익을 계산하려면 최종 쇼다운 결과를 고려해야 한다.}\end{center}
- \vspace{.11cm}
- \begin{overlayarea}{\textwidth}{3.13cm}\centering
-  \only<2>{\large 남은 두 장의 조합은 $\displaystyle\binom{45}{2}=990$가지이다.}
-  \only<3>{\renewcommand{\arraystretch}{1.44}\begin{tabular}{lrrr}
-    \textbf{상대 패}&\textbf{승리}&\textbf{무승부}&\textbf{패배}\\\hline
-    $H=h_1$&602&9&379\\
-    $H=h_2$&841&0&149
-   \end{tabular}\par\vspace{.16cm}{\small 모든 조합을 족보에 따라 분류한 결과}}
+ \begin{center}{\large 적어도 플러시가 완성되고 상대가 역전하지 못하면 승리한다.}\end{center}
+ \begin{overlayarea}{\textwidth}{3.38cm}\centering
+  \only<2>{\[\begin{aligned}
+    \Prob(\text{하트가 한 장 이상})
+       &=1-\frac{36}{45}\cdot\frac{35}{44}\\[5pt]
+       &=\frac4{11}=\frac{360}{990}.
+   \end{aligned}\]}
+  \only<3>{\normalsize 가능성 I에서는 그중 $13$가지 조합에서 B가 풀하우스 또는 포카드를 만든다.\par\vspace{.20cm}
+    $J\heartsuit$ 포함: $3+3+1+3=10$가지\par\vspace{.13cm}
+    $J\heartsuit$ 없이 $K\heartsuit$ 포함: $1+2=3$가지\par\vspace{.15cm}
+    {\small 가능성 II에서는 하트가 나오면 항상 A가 승리한다.}}
   \only<4->{\[\begin{aligned}
-    q&=\frac45\cdot\frac{602+9/2}{990}
-      +\frac15\cdot\frac{841}{990}\\[5pt]
-     &=\redans{\frac{33}{50}=66\%}.
+    \Prob(W)&\geq\frac45\cdot\frac{360-13}{990}
+                     +\frac15\cdot\frac{360}{990}\\[6pt]
+            &=\redans{\frac{874}{2475}\approx35.31\%}.
    \end{aligned}\]}
  \end{overlayarea}
- \vfill\begin{center}\smallnote{$q$: 예상 팟 획득 비율. 무승부는 팟을 반씩 나누므로 승리의 절반으로 센다.}\end{center}
+ \vfill\begin{center}\smallnote{$W$: 마지막 카드까지 공개했을 때 A가 승리하는 사건. 확실한 승리 경우만 센 하한이다.}\end{center}
 \end{frame}
 
 \begin{frame}{플랍 — 첫 번째 선택}
@@ -338,12 +330,12 @@
  \begin{center}{\large 기존 팟 $P=40$, B의 베팅 $b=40$, A의 Call 비용 $40$점}\end{center}
  \vspace{.15cm}
  \begin{overlayarea}{\textwidth}{3.13cm}\centering
-  \only<2>{\[\Exp[X]=q(P+2b)-b.\]}
-  \only<3>{\[\Exp[X]=\frac{33}{50}\cdot(40+80)-40.\]}
-  \only<4->{\[\Exp[X]=\redans{\frac{196}{5}=39.2>0}.\]}
+  \only<2>{\[\Exp[X]\geq\Prob(W)(P+2b)-b.\]}
+  \only<3>{\[\Exp[X]\geq\frac{874}{2475}\cdot(40+80)-40.\]}
+  \only<4->{\[\Exp[X]\geq\redans{\frac{392}{165}\approx2.38>0}.\]}
  \end{overlayarea}
  \only<5->{\answer{첫 번째 선택: Call}}
- \vfill\begin{center}\smallnote{$X$: Fold와 비교한 Call의 추가 순이익. 이후 추가 베팅은 제외한다.}\end{center}
+ \vfill\begin{center}\smallnote{$X$: Fold와 비교한 Call의 추가 순이익. 이후 추가 베팅은 제외한 단순화된 비교이다.}\end{center}
 \end{frame}
 
 \begin{frame}{턴 — 두 번째 베팅}
@@ -476,7 +468,7 @@
   \renewcommand{\arraystretch}{1.68}
   \begin{tabular}{>{\centering\arraybackslash}p{1.55cm}>{\centering\arraybackslash}p{2.56cm}>{\centering\arraybackslash}p{3.20cm}>{\centering\arraybackslash}p{2.0cm}}
    \bfseries 시점 & \bfseries B의 베팅 & \bfseries 기대 순이익 & \bfseries 선택 \\ \hline
-   플랍 & 40점 & $\displaystyle\frac{196}{5}>0$ & Call \\
+   플랍 & 40점 & $\displaystyle\geq\frac{392}{165}>0$ & Call \\
    턴 & 100점 & $\displaystyle\frac{676}{11}>0$ & Call \\
    리버 & 100점 & $\displaystyle4>0$ & Call
   \end{tabular}
