@@ -47,8 +47,8 @@ Then, by dividing the numerator and denominator on the right here by $R^4$, show
 \begin{solution}
 Since $z^4+5z^2+4=(z^2+1)(z^2+4)$, for $|z|=R>2$ we have
 \[
-    |2z^2-1|\le2R^2+1,\qquad
-    |z^2+1|\ge R^2-1,\qquad
+    |2z^2-1|\le2R^2+1, \qquad
+    |z^2+1|\ge R^2-1, \qquad
     |z^2+4|\ge R^2-4.
 \]
 The length of $C_R$ is $\pi R$. Therefore the ML inequality gives
@@ -154,7 +154,7 @@ Each integrand has an entire antiderivative, so the integral depends only on its
 \begin{exercise}{49.3}
 Use the theorem in Sec.~48 to show that
 \[
-    \int_{C_0}(z-z_0)^{n-1}\,\dd z=0\qquad(n=\pm1,\pm2,\ldots)
+    \int_{C_0}(z-z_0)^{n-1}\,\dd z=0\qquad(n=\pm1, \pm2, \ldots)
 \]
 when $C_0$ is any closed contour which does not pass through the point $z_0$. (Compare with Exercise~13, Sec.~46.)
 \end{exercise}
@@ -181,13 +181,13 @@ Show that
 \]
 where the integrand denotes the principal branch
 \[
-    z^i=\exp(i\Log z)\qquad(|z|>0,\ -\pi<\Arg z<\pi)
+    z^i=\exp(i\Log z)\qquad(|z|>0, \ -\pi<\Arg z<\pi)
 \]
 of $z^i$ and where the path of integration is any contour from $z=-1$ to $z=1$ that, except for its end points, lies above the real axis. (Compare with Exercise~6, Sec.~46.)
 \begin{suggestion}
 Use an antiderivative of the branch
 \[
-    z^i=\exp(i\log z)\qquad\left(|z|>0,\ -\frac\pi2<\arg z<\frac{3\pi}{2}\right)
+    z^i=\exp(i\log z)\qquad\left(|z|>0, \ -\frac\pi2<\arg z<\frac{3\pi}{2}\right)
 \]
 of the same power function.
 \end{suggestion}
@@ -196,11 +196,11 @@ of the same power function.
 \begin{solution}
 Choose the analytic logarithm $L$ with
 \[
-    L(z)=\ln|z|+i\theta(z),\qquad -\frac\pi2<\theta(z)<\frac{3\pi}{2}.
+    L(z)=\ln|z|+i\theta(z), \qquad -\frac\pi2<\theta(z)<\frac{3\pi}{2}.
 \]
 Its domain contains both endpoints and the entire given contour, since the latter lies in the upper half-plane except at its endpoints. Moreover, $L$ agrees with the principal logarithm at points strictly above the real axis. Put
 \[
-    f(z)=e^{iL(z)},\qquad
+    f(z)=e^{iL(z)}, \qquad
     F(z)=\frac{e^{(1+i)L(z)}}{1+i}.
 \]
 Since $L'(z)=1/z$, differentiation gives
@@ -210,7 +210,7 @@ Since $L'(z)=1/z$, differentiation gives
 \]
 The endpoint values are $L(1)=0$ and $L(-1)=i\pi$; hence
 \[
-    F(1)=\frac1{1+i},\qquad
+    F(1)=\frac1{1+i}, \qquad
     F(-1)=\frac{e^{(1+i)i\pi}}{1+i}=-\frac{e^{-\pi}}{1+i}.
 \]
 Thus
@@ -256,16 +256,16 @@ If $C_0$ denotes a positively oriented circle $|z-z_0|=R$, then
 \[
     \int_{C_0}(z-z_0)^{n-1}\,\dd z=
     \begin{cases}
-       0,&n=\pm1,\pm2,\ldots,\\
-       2\pi i,&n=0,
+       0, &n=\pm1, \pm2, \ldots, \\
+       2\pi i, &n=0,
     \end{cases}
 \]
 according to Exercise~13, Sec.~46. Use that result and the corollary in Sec.~53 to show that if $C$ is the boundary of the rectangle $0\le x\le3$, $0\le y\le2$, described in the positive sense, then
 \[
     \int_C(z-2-i)^{n-1}\,\dd z=
     \begin{cases}
-       0,&n=\pm1,\pm2,\ldots,\\
-       2\pi i,&n=0.
+       0, &n=\pm1, \pm2, \ldots, \\
+       2\pi i, &n=0.
     \end{cases}
 \]
 \end{exercise}
@@ -280,8 +280,8 @@ Applying the supplied circle integral yields
 \[
     \boxed{\int_C(z-2-i)^{n-1}\,\dd z=
     \begin{cases}
-        0,&n\in\Z\setminus\{0\},\\
-        2\pi i,&n=0.
+        0, &n\in\Z\setminus\{0\}, \\
+        2\pi i, &n=0.
     \end{cases}}
 \]
 \end{solution}
@@ -323,7 +323,7 @@ obtain the desired integration formula by letting $a$ tend to infinity in the eq
 \end{exercise}
 
 \begin{solution}
-Let $C$ be the positively oriented rectangle with vertices $-a$, $a$, $a+ib$, and $-a+ib$, where $a,b>0$.
+Let $C$ be the positively oriented rectangle with vertices $-a$, $a$, $a+ib$, and $-a+ib$, where $a, b>0$.
 \begin{exercisesubparts}
 \item On the lower edge $z=x$ with $-a\le x\le a$, and on the upper edge $z=x+ib$ with $a\ge x\ge-a$. Hence the sum of the two horizontal integrals is
 \begin{align*}
@@ -369,7 +369,7 @@ Note that expression (4), Sec.~50, can be used here even though the function $f(
 \end{exercise}
 
 \begin{solution}
-Write $f(z)=\overline z=x-iy=u(x,y)+iv(x,y)$, so $u=x$ and $v=-y$. Expression (4) of Sec.~50 follows from Green's theorem and remains valid for this continuously differentiable, nonanalytic function:
+Write $f(z)=\overline z=x-iy=u(x, y)+iv(x, y)$, so $u=x$ and $v=-y$. Expression (4) of Sec.~50 follows from Green's theorem and remains valid for this continuously differentiable, nonanalytic function:
 \[
     \int_C f(z)\,\dd z
      =\iint_D(-v_x-u_y)\,\dd A
@@ -377,7 +377,7 @@ Write $f(z)=\overline z=x-iy=u(x,y)+iv(x,y)$, so $u=x$ and $v=-y$. Expression (4
 \]
 where $D$ is the region enclosed by $C$. Since
 \[
-    -v_x-u_y=0,\qquad u_x-v_y=1-(-1)=2,
+    -v_x-u_y=0, \qquad u_x-v_y=1-(-1)=2,
 \]
 we get
 \[

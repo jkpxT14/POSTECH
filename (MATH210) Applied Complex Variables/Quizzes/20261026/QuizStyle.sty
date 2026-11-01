@@ -71,8 +71,11 @@
     {\problemheading{#1}}
     {\par\vspace{6pt}}
 
-\newenvironment{solution}
-    {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent\textit{Solution.}\hspace{0.5em}\ignorespaces}
+% Number genuine alternative proofs; leave ordinary solutions unnumbered.
+\newenvironment{solution}[1][]
+    {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent
+     \ifstrempty{#1}{\textit{Solution.}}{\textit{Solution #1.}}%
+     \hspace{0.5em}\ignorespaces}
     {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
 
 \newenvironment{hint}

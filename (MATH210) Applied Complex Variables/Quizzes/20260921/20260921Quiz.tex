@@ -36,17 +36,17 @@ provided that
 \begin{exercisesubparts}
     \item Write
     \[
-        f=u+iv,\qquad F=U+iV,
+        f=u+iv, \qquad F=U+iV,
     \]
     and
     \[
-        w_0=u_0+iv_0,\qquad W_0=U_0+iV_0.
+        w_0=u_0+iv_0, \qquad W_0=U_0+iV_0.
     \]
     By Theorem 1 in Sec.~16,
     \[
-        u\to u_0,\quad v\to v_0,\quad U\to U_0,\quad V\to V_0
+        u\to u_0, \quad v\to v_0, \quad U\to U_0, \quad V\to V_0
     \]
-    as \((x,y)\to(x_0,y_0)\). The usual sum law for real-valued functions gives
+    as \((x, y)\to(x_0, y_0)\). The usual sum law for real-valued functions gives
     \[
         u+U\to u_0+U_0,
         \qquad
@@ -68,7 +68,7 @@ provided that
         |F(z)-W_0|<\frac\varepsilon2
         \quad\text{when }0<|z-z_0|<\delta_2.
     \]
-    Set \(\delta=\min\{\delta_1,\delta_2\}\). Then, whenever \(0<|z-z_0|<\delta\),
+    Set \(\delta=\min\{\delta_1, \delta_2\}\). Then, whenever \(0<|z-z_0|<\delta\),
     \[
     \begin{aligned}
         |(f(z)+F(z))-(w_0+W_0)|
@@ -162,10 +162,10 @@ Using results in Sec.~20, show that
     \]
     \item the coefficients in the polynomial \(P(z)\) in part (a) can be written
     \[
-        a_0=P(0),\qquad
-        a_1=\frac{P'(0)}{1!},\qquad
-        a_2=\frac{P''(0)}{2!},\qquad
-        \ldots,\qquad
+        a_0=P(0), \qquad
+        a_1=\frac{P'(0)}{1!}, \qquad
+        a_2=\frac{P''(0)}{2!}, \qquad
+        \ldots, \qquad
         a_n=\frac{P^{(n)}(0)}{n!}.
     \]
 \end{exercisesubparts}
@@ -183,14 +183,14 @@ Using results in Sec.~20, show that
     \]
     Thus \(P\) is differentiable everywhere.
 
-    \item Repeated differentiation gives, for \(m=0,1,\ldots,n\),
+    \item Repeated differentiation gives, for \(m=0, 1, \ldots, n\),
     \[
         P^{(m)}(0)=m!\,a_m,
     \]
     since every term of degree greater than \(m\) still contains a positive power of \(z\), while terms of degree less than \(m\) have vanished. Therefore
     \[
         \boxed{a_m=\frac{P^{(m)}(0)}{m!}}
-        \qquad(m=0,1,\ldots,n),
+        \qquad(m=0, 1, \ldots, n),
     \]
     with \(P^{(0)}=P\).
 \end{exercisesubparts}
@@ -345,13 +345,13 @@ Use the theorem in Sec.~23 to show that \(f'(z)\) and its derivative \(f''(z)\) 
 \begin{solution}
 In each case the first-order partial derivatives involved below are continuous everywhere, so the theorem in Sec.~23 applies once the Cauchy--Riemann equations are verified.
 \begin{exercisesubparts}
-    \item Since
+    \item Since $f(z)=(2-y)+ix$, write $u=2-y$ and $v=x$. Then
     \[
-        f(z)=(2-y)+ix,
+        u_x=v_y=0, \qquad u_y=-v_x=-1.
     \]
-    the Cauchy--Riemann equations hold and
+    Thus the Cauchy--Riemann equations hold, and
     \[
-        f'(z)=i.
+        f'(z)=u_x+iv_x=i.
     \]
     The derivative \(f'\) is constant, so the same theorem gives
     \[

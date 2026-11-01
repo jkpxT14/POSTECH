@@ -32,7 +32,7 @@ Each function is rational, so by the differentiation rules it is analytic wherev
     \]
     so the singular points are
     \[
-        \boxed{z=0,\ \pm i}.
+        \boxed{z=0, \ \pm i}.
     \]
 
     \item
@@ -41,7 +41,7 @@ Each function is rational, so by the differentiation rules it is analytic wherev
     \]
     so the singular points are
     \[
-        \boxed{z=1,\ 2}.
+        \boxed{z=1, \ 2}.
     \]
 
     \item Since
@@ -50,7 +50,7 @@ Each function is rational, so by the differentiation rules it is analytic wherev
     \]
     the singular points are
     \[
-        \boxed{z=-2,\ -1\pm i}.
+        \boxed{z=-2, \ -1\pm i}.
     \]
 \end{exercisesubparts}
 In each case the function is analytic at every other point.
@@ -61,7 +61,7 @@ In each case the function is analytic at every other point.
 Use results in Sec.~24 to verify that the function
 \[
     g(z)=\ln r+i\theta
-    \qquad(r>0,\ 0<\theta<2\pi)
+    \qquad(r>0, \ 0<\theta<2\pi)
 \]
 is analytic in the indicated domain of definition, with derivative \(g'(z)=1/z\). Then show that the composite function
 \[
@@ -79,9 +79,9 @@ Observe that \(\ImPart(z^2+1)>0\) when \(x>0\), \(y>0\).
 \begin{solution}
 For
 \[
-    g(z)=u(r,\theta)+iv(r,\theta),
+    g(z)=u(r, \theta)+iv(r, \theta),
     \qquad
-    u=\ln r,\quad v=\theta,
+    u=\ln r, \quad v=\theta,
 \]
 we have
 \[
@@ -116,11 +116,11 @@ Let a function \(f\) be analytic everywhere in a domain \(D\). Prove that if \(f
 \begin{solution}
 Write
 \[
-    f(z)=u(x,y)+iv(x,y).
+    f(z)=u(x, y)+iv(x, y).
 \]
 Since \(f\) is real-valued throughout \(D\),
 \[
-    v(x,y)=0
+    v(x, y)=0
 \]
 there, so \(v_x=v_y=0\). Because \(f\) is analytic, the Cauchy--Riemann equations give
 \[
@@ -136,9 +136,9 @@ throughout \(D\). By the theorem in Sec.~25, an analytic function whose derivati
 \end{solution}
 
 \begin{exercise}{27.2}
-Let the function \(f(z)=u(x,y)+iv(x,y)\) be analytic in a domain \(D\), and consider the families of level curves \(u(x,y)=c_1\) and \(v(x,y)=c_2\), where \(c_1\) and \(c_2\) are arbitrary real constants. Prove that these families are orthogonal. More precisely, show that if \(z_0=(x_0,y_0)\) is a point in \(D\) which is common to two particular curves \(u(x,y)=c_1\) and \(v(x,y)=c_2\) and if \(f'(z_0)\ne0\), then the lines tangent to those curves at \((x_0,y_0)\) are perpendicular.
+Let the function \(f(z)=u(x, y)+iv(x, y)\) be analytic in a domain \(D\), and consider the families of level curves \(u(x, y)=c_1\) and \(v(x, y)=c_2\), where \(c_1\) and \(c_2\) are arbitrary real constants. Prove that these families are orthogonal. More precisely, show that if \(z_0=(x_0, y_0)\) is a point in \(D\) which is common to two particular curves \(u(x, y)=c_1\) and \(v(x, y)=c_2\) and if \(f'(z_0)\ne0\), then the lines tangent to those curves at \((x_0, y_0)\) are perpendicular.
 \begin{suggestion}
-Note how it follows from the pair of equations \(u(x,y)=c_1\) and \(v(x,y)=c_2\) that
+Note how it follows from the pair of equations \(u(x, y)=c_1\) and \(v(x, y)=c_2\) that
 \[
     u_x+u_y\frac{\dd y}{\dd x}=0
     \qquad\text{and}\qquad
@@ -268,11 +268,11 @@ The triangle inequality now gives
 \end{solution}
 
 \begin{exercise}{30.13}
-Let the function \(f(z)=u(x,y)+iv(x,y)\) be analytic in some domain \(D\). State why the functions
+Let the function \(f(z)=u(x, y)+iv(x, y)\) be analytic in some domain \(D\). State why the functions
 \[
-    U(x,y)=e^{u(x,y)}\cos v(x,y),
+    U(x, y)=e^{u(x, y)}\cos v(x, y),
     \qquad
-    V(x,y)=e^{u(x,y)}\sin v(x,y)
+    V(x, y)=e^{u(x, y)}\sin v(x, y)
 \]
 are harmonic in \(D\).
 \end{exercise}
@@ -293,39 +293,38 @@ By the theorem in Sec.~27, the real and imaginary components of an analytic func
 \begin{exercise}{33.2}
 Show that
 \begin{exercisesubparts}
-    \item \(\log e=1+2n\pi i\), \(n=0,\pm1,\pm2,\ldots\);
-    \item \(\displaystyle \log i=\left(2n+\frac12\right)\pi i\), \(n=0,\pm1,\pm2,\ldots\);
-    \item \(\displaystyle \log(-1+\sqrt3\,i)=\ln2+2\left(n+\frac13\right)\pi i\), \(n=0,\pm1,\pm2,\ldots\).
+    \item \(\log e=1+2n\pi i\), \(n=0, \pm1, \pm2, \ldots\);
+    \item \(\displaystyle \log i=\left(2n+\frac12\right)\pi i\), \(n=0, \pm1, \pm2, \ldots\);
+    \item \(\displaystyle \log(-1+\sqrt3\,i)=\ln2+2\left(n+\frac13\right)\pi i\), \(n=0, \pm1, \pm2, \ldots\).
 \end{exercisesubparts}
 \end{exercise}
 
 \begin{solution}
-For \(z\ne0\),
+For $z\ne0$, the multivalued logarithm is the set
 \[
-    \log z=\ln|z|+i(\Arg z+2n\pi),
-    \qquad n\in\Z.
+    \log z=\{\ln|z|+i(\Arg z+2n\pi)\mid n\in\Z\}.
 \]
 \begin{exercisesubparts}
-    \item Since \(|e|=e\) and \(\Arg e=0\),
+    \item Since $|e|=e$ and $\Arg e=0$,
     \[
-        \boxed{\log e=1+2n\pi i}.
+        \boxed{\log e=\{1+2n\pi i\mid n\in\Z\}}.
     \]
 
-    \item Since \(|i|=1\) and \(\Arg i=\pi/2\),
+    \item Since $|i|=1$ and $\Arg i=\pi/2$,
     \[
-        \boxed{\log i=i\left(\frac\pi2+2n\pi\right)
-        =\left(2n+\frac12\right)\pi i}.
+        \boxed{\log i=\left\{\left(2n+\frac12\right)\pi i\mid n\in\Z\right\}}.
     \]
 
-    \item The number \(-1+\sqrt3\,i\) has modulus \(2\) and principal argument \(2\pi/3\). Thus
+    \item The modulus of $-1+\sqrt3\,i$ is $2$, and its principal argument is $2\pi/3$. Hence
     \[
     \begin{aligned}
         \log(-1+\sqrt3\,i)
-        &=\ln2+i\left(\frac{2\pi}{3}+2n\pi\right)\\
-        &=\boxed{\ln2+2\left(n+\frac13\right)\pi i}.
+        &=\left\{\ln2+i\left(\frac{2\pi}{3}+2n\pi\right)\mid n\in\Z\right\}\\
+        &=\boxed{\left\{\ln2+2\left(n+\frac13\right)\pi i\mid n\in\Z\right\}}.
     \end{aligned}
     \]
 \end{exercisesubparts}
+Each set lists precisely the values parameterized by $n=0, \pm1, \pm2, \ldots$ in the exercise.
 \end{solution}
 
 \begin{exercise}{33.4}
@@ -337,7 +336,7 @@ when the branch
 \[
     \log z=\ln r+i\theta
     \qquad
-    \left(r>0,\ \frac{3\pi}{4}<\theta<\frac{11\pi}{4}\right)
+    \left(r>0, \ \frac{3\pi}{4}<\theta<\frac{11\pi}{4}\right)
 \]
 is used. (Compare this with the example in Sec.~33.)
 \end{exercise}
@@ -374,7 +373,7 @@ is harmonic in every domain that does not contain the origin.
 \begin{solution}
 Let
 \[
-    H(x,y)=\ln(x^2+y^2).
+    H(x, y)=\ln(x^2+y^2).
 \]
 First, direct differentiation gives
 \[
@@ -382,7 +381,7 @@ First, direct differentiation gives
     \qquad
     H_y=\frac{2y}{x^2+y^2},
 \]
-and, for \((x,y)\ne(0,0)\),
+and, for \((x, y)\ne(0, 0)\),
 \[
     H_{xx}=\frac{2(y^2-x^2)}{(x^2+y^2)^2},
     \qquad
@@ -408,7 +407,7 @@ Show that for any two nonzero complex numbers \(z_1\) and \(z_2\),
 \[
     \Log(z_1z_2)=\Log z_1+\Log z_2+2N\pi i,
 \]
-where \(N\) has one of the values \(0,\pm1\). (Compare with Example 2 in Sec.~34.)
+where \(N\) has one of the values \(0, \pm1\). (Compare with Example 2 in Sec.~34.)
 \end{exercise}
 
 \begin{solution}
@@ -424,7 +423,7 @@ Since \(-\pi<\theta_j\le\pi\),
 \[
     -2\pi<S\le2\pi.
 \]
-The principal argument of the product is obtained by bringing \(S\) into \((-\pi,\pi]\):
+The principal argument of the product is obtained by bringing \(S\) into \((-\pi, \pi]\):
 \[
     \Arg(z_1z_2)=S+2N\pi,
 \]
@@ -432,12 +431,12 @@ where
 \[
     N=
     \begin{cases}
-        -1, & S>\pi,\\
-        0, & -\pi<S\le\pi,\\
+        -1, & S>\pi, \\
+        0, & -\pi<S\le\pi, \\
         1, & S\le-\pi.
     \end{cases}
 \]
-Thus \(N\in\{0,\pm1\}\). Since \(|z_1z_2|=|z_1||z_2|\),
+Thus \(N\in\{0, \pm1\}\). Since \(|z_1z_2|=|z_1||z_2|\),
 \[
 \begin{aligned}
     \Log(z_1z_2)
@@ -513,11 +512,11 @@ and let \(n\) denote any fixed positive integer. Show that all of the values of 
     =\frac1n\ln r
     +i\frac{\Theta+2(pn+k)\pi}{n},
 \]
-where \(p=0,\pm1,\pm2,\ldots\) and \(k=0,1,2,\ldots,n-1\). Then, after writing
+where \(p=0, \pm1, \pm2, \ldots\) and \(k=0, 1, 2, \ldots, n-1\). Then, after writing
 \[
     \frac1n\log z
     =\frac1n\ln r+i\frac{\Theta+2q\pi}{n},
-    \qquad q=0,\pm1,\pm2,\ldots,
+    \qquad q=0, \pm1, \pm2, \ldots,
 \]
 show that the set of values of \(\log(z^{1/n})\) is the same as the set of values of \((1/n)\log z\). Thus show that
 \[
@@ -525,41 +524,38 @@ show that the set of values of \(\log(z^{1/n})\) is the same as the set of value
 \]
 where, corresponding to a value of \(\log(z^{1/n})\) taken on the left, the appropriate value of \(\log z\) is to be selected on the right, and conversely. (The result in Exercise 5, Sec.~33, is a special case of this one.)
 \begin{suggestion}
-Use the fact that the remainder upon dividing an integer by a positive integer \(n\) is always an integer between \(0\) and \(n-1\), inclusive; that is, any integer \(q\) can be written \(q=pn+k\), where \(p\in\Z\) and \(k\in\{0,1,\ldots,n-1\}\).
+Use the fact that the remainder upon dividing an integer by a positive integer \(n\) is always an integer between \(0\) and \(n-1\), inclusive; that is, any integer \(q\) can be written \(q=pn+k\), where \(p\in\Z\) and \(k\in\{0, 1, \ldots, n-1\}\).
 \end{suggestion}
 \end{exercise}
 
 \begin{solution}
-The \(n\) distinct values of \(z^{1/n}\) are
+The $n$ distinct values of $z^{1/n}$ are
 \[
     w_k=r^{1/n}\exp\left(i\frac{\Theta+2k\pi}{n}\right),
-    \qquad k=0,1,\ldots,n-1.
+    \qquad k=0, 1, \ldots, n-1.
 \]
-For each fixed \(k\), all values of \(\log w_k\) are
+For each $k$, the logarithmic values of $w_k$ form the set
 \[
 \begin{aligned}
     \log w_k
-    &=\frac1n\ln r
-      +i\left(\frac{\Theta+2k\pi}{n}+2p\pi\right)\\
-    &=\frac1n\ln r
-      +i\frac{\Theta+2(pn+k)\pi}{n},
-      \qquad p\in\Z.
+    &=\left\{\frac1n\ln r
+      +i\left(\frac{\Theta+2k\pi}{n}+2p\pi\right)\mid p\in\Z\right\}\\
+    &=\left\{\frac1n\ln r
+      +i\frac{\Theta+2(pn+k)\pi}{n}\mid p\in\Z\right\}.
 \end{aligned}
 \]
-Thus these formulas give all values of \(\log(z^{1/n})\).
-
-On the other hand, the values of \((1/n)\log z\) are
+Taking every $n$th root and every logarithmic value, and comparing with the values of $(1/n)\log z$, gives
 \[
-    \frac1n\ln r+i\frac{\Theta+2q\pi}{n},
-    \qquad q\in\Z.
+\begin{gathered}
+    \log(z^{1/n})
+    =\bigcup_{k=0}^{n-1}\log w_k
+    =\left\{\frac1n\ln r+i\frac{\Theta+2(pn+k)\pi}{n}
+       \mathrel{\Big|}p\in\Z,\ k\in\{0, 1, \ldots, n-1\}\right\},\\[3pt]
+    \frac1n\log z
+    =\left\{\frac1n\ln r+i\frac{\Theta+2q\pi}{n}\mid q\in\Z\right\}.
+\end{gathered}
 \]
-By the division algorithm, every integer \(q\) can be written uniquely as
-\[
-    q=pn+k,
-    \qquad p\in\Z,
-    \qquad 0\le k\le n-1.
-\]
-Hence the two displayed families of values are exactly the same. Therefore, in the multiple-valued sense described in Sec.~34,
+By the division algorithm, every integer $q$ has a unique representation $q=pn+k$ with $p\in\Z$ and $0\le k\le n-1$. Thus these sets contain exactly the same values, proving
 \[
     \boxed{\log(z^{1/n})=\frac1n\log z}.
 \]

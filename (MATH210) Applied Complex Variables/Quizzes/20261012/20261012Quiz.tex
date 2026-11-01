@@ -25,7 +25,7 @@ where the principal value of \(|z|^a\) is to be taken.
 \begin{solution}
 For \(z\ne0\), choose any value
 \[
-    L=\ln|z|+i(\Arg z+2k\pi),\qquad k\in\Z,
+    L=\ln|z|+i(\Arg z+2k\pi), \qquad k\in\Z,
 \]
 of \(\log z\). The corresponding value \(w=e^{aL}\) of \(z^a\) satisfies
 \[
@@ -43,11 +43,11 @@ Thus
 \end{solution}
 
 \begin{exercise}{36.8}
-Let \(c,c_1,c_2,z\) be complex numbers with \(z\ne0\). Prove that, if all the powers involved are principal values, then
+Let \(c, c_1, c_2, z\) be complex numbers with \(z\ne0\). Prove that, if all the powers involved are principal values, then
 \begin{exercisesubparts}
     \item \(z^{c_1}z^{c_2}=z^{c_1+c_2}\);
     \item \(\displaystyle\frac{z^{c_1}}{z^{c_2}}=z^{c_1-c_2}\);
-    \item \((z^c)^n=z^{cn}\), where \(n=1,2,\dots\).
+    \item \((z^c)^n=z^{cn}\), where \(n=1, 2, \dots\).
 \end{exercisesubparts}
 \end{exercise}
 
@@ -111,7 +111,7 @@ Applying the exponential differentiation rule and the chain rule,
     \frac{\dd}{\dd z}\sin z
     &=\frac{ie^{iz}+ie^{-iz}}{2i}
       =\frac{e^{iz}+e^{-iz}}2
-      =\boxed{\cos z},\\
+      =\boxed{\cos z}, \\
     \frac{\dd}{\dd z}\cos z
     &=\frac{ie^{iz}-ie^{-iz}}2
       =-\frac{e^{iz}-e^{-iz}}{2i}
@@ -148,7 +148,7 @@ Find all roots of \(\sin z=\cosh4\) by equating the real parts and then the imag
 \end{exercise}
 
 \begin{solution}
-Write \(z=x+iy\), with \(x,y\in\R\). Formula (13), Sec.~37, gives
+Write \(z=x+iy\), with \(x, y\in\R\). Formula (13), Sec.~37, gives
 \[
     \sin z=\sin x\cosh y+i\cos x\sinh y.
 \]
@@ -178,7 +178,7 @@ we obtain
 \[
 \begin{aligned}
     \frac{\dd}{\dd z}\sinh z
-    &=\frac{e^z+e^{-z}}2=\boxed{\cosh z},\\
+    &=\frac{e^z+e^{-z}}2=\boxed{\cosh z}, \\
     \frac{\dd}{\dd z}\cosh z
     &=\frac{e^z-e^{-z}}2=\boxed{\sinh z}.
 \end{aligned}
@@ -192,7 +192,7 @@ Give details showing that the zeros of \(\sinh z\) and \(\cosh z\) are as in the
 \begin{solution}
 The identities from Sec.~39 yield
 \[
-    \sinh z=-i\sin(iz),\qquad \cosh z=\cos(iz).
+    \sinh z=-i\sin(iz), \qquad \cosh z=\cos(iz).
 \]
 By the zero sets of sine and cosine in Sec.~38,
 \[
@@ -220,17 +220,17 @@ By using one of the identities (9) and (10) in Sec.~39 and then proceeding as in
 \end{exercise}
 
 \begin{solution}
-Write \(z=x+iy\), where \(x,y\in\R\). From Sec.~39,
+Write \(z=x+iy\), where \(x, y\in\R\). From Sec.~39,
 \[
 \begin{aligned}
-    \sinh z&=\sinh x\cos y+i\cosh x\sin y,\\
+    \sinh z&=\sinh x\cos y+i\cosh x\sin y, \\
     \cosh z&=\cosh x\cos y+i\sinh x\sin y.
 \end{aligned}
 \]
 \begin{exercisesubparts}
     \item The equation \(\sinh z=i\) becomes
     \[
-        \sinh x\cos y=0,\qquad \cosh x\sin y=1.
+        \sinh x\cos y=0, \qquad \cosh x\sin y=1.
     \]
     Since \(\cosh x\ge1\), if \(\cos y=0\), then \(\sin y=\pm1\); the second equation requires \(\sin y=1\) and \(\cosh x=1\), hence \(x=0\). If instead \(\sinh x=0\), we again have \(x=0\), and the second equation gives \(\sin y=1\). Thus every root is
     \[
@@ -238,7 +238,7 @@ Write \(z=x+iy\), where \(x,y\in\R\). From Sec.~39,
     \]
     \item The equation \(\cosh z=1/2\) gives
     \[
-        \cosh x\cos y=\frac12,\qquad \sinh x\sin y=0.
+        \cosh x\cos y=\frac12, \qquad \sinh x\sin y=0.
     \]
     If \(\sin y=0\), then \(\cos y=\pm1\), and the first equation would require \(\cosh x=1/2\) or \(-1/2\), both impossible. Therefore \(\sinh x=0\), i.e. \(x=0\), and \(\cos y=1/2\). It follows that
     \[
@@ -363,7 +363,7 @@ Show that if \(m\) and \(n\) are integers, then
 \[
     \int_0^{2\pi}e^{im\theta}e^{-in\theta}\,\dd\theta
     =\begin{cases}
-        0&\text{when }m\ne n,\\
+        0&\text{when }m\ne n, \\
         2\pi&\text{when }m=n.
       \end{cases}
 \]
@@ -412,9 +412,9 @@ Suppose that a function \(f(z)\) is analytic at a point \(z_0=z(t_0)\) lying on 
 \]
 when \(t=t_0\).
 \begin{suggestion}
-Write \(f(z)=u(x,y)+iv(x,y)\) and \(z(t)=x(t)+iy(t)\), so that
+Write \(f(z)=u(x, y)+iv(x, y)\) and \(z(t)=x(t)+iy(t)\), so that
 \[
-    w(t)=u(x(t),y(t))+iv(x(t),y(t)).
+    w(t)=u(x(t), y(t))+iv(x(t), y(t)).
 \]
 Then apply the chain rule in calculus for functions of two real variables to write
 \[
@@ -433,9 +433,9 @@ At \(t=t_0\), the real-variable chain rule gives
     &=(u_x+iv_x)x'+(u_y+iv_y)y',
 \end{aligned}
 \]
-where the partial derivatives are evaluated at \((x(t_0),y(t_0))\) and \(x',y'\) at \(t_0\). Since \(f\) is analytic at \(z_0\), the Cauchy--Riemann equations imply
+where the partial derivatives are evaluated at \((x(t_0), y(t_0))\) and \(x', y'\) at \(t_0\). Since \(f\) is analytic at \(z_0\), the Cauchy--Riemann equations imply
 \[
-    u_y=-v_x,\qquad v_y=u_x,
+    u_y=-v_x, \qquad v_y=u_x,
 \]
 and therefore
 \[
@@ -452,16 +452,16 @@ Moreover, \(f'(z_0)=u_x+iv_x\). It follows that
 \end{solution}
 
 \begin{exercise}{46.3}
-Let \(f(z)=\pi\exp(\pi\overline z)\), and let \(C\) be the boundary of the square with vertices \(0,1,1+i,i\), oriented counterclockwise. Evaluate \(\int_C f(z)\,\dd z\).
+Let \(f(z)=\pi\exp(\pi\overline z)\), and let \(C\) be the boundary of the square with vertices \(0, 1, 1+i, i\), oriented counterclockwise. Evaluate \(\int_C f(z)\,\dd z\).
 \end{exercise}
 
 \begin{solution}
 Parametrize the four directed sides, in order, by
 \[
 \begin{array}{ll}
-    C_1:\ z=t, & 0\le t\le1,\\
-    C_2:\ z=1+it, & 0\le t\le1,\\
-    C_3:\ z=1-t+i, & 0\le t\le1,\\
+    C_1:\ z=t, & 0\le t\le1, \\
+    C_2:\ z=1+it, & 0\le t\le1, \\
+    C_3:\ z=1-t+i, & 0\le t\le1, \\
     C_4:\ z=i(1-t), & 0\le t\le1.
 \end{array}
 \]
@@ -469,11 +469,11 @@ Using the conjugate of each parametrization, the contour-integral definition in 
 \[
 \begin{aligned}
     \int_{C_1}f(z)\,\dd z
-        &=\pi\int_0^1e^{\pi t}\,\dd t=e^\pi-1,\\
+        &=\pi\int_0^1e^{\pi t}\,\dd t=e^\pi-1, \\
     \int_{C_2}f(z)\,\dd z
-        &=i\pi e^\pi\int_0^1e^{-i\pi t}\,\dd t=2e^\pi,\\
+        &=i\pi e^\pi\int_0^1e^{-i\pi t}\,\dd t=2e^\pi, \\
     \int_{C_3}f(z)\,\dd z
-        &=\pi\int_0^1e^{\pi(1-t)}\,\dd t=e^\pi-1,\\
+        &=\pi\int_0^1e^{\pi(1-t)}\,\dd t=e^\pi-1, \\
     \int_{C_4}f(z)\,\dd z
         &=-i\pi\int_0^1e^{-i\pi(1-t)}\,\dd t=-2.
 \end{aligned}
@@ -491,7 +491,7 @@ Let \(C\) denote the positively oriented unit circle \(|z|=1\) about the origin.
     \item Show that if \(f(z)\) is the principal branch
     \[
         z^{-3/4}=\exp\left(-\frac34\Log z\right)
-        \qquad(|z|>0,\ -\pi<\Arg z<\pi)
+        \qquad(|z|>0, \ -\pi<\Arg z<\pi)
     \]
     of \(z^{-3/4}\), then
     \[
@@ -500,7 +500,7 @@ Let \(C\) denote the positively oriented unit circle \(|z|=1\) about the origin.
     \item Show that if \(g(z)\) is the branch
     \[
         z^{-3/4}=\exp\left(-\frac34\log z\right)
-        \qquad(|z|>0,\ 0<\arg z<2\pi)
+        \qquad(|z|>0, \ 0<\arg z<2\pi)
     \]
     of the same power function, then
     \[
@@ -545,13 +545,13 @@ With the aid of the result in Exercise 3, Sec.~42, evaluate
 \[
     \int_C z^m\overline z^{\,n}\,\dd z,
 \]
-where \(m,n\in\Z\) and \(C\) is the unit circle \(|z|=1\), oriented counterclockwise.
+where \(m, n\in\Z\) and \(C\) is the unit circle \(|z|=1\), oriented counterclockwise.
 \end{exercise}
 
 \begin{solution}
 Use the parametrization \(z=e^{i\theta}\), \(0\le\theta\le2\pi\). On \(C\),
 \[
-    \overline z=e^{-i\theta},\qquad
+    \overline z=e^{-i\theta}, \qquad
     \dd z=ie^{i\theta}\,\dd\theta.
 \]
 Thus
@@ -566,7 +566,7 @@ By Exercise 42.3, the last integral is \(2\pi\) when \(m+1=n\) and \(0\) otherwi
 \[
     \boxed{\int_Cz^m\overline z^{\,n}\,\dd z
     =\begin{cases}
-        2\pi i&\text{if }n=m+1,\\
+        2\pi i&\text{if }n=m+1, \\
         0&\text{if }n\ne m+1.
       \end{cases}}
 \]

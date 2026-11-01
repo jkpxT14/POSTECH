@@ -31,7 +31,7 @@ Thus $e^{iz}=i$. Writing $z=x+iy$, we have
 \]
 Comparison of moduli gives $e^{-y}=1$, hence $y=0$; comparison of arguments then gives $x=\pi/2+2\pi k$ for $k\in\Z$. Therefore all solutions are
 \[
-    \boxed{z=\frac{\pi}{2}+2\pi k,\qquad k\in\Z.}
+    \boxed{z=\frac{\pi}{2}+2\pi k, \qquad k\in\Z.}
 \]
 \end{solution}
 
@@ -61,7 +61,7 @@ Consequently, by De Moivre's theorem,
 \]
 Hence
 \[
-    \boxed{a=2^{14}\sqrt3,\qquad b=-2^{14}.}
+    \boxed{a=2^{14}\sqrt3, \qquad b=-2^{14}.}
 \]
 \end{solution}
 
@@ -74,18 +74,46 @@ Find an entire function $f(z)$ such that
 and $f(0)=i$.
 \end{problem}
 
-\begin{solution}
-Since
+\begin{solution}[1]
+Write $f=u+iv$, where
 \[
-    \RePart(z^2)=x^2-y^2,
-    \qquad
-    \RePart(-iz)=y,
+    u(x, y)=x^2-y^2+y.
 \]
-the polynomial $z^2-iz$ has the prescribed real part. An imaginary constant does not change its real part, and $f(0)=i$ fixes that constant. Thus
+By the Cauchy--Riemann equations,
+\[
+    v_x=-u_y=2y-1, \qquad v_y=u_x=2x.
+\]
+Integrating the first equation with respect to $x$, we obtain
+\[
+    v(x, y)=(2y-1)x+\phi(y).
+\]
+Differentiating with respect to $y$ and using $v_y=2x$ gives
+\[
+    2x+\phi'(y)=2x,
+\]
+so $\phi(y)=c$ for some real constant $c$. Consequently,
+\[
+    f(z)=(x^2-y^2+y)+i(2xy-x+c)
+        =z^2-iz+ic.
+\]
+Since $f(0)=i$, we have $c=1$. Thus
 \[
     \boxed{f(z)=z^2-iz+i.}
 \]
-This function is entire, has the required real part, and satisfies $f(0)=i$.
+This polynomial is entire, and its real part and value at $0$ satisfy the given conditions.
+\end{solution}
+
+\begin{solution}[2]
+Observe that
+\[
+    \RePart(z^2)=x^2-y^2, \qquad
+    \RePart(-iz)=y.
+\]
+Hence $z^2-iz$ has exactly the prescribed real part. Adding a purely imaginary constant does not change that real part, and the condition $f(0)=i$ fixes the constant. Therefore
+\[
+    \boxed{f(z)=z^2-iz+i.}
+\]
+Being a polynomial, $f$ is entire, and direct substitution verifies both requirements.
 \end{solution}
 
 \begin{problem}{4}
@@ -174,13 +202,20 @@ $4\exp(i2k\pi/4)$ ($k=0, 1, 2, 3$), oriented clockwise.
 \end{problem}
 
 \begin{solution}
-The vertices are $4, 4i, -4, -4i$, so $i$ lies inside $C$. Set $g(z)=e^z+\cos z$, which is entire. The exponent $2025$ in the denominator corresponds to the $2024$th derivative in the generalized Cauchy integral formula. Since $2024$ is divisible by $4$,
+The square has vertices $4, 4i, -4, -4i$, and $i$ lies in its interior. Let
 \[
-    g^{(2024)}(z)=e^z+\cos z,
-    \qquad
-    g^{(2024)}(i)=e^i+\cos i.
+    g(z)=e^z+\cos z,
 \]
-The given clockwise orientation reverses the usual sign. Therefore
+which is entire. The generalized Cauchy integral formula, with a minus sign because $C$ is oriented clockwise, gives
+\[
+    \int_C\frac{g(z)}{(z-i)^{2025}}\,\dd z
+    =-\frac{2\pi i}{2024!}g^{(2024)}(i).
+\]
+Since $2024$ is divisible by $4$, repeated differentiation of the cosine gives
+\[
+    g^{(2024)}(z)=e^z+\cos z.
+\]
+Therefore
 \[
     \boxed{\int_C\frac{e^z+\cos z}{(z-i)^{2025}}\,\dd z
     =-\frac{2\pi i}{2024!}(e^i+\cos i).}
@@ -214,7 +249,7 @@ Consider the power series
     \sum_{n=1}^{\infty}a_nz^n,
     \qquad
     a_n=\begin{cases}
-        n & \text{if $n$ is even},\\
+        n & \text{if $n$ is even}, \\
         1/n & \text{if $n$ is odd}.
     \end{cases}
 \]
@@ -229,23 +264,33 @@ Consider the power series
 
 \begin{solution}
 \begin{problemsubparts}
-    \item Along the even and odd indices, respectively,
+    \item We first note that
+    \[
+        \ln(n^{1/n})=\frac{\ln n}{n}\longrightarrow0,
+        \qquad\text{so}\qquad n^{1/n}\longrightarrow1.
+    \]
+    Along the even and odd indices, respectively,
     \[
         a_n^{1/n}=n^{1/n}\longrightarrow1,
         \qquad
         a_n^{1/n}=n^{-1/n}\longrightarrow1.
     \]
-    Thus $\lim_{n\to\infty}a_n^{1/n}=1$. The Cauchy--Hadamard formula gives
+    Hence $\lim_{n\to\infty}a_n^{1/n}=1$. For each fixed $z\in\C$,
     \[
-        \boxed{R=\frac1{\limsup_{n\to\infty}|a_n|^{1/n}}=1.}
+        \lim_{n\to\infty}|a_nz^n|^{1/n}=|z|.
     \]
-    \item By the root test, the series converges absolutely for $|z|<1$ and diverges for $|z|>1$. If $|z|=1$, its even-index terms satisfy
+    By the root test, the series converges absolutely for $|z|<1$ and diverges for $|z|>1$. Thus its radius of convergence is
     \[
-        |a_{2k}z^{2k}|=2k\longrightarrow\infty,
+        \boxed{R=1}.
     \]
-    so the terms do not tend to zero; the series diverges at every boundary point. Therefore the exact convergence set is
+
+    \item For $|z|=1$, the even-index terms satisfy
     \[
-        \boxed{\{z\in\C\mid |z|<1\}.}
+        |a_{2k}z^{2k}|=2k\not\longrightarrow0.
+    \]
+    Thus the terms fail to approach zero, and the series diverges at every point of the unit circle. Combining this with part (a), its convergence set is
+    \[
+        \boxed{\{z\in\C\mid |z|<1\}}.
     \]
 \end{problemsubparts}
 \end{solution}
@@ -258,18 +303,39 @@ Show that the series
 converges uniformly on $\ImPart z\ge0$.
 \end{problem}
 
-\begin{solution}
-For $z=x+iy$ with $y=\ImPart z\ge0$, we have
+\begin{solution}[1]
+For $z=x+iy$ with $y=\ImPart z\ge0$,
 \[
     \left|\frac{e^{inz}}{n^2}\right|
-    =\frac{|e^{inx-ny}|}{n^2}
     =\frac{e^{-ny}}{n^2}\le\frac1{n^2}.
 \]
-Since $\sum_{n=1}^{\infty}1/n^2$ converges and its bound is independent of $z$, the Weierstrass M-test proves that
+Since $\sum_{n=1}^{\infty}1/n^2$ converges and the bound is independent of $z$, the Weierstrass M-test proves that the series converges uniformly on $\{z\in\C\mid\ImPart z\ge0\}$.
+\end{solution}
+
+\begin{solution}[2]
+Let $D=\{z\in\C\mid\ImPart z\ge0\}$ and
 \[
-    \boxed{\sum_{n=1}^{\infty}\frac{e^{inz}}{n^2}
-      \text{ converges uniformly on }\{z\in\C\mid\ImPart z\ge0\}.}
+    S_N(z)=\sum_{n=1}^{N}\frac{e^{inz}}{n^2}.
 \]
+For each $z\in D$, the inequality
+\[
+    \left|\frac{e^{inz}}{n^2}\right|\le\frac1{n^2}
+\]
+shows that the series converges absolutely; denote its sum by $S(z)$. For $N\ge1$ and every $z\in D$,
+\[
+\begin{aligned}
+    |S(z)-S_N(z)|
+    &\le\sum_{n=N+1}^{\infty}\frac1{n^2}\\
+    &\le\sum_{n=N+1}^{\infty}\frac1{n(n-1)}\\
+    &=\sum_{n=N+1}^{\infty}\left(\frac1{n-1}-\frac1n\right)
+      =\frac1N.
+\end{aligned}
+\]
+Given $\varepsilon>0$, choose an integer $N_0>1/\varepsilon$. Then for all $N\ge N_0$ and $z\in D$,
+\[
+    |S(z)-S_N(z)|\le\frac1N\le\frac1{N_0}<\varepsilon.
+\]
+This proves uniform convergence on $D$ directly from its definition.
 \end{solution}
 
 \Needspace{15\baselineskip}
