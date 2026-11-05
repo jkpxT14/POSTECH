@@ -1,0 +1,505 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\tikzset{
+  quizvertex/.style={circle,fill=black,inner sep=1.75pt},
+  quizedge/.style={line width=0.48pt},
+  quizarc/.style={-{Stealth[length=2.0mm,width=1.35mm]},line width=0.56pt,shorten <=2.5pt,shorten >=2.5pt},
+  quizbi/.style={{Stealth[length=1.75mm]}-{Stealth[length=1.75mm]},line width=0.62pt,shorten <=3pt,shorten >=3pt},
+  quizweight/.style={fill=white,inner sep=1pt,font=\small}
+}
+\hypersetup{
+  pdftitle={20261112 Quiz for MATH261 Discrete Mathematics},
+  pdfauthor={Jungwoo Kim},
+  pdfsubject={Homework 4 problems and solutions for MATH261 Discrete Mathematics},
+  pdfcreator={LaTeX}
+}
+
+\begin{document}
+\quiztitle{20261112 Quiz}
+
+\begin{problem}{1}
+\begin{problemsubparts}
+\item Draw the directed graph represented by the given adjacency matrix.
+\item Find the adjacency matrix of the given directed multigraph.
+\end{problemsubparts}
+\begin{center}
+\begin{minipage}[c]{0.38\textwidth}\centering
+\[
+\mathbf A=\begin{pmatrix}
+0&1&3&0&4\\
+1&2&1&3&0\\
+3&1&1&0&1\\
+0&3&0&0&2\\
+4&0&1&2&3
+\end{pmatrix}.
+\]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.54\textwidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,scale=0.98]
+\coordinate (a) at (0,2.15);
+\coordinate (b) at (2.70,2.15);
+\coordinate (c) at (0,0);
+\coordinate (d) at (2.70,0);
+% The corresponding directed arcs in the source have been separated clearly.
+\draw[quizarc] (a) to[bend left=17] (b);
+\draw[quizarc] (b) to[bend left=17] (a);
+\draw[quizarc] (a) to[bend left=28] (c);
+\draw[quizarc] (a) to[bend left=9] (c);
+\draw[quizarc] (c) to[bend left=13] (a);
+\draw[quizarc] (a) -- (d);
+\draw[quizarc] (b) to[bend left=35] (d);
+\draw[quizarc] (b) to[bend left=9] (d);
+\draw[quizarc] (d) to[bend left=15] (b);
+\draw[quizarc] (d) to[bend left=44] (b);
+\draw[quizarc] (c) to[bend left=15] (d);
+\draw[quizarc] (d) to[bend left=15] (c);
+\draw[quizarc,shorten <=0pt,shorten >=0pt] (a) .. controls +(-0.68,0.85) and +(0.68,0.85) .. (a);
+\draw[quizarc,shorten <=0pt,shorten >=0pt] (c) .. controls +(-0.68,-0.85) and +(0.68,-0.85) .. (c);
+\foreach \v/\pos in {a/above,b/above,c/below,d/below}{\node[quizvertex,label={[font=\small]\pos:$\v$}] at (\v) {};}
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+\item Since the matrix is symmetric, its off-diagonal entries give the same
+number of arcs in both directions. In the diagram, each bidirected edge
+represents a pair of opposite arcs; a label gives their multiplicity,
+and an unlabeled pair has multiplicity one.
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,scale=0.93]
+\foreach \i/\angle in {1/90,2/18,3/-54,4/-126,5/162}{
+  \coordinate (v\i) at (\angle:2.02);
+}
+% Every bidirected connection represents equal numbers of arcs in both directions.
+\draw[quizbi] (v1) -- (v2);
+\draw[quizbi] (v2) -- (v3);
+\draw[quizbi] (v3) -- (v5);
+\draw[quizbi] (v1) to[bend left=13] node[quizweight,above] {$3$} (v3);
+\draw[quizbi] (v1) -- node[quizweight,above left] {$4$} (v5);
+\draw[quizbi] (v2) to[bend right=12] node[quizweight,above] {$3$} (v4);
+\draw[quizbi] (v4) -- node[quizweight,left] {$2$} (v5);
+\draw[quizarc,shorten <=0pt,shorten >=0pt] (v2) .. controls +(0.62,0.60) and +(0.74,-0.35) .. (v2);\node[font=\scriptsize] at ($(v2)+(0.82,0.20)$) {$2$};
+\draw[quizarc,shorten <=0pt,shorten >=0pt] (v3) .. controls +(0.35,-0.80) and +(-0.60,-0.67) .. (v3);\node[font=\scriptsize] at ($(v3)+(0.10,-0.83)$) {$1$};
+\draw[quizarc,shorten <=0pt,shorten >=0pt] (v5) .. controls +(-0.62,0.57) and +(-0.78,-0.50) .. (v5);\node[font=\scriptsize] at ($(v5)+(-0.83,0.10)$) {$3$};
+\foreach \i/\angle in {1/90,2/18,3/-54,4/-126,5/162}{\node[quizvertex] at (v\i) {};\node[font=\small] at (\angle:2.30) {$\i$};}
+\end{tikzpicture}
+\end{center}
+There are $2$, $1$, and $3$ loops at vertices $2$, $3$, and $5$, respectively.
+\item With rows and columns ordered as $a, b, c, d$, the adjacency matrix is
+\[
+\mathbf A=\begin{pmatrix}
+1&1&2&1\\
+1&0&0&2\\
+1&0&1&1\\
+0&2&1&0
+\end{pmatrix}.
+\]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{2}
+Which of the following are paths (starting at a vertex $a$ and ending at a vertex
+$b$ or a vertex $c$) in the following directed graph? What are the lengths of
+those that are paths? Find the circuits starting at a vertex $a$ in the
+following directed graph.
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,scale=0.98]
+\coordinate (a) at (0,2.03);
+\coordinate (b) at (2.02,2.03);
+\coordinate (c) at (4.47,2.03);
+\coordinate (d) at (0,0);
+\coordinate (e) at (2.02,0);
+\draw[quizarc,shorten <=0pt,shorten >=0pt] (a) .. controls +(-0.68,0.85) and +(0.68,0.85) .. (a);
+\draw[quizarc,shorten <=0pt,shorten >=0pt] (d) .. controls +(-0.68,-0.85) and +(0.68,-0.85) .. (d);
+\draw[quizarc] (a) to[bend right=15] (b);
+\draw[quizarc] (b) to[bend right=15] (a);
+\draw[quizarc] (a) to[out=45,in=145] (c);
+\draw[quizarc] (a) -- (e);
+\draw[quizarc] (b) -- (e);
+\draw[quizarc] (e) to[bend left=21] (b);
+\draw[quizarc] (c) -- (b);
+\draw[quizarc] (d) -- (a);
+\draw[quizarc] (d) -- (b);
+\draw[quizarc] (d) -- (c);
+\draw[quizarc] (e) -- (d);
+\draw[quizarc] (e) -- (c);
+\foreach \v/\pos in {a/above,b/above,c/above,d/below,e/below}{\node[quizvertex,label={[font=\small]\pos:$\v$}] at (\v) {};}
+\end{tikzpicture}
+\end{center}
+\end{problem}
+
+\begin{solution}
+The homework sheet does not provide the candidate vertex sequences referred to by
+``the following,'' so the requested path-by-path classification cannot be completed
+from the printed statement.
+
+For the circuit question, recall that a circuit is a \emph{closed trail}: its
+edges are distinct, although vertices may repeat. The directed edge set of the
+graph is
+\[
+\begin{aligned}
+&\{aa, ab, ac, ae, ba, be, cb, da, db, dc, dd, eb, ec, ed\},
+\end{aligned}
+\]
+where $uv$ denotes the arc from $u$ to $v$, and $aa, dd$ denote loops.
+Every circuit starting at $a$ is obtained by the following exhaustive procedure:
+start at $a$, successively follow any unused outgoing arc, and record the
+resulting trail whenever it returns to $a$. Continue exploring unused arcs
+after any such return, since a circuit may visit $a$ more than twice.
+
+For reference, the circuits in which no vertex repeats except the initial and
+terminal $a$ are precisely
+\[
+\begin{gathered}
+(a, a),\ (a, b, a),\ (a, c, b, a),\ (a, e, b, a),\ (a, e, d, a),\\
+(a, b, e, d, a),\ (a, c, b, e, d, a),\ (a, e, c, b, a),\\
+(a, e, d, b, a),\ (a, e, d, c, b, a).
+\end{gathered}
+\]
+The procedure also produces longer circuits such as $(a, b, a, e, d, a)$;
+listing only the ten cycles above would not enumerate every circuit.
+\end{solution}
+
+\begin{problem}{3}
+Show that isomorphism of simple graphs is an equivalence relation.
+\end{problem}
+\begin{solution}
+Let $G, H, K$ be simple graphs. The identity map on $V(G)$ is an isomorphism
+from $G$ to itself, so graph isomorphism is reflexive. If
+$f\colon V(G)\to V(H)$ is an isomorphism, then its inverse
+$f^{-1}\colon V(H)\to V(G)$ preserves both adjacency and nonadjacency;
+hence isomorphism is symmetric. If $f\colon V(G)\to V(H)$ and $g\colon V(H)\to V(K)$ are
+isomorphisms, then $g\circ f$ is a bijection that
+preserves adjacency in both directions. Thus isomorphism is transitive.
+Therefore it is an equivalence relation.
+\end{solution}
+
+\Needspace{14\baselineskip}
+\begin{problem}{4}
+Determine whether the given pair of graphs is isomorphic. Exhibit an
+isomorphism or provide a rigorous argument that none exists.
+\begin{center}
+\begin{minipage}{0.48\textwidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\coordinate (u0) at (0.000,1.480);
+\node[font=\scriptsize,inner sep=0pt] at (0.000,1.865) {$u_{1}$};
+\coordinate (u1) at (1.047,1.047);
+\node[font=\scriptsize,inner sep=0pt] at (1.319,1.319) {$u_{2}$};
+\coordinate (u2) at (1.480,0.000);
+\node[font=\scriptsize,inner sep=0pt] at (1.865,0.000) {$u_{3}$};
+\coordinate (u3) at (1.047,-1.047);
+\node[font=\scriptsize,inner sep=0pt] at (1.319,-1.319) {$u_{4}$};
+\coordinate (u4) at (0.000,-1.480);
+\node[font=\scriptsize,inner sep=0pt] at (0.000,-1.865) {$u_{5}$};
+\coordinate (u5) at (-1.047,-1.047);
+\node[font=\scriptsize,inner sep=0pt] at (-1.319,-1.319) {$u_{6}$};
+\coordinate (u6) at (-1.480,-0.000);
+\node[font=\scriptsize,inner sep=0pt] at (-1.865,-0.000) {$u_{7}$};
+\coordinate (u7) at (-1.047,1.047);
+\node[font=\scriptsize,inner sep=0pt] at (-1.319,1.319) {$u_{8}$};
+\draw[quizedge] (u0) -- (u1);
+\draw[quizedge] (u0) -- (u3);
+\draw[quizedge] (u0) -- (u4);
+\draw[quizedge] (u0) -- (u5);
+\draw[quizedge] (u0) -- (u7);
+\draw[quizedge] (u1) -- (u2);
+\draw[quizedge] (u1) -- (u4);
+\draw[quizedge] (u1) -- (u5);
+\draw[quizedge] (u1) -- (u6);
+\draw[quizedge] (u2) -- (u3);
+\draw[quizedge] (u2) -- (u5);
+\draw[quizedge] (u2) -- (u6);
+\draw[quizedge] (u2) -- (u7);
+\draw[quizedge] (u3) -- (u4);
+\draw[quizedge] (u3) -- (u6);
+\draw[quizedge] (u3) -- (u7);
+\draw[quizedge] (u4) -- (u5);
+\draw[quizedge] (u4) -- (u7);
+\draw[quizedge] (u5) -- (u6);
+\draw[quizedge] (u6) -- (u7);
+\node[quizvertex] at (u0) {};
+\node[quizvertex] at (u1) {};
+\node[quizvertex] at (u2) {};
+\node[quizvertex] at (u3) {};
+\node[quizvertex] at (u4) {};
+\node[quizvertex] at (u5) {};
+\node[quizvertex] at (u6) {};
+\node[quizvertex] at (u7) {};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\coordinate (v0) at (0.000,1.480);
+\node[font=\scriptsize,inner sep=0pt] at (0.000,1.865) {$v_{1}$};
+\coordinate (v1) at (1.047,1.047);
+\node[font=\scriptsize,inner sep=0pt] at (1.319,1.319) {$v_{2}$};
+\coordinate (v2) at (1.480,0.000);
+\node[font=\scriptsize,inner sep=0pt] at (1.865,0.000) {$v_{3}$};
+\coordinate (v3) at (1.047,-1.047);
+\node[font=\scriptsize,inner sep=0pt] at (1.319,-1.319) {$v_{4}$};
+\coordinate (v4) at (0.000,-1.480);
+\node[font=\scriptsize,inner sep=0pt] at (0.000,-1.865) {$v_{5}$};
+\coordinate (v5) at (-1.047,-1.047);
+\node[font=\scriptsize,inner sep=0pt] at (-1.319,-1.319) {$v_{6}$};
+\coordinate (v6) at (-1.480,-0.000);
+\node[font=\scriptsize,inner sep=0pt] at (-1.865,-0.000) {$v_{7}$};
+\coordinate (v7) at (-1.047,1.047);
+\node[font=\scriptsize,inner sep=0pt] at (-1.319,1.319) {$v_{8}$};
+\draw[quizedge] (v0) -- (v1);
+\draw[quizedge] (v0) -- (v2);
+\draw[quizedge] (v0) -- (v4);
+\draw[quizedge] (v0) -- (v6);
+\draw[quizedge] (v0) -- (v7);
+\draw[quizedge] (v1) -- (v2);
+\draw[quizedge] (v1) -- (v3);
+\draw[quizedge] (v1) -- (v5);
+\draw[quizedge] (v1) -- (v7);
+\draw[quizedge] (v2) -- (v3);
+\draw[quizedge] (v2) -- (v4);
+\draw[quizedge] (v2) -- (v6);
+\draw[quizedge] (v3) -- (v4);
+\draw[quizedge] (v3) -- (v5);
+\draw[quizedge] (v3) -- (v7);
+\draw[quizedge] (v4) -- (v5);
+\draw[quizedge] (v4) -- (v6);
+\draw[quizedge] (v5) -- (v6);
+\draw[quizedge] (v5) -- (v7);
+\draw[quizedge] (v6) -- (v7);
+\node[quizvertex] at (v0) {};
+\node[quizvertex] at (v1) {};
+\node[quizvertex] at (v2) {};
+\node[quizvertex] at (v3) {};
+\node[quizvertex] at (v4) {};
+\node[quizvertex] at (v5) {};
+\node[quizvertex] at (v6) {};
+\node[quizvertex] at (v7) {};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\end{problem}
+\begin{solution}
+The graphs are \emph{not} isomorphic. Read the vertex subscripts modulo $8$.
+In the left graph, $u_i$ is adjacent to $u_{i\pm1}$,
+$u_{i\pm3}$, and $u_{i+4}$. Hence its complement consists of
+\[
+ u_1u_3u_5u_7u_1\qquad\text{and}\qquad u_2u_4u_6u_8u_2,
+\]
+two disjoint $4$-cycles. In the right graph, $v_i$ is adjacent to
+$v_{i\pm1}$, $v_{i\pm2}$, and $v_{i+4}$, so its complement contains
+precisely the edges $v_iv_{i\pm3}$. Since $\gcd(3, 8)=1$, these form a single
+$8$-cycle. The complements have different numbers of connected components
+and therefore cannot be isomorphic. It follows that the original graphs
+are not isomorphic.
+\end{solution}
+
+\Needspace{23\baselineskip}
+\begin{problem}{5}
+Determine which pairs of the following graphs are isomorphic. For each pair,
+either exhibit an isomorphism or provide a rigorous argument that none exists.
+\begin{center}
+\begin{minipage}{0.47\textwidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,scale=1.1]
+\coordinate (p0) at (0.600,3.120);
+\coordinate (p1) at (1.520,1.740);
+\coordinate (p2) at (0.600,0.280);
+\coordinate (p3) at (-0.980,0.740);
+\coordinate (p4) at (-0.980,2.720);
+\coordinate (p5) at (0.440,2.590);
+\coordinate (p6) at (1.030,1.740);
+\coordinate (p7) at (0.440,0.850);
+\coordinate (p8) at (-0.530,1.130);
+\coordinate (p9) at (-0.530,2.350);
+\draw[quizedge] (p0) -- (p1);
+\draw[quizedge] (p0) -- (p4);
+\draw[quizedge] (p0) -- (p5);
+\draw[quizedge] (p1) -- (p2);
+\draw[quizedge] (p1) -- (p6);
+\draw[quizedge] (p2) -- (p3);
+\draw[quizedge] (p2) -- (p7);
+\draw[quizedge] (p3) -- (p4);
+\draw[quizedge] (p3) -- (p8);
+\draw[quizedge] (p4) -- (p9);
+\draw[quizedge] (p5) -- (p6);
+\draw[quizedge] (p5) -- (p9);
+\draw[quizedge] (p6) -- (p7);
+\draw[quizedge] (p7) -- (p8);
+\draw[quizedge] (p8) -- (p9);
+\node[quizvertex] at (p0) {};
+\node[quizvertex] at (p1) {};
+\node[quizvertex] at (p2) {};
+\node[quizvertex] at (p3) {};
+\node[quizvertex] at (p4) {};
+\node[quizvertex] at (p5) {};
+\node[quizvertex] at (p6) {};
+\node[quizvertex] at (p7) {};
+\node[quizvertex] at (p8) {};
+\node[quizvertex] at (p9) {};
+\node[font=\normalsize] at (0,-0.45) {$G_1$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.47\textwidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,scale=1.1]
+\coordinate (p0) at (0.600,3.120);
+\coordinate (p1) at (1.520,1.740);
+\coordinate (p2) at (0.600,0.280);
+\coordinate (p3) at (-0.980,0.740);
+\coordinate (p4) at (-0.980,2.720);
+\coordinate (p5) at (0.440,2.590);
+\coordinate (p6) at (1.030,1.740);
+\coordinate (p7) at (0.440,0.850);
+\coordinate (p8) at (-0.530,1.130);
+\coordinate (p9) at (-0.530,2.350);
+\draw[quizedge] (p0) -- (p1);
+\draw[quizedge] (p0) -- (p4);
+\draw[quizedge] (p0) -- (p5);
+\draw[quizedge] (p1) -- (p2);
+\draw[quizedge] (p1) -- (p6);
+\draw[quizedge] (p2) -- (p3);
+\draw[quizedge] (p2) -- (p7);
+\draw[quizedge] (p3) -- (p4);
+\draw[quizedge] (p3) -- (p8);
+\draw[quizedge] (p4) -- (p9);
+\draw[quizedge] (p5) -- (p7);
+\draw[quizedge] (p5) -- (p8);
+\draw[quizedge] (p6) -- (p8);
+\draw[quizedge] (p6) -- (p9);
+\draw[quizedge] (p7) -- (p9);
+\node[quizvertex] at (p0) {};
+\node[quizvertex] at (p1) {};
+\node[quizvertex] at (p2) {};
+\node[quizvertex] at (p3) {};
+\node[quizvertex] at (p4) {};
+\node[quizvertex] at (p5) {};
+\node[quizvertex] at (p6) {};
+\node[quizvertex] at (p7) {};
+\node[quizvertex] at (p8) {};
+\node[quizvertex] at (p9) {};
+\node[font=\normalsize] at (0,-0.45) {$G_2$};
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{0.40cm}
+
+\begin{minipage}{0.47\textwidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,scale=1.1]
+\coordinate (p0) at (0.150,3.130);
+\coordinate (p1) at (1.190,2.570);
+\coordinate (p2) at (1.500,1.750);
+\coordinate (p3) at (1.180,0.890);
+\coordinate (p4) at (0.140,0.430);
+\coordinate (p5) at (-0.910,0.700);
+\coordinate (p6) at (-1.620,1.320);
+\coordinate (p7) at (-1.620,2.220);
+\coordinate (p8) at (-0.910,2.950);
+\coordinate (p9) at (-0.120,1.790);
+\draw[quizedge] (p0) -- (p1);
+\draw[quizedge] (p0) -- (p8);
+\draw[quizedge] (p0) -- (p9);
+\draw[quizedge] (p1) -- (p2);
+\draw[quizedge] (p1) -- (p5);
+\draw[quizedge] (p2) -- (p3);
+\draw[quizedge] (p2) -- (p7);
+\draw[quizedge] (p3) -- (p4);
+\draw[quizedge] (p3) -- (p9);
+\draw[quizedge] (p4) -- (p5);
+\draw[quizedge] (p4) -- (p8);
+\draw[quizedge] (p5) -- (p6);
+\draw[quizedge] (p6) -- (p7);
+\draw[quizedge] (p6) -- (p9);
+\draw[quizedge] (p7) -- (p8);
+\node[quizvertex] at (p0) {};
+\node[quizvertex] at (p1) {};
+\node[quizvertex] at (p2) {};
+\node[quizvertex] at (p3) {};
+\node[quizvertex] at (p4) {};
+\node[quizvertex] at (p5) {};
+\node[quizvertex] at (p6) {};
+\node[quizvertex] at (p7) {};
+\node[quizvertex] at (p8) {};
+\node[quizvertex] at (p9) {};
+\node[font=\normalsize] at (0,-0.45) {$G_3$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.47\textwidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,scale=1.1]
+\coordinate (p0) at (-1.390,2.570);
+\coordinate (p1) at (0.180,2.570);
+\coordinate (p2) at (0.360,3.220);
+\coordinate (p3) at (-0.920,2.160);
+\coordinate (p4) at (0.880,1.720);
+\coordinate (p5) at (1.540,1.720);
+\coordinate (p6) at (-0.920,0.950);
+\coordinate (p7) at (-1.390,0.490);
+\coordinate (p8) at (0.180,0.490);
+\coordinate (p9) at (0.360,-0.120);
+\draw[quizedge] (p0) -- (p1);
+\draw[quizedge] (p0) -- (p3);
+\draw[quizedge] (p0) -- (p6);
+\draw[quizedge] (p1) -- (p2);
+\draw[quizedge] (p1) -- (p5);
+\draw[quizedge] (p2) -- (p3);
+\draw[quizedge] (p2) -- (p4);
+\draw[quizedge] (p3) -- (p7);
+\draw[quizedge] (p4) -- (p5);
+\draw[quizedge] (p4) -- (p9);
+\draw[quizedge] (p5) -- (p8);
+\draw[quizedge] (p6) -- (p7);
+\draw[quizedge] (p6) -- (p9);
+\draw[quizedge] (p7) -- (p8);
+\draw[quizedge] (p8) -- (p9);
+\node[quizvertex] at (p0) {};
+\node[quizvertex] at (p1) {};
+\node[quizvertex] at (p2) {};
+\node[quizvertex] at (p3) {};
+\node[quizvertex] at (p4) {};
+\node[quizvertex] at (p5) {};
+\node[quizvertex] at (p6) {};
+\node[quizvertex] at (p7) {};
+\node[quizvertex] at (p8) {};
+\node[quizvertex] at (p9) {};
+\node[font=\normalsize] at (0,-0.45) {$G_4$};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\end{problem}
+\newpage
+\begin{solution}
+Only $G_2\cong G_3$.
+
+To exhibit an isomorphism, label the outer vertices of $G_2$ by
+$x_0, x_1, x_2, x_3, x_4$, clockwise from the top, and its corresponding inner
+vertices by $y_0, y_1, y_2, y_3, y_4$. In $G_3$, label the nine outer
+vertices by $z_0, \dots, z_8$, clockwise from the top, and the central
+vertex by $z_9$. The following bijection preserves all $15$ edges:
+\[
+\begin{array}{c|ccccc}
+\text{Vertex}&x_0&x_1&x_2&x_3&x_4\\\hline
+\text{Image}&z_0&z_1&z_2&z_3&z_9\\[3pt]
+\text{Vertex}&y_0&y_1&y_2&y_3&y_4\\\hline
+\text{Image}&z_8&z_5&z_7&z_4&z_6
+\end{array}
+\]
+Indeed, the outer $5$-cycle of $G_2$ maps to
+$z_0z_1z_2z_3z_9z_0$; the five spokes and the five inner edges
+also map to edges of $G_3$. Thus $G_2\cong G_3$.
+
+For the remaining pairs, $G_1$ contains a $4$-cycle, while $G_2$ has none.
+Indeed, the two $5$-cycles of $G_2$ are joined by a matching;
+a $4$-cycle using two matching edges would require the same pair of indices
+to be adjacent in both $5$-cycles, which is impossible (outer edges
+join consecutive indices, and inner edges join indices differing by two).
+Since $G_2\cong G_3$, neither $G_2$ nor $G_3$ is isomorphic to $G_1$.
+Moreover, $G_4$ is bipartite: it consists of a $10$-cycle together with
+five chords joining vertices at distance $5$ along that cycle, all of
+which join opposite parts of the alternating bipartition. By contrast,
+$G_1$, $G_2$, and $G_3$ each contain a $5$-cycle, so none is bipartite.
+Consequently, $G_4$ is not isomorphic to any of them.
+\end{solution}
+
+\end{document}
