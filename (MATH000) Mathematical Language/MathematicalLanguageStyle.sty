@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{MathematicalLanguageStyle}[2026/10/24 MATH000 document style]
+\ProvidesPackage{MathematicalLanguageStyle}[2026/11/05 MATH000 document style]
 
 % Mathematical Language style and canonical notation
 % (MATH000) Mathematical Language - Notation and Conventions
@@ -14,6 +14,12 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb,amsthm}
 \RequirePackage{mathtools}
+% Closed-surface integral without changing the existing integral glyphs.
+\DeclareFontFamily{U}{esint}{}
+\DeclareFontShape{U}{esint}{m}{n}{<-> esint10}{}
+\DeclareSymbolFont{closedintegrals}{U}{esint}{m}{n}
+\DeclareMathSymbol{\oiintop}{\mathop}{closedintegrals}{'015}
+\DeclareRobustCommand{\oiint}{\oiintop\nolimits}
 \RequirePackage{dsfont}
 \RequirePackage{mathrsfs}
 
@@ -83,6 +89,7 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\rk}{rk}
 \DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\trace}{trace}
 \DeclareMathOperator{\adj}{adj}
 \DeclareMathOperator{\Col}{Col}
 \DeclareMathOperator{\Row}{Row}
@@ -278,7 +285,7 @@
   {0.72em}
   {}
 \titlespacing*{\section}{0pt}{1.40em}{0.62em}
-\pretocmd{\section}{\Needspace{4\baselineskip}}{}{}
+\pretocmd{\section}{\Needspace{7\baselineskip}}{}{}
 
 % Subsections are reserved for future use.
 \titleformat{\subsection}

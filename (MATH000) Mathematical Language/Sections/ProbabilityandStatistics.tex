@@ -1,7 +1,5 @@
 \section{Probability and Statistics}
 
-Parameter symbols are local to the relevant context: for gamma distributions, $\beta$ denotes a rate parameter and $\theta$ a scale parameter, so $\theta=1/\beta$, while in hypothesis testing $\beta$ denotes a Type II error probability. The geometric distribution counts the number of trials up to and including the first success.
-
 \begin{notationtable}
 $(\Omega, \mathcal F, \Prob)$ & Probability space, with sample space $\Omega$, event $\sigma$-algebra $\mathcal F$, and probability measure $\Prob$ \\
 $\omega\in\Omega$ & Outcome or sample point \\
@@ -23,8 +21,8 @@ $\Exp[X\mid\mathcal G]$ & Conditional expectation of $X$ with respect to a sub-$
 $\Var(X)$ & Variance of $X$ \\
 $\sigma_X=\sqrt{\Var(X)}$ & Population standard deviation of $X$ \\
 $\Cov(X, Y)$ & Covariance of $X$ and $Y$ \\
-$\boldsymbol\Sigma=\Cov(\mathbf X)$ & Covariance matrix of a random vector $\mathbf X=(X_1, \dots, X_n)$ with finite second moments; its $(i, j)$-entry is $\Cov(X_i, X_j)$ \\
-$\rho_{X, Y}, \ \Corr(X, Y)$ & Pearson correlation coefficient of $X$ and $Y$ when both have finite positive variances \\
+$\boldsymbol\Sigma=\Cov(\mathbf X)$ & Covariance matrix of the random vector $\mathbf X$ \\
+$\rho_{X, Y}, \ \Corr(X, Y)$ & Pearson correlation coefficient of $X$ and $Y$ \\
 $r$ & Sample correlation coefficient \\
 $\varphi_X(t)=\Exp[e^{itX}]$ & Characteristic function of $X$ \\
 $M_X(t)=\Exp[e^{tX}]$ & Moment-generating function (mgf) of $X$, when finite in a neighborhood of $0$ \\
@@ -35,26 +33,26 @@ $\displaystyle s^2=\frac1{n-1}\sum_{i=1}^n(x_i-\bar x)^2$ & Observed sample vari
 $S=\sqrt{S^2}, \ s=\sqrt{s^2}$ & Sample standard deviation as a statistic and its observed value \\
 $\hat\theta$ & Estimator or estimate of a parameter $\theta$ \\
 $\Bias(\hat\theta)$ & Bias of a real-valued estimator of $\theta$: $\Exp[\hat\theta]-\theta$, when the expectation exists \\
-$\MSE(\hat\theta)$ & Mean squared error of a real-valued estimator of $\theta$: $\Exp[(\hat\theta-\theta)^2]$, when finite \\
+$\MSE(\hat\theta)$ & Mean squared error of the estimator $\hat\theta$ \\
 $\hat p$ & Estimator or estimate of a probability parameter $p$; commonly the sample proportion \\
 $\SE(\hat\theta)$ & Standard error of an estimator $\hat\theta$ \\
-$L(\theta;\mathbf{x})$ & Likelihood function for parameter $\theta$ given observed data $\mathbf{x}$ \\
-$\ell(\theta;\mathbf{x})=\ln L(\theta;\mathbf{x})$ & Log-likelihood function \\
+$L(\theta; \mathbf{x})$ & Likelihood function for parameter $\theta$ given observed data $\mathbf{x}$ \\
+$\ell(\theta; \mathbf{x})=\ln L(\theta; \mathbf{x})$ & Log-likelihood function \\
 $H_0$ & Null hypothesis \\
 $H_1, \ H_a$ & Alternative hypothesis \\
-$\alpha$ & Significance level; an upper bound on the Type I error probability under the specified test \\
-$\beta$ & Type II error probability under a specified alternative \\
+$\alpha$ & Significance level of a hypothesis test \\
+$\beta$ & Type II error probability of a hypothesis test \\
 $\nu$ & Degrees of freedom \\
 $X\sim\Bern(p)$ & Bernoulli distribution with success probability $p$ \\
 $X\sim\Bin(n, p)$ & Binomial distribution \\
-$X\sim\Hypergeom(N, K, n)$ & Hypergeometric distribution: number of successes in $n$ draws without replacement from $N$ items, of which $K$ are successes, where $0\le K, n\le N$. For $\max(0, n-N+K)\le k\le\min(K, n)$, $\displaystyle\Prob(X=k)=\frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}}$. \\
+$X\sim\Hypergeom(N, K, n)$ & Hypergeometric distribution: $n$ draws from $N$ items, $K$ of which are successes \\
 $X\sim\Geom(p)$ & Geometric distribution on $\N$, counting trials up to and including the first success; $\Prob(X=k)=(1-p)^{k-1}p$ for $k\in\N$ \\
 $X\sim\Poi(\lambda)$ & Poisson distribution with parameter $\lambda$ \\
 $X\sim\Unif(a, b)$ & Continuous uniform distribution on $[a, b]$ \\
 $X\sim\ExpDist(\lambda)$ & Exponential distribution with rate $\lambda$ \\
-$X\sim\Gamma(\alpha, \beta)$ & Gamma distribution with shape $\alpha>0$ and rate $\beta>0$; $\displaystyle f_X(x)=\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}$ for $x>0$ \\
-$X\sim\Gamma(\alpha, \theta)$ & Gamma distribution with shape $\alpha>0$ and scale $\theta>0$; $\displaystyle f_X(x)=\frac{1}{\Gamma(\alpha)\theta^\alpha}x^{\alpha-1}e^{-x/\theta}$ for $x>0$, with $\theta=1/\beta$ \\
-$X\sim\BetaDist(\alpha, \beta)$ & Beta distribution with shape parameters $\alpha, \beta>0$ and density $\displaystyle f_X(x)=\frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha, \beta)}$ for $0<x<1$ \\
+$X\sim\Gamma(\alpha, \beta)$ & Gamma distribution with shape $\alpha$ and rate $\beta$ \\
+$X\sim\Gamma(\alpha, \theta)$ & Gamma distribution with shape $\alpha$ and scale $\theta=1/\beta$ \\
+$X\sim\BetaDist(\alpha, \beta)$ & Beta distribution with shape parameters $\alpha$ and $\beta$ \\
 $\begin{aligned} &X\sim\Normal(\mu, \sigma^2), \\ &X\sim N(\mu, \sigma^2)\end{aligned}$ & Normal distribution with mean $\mu$ and variance $\sigma^2$ \\
 $\phi(x)$ & Standard normal probability density function, $\displaystyle\phi(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ \\
 $\Phi(x)$ & Standard normal cumulative distribution function, $\displaystyle\Phi(x)=\int_{-\infty}^{x}\phi(t)\,\dd t$ \\

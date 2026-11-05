@@ -1,0 +1,18 @@
+\section{Numerical Analysis}
+
+\begin{notationtable}
+$\operatorname{fl}(x)$ & Floating-point representation of $x$ \\
+$u$ & Unit roundoff \\
+$\varepsilon_{\mathrm{mach}}$ & Machine epsilon (floating-point spacing above $1$) \\
+$\kappa(\mathbf A)$ & Condition number of $\mathbf A$ in the chosen norm \\
+$x^{(k)}$ & $k$th iterate of a numerical method \\
+$e^{(k)}=x^{(k)}-x^*$ & Error of the $k$th iterate relative to $x^*$ \\
+$\mathbf r^{(k)}=\mathbf b-\mathbf A\mathbf x^{(k)}$ & Residual of the $k$th approximation to $\mathbf A\mathbf x=\mathbf b$ \\
+$h$ & Step size \\
+$t_n=t_0+nh$ & Uniform grid with step size $h$ \\
+$y_n\approx y(t_n)$ & Numerical approximation to $y(t_n)$ \\
+$\displaystyle x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}$ & Newton iteration for $f(x)=0$ \\[0.15em]
+$y_{n+1}=y_n+h f(t_n, y_n)$ & Forward (explicit) Euler method for $y'=f(t, y)$ \\
+$f[x_0, \dots, x_n]$ & Divided difference of $f$ at the nodes $x_0, \dots, x_n$ \\
+$\displaystyle\sum_{i=0}^n w_i f(x_i)$ & Quadrature rule with nodes $x_i$ and weights $w_i$ \\
+\end{notationtable}

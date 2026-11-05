@@ -9,7 +9,7 @@ $F(t, y, y', \dots, y^{(n)})=0$ & General $n$th-order ordinary differential equa
 $y^{(n)}=f(t, y, \dots, y^{(n-1)})$ & $n$th-order ordinary differential equation in normal form \\
 $y(t_0)=y_0$ & Initial condition for a scalar differential equation \\
 $y'+p(t)y=g(t)$ & Standard form of a first-order linear differential equation \\
-$\mu(t)$ & Integrating factor; for $y'+p(t)y=g(t)$, one may take $\displaystyle\mu(t)=\exp\!\left(\int p(t)\,\dd t\right)$ up to a nonzero constant factor \\
+$\mu(t)$ & Integrating factor for a first-order linear differential equation \\
 $M(x, y)\,\dd x+N(x, y)\,\dd y=0$ & Differential form of a first-order differential equation \\
 $M_x, M_y, N_x, N_y$ & Subscript notation for the corresponding partial derivatives \\
 $L[y]$ & Linear differential operator applied to $y$ \\
@@ -27,25 +27,22 @@ $\mathbf{x}'=\mathbf f(t, \mathbf x)$ & General first-order system \\
 $\mathbf{x}(t_0)=\mathbf{x}_0$ & Initial condition for a first-order system \\
 $\begin{aligned} &\mathbf{x}'=\mathbf A\mathbf{x}+\mathbf g(t), \\ &\dot{\mathbf{x}}=\mathbf A\mathbf{x}+\mathbf g(t)\end{aligned}$ & Linear first-order system in state-vector form \\
 $\mathbf{x}'=\mathbf f(\mathbf x)$ & Autonomous first-order system \\
-$\mathbf{x}_e$ & Equilibrium point; $\mathbf f(\mathbf{x}_e)=\mathbf0$ \\
+$\mathbf{x}_e$ & Equilibrium point of an autonomous system \\
 $\boldsymbol{\Phi}(t)$ & Fundamental matrix of a linear system \\
 $\mathcal{L}\{f(t)\}(s), \ \mathcal{L}[f](s)$ & Laplace transform of $f$ \\
 $\mathcal{L}^{-1}\{F(s)\}(t), \ \mathcal{L}^{-1}[F](t)$ & Inverse Laplace transform of $F$ \\
-$(f\ast g)(t)$ & One-sided convolution, $\displaystyle (f\ast g)(t)\coloneqq\int_0^t f(\tau)g(t-\tau)\,\dd\tau$ \\
+$(f\ast g)(t)$ & One-sided convolution of $f$ and $g$ \\
 $H(t-a), \ u(t-a)$ & Heaviside or unit-step function shifted to $t=a$; its value at the jump is specified when relevant \\
 $\delta(t), \ \delta(t-a)$ & Dirac delta distribution, or unit impulse, centered at $0$ or shifted to $t=a$ \\
-$t_n=t_0+nh$ & Uniform numerical grid with step size $h>0$ \\
-$y_n\approx y(t_n)$ & Numerical approximation to the exact solution at $t_n$ \\
-$y_{n+1}=y_n+h f(t_n, y_n)$ & Forward (explicit) Euler method for the initial-value problem $y\prime=f(t, y)$ on the grid $t_n=t_0+nh$ \\
 $u_x, u_t, u_{xx}, u_{xy}, u_{tt}, \dots$ & Subscript notation for partial derivatives of a scalar function $u$ \\
-$\partial_{\mathbf n}u$ & Normal derivative, $\partial_{\mathbf n}u\coloneqq\nabla u\cdot\mathbf n$, for a unit normal vector $\mathbf n$ \\
+$\partial_{\mathbf n}u$ & Normal derivative of $u$ in the direction of the unit normal $\mathbf n$ \\
 $u|_{\partial\Omega}=g$ & Dirichlet boundary condition on $\partial\Omega$ \\
 $\partial_{\mathbf n}u|_{\partial\Omega}=g$ & Neumann boundary condition on $\partial\Omega$ \\
 $\alpha u+\beta\,\partial_{\mathbf n}u=g$ & Robin boundary condition on $\partial\Omega$ \\
-$a_n, \ b_n$ & Fourier coefficients for the real $2L$-periodic convention $\displaystyle f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}\left(a_n\cos\frac{n\pi x}{L}+b_n\sin\frac{n\pi x}{L}\right)$ \\
+$a_n, \ b_n$ & Fourier coefficients of a real $2L$-periodic function \\
 $a_n$ & $\displaystyle a_n=\frac1L\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}\,\dd x$ for $n\ge0$ \\
 $b_n$ & $\displaystyle b_n=\frac1L\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}\,\dd x$ for $n\ge1$ \\
-$\widehat f(\boldsymbol{\xi}), \ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform under the normalization $\displaystyle\widehat f(\boldsymbol{\xi})\coloneqq\int_{\R^n}f(\mathbf x)e^{-2\pi i\mathbf x\cdot\boldsymbol{\xi}}\,\dd\mathbf x$; inversion uses $\displaystyle f(\mathbf x)=\int_{\R^n}\widehat f(\boldsymbol{\xi})e^{2\pi i\mathbf x\cdot\boldsymbol{\xi}}\,\dd\boldsymbol{\xi}$ whenever applicable \\
+$\widehat f(\boldsymbol{\xi}), \ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform: $\displaystyle\widehat f(\boldsymbol\xi)=\int_{\R^n}f(\mathbf x)e^{-2\pi i\mathbf x\cdot\boldsymbol\xi}\,\dd\mathbf x$ \\
 $\mathcal F^{-1}$ & Inverse Fourier transform under the stated normalization \\
 $-(py')'+qy=\lambda wy$ & Sturm--Liouville eigenvalue equation, where $p$, $q$, and $w$ are functions of $x$ \\
 $\lambda_n, \ \phi_n$ & Sturm--Liouville eigenvalue and corresponding eigenfunction \\
@@ -61,10 +58,10 @@ $P_n(x)$ & Legendre polynomial of degree $n$ \\
 $P_\nu(x), \ Q_\nu(x)$ & Legendre functions of the first and second kinds \\
 $P_\ell^m(x)$ & Associated Legendre function for integer degree $\ell$ and order $m$ \\
 $H_n(x), \ \mathrm{He}_n(x)$ & Physicists' and probabilists' Hermite polynomials, respectively \\
-$L_n^{(\alpha)}(x), \ L_n(x)$ & Generalized and ordinary Laguerre polynomials; $L_n(x)=L_n^{(0)}(x)$ \\
+$L_n^{(\alpha)}(x), \ L_n(x)$ & Generalized and ordinary Laguerre polynomials \\
 $T_n(x), \ U_n(x)$ & Chebyshev polynomials of the first and second kinds \\
 $P_n^{(\alpha, \beta)}(x)$ & Jacobi polynomial \\
 $C_n^{(\lambda)}(x)$ & Gegenbauer (ultraspherical) polynomial \\
 $\operatorname{erf}(x), \ \operatorname{erfc}(x)$ & Error function and complementary error function \\
-${}_2F_1(a, b;c;z)$ & Gauss hypergeometric function \\
+${}_2F_1(a, b; c; z)$ & Gauss hypergeometric function \\
 \end{notationtable}
