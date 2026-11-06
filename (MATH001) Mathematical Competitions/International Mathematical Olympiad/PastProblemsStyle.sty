@@ -23,9 +23,6 @@
 \RequirePackage[hidelinks]{hyperref}
 
 \definecolor{POSTECHRed}{RGB}{166,25,85}
-\definecolor{KAISTBlue}{RGB}{0,65,145}
-\definecolor{SNUBlue}{RGB}{15,15,112}
-\definecolor{exampleRed}{RGB}{255,140,140}
 \newcommand{\institutiontext}[2]{%
     \texorpdfstring{\textcolor{#1}{#2}}{#2}%
 }
@@ -33,15 +30,6 @@
 \DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
     \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
 }
-\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
-\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{%
-    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
-}
-\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
-\DeclareRobustCommand{\SeoulNationalUniversity}{%
-    \institutiontext{SNUBlue}{Seoul National University}%
-}
-
 % General notation from (MATH000) Mathematical Language.
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Nzero}{\mathbb{N}_0}
@@ -54,6 +42,7 @@
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\rk}{rk}
 \DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\lcmop}{lcm}
 
 % List roles as specified by MATH000.
 \newlist{problemitems}{itemize}{1}
@@ -77,20 +66,20 @@
     itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left
 }
 
-% Compact contents: parts and years only, without printed year headings.
+% The contents lists the two parts only: no year or problem entries.
+\setcounter{tocdepth}{0}
 \renewcommand{\cfttoctitlefont}{\normalfont\large\bfseries}
 \setlength{\cftbeforetoctitleskip}{0pt}
 \setlength{\cftaftertoctitleskip}{0.65em}
-\setlength{\cftbeforepartskip}{0.25em}
+\setlength{\cftbeforepartskip}{0.38em}
 \setlength{\cftpartindent}{0pt}
 \setlength{\cftpartnumwidth}{0pt}
 \renewcommand{\cftpartfont}{\normalfont\bfseries}
-\renewcommand{\cftpartpagefont}{\normalfont\bfseries}
-\setlength{\cftbeforesecskip}{0pt}
-\setlength{\cftsecindent}{1.55em}
-\setlength{\cftsecnumwidth}{0pt}
-\renewcommand{\cftsecfont}{\normalfont}
-\renewcommand{\cftsecpagefont}{\normalfont}
+\renewcommand{\cftpartpagefont}{\normalfont}
+
+% Consistent paragraph spacing follows the current course-notes family.
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
 
 % Both competition and shortlist use YYYY.N identifiers; 
 % shortlist labels are of the form YYYY.A1, YYYY.C1, YYYY.G1, YYYY.N1.
@@ -109,24 +98,22 @@
     {\problemheading{#1}{#2}}
     {\par\vspace{6pt}}
 
-% The only printed headings are the two parts; years remain navigation anchors.
+% Only parts are printed as document divisions. Year files provide
+% source organization, not a typographic or contents hierarchy.
 \newcommand{\competitionpart}[2]{%
-    \par\Needspace{4\baselineskip}%
+    \par\Needspace{2\baselineskip}%
+    \addvspace{9pt}%
     \phantomsection
     \addcontentsline{toc}{part}{Part #1.\space #2}%
-    \vspace{5pt}\noindent{\large\bfseries Part #1. #2}\par\vspace{1pt}%
+    \noindent{\large\bfseries Part #1. #2}\par\vspace{2pt}%
 }
 \newcommand{\competitionyear}[1]{%
     \renewcommand{\problemcategory}{competition}%
-    \par\phantomsection
-    \addcontentsline{toc}{section}{#1}%
 }
-% Part II is inactive until official shortlist inputs are added.
 \newcommand{\shortlistyear}[1]{%
     \renewcommand{\problemcategory}{shortlist}%
-    \par\phantomsection
-    \addcontentsline{toc}{section}{#1}%
 }
+% Reserved for future shortlist source files.
 \newcommand{\shortlistcategory}[2]{%
     \phantomsection\pdfbookmark[2]{#2}{imo-shortlist-#1-#2}%
 }

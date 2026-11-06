@@ -14,7 +14,7 @@
     }
     % Exactly one red circle in each row, as in the official example.
     \foreach \r/\c in {1/1,2/1,3/3,4/3,5/4,6/1}{
-        \draw[line width=0.45pt,fill=exampleRed] (r\r c\c) circle (\circleRadius);
+        \draw[line width=0.45pt,fill=red!45] (r\r c\c) circle (\circleRadius);
     }
     % A ninja path through two red circles (rows 1 and 4).
     \draw[line width=1.15pt] (r1c1.center)--(r2c2.center)--(r3c2.center)
