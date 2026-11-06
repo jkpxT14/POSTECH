@@ -68,14 +68,14 @@
 
 % The contents lists the two parts only: no year or problem entries.
 \setcounter{tocdepth}{0}
-\renewcommand{\cfttoctitlefont}{\normalfont\large\bfseries}
+\renewcommand{\cfttoctitlefont}{\normalfont\Large\bfseries}
 \setlength{\cftbeforetoctitleskip}{0pt}
-\setlength{\cftaftertoctitleskip}{0.65em}
-\setlength{\cftbeforepartskip}{0.38em}
+\setlength{\cftaftertoctitleskip}{1.0em}
+\setlength{\cftbeforepartskip}{0.83em}
 \setlength{\cftpartindent}{0pt}
 \setlength{\cftpartnumwidth}{0pt}
-\renewcommand{\cftpartfont}{\normalfont\bfseries}
-\renewcommand{\cftpartpagefont}{\normalfont}
+\renewcommand{\cftpartfont}{\normalfont\normalsize}
+\renewcommand{\cftpartpagefont}{\normalfont\normalsize}
 
 % Consistent paragraph spacing follows the current course-notes family.
 \setlength{\parskip}{0pt}
@@ -101,11 +101,11 @@
 % Only parts are printed as document divisions. Year files provide
 % source organization, not a typographic or contents hierarchy.
 \newcommand{\competitionpart}[2]{%
-    \par\Needspace{2\baselineskip}%
+    \par\Needspace{3\baselineskip}%
     \addvspace{9pt}%
     \phantomsection
     \addcontentsline{toc}{part}{Part #1.\space #2}%
-    \noindent{\large\bfseries Part #1. #2}\par\vspace{2pt}%
+    \noindent{\LARGE\bfseries Part #1. #2}\par\vspace{0.34cm}%
 }
 \newcommand{\competitionyear}[1]{%
     \renewcommand{\problemcategory}{competition}%

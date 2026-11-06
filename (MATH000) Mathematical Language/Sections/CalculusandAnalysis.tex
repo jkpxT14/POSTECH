@@ -28,7 +28,6 @@ $\displaystyle\int f(x)\,\dd x$ & Indefinite integral of $f$ \\[0.10em]
 $\displaystyle\int_a^b f(x)\,\dd x$ & Definite integral over $[a, b]$ \\[0.10em]
 $\displaystyle\int_a^\infty f(x)\,\dd x, \ \int_{-\infty}^b f(x)\,\dd x$ & Improper integrals over unbounded intervals \\[0.10em]
 $\displaystyle\int_a^b f\,\dd\alpha$ & Riemann--Stieltjes integral of $f$ over $[a, b]$ with respect to $\alpha$ \\
-$\mathcal{R}([a, b], \alpha)$ & Functions Riemann--Stieltjes integrable on $[a, b]$ with respect to $\alpha$ \\
 $P=\{x_0, \dots, x_n\}$ & Partition of $[a, b]$, with $a=x_0<\cdots<x_n=b$ \\
 $\displaystyle\sum_{i=1}^n f(\xi_i)\Delta x_i$ & Tagged Riemann sum with sample points $\xi_i$ and subinterval widths $\Delta x_i$ \\
 $\displaystyle\iint_D f\,\dd A$ & Double integral over $D$ \\[0.60em]
@@ -118,28 +117,28 @@ $\displaystyle\essinf_{x\in E} f(x)$ & Essential infimum of $f$ on $E$ \\
 $C(\Omega), \ C^0(\Omega)$ & Continuous functions on $\Omega$ \\*
 $C^k(\Omega)$ & $k$ times continuously differentiable functions on $\Omega$ \\*
 $C^\infty(\Omega)$ & Smooth functions on $\Omega$ \\
-$C_b(X)$ & Bounded continuous scalar-valued functions on $X$; the scalar field is given by context, or explicitly by $C_b(X, \R)$ or $C_b(X, \C)$. If $K$ is compact, $C_b(K)=C(K)$ for the same codomain \\
-$\operatorname{supp}f$ & Support of $f$, the closure of the set on which $f$ is nonzero \\
+$C_b(X)$ & Bounded continuous scalar-valued functions on $X$ \\
+$\operatorname{supp}f$ & Support of $f$ \\
 $C_c(\Omega), \ C_c^\infty(\Omega)$ & Continuous and smooth functions on $\Omega$ with compact support, respectively \\
 $\mathcal O(U)$ & Holomorphic functions on an open set $U\subseteq\C$ \\
-$V_a^b(f)$ & Total variation of $f$ on $[a, b]$: $\displaystyle\sup_{P}\sum_{i=1}^{n}|f(x_i)-f(x_{i-1})|$, over partitions $P=(a=x_0<\cdots<x_n=b)$ \\
-$\mathrm{BV}([a, b])$ & Space of functions of bounded variation on $[a, b]$, namely those $f$ with $V_a^b(f)<\infty$ \\
-$\mathcal{R}([a, b])$ & Riemann-integrable scalar-valued functions on $[a, b]$; equivalently $\mathcal{R}([a, b], \id)$ for the identity integrator $\id(x)=x$ \\*
-$\mathcal{R}([a, b], \alpha)$ & Riemann--Stieltjes-integrable scalar-valued functions on $[a, b]$ with respect to a nondecreasing real-valued function $\alpha\colon[a, b]\to\R$; $\alpha$ need not be continuous, and complex-valued integrands are handled componentwise \\
-$L^p(\Omega), \ L^p(X, \mu)$ & Lebesgue $L^p$ spaces of measurable functions modulo equality almost everywhere; the measure is displayed when not understood. For $1\le p<\infty$, membership requires $\displaystyle\int_X|f|^p\,\dd\mu<\infty$ \\*
-$L^\infty(\Omega), \ L^\infty(X, \mu)$ & Lebesgue spaces of essentially bounded measurable functions, identified up to equality almost everywhere \\
-$\ell^p$ & Space of scalar sequences $(x_n)$ with $\displaystyle\sum_{n=1}^{\infty}|x_n|^p<\infty$, for $1\le p<\infty$ \\
+$V_a^b(f)$ & Total variation of $f$ on $[a, b]$ \\
+$\mathrm{BV}([a, b])$ & Functions of bounded variation on $[a, b]$ \\
+$\mathcal{R}([a, b])$ & Functions Riemann integrable on $[a, b]$ \\*
+$\mathcal{R}([a, b], \alpha)$ & Functions Riemann--Stieltjes integrable on $[a, b]$ with respect to $\alpha$ \\
+$L^p(\Omega), \ L^p(X, \mu)$ & Lebesgue $L^p$ spaces on $\Omega$ or $(X, \mu)$, modulo almost-everywhere equality \\*
+$L^\infty(\Omega), \ L^\infty(X, \mu)$ & Essentially bounded measurable functions on $\Omega$ or $(X, \mu)$, modulo almost-everywhere equality \\
+$\ell^p$ & Space of $p$-summable scalar sequences \\
 $\ell^\infty$ & Space of bounded scalar sequences \\
-$\|f\|_\infty$ & Supremum norm $\displaystyle\sup_{x\in X}|f(x)|$ for an actual bounded scalar-valued function on $X$ \\
-$\|f\|_{L^p(X, \mu)}$ & $L^p$-norm $\displaystyle\left(\int_X |f|^p\,\dd\mu\right)^{1/p}$ for $1\le p<\infty$ on a measure space $(X, \mathcal A, \mu)$ \\
-$\|f\|_{L^p(\Omega)}, \ \|f\|_p$ & $L^p$-norm $\displaystyle\left(\int_\Omega |f(\mathbf x)|^p\,\dd\mathbf x\right)^{1/p}$ for $1\le p<\infty$ on a Euclidean domain when the underlying measure is understood \\
-$\|f\|_{L^\infty(\Omega)}$ & $L^\infty$-norm $\displaystyle\esssup_{\mathbf x\in\Omega}|f(\mathbf x)|$ on a Euclidean domain; distinguished from the ordinary supremum norm \\
+$\|f\|_\infty$ & Supremum norm of a bounded scalar-valued function $f$ \\
+$\|f\|_{L^p(X, \mu)}$ & $L^p$-norm of $f$ on $X$ with respect to $\mu$ \\
+$\|f\|_{L^p(\Omega)}, \ \|f\|_p$ & $L^p$-norm of $f$ on $\Omega$ \\
+$\|f\|_{L^\infty(\Omega)}$ & Essential supremum norm of $f$ on $\Omega$ \\
 $\alpha=(\alpha_1, \dots, \alpha_n)\in\Nzero^n$ & Multi-index \\
 $|\alpha|, \ \alpha!$ & Order $|\alpha|=\alpha_1+\cdots+\alpha_n$ and factorial $\alpha!=\alpha_1!\cdots\alpha_n!$ of a multi-index \\
 $\mathbf x^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial for $\mathbf x=(x_1, \dots, x_n)$ \\
 $D^\alpha f, \ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$ \\
 $B_r(x)$ & Open ball of radius $r$ centered at $x$ \\*
-$\overline{B}_r(x)=\{y\mid d(x, y)\le r\}$ & Closed ball of radius $r$ centered at $x$ in a metric space $(X, d)$. The bar is part of the closed-ball notation; in an arbitrary metric space, $\overline{B}_r(x)$ need not equal the closure $\overline{B_r(x)}$ of the open ball \\
+$\overline{B}_r(x)=\{y\mid d(x, y)\le r\}$ & Closed ball of radius $r$ centered at $x$; not necessarily the closure of $B_r(x)$ \\
 $\widehat{\C}=\C\cup\{\infty\}$ & Extended complex plane, equivalently the Riemann sphere \\
 $i^2=-1$ & Imaginary unit \\
 $z=x+iy$ & Complex number with real part $x$ and imaginary part $y$ \\
