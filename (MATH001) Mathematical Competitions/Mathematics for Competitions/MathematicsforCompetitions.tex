@@ -1,0 +1,38 @@
+\documentclass[11pt,oneside]{book}
+\usepackage{MathematicsforCompetitionsStyle}
+
+\begin{document}
+    \pagenumbering{gobble}
+
+    \begin{titlepage}
+        \centering
+        \vspace*{3.2cm}
+
+        {\Huge\bfseries
+            The Road to\\[0.35em]
+            \textcolor{GoldTitle}{Gold}\par}
+
+        \vspace{0.7cm}
+        {\LARGE\bfseries Mathematics for Competitions\par}
+
+        \vspace{1.75cm}
+        {\large
+            Jungwoo Kim\\
+            Department of Mathematics\\
+            \PohangUniversityOfScienceAndTechnology\\[0.5em]
+            jkpxt14@postech.ac.kr\par}
+
+        \vfill
+    \end{titlepage}
+
+    \pagenumbering{arabic}
+    \input{FrontMatter/Preface}
+    \input{FrontMatter/Acknowledgements}
+    \tableofcontents
+
+    \part{Mathematical Concepts}
+    \input{Parts/MathematicalConcepts}
+
+    \part{Problem-Solving Strategies}
+    \input{Parts/ProblemSolvingStrategies}
+\end{document}

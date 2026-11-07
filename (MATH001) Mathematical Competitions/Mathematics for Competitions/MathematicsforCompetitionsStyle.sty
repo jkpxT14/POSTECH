@@ -1,0 +1,306 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{MathematicsforCompetitionsStyle}[2026/11/08 Mathematics for Competitions]
+
+% Page layout and typography: aligned with Mathematics for Science Quiz.
+\RequirePackage{iftex}
+\ifPDFTeX
+    \pdfminorversion=7
+\fi
+\RequirePackage[a4paper,margin=1in]{geometry}
+\ifPDFTeX
+    \RequirePackage[T1]{fontenc}
+    \RequirePackage{lmodern}
+\else
+    \RequirePackage{fontspec}
+    \IfFontExistsTF{Latin Modern Roman}{%
+        \setmainfont{Latin Modern Roman}[SmallCapsFont={Latin Modern Roman Caps}]
+        \setsansfont{Latin Modern Sans}
+        \setmonofont{Latin Modern Mono}
+    }{%
+        % Portable TeX Live fallback when system fontconfig lacks LM family names.
+        \setmainfont{lmroman10-regular.otf}[
+            BoldFont={lmroman10-bold.otf},
+            ItalicFont={lmroman10-italic.otf},
+            BoldItalicFont={lmroman10-bolditalic.otf},
+            SmallCapsFont={lmromancaps10-regular.otf}]
+        \setsansfont{lmsans10-regular.otf}[
+            BoldFont={lmsans10-bold.otf},
+            ItalicFont={lmsans10-oblique.otf}]
+        \setmonofont{lmmono10-regular.otf}[
+            ItalicFont={lmmono10-italic.otf}]
+    }
+\fi
+\RequirePackage{microtype}
+\RequirePackage{etoolbox}
+\RequirePackage{needspace}
+
+% Mathematics, tables, and figures.
+\RequirePackage{amsmath,amssymb,amsthm}
+\RequirePackage{mathtools}
+\IfFileExists{dsfont.sty}{%
+    \RequirePackage{dsfont}%
+}{%
+    \newcommand{\mathds}[1]{\mathbf{##1}}%
+}
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
+
+% Color is reserved for meaningful institutional identities and the cover title.
+\RequirePackage{xcolor}
+\RequirePackage[hidelinks]{hyperref}
+\hypersetup{
+    pdftitle={The Road to Gold: Mathematics for Competitions},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Mathematical theory and problem-solving strategies for competitions},
+    pdfcreator={LaTeX}
+}
+\definecolor{GoldTitle}{RGB}{164,124,33}
+
+% Institution colors and names follow the companion volume.
+\definecolor{POSTECHRed}{RGB}{166,25,85}
+\definecolor{KAISTBlue}{RGB}{0,65,145}
+\definecolor{SNUBlue}{RGB}{15,15,112}
+\definecolor{KoreaCrimson}{RGB}{140,0,40}
+\definecolor{YonseiBlue}{RGB}{0,55,120}
+\definecolor{UTokyoYellow}{RGB}{255,205,0}
+\definecolor{KyotoUBlue}{RGB}{0,32,91}
+\definecolor{ScienceBlue}{RGB}{28,49,119}
+\definecolor{HitotsubashiCrimson}{RGB}{170,34,42}
+\definecolor{MITRed}{RGB}{117,0,20}
+\definecolor{OxfordBlue}{RGB}{0,33,71}
+\definecolor{WasedaRed}{RGB}{142,23,40}
+\definecolor{CambridgeBlue}{RGB}{142,232,216}
+
+\newcommand{\institutiontext}[2]{%
+    \texorpdfstring{\textcolor{#1}{#2}}{#2}%
+}
+\DeclareRobustCommand{\POSTECH}{\institutiontext{POSTECHRed}{POSTECH}}
+\DeclareRobustCommand{\PohangUniversityOfScienceAndTechnology}{%
+    \institutiontext{POSTECHRed}{Pohang University of Science and Technology}%
+}
+\DeclareRobustCommand{\KAIST}{\institutiontext{KAISTBlue}{KAIST}}
+\DeclareRobustCommand{\KoreaAdvancedInstituteOfScienceAndTechnology}{%
+    \institutiontext{KAISTBlue}{Korea Advanced Institute of Science and Technology}%
+}
+\DeclareRobustCommand{\SNU}{\institutiontext{SNUBlue}{SNU}}
+\DeclareRobustCommand{\SeoulNationalUniversity}{%
+    \institutiontext{SNUBlue}{Seoul National University}%
+}
+\DeclareRobustCommand{\KU}{\institutiontext{KoreaCrimson}{KU}}
+\DeclareRobustCommand{\KoreaUniversity}{%
+    \institutiontext{KoreaCrimson}{Korea University}%
+}
+\DeclareRobustCommand{\Yonsei}{\institutiontext{YonseiBlue}{Yonsei}}
+\DeclareRobustCommand{\YonseiUniversity}{%
+    \institutiontext{YonseiBlue}{Yonsei University}%
+}
+\DeclareRobustCommand{\UTokyo}{\institutiontext{UTokyoYellow}{UTokyo}}
+\DeclareRobustCommand{\TheUniversityOfTokyo}{%
+    \institutiontext{UTokyoYellow}{The University of Tokyo}%
+}
+\DeclareRobustCommand{\KyotoU}{\institutiontext{KyotoUBlue}{KyotoU}}
+\DeclareRobustCommand{\KyotoUniversity}{%
+    \institutiontext{KyotoUBlue}{Kyoto University}%
+}
+\DeclareRobustCommand{\TokyoTech}{\institutiontext{ScienceBlue}{Tokyo Tech}}
+\DeclareRobustCommand{\TokyoInstituteOfTechnology}{%
+    \institutiontext{ScienceBlue}{Tokyo Institute of Technology}%
+}
+\DeclareRobustCommand{\ScienceTokyo}{\institutiontext{ScienceBlue}{Science Tokyo}}
+\DeclareRobustCommand{\InstituteOfScienceTokyo}{%
+    \institutiontext{ScienceBlue}{Institute of Science Tokyo}%
+}
+\DeclareRobustCommand{\Hitotsubashi}{%
+    \institutiontext{HitotsubashiCrimson}{Hitotsubashi}%
+}
+\DeclareRobustCommand{\HitotsubashiUniversity}{%
+    \institutiontext{HitotsubashiCrimson}{Hitotsubashi University}%
+}
+\DeclareRobustCommand{\MIT}{\institutiontext{MITRed}{MIT}}
+\DeclareRobustCommand{\MassachusettsInstituteOfTechnology}{%
+    \institutiontext{MITRed}{Massachusetts Institute of Technology}%
+}
+\DeclareRobustCommand{\Oxford}{\institutiontext{OxfordBlue}{Oxford}}
+\DeclareRobustCommand{\UniversityOfOxford}{%
+    \institutiontext{OxfordBlue}{University of Oxford}%
+}
+\DeclareRobustCommand{\Waseda}{\institutiontext{WasedaRed}{Waseda}}
+\DeclareRobustCommand{\WasedaUniversity}{%
+    \institutiontext{WasedaRed}{Waseda University}%
+}
+\DeclareRobustCommand{\UniversityOfCambridge}{%
+    \institutiontext{CambridgeBlue}{University of Cambridge}%
+}
+\ifPDFTeX
+    \DeclareRobustCommand{\NgoBaoChau}{Ng\^o B\~ao Ch\^au}
+\else
+    \DeclareRobustCommand{\NgoBaoChau}{Ngô Bảo Châu}
+\fi
+
+% Table columns and optional chapter metadata.
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\relatedcourses}[1]{%
+    \if\relax\detokenize{#1}\relax\else
+        \noindent Related \POSTECH{} Courses: #1\par
+    \fi
+}
+\newcommand{\relatedbooks}[1]{%
+    \if\relax\detokenize{#1}\relax\else
+        \noindent Related Books: #1\par
+    \fi
+}
+
+% Mathematical environments: aligned with the existing book.
+\newtheoremstyle{competitionsplain}
+    {6pt}{6pt}{\itshape}{}{\bfseries}{}{\newline}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{competitionsdefinition}
+    {6pt}{6pt}{}{}{\bfseries}{}{\newline}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+\newtheoremstyle{competitionssameline}
+    {6pt}{6pt}{}{}{\itshape}{.}{0.5em}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{. #3}}
+
+\renewenvironment{proof}[1][Proof]
+    {\par\Needspace{3\baselineskip}\noindent\textit{#1.}\hspace{0.5em}\ignorespaces}
+    {\hfill$\square$\par}
+
+\theoremstyle{competitionsdefinition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{competitionsplain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{conjecture}[definition]{Conjecture}
+\newtheorem{hypothesis}[definition]{Hypothesis}
+\theoremstyle{competitionsdefinition}
+\newtheorem{formula}[definition]{Formula}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{openproblem}[definition]{Open Problem}
+\newtheorem{algorithm}[definition]{Algorithm}
+\theoremstyle{competitionssameline}
+\newtheorem*{remark}{Remark}
+\newtheorem*{idea}{Idea}
+\newtheorem*{strategy}{Strategy}
+\newtheorem*{tactic}{Tactic}
+
+\newcommand{\competitionsblockspace}{\Needspace{4\baselineskip}}
+\BeforeBeginEnvironment{definition}{\competitionsblockspace}
+\BeforeBeginEnvironment{theorem}{\competitionsblockspace}
+\BeforeBeginEnvironment{proposition}{\competitionsblockspace}
+\BeforeBeginEnvironment{lemma}{\competitionsblockspace}
+\BeforeBeginEnvironment{corollary}{\competitionsblockspace}
+\BeforeBeginEnvironment{conjecture}{\competitionsblockspace}
+\BeforeBeginEnvironment{hypothesis}{\competitionsblockspace}
+\BeforeBeginEnvironment{formula}{\competitionsblockspace}
+\BeforeBeginEnvironment{fact}{\competitionsblockspace}
+\BeforeBeginEnvironment{openproblem}{\competitionsblockspace}
+\BeforeBeginEnvironment{algorithm}{\competitionsblockspace}
+\BeforeBeginEnvironment{remark}{\competitionsblockspace}
+\BeforeBeginEnvironment{idea}{\competitionsblockspace}
+\BeforeBeginEnvironment{strategy}{\competitionsblockspace}
+\BeforeBeginEnvironment{tactic}{\competitionsblockspace}
+
+% Optional illustrative problems and solutions within the theoretical text.
+\newcommand{\problemheading}[1]{%
+    \par\Needspace{4\baselineskip}\vspace{6pt}\noindent
+    \textbf{Problem #1.}\hspace{0.5em}\ignorespaces
+}
+\newenvironment{problem}[1]
+    {\problemheading{#1}}{\par\vspace{6pt}}
+\newenvironment{pastproblem}[1]
+    {\problemheading{#1}}{\par\vspace{6pt}}
+
+\newlist{problemchoices}{enumerate}{1}
+\setlist[problemchoices]{label=(\arabic*),leftmargin=2.5em,labelsep=0.6em,
+    itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left}
+\newlist{problemsubparts}{enumerate}{1}
+\setlist[problemsubparts]{label=(\alph*),leftmargin=2.5em,labelsep=0.6em,
+    itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left}
+\newlist{bookitems}{enumerate}{1}
+\setlist[bookitems]{label=(\arabic*),leftmargin=2.5em,labelsep=0.6em,
+    itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left}
+\newlist{conditionlist}{enumerate}{1}
+\setlist[conditionlist]{label=(\roman*),leftmargin=2.5em,labelsep=0.6em,
+    itemsep=0.15em,topsep=0.4em,parsep=0pt,partopsep=0pt,align=left}
+
+\newif\ifnumberedsolutions
+\numberedsolutionsfalse
+\newcounter{solutionnumber}
+\newenvironment{solutions}
+    {\setcounter{solutionnumber}{0}\numberedsolutionstrue}
+    {\numberedsolutionsfalse}
+\newenvironment{solution}
+    {\par\Needspace{3\baselineskip}\vspace{6pt}\noindent
+        \ifnumberedsolutions
+            \stepcounter{solutionnumber}\textit{Solution \arabic{solutionnumber}.}%
+        \else
+            \textit{Solution.}%
+        \fi
+        \hspace{0.5em}\ignorespaces}
+    {\par\nobreak\noindent\hfill$\square$\par\vspace{6pt}}
+\newenvironment{hint}
+    {\par\Needspace{2\baselineskip}\vspace{4pt}\noindent
+        \textit{Hint.}\hspace{0.5em}\ignorespaces}
+    {\par\vspace{4pt}}
+
+% Core notation follows (MATH000) Mathematical Language.
+% Add more symbols only when mathematical content requires them.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Nzero}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rbar}{\overline{\mathbb{R}}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Hquat}{\mathbb{H}}
+\newcommand{\Pow}{\mathcal{P}}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\conv}{conv}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\diff}[2]{\frac{\dd #1}{\dd #2}}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\RePart}{Re}
+\DeclareMathOperator{\ImPart}{Im}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\lb}{lb}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Exp}{\mathbb{E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\newcommand{\Normal}{\mathcal{N}}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Row}{Row}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Disc}{Disc}
+\DeclareMathOperator{\charac}{char}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\newcommand{\multichoose}[2]{\left(\!\binom{#1}{#2}\!\right)}
+\newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+\newcommand{\indicator}[1]{\mathds{1}_{#1}}
+\newcommand{\ones}{\mathbf{1}}
+\DeclareRobustCommand{\bijarrow}{\mathrel{\lhook\joinrel\twoheadrightarrow}}
