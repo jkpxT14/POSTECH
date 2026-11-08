@@ -4,6 +4,31 @@
 For $a, b\in\Z$, write $a\mid b$ if $b=ak$ for some $k\in\Z$. A prime is an integer $p>1$ whose only positive divisors are $1$ and $p$. Two integers $a, b$, not both zero, are coprime if $\gcd(a, b)=1$.
 \end{definition}
 
+\begin{definition}[Floor, Ceiling, and Fractional Part]
+For $x\in\R$, the floor $\lfloor x\rfloor$ is the greatest integer at most $x$, the ceiling $\lceil x\rceil$ is the least integer at least $x$, and
+\[
+ \{x\}=x-\lfloor x\rfloor\in[0,1)
+\]
+is its fractional part. For every $m\in\Z$, $\lfloor x+m\rfloor=\lfloor x\rfloor+m$ and $\lceil x+m\rceil=\lceil x\rceil+m$.
+\end{definition}
+\begin{proposition}[Floor and Fractional-Part Identities]
+For $x\in\R$ and every positive integer $m$,
+\[
+ \lfloor x\rfloor+\lfloor-x\rfloor=
+ \begin{cases}-1,&x\notin\Z,\\0,&x\in\Z,\end{cases}
+\qquad \lceil x\rceil=-\lfloor-x\rfloor,
+\]
+\[
+ \sum_{j=0}^{m-1}\left\lfloor x+\frac jm\right\rfloor
+ =\lfloor mx\rfloor.
+\]
+For all real $x,y$,
+\[
+ \lfloor x\rfloor+\lfloor y\rfloor\le\lfloor x+y\rfloor
+ \le\lfloor x\rfloor+\lfloor y\rfloor+1.
+\]
+\end{proposition}
+
 \begin{theorem}[Division Algorithm]
 For $a\in\Z$ and $b\in\N$, there exist unique $q, r\in\Z$ such that
 \[
@@ -119,6 +144,31 @@ For decimal digits $d_0, \dots, d_m$ and $N=\sum_{k=0}^m d_k10^k$,
 The last $r$ digits determine $N\pmod{2^r}$ and $N\pmod{5^r}$.
 \end{formula}
 
+\begin{definition}[Positional Numeral Systems]
+Let $b\ge2$ be an integer. Every nonnegative integer $N$ has a unique base-$b$ expansion
+\[
+ N=d_0+d_1b+\cdots+d_kb^k,
+ \quad 0\le d_i<b,\quad d_k\ne0\ (N>0).
+\]
+The base-$b$ digit sum is $s_b(N)=\sum_{i=0}^k d_i$.
+\end{definition}
+\begin{formula}[Digit Sums and Repeated Digits]
+For integers $b\ge2$ and $N\ge0$,
+\[
+ N\equiv s_b(N)\pmod{b-1},\qquad
+ N\equiv\sum_{i=0}^k(-1)^id_i\pmod{b+1}.
+\]
+The base-$b$ integer consisting of $m$ digits all equal to $1$ is
+\[
+ 1+b+\cdots+b^{m-1}=\frac{b^m-1}{b-1}.
+\]
+In base $10$, the last $k$ digits of $N$ are determined by $N\bmod 10^k$.
+\end{formula}
+
+\begin{theorem}[Rational and Eventually Periodic Expansions]
+A real number has an eventually periodic base-$b$ expansion, for any fixed integer $b\ge2$, if and only if it is rational. A rational number in lowest terms has a terminating base-$b$ expansion if and only if every prime divisor of its denominator divides $b$.
+\end{theorem}
+
 \begin{formula}[Polynomial Congruences]
 If $f\in\Z[x]$ and $a\equiv b\pmod n$, then $f(a)\equiv f(b)\pmod n$. In particular, the integral roots of $f(x)=0$ satisfy every reduction of that equation modulo $n$.
 \end{formula}
@@ -194,6 +244,19 @@ In particular,
  \sum_{d\mid n}\mu(d)=\begin{cases}1, &n=1, \\0, &n>1.\end{cases}
 \]
 \end{theorem}
+
+\begin{formula}[GCD Sum and Totient Identity]
+For every $n\in\N$,
+\[
+ \sum_{k=1}^n\gcd(k,n)
+ =\sum_{d\mid n}d\,\varphi(n/d).
+\]
+More generally, grouping integers by their gcd with $n$ gives
+\[
+ \#\{1\le k\le n\mid\gcd(k,n)=d\}=\varphi(n/d)
+ \qquad(d\mid n).
+\]
+\end{formula}
 
 \begin{definition}[Dirichlet Convolution]
 For arithmetic functions $f, g$, their Dirichlet convolution is
@@ -290,6 +353,15 @@ For a prime $p$ and nonzero integer $n$, $v_p(n)$ is the largest $r\in\Nzero$ su
 when $a+b\ne0$. The second inequality is an equality if $v_p(a)\ne v_p(b)$.
 \end{definition}
 
+\begin{proposition}[Valuation of a Product and a Sum]
+Let $p$ be prime and $x,y\in\Z\setminus\{0\}$. Then
+\[
+ v_p(xy)=v_p(x)+v_p(y),\qquad
+ v_p(x+y)\ge\min(v_p(x),v_p(y))
+\]
+when $x+y\ne0$. If $v_p(x)\ne v_p(y)$, equality holds in the second inequality.
+\end{proposition}
+
 \begin{theorem}[Legendre's Formula]
 For a prime $p$ and $n\in\N$,
 \[
@@ -298,6 +370,19 @@ For a prime $p$ and $n\in\N$,
 \]
 where $s_p(n)$ is the sum of the base-$p$ digits of $n$.
 \end{theorem}
+
+\begin{formula}[Legendre's Formula via Digit Sums]
+For a prime $p$ and a nonnegative integer $n$,
+\[
+ v_p(n!)=\sum_{j\ge1}\left\lfloor\frac{n}{p^j}\right\rfloor
+ =\frac{n-s_p(n)}{p-1}.
+\]
+Consequently, for nonnegative $r\le n$,
+\[
+ v_p\binom nr
+ =\frac{s_p(r)+s_p(n-r)-s_p(n)}{p-1}.
+\]
+\end{formula}
 
 \begin{theorem}[Lifting the Exponent Lemma; LTE]
 Let $p$ be an odd prime, $n\in\N$, and $x, y\in\Z$ with $x\ne y$, $p\mid x-y$, and $p\nmid xy$. Then
@@ -418,6 +503,25 @@ For a positive odd integer $n=\prod_i p_i^{\alpha_i}$ and $a\in\Z$, define
 By convention $\left(\frac a1\right)=1$. For composite $n$, Jacobi symbol $1$ does not necessarily imply that $a$ is a quadratic residue modulo $n$.
 \end{definition}
 
+\begin{proposition}[Jacobi Symbol Identities]
+For odd positive integers $m,n$ and integers $a,b$,
+\[
+ \left(\frac{ab}{n}\right)=\left(\frac an\right)\left(\frac bn\right),
+\quad
+ \left(\frac{a}{mn}\right)=\left(\frac am\right)\left(\frac an\right).
+\]
+If $\gcd(a,n)=1$, then $\left(\frac an\right)\in\{-1,1\}$; otherwise it is $0$. For odd $n$,
+\[
+ \left(\frac{-1}{n}\right)=(-1)^{(n-1)/2},\qquad
+ \left(\frac{2}{n}\right)=(-1)^{(n^2-1)/8}.
+\]
+For coprime odd positive integers $m,n$,
+\[
+ \left(\frac mn\right)\left(\frac nm\right)
+ =(-1)^{\frac{m-1}{2}\frac{n-1}{2}}.
+\]
+\end{proposition}
+
 \begin{proposition}[Solutions of $x^2\equiv1$ Modulo Prime Powers]
 For an odd prime $p$ and $k\ge1$, the solutions of $x^2\equiv1\pmod{p^k}$ are exactly $x\equiv\pm1\pmod{p^k}$. Modulo $2^k$, there is one solution for $k=1$, two for $k=2$, and four for $k\ge3$.
 \end{proposition}
@@ -435,6 +539,9 @@ For an odd prime $p$,
 \]
 \end{theorem}
 
+\begin{proposition}[Square and Cube Valuation Criteria]
+An integer $N\ge1$ is a perfect square if and only if $v_p(N)$ is even for every prime $p$. More generally, $N$ is a positive perfect $k$th power if and only if $k\mid v_p(N)$ for every prime $p$. In particular, every integer square is congruent to $0$ or $1$ modulo $4$, and to $0$, $1$, or $4$ modulo $8$.
+\end{proposition}
 \begin{definition}[Diophantine Equation]
 A Diophantine equation is an equation in which solutions are required to be integers (or, when explicitly specified, natural numbers or rational numbers). The domain restriction is part of the problem.
 \end{definition}
@@ -543,6 +650,19 @@ For every positive nonsquare integer $D$, there is a least solution $(x_1, y_1)$
 \begin{theorem}[Periodicity of Continued Fractions of Quadratic Irrationals]
 A real irrational number has an eventually periodic simple continued fraction if and only if it is a quadratic irrational, that is, a root of an irreducible quadratic polynomial over $\Q$.
 \end{theorem}
+
+\begin{definition}[Cyclotomic Polynomial]
+For $n\ge1$, the $n$th cyclotomic polynomial is
+\[
+ \Phi_n(x)=\prod_{\substack{1\le k\le n\\\gcd(k,n)=1}}
+ \left(x-e^{2\pi i k/n}\right).
+\]
+It has integer coefficients, is monic of degree $\varphi(n)$, and satisfies
+\[
+ x^n-1=\prod_{d\mid n}\Phi_d(x).
+\]
+For a prime $p$, $\Phi_p(x)=1+x+\cdots+x^{p-1}$.
+\end{definition}
 
 \begin{definition}[Gaussian Integers and Norm]
 The Gaussian integers form the ring $\Z[i]=\{a+bi\mid a, b\in\Z\}$. The norm is

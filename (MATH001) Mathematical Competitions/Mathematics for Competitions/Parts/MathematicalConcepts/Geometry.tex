@@ -108,6 +108,10 @@ For interior cevians $AD, BE, CF$ of $\triangle ABC$,
 if and only if $AD, BE, CF$ are concurrent.
 \end{theorem}
 
+\begin{definition}[Pedal and Orthic Triangles]
+Let $P$ be a point in the plane of a nondegenerate triangle $ABC$. The feet of the perpendiculars from $P$ to the lines $BC$, $CA$, and $AB$ form the pedal triangle of $P$ when they are distinct and noncollinear. The pedal triangle of the orthocenter $H$ of an acute triangle is called its orthic triangle.
+\end{definition}
+
 \begin{definition}[Classical Triangle Centers]
 The \emph{circumcenter} $O$ is the intersection of the perpendicular bisectors; the \emph{incenter} $I$ is the intersection of the internal angle bisectors; the \emph{centroid} $G$ is the intersection of the medians; and the \emph{orthocenter} $H$ is the intersection of the altitudes. The circumcenter and orthocenter need not lie inside the triangle.
 \end{definition}
@@ -222,6 +226,22 @@ A convex quadrilateral $ABCD$ is cyclic if and only if
 Equivalently, its opposite angles are supplementary. With directed angles, cyclicity may be characterized without assuming convexity.
 \end{theorem}
 
+\begin{formula}[Equation of a Circle and Radical Axis]
+In Cartesian coordinates a circle with center $(a,b)$ and radius $r>0$ has equation
+\[
+ (x-a)^2+(y-b)^2=r^2.
+\]
+For two circles written in the form
+\[
+ x^2+y^2+D_ix+E_iy+F_i=0\quad(i=1,2),
+\]
+their radical axis, when the centers differ, is the line
+\[
+ (D_1-D_2)x+(E_1-E_2)y+F_1-F_2=0.
+\]
+This is the locus of points having equal power with respect to the two circles.
+\end{formula}
+
 \begin{theorem}[Power of a Point]
 For a circle $\omega$ with center $O$ and radius $R$, define
 \[
@@ -335,6 +355,19 @@ Let $M$ be the midpoint of a chord $PQ$ of a circle. Let chords $AB$ and $CD$ pa
 A circle $\omega$ not passing through the center $O$ of an inversion circle is invariant as a set under that inversion if and only if it is orthogonal to the inversion circle, meaning that their tangent lines at either intersection point are perpendicular.
 \end{proposition}
 
+\begin{definition}[Projective Plane and Homogeneous Coordinates]
+The real projective plane $\mathbb{RP}^2$ consists of one-dimensional linear subspaces of $\R^3$. A point is represented by nonzero homogeneous coordinates $[x:y:z]$, with nonzero scalar multiples identified. The affine plane embeds by $(x,y)\mapsto[x:y:1]$, while $z=0$ is the line at infinity. Two distinct projective lines meet at a unique projective point.
+\end{definition}
+\begin{proposition}[Projective Collinearity Criterion]
+Three points $[x_i:y_i:z_i]\in\mathbb{RP}^2$, $i=1,2,3$, are collinear if and only if
+\[
+ \det\begin{pmatrix}
+ x_1&y_1&z_1\\ x_2&y_2&z_2\\ x_3&y_3&z_3
+ \end{pmatrix}=0.
+\]
+A projective line has an equation $ax+by+cz=0$ for some nonzero $(a,b,c)$, determined up to a nonzero scalar.
+\end{proposition}
+
 \begin{theorem}[Desargues' Theorem]
 In the real projective plane, if two triangles have corresponding vertices joined by three concurrent lines, then the intersections of corresponding sides are collinear. Conversely, if the three side intersections are collinear, then the lines joining corresponding vertices are concurrent in the projective plane.
 \end{theorem}
@@ -346,6 +379,10 @@ Let $A, B, C$ lie on one line and $A', B', C'$ on another, with all pairwise int
 \]
 are collinear in the real projective plane.
 \end{theorem}
+
+\begin{definition}[Conic in the Projective Plane]
+A nondegenerate projective conic is the zero set of a homogeneous quadratic form in $[x:y:z]\in\mathbb{RP}^2$ whose associated symmetric $3\times3$ matrix is nonsingular. In affine coordinates, ellipses, parabolas, and hyperbolas are the standard nonsingular real conics.
+\end{definition}
 
 \begin{theorem}[Pascal's Theorem]
 For six distinct points $A, B, C, D, E, F$ on a nondegenerate conic, the three intersections of opposite sides
@@ -375,6 +412,45 @@ For a simple polygon with cyclically ordered vertices $(x_i, y_i)$, $1\le i\le n
  \operatorname{Area}=\frac12\left|\sum_{i=1}^n(x_iy_{i+1}-x_{i+1}y_i)\right|,
  \quad (x_{n+1}, y_{n+1})=(x_1, y_1).
 \]
+\end{formula}
+
+\begin{definition}[Eccentricity and Focus--Directrix Property]
+A conic with focus $F$, directrix line $\ell$, and eccentricity $e>0$ is the locus of points $P$ satisfying
+\[
+ PF=e\,d(P,\ell).
+\]
+For $0<e<1$ it is an ellipse, for $e=1$ a parabola, and for $e>1$ a hyperbola, in the nondegenerate cases. The circle is the special case of an ellipse with equal semiaxes and eccentricity $0$.
+\end{definition}
+
+\begin{formula}[Standard Equations of Conic Sections]
+For $a>b>0$ and $c^2=a^2-b^2$, an ellipse centered at the origin with major axis on the $x$-axis is
+\[
+ \frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad
+ F_\pm=(\pm c,0),\qquad e=\frac ca.
+\]
+For $a,b>0$ and $c^2=a^2+b^2$, the corresponding hyperbola is
+\[
+ \frac{x^2}{a^2}-\frac{y^2}{b^2}=1,\qquad
+ F_\pm=(\pm c,0),\qquad e=\frac ca,
+\]
+with asymptotes $y=\pm(b/a)x$. A parabola with vertex at the origin, focus $(p,0)$, and directrix $x=-p$, where $p\ne0$, is $y^2=4px$.
+\end{formula}
+
+\begin{formula}[Tangents to Standard Conics]
+For a point $(x_0,y_0)$ on the indicated conic, its tangent line is
+\[
+ \frac{xx_0}{a^2}+\frac{yy_0}{b^2}=1
+ \quad\text{for }\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,
+\]
+\[
+ \frac{xx_0}{a^2}-\frac{yy_0}{b^2}=1
+ \quad\text{for }\frac{x^2}{a^2}-\frac{y^2}{b^2}=1,
+\]
+\[
+ yy_0=2p(x+x_0)
+ \quad\text{for }y^2=4px\ (p\ne0).
+\]
+The tangent at $(x_0,y_0)$ to $x^2+y^2=r^2$ is $xx_0+yy_0=r^2$.
 \end{formula}
 
 \begin{definition}[Barycentric Coordinates]
@@ -429,6 +505,42 @@ Let a simple closed rectifiable curve in the plane have length $L$ and enclose a
 \]
 with equality if and only if the curve is a circle.
 \end{theorem}
+
+\begin{definition}[Lines and Planes in Three Dimensions]
+Let $\mathbf p,\mathbf v,\mathbf n\in\R^3$, with $\mathbf v\ne\mathbf0$ and $\mathbf n\ne\mathbf0$. The line through $\mathbf p$ with direction $\mathbf v$ is
+\[
+ \mathbf x=\mathbf p+t\mathbf v\quad(t\in\R),
+\]
+while the plane through $\mathbf p$ with normal $\mathbf n$ is
+\[
+ \mathbf n\cdot(\mathbf x-\mathbf p)=0.
+\]
+Two planes are perpendicular if their normal vectors are perpendicular; they are parallel if their normal vectors are proportional.
+\end{definition}
+\begin{formula}[Distances and Angles in Space]
+Let $\Pi$ be the plane $ax+by+cz+d=0$, with $(a,b,c)\ne(0,0,0)$. For $P=(x_0,y_0,z_0)$,
+\[
+ \dist(P,\Pi)=\frac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}}.
+\] For nonzero direction vectors $\mathbf u,\mathbf v$, the smaller angle $\theta\in[0,\pi/2]$ between their unoriented lines satisfies
+\[
+ \cos\theta=\frac{|\mathbf u\cdot\mathbf v|}{\|\mathbf u\|\|\mathbf v\|}.
+\]
+The distance from $\mathbf p$ to the line $\mathbf a+t\mathbf v$ is $\|(\mathbf p-\mathbf a)\times\mathbf v\|/\|\mathbf v\|$.
+\end{formula}
+\begin{formula}[Vector Products and Tetrahedron Volume]
+For $\mathbf u,\mathbf v,\mathbf w\in\R^3$, the area of the parallelogram spanned by $\mathbf u,\mathbf v$ is $\|\mathbf u\times\mathbf v\|$, and the volume of the corresponding parallelepiped is
+\[
+ |\mathbf u\cdot(\mathbf v\times\mathbf w)|.
+\]
+For tetrahedron $ABCD$ with position vectors $\mathbf a,\mathbf b,\mathbf c,\mathbf d$, its volume is
+\[
+ \frac16\left|\det\begin{pmatrix}
+ b_1-a_1&c_1-a_1&d_1-a_1\\
+ b_2-a_2&c_2-a_2&d_2-a_2\\
+ b_3-a_3&c_3-a_3&d_3-a_3
+ \end{pmatrix}\right|.
+\]
+\end{formula}
 
 \begin{formula}[Basic Solid Geometry]
 A right circular cylinder of radius $r$ and height $h$ has volume $\pi r^2h$; a right circular cone has volume $\pi r^2h/3$; and a ball of radius $r$ has volume $4\pi r^3/3$ and boundary area $4\pi r^2$.

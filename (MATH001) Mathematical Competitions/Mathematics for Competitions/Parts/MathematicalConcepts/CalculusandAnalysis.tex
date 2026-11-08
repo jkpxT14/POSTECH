@@ -120,6 +120,15 @@ If $f$ has $n+1$ continuous derivatives on the closed interval between $a$ and $
 If $|f^{(n+1)}|\le M$ throughout the interval, the remainder has modulus at most $M|x-a|^{n+1}/(n+1)!$.
 \end{theorem}
 
+\begin{theorem}[Taylor's Formula with Integral Remainder]
+If $f\in C^{n+1}([a,b])$ and $x\in[a,b]$, then
+\[
+ f(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k
+ +\frac1{n!}\int_a^x (x-t)^n f^{(n+1)}(t)\,\dd t.
+\]
+In particular, if $|f^{(n+1)}(t)|\le M$ on $[a,b]$, the absolute remainder is at most $M|x-a|^{n+1}/(n+1)!$.
+\end{theorem}
+
 \begin{formula}[Maclaurin Expansions]
 Within their indicated real or complex disks of convergence,
 \[
@@ -156,6 +165,17 @@ If $f$ is strictly convex and all weights are positive, equality holds exactly w
 \begin{definition}[Riemann Integral]
 A bounded function $f\colon[a,b]\to\R$ is Riemann integrable if the upper and lower Darboux integrals agree; their common value is $\int_a^b f(x)\,\dd x$. Every continuous function on $[a,b]$ is Riemann integrable.
 \end{definition}
+
+\begin{theorem}[Mean Value Theorem for Integrals]
+If $f$ is continuous on $[a,b]$ with $a<b$, then for some $c\in[a,b]$,
+\[
+ \int_a^b f(x)\,\dd x=f(c)(b-a).
+\]
+More generally, if $g$ is integrable and nonnegative on $[a,b]$, there exists $c\in[a,b]$ such that
+\[
+ \int_a^b f(x)g(x)\,\dd x=f(c)\int_a^b g(x)\,\dd x.
+\]
+\end{theorem}
 
 \begin{theorem}[Fundamental Theorem of Calculus]
 For continuous $f\colon[a,b]\to\R$, the function $F(x)=\int_a^x f(t)\,\dd t$ satisfies $F'(x)=f(x)$ for $x\in(a,b)$. If $F'=f$ on $[a,b]$ (with the appropriate one-sided derivatives at the endpoints), then
@@ -215,6 +235,22 @@ For differentiable endpoints $a(t), b(t)$, the corresponding formula is
 under the analogous continuity hypotheses.
 \end{theorem}
 
+\begin{definition}[Improper Integrals]
+For a locally integrable function $f\colon[a,\infty)\to\R$, the improper integral is defined by
+\[
+ \int_a^\infty f(x)\,\dd x
+ =\lim_{R\to\infty}\int_a^R f(x)\,\dd x,
+\]
+provided the limit exists and is finite. At a singular endpoint $a$, one instead takes a limit as the lower integration endpoint tends to $a$ from the right. For a two-sided improper integral, the separate one-sided improper integrals must converge; a Cauchy principal value alone does not imply improper convergence.
+\end{definition}
+\begin{theorem}[Integral Comparison and Convergence]
+Suppose $0\le f(x)\le g(x)$ for all sufficiently large $x$, with $f,g$ locally integrable on $[a,\infty)$. Convergence of $\int_a^\infty g(x)\,\dd x$ implies convergence of $\int_a^\infty f(x)\,\dd x$. The integral
+\[
+ \int_1^\infty\frac{\dd x}{x^p}
+\]
+converges if and only if $p>1$; the integral $\int_0^1x^{-p}\,\dd x$ converges if and only if $p<1$.
+\end{theorem}
+
 \begin{formula}[Gaussian Integral]
 For $a>0$,
 \[
@@ -222,6 +258,19 @@ For $a>0$,
  \qquad \int_0^\infty e^{-ax^2}\,\dd x=\frac12\sqrt{\frac\pi a}.
 \]
 Consequently $\int_{-\infty}^\infty x^{2m+1}e^{-ax^2}\,\dd x=0$ for $m\in\Nzero$, and even moments can be obtained by differentiating with respect to $a$.
+\end{formula}
+
+\begin{formula}[Logarithmic Moments and Dirichlet's Integral]
+For $a>-1$ and $m\in\Nzero$,
+\[
+ \int_0^1 x^a(\ln x)^m\,\dd x
+ =\frac{(-1)^m m!}{(a+1)^{m+1}}.
+\]
+The conditionally convergent improper integral
+\[
+ \int_0^\infty\frac{\sin x}{x}\,\dd x=\frac\pi2
+\]
+is known as Dirichlet's integral.
 \end{formula}
 
 \begin{formula}[Frullani's Integral]
@@ -307,6 +356,14 @@ This is the discrete analogue of integration by parts.
 For the power series $\sum_{n=0}^\infty a_n(z-z_0)^n$, its radius of convergence $R\in[0,\infty]$ is characterized by absolute convergence when $|z-z_0|<R$ and divergence when $|z-z_0|>R$.
 \end{definition}
 
+\begin{theorem}[Abel's Theorem for Power Series]
+Suppose $\sum_{n=0}^\infty a_n$ converges to $S$. Then
+\[
+ \lim_{r\to1^-}\sum_{n=0}^\infty a_n r^n=S.
+\]
+The power series on the left converges absolutely for $0\le r<1$.
+\end{theorem}
+
 \begin{theorem}[Cauchy--Hadamard Formula]
 The radius of convergence of $\sum_{n=0}^\infty a_n(z-z_0)^n$ is
 \[
@@ -384,9 +441,25 @@ Suppose $f_n$ is continuously differentiable on $[a,b]$, the derivatives $f_n'$ 
 Let $(X,d)$ be a nonempty complete metric space and let $T\colon X\to X$ satisfy $d(Tx,Ty)\le qd(x,y)$ for all $x,y\in X$, where $0\le q<1$. Then $T$ has a unique fixed point $x^*$. For any starting point $x_0$, the iterates $x_{n+1}=T(x_n)$ converge to $x^*$.
 \end{theorem}
 
+\begin{definition}[Equicontinuity and Uniform Boundedness]
+A family $\mathcal F$ of functions from a metric space $X$ to a metric space $Y$ is equicontinuous at $x\in X$ if, for every $\varepsilon>0$, some $\delta>0$ works simultaneously for all $f\in\mathcal F$:
+\[
+ d_X(x,y)<\delta\Longrightarrow d_Y(f(x),f(y))<\varepsilon.
+\]
+For scalar-valued functions, $\mathcal F$ is uniformly bounded if $\sup_{f\in\mathcal F}\sup_{x\in X}|f(x)|<\infty$.
+\end{definition}
+
 \begin{theorem}[Arzel\`a--Ascoli Theorem]
 A uniformly bounded, equicontinuous family of real- or complex-valued continuous functions on a compact metric space has compact closure in the uniform norm. Equivalently, every sequence in such a family has a uniformly convergent subsequence.
 \end{theorem}
+
+\begin{definition}[Nowhere Dense Set]
+A subset $A$ of a topological space $X$ is nowhere dense if the interior of its closure is empty:
+\[
+ \operatorname{int}(\overline A)=\varnothing.
+\]
+A set is meager (of first category) if it is a countable union of nowhere dense sets.
+\end{definition}
 
 \begin{theorem}[Baire Category Theorem]
 A nonempty complete metric space is not a countable union of nowhere dense sets. Equivalently, the intersection of countably many open dense subsets is dense.
@@ -440,6 +513,14 @@ For $f\colon U\subseteq\R^n\to\R^m$ with $U$ open, $f$ is differentiable at $\ma
  f(\mathbf a+\mathbf h)=f(\mathbf a)+Df(\mathbf a)\mathbf h+o(\|\mathbf h\|).
 \]
 Its matrix in standard coordinates is the Jacobian $\mathbf J_f(\mathbf a)$. For scalar $f$, the derivative is represented by the gradient $\nabla f(\mathbf a)$.
+\end{definition}
+
+\begin{definition}[Gradient, Directional Derivative, and Hessian]
+For $f\colon U\subseteq\R^n\to\R$ differentiable, its gradient is
+\[
+ \nabla f=(\partial_1f,\dots,\partial_nf)^{\mathsf T}.
+\]
+For a vector $\mathbf v\in\R^n$, the directional derivative is $D_{\mathbf v}f(\mathbf a)=\nabla f(\mathbf a)\cdot\mathbf v$. If the second partial derivatives exist, the Hessian $\Hess f$ is the matrix with $(i,j)$-entry $\partial_i\partial_j f$.
 \end{definition}
 
 \begin{theorem}[Multivariable Chain Rule]
@@ -560,6 +641,19 @@ For $z\ne0$, let $-\pi<\Arg z\le\pi$. The principal logarithm is
 and the multivalued logarithm is $\log z=\{\Log z+2\pi ik\mid k\in\Z\}$. The principal logarithm is holomorphic on $\C\setminus(-\infty,0]$.
 \end{formula}
 
+\begin{definition}[Complex Contours and Winding Number]
+A contour is a piecewise continuously differentiable parametrized curve $\gamma\colon[a,b]\to\C$. For continuous $f$ on the image of $\gamma$,
+\[
+ \int_\gamma f(z)\,\dd z
+ =\int_a^b f(\gamma(t))\gamma'(t)\,\dd t.
+\]
+For a closed contour and $w$ outside its image, the winding number is
+\[
+ \operatorname{Ind}(\gamma,w)=\frac1{2\pi i}\int_\gamma\frac{\dd z}{z-w}\in\Z.
+\]
+A positively oriented simple closed contour traverses its bounded interior counterclockwise.
+\end{definition}
+
 \begin{theorem}[Cauchy--Goursat Theorem]
 If $U\subseteq\C$ is simply connected and $f$ is holomorphic on $U$, then $\oint_\gamma f(z)\,\dd z=0$ for every closed piecewise smooth curve $\gamma$ in $U$.
 \end{theorem}
@@ -633,7 +727,7 @@ If $f,g$ are holomorphic in a neighborhood of the closure of a bounded domain $D
 \end{theorem}
 
 \begin{theorem}[Argument Principle]
-Let $f$ be meromorphic in a neighborhood of the closure of a bounded domain $D$, with no zeros or poles on $\partial D$. Then
+Let $D$ be a bounded domain with positively oriented piecewise smooth simple closed boundary. If $f$ is meromorphic in a neighborhood of $\overline D$, with no zeros or poles on $\partial D$, then
 \[
  \frac1{2\pi i}\oint_{\partial D}\frac{f'(z)}{f(z)}\,\dd z=N-P,
 \]
@@ -650,6 +744,33 @@ It maps generalized circles (circles or lines in $\C$, interpreted on the Rieman
 
 \begin{theorem}[Fundamental Theorem of Algebra via Complex Analysis]
 Every nonconstant polynomial with complex coefficients has a complex root. Equivalently, the field $\C$ is algebraically closed.
+\end{theorem}
+
+\begin{definition}[Lebesgue $L^p$ Spaces]
+For $1\le p<\infty$, $L^p(X,\mu)$ is the space of measurable functions $f$ (identified up to equality almost everywhere) for which
+\[
+ \|f\|_p=\left(\int_X|f|^p\,\dd\mu\right)^{1/p}<\infty.
+\]
+The space $L^\infty(X,\mu)$ consists of essentially bounded measurable functions, with norm given by the essential supremum. The space $L^2$ has the inner product $\langle f,g\rangle=\int_X\overline f g\,\dd\mu$.
+\end{definition}
+
+\begin{definition}[Fourier Coefficients and Partial Sums]
+For a $2\pi$-periodic integrable complex-valued function $f$, its complex Fourier coefficients and symmetric partial sums are
+\[
+ \widehat f(n)=\frac1{2\pi}\int_{-\pi}^\pi f(x)e^{-inx}\,\dd x,
+ \qquad S_Nf(x)=\sum_{n=-N}^N\widehat f(n)e^{inx}.
+\]
+The Fej\`er means are $\sigma_Nf=(N+1)^{-1}\sum_{k=0}^N S_kf$.
+\end{definition}
+\begin{theorem}[Fej\`er's Theorem]
+If $f$ is continuous and $2\pi$-periodic, then its Fej\`er means $\sigma_Nf$ converge uniformly to $f$ on $\R$.
+\end{theorem}
+\begin{theorem}[Dirichlet--Jordan Theorem]
+If a $2\pi$-periodic function $f$ has bounded variation on $[-\pi,\pi]$, its Fourier series converges at every $x$ to
+\[
+ \frac{f(x^-)+f(x^+)}2.
+\]
+In particular, the Fourier series converges to $f(x)$ at continuity points.
 \end{theorem}
 
 \begin{formula}[Fourier Orthogonality and Parseval's Identity]
@@ -672,6 +793,23 @@ Suppose $u\colon[0,T]\to[0,\infty)$ is continuous and $u(t)\le A+B\int_0^t u(s)\
 \]
 \end{theorem}
 
+\begin{definition}[Ordinary Differential Equation and Initial Value Problem]
+An ordinary differential equation (ODE) of order $m$ relates an unknown function $y(x)$ to its derivatives through order $m$. An initial value problem (IVP) prescribes at a point $x_0$ the values
+\[
+ y(x_0),\quad y'(x_0),\quad\dots,\quad y^{(m-1)}(x_0).
+\]
+\end{definition}
+\begin{formula}[Separable First-Order Differential Equations]
+If $y'=f(x)g(y)$ and $g(y)\ne0$ along a solution, then
+\[
+ \int\frac{\dd y}{g(y)}=\int f(x)\,\dd x+C.
+\]
+Constant solutions at zeros of $g$ must be checked separately and need not arise from division by $g(y)$.
+\end{formula}
+\begin{theorem}[Existence and Uniqueness for First-Order ODEs]
+For $y'=F(x,y)$ with $F$ continuous near $(x_0,y_0)$ and locally Lipschitz in $y$ there, the IVP $y(x_0)=y_0$ has a unique local solution. In particular, continuity of both $F$ and $\partial F/\partial y$ on a neighborhood is sufficient.
+\end{theorem}
+
 \begin{formula}[First-Order Linear Differential Equations]
 For continuous $p,q$ on an interval, every solution of $y'+p(x)y=q(x)$ satisfies
 \[
@@ -680,3 +818,21 @@ For continuous $p,q$ on an interval, every solution of $y'+p(x)y=q(x)$ satisfies
 \]
 \end{formula}
 
+\begin{formula}[Second-Order Linear ODEs with Constant Coefficients]
+Consider $ay''+by'+cy=0$ with real constants $a\ne0,b,c$, and let $r_1,r_2$ be the roots of $ar^2+br+c=0$. If the roots are distinct and real, the real solutions are
+\[
+ y(x)=C_1e^{r_1x}+C_2e^{r_2x}.
+\]
+If there is a repeated real root $r$, they are $(C_1+C_2x)e^{rx}$. For complex conjugate roots $\alpha\pm i\beta$ with $\beta>0$, they are
+\[
+ y(x)=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x).
+\]
+For a nonhomogeneous equation $ay''+by'+cy=h(x)$, every solution is a particular solution plus a solution of the homogeneous equation.
+\end{formula}
+\begin{theorem}[Wronskian and Abel's Identity]
+Let $y_1,y_2$ solve $y''+p(x)y'+q(x)y=0$ on an interval with continuous $p,q$. Their Wronskian
+\[
+ W(x)=y_1(x)y_2'(x)-y_1'(x)y_2(x)
+\]
+satisfies $W(x)=W(x_0)\exp(-\int_{x_0}^x p(t)\,\dd t)$. The solutions are linearly independent if and only if $W(x_0)\ne0$.
+\end{theorem}

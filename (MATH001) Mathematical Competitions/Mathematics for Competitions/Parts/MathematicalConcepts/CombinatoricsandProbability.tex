@@ -104,6 +104,21 @@ For $n\in\Nzero$,
 For $n\ge2$, $D_n=(n-1)(D_{n-1}+D_{n-2})$, with $D_0=1$ and $D_1=0$. For $n\ge1$, $D_n$ is the nearest integer to $n!/e$.
 \end{formula}
 
+\begin{definition}[Rook Polynomial]
+For a finite set $B$ of forbidden cells on an $n\times n$ board, let $r_k(B)$ count placements of $k$ pairwise nonattacking rooks entirely in $B$, with $r_0(B)=1$. The rook polynomial is
+\[
+ R_B(x)=\sum_{k=0}^n r_k(B)x^k.
+\]
+\end{definition}
+
+\begin{formula}[Forbidden Positions and Rook Numbers]
+The number of permutations $\sigma\in S_n$ whose selected cells $(i,\sigma(i))$ avoid a set $B$ of forbidden cells is
+\[
+ \sum_{k=0}^n(-1)^k r_k(B)(n-k)!.
+\]
+For the diagonal forbidden board, $r_k(B)=\binom nk$, giving the derangement formula.
+\end{formula}
+
 \begin{definition}[Stirling Numbers and Bell Numbers]
 The unsigned Stirling number $c(n, k)$ counts permutations of $[n]$ with $k$ cycles. The Stirling number $S(n, k)$ counts partitions of $[n]$ into $k$ nonempty blocks. The Bell number
 \[
@@ -166,6 +181,14 @@ For nonnegative integers $a, b$ with $a\ge b$, the number of lattice paths from 
 For $a=b=n$, this equals $C_n$.
 \end{theorem}
 
+\begin{formula}[Ballot Theorem]
+Suppose candidate $A$ receives $a$ votes and candidate $B$ receives $b$ votes, with $a>b\ge0$. Among all $\binom{a+b}{a}$ orders of the votes, the fraction for which $A$ is strictly ahead of $B$ after every vote is
+\[
+ \frac{a-b}{a+b}.
+\]
+Consequently, the number of such orders is $\frac{a-b}{a+b}\binom{a+b}{a}$.
+\end{formula}
+
 \begin{definition}[Recurrence Relation and Generating Function]
 A recurrence relation specifies sequence terms in terms of earlier terms. The ordinary generating function of $(a_n)_{n\ge0}$ is
 \[
@@ -195,6 +218,27 @@ For formal power series $A(x)=\sum_{n\ge0}a_nx^n$ and $B(x)=\sum_{n\ge0}b_nx^n$,
 More generally, $[x^n]x^kA(x)=a_{n-k}$ for $n\ge k$.
 \end{formula}
 
+\begin{formula}[Exponential Generating Functions]
+For a sequence $(a_n)_{n\ge0}$, define its exponential generating function by
+\[
+ A(x)=\sum_{n\ge0}a_n\frac{x^n}{n!}.
+\]
+If $B(x)=\sum_{n\ge0}b_nx^n/n!$, then
+\[
+ n![x^n](A(x)B(x))
+ =\sum_{k=0}^n\binom nk a_kb_{n-k}.
+\]
+This is the labeled-product convolution, in contrast with ordinary generating functions.
+\end{formula}
+\begin{theorem}[Exponential Formula for Labeled Structures]
+Suppose every object in a labeled class uniquely decomposes into an unordered set of connected components, and let $c_n$ count connected components on an $n$-element labeled set. If $a_n$ counts all objects, including the empty object, then
+\[
+ \sum_{n\ge0}a_n\frac{x^n}{n!}
+ =\exp\left(\sum_{n\ge1}c_n\frac{x^n}{n!}\right)
+\]
+as an identity of formal power series over $\Q$.
+\end{theorem}
+
 \begin{theorem}[Lagrange Inversion, Basic Form]
 Let $\phi(t)$ be a formal power series over a field of characteristic zero with $\phi(0)\ne0$. If $T(x)$ is the unique formal series with $T(0)=0$ satisfying
 \[
@@ -214,12 +258,33 @@ If a finite group $G$ acts on a finite set $X$, the number of orbits is
 where $\Fix(g)=\{x\in X\mid g\cdot x=x\}$.
 \end{theorem}
 
+\begin{definition}[Cycle Index of a Permutation Group]
+Let a finite group $G$ act on $n$ positions. Write $c_j(g)$ for the number of cycles of length $j$ in the permutation induced by $g\in G$. The cycle index polynomial is
+\[
+ Z_G(z_1,\dots,z_n)
+ =\frac1{|G|}\sum_{g\in G}\prod_{j=1}^n z_j^{c_j(g)}.
+\]
+In particular, $\sum_{j=1}^n j c_j(g)=n$.
+\end{definition}
+
 \begin{theorem}[P\'olya Enumeration Theorem]
 Let a finite group $G$ permute an $n$-element set, and suppose each position receives one of $q\in\N$ colors. If $c(g)$ denotes the number of cycles of $g$ in its permutation of the positions, the number of colorings up to $G$-symmetry is
 \[
  \frac1{|G|}\sum_{g\in G}q^{c(g)}.
 \]
 \end{theorem}
+
+\begin{proposition}[Cycle-Index Form of P\'olya Enumeration]
+If a finite permutation group $G$ acts on $n$ positions and each position may receive any of $q$ distinguishable colors, the number of orbits of colorings is
+\[
+ Z_G(q,q,\dots,q).
+\]
+If color $i$ has weight $w_i$, the generating polynomial for orbits counted by their color multiplicities is
+\[
+ Z_G\left(\sum_iw_i,\ \sum_iw_i^2,\ \dots,\ \sum_iw_i^n\right).
+\]
+The coefficient of $\prod_iw_i^{m_i}$ counts orbits using color $i$ exactly $m_i$ times.
+\end{proposition}
 
 \begin{definition}[Graphs, Degrees, and Paths]
 A (finite simple undirected) graph is $G=(V, E)$, where $E$ consists of unordered pairs of distinct vertices. The degree $\deg(v)$ is the number of edges incident with $v$. A path has no repeated vertices, while a cycle is a closed path with at least three vertices and no repeated internal vertices.
@@ -232,6 +297,10 @@ For any finite undirected graph,
 \]
 Consequently, the number of vertices of odd degree is even.
 \end{theorem}
+
+\begin{definition}[Walks, Trails, Connectivity, and Components]
+A walk is a sequence of adjacent vertices, allowing repetition. A trail is a walk with no repeated edges, and a simple path has no repeated vertices. A graph is connected if every pair of vertices can be joined by a path. A connected component is a maximal connected subgraph. A bridge is an edge whose deletion increases the number of connected components; a cut vertex is a vertex whose deletion increases that number.
+\end{definition}
 
 \begin{definition}[Trees and Spanning Trees]
 A tree is a connected graph with no cycles. A spanning tree of a connected graph is a subgraph that is a tree and contains every vertex.
@@ -314,6 +383,15 @@ In every finite bipartite graph, the maximum size of a matching equals the minim
 A finite undirected graph $G$ has a perfect matching if and only if, for every $S\subseteq V(G)$, the graph $G-S$ has at most $|S|$ connected components of odd order.
 \end{theorem}
 
+\begin{definition}[Flow Networks and Cuts]
+Let $G=(V,E)$ be a finite directed graph with source $s$, sink $t$, and capacities $c(e)\ge0$. A feasible flow assigns $0\le f(e)\le c(e)$ to each edge, with
+\[
+ \sum_{(u,v)\in E}f(u,v)=\sum_{(v,w)\in E}f(v,w)
+ \qquad(v\notin\{s,t\}).
+\]
+Its value is the net outflow at $s$. An $s$--$t$ cut is a partition $V=S\sqcup T$ with $s\in S$ and $t\in T$; its capacity is $\sum_{u\in S,\,v\in T}c(u,v)$ over edges directed from $S$ to $T$.
+\end{definition}
+
 \begin{theorem}[Max-Flow Min-Cut Theorem]
 In a finite directed capacitated network with nonnegative edge capacities and distinguished source $s$ and sink $t$, the maximum possible value of an $s$--$t$ flow equals the minimum capacity of an $s$--$t$ cut.
 \end{theorem}
@@ -345,6 +423,23 @@ For a family $\mathcal A$ of subsets of $[n]$, no one of which properly contains
 If $\mathcal A$ is an antichain in the Boolean lattice $2^{[n]}$, then
 \[
  \sum_{A\in\mathcal A}\frac1{\binom n{|A|}}\le1.
+\]
+\end{theorem}
+
+\begin{definition}[Finite Impartial Games and Nim-Sum]
+A finite impartial normal-play game has finitely many positions, no infinite sequence of legal moves, and the same available moves for both players; the player with no legal move loses. The nim-sum $a\oplus b$ is the bitwise exclusive-or of the binary expansions of nonnegative integers $a,b$.
+\end{definition}
+\begin{theorem}[Sprague--Grundy Theorem]
+For a finite impartial normal-play game, define the Grundy value recursively by
+\[
+ g(P)=\operatorname{mex}\{g(Q)\mid P\to Q\},
+\]
+where $\operatorname{mex}$ is the least nonnegative integer absent from a set and terminal positions have value $0$. A position is losing for the player to move if and only if $g(P)=0$. The Grundy value of a disjunctive sum of games is the nim-sum of their Grundy values.
+\end{theorem}
+\begin{theorem}[Bouton's Theorem for Nim]
+For a position in ordinary Nim with heaps of sizes $a_1,\dots,a_k\in\Nzero$, in which a move removes a positive number of objects from exactly one heap and the player making the last move wins, the position is losing if and only if
+\[
+ a_1\oplus\cdots\oplus a_k=0.
 \]
 \end{theorem}
 
@@ -408,6 +503,14 @@ A real-valued random variable $X$ is a measurable map from $\Omega$ to $\R$. Its
 The distribution of $X$ is specified by $\Prob(X\in B)$ for Borel sets $B$. For a discrete random variable, its probability mass function is $p_X(x)=\Prob(X=x)$; its cumulative distribution function is $F_X(x)=\Prob(X\le x)$.
 \end{definition}
 
+\begin{definition}[Geometric Probability]
+For a bounded measurable planar region $D$ of positive finite area, a point $X$ chosen uniformly from $D$ satisfies
+\[
+ \Prob(X\in A)=\frac{\operatorname{Area}(A\cap D)}{\operatorname{Area}(D)}
+\]
+for every measurable $A$. In three dimensions, volume replaces area. The probability model and sampling measure must be specified before applying such ratios.
+\end{definition}
+
 \begin{formula}[Bernoulli, Binomial, and Geometric Distributions]
 If $X\sim\Bern(p)$, then $\Prob(X=1)=p$ and $\Exp[X]=p$, $\Var(X)=p(1-p)$. If $X\sim\Bin(n, p)$, then for $0\le k\le n$,
 \[
@@ -427,6 +530,26 @@ If a sample of size $n$ is drawn uniformly without replacement from $N$ objects,
  \Prob(X=k)=\frac{\binom Kk\binom{N-K}{n-k}}{\binom Nn}
 \]
 for integers $k$ with $\max(0, n-(N-K))\le k\le\min(n, K)$, and $\Exp[X]=nK/N$.
+\end{formula}
+
+\begin{formula}[Poisson Distribution and Poisson Limit]
+For $\lambda>0$, a Poisson random variable $X\sim\operatorname{Poi}(\lambda)$ has
+\[
+ \Prob(X=k)=e^{-\lambda}\frac{\lambda^k}{k!},
+ \quad k\in\Nzero,\qquad
+ \Exp[X]=\Var(X)=\lambda.
+\]
+If $X_n\sim\Bin(n,p_n)$ with $np_n\to\lambda$, then for every fixed $k\in\Nzero$,
+\[
+ \Prob(X_n=k)\longrightarrow e^{-\lambda}\frac{\lambda^k}{k!}.
+\]
+\end{formula}
+\begin{formula}[Uniform and Exponential Distributions]
+If $X$ is uniform on $[a,b]$ with $a<b$, its density is $f_X(x)=1/(b-a)$ for $a\le x\le b$ (and $0$ otherwise), and $\Exp[X]=(a+b)/2$. If $Y$ is exponential with rate $\lambda>0$, its density is
+\[
+ f_Y(y)=\lambda e^{-\lambda y}\quad(y\ge0),
+ \qquad \Exp[Y]=\frac1\lambda,\quad \Var(Y)=\frac1{\lambda^2}.
+\]
 \end{formula}
 
 \begin{definition}[Conditional Expectation]
@@ -518,6 +641,18 @@ and for $0<\delta<1$,
 
 \begin{theorem}[The First-Moment Method]
 If $X$ is a nonnegative integer-valued random variable and $\Exp[X]<1$, then $\Prob(X=0)>0$. More generally, if $\Exp[X]>0$ and $X\ge0$, then $\Prob(X>0)>0$.
+\end{theorem}
+
+\begin{theorem}[Second-Moment Inequality]
+For a real random variable $X$ with finite second moment and $\Exp[X^2]>0$,
+\[
+ \Prob(X\ne0)\ge\frac{(\Exp[X])^2}{\Exp[X^2]}.
+\]
+If $X\ge0$ almost surely, then for $0<\theta<1$ the Paley--Zygmund inequality gives
+\[
+ \Prob(X>\theta\Exp[X])
+ \ge(1-\theta)^2\frac{(\Exp[X])^2}{\Exp[X^2]}.
+\]
 \end{theorem}
 
 \begin{formula}[Uniform Random Permutations]

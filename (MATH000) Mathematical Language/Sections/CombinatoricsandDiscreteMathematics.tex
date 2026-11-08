@@ -12,18 +12,18 @@ $\displaystyle\binom{n}{r}, \ {}_nC_r$ & Number of $r$-element subsets of an $n$
 $\displaystyle\left(\!\binom{n}{r}\!\right), \ {}_nH_r$ & $r$-combinations with repetition from $n$ types; equals $\displaystyle\binom{n+r-1}{r}$ \\
 $\displaystyle\binom{n}{n_1, \dots, n_k}$ & Multinomial coefficient, for nonnegative integers $n_1, \dots, n_k$ with $n_1+\cdots+n_k=n$ \\
 $\displaystyle\genfrac{[}{]}{0pt}{}{n}{k}, \ c(n, k)$ & Unsigned Stirling number of the first kind; permutations of $n$ elements with $k$ cycles \\
-$s(n, k)$ & Signed Stirling number of the first kind; $s(n, k)=(-1)^{n-k}c(n, k)$ \\[0.45em]
+$\displaystyle(-1)^{n-k}\genfrac{[}{]}{0pt}{}{n}{k}, \ s(n, k)$ & Signed Stirling number of the first kind; $s(n, k)=(-1)^{n-k}c(n, k)$ \\[0.45em]
 $\displaystyle\genfrac{\{}{\}}{0pt}{}{n}{k}, \ S(n, k)$ & Stirling number of the second kind; partitions of an $n$-element set into $k$ nonempty blocks \\
 $D_n, \ !n$ & Number of derangements of $n$ elements; permutations with no fixed points \\
 $C_n$ & $n$th Catalan number, $\displaystyle C_n=\frac{1}{n+1}\binom{2n}{n}$ for $n\ge0$ \\
 $B_n$ & $n$th Bell number; number of partitions of an $n$-element set \\
 $p(n)$ & Number of integer partitions of $n$, with $p(0)=1$ \\
-$\displaystyle H_n=\sum_{k=1}^n\frac1k$ & $n$th harmonic number for $n\ge1$, with $H_0=0$ \\
+$\displaystyle H_n=\sum_{k=1}^n\frac{1}{k}$ & $n$th harmonic number for $n\ge1$, with $H_0=0$ \\
 $(X, \preceq)$ & Partially ordered set (poset) \\
 $\prec, \ \succeq, \ \succ$ & Strict and reverse order relations associated with $\preceq$ \\
 $\le_{\mathrm{lex}}$ & Lexicographic order \\
 $x\lessdot y$ & Cover relation: $y$ covers $x$ \\
-$B_n$ & Boolean lattice (Boolean poset) on an $n$-element ground set \\
+$B_n, \ 2^{[n]}$ & Boolean lattice of subsets of $[n]$, ordered by inclusion \\
 $G=(V, E)$ & Graph with vertex set $V$ and edge set $E$ \\
 $V(G)$ & Vertex set of $G$ \\
 $E(G)$ & Edge set of $G$ \\
@@ -42,9 +42,9 @@ $K_n$ & Complete graph on $n$ vertices \\
 $K_{m, n}$ & Complete bipartite graph with parts of sizes $m$ and $n$ \\
 $P_n$ & Path graph on $n$ vertices \\
 $C_n$ & Cycle graph on $n$ vertices \\
-$\mathbf A(G), \ \mathbf A_G$ & Adjacency matrix of $G$ \\
-$\mathbf D(G), \ \mathbf D_G$ & Degree matrix of $G$, the diagonal matrix of vertex degrees in the chosen vertex order \\
-$\mathbf L(G), \ \mathbf L_G$ & Graph Laplacian, usually $\mathbf D(G)-\mathbf A(G)$ \\
+$\mathbf{A}(G), \ \mathbf{A}_G$ & Adjacency matrix of $G$ \\
+$\mathbf{D}(G), \ \mathbf{D}_G$ & Degree matrix of $G$, the diagonal matrix of vertex degrees in the chosen vertex order \\
+$\mathbf{L}(G), \ \mathbf{L}_G$ & Graph Laplacian, usually $\mathbf{D}(G)-\mathbf{A}(G)$ \\
 $\chi(G)$ & Chromatic number of $G$ \\
 $P_G(k)$ & Chromatic polynomial of $G$, counting proper colorings with $k$ labeled colors \\
 $\nu(G)$ & Matching number of $G$: the maximum size of a matching (a set of pairwise vertex-disjoint edges) \\

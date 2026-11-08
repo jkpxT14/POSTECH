@@ -253,6 +253,13 @@ For a product of square matrices, the trace is invariant under cyclic permutatio
 A matrix $\mathbf A\in F^{n\times n}$ is diagonalizable over $F$ if there are an invertible $\mathbf P\in F^{n\times n}$ and a diagonal $\mathbf D$ with $\mathbf A=\mathbf P\mathbf D\mathbf P^{-1}$. Equivalently, $F^n$ has a basis consisting of eigenvectors of $\mathbf A$.
 \end{definition}
 
+\begin{definition}[Invariant Subspace]
+A subspace $U\subseteq V$ is invariant under a linear operator $T\colon V\to V$ if $T(U)\subseteq U$. An eigenspace, a kernel of a polynomial in $T$, and an image of a polynomial in $T$ are invariant subspaces.
+\end{definition}
+\begin{theorem}[Simultaneous Diagonalization of Commuting Operators]
+Over an algebraically closed field, a finite family of pairwise commuting diagonalizable linear operators on a finite-dimensional vector space has a common eigenbasis. Equivalently, the matrices are simultaneously diagonalizable. In particular, diagonalizable matrices that commute can be diagonalized by the same change of basis.
+\end{theorem}
+
 \begin{theorem}[Criteria for Diagonalizability]
 A matrix $\mathbf A\in F^{n\times n}$ is diagonalizable over $F$ if and only if its minimal polynomial splits into distinct linear factors over $F$. If $\mathbf A$ has $n$ distinct eigenvalues in $F$, then it is diagonalizable over $F$.
 \end{theorem}
@@ -268,6 +275,18 @@ $\mathbf I,\mathbf A,\dots,\mathbf A^{n-1}$.
 
 \begin{definition}[Minimal Polynomial]
 The minimal polynomial $m_{\mathbf A}(t)$ of a square matrix over a field $F$ is the unique monic polynomial of least positive degree with $m_{\mathbf A}(\mathbf A)=\mathbf0$. It divides $\chi_{\mathbf A}(t)$, and every polynomial $p$ satisfying $p(\mathbf A)=\mathbf0$ is divisible by $m_{\mathbf A}$.
+\end{definition}
+
+\begin{definition}[Matrix Exponential]
+For every complex square matrix $\mathbf A$, define
+\[
+ e^{\mathbf A}=\sum_{k=0}^\infty\frac{\mathbf A^k}{k!}.
+\]
+It satisfies $e^{(s+t)\mathbf A}=e^{s\mathbf A}e^{t\mathbf A}$ and
+\[
+ \det(e^{\mathbf A})=e^{\tr\mathbf A}.
+\]
+If $\mathbf A\mathbf B=\mathbf B\mathbf A$, then $e^{\mathbf A+\mathbf B}=e^{\mathbf A}e^{\mathbf B}$.
 \end{definition}
 
 \begin{theorem}[Eigenvalues of Products]
@@ -291,9 +310,28 @@ For $\mathbf Q=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ and $F_0=0$, $F_1=1$, $F_{n
 In particular, $F_{n+1}F_{n-1}-F_n^2=(-1)^n$.
 \end{formula}
 
+\begin{definition}[Nilpotent, Idempotent, and Involutory Matrices]
+A square matrix $\mathbf A$ is nilpotent if $\mathbf A^k=\mathbf0$ for some $k\ge1$, idempotent if $\mathbf A^2=\mathbf A$, and involutory if $\mathbf A^2=\mathbf I$. An idempotent matrix is diagonalizable with eigenvalues in $\{0,1\}$; over a field of characteristic different from $2$, an involutory matrix is diagonalizable with eigenvalues in $\{-1,1\}$.
+\end{definition}
+\begin{proposition}[Trace of a Commutator]
+For any square matrices $\mathbf A,\mathbf B$ over a field,
+\[
+ \tr(\mathbf A\mathbf B-\mathbf B\mathbf A)=0.
+\]
+If $\mathbf A$ and $\mathbf B$ commute, each eigenspace of $\mathbf A$ is invariant under $\mathbf B$.
+\end{proposition}
+
 \begin{theorem}[Jordan Canonical Form]
 Every complex square matrix is similar to a direct sum of Jordan blocks $\mathbf J_k(\lambda)=\lambda\mathbf I_k+\mathbf N_k$, where $\mathbf N_k$ has ones on its superdiagonal and zero elsewhere. The sizes and eigenvalues of the blocks are unique up to their order.
 \end{theorem}
+
+\begin{definition}[Spectral Radius]
+For a square matrix $\mathbf A$ over $\C$, its spectrum $\sigma(\mathbf A)$ is the set of eigenvalues. Its spectral radius is
+\[
+ \rho(\mathbf A)=\max_{\lambda\in\sigma(\mathbf A)}|\lambda|.
+\]
+Over $\R$, the spectrum and spectral radius are understood after extending scalars to $\C$.
+\end{definition}
 
 \begin{theorem}[Gershgorin Circle Theorem]
 Every eigenvalue of $\mathbf A=(a_{ij})\in\C^{n\times n}$ lies in the union of the disks
@@ -308,6 +346,30 @@ If $\mathbf A\in\R^{n\times n}$ has strictly positive entries, its spectral radi
 
 \begin{definition}[Inner Product and Norm]
 An inner product on a complex vector space $V$ is conjugate-linear in its first argument, linear in its second, Hermitian symmetric, and positive definite. Its induced norm is $\|\mathbf v\|=\sqrt{\langle\mathbf v,\mathbf v\rangle}$. On $\C^n$, the standard inner product is $\langle\mathbf u,\mathbf v\rangle=\mathbf u^{\mathsf H}\mathbf v$.
+\end{definition}
+
+\begin{definition}[Adjoint and Orthogonal Complement]
+For a linear operator $T$ on a finite-dimensional real or complex inner product space, its adjoint $T^*$ is defined by
+\[
+ \langle T\mathbf u,\mathbf v\rangle=\langle\mathbf u,T^*\mathbf v\rangle.
+\]
+In an orthonormal basis, its matrix is $\mathbf A^{\mathsf H}$ (or $\mathbf A^{\mathsf T}$ over $\R$). For a subspace $U$, its orthogonal complement is
+\[
+ U^\perp=\{\mathbf v\mid\langle\mathbf u,\mathbf v\rangle=0
+ \text{ for every }\mathbf u\in U\}.
+\]
+\end{definition}
+\begin{definition}[Matrix Norms]
+For $\mathbf A\in\C^{m\times n}$, the Frobenius norm is
+\[
+ \|\mathbf A\|_{\mathrm F}
+ =\left(\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^2\right)^{1/2},
+\]
+and the operator norm induced by the Euclidean norm is
+\[
+ \|\mathbf A\|_2=\sup_{\|\mathbf x\|=1}\|\mathbf A\mathbf x\|.
+\]
+A matrix norm is submultiplicative if $\|\mathbf A\mathbf B\|\le\|\mathbf A\|\|\mathbf B\|$ whenever the product is defined. Every norm induced by a vector norm is submultiplicative for compatible matrices.
 \end{definition}
 
 \begin{theorem}[Cauchy--Schwarz Inequality]
@@ -413,6 +475,17 @@ where $\mathbf U$ is unitary and $\mathbf D$ is diagonal. For Hermitian $\mathbf
 A Hermitian matrix $\mathbf A$ is positive definite, written $\mathbf A\succ0$, if $\mathbf x^{\mathsf H}\mathbf A\mathbf x>0$ for all nonzero $\mathbf x$. It is positive semidefinite, written $\mathbf A\succeq0$, if $\mathbf x^{\mathsf H}\mathbf A\mathbf x\ge0$ for all $\mathbf x$. Such matrices are characterized by all eigenvalues being positive or nonnegative, respectively.
 \end{definition}
 
+\begin{definition}[Bilinear and Quadratic Forms]
+A bilinear form on a real vector space is a map $B\colon V\times V\to\R$ that is linear in each argument. A real quadratic form on $\R^n$ has the form
+\[
+ q(\mathbf x)=\mathbf x^{\mathsf T}\mathbf A\mathbf x
+\]
+for a unique symmetric matrix $\mathbf A$. Under the change of variables $\mathbf x=\mathbf P\mathbf y$, the representing matrix changes by congruence to $\mathbf P^{\mathsf T}\mathbf A\mathbf P$.
+\end{definition}
+\begin{theorem}[Sylvester's Law of Inertia]
+Every real symmetric matrix is congruent to a diagonal matrix with entries in $\{-1,0,1\}$. The numbers of positive, negative, and zero diagonal entries are independent of the congruence transformation; equivalently, they are the numbers of positive, negative, and zero eigenvalues counted with multiplicity.
+\end{theorem}
+
 \begin{theorem}[Sylvester's Criterion]
 A real symmetric or complex Hermitian matrix is positive definite if and only if all its leading principal minors are positive. It is positive semidefinite if and only if all its principal minors are nonnegative.
 \end{theorem}
@@ -477,6 +550,14 @@ For every matrix norm subordinate to a vector norm and every square matrix $\mat
 For Hermitian matrices, the Euclidean operator norm equals $\max_i|\lambda_i|$.
 \end{theorem}
 
+\begin{theorem}[Neumann Series for Matrices]
+If $\mathbf A$ is a square complex matrix with $\rho(\mathbf A)<1$, then
+\[
+ (\mathbf I-\mathbf A)^{-1}=\sum_{k=0}^\infty\mathbf A^k,
+\]
+with convergence in every matrix norm. In particular, the condition $\|\mathbf A\|<1$ for any submultiplicative matrix norm is sufficient.
+\end{theorem}
+
 \begin{theorem}[Gelfand's Formula]
 For a complex square matrix and any submultiplicative matrix norm,
 \[
@@ -485,7 +566,7 @@ For a complex square matrix and any submultiplicative matrix norm,
 \end{theorem}
 
 \begin{definition}[Singular Values]
-For $\mathbf A\in\C^{m\times n}$, the singular values $\sigma_1\ge\cdots\ge\sigma_{\min(m,n)}\ge0$ are the square roots of the eigenvalues of $\mathbf A^{\mathsf H}\mathbf A$, with zeros appended or omitted according to the smaller dimension. The nonzero singular values are independent of this padding convention.
+For $\mathbf A\in\C^{m\times n}$, the singular values $\sigma_1\ge\cdots\ge\sigma_{\min(m,n)}\ge0$ are the square roots of the eigenvalues of $\mathbf A^{\mathsf H}\mathbf A$, with zeros appended or omitted according to the smaller dimension. The nonzero singular values are independent of this padding convention. The largest singular value equals the Euclidean operator norm: $\sigma_1(\mathbf A)=\|\mathbf A\|_2$.
 \end{definition}
 
 \begin{theorem}[Singular Value Decomposition]
@@ -504,6 +585,14 @@ If $\mathbf A\in\C^{m\times n}$ has singular values $\sigma_1\ge\cdots\ge\sigma_
 \]
 respectively.
 \end{theorem}
+
+\begin{definition}[Moore--Penrose Pseudoinverse]
+For $\mathbf A=\mathbf U\boldsymbol\Sigma\mathbf V^{\mathsf H}$ in a singular value decomposition, define
+\[
+ \mathbf A^\dagger=\mathbf V\boldsymbol\Sigma^\dagger\mathbf U^{\mathsf H},
+\]
+where the nonzero diagonal entries of $\boldsymbol\Sigma$ are reciprocated and zeros remain zero. Then $\mathbf A\mathbf A^\dagger$ and $\mathbf A^\dagger\mathbf A$ are orthogonal projectors onto the column space and the row space (over $\C$, with the standard Hermitian inner product), respectively.
+\end{definition}
 
 \begin{theorem}[QR Decomposition]
 Every $\mathbf A\in\C^{m\times n}$ with $m\ge n$ and linearly independent columns admits a reduced QR decomposition $\mathbf A=\mathbf Q\mathbf R$, where $\mathbf Q\in\C^{m\times n}$ has orthonormal columns and $\mathbf R\in\C^{n\times n}$ is invertible upper triangular. A full QR decomposition uses a square unitary matrix and a rectangular upper-trapezoidal factor.

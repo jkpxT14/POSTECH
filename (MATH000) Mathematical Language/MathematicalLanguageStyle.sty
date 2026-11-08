@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{MathematicalLanguageStyle}[2026/11/05 MATH000 document style]
+\ProvidesPackage{MathematicalLanguageStyle}[2026/11/08 MATH000 document style]
 
 % Mathematical Language style and canonical notation
 % (MATH000) Mathematical Language - Notation and Conventions
@@ -7,12 +7,13 @@
 % Design baseline: the MATH200 Mathematical Concepts / Past Problems document family,
 % adapted for a compact reference document. Institution colors are reserved for institution names only.
 
-\RequirePackage[a4paper,margin=1in]{geometry}
+\RequirePackage[a4paper, margin=1in]{geometry}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
 \RequirePackage{microtype}
 \RequirePackage{amsmath}
-\RequirePackage{amssymb,amsthm}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
 \RequirePackage{mathtools}
 % Closed-surface integral without changing the existing integral glyphs.
 \DeclareFontFamily{U}{esint}{}
@@ -23,7 +24,7 @@
 \RequirePackage{dsfont}
 \RequirePackage{mathrsfs}
 
-% Contradiction symbol used in proofs.  The glyph is taken from the
+% Contradiction symbol used in proofs. The glyph is taken from the
 % St Mary Road symbol font without loading its full math-symbol family.
 \DeclareFontFamily{U}{stmry}{}
 \DeclareFontShape{U}{stmry}{m}{n}{<-> stmary10}{}

@@ -3,11 +3,11 @@
 The differential $\dd$ is upright; $\varepsilon$ is the default small positive quantity in analysis.
 
 \begin{notationtable}
-$\displaystyle\lim_{x\to a}f(x), \ f(a^{\pm})$ & Two-sided limit at $a$ \\
+$\displaystyle\lim_{x\to a}f(x), \ f(a^{\pm})$ & Two-sided limit at $a$; $f(a^{\pm})$ is used only for a finite limit \\
 $\displaystyle\lim_{x\to a^-}f(x), \ f(a^{-})$ & Left-hand limit at $a$ \\*
 $\displaystyle\lim_{x\to a^+}f(x), \ f(a^{+})$ & Right-hand limit at $a$ \\
-$\displaystyle\lim_{x\to\infty}f(x), \ f(\infty)$ & Limit as $x\to\infty$ \\
-$\displaystyle\lim_{x\to-\infty}f(x), \ f(-\infty)$ & Limit as $x\to-\infty$ \\
+$\displaystyle\lim_{x\to\infty}f(x), \ f(\infty)$ & Limit as $x\to\infty$; $f(\infty)$ is used only for a finite limit \\
+$\displaystyle\lim_{x\to-\infty}f(x), \ f(-\infty)$ & Limit as $x\to-\infty$; $f(-\infty)$ is used only for a finite limit \\
 $\displaystyle\lim_{x\to a}f(x)=\pm\infty$ & Infinite limit at $a$ \\
 $\min A$ & Minimum of $A$ \\*
 $\max A$ & Maximum of $A$ \\
@@ -22,7 +22,7 @@ $\displaystyle\frac{\dd y}{\dd x}$ & Derivative of $y$ with respect to $x$ \\[0.
 $\displaystyle\frac{\dd^n y}{\dd x^n}$ & $n$th derivative of $y$ with respect to $x$ in Leibniz notation \\[0.50em]
 $\displaystyle\frac{\partial f}{\partial x_i}, \ \partial_i f, \ f_{x_i}$ & Partial derivative with respect to $x_i$ \\[0.50em]
 $\displaystyle\frac{\partial^2 f}{\partial x_j\partial x_i}, \ \partial_{ji}f, \ f_{x_i x_j}$ & Mixed partial derivative, first with respect to $x_i$ and then $x_j$ \\[0.14em]
-$D_{\mathbf v}f(\mathbf a), \ \partial_{\mathbf v}f(\mathbf a)$ & Directional derivative of $f$ at $\mathbf a$ along $\mathbf v$ \\
+$D_{\mathbf{v}}f(\mathbf{a}), \ \partial_{\mathbf{v}}f(\mathbf{a})$ & Directional derivative of $f$ at $\mathbf{a}$ along $\mathbf{v}$ \\
 $\displaystyle\dd f=\sum_{i=1}^n\frac{\partial f}{\partial x_i}\,\dd x_i$ & Total differential of a scalar function of $n$ variables \\
 $\displaystyle\int f(x)\,\dd x$ & Indefinite integral of $f$ \\[0.10em]
 $\displaystyle\int_a^b f(x)\,\dd x$ & Definite integral over $[a, b]$ \\[0.10em]
@@ -82,17 +82,17 @@ $\psi(z)$ & Digamma function, $\psi(z)=\Gamma'(z)/\Gamma(z)$ \\
 $B(x, y)$ & Beta function \\
 $\gamma$ & Euler--Mascheroni constant \\
 $\zeta(s)$ & Riemann zeta function \\
-$\mathbf J_{\mathbf F}(\mathbf a), \ D\mathbf F(\mathbf a)$ & Jacobian matrix of $\mathbf F$ at $\mathbf a$ \\
-$\det\mathbf J_{\mathbf F}(\mathbf a), \ \det D\mathbf F(\mathbf a)$ & Jacobian determinant of $\mathbf F$ at $\mathbf a$ \\
+$\mathbf{J}_{\mathbf{F}}(\mathbf{a}), \ D\mathbf{F}(\mathbf{a})$ & Jacobian matrix of $\mathbf{F}$ at $\mathbf{a}$ \\
+$\det\mathbf{J}_{\mathbf{F}}(\mathbf{a}), \ \det D\mathbf{F}(\mathbf{a})$ & Jacobian determinant of $\mathbf{F}$ at $\mathbf{a}$ \\
 $\Hess f$ & Hessian matrix of $f$ \\
 $\nabla f, \ \operatorname{grad}f$ & Gradient of $f$ \\
-$\nabla\cdot\mathbf{F}, \ \operatorname{div}\mathbf F$ & Divergence of $\mathbf{F}$ \\
-$\nabla\times\mathbf{F}, \ \operatorname{curl}\mathbf F$ & Curl of $\mathbf{F}$ \\
+$\nabla\cdot\mathbf{F}, \ \operatorname{div}\mathbf{F}$ & Divergence of $\mathbf{F}$ \\
+$\nabla\times\mathbf{F}, \ \operatorname{curl}\mathbf{F}$ & Curl of $\mathbf{F}$ \\
 $\Delta f$ & Laplacian of $f$ \\
 $\mathbf{r}(t)$ & Parametrized curve \\
 $\dd s$ & Element of arc length \\
 $\displaystyle\int_C f\,\dd s$ & Scalar line integral along $C$ with respect to arc length \\[0.24em]
-$\displaystyle\int_C\mathbf{F}\cdot\dd\mathbf{r}$ & Line integral of the vector field $\mathbf F$ along $C$ \\[0.24em]
+$\displaystyle\int_C\mathbf{F}\cdot\dd\mathbf{r}$ & Line integral of the vector field $\mathbf{F}$ along $C$ \\[0.24em]
 $\displaystyle\iint_S f\,\dd S$ & Scalar surface integral over $S$ \\[0.24em]
 $\displaystyle\oiint_S$ & Surface integral over a closed surface $S$ \\[0.24em]
 $\displaystyle\iint_S\mathbf{F}\cdot\mathbf{n}\,\dd S$ & Flux integral through $S$ \\[0.24em]
@@ -106,10 +106,10 @@ $f(x)\sim g(x)$ & Asymptotic equivalence in the stated limiting regime, typicall
 $f_n\ptwto f, \ f_n\ptwlabelto f$ & Pointwise convergence of $f_n$ to $f$ \\*
 $f_n\unifto f, \ f_n\uniflabelto f$ & Uniform convergence \\
 $f_n\aeto f$ & Convergence almost everywhere \\
-$(X, \mathcal A, \mu)$ & Measure space $X$ with $\sigma$-algebra $\mathcal A$ and measure $\mu$ \\
-$\mathcal A$ & $\sigma$-algebra of measurable subsets of $X$, when the underlying set is understood \\
-$\mathcal B(X)$ & Borel $\sigma$-algebra of a topological space $X$ \\
-$\mu(E)$ & Measure of a measurable set $E\in\mathcal A$ \\
+$(X, \mathcal{A}, \mu)$ & Measure space $X$ with $\sigma$-algebra $\mathcal{A}$ and measure $\mu$ \\
+$\mathcal{A}$ & $\sigma$-algebra of measurable subsets of $X$, when the underlying set is understood \\
+$\mathcal{B}(X)$ & Borel $\sigma$-algebra of a topological space $X$ \\
+$\mu(E)$ & Measure of a measurable set $E\in\mathcal{A}$ \\
 $\displaystyle\int_E f\,\dd\mu$ & Integral of $f$ over $E$ with respect to the measure $\mu$ \\
 $f=g\ \text{a.e.}, \quad f=g\ \mu\text{-a.e.}$ & Equality almost everywhere, with the measure omitted when understood \\
 $\displaystyle\esssup_{x\in E} f(x)$ & Essential supremum of $f$ on $E$ \\
@@ -120,7 +120,7 @@ $C^\infty(\Omega)$ & Smooth functions on $\Omega$ \\
 $C_b(X)$ & Bounded continuous scalar-valued functions on $X$ \\
 $\operatorname{supp}f$ & Support of $f$ \\
 $C_c(\Omega), \ C_c^\infty(\Omega)$ & Continuous and smooth functions on $\Omega$ with compact support, respectively \\
-$\mathcal O(U)$ & Holomorphic functions on an open set $U\subseteq\C$ \\
+$\mathcal{O}(U)$ & Holomorphic functions on an open set $U\subseteq\C$ \\
 $V_a^b(f)$ & Total variation of $f$ on $[a, b]$ \\
 $\mathrm{BV}([a, b])$ & Functions of bounded variation on $[a, b]$ \\
 $\mathcal{R}([a, b])$ & Functions Riemann integrable on $[a, b]$ \\*
@@ -135,7 +135,7 @@ $\|f\|_{L^p(\Omega)}, \ \|f\|_p$ & $L^p$-norm of $f$ on $\Omega$ \\
 $\|f\|_{L^\infty(\Omega)}$ & Essential supremum norm of $f$ on $\Omega$ \\
 $\alpha=(\alpha_1, \dots, \alpha_n)\in\Nzero^n$ & Multi-index \\
 $|\alpha|, \ \alpha!$ & Order $|\alpha|=\alpha_1+\cdots+\alpha_n$ and factorial $\alpha!=\alpha_1!\cdots\alpha_n!$ of a multi-index \\
-$\mathbf x^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial for $\mathbf x=(x_1, \dots, x_n)$ \\
+$\mathbf{x}^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial for $\mathbf{x}=(x_1, \dots, x_n)$ \\
 $D^\alpha f, \ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$ \\
 $B_r(x)$ & Open ball of radius $r$ centered at $x$ \\*
 $\overline{B}_r(x)=\{y\mid d(x, y)\le r\}$ & Closed ball of radius $r$ centered at $x$; not necessarily the closure of $B_r(x)$ \\
