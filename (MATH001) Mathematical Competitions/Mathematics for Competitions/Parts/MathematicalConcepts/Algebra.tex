@@ -170,6 +170,10 @@ Let $f(x)=a_nx^n+\cdots+a_0\in\Z[x]$ be primitive. If a prime $p$ satisfies
 then $f$ is irreducible over $\Q$. The criterion can also be applied after a substitution $x\mapsto x+k$ with $k\in\Z$.
 \end{theorem}
 
+\begin{theorem}[Descartes' Rule of Signs]
+Let $f(x)\in\R[x]$ be a nonzero polynomial. The number of its positive real roots, counted with multiplicity, is at most the number of sign changes in the sequence of its nonzero coefficients and differs from that number by an even integer. Applying the same rule to $f(-x)$ bounds its negative real roots.
+\end{theorem}
+
 \begin{theorem}[Cauchy's Root Bound]
 If $f(z)=a_nz^n+\cdots+a_0$ with $a_n\ne0$, then every complex root $z$ satisfies
 \[
@@ -316,7 +320,7 @@ The inequality reverses if the two sequences are oppositely sorted.
 \end{theorem}
 
 \begin{theorem}[Schur's Inequality]
-For $a, b, c>0$ and $r\ge0$,
+For $a, b, c\ge0$ and $r>0$ (or for $a, b, c>0$ and $r=0$),
 \[
  \sum_{\mathrm{cyc}}a^r(a-b)(a-c)\ge0.
 \]

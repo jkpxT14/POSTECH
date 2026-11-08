@@ -1,1 +1,682 @@
 \chapter{Calculus and Analysis}
+
+\begin{definition}[Sequences, Limits, and Convergence]
+A sequence $(a_n)$ in $\R$ converges to $L\in\R$ if for every $\varepsilon>0$ there is $N\in\N$ such that $|a_n-L|<\varepsilon$ for all $n\ge N$. The same definition with modulus applies in $\C$. A sequence is \emph{Cauchy} if for every $\varepsilon>0$ there is $N$ such that $|a_m-a_n|<\varepsilon$ for all $m,n\ge N$.
+\end{definition}
+
+\begin{theorem}[Monotone Convergence Theorem for Sequences]
+Every bounded monotone real sequence converges. In particular, an increasing sequence $(a_n)$ bounded above converges to $\sup\{a_n\mid n\in\N\}$, and a decreasing sequence bounded below converges to its infimum.
+\end{theorem}
+
+\begin{theorem}[Cauchy Criterion and Bolzano--Weierstrass Theorem]
+A sequence in $\R^d$ converges if and only if it is Cauchy. Every bounded sequence in $\R^d$ has a convergent subsequence.
+\end{theorem}
+
+\begin{theorem}[Stolz--Ces\`aro Theorem]
+Let $(b_n)$ be strictly increasing with $b_n\to\infty$. If
+\[
+ \lim_{n\to\infty}\frac{a_{n+1}-a_n}{b_{n+1}-b_n}=L\in\overline\R,
+\]
+then $a_n/b_n\to L$. The assertion holds for extended real limits $L$.
+\end{theorem}
+
+\begin{theorem}[Squeeze Theorem]
+If $a_n\le b_n\le c_n$ for all sufficiently large $n$ and $a_n,c_n\to L$, then $b_n\to L$. The analogous result holds for functions approaching a limit point.
+\end{theorem}
+
+\begin{definition}[Limit and Continuity of a Real Function]
+Let $f\colon D\to\R$ and let $a$ be a limit point of $D\subseteq\R$. We write $\lim_{x\to a}f(x)=L$ if for every $\varepsilon>0$ there exists $\delta>0$ such that $x\in D$ and $0<|x-a|<\delta$ imply $|f(x)-L|<\varepsilon$. If $a\in D$, the function is continuous at $a$ when $\lim_{x\to a}f(x)=f(a)$.
+\end{definition}
+
+\begin{theorem}[Sequential Characterization of Limits]
+For $f\colon D\to\R$ and a limit point $a$ of $D$, one has $\lim_{x\to a}f(x)=L$ if and only if $f(x_n)\to L$ whenever $(x_n)$ lies in $D\setminus\{a\}$ and $x_n\to a$.
+\end{theorem}
+
+\begin{formula}[Standard Limits]
+For real $x\to0$,
+\[
+ \frac{\sin x}{x}\to1,\quad \frac{\tan x}{x}\to1,\quad
+ \frac{e^x-1}{x}\to1,\quad\frac{\ln(1+x)}x\to1,
+\]
+\[
+ \frac{1-\cos x}{x^2}\to\frac12,\qquad
+ \frac{(1+x)^\alpha-1}{x}\to\alpha\quad(\alpha\in\R).
+\]
+For real $t$, $(1+t/n)^n\to e^t$ as $n\to\infty$.
+\end{formula}
+
+\begin{theorem}[Intermediate Value Theorem]
+If $f\colon[a,b]\to\R$ is continuous and $y$ lies between $f(a)$ and $f(b)$, there exists $c\in[a,b]$ such that $f(c)=y$. In particular, a continuous function changing sign on an interval has a zero there.
+\end{theorem}
+
+\begin{theorem}[Extreme Value Theorem]
+A real-valued continuous function on a nonempty compact subset of $\R^n$ is bounded and attains its maximum and minimum.
+\end{theorem}
+
+\begin{definition}[Derivative and Differentiability]
+For $f\colon I\to\R$ and an interior point $a\in I$, the derivative is
+\[
+ f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}h,
+\]
+when this limit exists. Differentiability at $a$ implies continuity there.
+\end{definition}
+
+\begin{formula}[Differentiation Rules]
+For differentiable $f,g$ and a scalar $c$,
+\[
+ (cf+g)'=cf'+g',\quad(fg)'=f'g+fg',\quad
+ \left(\frac fg\right)'=\frac{f'g-fg'}{g^2}\quad(g\ne0),
+\]
+\[
+ (f\circ g)'=(f'\circ g)g'.
+\]
+If $f$ is locally invertible with $f'(a)\ne0$, then $(f^{-1})'(f(a))=1/f'(a)$.
+\end{formula}
+
+\begin{formula}[Elementary Derivatives]
+On their natural real domains,
+\[
+ \begin{aligned}
+ \diff{}{x}x^\alpha&=\alpha x^{\alpha-1}\quad(x>0),
+ &\diff{}{x}e^x&=e^x,
+ &\diff{}{x}\ln x&=\frac1x\quad(x>0),\\
+ \diff{}{x}\sin x&=\cos x,
+ &\diff{}{x}\cos x&=-\sin x,
+ &\diff{}{x}\arctan x&=\frac1{1+x^2}.
+ \end{aligned}
+\]
+Here $\diff{}{x}$ denotes differentiation with respect to $x$.
+\end{formula}
+
+\begin{theorem}[Rolle's and Mean Value Theorems]
+If $f\colon[a,b]\to\R$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then $f(a)=f(b)$ implies $f'(c)=0$ for some $c\in(a,b)$. More generally, some $c\in(a,b)$ satisfies
+\[
+ f'(c)=\frac{f(b)-f(a)}{b-a}.
+\]
+\end{theorem}
+
+\begin{theorem}[Darboux's Theorem for Derivatives]
+If $f$ is differentiable on an interval, its derivative has the intermediate value property, even when $f'$ is not continuous.
+\end{theorem}
+
+\begin{theorem}[Cauchy's Mean Value Theorem]
+If $f,g$ are continuous on $[a,b]$ and differentiable on $(a,b)$, then for some $c\in(a,b)$,
+\[
+ (f(b)-f(a))g'(c)=(g(b)-g(a))f'(c).
+\]
+A quotient form requires the relevant denominator to be nonzero.
+\end{theorem}
+
+\begin{theorem}[L'H\^opital's Rule]
+Suppose $f$ and $g$ are differentiable on a deleted neighborhood of $a$, with $g'(x)\ne0$ there, and either $f(x),g(x)\to0$ or $|f(x)|,|g(x)|\to\infty$ as $x\to a$. If $f'(x)/g'(x)\to L\in\overline\R$, then $f(x)/g(x)\to L$. One-sided and infinite-endpoint versions hold under the corresponding hypotheses.
+\end{theorem}
+
+\begin{theorem}[Taylor's Theorem with Lagrange Remainder]
+If $f$ has $n+1$ continuous derivatives on the closed interval between $a$ and $x$, then some $\xi$ strictly between $a$ and $x$ satisfies
+\[
+ f(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k
+ +\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}.
+\]
+If $|f^{(n+1)}|\le M$ throughout the interval, the remainder has modulus at most $M|x-a|^{n+1}/(n+1)!$.
+\end{theorem}
+
+\begin{formula}[Maclaurin Expansions]
+Within their indicated real or complex disks of convergence,
+\[
+ e^x=\sum_{n=0}^\infty\frac{x^n}{n!},\quad
+ \sin x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!},\quad
+ \cos x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!},
+\]
+\[
+ \frac1{1-x}=\sum_{n=0}^\infty x^n\quad(|x|<1),\qquad
+ \ln(1+x)=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}\quad(|x|<1),
+\]
+\[
+ (1+x)^\alpha=\sum_{n=0}^\infty\binom\alpha n x^n\quad(|x|<1,\ \alpha\in\R).
+\]
+The exponential and trigonometric expansions converge for all complex $x$.
+\end{formula}
+
+\begin{theorem}[Convexity and the Second Derivative]
+For a twice differentiable function $f$ on an interval, $f''\ge0$ implies convexity. A differentiable convex function satisfies
+\[
+ f(y)\ge f(x)+f'(x)(y-x).
+\]
+If $f''>0$ on an interval, $f$ is strictly convex there.
+\end{theorem}
+
+\begin{theorem}[Jensen's Inequality]
+If $f$ is convex on an interval, $x_1,\dots,x_n$ lie in that interval, and $w_i\ge0$ with $\sum_iw_i=1$, then
+\[
+ f\!\left(\sum_iw_ix_i\right)\le\sum_iw_if(x_i).
+\]
+If $f$ is strictly convex and all weights are positive, equality holds exactly when all $x_i$ coincide.
+\end{theorem}
+
+\begin{definition}[Riemann Integral]
+A bounded function $f\colon[a,b]\to\R$ is Riemann integrable if the upper and lower Darboux integrals agree; their common value is $\int_a^b f(x)\,\dd x$. Every continuous function on $[a,b]$ is Riemann integrable.
+\end{definition}
+
+\begin{theorem}[Fundamental Theorem of Calculus]
+For continuous $f\colon[a,b]\to\R$, the function $F(x)=\int_a^x f(t)\,\dd t$ satisfies $F'(x)=f(x)$ for $x\in(a,b)$. If $F'=f$ on $[a,b]$ (with the appropriate one-sided derivatives at the endpoints), then
+\[
+ \int_a^b f(x)\,\dd x=F(b)-F(a).
+\]
+\end{theorem}
+
+\begin{formula}[Integration by Parts and Substitution]
+For continuously differentiable $u,v\colon[a,b]\to\R$,
+\[
+ \int_a^b u(x)v'(x)\,\dd x
+ =[u(x)v(x)]_a^b-\int_a^b u'(x)v(x)\,\dd x.
+\]
+For continuously differentiable $\varphi\colon[\alpha,\beta]\to[a,b]$ and continuous $f$,
+\[
+ \int_\alpha^\beta f(\varphi(t))\varphi'(t)\,\dd t
+ =\int_{\varphi(\alpha)}^{\varphi(\beta)}f(x)\,\dd x.
+\]
+\end{formula}
+
+\begin{formula}[Useful Elementary Antiderivatives]
+On intervals where the expressions are defined,
+\[
+ \begin{aligned}
+ \int x^\alpha\,\dd x&=\frac{x^{\alpha+1}}{\alpha+1}+C
+ &(\alpha\ne-1,\ x>0),\\
+ \int\frac{\dd x}{x}&=\ln|x|+C,&
+ \int\frac{\dd x}{1+x^2}&=\arctan x+C,\\
+ \int\frac{\dd x}{\sqrt{1-x^2}}&=\arcsin x+C
+ &(-1<x<1),\\
+ \int e^{ax}\,\dd x&=\frac{e^{ax}}a+C&(a\ne0).
+ \end{aligned}
+\]
+\end{formula}
+
+\begin{formula}[Symmetry and Periodicity of Integrals]
+If $f$ is integrable on $[a,b]$, then
+\[
+ \int_a^b f(x)\,\dd x=\int_a^b f(a+b-x)\,\dd x.
+\]
+If $f$ is even, $\int_{-a}^a f(x)\,\dd x=2\int_0^a f(x)\,\dd x$; if $f$ is odd, the symmetric integral is zero. If $f$ is periodic with period $T>0$ and integrable on every compact interval, then $\int_a^{a+T}f(x)\,\dd x$ is independent of $a$.
+\end{formula}
+
+\begin{theorem}[Leibniz Rule for Differentiation under the Integral Sign]
+If $f$ and $\partial f/\partial t$ are continuous on $[a,b]\times I$ with $I$ an open interval, then
+\[
+ \diff{}{t}\int_a^b f(x,t)\,\dd x
+ =\int_a^b\frac{\partial f}{\partial t}(x,t)\,\dd x.
+\]
+For differentiable endpoints $a(t), b(t)$, the corresponding formula is
+\[
+ \diff{}{t}\int_{a(t)}^{b(t)}f(x,t)\,\dd x
+ =f(b(t),t)b'(t)-f(a(t),t)a'(t)
+ +\int_{a(t)}^{b(t)}\frac{\partial f}{\partial t}(x,t)\,\dd x,
+\]
+under the analogous continuity hypotheses.
+\end{theorem}
+
+\begin{formula}[Gaussian Integral]
+For $a>0$,
+\[
+ \int_{-\infty}^\infty e^{-ax^2}\,\dd x=\sqrt{\frac\pi a},
+ \qquad \int_0^\infty e^{-ax^2}\,\dd x=\frac12\sqrt{\frac\pi a}.
+\]
+Consequently $\int_{-\infty}^\infty x^{2m+1}e^{-ax^2}\,\dd x=0$ for $m\in\Nzero$, and even moments can be obtained by differentiating with respect to $a$.
+\end{formula}
+
+\begin{formula}[Frullani's Integral]
+If $a,b>0$ and $f\colon(0,\infty)\to\R$ is continuously differentiable with finite limits at $0^+$ and $\infty$, and the improper integral exists, then
+\[
+ \int_0^\infty\frac{f(ax)-f(bx)}x\,\dd x
+ =(f(0^+)-f(\infty))\ln\frac ba.
+\]
+\end{formula}
+
+\begin{definition}[Gamma and Beta Functions]
+For $s>0$ and $x,y>0$, respectively,
+\[
+ \Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,\dd t,
+ \qquad B(x,y)=\int_0^1 t^{x-1}(1-t)^{y-1}\,\dd t.
+\]
+They satisfy $\Gamma(s+1)=s\Gamma(s)$ and $\Gamma(n+1)=n!$ for $n\in\Nzero$.
+\end{definition}
+
+\begin{formula}[Beta--Gamma Identity and Euler Reflection Formula]
+For $x,y>0$,
+\[
+ B(x,y)=\frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}.
+\]
+For $z\in\C\setminus\Z$ where both sides are defined through meromorphic continuation,
+\[
+ \Gamma(z)\Gamma(1-z)=\frac\pi{\sin(\pi z)}.
+\]
+In particular, $\Gamma(1/2)=\sqrt\pi$.
+\end{formula}
+
+\begin{formula}[Stirling's Formula]
+As $n\to\infty$ through positive integers,
+\[
+ n!\sim\sqrt{2\pi n}\left(\frac ne\right)^n,
+\qquad \ln(n!)=n\ln n-n+\frac12\ln(2\pi n)+O(1/n).
+\]
+Here $a_n\sim b_n$ means $a_n/b_n\to1$.
+\end{formula}
+
+\begin{definition}[Infinite Series and Absolute Convergence]
+The series $\sum_{n=1}^\infty a_n$ converges when its partial sums converge. It converges absolutely if $\sum_{n=1}^\infty|a_n|<\infty$; absolute convergence implies convergence for real or complex series.
+\end{definition}
+
+\begin{theorem}[Comparison and Integral Tests]
+If $0\le a_n\le b_n$ for all sufficiently large $n$ and $\sum b_n$ converges, then $\sum a_n$ converges. If $f\colon[1,\infty)\to[0,\infty)$ is decreasing, then $\sum_{n=1}^\infty f(n)$ converges if and only if $\int_1^\infty f(x)\,\dd x$ converges. In particular, $\sum_{n=1}^\infty n^{-p}$ converges exactly when $p>1$.
+\end{theorem}
+
+\begin{theorem}[Ratio and Root Tests]
+For a series $\sum a_n$, let $L=\limsup_{n\to\infty}|a_n|^{1/n}$. If $L<1$, the series converges absolutely; if $L>1$, it diverges. If the ratio $|a_{n+1}/a_n|$ exists eventually and tends to $L$, the same conclusions hold for $L<1$ and $L>1$. Neither test decides the case $L=1$.
+\end{theorem}
+
+\begin{theorem}[Alternating Series Test and Remainder]
+If $a_n\ge0$ decreases to zero, the series $\sum_{n=1}^\infty(-1)^{n-1}a_n$ converges. Its remainder after $N$ terms satisfies
+\[
+ \left|\sum_{n=N+1}^\infty(-1)^{n-1}a_n\right|\le a_{N+1}.
+\]
+\end{theorem}
+
+\begin{theorem}[Cauchy Condensation Test]
+If $(a_n)$ is nonincreasing and nonnegative, then
+\[
+ \sum_{n=1}^{\infty}a_n<\infty
+ \quad\Longleftrightarrow\quad
+ \sum_{k=0}^{\infty}2^ka_{2^k}<\infty.
+\]
+\end{theorem}
+
+\begin{theorem}[Dirichlet's and Abel's Tests for Series]
+If the partial sums of $(a_n)$ are bounded and $(b_n)$ is a real monotone sequence tending to zero, then $\sum a_nb_n$ converges (Dirichlet). If $\sum a_n$ converges and $(b_n)$ is a bounded monotone real sequence, then $\sum a_nb_n$ converges (Abel).
+\end{theorem}
+
+\begin{formula}[Summation by Parts]
+For scalar sequences $(a_n)$ and $(b_n)$, let $A_n=\sum_{k=1}^n a_k$. Then
+\[
+ \sum_{k=1}^n a_kb_k
+ =A_nb_n+\sum_{k=1}^{n-1}A_k(b_k-b_{k+1}).
+\]
+This is the discrete analogue of integration by parts.
+\end{formula}
+
+\begin{definition}[Power Series and Radius of Convergence]
+For the power series $\sum_{n=0}^\infty a_n(z-z_0)^n$, its radius of convergence $R\in[0,\infty]$ is characterized by absolute convergence when $|z-z_0|<R$ and divergence when $|z-z_0|>R$.
+\end{definition}
+
+\begin{theorem}[Cauchy--Hadamard Formula]
+The radius of convergence of $\sum_{n=0}^\infty a_n(z-z_0)^n$ is
+\[
+ \frac1R=\limsup_{n\to\infty}|a_n|^{1/n},
+\]
+with the conventions $1/0=\infty$ and $1/\infty=0$.
+\end{theorem}
+
+\begin{theorem}[Differentiation and Integration of Power Series]
+Inside its disk of convergence, a power series may be differentiated and integrated term by term; the resulting series have the same radius of convergence. In particular,
+\[
+ \frac{\dd}{\dd z}\sum_{n=0}^\infty a_n(z-z_0)^n
+ =\sum_{n=1}^\infty na_n(z-z_0)^{n-1}.
+\]
+\end{theorem}
+
+\begin{definition}[Metric Spaces, Open Sets, and Compactness]
+A metric space $(X,d)$ consists of a set $X$ and a metric $d$. A subset $U\subseteq X$ is open if every $x\in U$ has some ball $B_r(x)\subseteq U$. A set $K\subseteq X$ is compact if every open cover of $K$ has a finite subcover. A metric space is complete if every Cauchy sequence converges in it.
+\end{definition}
+
+\begin{theorem}[Heine--Borel Theorem]
+A subset of $\R^n$ is compact if and only if it is closed and bounded. Every sequence in a compact metric space has a convergent subsequence with limit in that space.
+\end{theorem}
+
+\begin{definition}[Connectedness]
+A topological space is connected if it cannot be expressed as the union of two disjoint nonempty open subsets. A subset of $\R$ is connected exactly when it is an interval. A continuous image of a connected space is connected.
+\end{definition}
+
+\begin{theorem}[Continuous Images of Compact Sets]
+The continuous image of a compact topological space is compact. A continuous bijection from a compact space onto a Hausdorff space has a continuous inverse.
+\end{theorem}
+
+\begin{definition}[Uniform Continuity]
+A function $f\colon(X,d_X)\to(Y,d_Y)$ is uniformly continuous if for every $\varepsilon>0$ there exists $\delta>0$ such that
+\[
+ d_X(x,y)<\delta\quad\Longrightarrow\quad d_Y(f(x),f(y))<\varepsilon
+\]
+for all $x,y\in X$.
+\end{definition}
+
+\begin{theorem}[Heine--Cantor Theorem]
+Every continuous map from a compact metric space into a metric space is uniformly continuous.
+\end{theorem}
+
+\begin{definition}[Pointwise and Uniform Convergence]
+For functions $f_n\colon E\to\R$, pointwise convergence to $f$ means $f_n(x)\to f(x)$ for every $x\in E$. Uniform convergence means
+\[
+ \sup_{x\in E}|f_n(x)-f(x)|\longrightarrow0
+\]
+when the supremum is finite for all sufficiently large $n$.
+\end{definition}
+
+\begin{theorem}[Uniform Limit Theorem]
+If $f_n$ is continuous on a metric space $E$ for every $n$ and $f_n\to f$ uniformly on $E$, then $f$ is continuous on $E$.
+\end{theorem}
+
+\begin{theorem}[Weierstrass M-Test]
+Let $f_n\colon E\to\C$ and suppose $|f_n(x)|\le M_n$ for every $x\in E$, where $M_n\ge0$ and $\sum_n M_n<\infty$. Then $\sum_n f_n$ converges absolutely and uniformly on $E$.
+\end{theorem}
+
+\begin{theorem}[Termwise Integration for Uniformly Convergent Series]
+If $(f_n)$ is a sequence of Riemann-integrable functions on $[a,b]$ converging uniformly to $f$, then $f$ is Riemann integrable and
+\[
+ \lim_{n\to\infty}\int_a^b f_n(x)\,\dd x
+ =\int_a^b f(x)\,\dd x.
+\]
+The same conclusion holds for uniformly convergent series by considering their partial sums.
+\end{theorem}
+
+\begin{theorem}[Termwise Differentiation]
+Suppose $f_n$ is continuously differentiable on $[a,b]$, the derivatives $f_n'$ converge uniformly to $g$ there, and $f_n(x_0)$ converges for some $x_0\in[a,b]$. Then $f_n$ converges uniformly to a differentiable function $f$ with $f'=g$ on $(a,b)$.
+\end{theorem}
+
+\begin{theorem}[Banach Fixed-Point Theorem]
+Let $(X,d)$ be a nonempty complete metric space and let $T\colon X\to X$ satisfy $d(Tx,Ty)\le qd(x,y)$ for all $x,y\in X$, where $0\le q<1$. Then $T$ has a unique fixed point $x^*$. For any starting point $x_0$, the iterates $x_{n+1}=T(x_n)$ converge to $x^*$.
+\end{theorem}
+
+\begin{theorem}[Arzel\`a--Ascoli Theorem]
+A uniformly bounded, equicontinuous family of real- or complex-valued continuous functions on a compact metric space has compact closure in the uniform norm. Equivalently, every sequence in such a family has a uniformly convergent subsequence.
+\end{theorem}
+
+\begin{theorem}[Baire Category Theorem]
+A nonempty complete metric space is not a countable union of nowhere dense sets. Equivalently, the intersection of countably many open dense subsets is dense.
+\end{theorem}
+
+\begin{definition}[Limit Superior and Limit Inferior]
+For a real sequence $(a_n)$, its extended-real limit superior and limit inferior are
+\[
+ \limsup_{n\to\infty}a_n=\lim_{n\to\infty}\sup_{k\ge n}a_k,
+\quad
+ \liminf_{n\to\infty}a_n=\lim_{n\to\infty}\inf_{k\ge n}a_k.
+\]
+If both values are finite and equal to $L$, then $a_n\to L$.
+\end{definition}
+
+\begin{definition}[Measurable Functions and Lebesgue Integration]
+On a measure space $(X,\mathcal A,\mu)$, a real-valued measurable function has measurable preimages of Borel sets. A measurable function is integrable if $\int_X|f|\,\dd\mu<\infty$; statements holding outside a null set hold \emph{almost everywhere} (a.e.).
+\end{definition}
+
+\begin{theorem}[Monotone Convergence Theorem for Integrals]
+If $(f_n)$ is an increasing sequence of nonnegative measurable functions converging pointwise almost everywhere to $f$, then
+\[
+ \int_X f_n\,\dd\mu\longrightarrow\int_X f\,\dd\mu,
+\]
+allowing the value $+\infty$.
+\end{theorem}
+
+\begin{theorem}[Fatou's Lemma]
+For nonnegative measurable functions $(f_n)$,
+\[
+ \int_X\liminf_{n\to\infty}f_n\,\dd\mu
+ \le\liminf_{n\to\infty}\int_X f_n\,\dd\mu.
+\]
+\end{theorem}
+
+\begin{theorem}[Dominated Convergence Theorem]
+Suppose $f_n\to f$ almost everywhere, each $f_n$ is measurable, and $|f_n|\le g$ almost everywhere for an integrable function $g$. Then $f$ is integrable and
+\[
+ \lim_{n\to\infty}\int_X f_n\,\dd\mu
+ =\int_X f\,\dd\mu.
+\]
+\end{theorem}
+
+\begin{theorem}[Tonelli's and Fubini's Theorems]
+On the product of two $\sigma$-finite measure spaces, a nonnegative measurable function may be integrated by iterated integration in either order (Tonelli), possibly with value $+\infty$. If the function is absolutely integrable on the product, both iterated integrals exist and equal the product-space integral (Fubini).
+\end{theorem}
+
+\begin{definition}[Differentiability in Several Variables]
+For $f\colon U\subseteq\R^n\to\R^m$ with $U$ open, $f$ is differentiable at $\mathbf a\in U$ if there is a linear map $Df(\mathbf a)$ such that
+\[
+ f(\mathbf a+\mathbf h)=f(\mathbf a)+Df(\mathbf a)\mathbf h+o(\|\mathbf h\|).
+\]
+Its matrix in standard coordinates is the Jacobian $\mathbf J_f(\mathbf a)$. For scalar $f$, the derivative is represented by the gradient $\nabla f(\mathbf a)$.
+\end{definition}
+
+\begin{theorem}[Multivariable Chain Rule]
+If $f\colon U\to V$ and $g\colon V\to W$ are differentiable at $\mathbf a$ and $f(\mathbf a)$, respectively, then
+\[
+ D(g\circ f)(\mathbf a)=Dg(f(\mathbf a))Df(\mathbf a).
+\]
+\end{theorem}
+
+\begin{theorem}[Clairaut's Theorem]
+If the mixed second partial derivatives $\partial^2 f/(\partial x_i\partial x_j)$ and $\partial^2 f/(\partial x_j\partial x_i)$ are continuous in a neighborhood of $\mathbf a$, then they are equal at $\mathbf a$.
+\end{theorem}
+
+\begin{theorem}[Multivariable Taylor's Theorem, Second Order]
+If $f\colon U\subseteq\R^n\to\R$ is twice continuously differentiable near $\mathbf a$, then as $\mathbf h\to\mathbf0$,
+\[
+ f(\mathbf a+\mathbf h)=f(\mathbf a)+\nabla f(\mathbf a)\cdot\mathbf h
+ +\frac12\mathbf h^{\mathsf T}(\Hess f)(\mathbf a)\mathbf h
+ +o(\|\mathbf h\|^2).
+\]
+\end{theorem}
+
+\begin{theorem}[Inverse Function Theorem]
+If $f\colon U\subseteq\R^n\to\R^n$ is continuously differentiable and $\det Df(\mathbf a)\ne0$, then $f$ restricts to a continuously differentiable bijection between suitable neighborhoods of $\mathbf a$ and $f(\mathbf a)$, and
+\[
+ D(f^{-1})(f(\mathbf a))=(Df(\mathbf a))^{-1}.
+\]
+\end{theorem}
+
+\begin{theorem}[Implicit Function Theorem]
+Let $F\colon U\subseteq\R^{n+m}\to\R^m$ be continuously differentiable, with $F(\mathbf a,\mathbf b)=\mathbf0$. If the $m\times m$ partial derivative matrix $D_{\mathbf y}F(\mathbf a,\mathbf b)$ is invertible, then locally there is a unique continuously differentiable function $\mathbf y=g(\mathbf x)$ satisfying $F(\mathbf x,g(\mathbf x))=\mathbf0$ and $g(\mathbf a)=\mathbf b$.
+\end{theorem}
+
+\begin{theorem}[Second Derivative Test]
+Suppose $f\colon U\subseteq\R^n\to\R$ is twice continuously differentiable and $\nabla f(\mathbf a)=\mathbf0$. If $\Hess f(\mathbf a)$ is positive definite, $\mathbf a$ is a strict local minimum; if it is negative definite, a strict local maximum; if it is indefinite, $\mathbf a$ is a saddle point. A singular positive or negative semidefinite Hessian alone need not decide the extremum.
+\end{theorem}
+
+\begin{theorem}[Lagrange Multipliers]
+Let $f,g_1,\dots,g_k$ be continuously differentiable near a constrained local extremum $\mathbf a$ with $g_i(\mathbf a)=0$. If $\nabla g_1(\mathbf a),\dots,\nabla g_k(\mathbf a)$ are linearly independent, then some scalars $\lambda_i$ satisfy
+\[
+ \nabla f(\mathbf a)=\sum_{i=1}^k\lambda_i\nabla g_i(\mathbf a).
+\]
+\end{theorem}
+
+\begin{theorem}[Euler's Theorem for Homogeneous Functions]
+If $f\colon U\subseteq\R^n\to\R$ is differentiable and homogeneous of degree $d$ on an open cone $U$, then
+\[
+ \sum_{i=1}^n x_i\frac{\partial f}{\partial x_i}(\mathbf x)=df(\mathbf x).
+\]
+\end{theorem}
+
+\begin{theorem}[Fubini's Theorem for Continuous Functions]
+If $f$ is continuous on the rectangle $[a,b]\times[c,d]$, then
+\[
+ \int_a^b\!\int_c^d f(x,y)\,\dd y\,\dd x
+ =\int_c^d\!\int_a^b f(x,y)\,\dd x\,\dd y.
+\]
+\end{theorem}
+
+\begin{theorem}[Change of Variables in Multiple Integrals]
+Let $\varphi\colon U\to V$ be a continuously differentiable diffeomorphism between open subsets of $\R^n$. For integrable $f$ with suitable compact support in $V$,
+\[
+ \int_V f(\mathbf y)\,\dd\mathbf y
+ =\int_U f(\varphi(\mathbf x))|\det D\varphi(\mathbf x)|\,\dd\mathbf x.
+\]
+\end{theorem}
+
+\begin{formula}[Polar and Spherical Jacobians]
+The plane polar substitution $x=r\cos\theta$, $y=r\sin\theta$ has area element $\dd A=r\,\dd r\,\dd\theta$ for $r\ge0$. With spherical coordinates
+\[
+ (x,y,z)=(r\sin\phi\cos\theta,r\sin\phi\sin\theta,r\cos\phi),
+\]
+where $r\ge0$ and $0\le\phi\le\pi$, the volume element is $\dd V=r^2\sin\phi\,\dd r\,\dd\phi\,\dd\theta$.
+\end{formula}
+
+\begin{theorem}[Green's Theorem]
+Let $D\subseteq\R^2$ be a bounded plane region with positively oriented, piecewise smooth, simple closed boundary and let $P,Q$ have continuous first partial derivatives on a neighborhood of $\overline D$. Then
+\[
+ \oint_{\partial D}P\,\dd x+Q\,\dd y
+ =\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\dd A.
+\]
+\end{theorem}
+
+\begin{theorem}[Stokes' and Divergence Theorems]
+For a sufficiently smooth oriented surface $S\subseteq\R^3$ with positively oriented boundary and a smooth vector field $\mathbf F$,
+\[
+ \oint_{\partial S}\mathbf F\cdot\dd\mathbf r
+ =\iint_S(\nabla\times\mathbf F)\cdot\mathbf n\,\dd S.
+\]
+For a bounded solid region $\Omega$ with piecewise smooth outward-oriented boundary,
+\[
+ \iint_{\partial\Omega}\mathbf F\cdot\mathbf n\,\dd S
+ =\iiint_\Omega(\nabla\cdot\mathbf F)\,\dd V.
+\]
+\end{theorem}
+
+\begin{definition}[Holomorphic and Entire Functions]
+For an open set $U\subseteq\C$, a function $f\colon U\to\C$ is \emph{holomorphic} if its complex derivative exists at every point of $U$. It is \emph{entire} if $U=\C$. A meromorphic function on $U$ is holomorphic except at isolated poles.
+\end{definition}
+
+\begin{theorem}[Cauchy--Riemann Equations]
+If $f=u+iv$ is complex differentiable at $z=x+iy$ and $u,v$ have the corresponding real partial derivatives, then
+\[
+ u_x=v_y,\qquad u_y=-v_x.
+\]
+Conversely, if $u,v$ have continuous first partial derivatives on an open set and satisfy these equations, then $f$ is holomorphic there.
+\end{theorem}
+
+\begin{formula}[Complex Exponential, Argument, and Logarithm]
+For $z=x+iy$,
+\[
+ e^z=e^x(\cos y+i\sin y),\qquad e^{2\pi i}=1.
+\]
+For $z\ne0$, let $-\pi<\Arg z\le\pi$. The principal logarithm is
+\[
+ \Log z=\ln|z|+i\Arg z,
+\]
+and the multivalued logarithm is $\log z=\{\Log z+2\pi ik\mid k\in\Z\}$. The principal logarithm is holomorphic on $\C\setminus(-\infty,0]$.
+\end{formula}
+
+\begin{theorem}[Cauchy--Goursat Theorem]
+If $U\subseteq\C$ is simply connected and $f$ is holomorphic on $U$, then $\oint_\gamma f(z)\,\dd z=0$ for every closed piecewise smooth curve $\gamma$ in $U$.
+\end{theorem}
+
+\begin{theorem}[Cauchy Integral Formula]
+Let $f$ be holomorphic in a neighborhood of the closure of a bounded domain $D\subseteq\C$ whose boundary $\partial D$ is a positively oriented, piecewise smooth, simple closed curve. For $a\in D$ and $n\in\Nzero$,
+\[
+ f^{(n)}(a)=\frac{n!}{2\pi i}\oint_{\partial D}\frac{f(z)}{(z-a)^{n+1}}\,\dd z.
+\]
+\end{theorem}
+
+\begin{theorem}[Cauchy Estimates]
+If $f$ is holomorphic on a neighborhood of the closed disk $\overline{B_R(a)}$ and $|f(z)|\le M$ on its boundary, then for every $n\in\Nzero$,
+\[
+ |f^{(n)}(a)|\le\frac{n!M}{R^n}.
+\]
+\end{theorem}
+
+\begin{theorem}[Schwarz Lemma]
+If $f$ is holomorphic on the unit disk, $|f(z)|\le1$ there, and $f(0)=0$, then
+\[
+ |f(z)|\le|z|,\qquad |f'(0)|\le1.
+\]
+If equality holds for some nonzero $z$ in the disk, or if $|f'(0)|=1$, then $f(z)=e^{i\theta}z$ for some real $\theta$.
+\end{theorem}
+
+\begin{theorem}[Liouville's Theorem]
+Every bounded entire function is constant.
+\end{theorem}
+
+\begin{theorem}[Maximum Modulus Principle]
+If $f$ is holomorphic and nonconstant on a connected open set $U$, then $|f|$ has no local maximum in $U$. Consequently, if $f$ is continuous on $\overline D$ and holomorphic on a bounded domain $D$, then $\max_{\overline D}|f|=\max_{\partial D}|f|$.
+\end{theorem}
+
+\begin{theorem}[Identity Theorem]
+If two holomorphic functions on a connected open set $U$ agree on a subset having a limit point in $U$, then they agree everywhere on $U$. In particular, the zeros of a nonzero holomorphic function are isolated.
+\end{theorem}
+
+\begin{theorem}[Taylor and Laurent Expansions]
+A holomorphic function on a disk $B_R(a)$ has a Taylor series converging to it throughout that disk:
+\[
+ f(z)=\sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(z-a)^n.
+\]
+A holomorphic function on an annulus $r<|z-a|<R$ has a unique Laurent expansion $\sum_{n\in\Z}c_n(z-a)^n$ converging locally uniformly there.
+\end{theorem}
+
+\begin{definition}[Zeros, Poles, and Residues]
+An isolated zero of $f$ has order $m$ when $f(z)=(z-a)^mg(z)$ with $g(a)\ne0$ holomorphic. A pole has order $m$ when $1/f$ has a zero of order $m$. The residue $\Res(f;a)$ is the coefficient of $(z-a)^{-1}$ in the Laurent series of $f$ around $a$.
+\end{definition}
+
+\begin{formula}[Residues at Poles]
+For a simple pole $a$ of $f$, $\Res(f;a)=\lim_{z\to a}(z-a)f(z)$. For a pole of order $m$,
+\[
+ \Res(f;a)=\frac1{(m-1)!}\lim_{z\to a}
+ \frac{\dd^{m-1}}{\dd z^{m-1}}\bigl((z-a)^m f(z)\bigr).
+\]
+If $g(a)=0$, $g'(a)\ne0$, and $h$ is holomorphic near $a$, then $\Res(h/g;a)=h(a)/g'(a)$.
+\end{formula}
+
+\begin{theorem}[Residue Theorem]
+If $f$ is meromorphic near the closure of a bounded domain $D$ with positively oriented, piecewise smooth simple boundary, and has no pole on $\partial D$, then
+\[
+ \oint_{\partial D}f(z)\,\dd z
+ =2\pi i\sum_{a\in D}\Res(f;a),
+\]
+where the sum runs over the poles in $D$.
+\end{theorem}
+
+\begin{theorem}[Rouch\'e's Theorem]
+If $f,g$ are holomorphic in a neighborhood of the closure of a bounded domain $D$ with piecewise smooth simple boundary and $|g(z)|<|f(z)|$ on $\partial D$, then $f$ and $f+g$ have the same number of zeros in $D$, counted with multiplicity.
+\end{theorem}
+
+\begin{theorem}[Argument Principle]
+Let $f$ be meromorphic in a neighborhood of the closure of a bounded domain $D$, with no zeros or poles on $\partial D$. Then
+\[
+ \frac1{2\pi i}\oint_{\partial D}\frac{f'(z)}{f(z)}\,\dd z=N-P,
+\]
+where $N$ and $P$ count zeros and poles in $D$ with multiplicity.
+\end{theorem}
+
+\begin{definition}[M\"obius Transformations]
+A M\"obius transformation of the extended complex plane is
+\[
+ T(z)=\frac{az+b}{cz+d},\qquad ad-bc\ne0.
+\]
+It maps generalized circles (circles or lines in $\C$, interpreted on the Riemann sphere) to generalized circles and preserves cross ratios.
+\end{definition}
+
+\begin{theorem}[Fundamental Theorem of Algebra via Complex Analysis]
+Every nonconstant polynomial with complex coefficients has a complex root. Equivalently, the field $\C$ is algebraically closed.
+\end{theorem}
+
+\begin{formula}[Fourier Orthogonality and Parseval's Identity]
+For integers $m,n$, 
+\[
+ \frac1{2\pi}\int_{-\pi}^\pi e^{i(m-n)x}\,\dd x
+ =\begin{cases}1,&m=n,\\0,&m\ne n.\end{cases}
+\]
+If $f\in L^2([-\pi,\pi])$ and $\widehat f(n)=(2\pi)^{-1}\int_{-\pi}^\pi f(x)e^{-inx}\,\dd x$, then
+\[
+ \frac1{2\pi}\int_{-\pi}^\pi|f(x)|^2\,\dd x
+ =\sum_{n\in\Z}|\widehat f(n)|^2.
+\]
+\end{formula}
+
+\begin{theorem}[Gronwall's Inequality, Integral Form]
+Suppose $u\colon[0,T]\to[0,\infty)$ is continuous and $u(t)\le A+B\int_0^t u(s)\,\dd s$ for constants $A,B\ge0$. Then
+\[
+ u(t)\le A e^{Bt}\qquad(0\le t\le T).
+\]
+\end{theorem}
+
+\begin{formula}[First-Order Linear Differential Equations]
+For continuous $p,q$ on an interval, every solution of $y'+p(x)y=q(x)$ satisfies
+\[
+ y(x)=e^{-P(x)}\left(C+\int_{x_0}^x e^{P(t)}q(t)\,\dd t\right),
+ \qquad P(x)=\int_{x_0}^x p(t)\,\dd t.
+\]
+\end{formula}
+

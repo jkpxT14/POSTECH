@@ -1,1 +1,593 @@
 \chapter{Linear Algebra}
+
+\begin{definition}[Vector Space and Subspace]
+A vector space $V$ over a field $F$ is an abelian group under addition equipped with scalar multiplication satisfying the vector-space axioms. A subset $U\subseteq V$ is a subspace when it contains $\mathbf0$ and is closed under addition and scalar multiplication.
+\end{definition}
+
+\begin{definition}[Linear Combinations, Span, and Independence]
+For vectors $\mathbf v_1,\dots,\mathbf v_k\in V$, their span is
+\[
+ \Span(\mathbf v_1,\dots,\mathbf v_k)
+ =\left\{\sum_{i=1}^k c_i\mathbf v_i\ \middle|\ c_i\in F\right\}.
+\]
+They are linearly independent if $\sum_i c_i\mathbf v_i=\mathbf0$ implies $c_1=\cdots=c_k=0$.
+\end{definition}
+
+\begin{definition}[Basis and Dimension]
+A basis of $V$ is a linearly independent set spanning $V$. If $V$ has a finite basis, all bases have the same number of vectors, called $\dim V$. By convention, $\dim\{\mathbf0\}=0$.
+\end{definition}
+
+\begin{theorem}[Basis Extension Theorem]
+Every linearly independent list in a finite-dimensional vector space extends to a basis, and every finite spanning list contains a basis. Consequently, any $n+1$ vectors in an $n$-dimensional space are linearly dependent.
+\end{theorem}
+
+\begin{theorem}[Dimension Formula for Subspaces]
+For subspaces $U,W$ of a finite-dimensional vector space,
+\[
+ \dim(U+W)=\dim U+\dim W-\dim(U\cap W).
+\]
+Their sum is direct exactly when $U\cap W=\{\mathbf0\}$.
+\end{theorem}
+
+\begin{definition}[Direct Sum and Quotient Space]
+For subspaces $U,W\subseteq V$, the sum $U+W$ is a direct sum $U\oplus W$ if every element has a unique expression $\mathbf u+\mathbf w$. For $U\subseteq V$, the quotient vector space $V/U$ consists of cosets $\mathbf v+U$; if $V$ is finite-dimensional, $\dim(V/U)=\dim V-\dim U$.
+\end{definition}
+
+\begin{definition}[Linear Map, Kernel, and Image]
+A map $T\colon V\to W$ between vector spaces over $F$ is linear if $T(a\mathbf u+b\mathbf v)=aT(\mathbf u)+bT(\mathbf v)$. Its kernel and image are
+\[
+ \ker T=\{\mathbf v\in V\mid T(\mathbf v)=\mathbf0\},\qquad
+ \im T=\{T(\mathbf v)\mid\mathbf v\in V\}.
+\]
+\end{definition}
+
+\begin{theorem}[Rank--Nullity Theorem]
+For a linear map $T\colon V\to W$ with finite-dimensional domain,
+\[
+ \dim V=\dim\ker T+\dim\im T.
+\]
+In particular, a linear endomorphism of a finite-dimensional space is injective if and only if it is surjective.
+\end{theorem}
+
+\begin{theorem}[First Isomorphism Theorem for Vector Spaces]
+If $T\colon V\to W$ is linear, then $V/\ker T\cong\im T$ as vector spaces.
+\end{theorem}
+
+\begin{definition}[Matrix Representation of a Linear Map]
+For ordered bases $\mathcal B$ of $V$ and $\mathcal C$ of $W$, the matrix $[T]_{\mathcal C\leftarrow\mathcal B}$ of $T\colon V\to W$ is characterized by
+\[
+ [T(\mathbf v)]_{\mathcal C}=[T]_{\mathcal C\leftarrow\mathcal B}
+ [\mathbf v]_{\mathcal B}.
+\]
+Columns represent images of the basis vectors of $\mathcal B$ in coordinates relative to $\mathcal C$.
+\end{definition}
+
+\begin{theorem}[Similarity and Change of Basis]
+If $\mathbf A$ and $\mathbf B$ represent a linear operator on the same finite-dimensional space in two bases, then
+\[
+ \mathbf B=\mathbf P^{-1}\mathbf A\mathbf P
+\]
+for an invertible change-of-coordinates matrix $\mathbf P$. Similar matrices have the same characteristic polynomial, trace, determinant, and eigenvalues with multiplicities.
+\end{theorem}
+
+\begin{definition}[Rank, Column Space, and Null Space]
+For $\mathbf A\in F^{m\times n}$, let $\Col(\mathbf A)\subseteq F^m$ be the column space and
+\[
+ \Null(\mathbf A)=\{\mathbf x\in F^n\mid\mathbf A\mathbf x=\mathbf0\}.
+\]
+The rank $\rk(\mathbf A)$ is $\dim\Col(\mathbf A)$. The nullity is $\dim\Null(\mathbf A)$, and $\rk(\mathbf A)+\dim\Null(\mathbf A)=n$.
+\end{definition}
+
+\begin{theorem}[Row Rank Equals Column Rank]
+For every matrix over a field, the maximum number of linearly independent rows equals the maximum number of linearly independent columns. Both equal $\rk(\mathbf A)$.
+\end{theorem}
+
+\begin{theorem}[Ranks of Products and Sums]
+For compatible matrices over a field,
+\[
+ \rk(\mathbf A\mathbf B)\le\min(\rk\mathbf A,\rk\mathbf B),
+ \qquad \rk(\mathbf A+\mathbf B)\le\rk\mathbf A+\rk\mathbf B.
+\]
+If $\mathbf A\in F^{m\times n}$ and $\mathbf B\in F^{n\times p}$, Sylvester's inequality states
+\[
+ \rk(\mathbf A\mathbf B)\ge\rk\mathbf A+\rk\mathbf B-n.
+\]
+\end{theorem}
+
+\begin{theorem}[Rouch\'e--Capelli Criterion]
+A linear system $\mathbf A\mathbf x=\mathbf b$ is consistent if and only if
+\[
+ \rk(\mathbf A)=\rk\begin{pmatrix}\mathbf A&\mathbf b\end{pmatrix}.
+\]
+If consistent, its solution set is an affine translate of $\Null(\mathbf A)$ and has dimension $n-\rk(\mathbf A)$ when $\mathbf A$ has $n$ columns.
+\end{theorem}
+
+\begin{theorem}[Invertible Matrix Theorem]
+For $\mathbf A\in F^{n\times n}$, the following are equivalent: $\mathbf A$ is invertible; $\rk(\mathbf A)=n$; $\ker\mathbf A=\{\mathbf0\}$; $\det\mathbf A\ne0$; and $0$ is not an eigenvalue of $\mathbf A$.
+\end{theorem}
+
+\begin{formula}[Inverse of a Two-by-Two Matrix]
+For $ad-bc\ne0$,
+\[
+ \begin{pmatrix}a&b\\c&d\end{pmatrix}^{-1}
+ =\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}.
+\]
+\end{formula}
+
+\begin{definition}[Determinant]
+For $\mathbf A=(a_{ij})\in F^{n\times n}$, its determinant is
+\[
+ \det\mathbf A=\sum_{\sigma\in S_n}\sgn(\sigma)
+ \prod_{i=1}^n a_{i,\sigma(i)}.
+\]
+It is the unique alternating multilinear function of the columns normalized by $\det\mathbf I_n=1$.
+\end{definition}
+
+\begin{theorem}[Determinant Identities]
+For square $n\times n$ matrices $\mathbf A,\mathbf B$,
+\[
+ \det(\mathbf A\mathbf B)=\det\mathbf A\det\mathbf B,
+ \qquad\det(\mathbf A^{\mathsf T})=\det\mathbf A,
+\]
+\[
+ \det(c\mathbf A)=c^n\det\mathbf A.
+\]
+If $\mathbf A$ is invertible, $\det(\mathbf A^{-1})=(\det\mathbf A)^{-1}$. An upper or lower triangular matrix has determinant equal to the product of its diagonal entries.
+\end{theorem}
+
+\begin{formula}[Cofactors and Laplace Expansion]
+Let $M_{ij}$ be the determinant of the matrix obtained by deleting row $i$ and column $j$, and let $C_{ij}=(-1)^{i+j}M_{ij}$. Then, for every fixed row $i$ and column $j$,
+\[
+ \det\mathbf A=\sum_{k=1}^n a_{ik}C_{ik}
+ =\sum_{k=1}^n a_{kj}C_{kj}.
+\]
+\end{formula}
+
+\begin{theorem}[Cramer's Rule]
+If $\mathbf A\in F^{n\times n}$ is invertible and $\mathbf A\mathbf x=\mathbf b$, then
+\[
+ x_i=\frac{\det\mathbf A_i}{\det\mathbf A},
+\]
+where $\mathbf A_i$ is obtained by replacing column $i$ of $\mathbf A$ by $\mathbf b$.
+\end{theorem}
+
+\begin{formula}[Adjugate Identity]
+For any square matrix $\mathbf A$ over a commutative ring,
+\[
+ \mathbf A\adj(\mathbf A)=\adj(\mathbf A)\mathbf A
+ =(\det\mathbf A)\mathbf I.
+\]
+If $\det\mathbf A$ is invertible, $\mathbf A^{-1}=(\det\mathbf A)^{-1}\adj(\mathbf A)$.
+\end{formula}
+
+\begin{formula}[Vandermonde Determinant]
+For scalars $x_1,\dots,x_n$ in a commutative ring,
+\[
+ \det\begin{pmatrix}
+ 1&x_1&\cdots&x_1^{n-1}\\
+ 1&x_2&\cdots&x_2^{n-1}\\
+ \vdots&\vdots&&\vdots\\
+ 1&x_n&\cdots&x_n^{n-1}
+ \end{pmatrix}
+ =\prod_{1\le i<j\le n}(x_j-x_i).
+\]
+\end{formula}
+
+\begin{formula}[Cauchy Determinant]
+If $x_i+y_j\ne0$ for all $1\le i,j\le n$, then
+\[
+ \det\left(\frac1{x_i+y_j}\right)_{i,j=1}^n
+ =\frac{\displaystyle\prod_{1\le i<j\le n}(x_j-x_i)(y_j-y_i)}
+ {\displaystyle\prod_{i=1}^n\prod_{j=1}^n(x_i+y_j)}.
+\]
+\end{formula}
+
+\begin{theorem}[Matrix Determinant Lemma]
+If $\mathbf A\in F^{n\times n}$ is invertible and $\mathbf u,\mathbf v\in F^n$, then
+\[
+ \det(\mathbf A+\mathbf u\mathbf v^{\mathsf T})
+ =\det\mathbf A\bigl(1+\mathbf v^{\mathsf T}\mathbf A^{-1}\mathbf u\bigr).
+\]
+\end{theorem}
+
+\begin{theorem}[Sylvester's Determinant Identity]
+For $\mathbf A\in F^{m\times n}$ and $\mathbf B\in F^{n\times m}$,
+\[
+ \det(\mathbf I_m+\mathbf A\mathbf B)=\det(\mathbf I_n+\mathbf B\mathbf A).
+\]
+\end{theorem}
+
+\begin{formula}[Block Triangular Determinants]
+If $\mathbf A,\mathbf D$ are square, then
+\[
+ \det\begin{pmatrix}\mathbf A&\mathbf B\\\mathbf0&\mathbf D\end{pmatrix}
+ =\det\mathbf A\det\mathbf D.
+\]
+The analogous identity holds for lower block triangular matrices.
+\end{formula}
+
+\begin{formula}[Schur Complement Determinant Formula]
+If $\mathbf A$ is invertible, then
+\[
+ \det\begin{pmatrix}\mathbf A&\mathbf B\\\mathbf C&\mathbf D\end{pmatrix}
+ =\det\mathbf A\det(\mathbf D-\mathbf C\mathbf A^{-1}\mathbf B).
+\]
+If $\mathbf D$ is invertible, the symmetric counterpart uses $\mathbf A-\mathbf B\mathbf D^{-1}\mathbf C$.
+\end{formula}
+
+\begin{formula}[Sherman--Morrison Formula]
+If $\mathbf A$ is invertible and $1+\mathbf v^{\mathsf T}\mathbf A^{-1}\mathbf u\ne0$, then
+\[
+ (\mathbf A+\mathbf u\mathbf v^{\mathsf T})^{-1}
+ =\mathbf A^{-1}-\frac{\mathbf A^{-1}\mathbf u\mathbf v^{\mathsf T}\mathbf A^{-1}}
+ {1+\mathbf v^{\mathsf T}\mathbf A^{-1}\mathbf u}.
+\]
+\end{formula}
+
+\begin{definition}[Eigenvalues, Eigenvectors, and Characteristic Polynomial]
+An eigenvalue $\lambda\in F$ of $\mathbf A\in F^{n\times n}$ satisfies $\mathbf A\mathbf v=\lambda\mathbf v$ for some nonzero $\mathbf v\in F^n$. The eigenspace is $E_\lambda(\mathbf A)=\ker(\mathbf A-\lambda\mathbf I)$. The characteristic polynomial is
+\[
+ \chi_{\mathbf A}(t)=\det(t\mathbf I-\mathbf A).
+\]
+Over an algebraic closure, its roots are all eigenvalues counted with algebraic multiplicity.
+\end{definition}
+
+\begin{theorem}[Trace, Determinant, and Eigenvalues]
+If $\lambda_1,\dots,\lambda_n$ are the eigenvalues of $\mathbf A\in\C^{n\times n}$ counted with multiplicity, then
+\[
+ \tr\mathbf A=\sum_{i=1}^n\lambda_i,\qquad
+ \det\mathbf A=\prod_{i=1}^n\lambda_i,
+\qquad \tr(\mathbf A^k)=\sum_{i=1}^n\lambda_i^k\quad(k\in\N).
+\]
+\end{theorem}
+
+\begin{theorem}[Cyclic Property of the Trace]
+For matrices $\mathbf A\in F^{m\times n}$ and $\mathbf B\in F^{n\times m}$,
+\[
+ \tr(\mathbf A\mathbf B)=\tr(\mathbf B\mathbf A).
+\]
+For a product of square matrices, the trace is invariant under cyclic permutations of factors, but not generally under arbitrary permutations.
+\end{theorem}
+
+\begin{definition}[Diagonalizability]
+A matrix $\mathbf A\in F^{n\times n}$ is diagonalizable over $F$ if there are an invertible $\mathbf P\in F^{n\times n}$ and a diagonal $\mathbf D$ with $\mathbf A=\mathbf P\mathbf D\mathbf P^{-1}$. Equivalently, $F^n$ has a basis consisting of eigenvectors of $\mathbf A$.
+\end{definition}
+
+\begin{theorem}[Criteria for Diagonalizability]
+A matrix $\mathbf A\in F^{n\times n}$ is diagonalizable over $F$ if and only if its minimal polynomial splits into distinct linear factors over $F$. If $\mathbf A$ has $n$ distinct eigenvalues in $F$, then it is diagonalizable over $F$.
+\end{theorem}
+
+\begin{theorem}[Cayley--Hamilton Theorem]
+Every square matrix satisfies its characteristic polynomial:
+\[
+ \chi_{\mathbf A}(\mathbf A)=\mathbf0.
+\]
+Consequently, if $\mathbf A$ has size $n\times n$, every power $\mathbf A^k$ with $k\ge n$ can be expressed as a linear combination of
+$\mathbf I,\mathbf A,\dots,\mathbf A^{n-1}$.
+\end{theorem}
+
+\begin{definition}[Minimal Polynomial]
+The minimal polynomial $m_{\mathbf A}(t)$ of a square matrix over a field $F$ is the unique monic polynomial of least positive degree with $m_{\mathbf A}(\mathbf A)=\mathbf0$. It divides $\chi_{\mathbf A}(t)$, and every polynomial $p$ satisfying $p(\mathbf A)=\mathbf0$ is divisible by $m_{\mathbf A}$.
+\end{definition}
+
+\begin{theorem}[Eigenvalues of Products]
+For $\mathbf A\in F^{m\times n}$ and $\mathbf B\in F^{n\times m}$, the matrices $\mathbf A\mathbf B$ and $\mathbf B\mathbf A$ have the same nonzero eigenvalues with the same algebraic multiplicities over an algebraic closure of $F$.
+\end{theorem}
+
+\begin{formula}[Matrix Geometric Series]
+For every square matrix $\mathbf A$ and $n\in\N$,
+\[
+ (\mathbf I-\mathbf A)\sum_{k=0}^{n-1}\mathbf A^k=\mathbf I-\mathbf A^n.
+\]
+If $\mathbf I-\mathbf A$ is invertible, this sum is $(\mathbf I-\mathbf A^n)(\mathbf I-\mathbf A)^{-1}$. If its spectral radius $\rho(\mathbf A)<1$ over $\C$, then $\sum_{k=0}^\infty\mathbf A^k=(\mathbf I-\mathbf A)^{-1}$.
+\end{formula}
+
+\begin{formula}[Fibonacci Matrix Identity]
+For $\mathbf Q=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ and $F_0=0$, $F_1=1$, $F_{n+1}=F_n+F_{n-1}$,
+\[
+ \mathbf Q^n=\begin{pmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{pmatrix}
+ \qquad(n\ge1).
+\]
+In particular, $F_{n+1}F_{n-1}-F_n^2=(-1)^n$.
+\end{formula}
+
+\begin{theorem}[Jordan Canonical Form]
+Every complex square matrix is similar to a direct sum of Jordan blocks $\mathbf J_k(\lambda)=\lambda\mathbf I_k+\mathbf N_k$, where $\mathbf N_k$ has ones on its superdiagonal and zero elsewhere. The sizes and eigenvalues of the blocks are unique up to their order.
+\end{theorem}
+
+\begin{theorem}[Gershgorin Circle Theorem]
+Every eigenvalue of $\mathbf A=(a_{ij})\in\C^{n\times n}$ lies in the union of the disks
+\[
+ \bigcup_{i=1}^n\left\{z\in\C\ \middle|\ |z-a_{ii}|\le\sum_{j\ne i}|a_{ij}|\right\}.
+\]
+\end{theorem}
+
+\begin{theorem}[Perron--Frobenius Theorem, Positive Case]
+If $\mathbf A\in\R^{n\times n}$ has strictly positive entries, its spectral radius $r>0$ is a simple eigenvalue with a strictly positive eigenvector. Every other eigenvalue $\lambda$ satisfies $|\lambda|<r$.
+\end{theorem}
+
+\begin{definition}[Inner Product and Norm]
+An inner product on a complex vector space $V$ is conjugate-linear in its first argument, linear in its second, Hermitian symmetric, and positive definite. Its induced norm is $\|\mathbf v\|=\sqrt{\langle\mathbf v,\mathbf v\rangle}$. On $\C^n$, the standard inner product is $\langle\mathbf u,\mathbf v\rangle=\mathbf u^{\mathsf H}\mathbf v$.
+\end{definition}
+
+\begin{theorem}[Cauchy--Schwarz Inequality]
+For vectors $\mathbf u,\mathbf v$ in a real or complex inner product space,
+\[
+ |\langle\mathbf u,\mathbf v\rangle|^2
+ \le\langle\mathbf u,\mathbf u\rangle\langle\mathbf v,\mathbf v\rangle.
+\]
+Equality holds if and only if $\mathbf u$ and $\mathbf v$ are linearly dependent.
+\end{theorem}
+
+\begin{theorem}[Triangle and Parallelogram Identities]
+For vectors in an inner product space,
+\[
+ \|\mathbf u+\mathbf v\|\le\|\mathbf u\|+\|\mathbf v\|,
+\]
+\[
+ \|\mathbf u+\mathbf v\|^2+\|\mathbf u-\mathbf v\|^2
+ =2\|\mathbf u\|^2+2\|\mathbf v\|^2.
+\]
+\end{theorem}
+
+\begin{formula}[Polarization Identity]
+For a real inner product space,
+\[
+ \langle\mathbf u,\mathbf v\rangle=\frac14
+ \bigl(\|\mathbf u+\mathbf v\|^2-\|\mathbf u-\mathbf v\|^2\bigr).
+\]
+For a complex inner product linear in the second argument,
+\[
+ \langle\mathbf u,\mathbf v\rangle=\frac14\bigl(
+ \|\mathbf u+\mathbf v\|^2-\|\mathbf u-\mathbf v\|^2
+ -i\|\mathbf u+i\mathbf v\|^2+i\|\mathbf u-i\mathbf v\|^2\bigr).
+\]
+\end{formula}
+
+\begin{theorem}[Gram--Schmidt Orthogonalization]
+Every linearly independent list $(\mathbf v_1,\dots,\mathbf v_k)$ in an inner product space can be transformed into an orthonormal list spanning the same successive subspaces. Recursively,
+\[
+ \mathbf w_j=\mathbf v_j-\sum_{i=1}^{j-1}\langle\mathbf q_i,\mathbf v_j\rangle\mathbf q_i,
+ \qquad \mathbf q_j=\frac{\mathbf w_j}{\|\mathbf w_j\|}.
+\]
+\end{theorem}
+
+\begin{theorem}[Bessel's Inequality and Parseval's Identity]
+If $\mathbf q_1,\dots,\mathbf q_k$ are orthonormal, then for every $\mathbf v$,
+\[
+ \sum_{i=1}^k|\langle\mathbf q_i,\mathbf v\rangle|^2\le\|\mathbf v\|^2.
+\]
+If the list is an orthonormal basis of a finite-dimensional inner product space, equality holds.
+\end{theorem}
+
+\begin{formula}[Orthogonal Projection]
+If $U\subseteq V$ has orthonormal basis $(\mathbf q_1,\dots,\mathbf q_k)$, then
+\[
+ \proj_U\mathbf v=\sum_{i=1}^k\langle\mathbf q_i,\mathbf v\rangle\mathbf q_i.
+\]
+For $\mathbf A\in\R^{m\times n}$ of full column rank, the orthogonal projector onto $\Col(\mathbf A)$ is $\mathbf P=\mathbf A(\mathbf A^{\mathsf T}\mathbf A)^{-1}\mathbf A^{\mathsf T}$; replace $\mathsf T$ with $\mathsf H$ over $\C$.
+\end{formula}
+
+\begin{theorem}[Projection Theorem]
+For a subspace $U$ of a finite-dimensional inner product space, every $\mathbf v$ has a unique decomposition
+\[
+ \mathbf v=\mathbf u+\mathbf w,\qquad
+ \mathbf u\in U,\quad\mathbf w\in U^\perp.
+\]
+The vector $\mathbf u=\proj_U\mathbf v$ is the unique point of $U$ minimizing the distance to $\mathbf v$.
+\end{theorem}
+
+\begin{theorem}[Least-Squares Normal Equations]
+For $\mathbf A\in\R^{m\times n}$ and $\mathbf b\in\R^m$, a vector $\mathbf x$ minimizes $\|\mathbf A\mathbf x-\mathbf b\|^2$ if and only if
+\[
+ \mathbf A^{\mathsf T}\mathbf A\mathbf x=\mathbf A^{\mathsf T}\mathbf b.
+\]
+Such minimizers always exist; the minimizing vector is unique exactly when $\mathbf A$ has full column rank. Over $\C$, use $\mathbf A^{\mathsf H}$.
+\end{theorem}
+
+\begin{definition}[Orthogonal and Unitary Matrices]
+A real square matrix $\mathbf Q$ is orthogonal if $\mathbf Q^{\mathsf T}\mathbf Q=\mathbf I$. A complex square matrix $\mathbf U$ is unitary if $\mathbf U^{\mathsf H}\mathbf U=\mathbf I$. These matrices preserve the standard inner product and Euclidean norm, and their eigenvalues have modulus $1$.
+\end{definition}
+
+\begin{definition}[Hermitian and Normal Matrices]
+A complex square matrix $\mathbf A$ is Hermitian if $\mathbf A^{\mathsf H}=\mathbf A$ and normal if $\mathbf A\mathbf A^{\mathsf H}=\mathbf A^{\mathsf H}\mathbf A$. Real symmetric matrices are Hermitian; every Hermitian matrix is normal.
+\end{definition}
+
+\begin{theorem}[Spectral Theorem for Real Symmetric Matrices]
+Every real symmetric matrix $\mathbf A$ can be orthogonally diagonalized:
+\[
+ \mathbf A=\mathbf Q\mathbf D\mathbf Q^{\mathsf T},
+\]
+where $\mathbf Q$ is real orthogonal and $\mathbf D$ is a real diagonal matrix. Eigenvectors belonging to distinct eigenvalues are orthogonal.
+\end{theorem}
+
+\begin{theorem}[Spectral Theorem for Normal Matrices]
+A complex square matrix $\mathbf A$ is normal if and only if it is unitarily diagonalizable:
+\[
+ \mathbf A=\mathbf U\mathbf D\mathbf U^{\mathsf H},
+\]
+where $\mathbf U$ is unitary and $\mathbf D$ is diagonal. For Hermitian $\mathbf A$, the diagonal entries are real.
+\end{theorem}
+
+\begin{definition}[Positive Definite and Semidefinite Matrices]
+A Hermitian matrix $\mathbf A$ is positive definite, written $\mathbf A\succ0$, if $\mathbf x^{\mathsf H}\mathbf A\mathbf x>0$ for all nonzero $\mathbf x$. It is positive semidefinite, written $\mathbf A\succeq0$, if $\mathbf x^{\mathsf H}\mathbf A\mathbf x\ge0$ for all $\mathbf x$. Such matrices are characterized by all eigenvalues being positive or nonnegative, respectively.
+\end{definition}
+
+\begin{theorem}[Sylvester's Criterion]
+A real symmetric or complex Hermitian matrix is positive definite if and only if all its leading principal minors are positive. It is positive semidefinite if and only if all its principal minors are nonnegative.
+\end{theorem}
+
+\begin{theorem}[Hadamard's Determinant Inequality]
+For vectors $\mathbf v_1,\dots,\mathbf v_n\in\C^n$ as columns of $\mathbf A$,
+\[
+ |\det\mathbf A|\le\prod_{i=1}^n\|\mathbf v_i\|.
+\]
+Equality holds precisely when the nonzero column vectors are pairwise orthogonal; if any column is zero, equality holds automatically.
+\end{theorem}
+
+\begin{theorem}[Gram Determinant Inequality]
+If $\mathbf v_1,\dots,\mathbf v_k$ lie in a complex inner product space, the Gram matrix $\mathbf G=(\langle\mathbf v_i,\mathbf v_j\rangle)_{i,j}$ is positive semidefinite and
+\[
+ 0\le\det\mathbf G\le\prod_{i=1}^k\|\mathbf v_i\|^2.
+\]
+It has positive determinant exactly when the vectors are linearly independent; if all are nonzero, equality in the upper bound holds exactly when they are pairwise orthogonal.
+\end{theorem}
+
+\begin{theorem}[Courant--Fischer Min--Max Principle]
+Let $\mathbf A\in\C^{n\times n}$ be Hermitian, with real eigenvalues $\lambda_1\ge\cdots\ge\lambda_n$. Then for $1\le k\le n$,
+\[
+ \lambda_k=\max_{\dim U=k}\ \min_{\substack{\mathbf x\in U\\\|\mathbf x\|=1}}
+ \mathbf x^{\mathsf H}\mathbf A\mathbf x
+ =\min_{\dim W=n-k+1}\ \max_{\substack{\mathbf x\in W\\\|\mathbf x\|=1}}
+ \mathbf x^{\mathsf H}\mathbf A\mathbf x.
+\]
+\end{theorem}
+
+\begin{theorem}[Rayleigh Quotient Bounds]
+If $\mathbf A$ is Hermitian with smallest and largest eigenvalues $\lambda_{\min}$ and $\lambda_{\max}$, then for every nonzero $\mathbf x$,
+\[
+ \lambda_{\min}\le\frac{\mathbf x^{\mathsf H}\mathbf A\mathbf x}{\mathbf x^{\mathsf H}\mathbf x}
+ \le\lambda_{\max}.
+\]
+The endpoints are attained precisely by eigenvectors from the corresponding eigenspaces.
+\end{theorem}
+
+\begin{theorem}[Weyl's Eigenvalue Inequalities, Simple Form]
+For Hermitian matrices $\mathbf A,\mathbf B\in\C^{n\times n}$, with eigenvalues in decreasing order,
+\[
+ \lambda_k(\mathbf A)+\lambda_n(\mathbf B)
+ \le\lambda_k(\mathbf A+\mathbf B)
+ \le\lambda_k(\mathbf A)+\lambda_1(\mathbf B)
+ \qquad(1\le k\le n).
+\]
+\end{theorem}
+
+\begin{theorem}[Cauchy Eigenvalue Interlacing]
+Let $\mathbf A\in\C^{n\times n}$ be Hermitian with eigenvalues $\lambda_1\ge\cdots\ge\lambda_n$, and let $\mathbf B$ be any $(n-1)\times(n-1)$ principal submatrix with eigenvalues $\mu_1\ge\cdots\ge\mu_{n-1}$. Then
+\[
+ \lambda_i\ge\mu_i\ge\lambda_{i+1}\qquad(1\le i\le n-1).
+\]
+\end{theorem}
+
+\begin{theorem}[Spectral Radius Bound]
+For every matrix norm subordinate to a vector norm and every square matrix $\mathbf A$,
+\[
+ \rho(\mathbf A)\le\|\mathbf A\|.
+\]
+For Hermitian matrices, the Euclidean operator norm equals $\max_i|\lambda_i|$.
+\end{theorem}
+
+\begin{theorem}[Gelfand's Formula]
+For a complex square matrix and any submultiplicative matrix norm,
+\[
+ \rho(\mathbf A)=\lim_{k\to\infty}\|\mathbf A^k\|^{1/k}.
+\]
+\end{theorem}
+
+\begin{definition}[Singular Values]
+For $\mathbf A\in\C^{m\times n}$, the singular values $\sigma_1\ge\cdots\ge\sigma_{\min(m,n)}\ge0$ are the square roots of the eigenvalues of $\mathbf A^{\mathsf H}\mathbf A$, with zeros appended or omitted according to the smaller dimension. The nonzero singular values are independent of this padding convention.
+\end{definition}
+
+\begin{theorem}[Singular Value Decomposition]
+Every $\mathbf A\in\C^{m\times n}$ admits a singular value decomposition
+\[
+ \mathbf A=\mathbf U\boldsymbol\Sigma\mathbf V^{\mathsf H},
+\]
+where $\mathbf U\in\C^{m\times m}$ and $\mathbf V\in\C^{n\times n}$ are unitary and $\boldsymbol\Sigma\in\R^{m\times n}$ is diagonal rectangular with nonnegative entries. The number of positive singular values equals $\rk\mathbf A$.
+\end{theorem}
+
+\begin{theorem}[Eckart--Young--Mirsky Theorem]
+If $\mathbf A\in\C^{m\times n}$ has singular values $\sigma_1\ge\cdots\ge\sigma_r>0$ and $0\le k<r$, then the truncated SVD $\mathbf A_k$ minimizes both $\|\mathbf A-\mathbf B\|_{\mathrm F}$ and $\|\mathbf A-\mathbf B\|_2$ over matrices $\mathbf B$ of rank at most $k$. The minimum errors are
+\[
+ \left(\sum_{j=k+1}^r\sigma_j^2\right)^{1/2}
+ \quad\text{and}\quad\sigma_{k+1},
+\]
+respectively.
+\end{theorem}
+
+\begin{theorem}[QR Decomposition]
+Every $\mathbf A\in\C^{m\times n}$ with $m\ge n$ and linearly independent columns admits a reduced QR decomposition $\mathbf A=\mathbf Q\mathbf R$, where $\mathbf Q\in\C^{m\times n}$ has orthonormal columns and $\mathbf R\in\C^{n\times n}$ is invertible upper triangular. A full QR decomposition uses a square unitary matrix and a rectangular upper-trapezoidal factor.
+\end{theorem}
+
+\begin{theorem}[LU and PLU Decompositions]
+A square matrix $\mathbf A$ admits an LU factorization $\mathbf A=\mathbf L\mathbf U$ whenever Gaussian elimination can be carried out without row exchanges, where $\mathbf L$ is unit lower triangular and $\mathbf U$ is upper triangular. For every square matrix over a field, some permutation matrix $\mathbf P$ yields $\mathbf P\mathbf A=\mathbf L\mathbf U$.
+\end{theorem}
+
+\begin{theorem}[Cholesky Decomposition]
+Every Hermitian positive definite matrix $\mathbf A$ has a unique factorization
+\[
+ \mathbf A=\mathbf L\mathbf L^{\mathsf H},
+\]
+where $\mathbf L$ is lower triangular with positive real diagonal entries.
+\end{theorem}
+
+\begin{theorem}[Schur Triangularization]
+Every complex square matrix $\mathbf A$ is unitarily similar to an upper triangular matrix:
+\[
+ \mathbf A=\mathbf Q\mathbf T\mathbf Q^{\mathsf H},
+\]
+where $\mathbf Q$ is unitary and the diagonal entries of $\mathbf T$ are the eigenvalues of $\mathbf A$, with multiplicity.
+\end{theorem}
+
+\begin{theorem}[Spectral Decomposition of a Normal Matrix]
+If $\mathbf A$ is normal with distinct eigenvalues $\lambda_1,\dots,\lambda_s$, then
+\[
+ \mathbf A=\sum_{j=1}^s\lambda_j\mathbf P_j,\qquad
+ \mathbf I=\sum_{j=1}^s\mathbf P_j,
+\]
+where the $\mathbf P_j$ are pairwise orthogonal Hermitian projections onto the eigenspaces and $\mathbf P_i\mathbf P_j=\mathbf0$ for $i\ne j$.
+\end{theorem}
+
+\begin{formula}[Trace of Powers and Newton's Identities]
+Let $p_k=\tr(\mathbf A^k)$ and let $e_j$ be the elementary symmetric polynomials in the eigenvalues of $\mathbf A\in\C^{n\times n}$. For $1\le k\le n$,
+\[
+ p_k-e_1p_{k-1}+e_2p_{k-2}-\cdots+(-1)^k k e_k=0.
+\]
+Thus the characteristic polynomial coefficients are determined by $\tr\mathbf A,\dots,\tr(\mathbf A^n)$.
+\end{formula}
+
+\begin{formula}[Circulant Matrix Eigenvalues]
+For the $n\times n$ circulant matrix with first row $(c_0,c_1,\dots,c_{n-1})$ and successive rows obtained by cyclic right shifts, let $\omega=e^{2\pi i/n}$. Its eigenvalues, counted with multiplicity, are
+\[
+ \lambda_k=\sum_{j=0}^{n-1}c_j\omega^{kj}\qquad(0\le k<n).
+\]
+The eigenvectors can be taken from the discrete Fourier basis, with orientation chosen consistently with the row-shift convention.
+\end{formula}
+
+\begin{formula}[Determinant of a Tridiagonal Matrix]
+For the $n\times n$ tridiagonal matrix with diagonal entries $a_k$, superdiagonal entries $b_k$, and subdiagonal entries $c_k$, let $D_0=1$, $D_1=a_1$. Then
+\[
+ D_k=a_kD_{k-1}-b_{k-1}c_{k-1}D_{k-2}
+ \qquad(2\le k\le n),
+\]
+and $D_n$ is its determinant.
+\end{formula}
+
+\begin{theorem}[Matrix--Tree Theorem]
+Let $G$ be a finite undirected graph, with degree matrix $\mathbf D$ and adjacency matrix $\mathbf A$, and set $\mathbf L=\mathbf D-\mathbf A$. The number of spanning trees of $G$ equals any principal cofactor of $\mathbf L$.
+\end{theorem}
+
+\begin{formula}[Kronecker Product]
+For matrices of compatible sizes, the Kronecker product satisfies
+\[
+ (\mathbf A\otimes\mathbf B)(\mathbf C\otimes\mathbf D)
+ =(\mathbf A\mathbf C)\otimes(\mathbf B\mathbf D),
+\qquad
+ (\mathbf A\otimes\mathbf B)^{\mathsf T}
+ =\mathbf A^{\mathsf T}\otimes\mathbf B^{\mathsf T}.
+\]
+If $\mathbf A\in F^{m\times m}$ and $\mathbf B\in F^{n\times n}$,
+\[
+ \det(\mathbf A\otimes\mathbf B)
+ =(\det\mathbf A)^n(\det\mathbf B)^m.
+\]
+\end{formula}
+
+\begin{theorem}[Linear Recurrences and Companion Matrices]
+A scalar sequence satisfying a monic constant-coefficient recurrence of order $d$ can be represented by iterating a $d\times d$ companion matrix. Consequently, if the characteristic polynomial splits into distinct roots $\lambda_1,\dots,\lambda_d$, then every solution is a linear combination of $\lambda_i^n$. A root of multiplicity $m$ contributes terms $n^j\lambda^n$ for $0\le j<m$ when $\lambda\ne0$.
+\end{theorem}
+
+\begin{theorem}[Determinantal Characterization of Linear Independence]
+Vectors $\mathbf v_1,\dots,\mathbf v_n\in F^n$ are linearly independent if and only if the matrix with these vectors as columns has nonzero determinant.
+\end{theorem}
+
