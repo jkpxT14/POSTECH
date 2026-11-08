@@ -4,15 +4,31 @@
 $\operatorname{fl}(x)$ & Floating-point representation of $x$ \\
 $u$ & Unit roundoff \\
 $\varepsilon_{\mathrm{mach}}$ & Machine epsilon (floating-point spacing above $1$) \\
+$\operatorname{ulp}(x)$ & Unit in the last place at $x$ \\
+$\delta$ & Relative rounding error in the standard floating-point model \\
+$\hat{x}, \ \hat{\mathbf{x}}$ & Computed approximation to a scalar or vector \\
+$x^*$ & Exact solution or target of an iteration \\
+$e_{\mathrm{abs}}=|\hat{x}-x|$ & Absolute error \\
+$\displaystyle e_{\mathrm{rel}}=\frac{|\hat{x}-x|}{|x|}$ & Relative error, for $x\ne0$ \\[0.15em]
 $\kappa(\mathbf{A})$ & Condition number of $\mathbf{A}$ in the chosen norm \\
+$\kappa_f(x)$ & Relative condition number of $f$ at $x$ \\
 $x_k, \ x^{(k)}$ & $k$th iterate of a numerical method \\
 $e_k=x_k-x^*$ & Error of the $k$th iterate relative to $x^*$ \\
 $\mathbf{r}_k=\mathbf{b}-\mathbf{A}\mathbf{x}_k$ & Residual of the $k$th approximation to $\mathbf{A}\mathbf{x}=\mathbf{b}$ \\
-$h$ & Step size \\
-$t_n=t_0+nh$ & Uniform grid with step size $h$ \\
-$y_n\approx y(t_n)$ & Numerical approximation to $y(t_n)$ \\
+$x_{k+1}=g(x_k)$ & Fixed-point iteration \\
 $\displaystyle x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}$ & Newton iteration for $f(x)=0$ \\[0.15em]
-$y_{n+1}=y_n+h f(t_n, y_n)$ & Forward (explicit) Euler method for $y'=f(t, y)$ \\
+$x_i, \ f_i=f(x_i)$ & Interpolation nodes and their function values \\
+$P_n(x), \ p_n(x)$ & Interpolating polynomial of degree at most $n$ through $n+1$ distinct nodes \\
+$\ell_i(x)$ & Lagrange basis polynomial associated with node $x_i$ \\
 $f[x_0, \dots, x_n]$ & Divided difference of $f$ at the nodes $x_0, \dots, x_n$ \\
+$h$ & Step size \\
+$\Delta f_i=f_{i+1}-f_i$ & Forward difference \\
+$\nabla f_i=f_i-f_{i-1}$ & Backward difference \\
 $\displaystyle\sum_{i=0}^n w_i f(x_i)$ & Quadrature rule with nodes $x_i$ and weights $w_i$ \\
+$t_n=t_0+nh$ & Uniform grid with step size $h$ \\
+$h_n=t_{n+1}-t_n$ & Variable step size \\
+$y_n\approx y(t_n)$ & Numerical approximation to $y(t_n)$ \\
+$e_n=y_n-y(t_n)$ & Global error at the $n$th time step \\
+$\tau_n$ & Local truncation error at the $n$th step \\
+$y_{n+1}=y_n+h f(t_n, y_n)$ & Forward (explicit) Euler method for $y'=f(t, y)$ \\
 \end{notationtable}

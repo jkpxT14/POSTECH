@@ -4,8 +4,8 @@
 $M_{m\times n}(F), \ F^{m\times n}$ & Space of $m\times n$ matrices over the field $F$ \\
 $M_n(F)$ & Space (and matrix algebra) of $n\times n$ matrices over $F$ \\
 $\mathbf{A}=(a_{ij}), \ \mathbf{A}=[a_{ij}]$ & Matrix with $(i, j)$-entry $a_{ij}$ \\
-$\mathbf{A}^{\mathsf{T}}$ & Transpose of $\mathbf{A}$ \\
-$\mathbf{A}^{\mathsf{H}}$ & Conjugate transpose of $\mathbf{A}$ \\
+$\mathbf{A}^{\mathrm{T}}$ & Transpose of $\mathbf{A}$ \\
+$\mathbf{A}^{\mathrm{H}}$ & Conjugate transpose of $\mathbf{A}$ \\
 $\mathbf{A}^{-1}$ & Inverse of $\mathbf{A}$ \\
 $\mathbf{I}_n, \ \mathbf{I}$ & Identity matrix \\
 $\mathbf{0}$ & Zero vector or zero matrix, with dimension understood \\
@@ -45,24 +45,24 @@ $[T]_{\mathcal{B}}$ & Matrix of an endomorphism $T\colon V\to V$ when the same b
 $\mathbf{P}_{\mathcal{C}\leftarrow\mathcal{B}}$ & Change-of-coordinate matrix from basis $\mathcal{B}$ to basis $\mathcal{C}$ \\
 $V^*$ & Algebraic dual of a vector space $V$; for a normed space $X$, $X^*$ usually denotes the continuous dual \\
 $\langle\mathbf{u}, \mathbf{v}\rangle, \ (\mathbf{u}, \mathbf{v})$ & Inner product. Over complex spaces, the inner product is conjugate-linear in the first argument and linear in the second \\
-$\mathbf{u}\cdot\mathbf{v}, \ \mathbf{u}^{\mathsf{T}}\mathbf{v}$ & Standard Euclidean inner product on $\R^n$ \\
-$\mathbf{u}^{\mathsf{H}}\mathbf{v}$ & Standard Hermitian inner product on $\C^n$ \\
+$\mathbf{u}\cdot\mathbf{v}, \ \mathbf{u}^{\mathrm{T}}\mathbf{v}$ & Standard Euclidean inner product on $\R^n$ \\
+$\mathbf{u}^{\mathrm{H}}\mathbf{v}$ & Standard Hermitian inner product on $\C^n$ \\
 $\|\mathbf{v}\|$ & Norm of $\mathbf{v}$ \\
 $\mathbf{u}\perp\mathbf{v}$ & Orthogonality \\
 $U^\perp$ & Orthogonal complement of the subspace $U$ \\
 $\proj_U\mathbf{x}$ & Orthogonal projection of $\mathbf{x}$ onto the subspace $U$ \\
 $\proj_{\mathbf{v}}\mathbf{x}$ & Orthogonal projection of $\mathbf{x}$ onto $\Span(\mathbf{v})$ \\
 $\mathbf{u}\times\mathbf{v}$ & Cross product in $\R^3$ \\
-$\mathbf{A}^{\mathsf{T}}=\mathbf{A}$ & Real symmetric matrix \\
-$\mathbf{A}^{\mathsf{T}}=-\mathbf{A}$ & Real skew-symmetric matrix \\
-$\mathbf{A}^{\mathsf{H}}=\mathbf{A}$ & Hermitian matrix \\
-$\mathbf{A}^{\mathsf{H}}=-\mathbf{A}$ & Skew-Hermitian matrix \\
-$\mathbf{Q}^{\mathsf{T}}\mathbf{Q}=\mathbf{I}$ & Real orthogonal matrix $\mathbf{Q}$ \\
-$\mathbf{U}^{\mathsf{H}}\mathbf{U}=\mathbf{I}$ & Unitary matrix $\mathbf{U}$ \\
-$\mathbf{A}\mathbf{A}^{\mathsf{H}}=\mathbf{A}^{\mathsf{H}}\mathbf{A}$ & Normal matrix \\
+$\mathbf{A}^{\mathrm{T}}=\mathbf{A}$ & Real symmetric matrix \\
+$\mathbf{A}^{\mathrm{T}}=-\mathbf{A}$ & Real skew-symmetric matrix \\
+$\mathbf{A}^{\mathrm{H}}=\mathbf{A}$ & Hermitian matrix \\
+$\mathbf{A}^{\mathrm{H}}=-\mathbf{A}$ & Skew-Hermitian matrix \\
+$\mathbf{Q}^{\mathrm{T}}\mathbf{Q}=\mathbf{I}$ & Real orthogonal matrix $\mathbf{Q}$ \\
+$\mathbf{U}^{\mathrm{H}}\mathbf{U}=\mathbf{I}$ & Unitary matrix $\mathbf{U}$ \\
+$\mathbf{A}\mathbf{A}^{\mathrm{H}}=\mathbf{A}^{\mathrm{H}}\mathbf{A}$ & Normal matrix \\
 $\mathbf{P}^2=\mathbf{P}$ & Projection matrix \\
-$\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathsf{T}}$ & Orthogonal projection matrix over $\R$ \\
-$\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathsf{H}}$ & Orthogonal projection matrix over $\C$ \\
+$\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathrm{T}}$ & Orthogonal projection matrix over $\R$ \\
+$\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathrm{H}}$ & Orthogonal projection matrix over $\C$ \\
 $\chi_{\mathbf{A}}(t), \ p_{\mathbf{A}}(t)$ & Characteristic polynomial of $\mathbf{A}$, with $\chi_{\mathbf{A}}(t)=\det(t\mathbf{I}-\mathbf{A})$ \\*
 $m_{\mathbf{A}}(t), \ \mu_{\mathbf{A}}(t)$ & Minimal polynomial of $\mathbf{A}$ \\
 $\lambda, \ \lambda_i$ & Eigenvalue of $\mathbf{A}$ \\
@@ -73,13 +73,13 @@ $\sigma(\mathbf{A}), \ \spec(\mathbf{A})$ & Spectrum of $\mathbf{A}$ \\
 $\rho(\mathbf{A})$ & Spectral radius \\
 $\mathbf{P}_\lambda$ & Spectral projection associated with the eigenvalue $\lambda$ \\
 $\mathbf{A}=\mathbf{P}\mathbf{D}\mathbf{P}^{-1}$ & Diagonalization of a diagonalizable matrix \\
-$\mathbf{A}=\mathbf{Q}\mathbf{D}\mathbf{Q}^{\mathsf{T}}$ & Orthogonal diagonalization of a real symmetric matrix \\
-$\mathbf{A}=\mathbf{U}\mathbf{D}\mathbf{U}^{\mathsf{H}}$ & Unitary diagonalization of a complex normal matrix \\
+$\mathbf{A}=\mathbf{Q}\mathbf{D}\mathbf{Q}^{\mathrm{T}}$ & Orthogonal diagonalization of a real symmetric matrix \\
+$\mathbf{A}=\mathbf{U}\mathbf{D}\mathbf{U}^{\mathrm{H}}$ & Unitary diagonalization of a complex normal matrix \\
 $\displaystyle\mathbf{A}=\sum_{\lambda\in\sigma(\mathbf{A})} \lambda\mathbf{P}_\lambda$ & Spectral decomposition of $\mathbf{A}$ \\
 $e^{\mathbf{A}}, \ \exp(\mathbf{A})$ & Matrix exponential \\
 $\mathbf{A}=\mathbf{L}\mathbf{U}$ & LU factorization, with $\mathbf{L}$ lower triangular and $\mathbf{U}$ upper triangular \\
 $\mathbf{A}=\mathbf{Q}\mathbf{R}$ & QR factorization \\
-$\mathbf{A}=\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\mathsf{H}}$ & Singular value decomposition (SVD) of $\mathbf{A}$ \\
+$\mathbf{A}=\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\mathrm{H}}$ & Singular value decomposition (SVD) of $\mathbf{A}$ \\
 $\sigma_i(\mathbf{A})$ & $i$th singular value of $\mathbf{A}$ \\
 $\mathbf{A}^\dagger$ & Moore--Penrose pseudoinverse of $\mathbf{A}$ \\
 $\mathbf{A}\succ0$ & Positive definite Hermitian matrix (real symmetric in the real case) \\
@@ -87,5 +87,5 @@ $\mathbf{A}\succeq0$ & Positive semidefinite Hermitian matrix \\
 $\mathbf{A}\prec0$ & Negative definite Hermitian matrix \\
 $\mathbf{A}\preceq0$ & Negative semidefinite Hermitian matrix \\
 $\mathbf{A}\succeq\mathbf{B}$ & L\"owner order: $\mathbf{A}-\mathbf{B}\succeq0$, for Hermitian matrices of the same size \\
-$\mathbf{A}=\mathbf{L}\mathbf{L}^{\mathsf{H}}$ & Cholesky factorization of a positive definite Hermitian matrix \\
+$\mathbf{A}=\mathbf{L}\mathbf{L}^{\mathrm{H}}$ & Cholesky factorization of a positive definite Hermitian matrix \\
 \end{notationtable}
