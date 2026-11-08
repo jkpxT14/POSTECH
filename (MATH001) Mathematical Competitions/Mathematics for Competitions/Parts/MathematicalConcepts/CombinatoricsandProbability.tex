@@ -1,1 +1,556 @@
 \chapter{Combinatorics and Probability}
+
+\begin{theorem}[Addition and Multiplication Principles]
+If mutually exclusive classes of objects have respective cardinalities $a_1, \dots, a_k$, their union has cardinality $a_1+\cdots+a_k$. If an object is determined by $k$ independent choices with $a_i$ possibilities at step $i$, the number of objects is $a_1\cdots a_k$.
+\end{theorem}
+
+\begin{definition}[Factorials, Permutations, and Combinations]
+For $n\in\Nzero$, let $n!=\prod_{k=1}^n k$, with $0!=1$. If $0\le r\le n$, the number of ordered selections of $r$ distinct elements from an $n$-element set is
+\[
+ {}_nP_r=\frac{n!}{(n-r)!},
+\]
+and the number of $r$-element subsets is
+\[
+ \binom nr=\frac{n!}{r!(n-r)!}.
+\]
+\end{definition}
+
+\begin{formula}[Multiset Combinations and Stars and Bars]
+For $n\ge1$ and $r\ge0$, the number of multisets of cardinality $r$ chosen from $n$ types is
+\[
+ \multichoose nr=\binom{n+r-1}r.
+\]
+Equivalently, this is the number of nonnegative integer solutions of $x_1+\cdots+x_n=r$. The number of positive integer solutions for $r\ge n$ is $\binom{r-1}{n-1}$.
+\end{formula}
+
+\begin{theorem}[Binomial and Multinomial Theorems]
+For $n\in\Nzero$,
+\[
+ (x+y)^n=\sum_{k=0}^n\binom nk x^ky^{n-k}.
+\]
+If $n_1, \dots, n_m\in\Nzero$ sum to $n$, the corresponding multinomial coefficient is
+\[
+ \binom{n}{n_1, \dots, n_m}=\frac{n!}{n_1!\cdots n_m!},
+\]
+and $(x_1+\cdots+x_m)^n$ expands as the sum of these coefficients times $x_1^{n_1}\cdots x_m^{n_m}$.
+\end{theorem}
+
+\begin{formula}[Basic Binomial Identities]
+For $0\le k\le n$,
+\[
+ \binom nk=\binom n{n-k}, \qquad
+ \binom nk+\binom n{k-1}=\binom{n+1}k,
+\]
+where coefficients with inadmissible lower indices are zero. Furthermore,
+\[
+ \sum_{k=0}^n\binom nk=2^n, \quad
+ \sum_{k=0}^n(-1)^k\binom nk=0\quad(n\ge1),
+\]
+\[
+ \sum_{k=0}^n k\binom nk=n2^{n-1}\quad(n\ge1).
+\]
+\end{formula}
+
+\begin{theorem}[Vandermonde's Identity]
+For nonnegative integers $r, s, n$,
+\[
+ \sum_{k=0}^n\binom rk\binom s{n-k}=\binom{r+s}n.
+\]
+In particular,
+\[
+ \sum_{k=0}^n\binom nk^2=\binom{2n}n.
+\]
+\end{theorem}
+
+\begin{theorem}[Binomial Inversion]
+For sequences $(a_n)$ and $(b_n)$ over a field of characteristic zero,
+\[
+ b_n=\sum_{k=0}^n\binom nk a_k
+ \quad\Longleftrightarrow\quad
+ a_n=\sum_{k=0}^n(-1)^{n-k}\binom nk b_k.
+\]
+\end{theorem}
+
+\begin{theorem}[Pigeonhole Principle]
+If $N$ objects are placed in $k\ge1$ boxes, some box contains at least $\lceil N/k\rceil$ objects. In particular, placing $k+1$ objects in $k$ boxes forces at least two into the same box.
+\end{theorem}
+
+\begin{theorem}[Inclusion--Exclusion Principle]
+For finite sets $A_1, \dots, A_n$,
+\[
+ \left|\bigcup_{i=1}^n A_i\right|
+ =\sum_{\varnothing\ne S\subseteq[n]}(-1)^{|S|+1}
+ \left|\bigcap_{i\in S}A_i\right|.
+\]
+\end{theorem}
+
+\begin{formula}[Counting Surjections]
+For $n\ge0$ and $k\ge1$, the number of surjections from an $n$-element set to a $k$-element set is
+\[
+ \sum_{j=0}^k(-1)^j\binom kj(k-j)^n=k!\, S(n, k),
+\]
+where $S(n, k)$ is the Stirling number of the second kind and $0^0=1$ in the finite counting sum.
+\end{formula}
+
+\begin{definition}[Derangement]
+A derangement is a permutation with no fixed point. Write $D_n$ or $!n$ for the number of derangements of $n$ elements; here $D_n$ is not the dihedral group, the notation being determined by context.
+\end{definition}
+
+\begin{formula}[Derangement Formula]
+For $n\in\Nzero$,
+\[
+ D_n=n!\sum_{k=0}^n\frac{(-1)^k}{k!}.
+\]
+For $n\ge2$, $D_n=(n-1)(D_{n-1}+D_{n-2})$, with $D_0=1$ and $D_1=0$. For $n\ge1$, $D_n$ is the nearest integer to $n!/e$.
+\end{formula}
+
+\begin{definition}[Stirling Numbers and Bell Numbers]
+The unsigned Stirling number $c(n, k)$ counts permutations of $[n]$ with $k$ cycles. The Stirling number $S(n, k)$ counts partitions of $[n]$ into $k$ nonempty blocks. The Bell number
+\[
+ B_n=\sum_{k=0}^n S(n, k)
+\]
+counts all set partitions of $[n]$.
+\end{definition}
+
+\begin{formula}[Stirling Number Recurrences]
+For $n, k\ge1$,
+\[
+ c(n, k)=c(n-1, k-1)+(n-1)c(n-1, k),
+\]
+\[
+ S(n, k)=S(n-1, k-1)+kS(n-1, k).
+\]
+The boundary conditions are $c(0, 0)=S(0, 0)=1$ and zero for inadmissible indices.
+\end{formula}
+
+\begin{definition}[Catalan Numbers]
+For $n\in\Nzero$, the $n$th Catalan number is
+\[
+ C_n=\frac{1}{n+1}\binom{2n}n
+ =\binom{2n}n-\binom{2n}{n+1}.
+\]
+It counts, among other objects, correctly matched parenthesis strings of length $2n$ and lattice paths from $(0, 0)$ to $(n, n)$ that never rise above the diagonal.
+\end{definition}
+
+\begin{formula}[Catalan Recurrence and Generating Function]
+The Catalan numbers satisfy
+\[
+ C_0=1, \qquad C_{n+1}=\sum_{k=0}^n C_kC_{n-k}.
+\]
+Their ordinary generating function is
+\[
+ C(x)=\sum_{n\ge0}C_nx^n
+ =\frac{1-\sqrt{1-4x}}{2x},
+\]
+with the constant term understood by formal-power-series expansion.
+\end{formula}
+
+\begin{definition}[Integer Partitions and Compositions]
+A partition of $n\in\Nzero$ is a weakly decreasing sequence of positive integers summing to $n$, with the empty partition for $n=0$. A composition of $n\in\N$ is an ordered sequence of positive integers summing to $n$. The number of compositions of $n$ is $2^{n-1}$.
+\end{definition}
+
+\begin{theorem}[Euler's Partition Generating Function]
+If $p(n)$ is the number of integer partitions of $n$ with $p(0)=1$, then, as a formal power series,
+\[
+ \sum_{n\ge0}p(n)x^n=\prod_{k\ge1}\frac1{1-x^k}.
+\]
+The number of partitions into distinct parts equals the number of partitions into odd parts.
+\end{theorem}
+
+\begin{theorem}[Reflection Principle for Lattice Paths]
+For nonnegative integers $a, b$ with $a\ge b$, the number of lattice paths from $(0, 0)$ to $(a, b)$ using right and up steps and never going above $y=x$ is
+\[
+ \binom{a+b}b-\binom{a+b}{b-1}
+ =\frac{a-b+1}{a+1}\binom{a+b}b.
+\]
+For $a=b=n$, this equals $C_n$.
+\end{theorem}
+
+\begin{definition}[Recurrence Relation and Generating Function]
+A recurrence relation specifies sequence terms in terms of earlier terms. The ordinary generating function of $(a_n)_{n\ge0}$ is
+\[
+ A(x)=\sum_{n\ge0}a_nx^n,
+\]
+viewed either formally or as an analytic series where it converges. The exponential generating function is $\sum_{n\ge0}a_nx^n/n!$.
+\end{definition}
+
+\begin{formula}[Geometric and Binomial Series]
+As formal power series, for $m\in\N$,
+\[
+ \frac1{1-x}=\sum_{n\ge0}x^n, \qquad
+ \frac1{(1-x)^m}=\sum_{n\ge0}\binom{n+m-1}{m-1}x^n.
+\]
+The same identities hold analytically when $|x|<1$.
+\end{formula}
+
+\begin{theorem}[Generating Functions for Linear Recurrences]
+A sequence satisfying a linear recurrence with constant coefficients for all sufficiently large indices has a rational ordinary generating function. Conversely, the coefficients of any rational formal power series satisfy a constant-coefficient linear recurrence for all sufficiently large indices.
+\end{theorem}
+
+\begin{formula}[Coefficient Extraction and Convolution]
+For formal power series $A(x)=\sum_{n\ge0}a_nx^n$ and $B(x)=\sum_{n\ge0}b_nx^n$,
+\[
+ [x^n](A(x)B(x))=\sum_{k=0}^n a_kb_{n-k}.
+\]
+More generally, $[x^n]x^kA(x)=a_{n-k}$ for $n\ge k$.
+\end{formula}
+
+\begin{theorem}[Lagrange Inversion, Basic Form]
+Let $\phi(t)$ be a formal power series over a field of characteristic zero with $\phi(0)\ne0$. If $T(x)$ is the unique formal series with $T(0)=0$ satisfying
+\[
+ T=x\phi(T),
+\]
+then for $n\ge1$,
+\[
+ [x^n]T(x)=\frac1n[t^{n-1}]\phi(t)^n.
+\]
+\end{theorem}
+
+\begin{theorem}[Burnside's Lemma]
+If a finite group $G$ acts on a finite set $X$, the number of orbits is
+\[
+ |G\backslash X|=\frac1{|G|}\sum_{g\in G}|\Fix(g)|,
+\]
+where $\Fix(g)=\{x\in X\mid g\cdot x=x\}$.
+\end{theorem}
+
+\begin{theorem}[P\'olya Enumeration Theorem]
+Let a finite group $G$ permute an $n$-element set, and suppose each position receives one of $q\in\N$ colors. If $c(g)$ denotes the number of cycles of $g$ in its permutation of the positions, the number of colorings up to $G$-symmetry is
+\[
+ \frac1{|G|}\sum_{g\in G}q^{c(g)}.
+\]
+\end{theorem}
+
+\begin{definition}[Graphs, Degrees, and Paths]
+A (finite simple undirected) graph is $G=(V, E)$, where $E$ consists of unordered pairs of distinct vertices. The degree $\deg(v)$ is the number of edges incident with $v$. A path has no repeated vertices, while a cycle is a closed path with at least three vertices and no repeated internal vertices.
+\end{definition}
+
+\begin{theorem}[Handshaking Lemma]
+For any finite undirected graph,
+\[
+ \sum_{v\in V(G)}\deg(v)=2|E(G)|.
+\]
+Consequently, the number of vertices of odd degree is even.
+\end{theorem}
+
+\begin{definition}[Trees and Spanning Trees]
+A tree is a connected graph with no cycles. A spanning tree of a connected graph is a subgraph that is a tree and contains every vertex.
+\end{definition}
+
+\begin{theorem}[Equivalent Characterizations of a Tree]
+For a finite simple graph $G$ with $n\ge1$ vertices, any two of the following properties imply the third: $G$ is connected; $G$ is acyclic; $G$ has exactly $n-1$ edges. In particular, a tree on $n$ vertices has $n-1$ edges and there is a unique simple path between any two of its vertices.
+\end{theorem}
+
+\begin{theorem}[Cayley's Formula]
+For $n\ge2$, the number of labeled trees on vertex set $[n]$ is
+\[
+ n^{n-2}.
+\]
+For $n=1$, there is exactly one such tree.
+\end{theorem}
+
+\begin{definition}[Bipartite Graph]
+A graph $G=(V, E)$ is bipartite if $V$ can be partitioned into disjoint sets $U, W$ so that every edge joins a vertex of $U$ to a vertex of $W$.
+\end{definition}
+
+\begin{theorem}[Bipartite Graph Criterion]
+A finite graph is bipartite if and only if it has no cycle of odd length.
+\end{theorem}
+
+
+\begin{definition}[Vertex Coloring and Chromatic Number]
+A proper vertex coloring of a graph $G$ assigns colors to the vertices so that adjacent vertices receive distinct colors. The \emph{chromatic number} $\chi(G)$ is the smallest number of colors in a proper coloring.
+\end{definition}
+
+\begin{theorem}[Greedy Coloring Bound]
+Every finite simple graph $G$ satisfies
+\[
+ \chi(G)\le\Delta(G)+1,
+\]
+where $\Delta(G)$ is its maximum vertex degree. Every bipartite graph with at least one edge has chromatic number $2$.
+\end{theorem}
+
+\begin{theorem}[Dirac's and Ore's Hamiltonian Criteria]
+Let $G$ be a finite simple graph with $n\ge3$ vertices. If every vertex has degree at least $n/2$, then $G$ has a Hamiltonian cycle (Dirac). More generally, if $\deg(u)+\deg(v)\ge n$ for every pair of distinct nonadjacent vertices $u, v$, then $G$ has a Hamiltonian cycle (Ore).
+\end{theorem}
+
+\begin{theorem}[Eulerian Trail and Circuit Criteria]
+A finite connected graph has an Eulerian circuit exactly when every vertex has even degree. It has an Eulerian trail with two distinct endpoints exactly when precisely two vertices have odd degree.
+\end{theorem}
+
+\begin{theorem}[Euler's Formula for Planar Graphs]
+If a finite connected graph has a plane embedding with $V$ vertices, $E$ edges, and $F$ faces, including the unbounded face, then
+\[
+ V-E+F=2.
+\]
+For a simple planar graph with $V\ge3$,
+\[
+ E\le3V-6.
+\]
+If it is also bipartite, then $E\le2V-4$.
+\end{theorem}
+
+\begin{theorem}[Kuratowski's Theorem]
+A finite graph is planar if and only if it contains no subdivision of $K_5$ or $K_{3, 3}$ as a subgraph.
+\end{theorem}
+
+\begin{definition}[Matching and Vertex Cover]
+A matching is a set of edges no two of which share a vertex. A matching is perfect if every vertex is incident with a matching edge. A vertex cover is a set of vertices incident with every edge.
+\end{definition}
+
+\begin{theorem}[Hall's Marriage Theorem]
+A finite bipartite graph with vertex classes $U, W$ has a matching saturating every vertex of $U$ if and only if
+\[
+ |N(S)|\ge |S|\qquad\text{for every }S\subseteq U,
+\]
+where $N(S)$ is the set of neighbors of vertices in $S$.
+\end{theorem}
+
+\begin{theorem}[K\H{o}nig's Theorem]
+In every finite bipartite graph, the maximum size of a matching equals the minimum size of a vertex cover.
+\end{theorem}
+
+\begin{theorem}[Tutte's Perfect Matching Theorem]
+A finite undirected graph $G$ has a perfect matching if and only if, for every $S\subseteq V(G)$, the graph $G-S$ has at most $|S|$ connected components of odd order.
+\end{theorem}
+
+\begin{theorem}[Max-Flow Min-Cut Theorem]
+In a finite directed capacitated network with nonnegative edge capacities and distinguished source $s$ and sink $t$, the maximum possible value of an $s$--$t$ flow equals the minimum capacity of an $s$--$t$ cut.
+\end{theorem}
+
+\begin{theorem}[Menger's Theorem, Vertex Form]
+For distinct nonadjacent vertices $u, v$ in a finite graph, the maximum number of internally vertex-disjoint $u$--$v$ paths equals the minimum number of vertices whose removal separates $u$ and $v$.
+\end{theorem}
+
+\begin{theorem}[Matrix--Tree Theorem]
+Let $G$ be a finite connected graph with adjacency matrix $\mathbf A$ and degree matrix $\mathbf D$. Set $\mathbf L=\mathbf D-\mathbf A$. The number of spanning trees of $G$ equals any principal cofactor of $\mathbf L$.
+\end{theorem}
+
+\begin{definition}[Partially Ordered Sets, Chains, and Antichains]
+A partially ordered set (poset) is a set $X$ with a reflexive, antisymmetric, transitive relation $\preceq$. A chain is a subset whose elements are pairwise comparable; an antichain is a subset whose distinct elements are pairwise incomparable.
+\end{definition}
+
+\begin{theorem}[Dilworth's Theorem]
+In a finite poset, the maximum cardinality of an antichain equals the minimum number of chains in a partition of the poset.
+\end{theorem}
+
+\begin{theorem}[Sperner's Theorem]
+For a family $\mathcal A$ of subsets of $[n]$, no one of which properly contains another,
+\[
+ |\mathcal A|\le\binom n{\lfloor n/2\rfloor}.
+\]
+\end{theorem}
+
+\begin{theorem}[Lubell--Yamamoto--Meshalkin Inequality]
+If $\mathcal A$ is an antichain in the Boolean lattice $2^{[n]}$, then
+\[
+ \sum_{A\in\mathcal A}\frac1{\binom n{|A|}}\le1.
+\]
+\end{theorem}
+
+\begin{theorem}[Ramsey's Theorem]
+For positive integers $r, k_1, \dots, k_m$, there exists $N$ such that every $m$-coloring of the $r$-element subsets of $[N]$ contains a set of size $k_i$ all of whose $r$-element subsets have color $i$, for at least one index $i$. In the graph case, $R(s, t)$ is the least $N$ such that every red--blue edge coloring of $K_N$ has a red $K_s$ or a blue $K_t$.
+\end{theorem}
+
+\begin{theorem}[Erd\H{o}s--Szekeres Monotone Subsequence Theorem]
+Every sequence of $(r-1)(s-1)+1$ distinct real numbers contains an increasing subsequence of length $r$ or a decreasing subsequence of length $s$.
+\end{theorem}
+
+\begin{theorem}[Tur\'an's Theorem]
+Among simple graphs on $n$ vertices containing no complete graph $K_{r+1}$, the unique graph with the maximum number of edges (up to isomorphism) is the complete $r$-partite graph whose part sizes differ by at most one.
+\end{theorem}
+
+\begin{definition}[Probability Space and Conditional Probability]
+A probability space is a triple $(\Omega, \mathcal F, \Prob)$, where $\mathcal F$ is a $\sigma$-algebra of subsets of $\Omega$ and $\Prob$ is a countably additive probability measure with $\Prob(\Omega)=1$. For $\Prob(B)>0$,
+\[
+ \Prob(A\mid B)=\frac{\Prob(A\cap B)}{\Prob(B)}.
+\]
+For a finite uniform space $\Omega$, $\Prob(A)=|A|/|\Omega|$.
+\end{definition}
+
+\begin{theorem}[Addition Rule and Union Bound]
+For events $A, B$,
+\[
+ \Prob(A\cup B)=\Prob(A)+\Prob(B)-\Prob(A\cap B).
+\]
+For any finite or countable family of events,
+\[
+ \Prob\!\left(\bigcup_i A_i\right)\le\sum_i\Prob(A_i).
+\]
+\end{theorem}
+
+\begin{theorem}[Law of Total Probability and Bayes' Theorem]
+Let $(B_i)_{i=1}^m$ be a partition of $\Omega$ into events of positive probability. For any event $A$,
+\[
+ \Prob(A)=\sum_{i=1}^m\Prob(A\mid B_i)\Prob(B_i).
+\]
+If $\Prob(A)>0$, then
+\[
+ \Prob(B_j\mid A)=
+ \frac{\Prob(A\mid B_j)\Prob(B_j)}
+ {\sum_{i=1}^m\Prob(A\mid B_i)\Prob(B_i)}.
+\]
+\end{theorem}
+
+\begin{definition}[Independence]
+Events $A, B$ are independent when $\Prob(A\cap B)=\Prob(A)\Prob(B)$. A family of events is mutually independent if this product identity holds for every finite nonempty subfamily. Random variables $X, Y$ are independent if the events $\{X\in U\}$ and $\{Y\in V\}$ are independent for all Borel sets $U, V$.
+\end{definition}
+
+\begin{definition}[Random Variable and Expectation]
+A real-valued random variable $X$ is a measurable map from $\Omega$ to $\R$. Its expectation, when defined, is denoted $\Exp[X]$. For a discrete random variable with countable range and $\sum_x |x|\Prob(X=x)<\infty$,
+\[
+ \Exp[X]=\sum_x x\Prob(X=x).
+\]
+\end{definition}
+
+
+\begin{definition}[Distribution of a Random Variable]
+The distribution of $X$ is specified by $\Prob(X\in B)$ for Borel sets $B$. For a discrete random variable, its probability mass function is $p_X(x)=\Prob(X=x)$; its cumulative distribution function is $F_X(x)=\Prob(X\le x)$.
+\end{definition}
+
+\begin{formula}[Bernoulli, Binomial, and Geometric Distributions]
+If $X\sim\Bern(p)$, then $\Prob(X=1)=p$ and $\Exp[X]=p$, $\Var(X)=p(1-p)$. If $X\sim\Bin(n, p)$, then for $0\le k\le n$,
+\[
+ \Prob(X=k)=\binom nk p^k(1-p)^{n-k},
+ \quad \Exp[X]=np, \quad\Var(X)=np(1-p).
+\]
+If $Y\sim\Geom(p)$ counts the number of independent Bernoulli trials up to and including the first success, with $0<p\le1$, then
+\[
+ \Prob(Y=k)=(1-p)^{k-1}p\quad(k\in\N),
+ \qquad \Exp[Y]=\frac1p.
+\]
+\end{formula}
+
+\begin{formula}[Hypergeometric Distribution]
+If a sample of size $n$ is drawn uniformly without replacement from $N$ objects, of which $K$ are designated successes, the number $X$ of successes satisfies
+\[
+ \Prob(X=k)=\frac{\binom Kk\binom{N-K}{n-k}}{\binom Nn}
+\]
+for integers $k$ with $\max(0, n-(N-K))\le k\le\min(n, K)$, and $\Exp[X]=nK/N$.
+\end{formula}
+
+\begin{definition}[Conditional Expectation]
+For integrable $X$ and a random variable $Y$, the conditional expectation $\Exp[X\mid Y]$ denotes an integrable function of $Y$ whose expectation on each event determined by $Y$ agrees with that of $X$. In the discrete case, when $\Prob(Y=y)>0$,
+\[
+ \Exp[X\mid Y=y]=\sum_x x\Prob(X=x\mid Y=y),
+\]
+provided the sum is absolutely convergent.
+\end{definition}
+
+\begin{theorem}[Linearity of Expectation]
+For integrable random variables $X, Y$ and scalars $a, b$,
+\[
+ \Exp[aX+bY]=a\Exp[X]+b\Exp[Y].
+\]
+No independence assumption is needed. If $X=\sum_{i=1}^n\indicator{A_i}$ counts how many of the events $A_i$ occur, then
+\[
+ \Exp[X]=\sum_{i=1}^n\Prob(A_i).
+\]
+\end{theorem}
+
+\begin{formula}[Variance and Covariance]
+For square-integrable real random variables $X, Y$,
+\[
+ \Var(X)=\Exp[X^2]-\Exp[X]^2,
+\]
+\[
+ \Cov(X, Y)=\Exp[XY]-\Exp[X]\Exp[Y],
+\]
+\[
+ \Var(X+Y)=\Var(X)+\Var(Y)+2\Cov(X, Y).
+\]
+If $X$ and $Y$ are independent, then $\Cov(X, Y)=0$.
+\end{formula}
+
+\begin{theorem}[Law of Total Expectation and Total Variance]
+If $X$ is integrable and $Y$ is a random variable, then
+\[
+ \Exp[X]=\Exp[\Exp[X\mid Y]].
+\]
+If $X$ is square-integrable, then
+\[
+ \Var(X)=\Exp[\Var(X\mid Y)]
+ +\Var(\Exp[X\mid Y]).
+\]
+\end{theorem}
+
+\begin{theorem}[Tail-Sum Formula]
+If $X$ is a nonnegative integer-valued random variable, then, allowing the value $+\infty$,
+\[
+ \Exp[X]=\sum_{k=1}^{\infty}\Prob(X\ge k).
+\]
+\end{theorem}
+
+\begin{theorem}[Markov's Inequality]
+If $X\ge0$ almost surely and $a>0$, then
+\[
+ \Prob(X\ge a)\le\frac{\Exp[X]}a,
+\]
+provided the right-hand side is finite.
+\end{theorem}
+
+\begin{theorem}[Chebyshev's Inequality]
+If $X$ has finite variance and $t>0$, then
+\[
+ \Prob\!\left(|X-\Exp[X]|\ge t\right)
+ \le\frac{\Var(X)}{t^2}.
+\]
+\end{theorem}
+
+\begin{theorem}[Jensen's Inequality for Expectations]
+For an integrable random variable $X$ taking values in an interval $I$ and a convex function $f\colon I\to\R$, whenever the relevant expectations exist,
+\[
+ f(\Exp[X])\le\Exp[f(X)].
+\]
+\end{theorem}
+
+\begin{theorem}[Chernoff Bounds for Binomial Random Variables]
+If $X\sim\Bin(n, p)$ has mean $\mu=np>0$, then for $\delta>0$,
+\[
+ \Prob(X\ge(1+\delta)\mu)
+ \le\left(\frac{e^\delta}{(1+\delta)^{1+\delta}}\right)^\mu,
+\]
+and for $0<\delta<1$,
+\[
+ \Prob(X\le(1-\delta)\mu)\le e^{-\mu\delta^2/2}.
+\]
+\end{theorem}
+
+\begin{theorem}[The First-Moment Method]
+If $X$ is a nonnegative integer-valued random variable and $\Exp[X]<1$, then $\Prob(X=0)>0$. More generally, if $\Exp[X]>0$ and $X\ge0$, then $\Prob(X>0)>0$.
+\end{theorem}
+
+\begin{formula}[Uniform Random Permutations]
+If $\pi$ is uniformly distributed over the permutations of $[n]$, then the expected number of fixed points is $1$ for $n\ge1$, and the expected number of cycles is
+\[
+ H_n=\sum_{k=1}^n\frac1k.
+\]
+The probability that $\pi$ is a derangement is $D_n/n!$.
+\end{formula}
+
+\begin{formula}[Coupon Collector]
+If one independently samples from $n$ equally likely types until all types have appeared, the expected number of samples is
+\[
+ nH_n=n\sum_{k=1}^n\frac1k.
+\]
+\end{formula}
+
+\begin{formula}[Gambler's Ruin Probability]
+For a nearest-neighbor random walk on $\{0, 1, \dots, N\}$ absorbed at $0, N$, with independent steps $+1$ of probability $p$ and $-1$ of probability $q=1-p$, the probability of reaching $N$ before $0$ from $i\in\{0, \dots, N\}$ is
+\[
+ \Prob_i(\text{hit }N\text{ before }0)=
+ \begin{cases}
+ \displaystyle\frac{1-(q/p)^i}{1-(q/p)^N}, &p\ne q, \;0<p<1, \\[0.7em]
+ \displaystyle\frac{i}{N}, &p=q=\frac12.
+ \end{cases}
+\]
+At $p=0$ or $p=1$, the probability is determined by the deterministic walk.
+\end{formula}
+
+\begin{theorem}[Lov\'asz Local Lemma, Symmetric Form]
+Let $A_1, \dots, A_n$ be events, each independent of all but at most $d$ of the other events. If $\Prob(A_i)\le p$ for all $i$ and
+\[
+ ep(d+1)\le1,
+\]
+then $\Prob\!\left(\bigcap_{i=1}^n A_i^c\right)>0$.
+\end{theorem}

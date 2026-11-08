@@ -47,6 +47,7 @@
 \RequirePackage{longtable}
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
+\RequirePackage{tikz}
 
 % Color is reserved for meaningful institutional identities and the cover title.
 \RequirePackage{xcolor}
@@ -140,18 +141,8 @@
     \DeclareRobustCommand{\NgoBaoChau}{Ngô Bảo Châu}
 \fi
 
-% Table columns and optional chapter metadata.
+% Table columns.
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
-\newcommand{\relatedcourses}[1]{%
-    \if\relax\detokenize{#1}\relax\else
-        \noindent Related \POSTECH{} Courses: #1\par
-    \fi
-}
-\newcommand{\relatedbooks}[1]{%
-    \if\relax\detokenize{#1}\relax\else
-        \noindent Related Books: #1\par
-    \fi
-}
 
 % Mathematical environments: aligned with the existing book.
 \newtheoremstyle{competitionsplain}
@@ -275,11 +266,15 @@
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Log}{Log}
 \DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\PointPower}{Pow}
 \DeclareMathOperator{\sgn}{sgn}
 \newcommand{\Prob}{\mathbb{P}}
 \newcommand{\Exp}{\mathbb{E}}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Bern}{Bern}
+\DeclareMathOperator{\Geom}{Geom}
 \newcommand{\Normal}{\mathcal{N}}
 \DeclareMathOperator{\rk}{rk}
 \DeclareMathOperator{\tr}{tr}
@@ -292,11 +287,14 @@
 \DeclareMathOperator{\proj}{proj}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcmop}{lcm}
 \DeclareMathOperator{\rad}{rad}
 \DeclareMathOperator{\Disc}{Disc}
 \DeclareMathOperator{\charac}{char}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Fix}{Fix}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
 \newcommand{\multichoose}[2]{\left(\!\binom{#1}{#2}\!\right)}

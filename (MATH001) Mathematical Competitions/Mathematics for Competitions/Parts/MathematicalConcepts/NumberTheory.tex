@@ -1,1 +1,570 @@
 \chapter{Number Theory}
+
+\begin{definition}[Divisibility, Primes, and Coprimality]
+For $a, b\in\Z$, write $a\mid b$ if $b=ak$ for some $k\in\Z$. A prime is an integer $p>1$ whose only positive divisors are $1$ and $p$. Two integers $a, b$, not both zero, are coprime if $\gcd(a, b)=1$.
+\end{definition}
+
+\begin{theorem}[Division Algorithm]
+For $a\in\Z$ and $b\in\N$, there exist unique $q, r\in\Z$ such that
+\[
+ a=bq+r, \qquad 0\le r<b.
+\]
+\end{theorem}
+
+
+\begin{proposition}[Euclidean Algorithm]
+For integers $a, b$ with $b\ne0$,
+\[
+ \gcd(a, b)=\gcd(b, a\bmod|b|).
+\]
+Repeated Euclidean division produces the greatest common divisor as the last nonzero remainder.
+\end{proposition}
+
+\begin{theorem}[Fundamental Theorem of Arithmetic]
+Every integer $n>1$ has a factorization
+\[
+ n=p_1^{\alpha_1}\cdots p_k^{\alpha_k},
+\]
+where the $p_i$ are distinct primes and $\alpha_i\in\N$. It is unique up to the order of the prime factors.
+\end{theorem}
+
+\begin{theorem}[Euclid's Lemma]
+If a prime $p$ divides $ab$, then $p\mid a$ or $p\mid b$. More generally, if $\gcd(a, b)=1$ and $a\mid bc$, then $a\mid c$.
+\end{theorem}
+
+\begin{theorem}[B\'ezout's Identity]
+For integers $a, b$, not both zero, there exist $x, y\in\Z$ such that
+\[
+ ax+by=\gcd(a, b).
+\]
+Moreover, the set of integer linear combinations $ax+by$ equals the set of multiples of $\gcd(a, b)$.
+\end{theorem}
+
+\begin{formula}[GCD and LCM from Prime Factorizations]
+For positive integers $a, b$ and prime-power exponents $a=\prod_p p^{\alpha_p}$, $b=\prod_p p^{\beta_p}$ (allowing zero exponents),
+\[
+ \gcd(a, b)=\prod_p p^{\min(\alpha_p, \beta_p)},
+ \qquad \lcmop(a, b)=\prod_p p^{\max(\alpha_p, \beta_p)}.
+\]
+Consequently,
+\[
+ \gcd(a, b)\lcmop(a, b)=ab.
+\]
+\end{formula}
+
+\begin{theorem}[GCD of Differences of Powers]
+For integers $a>1$ and $m, n\in\N$,
+\[
+ \gcd(a^m-1, a^n-1)=a^{\gcd(m, n)}-1.
+\]
+In particular, if $m\mid n$, then $a^m-1\mid a^n-1$.
+\end{theorem}
+
+\begin{theorem}[Euclid's Theorem]
+There are infinitely many prime numbers.
+\end{theorem}
+
+\begin{theorem}[Bertrand's Postulate; Chebyshev's Theorem]
+For every integer $n>1$, there is a prime $p$ satisfying
+\[
+ n<p<2n.
+\]
+\end{theorem}
+
+
+\begin{definition}[Congruence and Residue Class]
+For $n\in\N$,
+\[
+ a\equiv b\pmod n\quad\Longleftrightarrow\quad n\mid(a-b).
+\]
+The residue class of $a$ modulo $n$ is $[a]_n\in\Z/n\Z$. The group $(\Z/n\Z)^\times$ consists of the classes $[a]_n$ with $\gcd(a, n)=1$.
+\end{definition}
+
+\begin{proposition}[Algebra of Congruences]
+If $a\equiv b\pmod n$ and $c\equiv d\pmod n$, then
+\[
+ a+c\equiv b+d\pmod n, \qquad
+ ac\equiv bd\pmod n.
+\]
+If $ac\equiv bc\pmod n$ and $g=\gcd(c, n)$, then $a\equiv b\pmod{n/g}$; cancellation modulo $n$ is valid when $\gcd(c, n)=1$.
+\end{proposition}
+
+\begin{theorem}[Linear Congruence Criterion]
+The congruence $ax\equiv b\pmod n$, with $n\ge1$, has an integer solution if and only if $d=\gcd(a, n)$ divides $b$. In that case there are exactly $d$ incongruent solutions modulo $n$.
+\end{theorem}
+
+\begin{theorem}[Chinese Remainder Theorem]
+If $m_1, \dots, m_k\in\N$ are pairwise coprime, then for arbitrary integers $a_1, \dots, a_k$, the system
+\[
+ x\equiv a_i\pmod{m_i}\qquad(1\le i\le k)
+\]
+has a unique solution modulo $M=m_1\cdots m_k$.
+\end{theorem}
+
+\begin{proposition}[Chinese Remainder Theorem for General Moduli]
+For positive moduli $m_1, \dots, m_k$, the congruences $x\equiv a_i\pmod{m_i}$ are simultaneously solvable if and only if
+\[
+ a_i\equiv a_j\pmod{\gcd(m_i, m_j)}
+ \qquad\text{for all }i, j.
+\]
+When solvable, the solution is unique modulo $\lcmop(m_1, \dots, m_k)$.
+\end{proposition}
+
+\begin{formula}[Decimal Divisibility Tests]
+For decimal digits $d_0, \dots, d_m$ and $N=\sum_{k=0}^m d_k10^k$,
+\[
+ N\equiv\sum_{k=0}^m d_k\pmod9, \qquad
+ N\equiv\sum_{k=0}^m(-1)^k d_k\pmod{11}.
+\]
+The last $r$ digits determine $N\pmod{2^r}$ and $N\pmod{5^r}$.
+\end{formula}
+
+\begin{formula}[Polynomial Congruences]
+If $f\in\Z[x]$ and $a\equiv b\pmod n$, then $f(a)\equiv f(b)\pmod n$. In particular, the integral roots of $f(x)=0$ satisfy every reduction of that equation modulo $n$.
+\end{formula}
+
+\begin{theorem}[Wilson's Theorem]
+An integer $n>1$ is prime if and only if
+\[
+ (n-1)!\equiv-1\pmod n.
+\]
+\end{theorem}
+
+
+\begin{proposition}[Units and Inverses Modulo $n$]
+An integer $a$ has a multiplicative inverse modulo $n$ if and only if $\gcd(a, n)=1$. If integers $u, v$ satisfy $au+nv=1$, then $u$ represents an inverse of $a$ modulo $n$.
+\end{proposition}
+
+\begin{definition}[Arithmetic and Multiplicative Functions]
+An arithmetic function is a map $f\colon\N\to\C$. It is multiplicative if $f(1)=1$ and $f(mn)=f(m)f(n)$ whenever $\gcd(m, n)=1$. It is completely multiplicative if this identity holds for all $m, n\in\N$.
+\end{definition}
+
+\begin{definition}[Euler's Totient Function]
+The Euler totient function is
+\[
+ \varphi(n)=|\{1\le k\le n\mid\gcd(k, n)=1\}|.
+\]
+It equals the order of the multiplicative group $(\Z/n\Z)^\times$.
+\end{definition}
+
+\begin{formula}[Euler's Totient Formula]
+For $n=\prod_{i=1}^r p_i^{\alpha_i}$ with $\alpha_i\ge1$,
+\[
+ \varphi(n)=n\prod_{p\mid n}\left(1-\frac1p\right)
+ =\prod_{i=1}^r p_i^{\alpha_i-1}(p_i-1).
+\]
+The empty product gives $\varphi(1)=1$. Also
+\[
+ \sum_{d\mid n}\varphi(d)=n.
+\]
+\end{formula}
+
+\begin{formula}[Divisor Functions]
+For $n=\prod_{i=1}^r p_i^{\alpha_i}$, the number $\tau(n)$ and sum $\sigma(n)$ of positive divisors satisfy
+\[
+ \tau(n)=\prod_{i=1}^r(\alpha_i+1), \qquad
+ \sigma(n)=\prod_{i=1}^r\frac{p_i^{\alpha_i+1}-1}{p_i-1}.
+\]
+More generally, $\sigma_k(n)=\sum_{d\mid n}d^k=\prod_i(1+p_i^k+\cdots+p_i^{k\alpha_i})$ for $k\in\Nzero$.
+\end{formula}
+
+\begin{definition}[M\"obius Function]
+The M\"obius function $\mu\colon\N\to\{-1, 0, 1\}$ is given by
+\[
+ \mu(n)=\begin{cases}
+ 1, &n=1, \\
+ (-1)^r, &n\text{ is a product of $r$ distinct primes}, \\
+ 0, &n\text{ is divisible by a square greater than $1$}.
+ \end{cases}
+\]
+\end{definition}
+
+\begin{theorem}[M\"obius Inversion Formula]
+For arithmetic functions $f, g$, if
+\[
+ g(n)=\sum_{d\mid n}f(d),
+\]
+then
+\[
+ f(n)=\sum_{d\mid n}\mu(d)g(n/d)
+ =\sum_{d\mid n}\mu(n/d)g(d).
+\]
+In particular,
+\[
+ \sum_{d\mid n}\mu(d)=\begin{cases}1, &n=1, \\0, &n>1.\end{cases}
+\]
+\end{theorem}
+
+\begin{definition}[Dirichlet Convolution]
+For arithmetic functions $f, g$, their Dirichlet convolution is
+\[
+ (f\ast g)(n)=\sum_{d\mid n}f(d)g(n/d).
+\]
+It is associative and commutative; the identity is $\varepsilon(1)=1$, $\varepsilon(n)=0$ for $n>1$. The constant function $\mathbf1(n)=1$ satisfies $\mu\ast\mathbf1=\varepsilon$.
+\end{definition}
+
+
+\begin{proposition}[Multiplicative Arithmetic Functions]
+If $f, g$ are multiplicative arithmetic functions, then their Dirichlet convolution $f\ast g$ is multiplicative. Moreover, $\tau$, $\sigma_k$, $\varphi$, and $\mu$ are multiplicative.
+\end{proposition}
+
+\begin{theorem}[Fermat's Little Theorem]
+If $p$ is prime and $p\nmid a$, then
+\[
+ a^{p-1}\equiv1\pmod p.
+\]
+Equivalently, $a^p\equiv a\pmod p$ for every integer $a$.
+\end{theorem}
+
+\begin{theorem}[Euler's Theorem]
+For $n\in\N$ and $\gcd(a, n)=1$,
+\[
+ a^{\varphi(n)}\equiv1\pmod n.
+\]
+\end{theorem}
+
+\begin{definition}[Multiplicative Order]
+For $\gcd(a, n)=1$, the multiplicative order $\ord_n(a)$ is the least positive integer $r$ such that $a^r\equiv1\pmod n$. It divides $\varphi(n)$, and
+\[
+ a^k\equiv1\pmod n
+ \quad\Longleftrightarrow\quad\ord_n(a)\mid k
+\]
+for $k\in\Z$.
+\end{definition}
+
+\begin{definition}[Primitive Root]
+An integer $g$ is a primitive root modulo $n$ if $\gcd(g, n)=1$ and
+\[
+ \ord_n(g)=\varphi(n).
+\]
+Equivalently, $[g]_n$ generates $(\Z/n\Z)^\times$.
+\end{definition}
+
+\begin{theorem}[Primitive Root Theorem]
+For $n>1$, primitive roots modulo $n$ exist exactly when
+\[
+ n\in\{2, 4, p^k, 2p^k\},
+\]
+where $p$ is an odd prime and $k\in\N$.
+\end{theorem}
+
+\begin{proposition}[Power Congruences in a Cyclic Group]
+Suppose $(\Z/n\Z)^\times$ is cyclic of order $N=\varphi(n)$. For an integer $k\ge1$ and $\gcd(a, n)=1$, the congruence
+\[
+ x^k\equiv a\pmod n
+\]
+has solutions if and only if $a^{N/d}\equiv1\pmod n$, where $d=\gcd(k, N)$. When solvable, it has exactly $d$ solutions modulo $n$.
+\end{proposition}
+
+\begin{definition}[Carmichael Function]
+For $n\ge1$, the Carmichael function $\lambda(n)$ is the exponent of $(\Z/n\Z)^\times$: the least positive integer $m$ such that $a^m\equiv1\pmod n$ for all $a$ coprime to $n$. For odd primes $p$,
+\[
+ \lambda(p^k)=p^{k-1}(p-1),
+\]
+while $\lambda(2)=1$, $\lambda(4)=2$, and $\lambda(2^k)=2^{k-2}$ for $k\ge3$. For pairwise coprime $a, b$, $\lambda(ab)=\lcmop(\lambda(a), \lambda(b))$.
+\end{definition}
+
+
+\begin{theorem}[Primitive Root Test]
+Let $p$ be an odd prime and $g\in\Z$ with $p\nmid g$. Then $g$ is a primitive root modulo $p$ if and only if
+\[
+ g^{(p-1)/\ell}\not\equiv1\pmod p
+\]
+for every distinct prime divisor $\ell$ of $p-1$.
+\end{theorem}
+
+\begin{proposition}[The Group of Units Modulo a Power of Two]
+For $k\ge3$,
+\[
+ (\Z/2^k\Z)^\times\cong C_2\times C_{2^{k-2}}.
+\]
+In particular, there is no primitive root modulo $2^k$ when $k\ge3$.
+\end{proposition}
+
+\begin{definition}[$p$-Adic Valuation]
+For a prime $p$ and nonzero integer $n$, $v_p(n)$ is the largest $r\in\Nzero$ such that $p^r\mid n$. For nonzero integers $a, b$,
+\[
+ v_p(ab)=v_p(a)+v_p(b), \qquad
+ v_p(a+b)\ge\min(v_p(a), v_p(b))
+\]
+when $a+b\ne0$. The second inequality is an equality if $v_p(a)\ne v_p(b)$.
+\end{definition}
+
+\begin{theorem}[Legendre's Formula]
+For a prime $p$ and $n\in\N$,
+\[
+ v_p(n!)=\sum_{k\ge1}\left\lfloor\frac{n}{p^k}\right\rfloor
+ =\frac{n-s_p(n)}{p-1},
+\]
+where $s_p(n)$ is the sum of the base-$p$ digits of $n$.
+\end{theorem}
+
+\begin{theorem}[Lifting the Exponent Lemma; LTE]
+Let $p$ be an odd prime, $n\in\N$, and $x, y\in\Z$ with $x\ne y$, $p\mid x-y$, and $p\nmid xy$. Then
+\[
+ v_p(x^n-y^n)=v_p(x-y)+v_p(n).
+\]
+If instead $p\mid x+y$, $p\nmid xy$, $n$ is odd, and $x^n+y^n\ne0$, then
+\[
+ v_p(x^n+y^n)=v_p(x+y)+v_p(n).
+\]
+For distinct odd integers $x, y$ and even $n$,
+\[
+ v_2(x^n-y^n)=v_2(x-y)+v_2(x+y)+v_2(n)-1.
+\]
+For odd $n$, $v_2(x^n-y^n)=v_2(x-y)$.
+\end{theorem}
+
+\begin{theorem}[Lucas's Theorem]
+Let $p$ be prime and write $n=\sum_{i\ge0}n_ip^i$, $k=\sum_{i\ge0}k_ip^i$, with $0\le n_i, k_i<p$. For $0\le k\le n$,
+\[
+ \binom nk\equiv\prod_{i\ge0}\binom{n_i}{k_i}\pmod p,
+\]
+where $\binom{a}{b}=0$ if $b>a$.
+\end{theorem}
+
+\begin{theorem}[Kummer's Theorem]
+For a prime $p$ and integers $0\le k\le n$, the valuation $v_p\!\left(\binom nk\right)$ equals the number of carries when $k$ and $n-k$ are added in base $p$.
+\end{theorem}
+
+\begin{formula}[Valuation of a Binomial Coefficient]
+For a prime $p$ and $0\le k\le n$,
+\[
+ v_p\!\left(\binom nk\right)=
+ \sum_{r\ge1}\left(
+ \left\lfloor\frac n{p^r}\right\rfloor-
+ \left\lfloor\frac k{p^r}\right\rfloor-
+ \left\lfloor\frac{n-k}{p^r}\right\rfloor
+ \right).
+\]
+\end{formula}
+
+
+\begin{formula}[Powers of Two in Factorials]
+For $n\in\N$,
+\[
+ v_2(n!)=n-s_2(n),
+\]
+where $s_2(n)$ is the number of ones in the binary expansion of $n$.
+\end{formula}
+
+\begin{proposition}[Valuations of Products]
+For nonzero integers $a_1, \dots, a_m$,
+\[
+ v_p\!\left(\prod_{i=1}^m a_i\right)=\sum_{i=1}^m v_p(a_i).
+\]
+For nonzero integers $a, b$,
+\[
+ v_p(\gcd(a, b))=\min(v_p(a), v_p(b)),
+\]
+where $\gcd(a, b)$ is positive.
+\end{proposition}
+
+\begin{definition}[Quadratic Residue and Legendre Symbol]
+For an odd prime $p$ and $a\in\Z$, $a$ is a quadratic residue modulo $p$ if $x^2\equiv a\pmod p$ for some integer $x$. The Legendre symbol is
+\[
+ \left(\frac ap\right)=
+ \begin{cases}
+ 0, &p\mid a, \\
+ 1, &a\text{ is a nonzero quadratic residue modulo }p, \\
+ -1, &\text{otherwise}.
+ \end{cases}
+\]
+\end{definition}
+
+\begin{theorem}[Euler's Criterion]
+For an odd prime $p$ and any integer $a$,
+\[
+ a^{(p-1)/2}\equiv\left(\frac ap\right)\pmod p.
+\]
+If $p\nmid a$, there are exactly two solutions modulo $p$ to $x^2\equiv a\pmod p$ when the Legendre symbol is $1$, and none when it is $-1$.
+\end{theorem}
+
+\begin{proposition}[Multiplicativity of the Legendre Symbol]
+For an odd prime $p$ and integers $a, b$,
+\[
+ \left(\frac{ab}{p}\right)
+ =\left(\frac ap\right)\left(\frac bp\right).
+\]
+\end{proposition}
+
+
+\begin{theorem}[Gauss's Lemma for Quadratic Residues]
+Let $p$ be an odd prime, $a\in\Z$ with $p\nmid a$, and let $m$ be the number of integers $k\in\{1, \dots, (p-1)/2\}$ for which the least positive residue of $ak$ modulo $p$ exceeds $p/2$. Then
+\[
+ \left(\frac ap\right)=(-1)^m.
+\]
+\end{theorem}
+
+\begin{theorem}[Law of Quadratic Reciprocity]
+For distinct odd primes $p, q$,
+\[
+ \left(\frac pq\right)\left(\frac qp\right)
+ =(-1)^{(p-1)(q-1)/4}.
+\]
+The supplementary laws are
+\[
+ \left(\frac{-1}{p}\right)=(-1)^{(p-1)/2}, \qquad
+ \left(\frac2p\right)=(-1)^{(p^2-1)/8}.
+\]
+\end{theorem}
+
+\begin{definition}[Jacobi Symbol]
+For a positive odd integer $n=\prod_i p_i^{\alpha_i}$ and $a\in\Z$, define
+\[
+ \left(\frac an\right)
+ =\prod_i\left(\frac a{p_i}\right)^{\alpha_i}.
+\]
+By convention $\left(\frac a1\right)=1$. For composite $n$, Jacobi symbol $1$ does not necessarily imply that $a$ is a quadratic residue modulo $n$.
+\end{definition}
+
+\begin{proposition}[Solutions of $x^2\equiv1$ Modulo Prime Powers]
+For an odd prime $p$ and $k\ge1$, the solutions of $x^2\equiv1\pmod{p^k}$ are exactly $x\equiv\pm1\pmod{p^k}$. Modulo $2^k$, there is one solution for $k=1$, two for $k=2$, and four for $k\ge3$.
+\end{proposition}
+
+
+\begin{theorem}[Quadratic Residues of $-1$ and $2$]
+For an odd prime $p$,
+\[
+ -1\text{ is a quadratic residue modulo }p
+ \quad\Longleftrightarrow\quad p\equiv1\pmod4,
+\]
+\[
+ 2\text{ is a quadratic residue modulo }p
+ \quad\Longleftrightarrow\quad p\equiv\pm1\pmod8.
+\]
+\end{theorem}
+
+\begin{definition}[Diophantine Equation]
+A Diophantine equation is an equation in which solutions are required to be integers (or, when explicitly specified, natural numbers or rational numbers). The domain restriction is part of the problem.
+\end{definition}
+
+\begin{theorem}[Linear Diophantine Equations]
+Let $a, b, c\in\Z$, with $a, b$ not both zero. The equation $ax+by=c$ has integer solutions if and only if $d=\gcd(a, b)$ divides $c$. If $(x_0, y_0)$ is one solution, all solutions are
+\[
+ x=x_0+\frac bd t, \qquad y=y_0-\frac ad t,
+ \qquad t\in\Z.
+\]
+\end{theorem}
+
+\begin{theorem}[Primitive Pythagorean Triples]
+All triples of positive integers $a, b, c$ satisfying $a^2+b^2=c^2$ and $\gcd(a, b, c)=1$ arise, after possibly interchanging $a, b$, as
+\[
+ a=m^2-n^2, \quad b=2mn, \quad c=m^2+n^2,
+\]
+where $m>n\ge1$, $\gcd(m, n)=1$, and $m, n$ have opposite parity.
+\end{theorem}
+
+\begin{theorem}[Frobenius Coin Theorem for Two Denominations]
+If $a, b\ge2$ are coprime integers, the greatest nonnegative integer not expressible as $ax+by$ with $x, y\in\Nzero$ is
+\[
+ ab-a-b.
+\]
+The number of nonnegative integers not expressible in this form is $(a-1)(b-1)/2$.
+\end{theorem}
+
+\begin{theorem}[Fermat's Two-Square Theorem]
+An odd prime $p$ can be written as a sum of two integer squares if and only if $p\equiv1\pmod4$. The prime $2=1^2+1^2$ is also such a sum.
+\end{theorem}
+
+\begin{theorem}[Sum of Two Squares Criterion]
+A positive integer $n$ is a sum of two integer squares if and only if every prime $p\equiv3\pmod4$ appears to an even exponent in the prime factorization of $n$.
+\end{theorem}
+
+\begin{formula}[Brahmagupta--Fibonacci Identity]
+For integers $a, b, c, d$,
+\[
+ (a^2+b^2)(c^2+d^2)=(ac-bd)^2+(ad+bc)^2.
+\]
+The companion expression $(ac+bd)^2+(ad-bc)^2$ has the same value.
+\end{formula}
+
+\begin{theorem}[Lagrange's Four-Square Theorem]
+Every nonnegative integer is a sum of four integer squares.
+\end{theorem}
+
+
+\begin{proposition}[Solutions of Homogeneous Linear Diophantine Equations]
+If $\gcd(a, b)=d$ and $a, b$ are not both zero, then every integer solution of $ax+by=0$ has the form
+\[
+ (x, y)=\left(\frac bd t, -\frac ad t\right),
+ \qquad t\in\Z.
+\]
+\end{proposition}
+
+\begin{theorem}[Zsigmondy's Theorem, Integer Form]
+Let $a>b\ge1$ be coprime integers and $n>1$. Except when $n=2$ and $a+b$ is a power of $2$, or when $(a, b, n)=(2, 1, 6)$, the integer $a^n-b^n$ has a prime divisor which divides no $a^k-b^k$ with $1\le k<n$.
+\end{theorem}
+
+\begin{definition}[Simple Continued Fraction]
+For integers $a_0\in\Z$, $a_i\in\N$ for $i\ge1$, the simple continued fraction
+\[
+ [a_0;a_1, \dots, a_n]
+ =a_0+\cfrac1{a_1+\cfrac1{a_2+\dots+\cfrac1{a_n}}}
+\]
+has a reduced form $p_n/q_n$ with $q_n>0$, called its $n$th convergent.
+\end{definition}
+
+\begin{proposition}[Convergent Recurrences]
+With initial values $p_{-2}=0$, $p_{-1}=1$, $q_{-2}=1$, $q_{-1}=0$, the convergents satisfy
+\[
+ p_n=a_np_{n-1}+p_{n-2}, \qquad
+ q_n=a_nq_{n-1}+q_{n-2},
+\]
+and
+\[
+ p_nq_{n-1}-p_{n-1}q_n=(-1)^{n-1}.
+\]
+\end{proposition}
+
+\begin{theorem}[Approximation by Continued Fractions]
+If $\alpha\in\R\setminus\Q$ has convergents $p_n/q_n$, then
+\[
+ \left|\alpha-\frac{p_n}{q_n}\right|<\frac1{q_n^2}.
+\]
+\end{theorem}
+
+\begin{definition}[Pell Equation]
+For a fixed positive nonsquare integer $D$, Pell's equation is
+\[
+ x^2-Dy^2=1, \qquad x, y\in\Z.
+\]
+\end{definition}
+
+\begin{theorem}[Solutions of Pell's Equation]
+For every positive nonsquare integer $D$, there is a least solution $(x_1, y_1)$ in positive integers to $x^2-Dy^2=1$ with $x_1>1$. Every positive-integer solution $(x_n, y_n)$ is determined by
+\[
+ x_n+y_n\sqrt D=(x_1+y_1\sqrt D)^n,
+ \qquad n\in\N.
+\]
+\end{theorem}
+
+
+\begin{theorem}[Periodicity of Continued Fractions of Quadratic Irrationals]
+A real irrational number has an eventually periodic simple continued fraction if and only if it is a quadratic irrational, that is, a root of an irreducible quadratic polynomial over $\Q$.
+\end{theorem}
+
+\begin{definition}[Gaussian Integers and Norm]
+The Gaussian integers form the ring $\Z[i]=\{a+bi\mid a, b\in\Z\}$. The norm is
+\[
+ N(a+bi)=a^2+b^2=(a+bi)(a-bi).
+\]
+It is multiplicative: $N(zw)=N(z)N(w)$. The units of $\Z[i]$ are $\pm1, \pm i$.
+\end{definition}
+
+\begin{theorem}[Unique Factorization in Gaussian Integers]
+The ring $\Z[i]$ is a Euclidean domain with respect to its norm and hence a unique factorization domain. Every nonzero nonunit factors into Gaussian primes, uniquely up to order and multiplication by units.
+\end{theorem}
+
+\begin{theorem}[Finite Fields and Their Multiplicative Groups]
+For each prime power $q$, there is up to isomorphism a unique field $\mathbb F_q$ with $q$ elements. Its nonzero elements form a cyclic group of order $q-1$, so every $a\in\mathbb F_q$ satisfies $a^q=a$.
+\end{theorem}
+
+\begin{theorem}[Hensel's Lemma, Simple-Root Form]
+Let $p$ be prime and $f\in\Z[x]$. If an integer $a$ satisfies
+\[
+ f(a)\equiv0\pmod p,
+ \qquad f'(a)\not\equiv0\pmod p,
+\]
+then for every $k\in\N$ there exists a unique residue class $x_k\pmod{p^k}$ with $x_k\equiv a\pmod p$ and $f(x_k)\equiv0\pmod{p^k}$.
+\end{theorem}

@@ -1,1 +1,677 @@
 \chapter{Algebra}
+
+\begin{formula}[Basic Factorization Identities]
+For elements of a commutative ring,
+\[
+ a^2-b^2=(a-b)(a+b), \qquad
+ a^3\pm b^3=(a\pm b)(a^2\mp ab+b^2),
+\]
+where the two signs in the second identity are paired consistently. More generally, for $n\ge1$,
+\[
+ a^n-b^n=(a-b)\sum_{k=0}^{n-1}a^{n-1-k}b^k.
+\]
+If $n$ is odd, then
+\[
+ a^n+b^n=(a+b)\sum_{k=0}^{n-1}(-1)^k a^{n-1-k}b^k.
+\]
+\end{formula}
+
+\begin{formula}[Three-Variable Cubic Identity]
+For $a, b, c$ in a commutative ring,
+\[
+ a^3+b^3+c^3-3abc
+ =(a+b+c)(a^2+b^2+c^2-ab-bc-ca).
+\]
+In particular, $a+b+c=0$ implies $a^3+b^3+c^3=3abc$.
+\end{formula}
+
+\begin{formula}[Square and Fourth-Power Sums]
+For real $a, b, c$,
+\[
+ a^2+b^2+c^2-ab-bc-ca
+ =\frac12\bigl((a-b)^2+(b-c)^2+(c-a)^2\bigr),
+\]
+\[
+ a^4+b^4+c^4-\sum_{\mathrm{cyc}}a^2b^2
+ =\frac12\bigl((a^2-b^2)^2+(b^2-c^2)^2+(c^2-a^2)^2\bigr).
+\]
+Here $\sum_{\mathrm{cyc}}a^2b^2=a^2b^2+b^2c^2+c^2a^2$.
+\end{formula}
+
+\begin{definition}[Symmetric and Homogeneous Polynomials]
+A polynomial $P(x_1, \dots, x_n)$ is \emph{symmetric} if it is unchanged by every permutation of its variables. It is \emph{homogeneous of degree $d$} if every nonzero monomial has total degree $d$, equivalently
+\[
+ P(tx_1, \dots, tx_n)=t^d P(x_1, \dots, x_n)
+\]
+for every scalar $t$ in an infinite coefficient field.
+\end{definition}
+
+\begin{formula}[Elementary Symmetric Polynomials]
+For $x_1, \dots, x_n$ and $0\le k\le n$, put $e_0=1$ and
+\[
+ e_k=\sum_{1\le i_1<\cdots<i_k\le n}x_{i_1}\cdots x_{i_k}.
+\]
+Then
+\[
+ \prod_{i=1}^n(t-x_i)=\sum_{k=0}^n(-1)^k e_k t^{n-k}.
+\]
+\end{formula}
+
+\begin{theorem}[Fundamental Theorem of Symmetric Polynomials]
+Every symmetric polynomial in $x_1, \dots, x_n$ over a commutative ring $R$ can be expressed uniquely as a polynomial in $e_1, \dots, e_n$ with coefficients in $R$.
+\end{theorem}
+
+\begin{formula}[Quadratic Equation]
+For $a, b, c\in\C$ with $a\ne0$, the solutions of $ax^2+bx+c=0$ are
+\[
+ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
+\]
+The discriminant is $\Delta=b^2-4ac$. For real coefficients, its sign determines whether there are two distinct, one repeated, or no real roots.
+\end{formula}
+
+\begin{formula}[Two-Variable Symmetric Expressions]
+If $s=x+y$ and $p=xy$, then $x, y$ are roots of $t^2-st+p$, and
+\[
+ x^2+y^2=s^2-2p, \quad
+ x^3+y^3=s^3-3ps, \quad
+ (x-y)^2=s^2-4p.
+\]
+\end{formula}
+
+
+\begin{theorem}[Vieta's Relations for Two and Three Roots]
+If $x, y$ are roots of $t^2-st+p$, then $x+y=s$ and $xy=p$. If $x, y, z$ are roots of $t^3-at^2+bt-c$, then
+\[
+ x+y+z=a, \quad xy+yz+zx=b, \quad xyz=c.
+\]
+\end{theorem}
+
+\begin{formula}[Sums of Powers of Integers]
+For $n\in\N$,
+\[
+ \sum_{k=1}^n k=\frac{n(n+1)}2, \qquad
+ \sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}6,
+\]
+\[
+ \sum_{k=1}^n k^3=\left(\frac{n(n+1)}2\right)^2.
+\]
+\end{formula}
+
+\begin{definition}[Polynomial, Degree, and Multiplicity]
+For a field $F$, a polynomial $f(x)=a_0+\cdots+a_nx^n\in F[x]$ with $a_n\ne0$ has degree $n$. A root $r\in F$ has multiplicity $m\ge1$ if $(x-r)^m\mid f(x)$ but $(x-r)^{m+1}\nmid f(x)$.
+\end{definition}
+
+\begin{theorem}[Polynomial Division and Remainder Theorems]
+For $f, g\in F[x]$ with $g\ne0$, there are unique $q, r\in F[x]$ satisfying
+\[
+ f=qg+r, \qquad r=0\ \text{or}\ \deg r<\deg g.
+\]
+In particular, the remainder on division of $f(x)$ by $x-a$ is $f(a)$, and
+\[
+ f(a)=0\quad\Longleftrightarrow\quad (x-a)\mid f(x).
+\]
+\end{theorem}
+
+
+\begin{theorem}[Polynomial B\'ezout Identity]
+Let $F$ be a field and let $f, g\in F[x]$, not both zero. There are polynomials $u, v\in F[x]$ such that
+\[
+ uf+vg=\gcd(f, g),
+\]
+where the greatest common divisor is chosen monic. In particular, $f$ and $g$ are coprime if and only if $uf+vg=1$ for some $u, v\in F[x]$.
+\end{theorem}
+
+
+
+\begin{proposition}[Root-Counting Principle]
+A nonzero polynomial of degree $d$ over a field has at most $d$ distinct roots. Consequently, two polynomials of degree at most $d$ that agree at $d+1$ distinct points are identical.
+\end{proposition}
+
+\begin{theorem}[Vi\`ete's Formulas]
+Let $f(x)=a_nx^n+\cdots+a_0=a_n\prod_{i=1}^n(x-r_i)$ over $\C$, with $a_n\ne0$, where the roots are counted with multiplicity. Then
+\[
+ e_k(r_1, \dots, r_n)=(-1)^k\frac{a_{n-k}}{a_n}
+ \qquad (1\le k\le n).
+\]
+In particular, $\sum_i r_i=-a_{n-1}/a_n$ and $\prod_i r_i=(-1)^na_0/a_n$.
+\end{theorem}
+
+\begin{formula}[Newton's Identities]
+Let $p_k=\sum_{i=1}^n r_i^k$ and let $e_k$ be the elementary symmetric polynomials in $r_1, \dots, r_n$. For $1\le k\le n$,
+\[
+ p_k-e_1p_{k-1}+e_2p_{k-2}-\cdots
+ +(-1)^{k-1}e_{k-1}p_1+(-1)^k k e_k=0.
+\]
+For $k>n$, the same identity holds with $e_j=0$ for $j>n$.
+\end{formula}
+
+\begin{theorem}[Lagrange Interpolation]
+Let $x_0, \dots, x_n$ be distinct elements of a field $F$. There is a unique polynomial $P\in F[x]$ of degree at most $n$ with $P(x_i)=y_i$ for all $i$, namely
+\[
+ P(x)=\sum_{i=0}^n y_i\prod_{\substack{0\le j\le n\\j\ne i}}
+ \frac{x-x_j}{x_i-x_j}.
+\]
+\end{theorem}
+
+\begin{theorem}[Rational Root Theorem]
+Let $f(x)=a_nx^n+\cdots+a_0\in\Z[x]$ with $a_n\ne0$. If $u/v$ is a root with $u, v\in\Z$, $v>0$, and $\gcd(u, v)=1$, then $u\mid a_0$ and $v\mid a_n$.
+\end{theorem}
+
+\begin{theorem}[Conjugate Root Principles]
+For a polynomial with real coefficients, every nonreal complex root occurs together with its complex conjugate, with the same multiplicity. For a polynomial with rational coefficients, a root of the form $a+b\sqrt d$ with $a, b\in\Q$, $b\ne0$, and $d\in\Q$ not a square in $\Q$ occurs together with $a-b\sqrt d$.
+\end{theorem}
+
+\begin{theorem}[Eisenstein's Irreducibility Criterion]
+Let $f(x)=a_nx^n+\cdots+a_0\in\Z[x]$ be primitive. If a prime $p$ satisfies
+\[
+ p\mid a_0, \dots, a_{n-1}, \qquad p\nmid a_n,
+ \qquad p^2\nmid a_0,
+\]
+then $f$ is irreducible over $\Q$. The criterion can also be applied after a substitution $x\mapsto x+k$ with $k\in\Z$.
+\end{theorem}
+
+\begin{theorem}[Cauchy's Root Bound]
+If $f(z)=a_nz^n+\cdots+a_0$ with $a_n\ne0$, then every complex root $z$ satisfies
+\[
+ |z|\le 1+\max_{0\le k<n}\left|\frac{a_k}{a_n}\right|.
+\]
+\end{theorem}
+
+\begin{definition}[Irreducible Polynomial and Minimal Polynomial]
+A nonconstant $f\in F[x]$ is \emph{irreducible over $F$} if it cannot be written as a product of two polynomials of positive degree in $F[x]$. If $\alpha$ is algebraic over $F$, its \emph{minimal polynomial} $m_{\alpha, F}\in F[x]$ is the unique monic irreducible polynomial over $F$ satisfying $m_{\alpha, F}(\alpha)=0$.
+\end{definition}
+
+\begin{theorem}[Fundamental Theorem of Algebra]
+Every nonconstant polynomial in $\C[x]$ has a root in $\C$. Equivalently, every polynomial of degree $n\ge1$ over $\C$ factors into $n$ linear factors, counted with multiplicity.
+\end{theorem}
+
+\begin{theorem}[Combinatorial Nullstellensatz, Coefficient Form]
+Let $F$ be a field and let $P\in F[x_1, \dots, x_n]$ have total degree $t_1+\cdots+t_n$, where $t_i\in\Nzero$. If the coefficient of $x_1^{t_1}\cdots x_n^{t_n}$ is nonzero, then for any sets $S_i\subseteq F$ with $|S_i|>t_i$, there exist $s_i\in S_i$ such that $P(s_1, \dots, s_n)\ne0$.
+\end{theorem}
+
+
+\begin{theorem}[Gauss's Lemma for Polynomials]
+If $f, g\in\Z[x]$ are primitive polynomials, then $fg$ is primitive. In particular, a primitive polynomial in $\Z[x]$ is irreducible over $\Q$ if and only if it is irreducible over $\Z$.
+\end{theorem}
+
+\begin{theorem}[Irreducibility by Reduction Modulo a Prime]
+Let $f\in\Z[x]$ have positive degree and leading coefficient not divisible by a prime $p$. If its reduction $\overline f\in\mathbb F_p[x]$ has the same degree and is irreducible over $\mathbb F_p$, then $f$ is irreducible over $\Q$ provided $f$ is primitive.
+\end{theorem}
+
+\begin{proposition}[Derivative and Multiplicity of a Root]
+Let $f\in F[x]$, where $F$ has characteristic $0$. An element $a\in F$ is a root of multiplicity exactly $m$ if and only if
+\[
+ f(a)=f'(a)=\cdots=f^{(m-1)}(a)=0,
+ \qquad f^{(m)}(a)\ne0.
+\]
+\end{proposition}
+
+\begin{theorem}[Arithmetic--Geometric Mean Inequality]
+For $x_1, \dots, x_n\ge0$,
+\[
+ \frac{x_1+\cdots+x_n}{n}\ge (x_1\cdots x_n)^{1/n}.
+\]
+Equality holds exactly when $x_1=\cdots=x_n$. More generally, for positive weights $w_i$ with $\sum_iw_i=1$,
+\[
+ \sum_{i=1}^n w_ix_i\ge\prod_{i=1}^n x_i^{w_i},
+\]
+with equality when all $x_i>0$ are equal.
+\end{theorem}
+
+\begin{theorem}[Cauchy--Schwarz Inequality]
+For real $a_i, b_i$,
+\[
+ \left(\sum_{i=1}^n a_ib_i\right)^2
+ \le \left(\sum_{i=1}^n a_i^2\right)
+       \left(\sum_{i=1}^n b_i^2\right).
+\]
+Equality holds exactly when the two vectors are linearly dependent. For $x_i>0$,
+\[
+ \sum_{i=1}^n\frac{a_i^2}{x_i}
+ \ge\frac{(\sum_{i=1}^n a_i)^2}{\sum_{i=1}^n x_i}.
+\]
+\end{theorem}
+
+
+\begin{theorem}[Cauchy--Schwarz Inequality, Engel Form]
+For $x_1, \dots, x_n\in\R$ and $a_1, \dots, a_n>0$,
+\[
+ \sum_{i=1}^n\frac{x_i^2}{a_i}\ge
+ \frac{(x_1+\cdots+x_n)^2}{a_1+\cdots+a_n}.
+\]
+Equality holds if and only if the ratios $x_i/a_i$ are all equal.
+\end{theorem}
+
+\begin{theorem}[Tangent-Line Inequality for Convex Functions]
+If $f$ is differentiable and convex on an open interval $I$, then for all $x, y\in I$,
+\[
+ f(y)\ge f(x)+f'(x)(y-x).
+\]
+If $f$ is strictly convex, equality holds only for $x=y$.
+\end{theorem}
+
+\begin{theorem}[Harmonic--Geometric--Arithmetic--Quadratic Means]
+For positive $x_1, \dots, x_n$,
+\[
+ \frac{n}{\sum_i1/x_i}
+ \le\left(\prod_i x_i\right)^{1/n}
+ \le\frac{\sum_i x_i}{n}
+ \le\sqrt{\frac{\sum_i x_i^2}{n}}.
+\]
+Equality throughout holds exactly when all $x_i$ are equal.
+\end{theorem}
+
+\begin{theorem}[H\"older's Inequality]
+Let $p, q>1$ satisfy $1/p+1/q=1$. For nonnegative $a_i, b_i$,
+\[
+ \sum_{i=1}^n a_ib_i\le
+ \left(\sum_{i=1}^n a_i^p\right)^{1/p}
+ \left(\sum_{i=1}^n b_i^q\right)^{1/q}.
+\]
+For nonzero sequences, equality holds exactly when $(a_i^p)$ and $(b_i^q)$ are proportional.
+\end{theorem}
+
+\begin{theorem}[Minkowski's Inequality]
+For $p\ge1$ and real (or complex) sequences $(a_i), (b_i)$,
+\[
+ \left(\sum_i|a_i+b_i|^p\right)^{1/p}
+ \le\left(\sum_i|a_i|^p\right)^{1/p}
+ +\left(\sum_i|b_i|^p\right)^{1/p}.
+\]
+\end{theorem}
+
+\begin{theorem}[Jensen's Inequality]
+Let $f$ be convex on an interval $I$, and let $x_i\in I$, $w_i\ge0$, $\sum_iw_i=1$. Then
+\[
+ f\!\left(\sum_iw_ix_i\right)\le\sum_iw_if(x_i).
+\]
+For a strictly convex $f$ and positive weights, equality holds exactly when all $x_i$ are equal.
+\end{theorem}
+
+\begin{theorem}[Bernoulli's Inequality]
+For $x\ge-1$ and real $r\ge1$,
+\[
+ (1+x)^r\ge1+rx.
+\]
+For $0\le r\le1$ the inequality reverses when $x>-1$.
+\end{theorem}
+
+\begin{theorem}[Rearrangement Inequality]
+If $a_1\le\cdots\le a_n$ and $b_1\le\cdots\le b_n$ are real, then for any permutation $\sigma\in S_n$,
+\[
+ \sum_{i=1}^n a_ib_{n+1-i}
+ \le\sum_{i=1}^n a_ib_{\sigma(i)}
+ \le\sum_{i=1}^n a_ib_i.
+\]
+\end{theorem}
+
+\begin{theorem}[Chebyshev's Sum Inequality]
+If $(a_i)$ and $(b_i)$ are similarly sorted real sequences, then
+\[
+ \frac1n\sum_{i=1}^n a_ib_i
+ \ge\left(\frac1n\sum_{i=1}^n a_i\right)
+       \left(\frac1n\sum_{i=1}^n b_i\right).
+\]
+The inequality reverses if the two sequences are oppositely sorted.
+\end{theorem}
+
+\begin{theorem}[Schur's Inequality]
+For $a, b, c>0$ and $r\ge0$,
+\[
+ \sum_{\mathrm{cyc}}a^r(a-b)(a-c)\ge0.
+\]
+For $r=1$, this becomes
+\[
+ a(a-b)(a-c)+b(b-c)(b-a)+c(c-a)(c-b)\ge0.
+\]
+\end{theorem}
+
+\begin{theorem}[Nesbitt's Inequality]
+For $a, b, c>0$,
+\[
+ \frac{a}{b+c}+\frac{b}{c+a}+\frac{c}{a+b}\ge\frac32.
+\]
+Equality holds exactly when $a=b=c$.
+\end{theorem}
+
+\begin{theorem}[Young's Inequality for Products]
+For $a, b\ge0$ and $p, q>1$ with $1/p+1/q=1$,
+\[
+ ab\le\frac{a^p}{p}+\frac{b^q}{q}.
+\]
+Equality holds exactly when $a^p=b^q$.
+\end{theorem}
+
+\begin{definition}[Majorization]
+For vectors $x, y\in\R^n$, let $x_{[1]}\ge\cdots\ge x_{[n]}$ and $y_{[1]}\ge\cdots\ge y_{[n]}$ be their coordinates in decreasing order. We say that $x$ \emph{majorizes} $y$ if
+\[
+ \sum_{i=1}^k x_{[i]}\ge\sum_{i=1}^k y_{[i]}
+ \quad(1\le k<n), \qquad \sum_i x_i=\sum_i y_i.
+\]
+\end{definition}
+
+\begin{theorem}[Muirhead's Inequality]
+Let $a_1, \dots, a_n\ge0$. For a nonnegative integer $n$-tuple $\alpha$, let $m_\alpha(a)$ denote the average of $a_1^{\alpha_{\sigma(1)}}\cdots a_n^{\alpha_{\sigma(n)}}$ over all $\sigma\in S_n$. If $\alpha$ majorizes $\beta$, then
+\[
+ m_\alpha(a)\ge m_\beta(a).
+\]
+\end{theorem}
+
+
+\begin{theorem}[Power Mean Inequality]
+For positive numbers $x_1, \dots, x_n$ and real $r$, let
+\[
+ M_r(x)=\begin{cases}
+ (\frac1n\sum_i x_i^r)^{1/r}, &r\ne0, \\
+ (\prod_i x_i)^{1/n}, &r=0.
+ \end{cases}
+\]
+If $r<s$, then $M_r(x)\le M_s(x)$, with equality exactly when all $x_i$ are equal.
+\end{theorem}
+
+\begin{theorem}[Maclaurin's Inequalities]
+For positive $x_1, \dots, x_n$, let $e_k$ be the elementary symmetric sums and put
+\[
+ E_k=\frac{e_k}{\binom nk}\qquad(1\le k\le n).
+\]
+Then
+\[
+ E_1\ge E_2^{1/2}\ge\cdots\ge E_n^{1/n},
+\]
+with equality throughout exactly when $x_1=\cdots=x_n$.
+\end{theorem}
+
+\begin{theorem}[Karamata's Inequality]
+Let $x, y\in I^n$ for an interval $I$, and suppose $x$ majorizes $y$. For a convex function $f\colon I\to\R$,
+\[
+ \sum_{i=1}^n f(x_i)\ge\sum_{i=1}^n f(y_i).
+\]
+If $f$ is strictly convex, equality holds exactly when $x$ is a permutation of $y$.
+\end{theorem}
+
+\begin{definition}[Sequence and Linear Recurrence]
+A sequence $(a_n)$ over a field $F$ is a function from an index set such as $\Nzero$ to $F$. It satisfies a linear recurrence of order $k$ with constant coefficients if
+\[
+ a_{n+k}=c_1a_{n+k-1}+\cdots+c_ka_n
+\]
+for fixed $c_1, \dots, c_k\in F$, with $c_k\ne0$.
+\end{definition}
+
+\begin{formula}[Arithmetic and Geometric Progressions]
+For $n\ge1$, an arithmetic progression $a_n=a_1+(n-1)d$ satisfies
+\[
+ \sum_{k=1}^n a_k=\frac{n(a_1+a_n)}2.
+\]
+A geometric progression $a_n=a_1r^{n-1}$ satisfies
+\[
+ \sum_{k=1}^n a_1r^{k-1}=
+ \begin{cases}a_1(1-r^n)/(1-r), &r\ne1, \\na_1, &r=1.\end{cases}
+\]
+\end{formula}
+
+\begin{theorem}[Linear Recurrences and Characteristic Roots]
+Suppose a sequence over $\C$ satisfies
+\[
+ a_{n+k}=c_1a_{n+k-1}+\cdots+c_ka_n
+\]
+with $c_k\ne0$. If the characteristic polynomial
+\[
+ P(t)=t^k-c_1t^{k-1}-\cdots-c_k
+\]
+has distinct roots $r_i$ of multiplicities $m_i$, then every solution is of the form
+\[
+ a_n=\sum_i Q_i(n)r_i^n, \qquad \deg Q_i<m_i.
+\]
+The constants in the polynomials $Q_i$ are determined uniquely by $k$ consecutive initial values.
+\end{theorem}
+
+\begin{formula}[Fibonacci Numbers and Binet's Formula]
+Let $F_0=0$, $F_1=1$, and $F_{n+2}=F_{n+1}+F_n$. Then
+\[
+ F_n=\frac{\varphi^n-\psi^n}{\sqrt5}, \qquad
+ \varphi=\frac{1+\sqrt5}2, \quad \psi=\frac{1-\sqrt5}2.
+\]
+For $m, n\ge1$,
+\[
+ F_{m+n}=F_mF_{n+1}+F_{m-1}F_n,
+ \qquad F_{n+1}F_{n-1}-F_n^2=(-1)^n.
+\]
+\end{formula}
+
+\begin{formula}[Telescoping Identities]
+For any sequence $(a_k)$ and $m\le n$,
+\[
+ \sum_{k=m}^n(a_{k+1}-a_k)=a_{n+1}-a_m.
+\]
+If $a_k, a_{k+1}\ne0$,
+\[
+ \frac{a_{k+1}-a_k}{a_ka_{k+1}}
+ =\frac1{a_k}-\frac1{a_{k+1}}.
+\]
+\end{formula}
+
+
+\begin{formula}[Finite Differences and Newton's Formula]
+For a sequence $(a_n)_{n\ge0}$, define $(\Delta a)_n=a_{n+1}-a_n$. If $\Delta^{d+1}a=0$, then
+\[
+ a_n=\sum_{k=0}^d \binom nk(\Delta^k a)_0
+ \qquad(n\in\Nzero).
+\]
+In particular, if $a_n=P(n)$ for a polynomial $P$ of degree at most $d$, then $\Delta^{d+1}a=0$.
+\end{formula}
+
+\begin{formula}[First-Order Linear Recurrence]
+If $a_{n+1}=ra_n+b_n$ for $n\ge0$, with fixed $r\in\C$, then
+\[
+ a_n=r^na_0+\sum_{j=0}^{n-1}r^{n-1-j}b_j
+ \qquad(n\ge1).
+\]
+If $b_n=b$ is constant and $r\ne1$, this becomes
+\[
+ a_n=r^na_0+b\frac{r^n-1}{r-1}.
+\]
+\end{formula}
+
+\begin{definition}[Injective, Surjective, and Bijective Functions]
+A function $f\colon X\to Y$ is injective if $f(x)=f(y)$ implies $x=y$, surjective if every $y\in Y$ equals $f(x)$ for some $x\in X$, and bijective if both properties hold. A bijection has an inverse function $f^{-1}\colon Y\to X$.
+\end{definition}
+
+\begin{definition}[Additive and Multiplicative Functions]
+A function $f\colon\R\to\R$ is additive if $f(x+y)=f(x)+f(y)$ for all $x, y\in\R$. A function $g\colon\R\to\R$ is multiplicative if $g(xy)=g(x)g(y)$ for all $x, y\in\R$. These notions are distinct from multiplicative arithmetic functions on $\N$.
+\end{definition}
+
+\begin{theorem}[Cauchy's Additive Functional Equation]
+If $f\colon\R\to\R$ satisfies $f(x+y)=f(x)+f(y)$ for all $x, y\in\R$, then $f(q)=qf(1)$ for all $q\in\Q$. If, in addition, $f$ is continuous at one point, monotone on an interval, Lebesgue measurable, or bounded on an interval of positive length, then
+\[
+ f(x)=cx\qquad(x\in\R)
+\]
+for some $c\in\R$.
+\end{theorem}
+
+\begin{theorem}[Jensen's Functional Equation]
+If $f\colon\R\to\R$ satisfies
+\[
+ f\!\left(\frac{x+y}{2}\right)=\frac{f(x)+f(y)}2
+ \qquad(x, y\in\R),
+\]
+then $f(x)=A(x)+b$ for an additive function $A\colon\R\to\R$ and a constant $b\in\R$. If $f$ is continuous at one point, then $f(x)=cx+b$ for real $b, c$.
+\end{theorem}
+
+\begin{theorem}[Continuous Exponential Equation]
+If a continuous function $f\colon\R\to(0, \infty)$ satisfies
+\[
+ f(x+y)=f(x)f(y)\qquad(x, y\in\R),
+\]
+then $f(x)=e^{cx}$ for some $c\in\R$.
+\end{theorem}
+
+\begin{remark}
+In a functional equation, the domain, codomain, and any regularity assumptions are part of the statement. The same formal equation may have additional nonstandard solutions without continuity, measurability, or related hypotheses.
+\end{remark}
+
+
+\begin{theorem}[Polynomial Functional Equations]
+Suppose $P, Q\in F[x]$ over an infinite field $F$ satisfy $P(t)=Q(t)$ for every $t\in F$. Then $P=Q$ as polynomials, so their corresponding coefficients are equal.
+\end{theorem}
+
+\begin{formula}[Polar Form and De Moivre's Formula]
+For $z=r(\cos\theta+i\sin\theta)$ with $r\ge0$ and $n\in\Z$ (when $n<0$, assume $r>0$),
+\[
+ z^n=r^n(\cos(n\theta)+i\sin(n\theta)).
+\]
+The $n$th roots of a nonzero complex number $re^{i\theta}$ are
+\[
+ r^{1/n}e^{i(\theta+2\pi k)/n}, \qquad k=0, \dots, n-1.
+\]
+\end{formula}
+
+\begin{definition}[Roots of Unity]
+For $n\ge1$, the $n$th roots of unity are the solutions of $z^n=1$. They form a cyclic group of order $n$, generated by
+\[
+ \zeta_n=e^{2\pi i/n}.
+\]
+An $n$th root of unity is \emph{primitive} if its multiplicative order is $n$.
+\end{definition}
+
+\begin{formula}[Sums of Roots of Unity]
+For $n\ge2$ and any integer $m$,
+\[
+ \sum_{k=0}^{n-1}\zeta_n^{mk}=
+ \begin{cases}n, &n\mid m, \\0, &n\nmid m.\end{cases}
+\]
+The same identity holds for any primitive $n$th root in place of $\zeta_n$.
+\end{formula}
+
+\begin{formula}[Roots-of-Unity Filter]
+If $P(x)=\sum_{k=0}^N a_kx^k\in\C[x]$ and $r\in\Z$, then
+\[
+ \sum_{\substack{0\le k\le N\\k\equiv r\ (\mathrm{mod}\ n)}}a_k
+ =\frac1n\sum_{j=0}^{n-1}\zeta_n^{-rj}P(\zeta_n^j).
+\]
+\end{formula}
+
+\begin{theorem}[Cyclotomic Factorization]
+For $n\ge1$, let $\Phi_n(x)$ be the monic polynomial whose roots are the primitive $n$th roots of unity. Then $\Phi_n(x)\in\Z[x]$, $\deg\Phi_n=\varphi(n)$, and
+\[
+ x^n-1=\prod_{d\mid n}\Phi_d(x).
+\]
+Each $\Phi_n$ is irreducible over $\Q$. Here $\varphi(n)$ denotes the number of integers $1\le k\le n$ relatively prime to $n$.
+\end{theorem}
+
+\begin{definition}[Group and Subgroup]
+A group $(G, \ast)$ is a set with an associative binary operation, an identity $e$, and a two-sided inverse for each element. A subset $H\subseteq G$ is a subgroup, written $H\le G$, if it is a group under the restricted operation. The group is \emph{abelian} if $a\ast b=b\ast a$ for all $a, b\in G$.
+\end{definition}
+
+\begin{definition}[Cyclic and Permutation Groups]
+A group generated by one element $g$ is cyclic, written $\langle g\rangle$. Write $C_n$ for the cyclic group of order $n$ and $S_n$ for the permutation group on $n$ symbols. The dihedral group $D_n$ is the symmetry group of a regular $n$-gon and has order $2n$.
+\end{definition}
+
+\begin{theorem}[Lagrange's Theorem]
+If $H\le G$ and $G$ is finite, then
+\[
+ |G|=[G:H]|H|.
+\]
+Consequently, $|H|\mid|G|$ and the order $\ord(g)$ of any $g\in G$ divides $|G|$; in particular, $g^{|G|}=e$.
+\end{theorem}
+
+\begin{theorem}[Cauchy's Theorem for Finite Groups]
+If a prime $p$ divides the order of a finite group $G$, then $G$ has an element of order $p$.
+\end{theorem}
+
+\begin{theorem}[Structure of Finite Cyclic Groups]
+If $G=\langle g\rangle$ has order $n$, then
+\[
+ \ord(g^k)=\frac{n}{\gcd(n, k)}.
+\]
+For each positive divisor $d\mid n$ there is exactly one subgroup of $G$ of order $d$, and $G$ has exactly $\varphi(n)$ generators, where $\varphi$ is Euler's totient function.
+\end{theorem}
+
+\begin{definition}[Homomorphism, Kernel, and Quotient Group]
+A group homomorphism $\varphi\colon G\to H$ satisfies $\varphi(xy)=\varphi(x)\varphi(y)$. Its kernel is $\ker\varphi=\{g\in G\mid\varphi(g)=e_H\}$. A subgroup $N\le G$ is normal if $gNg^{-1}=N$ for all $g\in G$; in that case $G/N$ is the quotient group of cosets.
+\end{definition}
+
+\begin{theorem}[First Isomorphism Theorem for Groups]
+For any group homomorphism $\varphi\colon G\to H$,
+\[
+ G/\ker\varphi\cong\im\varphi.
+\]
+\end{theorem}
+
+\begin{definition}[Group Action, Orbit, and Stabilizer]
+A left action of $G$ on $X$ is a map $(g, x)\mapsto g\cdot x$ satisfying $e\cdot x=x$ and $(gh)\cdot x=g\cdot(h\cdot x)$. The orbit of $x$ is $G\cdot x=\{g\cdot x\mid g\in G\}$, and the stabilizer is $\Stab_G(x)=\{g\in G\mid g\cdot x=x\}$.
+\end{definition}
+
+\begin{theorem}[Orbit--Stabilizer Theorem]
+If a finite group $G$ acts on a set $X$, then for each $x\in X$,
+\[
+ |G\cdot x|=[G:\Stab_G(x)]
+ =\frac{|G|}{|\Stab_G(x)|}.
+\]
+\end{theorem}
+
+\begin{theorem}[Burnside's Lemma; Cauchy--Frobenius Formula]
+If a finite group $G$ acts on a finite set $X$, the number of orbits is
+\[
+ |G\backslash X|=\frac1{|G|}\sum_{g\in G}|\Fix(g)|,
+\]
+where $\Fix(g)=\{x\in X\mid g\cdot x=x\}$.
+\end{theorem}
+
+\begin{theorem}[Class Equation]
+For a finite group $G$, choose representatives $x_1, \dots, x_r$ of the conjugacy classes not contained in its center $Z(G)$. Then
+\[
+ |G|=|Z(G)|+\sum_{i=1}^r[G:C_G(x_i)].
+\]
+\end{theorem}
+
+\begin{theorem}[Sylow Theorems]
+Let $|G|=p^km$ where $p$ is prime and $p\nmid m$. Then $G$ has a subgroup of order $p^k$, all such subgroups are conjugate, and their number $n_p$ satisfies
+\[
+ n_p\equiv1\pmod p, \qquad n_p\mid m.
+\]
+\end{theorem}
+
+\begin{theorem}[Fundamental Theorem of Finite Abelian Groups]
+Every finite abelian group is isomorphic to a direct product of cyclic groups of prime-power order. Equivalently, it is isomorphic to
+\[
+ C_{d_1}\times\cdots\times C_{d_r},
+ \qquad d_1\mid d_2\mid\cdots\mid d_r,
+\]
+with the invariant factors $d_i>1$ uniquely determined (the trivial group corresponds to an empty product).
+\end{theorem}
+
+
+\begin{theorem}[Sign and Cycle Decomposition]
+Every permutation $\sigma\in S_n$ is a product of disjoint cycles, uniquely up to their ordering and cyclic rotation. If its disjoint-cycle decomposition has $c$ cycles, including fixed points, then
+\[
+ \operatorname{sgn}(\sigma)=(-1)^{n-c}.
+\]
+\end{theorem}
+
+\begin{definition}[Ring, Integral Domain, and Field]
+Unless stated otherwise, rings are associative with an identity and need not be commutative. An integral domain is a nonzero commutative ring with identity and without zero divisors. A field is a nonzero commutative ring in which every nonzero element is invertible.
+\end{definition}
+
+\begin{definition}[Ideal, Quotient Ring, and Characteristic]
+An ideal $I$ of a ring $R$ means a two-sided ideal. The quotient $R/I$ is a ring. The characteristic $\charac R$ is the additive order of $1_R$, or $0$ if it has infinite additive order. Ring homomorphisms preserve identities.
+\end{definition}
+
+\begin{theorem}[Finite Integral Domains]
+Every finite integral domain is a field. A finite field has cardinality $p^k$ for some prime $p$ and $k\ge1$, and for each such prime power $q$ there is, up to isomorphism, a unique field $\mathbb F_q$.
+\end{theorem}
+
+\begin{theorem}[Lagrange's Theorem on Finite Subgroups of a Field]
+Every finite subgroup $G$ of the multiplicative group $F^\times$ of a field $F$ is cyclic. In particular, the multiplicative group of each finite field is cyclic.
+\end{theorem}
+
+\begin{theorem}[Multiplicative Group of a Finite Field]
+The group $\mathbb F_q^\times$ is cyclic of order $q-1$. In particular, each $a\in\mathbb F_q$ satisfies $a^q=a$, and for $m\in\N$ the equation $x^m=1$ in $\mathbb F_q$ has exactly $\gcd(m, q-1)$ solutions.
+\end{theorem}
+
+\begin{proposition}[Irreducible Polynomial Quotients]
+For a field $F$ and nonconstant $f\in F[x]$, the quotient ring $F[x]/(f)$ is a field if and only if $f$ is irreducible over $F$. If $F=\mathbb F_q$ and $\deg f=d$, the quotient has $q^d$ elements.
+\end{proposition}
+
+\begin{theorem}[Polynomial Method over Finite Fields]
+For a nonzero polynomial $f\in\mathbb F_q[x]$ of degree $d$, the equation $f(x)=0$ has at most $d$ solutions in $\mathbb F_q$. A polynomial function on $\mathbb F_q$ has a unique representative of degree at most $q-1$ modulo $x^q-x$.
+\end{theorem}
