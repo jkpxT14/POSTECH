@@ -286,6 +286,14 @@ For $n\in\N$ and $\gcd(a, n)=1$,
 \]
 \end{theorem}
 
+\begin{theorem}[Even Perfect Numbers; Euclid--Euler Theorem]
+A positive even integer is perfect if and only if it has the form
+\[
+ 2^{p-1}(2^p-1),
+\]
+where $p$ and $2^p-1$ are both prime.
+\end{theorem}
+
 \begin{definition}[Multiplicative Order]
 For $\gcd(a, n)=1$, the multiplicative order $\ord_n(a)$ is the least positive integer $r$ such that $a^r\equiv1\pmod n$. It divides $\varphi(n)$, and
 \[
@@ -294,6 +302,10 @@ For $\gcd(a, n)=1$, the multiplicative order $\ord_n(a)$ is the least positive i
 \]
 for $k\in\Z$.
 \end{definition}
+
+\begin{proposition}[Repetend Length and Multiplicative Order]
+Let $a/b$ be a reduced rational number with $b>1$ and $\gcd(b,B)=1$ for an integer base $B\ge2$. Its base-$B$ fractional expansion is purely periodic when $0\le a<b$, and its least positive period length is $\ord_b(B)$.
+\end{proposition}
 
 \begin{definition}[Primitive Root]
 An integer $g$ is a primitive root modulo $n$ if $\gcd(g, n)=1$ and
@@ -590,6 +602,13 @@ The companion expression $(ac+bd)^2+(ad-bc)^2$ has the same value.
 Every nonnegative integer is a sum of four integer squares.
 \end{theorem}
 
+\begin{theorem}[Legendre's Three-Square Theorem]
+A nonnegative integer $n$ is a sum of three integer squares if and only if it is not of the form
+\[
+ n=4^a(8b+7),\qquad a,b\in\Nzero.
+\]
+\end{theorem}
+
 
 \begin{proposition}[Solutions of Homogeneous Linear Diophantine Equations]
 If $\gcd(a, b)=d$ and $a, b$ are not both zero, then every integer solution of $ax+by=0$ has the form
@@ -602,6 +621,18 @@ If $\gcd(a, b)=d$ and $a, b$ are not both zero, then every integer solution of $
 \begin{theorem}[Zsigmondy's Theorem, Integer Form]
 Let $a>b\ge1$ be coprime integers and $n>1$. Except when $n=2$ and $a+b$ is a power of $2$, or when $(a, b, n)=(2, 1, 6)$, the integer $a^n-b^n$ has a prime divisor which divides none of $a^k-b^k$ for $1\le k<n$.
 \end{theorem}
+
+\begin{theorem}[Dirichlet's Approximation Theorem]
+For any irrational $\alpha\in\R$ and integer $N\ge1$, there exist integers $p$ and $q$ with $1\le q\le N$ such that
+\[
+ |q\alpha-p|<\frac1N.
+\]
+In particular, infinitely many reduced fractions $p/q$ satisfy $|\alpha-p/q|<1/q^2$.
+\end{theorem}
+
+\begin{definition}[Farey Sequences]
+The Farey sequence $\mathcal{F}_N$ lists in increasing order all reduced fractions $a/b$ with $0\le a\le b\le N$. Consecutive terms $a/b<c/d$ satisfy $bc-ad=1$. Conversely, reduced fractions $a/b<c/d$ are neighbors in $\mathcal{F}_N$ if and only if $bc-ad=1$ and $b+d>N$.
+\end{definition}
 
 \begin{definition}[Simple Continued Fraction]
 For integers $a_0\in\Z$, $a_i\in\N$ for $i\ge1$, the simple continued fraction
@@ -631,6 +662,22 @@ If $\alpha\in\R\setminus\Q$ has convergents $p_n/q_n$, then
 \]
 \end{theorem}
 
+\begin{theorem}[Legendre's Criterion for Convergents]
+Let $\alpha$ be irrational and $p/q$ a reduced rational number with $q>0$. If
+\[
+ \left|\alpha-\frac pq\right|<\frac1{2q^2},
+\]
+then $p/q$ is a convergent of the simple continued fraction of $\alpha$.
+\end{theorem}
+
+\begin{theorem}[Best Approximation by Convergents]
+Let $p_n/q_n$ be a convergent of an irrational number $\alpha$. For integers $p,q$ with $0<q<q_{n+1}$, one has
+\[
+ |q_n\alpha-p_n|\le |q\alpha-p|,
+\]
+with equality only when $(p,q)=(p_n,q_n)$ up to the possible sign convention for $q$. In particular, convergents are best approximations of the second kind.
+\end{theorem}
+
 \begin{definition}[Pell Equation]
 For a fixed positive nonsquare integer $D$, Pell's equation is
 \[
@@ -643,6 +690,17 @@ For every positive nonsquare integer $D$, there is a least solution $(x_1, y_1)$
 \[
  x_n+y_n\sqrt D=(x_1+y_1\sqrt D)^n,
  \qquad n\in\N.
+\]
+\end{theorem}
+
+\begin{theorem}[Negative Pell Equation]
+For a positive nonsquare integer $D$, the equation
+\[
+ x^2-Dy^2=-1
+\]
+has an integer solution if and only if the period length of the simple continued fraction of $\sqrt D$ is odd. If a least positive solution $(x_1,y_1)$ exists, all positive solutions are given by
+\[
+ x+y\sqrt D=(x_1+y_1\sqrt D)^{2k+1},\qquad k\in\Nzero.
 \]
 \end{theorem}
 
@@ -677,7 +735,7 @@ The ring $\Z[i]$ is a Euclidean domain with respect to its norm and hence a uniq
 \end{theorem}
 
 \begin{theorem}[Finite Fields and Their Multiplicative Groups]
-For each prime power $q$, there is up to isomorphism a unique field $\mathbb F_q$ with $q$ elements. Its nonzero elements form a cyclic group of order $q-1$, so every $a\in\mathbb F_q$ satisfies $a^q=a$.
+For each prime power $q$, there is up to isomorphism a unique field $\mathbb{F}_q$ with $q$ elements. Its nonzero elements form a cyclic group of order $q-1$, so every $a\in\mathbb{F}_q$ satisfies $a^q=a$.
 \end{theorem}
 
 \begin{theorem}[Hensel's Lemma, Simple-Root Form]

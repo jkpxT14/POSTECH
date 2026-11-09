@@ -71,6 +71,13 @@ For sequences $(a_n)$ and $(b_n)$ over a field of characteristic zero,
 \]
 \end{theorem}
 
+\begin{theorem}[Cauchy--Davenport Theorem]
+Let $A,B$ be nonempty subsets of the cyclic group $\Z/p\Z$ for a prime $p$. Their sumset $A+B=\{a+b\mid a\in A,\ b\in B\}$ satisfies
+\[
+ |A+B|\ge\min(p,\,|A|+|B|-1).
+\]
+\end{theorem}
+
 \begin{theorem}[Pigeonhole Principle]
 If $N$ objects are placed in $k\ge1$ boxes, some box contains at least $\lceil N/k\rceil$ objects. In particular, placing $k+1$ objects in $k$ boxes forces at least two into the same box.
 \end{theorem}
@@ -137,6 +144,14 @@ For $n, k\ge1$,
 \]
 The boundary conditions are $c(0, 0)=S(0, 0)=1$ and zero for inadmissible indices.
 \end{formula}
+
+\begin{definition}[Latin Squares]
+A Latin square of order $n$ is an $n\times n$ array of $n$ symbols, each occurring exactly once in each row and each column.
+\end{definition}
+
+\begin{definition}[Block Designs and Steiner Triple Systems]
+A $2$-$(v,k,\lambda)$ design is a $v$-element set together with a family of $k$-element blocks in which each pair of distinct points is contained in exactly $\lambda$ blocks. A Steiner triple system is a $2$-$(v,3,1)$ design. For $v\ge3$, such a system exists if and only if $v\equiv1$ or $3\pmod6$.
+\end{definition}
 
 \begin{definition}[Catalan Numbers]
 For $n\in\Nzero$, the $n$th Catalan number is
@@ -231,12 +246,11 @@ If $B(x)=\sum_{n\ge0}b_nx^n/n!$, then
 This is the labeled-product convolution, in contrast with ordinary generating functions.
 \end{formula}
 \begin{theorem}[Exponential Formula for Labeled Structures]
-Suppose every object in a labeled class uniquely decomposes into an unordered set of connected components, and let $c_n$ count connected components on an $n$-element labeled set. If $a_n$ counts all objects, including the empty object, then
+Let $\mathcal{C}$ be a class of labeled connected structures, with $c_n$ structures on an $n$-element label set. Suppose $\mathcal{A}$ consists of all finite unordered sets of $\mathcal{C}$-structures on pairwise disjoint nonempty label sets, including the empty set, and this decomposition is unique. If $a_n$ counts objects of $\mathcal{A}$ on $[n]$, then, as formal power series,
 \[
- \sum_{n\ge0}a_n\frac{x^n}{n!}
- =\exp\left(\sum_{n\ge1}c_n\frac{x^n}{n!}\right)
+ \sum_{n\ge0}a_n\frac{x^n}{n!}=
+ \exp\left(\sum_{n\ge1}c_n\frac{x^n}{n!}\right).
 \]
-as an identity of formal power series over $\Q$.
 \end{theorem}
 
 \begin{theorem}[Lagrange Inversion, Basic Form]
@@ -274,20 +288,20 @@ Let a finite group $G$ permute an $n$-element set, and suppose each position rec
 \]
 \end{theorem}
 
-\begin{proposition}[Cycle-Index Form of P\'olya Enumeration]
-If a finite permutation group $G$ acts on $n$ positions and each position may receive any of $q$ distinguishable colors, the number of orbits of colorings is
+\begin{proposition}[Weighted P\'olya Enumeration]
+Let $G$ act on $n$ positions, with cycle-index polynomial $Z_G$. If the available colors have respective weights $w_1,\dots,w_q$, the generating polynomial of colorings up to $G$-symmetry, weighted by color multiplicities, is
 \[
- Z_G(q,q,\dots,q).
+ Z_G\!\left(\sum_{i=1}^q w_i,\ \sum_{i=1}^q w_i^2,\ \dots,\ \sum_{i=1}^q w_i^n\right).
 \]
-If color $i$ has weight $w_i$, the generating polynomial for orbits counted by their color multiplicities is
-\[
- Z_G\left(\sum_iw_i,\ \sum_iw_i^2,\ \dots,\ \sum_iw_i^n\right).
-\]
-The coefficient of $\prod_iw_i^{m_i}$ counts orbits using color $i$ exactly $m_i$ times.
+The coefficient of $\prod_iw_i^{m_i}$ counts the orbits in which color $i$ occurs exactly $m_i$ times. Substituting $w_i=1$ yields $Z_G(q,\dots,q)$.
 \end{proposition}
 
-\begin{definition}[Graphs, Degrees, and Paths]
-A (finite simple undirected) graph is $G=(V, E)$, where $E$ consists of unordered pairs of distinct vertices. The degree $\deg(v)$ is the number of edges incident with $v$. A path has no repeated vertices, while a cycle is a closed path with at least three vertices and no repeated internal vertices.
+\begin{definition}[Graphs and Degrees]
+A finite simple undirected graph is $G=(V,E)$, where $E\subseteq\binom V2$. Its vertex degree $\deg(v)$ is the number of incident edges. A subgraph is determined by subsets of the vertices and edges; an induced subgraph on $S\subseteq V$ contains all edges of $G$ with both endpoints in $S$.
+\end{definition}
+
+\begin{definition}[Walks, Trails, Connectivity, and Components]
+A walk is a sequence of adjacent vertices, allowing repetition. A trail is a walk with no repeated edges, and a simple path has no repeated vertices. A graph is connected if every pair of vertices can be joined by a path. A connected component is a maximal connected subgraph. A bridge is an edge whose deletion increases the number of connected components; a cut vertex is a vertex whose deletion increases that number.
 \end{definition}
 
 \begin{theorem}[Handshaking Lemma]
@@ -298,9 +312,13 @@ For any finite undirected graph,
 Consequently, the number of vertices of odd degree is even.
 \end{theorem}
 
-\begin{definition}[Walks, Trails, Connectivity, and Components]
-A walk is a sequence of adjacent vertices, allowing repetition. A trail is a walk with no repeated edges, and a simple path has no repeated vertices. A graph is connected if every pair of vertices can be joined by a path. A connected component is a maximal connected subgraph. A bridge is an edge whose deletion increases the number of connected components; a cut vertex is a vertex whose deletion increases that number.
-\end{definition}
+\begin{theorem}[Erd\H{o}s--Gallai Theorem]
+Nonnegative integers $d_1\ge\cdots\ge d_n$ are the degrees of a simple graph on $n$ labeled vertices if and only if $\sum_i d_i$ is even and, for every $1\le k\le n$,
+\[
+ \sum_{i=1}^k d_i\le k(k-1)+\sum_{i=k+1}^n\min(d_i,k).
+\]
+\end{theorem}
+
 
 \begin{definition}[Trees and Spanning Trees]
 A tree is a connected graph with no cycles. A spanning tree of a connected graph is a subgraph that is a tree and contains every vertex.
@@ -316,6 +334,10 @@ For $n\ge2$, the number of labeled trees on vertex set $[n]$ is
  n^{n-2}.
 \]
 For $n=1$, there is exactly one such tree.
+\end{theorem}
+
+\begin{theorem}[Pr\"ufer Codes]
+Labeled trees on vertex set $[n]$, for $n\ge2$, are in bijection with sequences in $[n]^{n-2}$ (Pr\"ufer codes). The degree of vertex $i$ is one plus its number of appearances in the code.
 \end{theorem}
 
 \begin{definition}[Bipartite Graph]
@@ -339,6 +361,18 @@ Every finite simple graph $G$ satisfies
 where $\Delta(G)$ is its maximum vertex degree. Every bipartite graph with at least one edge has chromatic number $2$.
 \end{theorem}
 
+\begin{definition}[Chromatic Polynomial]
+For a finite graph $G$, the chromatic polynomial $\chi_G(q)$ is the number of proper vertex colorings using $q$ labeled colors, as a polynomial in $q$. It has degree $|V(G)|$ and leading coefficient $1$. If $G$ contains a loop, $\chi_G(q)=0$.
+\end{definition}
+
+\begin{theorem}[Deletion--Contraction Formula]
+For any nonloop edge $e$ of a finite graph $G$,
+\[
+ \chi_G(q)=\chi_{G-e}(q)-\chi_{G/e}(q),
+\]
+where $G-e$ deletes $e$ and $G/e$ contracts $e$. Multiple edges arising under contraction do not change the proper coloring count. For the edgeless graph on $n$ vertices, $\chi_G(q)=q^n$.
+\end{theorem}
+
 \begin{theorem}[Dirac's and Ore's Hamiltonian Criteria]
 Let $G$ be a finite simple graph with $n\ge3$ vertices. If every vertex has degree at least $n/2$, then $G$ has a Hamiltonian cycle (Dirac). More generally, if $\deg(u)+\deg(v)\ge n$ for every pair of distinct nonadjacent vertices $u, v$, then $G$ has a Hamiltonian cycle (Ore).
 \end{theorem}
@@ -357,6 +391,10 @@ For a simple planar graph with $V\ge3$,
  E\le3V-6.
 \]
 If it is also bipartite, then $E\le2V-4$.
+\end{theorem}
+
+\begin{theorem}[Edge Bounds for Simple Planar Graphs]
+A simple planar graph with $v\ge3$ vertices and $e$ edges satisfies $e\le 3v-6$. If it is also bipartite, then $e\le 2v-4$. In particular, every simple planar graph has a vertex of degree at most $5$.
 \end{theorem}
 
 \begin{theorem}[Kuratowski's Theorem]
@@ -383,6 +421,10 @@ In every finite bipartite graph, the maximum size of a matching equals the minim
 A finite undirected graph $G$ has a perfect matching if and only if, for every $S\subseteq V(G)$, the graph $G-S$ has at most $|S|$ connected components of odd order.
 \end{theorem}
 
+\begin{theorem}[Stable Marriage Theorem]
+For two finite equally sized sets of applicants, each ranking all members of the opposite set strictly, there exists a perfect matching with no blocking pair. A blocking pair consists of two unmatched partners who both prefer one another to their assigned partners.
+\end{theorem}
+
 \begin{definition}[Flow Networks and Cuts]
 Let $G=(V,E)$ be a finite directed graph with source $s$, sink $t$, and capacities $c(e)\ge0$. A feasible flow assigns $0\le f(e)\le c(e)$ to each edge, with
 \[
@@ -401,7 +443,7 @@ For distinct nonadjacent vertices $u, v$ in a finite graph, the maximum number o
 \end{theorem}
 
 \begin{theorem}[Matrix--Tree Theorem]
-Let $G$ be a finite connected graph with adjacency matrix $\mathbf A$ and degree matrix $\mathbf D$. Set $\mathbf L=\mathbf D-\mathbf A$. The number of spanning trees of $G$ equals any principal cofactor of $\mathbf L$.
+Let $G$ be a finite connected graph with adjacency matrix $\mathbf{A}$ and degree matrix $\mathbf{D}$. Set $\mathbf{L}=\mathbf{D}-\mathbf{A}$. The number of spanning trees of $G$ equals any principal cofactor of $\mathbf{L}$.
 \end{theorem}
 
 \begin{definition}[Partially Ordered Sets, Chains, and Antichains]
@@ -413,16 +455,16 @@ In a finite poset, the maximum cardinality of an antichain equals the minimum nu
 \end{theorem}
 
 \begin{theorem}[Sperner's Theorem]
-For a family $\mathcal A$ of subsets of $[n]$, no one of which properly contains another,
+For a family $\mathcal{A}$ of subsets of $[n]$, no one of which properly contains another,
 \[
- |\mathcal A|\le\binom n{\lfloor n/2\rfloor}.
+ |\mathcal{A}|\le\binom n{\lfloor n/2\rfloor}.
 \]
 \end{theorem}
 
 \begin{theorem}[Lubell--Yamamoto--Meshalkin Inequality]
-If $\mathcal A$ is an antichain in the Boolean lattice $2^{[n]}$, then
+If $\mathcal{A}$ is an antichain in the Boolean lattice $2^{[n]}$, then
 \[
- \sum_{A\in\mathcal A}\frac1{\binom n{|A|}}\le1.
+ \sum_{A\in\mathcal{A}}\frac1{\binom n{|A|}}\le1.
 \]
 \end{theorem}
 
@@ -456,7 +498,7 @@ Among simple graphs on $n$ vertices containing no complete graph $K_{r+1}$, the 
 \end{theorem}
 
 \begin{definition}[Probability Space and Conditional Probability]
-A probability space is a triple $(\Omega, \mathcal F, \Prob)$, where $\mathcal F$ is a $\sigma$-algebra of subsets of $\Omega$ and $\Prob$ is a countably additive probability measure with $\Prob(\Omega)=1$. For $\Prob(B)>0$,
+A probability space is a triple $(\Omega, \mathcal{F}, \Prob)$, where $\mathcal{F}$ is a $\sigma$-algebra of subsets of $\Omega$ and $\Prob$ is a countably additive probability measure with $\Prob(\Omega)=1$. For $\Prob(B)>0$,
 \[
  \Prob(A\mid B)=\frac{\Prob(A\cap B)}{\Prob(B)}.
 \]
@@ -552,6 +594,26 @@ If $X$ is uniform on $[a,b]$ with $a<b$, its density is $f_X(x)=1/(b-a)$ for $a\
 \]
 \end{formula}
 
+\begin{definition}[Finite Markov Chains]
+A finite-state, time-homogeneous Markov chain has a row-stochastic transition matrix $\mathbf{P}=(p_{ij})$ satisfying
+\[
+ \Prob(X_{n+1}=j\mid X_n=i,\dots,X_0)=p_{ij}.
+\]
+A probability row vector $\boldsymbol\pi$ is stationary if $\boldsymbol\pi\mathbf{P}=\boldsymbol\pi$.
+\end{definition}
+
+\begin{theorem}[Stationary Distributions of Finite Markov Chains]
+Every finite Markov chain has a stationary distribution. If its transition graph is irreducible, the stationary distribution is unique and strictly positive. If it is also aperiodic, then $\Prob(X_n=j\mid X_0=i)\to\pi_j$ for every pair of states $i,j$.
+\end{theorem}
+
+\begin{definition}[Normal Distribution]
+A real random variable $X$ has normal distribution $\Normal(\mu,\sigma^2)$, where $\sigma>0$, if its density is
+\[
+ f(x)=\frac1{\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right),\qquad x\in\R.
+\]
+Its expectation is $\mu$, its variance is $\sigma^2$, and $(X-\mu)/\sigma\sim\Normal(0,1)$.
+\end{definition}
+
 \begin{definition}[Conditional Expectation]
 For integrable $X$ and a random variable $Y$, the conditional expectation $\Exp[X\mid Y]$ denotes an integrable function of $Y$ whose expectation on each event determined by $Y$ agrees with that of $X$. In the discrete case, when $\Prob(Y=y)>0$,
 \[
@@ -559,6 +621,7 @@ For integrable $X$ and a random variable $Y$, the conditional expectation $\Exp[
 \]
 provided the sum is absolutely convergent.
 \end{definition}
+
 
 \begin{theorem}[Linearity of Expectation]
 For integrable random variables $X, Y$ and scalars $a, b$,
@@ -594,6 +657,22 @@ If $X$ is square-integrable, then
 \[
  \Var(X)=\Exp[\Var(X\mid Y)]
  +\Var(\Exp[X\mid Y]).
+\]
+\end{theorem}
+
+\begin{theorem}[Laws of Large Numbers]
+Let $X_1,X_2,\dots$ be independent identically distributed real random variables with $\Exp|X_1|<\infty$ and common mean $\mu$. Then
+\[
+ \frac1n\sum_{k=1}^n X_k\longrightarrow\mu\quad\text{a.s.},
+\]
+and hence also in probability (strong and weak laws of large numbers).
+\end{theorem}
+
+\begin{theorem}[Classical Central Limit Theorem]
+Let $X_1,X_2,\dots$ be i.i.d. real random variables of common mean $\mu$ and variance $0<\sigma^2<\infty$. Then
+\[
+ \frac{\sum_{k=1}^n X_k-n\mu}{\sigma\sqrt n}
+ \xrightarrow{\mathrm{d}}\Normal(0,1).
 \]
 \end{theorem}
 
@@ -652,6 +731,21 @@ If $X\ge0$ almost surely, then for $0<\theta<1$ the Paley--Zygmund inequality gi
 \[
  \Prob(X>\theta\Exp[X])
  \ge(1-\theta)^2\frac{(\Exp[X])^2}{\Exp[X^2]}.
+\]
+\end{theorem}
+
+\begin{definition}[Filtration and Martingale]
+A filtration $(\mathcal{F}_n)_{n\ge0}$ is an increasing sequence of sub-$\sigma$-algebras. An adapted process $(M_n)$ is a martingale if each $M_n$ is integrable and
+\[
+ \Exp[M_{n+1}\mid\mathcal{F}_n]=M_n\qquad\text{a.s.}
+\]
+A stopping time $\tau$ satisfies $\{\tau\le n\}\in\mathcal{F}_n$ for all $n$.
+\end{definition}
+
+\begin{theorem}[Optional Stopping Theorem, Bounded Case]
+If $(M_n,\mathcal{F}_n)$ is a discrete-time martingale and $\tau$ is a bounded stopping time, then $M_\tau$ is integrable and
+\[
+ \Exp[M_\tau]=\Exp[M_0].
 \]
 \end{theorem}
 

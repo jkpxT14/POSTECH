@@ -112,14 +112,32 @@ if and only if $AD, BE, CF$ are concurrent.
 Let $P$ be a point in the plane of a nondegenerate triangle $ABC$. The feet of the perpendiculars from $P$ to the lines $BC$, $CA$, and $AB$ form the pedal triangle of $P$ when they are distinct and noncollinear. The pedal triangle of the orthocenter $H$ of an acute triangle is called its orthic triangle.
 \end{definition}
 
+\begin{definition}[Barycentric Coordinates]
+For a nondegenerate triangle with position vectors $\mathbf{a}, \mathbf{b}, \mathbf{c}$, a point $P$ has barycentric coordinates $(\alpha:\beta:\gamma)$ when
+\[
+ \mathbf{p}=\frac{\alpha\mathbf{a}+\beta\mathbf{b}+\gamma\mathbf{c}}{\alpha+\beta+\gamma},
+ \qquad \alpha+\beta+\gamma\ne0.
+\]
+The coordinates are homogeneous: multiplying all three by a common nonzero scalar does not change the point.
+\end{definition}
+
+
 \begin{definition}[Classical Triangle Centers]
 The \emph{circumcenter} $O$ is the intersection of the perpendicular bisectors; the \emph{incenter} $I$ is the intersection of the internal angle bisectors; the \emph{centroid} $G$ is the intersection of the medians; and the \emph{orthocenter} $H$ is the intersection of the altitudes. The circumcenter and orthocenter need not lie inside the triangle.
 \end{definition}
 
-\begin{theorem}[Centroid Ratio]
-The three medians of a triangle meet at $G$. If $D$ is the midpoint of $BC$, then $AG:GD=2:1$. With position vectors $\mathbf a, \mathbf b, \mathbf c$ for the vertices,
+\begin{definition}[Trilinear Coordinates]
+For a reference triangle $ABC$ with side lengths $a=BC$, $b=CA$, $c=AB$, the trilinear coordinates $(x:y:z)$ represent a point by its signed distances to the sidelines $BC$, $CA$, $AB$, up to common nonzero scale. The corresponding barycentric coordinates are
 \[
- \mathbf g=\frac{\mathbf a+\mathbf b+\mathbf c}{3}.
+ (ax:by:cz).
+\]
+In particular, the incenter has trilinears $(1:1:1)$ and barycentrics $(a:b:c)$.
+\end{definition}
+
+\begin{theorem}[Centroid Ratio]
+The three medians of a triangle meet at $G$. If $D$ is the midpoint of $BC$, then $AG:GD=2:1$. With position vectors $\mathbf{a}, \mathbf{b}, \mathbf{c}$ for the vertices,
+\[
+ \mathbf{g}=\frac{\mathbf{a}+\mathbf{b}+\mathbf{c}}{3}.
 \]
 \end{theorem}
 
@@ -166,6 +184,17 @@ If the incircle touches $BC, CA, AB$ at $D, E, F$, respectively, then
 Two lines through $A$ are \emph{isogonal} in $\angle BAC$ if they are reflections of each other in its angle bisector. Two points $P, Q$ not on the sidelines of $\triangle ABC$ are \emph{isogonal conjugates} when $AP, AQ$ are isogonal at $A$, and likewise at $B$ and $C$.
 \end{definition}
 
+\begin{definition}[Isotomic Conjugates]
+Two cevians from a vertex are isotomic if their intersections with the opposite sideline are reflections of each other about the midpoint of that side. The cevians isotomic to the three cevians through a point $P$ are concurrent at its isotomic conjugate, when defined. In barycentric coordinates relative to $ABC$,
+\[
+ (x:y:z)\longmapsto\left(\frac1x:\frac1y:\frac1z\right),
+\]
+for $xyz\ne0$. The isogonal conjugation is similarly
+\[
+ (x:y:z)\longmapsto\left(\frac{a^2}x:\frac{b^2}y:\frac{c^2}z\right).
+\]
+\end{definition}
+
 \begin{theorem}[Symmedian Lemma]
 Let $K\in BC$ and suppose $AK$ is the isogonal of the median from $A$. Then
 \[
@@ -173,6 +202,14 @@ Let $K\in BC$ and suppose $AK$ is the isogonal of the median from $A$. Then
 \]
 The three symmedians are concurrent at the symmedian point (Lemoine point).
 \end{theorem}
+
+\begin{proposition}[Barycentric Coordinates of Triangle Centers]
+Relative to $\triangle ABC$, the centroid and incenter have barycentric coordinates
+\[
+ G=(1:1:1), \qquad I=(a:b:c),
+\]
+where $a=BC$, $b=CA$, $c=AB$. The symmedian point has coordinates $(a^2:b^2:c^2)$.
+\end{proposition}
 
 \begin{theorem}[Gergonne and Nagel Points]
 The cevians from the vertices to the points of tangency of the incircle with the opposite sides are concurrent at the \emph{Gergonne point}. The cevians to the points of tangency of the corresponding excircles with the opposite sides are concurrent at the \emph{Nagel point}.
@@ -204,6 +241,14 @@ with cyclic analogues. Moreover,
 
 \begin{theorem}[Morley's Trisector Theorem]
 The three points obtained by intersecting pairs of adjacent internal angle trisectors of any nondegenerate triangle form an equilateral triangle.
+\end{theorem}
+
+\begin{theorem}[Napoleon's Theorem]
+Construct equilateral triangles externally on the three sides of an arbitrary triangle. Their centers are the vertices of an equilateral triangle. The corresponding statement also holds when all three equilateral triangles are constructed internally.
+\end{theorem}
+
+\begin{theorem}[Van Aubel's Theorem]
+If squares are constructed externally on the sides of a quadrilateral, the segments joining centers of squares on opposite sides have equal lengths and are perpendicular.
 \end{theorem}
 
 \begin{theorem}[Directed-Angle Criterion for Concyclicity]
@@ -245,25 +290,33 @@ This is the locus of points having equal power with respect to the two circles.
 \begin{theorem}[Power of a Point]
 For a circle $\omega$ with center $O$ and radius $R$, define
 \[
- \PointPower(P, \omega)=PO^2-R^2.
+ \PointPower_{\omega}(P)=PO^2-R^2.
 \]
 If a line through $P$ intersects the circle at $A, B$, let $t_A, t_B$ be the signed coordinates of $A, B$ along that line, measured from $P$ in a common orientation. Then
 \[
- t_At_B=\PointPower(P, \omega).
+ t_At_B=\PointPower_{\omega}(P).
 \]
 In particular, for external secants, the ordinary positive lengths satisfy $PA\cdot PB=PC\cdot PD$. For a tangent $PT$,
 \[
- PT^2=\PointPower(P, \omega).
+ PT^2=\PointPower_{\omega}(P).
 \]
 \end{theorem}
 
 \begin{theorem}[Radical Axis and Radical Center]
 For two distinct nonconcentric circles $\omega_1, \omega_2$, the locus of points satisfying
 \[
- \PointPower(P, \omega_1)=\PointPower(P, \omega_2)
+ \PointPower_{\omega_1}(P)=\PointPower_{\omega_2}(P)
 \]
 is a line perpendicular to their line of centers, called the \emph{radical axis}. For three circles whose centers are not collinear, the pairwise radical axes are concurrent at their \emph{radical center}.
 \end{theorem}
+
+\begin{definition}[Coaxal Circles]
+A family of circles is coaxal if every pair of distinct nonconcentric members has the same radical axis. A circle with equation
+\[
+ x^2+y^2+D x+E y+F=0
+\]
+belongs to the coaxal family determined by two distinct circles $S_1=0$ and $S_2=0$ precisely when its equation can be written as $S_1+t(S_2-S_1)=0$ for a real parameter $t$, whenever the resulting real locus is a nondegenerate circle. Any three circles in a coaxal family have a common radical axis.
+\end{definition}
 
 
 \begin{figure}[htbp]
@@ -332,11 +385,7 @@ It multiplies all distances by $|k|$ and areas by $k^2$.
 \end{definition}
 
 \begin{definition}[Inversion in a Circle]
-Fix a circle with center $O$ and radius $r>0$. The inversion sends each $P\ne O$ to $P'$ on the ray $OP$ such that
-\[
- OP\cdot OP'=r^2.
-\]
-It is an involution. A generalized circle (a circle or a line) not passing through $O$ is mapped to a generalized circle, and a circle through $O$ is mapped to a line not through $O$.
+Fix a circle with center $O$ and radius $r>0$. Inversion sends $P\ne O$ to $P'$ on the ray $OP$ with $OP\cdot OP'=r^2$; it is an involution. A line through $O$ maps to itself (with $O$ omitted), and a line not through $O$ maps to a circle through $O$ (with $O$ omitted). A circle through $O$ maps to a line not through $O$; a circle not through $O$ maps to another circle not through $O$.
 \end{definition}
 
 \begin{proposition}[Inversion Distance Identity]
@@ -368,6 +417,33 @@ Three points $[x_i:y_i:z_i]\in\mathbb{RP}^2$, $i=1,2,3$, are collinear if and on
 A projective line has an equation $ax+by+cz=0$ for some nonzero $(a,b,c)$, determined up to a nonzero scalar.
 \end{proposition}
 
+\begin{definition}[Cross Ratio]
+For four distinct collinear points $A, B, C, D$ on a projective line, their cross ratio in an affine coordinate $t$ is
+\[
+ (A, B;C, D)=\frac{(t_C-t_A)(t_D-t_B)}{(t_C-t_B)(t_D-t_A)},
+\]
+with the usual limiting interpretation when one point is at infinity. Projective transformations preserve the cross ratio.
+\end{definition}
+
+\begin{definition}[Harmonic Range and Harmonic Division]
+Four distinct points $A,B,C,D$ on a projective line form a harmonic range if their cross ratio satisfies
+\[
+ (A,B;C,D)=-1.
+\]
+Equivalently, $C,D$ are harmonic conjugates with respect to $A,B$.
+\end{definition}
+
+\begin{definition}[Complete Quadrangle and Complete Quadrilateral]
+A complete quadrangle consists of four points with no three collinear and the six joining lines. Its three diagonal points are intersections of pairs of opposite sides. Dually, a complete quadrilateral consists of four lines with no three concurrent, their six intersections, and the three lines joining opposite intersections.
+\end{definition}
+
+\begin{theorem}[Harmonic Property of a Complete Quadrangle]
+For four points $A,B,C,D$ in general position, let $X=AB\cap CD$, $Y=AC\cap BD$, and $Z=AD\cap BC$ in the projective plane. The line $YZ$ meets $AB$ at $T$. Then the four collinear points $(A,B;X,T)$ form a harmonic range:
+\[
+ (A,B;X,T)=-1.
+\]
+\end{theorem}
+
 \begin{theorem}[Desargues' Theorem]
 In the real projective plane, if two triangles have corresponding vertices joined by three concurrent lines, then the intersections of corresponding sides are collinear. Conversely, if the three side intersections are collinear, then the lines joining corresponding vertices are concurrent in the projective plane.
 \end{theorem}
@@ -384,6 +460,18 @@ are collinear in the real projective plane.
 A nondegenerate projective conic is the zero set of a homogeneous quadratic form in $[x:y:z]\in\mathbb{RP}^2$ whose associated symmetric $3\times3$ matrix is nonsingular. In affine coordinates, ellipses, parabolas, and hyperbolas are the standard nonsingular real conics.
 \end{definition}
 
+\begin{definition}[Pole and Polar with Respect to a Conic]
+Let a nondegenerate conic in the real projective plane have homogeneous equation $\mathbf{x}^{\mathrm{T}}\mathbf{Q}\mathbf{x}=0$, where $\mathbf{Q}$ is an invertible symmetric $3\times3$ matrix. The polar of a point $[\mathbf{p}]$ is the line
+\[
+ \mathbf{p}^{\mathrm{T}}\mathbf{Q}\mathbf{x}=0.
+\]
+Every projective line has a unique pole. For a point $P$ on the conic, its polar is its tangent. Polarity satisfies La Hire's reciprocity: $P$ lies on the polar of $Q$ if and only if $Q$ lies on the polar of $P$.
+\end{definition}
+
+\begin{theorem}[La Hire's Theorem]
+For a nondegenerate projective conic, the pole of the line through two distinct points $P,Q$ is the intersection of the polars of $P,Q$, provided those polars are distinct. Dually, the polar of the intersection of two distinct lines is the line through their poles.
+\end{theorem}
+
 \begin{theorem}[Pascal's Theorem]
 For six distinct points $A, B, C, D, E, F$ on a nondegenerate conic, the three intersections of opposite sides
 \[
@@ -392,13 +480,14 @@ For six distinct points $A, B, C, D, E, F$ on a nondegenerate conic, the three i
 are collinear in the projective plane, allowing points at infinity for parallel sides.
 \end{theorem}
 
-\begin{definition}[Cross Ratio]
-For four distinct collinear points $A, B, C, D$ on a projective line, their cross ratio in an affine coordinate $t$ is
+\begin{theorem}[Brianchon's Theorem]
+For a nondegenerate conic, let $A_1A_2A_3A_4A_5A_6$ be a hexagon whose six sides are tangent to the conic, with consecutive sides meeting at the named vertices. The three principal diagonals
 \[
- (A, B;C, D)=\frac{(t_C-t_A)(t_D-t_B)}{(t_C-t_B)(t_D-t_A)},
+ A_1A_4,\qquad A_2A_5,\qquad A_3A_6
 \]
-with the usual limiting interpretation when one point is at infinity. Projective transformations preserve the cross ratio.
-\end{definition}
+are concurrent in the projective plane.
+\end{theorem}
+
 
 \begin{formula}[Coordinate and Shoelace Area Formulas]
 For $A=(x_1, y_1)$, $B=(x_2, y_2)$, $C=(x_3, y_3)$,
@@ -453,22 +542,6 @@ For a point $(x_0,y_0)$ on the indicated conic, its tangent line is
 The tangent at $(x_0,y_0)$ to $x^2+y^2=r^2$ is $xx_0+yy_0=r^2$.
 \end{formula}
 
-\begin{definition}[Barycentric Coordinates]
-For a nondegenerate triangle with position vectors $\mathbf a, \mathbf b, \mathbf c$, a point $P$ has barycentric coordinates $(\alpha:\beta:\gamma)$ when
-\[
- \mathbf p=\frac{\alpha\mathbf a+\beta\mathbf b+\gamma\mathbf c}{\alpha+\beta+\gamma},
- \qquad \alpha+\beta+\gamma\ne0.
-\]
-The coordinates are homogeneous: multiplying all three by a common nonzero scalar does not change the point.
-\end{definition}
-
-\begin{proposition}[Barycentric Coordinates of Triangle Centers]
-Relative to $\triangle ABC$, the centroid and incenter have barycentric coordinates
-\[
- G=(1:1:1), \qquad I=(a:b:c),
-\]
-where $a=BC$, $b=CA$, $c=AB$. The symmedian point has coordinates $(a^2:b^2:c^2)$.
-\end{proposition}
 
 \begin{formula}[Complex Coordinates on the Unit Circle]
 For distinct points $a, b, c, d\in\C$ with $|a|=|b|=|c|=|d|=1$,
@@ -491,7 +564,7 @@ For a simple lattice polygon in $\R^2$, with $I$ lattice points in its interior 
 \end{theorem}
 
 \begin{theorem}[Helly's Theorem in the Plane]
-Let $\mathcal F$ be a finite family of convex subsets of $\R^2$ with at least three members. If every three members have a common point, then all members have a common point.
+Let $\mathcal{F}$ be a finite family of convex subsets of $\R^2$ with at least three members. If every three members have a common point, then all members have a common point.
 \end{theorem}
 
 \begin{theorem}[Carath\'eodory's Theorem in the Plane]
@@ -507,13 +580,13 @@ with equality if and only if the curve is a circle.
 \end{theorem}
 
 \begin{definition}[Lines and Planes in Three Dimensions]
-Let $\mathbf p,\mathbf v,\mathbf n\in\R^3$, with $\mathbf v\ne\mathbf0$ and $\mathbf n\ne\mathbf0$. The line through $\mathbf p$ with direction $\mathbf v$ is
+Let $\mathbf{p},\mathbf{v},\mathbf{n}\in\R^3$, with $\mathbf{v}\ne\mathbf0$ and $\mathbf{n}\ne\mathbf0$. The line through $\mathbf{p}$ with direction $\mathbf{v}$ is
 \[
- \mathbf x=\mathbf p+t\mathbf v\quad(t\in\R),
+ \mathbf{x}=\mathbf{p}+t\mathbf{v}\quad(t\in\R),
 \]
-while the plane through $\mathbf p$ with normal $\mathbf n$ is
+while the plane through $\mathbf{p}$ with normal $\mathbf{n}$ is
 \[
- \mathbf n\cdot(\mathbf x-\mathbf p)=0.
+ \mathbf{n}\cdot(\mathbf{x}-\mathbf{p})=0.
 \]
 Two planes are perpendicular if their normal vectors are perpendicular; they are parallel if their normal vectors are proportional.
 \end{definition}
@@ -521,18 +594,18 @@ Two planes are perpendicular if their normal vectors are perpendicular; they are
 Let $\Pi$ be the plane $ax+by+cz+d=0$, with $(a,b,c)\ne(0,0,0)$. For $P=(x_0,y_0,z_0)$,
 \[
  \dist(P,\Pi)=\frac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}}.
-\] For nonzero direction vectors $\mathbf u,\mathbf v$, the smaller angle $\theta\in[0,\pi/2]$ between their unoriented lines satisfies
+\] For nonzero direction vectors $\mathbf{u},\mathbf{v}$, the smaller angle $\theta\in[0,\pi/2]$ between their unoriented lines satisfies
 \[
- \cos\theta=\frac{|\mathbf u\cdot\mathbf v|}{\|\mathbf u\|\|\mathbf v\|}.
+ \cos\theta=\frac{|\mathbf{u}\cdot\mathbf{v}|}{\|\mathbf{u}\|\|\mathbf{v}\|}.
 \]
-The distance from $\mathbf p$ to the line $\mathbf a+t\mathbf v$ is $\|(\mathbf p-\mathbf a)\times\mathbf v\|/\|\mathbf v\|$.
+The distance from $\mathbf{p}$ to the line $\mathbf{a}+t\mathbf{v}$ is $\|(\mathbf{p}-\mathbf{a})\times\mathbf{v}\|/\|\mathbf{v}\|$.
 \end{formula}
 \begin{formula}[Vector Products and Tetrahedron Volume]
-For $\mathbf u,\mathbf v,\mathbf w\in\R^3$, the area of the parallelogram spanned by $\mathbf u,\mathbf v$ is $\|\mathbf u\times\mathbf v\|$, and the volume of the corresponding parallelepiped is
+For $\mathbf{u},\mathbf{v},\mathbf{w}\in\R^3$, the area of the parallelogram spanned by $\mathbf{u},\mathbf{v}$ is $\|\mathbf{u}\times\mathbf{v}\|$, and the volume of the corresponding parallelepiped is
 \[
- |\mathbf u\cdot(\mathbf v\times\mathbf w)|.
+ |\mathbf{u}\cdot(\mathbf{v}\times\mathbf{w})|.
 \]
-For tetrahedron $ABCD$ with position vectors $\mathbf a,\mathbf b,\mathbf c,\mathbf d$, its volume is
+For tetrahedron $ABCD$ with position vectors $\mathbf{a},\mathbf{b},\mathbf{c},\mathbf{d}$, its volume is
 \[
  \frac16\left|\det\begin{pmatrix}
  b_1-a_1&c_1-a_1&d_1-a_1\\

@@ -79,13 +79,6 @@ If $s=x+y$ and $p=xy$, then $x, y$ are roots of $t^2-st+p$, and
 \end{formula}
 
 
-\begin{theorem}[Vieta's Relations for Two and Three Roots]
-If $x, y$ are roots of $t^2-st+p$, then $x+y=s$ and $xy=p$. If $x, y, z$ are roots of $t^3-at^2+bt-c$, then
-\[
- x+y+z=a, \quad xy+yz+zx=b, \quad xyz=c.
-\]
-\end{theorem}
-
 \begin{formula}[Sums of Powers of Integers]
 For $n\in\N$,
 \[
@@ -120,6 +113,15 @@ In particular, the remainder on division of $f(x)$ by $x-a$ is $f(a)$, and
 \]
 \end{theorem}
 
+\begin{definition}[Rational Functions and Partial Fractions]
+A rational function over a field $F$ is a quotient $P(x)/Q(x)$ with $P,Q\in F[x]$ and $Q\ne0$. Over $\C$, every proper rational function has a unique partial fraction expansion
+\[
+ \frac{P(x)}{Q(x)}=\sum_{j=1}^{s}\sum_{k=1}^{m_j}
+ \frac{c_{jk}}{(x-\alpha_j)^k},
+\]
+where $Q(x)=a\prod_{j=1}^s(x-\alpha_j)^{m_j}$, the $\alpha_j$ are distinct, and $\deg P<\deg Q$.
+\end{definition}
+
 
 \begin{theorem}[Polynomial B\'ezout Identity]
 Let $F$ be a field and let $f, g\in F[x]$, not both zero. There are polynomials $u, v\in F[x]$ such that
@@ -141,7 +143,7 @@ Let $f(x)=a_nx^n+\cdots+a_0=a_n\prod_{i=1}^n(x-r_i)$ over $\C$, with $a_n\ne0$, 
  e_k(r_1, \dots, r_n)=(-1)^k\frac{a_{n-k}}{a_n}
  \qquad (1\le k\le n).
 \]
-In particular, $\sum_i r_i=-a_{n-1}/a_n$ and $\prod_i r_i=(-1)^na_0/a_n$.
+In particular, $\sum_i r_i=-a_{n-1}/a_n$ and $\prod_i r_i=(-1)^na_0/a_n$. For $t^3-at^2+bt-c$ with roots $r_1,r_2,r_3$, these give $r_1+r_2+r_3=a$, $r_1r_2+r_2r_3+r_3r_1=b$, and $r_1r_2r_3=c$.
 \end{theorem}
 
 \begin{formula}[Newton's Identities]
@@ -161,12 +163,31 @@ Let $P(x)=a_n\prod_{i=1}^n(x-r_i)$ over $\C$, with $a_n\ne0$ and roots counted w
 It vanishes if and only if $P$ has a repeated root. In particular, the discriminant of $ax^2+bx+c$ is $b^2-4ac$.
 \end{formula}
 
+\begin{definition}[Polynomial Resultant and Sylvester Matrix]
+For $P,Q\in F[x]$ of degrees $m,n\ge1$, the resultant $\operatorname{Res}(P,Q)$ is the determinant of the $(m+n)\times(m+n)$ Sylvester matrix formed from the coefficient rows of $x^{n-1}P,\dots,P,x^{m-1}Q,\dots,Q$. If $P=a\prod_{i=1}^m(x-\alpha_i)$ in an algebraic closure, then
+\[
+ \operatorname{Res}(P,Q)=a^n\prod_{i=1}^m Q(\alpha_i).
+\]
+Thus $\operatorname{Res}(P,Q)=0$ precisely when $P,Q$ have a common root in an algebraic closure, equivalently $\gcd(P,Q)$ has positive degree.
+\end{definition}
+
+\begin{formula}[Discriminant via the Resultant]
+For $P\in F[x]$ of degree $n\ge2$ and leading coefficient $a\ne0$, where $\operatorname{char}F=0$,
+\[
+ \operatorname{disc}(P)=(-1)^{n(n-1)/2}a^{-1}\operatorname{Res}(P,P').
+\]
+\end{formula}
+
 \begin{theorem}[Repeated-Root Criterion]
 Let $F$ be a field of characteristic zero and $P\in F[x]$ be nonconstant. The polynomial $P$ has no repeated roots in an algebraic closure of $F$ if and only if
 \[
  \gcd(P,P')=1.
 \]
 More generally, a root $r$ of multiplicity $m$ satisfies $P^{(j)}(r)=0$ for $0\le j<m$ and $P^{(m)}(r)\ne0$.
+\end{theorem}
+
+\begin{theorem}[Sturm's Theorem]
+Let $P\in\R[x]$ be squarefree. Form $P_0=P$, $P_1=P'$, and recursively $P_{k+1}=-\operatorname{rem}(P_{k-1},P_k)$, ending at the last nonzero remainder. For $t$ where no $P_k(t)$ vanishes, let $V(t)$ be the number of sign changes in $(P_0(t),\dots,P_r(t))$. If $a<b$ are not zeros of $P$, the number of distinct real zeros of $P$ in $(a,b)$ is $V(a)-V(b)$.
 \end{theorem}
 
 \begin{theorem}[Lagrange Interpolation]
@@ -223,7 +244,7 @@ If $f, g\in\Z[x]$ are primitive polynomials, then $fg$ is primitive. In particul
 \end{theorem}
 
 \begin{theorem}[Irreducibility by Reduction Modulo a Prime]
-Let $f\in\Z[x]$ have positive degree and leading coefficient not divisible by a prime $p$. If its reduction $\overline f\in\mathbb F_p[x]$ has the same degree and is irreducible over $\mathbb F_p$, then $f$ is irreducible over $\Q$ provided $f$ is primitive.
+Let $f\in\Z[x]$ have positive degree and leading coefficient not divisible by a prime $p$. If its reduction $\overline f\in\mathbb{F}_p[x]$ has the same degree and is irreducible over $\mathbb{F}_p$, then $f$ is irreducible over $\Q$ provided $f$ is primitive.
 \end{theorem}
 
 \begin{proposition}[Derivative and Multiplicity of a Root]
@@ -269,6 +290,15 @@ For $x_1, \dots, x_n\in\R$ and $a_1, \dots, a_n>0$,
 \]
 Equality holds if and only if the ratios $x_i/a_i$ are all equal.
 \end{theorem}
+
+\begin{definition}[Convex and Strictly Convex Functions]
+A function $f\colon I\to\R$ on an interval is convex if
+\[
+ f((1-t)x+ty)\le (1-t)f(x)+tf(y)
+ \qquad(x,y\in I,\ 0\le t\le1).
+\]
+It is strictly convex if the inequality is strict for $x\ne y$ and $0<t<1$. A twice differentiable function with $f''\ge0$ is convex; if $f''>0$, it is strictly convex.
+\end{definition}
 
 \begin{theorem}[Tangent-Line Inequality for Convex Functions]
 If $f$ is differentiable and convex on an open interval $I$, then for all $x, y\in I$,
@@ -409,6 +439,15 @@ Then
 with equality throughout exactly when $x_1=\cdots=x_n$.
 \end{theorem}
 
+\begin{theorem}[Newton's Inequalities]
+For $x_1,\dots,x_n\ge0$, let $e_k$ be their elementary symmetric polynomials, with $e_0=1$. Then for $1\le k<n$,
+\[
+ \left(\frac{e_k}{\binom nk}\right)^2\ge
+ \frac{e_{k-1}}{\binom n{k-1}}\frac{e_{k+1}}{\binom n{k+1}}.
+\]
+In particular, the normalized symmetric means are log-concave.
+\end{theorem}
+
 \begin{theorem}[Karamata's Inequality]
 Let $x, y\in I^n$ for an interval $I$, and suppose $x$ majorizes $y$. For a convex function $f\colon I\to\R$,
 \[
@@ -547,8 +586,8 @@ In a functional equation, the domain, codomain, and any regularity assumptions a
 \end{remark}
 
 
-\begin{theorem}[Polynomial Functional Equations]
-Suppose $P, Q\in F[x]$ over an infinite field $F$ satisfy $P(t)=Q(t)$ for every $t\in F$. Then $P=Q$ as polynomials, so their corresponding coefficients are equal.
+\begin{theorem}[Polynomial Identity Principle]
+If $P,Q\in F[x]$ over an infinite field $F$ agree at every $t\in F$, then $P=Q$. More generally, a multivariate polynomial over an infinite field which vanishes at every point of $F^n$ is the zero polynomial.
 \end{theorem}
 
 \begin{formula}[Trigonometric Addition and Multiple-Angle Identities]
@@ -648,8 +687,8 @@ A group $(G, \ast)$ is a set with an associative binary operation, an identity $
 The order $\ord(g)$ of an element $g$ of a group $G$ is the least positive integer $m$ for which $g^m=e$, if it exists, and is infinite otherwise. A group is cyclic if $G=\langle g\rangle$ for some $g\in G$.
 \end{definition}
 
-\begin{definition}[Cyclic and Permutation Groups]
-A group generated by one element $g$ is cyclic, written $\langle g\rangle$. Write $C_n$ for the cyclic group of order $n$ and $S_n$ for the permutation group on $n$ symbols. The dihedral group $D_n$ is the symmetry group of a regular $n$-gon and has order $2n$.
+\begin{definition}[Permutation and Dihedral Groups]
+The symmetric group $S_n$ consists of all permutations of $[n]$, under composition. The cyclic group of order $n$ is denoted by $C_n$; the dihedral group $D_n$ is the symmetry group of a regular $n$-gon and has order $2n$.
 \end{definition}
 
 \begin{theorem}[Lagrange's Theorem]
@@ -755,7 +794,7 @@ For a field $F$, the polynomial ring $F[x]$ consists of polynomials with coeffic
 \end{definition}
 
 \begin{theorem}[Finite Integral Domains]
-Every finite integral domain is a field. A finite field has cardinality $p^k$ for some prime $p$ and $k\ge1$, and for each such prime power $q$ there is, up to isomorphism, a unique field $\mathbb F_q$.
+Every finite integral domain is a field. A finite field has cardinality $p^k$ for some prime $p$ and $k\ge1$, and for each such prime power $q$ there is, up to isomorphism, a unique field $\mathbb{F}_q$.
 \end{theorem}
 
 \begin{theorem}[Lagrange's Theorem on Finite Subgroups of a Field]
@@ -763,13 +802,13 @@ Every finite subgroup $G$ of the multiplicative group $F^\times$ of a field $F$ 
 \end{theorem}
 
 \begin{theorem}[Multiplicative Group of a Finite Field]
-The group $\mathbb F_q^\times$ is cyclic of order $q-1$. In particular, each $a\in\mathbb F_q$ satisfies $a^q=a$, and for $m\in\N$ the equation $x^m=1$ in $\mathbb F_q$ has exactly $\gcd(m, q-1)$ solutions.
+The group $\mathbb{F}_q^\times$ is cyclic of order $q-1$. In particular, each $a\in\mathbb{F}_q$ satisfies $a^q=a$, and for $m\in\N$ the equation $x^m=1$ in $\mathbb{F}_q$ has exactly $\gcd(m, q-1)$ solutions.
 \end{theorem}
 
 \begin{proposition}[Irreducible Polynomial Quotients]
-For a field $F$ and nonconstant $f\in F[x]$, the quotient ring $F[x]/(f)$ is a field if and only if $f$ is irreducible over $F$. If $F=\mathbb F_q$ and $\deg f=d$, the quotient has $q^d$ elements.
+For a field $F$ and nonconstant $f\in F[x]$, the quotient ring $F[x]/(f)$ is a field if and only if $f$ is irreducible over $F$. If $F=\mathbb{F}_q$ and $\deg f=d$, the quotient has $q^d$ elements.
 \end{proposition}
 
 \begin{theorem}[Polynomial Method over Finite Fields]
-For a nonzero polynomial $f\in\mathbb F_q[x]$ of degree $d$, the equation $f(x)=0$ has at most $d$ solutions in $\mathbb F_q$. A polynomial function on $\mathbb F_q$ has a unique representative of degree at most $q-1$ modulo $x^q-x$.
+For a nonzero polynomial $f\in\mathbb{F}_q[x]$ of degree $d$, the equation $f(x)=0$ has at most $d$ solutions in $\mathbb{F}_q$. A polynomial function on $\mathbb{F}_q$ has a unique representative of degree at most $q-1$ modulo $x^q-x$.
 \end{theorem}

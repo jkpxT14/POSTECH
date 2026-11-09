@@ -154,13 +154,14 @@ For a twice differentiable function $f$ on an interval, $f''\ge0$ implies convex
 If $f''>0$ on an interval, $f$ is strictly convex there.
 \end{theorem}
 
-\begin{theorem}[Jensen's Inequality]
-If $f$ is convex on an interval, $x_1,\dots,x_n$ lie in that interval, and $w_i\ge0$ with $\sum_iw_i=1$, then
+\begin{definition}[Darboux Sums and Riemann Integrability]
+For a bounded $f\colon[a,b]\to\R$ and a partition $P\colon a=x_0<\cdots<x_n=b$, let $m_i$ and $M_i$ be the infimum and supremum of $f$ on $[x_{i-1},x_i]$. The lower and upper Darboux sums are
 \[
- f\!\left(\sum_iw_ix_i\right)\le\sum_iw_if(x_i).
+ L(f,P)=\sum_{i=1}^n m_i(x_i-x_{i-1}),\quad
+ U(f,P)=\sum_{i=1}^n M_i(x_i-x_{i-1}).
 \]
-If $f$ is strictly convex and all weights are positive, equality holds exactly when all $x_i$ coincide.
-\end{theorem}
+The function is Riemann integrable exactly when for every $\varepsilon>0$ some partition satisfies $U(f,P)-L(f,P)<\varepsilon$.
+\end{definition}
 
 \begin{definition}[Riemann Integral]
 A bounded function $f\colon[a,b]\to\R$ is Riemann integrable if the upper and lower Darboux integrals agree; their common value is $\int_a^b f(x)\,\dd x$. Every continuous function on $[a,b]$ is Riemann integrable.
@@ -352,6 +353,16 @@ For scalar sequences $(a_n)$ and $(b_n)$, let $A_n=\sum_{k=1}^n a_k$. Then
 This is the discrete analogue of integration by parts.
 \end{formula}
 
+\begin{formula}[Euler--Maclaurin Summation Formula]
+For $f\in C^2([m,n])$ with integers $m<n$, the exact formula
+\[
+ \sum_{k=m}^nf(k)=\int_m^n f(x)\,\dd x
+ +\frac{f(m)+f(n)}2+\frac{B_2}{2!}\bigl(f'(n)-f'(m)\bigr)
+ -\frac1{2!}\int_m^n B_2(\{x\})f''(x)\,\dd x
+\]
+holds, where $B_2=1/6$ and $B_2(t)=t^2-t+1/6$ is the second Bernoulli polynomial. Higher-order forms involve $B_{2j}(f^{(2j-1)}(n)-f^{(2j-1)}(m))/(2j)!$ and a periodic Bernoulli remainder.
+\end{formula}
+
 \begin{definition}[Power Series and Radius of Convergence]
 For the power series $\sum_{n=0}^\infty a_n(z-z_0)^n$, its radius of convergence $R\in[0,\infty]$ is characterized by absolute convergence when $|z-z_0|<R$ and divergence when $|z-z_0|>R$.
 \end{definition}
@@ -408,6 +419,7 @@ for all $x,y\in X$.
 Every continuous map from a compact metric space into a metric space is uniformly continuous.
 \end{theorem}
 
+
 \begin{definition}[Pointwise and Uniform Convergence]
 For functions $f_n\colon E\to\R$, pointwise convergence to $f$ means $f_n(x)\to f(x)$ for every $x\in E$. Uniform convergence means
 \[
@@ -415,6 +427,17 @@ For functions $f_n\colon E\to\R$, pointwise convergence to $f$ means $f_n(x)\to 
 \]
 when the supremum is finite for all sufficiently large $n$.
 \end{definition}
+
+\begin{theorem}[Weierstrass Approximation Theorem]
+Every continuous real-valued function on a compact interval $[a,b]$ can be uniformly approximated by real polynomials: for every $\varepsilon>0$ there is a polynomial $p$ such that
+\[
+ \sup_{x\in[a,b]}|f(x)-p(x)|<\varepsilon.
+\]
+\end{theorem}
+
+\begin{theorem}[Dini's Theorem]
+If $K$ is compact and $f_n\colon K\to\R$ are continuous functions increasing pointwise to a continuous function $f$, then $f_n\to f$ uniformly. The corresponding conclusion holds for a pointwise decreasing sequence.
+\end{theorem}
 
 \begin{theorem}[Uniform Limit Theorem]
 If $f_n$ is continuous on a metric space $E$ for every $n$ and $f_n\to f$ uniformly on $E$, then $f$ is continuous on $E$.
@@ -442,15 +465,19 @@ Let $(X,d)$ be a nonempty complete metric space and let $T\colon X\to X$ satisfy
 \end{theorem}
 
 \begin{definition}[Equicontinuity and Uniform Boundedness]
-A family $\mathcal F$ of functions from a metric space $X$ to a metric space $Y$ is equicontinuous at $x\in X$ if, for every $\varepsilon>0$, some $\delta>0$ works simultaneously for all $f\in\mathcal F$:
+A family $\mathcal{F}$ of functions from a metric space $X$ to a metric space $Y$ is equicontinuous at $x\in X$ if, for every $\varepsilon>0$, some $\delta>0$ works simultaneously for all $f\in\mathcal{F}$:
 \[
  d_X(x,y)<\delta\Longrightarrow d_Y(f(x),f(y))<\varepsilon.
 \]
-For scalar-valued functions, $\mathcal F$ is uniformly bounded if $\sup_{f\in\mathcal F}\sup_{x\in X}|f(x)|<\infty$.
+For scalar-valued functions, $\mathcal{F}$ is uniformly bounded if $\sup_{f\in\mathcal{F}}\sup_{x\in X}|f(x)|<\infty$.
 \end{definition}
 
 \begin{theorem}[Arzel\`a--Ascoli Theorem]
 A uniformly bounded, equicontinuous family of real- or complex-valued continuous functions on a compact metric space has compact closure in the uniform norm. Equivalently, every sequence in such a family has a uniformly convergent subsequence.
+\end{theorem}
+
+\begin{theorem}[Stone--Weierstrass Theorem, Real Form]
+Let $K$ be a compact Hausdorff space. If a subalgebra $\mathcal{A}\subseteq C(K,\R)$ contains the constants and separates points of $K$, then $\mathcal{A}$ is dense in $C(K,\R)$ in the uniform norm.
 \end{theorem}
 
 \begin{definition}[Nowhere Dense Set]
@@ -476,7 +503,7 @@ If both values are finite and equal to $L$, then $a_n\to L$.
 \end{definition}
 
 \begin{definition}[Measurable Functions and Lebesgue Integration]
-On a measure space $(X,\mathcal A,\mu)$, a real-valued measurable function has measurable preimages of Borel sets. A measurable function is integrable if $\int_X|f|\,\dd\mu<\infty$; statements holding outside a null set hold \emph{almost everywhere} (a.e.).
+On a measure space $(X,\mathcal{A},\mu)$, a real-valued measurable function has measurable preimages of Borel sets. A measurable function is integrable if $\int_X|f|\,\dd\mu<\infty$; statements holding outside a null set hold \emph{almost everywhere} (a.e.).
 \end{definition}
 
 \begin{theorem}[Monotone Convergence Theorem for Integrals]
@@ -507,68 +534,99 @@ Suppose $f_n\to f$ almost everywhere, each $f_n$ is measurable, and $|f_n|\le g$
 On the product of two $\sigma$-finite measure spaces, a nonnegative measurable function may be integrated by iterated integration in either order (Tonelli), possibly with value $+\infty$. If the function is absolutely integrable on the product, both iterated integrals exist and equal the product-space integral (Fubini).
 \end{theorem}
 
-\begin{definition}[Differentiability in Several Variables]
-For $f\colon U\subseteq\R^n\to\R^m$ with $U$ open, $f$ is differentiable at $\mathbf a\in U$ if there is a linear map $Df(\mathbf a)$ such that
+\begin{definition}[Lebesgue $L^p$ Spaces]
+For $1\le p<\infty$, $L^p(X,\mu)$ is the space of measurable functions $f$ (identified up to equality almost everywhere) for which
 \[
- f(\mathbf a+\mathbf h)=f(\mathbf a)+Df(\mathbf a)\mathbf h+o(\|\mathbf h\|).
+ \|f\|_p=\left(\int_X|f|^p\,\dd\mu\right)^{1/p}<\infty.
 \]
-Its matrix in standard coordinates is the Jacobian $\mathbf J_f(\mathbf a)$. For scalar $f$, the derivative is represented by the gradient $\nabla f(\mathbf a)$.
+The space $L^\infty(X,\mu)$ consists of essentially bounded measurable functions, with norm given by the essential supremum. The space $L^2$ has the inner product $\langle f,g\rangle=\int_X\overline f g\,\dd\mu$.
+\end{definition}
+
+\begin{theorem}[H\"older's Inequality for Integrals]
+On a measure space $(X,\mathcal{A},\mu)$, if $1\le p,q\le\infty$ satisfy $1/p+1/q=1$ and $f\in L^p$, $g\in L^q$, then $fg\in L^1$ and
+\[
+ \int_X |fg|\,\dd\mu\le\|f\|_{L^p}\|g\|_{L^q}.
+\]
+The endpoints use $1/\infty=0$. The case $p=q=2$ is integral Cauchy--Schwarz.
+\end{theorem}
+
+\begin{theorem}[Minkowski's Inequality for Integrals]
+For $1\le p\le\infty$ and $f,g\in L^p(X,\mu)$,
+\[
+ \|f+g\|_{L^p}\le\|f\|_{L^p}+\|g\|_{L^p}.
+\]
+Consequently the usual $L^p$ spaces (modulo equality almost everywhere) are normed spaces.
+\end{theorem}
+
+\begin{theorem}[Jensen's Inequality for Integrals]
+Let $\mu$ be a probability measure on $X$, let $f\colon X\to I$ be integrable, and let $\varphi\colon I\to\R$ be convex on an interval $I$. If $\varphi\circ f$ is integrable and $\int_X f\,\dd\mu\in I$, then
+\[
+ \varphi\!\left(\int_Xf\,\dd\mu\right)\le\int_X\varphi(f)\,\dd\mu.
+\]
+\end{theorem}
+
+\begin{definition}[Differentiability in Several Variables]
+For $f\colon U\subseteq\R^n\to\R^m$ with $U$ open, $f$ is differentiable at $\mathbf{a}\in U$ if there is a linear map $Df(\mathbf{a})$ such that
+\[
+ f(\mathbf{a}+\mathbf{h})=f(\mathbf{a})+Df(\mathbf{a})\mathbf{h}+o(\|\mathbf{h}\|).
+\]
+Its matrix in standard coordinates is the Jacobian $\mathbf{J}_f(\mathbf{a})$. For scalar $f$, the derivative is represented by the gradient $\nabla f(\mathbf{a})$.
 \end{definition}
 
 \begin{definition}[Gradient, Directional Derivative, and Hessian]
 For $f\colon U\subseteq\R^n\to\R$ differentiable, its gradient is
 \[
- \nabla f=(\partial_1f,\dots,\partial_nf)^{\mathsf T}.
+ \nabla f=(\partial_1f,\dots,\partial_nf)^{\mathrm{T}}.
 \]
-For a vector $\mathbf v\in\R^n$, the directional derivative is $D_{\mathbf v}f(\mathbf a)=\nabla f(\mathbf a)\cdot\mathbf v$. If the second partial derivatives exist, the Hessian $\Hess f$ is the matrix with $(i,j)$-entry $\partial_i\partial_j f$.
+For a vector $\mathbf{v}\in\R^n$, the directional derivative is $D_{\mathbf{v}}f(\mathbf{a})=\nabla f(\mathbf{a})\cdot\mathbf{v}$. If the second partial derivatives exist, the Hessian $\Hess f$ is the matrix with $(i,j)$-entry $\partial_i\partial_j f$.
 \end{definition}
 
 \begin{theorem}[Multivariable Chain Rule]
-If $f\colon U\to V$ and $g\colon V\to W$ are differentiable at $\mathbf a$ and $f(\mathbf a)$, respectively, then
+If $f\colon U\to V$ and $g\colon V\to W$ are differentiable at $\mathbf{a}$ and $f(\mathbf{a})$, respectively, then
 \[
- D(g\circ f)(\mathbf a)=Dg(f(\mathbf a))Df(\mathbf a).
+ D(g\circ f)(\mathbf{a})=Dg(f(\mathbf{a}))Df(\mathbf{a}).
 \]
 \end{theorem}
 
 \begin{theorem}[Clairaut's Theorem]
-If the mixed second partial derivatives $\partial^2 f/(\partial x_i\partial x_j)$ and $\partial^2 f/(\partial x_j\partial x_i)$ are continuous in a neighborhood of $\mathbf a$, then they are equal at $\mathbf a$.
+If the mixed second partial derivatives $\partial^2 f/(\partial x_i\partial x_j)$ and $\partial^2 f/(\partial x_j\partial x_i)$ are continuous in a neighborhood of $\mathbf{a}$, then they are equal at $\mathbf{a}$.
 \end{theorem}
 
 \begin{theorem}[Multivariable Taylor's Theorem, Second Order]
-If $f\colon U\subseteq\R^n\to\R$ is twice continuously differentiable near $\mathbf a$, then as $\mathbf h\to\mathbf0$,
+If $f\colon U\subseteq\R^n\to\R$ is twice continuously differentiable near $\mathbf{a}$, then as $\mathbf{h}\to\mathbf0$,
 \[
- f(\mathbf a+\mathbf h)=f(\mathbf a)+\nabla f(\mathbf a)\cdot\mathbf h
- +\frac12\mathbf h^{\mathsf T}(\Hess f)(\mathbf a)\mathbf h
- +o(\|\mathbf h\|^2).
+ f(\mathbf{a}+\mathbf{h})=f(\mathbf{a})+\nabla f(\mathbf{a})\cdot\mathbf{h}
+ +\frac12\mathbf{h}^{\mathrm{T}}(\Hess f)(\mathbf{a})\mathbf{h}
+ +o(\|\mathbf{h}\|^2).
 \]
 \end{theorem}
 
 \begin{theorem}[Inverse Function Theorem]
-If $f\colon U\subseteq\R^n\to\R^n$ is continuously differentiable and $\det Df(\mathbf a)\ne0$, then $f$ restricts to a continuously differentiable bijection between suitable neighborhoods of $\mathbf a$ and $f(\mathbf a)$, and
+If $f\colon U\subseteq\R^n\to\R^n$ is continuously differentiable and $\det Df(\mathbf{a})\ne0$, then $f$ restricts to a continuously differentiable bijection between suitable neighborhoods of $\mathbf{a}$ and $f(\mathbf{a})$, and
 \[
- D(f^{-1})(f(\mathbf a))=(Df(\mathbf a))^{-1}.
+ D(f^{-1})(f(\mathbf{a}))=(Df(\mathbf{a}))^{-1}.
 \]
 \end{theorem}
 
 \begin{theorem}[Implicit Function Theorem]
-Let $F\colon U\subseteq\R^{n+m}\to\R^m$ be continuously differentiable, with $F(\mathbf a,\mathbf b)=\mathbf0$. If the $m\times m$ partial derivative matrix $D_{\mathbf y}F(\mathbf a,\mathbf b)$ is invertible, then locally there is a unique continuously differentiable function $\mathbf y=g(\mathbf x)$ satisfying $F(\mathbf x,g(\mathbf x))=\mathbf0$ and $g(\mathbf a)=\mathbf b$.
+Let $F\colon U\subseteq\R^{n+m}\to\R^m$ be continuously differentiable, with $F(\mathbf{a},\mathbf{b})=\mathbf0$. If the $m\times m$ partial derivative matrix $D_{\mathbf{y}}F(\mathbf{a},\mathbf{b})$ is invertible, then locally there is a unique continuously differentiable function $\mathbf{y}=g(\mathbf{x})$ satisfying $F(\mathbf{x},g(\mathbf{x}))=\mathbf0$ and $g(\mathbf{a})=\mathbf{b}$.
 \end{theorem}
 
 \begin{theorem}[Second Derivative Test]
-Suppose $f\colon U\subseteq\R^n\to\R$ is twice continuously differentiable and $\nabla f(\mathbf a)=\mathbf0$. If $\Hess f(\mathbf a)$ is positive definite, $\mathbf a$ is a strict local minimum; if it is negative definite, a strict local maximum; if it is indefinite, $\mathbf a$ is a saddle point. A singular positive or negative semidefinite Hessian alone need not decide the extremum.
+Suppose $f\colon U\subseteq\R^n\to\R$ is twice continuously differentiable and $\nabla f(\mathbf{a})=\mathbf0$. If $\Hess f(\mathbf{a})$ is positive definite, $\mathbf{a}$ is a strict local minimum; if it is negative definite, a strict local maximum; if it is indefinite, $\mathbf{a}$ is a saddle point. A singular positive or negative semidefinite Hessian alone need not decide the extremum.
 \end{theorem}
 
 \begin{theorem}[Lagrange Multipliers]
-Let $f,g_1,\dots,g_k$ be continuously differentiable near a constrained local extremum $\mathbf a$ with $g_i(\mathbf a)=0$. If $\nabla g_1(\mathbf a),\dots,\nabla g_k(\mathbf a)$ are linearly independent, then some scalars $\lambda_i$ satisfy
+Let $f,g_1,\dots,g_k$ be continuously differentiable near a constrained local extremum $\mathbf{a}$ with $g_i(\mathbf{a})=0$. If $\nabla g_1(\mathbf{a}),\dots,\nabla g_k(\mathbf{a})$ are linearly independent, then some scalars $\lambda_i$ satisfy
 \[
- \nabla f(\mathbf a)=\sum_{i=1}^k\lambda_i\nabla g_i(\mathbf a).
+ \nabla f(\mathbf{a})=\sum_{i=1}^k\lambda_i\nabla g_i(\mathbf{a}).
 \]
 \end{theorem}
 
 \begin{theorem}[Euler's Theorem for Homogeneous Functions]
 If $f\colon U\subseteq\R^n\to\R$ is differentiable and homogeneous of degree $d$ on an open cone $U$, then
 \[
- \sum_{i=1}^n x_i\frac{\partial f}{\partial x_i}(\mathbf x)=df(\mathbf x).
+ \sum_{i=1}^n x_i\frac{\partial f}{\partial x_i}(\mathbf{x})=df(\mathbf{x}).
 \]
 \end{theorem}
 
@@ -583,8 +641,8 @@ If $f$ is continuous on the rectangle $[a,b]\times[c,d]$, then
 \begin{theorem}[Change of Variables in Multiple Integrals]
 Let $\varphi\colon U\to V$ be a continuously differentiable diffeomorphism between open subsets of $\R^n$. For integrable $f$ with suitable compact support in $V$,
 \[
- \int_V f(\mathbf y)\,\dd\mathbf y
- =\int_U f(\varphi(\mathbf x))|\det D\varphi(\mathbf x)|\,\dd\mathbf x.
+ \int_V f(\mathbf{y})\,\dd\mathbf{y}
+ =\int_U f(\varphi(\mathbf{x}))|\det D\varphi(\mathbf{x})|\,\dd\mathbf{x}.
 \]
 \end{theorem}
 
@@ -605,15 +663,15 @@ Let $D\subseteq\R^2$ be a bounded plane region with positively oriented, piecewi
 \end{theorem}
 
 \begin{theorem}[Stokes' and Divergence Theorems]
-For a sufficiently smooth oriented surface $S\subseteq\R^3$ with positively oriented boundary and a smooth vector field $\mathbf F$,
+For a sufficiently smooth oriented surface $S\subseteq\R^3$ with positively oriented boundary and a smooth vector field $\mathbf{F}$,
 \[
- \oint_{\partial S}\mathbf F\cdot\dd\mathbf r
- =\iint_S(\nabla\times\mathbf F)\cdot\mathbf n\,\dd S.
+ \oint_{\partial S}\mathbf{F}\cdot\dd\mathbf{r}
+ =\iint_S(\nabla\times\mathbf{F})\cdot\mathbf{n}\,\dd S.
 \]
 For a bounded solid region $\Omega$ with piecewise smooth outward-oriented boundary,
 \[
- \iint_{\partial\Omega}\mathbf F\cdot\mathbf n\,\dd S
- =\iiint_\Omega(\nabla\cdot\mathbf F)\,\dd V.
+ \iint_{\partial\Omega}\mathbf{F}\cdot\mathbf{n}\,\dd S
+ =\iiint_\Omega(\nabla\cdot\mathbf{F})\,\dd V.
 \]
 \end{theorem}
 
@@ -746,13 +804,6 @@ It maps generalized circles (circles or lines in $\C$, interpreted on the Rieman
 Every nonconstant polynomial with complex coefficients has a complex root. Equivalently, the field $\C$ is algebraically closed.
 \end{theorem}
 
-\begin{definition}[Lebesgue $L^p$ Spaces]
-For $1\le p<\infty$, $L^p(X,\mu)$ is the space of measurable functions $f$ (identified up to equality almost everywhere) for which
-\[
- \|f\|_p=\left(\int_X|f|^p\,\dd\mu\right)^{1/p}<\infty.
-\]
-The space $L^\infty(X,\mu)$ consists of essentially bounded measurable functions, with norm given by the essential supremum. The space $L^2$ has the inner product $\langle f,g\rangle=\int_X\overline f g\,\dd\mu$.
-\end{definition}
 
 \begin{definition}[Fourier Coefficients and Partial Sums]
 For a $2\pi$-periodic integrable complex-valued function $f$, its complex Fourier coefficients and symmetric partial sums are
@@ -785,6 +836,14 @@ If $f\in L^2([-\pi,\pi])$ and $\widehat f(n)=(2\pi)^{-1}\int_{-\pi}^\pi f(x)e^{-
  =\sum_{n\in\Z}|\widehat f(n)|^2.
 \]
 \end{formula}
+
+\begin{theorem}[Riemann--Lebesgue Lemma]
+If $f\in L^1([a,b])$, then
+\[
+ \lim_{|t|\to\infty}\int_a^bf(x)e^{itx}\,\dd x=0.
+\]
+In particular, the Fourier coefficients $\widehat f(n)$ of any integrable $2\pi$-periodic function satisfy $\widehat f(n)\to0$ as $|n|\to\infty$.
+\end{theorem}
 
 \begin{theorem}[Gronwall's Inequality, Integral Form]
 Suppose $u\colon[0,T]\to[0,\infty)$ is continuous and $u(t)\le A+B\int_0^t u(s)\,\dd s$ for constants $A,B\ge0$. Then
@@ -829,6 +888,14 @@ If there is a repeated real root $r$, they are $(C_1+C_2x)e^{rx}$. For complex c
 \]
 For a nonhomogeneous equation $ay''+by'+cy=h(x)$, every solution is a particular solution plus a solution of the homogeneous equation.
 \end{formula}
+
+\begin{theorem}[Variation of Parameters for Second-Order ODEs]
+For $y''+p(x)y'+q(x)y=r(x)$ on an interval, with continuous $p,q,r$, let $y_1,y_2$ be linearly independent solutions of the homogeneous equation, and $W=y_1y_2'-y_1'y_2$. Then $W\ne0$ throughout the interval and a particular solution is
+\[
+ y_p(x)=-y_1(x)\int^x\frac{y_2(t)r(t)}{W(t)}\,\dd t
+ +y_2(x)\int^x\frac{y_1(t)r(t)}{W(t)}\,\dd t.
+\]
+\end{theorem}
 \begin{theorem}[Wronskian and Abel's Identity]
 Let $y_1,y_2$ solve $y''+p(x)y'+q(x)y=0$ on an interval with continuous $p,q$. Their Wronskian
 \[
