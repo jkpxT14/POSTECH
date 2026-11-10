@@ -8,9 +8,9 @@
 \begin{exercise}{7.16}
 Let $X$ have a gamma distribution with shape $\alpha>0$ and scale $\theta>0$, with density
 \[
-f_X(x)=\frac{x^{\alpha-1}e^{-x/\theta}}{\Gamma(\alpha)\theta^\alpha},\qquad x>0.
+f_X(x)=\frac{x^{\alpha-1}e^{-x/\theta}}{\Gamma(\alpha)\theta^\alpha}, \qquad x>0.
 \]
-Show that the $r$th moment about the origin is $\mu'_r=\theta^r\Gamma(\alpha+r)/\Gamma(\alpha)$ for any nonnegative integer $r$. (Hint: Substitute $u=x/\theta$.)
+Show that the $r$th moment about the origin is $\mu'_r=\theta^r\Gamma(\alpha+r)/\Gamma(\alpha)$ for any nonnegative integer $r$. \textit{Hint.} Substitute $u=x/\theta$.
 \end{exercise}
 \begin{solution}
 From the definition of a moment and the given density,
@@ -28,7 +28,7 @@ Here $x=\theta u$ and $\dd x=\theta\,\dd u$; the last integral is the gamma func
 \begin{exercise}{7.17}
 The random variable $X$ has the discrete uniform distribution
 \[
-\Prob(X=x)=\frac1k,\qquad x=1,2,\ldots,k,
+\Prob(X=x)=\frac1k, \qquad x=1, 2, \ldots, k,
 \]
 where $k\in\N$. Show that its moment-generating function is
 \[
@@ -49,9 +49,9 @@ At $t=0$ the displayed quotient has the form $0/0$, but the defining sum gives $
 \end{solution}
 
 \begin{exercise}{7.18}
-Let $X\sim\Geom(p)$, with $0<p<1$ and $q=1-p$, so that $\Prob(X=x)=pq^{x-1}$ for $x=1,2,\ldots$. Show that
+Let $X\sim\Geom(p)$, with $0<p<1$ and $q=1-p$, so that $\Prob(X=x)=pq^{x-1}$ for $x=1, 2, \ldots$. Show that
 \[
-M_X(t)=\frac{pe^t}{1-qe^t},\qquad t<-\ln q,
+M_X(t)=\frac{pe^t}{1-qe^t}, \qquad t<-\ln q,
 \]
 and use the MGF to find the mean and variance of $X$.
 \end{exercise}
@@ -64,19 +64,19 @@ M_X(t)=\sum_{x=1}^\infty e^{tx}pq^{x-1}
 \]
 Differentiating in the interval of convergence gives
 \[
-M'_X(t)=\frac{pe^t}{(1-qe^t)^2},\qquad
+M'_X(t)=\frac{pe^t}{(1-qe^t)^2}, \qquad
 M''_X(t)=\frac{pe^t(1+qe^t)}{(1-qe^t)^3}.
 \]
 Since $1-q=p$,
 \[
-\Exp[X]=M'_X(0)=\boxed{\frac1p},\qquad
+\Exp[X]=M'_X(0)=\boxed{\frac1p}, \qquad
 \Var(X)=M''_X(0)-M'_X(0)^2
 =\frac{1+q}{p^2}-\frac1{p^2}=\boxed{\frac{q}{p^2}}.
 \]
 \end{solution}
 
 \begin{exercise}{7.19}
-Let $X\sim\Poi(\mu)$, with $\mu>0$, so that $\Prob(X=x)=e^{-\mu}\mu^x/x!$ for $x=0,1,2,\ldots$. Show that $M_X(t)=e^{\mu(e^t-1)}$, and use the MGF to find the mean and variance of $X$.
+Let $X\sim\Poi(\mu)$, with $\mu>0$, so that $\Prob(X=x)=e^{-\mu}\mu^x/x!$ for $x=0, 1, 2, \ldots$. Show that $M_X(t)=e^{\mu(e^t-1)}$, and use the MGF to find the mean and variance of $X$.
 \end{exercise}
 \begin{solution}
 Using the exponential series,
@@ -87,12 +87,12 @@ M_X(t)=\sum_{x=0}^\infty e^{tx}\frac{e^{-\mu}\mu^x}{x!}
 \]
 The MGF is finite for every $t\in\R$, and
 \[
-M'_X(t)=\mu e^tM_X(t),\qquad
+M'_X(t)=\mu e^tM_X(t), \qquad
 M''_X(t)=(\mu e^t+\mu^2e^{2t})M_X(t).
 \]
 As $M_X(0)=1$,
 \[
-\Exp[X]=M'_X(0)=\boxed{\mu},\qquad
+\Exp[X]=M'_X(0)=\boxed{\mu}, \qquad
 \Var(X)=M''_X(0)-M'_X(0)^2
 =\mu+\mu^2-\mu^2=\boxed{\mu}.
 \]
@@ -139,19 +139,23 @@ The MGF of a chi-squared random variable $X$ with $\nu$ degrees of freedom is $M
 \begin{solution}
 Differentiation gives
 \[
-M'_X(t)=\nu(1-2t)^{-\nu/2-1},\qquad
+M'_X(t)=\nu(1-2t)^{-\nu/2-1}, \qquad
 M''_X(t)=\nu(\nu+2)(1-2t)^{-\nu/2-2}.
 \]
 Therefore
 \[
-\Exp[X]=M'_X(0)=\boxed{\nu},\qquad
+\Exp[X]=M'_X(0)=\boxed{\nu}, \qquad
 \Var(X)=M''_X(0)-M'_X(0)^2
 =\nu(\nu+2)-\nu^2=\boxed{2\nu}.
 \]
 \end{solution}
 
 \begin{exercise}{7.24}
-Let $X$ be a continuous random variable with density $f_X$ and MGF $M_X(t)=\int_{-\infty}^{\infty}e^{tx}f_X(x)\,\dd x$, finite in an open interval containing $0$. Expand $e^{tx}$ in a Maclaurin series and integrate term by term to show that
+Let $X$ be a continuous random variable with density $f_X$. Suppose its MGF is finite on an open interval containing $0$. Recall that
+\[
+M_X(t)=\int_{-\infty}^{\infty}e^{tx}f_X(x)\,\dd x.
+\]
+Expand $e^{tx}$ in a Maclaurin series and integrate term by term to show that
 \[
 M_X(t)=1+\mu t+\mu'_2\frac{t^2}{2!}+\cdots+\mu'_r\frac{t^r}{r!}+\cdots,
 \]
@@ -168,7 +172,11 @@ M_X(t)
 =\sum_{r=0}^\infty\frac{\mu'_r}{r!}t^r.
 \end{aligned}
 \]
-Since $\displaystyle \mu'_0=\int f_X(x)\,\dd x=1$ and $\mu'_1=\mu$, this is the required expansion. Equivalently, $M_X^{(r)}(0)=\mu'_r$.
+Since
+\[
+\mu'_0=\int_{-\infty}^{\infty}f_X(x)\,\dd x=1,\qquad\mu'_1=\mu,
+\]
+this is the required expansion. Equivalently, $M_X^{(r)}(0)=\mu'_r$.
 \end{solution}
 
 \Needspace{14\baselineskip}
@@ -182,19 +190,18 @@ Define a suitable population for each of the following samples.
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-\noindent\textup{(a)} The population is all customers whose vehicles are serviced at the manufacturer's authorized service center (in the period of interest).
-
-\noindent\textup{(b)} The population is all students at the college from which the ten were randomly selected, classified by gender.
-
-\noindent\textup{(c)} The population is the set of graduate students at that university, with each student's total marks as the measured characteristic.
-
-\noindent\textup{(d)} The population is the lifetimes of all tires of that brand under the specified usage conditions.
+\begin{exercisesubparts}
+\item The population is all customers whose vehicles are serviced at the manufacturer's authorized service center (in the period of interest).
+\item The population is all students at the college from which the ten were randomly selected, classified by gender.
+\item The population is the set of graduate students at that university, with each student's total marks as the measured characteristic.
+\item The population is the lifetimes of all tires of that brand under the specified usage conditions.
+\end{exercisesubparts}
 \end{solution}
 
 \begin{exercise}{8.2}
 The waiting times, in minutes, of ten patients at a doctor's office are
 \[
-5,\ 11,\ 9,\ 5,\ 10,\ 15,\ 6,\ 10,\ 5,\ 10.
+5, \ 11, \ 9, \ 5, \ 10, \ 15, \ 6, \ 10, \ 5, \ 10.
 \]
 Treat these as a random sample and find
 \begin{exercisesubparts}
@@ -204,7 +211,7 @@ Treat these as a random sample and find
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-The ordered data are $5,5,5,6,9,10,10,10,11,15$, with $n=10$ and $\displaystyle \sum x_i=86$.
+The ordered data are $5, 5, 5, 6, 9, 10, 10, 10, 11, 15$, with $n=10$ and total $86$.
 \begin{exercisesubparts}
 \item $\displaystyle\bar x=\frac{86}{10}=\boxed{8.6\text{ min}}$.
 \item The middle values are $9$ and $10$, so $\displaystyle\tilde x=\frac{9+10}{2}=\boxed{9.5\text{ min}}$.
@@ -215,7 +222,7 @@ The ordered data are $5,5,5,6,9,10,10,10,11,15$, with $n=10$ and $\displaystyle 
 \begin{exercise}{8.3}
 Reaction times, in seconds, for nine subjects given a stimulant were recorded as
 \[
-2.5,\ 3.6,\ 3.1,\ 4.3,\ 2.9,\ 2.3,\ 2.6,\ 4.1,\ 3.4.
+2.5, \ 3.6, \ 3.1, \ 4.3, \ 2.9, \ 2.3, \ 2.6, \ 4.1, \ 3.4.
 \]
 Calculate
 \begin{exercisesubparts}
@@ -224,16 +231,17 @@ Calculate
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-\noindent\textup{(a)} Since $\displaystyle \sum x_i=28.8$, $\displaystyle\bar x=\frac{28.8}{9}=\boxed{3.2\text{ s}}$.
-
-\noindent\textup{(b)} The ordered values are $2.3,2.5,2.6,2.9,3.1,3.4,3.6,4.1,4.3$. The fifth is the middle observation, so $\boxed{\tilde x=3.1\text{ s}}$.
+\begin{exercisesubparts}
+\item Since $\displaystyle \sum x_i=28.8$, $\displaystyle\bar x=\frac{28.8}{9}=\boxed{3.2\text{ s}}$.
+\item The ordered values are $2.3, 2.5, 2.6, 2.9, 3.1, 3.4, 3.6, 4.1, 4.3$. The fifth is the middle observation, so $\boxed{\tilde x=3.1\text{ s}}$.
+\end{exercisesubparts}
 \end{solution}
 
 \Needspace{14\baselineskip}
 \begin{exercise}{8.5}
 The numbers of incorrect answers on a true-false competency test for a random sample of 15 students are
 \[
-2,\ 1,\ 3,\ 0,\ 1,\ 3,\ 6,\ 0,\ 3,\ 3,\ 5,\ 2,\ 1,\ 4,\ 2.
+2, \ 1, \ 3, \ 0, \ 1, \ 3, \ 6, \ 0, \ 3, \ 3, \ 5, \ 2, \ 1, \ 4, \ 2.
 \]
 Find
 \begin{exercisesubparts}
@@ -243,7 +251,7 @@ Find
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-The sum is $36$. In ascending order the data are $0,0,1,1,1,2,2,2,3,3,3,3,4,5,6$.
+The sum is $36$. In ascending order the data are $0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 5, 6$.
 \begin{exercisesubparts}
 \item $\displaystyle\bar x=\frac{36}{15}=\boxed{2.4}$.
 \item The eighth of $15$ ordered values is $2$, so $\boxed{\tilde x=2}$.
@@ -254,15 +262,15 @@ The sum is $36$. In ascending order the data are $0,0,1,1,1,2,2,2,3,3,3,3,4,5,6$
 \begin{exercise}{8.6}
 The numbers of medical leaves claimed in a year by ten employees are
 \[
-5,\ 12,\ 3,\ 7,\ 11,\ 1,\ 85,\ 5,\ 9,\ 5.
+5, \ 12, \ 3, \ 7, \ 11, \ 1, \ 85, \ 5, \ 9, \ 5.
 \]
 Find the mean, median, and mode. Which gives the best measure of the center? Explain.
 \end{exercise}
 \begin{solution}
-The observations sum to $143$, and their ordered list is $1,3,5,5,5,7,9,11,12,85$. Therefore
+The observations sum to $143$, and their ordered list is $1, 3, 5, 5, 5, 7, 9, 11, 12, 85$. Therefore
 \[
-\bar x=\boxed{14.3},\qquad
-\tilde x=\frac{5+7}{2}=\boxed{6},\qquad
+\bar x=\boxed{14.3}, \qquad
+\tilde x=\frac{5+7}{2}=\boxed{6}, \qquad
 \text{mode}=\boxed{5}.
 \]
 The unusually large observation $85$ raises the mean far above the bulk of the data. The \emph{median} $6$ is the preferable measure of center here because it is resistant to this extreme value.
@@ -272,8 +280,8 @@ The unusually large observation $85$ raises the mean far above the bulk of the d
 The examination scores of twenty students selected from a city school are
 \[
 \begin{gathered}
-45,\ 57,\ 68,\ 34,\ 50,\ 32,\ 89,\ 47,\ 97,\ 67,\\
-79,\ 84,\ 43,\ 35,\ 68,\ 55,\ 72,\ 63,\ 68,\ 49.
+45, \ 57, \ 68, \ 34, \ 50, \ 32, \ 89, \ 47, \ 97, \ 67, \\
+79, \ 84, \ 43, \ 35, \ 68, \ 55, \ 72, \ 63, \ 68, \ 49.
 \end{gathered}
 \]
 Calculate
@@ -283,9 +291,10 @@ Calculate
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-\noindent\textup{(a)} The score total is $1202$, so $\displaystyle\bar x=\frac{1202}{20}=\boxed{60.1}$.
-
-\noindent\textup{(b)} The score $68$ appears three times; all other scores appear once. The mode is $\boxed{68}$.
+\begin{exercisesubparts}
+\item The score total is $1202$, so $\displaystyle\bar x=\frac{1202}{20}=\boxed{60.1}$.
+\item The score $68$ appears three times; all other scores appear once. The mode is $\boxed{68}$.
+\end{exercisesubparts}
 \end{solution}
 
 \Needspace{17\baselineskip}
@@ -315,7 +324,7 @@ For the phosphate data, find
 \begin{solution}
 There are $12$ observations, with total $428$. In ascending order the values are
 \[
-26,\ 29,\ 29,\ 29,\ 30,\ 31,\ 34,\ 41,\ 42,\ 42,\ 47,\ 48.
+26, \ 29, \ 29, \ 29, \ 30, \ 31, \ 34, \ 41, \ 42, \ 42, \ 47, \ 48.
 \]
 \begin{exercisesubparts}
 \item $\displaystyle\bar x=\frac{428}{12}=\boxed{\frac{107}{3}\approx35.67\text{ g}}$.
@@ -325,7 +334,7 @@ There are $12$ observations, with total $428$. In ascending order the values are
 \end{solution}
 
 \begin{exercise}{8.9}
-The waiting times, in minutes, of ten patients are $5,11,9,5,10,15,6,10,5,10$. Treat them as a random sample and find
+The waiting times, in minutes, of ten patients are $5, 11, 9, 5, 10, 15, 6, 10, 5, 10$. Treat them as a random sample and find
 \begin{exercisesubparts}
 \item the range.
 \item the sample standard deviation.
@@ -334,7 +343,7 @@ The waiting times, in minutes, of ten patients are $5,11,9,5,10,15,6,10,5,10$. T
 \begin{solution}
 \noindent\textup{(a)} The smallest and largest times are $5$ and $15$, so $\boxed{r=15-5=10\text{ min}}$.
 
-\noindent\textup{(b)} From $n=10$, $\displaystyle \sum x_i=86$, and $\displaystyle \sum x_i^2=838$, the computational formula gives
+\noindent\textup{(b)} For $n=10$, the sum of observations is $86$ and the sum of squares is $838$. The computational formula gives
 \[
 s^2=\frac{838-86^2/10}{10-1}=\frac{164}{15}\approx10.9333\text{ min}^2,
 \qquad \boxed{s=\sqrt{\frac{164}{15}}\approx3.307\text{ min}}.
@@ -345,20 +354,22 @@ s^2=\frac{838-86^2/10}{10-1}=\frac{164}{15}\approx10.9333\text{ min}^2,
 \begin{exercise}{8.10}
 For the reaction times (seconds)
 \[
-2.5,\ 3.6,\ 3.1,\ 4.3,\ 2.9,\ 2.3,\ 2.6,\ 4.1,\ 3.4,
+2.5, \ 3.6, \ 3.1, \ 4.3, \ 2.9, \ 2.3, \ 2.6, \ 4.1, \ 3.4,
 \]
 calculate
 \begin{exercisesubparts}
 \item the range.
-\item the sample variance using $s^2=\frac1{n-1}\sum_{i=1}^{n}(x_i-\bar x)^2$.
+\item the sample variance using the definition $\displaystyle s^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar x)^2$.
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
 \noindent\textup{(a)} $\boxed{r=4.3-2.3=2.0\text{ s}}$.
 
-\noindent\textup{(b)} The sample mean is $\bar x=3.2$. Hence
+
+\noindent\textup{(b)} The sample mean is $\bar x=3.2$. By the definition,
 \[
-s^2=\frac18\sum_{i=1}^9(x_i-3.2)^2
+s^2=\frac18\sum_{i=1}^9(x_i-\bar x)^2
+=\frac18\sum_{i=1}^9(x_i-3.2)^2
 =\frac{3.98}{8}=\boxed{0.4975\text{ s}^2}.
 \]
 \end{solution}
@@ -367,33 +378,49 @@ s^2=\frac18\sum_{i=1}^9(x_i-3.2)^2
 \begin{exercise}{8.11}
 For the sample of numbers of incorrect test answers
 \[
-2,\ 1,\ 3,\ 0,\ 1,\ 3,\ 6,\ 0,\ 3,\ 3,\ 5,\ 2,\ 1,\ 4,\ 2,
+2, \ 1, \ 3, \ 0, \ 1, \ 3, \ 6, \ 0, \ 3, \ 3, \ 5, \ 2, \ 1, \ 4, \ 2,
 \]
 calculate the sample variance using
 \begin{exercisesubparts}
-\item the definition $s^2=\frac1{n-1}\sum_{i=1}^n(x_i-\bar x)^2$.
-\item the computational formula $\displaystyle s^2=\frac1{n-1}\bigl(\sum x_i^2-(\sum x_i)^2/n\bigr)$.
+\item the definition $\displaystyle s^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar x)^2$.
+\item the computational formula of Theorem 8.1, $\displaystyle s^2=\frac{n\sum_{i=1}^{n}x_i^2-(\sum_{i=1}^{n}x_i)^2}{n(n-1)}$.
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-Here $n=15$, $\displaystyle \sum x_i=36$, $\bar x=2.4$, and $\displaystyle \sum x_i^2=128$.
-\begin{exercisesubparts}
-\item Squaring and adding the deviations gives $\sum_{i=1}^{15}(x_i-2.4)^2=41.6$, so
+Here $n=15$, $\bar x=2.4$, and the data give
 \[
-\boxed{s^2=\frac{41.6}{14}=\frac{104}{35}\approx2.9714}.
+\sum_{i=1}^{15}x_i=36, \qquad \sum_{i=1}^{15}x_i^2=128.
 \]
-\item The alternative formula gives the same result:
+\begin{exercisesubparts}
+\item By the definition, group the equal observations:
 \[
-s^2=\frac1{14}\left(128-\frac{36^2}{15}\right)
+\begin{aligned}
+\sum_{i=1}^{15}(x_i-\bar x)^2
+&=2(0-2.4)^2+3(1-2.4)^2+3(2-2.4)^2\\
+&\quad+4(3-2.4)^2+(4-2.4)^2+(5-2.4)^2+(6-2.4)^2\\
+&=41.6.
+\end{aligned}
+\]
+Therefore
+\[
+s^2=\frac{41.6}{14}=\boxed{\frac{104}{35}\approx2.9714}.
+\]
+\item By Theorem 8.1,
+\[
+\begin{aligned}
+s^2&=\frac{n\sum_{i=1}^n x_i^2-(\sum_{i=1}^n x_i)^2}{n(n-1)}\\
+&=\frac{15(128)-36^2}{15(14)}
 =\boxed{\frac{104}{35}\approx2.9714}.
+\end{aligned}
 \]
 \end{exercisesubparts}
 \end{solution}
 
+\Needspace{11\baselineskip}
 \begin{exercise}{8.12}
 The saturated-fat contents, in grams, of eight randomly selected cereal bars are
 \[
-0.65,\ 0.72,\ 0.45,\ 0.55,\ 0.58,\ 0.39,\ 0.68,\ 0.52.
+0.65, \ 0.72, \ 0.45, \ 0.55, \ 0.58, \ 0.39, \ 0.68, \ 0.52.
 \]
 Calculate
 \begin{exercisesubparts}
@@ -402,7 +429,7 @@ Calculate
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-We have $n=8$, $\displaystyle \sum x_i=4.54$, and $\displaystyle \sum x_i^2=2.6672$.
+For $n=8$, the sum of observations is $4.54$ and the sum of squares is $2.6672$.
 \begin{exercisesubparts}
 \item $\displaystyle\bar x=\frac{4.54}{8}=\boxed{0.5675\text{ g}}$.
 \item The computational formula yields
@@ -433,22 +460,24 @@ For $n=20$, the data give $\displaystyle \sum x_i=33.36$ and $\displaystyle \sum
 \[
 \begin{aligned}
 s^2&=\frac{55.8414-(33.36)^2/20}{19}
-\approx0.01036421\text{ m}^2,\\
+\approx0.01036421\text{ m}^2, \\
 s&=\boxed{\sqrt{s^2}\approx0.1018\text{ m}}.
 \end{aligned}
 \]
 \end{solution}
 
-\Needspace{14\baselineskip}
 \begin{exercise}{8.14}
-For a sample $x_1,\ldots,x_n$ with $n\ge2$, prove that
+For a sample $x_1, \ldots, x_n$ with $n\ge2$, prove that
 \begin{exercisesubparts}
 \item adding or subtracting a constant $c$ from every observation leaves the sample variance unchanged.
 \item multiplying every observation by a constant $c$ multiplies the sample variance by $c^2$.
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-Write $s_x^2=\frac1{n-1}\sum_{i=1}^n(x_i-\bar x)^2$.
+Write
+\[
+s_x^2=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar x)^2.
+\]
 \begin{exercisesubparts}
 \item If $y_i=x_i+c$, then $\bar y=\bar x+c$, so $y_i-\bar y=x_i-\bar x$. Thus $\boxed{s_y^2=s_x^2}$. Replacing $c$ by $-c$ proves the subtraction case.
 \item If $y_i=cx_i$, then $\bar y=c\bar x$ and $y_i-\bar y=c(x_i-\bar x)$. Consequently,
@@ -459,11 +488,12 @@ s_y^2=\frac1{n-1}\sum_{i=1}^n c^2(x_i-\bar x)^2
 \end{exercisesubparts}
 \end{solution}
 
+\Needspace{10\baselineskip}
 \begin{exercise}{8.15}
-First calculate the sample variance of $8,10,16,18,24,25$. Then use the variance rules for translation and scaling to find the variances of
+First calculate the sample variance of $8, 10, 16, 18, 24, 25$. Then use the variance rules for translation and scaling to find the variances of
 \begin{exercisesubparts}
-\item $16,20,32,36,48,50$.
-\item $12,14,20,22,28,29$.
+\item $16, 20, 32, 36, 48, 50$.
+\item $12, 14, 20, 22, 28, 29$.
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
@@ -480,7 +510,7 @@ s_x^2=\frac{1945-101^2/6}{5}=\boxed{\frac{1469}{30}\approx48.9667}.
 \begin{exercise}{8.16}
 In twelve one-day cricket matches during the 2014--15 season, a university team captain scored
 \[
-84,\ 25,\ 74,\ 53,\ 40,\ 31,\ 64,\ 71,\ 18,\ 63,\ 88,\ 49.
+84, \ 25, \ 74, \ 53, \ 40, \ 31, \ 64, \ 71, \ 18, \ 63, \ 88, \ 49.
 \]
 Find
 \begin{exercisesubparts}
@@ -489,17 +519,17 @@ Find
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-\noindent\textup{(a)} The total is $660$, so $\displaystyle\bar x=\frac{660}{12}=\boxed{55}$ runs.
-
-\noindent\textup{(b)} The ordered scores are $18,25,31,40,49,53,63,64,71,74,84,88$. The sixth and seventh are $53$ and $63$, so $\displaystyle\tilde x=\frac{53+63}{2}=\boxed{58}$ runs.
+\begin{exercisesubparts}
+\item The total is $660$, so $\displaystyle\bar x=\frac{660}{12}=\boxed{55}$ runs.
+\item The ordered scores are $18, 25, 31, 40, 49, 53, 63, 64, 71, 74, 84, 88$. The sixth and seventh are $53$ and $63$, so $\displaystyle\tilde x=\frac{53+63}{2}=\boxed{58}$ runs.
+\end{exercisesubparts}
 \end{solution}
 
-\Needspace{14\baselineskip}
 \begin{exercise}{8.17}
 All possible samples of size $25$ are drawn from a normal population with mean $60$ and standard deviation $9$. Find the probability that the sample mean $\bar X$ lies between $\mu_{\bar X}-0.96\sigma_{\bar X}$ and $\mu_{\bar X}+0.25\sigma_{\bar X}$. Assume the sample means can be measured to any degree of accuracy.
 \end{exercise}
 \begin{solution}
-Since the population is normal, $\bar X\sim\Normal(60,9^2/25)$ exactly; thus $\sigma_{\bar X}=9/5$. Standardization gives
+Since the population is normal, $\bar X\sim\Normal(60, 9^2/25)$ exactly; thus $\sigma_{\bar X}=9/5$. Standardization gives
 \[
 \begin{aligned}
 &\Prob(\mu_{\bar X}-0.96\sigma_{\bar X}<\bar X<\mu_{\bar X}+0.25\sigma_{\bar X})\\
@@ -510,6 +540,7 @@ Since the population is normal, $\bar X\sim\Normal(60,9^2/25)$ exactly; thus $\s
 \]
 \end{solution}
 
+\Needspace{8\baselineskip}
 \begin{exercise}{8.18}
 For random samples of size $49$ from a large or infinite population, the standard deviation of the sampling distribution of the mean is $3$. How large must the sample size be to reduce this standard deviation to $1.5$?
 \end{exercise}
@@ -545,13 +576,13 @@ A soft-drink machine dispenses an average of $240$ mL per drink, with standard d
 \begin{solution}
 For a random sample of size $40$,
 \[
-\mu_{\bar X}=240,\qquad
+\mu_{\bar X}=240, \qquad
 \sigma_{\bar X}=\frac{15}{\sqrt{40}}\approx2.3717\text{ mL}.
 \]
 The acceptance interval is
 \[
-\left[240-\frac{30}{\sqrt{40}},\ 240+\frac{30}{\sqrt{40}}\right]
-\approx[235.257,244.743]\text{ mL}.
+\left[240-\frac{30}{\sqrt{40}}, \ 240+\frac{30}{\sqrt{40}}\right]
+\approx[235.257, 244.743]\text{ mL}.
 \]
 The observed mean $236$ mL lies within the acceptance interval. Therefore no adjustment is required under the specified rule; the sample mean need not equal $240$ exactly.
 \end{solution}
@@ -564,11 +595,11 @@ The time taken to complete a project at a real estate company has mean $18$ mont
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-\noindent\textup{(a)} For $n=4$, $\bar X\sim\Normal(18,9/4)$ approximately, with standard error $3/\sqrt4=1.5$. Thus
+\noindent\textup{(a)} For $n=4$, $\bar X$ is approximately $\Normal(18, 9/4)$, with standard error $3/\sqrt4=1.5$. Thus
 \[
 \begin{aligned}
 \Prob(16<\bar X<19)
-&=\Phi\left(\frac{19-18}{1.5}\right)-\Phi\left(\frac{16-18}{1.5}\right)\\
+&\approx\Phi\left(\frac{19-18}{1.5}\right)-\Phi\left(\frac{16-18}{1.5}\right)\\
 &=\Phi\left(\frac23\right)-\Phi\left(-\frac43\right)
 \approx\boxed{0.6563}.
 \end{aligned}
@@ -583,16 +614,15 @@ The time taken to complete a project at a real estate company has mean $18$ mont
 An electrical firm makes light bulbs whose lifetimes are approximately normal with mean $800$ hours and standard deviation $40$ hours. A random sample of $16$ bulbs has mean lifetime $\bar x=775$ hours. Does this observation cast doubt on the premise $\mu=800$? Calculate $\Prob(\bar X\le775)$ first when $\mu=800$, and then when $\mu=760$, keeping the standard deviation $40$ hours.
 \end{exercise}
 \begin{solution}
-With $n=16$, the sampling standard deviation is $40/\sqrt{16}=10$ hours.
+With $n=16$, the sampling standard deviation is $40/\sqrt{16}=10$ hours. Under the assumption $\mu=800$,
 \[
-\begin{aligned}
-\Prob(\bar X\le775\mid\mu=800)
-&=\Phi\left(\frac{775-800}{10}\right)
-=\Phi(-2.5)\approx\boxed{0.0062},\\
-\Prob(\bar X\le775\mid\mu=760)
-&=\Phi\left(\frac{775-760}{10}\right)
+\Prob(\bar X\le775)\approx\Phi\left(\frac{775-800}{10}\right)
+=\Phi(-2.5)\approx\boxed{0.0062}.
+\]
+Under the alternative assumption $\mu=760$, with the same standard deviation,
+\[
+\Prob(\bar X\le775)\approx\Phi\left(\frac{775-760}{10}\right)
 =\Phi(1.5)\approx\boxed{0.9332}.
-\end{aligned}
 \]
 A sample mean this low is quite unusual when $\mu=800$, but is not unusual when $\mu=760$. The observation therefore casts doubt on the original mean of $800$ hours; it does not by itself determine the true population mean.
 \end{solution}
@@ -603,8 +633,8 @@ Five retail shops are selected at random from a city, and their quoted prices fo
 \begin{solution}
 The sample size is $5$, and
 \[
-\sum_{i=1}^5x_i=1524,\qquad
-\sum_{i=1}^5x_i^2=464650,\qquad
+\sum_{i=1}^5x_i=1524, \qquad
+\sum_{i=1}^5x_i^2=464650, \qquad
 \bar x=\frac{1524}{5}=304.8.
 \]
 Therefore
@@ -615,7 +645,6 @@ s^2=\frac{464650-1524^2/5}{5-1}
 The denominator is $n-1=4$, since the quotations constitute a sample.
 \end{solution}
 
-\Needspace{14\baselineskip}
 \begin{exercise}{8.72}
 A random variable $X$ is normally distributed with mean $20$ and variance $9$. Determine the smallest positive integer sample size $n$ for which the mean $\bar X$ of an independent random sample satisfies
 \[
@@ -623,7 +652,7 @@ A random variable $X$ is normally distributed with mean $20$ and variance $9$. D
 \]
 \end{exercise}
 \begin{solution}
-Because $X$ is normal, $\bar X\sim\Normal(20,9/n)$ exactly. By symmetry and standardization,
+Because $X$ is normal, $\bar X\sim\Normal(20, 9/n)$ exactly. By symmetry and standardization,
 \[
 \Prob(19.9\le\bar X\le20.1)
 =\Prob\left(-\frac{0.1\sqrt n}{3}\le Z\le\frac{0.1\sqrt n}{3}\right)
@@ -636,7 +665,7 @@ The required probability is at least $0.95$ precisely when
 n\ge\left(\frac{3\Phi^{-1}(0.975)}{0.1}\right)^2
 \approx3457.313.
 \]
-Thus the minimum integer sample size is $\boxed{n=3458}$. The original equality $0.95$ is not attained by an integer $n$, so the usual sample-size requirement is interpreted as a probability of at least $0.95$.
+Thus the minimum integer sample size is $\boxed{n=3458}$.
 \end{solution}
 
 \end{document}
