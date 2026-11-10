@@ -1,0 +1,129 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261112 Quiz for MATH102 Calculus II},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH102 Calculus II},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261112 Quiz}
+
+\begin{problem}{6.4}
+Show that the ball
+\[
+    B=\{\mathbf X\in\R^3\mid\|\mathbf X\|\leq1\}
+\]
+is a smoothly bounded set.
+\end{problem}
+
+\begin{solution}
+The set $B$ is closed and bounded, and its boundary is the unit sphere
+\[
+    \partial B=\{(x,y,z)\in\R^3\mid x^2+y^2+z^2=1\}.
+\]
+Put
+\[
+    D=\{(u,v)\in\R^2\mid u^2+v^2\leq\tfrac23\}.
+\]
+This disk is smoothly bounded in $\R^2$, since its boundary circle is a finite union of $C^1$ coordinate graphs.  On $D$, the functions
+\[
+    (u,v)\longmapsto\pm\sqrt{1-u^2-v^2}
+\]
+are continuously differentiable: indeed, $1-u^2-v^2\geq1/3>0$ on $D$.
+
+Using these functions, form the six graphs
+\[
+\begin{aligned}
+    x&=\pm\sqrt{1-y^2-z^2}, &&(y,z)\in D,\\
+    y&=\pm\sqrt{1-x^2-z^2}, &&(x,z)\in D,\\
+    z&=\pm\sqrt{1-x^2-y^2}, &&(x,y)\in D.
+\end{aligned}
+\]
+Each graph lies in $\partial B$. Conversely, if $(x,y,z)\in\partial B$, then
+\[
+    \max\{|x|,|y|,|z|\}\geq\frac1{\sqrt3},
+\]
+because $x^2+y^2+z^2=1$. Thus at least one coordinate can be written as one of the six graphs above, with the other two coordinates belonging to $D$. Hence these six $C^1$ graphs cover $\partial B$.
+
+Therefore $B$ is smoothly bounded by Definition~6.4.
+\end{solution}
+
+\begin{problem}{6.18}
+Write a Riemann sum for
+\[
+    \iint_{[0,1]\times[0,1]}x^2y^3\,\dd A
+\]
+using the upper right corner of each $\tfrac14$-square as its sample point.
+\end{problem}
+
+\begin{solution}
+Divide $[0,1]\times[0,1]$ into the $16$ squares
+\[
+    Q_{ij}=\left[\frac{i-1}{4},\frac i4\right]
+           \times\left[\frac{j-1}{4},\frac j4\right],
+    \qquad 1\leq i,j\leq4.
+\]
+Each square has area $\Delta A=1/16$, and its upper right corner is
+$(i/4,j/4)$. Thus the requested Riemann sum is
+\[
+    \boxed{\sum_{i=1}^{4}\sum_{j=1}^{4}
+       \left(\frac i4\right)^2\left(\frac j4\right)^3\frac1{16}}.
+\]
+\end{solution}
+
+\begin{problem}{6.20}
+Let $D=[a,b]\times[c,d]$, and let $f$ and $g$ be continuous on
+$[a,b]$ and $[c,d]$, respectively. Use Riemann sums to prove that
+\[
+    \iint_D f(x)g(y)\,\dd A
+    =\left(\int_a^b f(x)\,\dd x\right)
+     \left(\int_c^d g(y)\,\dd y\right).
+\]
+\end{problem}
+
+\begin{solution}
+Let $h=2^{-n}$, as in the Riemann-sum construction of Section~6.2, and set
+\[
+\begin{aligned}
+    I_h&=\{i\in\Z\mid[ih,(i+1)h]\subseteq[a,b]\},\\
+    J_h&=\{j\in\Z\mid[jh,(j+1)h]\subseteq[c,d]\}.
+\end{aligned}
+\]
+The $h$-squares contained in $D$ are exactly the products of the intervals
+indexed by $I_h$ and $J_h$. Choose $x_i\in[ih,(i+1)h]$ for $i\in I_h$ and
+$y_j\in[jh,(j+1)h]$ for $j\in J_h$. The corresponding Riemann sum separates:
+\[
+\begin{aligned}
+    S(fg,D,h)
+    &=\sum_{i\in I_h}\sum_{j\in J_h}f(x_i)g(y_j)h^2\\
+    &=\left(\sum_{i\in I_h}f(x_i)h\right)
+      \left(\sum_{j\in J_h}g(y_j)h\right).
+\end{aligned}
+\]
+The intervals omitted at the ends of $[a,b]$ and $[c,d]$ have total lengths
+at most $2h$ in each case. Since $f$ and $g$ are continuous and therefore
+bounded, these omissions do not affect the limits of the one-variable
+Riemann sums. Consequently,
+\[
+    \lim_{h\to0}\sum_{i\in I_h}f(x_i)h=\int_a^b f(x)\,\dd x,
+    \qquad
+    \lim_{h\to0}\sum_{j\in J_h}g(y_j)h=\int_c^d g(y)\,\dd y.
+\]
+Also, $f(x)g(y)$ is continuous on the rectangle $D$, so by the Riemann-sum
+convergence result of Section~6.2 (including its extension to functions of
+arbitrary sign), $S(fg,D,h)$ converges to $\iint_D f(x)g(y)\,\dd A$.
+Taking the limit in the factorization gives
+\[
+    \boxed{\iint_D f(x)g(y)\,\dd A
+    =\left(\int_a^b f(x)\,\dd x\right)
+     \left(\int_c^d g(y)\,\dd y\right)}.
+\]
+\end{solution}
+
+\end{document}
