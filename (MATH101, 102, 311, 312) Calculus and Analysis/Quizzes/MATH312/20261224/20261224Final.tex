@@ -1,0 +1,1221 @@
+\documentclass[11pt,oneside]{article}
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{
+ pdftitle={20261224 Final for MATH312 Analysis II},
+ pdfauthor={Jungwoo Kim},
+ pdfsubject={Rudin Chapters 9 and 11 exercises and solutions for MATH312 Analysis II},
+ pdfcreator={LaTeX}
+}
+\begin{document}
+\quiztitle{20261224 Final}
+
+\begin{exercise}{9.1}
+If $S$ is a nonempty subset of a vector space $X$, prove (as asserted in Section 9.1) that the span of $S$ is a vector space.
+\end{exercise}
+\begin{solution}
+By definition, $\Span(S)$ consists of all finite linear combinations of elements of $S$. In particular, $\mathbf 0=0\mathbf s\in\Span(S)$ for any $\mathbf s\in S$. If
+\[
+ \mathbf x=\sum_{i=1}^k a_i\mathbf s_i,\qquad
+ \mathbf y=\sum_{j=1}^{\ell}b_j\mathbf t_j
+\]
+are in $\Span(S)$, then $\mathbf x+\mathbf y$ is again a finite linear combination of elements of $S$. For every scalar $c$, so is $c\mathbf x=\sum_{i=1}^k(ca_i)\mathbf s_i$. Thus $\Span(S)$ contains $\mathbf 0$ and is closed under addition and scalar multiplication. It is therefore a vector subspace of $X$.
+\end{solution}
+
+\begin{exercise}{9.2}
+Prove (as asserted in Section 9.6) that $\mathbf B\mathbf A$ is linear if $\mathbf A$ and $\mathbf B$ are linear transformations. Prove also that $\mathbf A^{-1}$ is linear and invertible whenever $\mathbf A$ is an invertible linear transformation.
+\end{exercise}
+\begin{solution}
+For vectors $\mathbf x,\mathbf y$ and scalars $c,d$, linearity gives
+\[
+ (\mathbf B\mathbf A)(c\mathbf x+d\mathbf y)
+ =\mathbf B(c\mathbf A\mathbf x+d\mathbf A\mathbf y)
+ =c\mathbf B\mathbf A\mathbf x+d\mathbf B\mathbf A\mathbf y.
+\]
+If $\mathbf A$ is invertible, let $\mathbf u=\mathbf A\mathbf x$ and $\mathbf v=\mathbf A\mathbf y$. Then
+\[
+ \mathbf A^{-1}(c\mathbf u+d\mathbf v)
+ =\mathbf A^{-1}\bigl(\mathbf A(c\mathbf x+d\mathbf y)\bigr)
+ =c\mathbf A^{-1}\mathbf u+d\mathbf A^{-1}\mathbf v.
+\]
+Finally, the inverse of $\mathbf A^{-1}$ is $\mathbf A$.
+\end{solution}
+
+\begin{exercise}{9.3}
+Assume $\mathbf A\colon X\to Y$ is linear and $\mathbf A\mathbf x=\mathbf 0$ only when $\mathbf x=\mathbf 0$. Prove that $\mathbf A$ is one-to-one.
+\end{exercise}
+\begin{solution}
+If $\mathbf A\mathbf x=\mathbf A\mathbf y$, linearity yields $\mathbf A(\mathbf x-\mathbf y)=\mathbf 0$. By hypothesis, $\mathbf x-\mathbf y=\mathbf 0$, so $\mathbf x=\mathbf y$. Thus $\mathbf A$ is injective.
+\end{solution}
+
+\begin{exercise}{9.4}
+Prove (as asserted in Section 9.30) that the null spaces and ranges of linear transformations are vector spaces.
+\end{exercise}
+\begin{solution}
+Let $\mathbf A\colon X\to Y$ be linear. Its null space $\ker\mathbf A$ contains $\mathbf 0$ and, for $\mathbf x,\mathbf y\in\ker\mathbf A$,
+\[
+ \mathbf A(c\mathbf x+d\mathbf y)=c\mathbf A\mathbf x+d\mathbf A\mathbf y=\mathbf 0.
+\]
+Hence $\ker\mathbf A$ is a subspace of $X$. The range $\im\mathbf A$ contains $\mathbf 0$; if $\mathbf u=\mathbf A\mathbf x$ and $\mathbf v=\mathbf A\mathbf y$, then $c\mathbf u+d\mathbf v=\mathbf A(c\mathbf x+d\mathbf y)\in\im\mathbf A$. Thus $\im\mathbf A$ is a subspace of $Y$.
+\end{solution}
+
+\begin{exercise}{9.5}
+Prove that to every $\mathbf A\in\mathcal L(\R^n,\R)$ corresponds a unique $\mathbf y\in\R^n$ such that $\mathbf A\mathbf x=\mathbf x\cdot\mathbf y$. Prove also that $\|\mathbf A\|=\|\mathbf y\|$.
+
+\textit{Hint.} Under certain conditions, equality holds in the Schwarz inequality.
+\end{exercise}
+\begin{solution}
+Let $\mathbf e_1,\ldots,\mathbf e_n$ be the standard basis and put $y_i=\mathbf A\mathbf e_i$. Since $\mathbf x=\sum_i x_i\mathbf e_i$,
+\[
+ \mathbf A\mathbf x=\sum_{i=1}^n x_i y_i=\mathbf x\cdot\mathbf y.
+\]
+Taking $\mathbf x=\mathbf e_i$ shows that each $y_i$ is uniquely determined. By the Cauchy--Schwarz inequality, $|\mathbf A\mathbf x|\le\|\mathbf y\|\,\|\mathbf x\|$, so $\|\mathbf A\|\le\|\mathbf y\|$. If $\mathbf y\ne\mathbf 0$, choose $\mathbf x=\mathbf y/\|\mathbf y\|$; then $|\mathbf A\mathbf x|=\|\mathbf y\|$. If $\mathbf y=\mathbf 0$, both norms vanish. Hence $\|\mathbf A\|=\|\mathbf y\|$.
+\end{solution}
+
+\begin{exercise}{9.6}
+Define $f(0,0)=0$ and
+\[
+ f(x,y)=\frac{xy}{x^2+y^2}\qquad((x,y)\ne(0,0)).
+\]
+Prove that $\partial_1f$ and $\partial_2f$ exist at every point of $\R^2$, although $f$ is not continuous at $(0,0)$.
+\end{exercise}
+\begin{solution}
+Away from the origin, $f$ is a quotient of differentiable functions with nonzero denominator. At the origin,
+\[
+ \partial_1f(0,0)=\lim_{h\to0}\frac{f(h,0)-f(0,0)}h=0,
+ \quad
+ \partial_2f(0,0)=\lim_{h\to0}\frac{f(0,h)-f(0,0)}h=0.
+\]
+However, $f(t,t)=1/2$ for every $t\ne0$, whereas $f(0,0)=0$. Thus $f$ is not continuous at the origin.
+\end{solution}
+
+\begin{exercise}{9.7}
+Suppose that $f$ is a real-valued function defined in an open set $E\subseteq\R^n$, and that $\partial_1f,\ldots,\partial_nf$ are bounded in $E$. Prove that $f$ is continuous in $E$.
+
+\textit{Hint.} Proceed as in the proof of Theorem 9.21.
+\end{exercise}
+\begin{solution}
+Fix $\mathbf a\in E$ and choose a ball $B(\mathbf a,r)\subseteq E$. Let $M$ bound the absolute values of all partial derivatives on $E$. For $\mathbf h$ sufficiently small, successively change the coordinates of $\mathbf a$ to those of $\mathbf a+\mathbf h$; every resulting line segment stays in the ball. Applying the one-variable mean value theorem on each segment and adding gives
+\[
+ |f(\mathbf a+\mathbf h)-f(\mathbf a)|
+ \le M\sum_{i=1}^n|h_i|
+ \le M\sqrt n\,\|\mathbf h\|\longrightarrow0.
+\]
+Hence $f$ is continuous at $\mathbf a$, and therefore on $E$.
+\end{solution}
+
+\begin{exercise}{9.8}
+Suppose that $f$ is a differentiable real function in an open set $E\subseteq\R^n$, and that $f$ has a local maximum at $\mathbf a\in E$. Prove that $f'(\mathbf a)=0$.
+\end{exercise}
+\begin{solution}
+For each standard basis vector $\mathbf e_i$, the function $t\mapsto f(\mathbf a+t\mathbf e_i)$ has a local maximum at $t=0$. Its derivative there is therefore zero: $\partial_i f(\mathbf a)=0$. Since the derivative $f'(\mathbf a)$ is represented by these partial derivatives (Theorem 9.17), $f'(\mathbf a)=0$.
+\end{solution}
+
+\begin{exercise}{9.9}
+If $\mathbf f$ is a differentiable mapping of a connected open set $E\subseteq\R^n$ into $\R^m$, and $\mathbf f'(\mathbf x)=\mathbf 0$ for every $\mathbf x\in E$, prove that $\mathbf f$ is constant in $E$.
+\end{exercise}
+\begin{solution}
+Fix $\mathbf a\in E$. On any ball contained in $E$, the restriction of $\mathbf f$ to a line segment has derivative zero by the chain rule; the one-variable mean value theorem applied to each component shows that $\mathbf f$ is constant on the ball. Consequently, the set
+\[
+ A=\{\mathbf x\in E:\mathbf f(\mathbf x)=\mathbf f(\mathbf a)\}
+\]
+is open relative to $E$. Its complement is also open, by the same local constancy. Since $E$ is connected and $A$ is nonempty, $A=E$.
+\end{solution}
+
+\begin{exercise}{9.10}
+If $f$ is a real function on a convex open set $E\subseteq\R^n$ such that $\partial_1f(\mathbf x)=0$ for every $\mathbf x\in E$, prove that $f(\mathbf x)$ depends only on $x_2,\ldots,x_n$.
+
+Show that convexity can be replaced by a weaker condition, but that some condition is required. For example, for $n=2$ and a horseshoe-shaped $E$, the statement may fail.
+\end{exercise}
+\begin{solution}
+Fix $x_2,\ldots,x_n$. The fiber
+\[
+ I=\{t\in\R:(t,x_2,\ldots,x_n)\in E\}
+\]
+is an interval when $E$ is convex. On $I$, the function $h(t)=f(t,x_2,\ldots,x_n)$ satisfies $h'(t)=0$, hence is constant by the one-variable mean value theorem. Thus two points of $E$ with the same last $n-1$ coordinates have the same $f$-value.
+
+The argument only requires that every nonempty fiber $I$ be an interval; convexity is sufficient but not necessary. To see why a restriction is needed, in $\R^2$ take the connected open U-shaped set
+\[
+ E=((-2,-1)\times(-1,3))\cup((1,2)\times(-1,3))
+   \cup((-2,2)\times(-1,0)).
+\]
+Set $f=0$ on the left arm and the bottom strip, and set $f(x,y)=\psi(y)$ on the right arm for $y\ge0$, where $\psi(y)=e^{-1/y^2}$ for $y>0$ and $\psi(y)=0$ for $y\le0$. The definitions agree where the sets overlap; $\partial_1f=0$ everywhere. But at any fixed $y>0$, $f$ is zero on the left arm and positive on the right arm, so it does not depend only on $y$.
+\end{solution}
+
+\begin{exercise}{9.11}
+If $f$ and $g$ are differentiable real functions in $\R^n$, prove that
+\[
+ \nabla(fg)=f\nabla g+g\nabla f
+\]
+and that $\nabla(1/f)=-f^{-2}\nabla f$ wherever $f\ne0$.
+\end{exercise}
+\begin{solution}
+Apply the one-variable product rule to each partial derivative:
+$\partial_i(fg)=f\partial_i g+g\partial_i f$ for $1\le i\le n$. Collecting the coordinates proves the first identity. At points where $f\ne0$, the one-variable chain rule gives $\partial_i(1/f)=-f^{-2}\partial_i f$, proving the second identity.
+\end{solution}
+
+\begin{exercise}{9.12}
+Fix $0<a<b$, and define $\mathbf f=(f_1,f_2,f_3)\colon\R^2\to\R^3$ by
+\[
+ \begin{aligned}
+ f_1(s,t)&=(b+a\cos s)\cos t,\\
+ f_2(s,t)&=(b+a\cos s)\sin t,\\
+ f_3(s,t)&=a\sin s.
+ \end{aligned}
+\]
+Describe the range $K$ of $\mathbf f$ (a compact subset of $\R^3$).
+\begin{exercisesubparts}
+\item Show that precisely four $\mathbf p\in K$ have the property that $\nabla f_1(s,t)=\mathbf0$ whenever $\mathbf f(s,t)=\mathbf p$, and find them.
+\item Determine all $\mathbf q\in K$ such that $\nabla f_3(s,t)=\mathbf0$ whenever $\mathbf f(s,t)=\mathbf q$.
+\item Classify the four points in (a) as a local maximum, a local minimum, or saddle points of $f_1$. Which points in (b) correspond to maxima and minima of $f_3$?
+\item For irrational $\lambda$, let $\mathbf g(t)=\mathbf f(t,\lambda t)$. Prove that $\mathbf g$ is a one-to-one map of $\R$ onto a dense subset of $K$, and that
+\[
+ \|\mathbf g'(t)\|^2=a^2+\lambda^2(b+a\cos t)^2.
+\]
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Put $\rho=\sqrt{X^2+Y^2}$ for a point $(X,Y,Z)\in\R^3$. Since $b+a\cos s>0$, the parametrization gives
+\[
+ K=\{(X,Y,Z)\in\R^3:(\rho-b)^2+Z^2=a^2\}.
+\]
+This is the torus obtained by rotating the circle of radius $a$ centered at $(b,0)$ about the $Z$-axis; it is compact because it is the image of $[0,2\pi]^2$.
+
+\begin{exercisesubparts}
+\item The partial derivatives are
+\[
+ \partial_s f_1=-a\sin s\cos t,
+ \qquad \partial_t f_1=-(b+a\cos s)\sin t.
+\]
+Thus $\sin t=0$ and then $\sin s=0$, so $s,t\in\pi\Z$. Their images are exactly
+\[
+ (b+a,0,0),\quad (-(b+a),0,0),\quad
+ (b-a,0,0),\quad (-(b-a),0,0).
+\]
+Each point of $K$ has a unique pair of angles modulo $2\pi$, so there are no further points.
+\item Since $\partial_s f_3=a\cos s$ and $\partial_t f_3=0$, the required points are the two circles
+\[
+ \{(b\cos t,b\sin t,a):t\in\R\},\qquad
+ \{(b\cos t,b\sin t,-a):t\in\R\}.
+\]
+\item At the four critical pairs, the mixed second derivative of $f_1$ vanishes and
+\[
+ \partial_{ss}f_1=-a\cos s\cos t,
+ \qquad \partial_{tt}f_1=-(b+a\cos s)\cos t.
+\]
+The point $(b+a,0,0)$ is the maximum and $(-(b+a),0,0)$ is the minimum; the other two have second derivatives of opposite signs and are saddles. The upper circle $Z=a$ consists of maxima of $f_3$, and the lower circle $Z=-a$ consists of minima.
+\item If $\mathbf g(t_1)=\mathbf g(t_2)$, the uniqueness of torus angles modulo $2\pi$ implies
+\[
+ t_1-t_2=2\pi k,\qquad \lambda(t_1-t_2)=2\pi\ell
+ \quad(k,\ell\in\Z).
+\]
+Since $\lambda$ is irrational, $k=\ell=0$, so $t_1=t_2$.
+For a fixed first angle $s$, the values $t=s+2\pi k$ have second angles $\lambda s+2\pi k\lambda$ modulo $2\pi$. To see that the rotation orbit is dense, apply the pigeonhole principle to the fractional parts of $0,\lambda,\ldots,N\lambda$: two lie within $1/N$ of each other, so some nonzero integer multiple of $\lambda$ differs from an integer by a number $\delta$ with $0<|\delta|<1/N$. Changing its sign if necessary, successive integer multiples of the small positive step $\delta$ approximate every point modulo $1$ within $\delta$. Since $N$ is arbitrary, $\{k\lambda\bmod1:k\in\Z\}$ is dense. Thus every pair of angles, and hence every point of $K$, is approximated by points of $\mathbf g(\R)$.
+Finally,
+\[
+ \|\partial_s\mathbf f\|^2=a^2,\quad
+ \|\partial_t\mathbf f\|^2=(b+a\cos s)^2,\quad
+ \partial_s\mathbf f\cdot\partial_t\mathbf f=0.
+\]
+The chain rule gives $\mathbf g'=\partial_s\mathbf f+\lambda\partial_t\mathbf f$ at $(s,t)=(t,\lambda t)$; the claimed identity follows.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.13}
+Suppose $\mathbf f\colon\R\to\R^3$ is differentiable and $\|\mathbf f(t)\|=1$ for every $t$. Prove that $\mathbf f'(t)\cdot\mathbf f(t)=0$, and interpret this geometrically.
+\end{exercise}
+\begin{solution}
+Differentiate $\mathbf f(t)\cdot\mathbf f(t)=1$ using the product rule:
+\[
+ 2\mathbf f'(t)\cdot\mathbf f(t)=0.
+\]
+Thus the velocity vector of a differentiable curve on the unit sphere is perpendicular to its radius vector; equivalently, it is tangent to the sphere.
+\end{solution}
+
+\begin{exercise}{9.14}
+Define $f(0,0)=0$ and
+\[
+ f(x,y)=\frac{x^3}{x^2+y^2}\qquad((x,y)\ne(0,0)).
+\]
+\begin{exercisesubparts}
+\item Prove that $\partial_1 f$ and $\partial_2 f$ are bounded functions on $\R^2$ (so $f$ is continuous).
+\item For every unit vector $\mathbf u\in\R^2$, show that $D_{\mathbf u}f(0,0)$ exists and has absolute value at most $1$.
+\item Let $\boldsymbol\gamma\colon\R\to\R^2$ be differentiable, with $\boldsymbol\gamma(0)=\mathbf0$ and $\|\boldsymbol\gamma'(0)\|>0$. Put $g(t)=f(\boldsymbol\gamma(t))$. Prove that $g$ is differentiable for every $t\in\R$, and that $g\in C^1$ whenever $\boldsymbol\gamma\in C^1$.
+\item Prove nonetheless that $f$ is not differentiable at $(0,0)$. 
+\textit{Hint.} Formula (40) fails.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item For $(x,y)\ne(0,0)$, direct differentiation gives
+\[
+ \partial_1 f=\frac{x^2(x^2+3y^2)}{(x^2+y^2)^2},\qquad
+ \partial_2 f=-\frac{2x^3y}{(x^2+y^2)^2}.
+\]
+Both have absolute value at most $3$ and $2$, respectively. At the origin, the coordinate difference quotients give $\partial_1f(0,0)=1$, $\partial_2f(0,0)=0$; thus both partial derivatives are bounded everywhere. By Exercise 9.7, $f$ is continuous.
+\item For $\mathbf u=(u_1,u_2)$ with $\|\mathbf u\|=1$, homogeneity gives
+\[
+ D_{\mathbf u}f(0,0)=\lim_{t\to0}\frac{f(t\mathbf u)}t=u_1^3,
+\]
+whose absolute value is at most $1$.
+\item The function $f$ is homogeneous of degree one, satisfies $|f(\mathbf z)|\le\|\mathbf z\|$, and has bounded first partial derivatives off the origin. At any $t_0$ with $\boldsymbol\gamma(t_0)\ne\mathbf0$, the usual chain rule applies. If $\boldsymbol\gamma(t_0)=\mathbf0$, write
+\[
+ \boldsymbol\gamma(t_0+h)=h\mathbf v+o(|h|),
+ \qquad\mathbf v=\boldsymbol\gamma'(t_0).
+\]
+The bounded partial derivatives imply that $f$ is locally Lipschitz (by the line-segment argument of Exercise 9.7). Consequently,
+\[
+ g(t_0+h)=f(h\mathbf v)+o(|h|)=h f(\mathbf v)+o(|h|),
+\]
+so $g'(t_0)=f(\mathbf v)$. This also covers $\mathbf v=\mathbf0$.
+If $\boldsymbol\gamma\in C^1$, continuity of $g'$ is automatic where $\boldsymbol\gamma\ne\mathbf0$. At a zero $t_0$ with $\boldsymbol\gamma'(t_0)=\mathbf0$, boundedness of $\nabla f$ away from the origin gives $|g'(t)|\le C\|\boldsymbol\gamma'(t)\|\to0$. At a zero with $\boldsymbol\gamma'(t_0)=\mathbf v\ne\mathbf0$, the directions $\boldsymbol\gamma(t)/\|\boldsymbol\gamma(t)\|$ approach $\pm\mathbf v/\|\mathbf v\|$. As $\nabla f$ is homogeneous of degree zero and continuous off the origin,
+\[
+ g'(t)\to\nabla f(\mathbf v)\cdot\mathbf v=f(\mathbf v)=g'(t_0),
+\]
+where the penultimate equality follows by differentiating $f(t\mathbf v)=tf(\mathbf v)$. Hence $g\in C^1$.
+\item Differentiability of $f$ at the origin would force
+$D_{\mathbf u}f(0,0)=\partial_1f(0,0)u_1+\partial_2f(0,0)u_2=u_1$.
+But (b) gives $D_{\mathbf u}f(0,0)=u_1^3$. For $\mathbf u=(1/\sqrt2,1/\sqrt2)$ these values differ. Thus $f$ is not differentiable there.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.15}
+Define $f(0,0)=0$ and, for $(x,y)\ne(0,0)$, put
+\[
+ f(x,y)=x^2+y^2-2x^2y-\frac{4x^6y^2}{(x^4+y^2)^2}.
+\]
+\begin{exercisesubparts}
+\item Prove that $4x^4y^2\le(x^4+y^2)^2$ for all $(x,y)\in\R^2$, and conclude that $f$ is continuous.
+\item For $0\le\theta\le2\pi$, define $g_\theta(t)=f(t\cos\theta,t\sin\theta)$. Show that $g_\theta(0)=g_\theta'(0)=0$ and $g_\theta''(0)=2$, so that each restriction to a line through the origin has a strict local minimum there.
+\item Show that the origin is nevertheless not a local minimum, since $f(x,x^2)=-x^4$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The inequality follows from $(x^4-y^2)^2\ge0$. Thus
+\[
+ 0\le\frac{4x^6y^2}{(x^4+y^2)^2}\le x^2
+ \qquad((x,y)\ne(0,0)).
+\]
+All the remaining terms tend to zero at the origin, proving continuity there; continuity elsewhere is immediate.
+\item Write $c=\cos\theta$, $s=\sin\theta$. Then
+\[
+ g_\theta(t)=t^2-2t^3c^2s-
+ \frac{4t^8c^6s^2}{(t^4c^4+t^2s^2)^2}
+ \quad(t\ne0).
+\]
+If $s\ne0$, the last term is $O(t^4)$ as $t\to0$; if $s=0$, it vanishes identically. In either case, $g_\theta$ is twice differentiable near $0$ (for $s\ne0$ the displayed expression extends smoothly across $t=0$), and
+$g_\theta(t)=t^2+o(t^2)$. Therefore $g_\theta(0)=g_\theta'(0)=0$ and $g_\theta''(0)=2$. In particular, $g_\theta(t)>0$ for all sufficiently small nonzero $t$, with the neighborhood allowed to depend on $\theta$.
+\item For $x\ne0$, substitute $y=x^2$:
+\[
+ f(x,x^2)=x^2+x^4-2x^4-
+ \frac{4x^{10}}{(2x^4)^2}=-x^4<0=f(0,0).
+\]
+Therefore the origin is not a local minimum of $f$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.16}
+Show that continuity of $f'$ at $a$ is needed in the inverse function theorem, even for $n=1$: let
+\[
+ f(t)=t+2t^2\sin(1/t)\quad(t\ne0),\qquad f(0)=0.
+\]
+Show that $f'(0)=1$, that $f'$ is bounded on $(-1,1)$, and that $f$ is not one-to-one in any neighborhood of $0$.
+\end{exercise}
+\begin{solution}
+Since $f(t)/t=1+2t\sin(1/t)\to1$, we have $f'(0)=1$. For $t\ne0$,
+\[
+ f'(t)=1+4t\sin(1/t)-2\cos(1/t),
+\]
+which is bounded on $(-1,1)$. At $t_k=1/(2\pi k)$, $f'(t_k)=-1$; at $s_k=1/((2k+1)\pi)$, $f'(s_k)=3$. Both sequences tend to $0$. A continuous injective function on an interval must be strictly monotone, but a differentiable monotone function cannot have derivatives of opposite signs. Hence $f$ is not injective on any interval about $0$, despite $f'(0)\ne0$.
+\end{solution}
+
+\begin{exercise}{9.17}
+Let $\mathbf f=(f_1,f_2)\colon\R^2\to\R^2$ be given by
+\[
+ f_1(x,y)=e^x\cos y,\qquad f_2(x,y)=e^x\sin y.
+\]
+\begin{exercisesubparts}
+\item What is the range of $\mathbf f$?
+\item Show that the Jacobian determinant never vanishes, so $\mathbf f$ is locally one-to-one everywhere, but is not one-to-one on $\R^2$.
+\item Put $\mathbf a=(0,\pi/3)$ and $\mathbf b=\mathbf f(\mathbf a)$. Find the local inverse $\mathbf g$ with $\mathbf g(\mathbf b)=\mathbf a$, calculate $D\mathbf f(\mathbf a)$ and $D\mathbf g(\mathbf b)$, and verify formula (52) of the inverse function theorem.
+\item Describe the images of lines parallel to the coordinate axes.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item Since $e^x>0$ and $y$ is an arbitrary angle,
+$\mathbf f(\R^2)=\R^2\setminus\{\mathbf0\}$.
+\item The Jacobian matrix is
+\[
+ D\mathbf f(x,y)=e^x
+ \begin{pmatrix}\cos y&-\sin y\\\sin y&\cos y\end{pmatrix},
+ \qquad \det D\mathbf f(x,y)=e^{2x}>0.
+\]
+The inverse function theorem gives local injectivity. Globally $\mathbf f(x,y+2\pi)=\mathbf f(x,y)$, so the map is not injective.
+\item We have $\mathbf b=(1/2,\sqrt3/2)$. On a neighborhood with $u>0$ and $v>0$, choose the angle near $\pi/3$ and set
+\[
+ \mathbf g(u,v)=\left(\frac12\log(u^2+v^2),\arctan\frac vu\right).
+\]
+A direct computation yields
+\[
+ D\mathbf f(\mathbf a)=
+ \begin{pmatrix}1/2&-\sqrt3/2\\\sqrt3/2&1/2\end{pmatrix},\qquad
+ D\mathbf g(\mathbf b)=
+ \begin{pmatrix}1/2&\sqrt3/2\\-\sqrt3/2&1/2\end{pmatrix}.
+\]
+Their product is $\mathbf I_2$, which verifies $D\mathbf g(\mathbf b)=[D\mathbf f(\mathbf a)]^{-1}$.
+\item The lines $x=c$ map onto circles centered at the origin of radius $e^c$. The lines $y=c$ map onto open rays $\{r(\cos c,\sin c):r>0\}$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.18}
+Answer questions analogous to Exercise 9.17 for
+\[
+ \mathbf f(x,y)=(u,v)=(x^2-y^2,2xy).
+\]
+\end{exercise}
+\begin{solution}
+This map is the complex squaring map $z\mapsto z^2$, with $z=x+iy$ and $u+iv=z^2$.
+\begin{exercisesubparts}
+\item Every complex number has a square root; hence the range is all of $\R^2$.
+\item
+\[
+ D\mathbf f(x,y)=\begin{pmatrix}2x&-2y\\2y&2x\end{pmatrix},
+ \qquad \det D\mathbf f(x,y)=4(x^2+y^2).
+\]
+Thus $\mathbf f$ has a local inverse at each nonzero point but not at the origin by the inverse function theorem. Also $\mathbf f(-x,-y)=\mathbf f(x,y)$, so it is not injective. At the origin it cannot be locally injective, since every neighborhood contains $\mathbf z$ and $-\mathbf z$.
+\item Taking, as in Exercise 9.17, $\mathbf a=(0,c)$ with $c=\pi/3$, we obtain $\mathbf b=(-c^2,0)$. Write $r=\sqrt{u^2+v^2}$. On a neighborhood of $\mathbf b$ with $r-u>0$, the branch of the square root with positive imaginary part is
+\[
+ \mathbf g(u,v)=\left(
+   \frac{v}{\sqrt{2(r-u)}},\sqrt{\frac{r-u}{2}}
+ \right).
+\]
+It satisfies $\mathbf g(\mathbf b)=\mathbf a$. Moreover,
+\[
+ D\mathbf f(\mathbf a)=\begin{pmatrix}0&-2c\\2c&0\end{pmatrix},
+ \quad D\mathbf g(\mathbf b)=\begin{pmatrix}0&1/(2c)\\-1/(2c)&0\end{pmatrix},
+\]
+so $D\mathbf g(\mathbf b)=[D\mathbf f(\mathbf a)]^{-1}$.
+\item The image of a horizontal line $y=c$ is the parabola
+\[
+ (u,v)=(x^2-c^2,2cx)\qquad(x\in\R).
+\]
+For $c\ne0$ it has equation $u=v^2/(4c^2)-c^2$; for $c=0$ it is the nonnegative $u$-axis. Similarly, the image of a vertical line $x=c$ is $u=c^2-v^2/(4c^2)$ for $c\ne0$, and the nonpositive $u$-axis for $c=0$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.19}
+Show that the system
+\[
+ \begin{aligned}
+ 3x+y-z+u^2&=0,\\
+ x-y+2z+u&=0,\\
+ 2x+2y-3z+2u&=0
+ \end{aligned}
+\]
+can be solved for $x,y,u$ in terms of $z$; for $x,z,u$ in terms of $y$; for $y,z,u$ in terms of $x$; but not for $x,y,z$ in terms of $u$.
+\end{exercise}
+\begin{solution}
+The last two equations and the first together reduce, by elimination, to
+\[
+ 4x+z+4u=0,\qquad 4y-7z=0,\qquad u(u-3)=0.
+\]
+Consequently all solutions lie on two affine lines:
+\[
+ \begin{array}{c|ccc}
+ &x&y&u\\\hline
+ \text{first branch}&-z/4&7z/4&0\\
+ \text{second branch}&-z/4-3&7z/4&3
+ \end{array}.
+\]
+On either branch, $z$ parametrizes the solutions. Since $x=-z/4-u$ and $y=7z/4$, we may also use $x$ or $y$ as a parameter and solve uniquely for the other variables in a neighborhood of any fixed solution.
+
+This agrees with the implicit function theorem: if $\mathbf F$ is the left-hand side, the relevant $3\times3$ Jacobian minors are
+\[
+ \det D_{(x,y,u)}\mathbf F=4(2u-3),\quad
+ \det D_{(x,z,u)}\mathbf F=-7(2u-3),\quad
+ \det D_{(y,z,u)}\mathbf F=3-2u,
+\]
+which are nonzero at $u=0$ and $u=3$. In contrast,
+$\det D_{(x,y,z)}\mathbf F=0$ everywhere. More directly, fixing a permitted value $u\in\{0,3\}$ leaves the parameter $z$ arbitrary, so $x,y,z$ cannot be uniquely determined as functions of $u$.
+\end{solution}
+
+\begin{exercise}{9.20}
+Take $n=m=1$ in the implicit function theorem and interpret both the theorem and its proof graphically.
+\end{exercise}
+\begin{solution}
+Let $F\in C^1$ near $(a,b)\in\R^2$, with $F(a,b)=0$ and $\partial_yF(a,b)\ne0$. Then there exist neighborhoods of $a$ and $b$ and a unique $C^1$ function $g$ near $a$, with $g(a)=b$, such that the nearby zero set of $F$ is the graph
+\[
+ y=g(x),\qquad F(x,g(x))=0.
+\]
+Differentiating along that graph gives
+\[
+ g'(x)=-\frac{\partial_xF(x,g(x))}{\partial_yF(x,g(x))}.
+\]
+Geometrically, $\partial_yF\ne0$ means that the level curve $F=0$ has a nonvertical tangent and can be represented locally as a graph over the $x$-axis. In the proof, the map
+\[
+ H(x,y)=(x,F(x,y))
+\]
+has $\det DH(a,b)=\partial_yF(a,b)\ne0$. The inverse function theorem supplies local coordinates $(x,v)$ with $v=F(x,y)$; the level curve becomes the straight line $v=0$. Applying $H^{-1}$ to that line produces the graph $y=g(x)$.
+\end{solution}
+
+\begin{exercise}{9.21}
+Define $f\colon\R^2\to\R$ by
+\[
+ f(x,y)=2x^3-3x^2+2y^3+3y^2.
+\]
+\begin{exercisesubparts}
+\item Find the four points where $\nabla f=\mathbf0$, and show that $f$ has exactly one local maximum and one local minimum in $\R^2$.
+\item Let $S=\{(x,y)\in\R^2:f(x,y)=0\}$. Find the points of $S$ having no neighborhood in which the equation $f(x,y)=0$ can be solved for $y$ in terms of $x$ (or for $x$ in terms of $y$). Describe $S$ as precisely as possible.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item Since
+\[
+ \nabla f=(6x(x-1),6y(y+1)),\qquad
+ \Hess f=\begin{pmatrix}12x-6&0\\0&12y+6\end{pmatrix},
+\]
+the critical points are $(0,0)$, $(1,0)$, $(0,-1)$, and $(1,-1)$. The Hessian is positive definite at $(1,0)$ and negative definite at $(0,-1)$, giving a strict local minimum with value $-1$ and a strict local maximum with value $1$, respectively. The Hessian is indefinite at $(0,0)$ and $(1,-1)$, so these are saddle points. Every local extremum of a differentiable function is critical (Exercise 9.8), hence there are no others.
+\item The polynomial factors as
+\[
+ f(x,y)=(x+y)(2x^2-2xy+2y^2-3x+3y).
+\]
+Writing $X=x-1/2$ and $Y=y+1/2$, the second factor vanishes precisely on the ellipse
+\[
+ X^2-XY+Y^2=\frac34.
+\]
+Thus $S$ is the union of this ellipse, centered at $(1/2,-1/2)$, and the line $y=-x$. They meet transversely at the two saddle points $(0,0)$ and $(1,-1)$; neither coordinate can be expressed as a single-valued function of the other on the whole nearby zero set at those crossings.
+
+At every other point $S$ is a smooth curve, and the implicit function theorem applies whenever the appropriate partial derivative is nonzero. On the ellipse, the points where $\partial_y f=0$ (vertical tangents) are
+\[
+ \left(-\frac12,-1\right),\qquad \left(\frac32,0\right).
+\]
+At these two points $y$ cannot locally be solved as a single-valued function of $x$; this is seen directly from the strict local extrema of the ellipse's $x$-coordinate. Likewise, the horizontal tangents occur at
+\[
+ \left(0,-\frac32\right),\qquad \left(1,\frac12\right),
+\]
+where $x$ cannot be solved as a function of $y$. Therefore the failures for $y=y(x)$ are the two crossings together with $(-1/2,-1)$ and $(3/2,0)$; the failures for $x=x(y)$ are the two crossings together with $(0,-3/2)$ and $(1,1/2)$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.22}
+Give a discussion analogous to Exercise 9.21 for
+\[
+ f(x,y)=2x^3+6xy^2-3x^2+3y^2.
+\]
+\end{exercise}
+\begin{solution}
+The first derivatives and Hessian are
+\[
+ \nabla f=(6(x^2+y^2-x),6y(2x+1)),\qquad
+ \Hess f=\begin{pmatrix}12x-6&12y\\12y&12x+6\end{pmatrix}.
+\]
+Solving $\nabla f=\mathbf0$ gives only $(0,0)$ and $(1,0)$: when $y=0$, the first equation yields $x=0$ or $1$, while $x=-1/2$ is incompatible with $x^2+y^2=x$. The Hessian at $(0,0)$ is indefinite, so $(0,0)$ is a saddle point; at $(1,0)$ it is positive definite, so $(1,0)$ is a strict local minimum with $f(1,0)=-1$. There is no local maximum, since there are no further critical points.
+
+The zero set $S$ is determined by
+\[
+ 3(2x+1)y^2=x^2(3-2x).
+\]
+There are no zeros with $x\le-1/2$ or $x>3/2$, and for $-1/2<x\le3/2$ the two branches are
+\[
+ y=\pm |x|\sqrt{\frac{3-2x}{3(2x+1)}}.
+\]
+They cross at the node $(0,0)$ (with tangent slopes $\pm1$), join at $(3/2,0)$, and extend to $|y|\to\infty$ as $x\downarrow-1/2$. At the node the zero set cannot be represented by a single-valued graph in either coordinate.
+
+For $y$ as a function of $x$, the only further obstruction is the vertical tangent at $(3/2,0)$, where $\partial_yf=0$ but $\partial_xf\ne0$; the curve folds in its $x$-projection.
+For $x$ as a function of $y$, further obstructions occur at the two horizontal tangents where $\partial_xf=0$ and $\partial_yf\ne0$. Substitution in the zero-set equation gives
+\[
+ \left(\frac{\sqrt3}{2},\ \frac12\sqrt{2\sqrt3-3}\right),\qquad
+ \left(\frac{\sqrt3}{2},-\frac12\sqrt{2\sqrt3-3}\right).
+\]
+These are genuine folds: $\partial_{xx}f=6(\sqrt3-1)\ne0$ there. At every remaining point of $S$, the respective implicit function is locally well defined.
+\end{solution}
+
+\begin{exercise}{9.23}
+Define $f\colon\R^3\to\R$ by
+\[
+ f(x,y_1,y_2)=x^2y_1+e^x+y_2.
+\]
+Show that $f(0,1,-1)=0$, that $\partial_1f(0,1,-1)\ne0$, and hence that there is a differentiable function $g$ near $(1,-1)$ in $\R^2$ such that $g(1,-1)=0$ and
+\[
+ f(g(y_1,y_2),y_1,y_2)=0.
+\]
+Find $\partial_1g(1,-1)$ and $\partial_2g(1,-1)$.
+\end{exercise}
+\begin{solution}
+We have $f(0,1,-1)=0$ and
+\[
+ \partial_xf=2xy_1+e^x,\qquad
+ \partial_{y_1}f=x^2,\qquad \partial_{y_2}f=1.
+\]
+Thus $\partial_xf(0,1,-1)=1\ne0$, so the implicit function theorem yields the required $g$. Differentiate the identity $f(g(y_1,y_2),y_1,y_2)=0$:
+\[
+ \partial_jg=-\frac{\partial_{y_j}f}{\partial_xf}
+ \quad(j=1,2),
+\]
+with derivatives of $f$ evaluated at $(g(y_1,y_2),y_1,y_2)$. At $(1,-1)$, this gives
+\[
+ \boxed{\partial_1g(1,-1)=0,\qquad\partial_2g(1,-1)=-1.}
+\]
+\end{solution}
+
+\begin{exercise}{9.24}
+For $(x,y)\ne(0,0)$, define $\mathbf f=(f_1,f_2)$ by
+\[
+ f_1(x,y)=\frac{x^2-y^2}{x^2+y^2},\qquad
+ f_2(x,y)=\frac{xy}{x^2+y^2}.
+\]
+Compute the rank of $D\mathbf f(x,y)$, and find the range of $\mathbf f$.
+\end{exercise}
+\begin{solution}
+Write $(x,y)=r(\cos\theta,\sin\theta)$ with $r>0$. Then
+\[
+ \mathbf f(x,y)=\left(\cos2\theta,\frac12\sin2\theta\right).
+\]
+Hence the range is precisely the ellipse
+\[
+ \boxed{\{(u,v)\in\R^2:u^2+4v^2=1\}.}
+\]
+The radial derivative of $\mathbf f$ is zero, since $\mathbf f$ is constant on each ray. The angular derivative is $(-2\sin2\theta,\cos2\theta)$, which never vanishes. As the radial and angular directions span $\R^2$ at every nonzero point, the derivative has exactly one-dimensional range:
+\[
+ \boxed{\rk D\mathbf f(x,y)=1\qquad((x,y)\ne(0,0)).}
+\]
+\end{solution}
+
+\begin{exercise}{9.25}
+Suppose $\mathbf A\in\mathcal L(\R^n,\R^m)$ has rank $r$.
+\begin{exercisesubparts}
+\item Define $\mathbf S$ as in the proof of Theorem 9.32. Prove that $\mathbf S\mathbf A$ is a projection of $\R^n$ whose null space is $\ker\mathbf A$ and whose range is $\im\mathbf S$. 
+\textit{Hint.} By formula (68), $\mathbf S\mathbf A\mathbf S\mathbf A=\mathbf S\mathbf A$.
+\item Use (a) to prove $\dim\ker\mathbf A+\dim\im\mathbf A=n$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Choose a basis $\mathbf y_1,\ldots,\mathbf y_r$ for $\im\mathbf A$ and vectors $\mathbf z_i\in\R^n$ with $\mathbf A\mathbf z_i=\mathbf y_i$. As in the proof of Theorem 9.32, define $\mathbf S\colon\im\mathbf A\to\R^n$ by
+\[
+ \mathbf S\left(\sum_{i=1}^r c_i\mathbf y_i\right)=\sum_{i=1}^r c_i\mathbf z_i.
+\]
+Then $\mathbf A\mathbf S\mathbf y=\mathbf y$ for every $\mathbf y\in\im\mathbf A$.
+\begin{exercisesubparts}
+\item Put $\mathbf P=\mathbf S\mathbf A$. Since $\mathbf A\mathbf S$ is the identity on $\im\mathbf A$,
+\[
+ \mathbf P^2=\mathbf S(\mathbf A\mathbf S)\mathbf A=\mathbf S\mathbf A=\mathbf P,
+\]
+so $\mathbf P$ is a projection. If $\mathbf A\mathbf x=\mathbf0$, then $\mathbf P\mathbf x=\mathbf0$. Conversely, if $\mathbf P\mathbf x=\mathbf0$, then
+$\mathbf A\mathbf x=\mathbf A\mathbf S\mathbf A\mathbf x=\mathbf A\mathbf P\mathbf x=\mathbf0$.
+Thus $\ker\mathbf P=\ker\mathbf A$. Clearly $\im\mathbf P\subseteq\im\mathbf S$; for $\mathbf y\in\im\mathbf A$, the equality $\mathbf P(\mathbf S\mathbf y)=\mathbf S\mathbf y$ proves the reverse inclusion.
+\item Every projection decomposes its space as the direct sum of its null space and range (Section 9.31):
+\[
+ \R^n=\ker\mathbf P\oplus\im\mathbf P.
+\]
+The map $\mathbf S$ is injective because $\mathbf A\mathbf S$ is the identity on $\im\mathbf A$, so $\dim\im\mathbf S=\dim\im\mathbf A=r$. Therefore
+\[
+ \boxed{\dim\ker\mathbf A+\dim\im\mathbf A=n.}
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.26}
+Show that the existence (and even continuity) of $\partial_1\partial_2f$ does not imply the existence of $\partial_1f$. For instance, take $f(x,y)=g(x)$, where $g$ is nowhere differentiable.
+\end{exercise}
+\begin{solution}
+Since $f$ is independent of $y$, we have $\partial_2f(x,y)=0$ for every $(x,y)\in\R^2$. Therefore $\partial_1\partial_2f=0$ everywhere, and this mixed partial is continuous. On the other hand, the difference quotient for $\partial_1f(x,y)$ is exactly the difference quotient for $g'(x)$; it has no limit at any point by the choice of $g$.
+\end{solution}
+
+\begin{exercise}{9.27}
+Define $f(0,0)=0$ and
+\[
+ f(x,y)=\frac{xy(x^2-y^2)}{x^2+y^2}\qquad((x,y)\ne(0,0)).
+\]
+Prove that
+\begin{exercisesubparts}
+\item $f,\partial_1f,\partial_2f$ are continuous on $\R^2$;
+\item $\partial_1\partial_2f$ and $\partial_2\partial_1f$ exist everywhere and are continuous except at the origin;
+\item $(\partial_1\partial_2f)(0,0)=1$ and $(\partial_2\partial_1f)(0,0)=-1$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The bound
+\[
+ |f(x,y)|\le|xy|\le\frac12(x^2+y^2)
+\]
+proves continuity of $f$ at the origin. Its two first partial derivatives there vanish, because $f(h,0)=f(0,h)=0$. Away from the origin,
+\[
+ \partial_1f=\frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2},\qquad
+ \partial_2f=\frac{x(x^4-4x^2y^2-y^4)}{(x^2+y^2)^2}.
+\]
+Both are homogeneous of degree one and bounded on the unit circle by continuity; hence both tend to zero as $(x,y)\to(0,0)$. Thus $f\in C^1(\R^2)$.
+\item For $(x,y)\ne(0,0)$, rational differentiation gives
+\[
+ \partial_1\partial_2f
+ =\partial_2\partial_1f
+ =\frac{(x^2-y^2)(x^4+10x^2y^2+y^4)}{(x^2+y^2)^3}.
+\]
+These functions are continuous away from the origin. Their values on the $x$-axis are $1$, whereas on the $y$-axis they are $-1$. Thus neither is continuous at $(0,0)$, provided the values there exist as shown next.
+\item Using the formulas in (a), for every nonzero $x,y$ one has
+\[
+ (\partial_2f)(x,0)=x,\qquad
+ (\partial_1f)(0,y)=-y.
+\]
+Both first partials vanish at the origin. Hence by their defining difference quotients,
+\[
+ (\partial_1\partial_2f)(0,0)=\lim_{h\to0}\frac{h}{h}=1,
+\quad
+ (\partial_2\partial_1f)(0,0)=\lim_{h\to0}\frac{-h}{h}=-1.
+\]
+This shows why continuity is essential in the mixed-partials theorem (Theorem 9.41).
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.28}
+For $t\ge0$, put
+\[
+ \varphi(x,t)=
+ \begin{cases}
+ x,&0\le x\le\sqrt t,\\
+ -x+2\sqrt t,&\sqrt t\le x\le2\sqrt t,\\
+ 0,&\text{otherwise},
+ \end{cases}
+\]
+and define $\varphi(x,t)=-\varphi(x,|t|)$ for $t<0$. Show that $\varphi$ is continuous on $\R^2$ and that $\partial_2\varphi(x,0)=0$ for every $x$. Define
+\[
+ F(t)=\int_{-1}^1\varphi(x,t)\,\dd x.
+\]
+Show that $F(t)=t$ if $|t|<1/4$, so
+\[
+ F'(0)\ne\int_{-1}^1(\partial_2\varphi)(x,0)\,\dd x.
+\]
+\end{exercise}
+\begin{solution}
+For each fixed $t\ne0$, the two linear pieces meet at height $\sqrt{|t|}$ and vanish at the endpoints of their support; hence $\varphi$ is continuous where $t\ne0$. Moreover,
+\[
+ |\varphi(x,t)|\le\sqrt{|t|}
+\]
+for all $x,t$. Since $\varphi(x,0)=0$, this proves continuity also at every point of the line $t=0$.
+
+For fixed $x\ne0$, the support $[0,2\sqrt{|t|}]$ eventually misses $x$ as $t\to0$, so $\varphi(x,t)=0$ for all sufficiently small $|t|$. At $x=0$, $\varphi(0,t)=0$ identically. Therefore $\partial_2\varphi(x,0)=0$ for every $x$.
+
+If $0<t<1/4$, the support is contained in $[-1,1]$, and the graph of $\varphi(\cdot,t)$ is a triangle of base $2\sqrt t$ and height $\sqrt t$. Its integral is $t$. By the definition for negative $t$, the integral is $t$ also for $-1/4<t<0$. Hence $F(t)=t$ near $0$ and
+\[
+ \boxed{F'(0)=1\ne0=\int_{-1}^1\partial_2\varphi(x,0)\,\dd x.}
+\]
+Continuity of $\varphi$ alone does not justify differentiating under the integral sign.
+\end{solution}
+
+\begin{exercise}{9.29}
+Let $E\subseteq\R^n$ be open and $f\in C^k(E)$ for a positive integer $k$. Show, by repeated application of Theorem 9.41, that the $k$th-order partial derivative
+\[
+ \partial_{i_1}\partial_{i_2}\cdots\partial_{i_k}f
+\]
+is unchanged by permuting the indices $i_1,\ldots,i_k$. For example, if $n\ge3$ and $f\in C^4(E)$, then $\partial_1\partial_2\partial_1\partial_3 f=\partial_3\partial_1\partial_1\partial_2 f$.
+\end{exercise}
+\begin{solution}
+Every permutation of $k$ indices is a product of transpositions of adjacent indices. It is therefore enough to interchange two consecutive partial derivatives in an iterated derivative. Suppose the adjacent indices are $i$ and $j$, and let $h$ be the result of applying to $f$ all partial derivatives that occur to their right. Since $f\in C^k(E)$, the function $h$ has continuous second-order partial derivatives. Theorem 9.41 gives
+\[
+ \partial_i\partial_jh=\partial_j\partial_ih.
+\]
+Applying any derivatives that occur to their left preserves the equality. Thus each adjacent transposition leaves the $k$th derivative unchanged, and so does every permutation. The displayed fourth-order identity is one instance.
+\end{solution}
+
+\begin{exercise}{9.30}
+Let $f\in C^m(E)$, where $E\subseteq\R^n$ is open. Fix $\mathbf a\in E$ and choose $\mathbf x\in\R^n$ sufficiently small that $\mathbf p(t)=\mathbf a+t\mathbf x\in E$ for $0\le t\le1$. Define $h(t)=f(\mathbf p(t))$ wherever $\mathbf p(t)\in E$.
+\begin{exercisesubparts}
+\item For $1\le k\le m$, show that
+\[
+ h^{(k)}(t)=\sum_{i_1,\ldots,i_k=1}^n
+ (\partial_{i_1}\cdots\partial_{i_k}f)(\mathbf p(t))
+ x_{i_1}\cdots x_{i_k}.
+\]
+The sum is over all ordered $k$-tuples of indices.
+\item Taylor's theorem (Theorem 5.15) gives $h(1)=\sum_{k=0}^{m-1}h^{(k)}(0)/k!+h^{(m)}(\theta)/m!$ for some $\theta\in(0,1)$. Use it to show that
+\[
+ f(\mathbf a+\mathbf x)
+ =\sum_{k=0}^{m-1}\frac1{k!}
+ \sum_{i_1,\ldots,i_k=1}^n
+ (\partial_{i_1}\cdots\partial_{i_k}f)(\mathbf a)
+ x_{i_1}\cdots x_{i_k}+r(\mathbf x),
+\]
+where the $k=0$ term is $f(\mathbf a)$ and
+$\lim_{\mathbf x\to\mathbf0}r(\mathbf x)/\|\mathbf x\|^{m-1}=0$.
+\item By Exercise 9.29, different orders of a fixed collection of indices give the same derivative. For example, $\partial_1\partial_1\partial_3f$ occurs in three ordered forms. Group the repetitions to show that the Taylor polynomial in (b) equals
+\[
+ \sum_{\substack{s_1,\ldots,s_n\in\Nzero\\s_1+\cdots+s_n\le m-1}}
+ \frac{(\partial_1^{s_1}\cdots\partial_n^{s_n}f)(\mathbf a)}{s_1!\cdots s_n!}
+ x_1^{s_1}\cdots x_n^{s_n}.
+\]
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The chain rule gives $h'(t)=\sum_i(\partial_if)(\mathbf p(t))x_i$. Differentiating once more applies the chain rule to each partial derivative, producing one additional index and factor $x_i$. Induction gives the displayed formula for every $k\le m$.
+\item The one-variable Taylor theorem gives, for some $\theta\in(0,1)$,
+\[
+ h(1)=\sum_{k=0}^{m-1}\frac{h^{(k)}(0)}{k!}
+       +\frac{h^{(m)}(\theta)}{m!}.
+\]
+Substitute (a) to obtain the requested polynomial. Since the $m$th-order partial derivatives of $f$ are continuous near $\mathbf a$, they are bounded on a sufficiently small closed ball about $\mathbf a$, say by $M$. Thus
+\[
+ |r(\mathbf x)|\le\frac M{m!}\sum_{i_1,\ldots,i_m=1}^n
+ |x_{i_1}\cdots x_{i_m}|
+ =\frac M{m!}\left(\sum_{i=1}^n|x_i|\right)^m
+ \le\frac{Mn^{m/2}}{m!}\|\mathbf x\|^m.
+\]
+Consequently $r(\mathbf x)/\|\mathbf x\|^{m-1}\to0$.
+\item By Exercise 9.29, all ordered derivative strings containing $s_i$ occurrences of index $i$ have the same value. If $s_1+\cdots+s_n=k$, there are exactly
+$k!/(s_1!\cdots s_n!)$ such strings. Their combined coefficient after multiplication by $1/k!$ is therefore $1/(s_1!\cdots s_n!)$. Summing over all nonnegative multi-indices of total degree at most $m-1$ yields the stated polynomial.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.31}
+Suppose $f\in C^3$ near $\mathbf a\in\R^2$, $\nabla f(\mathbf a)=\mathbf0$, and not all second-order partial derivatives vanish at $\mathbf a$. Show how the degree-two Taylor polynomial at $\mathbf a$ can be used to decide whether $f$ has a local maximum, a local minimum, or neither. Extend the discussion to $\R^n$.
+\end{exercise}
+\begin{solution}
+Put $\mathbf h=\mathbf x-\mathbf a$. By Exercise 9.30 and $\nabla f(\mathbf a)=\mathbf0$,
+\[
+ f(\mathbf a+\mathbf h)-f(\mathbf a)=Q(\mathbf h)+o(\|\mathbf h\|^2),
+ \qquad Q(\mathbf h)=\frac12\mathbf h^{\mathrm T}(\Hess f(\mathbf a))\mathbf h.
+\]
+If $Q$ is positive definite, compactness of the unit sphere gives $Q(\mathbf h)\ge c\|\mathbf h\|^2$ for some $c>0$, so $\mathbf a$ is a strict local minimum. If $Q$ is negative definite, it is a strict local maximum. If $Q$ takes both positive and negative values, then along two suitable lines the quadratic term determines opposite signs for sufficiently small nonzero $\mathbf h$, so $\mathbf a$ is neither a local maximum nor a local minimum.
+
+In two variables, write
+\[
+ \Hess f(\mathbf a)=\begin{pmatrix}A&B\\B&C\end{pmatrix},
+ \qquad\Delta=AC-B^2.
+\]
+If $\Delta>0$, the form is definite: $A>0$ gives a strict minimum and $A<0$ gives a strict maximum. If $\Delta<0$, the form is indefinite and $\mathbf a$ is a saddle point. If $\Delta=0$, the nonzero quadratic form is semidefinite, and the Taylor polynomial of degree two does \emph{not} always decide the question.
+
+Indeed, $f_+(x,y)=x^2+y^4$ and $f_-(x,y)=x^2-y^4$ belong to $C^3$, have zero gradient at the origin, and have the same nonzero quadratic Taylor polynomial $Q(x,y)=x^2$. Nevertheless, $f_+$ has a strict local minimum and $f_-$ has neither a local minimum nor a local maximum at the origin. Thus the exercise as worded needs this qualification.
+
+The same reasoning holds in $\R^n$: classify the quadratic form associated with the symmetric Hessian. Positive definite implies a strict local minimum, negative definite a strict local maximum, and indefinite implies neither. A nonzero semidefinite Hessian leaves the behavior along its null directions undecided; higher-order terms must then be examined.
+\end{solution}
+
+
+\begin{exercise}{11.1}
+If $f\ge0$ and $\int_E f\,\dd\mu=0$, prove that $f(x)=0$ almost everywhere on $E$.
+
+\textit{Hint.} Let $E_n$ be the subset of $E$ on which $f(x)>1/n$. Write $A=\bigcup_{n=1}^\infty E_n$. Then $\mu(A)=0$ if and only if $\mu(E_n)=0$ for every $n$.
+\end{exercise}
+\begin{solution}
+Put $E_n=\{x\in E:f(x)>1/n\}$. Since $f\ge0$,
+\[
+ 0=\int_E f\,\dd\mu\ge\int_{E_n}f\,\dd\mu
+ \ge\frac1n\mu(E_n).
+\]
+Hence $\mu(E_n)=0$ for every $n$. The set on which $f$ is positive is
+\[
+ \{x\in E:f(x)>0\}=\bigcup_{n=1}^\infty E_n,
+\]
+which has measure zero by countable subadditivity. Thus $f=0$ almost everywhere on $E$.
+\end{solution}
+
+\begin{exercise}{11.2}
+If $\int_A f\,\dd\mu=0$ for every measurable subset $A$ of a measurable set $E$, then $f(x)=0$ almost everywhere on $E$.
+\end{exercise}
+\begin{solution}
+First suppose $f$ is real-valued. The sets
+$E_+=\{x\in E:f(x)>0\}$ and $E_-=\{x\in E:f(x)<0\}$ are measurable. By hypothesis,
+\[
+ \int_{E_+}f\,\dd\mu=0,
+ \qquad\int_{E_-}(-f)\,\dd\mu=0.
+\]
+Exercise 11.1 applied to $f$ on $E_+$ and to $-f$ on $E_-$ shows that both $E_+$ and $E_-$ have measure zero. Hence $f=0$ almost everywhere on $E$.
+
+For complex-valued $f$, the hypothesis implies that the integrals of $\operatorname{Re}f$ and $\operatorname{Im}f$ vanish over every measurable $A\subseteq E$. Applying the real case to these two functions gives the same conclusion.
+\end{solution}
+
+\begin{exercise}{11.3}
+If $(f_n)$ is a sequence of measurable functions, prove that the set of points $x$ at which $(f_n(x))$ converges is measurable.
+\end{exercise}
+\begin{solution}
+By the Cauchy criterion in $\R$ (or $\C$), the set in question is
+\[
+ C=\bigcap_{k=1}^\infty\bigcup_{N=1}^\infty
+       \bigcap_{m,n\ge N}
+       \left\{x:|f_n(x)-f_m(x)|<\frac1k\right\}.
+\]
+Each set inside the braces is measurable, since $f_n-f_m$ is measurable. Countable unions and intersections of measurable sets are measurable. Thus $C$ is measurable.
+\end{solution}
+
+\begin{exercise}{11.4}
+If $f\in L^1(\mu)$ on $E$ and $g$ is bounded and measurable on $E$, then $fg\in L^1(\mu)$ on $E$.
+\end{exercise}
+\begin{solution}
+The product $fg$ is measurable. Choose $M<\infty$ such that $|g(x)|\le M$ on $E$. Then
+\[
+ \int_E|fg|\,\dd\mu\le M\int_E|f|\,\dd\mu<\infty.
+\]
+Hence $fg$ is Lebesgue integrable on $E$.
+\end{solution}
+
+\begin{exercise}{11.5}
+Put
+\[
+ g(x)=\begin{cases}0,&0\le x\le\frac12,\\1,&\frac12<x\le1,\end{cases}
+\qquad
+ f_{2k}(x)=g(x),\quad f_{2k+1}(x)=g(1-x)
+ \qquad(0\le x\le1).
+\]
+Show that
+\[
+ \liminf_{n\to\infty}f_n(x)=0\qquad(0\le x\le1),
+\]
+but
+\[
+ \int_0^1 f_n(x)\,\dd x=\frac12.
+\]
+\textit{Compare with (77).}
+\end{exercise}
+\begin{solution}
+At each $x\in[0,1]$, at least one of $g(x)$ and $g(1-x)$ is zero. Since the sequence alternates between these two functions, its lower limit is zero at every point. On the other hand, $g$ and $g(1-\cdot)$ are characteristic functions of intervals of length $1/2$, up to endpoint values. Hence, for every $n$,
+\[
+ \int_0^1 f_n(x)\,\dd x=\frac12.
+\]
+In particular, the lower limit of the functions does not determine the limit of their integrals: $\liminf_n\int_0^1 f_n\,\dd x=1/2$, whereas $\int_0^1\liminf_n f_n\,\dd x=0$. This is consistent with Fatou's inequality (77).
+\end{solution}
+
+\begin{exercise}{11.6}
+Let
+\[
+ f_n(x)=\begin{cases}\frac1n,&|x|\le n,\\0,&|x|>n.\end{cases}
+\]
+Then $f_n(x)\to0$ uniformly on $\R$, but
+\[
+ \int_{-\infty}^{\infty}f_n(x)\,\dd x=2
+ \qquad(n=1,2,3,\ldots).
+\]
+Thus uniform convergence does not imply dominated convergence in the sense of Theorem 11.32. However, on sets of finite measure, uniformly convergent sequences of bounded functions do satisfy Theorem 11.32.
+\end{exercise}
+\begin{solution}
+For every $n$, $\sup_{x\in\R}|f_n(x)|=1/n$, which tends to zero. Nevertheless,
+\[
+ \int_{\R}f_n\,\dd x=\frac1n\,m([-n,n])=2.
+\]
+Consequently there can be no integrable function dominating all $f_n$, since such a function would yield $\int f_n\to0$ by Theorem 11.32.
+
+Now let $E$ have finite measure and suppose that measurable, bounded functions $f_n$ converge uniformly to $f$ on $E$. The limit $f$ is measurable, and
+\[
+ \int_E|f_n-f|\,\dd\mu
+ \le\mu(E)\sup_{x\in E}|f_n(x)-f(x)|\longrightarrow0.
+\]
+In particular, their integrals converge. Moreover, uniform convergence and boundedness of the finitely many initial functions give a common bound $|f_n|\le M$ on $E$ for all $n$. Since $M\mathds{1}_E$ is integrable, the hypotheses of the dominated convergence theorem are satisfied.
+\end{solution}
+
+\begin{exercise}{11.7}
+Find a necessary and sufficient condition that $f\in\mathcal R([a,b],\alpha)$.
+
+\textit{Hint.} Consider Example 11.6(b) and Theorem 11.33.
+\end{exercise}
+\begin{solution}
+Here $\alpha$ is increasing on $[a,b]$, as in Definition 6.2, and $f$ is real and bounded. We must distinguish the two sides of a jump of $\alpha$.
+
+For $c\in(a,b]$, put $j^-(c)=\alpha(c)-\alpha(c-)$, and for $c\in[a,b)$ put $j^+(c)=\alpha(c+)-\alpha(c)$. Removing all these jumps leaves a continuous increasing function $\alpha_0$:
+\[
+ \alpha_0(x)=\alpha(x)
+ -\sum_{c\in(a,b]}j^-(c)\mathds{1}_{[c,b]}(x)
+ -\sum_{c\in[a,b)}j^+(c)\mathds{1}_{(c,b]}(x).
+\]
+The sums are over at most countably many nonzero terms and converge uniformly, since their total is at most $\alpha(b)-\alpha(a)$. Let $\mu_{\alpha_0}$ be the measure constructed from $\alpha_0$ in Example 11.6(b), and let $D_f$ be the set of discontinuities of $f$.
+
+The necessary and sufficient conditions are
+\begin{exercisesubparts}
+\item $\mu_{\alpha_0}(D_f)=0$;
+\item $f(c-)=f(c)$ whenever $j^-(c)>0$, and $f(c+)=f(c)$ whenever $j^+(c)>0$.
+\end{exercisesubparts}
+To see this, recall that the Riemann--Stieltjes criterion is
+\[
+ \inf_P\sum_i\bigl(M_i-m_i\bigr)
+                   \bigl(\alpha(x_i)-\alpha(x_{i-1})\bigr)=0,
+\]
+where $M_i,m_i$ are the supremum and infimum of $f$ on $[x_{i-1},x_i]$. For a continuous increasing integrator $\alpha_0$, the proof of Theorem 11.33, with the measure $\mu_{\alpha_0}$ in place of length, shows that this criterion is equivalent to (a). For the single-jump integrator $\mathds{1}_{[c,b]}$, it is equivalent to continuity of $f$ from the left at $c$; for $\mathds{1}_{(c,b]}$, to continuity from the right. This gives (b).
+
+Finally, the oscillation sum is additive in the integrator and nonnegative for every increasing summand. Necessity follows for $\alpha_0$ and for each jump separately. Conversely, choose a partition making the $\alpha_0$ contribution small, refine it to control finitely many jumps, and note that the remaining jumps contribute at most $2\|f\|_\infty$ times their total size, which can be made arbitrarily small. This proves sufficiency.
+
+\textit{Remark.} If $\alpha$ is continuous, (b) disappears and the criterion reduces to $\mu_\alpha(D_f)=0$. Without continuity of $\alpha$, this simpler formulation is not generally necessary: a jump of $f$ on the side where $\alpha$ has no jump may be harmless.
+\end{solution}
+
+\begin{exercise}{11.8}
+If $f\in\mathcal R([a,b])$ and $F(x)=\int_a^x f(t)\,\dd t$, prove that $F'(x)=f(x)$ almost everywhere on $[a,b]$.
+\end{exercise}
+\begin{solution}
+By Theorem 11.33(b), a Riemann-integrable function is continuous almost everywhere. At a point $x\in(a,b)$ where $f$ is continuous, for sufficiently small $h$ (positive or negative),
+\[
+ \frac{F(x+h)-F(x)}h-f(x)
+ =\frac1h\int_x^{x+h}\bigl(f(t)-f(x)\bigr)\,\dd t.
+\]
+The absolute value of the right side is at most
+$\sup_{t\text{ between }x\text{ and }x+h}|f(t)-f(x)|$, which tends to zero. Thus $F'(x)=f(x)$ at every interior point of continuity of $f$. The exceptional set, together with the endpoints, has measure zero.
+\end{solution}
+
+\begin{exercise}{11.9}
+Prove that the function $F$ given by (96) is continuous on $[a,b]$.
+\end{exercise}
+\begin{solution}
+In (96), $F(x)=\int_a^x f(t)\,\dd t$ with $f\in L^1([a,b])$. Suppose $x_n\to x$ in $[a,b]$ and put
+$h_n(t)=f(t)\mathds{1}_{[a,x_n]}(t)$. Then $h_n(t)\to f(t)\mathds{1}_{[a,x]}(t)$ for every $t\ne x$, hence almost everywhere, and $|h_n(t)|\le|f(t)|$. By the dominated convergence theorem (Theorem 11.32),
+\[
+ F(x_n)=\int_a^b h_n(t)\,\dd t\longrightarrow
+ \int_a^x f(t)\,\dd t=F(x).
+\]
+Therefore $F$ is continuous on $[a,b]$.
+\end{solution}
+
+\begin{exercise}{11.10}
+If $\mu(X)<+\infty$ and $f\in L^2(\mu)$ on $X$, prove that $f\in L^1(\mu)$ on $X$. If $\mu(X)=+\infty$, this is false. For instance, if
+\[
+ f(x)=\frac1{1+|x|},
+\]
+then $f\in L^2$ on $\R$, but $f\notin L^1$ on $\R$.
+\end{exercise}
+\begin{solution}
+The Schwarz inequality (Theorem 11.35), applied to $|f|$ and the constant function $1$, gives
+\[
+ \int_X|f|\,\dd\mu
+ \le\left(\int_X|f|^2\,\dd\mu\right)^{1/2}
+      \mu(X)^{1/2}<\infty.
+\]
+For the stated example, symmetry gives
+\[
+ \int_\R|f|^2\,\dd x
+ =2\int_0^\infty\frac{\dd x}{(1+x)^2}=2,
+ \qquad
+ \int_\R|f|\,\dd x
+ =2\int_0^\infty\frac{\dd x}{1+x}=\infty.
+\]
+Thus finiteness of the underlying measure is essential.
+\end{solution}
+
+\begin{exercise}{11.11}
+If $f,g\in L^1(\mu)$ on $X$, define the distance between $f$ and $g$ by
+\[
+ d(f,g)=\int_X|f-g|\,\dd\mu.
+\]
+Prove that $L^1(\mu)$ is a complete metric space.
+\end{exercise}
+\begin{solution}
+As in the discussion following Theorem 11.36, functions equal almost everywhere are identified. Then $d(f,g)=\|f-g\|_1$ satisfies the metric axioms: nonnegativity and symmetry are immediate, Exercise 11.1 gives definiteness, and $|f-h|\le|f-g|+|g-h|$ gives the triangle inequality.
+
+Let $(f_n)$ be Cauchy in $L^1(\mu)$. Choose a subsequence $(f_{n_k})$ such that
+\[
+ \|f_{n_{k+1}}-f_{n_k}\|_1<2^{-k}
+ \qquad(k\ge1).
+\]
+Set
+\[
+ H_m=|f_{n_1}|+\sum_{k=1}^{m}|f_{n_{k+1}}-f_{n_k}|.
+\]
+The functions $H_m$ increase and satisfy
+\[
+ \int_XH_m\,\dd\mu
+ \le\|f_{n_1}\|_1+\sum_{k=1}^\infty2^{-k}<\infty.
+\]
+By the monotone convergence theorem, $H=\lim_m H_m$ is integrable and finite almost everywhere. Thus the series of differences
+$\sum_k(f_{n_{k+1}}-f_{n_k})$ converges absolutely almost everywhere. It defines a measurable limit $f$ of $(f_{n_k})$, with $|f|\le H$ almost everywhere; hence $f\in L^1(\mu)$.
+
+For every $k$, almost everywhere,
+\[
+ |f-f_{n_k}|\le\sum_{j=k}^\infty|f_{n_{j+1}}-f_{n_j}|.
+\]
+Integrating (or applying monotone convergence to the tail) yields
+\[
+ \|f-f_{n_k}\|_1\le\sum_{j=k}^\infty2^{-j}\longrightarrow0.
+\]
+Since the original sequence is Cauchy, for $n,n_k$ sufficiently large,
+\[
+ \|f_n-f\|_1\le\|f_n-f_{n_k}\|_1+\|f_{n_k}-f\|_1
+\]
+is arbitrarily small. Hence $f_n\to f$ in $L^1(\mu)$, proving completeness.
+\end{solution}
+
+\begin{exercise}{11.12}
+Suppose
+\begin{exercisesubparts}
+\item $|f(x,y)|\le1$ if $0\le x\le1$ and $0\le y\le1$;
+\item for fixed $x$, $f(x,y)$ is a continuous function of $y$;
+\item for fixed $y$, $f(x,y)$ is a continuous function of $x$.
+\end{exercisesubparts}
+Put
+\[
+ g(x)=\int_0^1f(x,y)\,\dd y\qquad(0\le x\le1).
+\]
+Is $g$ continuous?
+\end{exercise}
+\begin{solution}
+Yes. Fix $x\in[0,1]$ and let $x_n\to x$. For each $y\in[0,1]$, assumption (c) gives $f(x_n,y)\to f(x,y)$. By (b), each function $y\mapsto f(x_n,y)$ is continuous, hence measurable, and by (a) all are bounded in absolute value by the integrable function $1$ on $[0,1]$. The dominated convergence theorem therefore gives
+\[
+ g(x_n)=\int_0^1f(x_n,y)\,\dd y
+ \longrightarrow\int_0^1f(x,y)\,\dd y=g(x).
+\]
+Thus $g$ is continuous. Joint continuity of $f$ is not needed.
+\end{solution}
+
+\begin{exercise}{11.13}
+Consider the functions
+\[
+ f_n(x)=\sin(nx)\qquad(n=1,2,3,\ldots,\ -\pi\le x\le\pi)
+\]
+as points of $L^2$. Prove that the set of these points is closed and bounded, but not compact.
+\end{exercise}
+\begin{solution}
+Orthogonality of the sine functions gives
+\[
+ \|f_n\|_2^2=\int_{-\pi}^\pi\sin^2(nx)\,\dd x=\pi,
+\]
+and, for $n\ne m$,
+\[
+ \|f_n-f_m\|_2^2
+ =\|f_n\|_2^2+\|f_m\|_2^2
+   -2\int_{-\pi}^\pi\sin(nx)\sin(mx)\,\dd x
+ =2\pi.
+\]
+Thus the set is bounded and its distinct points have a fixed positive separation. Any convergent sequence drawn from the set is Cauchy and must therefore be eventually constant; its limit belongs to the set. Hence the set is closed. On the other hand, the sequence $(f_n)$ has no Cauchy subsequence and therefore no convergent subsequence. The set is not compact.
+\end{solution}
+
+\begin{exercise}{11.14}
+Prove that a complex function $f$ is measurable if and only if $f^{-1}(V)$ is measurable for every open set $V$ in the plane.
+\end{exercise}
+\begin{solution}
+Write $f=u+iv$, with $u,v$ real. If $f$ is measurable, $u$ and $v$ are measurable by definition. Every open set $V\subseteq\C$ is a countable union of open rectangles with rational endpoints. For each such rectangle
+\[
+ R=(a,b)\times(c,d),
+\]
+its inverse image under $f$ is
+\[
+ f^{-1}(R)=u^{-1}((a,b))\cap v^{-1}((c,d)),
+\]
+which is measurable. Taking countable unions shows that $f^{-1}(V)$ is measurable.
+
+Conversely, for every $t\in\R$, the sets
+$V_t=\{z\in\C:\operatorname{Re}z>t\}$ and
+$W_t=\{z\in\C:\operatorname{Im}z>t\}$ are open. The hypothesis gives that
+\[
+ \{x:u(x)>t\}=f^{-1}(V_t),\qquad
+ \{x:v(x)>t\}=f^{-1}(W_t)
+\]
+are measurable. By the level-set criterion, $u$ and $v$ are measurable, and hence so is $f$.
+\end{solution}
+
+\begin{exercise}{11.15}
+Let $\mathscr R$ be the ring of all elementary subsets of $(0,1]$. If $0<a\le b\le1$, define
+\[
+ \varphi([a,b])=\varphi([a,b))
+ =\varphi((a,b])=\varphi((a,b))=b-a,
+\]
+but define
+\[
+ \varphi((0,b))=\varphi((0,b])=1+b
+ \qquad(0<b\le1).
+\]
+Show that this gives an additive set function $\varphi$ on $\mathscr R$, which is not regular and which cannot be extended to a countably additive set function on a $\sigma$-ring.
+\end{exercise}
+\begin{solution}
+Let $m$ denote ordinary length of elementary sets. Every $A\in\mathscr R$ either contains some interval $(0,\varepsilon)$ or is disjoint from one. Define
+\[
+ \chi(A)=\begin{cases}
+ 1,&(0,\varepsilon)\subseteq A\text{ for some }\varepsilon>0,\\
+ 0,&\text{otherwise}.
+ \end{cases}
+ \qquad\varphi(A)=m(A)+\chi(A).
+\]
+This agrees with all the prescribed interval values and shows that the definition is independent of a decomposition into elementary intervals. If $A,B\in\mathscr R$ are disjoint, they cannot both contain an interval $(0,\varepsilon)$. Moreover, $A\cup B$ contains such an interval exactly when one of $A,B$ does. Therefore
+$\chi(A\cup B)=\chi(A)+\chi(B)$; since $m$ is additive, so is $\varphi$.
+
+The set $A=(0,1]$ satisfies $\varphi(A)=2$. Any closed elementary $F\subseteq A$ is compact and bounded away from $0$, so $\chi(F)=0$ and $\varphi(F)=m(F)\le1$. The inequality $\varphi(A)\le\varphi(F)+\varepsilon$ in Definition 11.5 is impossible for $\varepsilon<1$. Thus $\varphi$ is not regular.
+
+Finally, the disjoint sets
+\[
+ A_n=\left(\frac1{n+1},\frac1n\right]
+ \qquad(n\ge1)
+\]
+are elementary, and $\bigcup_{n=1}^\infty A_n=(0,1]$. If a countably additive extension existed on a $\sigma$-ring containing $\mathscr R$, it would give
+\[
+ 2=\varphi((0,1])
+ =\sum_{n=1}^\infty\varphi(A_n)
+ =\sum_{n=1}^\infty\left(\frac1n-\frac1{n+1}\right)=1,
+\]
+a contradiction.
+\end{solution}
+
+\begin{exercise}{11.16}
+Suppose $(n_k)$ is an increasing sequence of positive integers and $E$ is the set of all $x\in(-\pi,\pi)$ at which $(\sin(n_kx))$ converges. Prove that $m(E)=0$.
+
+\textit{Hint.} For every $A\subseteq E$,
+\[
+ \int_A\sin(n_kx)\,\dd x\to0,
+\]
+and
+\[
+ 2\int_A\sin^2(n_kx)\,\dd x
+ =\int_A\bigl(1-\cos(2n_kx)\bigr)\,\dd x
+ \to m(A)\qquad(k\to\infty).
+\]
+\end{exercise}
+\begin{solution}
+The set $E$ is measurable by Exercise 11.3. Put $h(x)=\lim_{k\to\infty}\sin(n_kx)$ for $x\in E$. For any measurable $A\subseteq E$, the characteristic function $\mathds{1}_A$ belongs to $L^2([-\pi,\pi])$. Since the normalized sine and cosine functions form orthonormal sets, the Bessel inequality shows that
+\[
+ \int_A\sin(n_kx)\,\dd x\to0,
+ \qquad\int_A\cos(2n_kx)\,\dd x\to0,
+\]
+as $n_k\to\infty$. Hence
+\[
+ 2\int_A\sin^2(n_kx)\,\dd x\to m(A).
+\]
+On $A$, $\sin(n_kx)\to h(x)$, and both $|\sin(n_kx)|$ and $\sin^2(n_kx)$ are bounded by $1$. By dominated convergence,
+\[
+ \int_Ah\,\dd x=0,
+ \qquad2\int_Ah^2\,\dd x=m(A).
+\]
+The first identity holds for \emph{every} measurable $A\subseteq E$. Exercise 11.2 therefore gives $h=0$ almost everywhere on $E$. Applying the second identity with $A=E$ now yields $m(E)=2\int_Eh^2\,\dd x=0$.
+\end{solution}
+
+\begin{exercise}{11.17}
+Suppose $E\subseteq(-\pi,\pi)$, $m(E)>0$, and $\delta>0$. Use the Bessel inequality to prove that there are at most finitely many integers $n$ such that $\sin(nx)\ge\delta$ for all $x\in E$.
+\end{exercise}
+\begin{solution}
+For each positive integer $k$, let
+\[
+ c_k=\frac1{\sqrt\pi}\int_E\sin(kx)\,\dd x.
+\]
+Since $(\sin(kx)/\sqrt\pi)_{k\ge1}$ is orthonormal in $L^2([-\pi,\pi])$, Bessel's inequality applied to $\mathds{1}_E$ gives
+\[
+ \sum_{k=1}^\infty|c_k|^2\le\|\mathds{1}_E\|_2^2=m(E).
+\]
+If $n\ne0$ satisfies $\sin(nx)\ge\delta$ on $E$, then
+\[
+ |c_{|n|}|=\frac1{\sqrt\pi}\left|\int_E\sin(nx)\,\dd x\right|
+ \ge\frac{\delta\,m(E)}{\sqrt\pi}.
+\]
+Consequently only finitely many values of $|n|$ can satisfy the inequality, by the square-summability of the coefficients. The integer $n=0$ does not satisfy it because $\delta>0$. Hence there are only finitely many such integers.
+\end{solution}
+
+\begin{exercise}{11.18}
+Suppose $f\in L^2(\mu)$, $g\in L^2(\mu)$. Prove that
+\[
+ \left|\int_X f\overline g\,\dd\mu\right|^2
+ =\int_X|f|^2\,\dd\mu\int_X|g|^2\,\dd\mu
+\]
+if and only if there is a constant $c$ such that $g(x)=cf(x)$ almost everywhere.
+
+\textit{Compare Theorem 11.35.}
+\end{exercise}
+\begin{solution}
+Assume first that $\|f\|_2>0$. Put
+\[
+ c=\frac{\displaystyle\int_X\overline f g\,\dd\mu}{\|f\|_2^2}.
+\]
+Expanding the nonnegative square gives
+\[
+ \begin{aligned}
+ \|g-cf\|_2^2
+ &=\|g\|_2^2
+   -\frac{\left|\int_X\overline f g\,\dd\mu\right|^2}{\|f\|_2^2}.
+ \end{aligned}
+\]
+Thus equality in the Schwarz inequality holds precisely when $\|g-cf\|_2=0$, which is equivalent to $g=cf$ almost everywhere by Exercise 11.1. Conversely, if $g=cf$ almost everywhere, direct substitution gives equality.
+
+\textit{Qualification.} The statement as printed omits the case $\|f\|_2=0$. If $f=0$ almost everywhere, equality holds for \emph{every} $g\in L^2(\mu)$, including nonzero functions which cannot be written as $cf$. The exact equality criterion, valid without a nonzero hypothesis, is therefore: either $f=0$ almost everywhere, or $g=cf$ almost everywhere for some constant $c$.
+\end{solution}
+
+\end{document}

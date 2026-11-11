@@ -89,12 +89,12 @@ direction, while an unlabeled pair has multiplicity one.
   \draw[quizarc] (v\u) to[bend left=9] (v\v);
   \draw[quizarc] (v\v) to[bend left=9] (v\u);
 }
-\node[quizweight] at (-1.33,0.89) {$3$};
+\node[quizweight] at (-1.65,0.93) {$3$};
 \node[quizweight] at (-2.83,0.02) {$4$};
 \node[quizweight] at (2.82,0.02) {$3$};
 \node[quizweight] at (0.00,-1.83) {$2$};
 \draw[quizloop] (v2) .. controls +(0.82,0.62) and +(0.84,-0.50) .. (v2);
-\node[font=\small] at ($(v2)+(0.97,0.14)$) {$2$};
+\node[font=\small] at ($(v2)+(1.10,0.12)$) {$2$};
 \draw[quizloop] (v3) .. controls +(0.78,-0.72) and +(-0.54,-0.78) .. (v3);
 \node[font=\small] at ($(v3)+(0.25,-0.86)$) {$1$};
 \draw[quizloop] (v5) .. controls +(-0.76,-0.65) and +(-0.92,0.42) .. (v5);
@@ -172,22 +172,22 @@ with their lengths in parentheses, are
 These are exhaustive: from $a$ the first step is toward $b$, $c$, or $e$;
 subsequent steps must follow the indicated arrows without revisiting a vertex.
 
-A circuit is a closed trail, so vertices may recur but arcs may not. To give
-\emph{all} circuits without a long list, use the following exact recursive
-description. The possible heads of outgoing arcs are
+A circuit is a closed trail, so vertices may repeat but arcs may not.
+All circuits starting at $a$ can be specified without listing them
+individually. The outgoing arcs are
 \[
 \begin{array}{c|ccccc}
 \text{Current vertex}&a&b&c&d&e\\ \hline
 \text{Next vertex}&a,b,c,e&a,e&b&a,b,c,d&b,c,d
 \end{array}.
 \]
-Start with $(a)$. From the last vertex $v$, append every allowed
-$w$ for which $v\to w$ has not yet been used. Record each extension ending
-at $a$, but continue extending it as well; stop only when no unused outgoing
-arc remains. This generates every circuit exactly once, since each closed
-trail has a unique sequence of such extensions. The loop $(a,a)$ and
-circuits revisiting $a$ are included.
-The numbers of circuits of each positive length are
+Start with $(a)$. From the last vertex $v$, append each possible $w$
+for which the arc $v\to w$ has not been used. Record every positive-length
+extension ending at $a$, but continue exploring unused arcs. This yields
+all circuits exactly once: every sequence of distinct arcs is explored.
+For instance, $(a,b,a,e,d,a)$ is a circuit even though it revisits $a$.
+Counting distinct vertex sequences beginning and ending at $a$, the numbers
+of circuits by length are
 \[
 \begin{array}{c|rrrrrrrrrr|r}
 \text{Length}&1&2&3&4&5&6&7&8&9&10&\text{Total}\\ \hline
