@@ -1,0 +1,158 @@
+\documentclass[11pt,oneside]{article}
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{pdftitle={20261124 Quiz for MATH301 Modern Algebra I},pdfauthor={Jungwoo Kim},pdfsubject={Quiz for MATH301 Modern Algebra I},pdfcreator={LaTeX}}
+\begin{document}
+\quiztitle{20261124 Quiz}
+
+\begin{exercise}{7.3.34}
+Let $I$ and $J$ be ideals of a ring $R$.
+\begin{exercisesubparts}
+\item Prove that $I+J$ is the smallest ideal containing both $I$ and $J$.
+\item Prove that $IJ$ is an ideal contained in $I\cap J$.
+\item Give an example where $IJ\ne I\cap J$.
+\item Prove that if $R$ is commutative and $I+J=R$, then $IJ=I\cap J$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The set $I+J=\{a+b\mid a\in I,b\in J\}$ is an additive subgroup and is closed under left and right multiplication by elements of $R$. It contains $I$ and $J$ since $0$ lies in both ideals. Any ideal containing both must contain every $a+b$, proving minimality.
+\item By definition, $IJ$ consists of finite sums $\sum_k a_kb_k$ with $a_k\in I$, $b_k\in J$. It is closed under addition and additive inverses. Also $r(a_kb_k)=(ra_k)b_k$ and $(a_kb_k)r=a_k(b_kr)$ lie in $IJ$, so it is an ideal. Each $a_kb_k$ belongs to both $I$ and $J$, hence $IJ\subseteq I\cap J$.
+\item In $R=\Z$, take $I=J=2\Z$. Then $IJ=4\Z\ne 2\Z=I\cap J$.
+\item Suppose $1=a+b$ with $a\in I$, $b\in J$. If $x\in I\cap J$, then $x=xa+xb\in IJ$, since $R$ is commutative. Together with (b), this gives $I\cap J=IJ$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{7.3.36}
+Let $I$ be the ideal of all polynomials in $\Z[x]$ with zero constant term. Show that
+\[
+I^n=\left\{\sum_{i=n}^{n+m}a_ix^i\ \middle|\ a_i\in\Z,\ m\ge0\right\}
+\]
+(with the zero polynomial also included), i.e., the polynomials whose first nonzero term has degree at least $n$.
+\end{exercise}
+\begin{solution}
+Since $I=(x)$, the product of $n$ elements of $I$ is divisible by $x^n$, so $I^n\subseteq(x^n)$. Conversely, $x^n$ is a product of $n$ copies of $x\in I$, and $I^n$ is an ideal; therefore $(x^n)\subseteq I^n$. Thus $I^n=(x^n)$, exactly the polynomials with all coefficients of degrees below $n$ equal to zero.
+\end{solution}
+
+\begin{exercise}{7.3.37}
+An ideal $N$ is called \emph{nilpotent} if $N^n=(0)$ for some $n\ge1$. Prove that the ideal $p\Z/p^m\Z$ is nilpotent in the ring $\Z/p^m\Z$.
+\end{exercise}
+\begin{solution}
+Write $N=(\,[p]_{p^m}\,)$. The product of $m$ elements of $N$ is divisible by $p^m$ and hence is zero modulo $p^m$. Therefore $N^m=(\,[p^m]_{p^m}\,)=(0)$, as required.
+\end{solution}
+
+\begin{exercise}{7.4.5}
+Prove that if $M$ is an ideal of a ring $R$ such that $R/M$ is a field, then $M$ is a maximal ideal. Do not assume $R$ is commutative.
+\end{exercise}
+\begin{solution}
+Since $R/M$ is a nonzero field, $M\ne R$. If $J$ is a (two-sided) ideal of $R$ containing $M$, then $J/M$ is an ideal of $R/M$. The only ideals of a field are $(0)$ and the whole field, so $J/M=(0)$ or $J/M=R/M$. Thus $J=M$ or $J=R$. Hence $M$ is maximal, without any commutativity assumption on $R$.
+\end{solution}
+
+\begin{exercise}{7.4.7}
+Let $R$ be a commutative ring with $1$. Prove that the principal ideal $(x)$ of $R[x]$ is a prime ideal if and only if $R$ is an integral domain, and is a maximal ideal if and only if $R$ is a field.
+\end{exercise}
+\begin{solution}
+Evaluation at $0$ defines a surjective ring homomorphism
+\[
+\varepsilon_0:R[x]\to R,\qquad f(x)\mapsto f(0),
+\]
+whose kernel is $(x)$. Hence $R[x]/(x)\cong R$. By the quotient criteria for prime and maximal ideals in a commutative ring, $(x)$ is prime exactly when $R$ is an integral domain and maximal exactly when $R$ is a field.
+\end{solution}
+
+\begin{exercise}{7.4.8}
+Let $R$ be an integral domain. Prove that $(a)=(b)$ for $a,b\in R$ if and only if $a=ub$ for some unit $u\in R^\times$.
+\end{exercise}
+\begin{solution}
+If $a=ub$ with $u$ a unit, then each of $a$ and $b$ is a multiple of the other, so $(a)=(b)$. Conversely, suppose $(a)=(b)$. If $a=0$, then $b=0$ and we may take $u=1$. Otherwise, $a=rb$ and $b=sa$ for some $r,s\in R$. Thus $a=rsa$, and cancellation in the integral domain yields $rs=1$. Therefore $r\in R^\times$, and $a=rb$.
+\end{solution}
+
+\begin{exercise}{7.4.10}
+Assume $R$ is commutative. Prove that if $P$ is a prime ideal of $R$ and $P$ contains no zero divisors, then $R$ is an integral domain.
+\end{exercise}
+\begin{solution}
+Let $ab=0$ in $R$. Since $0\in P$ and $P$ is prime, either $a\in P$ or $b\in P$. If both $a$ and $b$ were nonzero, each would be a zero divisor, contradicting the hypothesis on $P$. Therefore $a=0$ or $b=0$. As $R$ has $1\ne0$ by the standing assumption of \S7.4, it is an integral domain.
+\end{solution}
+
+\begin{exercise}{7.4.18}
+Let $R$ be an integral domain and let $R[[x]]$ be the formal power series ring. Prove that the principal ideal $(x)$ is prime. Prove that $(x)$ is maximal if and only if $R$ is a field (cf. Exercise 7.2.3).
+\end{exercise}
+\begin{solution}
+Taking the constant coefficient defines a surjective ring homomorphism
+\[
+\varepsilon:R[[x]]\to R,\qquad \sum_{n\ge0}a_nx^n\mapsto a_0.
+\]
+Its kernel comprises the series with zero constant coefficient, precisely $(x)$. Thus $R[[x]]/(x)\cong R$. Because $R$ is an integral domain, $(x)$ is prime; by the maximal-ideal criterion, it is maximal exactly when $R$ is a field.
+\end{solution}
+
+\begin{exercise}{7.4.19}
+Let $R$ be a finite commutative ring with identity. Prove that every prime ideal of $R$ is maximal.
+\end{exercise}
+\begin{solution}
+For a prime ideal $P$, the quotient $R/P$ is a finite integral domain. If $0\ne\overline a\in R/P$, multiplication by $\overline a$ is injective and hence, by finiteness, surjective. Some $\overline b$ therefore satisfies $\overline a\,\overline b=1$. Thus $R/P$ is a field, so $P$ is maximal.
+\end{solution}
+
+\begin{exercise}{7.4.21}
+Prove that a finite ring with identity $1\ne0$ and no zero divisors is a field. You may quote Wedderburn's Theorem.
+\end{exercise}
+\begin{solution}
+For each $0\ne a\in R$, both maps $r\mapsto ar$ and $r\mapsto ra$ are injective, since $R$ has no zero divisors. Because $R$ is finite, both are surjective. Hence there exist $b,c\in R$ such that $ab=1=ca$. Then $c=c(ab)=(ca)b=b$, so $a$ is invertible. Thus $R$ is a finite division ring. Wedderburn's Little Theorem states that every finite division ring is commutative; consequently $R$ is a field.
+\end{solution}
+
+\begin{exercise}{7.4.25}
+Assume $R$ is commutative and that for each $a\in R$ there is an integer $n>1$ (depending on $a$) such that $a^n=a$. Prove that every prime ideal of $R$ is maximal.
+\end{exercise}
+\begin{solution}
+Let $P$ be a prime ideal. Then $R/P$ is an integral domain. For any nonzero $\overline a\in R/P$, choose $n>1$ such that $a^n=a$. We obtain
+\[
+\overline a\bigl(\overline a^{\,n-1}-1\bigr)=0.
+\]
+Since $\overline a\ne0$ and the quotient has no zero divisors, $\overline a^{\,n-1}=1$. Thus $\overline a$ is a unit (with inverse $\overline a^{\,n-2}$). Every nonzero element of $R/P$ is a unit, so $R/P$ is a field and $P$ is maximal.
+\end{solution}
+
+\begin{exercise}{7.4.33}
+Let $R=C([0,1],\R)$ be the ring of continuous real-valued functions on $[0,1]$. For $c\in[0,1]$, let $M_c=\{f\in R\mid f(c)=0\}$, a maximal ideal of $R$.
+\begin{exercisesubparts}
+\item Prove that every maximal ideal $M$ of $R$ is $M_c$ for some $c\in[0,1]$.
+\item Prove that $M_b\ne M_c$ if $b\ne c$.
+\item Prove that $M_c$ is not the principal ideal generated by $x-c$.
+\item Prove that $M_c$ is not finitely generated.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item Suppose that no point of $[0,1]$ is a common zero of all functions in $M$. For each $c\in[0,1]$ choose $f_c\in M$ with $f_c(c)\ne0$. The open sets where $f_c$ does not vanish cover $[0,1]$. Compactness gives a finite subcover from $f_1,\ldots,f_m\in M$. Then $h=f_1^2+\cdots+f_m^2\in M$ is strictly positive everywhere, so $1/h\in R$ and $1=h(1/h)\in M$, a contradiction. Hence some $c$ satisfies $f(c)=0$ for every $f\in M$, i.e., $M\subseteq M_c$. Maximality gives $M=M_c$.
+\item The function $f(x)=x-b$ lies in $M_b$ but not in $M_c$ whenever $b\ne c$.
+\item Let $t(x)=x-c$ and $g(x)=\sqrt{|x-c|}$. Both vanish at $c$, so $g\in M_c$. If $g=th$ for a continuous $h$, then for $x\ne c$,
+\[
+|h(x)|=\frac1{\sqrt{|x-c|}},
+\]
+which is unbounded as $x\to c$ within $[0,1]$, a contradiction. Thus $(t)\ne M_c$.
+\Needspace{13\baselineskip}
+\item Suppose $M_c=(f_1,\ldots,f_m)$. Put $h=\sum_{i=1}^m|f_i|$. Then $h\ge0$ is continuous, $h(c)=0$, and $h$ is nonzero at points arbitrarily close to $c$: otherwise all $f_i$ vanish on a neighborhood of $c$, but $x-c\in M_c$ does not. As $\sqrt h\in M_c$, there exist continuous $g_i$ with $\sqrt h=\sum_i f_i g_i$. By continuity, the $g_i$ are bounded, say $|g_i|\le B$ on $[0,1]$ for some $B>0$. Hence
+\[
+\sqrt{h(x)}\le\sum_i|f_i(x)||g_i(x)|\le B h(x).
+\]
+At points with $h(x)>0$ approaching $c$, this gives $1\le B\sqrt{h(x)}\to0$, a contradiction. Therefore $M_c$ is not finitely generated.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{7.4.37}
+A commutative ring $R$ is called a \emph{local ring} if it has a unique maximal ideal. Prove that if $R$ is local with maximal ideal $M$, then every element of $R\setminus M$ is a unit. Conversely, prove that if $R$ is a commutative ring with $1$ and the set of nonunits is an ideal $M$, then $R$ is local with unique maximal ideal $M$.
+\end{exercise}
+\begin{solution}
+Assume $M$ is the unique maximal ideal. If $a\notin M$ were a nonunit, the principal ideal $(a)$ would be proper and hence contained in some maximal ideal, necessarily $M$. This would imply $a\in M$, a contradiction. Thus every $a\notin M$ is a unit.
+
+Conversely, if the nonunits form an ideal $M$, then $M$ is proper since $1$ is a unit. Every proper ideal contains no unit and is therefore contained in $M$. Hence $M$ is maximal and is the unique maximal ideal.
+\end{solution}
+
+\begin{exercise}{7.4.38}
+Prove that the ring of rational numbers with odd denominators is a local ring whose unique maximal ideal is the principal ideal generated by $2$.
+\end{exercise}
+\begin{solution}
+Let
+\[
+R=\left\{\frac ab\in\Q\ \middle|\ a,b\in\Z,\ b\text{ odd}\right\}.
+\]
+A nonzero fraction $a/b\in R$ is a unit precisely when its numerator $a$ is odd: its inverse $b/a$ belongs to $R$ exactly in that case (after reducing the fraction, if necessary). Thus the nonunits are exactly the fractions with even numerator, namely $2R$. This is a proper ideal, so Exercise 7.4.37 shows that $R$ is local with unique maximal ideal $(2)=2R$.
+\end{solution}
+\end{document}

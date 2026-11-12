@@ -1,0 +1,275 @@
+\documentclass[11pt,oneside]{article}
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{pdftitle={20261117 Quiz for MATH301 Modern Algebra I},pdfauthor={Jungwoo Kim},pdfsubject={Quiz for MATH301 Modern Algebra I},pdfcreator={LaTeX}}
+\begin{document}
+\quiztitle{20261117 Quiz}
+
+\begin{convention}
+For the exercises below we follow Dummit--Foote's convention: rings and subrings need not have a multiplicative identity, and ring homomorphisms need not preserve identities. When a problem assumes an identity, that assumption is retained. All other notation follows MATH000.
+\end{convention}
+
+\begin{exercise}{7.1.3}
+Let $R$ be a ring with identity and let $S$ be a subring of $R$ containing the identity. Prove that if $u$ is a unit in $S$, then $u$ is a unit in $R$. Give an example showing that the converse is false.
+\end{exercise}
+\begin{solution}
+If $u\in S^\times$, there is $v\in S$ with $uv=vu=1_S=1_R$. Thus $u\in R^\times$. Conversely, take $S=\Z\subseteq R=\Q$. The element $2$ is a unit of $\Q$, but not of $\Z$.
+\end{solution}
+
+\begin{exercise}{7.1.5}
+Decide which of the following sets are subrings of $\Q$:
+\begin{exercisesubparts}
+\item The rational numbers with odd denominators when written in lowest terms.
+\item The rational numbers with even denominators when written in lowest terms.
+\item The nonnegative rational numbers.
+\item The squares of rational numbers.
+\item The rational numbers with odd numerators when written in lowest terms.
+\item The rational numbers with even numerators when written in lowest terms.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item \textbf{Yes.} Such numbers are precisely $a/b$ with $a,b\in\Z$ and $b$ odd. They are closed under differences and products, and contain $0$.
+\item \textbf{No.} The set does not contain $0$ (whose reduced denominator is $1$).
+\item \textbf{No.} It contains $1$ but not $-1$.
+\item \textbf{No.} It contains $1$ but not $-1$.
+\item \textbf{No.} It does not contain $0$.
+\item \textbf{Yes.} A reduced rational has even numerator precisely when it can be expressed as $2a/b$ with $b$ odd. The expressions $2a/b$ are closed under subtraction and multiplication, and include $0$. This is a subring in the textbook's convention, although it does not contain $1$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{7.1.6}
+Decide which of the following are subrings of the ring of all functions $[0,1]\to\R$, with pointwise operations:
+\begin{exercisesubparts}
+\item Functions $f$ such that $f(q)=0$ for every $q\in\Q\cap[0,1]$.
+\item All polynomial functions.
+\item Functions with only finitely many zeros, together with the zero function.
+\item Functions with infinitely many zeros.
+\item Functions $f$ such that $\lim_{x\to1^-}f(x)=0$.
+\item All rational linear combinations of $\sin nx$ and $\cos mx$, where $m,n\in\{0,1,2,\ldots\}$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item \textbf{Yes.} Vanishing at each rational point is preserved under subtraction and multiplication.
+\item \textbf{Yes.} Polynomial functions are closed under both operations and contain $1$.
+\item \textbf{No.} Choose an infinite proper subset $A\subset[0,1]$. Let $f=1$ and let $g$ be $-1$ on $A$ and $1$ outside $A$. Both have no zeros, but $f+g$ is neither zero everywhere nor nonzero at all but finitely many points.
+\item \textbf{No.} Let $A\subset[0,1]$ have both $A$ and its complement infinite. Their characteristic functions $\mathbf1_A$ and $\mathbf1_{[0,1]\setminus A}$ each have infinitely many zeros, but their sum is $1$.
+\item \textbf{Yes.} Sums, differences, and products of functions tending to $0$ as $x\to1^-$ also tend to $0$.
+\item \textbf{Yes.} The product-to-sum identities express products of sines and cosines of integral frequencies as rational linear combinations of the same functions. The set is also closed under subtraction and includes $1=\cos0x$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{7.1.8}
+Describe the center of the real Hamilton quaternions $\mathbb H$. Prove that $\{a+bi\mid a,b\in\R\}$ is a subring of $\mathbb H$ which is a field but is not contained in its center.
+\end{exercise}
+\begin{solution}
+Write $q=a+bi+cj+dk$. If $q$ commutes with $i$, then $qi=iq$ gives $c=d=0$. Commuting also with $j$ then gives $b=0$. Thus $Z(\mathbb H)=\R$, and real scalars clearly commute with every quaternion. The subset $\R+\R i$ is closed under addition and multiplication; if $a+bi\ne0$, its inverse is $(a-bi)/(a^2+b^2)$, also in the subset. Hence it is a field, isomorphic to $\C$. It is not contained in the center because $ij=k\ne-k=ji$.
+\end{solution}
+
+\begin{exercise}{7.1.10}
+Prove that if $D$ is a division ring, then the centralizer $C_D(a)=\{x\in D\mid xa=ax\}$ is a division ring for every $a\in D$ (cf. Exercise 7.1.9).
+\end{exercise}
+\begin{solution}
+The centralizer contains $1$ and is closed under subtraction and multiplication. If $0\ne x\in C_D(a)$, then $xa=ax$ implies $a=x^{-1}ax$ and hence $ax^{-1}=x^{-1}a$. Thus $x^{-1}\in C_D(a)$, so every nonzero element of the centralizer is invertible there.
+\end{solution}
+
+\begin{exercise}{7.1.11}
+Prove that if $R$ is an integral domain and $x^2=1$, then $x=\pm1$.
+\end{exercise}
+\begin{solution}
+Since $(x-1)(x+1)=x^2-1=0$ and $R$ has no zero divisors, either $x=1$ or $x=-1$.
+\end{solution}
+
+\begin{exercise}{7.1.12}
+Prove that any subring of a field which contains the identity is an integral domain.
+\end{exercise}
+\begin{solution}
+Let $S\subseteq F$ be such a subring. Its identity is $1_F\ne0$, and multiplication is commutative. If $a,b\in S$ and $ab=0$, the absence of zero divisors in the field $F$ implies $a=0$ or $b=0$. Thus $S$ is an integral domain.
+\end{solution}
+
+\begin{exercise}{7.1.14}
+Let $x$ be a nilpotent element of the commutative ring $R$ (cf. Exercise 7.1.13).
+\begin{exercisesubparts}
+\item Prove that $x$ is either zero or a zero divisor.
+\item Prove that $rx$ is nilpotent for every $r\in R$.
+\item Prove that $1+x$ is a unit in $R$.
+\item Deduce that the sum of a nilpotent element and a unit is a unit.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Choose $m\ge1$ with $x^m=0$.
+\begin{exercisesubparts}
+\item If $x\ne0$, choose $m$ minimal. Then $m\ge2$ and $x^{m-1}\ne0$, while $x\cdot x^{m-1}=0$.
+\item Commutativity gives $(rx)^m=r^mx^m=0$.
+\item The finite geometric identity yields
+\[
+(1+x)\sum_{k=0}^{m-1}(-x)^k=1-(-x)^m=1.
+\]
+Hence $1+x$ is a unit.
+\item If $u\in R^\times$, then $u+x=u(1+u^{-1}x)$. By (b), $u^{-1}x$ is nilpotent, so (c) shows that both factors are units.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{7.1.21}
+Let $X$ be a nonempty set, and let $\mathcal P(X)$ be its power set. Define $A+B=(A\setminus B)\cup(B\setminus A)$ and $A\times B=A\cap B$.
+\begin{exercisesubparts}
+\item Prove that $\mathcal P(X)$ is a ring under these operations.
+\item Prove that this ring is commutative, has an identity, and is a Boolean ring.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+For each $A\subseteq X$, let $\chi_A:X\to\Z/2\Z$ be its characteristic function. Pointwise,
+\[
+\chi_{A+B}=\chi_A+\chi_B,\qquad \chi_{A\times B}=\chi_A\chi_B.
+\]
+The map $A\mapsto\chi_A$ is a bijection from $\mathcal P(X)$ onto the ring of functions $X\to\Z/2\Z$. Hence (a) these operations satisfy all ring axioms, with zero $\varnothing$ and each set its own additive inverse. Moreover, (b) multiplication is commutative, its identity is $X$, and $A\times A=A$ for every $A$. Thus this is a Boolean ring.
+\end{solution}
+
+\Needspace{16\baselineskip}
+\begin{exercise}{7.1.25}
+Let $I$ be the ring of integral Hamilton quaternions and define the norm
+\[
+N:I\to\Z,\qquad N(a+bi+cj+dk)=a^2+b^2+c^2+d^2.
+\]
+\begin{exercisesubparts}
+\item Prove $N(\alpha)=\alpha\overline\alpha$, where $\overline{a+bi+cj+dk}=a-bi-cj-dk$.
+\item Prove $N(\alpha\beta)=N(\alpha)N(\beta)$ for all $\alpha,\beta\in I$.
+\item Prove that $\alpha\in I$ is a unit if and only if $N(\alpha)=1$. Show that $I^\times\cong Q_8$.
+\end{exercisesubparts}
+\begin{hint}
+For $\alpha\ne0$, its inverse in the rational quaternions is $\overline\alpha/N(\alpha)$.
+\end{hint}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item Expanding with $i^2=j^2=k^2=-1$ and $ij=k=-ji$, $jk=i=-kj$, $ki=j=-ik$, all cross terms cancel in $\alpha\overline\alpha$, leaving $a^2+b^2+c^2+d^2$. This real scalar also equals $\overline\alpha\alpha$.
+\item Quaternion conjugation reverses products: $\overline{\alpha\beta}=\overline\beta\,\overline\alpha$ (verified on $1,i,j,k$ and extended by bilinearity). Hence
+\[
+N(\alpha\beta)=\alpha\beta\overline\beta\,\overline\alpha
+=N(\beta)\alpha\overline\alpha=N(\alpha)N(\beta).
+\]
+\item If $\alpha\beta=1$ in $I$, then $N(\alpha)N(\beta)=1$. Both norms are nonnegative integers, hence $N(\alpha)=1$. Conversely, if $N(\alpha)=1$, then $\overline\alpha\in I$ is its inverse. The integer solutions of $a^2+b^2+c^2+d^2=1$ are precisely $\pm1,\pm i,\pm j,\pm k$. Their products satisfy the standard quaternion-group relations, so $I^\times=\{\pm1,\pm i,\pm j,\pm k\}\cong Q_8$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{7.1.28}
+Let $R$ be a ring with $1\ne0$. A nonzero $a$ is a \emph{left zero divisor} if $ax=0$ for some nonzero $x$, and a nonzero $b$ is a \emph{right zero divisor} if $yb=0$ for some nonzero $y$. An element $u$ has a left inverse if $su=1$ for some $s$, and has a right inverse if $ut=1$ for some $t$.
+\begin{exercisesubparts}
+\item Prove that $u$ is a unit if and only if it has both a right and a left inverse.
+\item Prove that if $u$ has a right inverse, then $u$ is not a right zero divisor.
+\item Prove that if $u$ has more than one right inverse, then $u$ is a left zero divisor.
+\item Prove that in a finite ring every element with a right inverse is a unit.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item If $su=1=ut$, then $s=s(ut)=(su)t=t$, so $s$ is a two-sided inverse. The converse is immediate.
+\item If $ut=1$ and $yu=0$, then $y=(yu)t=0$.
+\item If $ut=ut'=1$ with $t\ne t'$, then $u(t-t')=0$ and $t-t'\ne0$. Also $u\ne0$.
+\item If $ut=1$, the map $R\to R$, $r\mapsto ru$, is injective: $ru=su$ implies $r=(ru)t=(su)t=s$. Since $R$ is finite, this map is surjective; thus $su=1$ for some $s\in R$. Part (a) shows that $u$ is a unit.
+\end{exercisesubparts}
+\end{solution}
+
+\Needspace{17\baselineskip}
+\begin{exercise}{7.2.3}
+Let $R$ be a commutative ring with identity. Define the ring $R[[x]]$ of formal power series to consist of all expressions $\sum_{n=0}^\infty a_nx^n$ with $a_n\in R$, with coefficientwise addition and multiplication
+\[
+\left(\sum_{n\ge0}a_nx^n\right)\left(\sum_{n\ge0}b_nx^n\right)
+=\sum_{n\ge0}\left(\sum_{k=0}^n a_kb_{n-k}\right)x^n.
+\]
+Convergence is not considered.
+\begin{exercisesubparts}
+\item Prove that $R[[x]]$ is a commutative ring with $1$.
+\item Show that $1-x$ is a unit with inverse $1+x+x^2+\cdots$.
+\item Prove that $\sum_{n\ge0}a_nx^n$ is a unit if and only if $a_0$ is a unit in $R$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item Addition gives an abelian group with zero series and coefficientwise inverses. Multiplication is commutative since $a_kb_{n-k}=b_{n-k}a_k$; its associativity follows by writing the coefficient of $x^n$ in either parenthesization as the finite sum $\sum_{i+j+k=n}a_ib_jc_k$. Distributivity holds coefficientwise, and the constant series $1_R$ is the identity.
+\item For $g=\sum_{n\ge0}x^n$, the constant coefficient of $(1-x)g$ is $1$, and every coefficient of positive degree is $1-1=0$. Thus $(1-x)g=1$.
+\item If $fg=1$, comparison of constant coefficients gives $a_0b_0=1$, so $a_0$ is a unit. Conversely, suppose $a_0\in R^\times$. Set $b_0=a_0^{-1}$ and recursively
+\[
+b_n=-a_0^{-1}\sum_{k=1}^na_kb_{n-k}\qquad(n\ge1).
+\]
+Then every coefficient of positive degree in $fg$, where $g=\sum b_nx^n$, is $0$, and its constant coefficient is $1$. Thus $fg=1$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{7.3.1}
+Prove that the rings $2\Z$ and $3\Z$ are not isomorphic.
+\end{exercise}
+\begin{solution}
+An additive-group isomorphism $\varphi:2\Z\to3\Z$ must send the generator $2$ to $3$ or $-3$. Since $4=2\cdot2=2+2$, multiplicative and additive preservation would give
+\[
+\varphi(4)=\varphi(2)^2=9,
+\qquad\varphi(4)=2\varphi(2)=\pm6,
+\]
+a contradiction. Hence no ring isomorphism exists.
+\end{solution}
+
+\begin{exercise}{7.3.2}
+Prove that the rings $\Z[x]$ and $\Q[x]$ are not isomorphic.
+\end{exercise}
+\begin{solution}
+A ring isomorphism preserves units. The units of $\Z[x]$ are precisely $\{\pm1\}$, whereas the units of $\Q[x]$ are all nonzero constant rational polynomials, an infinite set. Therefore the two rings cannot be isomorphic.
+\end{solution}
+
+\begin{exercise}{7.3.3}
+Find all homomorphic images of $\Z$.
+\end{exercise}
+\begin{solution}
+If $\varphi:\Z\to S$ is a ring homomorphism, its additive kernel is an ideal $n\Z$ for a unique $n\ge0$. By the First Isomorphism Theorem,
+\[
+\im\varphi\cong\Z/n\Z.
+\]
+Conversely, for each $n\ge1$ the reduction map $\Z\to\Z/n\Z$ is surjective, and for $n=0$ the identity map has image $\Z=\Z/0\Z$. Thus these are exactly the homomorphic images, up to isomorphism (including the zero ring when $n=1$).
+\end{solution}
+
+\begin{exercise}{7.3.4}
+Find all ring homomorphisms $\varphi:\Z\to\Z/30\Z$. In each case, describe the kernel and image.
+\end{exercise}
+\begin{solution}
+Every additive homomorphism is determined by $e=\varphi(1)$ and has the form $\varphi_e(n)=[ne]_{30}$. It preserves multiplication precisely when $e^2=e$ modulo $30$. By the Chinese Remainder Theorem, $\Z/30\Z\cong\Z/2\Z\times\Z/3\Z\times\Z/5\Z$, and an idempotent has each coordinate $0$ or $1$. The eight choices and their kernels and images are:
+\[
+\begin{array}{@{}c c c@{}}
+\toprule
+ e & \ker\varphi_e & \im\varphi_e\\
+\midrule
+0&\Z&\{[0]_{30}\}\\
+1&30\Z&\langle[1]_{30}\rangle\\
+6&5\Z&\langle[6]_{30}\rangle\\
+10&3\Z&\langle[10]_{30}\rangle\\
+15&2\Z&\langle[15]_{30}\rangle\\
+16&15\Z&\langle[16]_{30}\rangle\\
+21&10\Z&\langle[21]_{30}\rangle\\
+25&6\Z&\langle[25]_{30}\rangle\\
+\bottomrule
+\end{array}
+\]
+Here the image is the additive subgroup generated by $[e]_{30}$, and $\ker\varphi_e=(30/\gcd(30,e))\Z$ for $e\ne0$ (with $\ker\varphi_0=\Z$). Only $e=1$ preserves the ambient identity.
+\end{solution}
+
+\begin{exercise}{7.3.10}
+Decide which of the following sets are ideals of $\Z[x]$:
+\begin{exercisesubparts}
+\item Polynomials whose constant term is divisible by $3$.
+\item Polynomials whose coefficient of $x^2$ is divisible by $3$.
+\item Polynomials whose constant, $x$-, and $x^2$-coefficients are all zero.
+\item $\Z[x^2]$, the polynomials containing only even powers of $x$.
+\item Polynomials whose coefficients sum to zero.
+\item Polynomials $p(x)$ such that $p'(0)=0$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item \textbf{Yes.} This is the kernel of evaluation at $0$ followed by reduction modulo $3$, $\Z[x]\to\Z/3\Z$.
+\item \textbf{No.} The polynomial $1$ lies in the set but $x^2\cdot1=x^2$ does not.
+\item \textbf{Yes.} This is the principal ideal $(x^3)$.
+\item \textbf{No.} It contains $1$, but $x\cdot1=x$ is not in the set.
+\item \textbf{Yes.} The sum of the coefficients of $p$ is $p(1)$, so this is the kernel of evaluation at $1$, namely $(x-1)$.
+\item \textbf{No.} The polynomial $1$ satisfies $p'(0)=0$, whereas $x\cdot1=x$ does not.
+\end{exercisesubparts}
+\end{solution}
+\end{document}

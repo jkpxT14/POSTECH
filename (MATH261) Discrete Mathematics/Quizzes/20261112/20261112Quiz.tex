@@ -7,8 +7,8 @@
 \tikzset{
   quizvertex/.style={circle,fill=black,inner sep=1.9pt},
   quizedge/.style={line width=0.58pt},
-  quizarc/.style={-{Stealth[length=2.15mm,width=1.45mm]},line width=0.61pt,shorten <=3pt,shorten >=3pt},
-  quizmultiarc/.style={line width=0.55pt,postaction={decorate},decoration={markings,mark=at position 0.53 with {\arrow{Stealth[length=1.75mm,width=1.20mm]}}}},
+  quizdirectededge/.style={-{Stealth[length=2.15mm,width=1.45mm]},line width=0.61pt,shorten <=3pt,shorten >=3pt},
+  quizparallel/.style={line width=0.55pt,postaction={decorate},decoration={markings,mark=at position 0.53 with {\arrow{Stealth[length=1.75mm,width=1.20mm]}}}},
   quizloop/.style={line width=0.61pt,postaction={decorate},decoration={markings,mark=at position 0.62 with {\arrow{Stealth[length=2.15mm,width=1.45mm]}}}}
 }
 \hypersetup{
@@ -44,19 +44,19 @@
 \coordinate (b) at (1.68,1.40);
 \coordinate (c) at (-1.68,-1.40);
 \coordinate (d) at (1.68,-1.40);
-% Opposite arrows and parallel arcs are separated into distinct lanes.
-\draw[quizarc] (a) to[bend left=14] (b);
-\draw[quizarc] (b) to[bend left=14] (a);
-\draw[quizarc] (a) to[bend right=15] (c);
-\draw[quizarc] (a) to[bend right=38] (c);
-\draw[quizarc] (c) to[bend right=14] (a);
-\draw[quizarc] (a) -- (d);
-\draw[quizarc] (b) to[bend left=16] (d);
-\draw[quizarc] (b) to[bend left=38] (d);
-\draw[quizarc] (d) to[bend left=16] (b);
-\draw[quizarc] (d) to[bend left=38] (b);
-\draw[quizarc] (c) to[bend left=16] (d);
-\draw[quizarc] (d) to[bend left=16] (c);
+% Opposite arrows and parallel edges are separated into distinct lanes.
+\draw[quizdirectededge] (a) to[bend left=14] (b);
+\draw[quizdirectededge] (b) to[bend left=14] (a);
+\draw[quizdirectededge] (a) to[bend right=15] (c);
+\draw[quizdirectededge] (a) to[bend right=38] (c);
+\draw[quizdirectededge] (c) to[bend right=14] (a);
+\draw[quizdirectededge] (a) -- (d);
+\draw[quizdirectededge] (b) to[bend left=16] (d);
+\draw[quizdirectededge] (b) to[bend left=38] (d);
+\draw[quizdirectededge] (d) to[bend left=16] (b);
+\draw[quizdirectededge] (d) to[bend left=38] (b);
+\draw[quizdirectededge] (c) to[bend left=16] (d);
+\draw[quizdirectededge] (d) to[bend left=16] (c);
 % Put arrowheads on the loops themselves, not beneath a vertex dot.
 \draw[quizloop] (a) .. controls +(-0.85,0.67) and +(-0.82,-0.52) .. (a);
 \draw[quizloop] (c) .. controls +(-0.85,-0.67) and +(-0.82,0.52) .. (c);
@@ -72,62 +72,62 @@
 
 \begin{solution}
 \begin{problemsubparts}
-\item Drawing each arc separately, including the loops, gives the following
- directed multigraph.
+\item The directed multigraph is shown below. Each edge, including each loop,
+is drawn separately.
 \begin{center}
-% Each drawn curve is one directed arc. Arrowheads are at mid-curve to avoid crowded vertices.
-\begin{tikzpicture}[x=1cm,y=1cm]
+% Each drawn curve is one directed edge. Arrowheads are at mid-curve to avoid crowded vertices.
+\begin{tikzpicture}[x=0.72cm,y=0.72cm]
 \coordinate (v1) at (-4.55,2.52);
 \coordinate (v2) at (4.55,2.52);
 \coordinate (v3) at (0,0);
 \coordinate (v4) at (4.55,-2.52);
 \coordinate (v5) at (-4.55,-2.52);
-% Non-loop arcs: 30 total.
-\draw[quizmultiarc] (v1) .. controls (-1.820,2.250) and (1.820,2.250) .. (v2);
-\draw[quizmultiarc] (v2) .. controls (1.820,2.790) and (-1.820,2.790) .. (v1);
+% Non-loop edges: 30 total.
+\draw[quizparallel] (v1) .. controls (-1.820,2.250) and (1.820,2.250) .. (v2);
+\draw[quizparallel] (v2) .. controls (1.820,2.790) and (-1.820,2.790) .. (v1);
 
-\draw[quizmultiarc] (v1) .. controls (-3.747,0.749) and (-1.927,-0.259) .. (v3);
-\draw[quizmultiarc] (v1) .. controls (-3.524,1.152) and (-1.704,0.144) .. (v3);
-\draw[quizmultiarc] (v1) .. controls (-3.301,1.554) and (-1.481,0.546) .. (v3);
-\draw[quizmultiarc] (v3) .. controls (-1.249,0.966) and (-3.069,1.974) .. (v1);
-\draw[quizmultiarc] (v3) .. controls (-1.026,1.368) and (-2.846,2.376) .. (v1);
-\draw[quizmultiarc] (v3) .. controls (-0.803,1.771) and (-2.623,2.779) .. (v1);
+\draw[quizparallel] (v1) .. controls (-3.747,0.749) and (-1.927,-0.259) .. (v3);
+\draw[quizparallel] (v1) .. controls (-3.524,1.152) and (-1.704,0.144) .. (v3);
+\draw[quizparallel] (v1) .. controls (-3.301,1.554) and (-1.481,0.546) .. (v3);
+\draw[quizparallel] (v3) .. controls (-1.249,0.966) and (-3.069,1.974) .. (v1);
+\draw[quizparallel] (v3) .. controls (-1.026,1.368) and (-2.846,2.376) .. (v1);
+\draw[quizparallel] (v3) .. controls (-0.803,1.771) and (-2.623,2.779) .. (v1);
 
-\draw[quizmultiarc] (v1) .. controls (-6.000,1.008) and (-6.000,-1.008) .. (v5);
-\draw[quizmultiarc] (v1) .. controls (-5.590,1.008) and (-5.590,-1.008) .. (v5);
-\draw[quizmultiarc] (v1) .. controls (-5.180,1.008) and (-5.180,-1.008) .. (v5);
-\draw[quizmultiarc] (v1) .. controls (-4.770,1.008) and (-4.770,-1.008) .. (v5);
-\draw[quizmultiarc] (v5) .. controls (-4.330,-1.008) and (-4.330,1.008) .. (v1);
-\draw[quizmultiarc] (v5) .. controls (-3.920,-1.008) and (-3.920,1.008) .. (v1);
-\draw[quizmultiarc] (v5) .. controls (-3.510,-1.008) and (-3.510,1.008) .. (v1);
-\draw[quizmultiarc] (v5) .. controls (-3.100,-1.008) and (-3.100,1.008) .. (v1);
+\draw[quizparallel] (v1) .. controls (-6.000,1.008) and (-6.000,-1.008) .. (v5);
+\draw[quizparallel] (v1) .. controls (-5.590,1.008) and (-5.590,-1.008) .. (v5);
+\draw[quizparallel] (v1) .. controls (-5.180,1.008) and (-5.180,-1.008) .. (v5);
+\draw[quizparallel] (v1) .. controls (-4.770,1.008) and (-4.770,-1.008) .. (v5);
+\draw[quizparallel] (v5) .. controls (-4.330,-1.008) and (-4.330,1.008) .. (v1);
+\draw[quizparallel] (v5) .. controls (-3.920,-1.008) and (-3.920,1.008) .. (v1);
+\draw[quizparallel] (v5) .. controls (-3.510,-1.008) and (-3.510,1.008) .. (v1);
+\draw[quizparallel] (v5) .. controls (-3.100,-1.008) and (-3.100,1.008) .. (v1);
 
-\draw[quizmultiarc] (v2) .. controls (3.049,2.009) and (1.229,1.001) .. (v3);
-\draw[quizmultiarc] (v3) .. controls (1.501,0.511) and (3.321,1.519) .. (v2);
+\draw[quizparallel] (v2) .. controls (3.049,2.009) and (1.229,1.001) .. (v3);
+\draw[quizparallel] (v3) .. controls (1.501,0.511) and (3.321,1.519) .. (v2);
 
-\draw[quizmultiarc] (v2) .. controls (3.410,1.008) and (3.410,-1.008) .. (v4);
-\draw[quizmultiarc] (v2) .. controls (3.850,1.008) and (3.850,-1.008) .. (v4);
-\draw[quizmultiarc] (v2) .. controls (4.300,1.008) and (4.300,-1.008) .. (v4);
-\draw[quizmultiarc] (v4) .. controls (4.800,-1.008) and (4.800,1.008) .. (v2);
-\draw[quizmultiarc] (v4) .. controls (5.250,-1.008) and (5.250,1.008) .. (v2);
-\draw[quizmultiarc] (v4) .. controls (5.690,-1.008) and (5.690,1.008) .. (v2);
+\draw[quizparallel] (v2) .. controls (3.410,1.008) and (3.410,-1.008) .. (v4);
+\draw[quizparallel] (v2) .. controls (3.850,1.008) and (3.850,-1.008) .. (v4);
+\draw[quizparallel] (v2) .. controls (4.300,1.008) and (4.300,-1.008) .. (v4);
+\draw[quizparallel] (v4) .. controls (4.800,-1.008) and (4.800,1.008) .. (v2);
+\draw[quizparallel] (v4) .. controls (5.250,-1.008) and (5.250,1.008) .. (v2);
+\draw[quizparallel] (v4) .. controls (5.690,-1.008) and (5.690,1.008) .. (v2);
 
-\draw[quizmultiarc] (v3) .. controls (-1.501,-0.511) and (-3.321,-1.519) .. (v5);
-\draw[quizmultiarc] (v5) .. controls (-3.049,-2.009) and (-1.229,-1.001) .. (v3);
+\draw[quizparallel] (v3) .. controls (-1.501,-0.511) and (-3.321,-1.519) .. (v5);
+\draw[quizparallel] (v5) .. controls (-3.049,-2.009) and (-1.229,-1.001) .. (v3);
 
-\draw[quizmultiarc] (v4) .. controls (1.820,-1.720) and (-1.820,-1.720) .. (v5);
-\draw[quizmultiarc] (v4) .. controls (1.820,-2.250) and (-1.820,-2.250) .. (v5);
-\draw[quizmultiarc] (v5) .. controls (-1.820,-2.790) and (1.820,-2.790) .. (v4);
-\draw[quizmultiarc] (v5) .. controls (-1.820,-3.320) and (1.820,-3.320) .. (v4);
+\draw[quizparallel] (v4) .. controls (1.820,-1.720) and (-1.820,-1.720) .. (v5);
+\draw[quizparallel] (v4) .. controls (1.820,-2.250) and (-1.820,-2.250) .. (v5);
+\draw[quizparallel] (v5) .. controls (-1.820,-2.790) and (1.820,-2.790) .. (v4);
+\draw[quizparallel] (v5) .. controls (-1.820,-3.320) and (1.820,-3.320) .. (v4);
 
 % Loops: two at 2, one at 3, three at 5.
-\draw[quizmultiarc] (v2) .. controls (4.730,3.580) and (5.870,2.670) .. (v2);
-\draw[quizmultiarc] (v2) .. controls (4.800,4.220) and (6.580,2.710) .. (v2);
-\draw[quizmultiarc] (v3) .. controls (0.630,-1.100) and (-0.640,-1.100) .. (v3);
-\draw[quizmultiarc] (v5) .. controls (-4.800,-3.590) and (-5.930,-2.640) .. (v5);
-\draw[quizmultiarc] (v5) .. controls (-4.900,-4.170) and (-6.660,-2.680) .. (v5);
-\draw[quizmultiarc] (v5) .. controls (-4.990,-4.760) and (-7.410,-2.730) .. (v5);
-% Solid vertex dots mask arc endpoints.
+\draw[quizparallel] (v2) .. controls (4.730,3.580) and (5.870,2.670) .. (v2);
+\draw[quizparallel] (v2) .. controls (4.800,4.220) and (6.580,2.710) .. (v2);
+\draw[quizparallel] (v3) .. controls (0.630,-1.100) and (-0.640,-1.100) .. (v3);
+\draw[quizparallel] (v5) .. controls (-4.800,-3.590) and (-5.930,-2.640) .. (v5);
+\draw[quizparallel] (v5) .. controls (-4.900,-4.170) and (-6.660,-2.680) .. (v5);
+\draw[quizparallel] (v5) .. controls (-4.990,-4.760) and (-7.410,-2.730) .. (v5);
+% Solid vertex dots mask edge endpoints.
 \foreach \i in {1,2,3,4,5}{\node[quizvertex] at (v\i) {};}
 \node[font=\normalsize,above left=5pt and 6pt] at (v1) {$1$};
 \node[font=\normalsize,above left=5pt and 1pt] at (v2) {$2$};
@@ -162,18 +162,18 @@ Determine the length of each path.
 \coordinate (c) at (2.75,1.34);
 \coordinate (d) at (-2.52,-1.34);
 \coordinate (e) at (0,-1.34);
-\draw[quizarc] (a) to[bend left=15] (b);
-\draw[quizarc] (b) to[bend left=15] (a);
-\draw[quizarc] (a) to[out=58,in=122,looseness=1.12] (c);
-\draw[quizarc] (a) -- (e);
-\draw[quizarc] (b) to[bend left=16] (e);
-\draw[quizarc] (e) to[bend left=16] (b);
-\draw[quizarc] (c) -- (b);
-\draw[quizarc] (d) -- (a);
-\draw[quizarc] (d) -- (b);
-\draw[quizarc] (d) -- (c);
-\draw[quizarc] (e) -- (d);
-\draw[quizarc] (e) -- (c);
+\draw[quizdirectededge] (a) to[bend left=15] (b);
+\draw[quizdirectededge] (b) to[bend left=15] (a);
+\draw[quizdirectededge] (a) to[out=58,in=122,looseness=1.12] (c);
+\draw[quizdirectededge] (a) -- (e);
+\draw[quizdirectededge] (b) to[bend left=16] (e);
+\draw[quizdirectededge] (e) to[bend left=16] (b);
+\draw[quizdirectededge] (c) -- (b);
+\draw[quizdirectededge] (d) -- (a);
+\draw[quizdirectededge] (d) -- (b);
+\draw[quizdirectededge] (d) -- (c);
+\draw[quizdirectededge] (e) -- (d);
+\draw[quizdirectededge] (e) -- (c);
 \draw[quizloop] (a) .. controls +(-0.88,0.65) and +(-0.84,-0.55) .. (a);
 \draw[quizloop] (d) .. controls +(-0.88,-0.65) and +(-0.84,0.55) .. (d);
 \foreach \v in {a,b,c,d,e}{\node[quizvertex] at (\v) {};}
@@ -222,6 +222,7 @@ from $a$ and forbidding repeated intermediate vertices proves exhaustiveness.
 \end{problemsubparts}
 \end{solution}
 
+\Needspace{9\baselineskip}
 \begin{problem}{3}
 Show that isomorphism of simple graphs is an equivalence relation.
 \end{problem}
@@ -353,186 +354,110 @@ and therefore cannot be isomorphic. It follows that the original graphs
 are not isomorphic.
 \end{solution}
 
-\par\noindent\begin{minipage}{\linewidth}
 \begin{problem}{5}
 Determine which pairs of the following graphs are isomorphic. For each pair,
 either exhibit an isomorphism or provide a rigorous argument that none exists.
+
+% The four drawings show the given abstract graphs, not the original coordinates.
+% Every graph has 10 vertices and 15 edges. Each row is a natural page-break unit.
 \begin{center}
-\begin{minipage}{0.47\textwidth}\centering
-\begin{tikzpicture}[x=1cm,y=1cm,scale=1.1]
-\coordinate (p0) at (0.600,3.120);
-\coordinate (p1) at (1.520,1.740);
-\coordinate (p2) at (0.600,0.280);
-\coordinate (p3) at (-0.980,0.740);
-\coordinate (p4) at (-0.980,2.720);
-\coordinate (p5) at (0.440,2.590);
-\coordinate (p6) at (1.030,1.740);
-\coordinate (p7) at (0.440,0.850);
-\coordinate (p8) at (-0.530,1.130);
-\coordinate (p9) at (-0.530,2.350);
-\draw[quizedge] (p0) -- (p1);
-\draw[quizedge] (p0) -- (p4);
-\draw[quizedge] (p0) -- (p5);
-\draw[quizedge] (p1) -- (p2);
-\draw[quizedge] (p1) -- (p6);
-\draw[quizedge] (p2) -- (p3);
-\draw[quizedge] (p2) -- (p7);
-\draw[quizedge] (p3) -- (p4);
-\draw[quizedge] (p3) -- (p8);
-\draw[quizedge] (p4) -- (p9);
-\draw[quizedge] (p5) -- (p6);
-\draw[quizedge] (p5) -- (p9);
-\draw[quizedge] (p6) -- (p7);
-\draw[quizedge] (p7) -- (p8);
-\draw[quizedge] (p8) -- (p9);
-\node[quizvertex] at (p0) {};
-\node[quizvertex] at (p1) {};
-\node[quizvertex] at (p2) {};
-\node[quizvertex] at (p3) {};
-\node[quizvertex] at (p4) {};
-\node[quizvertex] at (p5) {};
-\node[quizvertex] at (p6) {};
-\node[quizvertex] at (p7) {};
-\node[quizvertex] at (p8) {};
-\node[quizvertex] at (p9) {};
-\node[font=\normalsize] at (0,-0.45) {$G_1$};
+\begin{minipage}[c]{0.48\textwidth}\centering
+% G1: pentagonal prism (two 5-cycles joined by a matching).
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \i in {0,...,4}{
+    \coordinate (o\i) at ({90-72*\i}:1.62);
+    \coordinate (h\i) at ({90-72*\i}:0.88);
+  }
+  \foreach \i in {0,...,4}{
+    \pgfmathtruncatemacro{\j}{mod(\i+1,5)}
+    \draw[quizedge] (o\i)--(o\j);
+    \draw[quizedge] (h\i)--(h\j);
+    \draw[quizedge] (o\i)--(h\i);
+  }
+  \foreach \i in {0,...,4}{
+    \node[quizvertex] at (o\i) {};
+    \node[quizvertex] at (h\i) {};
+  }
+  \node at (0,-2.00) {$G_1$};
+  \path[use as bounding box] (-2.05,-2.26) rectangle (2.05,1.91);
 \end{tikzpicture}
 \end{minipage}\hfill
-\begin{minipage}{0.47\textwidth}\centering
-\begin{tikzpicture}[x=1cm,y=1cm,scale=1.1]
-\coordinate (p0) at (0.600,3.120);
-\coordinate (p1) at (1.520,1.740);
-\coordinate (p2) at (0.600,0.280);
-\coordinate (p3) at (-0.980,0.740);
-\coordinate (p4) at (-0.980,2.720);
-\coordinate (p5) at (0.440,2.590);
-\coordinate (p6) at (1.030,1.740);
-\coordinate (p7) at (0.440,0.850);
-\coordinate (p8) at (-0.530,1.130);
-\coordinate (p9) at (-0.530,2.350);
-\draw[quizedge] (p0) -- (p1);
-\draw[quizedge] (p0) -- (p4);
-\draw[quizedge] (p0) -- (p5);
-\draw[quizedge] (p1) -- (p2);
-\draw[quizedge] (p1) -- (p6);
-\draw[quizedge] (p2) -- (p3);
-\draw[quizedge] (p2) -- (p7);
-\draw[quizedge] (p3) -- (p4);
-\draw[quizedge] (p3) -- (p8);
-\draw[quizedge] (p4) -- (p9);
-\draw[quizedge] (p5) -- (p7);
-\draw[quizedge] (p5) -- (p8);
-\draw[quizedge] (p6) -- (p8);
-\draw[quizedge] (p6) -- (p9);
-\draw[quizedge] (p7) -- (p9);
-\node[quizvertex] at (p0) {};
-\node[quizvertex] at (p1) {};
-\node[quizvertex] at (p2) {};
-\node[quizvertex] at (p3) {};
-\node[quizvertex] at (p4) {};
-\node[quizvertex] at (p5) {};
-\node[quizvertex] at (p6) {};
-\node[quizvertex] at (p7) {};
-\node[quizvertex] at (p8) {};
-\node[quizvertex] at (p9) {};
-\node[font=\normalsize] at (0,-0.45) {$G_2$};
+\begin{minipage}[c]{0.48\textwidth}\centering
+% G2: Petersen graph (pentagon, pentagram, and five spokes).
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \i in {0,...,4}{
+    \coordinate (o\i) at ({90-72*\i}:1.62);
+    \coordinate (h\i) at ({90-72*\i}:0.84);
+  }
+  \foreach \i in {0,...,4}{
+    \pgfmathtruncatemacro{\j}{mod(\i+1,5)}
+    \pgfmathtruncatemacro{\k}{mod(\i+2,5)}
+    \draw[quizedge] (o\i)--(o\j);
+    \draw[quizedge] (h\i)--(h\k);
+    \draw[quizedge] (o\i)--(h\i);
+  }
+  \foreach \i in {0,...,4}{
+    \node[quizvertex] at (o\i) {};
+    \node[quizvertex] at (h\i) {};
+  }
+  \node at (0,-2.00) {$G_2$};
+  \path[use as bounding box] (-2.05,-2.26) rectangle (2.05,1.91);
 \end{tikzpicture}
 \end{minipage}
+\end{center}
 
-\vspace{0.40cm}
-
-\begin{minipage}{0.47\textwidth}\centering
-\begin{tikzpicture}[x=1cm,y=1cm,scale=1.1]
-\coordinate (p0) at (0.150,3.130);
-\coordinate (p1) at (1.190,2.570);
-\coordinate (p2) at (1.500,1.750);
-\coordinate (p3) at (1.180,0.890);
-\coordinate (p4) at (0.140,0.430);
-\coordinate (p5) at (-0.910,0.700);
-\coordinate (p6) at (-1.620,1.320);
-\coordinate (p7) at (-1.620,2.220);
-\coordinate (p8) at (-0.910,2.950);
-\coordinate (p9) at (-0.120,1.790);
-\draw[quizedge] (p0) -- (p1);
-\draw[quizedge] (p0) -- (p8);
-\draw[quizedge] (p0) -- (p9);
-\draw[quizedge] (p1) -- (p2);
-\draw[quizedge] (p1) -- (p5);
-\draw[quizedge] (p2) -- (p3);
-\draw[quizedge] (p2) -- (p7);
-\draw[quizedge] (p3) -- (p4);
-\draw[quizedge] (p3) -- (p9);
-\draw[quizedge] (p4) -- (p5);
-\draw[quizedge] (p4) -- (p8);
-\draw[quizedge] (p5) -- (p6);
-\draw[quizedge] (p6) -- (p7);
-\draw[quizedge] (p6) -- (p9);
-\draw[quizedge] (p7) -- (p8);
-\node[quizvertex] at (p0) {};
-\node[quizvertex] at (p1) {};
-\node[quizvertex] at (p2) {};
-\node[quizvertex] at (p3) {};
-\node[quizvertex] at (p4) {};
-\node[quizvertex] at (p5) {};
-\node[quizvertex] at (p6) {};
-\node[quizvertex] at (p7) {};
-\node[quizvertex] at (p8) {};
-\node[quizvertex] at (p9) {};
-\node[font=\normalsize] at (0,-0.45) {$G_3$};
+\begin{center}
+\begin{minipage}[c]{0.48\textwidth}\centering
+% G3: another drawing of Petersen; nine perimeter vertices and one center.
+% Outer edges 01,12,...,78,80; chords 15,27,48; spokes 09,39,69.
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \i in {0,...,8}{\coordinate (z\i) at ({90-40*\i}:1.62);}
+  \coordinate (z9) at (0,0);
+  \foreach \i in {0,...,8}{
+    \pgfmathtruncatemacro{\j}{mod(\i+1,9)}
+    \draw[quizedge] (z\i)--(z\j);
+  }
+  \foreach \i/\j in {1/5,2/7,4/8,0/9,3/9,6/9}{
+    \draw[quizedge] (z\i)--(z\j);
+  }
+  \foreach \i in {0,...,9}{\node[quizvertex] at (z\i) {};}
+  \node at (0,-2.00) {$G_3$};
+  \path[use as bounding box] (-2.05,-2.26) rectangle (2.05,1.91);
 \end{tikzpicture}
 \end{minipage}\hfill
-\begin{minipage}{0.47\textwidth}\centering
-\begin{tikzpicture}[x=1cm,y=1cm,scale=1.1]
-\coordinate (p0) at (-1.390,2.570);
-\coordinate (p1) at (0.180,2.570);
-\coordinate (p2) at (0.360,3.220);
-\coordinate (p3) at (-0.920,2.160);
-\coordinate (p4) at (0.880,1.720);
-\coordinate (p5) at (1.540,1.720);
-\coordinate (p6) at (-0.920,0.950);
-\coordinate (p7) at (-1.390,0.490);
-\coordinate (p8) at (0.180,0.490);
-\coordinate (p9) at (0.360,-0.120);
-\draw[quizedge] (p0) -- (p1);
-\draw[quizedge] (p0) -- (p3);
-\draw[quizedge] (p0) -- (p6);
-\draw[quizedge] (p1) -- (p2);
-\draw[quizedge] (p1) -- (p5);
-\draw[quizedge] (p2) -- (p3);
-\draw[quizedge] (p2) -- (p4);
-\draw[quizedge] (p3) -- (p7);
-\draw[quizedge] (p4) -- (p5);
-\draw[quizedge] (p4) -- (p9);
-\draw[quizedge] (p5) -- (p8);
-\draw[quizedge] (p6) -- (p7);
-\draw[quizedge] (p6) -- (p9);
-\draw[quizedge] (p7) -- (p8);
-\draw[quizedge] (p8) -- (p9);
-\node[quizvertex] at (p0) {};
-\node[quizvertex] at (p1) {};
-\node[quizvertex] at (p2) {};
-\node[quizvertex] at (p3) {};
-\node[quizvertex] at (p4) {};
-\node[quizvertex] at (p5) {};
-\node[quizvertex] at (p6) {};
-\node[quizvertex] at (p7) {};
-\node[quizvertex] at (p8) {};
-\node[quizvertex] at (p9) {};
-\node[font=\normalsize] at (0,-0.45) {$G_4$};
+\begin{minipage}[c]{0.48\textwidth}\centering
+% G4: reproduce the HW4 layout, correcting only alignments and angles.
+% Source vertices are p0,...,p9; retain all 15 original edges.
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (p0) at (-1.48,1.06);
+  \coordinate (p1) at (0.16,1.06);
+  \coordinate (p2) at (0.43,1.76);
+  \coordinate (p3) at (-1.00,0.61);
+  \coordinate (p4) at (0.94,0.00);
+  \coordinate (p5) at (1.65,0.00);
+  \coordinate (p6) at (-1.00,-0.61);
+  \coordinate (p7) at (-1.48,-1.06);
+  \coordinate (p8) at (0.16,-1.06);
+  \coordinate (p9) at (0.43,-1.76);
+  \foreach \u/\v in {0/1,0/3,0/6,1/2,1/5,2/3,2/4,3/7,4/5,4/9,5/8,6/7,6/9,7/8,8/9}{%
+    \draw[quizedge] (p\u)--(p\v);%
+  }
+  \foreach \i in {0,...,9}{\node[quizvertex] at (p\i) {};}
+  \node at (0,-2.00) {$G_4$};
+  \path[use as bounding box] (-2.05,-2.26) rectangle (2.05,1.91);
 \end{tikzpicture}
 \end{minipage}
 \end{center}
 \end{problem}
-\end{minipage}\par
+
 \begin{solution}
 Only $G_2\cong G_3$.
 
-\par\medskip\noindent\textbf{Step 1.} We establish $G_2\cong G_3$ by constructing an explicit
-isomorphism. Label the outer vertices of $G_2$ by $x_0, x_1, x_2, x_3, x_4$,
-clockwise from the top, and its corresponding inner vertices by
-$y_0, y_1, y_2, y_3, y_4$. In $G_3$, label the nine outer vertices by
-$z_0, \dots, z_8$, clockwise from the top, and the central vertex by $z_9$.
-The following bijection preserves all $15$ edges:
+\par\medskip\noindent\textbf{Step 1.} We construct an isomorphism from $G_2$ to $G_3$.
+Label the outer vertices of $G_2$ by $x_0,\dots,x_4$, clockwise from the top,
+and the corresponding inner vertices by $y_0,\dots,y_4$. Similarly, label the
+nine outer vertices of $G_3$ by $z_0,\dots,z_8$, clockwise from the top, and
+its central vertex by $z_9$. Define a bijection $f$ by
 \[
 \begin{array}{c|ccccc}
 \text{Vertex}&x_0&x_1&x_2&x_3&x_4\\\hline
@@ -541,28 +466,32 @@ The following bijection preserves all $15$ edges:
 \text{Image}&z_8&z_5&z_7&z_4&z_6
 \end{array}
 \]
-The outer $5$-cycle maps to $z_0z_1z_2z_3z_9z_0$. The five spokes map
-to $z_0z_8$, $z_1z_5$, $z_2z_7$, $z_3z_4$, and $z_9z_6$; the inner edges
-map to $z_8z_7$, $z_8z_4$, $z_5z_4$, $z_5z_6$, and $z_7z_6$.
-These are exactly the edges of $G_3$, so $G_2\cong G_3$.
+The outer $5$-cycle of $G_2$ maps to
+$z_0z_1z_2z_3z_9z_0$. The five edges joining corresponding outer and inner vertices, called \emph{spokes}, map to
+$z_0z_8$, $z_1z_5$, $z_2z_7$, $z_3z_4$, and $z_9z_6$.
+The inner $5$-cycle (drawn as a star) maps to the edges
+$z_8z_7$, $z_8z_4$, $z_5z_4$, $z_5z_6$, and $z_7z_6$.
+These are precisely all $15$ edges of $G_3$. Thus $f$ is an isomorphism,
+and $G_2\cong G_3$.
 
-\par\medskip\noindent\textbf{Step 2.} We show that $G_1$ is isomorphic to neither $G_2$ nor
-$G_3$. The graph $G_1$ contains a $4$-cycle through its top outer,
-top inner, right inner, and rightmost outer vertices. The graph $G_2$
-has no $4$-cycle: its two $5$-cycles are joined by a matching, so any
-$4$-cycle would need two matching edges, one outer edge, and one inner
-edge. This would require the same two indices to be adjacent in both
-$5$-cycles, which is impossible: outer edges join consecutive indices,
-while inner edges join indices differing by two. Since $G_2\cong G_3$ and
-isomorphisms preserve cycle lengths, $G_1$ is isomorphic to neither.
+\par\medskip\noindent\textbf{Step 2.} We show that $G_1$ is not isomorphic to
+$G_2$ or $G_3$. In $G_1$, any two adjacent outer vertices, their
+corresponding inner vertices, and the two spokes form a $4$-cycle.
+By contrast, $G_2$ has no $4$-cycle. Each of its two $5$-cycles has no
+$4$-cycle, so a $4$-cycle would have to use two spokes and one edge from
+each $5$-cycle. But two consecutive outer indices are never adjacent
+in the inner pentagram, where vertices are joined when their indices
+differ by two modulo $5$. This is impossible. Since isomorphisms
+preserve cycle lengths and $G_2\cong G_3$, neither is isomorphic to $G_1$.
 
-\par\medskip\noindent\textbf{Step 3.} We show that $G_4$ is not isomorphic to any of the
-other three graphs. It consists of a $10$-cycle together with five chords
-joining vertices at distance $5$ along that cycle. Alternately coloring
-the cycle's vertices gives a bipartition, and each chord also joins
-opposite parts because $5$ is odd. Thus $G_4$ is bipartite. By contrast,
-$G_1$, $G_2$, and $G_3$ each contain a $5$-cycle and hence are not
-bipartite. Therefore $G_4$ is not isomorphic to any of them.
+\par\medskip\noindent\textbf{Step 3.} We show that $G_4$ is not isomorphic to
+any of the other three graphs. Its edges can be partitioned into those of a $10$-cycle and five additional
+edges joining vertices five steps apart on that cycle. Divide the vertices
+into two parts by alternating along the $10$-cycle. The edges of the cycle
+join different parts, as do the five additional edges because $5$ is odd.
+Thus $G_4$ is bipartite. In contrast, $G_1$, $G_2$, and $G_3$ all
+contain a $5$-cycle and hence are not bipartite. Thus $G_4$ is not
+isomorphic to any of them.
 \end{solution}
 
 \end{document}
