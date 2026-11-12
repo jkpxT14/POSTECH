@@ -8,7 +8,7 @@
   quizvertex/.style={circle,fill=black,inner sep=1.9pt},
   quizedge/.style={line width=0.58pt},
   quizarc/.style={-{Stealth[length=2.15mm,width=1.45mm]},line width=0.61pt,shorten <=3pt,shorten >=3pt},
-  quizweight/.style={fill=white,inner sep=1.25pt,font=\small},
+  quizmultiarc/.style={line width=0.55pt,postaction={decorate},decoration={markings,mark=at position 0.53 with {\arrow{Stealth[length=1.75mm,width=1.20mm]}}}},
   quizloop/.style={line width=0.61pt,postaction={decorate},decoration={markings,mark=at position 0.62 with {\arrow{Stealth[length=2.15mm,width=1.45mm]}}}}
 }
 \hypersetup{
@@ -72,42 +72,70 @@
 
 \begin{solution}
 \begin{problemsubparts}
-\item Since the matrix is symmetric, its off-diagonal entries give equal numbers
-of arcs in opposite directions. Each pair of opposite arrows below represents
-one arc in each direction; a number specifies the multiplicity in \emph{each}
-direction, while an unlabeled pair has multiplicity one.
+\item Drawing each arc separately, including the loops, gives the following
+ directed multigraph.
 \begin{center}
-\begin{tikzpicture}[x=1cm,y=1cm,scale=0.96]
-% A planar embedding of the underlying simple graph.  The two opposite
-% curves are separate directed arcs; edge labels give their multiplicity.
-\coordinate (v1) at (-2.40,1.42);
-\coordinate (v2) at (2.40,1.42);
-\coordinate (v3) at (0,0.00);
-\coordinate (v4) at (2.40,-1.42);
-\coordinate (v5) at (-2.40,-1.42);
-\foreach \u/\v in {1/2,1/3,1/5,2/3,2/4,3/5,4/5}{
-  \draw[quizarc] (v\u) to[bend left=9] (v\v);
-  \draw[quizarc] (v\v) to[bend left=9] (v\u);
-}
-\node[quizweight] at (-1.65,0.93) {$3$};
-\node[quizweight] at (-2.83,0.02) {$4$};
-\node[quizweight] at (2.82,0.02) {$3$};
-\node[quizweight] at (0.00,-1.83) {$2$};
-\draw[quizloop] (v2) .. controls +(0.82,0.62) and +(0.84,-0.50) .. (v2);
-\node[font=\small] at ($(v2)+(1.10,0.12)$) {$2$};
-\draw[quizloop] (v3) .. controls +(0.78,-0.72) and +(-0.54,-0.78) .. (v3);
-\node[font=\small] at ($(v3)+(0.25,-0.86)$) {$1$};
-\draw[quizloop] (v5) .. controls +(-0.76,-0.65) and +(-0.92,0.42) .. (v5);
-\node[font=\small] at ($(v5)+(-0.97,-0.42)$) {$3$};
+% Each drawn curve is one directed arc. Arrowheads are at mid-curve to avoid crowded vertices.
+\begin{tikzpicture}[x=1cm,y=1cm]
+\coordinate (v1) at (-4.55,2.52);
+\coordinate (v2) at (4.55,2.52);
+\coordinate (v3) at (0,0);
+\coordinate (v4) at (4.55,-2.52);
+\coordinate (v5) at (-4.55,-2.52);
+% Non-loop arcs: 30 total.
+\draw[quizmultiarc] (v1) .. controls (-1.820,2.250) and (1.820,2.250) .. (v2);
+\draw[quizmultiarc] (v2) .. controls (1.820,2.790) and (-1.820,2.790) .. (v1);
+
+\draw[quizmultiarc] (v1) .. controls (-3.747,0.749) and (-1.927,-0.259) .. (v3);
+\draw[quizmultiarc] (v1) .. controls (-3.524,1.152) and (-1.704,0.144) .. (v3);
+\draw[quizmultiarc] (v1) .. controls (-3.301,1.554) and (-1.481,0.546) .. (v3);
+\draw[quizmultiarc] (v3) .. controls (-1.249,0.966) and (-3.069,1.974) .. (v1);
+\draw[quizmultiarc] (v3) .. controls (-1.026,1.368) and (-2.846,2.376) .. (v1);
+\draw[quizmultiarc] (v3) .. controls (-0.803,1.771) and (-2.623,2.779) .. (v1);
+
+\draw[quizmultiarc] (v1) .. controls (-6.000,1.008) and (-6.000,-1.008) .. (v5);
+\draw[quizmultiarc] (v1) .. controls (-5.590,1.008) and (-5.590,-1.008) .. (v5);
+\draw[quizmultiarc] (v1) .. controls (-5.180,1.008) and (-5.180,-1.008) .. (v5);
+\draw[quizmultiarc] (v1) .. controls (-4.770,1.008) and (-4.770,-1.008) .. (v5);
+\draw[quizmultiarc] (v5) .. controls (-4.330,-1.008) and (-4.330,1.008) .. (v1);
+\draw[quizmultiarc] (v5) .. controls (-3.920,-1.008) and (-3.920,1.008) .. (v1);
+\draw[quizmultiarc] (v5) .. controls (-3.510,-1.008) and (-3.510,1.008) .. (v1);
+\draw[quizmultiarc] (v5) .. controls (-3.100,-1.008) and (-3.100,1.008) .. (v1);
+
+\draw[quizmultiarc] (v2) .. controls (3.049,2.009) and (1.229,1.001) .. (v3);
+\draw[quizmultiarc] (v3) .. controls (1.501,0.511) and (3.321,1.519) .. (v2);
+
+\draw[quizmultiarc] (v2) .. controls (3.410,1.008) and (3.410,-1.008) .. (v4);
+\draw[quizmultiarc] (v2) .. controls (3.850,1.008) and (3.850,-1.008) .. (v4);
+\draw[quizmultiarc] (v2) .. controls (4.300,1.008) and (4.300,-1.008) .. (v4);
+\draw[quizmultiarc] (v4) .. controls (4.800,-1.008) and (4.800,1.008) .. (v2);
+\draw[quizmultiarc] (v4) .. controls (5.250,-1.008) and (5.250,1.008) .. (v2);
+\draw[quizmultiarc] (v4) .. controls (5.690,-1.008) and (5.690,1.008) .. (v2);
+
+\draw[quizmultiarc] (v3) .. controls (-1.501,-0.511) and (-3.321,-1.519) .. (v5);
+\draw[quizmultiarc] (v5) .. controls (-3.049,-2.009) and (-1.229,-1.001) .. (v3);
+
+\draw[quizmultiarc] (v4) .. controls (1.820,-1.720) and (-1.820,-1.720) .. (v5);
+\draw[quizmultiarc] (v4) .. controls (1.820,-2.250) and (-1.820,-2.250) .. (v5);
+\draw[quizmultiarc] (v5) .. controls (-1.820,-2.790) and (1.820,-2.790) .. (v4);
+\draw[quizmultiarc] (v5) .. controls (-1.820,-3.320) and (1.820,-3.320) .. (v4);
+
+% Loops: two at 2, one at 3, three at 5.
+\draw[quizmultiarc] (v2) .. controls (4.730,3.580) and (5.870,2.670) .. (v2);
+\draw[quizmultiarc] (v2) .. controls (4.800,4.220) and (6.580,2.710) .. (v2);
+\draw[quizmultiarc] (v3) .. controls (0.630,-1.100) and (-0.640,-1.100) .. (v3);
+\draw[quizmultiarc] (v5) .. controls (-4.800,-3.590) and (-5.930,-2.640) .. (v5);
+\draw[quizmultiarc] (v5) .. controls (-4.900,-4.170) and (-6.660,-2.680) .. (v5);
+\draw[quizmultiarc] (v5) .. controls (-4.990,-4.760) and (-7.410,-2.730) .. (v5);
+% Solid vertex dots mask arc endpoints.
 \foreach \i in {1,2,3,4,5}{\node[quizvertex] at (v\i) {};}
-\node[font=\small,above left=4pt and 2pt] at (v1) {$1$};
-\node[font=\small,above left=4pt and 1pt] at (v2) {$2$};
-\node[font=\small,above=4pt] at (v3) {$3$};
-\node[font=\small,below right=4pt and 1pt] at (v4) {$4$};
-\node[font=\small,below=5pt] at (v5) {$5$};
+\node[font=\normalsize,above left=5pt and 6pt] at (v1) {$1$};
+\node[font=\normalsize,above left=5pt and 1pt] at (v2) {$2$};
+\node[font=\normalsize,above=7pt] at (v3) {$3$};
+\node[font=\normalsize,below right=5pt and 4pt] at (v4) {$4$};
+\node[font=\normalsize,below right=5pt and 3pt] at (v5) {$5$};
 \end{tikzpicture}
 \end{center}
-There are $2$, $1$, and $3$ loops at vertices $2$, $3$, and $5$, respectively.
 \item With rows and columns ordered as $a, b, c, d$, the adjacency matrix is
 \[
 \mathbf A=\begin{pmatrix}
@@ -121,9 +149,12 @@ There are $2$, $1$, and $3$ loops at vertices $2$, $3$, and $5$, respectively.
 \end{solution}
 
 \begin{problem}{2}
-Find all paths (starting at vertex $a$ and ending at vertex $b$ or vertex $c$)
-in the following directed graph. What are their lengths? Find the circuits
-starting at vertex $a$ in the following directed graph.
+Consider the following directed graph.
+\begin{problemsubparts}
+\item Find all paths starting at vertex $a$ and ending at vertex $b$ or $c$.
+Determine the length of each path.
+\item Find all cycles starting at vertex $a$. Determine the length of each cycle.
+\end{problemsubparts}
 \begin{center}
 \begin{tikzpicture}[x=1cm,y=1cm,scale=0.97]
 \coordinate (a) at (-2.52,1.34);
@@ -156,8 +187,9 @@ starting at vertex $a$ in the following directed graph.
 \end{problem}
 
 \begin{solution}
-A path has no repeated vertices. All paths satisfying the stated endpoints,
-with their lengths in parentheses, are
+\begin{problemsubparts}
+\item A path cannot repeat a vertex. The paths are listed below, grouped
+by their terminal vertices; the number in parentheses is the length.
 \[
 \begin{array}{l@{\qquad}l}
 \text{Ending at }b & \text{Ending at }c \\[2pt]
@@ -169,31 +201,25 @@ with their lengths in parentheses, are
 (a,e,d,c,b)\ (4) &
 \end{array}
 \]
-These are exhaustive: from $a$ the first step is toward $b$, $c$, or $e$;
-subsequent steps must follow the indicated arrows without revisiting a vertex.
+These $11$ paths are exhaustive: the first edge from $a$ goes to $b$,
+$c$, or $e$, and no vertex may be revisited.
 
-A circuit is a closed trail, so vertices may repeat but arcs may not.
-All circuits starting at $a$ can be specified without listing them
-individually. The outgoing arcs are
+\item A cycle returns to its initial vertex without repeating any other vertex.
+The cycles starting at $a$, grouped by length, are
 \[
-\begin{array}{c|ccccc}
-\text{Current vertex}&a&b&c&d&e\\ \hline
-\text{Next vertex}&a,b,c,e&a,e&b&a,b,c,d&b,c,d
-\end{array}.
+\begin{array}{c@{\qquad}l}
+\text{Length}&\text{Cycle}\\ \hline
+1&(a,a)\\
+2&(a,b,a)\\
+3&(a,c,b,a),\ (a,e,b,a),\ (a,e,d,a)\\
+4&(a,b,e,d,a),\ (a,e,c,b,a),\ (a,e,d,b,a)\\
+5&(a,c,b,e,d,a),\ (a,e,d,c,b,a)
+\end{array}
 \]
-Start with $(a)$. From the last vertex $v$, append each possible $w$
-for which the arc $v\to w$ has not been used. Record every positive-length
-extension ending at $a$, but continue exploring unused arcs. This yields
-all circuits exactly once: every sequence of distinct arcs is explored.
-For instance, $(a,b,a,e,d,a)$ is a circuit even though it revisits $a$.
-Counting distinct vertex sequences beginning and ending at $a$, the numbers
-of circuits by length are
-\[
-\begin{array}{c|rrrrrrrrrr|r}
-\text{Length}&1&2&3&4&5&6&7&8&9&10&\text{Total}\\ \hline
-\text{Number}&1&1&5&11&20&37&55&80&86&36&332
-\end{array}.
-\]
+There are $10$ cycles in total, including the loop $(a,a)$ and the directed
+$2$-cycle $(a,b,a)$ under the course definition. Checking the first edge
+from $a$ and forbidding repeated intermediate vertices proves exhaustiveness.
+\end{problemsubparts}
 \end{solution}
 
 \begin{problem}{3}
@@ -213,23 +239,23 @@ Determine whether the given pair of graphs is isomorphic. Exhibit an
 isomorphism or provide a rigorous argument that none exists.
 \begin{center}
 \begin{minipage}{0.48\textwidth}\centering
-\begin{tikzpicture}[x=1cm,y=1cm]
+\begin{tikzpicture}[x=1cm,y=1cm,scale=1.46]
 \coordinate (u0) at (0.000,1.480);
-\node[font=\footnotesize,inner sep=0pt] at (0.000,1.990) {$u_{1}$};
+\node[font=\small,inner sep=0pt] at (0.000,1.990) {$u_{1}$};
 \coordinate (u1) at (1.047,1.047);
-\node[font=\footnotesize,inner sep=0pt] at (1.407,1.407) {$u_{2}$};
+\node[font=\small,inner sep=0pt] at (1.407,1.407) {$u_{2}$};
 \coordinate (u2) at (1.480,0.000);
-\node[font=\footnotesize,inner sep=0pt] at (1.990,0.000) {$u_{3}$};
+\node[font=\small,inner sep=0pt] at (1.990,0.000) {$u_{3}$};
 \coordinate (u3) at (1.047,-1.047);
-\node[font=\footnotesize,inner sep=0pt] at (1.407,-1.407) {$u_{4}$};
+\node[font=\small,inner sep=0pt] at (1.407,-1.407) {$u_{4}$};
 \coordinate (u4) at (0.000,-1.480);
-\node[font=\footnotesize,inner sep=0pt] at (0.000,-1.990) {$u_{5}$};
+\node[font=\small,inner sep=0pt] at (0.000,-1.990) {$u_{5}$};
 \coordinate (u5) at (-1.047,-1.047);
-\node[font=\footnotesize,inner sep=0pt] at (-1.407,-1.407) {$u_{6}$};
+\node[font=\small,inner sep=0pt] at (-1.407,-1.407) {$u_{6}$};
 \coordinate (u6) at (-1.480,-0.000);
-\node[font=\footnotesize,inner sep=0pt] at (-1.990,-0.000) {$u_{7}$};
+\node[font=\small,inner sep=0pt] at (-1.990,-0.000) {$u_{7}$};
 \coordinate (u7) at (-1.047,1.047);
-\node[font=\footnotesize,inner sep=0pt] at (-1.407,1.407) {$u_{8}$};
+\node[font=\small,inner sep=0pt] at (-1.407,1.407) {$u_{8}$};
 \draw[quizedge] (u0) -- (u1);
 \draw[quizedge] (u0) -- (u3);
 \draw[quizedge] (u0) -- (u4);
@@ -261,23 +287,23 @@ isomorphism or provide a rigorous argument that none exists.
 \end{tikzpicture}
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}\centering
-\begin{tikzpicture}[x=1cm,y=1cm]
+\begin{tikzpicture}[x=1cm,y=1cm,scale=1.46]
 \coordinate (v0) at (0.000,1.480);
-\node[font=\footnotesize,inner sep=0pt] at (0.000,1.990) {$v_{1}$};
+\node[font=\small,inner sep=0pt] at (0.000,1.990) {$v_{1}$};
 \coordinate (v1) at (1.047,1.047);
-\node[font=\footnotesize,inner sep=0pt] at (1.407,1.407) {$v_{2}$};
+\node[font=\small,inner sep=0pt] at (1.407,1.407) {$v_{2}$};
 \coordinate (v2) at (1.480,0.000);
-\node[font=\footnotesize,inner sep=0pt] at (1.990,0.000) {$v_{3}$};
+\node[font=\small,inner sep=0pt] at (1.990,0.000) {$v_{3}$};
 \coordinate (v3) at (1.047,-1.047);
-\node[font=\footnotesize,inner sep=0pt] at (1.407,-1.407) {$v_{4}$};
+\node[font=\small,inner sep=0pt] at (1.407,-1.407) {$v_{4}$};
 \coordinate (v4) at (0.000,-1.480);
-\node[font=\footnotesize,inner sep=0pt] at (0.000,-1.990) {$v_{5}$};
+\node[font=\small,inner sep=0pt] at (0.000,-1.990) {$v_{5}$};
 \coordinate (v5) at (-1.047,-1.047);
-\node[font=\footnotesize,inner sep=0pt] at (-1.407,-1.407) {$v_{6}$};
+\node[font=\small,inner sep=0pt] at (-1.407,-1.407) {$v_{6}$};
 \coordinate (v6) at (-1.480,-0.000);
-\node[font=\footnotesize,inner sep=0pt] at (-1.990,-0.000) {$v_{7}$};
+\node[font=\small,inner sep=0pt] at (-1.990,-0.000) {$v_{7}$};
 \coordinate (v7) at (-1.047,1.047);
-\node[font=\footnotesize,inner sep=0pt] at (-1.407,1.407) {$v_{8}$};
+\node[font=\small,inner sep=0pt] at (-1.407,1.407) {$v_{8}$};
 \draw[quizedge] (v0) -- (v1);
 \draw[quizedge] (v0) -- (v2);
 \draw[quizedge] (v0) -- (v4);
@@ -311,7 +337,9 @@ isomorphism or provide a rigorous argument that none exists.
 \end{center}
 \end{problem}
 \begin{solution}
-The graphs are \emph{not} isomorphic. Read the vertex subscripts modulo $8$.
+The graphs are \emph{not} isomorphic. An isomorphism preserves both adjacency
+and nonadjacency, so it also induces an isomorphism between the complement
+graphs. Read the vertex subscripts modulo $8$.
 In the left graph, $u_i$ is adjacent to $u_{i\pm1}$,
 $u_{i\pm3}$, and $u_{i+4}$. Hence its complement consists of
 \[
@@ -325,6 +353,7 @@ and therefore cannot be isomorphic. It follows that the original graphs
 are not isomorphic.
 \end{solution}
 
+\par\noindent\begin{minipage}{\linewidth}
 \begin{problem}{5}
 Determine which pairs of the following graphs are isomorphic. For each pair,
 either exhibit an isomorphism or provide a rigorous argument that none exists.
@@ -494,15 +523,16 @@ either exhibit an isomorphism or provide a rigorous argument that none exists.
 \end{minipage}
 \end{center}
 \end{problem}
-\Needspace{6\baselineskip}
+\end{minipage}\par
 \begin{solution}
 Only $G_2\cong G_3$.
 
-To exhibit an isomorphism, label the outer vertices of $G_2$ by
-$x_0, x_1, x_2, x_3, x_4$, clockwise from the top, and its corresponding inner
-vertices by $y_0, y_1, y_2, y_3, y_4$. In $G_3$, label the nine outer
-vertices by $z_0, \dots, z_8$, clockwise from the top, and the central
-vertex by $z_9$. The following bijection preserves all $15$ edges:
+\par\medskip\noindent\textbf{Step 1.} We establish $G_2\cong G_3$ by constructing an explicit
+isomorphism. Label the outer vertices of $G_2$ by $x_0, x_1, x_2, x_3, x_4$,
+clockwise from the top, and its corresponding inner vertices by
+$y_0, y_1, y_2, y_3, y_4$. In $G_3$, label the nine outer vertices by
+$z_0, \dots, z_8$, clockwise from the top, and the central vertex by $z_9$.
+The following bijection preserves all $15$ edges:
 \[
 \begin{array}{c|ccccc}
 \text{Vertex}&x_0&x_1&x_2&x_3&x_4\\\hline
@@ -516,17 +546,23 @@ to $z_0z_8$, $z_1z_5$, $z_2z_7$, $z_3z_4$, and $z_9z_6$; the inner edges
 map to $z_8z_7$, $z_8z_4$, $z_5z_4$, $z_5z_6$, and $z_7z_6$.
 These are exactly the edges of $G_3$, so $G_2\cong G_3$.
 
-For the remaining pairs, $G_1$ contains a $4$-cycle, while $G_2$ has none.
-Indeed, the two $5$-cycles of $G_2$ are joined by a matching;
-a $4$-cycle using two matching edges would require the same pair of indices
-to be adjacent in both $5$-cycles, which is impossible (outer edges
-join consecutive indices, and inner edges join indices differing by two).
-Since $G_2\cong G_3$, neither $G_2$ nor $G_3$ is isomorphic to $G_1$.
-Moreover, $G_4$ is bipartite: it consists of a $10$-cycle together with
-five chords joining vertices at distance $5$ along that cycle, all of
-which join opposite parts of the alternating bipartition. By contrast,
-$G_1$, $G_2$, and $G_3$ each contain a $5$-cycle, so none is bipartite.
-Consequently, $G_4$ is not isomorphic to any of them.
+\par\medskip\noindent\textbf{Step 2.} We show that $G_1$ is isomorphic to neither $G_2$ nor
+$G_3$. The graph $G_1$ contains a $4$-cycle through its top outer,
+top inner, right inner, and rightmost outer vertices. The graph $G_2$
+has no $4$-cycle: its two $5$-cycles are joined by a matching, so any
+$4$-cycle would need two matching edges, one outer edge, and one inner
+edge. This would require the same two indices to be adjacent in both
+$5$-cycles, which is impossible: outer edges join consecutive indices,
+while inner edges join indices differing by two. Since $G_2\cong G_3$ and
+isomorphisms preserve cycle lengths, $G_1$ is isomorphic to neither.
+
+\par\medskip\noindent\textbf{Step 3.} We show that $G_4$ is not isomorphic to any of the
+other three graphs. It consists of a $10$-cycle together with five chords
+joining vertices at distance $5$ along that cycle. Alternately coloring
+the cycle's vertices gives a bipartition, and each chord also joins
+opposite parts because $5$ is odd. Thus $G_4$ is bipartite. By contrast,
+$G_1$, $G_2$, and $G_3$ each contain a $5$-cycle and hence are not
+bipartite. Therefore $G_4$ is not isomorphic to any of them.
 \end{solution}
 
 \end{document}
