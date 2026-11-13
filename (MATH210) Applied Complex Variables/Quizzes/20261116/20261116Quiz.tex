@@ -1,0 +1,524 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261116 Quiz for MATH210 Applied Complex Variables},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH210 Applied Complex Variables},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261116 Quiz}
+
+\begin{exercise}{77.1}
+Find the residue at $z=0$ of the function
+\begin{exercisesubparts}
+    \item $\displaystyle\frac{1}{z+z^2}$;
+    \item $\displaystyle z\cos\left(\frac1z\right)$;
+    \item $\displaystyle\frac{z-\sin z}{z}$;
+    \item $\displaystyle\frac{\cot z}{z^4}$;
+    \item $\displaystyle\frac{\sinh z}{z^4(1-z^2)}$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+In each case, the residue at the origin is the coefficient of $z^{-1}$ in the Laurent series.
+\begin{exercisesubparts}
+    \item Using the geometric series,
+    \[
+        \frac1{z+z^2}=\frac1z\frac1{1+z}
+        =\frac1z-1+z-\cdots\qquad(0<|z|<1).
+    \]
+    Hence $\boxed{\Res(f; 0)=1}$.
+
+    \item The Laurent expansion is
+    \[
+    \begin{aligned}
+        z\cos\left(\frac1z\right)
+        &=z\left(1-\frac1{2!z^2}+\frac1{4!z^4}-\cdots\right)\\
+        &=z-\frac1{2z}+\frac1{4!z^3}-\cdots.
+    \end{aligned}
+    \]
+    Thus $\boxed{\Res(f; 0)=-\frac12}$.
+
+    \item Since
+    \[
+        \frac{z-\sin z}{z}
+        =1-\frac{\sin z}{z}
+        =\frac{z^2}{3!}-\frac{z^4}{5!}+\cdots,
+    \]
+    the origin is removable and $\boxed{\Res(f; 0)=0}$.
+
+    \item From the Taylor series for sine and cosine,
+    \[
+    \begin{aligned}
+        \cot z
+        &=\frac{1-z^2/2!+z^4/4!-\cdots}
+                {z(1-z^2/3!+z^4/5!-\cdots)}\\
+        &=\frac1z-\frac z3-\frac{z^3}{45}+\cdots.
+    \end{aligned}
+    \]
+    Consequently,
+    \[
+        \frac{\cot z}{z^4}
+        =\frac1{z^5}-\frac1{3z^3}-\frac1{45z}+\cdots,
+        \qquad\boxed{\Res(f; 0)=-\frac1{45}}.
+    \]
+
+    \item Multiplying the series
+    \[
+        \sinh z=z+\frac{z^3}{3!}+\cdots,
+        \qquad\frac1{1-z^2}=1+z^2+\cdots,
+    \]
+    gives
+    \[
+        \frac{\sinh z}{1-z^2}=z+\frac76z^3+\cdots.
+    \]
+    Hence
+    \[
+        \frac{\sinh z}{z^4(1-z^2)}
+        =\frac1{z^3}+\frac7{6z}+\cdots,
+        \qquad\boxed{\Res(f; 0)=\frac76}.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{77.2}
+Use Cauchy's residue theorem (Sec.~76) to evaluate the integral of each of these functions around the circle $|z|=3$ in the positive sense:
+\begin{exercisesubparts}
+    \item $\displaystyle\frac{\exp(-z)}{z^2}$;
+    \item $\displaystyle\frac{\exp(-z)}{(z-1)^2}$;
+    \item $\displaystyle z^2\exp\left(\frac1z\right)$;
+    \item $\displaystyle\frac{z+1}{z^2-2z}$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Let $C$ be the positively oriented circle $|z|=3$. In each case, Cauchy's residue theorem gives
+\[
+    \int_C f(z)\,\dd z=2\pi i\sum_{a\text{ inside }C}\Res(f; a).
+\]
+\begin{exercisesubparts}
+    \item At $z=0$,
+    \[
+        \frac{e^{-z}}{z^2}
+        =\frac1{z^2}-\frac1z+\frac12-\cdots.
+    \]
+    The residue is $-1$, so $\boxed{\displaystyle\int_C\frac{e^{-z}}{z^2}\,\dd z=-2\pi i}$.
+
+    \item The only pole is the double pole $z=1$. By the generalized Cauchy integral formula (Sec.~55),
+    \[
+        \Res\left(\frac{e^{-z}}{(z-1)^2}; 1\right)
+        =\left.\frac{\dd}{\dd z}e^{-z}\right|_{z=1}=-\frac1e.
+    \]
+    Thus $\boxed{\displaystyle\int_C\frac{e^{-z}}{(z-1)^2}\,\dd z=-\frac{2\pi i}{e}}$.
+
+    \item Expanding about the isolated singularity at $z=0$,
+    \[
+        z^2e^{1/z}
+        =z^2\sum_{n=0}^{\infty}\frac1{n!z^n}
+        =z^2+z+\frac12+\frac1{3!z}+\cdots.
+    \]
+    The residue is $1/3!=1/6$. Therefore
+    \[
+        \boxed{\int_C z^2e^{1/z}\,\dd z=\frac{\pi i}{3}}.
+    \]
+
+    \item The two simple poles $0$ and $2$ lie inside $C$, with residues
+    \[
+        \Res(f; 0)=\left.\frac{z+1}{z-2}\right|_{z=0}=-\frac12,
+        \qquad
+        \Res(f; 2)=\left.\frac{z+1}{z}\right|_{z=2}=\frac32.
+    \]
+    Their sum is $1$, so
+    \[
+        \boxed{\int_C\frac{z+1}{z^2-2z}\,\dd z=2\pi i}.
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{77.6}
+Suppose that a function $f$ is analytic throughout the finite plane except for a finite number of singular points $z_1, z_2, \ldots, z_n$. Show that
+\[
+    \Res(f; z_1)+\Res(f; z_2)+\cdots+\Res(f; z_n)+\Res(f; \infty)=0.
+\]
+\end{exercise}
+
+\begin{solution}
+Choose a sufficiently large positively oriented circle $C$ containing all the finite singular points. By Cauchy's residue theorem (Sec.~76),
+\[
+    \int_C f(z)\,\dd z=2\pi i\sum_{k=1}^{n}\Res(f; z_k).
+\]
+On the other hand, the definition of the residue at infinity and the theorem in Sec.~77 give
+\[
+    \int_C f(z)\,\dd z=-2\pi i\Res(f; \infty).
+\]
+Equating these expressions and dividing by $2\pi i$ yields
+\[
+    \boxed{\sum_{k=1}^{n}\Res(f; z_k)+\Res(f; \infty)=0.}
+\]
+\end{solution}
+
+\begin{exercise}{77.7}
+Let the degrees of the polynomials
+\[
+    P(z)=a_0+a_1z+a_2z^2+\cdots+a_nz^n\qquad(a_n\ne0)
+\]
+and
+\[
+    Q(z)=b_0+b_1z+b_2z^2+\cdots+b_mz^m\qquad(b_m\ne0)
+\]
+be such that $m\ge n+2$. Use the theorem in Sec.~77 to show that if all of the zeros of $Q(z)$ are interior to a simple closed contour $C$, then
+\[
+    \int_C\frac{P(z)}{Q(z)}\,\dd z=0.
+\]
+[Compare with Exercise~4(b).]
+\end{exercise}
+
+\begin{solution}
+Set $f(z)=P(z)/Q(z)$; all its possible finite singularities are inside $C$. Writing $w=1/z$, we obtain
+\[
+\begin{aligned}
+    \frac1{w^2}f\left(\frac1w\right)
+    &=\frac1{w^2}\frac{P(1/w)}{Q(1/w)}\\
+    &=w^{m-n-2}
+      \frac{a_n+a_{n-1}w+\cdots+a_0w^n}
+           {b_m+b_{m-1}w+\cdots+b_0w^m}.
+\end{aligned}
+\]
+Since $m-n-2\ge0$ and the denominator has the nonzero value $b_m$ at $w=0$, this function is analytic at $0$. In particular, its residue at $0$ is zero. By the theorem in Sec.~77 (taking $C$ positively oriented),
+\[
+    \boxed{\int_C\frac{P(z)}{Q(z)}\,\dd z
+      =2\pi i\Res\left(\frac1{w^2}f\left(\frac1w\right); 0\right)=0.}
+\]
+The integral is also zero if $C$ is taken with the opposite orientation.
+\end{solution}
+
+\begin{exercise}{79.1}
+In each case, write the principal part of the function at its isolated singular point and determine whether that point is a removable singular point, an essential singular point, or a pole:
+\begin{exercisesubparts}
+    \item $\displaystyle z\exp\left(\frac1z\right)$;
+    \item $\displaystyle\frac{z^2}{1+z}$;
+    \item $\displaystyle\frac{\sin z}{z}$;
+    \item $\displaystyle\frac{\cos z}{z}$;
+    \item $\displaystyle\frac1{(2-z)^3}$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+The principal part consists of the negative-power terms of the Laurent series at the indicated singular point (Sec.~78).
+\begin{exercisesubparts}
+    \item At $z=0$,
+    \[
+        ze^{1/z}=z+1+\frac1{2!z}+\frac1{3!z^2}+\cdots.
+    \]
+    The principal part is
+    \[
+        \boxed{\sum_{n=2}^{\infty}\frac1{n!z^{n-1}}}.
+    \]
+    It has infinitely many nonzero terms, so $0$ is an \emph{essential singular point}.
+
+    \item At $z=-1$, put $w=z+1$. Then
+    \[
+        \frac{z^2}{1+z}=\frac{(w-1)^2}{w}
+        =\frac1w-2+w.
+    \]
+    The principal part is $\boxed{\frac1{z+1}}$, and $-1$ is a \emph{simple pole}.
+
+    \item At $z=0$,
+    \[
+        \frac{\sin z}{z}=1-\frac{z^2}{3!}+\frac{z^4}{5!}-\cdots.
+    \]
+    There are no negative powers. The principal part is $\boxed{0}$, and $0$ is a \emph{removable singular point}.
+
+    \item At $z=0$,
+    \[
+        \frac{\cos z}{z}=\frac1z-\frac z{2!}+\frac{z^3}{4!}-\cdots.
+    \]
+    The principal part is $\boxed{\frac1z}$, so $0$ is a \emph{simple pole}.
+
+    \item At $z=2$,
+    \[
+        \frac1{(2-z)^3}=-\frac1{(z-2)^3}.
+    \]
+    The principal part is $\boxed{-\frac1{(z-2)^3}}$, so $2$ is a \emph{pole of order $3$}.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{79.3}
+Suppose that a function $f$ is analytic at $z_0$, and write $g(z)=f(z)/(z-z_0)$. Show that
+\begin{exercisesubparts}
+    \item if $f(z_0)\ne0$, then $z_0$ is a simple pole of $g$, with residue $f(z_0)$;
+    \item if $f(z_0)=0$, then $z_0$ is a removable singular point of $g$.
+\end{exercisesubparts}
+\begin{suggestion}
+As pointed out in Sec.~62, there is a Taylor series for $f(z)$ about $z_0$ since $f$ is analytic there. Start each part of this exercise by writing out a few terms of that series.
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Because $f$ is analytic at $z_0$, its Taylor series has the form
+\[
+    f(z)=f(z_0)+f'(z_0)(z-z_0)
+        +\frac{f''(z_0)}{2!}(z-z_0)^2+\cdots
+\]
+near $z_0$. Dividing by $z-z_0$ gives, for $z\ne z_0$,
+\[
+    g(z)=\frac{f(z_0)}{z-z_0}+f'(z_0)
+       +\frac{f''(z_0)}{2!}(z-z_0)+\cdots.
+\]
+\begin{exercisesubparts}
+    \item If $f(z_0)\ne0$, the principal part consists of the nonzero term $f(z_0)/(z-z_0)$. Hence $z_0$ is a simple pole and
+    \[
+        \boxed{\Res(g; z_0)=f(z_0).}
+    \]
+
+    \item If $f(z_0)=0$, all negative-power terms vanish. The remaining Taylor series extends $g$ analytically to $z_0$ by setting $g(z_0)=f'(z_0)$. Hence $z_0$ is a removable singular point.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{81.4}
+Find the value of the integral
+\[
+    \int_C\frac{3z^3+2}{(z-1)(z^2+9)}\,\dd z,
+\]
+taken counterclockwise around the circle (a) $|z-2|=2$; (b) $|z|=4$.
+\end{exercise}
+
+\begin{solution}
+The integrand has simple poles at $1$, $3i$, and $-3i$. The residue at $1$ is
+\[
+    \Res(f; 1)=\left.\frac{3z^3+2}{z^2+9}\right|_{z=1}=\frac12.
+\]
+For the other two poles,
+\[
+    \Res(f; 3i)=\left.\frac{3z^3+2}{(z-1)(z+3i)}\right|_{z=3i}
+       =\frac54+\frac{49}{12}i,
+\]
+and, since $f$ has real coefficients,
+\[
+    \Res(f; -3i)=\overline{\Res(f; 3i)}=\frac54-\frac{49}{12}i.
+\]
+\begin{exercisesubparts}
+    \item The circle $|z-2|=2$ contains only the pole $z=1$. Therefore
+    \[
+        \boxed{\int_C f(z)\,\dd z=2\pi i\cdot\frac12=\pi i.}
+    \]
+
+    \item The circle $|z|=4$ contains all three poles. The sum of their residues is $\frac12+\frac54+\frac54=3$. Hence
+    \[
+        \boxed{\int_C f(z)\,\dd z=2\pi i\cdot3=6\pi i.}
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{81.5}
+Find the value of the integral
+\[
+    \int_C\frac{\dd z}{z^3(z+4)},
+\]
+taken counterclockwise around the circle (a) $|z|=2$; (b) $|z+2|=3$.
+\end{exercise}
+
+\begin{solution}
+The integrand has a pole of order $3$ at $0$ and a simple pole at $-4$. Write $f(z)=\phi(z)/z^3$, where $\phi(z)=1/(z+4)$ is analytic and nonzero at $0$. By the pole-residue formula in Sec.~80,
+\[
+    \Res(f; 0)=\frac{\phi''(0)}{2!}
+    =\frac1{2!}\left.\frac2{(z+4)^3}\right|_{z=0}
+    =\frac1{64}.
+\]
+Also,
+\[
+    \Res(f; -4)=\left.\frac1{z^3}\right|_{z=-4}=-\frac1{64}.
+\]
+\begin{exercisesubparts}
+    \item The circle $|z|=2$ contains only $0$. Hence
+    \[
+        \boxed{\int_C\frac{\dd z}{z^3(z+4)}
+           =2\pi i\cdot\frac1{64}=\frac{\pi i}{32}.}
+    \]
+
+    \item The circle $|z+2|=3$ contains both $0$ and $-4$. Their residues cancel, so
+    \[
+        \boxed{\int_C\frac{\dd z}{z^3(z+4)}=0.}
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{81.6}
+Evaluate the integral
+\[
+    \int_C\frac{\cosh(\pi z)}{z(z^2+1)}\,\dd z
+\]
+when $C$ is the circle $|z|=2$, described in the positive sense.
+\end{exercise}
+
+\begin{solution}
+The integrand has simple poles at $0$, $i$, and $-i$, all inside $C$. At the origin,
+\[
+    \Res(f; 0)=\left.\frac{\cosh(\pi z)}{z^2+1}\right|_{z=0}=1.
+\]
+Since $\cosh(\pi i)=\cosh(-\pi i)=\cos\pi=-1$, the residues at $z=\pm i$ are
+\[
+    \Res(f; \pm i)
+    =\left.\frac{\cosh(\pi z)}{2z^2}\right|_{z=\pm i}
+    =\frac{-1}{-2}=\frac12.
+\]
+The residue sum is $1+\frac12+\frac12=2$. By Cauchy's residue theorem,
+\[
+    \boxed{\int_C\frac{\cosh(\pi z)}{z(z^2+1)}\,\dd z
+       =2\pi i\cdot2=4\pi i.}
+\]
+\end{solution}
+
+\begin{exercise}{81.7}
+Use the theorem in Sec.~77, involving a single residue, to evaluate the integral of $f(z)$ around the positively oriented circle $|z|=3$ when
+\begin{exercisesubparts}
+    \item $\displaystyle f(z)=\frac{(3z+2)^2}{z(z-1)(2z+5)}$;
+    \item $\displaystyle f(z)=\frac{z^3e^{1/z}}{1+z^3}$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+All finite singularities of each function lie in $|z|<3$. Thus, by the theorem in Sec.~77, with $w=1/z$,
+\[
+    \int_{|z|=3}f(z)\,\dd z
+      =2\pi i\Res\left(\frac1{w^2}f\left(\frac1w\right); 0\right).
+\]
+\begin{exercisesubparts}
+    \item Direct simplification gives
+    \[
+    \begin{aligned}
+        \frac1{w^2}f\left(\frac1w\right)
+        &=\frac{(3+2w)^2}{w(1-w)(2+5w)}\\
+        &=\frac1w\,\frac{(3+2w)^2}{(1-w)(2+5w)}.
+    \end{aligned}
+    \]
+    The second factor is analytic at $w=0$ and has value $9/2$ there. Therefore
+    \[
+        \boxed{\int_{|z|=3}f(z)\,\dd z
+            =2\pi i\cdot\frac92=9\pi i.}
+    \]
+
+    \item Here
+    \[
+        \frac1{w^2}f\left(\frac1w\right)
+        =\frac{e^w}{w^2(1+w^3)}=\frac{h(w)}{w^2},
+        \qquad h(w)=\frac{e^w}{1+w^3}.
+    \]
+    Since $h$ is analytic at $0$, the residue of $h(w)/w^2$ is $h'(0)$. Differentiation yields
+    \[
+        h'(w)=\frac{e^w}{1+w^3}-\frac{3w^2e^w}{(1+w^3)^2},
+        \qquad h'(0)=1.
+    \]
+    Hence
+    \[
+        \boxed{\int_{|z|=3}f(z)\,\dd z=2\pi i.}
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{83.5}
+Let $C$ denote the positively oriented circle $|z|=2$ and evaluate the integral
+\begin{exercisesubparts}
+    \item $\displaystyle\int_C\tan z\,\dd z$;
+    \item $\displaystyle\int_C\frac{\dd z}{\sinh(2z)}$.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+We use Theorem 2 in Sec.~83: if $q(a)=0$, $q'(a)\ne0$, and $p(a)\ne0$, then $p/q$ has a simple pole at $a$ with residue $p(a)/q'(a)$.
+\begin{exercisesubparts}
+    \item For $\tan z=\sin z/\cos z$, the poles inside $|z|=2$ are $z=\pm\pi/2$. Since $(\cos z)'=-\sin z$ and $\sin(\pm\pi/2)\ne0$,
+    \[
+        \Res(\tan z; \pm\pi/2)
+        =\left.\frac{\sin z}{-\sin z}\right|_{z=\pm\pi/2}=-1.
+    \]
+    Thus
+    \[
+        \boxed{\int_C\tan z\,\dd z=2\pi i(-1-1)=-4\pi i.}
+    \]
+
+    \item The zeros of $\sinh(2z)$ are $z=n\pi i/2$ ($n\in\Z$). Only $0$ and $\pm\pi i/2$ lie inside $C$. Each is simple because
+    \[
+        \left.\frac{\dd}{\dd z}\sinh(2z)\right|_{z=n\pi i/2}
+        =2\cos(n\pi)=2(-1)^n\ne0.
+    \]
+    Consequently,
+    \[
+        \Res\left(\frac1{\sinh(2z)}; \frac{n\pi i}{2}\right)
+        =\frac{(-1)^n}{2}.
+    \]
+    The three residues sum to $\frac12-\frac12-\frac12=-\frac12$, and hence
+    \[
+        \boxed{\int_C\frac{\dd z}{\sinh(2z)}=-\pi i.}
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{83.7}
+Show that
+\[
+    \int_C\frac{\dd z}{(z^2-1)^2+3}=\frac{\pi}{2\sqrt2},
+\]
+where $C$ is the positively oriented boundary of the rectangle whose sides lie along the lines $x=\pm2$, $y=0$, and $y=1$.
+\begin{suggestion}
+By observing that the four zeros of the polynomial $q(z)=(z^2-1)^2+3$ are the square roots of the numbers $1\pm\sqrt3\,i$, show that the reciprocal $1/q(z)$ is analytic inside and on $C$ except at the points
+\[
+    z_0=\frac{\sqrt3+i}{\sqrt2}
+    \qquad\text{and}\qquad
+    -\overline{z_0}=\frac{-\sqrt3+i}{\sqrt2}.
+\]
+Then apply Theorem 2 in Sec.~83.
+\end{suggestion}
+\end{exercise}
+
+\begin{solution}
+Put $q(z)=(z^2-1)^2+3$. Its zeros satisfy
+\[
+    z^2=1\pm\sqrt3\,i
+       =2e^{\pm i\pi/3}.
+\]
+Taking square roots gives the four zeros
+\[
+    \pm\frac{\sqrt3+i}{\sqrt2},
+    \qquad\pm\frac{\sqrt3-i}{\sqrt2}.
+\]
+Exactly the following two lie inside the given rectangle:
+\[
+    z_+=\frac{\sqrt3+i}{\sqrt2},
+    \qquad z_-=\frac{-\sqrt3+i}{\sqrt2}
+         =-\overline{z_+},
+\]
+since their real parts lie between $-2$ and $2$ and their imaginary parts equal $1/\sqrt2\in(0,1)$. The other two zeros lie below the real axis.
+
+Since $q'(z)=4z(z^2-1)\ne0$ at each zero, these are simple poles of $1/q(z)$. By Theorem 2 in Sec.~83, using $z_+^2-1=i\sqrt3$ and $z_-^2-1=-i\sqrt3$,
+\[
+\begin{aligned}
+    \Res\left(\frac1q; z_+\right)
+       &=\frac1{4i\sqrt3\,z_+},\\
+    \Res\left(\frac1q; z_-\right)
+       &=-\frac1{4i\sqrt3\,z_-}.
+\end{aligned}
+\]
+Their sum is
+\[
+\begin{aligned}
+    \frac1{4i\sqrt3}\left(\frac1{z_+}-\frac1{z_-}\right)
+    &=\frac1{4i\sqrt3}\left(\frac1{z_+}+\frac1{\overline{z_+}}\right)\\
+    &=\frac1{4i\sqrt3}\frac{2\RePart z_+}{|z_+|^2}
+      =\frac1{4i\sqrt2},
+\end{aligned}
+\]
+where $\RePart z_+=\sqrt3/\sqrt2$ and $|z_+|^2=2$. Cauchy's residue theorem therefore gives
+\[
+    \boxed{\int_C\frac{\dd z}{(z^2-1)^2+3}
+      =2\pi i\cdot\frac1{4i\sqrt2}=\frac\pi{2\sqrt2}.}
+\]
+\end{solution}
+
+\end{document}

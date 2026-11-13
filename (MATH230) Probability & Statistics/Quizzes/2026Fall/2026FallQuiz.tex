@@ -654,4 +654,75 @@ Standardize with $Z=(X-40)/5\sim\mathcal N(0,1)$.
 \end{problemsubparts}
 \end{solution}
 
+
+\Needspace{12\baselineskip}
+\begin{problem}{7.1}
+Let $x_1, \ldots, x_n$ be a random sample with sample variance $s_X^2$. Consider the transformed observations
+\[
+y_i=ax_i+b, \qquad i=1, \ldots, n,
+\]
+where $a$ and $b$ are real constants. Find the sample variance of the transformed observations.
+\end{problem}
+
+\begin{solution}
+For $n\ge2$, the sample mean of the transformed observations is
+\[
+\bar y=\frac1n\sum_{i=1}^n y_i
+=\frac1n\sum_{i=1}^n(ax_i+b)
+=a\bar x+b.
+\]
+Hence
+\[
+\begin{aligned}
+s_Y^2
+&=\frac{1}{n-1}\sum_{i=1}^n(y_i-\bar y)^2\\
+&=\frac{1}{n-1}\sum_{i=1}^n\bigl((ax_i+b)-(a\bar x+b)\bigr)^2\\
+&=\frac{a^2}{n-1}\sum_{i=1}^n(x_i-\bar x)^2
+=\boxed{a^2s_X^2}.
+\end{aligned}
+\]
+\end{solution}
+
+\Needspace{12\baselineskip}
+\begin{problem}{7.2}
+A random variable $X$ has the Poisson distribution with probability mass function
+\[
+\Prob(X=x)=\frac{e^{-\mu}\mu^x}{x!},\qquad x=0, 1, 2, \ldots.
+\]
+\begin{problemsubparts}
+\item Find the moment-generating function $M_X(t)$ of $X$.
+\item Using $M_X(t)$, find the mean and variance of the Poisson distribution.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+\item By the definition of the MGF and the exponential series,
+\[
+\begin{aligned}
+M_X(t)=\Exp[e^{tX}]
+&=\sum_{x=0}^{\infty}e^{tx}e^{-\mu}\frac{\mu^x}{x!}\\
+&=e^{-\mu}\sum_{x=0}^{\infty}\frac{(\mu e^t)^x}{x!}
+=e^{-\mu}e^{\mu e^t}
+=\boxed{e^{\mu(e^t-1)}}.
+\end{aligned}
+\]
+\item Differentiation gives
+\[
+M_X'(t)=\mu e^t e^{\mu(e^t-1)},\qquad
+M_X''(t)=(\mu e^t+\mu^2e^{2t})e^{\mu(e^t-1)}.
+\]
+At $t=0$,
+\[
+\Exp[X]=M_X'(0)=\boxed{\mu},\qquad
+\Exp[X^2]=M_X''(0)=\mu+\mu^2.
+\]
+Therefore
+\[
+\Var(X)=\Exp[X^2]-\Exp[X]^2
+=\mu+\mu^2-\mu^2=\boxed{\mu}.
+\]
+\end{problemsubparts}
+\end{solution}
+
 \end{document}

@@ -1,0 +1,750 @@
+\documentclass[11pt,oneside]{article}
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{pdftitle={20261117 Quiz for MATH230 Probability \& Statistics},pdfauthor={Jungwoo Kim},pdfsubject={Quiz for MATH230 Probability \& Statistics},pdfcreator={LaTeX}}
+\begin{document}
+\quiztitle{20261117 Quiz}
+
+\begin{exercise}{8.20}
+An unbiased die is tossed independently $72$ times. If $X$ denotes one outcome, its probability mass function is
+\[
+\Prob(X=x)=\begin{cases}1/6,&x=1, 2, 3, 4, 5, 6,\\0,&\text{otherwise.}\end{cases}
+\]
+Find the probability that the sample mean is greater than $3.6$ but less than $3.9$, when means are recorded to the nearest tenth.
+\end{exercise}
+\begin{solution}
+For a single throw, symmetry and the second moment give
+\[
+\mu=\frac{1+2+3+4+5+6}{6}=\frac72,\qquad
+\sigma^2=\frac{1^2+2^2+\cdots+6^2}{6}-\left(\frac72\right)^2=\frac{35}{12}.
+\]
+Thus $\sigma_{\bar X}=\sqrt{35/(12\cdot72)}\approx0.20127$. Since the reported mean is rounded to the nearest tenth, the requested reported values correspond to $3.65\le\bar X<3.85$. By the Central Limit Theorem,
+\[
+\begin{aligned}
+\Prob(3.65\le\bar X<3.85)
+&\approx\Phi\left(\frac{3.85-3.5}{0.20127}\right)
+-\Phi\left(\frac{3.65-3.5}{0.20127}\right)\\
+&=\Phi(1.739)-\Phi(0.745)\approx\boxed{0.1870}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{8.22}
+The heights of $1000$ students are approximately normally distributed with mean $174.5$ cm and standard deviation $6.9$ cm. Suppose $200$ random samples, each of size $25$, are drawn, and each sample mean is recorded to the nearest tenth of a centimeter. Determine
+\begin{exercisesubparts}
+\item the mean and standard deviation of the sampling distribution of $\bar X$;
+\item the expected number of recorded sample means between $172.5$ and $175.8$ cm, inclusive;
+\item the expected number of recorded sample means below $172.0$ cm.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+As in the book's sampling-distribution approximation, use $\bar X\approx\Normal(174.5,6.9^2/25)$, so
+\begin{exercisesubparts}
+\item The mean and standard error are
+\[
+\boxed{\mu_{\bar X}=174.5\text{ cm}},\qquad
+\boxed{\sigma_{\bar X}=\frac{6.9}{\sqrt{25}}=1.38\text{ cm}}.
+\]
+\item The inclusive reported interval corresponds to $172.45\le\bar X<175.85$. Hence the expected count among $200$ sample means is
+\[
+\begin{aligned}
+200\Prob(172.45\le\bar X<175.85)
+&\approx200\left[\Phi\left(\frac{175.85-174.5}{1.38}\right)
+-\Phi\left(\frac{172.45-174.5}{1.38}\right)\right]\\
+&\approx\boxed{153.5\text{ (about }153\text{--}154\text{ means)}}.
+\end{aligned}
+\]
+\item A reported mean below $172.0$ corresponds to $\bar X<171.95$. Thus
+\[
+200\Prob(\bar X<171.95)
+\approx200\Phi\left(\frac{171.95-174.5}{1.38}\right)
+\approx\boxed{6.46\text{ (about }6\text{--}7\text{ means)}}.
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.23}
+The number $X$ of cherries in a cherry puff has the probability distribution
+\[
+\begin{array}{c@{\qquad}rrrr}\toprule
+x&4&5&6&7\\\midrule
+\Prob(X=x)&0.2&0.4&0.3&0.1\\\bottomrule
+\end{array}
+\]
+\begin{exercisesubparts}
+\item Find the mean $\mu$ and variance $\sigma^2$ of $X$.
+\item Find the mean and variance of $\bar X$ for independent random samples of $36$ cherry puffs.
+\item Find the probability that the average number of cherries in $36$ puffs is less than $5.5$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item Direct calculation yields
+\[
+\begin{aligned}
+\mu&=4(0.2)+5(0.4)+6(0.3)+7(0.1)=\boxed{5.3},\\
+\Exp[X^2]&=16(0.2)+25(0.4)+36(0.3)+49(0.1)=28.9,\\
+\sigma^2&=28.9-5.3^2=\boxed{0.81}.
+\end{aligned}
+\]
+\item For a sample of size $36$,
+\[
+\boxed{\Exp[\bar X]=5.3},\qquad
+\boxed{\Var(\bar X)=\frac{0.81}{36}=0.0225}.
+\]
+\item The standard error is $\sqrt{0.0225}=0.15$. By the Central Limit Theorem,
+\[
+\Prob(\bar X<5.5)\approx\Phi\left(\frac{5.5-5.3}{0.15}\right)
+=\Phi(1.3333)\approx\boxed{0.9088}.
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.24}
+A machine produces electrical resistors with mean resistance $40\,\Omega$ and standard deviation $2\,\Omega$. What is the probability that a random sample of $36$ resistors has a combined resistance greater than $1458\,\Omega$?
+\end{exercise}
+\begin{solution}
+Let $W=X_1+\cdots+X_{36}$ be the total resistance. Independence gives
+\[
+\Exp[W]=36(40)=1440\,\Omega,\qquad
+\Var(W)=36(2^2)=144\,\Omega^2.
+\]
+By the Central Limit Theorem, $W\approx\Normal(1440,144)$, and therefore
+\[
+\Prob(W>1458)\approx1-\Phi\left(\frac{1458-1440}{12}\right)
+=1-\Phi(1.5)\approx\boxed{0.0668}.
+\]
+\end{solution}
+
+\begin{exercise}{8.27}
+The impurity content (grams per gram of output) in a chemical process has known population standard deviation $0.1$. It is conjectured that the population mean is $\mu=0.20$. In $50$ laboratory runs the observed mean impurity content is $\bar x=0.23$. Use the Central Limit Theorem to comment on the conjecture.
+\end{exercise}
+\begin{solution}
+Assuming $\mu=0.20$, the standard error of the sample mean is $0.1/\sqrt{50}$. Thus
+\[
+z=\frac{0.23-0.20}{0.1/\sqrt{50}}\approx2.1213,
+\]
+and the chance of obtaining a sample mean at least as large as observed is
+\[
+\Prob(\bar X\ge0.23)
+\approx1-\Phi(2.1213)\approx\boxed{0.0169}.
+\]
+Such a large mean would occur in roughly $1.7\%$ of repeated samples under the conjecture. The observation therefore casts doubt on $\mu=0.20$, though it does not prove the conjecture false.
+\end{solution}
+
+\begin{exercise}{8.28}
+Independent random samples of sizes $30$ and $42$ are drawn from adults in cities A and B, respectively. The population heights have means $160$ and $158$ cm and standard deviations $9$ and $10$ cm, respectively. Find the probability that the difference $\bar X_A-\bar X_B$, recorded to the nearest tenth of a centimeter, is at least $2.6$ but less than $4.8$ cm.
+\end{exercise}
+\begin{solution}
+For $D=\bar X_A-\bar X_B$, independence gives
+\[
+\Exp[D]=160-158=2,\qquad
+\Var(D)=\frac{9^2}{30}+\frac{10^2}{42}\approx5.08095,
+\]
+so $\sigma_D\approx2.25410$. The stated recorded values correspond to the unrounded interval $2.55\le D<4.75$. With the normal approximation to the difference of means,
+\[
+\begin{aligned}
+\Prob(2.55\le D<4.75)
+&\approx\Phi\left(\frac{4.75-2}{2.25410}\right)
+-\Phi\left(\frac{2.55-2}{2.25410}\right)\\
+&=\Phi(1.220)-\Phi(0.244)\approx\boxed{0.2924}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{exercise}{8.29}
+One breed of one-week-old chicks has mean weight $120$ g and standard deviation $12$ g; a second breed has mean $92$ g and standard deviation $8$ g. Independent samples contain $46$ and $84$ chicks, respectively. Find the probability that the first sample mean exceeds the second by at most $20$ g. Assume the means can be measured to any degree of accuracy.
+\end{exercise}
+\begin{solution}
+For $D=\bar X_1-\bar X_2$,
+\[
+\Exp[D]=28,\qquad
+\Var(D)=\frac{12^2}{46}+\frac{8^2}{84}\approx3.89234,
+\quad\sigma_D\approx1.97290.
+\]
+The two sample sizes allow a normal approximation, so
+\[
+\Prob(D\le20)\approx\Phi\left(\frac{20-28}{1.97290}\right)
+=\Phi(-4.055)\approx\boxed{0.0000251}.
+\]
+The event is extremely unlikely under these population parameters.
+\end{solution}
+
+\begin{exercise}{8.30}
+Students' scores on a competitive examination have population mean $148$ and standard deviation $24$. Two independent random groups of sizes $42$ and $64$ are selected. Assuming sample means can be measured to any degree of accuracy, find the probability that their means differ by
+\begin{exercisesubparts}
+\item more than $12$ points;
+\item between $4$ and $10$ points.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+For $D=\bar X_1-\bar X_2$, the mean difference is $0$ and
+\[
+\Var(D)=\frac{24^2}{42}+\frac{24^2}{64},\qquad
+\sigma_D\approx4.76595.
+\]
+Using the normal approximation for the two independent sample means,
+\begin{exercisesubparts}
+\item The question concerns the absolute difference:
+\[
+\Prob(|D|>12)\approx2\left[1-\Phi\left(\frac{12}{4.76595}\right)\right]
+\approx\boxed{0.0118}.
+\]
+\item By symmetry,
+\[
+\begin{aligned}
+\Prob(4<|D|<10)
+&\approx2\left[\Phi\left(\frac{10}{4.76595}\right)
+-\Phi\left(\frac{4}{4.76595}\right)\right]\\
+&\approx\boxed{0.3654}.
+\end{aligned}
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.31}
+Two types of paint have population drying-time standard deviations of $1.0$ hour each. In independent samples of $18$ specimens per type, the observed difference of sample mean drying times is $\bar x_A-\bar x_B=1.0$ hour. Assume a normal approximation for the difference of sample means.
+\begin{exercisesubparts}
+\item Is this a reasonable result if the population means are equal? Use the probability from Case Study 8.2.
+\item If the experiment is repeated $10\,000$ times under $\mu_A=\mu_B$, how many experiments are expected to give $\bar x_A-\bar x_B\ge1.0$ hour?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Under $\mu_A=\mu_B$, the difference $D=\bar X_A-\bar X_B$ has
+\[
+\Exp[D]=0,\qquad
+\sigma_D=\sqrt{\frac{1}{18}+\frac{1}{18}}=\frac13\text{ hour}.
+\]
+\begin{exercisesubparts}
+\item A difference of at least one hour has probability
+\[
+\Prob(D\ge1)
+\approx1-\Phi\left(\frac{1}{1/3}\right)
+=1-\Phi(3)\approx\boxed{0.00135}.
+\]
+It is very rare under equal population means, so the observation is evidence against equality.
+\item The expected number of such experiments is
+\[
+10\,000(0.00135)\approx\boxed{13.5\text{ (about }13\text{--}14\text{ experiments)}}.
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.32}
+Two cereal-box filling machines have population weight variance $1\text{ oz}^2$ each. Independent samples of size $36$ have observed means $\bar x_A=4.5$ oz and $\bar x_B=4.7$ oz.
+\begin{exercisesubparts}
+\item Use the Central Limit Theorem to find $\Prob(\bar X_B-\bar X_A\ge0.2)$ when $\mu_A=\mu_B$.
+\item Does this experiment strongly support a difference between the two population means? Explain using part (a).
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Under equal means, $D=\bar X_B-\bar X_A$ has
+\[
+\Exp[D]=0,\qquad
+\Var(D)=\frac{1}{36}+\frac{1}{36}=\frac1{18}.
+\]
+\begin{exercisesubparts}
+\item By the CLT,
+\[
+\Prob(D\ge0.2)
+\approx1-\Phi\left(\frac{0.2}{\sqrt{1/18}}\right)
+=1-\Phi(0.8485)\approx\boxed{0.1981}.
+\]
+\item A difference at least this large in the observed direction occurs about $20\%$ of the time even if the population means coincide. Thus the observed difference does not strongly support unequal means.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.33}
+The benzene concentration in the discharge water of a chemical process must not exceed $7950$ parts per million (ppm). A random sample of $25$ measurements has mean $\bar x=7960$ ppm; the historical population standard deviation is $\sigma=100$ ppm.
+\begin{exercisesubparts}
+\item Use the Central Limit Theorem to find the probability that the sample mean exceeds $7950$ ppm if the population mean is exactly $7950$ ppm.
+\item Is the observed $\bar x=7960$ firm evidence that the population mean exceeds the limit? Under $\mu=7950$, calculate $\Prob(\bar X\ge7960)$.
+\end{exercisesubparts}
+Assume the benzene concentrations are normally distributed.
+\end{exercise}
+\begin{solution}
+Under $\mu=7950$, the sample mean is normally distributed with standard error
+\[
+\sigma_{\bar X}=\frac{100}{\sqrt{25}}=20\text{ ppm}.
+\]
+\begin{exercisesubparts}
+\item By symmetry of the normal distribution,
+\[
+\Prob(\bar X>7950)=\Prob(Z>0)=\boxed{0.5}.
+\]
+\item The observed excess is $10/20=0.5$ standard errors. Therefore
+\[
+\Prob(\bar X\ge7960)
+=1-\Phi(0.5)\approx\boxed{0.3085}.
+\]
+This outcome is not rare under the proposed mean, so it is not firm evidence that the population mean violates the limit.
+\end{exercisesubparts}
+\end{solution}
+
+\Needspace{22\baselineskip}
+\begin{exercise}{8.34}
+Two alloys A and B have population standard deviations of load capacity equal to $5$ tons each. Independent samples of $30$ specimens of each alloy give $\bar x_A=49.5$ and $\bar x_B=45.5$ tons, a difference of $4$ tons. Alloy A's manufacturers regard this as conclusive evidence that $\mu_A>\mu_B$, while alloy B's manufacturers argue that such a difference could arise by chance if the means were equal.
+\begin{exercisesubparts}
+\item Evaluate alloy B's argument by computing $\Prob(\bar X_A-\bar X_B>4)$ under $\mu_A=\mu_B$.
+\item Do the data strongly support alloy A? Explain.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Under equal population means, $D=\bar X_A-\bar X_B$ has
+\[
+\Exp[D]=0,\qquad
+\sigma_D=\sqrt{\frac{5^2}{30}+\frac{5^2}{30}}=\sqrt{\frac53}\approx1.291.
+\]
+\begin{exercisesubparts}
+\item Applying the normal approximation,
+\[
+\Prob(D>4)
+\approx1-\Phi\left(\frac{4}{\sqrt{5/3}}\right)
+=1-\Phi(3.0984)\approx\boxed{0.000973}.
+\]
+\item Such a large positive difference is extremely unlikely under equal means. The evidence strongly supports a greater mean load capacity for alloy A, although the sample does not establish that inequality with certainty.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.36}
+Let $X_1, X_2, \ldots, X_n$ be an independent random sample of strictly positive random variables. Assume that $\Exp[\ln X_1]$ and $\Var(\ln X_1)$ are finite, with positive variance. Use the Central Limit Theorem to argue that, for sufficiently large $n$, the product $Y=X_1X_2\cdots X_n$ is approximately lognormally distributed.
+\end{exercise}
+\begin{solution}
+Put $U_i=\ln X_i$, and write $\mu_U=\Exp[U_1]$ and $\sigma_U^2=\Var(U_1)$, where $0<\sigma_U^2<\infty$. Since the original sample is i.i.d., so is $(U_i)$, and
+\[
+\ln Y=\sum_{i=1}^n\ln X_i=\sum_{i=1}^n U_i.
+\]
+The Central Limit Theorem gives
+\[
+\frac{\ln Y-n\mu_U}{\sigma_U\sqrt n}\approx\Normal(0,1)
+\quad\text{for large }n.
+\]
+Thus $\ln Y$ is approximately normal with mean $n\mu_U$ and variance $n\sigma_U^2$. Since $Y=e^{\ln Y}>0$, it follows that $\boxed{Y\text{ is approximately lognormal}}$, with log-parameters $n\mu_U$ and $n\sigma_U^2$.
+\end{solution}
+
+\begin{exercise}{8.37}
+For a chi-squared distribution, find the right-tail critical values
+\begin{exercisesubparts}
+\item $\chi^2_{0.005}(10)$;
+\item $\chi^2_{0.05}(6)$;
+\item $\chi^2_{0.01}(16)$.
+\end{exercisesubparts}
+Here $\Prob(Q>\chi^2_\alpha(\nu))=\alpha$ for $Q\sim\chi^2_\nu$.
+\end{exercise}
+\begin{solution}
+Read the right-tail critical values from the chi-squared table, using the degrees of freedom in parentheses:
+\begin{exercisesubparts}
+\item $\boxed{\chi^2_{0.005}(10)\approx25.188}$.
+\item $\boxed{\chi^2_{0.05}(6)\approx12.592}$.
+\item $\boxed{\chi^2_{0.01}(16)\approx32.000}$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.38}
+For a chi-squared distribution, find
+\begin{exercisesubparts}
+\item $\chi^2_{0.025}(12)$;
+\item $\chi^2_{0.01}(14)$;
+\item $\chi^2_{0.95}(8)$.
+\end{exercisesubparts}
+Use the right-tail convention $\Prob(Q>\chi^2_\alpha(\nu))=\alpha$ for $Q\sim\chi^2_\nu$.
+\end{exercise}
+\begin{solution}
+The right-tail areas $0.025$, $0.01$, and $0.95$ determine the table columns:
+\begin{exercisesubparts}
+\item $\boxed{\chi^2_{0.025}(12)\approx23.337}$.
+\item $\boxed{\chi^2_{0.01}(14)\approx29.141}$.
+\item $\boxed{\chi^2_{0.95}(8)\approx2.733}$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.39}
+For $Q\sim\chi^2_\nu$, find $\chi^2_\alpha(\nu)$ satisfying
+\begin{exercisesubparts}
+\item $\Prob(Q>\chi^2_\alpha(5))=0.95$;
+\item $\Prob(Q>\chi^2_\alpha(13))=0.99$;
+\item $\Prob(19.68<Q<\chi^2_\alpha(11))=0.04$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The defining right-tail area is $\alpha=0.95$, so $\boxed{\chi^2_{0.95}(5)\approx1.145}$.
+\item Here $\alpha=0.99$, so $\boxed{\chi^2_{0.99}(13)\approx4.107}$.
+\item For $11$ degrees of freedom the table gives $19.68\approx\chi^2_{0.05}(11)$. Thus
+\[
+\begin{aligned}
+0.04&=\Prob(19.68<Q<\chi^2_\alpha(11))\\
+&\approx0.05-\alpha,
+\end{aligned}
+\]
+so $\alpha=0.01$ and $\boxed{\chi^2_{0.01}(11)\approx24.725}$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.40}
+For a chi-squared random variable $Q$ with the indicated degrees of freedom, find the critical value $\chi^2_\alpha(\nu)$ satisfying
+\begin{exercisesubparts}
+\item $\Prob(Q<\chi^2_\alpha(7))=0.95$, where $Q\sim\chi^2_7$;
+\item $\Prob(4.601<Q<\chi^2_\alpha(15))=0.005$, where $Q\sim\chi^2_{15}$;
+\item $\Prob(\chi^2_\alpha(19)<Q<32.852)=0.95$, where $Q\sim\chi^2_{19}$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The probability to the right is $\alpha=1-0.95=0.05$. Hence $\boxed{\chi^2_{0.05}(7)\approx14.067}$.
+\item The chi-square table gives $4.601\approx\chi^2_{0.995}(15)$, so
+\[
+0.005=\Prob(4.601<Q<\chi^2_\alpha(15))\approx0.995-\alpha.
+\]
+Thus $\alpha=0.99$ and $\boxed{\chi^2_{0.99}(15)\approx5.229}$.
+\item The table gives $32.852\approx\chi^2_{0.025}(19)$. The total left-tail probability at the lower limit must therefore be $0.975-0.95=0.025$, so its right-tail probability is $\alpha=0.975$. Thus $\boxed{\chi^2_{0.975}(19)\approx8.907}$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.41}
+Assume sample variances are measured continuously. A random sample of $30$ observations is taken from a normal population with variance $\sigma^2=5$. Find the probability that the sample variance $S^2$ is
+\begin{exercisesubparts}
+\item greater than $7.338$;
+\item between $2.766$ and $7.883$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Since the population is normal,
+\[
+Q=\frac{(n-1)S^2}{\sigma^2}=\frac{29S^2}{5}\sim\chi^2_{29}.
+\]
+\begin{exercisesubparts}
+\item The threshold is $29(7.338)/5\approx42.56$, the right-tail $0.05$ critical value for $29$ degrees of freedom. Thus
+\[
+\Prob(S^2>7.338)=\Prob(Q>42.56)\approx\boxed{0.05}.
+\]
+\item The two thresholds are
+\[
+\frac{29(2.766)}5\approx16.043,\qquad
+\frac{29(7.883)}5\approx45.721.
+\]
+These are approximately $\chi^2_{0.975}(29)$ and $\chi^2_{0.025}(29)$, leaving $0.025$ in each tail. Therefore
+\[
+\Prob(2.766<S^2<7.883)\approx\boxed{0.95}.
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.42}
+Placement-test scores over the past five years are approximately normally distributed with mean $74$ and variance $\sigma^2=8$. Would $\sigma^2=8$ still seem plausible if a random sample of $20$ students taking the test this year has sample variance $s^2=20$?
+\end{exercise}
+\begin{solution}
+Under the proposed variance $\sigma^2=8$ and the normal-population assumption,
+\[
+Q=\frac{(20-1)S^2}{8}\sim\chi^2_{19}.
+\]
+The observed statistic is $q=19(20)/8=47.5$, so the probability of a sample variance at least this large is
+\[
+\Prob(S^2\ge20\mid\sigma^2=8)
+=\Prob(\chi^2_{19}\ge47.5)\approx\boxed{0.000303}.
+\]
+This is an exceptionally rare outcome if the variance remains $8$, giving strong evidence that the old variance is no longer appropriate; it does not prove the new variance equals $20$.
+\end{solution}
+
+\begin{exercise}{8.43}
+Show that the variance of the sample variance $S^2$ for independent random samples of size $n$ from a normal population decreases as $n$ increases. Assume $n\ge2$ and population variance $\sigma^2>0$. \textit{Hint.} First find the variance of $(n-1)S^2/\sigma^2$.
+\end{exercise}
+\begin{solution}
+For a normal sample, the sample-variance sampling theorem gives
+\[
+Q=\frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1},
+\qquad \Var(Q)=2(n-1).
+\]
+Because $S^2=\sigma^2Q/(n-1)$,
+\[
+\begin{aligned}
+\Var(S^2)
+&=\left(\frac{\sigma^2}{n-1}\right)^2\Var(Q)\\
+&=\frac{\sigma^4}{(n-1)^2}\,2(n-1)
+=\boxed{\frac{2\sigma^4}{n-1}}.
+\end{aligned}
+\]
+For fixed $\sigma^2$, this variance decreases to $0$ as $n\to\infty$.
+\end{solution}
+
+\begin{exercise}{8.44}
+Find the following critical values of Student's $t$-distribution, where $t_\alpha(\nu)$ leaves probability $\alpha$ to its right:
+\begin{exercisesubparts}
+\item $t_{0.05}(16)$;
+\item $-t_{0.05}(12)$;
+\item $t_{0.95}(9)$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Using the right-tail $t$-table and the symmetry $t_{1-\alpha}(\nu)=-t_\alpha(\nu)$,
+\begin{exercisesubparts}
+\item $\boxed{t_{0.05}(16)\approx1.746}$.
+\item $\boxed{-t_{0.05}(12)\approx-1.782}$.
+\item $t_{0.95}(9)=-t_{0.05}(9)$, so $\boxed{t_{0.95}(9)\approx-1.833}$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.45}
+For $T\sim t_\nu$, find
+\begin{exercisesubparts}
+\item $\Prob(T<2.65)$ when $\nu=13$;
+\item $\Prob(T>2.06)$ when $\nu=25$;
+\item $\Prob(-1.74<T<2.567)$ when $\nu=17$;
+\item $\Prob(T>-2.06)$ when $\nu=25$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Using the $t$-table with right-tail areas and symmetry,
+\begin{exercisesubparts}
+\item $2.65\approx t_{0.01}(13)$, hence $\boxed{\Prob(T<2.65)\approx0.99}$.
+\item $2.06\approx t_{0.025}(25)$, hence $\boxed{\Prob(T>2.06)\approx0.025}$.
+\item $1.74\approx t_{0.05}(17)$ and $2.567\approx t_{0.01}(17)$. The omitted tails have areas $0.05$ and $0.01$, respectively, giving
+\[
+\boxed{\Prob(-1.74<T<2.567)\approx1-0.05-0.01=0.94}.
+\]
+\item By symmetry, $\Prob(T>-2.06)=\Prob(T<2.06)\approx\boxed{0.975}$.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.46}
+For a Student's $t$ random variable $T$, find
+\[
+\Prob(-t_{0.01}<T<t_{0.05}),
+\]
+where $t_\alpha$ denotes the right-tail critical value for the same degrees of freedom.
+\end{exercise}
+\begin{solution}
+By symmetry, the area to the left of $-t_{0.01}$ is $0.01$; the area to the right of $t_{0.05}$ is $0.05$. Hence
+\[
+\Prob(-t_{0.01}<T<t_{0.05})
+=1-0.01-0.05=\boxed{0.94}.
+\]
+\end{solution}
+
+\Needspace{18\baselineskip}
+\begin{exercise}{8.47}
+For a random sample of size $30$ from a normal population, let $T$ be the Student statistic. Find $k$ such that
+\begin{exercisesubparts}
+\item $\Prob(-1.699<T<k)=0.945$;
+\item $\Prob(k<T<2.045)=0.025$;
+\item $\Prob(-k<T<k)=0.98$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Here $T\sim t_{29}$. From the table, $1.699\approx t_{0.05}(29)$ and $2.045\approx t_{0.025}(29)$.
+\begin{exercisesubparts}
+\item The area to the left of $-1.699$ is $0.05$, so the area to the left of $k$ is $0.05+0.945=0.995$. Thus
+\[
+\boxed{k=t_{0.005}(29)\approx2.756}.
+\]
+\item The area to the left of $2.045$ is $0.975$. Hence the area to the left of $k$ must be $0.975-0.025=0.95$, and
+\[
+\boxed{k=t_{0.05}(29)\approx1.699}.
+\]
+\item The interval is symmetric and has two tails of size $0.01$, giving
+\[
+\boxed{k=t_{0.01}(29)\approx2.462}.
+\]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{8.48}
+A technical training firm claims a mean training time of $40$ hours. It checks $24$ trainees monthly and accepts the claim if the computed Student statistic lies between $-t_{0.025}$ and $t_{0.025}$. The observed mean and standard deviation are $\bar x=42$ hours and $s=6$ hours. What conclusion should the firm draw? Assume training times are approximately normally distributed.
+\end{exercise}
+\begin{solution}
+Using the claimed $\mu=40$, the observed Student statistic and its degrees of freedom are
+\[
+t=\frac{42-40}{6/\sqrt{24}}\approx1.633,\qquad\nu=23.
+\]
+The $t$-table gives $t_{0.025}(23)\approx2.069$. Since
+\[
+-2.069<1.633<2.069,
+\]
+the statistic lies inside the prescribed acceptance interval. The sample is compatible with the $40$-hour claim, so the firm has no reason, under its stated rule, to change the claimed mean.
+\end{solution}
+
+\begin{exercise}{8.49}
+A normal population has mean $15$ and unknown variance. Is it plausible to obtain a random sample of size $16$ with observed mean $18$ and sample standard deviation $3.8$? If not, what conclusion would you draw?
+\end{exercise}
+\begin{solution}
+Under the proposed population mean $\mu=15$,
+\[
+t=\frac{18-15}{3.8/\sqrt{16}}=\frac{3}{0.95}\approx3.158,
+\qquad\nu=15.
+\]
+The observed value exceeds $t_{0.005}(15)\approx2.947$, so it lies well into the upper tail. The two-sided probability of a deviation at least this extreme is
+\[
+2\Prob(t_{15}>3.158)\approx\boxed{0.0065}.
+\]
+Thus this sample would be unusual under $\mu=15$, giving evidence that the population mean is different from $15$ (in the direction of a larger mean).
+\end{solution}
+
+\Needspace{16\baselineskip}
+\begin{exercise}{8.50}
+A transport company claims that the mean bus running time on a particular route is $300$ minutes. The running times of six randomly observed buses are
+\[
+320,\ 310,\ 295,\ 312,\ 302,\ 308\text{ minutes}.
+\]
+Would you agree with the company's claim? Assume the running-time population is normal.
+\end{exercise}
+\begin{solution}
+The sample statistics are
+\[
+\bar x=\frac{1847}{6}\approx307.833,\qquad
+s^2=\frac{1}{5}\sum_{i=1}^{6}(x_i-\bar x)^2\approx73.7667,
+\quad s\approx8.589.
+\]
+Under $\mu=300$,
+\[
+t=\frac{\bar x-300}{s/\sqrt6}\approx2.234,\qquad\nu=5.
+\]
+Since $t_{0.025}(5)\approx2.571$, the observed statistic lies within the central $95\%$ interval. The two-sided tail probability is about $0.0758$. The data do not provide strong evidence against the company's $300$-minute claim at the usual $5\%$ level, though the sample mean is higher.
+\end{solution}
+
+\begin{exercise}{8.51}
+For an $F$-distribution, find the right-tail critical values
+\begin{exercisesubparts}
+\item $f_{0.01}(12,10)$;
+\item $f_{0.01}(10,12)$;
+\item $f_{0.05}(15,8)$;
+\item $f_{0.95}(10,5)$;
+\item $f_{0.99}(18,14)$.
+\end{exercisesubparts}
+The first and second degrees of freedom refer to the numerator and denominator, respectively.
+\end{exercise}
+\begin{solution}
+Use Table A.6 for upper-tail values and the reciprocal identity
+\[
+f_{1-\alpha}(\nu_1,\nu_2)=\frac{1}{f_\alpha(\nu_2,\nu_1)}.
+\]
+\begin{exercisesubparts}
+\item $\boxed{f_{0.01}(12,10)\approx4.71}$.
+\item $\boxed{f_{0.01}(10,12)\approx4.30}$.
+\item $\boxed{f_{0.05}(15,8)\approx3.22}$.
+\item $f_{0.95}(10,5)=1/f_{0.05}(5,10)$, hence $\boxed{f_{0.95}(10,5)\approx0.301}$.
+\item $f_{0.99}(18,14)=1/f_{0.01}(14,18)$, hence $\boxed{f_{0.99}(18,14)\approx0.306}$.
+\end{exercisesubparts}
+\end{solution}
+
+\Needspace{25\baselineskip}
+\begin{exercise}{8.52}
+Pull-strength tests on $10$ soldered leads for a semiconductor device give the following force measurements (lb) before encapsulation:
+\[
+\begin{array}{rrrrr}
+19.8&12.7&13.2&16.9&10.6\\
+18.8&11.1&14.3&17.0&12.5
+\end{array}
+\]
+A second set of $8$ leads tested after encapsulation gives
+\[
+\begin{array}{rrrr}
+24.9&22.8&23.6&22.1\\
+20.4&21.6&21.8&22.5
+\end{array}
+\]
+Comment on the evidence concerning equality of the population variances. For the $F$-distribution comparison, assume independent samples from normal populations.
+\end{exercise}
+\begin{solution}
+Let $S_1^2$ be the pre-encapsulation sample variance and $S_2^2$ the post-encapsulation variance. From the listed measurements,
+\[
+\begin{array}{c@{\qquad}cc}\toprule
+&\text{Before}&\text{After}\\\midrule
+n&10&8\\
+\bar x&14.6900&22.4625\\
+s^2&10.4410&1.8455\\\bottomrule
+\end{array}
+\]
+Under equal population variances and the normality assumption,
+\[
+F=\frac{S_1^2}{S_2^2}\sim F_{9,7},\qquad
+f_{\mathrm{obs}}=\frac{10.4410}{1.8455}\approx5.6574.
+\]
+The table gives $f_{0.05}(9,7)\approx3.68$ and $f_{0.01}(9,7)\approx6.72$, so the observed ratio is unusually large. The upper-tail probability is approximately $0.0162$ (and the two-sided probability about $0.0324$). There is evidence against equal population variances; the post-encapsulation sample shows less variability. This comparison does not by itself establish a causal reduction in variance.
+\end{solution}
+
+\begin{exercise}{8.53}
+The heat-producing capacities of coal from two mines (in millions of calories per ton) were measured as follows:
+\[
+\begin{array}{c@{\qquad}rrrrrr}\toprule
+\text{Mine 1}&8260&8130&8350&8070&8340&\text{---}\\
+\text{Mine 2}&7950&7890&7900&8140&7920&7840\\\bottomrule
+\end{array}
+\]
+Can the two population variances reasonably be regarded as equal? For the $F$-distribution comparison, assume independent samples from normal populations.
+\end{exercise}
+\begin{solution}
+The sample sizes and variances obtained from the data are
+\[
+\begin{array}{c@{\qquad}cc}\toprule
+&\text{Mine 1}&\text{Mine 2}\\\midrule
+n&5&6\\
+\bar x&8230&7940\\
+s^2&15750&10920\\\bottomrule
+\end{array}
+\]
+Under the equal-variance model,
+\[
+F=\frac{S_1^2}{S_2^2}\sim F_{4,5},\qquad
+f_{\mathrm{obs}}=\frac{15750}{10920}\approx1.4423.
+\]
+This is far below $f_{0.05}(4,5)\approx5.19$; its upper-tail probability is about $0.3436$. Therefore the observed difference in sample variances is quite plausible under equal population variances. The data give no strong evidence against equality, although they cannot establish exact equality.
+\end{solution}
+
+\begin{exercise}{8.64}
+Independent random samples of sizes $n_1=16$ and $n_2=27$ are taken from normal populations with variances $\sigma_1^2=8$ and $\sigma_2^2=14$, respectively. Find
+\[
+\Prob\left(\frac{S_1^2}{S_2^2}>1.873\right).
+\]
+\end{exercise}
+\begin{solution}
+For independent normal samples, the scaled variance ratio satisfies
+\[
+F=\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}
+=\frac{14}{8}\frac{S_1^2}{S_2^2}\sim F_{15,26}.
+\]
+Therefore
+\[
+\begin{aligned}
+\Prob\left(\frac{S_1^2}{S_2^2}>1.873\right)
+&=\Prob\left(F_{15,26}>1.873\cdot\frac{14}{8}\right)\\
+&=\Prob(F_{15,26}>3.27775)
+\approx\boxed{0.00388}.
+\end{aligned}
+\]
+In particular, the $F$-table has $f_{0.01}(15,26)\approx2.815<3.27775$, confirming that this probability is below $0.01$.
+\end{solution}
+
+\begin{exercise}{8.67}
+The breaking strength $X$ of a type of rivet has mean $5000$ psi and standard deviation $400$ psi. Consider the mean $\bar X$ of an independent random sample.
+\begin{exercisesubparts}
+\item For a sample of size $36$, find $\Prob(4800<\bar X<5200)$.
+\item Using the normal approximation, find the smallest integer sample size $n$ for which $\Prob(4900<\bar X<5100)$ is at least $0.99$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item For $n=36$, the standard error is $400/\sqrt{36}=400/6$. By the CLT,
+\[
+\begin{aligned}
+\Prob(4800<\bar X<5200)
+&\approx\Prob(-3<Z<3)
+=2\Phi(3)-1\\
+&\approx\boxed{0.9973}.
+\end{aligned}
+\]
+\item For general $n$, the CLT gives
+\[
+\Prob(4900<\bar X<5100)
+\approx2\Phi\left(\frac{100\sqrt n}{400}\right)-1.
+\]
+The normal approximation reaches at least $0.99$ when
+\[
+\frac{\sqrt n}{4}\ge\Phi^{-1}(0.995)\approx2.575829,
+\quad\text{so}\quad
+n\ge(4\cdot2.575829)^2\approx106.158.
+\]
+Hence the minimum integer sample size under this approximation is $\boxed{n=107}$.
+\end{exercisesubparts}
+\end{solution}
+
+\end{document}
