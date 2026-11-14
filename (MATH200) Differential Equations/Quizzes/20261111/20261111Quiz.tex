@@ -14,6 +14,236 @@
 
 \quiztitle{20261111 Quiz}
 
+% Boyce Section 6.1, Problem 6.
+\begin{problem}{6.1.6}
+Use the linearity of the Laplace transform to find the Laplace transform of
+\[
+    f(t)=e^{at}\cosh(bt),
+\]
+where $a$ and $b$ are real constants.
+\end{problem}
+
+\begin{solution}
+Using $\cosh(bt)=(e^{bt}+e^{-bt})/2$, we have
+\[
+    f(t)=\frac12e^{(a+b)t}+\frac12e^{(a-b)t}.
+\]
+By linearity,
+\[
+    \begin{aligned}
+    \mathcal{L}\{f(t)\}(s)
+      &=\frac12\left(\frac{1}{s-a-b}+\frac{1}{s-a+b}\right)\\
+      &=\boxed{\frac{s-a}{(s-a)^2-b^2}},\qquad s>a+|b|.
+    \end{aligned}
+\]
+\end{solution}
+
+% Boyce Section 6.1, Problem 7.
+\begin{problem}{6.1.7}
+Use the linearity of the Laplace transform to find the Laplace transform of
+\[
+    f(t)=e^{at}\sinh(bt),
+\]
+where $a$ and $b$ are real constants.
+\end{problem}
+
+\begin{solution}
+Since $\sinh(bt)=(e^{bt}-e^{-bt})/2$, linearity gives
+\[
+    \begin{aligned}
+    \mathcal{L}\{f(t)\}(s)
+      &=\frac12\left(\frac{1}{s-a-b}-\frac{1}{s-a+b}\right)\\
+      &=\boxed{\frac{b}{(s-a)^2-b^2}},\qquad s>a+|b|.
+    \end{aligned}
+\]
+\end{solution}
+
+% Boyce Section 6.1, Problem 10.
+\begin{problem}{6.1.10}
+Use the linearity of the Laplace transform to find the Laplace transform of
+\[
+    f(t)=e^{at}\cos(bt),
+\]
+where $a$ and $b$ are real constants.
+\end{problem}
+
+\begin{solution}
+Euler's formula yields
+\[
+    e^{at}\cos(bt)=\frac12\left(e^{(a+ib)t}+e^{(a-ib)t}\right).
+\]
+Thus, using the exponential transform and combining the conjugate terms,
+\[
+    \begin{aligned}
+    \mathcal{L}\{f(t)\}(s)
+      &=\frac12\left(\frac{1}{s-a-ib}+\frac{1}{s-a+ib}\right)\\
+      &=\boxed{\frac{s-a}{(s-a)^2+b^2}},\qquad s>a.
+    \end{aligned}
+\]
+\end{solution}
+
+% Boyce Section 6.1, Problem 11.
+\begin{problem}{6.1.11}
+Use the linearity of the Laplace transform to find the Laplace transform of
+\[
+    f(t)=e^{at}\sin(bt),
+\]
+where $a$ and $b$ are real constants.
+\end{problem}
+
+\begin{solution}
+Using $\sin(bt)=(e^{ibt}-e^{-ibt})/(2i)$, we obtain
+\[
+    \begin{aligned}
+    \mathcal{L}\{f(t)\}(s)
+      &=\frac{1}{2i}\left(\frac{1}{s-a-ib}-\frac{1}{s-a+ib}\right)\\
+      &=\boxed{\frac{b}{(s-a)^2+b^2}},\qquad s>a.
+    \end{aligned}
+\]
+\end{solution}
+
+% Boyce Section 6.1, Problem 18.
+\begin{problem}{6.1.18}
+Find the Laplace transform of the function
+\[
+    f(t)=
+    \begin{cases}
+        t, & 0\leq t<3,\\
+        1, & t\geq3.
+    \end{cases}
+\]
+\end{problem}
+
+\begin{solution}
+The definition of the Laplace transform gives
+\[
+    \begin{aligned}
+    \mathcal{L}\{f(t)\}(s)
+      &=\int_0^3te^{-st}\,\dd t+\int_3^\infty e^{-st}\,\dd t\\
+      &=\frac{1-(1+3s)e^{-3s}}{s^2}+\frac{e^{-3s}}{s}.
+    \end{aligned}
+\]
+Consequently,
+\[
+    \boxed{\mathcal{L}\{f(t)\}(s)=\frac{1-(1+2s)e^{-3s}}{s^2}},
+    \qquad s>0.
+\]
+\end{solution}
+
+% Boyce Section 6.2, Problem 2.
+\begin{problem}{6.2.2}
+Find the inverse Laplace transform of
+\[
+    F(s)=\frac{5}{(s-1)^3}.
+\]
+\end{problem}
+
+\begin{solution}
+Since $\mathcal{L}\{t^2e^t\}(s)=2/(s-1)^3$, we get
+\[
+    \boxed{\mathcal{L}^{-1}\{F(s)\}(t)=\frac52t^2e^t}.
+\]
+\end{solution}
+
+% Boyce Section 6.2, Problem 6.
+\begin{problem}{6.2.6}
+Find the inverse Laplace transform of
+\[
+    F(s)=\frac{8s^2-6s+12}{s(s^2+4)}.
+\]
+\end{problem}
+
+\begin{solution}
+The partial fraction decomposition is
+\[
+    \frac{8s^2-6s+12}{s(s^2+4)}
+    =\frac{3}{s}+\frac{5s-6}{s^2+4}.
+\]
+Hence
+\[
+    \boxed{\mathcal{L}^{-1}\{F(s)\}(t)=3+5\cos(2t)-3\sin(2t)}.
+\]
+\end{solution}
+
+% Boyce Section 6.2, Problem 7.
+\begin{problem}{6.2.7}
+Find the inverse Laplace transform of
+\[
+    F(s)=\frac{3-2s}{s^2+4s+5}.
+\]
+\end{problem}
+
+\begin{solution}
+Completing the square and rearranging the numerator,
+\[
+    F(s)=\frac{-2(s+2)+7}{(s+2)^2+1}.
+\]
+Thus
+\[
+    \boxed{\mathcal{L}^{-1}\{F(s)\}(t)
+    =e^{-2t}(-2\cos t+7\sin t)}.
+\]
+\end{solution}
+
+% Boyce Section 6.2, Problem 14.
+\begin{problem}{6.2.14}
+Use the Laplace transform to solve the initial value problem
+\[
+    y^{(4)}-4y'''+6y''-4y'+y=0,
+\]
+\[
+    y(0)=0,\qquad y'(0)=1,\qquad y''(0)=0,\qquad y'''(0)=1.
+\]
+\end{problem}
+
+\begin{solution}
+Let $Y(s)=\mathcal{L}\{y(t)\}(s)$. Taking transforms and using all four initial conditions gives
+\[
+    (s^4-4s^3+6s^2-4s+1)Y(s)=s^2-4s+7.
+\]
+Since the polynomial on the left is $(s-1)^4$,
+\[
+    \begin{aligned}
+    Y(s)
+       &=\frac{s^2-4s+7}{(s-1)^4}\\
+       &=\frac{1}{(s-1)^2}-\frac{2}{(s-1)^3}
+         +\frac{4}{(s-1)^4}.
+    \end{aligned}
+\]
+Taking inverse transforms,
+\[
+    \boxed{y(t)=e^t\left(t-t^2+\frac23t^3\right)}.
+\]
+This expression satisfies the differential equation and the four prescribed initial conditions.
+\end{solution}
+
+% Boyce Section 6.2, Problem 15.
+\begin{problem}{6.2.15}
+Use the Laplace transform to solve the initial value problem
+\[
+    y''-2y'+2y=\cos t,\qquad y(0)=1,\qquad y'(0)=1.
+\]
+\end{problem}
+
+\begin{solution}
+Taking Laplace transforms yields
+\[
+    (s^2-2s+2)Y(s)=s-1+\frac{s}{s^2+1}.
+\]
+Partial fractions give
+\[
+    Y(s)=\frac{4(s-1)+3}{5((s-1)^2+1)}
+          +\frac{s-2}{5(s^2+1)}.
+\]
+Therefore
+\[
+    \boxed{y(t)=\frac15\left(e^t(4\cos t+3\sin t)
+                       +\cos t-2\sin t\right)}.
+\]
+The solution satisfies both initial conditions and the given differential equation.
+\end{solution}
+
+
 % Boyce Section 6.3, Problem 1.
 \begin{problem}{6.3.1}
 Sketch the graph of the function
