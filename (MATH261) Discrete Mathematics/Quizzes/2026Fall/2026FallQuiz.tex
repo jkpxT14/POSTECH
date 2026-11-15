@@ -121,4 +121,44 @@ Conversely, given any strictly increasing sequence $1\leq b_1<\cdots<b_k\leq n-k
 \]
 \end{solution}
 
+
+
+\begin{problem}{3.1}
+Give an example of a graph $G=(V,E)$ satisfying both of the following conditions:
+\begin{problemchoices}
+\item $|V|\geq3$ and $|E|\geq3$.
+\item For any $e_1,e_2\in E$, the graphs $(V,E\setminus\{e_1\})$ and $(V,E\setminus\{e_2\})$ are isomorphic.
+\end{problemchoices}
+Prove that your example satisfies these conditions.
+\end{problem}
+
+\begin{solution}
+Each of the following graphs satisfies both conditions.
+\begin{itemize}[leftmargin=2em,itemsep=0.35em,topsep=0.4em,parsep=0pt]
+\item \emph{Cycle graphs.} For $n\geq3$, the cycle $C_n$ has $n$ vertices and $n$ edges. Deleting any edge leaves the path $P_n$, so all single-edge deletions are isomorphic.
+\item \emph{Complete graphs.} For $n\geq3$, the graph $K_n$ has $n$ vertices and $\binom{n}{2}\geq3$ edges. Given edges $e_1=\{a,b\}$ and $e_2=\{c,d\}$, choose a permutation of the vertices sending $a$ to $c$ and $b$ to $d$. It induces an isomorphism $K_n-e_1\cong K_n-e_2$.
+\item \emph{Star graphs.} For $n\geq4$, the star $K_{1,n-1}$ has $n$ vertices and $n-1\geq3$ edges. Deleting any edge leaves $K_{1,n-2}$ together with one isolated vertex, independently of the deleted edge.
+\end{itemize}
+These examples are \emph{edge-transitive}: for any two edges, an automorphism (an isomorphism from the graph to itself) maps one to the other. More generally, edge-transitivity guarantees the required edge-deletion property.
+\end{solution}
+
+\begin{problem}{3.2}
+Let $V=\{1,\ldots,1000\}$ and let $E_1,E_2\subseteq V\times V$ be defined by
+\[
+\begin{aligned}
+    (u,v)\in E_1 &\iff |u-v|\text{ is odd},\\
+    (u,v)\in E_2 &\iff |u-v|\text{ is even}.
+\end{aligned}
+\]
+Prove or disprove that the graphs $G_1=(V,E_1)$ and $G_2=(V,E_2)$ are isomorphic.
+\end{problem}
+
+\begin{solution}[1]
+In $G_1$, vertices of opposite parity are adjacent, and any two distinct vertices of the same parity are joined by a path of length $2$ through a vertex of opposite parity. Thus $G_1$ is connected. In $G_2$, every edge joins vertices of the same parity, so there is no path between vertices $1$ and $2$. Hence $G_2$ is disconnected. Since connectedness is preserved by graph isomorphisms, $G_1\not\cong G_2$.
+\end{solution}
+
+\begin{solution}[2]
+Every vertex $v\in V$ has exactly $500$ neighbors distinct from $v$ in $G_1$, namely the vertices of opposite parity. In $G_2$, it has exactly $499$ such neighbors, namely the other vertices of the same parity. An isomorphism preserves the number of neighbors distinct from each vertex, so $G_1\not\cong G_2$. Counting only distinct neighbors avoids any ambiguity from the loops $(v,v)\in E_2$ in the given definition.
+\end{solution}
+
 \end{document}

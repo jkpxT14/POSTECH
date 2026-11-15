@@ -75,14 +75,14 @@ $\rnd_{E, M}\colon\R\to\overline{\mathbb F}_{E, M}$ is
  \rnd_{E, M}(x)=
  \begin{cases}
  -\infty, &x\le-K_{E, M}, \\
- \displaystyle\operatorname*{arg\, min}_{y\in\mathbb F_{E, M}}
- |x-y|, &|x|<K_{E, M}, \\
+ \text{nearest value in }\mathbb F_{E, M}, &|x|<K_{E, M}, \\
  +\infty, &x\ge K_{E, M}.
  \end{cases}
 \]
-At equal distances choose the value with an even least significant
-stored significand bit. In particular, a tie near zero is rounded
-to zero. The selected result is unique.
+The nearest-value choice is made by minimizing $|x-y|$ over
+$y\in\mathbb F_{E, M}$. At equal distances choose the value
+with an even least significant stored significand bit. In particular,
+a tie near zero is rounded to zero. Thus the selected value is unique.
 \end{definition}
 
 \begin{proposition}[Monotonicity of Rounding]

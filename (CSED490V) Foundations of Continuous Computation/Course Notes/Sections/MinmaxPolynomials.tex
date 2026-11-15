@@ -1,0 +1,81 @@
+\section{Minmax Polynomials}
+
+Weierstrass's theorem shows that polynomials approximate every
+continuous function arbitrarily well if their degrees are
+unrestricted. We now fix the degree and seek the smallest
+possible uniform error.
+
+\begin{definition}[Minmax Polynomial]
+Let $f\in C([a, b])$ and $n\in\Nzero$. A polynomial
+$p_n^*\in P_n$ is called a \emph{minmax polynomial} of $f$
+of degree at most $n$ if
+\[
+ \|f-p_n^*\|_\infty
+ \le\|f-p\|_\infty\qquad(p\in P_n).
+\]
+Equivalently, $p_n^*$ minimizes
+$\max_{x\in[a, b]}|f(x)-p(x)|$ over $p\in P_n$.
+\end{definition}
+
+A minimum need not exist for an arbitrary optimization problem:
+$x^2$ has no minimizer on $\{x\in\R\mid|x|>1\}$.
+Nor must it be unique: on $\{x\in\R\mid|x|\ge1\}$,
+its two minimizers are $-1$ and $1$. Existence and uniqueness
+of minmax polynomials therefore require justification.
+
+\Needspace{11\baselineskip}
+\begin{example}[Degree-Zero Minmax Polynomial]
+Let $m=\min_{x\in[a, b]}f(x)$ and
+$M=\max_{x\in[a, b]}f(x)$. Since $f$ is continuous,
+these extrema are attained. For any constant $c$,
+\[
+ \|f-c\|_\infty=\max\{|M-c|, |m-c|\}
+ \ge\frac{M-m}{2}.
+\]
+The constant
+\[
+ c=\frac{M+m}{2}
+\]
+achieves equality, so it is a degree-zero minmax polynomial,
+with error $(M-m)/2$. It is unique: if the error is at most
+$(M-m)/2$, then necessarily
+\[
+ M-\frac{M-m}{2}\le c\le m+\frac{M-m}{2},
+\]
+forcing $c=(M+m)/2$.
+\end{example}
+
+\begin{theorem}[Existence of Minmax Polynomials]
+Let $a<b$, $f\in C([a, b])$, and $n\in\Nzero$. Then there
+exists a minmax polynomial $p_n^*\in P_n$ of $f$.
+\end{theorem}
+\begin{proof}
+The vector space $P_n$, equipped with $\|\cdot\|_\infty$,
+is finite-dimensional. Fix
+\[
+ C=2\|f\|_\infty+1>0,
+ \qquad
+ K=\{p\in P_n\mid\|p\|_\infty\le C\}.
+\]
+Since closed bounded subsets of a finite-dimensional normed
+space are compact, $K$ is compact. Moreover,
+$p\mapsto\|f-p\|_\infty$ is continuous because
+\[
+ \bigl|\|f-p\|_\infty-\|f-q\|_\infty\bigr|
+ \le\|p-q\|_\infty.
+\]
+By the Extreme Value Theorem, some $p_n^*\in K$ minimizes
+$\|f-p\|_\infty$ over $K$. Since $0\in K$,
+\[
+ \|f-p_n^*\|_\infty\le\|f\|_\infty.
+\]
+On the other hand, if $q\in P_n\setminus K$, then
+\[
+ \|f-q\|_\infty
+ \ge\|q\|_\infty-\|f\|_\infty
+ >C-\|f\|_\infty
+ >\|f-p_n^*\|_\infty.
+\]
+Thus no polynomial outside $K$ improves the minimum, and
+$p_n^*$ minimizes the error over all of $P_n$.
+\end{proof}

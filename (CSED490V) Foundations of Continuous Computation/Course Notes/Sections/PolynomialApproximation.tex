@@ -1,0 +1,117 @@
+\section{Polynomial Approximation}
+
+\noindent\textbf{Function evaluation.}
+We have studied computable real numbers and floating-point arithmetic.
+We now ask how to evaluate a continuous function
+$f\colon\R\to\R$ at $x\in\mathbb F$ efficiently and to a prescribed
+accuracy. Computability guarantees arbitrarily accurate approximations,
+but does not by itself make their computation efficient.
+
+For example, to evaluate $\exp(x)$ we may choose a Taylor degree $n$,
+compute the rational Taylor approximation
+\[
+ 1+x+\frac{x^2}{2!}+\cdots+\frac{x^n}{n!}
+\]
+exactly using big-integer arithmetic, and finally round to the target
+floating-point format. This can be expensive: exact rational
+arithmetic is slower than floating-point arithmetic, large $|x|$
+may require large $n$, and near $x=0$ an unnecessarily large degree
+may be suboptimal. The goal is therefore to choose an effective
+approximation and evaluate it with inexpensive floating-point
+operations. We will treat the approximation problem first,
+assuming exact arithmetic; rounding during evaluation is a
+separate issue.
+
+\begin{definition}[Polynomial Approximation]
+Let $a<b$ and let $C([a, b])$ denote the continuous real-valued
+functions on $[a, b]$. In this section and the next, write
+\[
+ \begin{aligned}
+ P_n&\coloneqq\left\{\sum_{k=0}^n c_kx^k\ \middle|\ c_k\in\R\right\},
+       \qquad n\in\Nzero, \\
+ P&\coloneqq\bigcup_{n=0}^{\infty}P_n.
+ \end{aligned}
+\]
+For $f\in C([a, b])$ and $p\in P$, the \emph{uniform} and
+\emph{$L^2$ approximation errors} are, respectively,
+\[
+ \|f-p\|_\infty
+ =\max_{x\in[a, b]}|f(x)-p(x)|,
+ \qquad
+ \|f-p\|_2
+ =\left(\int_a^b|f(x)-p(x)|^2\,\dd x\right)^{1/2}.
+\]
+We focus on uniform approximation: find $p\in P$ that makes
+$\|f-p\|_\infty$ small, then evaluate $p$ on a computer.
+\end{definition}
+
+Polynomials are attractive because floating-point addition,
+multiplication, and fused multiply-add are directly supported by
+hardware. Rational functions may sometimes be even more efficient or
+accurate; for instance, a term of the form
+$1/(\pi/2-x)$ can capture the behavior of $\tan x$ near $\pi/2$.
+
+The approximation problem raises three questions:
+\begin{enumerate}[label=(\roman*)]
+ \item \emph{Universal approximation:} can every
+ $f\in C([a, b])$ be uniformly approximated arbitrarily well by polynomials?
+ \item \emph{Best approximation:} for a fixed degree bound $n$,
+ does a polynomial minimizing $\|f-p\|_\infty$ exist, and is it unique?
+ \item \emph{Construction:} how can such a best polynomial be computed?
+\end{enumerate}
+The first question is answered here; the other two lead to
+minmax polynomials.
+
+\Needspace{12\baselineskip}
+\begin{theorem}[Weierstrass Approximation Theorem]
+For every $f\in C([a, b])$ and $\varepsilon>0$, there exists
+$p\in P$ such that
+\[
+ \|f-p\|_\infty<\varepsilon.
+\]
+\end{theorem}
+\begin{proof}
+It suffices to work on $[0, 1]$. Indeed, for a given
+$f\in C([a, b])$, define $g(t)=f(a+(b-a)t)$ on $[0, 1]$.
+If $q$ approximates $g$ uniformly within $\varepsilon$,
+then $p(x)=q((x-a)/(b-a))$ is a polynomial satisfying
+$\|f-p\|_\infty<\varepsilon$.
+
+Now let $f\in C([0, 1])$. For $n\ge1$ and $x\in[0, 1]$,
+let $X_n$ satisfy $nX_n\sim\Bin(n, x)$.
+Then
+\[
+ \Exp[X_n]=x,
+ \qquad \Var(X_n)=\frac{x(1-x)}n
+ \le\frac1{4n}.
+\]
+Consider the \emph{Bernstein polynomial}
+\[
+ \begin{aligned}
+ f_n(x)
+ &\coloneqq\Exp[f(X_n)]\\
+ &=\sum_{k=0}^n\binom nk x^k(1-x)^{n-k}f(k/n).
+ \end{aligned}
+\]
+Each $f_n$ is a polynomial of degree at most $n$.
+
+Since $f$ is uniformly continuous on $[0, 1]$, choose
+$\delta>0$ such that
+$|s-t|<\delta$ implies $|f(s)-f(t)|<\varepsilon/2$.
+Split the expectation according to
+$|X_n-x|<\delta$ and $|X_n-x|\ge\delta$. Using
+$|f(s)-f(t)|\le2\|f\|_\infty$ and Chebyshev's inequality,
+we obtain, uniformly in $x$,
+\[
+ \begin{aligned}
+ |f_n(x)-f(x)|
+ &\le\Exp[|f(X_n)-f(x)|]\\
+ &\le\frac\varepsilon2
+    +2\|f\|_\infty\Prob(|X_n-x|\ge\delta)\\
+ &\le\frac\varepsilon2
+    +\frac{\|f\|_\infty}{2n\delta^2}.
+ \end{aligned}
+\]
+Choose $n>\|f\|_\infty/(\varepsilon\delta^2)$.
+Then $\|f-f_n\|_\infty<\varepsilon$, completing the proof.
+\end{proof}

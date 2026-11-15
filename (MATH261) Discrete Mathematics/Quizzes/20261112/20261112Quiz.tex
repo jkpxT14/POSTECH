@@ -242,21 +242,21 @@ isomorphism or provide a rigorous argument that none exists.
 \begin{minipage}{0.48\textwidth}\centering
 \begin{tikzpicture}[x=1cm,y=1cm,scale=1.46]
 \coordinate (u0) at (0.000,1.480);
-\node[font=\small,inner sep=0pt] at (0.000,1.990) {$u_{1}$};
+\node[font=\small,inner sep=0pt] at (0.000,1.840) {$u_{1}$};
 \coordinate (u1) at (1.047,1.047);
-\node[font=\small,inner sep=0pt] at (1.407,1.407) {$u_{2}$};
+\node[font=\small,inner sep=0pt] at (1.301,1.301) {$u_{2}$};
 \coordinate (u2) at (1.480,0.000);
-\node[font=\small,inner sep=0pt] at (1.990,0.000) {$u_{3}$};
+\node[font=\small,inner sep=0pt] at (1.840,0.000) {$u_{3}$};
 \coordinate (u3) at (1.047,-1.047);
-\node[font=\small,inner sep=0pt] at (1.407,-1.407) {$u_{4}$};
+\node[font=\small,inner sep=0pt] at (1.301,-1.301) {$u_{4}$};
 \coordinate (u4) at (0.000,-1.480);
-\node[font=\small,inner sep=0pt] at (0.000,-1.990) {$u_{5}$};
+\node[font=\small,inner sep=0pt] at (0.000,-1.840) {$u_{5}$};
 \coordinate (u5) at (-1.047,-1.047);
-\node[font=\small,inner sep=0pt] at (-1.407,-1.407) {$u_{6}$};
+\node[font=\small,inner sep=0pt] at (-1.301,-1.301) {$u_{6}$};
 \coordinate (u6) at (-1.480,-0.000);
-\node[font=\small,inner sep=0pt] at (-1.990,-0.000) {$u_{7}$};
+\node[font=\small,inner sep=0pt] at (-1.840,-0.000) {$u_{7}$};
 \coordinate (u7) at (-1.047,1.047);
-\node[font=\small,inner sep=0pt] at (-1.407,1.407) {$u_{8}$};
+\node[font=\small,inner sep=0pt] at (-1.301,1.301) {$u_{8}$};
 \draw[quizedge] (u0) -- (u1);
 \draw[quizedge] (u0) -- (u3);
 \draw[quizedge] (u0) -- (u4);
@@ -290,21 +290,21 @@ isomorphism or provide a rigorous argument that none exists.
 \begin{minipage}{0.48\textwidth}\centering
 \begin{tikzpicture}[x=1cm,y=1cm,scale=1.46]
 \coordinate (v0) at (0.000,1.480);
-\node[font=\small,inner sep=0pt] at (0.000,1.990) {$v_{1}$};
+\node[font=\small,inner sep=0pt] at (0.000,1.840) {$v_{1}$};
 \coordinate (v1) at (1.047,1.047);
-\node[font=\small,inner sep=0pt] at (1.407,1.407) {$v_{2}$};
+\node[font=\small,inner sep=0pt] at (1.301,1.301) {$v_{2}$};
 \coordinate (v2) at (1.480,0.000);
-\node[font=\small,inner sep=0pt] at (1.990,0.000) {$v_{3}$};
+\node[font=\small,inner sep=0pt] at (1.840,0.000) {$v_{3}$};
 \coordinate (v3) at (1.047,-1.047);
-\node[font=\small,inner sep=0pt] at (1.407,-1.407) {$v_{4}$};
+\node[font=\small,inner sep=0pt] at (1.301,-1.301) {$v_{4}$};
 \coordinate (v4) at (0.000,-1.480);
-\node[font=\small,inner sep=0pt] at (0.000,-1.990) {$v_{5}$};
+\node[font=\small,inner sep=0pt] at (0.000,-1.840) {$v_{5}$};
 \coordinate (v5) at (-1.047,-1.047);
-\node[font=\small,inner sep=0pt] at (-1.407,-1.407) {$v_{6}$};
+\node[font=\small,inner sep=0pt] at (-1.301,-1.301) {$v_{6}$};
 \coordinate (v6) at (-1.480,-0.000);
-\node[font=\small,inner sep=0pt] at (-1.990,-0.000) {$v_{7}$};
+\node[font=\small,inner sep=0pt] at (-1.840,-0.000) {$v_{7}$};
 \coordinate (v7) at (-1.047,1.047);
-\node[font=\small,inner sep=0pt] at (-1.407,1.407) {$v_{8}$};
+\node[font=\small,inner sep=0pt] at (-1.301,1.301) {$v_{8}$};
 \draw[quizedge] (v0) -- (v1);
 \draw[quizedge] (v0) -- (v2);
 \draw[quizedge] (v0) -- (v4);
@@ -429,6 +429,7 @@ either exhibit an isomorphism or provide a rigorous argument that none exists.
 % G4: reproduce the HW4 layout, correcting only alignments and angles.
 % Source vertices are p0,...,p9; retain all 15 original edges.
 \begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[rotate=90]
   \coordinate (p0) at (-1.48,1.06);
   \coordinate (p1) at (0.16,1.06);
   \coordinate (p2) at (0.43,1.76);
@@ -443,6 +444,7 @@ either exhibit an isomorphism or provide a rigorous argument that none exists.
     \draw[quizedge] (p\u)--(p\v);%
   }
   \foreach \i in {0,...,9}{\node[quizvertex] at (p\i) {};}
+  \end{scope}
   \node at (0,-2.00) {$G_4$};
   \path[use as bounding box] (-2.05,-2.26) rectangle (2.05,1.91);
 \end{tikzpicture}
