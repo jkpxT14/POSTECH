@@ -126,15 +126,17 @@ Let $C$ be the positively oriented circle $|z|=3$. In each case, Cauchy's residu
         \boxed{\int_C\frac{e^{-z}}{z^2}\,\dd z=-2\pi i.}
     \]
 
-    \item The only pole is the double pole $z=1$. Expanding $e^{-z}$ about $1$ gives
+    \item The only pole is the double pole $z=1$. Let $g(z)=e^{-z}$. Its Taylor expansion about $1$ gives
     \[
     \begin{aligned}
-        \frac{e^{-z}}{(z-1)^2}
-        &=\frac{e^{-1}(1-(z-1)+(z-1)^2/2!-\cdots)}{(z-1)^2}\\
-        &=\frac{e^{-1}}{(z-1)^2}-\frac{e^{-1}}{z-1}+\cdots.
+        \frac{g(z)}{(z-1)^2}
+        &=\frac{g(1)}{(z-1)^2}+\frac{g'(1)}{z-1}+\cdots,\\
+        \Res(f; 1)&=g'(1)
+        =\left.\frac{\dd}{\dd z}e^{-z}\right|_{z=1}
+        =-\frac1e.
     \end{aligned}
     \]
-    Hence $\Res(f; 1)=-e^{-1}$, the derivative of $e^{-z}$ at $z=1$, and
+    Therefore
     \[
         \boxed{\int_C\frac{e^{-z}}{(z-1)^2}\,\dd z=-\frac{2\pi i}{e}.}
     \]
@@ -150,12 +152,11 @@ Let $C$ be the positively oriented circle $|z|=3$. In each case, Cauchy's residu
         \boxed{\int_C z^2e^{1/z}\,\dd z=\frac{\pi i}{3}.}
     \]
 
-    \item The simple poles $0$ and $2$ both lie inside $C$. For a simple pole $a$,
-    $\Res(f; a)=\lim_{z\to a}(z-a)f(z)$, so
+    \item The simple poles $0$ and $2$ both lie inside $C$. Canceling the factor that vanishes at each pole and taking the limit gives
     \[
     \begin{aligned}
-        \Res(f; 0)&=\lim_{z\to0}\frac{z+1}{z-2}=-\frac12,\\
-        \Res(f; 2)&=\lim_{z\to2}\frac{z+1}{z}=\frac32.
+        \Res(f; 0)&=\displaystyle\lim_{z\to0}\frac{z+1}{z-2}=-\frac12,\\
+        \Res(f; 2)&=\displaystyle\lim_{z\to2}\frac{z+1}{z}=\frac32.
     \end{aligned}
     \]
     The residues sum to $1$. Therefore
@@ -324,7 +325,7 @@ has simple poles at $1$, $3i$, and $-3i$.
 \begin{exercisesubparts}
     \item Only $z=1$ lies inside $|z-2|=2$. Since it is a simple pole,
     \[
-        \Res(f; 1)=\lim_{z\to1}(z-1)f(z)
+        \Res(f; 1)=\displaystyle\lim_{z\to1}(z-1)f(z)
         =\left.\frac{3z^3+2}{z^2+9}\right|_{z=1}=\frac12.
     \]
     Hence
@@ -336,13 +337,13 @@ has simple poles at $1$, $3i$, and $-3i$.
     \[
     \begin{aligned}
         \Res(f; 3i)
-        &=\lim_{z\to3i}(z-3i)f(z)\\
+        &=\displaystyle\lim_{z\to3i}(z-3i)f(z)\\
         &=\frac{3(3i)^3+2}{(3i-1)(6i)}
          =\frac{2-81i}{-18-6i}
          =\frac54+\frac{49}{12}i.
     \end{aligned}
     \]
-    Since $f$ has real coefficients,
+    Since $f(\overline{z})=\overline{f(z)}$, the residues at conjugate simple poles are conjugates. Thus
     \[
         \Res(f; -3i)=\overline{\Res(f; 3i)}
         =\frac54-\frac{49}{12}i.
@@ -373,7 +374,7 @@ The integrand has a pole of order $3$ at $0$ and a simple pole at $-4$. Write $f
     =\frac1{2!}\left.\frac2{(z+4)^3}\right|_{z=0}
     =\frac1{64}.
 \]
-Also,
+At the simple pole $z=-4$, the factor $1/z^3$ is analytic. Hence
 \[
     \Res(f; -4)=\left.\frac1{z^3}\right|_{z=-4}=-\frac1{64}.
 \]
@@ -400,7 +401,7 @@ when $C$ is the circle $|z|=2$, described in the positive sense.
 \end{exercise}
 
 \begin{solution}
-The integrand has simple poles at $0$, $i$, and $-i$, all inside $C$. At the origin,
+The integrand has simple poles at $0$, $i$, and $-i$, all inside $C$. At $z=0$, the factor $\cosh(\pi z)/(z^2+1)$ is analytic, so
 \[
     \Res(f; 0)=\left.\frac{\cosh(\pi z)}{z^2+1}\right|_{z=0}=1.
 \]
@@ -441,7 +442,7 @@ All finite singularities of each function lie in $|z|<3$. Thus, by the theorem i
         &=\frac1w\,\frac{(3+2w)^2}{(1-w)(2+5w)}.
     \end{aligned}
     \]
-    The factor multiplying $1/w$ is analytic at $0$ and equals $9/2$ there. Hence
+    The factor multiplying $1/w$ is analytic at $0$ and has value $9/2$ there. Thus the coefficient of $w^{-1}$, and hence the residue, is $9/2$. Therefore
     \[
         \boxed{\int_{|z|=3}f(z)\,\dd z
             =2\pi i\cdot\frac92=9\pi i.}
