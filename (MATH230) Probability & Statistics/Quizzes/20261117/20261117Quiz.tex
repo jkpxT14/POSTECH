@@ -8,14 +8,14 @@
 \begin{exercise}{8.20}
 An unbiased die is tossed independently $72$ times. If $X$ denotes one outcome, its probability mass function is
 \[
-\Prob(X=x)=\begin{cases}1/6,&x=1, 2, 3, 4, 5, 6,\\0,&\text{otherwise.}\end{cases}
+\Prob(X=x)=\begin{cases}1/6,&x=1, 2, 3, 4, 5, 6, \\0,&\text{otherwise.}\end{cases}
 \]
 Find the probability that the sample mean is greater than $3.6$ but less than $3.9$, when means are recorded to the nearest tenth.
 \end{exercise}
 \begin{solution}
 For a single throw, symmetry and the second moment give
 \[
-\mu=\frac{1+2+3+4+5+6}{6}=\frac72,\qquad
+\mu=\frac{1+2+3+4+5+6}{6}=\frac72, \qquad
 \sigma^2=\frac{1^2+2^2+\cdots+6^2}{6}-\left(\frac72\right)^2=\frac{35}{12}.
 \]
 Thus $\sigma_{\bar X}=\sqrt{35/(12\cdot72)}\approx0.20127$. Since the reported mean is rounded to the nearest tenth, the requested reported values correspond to $3.65\le\bar X<3.85$. By the Central Limit Theorem,
@@ -24,7 +24,7 @@ Thus $\sigma_{\bar X}=\sqrt{35/(12\cdot72)}\approx0.20127$. Since the reported m
 \Prob(3.65\le\bar X<3.85)
 &\approx\Phi\left(\frac{3.85-3.5}{0.20127}\right)
 -\Phi\left(\frac{3.65-3.5}{0.20127}\right)\\
-&=\Phi(1.739)-\Phi(0.745)\approx\boxed{0.1870}.
+&\approx\Phi(1.739)-\Phi(0.745)\approx\boxed{0.1870}.
 \end{aligned}
 \]
 \end{solution}
@@ -38,11 +38,11 @@ The heights of $1000$ students are approximately normally distributed with mean 
 \end{exercisesubparts}
 \end{exercise}
 \begin{solution}
-As in the book's sampling-distribution approximation, use $\bar X\approx\Normal(174.5,6.9^2/25)$, so
+As in the book's sampling-distribution approximation, use $\bar X\approx\Normal(174.5, 6.9^2/25)$, so
 \begin{exercisesubparts}
 \item The mean and standard error are
 \[
-\boxed{\mu_{\bar X}=174.5\text{ cm}},\qquad
+\boxed{\mu_{\bar X}=174.5\text{ cm}}, \qquad
 \boxed{\sigma_{\bar X}=\frac{6.9}{\sqrt{25}}=1.38\text{ cm}}.
 \]
 \item The inclusive reported interval corresponds to $172.45\le\bar X<175.85$. Hence the expected count among $200$ sample means is
@@ -82,20 +82,20 @@ x&4&5&6&7\\\midrule
 \item Direct calculation yields
 \[
 \begin{aligned}
-\mu&=4(0.2)+5(0.4)+6(0.3)+7(0.1)=\boxed{5.3},\\
-\Exp[X^2]&=16(0.2)+25(0.4)+36(0.3)+49(0.1)=28.9,\\
+\mu&=4(0.2)+5(0.4)+6(0.3)+7(0.1)=\boxed{5.3}, \\
+\Exp[X^2]&=16(0.2)+25(0.4)+36(0.3)+49(0.1)=28.9, \\
 \sigma^2&=28.9-5.3^2=\boxed{0.81}.
 \end{aligned}
 \]
 \item For a sample of size $36$,
 \[
-\boxed{\Exp[\bar X]=5.3},\qquad
+\boxed{\Exp[\bar X]=5.3}, \qquad
 \boxed{\Var(\bar X)=\frac{0.81}{36}=0.0225}.
 \]
 \item The standard error is $\sqrt{0.0225}=0.15$. By the Central Limit Theorem,
 \[
 \Prob(\bar X<5.5)\approx\Phi\left(\frac{5.5-5.3}{0.15}\right)
-=\Phi(1.3333)\approx\boxed{0.9088}.
+\approx\Phi(1.3333)\approx\boxed{0.9088}.
 \]
 \end{exercisesubparts}
 \end{solution}
@@ -106,10 +106,10 @@ A machine produces electrical resistors with mean resistance $40\,\Omega$ and st
 \begin{solution}
 Let $W=X_1+\cdots+X_{36}$ be the total resistance. Independence gives
 \[
-\Exp[W]=36(40)=1440\,\Omega,\qquad
+\Exp[W]=36(40)=1440\,\Omega, \qquad
 \Var(W)=36(2^2)=144\,\Omega^2.
 \]
-By the Central Limit Theorem, $W\approx\Normal(1440,144)$, and therefore
+By the Central Limit Theorem, $W\approx\Normal(1440, 144)$, and therefore
 \[
 \Prob(W>1458)\approx1-\Phi\left(\frac{1458-1440}{12}\right)
 =1-\Phi(1.5)\approx\boxed{0.0668}.
@@ -138,7 +138,7 @@ Independent random samples of sizes $30$ and $42$ are drawn from adults in citie
 \begin{solution}
 For $D=\bar X_A-\bar X_B$, independence gives
 \[
-\Exp[D]=160-158=2,\qquad
+\Exp[D]=160-158=2, \qquad
 \Var(D)=\frac{9^2}{30}+\frac{10^2}{42}\approx5.08095,
 \]
 so $\sigma_D\approx2.25410$. The stated recorded values correspond to the unrounded interval $2.55\le D<4.75$. With the normal approximation to the difference of means,
@@ -147,7 +147,7 @@ so $\sigma_D\approx2.25410$. The stated recorded values correspond to the unroun
 \Prob(2.55\le D<4.75)
 &\approx\Phi\left(\frac{4.75-2}{2.25410}\right)
 -\Phi\left(\frac{2.55-2}{2.25410}\right)\\
-&=\Phi(1.220)-\Phi(0.244)\approx\boxed{0.2924}.
+&\approx\Phi(1.220)-\Phi(0.244)\approx\boxed{0.2924}.
 \end{aligned}
 \]
 \end{solution}
@@ -158,14 +158,14 @@ One breed of one-week-old chicks has mean weight $120$ g and standard deviation 
 \begin{solution}
 For $D=\bar X_1-\bar X_2$,
 \[
-\Exp[D]=28,\qquad
+\Exp[D]=28, \qquad
 \Var(D)=\frac{12^2}{46}+\frac{8^2}{84}\approx3.89234,
 \quad\sigma_D\approx1.97290.
 \]
 The two sample sizes allow a normal approximation, so
 \[
 \Prob(D\le20)\approx\Phi\left(\frac{20-28}{1.97290}\right)
-=\Phi(-4.055)\approx\boxed{0.0000251}.
+\approx\Phi(-4.055)\approx\boxed{0.0000251}.
 \]
 The event is extremely unlikely under these population parameters.
 \end{solution}
@@ -180,7 +180,7 @@ Students' scores on a competitive examination have population mean $148$ and sta
 \begin{solution}
 For $D=\bar X_1-\bar X_2$, the mean difference is $0$ and
 \[
-\Var(D)=\frac{24^2}{42}+\frac{24^2}{64},\qquad
+\Var(D)=\frac{24^2}{42}+\frac{24^2}{64}, \qquad
 \sigma_D\approx4.76595.
 \]
 Using the normal approximation for the two independent sample means,
@@ -203,7 +203,7 @@ Using the normal approximation for the two independent sample means,
 \end{solution}
 
 \begin{exercise}{8.31}
-Two types of paint have population drying-time standard deviations of $1.0$ hour each. In independent samples of $18$ specimens per type, the observed difference of sample mean drying times is $\bar x_A-\bar x_B=1.0$ hour. Assume a normal approximation for the difference of sample means.
+Two types of paint have population drying-time standard deviations of $1.0$ hour each. In independent samples of $18$ specimens per type, the observed difference of sample mean drying times is $\bar x_A-\bar x_B=1.0$ hour. Assume the population shapes permit a normal approximation to the difference of sample means.
 \begin{exercisesubparts}
 \item Is this a reasonable result if the population means are equal? Use the probability from Case Study 8.2.
 \item If the experiment is repeated $10\,000$ times under $\mu_A=\mu_B$, how many experiments are expected to give $\bar x_A-\bar x_B\ge1.0$ hour?
@@ -212,7 +212,7 @@ Two types of paint have population drying-time standard deviations of $1.0$ hour
 \begin{solution}
 Under $\mu_A=\mu_B$, the difference $D=\bar X_A-\bar X_B$ has
 \[
-\Exp[D]=0,\qquad
+\Exp[D]=0, \qquad
 \sigma_D=\sqrt{\frac{1}{18}+\frac{1}{18}}=\frac13\text{ hour}.
 \]
 \begin{exercisesubparts}
@@ -222,7 +222,7 @@ Under $\mu_A=\mu_B$, the difference $D=\bar X_A-\bar X_B$ has
 \approx1-\Phi\left(\frac{1}{1/3}\right)
 =1-\Phi(3)\approx\boxed{0.00135}.
 \]
-It is very rare under equal population means, so the observation is evidence against equality.
+With only $18$ specimens per group, this approximation relies on the population shapes being sufficiently close to normal. Under that assumption, such a difference is very rare if the means coincide, giving evidence against equality.
 \item The expected number of such experiments is
 \[
 10\,000(0.00135)\approx\boxed{13.5\text{ (about }13\text{--}14\text{ experiments)}}.
@@ -240,7 +240,7 @@ Two cereal-box filling machines have population weight variance $1\text{ oz}^2$ 
 \begin{solution}
 Under equal means, $D=\bar X_B-\bar X_A$ has
 \[
-\Exp[D]=0,\qquad
+\Exp[D]=0, \qquad
 \Var(D)=\frac{1}{36}+\frac{1}{36}=\frac1{18}.
 \]
 \begin{exercisesubparts}
@@ -248,7 +248,7 @@ Under equal means, $D=\bar X_B-\bar X_A$ has
 \[
 \Prob(D\ge0.2)
 \approx1-\Phi\left(\frac{0.2}{\sqrt{1/18}}\right)
-=1-\Phi(0.8485)\approx\boxed{0.1981}.
+\approx1-\Phi(0.8485)\approx\boxed{0.1981}.
 \]
 \item A difference at least this large in the observed direction occurs about $20\%$ of the time even if the population means coincide. Thus the observed difference does not strongly support unequal means.
 \end{exercisesubparts}
@@ -281,7 +281,6 @@ This outcome is not rare under the proposed mean, so it is not firm evidence tha
 \end{exercisesubparts}
 \end{solution}
 
-\Needspace{22\baselineskip}
 \begin{exercise}{8.34}
 Two alloys A and B have population standard deviations of load capacity equal to $5$ tons each. Independent samples of $30$ specimens of each alloy give $\bar x_A=49.5$ and $\bar x_B=45.5$ tons, a difference of $4$ tons. Alloy A's manufacturers regard this as conclusive evidence that $\mu_A>\mu_B$, while alloy B's manufacturers argue that such a difference could arise by chance if the means were equal.
 \begin{exercisesubparts}
@@ -292,7 +291,7 @@ Two alloys A and B have population standard deviations of load capacity equal to
 \begin{solution}
 Under equal population means, $D=\bar X_A-\bar X_B$ has
 \[
-\Exp[D]=0,\qquad
+\Exp[D]=0, \qquad
 \sigma_D=\sqrt{\frac{5^2}{30}+\frac{5^2}{30}}=\sqrt{\frac53}\approx1.291.
 \]
 \begin{exercisesubparts}
@@ -300,26 +299,26 @@ Under equal population means, $D=\bar X_A-\bar X_B$ has
 \[
 \Prob(D>4)
 \approx1-\Phi\left(\frac{4}{\sqrt{5/3}}\right)
-=1-\Phi(3.0984)\approx\boxed{0.000973}.
+\approx1-\Phi(3.0984)\approx\boxed{0.000973}.
 \]
 \item Such a large positive difference is extremely unlikely under equal means. The evidence strongly supports a greater mean load capacity for alloy A, although the sample does not establish that inequality with certainty.
 \end{exercisesubparts}
 \end{solution}
 
 \begin{exercise}{8.36}
-Let $X_1, X_2, \ldots, X_n$ be an independent random sample of strictly positive random variables. Assume that $\Exp[\ln X_1]$ and $\Var(\ln X_1)$ are finite, with positive variance. Use the Central Limit Theorem to argue that, for sufficiently large $n$, the product $Y=X_1X_2\cdots X_n$ is approximately lognormally distributed.
+Let $(X_i)$ be an i.i.d. sequence of strictly positive random variables with finite $\Exp[\ln X_1]$ and $0<\Var(\ln X_1)<\infty$. Use the Central Limit Theorem to argue that, for sufficiently large $n$, the product $Y_n=X_1X_2\cdots X_n$ is approximately lognormally distributed.
 \end{exercise}
 \begin{solution}
-Put $U_i=\ln X_i$, and write $\mu_U=\Exp[U_1]$ and $\sigma_U^2=\Var(U_1)$, where $0<\sigma_U^2<\infty$. Since the original sample is i.i.d., so is $(U_i)$, and
+Let $U_i=\ln X_i$, with mean $\mu_U=\Exp[U_1]$ and variance $\sigma_U^2=\Var(U_1)$. The $U_i$ are i.i.d., and
 \[
-\ln Y=\sum_{i=1}^n\ln X_i=\sum_{i=1}^n U_i.
+\ln Y_n=\sum_{i=1}^n U_i.
 \]
-The Central Limit Theorem gives
+By the Central Limit Theorem,
 \[
-\frac{\ln Y-n\mu_U}{\sigma_U\sqrt n}\approx\Normal(0,1)
-\quad\text{for large }n.
+\frac{\ln Y_n-n\mu_U}{\sigma_U\sqrt n}\xrightarrow{\mathrm{d}}Z,
+\qquad Z\sim\Normal(0, 1).
 \]
-Thus $\ln Y$ is approximately normal with mean $n\mu_U$ and variance $n\sigma_U^2$. Since $Y=e^{\ln Y}>0$, it follows that $\boxed{Y\text{ is approximately lognormal}}$, with log-parameters $n\mu_U$ and $n\sigma_U^2$.
+Consequently, for large $n$, $\ln Y_n$ is approximately normal with mean $n\mu_U$ and variance $n\sigma_U^2$. Therefore $\boxed{Y_n\text{ is approximately lognormal}}$, with these log-parameters.
 \end{solution}
 
 \begin{exercise}{8.37}
@@ -420,7 +419,7 @@ Q=\frac{(n-1)S^2}{\sigma^2}=\frac{29S^2}{5}\sim\chi^2_{29}.
 \]
 \item The two thresholds are
 \[
-\frac{29(2.766)}5\approx16.043,\qquad
+\frac{29(2.766)}5\approx16.043, \qquad
 \frac{29(7.883)}5\approx45.721.
 \]
 These are approximately $\chi^2_{0.975}(29)$ and $\chi^2_{0.025}(29)$, leaving $0.025$ in each tail. Therefore
@@ -440,10 +439,9 @@ Q=\frac{(20-1)S^2}{8}\sim\chi^2_{19}.
 \]
 The observed statistic is $q=19(20)/8=47.5$, so the probability of a sample variance at least this large is
 \[
-\Prob(S^2\ge20\mid\sigma^2=8)
-=\Prob(\chi^2_{19}\ge47.5)\approx\boxed{0.000303}.
+\Prob(S^2\ge20)=\Prob(Q\ge47.5)\approx\boxed{0.000303}.
 \]
-This is an exceptionally rare outcome if the variance remains $8$, giving strong evidence that the old variance is no longer appropriate; it does not prove the new variance equals $20$.
+This result uses the sampling distribution of $S^2$, rather than the population mean $74$. A variance as large as $s^2=20$ would be exceptionally rare under the proposed value $\sigma^2=8$. The data therefore cast strong doubt on the old variance; they do not establish that the current population variance equals $20$.
 \end{solution}
 
 \begin{exercise}{8.43}
@@ -521,7 +519,6 @@ By symmetry, the area to the left of $-t_{0.01}$ is $0.01$; the area to the righ
 \]
 \end{solution}
 
-\Needspace{18\baselineskip}
 \begin{exercise}{8.47}
 For a random sample of size $30$ from a normal population, let $T$ be the Student statistic. Find $k$ such that
 \begin{exercisesubparts}
@@ -554,7 +551,7 @@ A technical training firm claims a mean training time of $40$ hours. It checks $
 \begin{solution}
 Using the claimed $\mu=40$, the observed Student statistic and its degrees of freedom are
 \[
-t=\frac{42-40}{6/\sqrt{24}}\approx1.633,\qquad\nu=23.
+t=\frac{42-40}{6/\sqrt{24}}\approx1.633, \qquad\nu=23.
 \]
 The $t$-table gives $t_{0.025}(23)\approx2.069$. Since
 \[
@@ -567,36 +564,36 @@ the statistic lies inside the prescribed acceptance interval. The sample is comp
 A normal population has mean $15$ and unknown variance. Is it plausible to obtain a random sample of size $16$ with observed mean $18$ and sample standard deviation $3.8$? If not, what conclusion would you draw?
 \end{exercise}
 \begin{solution}
-Under the proposed population mean $\mu=15$,
+Under the proposed population mean $\mu=15$, the Student statistic has $15$ degrees of freedom, and its observed value is
 \[
-t=\frac{18-15}{3.8/\sqrt{16}}=\frac{3}{0.95}\approx3.158,
-\qquad\nu=15.
+t_{\mathrm{obs}}=\frac{18-15}{3.8/\sqrt{16}}=\frac{3}{0.95}\approx3.158.
 \]
-The observed value exceeds $t_{0.005}(15)\approx2.947$, so it lies well into the upper tail. The two-sided probability of a deviation at least this extreme is
+The observed value exceeds $t_{0.005}(15)\approx2.947$, so the two-sided tail probability is less than $0.01$. More precisely,
 \[
-2\Prob(t_{15}>3.158)\approx\boxed{0.0065}.
+2\Prob(T>t_{\mathrm{obs}})\approx\boxed{0.0065}, \qquad T\sim t_{15}.
 \]
 Thus this sample would be unusual under $\mu=15$, giving evidence that the population mean is different from $15$ (in the direction of a larger mean).
 \end{solution}
 
-\Needspace{16\baselineskip}
 \begin{exercise}{8.50}
 A transport company claims that the mean bus running time on a particular route is $300$ minutes. The running times of six randomly observed buses are
 \[
-320,\ 310,\ 295,\ 312,\ 302,\ 308\text{ minutes}.
+320, 310, 295, 312, 302, 308\text{ minutes}.
 \]
 Would you agree with the company's claim? Assume the running-time population is normal.
 \end{exercise}
 \begin{solution}
-The sample statistics are
+From the observations, $n=6$, $\sum_{i=1}^6 x_i=1847$, and $\sum_{i=1}^6 x_i^2=568937$. The sample statistics are
 \[
-\bar x=\frac{1847}{6}\approx307.833,\qquad
-s^2=\frac{1}{5}\sum_{i=1}^{6}(x_i-\bar x)^2\approx73.7667,
-\quad s\approx8.589.
+\begin{aligned}
+\bar x&=\frac{1847}{6}\approx307.833, \\
+s^2&=\frac{1}{5}\left(568937-\frac{1847^2}{6}\right)\approx73.7667,
+\qquad s\approx8.589.
+\end{aligned}
 \]
 Under $\mu=300$,
 \[
-t=\frac{\bar x-300}{s/\sqrt6}\approx2.234,\qquad\nu=5.
+t=\frac{\bar x-300}{s/\sqrt6}\approx2.234, \qquad\nu=5.
 \]
 Since $t_{0.025}(5)\approx2.571$, the observed statistic lies within the central $95\%$ interval. The two-sided tail probability is about $0.0758$. The data do not provide strong evidence against the company's $300$-minute claim at the usual $5\%$ level, though the sample mean is higher.
 \end{solution}
@@ -604,29 +601,28 @@ Since $t_{0.025}(5)\approx2.571$, the observed statistic lies within the central
 \begin{exercise}{8.51}
 For an $F$-distribution, find the right-tail critical values
 \begin{exercisesubparts}
-\item $f_{0.01}(12,10)$;
-\item $f_{0.01}(10,12)$;
-\item $f_{0.05}(15,8)$;
-\item $f_{0.95}(10,5)$;
-\item $f_{0.99}(18,14)$.
+\item $f_{0.01}(12, 10)$;
+\item $f_{0.01}(10, 12)$;
+\item $f_{0.05}(15, 8)$;
+\item $f_{0.95}(10, 5)$;
+\item $f_{0.99}(18, 14)$.
 \end{exercisesubparts}
 The first and second degrees of freedom refer to the numerator and denominator, respectively.
 \end{exercise}
 \begin{solution}
 Use Table A.6 for upper-tail values and the reciprocal identity
 \[
-f_{1-\alpha}(\nu_1,\nu_2)=\frac{1}{f_\alpha(\nu_2,\nu_1)}.
+f_{1-\alpha}(\nu_1, \nu_2)=\frac{1}{f_\alpha(\nu_2, \nu_1)}.
 \]
 \begin{exercisesubparts}
-\item $\boxed{f_{0.01}(12,10)\approx4.71}$.
-\item $\boxed{f_{0.01}(10,12)\approx4.30}$.
-\item $\boxed{f_{0.05}(15,8)\approx3.22}$.
-\item $f_{0.95}(10,5)=1/f_{0.05}(5,10)$, hence $\boxed{f_{0.95}(10,5)\approx0.301}$.
-\item $f_{0.99}(18,14)=1/f_{0.01}(14,18)$, hence $\boxed{f_{0.99}(18,14)\approx0.306}$.
+\item $\boxed{f_{0.01}(12, 10)\approx4.71}$.
+\item $\boxed{f_{0.01}(10, 12)\approx4.30}$.
+\item $\boxed{f_{0.05}(15, 8)\approx3.22}$.
+\item $f_{0.95}(10, 5)=1/f_{0.05}(5, 10)$, hence $\boxed{f_{0.95}(10, 5)\approx0.301}$.
+\item $f_{0.99}(18, 14)=1/f_{0.01}(14, 18)$, hence $\boxed{f_{0.99}(18, 14)\approx0.306}$.
 \end{exercisesubparts}
 \end{solution}
 
-\Needspace{25\baselineskip}
 \begin{exercise}{8.52}
 Pull-strength tests on $10$ soldered leads for a semiconductor device give the following force measurements (lb) before encapsulation:
 \[
@@ -645,7 +641,14 @@ A second set of $8$ leads tested after encapsulation gives
 Comment on the evidence concerning equality of the population variances. For the $F$-distribution comparison, assume independent samples from normal populations.
 \end{exercise}
 \begin{solution}
-Let $S_1^2$ be the pre-encapsulation sample variance and $S_2^2$ the post-encapsulation variance. From the listed measurements,
+Let $S_1^2$ and $S_2^2$ denote the pre- and post-encapsulation sample variances. Using the sample-variance computational formula,
+\[
+\begin{aligned}
+s_1^2&=\frac{2251.93-146.9^2/10}{9}=10.4410, \\
+s_2^2&=\frac{4049.43-179.7^2/8}{7}\approx1.8455.
+\end{aligned}
+\]
+The resulting sample statistics are
 \[
 \begin{array}{c@{\qquad}cc}\toprule
 &\text{Before}&\text{After}\\\midrule
@@ -656,10 +659,10 @@ s^2&10.4410&1.8455\\\bottomrule
 \]
 Under equal population variances and the normality assumption,
 \[
-F=\frac{S_1^2}{S_2^2}\sim F_{9,7},\qquad
+F=\frac{S_1^2}{S_2^2}\sim F_{9, 7}, \qquad
 f_{\mathrm{obs}}=\frac{10.4410}{1.8455}\approx5.6574.
 \]
-The table gives $f_{0.05}(9,7)\approx3.68$ and $f_{0.01}(9,7)\approx6.72$, so the observed ratio is unusually large. The upper-tail probability is approximately $0.0162$ (and the two-sided probability about $0.0324$). There is evidence against equal population variances; the post-encapsulation sample shows less variability. This comparison does not by itself establish a causal reduction in variance.
+The table gives $f_{0.05}(9, 7)\approx3.68$ and $f_{0.01}(9, 7)\approx6.72$. Thus the observed ratio is beyond the $5\%$ upper-tail critical value; more precisely, its upper-tail probability is about $0.0162$. The data cast doubt on equal population variances, with less variability in the post-encapsulation sample. This comparison alone does not establish a causal reduction in variance.
 \end{solution}
 
 \begin{exercise}{8.53}
@@ -673,7 +676,14 @@ The heat-producing capacities of coal from two mines (in millions of calories pe
 Can the two population variances reasonably be regarded as equal? For the $F$-distribution comparison, assume independent samples from normal populations.
 \end{exercise}
 \begin{solution}
-The sample sizes and variances obtained from the data are
+Using the sample-variance computational formula,
+\[
+\begin{aligned}
+s_1^2&=\frac{338727500-41150^2/5}{4}=15750, \\
+s_2^2&=\frac{378316200-47640^2/6}{5}=10920.
+\end{aligned}
+\]
+The resulting sample statistics are
 \[
 \begin{array}{c@{\qquad}cc}\toprule
 &\text{Mine 1}&\text{Mine 2}\\\midrule
@@ -684,10 +694,10 @@ s^2&15750&10920\\\bottomrule
 \]
 Under the equal-variance model,
 \[
-F=\frac{S_1^2}{S_2^2}\sim F_{4,5},\qquad
+F=\frac{S_1^2}{S_2^2}\sim F_{4, 5}, \qquad
 f_{\mathrm{obs}}=\frac{15750}{10920}\approx1.4423.
 \]
-This is far below $f_{0.05}(4,5)\approx5.19$; its upper-tail probability is about $0.3436$. Therefore the observed difference in sample variances is quite plausible under equal population variances. The data give no strong evidence against equality, although they cannot establish exact equality.
+The observed ratio is well below $f_{0.05}(4, 5)\approx5.19$; its upper-tail probability is about $0.3436$. Thus the variance difference is quite plausible under the equal-variance model. The data give no strong evidence against equality, but they do not prove that the population variances are equal.
 \end{solution}
 
 \begin{exercise}{8.64}
@@ -700,18 +710,18 @@ Independent random samples of sizes $n_1=16$ and $n_2=27$ are taken from normal 
 For independent normal samples, the scaled variance ratio satisfies
 \[
 F=\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}
-=\frac{14}{8}\frac{S_1^2}{S_2^2}\sim F_{15,26}.
+=\frac{14}{8}\frac{S_1^2}{S_2^2}\sim F_{15, 26}.
 \]
 Therefore
 \[
 \begin{aligned}
 \Prob\left(\frac{S_1^2}{S_2^2}>1.873\right)
-&=\Prob\left(F_{15,26}>1.873\cdot\frac{14}{8}\right)\\
-&=\Prob(F_{15,26}>3.27775)
+&=\Prob\left(F>1.873\cdot\frac{14}{8}\right)\\
+&=\Prob(F>3.27775)
 \approx\boxed{0.00388}.
 \end{aligned}
 \]
-In particular, the $F$-table has $f_{0.01}(15,26)\approx2.815<3.27775$, confirming that this probability is below $0.01$.
+The $F$-table gives $f_{0.01}(15, 26)\approx2.815<3.27775$, so the desired probability is less than $0.01$. Evaluating the $F$-distribution more precisely gives the displayed numerical answer.
 \end{solution}
 
 \begin{exercise}{8.67}
