@@ -1,0 +1,162 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{pdftitle={20261201 Quiz for MATH301 Modern Algebra I},pdfauthor={Jungwoo Kim},pdfsubject={Quiz for MATH301 Modern Algebra I},pdfcreator={LaTeX}}
+
+\begin{document}
+\quiztitle{20261201 Quiz}
+
+\begin{exercise}{8.1.3}
+Let $R$ be a Euclidean Domain. Let $m$ be the minimum integer in the set of norms of nonzero elements of $R$. Prove that every nonzero element of $R$ of norm $m$ is a unit. Deduce that a nonzero element of norm zero (if such an element exists) is a unit.
+\end{exercise}
+\begin{solution}
+Let $a\neq0$ have norm $N(a)=m$. Applying the Division Algorithm to $1$ and $a$, write
+\[
+1=qa+r,\qquad r=0\quad\text{or}\quad N(r)<N(a)=m.
+\]
+The latter alternative is impossible for $r\neq0$ by the minimality of $m$. Thus $r=0$ and $qa=1$. Since $R$ is commutative, $a$ is a unit. In particular, if a nonzero $a$ has norm $0$, then $0$ is the minimum possible norm and $a$ is a unit by the same argument.
+\end{solution}
+
+\begin{exercise}{8.1.7}
+Find a generator for the ideal $(85,1+13i)$ in $\Z[i]$, i.e., a greatest common divisor for $85$ and $1+13i$, by the Euclidean Algorithm. Do the same for the ideal $(47-13i,53+56i)$.
+\end{exercise}
+\begin{solution}
+In $\Z[i]$ use the Euclidean norm $N(a+bi)=a^2+b^2$. For the first pair,
+\[
+\begin{aligned}
+85&=(-6i)(1+13i)+(7+6i),\\
+1+13i&=(1+i)(7+6i).
+\end{aligned}
+\]
+Here $N(7+6i)=85<170=N(1+13i)$. The last nonzero remainder is $7+6i$, so
+\[
+(85,1+13i)=(7+6i).
+\]
+For the second pair, the Euclidean Algorithm gives
+\[
+\begin{aligned}
+47-13i&=(-i)(53+56i)+(-9+40i),\\
+53+56i&=(1-2i)(-9+40i)+(-18-2i),\\
+-9+40i&=(-2i)(-18-2i)+(-5+4i),\\
+-18-2i&=(2+2i)(-5+4i).
+\end{aligned}
+\]
+The nonzero remainders have norms $1681$, $328$, and $41$, respectively, and each norm is smaller than that of the preceding divisor. Hence
+\[
+(47-13i,53+56i)=(-5+4i).
+\]
+These generators, and therefore the greatest common divisors, are determined up to multiplication by a unit $\pm1,\pm i$.
+\end{solution}
+
+\begin{exercise}{8.1.10}
+Prove that the quotient ring $\Z[i]/I$ is finite for any nonzero ideal $I$ of $\Z[i]$. [Use the fact that $I=(\alpha)$ for some nonzero $\alpha$ and then use the Division Algorithm in this Euclidean Domain to see that every coset of $I$ is represented by an element of norm less than $N(\alpha)$.]
+\end{exercise}
+\begin{solution}
+Since $\Z[i]$ is a Euclidean Domain, it is a Principal Ideal Domain. Write $I=(\alpha)$ with $\alpha\neq0$. Given $z\in\Z[i]$, the Division Algorithm yields
+\[
+z=q\alpha+r,\qquad r=0\quad\text{or}\quad N(r)<N(\alpha).
+\]
+Thus $z+I=r+I$. Only finitely many Gaussian integers $r=a+bi$ satisfy
+\[
+a^2+b^2=N(r)<N(\alpha),
+\]
+because both $a$ and $b$ are integers in a bounded interval. Including $r=0$, this provides finitely many representatives for all cosets. Therefore $\Z[i]/I$ is finite.
+\end{solution}
+
+\begin{exercise}{8.1.11}
+Let $R$ be a commutative ring with $1$ and let $a$ and $b$ be nonzero elements of $R$. A \emph{least common multiple} of $a$ and $b$ is an element $e$ of $R$ such that
+\begin{enumerate}[label=(\roman*),leftmargin=2.5em,itemsep=0.2em,topsep=0.35em]
+\item $a\mid e$ and $b\mid e$, and
+\item if $a\mid e'$ and $b\mid e'$, then $e\mid e'$.
+\end{enumerate}
+\begin{exercisesubparts}
+\item Prove that a least common multiple of $a$ and $b$ (if such exists) is a generator for the unique largest principal ideal contained in $(a)\cap(b)$.
+\item Deduce that any two nonzero elements in a Euclidean Domain have a least common multiple which is unique up to multiplication by a unit.
+\item Prove that in a Euclidean Domain the least common multiple of $a$ and $b$ is $ab/(a,b)$, where $(a,b)$ is the greatest common divisor of $a$ and $b$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item An element $e$ is a common multiple of $a,b$ exactly when $e\in(a)\cap(b)$, equivalently $(e)\subseteq(a)\cap(b)$. If $e$ is a least common multiple and $(e')$ is another principal ideal contained in the intersection, then $e'$ is a common multiple, so $e\mid e'$ and $(e')\subseteq(e)$. Hence $(e)$ is the largest such principal ideal. Conversely, a generator of that largest ideal satisfies both defining properties of a least common multiple.
+\item A Euclidean Domain is a PID, so $(a)\cap(b)=(e)$ for some $e$. This ideal is nonzero because $ab\neq0$ belongs to it. By (a), $e$ is a least common multiple. If $e'$ is another, then $(e)=(e')$; since $R$ is an integral domain, $e$ and $e'$ differ by multiplication by a unit.
+\item Let $d$ be a greatest common divisor of $a,b$ and write $a=da_0$, $b=db_0$. Then $(a_0,b_0)=1$: indeed, if $d=ra+sb$ is a B\'ezout expression, division by $d$ gives $1=ra_0+sb_0$. Set $e=ab/d=da_0b_0$. Clearly $a\mid e$ and $b\mid e$.
+
+If $a\mid c$ and $b\mid c$, write $c=at=da_0t$. Then $db_0\mid da_0t$, hence $b_0\mid a_0t$. Since $1=ra_0+sb_0$, multiplying by $t$ shows $b_0\mid t$. Consequently $e=ab_0\mid at=c$. Thus $e$ is a least common multiple.
+\end{exercisesubparts}
+\end{solution}
+
+\Needspace{13\baselineskip}
+\begin{exercise}{8.2.1}
+Prove that in a Principal Ideal Domain two ideals $(a)$ and $(b)$ are comaximal (cf. Section 7.6) if and only if a greatest common divisor of $a$ and $b$ is $1$ (in which case $a$ and $b$ are said to be \emph{coprime} or \emph{relatively prime}).
+\end{exercise}
+\begin{solution}
+Let $d$ generate $(a)+(b)$. Since $a,b\in(d)$, $d$ divides both $a$ and $b$. Conversely, any common divisor of $a,b$ divides every linear combination of $a,b$, in particular $d$. Thus $d$ is a greatest common divisor. Now
+\[
+(a)+(b)=R\quad\Longleftrightarrow\quad(d)=R
+\quad\Longleftrightarrow\quad d\in R^\times.
+\]
+Therefore $(a)$ and $(b)$ are comaximal exactly when their greatest common divisor can be chosen to be $1$.
+\end{solution}
+
+\begin{exercise}{8.2.2}
+Prove that any two nonzero elements of a PID have a least common multiple (cf. Exercise 11, Section 1).
+\end{exercise}
+\begin{solution}
+Let $a,b\neq0$. Since $R$ is an integral domain, $0\neq ab\in(a)\cap(b)$. As $R$ is a PID, the nonzero ideal $(a)\cap(b)$ has the form $(e)$ for some $e\neq0$. Then $e\in(a)$ and $e\in(b)$, so $a\mid e$ and $b\mid e$. Any common multiple $c$ belongs to $(a)\cap(b)=(e)$, hence $e\mid c$. Therefore $e$ is a least common multiple.
+\end{solution}
+
+\begin{exercise}{8.2.3}
+Prove that a quotient of a PID by a prime ideal is again a PID.
+\end{exercise}
+\begin{solution}
+Let $R$ be a PID and $P$ a prime ideal. Since $P$ is prime, $R/P$ is an integral domain. Every ideal of $R/P$ is of the form $J/P$ for some ideal $J$ of $R$ containing $P$, by the Correspondence Theorem. Since $R$ is a PID, $J=(a)$ for some $a\in R$. Thus
+\[
+J/P=(a+P)
+\]
+as an ideal of $R/P$. Hence every ideal of $R/P$ is principal. Therefore $R/P$ is a PID.
+\end{solution}
+
+\begin{exercise}{8.2.4}
+Let $R$ be an integral domain. Prove that if the following two conditions hold then $R$ is a Principal Ideal Domain:
+\begin{enumerate}[label=(\roman*),leftmargin=2.5em,itemsep=0.25em,topsep=0.35em]
+\item any two nonzero elements $a$ and $b$ in $R$ have a greatest common divisor which can be written in the form $ra+sb$ for some $r,s\in R$, and
+\item if $a_1,a_2,a_3,\ldots$ are nonzero elements of $R$ such that $a_{i+1}\mid a_i$ for all $i$, then there is a positive integer $N$ such that $a_n$ is a unit times $a_N$ for all $n\ge N$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+Suppose that $I$ is a nonprincipal ideal of $R$. Since $(0)$ is principal, choose $0\neq a_1\in I$. Inductively, if $0\neq a_n\in I$, then $I\neq(a_n)$; choose $b_n\in I\setminus(a_n)$. By (i), a greatest common divisor $a_{n+1}$ of $a_n,b_n$ can be chosen so that
+\[
+a_{n+1}=r_na_n+s_nb_n\in I.
+\]
+In particular, $a_{n+1}\neq0$ and $a_{n+1}\mid a_n$. Also $a_n\nmid a_{n+1}$, for otherwise $a_n$ would divide $b_n$ (as $a_{n+1}\mid b_n$), contradicting $b_n\notin(a_n)$. Hence $a_n$ and $a_{n+1}$ are never associates.
+
+This produces an infinite sequence of nonzero elements with $a_{n+1}\mid a_n$ but without any consecutive associates, contrary to (ii). Thus every ideal of $R$ is principal and $R$ is a PID.
+\end{solution}
+
+\begin{exercise}{8.3.1}
+Let $G=\Q^\times$ be the multiplicative group of nonzero rational numbers. If $\alpha=p/q\in G$, where $p$ and $q$ are relatively prime integers, let $\varphi\colon G\to G$ be the map which interchanges the primes $2$ and $3$ in the prime-power factorizations of $p$ and $q$ (so, for example,
+$\varphi(2^4 3^{11}5^{1}13^2)=3^4 2^{11}5^{1}13^2$,
+$\varphi(3/16)=\varphi(3/2^4)=2/3^4=2/81$, and $\varphi$ is the identity on all rational numbers with numerators and denominators relatively prime to $2$ and to $3$).
+\begin{exercisesubparts}
+\item Prove that $\varphi$ is a group isomorphism.
+\item Prove that there are infinitely many isomorphisms of the group $G$ to itself.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+Every $x\in\Q^\times$ has a unique expression
+\[
+x=(-1)^\varepsilon 2^a3^b\prod_{p\neq2,3}p^{e_p},
+\]
+where $\varepsilon\in\{0,1\}$, $a,b,e_p\in\Z$, and only finitely many exponents $e_p$ are nonzero.
+\begin{exercisesubparts}
+\item By definition,
+\[
+\varphi(x)=(-1)^\varepsilon 2^b3^a\prod_{p\neq2,3}p^{e_p}.
+\]
+Multiplication in $\Q^\times$ adds the exponents of each prime, so interchanging the exponents of $2$ and $3$ preserves products: $\varphi(xy)=\varphi(x)\varphi(y)$. Applying the interchange twice fixes every exponent and the sign, hence $\varphi^2=\mathrm{id}_G$. Thus $\varphi$ is a homomorphism with inverse itself, so it is an isomorphism.
+\item For each prime $p\neq2$, define $\varphi_p$ by interchanging the exponents of $2$ and $p$ while fixing the sign and every other prime exponent. The proof of (a) shows that each $\varphi_p$ is an automorphism of $G$. These automorphisms are distinct because $\varphi_p(2)=p$. There are infinitely many primes, so $G$ has infinitely many automorphisms.
+\end{exercisesubparts}
+\end{solution}
+
+\end{document}
