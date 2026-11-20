@@ -1,0 +1,663 @@
+\documentclass[11pt,oneside]{article}
+
+\pdfminorversion=7
+\usepackage{QuizStyle}
+
+\hypersetup{
+    pdftitle={20261123 Quiz for MATH210 Applied Complex Variables},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH210 Applied Complex Variables},
+    pdfcreator={LaTeX}
+}
+
+\begin{document}
+
+\quiztitle{20261123 Quiz}
+
+\begin{exercise}{86.4}
+Use residues to derive the integration formula
+\[
+    \int_0^\infty\frac{x^2}{x^6+1}\,\dd x=\frac\pi6.
+\]
+\end{exercise}
+
+\begin{solution}
+Let $f(z)=z^2/(z^6+1)$ and integrate over the upper semicircle $C_R$ and the segment $[-R,R]$, where $R>1$. The poles in the upper half-plane are
+\[
+    c_0=e^{i\pi/6},\qquad c_1=i,\qquad c_2=e^{5\pi i/6}.
+\]
+Each is simple, with $c_k^6=-1$. By Theorem 2 in Sec.~83,
+\[
+    \Res(f; c_k)=\frac{c_k^2}{6c_k^5}
+        =-\frac{c_k^3}{6}.
+\]
+Since $c_0^3=i$, $c_1^3=-i$, and $c_2^3=i$,
+\[
+    \sum_{k=0}^2\Res(f; c_k)=-\frac i6.
+\]
+On $C_R$, $|f(z)|\le R^2/(R^6-1)$, so
+\[
+    \left|\int_{C_R}f(z)\,\dd z\right|
+    \le\frac{\pi R^3}{R^6-1}\longrightarrow0
+    \qquad(R\to\infty).
+\]
+Cauchy's residue theorem and the evenness of $f(x)$ therefore give
+\[
+    \boxed{\int_0^\infty\frac{x^2}{x^6+1}\,\dd x
+    =\frac12(2\pi i)\left(-\frac i6\right)=\frac\pi6.}
+\]
+\end{solution}
+
+\begin{exercise}{86.9}
+Use a residue and the contour shown in Fig.~101, where $R>1$, to establish the integration formula
+\[
+    \int_0^\infty\frac{\dd x}{x^3+1}=\frac{2\pi}{3\sqrt3}.
+\]
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Stealth]
+    \draw[gray,thin,->] (-1.65,0)--(3.05,0) node[right] {$x$};
+    \draw[gray,thin,->] (0,-0.18)--(0,2.72) node[above] {$y$};
+    \draw[thick,->] (0,0)--(2.35,0);
+    \draw[thick,->] (2.35,0) arc[start angle=0,end angle=120,radius=2.35];
+    \draw[thick,->] (-1.175,2.035)--(0,0);
+    \fill (2.35,0) circle (1.4pt) node[below] {$R$};
+    \fill (-1.175,2.035) circle (1.4pt) node[above left] {$Re^{2\pi i/3}$};
+    \fill (0,0) circle (1pt) node[below left] {$O$};
+    \fill (0.53,0.92) circle (1.5pt) node[right] {$e^{i\pi/3}$};
+\end{tikzpicture}
+\par\small Figure 101.
+\end{center}
+\end{exercise}
+
+\begin{solution}
+Take $f(z)=1/(z^3+1)$ and orient the sector $0\le\arg z\le2\pi/3$ positively. Its only pole is $c=e^{i\pi/3}$, where
+\[
+    \Res(f;c)=\frac1{3c^2}=\frac{e^{-2\pi i/3}}3.
+\]
+Write $I_R=\int_0^R\dd x/(x^3+1)$. On the returning radial segment $z=re^{2\pi i/3}$ ($r$ decreases from $R$ to $0$), we have $z^3=r^3$ and $\dd z=e^{2\pi i/3}\dd r$. Consequently,
+\[
+    (1-e^{2\pi i/3})I_R+\int_{C_R}f(z)\,\dd z
+    =\frac{2\pi i}{3}e^{-2\pi i/3},
+\]
+where $C_R$ is the circular arc of the sector. Since $|z^3+1|\ge R^3-1$ on $C_R$,
+\[
+    \left|\int_{C_R}f(z)\,\dd z\right|
+    \le\frac{2\pi R}{3(R^3-1)}\longrightarrow0.
+\]
+Thus
+\[
+    \boxed{\int_0^\infty\frac{\dd x}{x^3+1}
+    =\frac{2\pi i\,e^{-2\pi i/3}}{3(1-e^{2\pi i/3})}
+    =\frac{2\pi}{3\sqrt3}.}
+\]
+\end{solution}
+
+\begin{exercise}{86.11}
+The integration formula
+\[
+    \int_0^\infty\frac{\dd x}{[(x^2-a)^2+1]^2}
+    =\frac{\pi}{8\sqrt2\,A^3}
+      \left[(2a^2+3)\sqrt{A+a}+a\sqrt{A-a}\right],
+\]
+where $a>0$ and $A=\sqrt{a^2+1}$, arises in the theory of case-hardening of steel by means of radio-frequency heating. Follow the steps below to derive it.
+\begin{exercisesubparts}
+    \item Point out why the four zeros of $q(z)=(z^2-a)^2+1$ are the square roots of $a\pm i$. Writing
+    \[
+        z_0=\frac1{\sqrt2}\left(\sqrt{A+a}+i\sqrt{A-a}\right),
+    \]
+    verify that $\pm\overline{z_0}$ are the square roots of $a-i$, and hence that $z_0$ and $-\overline{z_0}$ are the only zeros of $q$ in the upper half-plane $\ImPart z\ge0$.
+
+    \item Using the method from Exercise~8, Sec.~83, show that $z_0$ is a pole of order $2$ of $f(z)=1/[q(z)]^2$ and that its residue is
+    \[
+        B_1=-\frac{q''(z_0)}{[q'(z_0)]^3}
+        =\frac{a-i(2a^2+3)}{16A^2z_0}.
+    \]
+    Use $q'(-\overline{z_0})=-\overline{q'(z_0)}$ and $q''(-\overline{z_0})=\overline{q''(z_0)}$ to show that the residue at $-\overline{z_0}$ is $B_2=-\overline{B_1}$. Then obtain
+    \[
+        B_1+B_2=\frac1{8A^2i}\ImPart\left(\frac{-a+i(2a^2+3)}{z_0}\right).
+    \]
+
+    \item Show that $|q(z)|\ge(R-|z_0|)^4$ when $|z|=R>|z_0|$. Use part (b) to complete the derivation of the integration formula.
+\end{exercisesubparts}
+\end{exercise}
+
+\begin{solution}
+Put
+\[
+    u=\frac{\sqrt{A+a}}{\sqrt2},\qquad
+    v=\frac{\sqrt{A-a}}{\sqrt2},\qquad z_0=u+iv.
+\]
+Then $u,v>0$, $u^2-v^2=a$, $2uv=1$, and $u^2+v^2=A$.
+\begin{exercisesubparts}
+    \item The equation $q(z)=0$ is equivalent to $z^2=a\pm i$. Since
+    \[
+        z_0^2=(u^2-v^2)+2iuv=a+i,
+        \qquad\overline{z_0}^{\,2}=a-i,
+    \]
+    the four zeros are $\pm z_0$ and $\pm\overline{z_0}$. Exactly $z_0$ and $-\overline{z_0}$ have positive imaginary parts.
+
+    \item All four roots are simple zeros of $q$, since $q'(z)=4z(z^2-a)\ne0$ there; hence they are double poles of $f=1/q^2$. For a simple zero $c$ of $q$, Taylor expansion gives
+    \[
+        q(z)=q'(c)(z-c)+\frac{q''(c)}2(z-c)^2+\cdots,
+        \quad
+        \Res\left(\frac1{q^2};c\right)
+          =-\frac{q''(c)}{[q'(c)]^3}.
+    \]
+    At $z_0$, using $z_0^2-a=i$ and $q''(z)=12z^2-4a$,
+    \[
+    \begin{aligned}
+        B_1&=-\frac{8a+12i}{(4iz_0)^3}
+             =\frac{3-2ai}{16z_0^3}\\
+           &=\frac{a-i(2a^2+3)}{16A^2z_0},
+    \end{aligned}
+    \]
+    where the last equality follows from $z_0^2=a+i$ and $(a+i)(a-i)=A^2$. Since $q$ is even with real coefficients, the stated derivative relations imply
+    \[
+        B_2=-\overline{B_1},\qquad
+        B_1+B_2=2i\ImPart B_1
+          =\frac1{8A^2i}\ImPart\left(\frac{-a+i(2a^2+3)}{z_0}\right).
+    \]
+    In particular, writing $K=2a^2+3$ and $1/z_0=(u-iv)/A$ gives
+    \[
+        B_1+B_2=-\frac{i}{8A^3}(Ku+av).
+    \]
+
+    \item Since all four zeros $c$ satisfy $|c|=|z_0|$,
+    \[
+        |q(z)|=\prod_{q(c)=0}|z-c|
+        \ge(R-|z_0|)^4\qquad(|z|=R>|z_0|).
+    \]
+    Let $C_R$ be the upper semicircle. Then
+    \[
+        \left|\int_{C_R}\frac{\dd z}{[q(z)]^2}\right|
+        \le\frac{\pi R}{(R-|z_0|)^8}\longrightarrow0.
+    \]
+    Applying the residue theorem and using evenness,
+    \[
+    \begin{aligned}
+        2\int_0^\infty\frac{\dd x}{[(x^2-a)^2+1]^2}
+        &=2\pi i(B_1+B_2)\\
+        &=\frac{\pi}{4A^3}(Ku+av).
+    \end{aligned}
+    \]
+    Substituting the values of $u,v$ yields
+    \[
+        \boxed{\int_0^\infty\frac{\dd x}{[(x^2-a)^2+1]^2}
+        =\frac{\pi}{8\sqrt2\,A^3}
+          \left[(2a^2+3)\sqrt{A+a}+a\sqrt{A-a}\right].}
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{88.5}
+Use residues to derive the integration formula
+\[
+    \int_{-\infty}^{\infty}\frac{x^3\sin ax}{x^4+4}\,\dd x
+    =\pi e^{-a}\cos a\qquad(a>0).
+\]
+\end{exercise}
+
+\begin{solution}
+For $a>0$, integrate
+\[
+    F(z)=\frac{z^3e^{iaz}}{z^4+4}
+\]
+over the upper semicircle and $[-R,R]$, where $R>\sqrt2$. The poles in the upper half-plane are $c_1=1+i$ and $c_2=-1+i$. Since they are simple,
+\[
+    \Res(F;c_k)=\frac{c_k^3e^{iac_k}}{4c_k^3}
+      =\frac{e^{iac_k}}4,
+    \qquad
+    \Res(F;c_1)+\Res(F;c_2)=\frac{e^{-a}\cos a}{2}.
+\]
+On the upper arc $C_R$, the rational factor satisfies
+\[
+    \left|\frac{z^3}{z^4+4}\right|
+    \le\frac{R^3}{R^4-4}\longrightarrow0.
+\]
+Jordan's lemma (Sec.~88) therefore gives $\int_{C_R}F(z)\,\dd z\to0$. Taking imaginary parts in the residue theorem, we obtain
+\[
+    \boxed{\int_{-\infty}^{\infty}\frac{x^3\sin ax}{x^4+4}\,\dd x
+      =\ImPart\left(2\pi i\frac{e^{-a}\cos a}{2}\right)
+      =\pi e^{-a}\cos a.}
+\]
+\end{solution}
+
+\begin{exercise}{88.11}
+Use residues to find the Cauchy principal value of the improper integral
+\[
+    \int_{-\infty}^{\infty}\frac{\cos x}{(x+a)^2+b^2}\,\dd x
+    \qquad(b>0).
+\]
+\end{exercise}
+
+\begin{solution}
+Consider
+\[
+    F(z)=\frac{e^{iz}}{(z+a)^2+b^2}.
+\]
+Its only pole in the upper half-plane is the simple pole $c=-a+ib$, with
+\[
+    \Res(F;c)=\left.\frac{e^{iz}}{z+a+ib}\right|_{z=c}
+       =\frac{e^{-b-ia}}{2ib}.
+\]
+For $|z|=R$ sufficiently large, the rational factor is uniformly $O(R^{-2})$. Jordan's lemma applies to the upper arc, so
+\[
+    \operatorname{P.V.}\!\int_{-\infty}^{\infty}
+       \frac{e^{ix}}{(x+a)^2+b^2}\,\dd x
+       =2\pi i\Res(F;c)=\frac\pi b e^{-b-ia}.
+\]
+Taking real parts,
+\[
+    \boxed{\int_{-\infty}^{\infty}\frac{\cos x}{(x+a)^2+b^2}\,\dd x
+      =\frac\pi b e^{-b}\cos a.}
+\]
+The integral is absolutely convergent, so its Cauchy principal value equals its ordinary improper integral.
+\end{solution}
+
+\begin{exercise}{88.12}
+Follow the steps below to evaluate the \emph{Fresnel integrals}, which are important in diffraction theory:
+\[
+    \int_0^\infty\cos(x^2)\,\dd x
+    =\int_0^\infty\sin(x^2)\,\dd x
+    =\frac12\sqrt{\frac\pi2}.
+\]
+\begin{exercisesubparts}
+    \item Integrate $e^{iz^2}$ around the positively oriented boundary of the sector $0\le r\le R$, $0\le\theta\le\pi/4$ (Fig.~106), using the Cauchy--Goursat theorem, to show that
+    \[
+    \begin{aligned}
+        \int_0^R\cos(x^2)\,\dd x
+        &=\frac1{\sqrt2}\int_0^R e^{-r^2}\,\dd r
+          -\RePart\int_{C_R}e^{iz^2}\,\dd z,\\
+        \int_0^R\sin(x^2)\,\dd x
+        &=\frac1{\sqrt2}\int_0^R e^{-r^2}\,\dd r
+          -\ImPart\int_{C_R}e^{iz^2}\,\dd z,
+    \end{aligned}
+    \]
+    where $C_R$ is the arc $z=Re^{i\theta}$ ($0\le\theta\le\pi/4$).
+
+    \item Show that the integral along $C_R$ tends to zero as $R\to\infty$ by proving
+    \[
+        \left|\int_{C_R}e^{iz^2}\,\dd z\right|
+        \le\frac R2\int_0^{\pi/2}e^{-R^2\sin\phi}\,\dd\phi,
+    \]
+    and applying Jordan's inequality (Sec.~88).
+
+    \item Use parts (a) and (b), together with the known formula $\int_0^\infty e^{-x^2}\,\dd x=\sqrt\pi/2$, to complete the exercise.
+\end{exercisesubparts}
+\begin{center}
+\begin{tikzpicture}[scale=0.93,>=Stealth]
+    \draw[gray,thin,->] (-0.3,0)--(3.25,0) node[right] {$x$};
+    \draw[gray,thin,->] (0,-0.2)--(0,2.55) node[above] {$y$};
+    \draw[thick,->] (0,0)--(2.5,0);
+    \draw[thick,->] (2.5,0) arc[start angle=0,end angle=45,radius=2.5];
+    \draw[thick,->] (1.768,1.768)--(0,0);
+    \fill (0,0) circle (1pt) node[below left] {$O$};
+    \fill (2.5,0) circle (1.4pt) node[below] {$R$};
+    \fill (1.768,1.768) circle (1.4pt) node[above right] {$Re^{i\pi/4}$};
+    \node[above right] at (2.30,0.68) {$C_R$};
+\end{tikzpicture}
+\par\small Figure 106.
+\end{center}
+\end{exercise}
+
+\begin{solution}
+Since $e^{iz^2}$ is entire, its integral around the sector is zero.
+\begin{exercisesubparts}
+    \item The straight segment on the real axis contributes $\int_0^R e^{ix^2}\,\dd x$. On the returning segment $z=re^{i\pi/4}$, $r$ decreases from $R$ to $0$, and
+    \[
+        e^{iz^2}=e^{-r^2},\qquad \dd z=e^{i\pi/4}\,\dd r.
+    \]
+    Thus
+    \[
+        \int_0^R e^{ix^2}\,\dd x
+        +\int_{C_R}e^{iz^2}\,\dd z
+        =e^{i\pi/4}\int_0^R e^{-r^2}\,\dd r.
+    \]
+    Taking real and imaginary parts and using $\RePart e^{i\pi/4}=\ImPart e^{i\pi/4}=1/\sqrt2$ gives the two required identities.
+
+    \item On $C_R$, parameterize $z=Re^{i\theta}$ for $0\le\theta\le\pi/4$. Then
+    \[
+        |e^{iz^2}|=e^{-R^2\sin(2\theta)},\qquad |\dd z|=R\,\dd\theta,
+    \]
+    whence, with $\phi=2\theta$,
+    \[
+        \left|\int_{C_R}e^{iz^2}\,\dd z\right|
+        \le R\int_0^{\pi/4}e^{-R^2\sin(2\theta)}\,\dd\theta
+        =\frac R2\int_0^{\pi/2}e^{-R^2\sin\phi}\,\dd\phi.
+    \]
+    Jordan's inequality gives $\sin\phi\ge2\phi/\pi$ for $0\le\phi\le\pi/2$, so
+    \[
+        \frac R2\int_0^{\pi/2}e^{-R^2\sin\phi}\,\dd\phi
+        \le\frac R2\int_0^{\pi/2}e^{-2R^2\phi/\pi}\,\dd\phi
+        \le\frac\pi{4R}\longrightarrow0.
+    \]
+
+    \item Letting $R\to\infty$ in the identities from part (a),
+    \[
+        \boxed{\int_0^\infty\cos(x^2)\,\dd x
+           =\int_0^\infty\sin(x^2)\,\dd x
+           =\frac1{\sqrt2}\frac{\sqrt\pi}{2}
+           =\frac12\sqrt{\frac\pi2}.}
+    \]
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{91.1}
+Use $f(z)=(e^{iaz}-e^{ibz})/z^2$ and the indented contour in Fig.~108 (Sec.~89) to derive
+\[
+    \int_0^\infty\frac{\cos(ax)-\cos(bx)}{x^2}\,\dd x
+    =\frac\pi2(b-a)\qquad(a\ge0,\ b\ge0).
+\]
+Then use $1-\cos(2x)=2\sin^2x$ to deduce
+\[
+    \int_0^\infty\frac{\sin^2x}{x^2}\,\dd x=\frac\pi2.
+\]
+\begin{center}
+\begin{tikzpicture}[scale=0.90,>=Stealth]
+    \draw[gray,thin,->] (-3.15,0)--(3.3,0) node[right] {$x$};
+    \draw[gray,thin,->] (0,-.28)--(0,3.15) node[above] {$y$};
+    \draw[thick,->] (.65,0)--(2.65,0);
+    \draw[thick,->] (2.65,0) arc[start angle=0,end angle=180,radius=2.65];
+    \draw[thick,->] (-2.65,0)--(-.65,0);
+    \draw[thick,->] (-.65,0) arc[start angle=180,end angle=0,radius=.65];
+    \node[above right] at (1.9,1.76) {$C_R$};
+    \node[above right] at (.40,.50) {$C_\rho$};
+    \node[below] at (-2.65,0) {$-R$};
+    \node[below] at (-.65,0) {$-\rho$};
+    \node[below] at (.65,0) {$\rho$};
+    \node[below] at (2.65,0) {$R$};
+    \node[below] at (0,0) {$O$};
+\end{tikzpicture}
+\par\small Figure 108.
+\end{center}
+\end{exercise}
+
+\begin{solution}
+The indentation excludes the origin, and $f$ is analytic within the resulting contour. Near $0$,
+\[
+    f(z)=\frac{(1+iaz+\cdots)-(1+ibz+\cdots)}{z^2}
+    =\frac{i(a-b)}z+O(1).
+\]
+The small semicircle $C_\rho$ is traversed clockwise, so the indented-path theorem (Sec.~89) yields
+\[
+    \lim_{\rho\to0}\int_{C_\rho}f(z)\,\dd z
+      =-\pi i\Res(f;0)=\pi(a-b).
+\]
+The integrals over the upper outer arc tend to zero by Jordan's lemma when $a,b>0$; if a parameter is zero, the corresponding $1/z^2$ term is bounded directly. Cauchy--Goursat therefore gives
+\[
+    \operatorname{P.V.}\!\int_{-\infty}^{\infty}
+        \frac{e^{iax}-e^{ibx}}{x^2}\,\dd x=\pi(b-a).
+\]
+The imaginary part of the integrand is odd and the real part is even, so
+\[
+    \boxed{\int_0^\infty\frac{\cos(ax)-\cos(bx)}{x^2}\,\dd x
+      =\frac\pi2(b-a).}
+\]
+Setting $a=0$ and $b=2$, then using $1-\cos(2x)=2\sin^2x$, gives
+\[
+    \boxed{\int_0^\infty\frac{\sin^2x}{x^2}\,\dd x=\frac\pi2.}
+\]
+\end{solution}
+
+\begin{exercise}{91.2}
+Derive the integration formula
+\[
+    \int_0^\infty\frac{\dd x}{\sqrt{x}(x^2+1)}
+      =\frac\pi{\sqrt2}
+\]
+by integrating the branch
+\[
+    f(z)=\frac{z^{-1/2}}{z^2+1}
+       =\frac{e^{-\frac12\log z}}{z^2+1}
+    \qquad\left(|z|>0,\ -\frac\pi2<\arg z<\frac{3\pi}2\right)
+\]
+over the indented contour in Fig.~109 (Sec.~90).
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Stealth]
+    \draw[gray,thin,->] (-3.07,0)--(3.23,0) node[right] {$x$};
+    \draw[gray,thin,->] (0,-.25)--(0,3.13) node[above] {$y$};
+    \draw[gray,densely dashed] (0,-.58)--(0,-.04);
+    \draw[thick,->] (.56,0)--(2.65,0);
+    \draw[thick,->] (2.65,0) arc[start angle=0,end angle=180,radius=2.65];
+    \draw[thick,->] (-2.65,0)--(-.56,0);
+    \draw[thick,->] (-.56,0) arc[start angle=180,end angle=0,radius=.56];
+    \fill (0,1.00) circle (1.7pt) node[right] {$i$};
+    \node[above right] at (1.95,1.75) {$C_R$};
+    \node[above right] at (.36,.43) {$C_\rho$};
+    \node[below] at (-2.65,0) {$-R$};
+    \node[below] at (-.56,0) {$-\rho$};
+    \node[below] at (.56,0) {$\rho$};
+    \node[below] at (2.65,0) {$R$};
+    \node[below] at (0,0) {$O$};
+\end{tikzpicture}
+\par\small Figure 109.
+\end{center}
+\end{exercise}
+
+\begin{solution}
+For the specified branch, write $z=re^{i\theta}$ with $-\pi/2<\theta<3\pi/2$, so $z^{-1/2}=r^{-1/2}e^{-i\theta/2}$. In the upper half-plane only $z=i$ is a pole, and
+\[
+    \Res(f;i)=\left.\frac{z^{-1/2}}{z+i}\right|_{z=i}
+       =\frac{e^{-i\pi/4}}{2i}.
+\]
+Let $I_{\rho,R}=\int_\rho^R r^{-1/2}/(r^2+1)\,\dd r$. The positive real segment contributes $I_{\rho,R}$. On the negative segment, $z=re^{i\pi}=-r$ with $r$ decreasing from $R$ to $\rho$, so its contribution is $e^{-i\pi/2}I_{\rho,R}=-iI_{\rho,R}$. Thus the residue theorem gives
+\[
+    (1-i)I_{\rho,R}+\int_{C_R}f(z)\,\dd z
+         +\int_{C_\rho}f(z)\,\dd z
+       =2\pi i\Res(f;i)=\pi e^{-i\pi/4}.
+\]
+The bounds $|z^2+1|\ge R^2-1$ on $C_R$ and $|z^2+1|\ge1-\rho^2$ on $C_\rho$ imply
+\[
+    \left|\int_{C_R}f(z)\,\dd z\right|
+       \le\frac{\pi R^{1/2}}{R^2-1}\longrightarrow0,
+    \qquad
+    \left|\int_{C_\rho}f(z)\,\dd z\right|
+       \le\frac{\pi\rho^{1/2}}{1-\rho^2}\longrightarrow0.
+\]
+Hence
+\[
+    \boxed{\int_0^\infty\frac{\dd x}{\sqrt{x}(x^2+1)}
+      =\frac{\pi e^{-i\pi/4}}{1-i}
+      =\frac\pi{\sqrt2}.}
+\]
+\end{solution}
+
+\begin{exercise}{91.4}
+Derive the integration formula
+\[
+    \int_0^\infty\frac{\sqrt[3]{x}}{(x+a)(x+b)}\,\dd x
+       =\frac{2\pi}{\sqrt3}\frac{\sqrt[3]{a}-\sqrt[3]{b}}{a-b}
+       \qquad(a>b>0),
+\]
+using the branch
+\[
+    f(z)=\frac{z^{1/3}}{(z+a)(z+b)}
+       =\frac{e^{\frac13\log z}}{(z+a)(z+b)}
+       \qquad(|z|>0,\ 0<\arg z<2\pi)
+\]
+and a closed contour like Fig.~110 (Sec.~91), with $\rho<b<a<R$.
+\begin{center}
+\begin{tikzpicture}[scale=.86,>=Stealth]
+    \draw[gray,thin,->] (-3.04,0)--(3.2,0) node[right] {$x$};
+    \draw[gray,thin,->] (0,-2.83)--(0,2.87) node[above] {$y$};
+    \draw[thick,->] (.46,.095)--(2.58,.095);
+    \draw[thick,->] (2.58,.095) arc[start angle=2.1,end angle=357.9,radius=2.582];
+    \draw[thick,->] (2.58,-.095)--(.46,-.095);
+    \draw[thick,->] (.46,-.095) arc[start angle=-11.7,end angle=-348.3,radius=.470];
+    \draw[gray,densely dotted] (.48,0)--(2.57,0);
+    \fill (-1.75,0) circle (1.5pt) node[below] {$-a$};
+    \fill (-1.03,0) circle (1.5pt) node[below] {$-b$};
+    \node[below left] at (0,0) {$O$};
+    \node[above right] at (2.26,1.27) {$C_R$};
+    \node[above left] at (-.28,.56) {$C_\rho$};
+    \node[below right] at (2.57,-.10) {$R$};
+    \node[below right] at (.42,-.10) {$\rho$};
+\end{tikzpicture}
+\par\small Figure 110 (keyhole contour).
+\end{center}
+\end{exercise}
+
+\begin{solution}
+Use the branch $z^{1/3}=r^{1/3}e^{i\theta/3}$, where $z=re^{i\theta}$ and $0<\theta<2\pi$. The poles $-a$ and $-b$ lie within the keyhole contour. Since their arguments are $\pi$,
+\[
+\begin{aligned}
+    \Res(f;-a)&=\frac{a^{1/3}e^{i\pi/3}}{b-a},\\
+    \Res(f;-b)&=\frac{b^{1/3}e^{i\pi/3}}{a-b}.
+\end{aligned}
+\]
+Let $I_{\rho,R}=\int_\rho^R r^{1/3}/[(r+a)(r+b)]\,\dd r$. Along the upper bank of the positive real axis, $z^{1/3}=r^{1/3}$ and the path runs outward; along the lower bank, $z^{1/3}=e^{2\pi i/3}r^{1/3}$ and the path runs inward. Taking the limits to the two banks of the branch cut, Cauchy's residue theorem gives
+\[
+    (1-e^{2\pi i/3})I_{\rho,R}
+      +\int_{C_R}f(z)\,\dd z+\int_{C_\rho}f(z)\,\dd z
+      =\frac{2\pi i\,e^{i\pi/3}}{a-b}(b^{1/3}-a^{1/3}).
+\]
+For $R>a$ and $0<\rho<b$, respectively,
+\[
+\begin{aligned}
+    \left|\int_{C_R}f(z)\,\dd z\right|
+        &\le\frac{2\pi R^{4/3}}{(R-a)(R-b)}\longrightarrow0,\\
+    \left|\int_{C_\rho}f(z)\,\dd z\right|
+        &\le\frac{2\pi\rho^{4/3}}{(a-\rho)(b-\rho)}\longrightarrow0.
+\end{aligned}
+\]
+Since $1-e^{2\pi i/3}=-i\sqrt3\,e^{i\pi/3}$, letting $\rho\to0$ and $R\to\infty$ yields
+\[
+    \boxed{\int_0^\infty\frac{\sqrt[3]{x}}{(x+a)(x+b)}\,\dd x
+       =\frac{2\pi}{\sqrt3}\frac{\sqrt[3]{a}-\sqrt[3]{b}}{a-b}.}
+\]
+\end{solution}
+
+\begin{exercise}{91.5}
+The \emph{beta function} is defined by
+\[
+    B(p,q)=\int_0^1t^{p-1}(1-t)^{q-1}\,\dd t\qquad(p>0,\ q>0).
+\]
+Make the substitution $t=1/(x+1)$ and use the result of the example in Sec.~91 to show that
+\[
+    B(p,1-p)=\frac\pi{\sin(p\pi)}\qquad(0<p<1).
+\]
+\end{exercise}
+
+\begin{solution}
+With $q=1-p$ and $t=1/(x+1)$, we have $1-t=x/(x+1)$ and $\dd t=-\dd x/(x+1)^2$. Hence
+\[
+\begin{aligned}
+    B(p,1-p)
+    &=\int_0^1t^{p-1}(1-t)^{-p}\,\dd t\\
+    &=\int_0^\infty\frac{x^{-p}}{x+1}\,\dd x.
+\end{aligned}
+\]
+For $0<p<1$, the example in Sec.~91 gives $\int_0^\infty x^{-p}/(x+1)\,\dd x=\pi/\sin(p\pi)$. Therefore
+\[
+    \boxed{B(p,1-p)=\frac\pi{\sin(p\pi)}.}
+\]
+\end{solution}
+
+\begin{exercise}{92.2}
+Use residues to establish the integration formula
+\[
+    \int_{-\pi}^{\pi}\frac{\dd\theta}{1+\sin^2\theta}
+       =\sqrt2\,\pi.
+\]
+\end{exercise}
+
+\begin{solution}
+Put $z=e^{i\theta}$ on the positively oriented unit circle $C$. Then
+\[
+    \sin\theta=\frac{z-z^{-1}}{2i},\qquad
+    \dd\theta=\frac{\dd z}{iz},
+\]
+so the integral becomes
+\[
+    \int_C\frac{4iz}{z^4-6z^2+1}\,\dd z.
+\]
+The denominator factors as
+\[
+    z^4-6z^2+1
+    =\bigl(z^2-(\sqrt2-1)^2\bigr)
+     \bigl(z^2-(\sqrt2+1)^2\bigr).
+\]
+Only $c_\pm=\pm(\sqrt2-1)$ lie inside $C$. Each is a simple pole, and
+\[
+    \Res\left(\frac{4iz}{z^4-6z^2+1};c_\pm\right)
+     =\left.\frac{4iz}{4z^3-12z}\right|_{z=c_\pm}
+     =\frac{i}{c_\pm^2-3}=-\frac{i}{2\sqrt2}.
+\]
+Cauchy's residue theorem therefore yields
+\[
+    \boxed{\int_{-\pi}^{\pi}\frac{\dd\theta}{1+\sin^2\theta}
+       =2\pi i\left(-\frac{i}{\sqrt2}\right)=\sqrt2\,\pi.}
+\]
+\end{solution}
+
+\begin{exercise}{92.4}
+Use residues to establish the integration formula
+\[
+    \int_0^{2\pi}\frac{\dd\theta}{1+a\cos\theta}
+      =\frac{2\pi}{\sqrt{1-a^2}}\qquad(-1<a<1).
+\]
+\end{exercise}
+
+\begin{solution}
+For $a=0$, both sides equal $2\pi$. Suppose $0<|a|<1$. With $z=e^{i\theta}$ and $C$ the positively oriented unit circle,
+\[
+    \cos\theta=\frac{z+z^{-1}}2,\qquad
+    \int_0^{2\pi}\frac{\dd\theta}{1+a\cos\theta}
+      =\int_C\frac{2/i}{az^2+2z+a}\,\dd z.
+\]
+Put $s=\sqrt{1-a^2}$. The denominator has distinct roots
+\[
+    c_+=\frac{-1+s}{a}=-\frac a{1+s},
+    \qquad c_-=\frac{-1-s}{a}.
+\]
+Since $|c_+|<1$ and $c_+c_-=1$, only $c_+$ lies inside $C$. Its residue is
+\[
+    \Res\left(\frac{2/i}{az^2+2z+a};c_+\right)
+      =\frac{2/i}{2ac_++2}=\frac1{is}.
+\]
+Consequently,
+\[
+    \boxed{\int_0^{2\pi}\frac{\dd\theta}{1+a\cos\theta}
+       =2\pi i\frac1{is}=\frac{2\pi}{\sqrt{1-a^2}}.}
+\]
+\end{solution}
+
+\begin{exercise}{92.6}
+Use residues to establish the integration formula
+\[
+    \int_0^\pi\sin^{2n}\theta\,\dd\theta
+      =\frac{(2n)!}{2^{2n}(n!)^2}\,\pi
+      \qquad(n=1,2,\ldots).
+\]
+\end{exercise}
+
+\begin{solution}
+Since $\sin^{2n}\theta$ has period $\pi$,
+\[
+    2\int_0^\pi\sin^{2n}\theta\,\dd\theta
+       =\int_0^{2\pi}\sin^{2n}\theta\,\dd\theta.
+\]
+On the positively oriented unit circle $C$, set $z=e^{i\theta}$. Using $\sin\theta=(z-z^{-1})/(2i)$ and $\dd\theta=\dd z/(iz)$, the right-hand side is
+\[
+\begin{aligned}
+    \int_C\frac1{iz}\left(\frac{z-z^{-1}}{2i}\right)^{2n}\,\dd z
+    &=\frac1{i(2i)^{2n}}
+      \int_C\sum_{k=0}^{2n}(-1)^k\binom{2n}{k}
+         z^{2n-2k-1}\,\dd z.
+\end{aligned}
+\]
+Only the term $k=n$ contributes a $z^{-1}$ coefficient. Since $(2i)^{2n}=(-4)^n$,
+\[
+    \Res\left(\frac1{iz}\left(\frac{z-z^{-1}}{2i}\right)^{2n};0\right)
+      =\frac{(-1)^n}{i(-4)^n}\binom{2n}{n}
+      =\frac1{i4^n}\binom{2n}{n}.
+\]
+Thus
+\[
+    \boxed{\int_0^\pi\sin^{2n}\theta\,\dd\theta
+      =\frac12(2\pi i)\frac1{i4^n}\binom{2n}{n}
+      =\frac{(2n)!}{2^{2n}(n!)^2}\,\pi.}
+\]
+\end{solution}
+
+\end{document}
