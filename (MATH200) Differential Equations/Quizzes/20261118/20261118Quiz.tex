@@ -343,4 +343,294 @@ The graph is shown below, with an open circle at $x=0$ because the differential 
 \end{center}
 \end{solution}
 
+
+
+% Boyce Section 5.5, Problem 3; applicable subparts (a)--(c).
+\begin{problem}{5.5.3}
+Consider the differential equation
+\[
+    xy''+2y=0.
+\]
+\begin{problemsubparts}
+    \item Show that $x=0$ is a regular singular point.
+    \item Determine the indicial equation, the recurrence relation, and the roots of the indicial equation.
+    \item Find the series solution for $x>0$ corresponding to the larger root.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} In standard form, $y''+(2/x)y=0$, so
+\[
+    xp(x)=0, \qquad x^2q(x)=2x.
+\]
+Both extend analytically to $x=0$, which is therefore a regular singular point.
+
+\noindent\textup{(b)} Set
+\[
+    y=\sum_{n=0}^{\infty}a_nx^{n+r}, \qquad a_0\ne0.
+\]
+Substituting into $x^2y''+2xy=0$ and equating coefficients gives
+\[
+    a_0r(r-1)=0, \qquad
+    (n+r)(n+r-1)a_n+2a_{n-1}=0 \quad(n\geq1).
+\]
+Hence the indicial equation, its roots, and the recurrence relation are
+\[
+    \boxed{r(r-1)=0, \qquad r_1=1, \quad r_2=0},
+\]
+\[
+    \boxed{a_n=-\frac{2a_{n-1}}{(n+r)(n+r-1)}}, \qquad n\geq1.
+\]
+
+\noindent\textup{(c)} For the larger root $r=1$, take $a_0=1$. The recurrence becomes
+\[
+    a_n=-\frac{2a_{n-1}}{n(n+1)}, \qquad
+    a_n=\frac{(-2)^n}{n!(n+1)!}.
+\]
+Thus the required solution is
+\[
+    \boxed{y_1(x)=x\sum_{n=0}^{\infty}\frac{(-2)^n}{n!(n+1)!}x^n
+    =x-x^2+\frac{x^3}{3}-\frac{x^4}{18}+\cdots}, \qquad x>0.
+\]
+The smaller root differs from $r_1$ by an integer, so the conditional smaller-root task does not apply.
+\end{solution}
+
+% Boyce Section 5.5, Problem 4; applicable subparts (a)--(c).
+\begin{problem}{5.5.4}
+Consider the differential equation
+\[
+    2xy''+2y'-y=0.
+\]
+\begin{problemsubparts}
+    \item Show that $x=0$ is a regular singular point.
+    \item Determine the indicial equation, the recurrence relation, and the roots of the indicial equation.
+    \item Find the series solution for $x>0$ corresponding to the larger root.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} Dividing by $2x$ gives $p(x)=1/x$ and $q(x)=-1/(2x)$. Since
+\[
+    xp(x)=1, \qquad x^2q(x)=-\frac{x}{2}
+\]
+are analytic at $x=0$, it is a regular singular point.
+
+\noindent\textup{(b)} Substituting $y=\sum_{n=0}^{\infty}a_nx^{n+r}$ with $a_0\ne0$ into $2x^2y''+2xy'-xy=0$ yields
+\[
+    2r^2a_0=0, \qquad
+    2(n+r)^2a_n-a_{n-1}=0 \quad(n\geq1).
+\]
+Therefore the indicial root is repeated, and
+\[
+    \boxed{r^2=0, \qquad r_1=r_2=0},
+    \qquad
+    \boxed{a_n=\frac{a_{n-1}}{2(n+r)^2}} \quad(n\geq1).
+\]
+
+\noindent\textup{(c)} For $r=0$ and $a_0=1$,
+\[
+    a_n=\frac{a_{n-1}}{2n^2}
+    =\frac{1}{2^n(n!)^2}.
+\]
+Consequently,
+\[
+    \boxed{y_1(x)=\sum_{n=0}^{\infty}\frac{x^n}{2^n(n!)^2}
+    =1+\frac{x}{2}+\frac{x^2}{16}+\frac{x^3}{288}+\cdots}, \qquad x>0.
+\]
+The indicial root is repeated, so there is no distinct smaller root to treat here.
+\end{solution}
+
+% Boyce Section 5.6, Problem 2; both subparts (a), (b).
+\begin{problem}{5.6.2}
+Consider the differential equation
+\[
+    x^2y''-x(2+x)y'+(2+x^2)y=0.
+\]
+\begin{problemsubparts}
+    \item Find all regular singular points.
+    \item Determine the indicial equation and the exponents at each regular singular point.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} In standard form,
+\[
+    p(x)=-\frac{2+x}{x}, \qquad q(x)=\frac{2+x^2}{x^2}.
+\]
+The only finite singular point is $x=0$. Since $xp(x)=-(2+x)$ and $x^2q(x)=2+x^2$ are analytic there, $x=0$ is regular singular.
+
+\noindent\textup{(b)} At $x=0$,
+\[
+    p_0=\lim_{x\to0}xp(x)=-2, \qquad
+    q_0=\lim_{x\to0}x^2q(x)=2.
+\]
+Thus the indicial equation and exponents are
+\[
+    \boxed{r(r-1)-2r+2=(r-1)(r-2)=0},
+    \qquad \boxed{r_1=2, \quad r_2=1}.
+\]
+\end{solution}
+
+% Boyce Section 5.6, Problem 4; both subparts (a), (b).
+\begin{problem}{5.6.4}
+Consider the differential equation
+\[
+    3x(x+2)y''+y'-xy=0.
+\]
+\begin{problemsubparts}
+    \item Find all regular singular points.
+    \item Determine the indicial equation and the exponents at each regular singular point.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} The coefficients in standard form are
+\[
+    p(x)=\frac{1}{3x(x+2)}, \qquad
+    q(x)=-\frac{1}{3(x+2)}.
+\]
+The singular points are $0$ and $-2$. At $x=0$, both $xp(x)=1/(3(x+2))$ and $x^2q(x)=-x^2/(3(x+2))$ are analytic. At $x=-2$, both $(x+2)p(x)=1/(3x)$ and $(x+2)^2q(x)=-(x+2)/3$ are analytic. Hence both points are regular singular.
+
+\noindent\textup{(b)} At $x=0$, the limits are $p_0=1/6$ and $q_0=0$, giving
+\[
+    \boxed{r(r-1)+\frac16r=r\left(r-\frac56\right)=0},
+    \qquad \boxed{r_1=\frac56, \quad r_2=0}.
+\]
+At $x=-2$, using $z=x+2$ gives $p_0=-1/6$ and $q_0=0$. Thus
+\[
+    \boxed{r(r-1)-\frac16r=r\left(r-\frac76\right)=0},
+    \qquad \boxed{r_1=\frac76, \quad r_2=0}.
+\]
+\end{solution}
+
+% Boyce Section 5.6, Problem 6; both subparts (a), (b).
+\begin{problem}{5.6.6}
+Consider the differential equation
+\[
+    x^2(1-x)y''-(1+x)y'+3xy=0.
+\]
+\begin{problemsubparts}
+    \item Find all regular singular points.
+    \item Determine the indicial equation and the exponents at each regular singular point.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} In standard form,
+\[
+    p(x)=-\frac{1+x}{x^2(1-x)}, \qquad
+    q(x)=\frac{3}{x(1-x)}.
+\]
+The singular points are $x=0$ and $x=1$. At $x=0$,
+\[
+    xp(x)=-\frac{1+x}{x(1-x)}
+\]
+has a pole, so $x=0$ is an irregular singular point. At $x=1$,
+\[
+    (x-1)p(x)=\frac{1+x}{x^2}, \qquad
+    (x-1)^2q(x)=-\frac{3(x-1)}{x}
+\]
+are analytic. Therefore $x=1$ is the only regular singular point.
+
+\noindent\textup{(b)} At $x=1$,
+\[
+    p_0=\lim_{x\to1}(x-1)p(x)=2, \qquad
+    q_0=\lim_{x\to1}(x-1)^2q(x)=0.
+\]
+Hence
+\[
+    \boxed{r(r-1)+2r=r(r+1)=0},
+    \qquad \boxed{r_1=0, \quad r_2=-1}.
+\]
+\end{solution}
+
+% Boyce Section 5.6, Problem 9; all subparts (a)--(c).
+\begin{problem}{5.6.9}
+Consider the differential equation
+\[
+    xy''+y=0.
+\]
+\begin{problemsubparts}
+    \item Show that $x=0$ is a regular singular point.
+    \item Find the exponents at $x=0$.
+    \item Find the first three nonzero terms in each of two linearly independent solutions about $x=0$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} The equation has $p(x)=0$ and $q(x)=1/x$ in standard form. Since $xp(x)=0$ and $x^2q(x)=x$ are analytic at $0$, the point is regular singular.
+
+\noindent\textup{(b)} Substitute $y=\sum_{n=0}^{\infty}a_nx^{n+r}$, $a_0\ne0$, into $x^2y''+xy=0$. The lowest-order term gives
+\[
+    \boxed{r(r-1)=0, \qquad r_1=1, \quad r_2=0}.
+\]
+
+\noindent\textup{(c)} For $n\geq1$, coefficient comparison gives
+\[
+    (n+r)(n+r-1)a_n+a_{n-1}=0.
+\]
+Taking $r=1$ and $a_0=1$ yields $a_n=-a_{n-1}/(n(n+1))$, hence
+\[
+    \boxed{y_1(x)=x-\frac{x^2}{2}+\frac{x^3}{12}+\cdots}.
+\]
+The roots differ by an integer, so the second solution may contain a logarithm. Let $L[y]=xy''+y$ and write
+\[
+    y_2=-y_1\ln x+v(x), \qquad
+    v(x)=1+\sum_{n=1}^{\infty}b_nx^n.
+\]
+As $L[y_1\ln x]=2y_1'-y_1/x$, the equation $L[y_2]=0$ becomes
+\[
+    xv''+v=2y_1'-\frac{y_1}{x}
+    =1-\frac32x+\frac5{12}x^2+\cdots.
+\]
+We may choose $b_1=0$ (adding a multiple of $y_1$ only changes the normalization). Comparing the coefficient of $x$ gives $2b_2=-3/2$, so $b_2=-3/4$. Therefore
+\[
+    \boxed{y_2(x)=1-x\ln x+x^2\left(\frac12\ln x-\frac34\right)+\cdots},
+    \qquad x>0.
+\]
+The solutions are independent since $y_1(x)\to0$ while $y_2(x)\to1$ as $x\to0^+$.
+\end{solution}
+
+% Boyce Section 5.6, Problem 11; all subparts (a)--(c).
+\begin{problem}{5.6.11}
+Consider the differential equation
+\[
+    xy''+y'-y=0.
+\]
+\begin{problemsubparts}
+    \item Show that $x=0$ is a regular singular point.
+    \item Find the exponents at $x=0$.
+    \item Find the first three nonzero terms in each of two linearly independent solutions about $x=0$.
+\end{problemsubparts}
+\end{problem}
+
+\begin{solution}
+\noindent\textup{(a)} Dividing by $x$ gives $p(x)=1/x$ and $q(x)=-1/x$. Since $xp(x)=1$ and $x^2q(x)=-x$ are analytic at $0$, it is a regular singular point.
+
+\noindent\textup{(b)} Writing $y=\sum_{n=0}^{\infty}a_nx^{n+r}$ with $a_0\ne0$, the coefficient of $x^r$ gives the indicial equation
+\[
+    \boxed{r(r-1)+r=r^2=0, \qquad r_1=r_2=0}.
+\]
+
+\noindent\textup{(c)} Substitution gives the recurrence
+\[
+    (n+r)^2a_n-a_{n-1}=0, \qquad n\geq1.
+\]
+For $r=0$ and $a_0=1$, we have $a_n=1/(n!)^2$, so
+\[
+    \boxed{y_1(x)=1+x+\frac{x^2}{4}+\cdots}.
+\]
+Since the indicial root is repeated, seek $y_2=y_1\ln x+v(x)$ with $v(x)=\sum_{n=1}^{\infty}b_nx^n$. Let $L[y]=xy''+y'-y$. The identity $L[y_1\ln x]=2y_1'$ gives
+\[
+    xv''+v'-v=-2y_1'=-2-x-\frac{x^2}{6}+\cdots.
+\]
+Comparing the constant and linear coefficients yields $b_1=-2$ and $4b_2-b_1=-1$, so $b_2=-3/4$. Thus
+\[
+    \boxed{y_2(x)=\ln x+x(\ln x-2)
+         +x^2\left(\frac14\ln x-\frac34\right)+\cdots},
+    \qquad x>0.
+\]
+The logarithmic behavior of $y_2$ near $0$ shows that it is not a multiple of $y_1$.
+\end{solution}
+
 \end{document}
