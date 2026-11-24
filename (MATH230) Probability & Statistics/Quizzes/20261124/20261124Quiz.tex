@@ -1,0 +1,1339 @@
+\documentclass[11pt,oneside]{article}
+\pdfminorversion=7
+\usepackage{QuizStyle}
+\hypersetup{
+    pdftitle={20261124 Quiz for MATH230 Probability \& Statistics},
+    pdfauthor={Jungwoo Kim},
+    pdfsubject={Quiz for MATH230 Probability \& Statistics},
+    pdfcreator={LaTeX}
+}
+\begin{document}
+\quiztitle{20261124 Quiz}
+
+\begin{exercise}{9.1}
+As part of a research on nutrition, a particular protein diet was tried out on a large group of mice. Researchers claimed that the new diet led to an increase in the weight of the mice. Assuming that it is known from previous studies that $\sigma=4.5$ grams, how many mice should be included in our sample if we wish to be 95\% confident that the mean weight of the sample will be within 3 grams of the population mean for all mice subjected to this protein diet?
+\end{exercise}
+\begin{solution}
+Under the normal model for the sample mean, the margin of error must be at most $e=3$. With $z_{0.025}\approx 1.959964$, we require
+\[
+n\ge \left(\frac{z_{\alpha/2}\sigma}{e}\right)^2\approx \left(\frac{1.959964(4.5)}{3}\right)^2\approx 8.6433.
+\]
+Rounding up gives $\boxed{n=9}$.
+\end{solution}
+
+\begin{exercise}{9.2}
+An electrical firm manufactures light bulbs that have a length of life that is approximately normally distributed with a standard deviation of 40 hours. If a sample of 30 bulbs has an average life of 780 hours, find a 96\% confidence interval for the population mean of all bulbs produced by this firm.
+\end{exercise}
+\begin{solution}
+The population standard deviation is known, so use the normal interval. Here $z_{0.02}\approx 2.0537$.
+\[
+\bar x\pm z_{0.02}\frac{\sigma}{\sqrt n}\approx 780\pm 2.0537\frac{40}{\sqrt{30}}\approx 780\pm 14.998461.
+\]
+The confidence interval is 
+\[
+\boxed{\bigl(765,\ 795\bigr)}\text{ hours}.
+\]
+\end{solution}
+
+\begin{exercise}{9.3}
+Many cardiac patients wear an implanted pacemaker to control their heartbeat. A plastic connector module mounts on the top of the pacemaker. Assuming a standard deviation of 0.0015 inch and an approximately normal distribution, find a 95\% confidence interval for the mean of the depths of all connector modules made by a certain manufacturing company. A random sample of 75 modules has an average depth of 0.310 inch.
+\end{exercise}
+\begin{solution}
+The population standard deviation is known, so use the normal interval. Here $z_{0.025}\approx 1.96$.
+\[
+\bar x\pm z_{0.025}\frac{\sigma}{\sqrt n}\approx 0.31\pm 1.96\frac{0.0015}{\sqrt{75}}\approx 0.31\pm 0.000339.
+\]
+The confidence interval is $\boxed{(0.309661,\ 0.310339)}$ inch.
+\end{solution}
+
+\begin{exercise}{9.4}
+The prices of a particular variety of rice, per kilogram, collected from 48 local stores in the suburban areas of a district vary with a mean of \$3 and a standard deviation of \$1.6.
+\begin{exercisesubparts}
+\item Construct a 95\% confidence interval for the mean price.
+\item With 95\% confidence, what can we assert about the possible size of our error if we estimate the mean price of rice for all the stores in the area as \$3?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The sample is large, so use the normal approximation with $s$ in place of the unknown population standard deviation. Here $z_{0.025}\approx 1.96$.
+\[
+\bar x\pm z_{0.025}\frac{s}{\sqrt n}\approx 3\pm 1.96\frac{1.6}{\sqrt{48}}\approx 3\pm 0.452634.
+\]
+The confidence interval is 
+\[
+\boxed{\bigl(2.547,\ 3.453\bigr)}.
+\]
+
+\item The margin of error is the half-width of the interval. With $95\%$ confidence, the error is at most approximately $\boxed{0.4526}$ dollars per kilogram.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.5}
+A random sample of 100 automobile owners in the state of Virginia shows that an automobile is driven on average 23,500 kilometers per year with a standard deviation of 3900 kilometers. Assume the distribution of measurements to be approximately normal.
+\begin{exercisesubparts}
+\item Construct a 99\% confidence interval for the average number of kilometers an automobile is driven annually in Virginia.
+\item What can we assert with 99\% confidence about the possible size of our error if we estimate the average number of kilometers driven by car owners in Virginia to be 23,500 kilometers per year?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The sample is large, so use the normal approximation with $s$ in place of the unknown population standard deviation. Here $z_{0.005}\approx 2.5758$.
+\[
+\bar x\pm z_{0.005}\frac{s}{\sqrt n}\approx 23500\pm 2.5758\frac{3900}{\sqrt{100}}\approx 23500\pm 1004.573428.
+\]
+The confidence interval is 
+\[
+\boxed{\bigl(22495.43,\ 24504.57\bigr)}.
+\]
+
+\item The margin of error is the half-width of the interval. With $99\%$ confidence, the error is at most approximately $\boxed{1004.5734}$ kilometers per year.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.6}
+How large a sample is needed in Exercise 9.2 (approximately normal bulb lifetimes with $\sigma=40$ hours) if we wish to be 96\% confident that our sample mean will be within 10 hours of the true mean?
+\end{exercise}
+\begin{solution}
+The normal-approximation margin of error must be at most $e=10$. With $z_{0.02}\approx 2.053749$, we require
+\[
+n\ge \left(\frac{z_{\alpha/2}\sigma}{e}\right)^2\approx \left(\frac{2.053749(40)}{10}\right)^2\approx 67.4862.
+\]
+Rounding up gives $\boxed{n=68}$.
+\end{solution}
+
+\begin{exercise}{9.7}
+How large a sample is needed in Exercise 9.3 (approximately normal connector depths with $\sigma=0.0015$ inch) if we wish to be 95\% confident that our sample mean will be within 0.0005 inch of the true mean?
+\end{exercise}
+\begin{solution}
+The normal-approximation margin of error must be at most $e=0.0005$. With $z_{0.025}\approx 1.959964$, we require
+\[
+n\ge \left(\frac{z_{\alpha/2}\sigma}{e}\right)^2\approx \left(\frac{1.959964(0.0015)}{0.0005}\right)^2\approx 34.5731.
+\]
+Rounding up gives $\boxed{n=35}$.
+\end{solution}
+
+\begin{exercise}{9.8}
+A marketing agency wishes to determine the average time, in days, that it takes to sell a product in various stores in a city. How large a sample will they need in order to be 98\% confident that their sample mean will be within 2 days of the true mean? Assume that $\sigma=5$ days.
+\end{exercise}
+\begin{solution}
+The normal-approximation margin of error must be at most $e=2$. With $z_{0.01}\approx 2.326348$, we require
+\[
+n\ge \left(\frac{z_{\alpha/2}\sigma}{e}\right)^2\approx \left(\frac{2.326348(5)}{2}\right)^2\approx 33.8243.
+\]
+Rounding up gives $\boxed{n=34}$.
+\end{solution}
+
+\begin{exercise}{9.9}
+Regular consumption of presweetened cereals contributes to tooth decay, heart disease, and other degenerative diseases, according to studies conducted by Dr. W. H. Bowen of the National Institute of Health and Dr. J. Yudben, Professor of Nutrition and Dietetics at the University of London. In a random sample consisting of 20 similar single servings of Alpha-Bits, the average sugar content was 11.3 grams with a standard deviation of 2.45 grams. Assuming that the sugar contents are normally distributed, construct a 95\% confidence interval for the mean sugar content for single servings of Alpha-Bits.
+\end{exercise}
+\begin{solution}
+Under the normal population model with unknown standard deviation, use Student's $t$ distribution with $19$ degrees of freedom. Here $t_{0.025}(19)\approx 2.093$.
+\[
+\bar x\pm t_{0.025}(19)\frac{s}{\sqrt n}\approx 11.3\pm 2.093\frac{2.45}{\sqrt{20}}\approx 11.3\pm 1.146635.
+\]
+The confidence interval is 
+\[
+\boxed{\bigl(10.1534,\ 12.4466\bigr)}\text{ grams}.
+\]
+\end{solution}
+
+\begin{exercise}{9.10}
+A random sample of 12 graduates of a certain secretarial school typed an average of 79.3 words per minute with a standard deviation of 7.8 words per minute. Assuming a normal distribution for the number of words typed per minute, find a 95\% confidence interval for the average number of words typed by all graduates of this school.
+\end{exercise}
+\begin{solution}
+Under the normal population model with unknown standard deviation, use Student's $t$ distribution with $11$ degrees of freedom. Here $t_{0.025}(11)\approx 2.201$.
+\[
+\bar x\pm t_{0.025}(11)\frac{s}{\sqrt n}\approx 79.3\pm 2.201\frac{7.8}{\sqrt{12}}\approx 79.3\pm 4.955884.
+\]
+The confidence interval is 
+\[
+\boxed{\bigl(74.3441,\ 84.2559\bigr)}\text{ words per minute}.
+\]
+\end{solution}
+
+\begin{exercise}{9.12}
+A random sample of 10 chocolate energy bars of a certain brand has, on average, 230 calories per bar, with a standard deviation of 15 calories. Construct a 99\% confidence interval for the true mean calorie content of this brand of energy bar. Assume that the distribution of the calorie content is approximately normal.
+\end{exercise}
+\begin{solution}
+Under the normal population model with unknown standard deviation, use Student's $t$ distribution with $9$ degrees of freedom. Here $t_{0.005}(9)\approx 3.2498$.
+\[
+\bar x\pm t_{0.005}(9)\frac{s}{\sqrt n}\approx 230\pm 3.2498\frac{15}{\sqrt{10}}\approx 230\pm 15.415323.
+\]
+The confidence interval is 
+\[
+\boxed{\bigl(214.5847,\ 245.4153\bigr)}\text{ calories}.
+\]
+\end{solution}
+
+\begin{exercise}{9.13}
+A random sample of 12 shearing pins is taken in a study of the Rockwell hardness of the pin head. Measurements on the Rockwell hardness are made for each of the 12, yielding an average value of 48.50 with a sample standard deviation of 1.5. Assuming the measurements to be normally distributed, construct a 90\% confidence interval for the mean Rockwell hardness.
+\end{exercise}
+\begin{solution}
+Under the normal population model with unknown standard deviation, use Student's $t$ distribution with $11$ degrees of freedom. Here $t_{0.05}(11)\approx 1.7959$.
+\[
+\bar x\pm t_{0.05}(11)\frac{s}{\sqrt n}\approx 48.5\pm 1.7959\frac{1.5}{\sqrt{12}}\approx 48.5\pm 0.777641.
+\]
+The confidence interval is 
+\[
+\boxed{\bigl(47.7224,\ 49.2776\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.14}
+The following measurements were recorded for the drying time, in hours, of a certain brand of latex paint:
+\[
+\begin{array}{ccccc}\toprule
+3.4 & 2.5 & 4.8 & 2.9 & 3.6\\
+2.8 & 3.3 & 5.6 & 3.7 & 2.8\\
+4.4 & 4.0 & 5.2 & 3.0 & 4.8\\
+\bottomrule\end{array}
+\]
+Assuming that the measurements represent a random sample from a normal population, find a 95\% prediction interval for the drying time for the next trial of the paint.
+\end{exercise}
+\begin{solution}
+From the observations, 
+\[
+n=15,\qquad\bar x=\frac{56.8}{15}\approx3.786667,\qquad s=\sqrt{\frac{\sum_i(x_i-\bar x)^2}{14}}\approx0.97091.
+\]
+For a future independent observation from the normal population, use the prediction interval with $14$ degrees of freedom. Here $t_{0.025}(14)\approx 2.1448$.
+\[
+\bar x\pm t_{0.025}(14)s\sqrt{1+1/n}\approx 3.7866667\pm 2.1448(0.9709102)\sqrt{1+1/15}\approx 3.7866667\pm 2.150689.
+\]
+The prediction interval is 
+\[
+\boxed{\bigl(1.636,\ 5.9374\bigr)}\text{ hours}.
+\]
+\end{solution}
+
+\begin{exercise}{9.15}
+Referring to Exercise 9.5 (a random sample of 100 automobile owners in Virginia gives an average annual distance of 23,500 km and a standard deviation of 3900 km; assume approximate normality), construct a 99\% prediction interval for the kilometers traveled annually by an automobile owner in Virginia.
+\end{exercise}
+\begin{solution}
+For a future independent observation from the normal population, use the prediction interval with $99$ degrees of freedom. Here $t_{0.005}(99)\approx 2.6264$.
+\[
+\bar x\pm t_{0.005}(99)s\sqrt{1+1/n}\approx 23500\pm 2.6264(3900)\sqrt{1+1/100}\approx 23500\pm 10294.068789.
+\]
+The prediction interval is 
+\[
+\boxed{\bigl(13205.931,\ 33794.069\bigr)}\text{ kilometers}.
+\]
+\end{solution}
+
+\begin{exercise}{9.16}
+Referring to Exercise 9.10 (12 graduates typed an average of 79.3 words per minute with a standard deviation of 7.8 words per minute; assume normality), compute the 95\% prediction interval for the next observed number of words per minute typed by a graduate of the secretarial school.
+\end{exercise}
+\begin{solution}
+For a future independent observation from the normal population, use the prediction interval with $11$ degrees of freedom. Here $t_{0.025}(11)\approx 2.201$.
+\[
+\bar x\pm t_{0.025}(11)s\sqrt{1+1/n}\approx 79.3\pm 2.201(7.8)\sqrt{1+1/12}\approx 79.3\pm 17.868692.
+\]
+The prediction interval is 
+\[
+\boxed{\bigl(61.431,\ 97.169\bigr)}\text{ words per minute}.
+\]
+\end{solution}
+
+\begin{exercise}{9.17}
+Referring to Exercise 9.9 (20 similar single servings of Alpha-Bits have mean sugar content 11.3 grams and standard deviation 2.45 grams; assume normality), compute a 95\% prediction interval for the sugar content of the next single serving of Alpha-Bits.
+\end{exercise}
+\begin{solution}
+For a future independent observation from the normal population, use the prediction interval with $19$ degrees of freedom. Here $t_{0.025}(19)\approx 2.093$.
+\[
+\bar x\pm t_{0.025}(19)s\sqrt{1+1/n}\approx 11.3\pm 2.093(2.45)\sqrt{1+1/20}\approx 11.3\pm 5.254543.
+\]
+The prediction interval is 
+\[
+\boxed{\bigl(6.045,\ 16.555\bigr)}\text{ grams}.
+\]
+\end{solution}
+
+\begin{exercise}{9.18}
+Referring to Exercise 9.13 (12 pins, $\bar x=48.50$, $s=1.5$, and normally distributed measurements), construct a 95\% tolerance interval containing 90\% of the measurements.
+\end{exercise}
+\begin{solution}
+For $n=12$, confidence $95\%$, and population coverage $90\%$, Table A.7 gives $k=2.655$ for two-sided limits.
+\[
+\bar x\pm ks=48.5\pm(2.655)(1.5)\approx\boxed{\bigl(44.5175,\ 52.4825\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.19}
+A random sample of 25 tablets of buffered aspirin contains, on average, 325.05 mg of aspirin per tablet, with a standard deviation of 0.5 mg. Find the 95\% tolerance limits that will contain 90\% of the tablet contents for this brand of buffered aspirin. Assume that the aspirin content is normally distributed.
+\end{exercise}
+\begin{solution}
+For $n=25$, confidence $95\%$, and population coverage $90\%$, Table A.7 gives $k=2.208$ for two-sided limits.
+\[
+\bar x\pm ks=325.05\pm(2.208)(0.5)\approx\boxed{\bigl(323.946,\ 326.154\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.20}
+Consider the situation of Exercise 9.11. A sample of nine cylindrical metal pieces has diameters (cm) $1.01$, $0.97$, $1.03$, $1.04$, $0.99$, $0.98$, $0.99$, $1.01$, $1.03$; assume approximate normality. Estimation of the mean diameter, while important, is not nearly as important as trying to pin down the location of the majority of the distribution of diameters. Find the 95\% tolerance limits that contain 95\% of the diameters.
+\end{exercise}
+\begin{solution}
+From the observations, 
+\[
+n=9,\qquad\bar x=\frac{9.05}{9}\approx1.005556,\qquad s=\sqrt{\frac{\sum_i(x_i-\bar x)^2}{8}}\approx0.024552.
+\]
+For $n=9$, confidence $95\%$, and population coverage $95\%$, Table A.7 gives $k=3.532$ for two-sided limits.
+\[
+\bar x\pm ks=1.0055556\pm(3.532)(0.0245515)\approx\boxed{\bigl(0.9188,\ 1.0923\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.21}
+In a study conducted by the Department of Biological Sciences at Virginia Tech, fifteen samples of water were collected from a certain station in the James River in order to gain some insight regarding the amount of orthophosphorus in the river. The concentration of the chemical is measured in milligrams per liter. Let us suppose that the mean at the station is not as important as the upper extreme of the distribution of the concentration of the chemical at the station. Concern centers around whether the concentration at the extreme is too large. Readings for the fifteen water samples gave a sample mean of 3.84 milligrams per liter and a sample standard deviation of 3.07 milligrams per liter. Assume that the readings are a random sample from a normal distribution. Calculate a prediction interval (upper 95\% prediction limit) and a tolerance limit (95\% upper tolerance limit that exceeds 95\% of the population of values). Interpret both; that is, tell what each communicates about the upper extreme of the distribution of orthophosphorus at the sampling station.
+\end{exercise}
+\begin{solution}
+For a one-sided prediction bound, $t_{0.05}(14)\approx1.7613$. 
+\[
+\bar x+t_{0.05}(14)s\sqrt{1+1/n}=3.84+(1.7613)(3.07)\sqrt{1+1/15}\approx\boxed{9.4246}.
+\]
+The upper prediction bound covers one future reading with 95\% probability over repeated sampling and future observations. For $n=15$, confidence $95\%$, and population coverage $95\%$, Table A.7 gives $k=2.566$ for a one-sided bound.
+\[
+\bar x+ks=3.84+(2.566)(3.07)\approx\boxed{11.7176}.
+\]
+With 95\% confidence, at least 95\% of the population lies below the latter bound. Both are in mg/L.
+\end{solution}
+
+\begin{exercise}{9.22}
+A type of thread is being studied for its tensile strength properties. Fifty pieces were tested under similar conditions, and the results showed an average tensile strength of 78.3 kilograms and a standard deviation of 5.6 kilograms. Assuming a normal distribution of tensile strengths, give a lower 95\% prediction limit on a single observed tensile strength value. In addition, give a lower 95\% tolerance limit that is exceeded by 99\% of the tensile strength values.
+\end{exercise}
+\begin{solution}
+For a one-sided prediction bound, $t_{0.05}(49)\approx1.6766$. 
+\[
+\bar x-t_{0.05}(49)s\sqrt{1+1/n}=78.3-(1.6766)(5.6)\sqrt{1+1/50}\approx\boxed{68.8179}.
+\]
+For $n=50$, confidence $95\%$, and population coverage $99\%$, Table A.7 gives $k=2.863$ for a one-sided bound.
+\[
+\bar x-ks=78.3-(2.863)(5.6)\approx\boxed{62.2672}.
+\]
+Both bounds are in kilograms.
+\end{solution}
+
+\begin{exercise}{9.23}
+Refer to Exercise 9.22, where the objective is to find a lower 95\% prediction limit on one tensile strength and a lower 95\% tolerance limit exceeded by 99\% of tensile strengths. Why are the quantities requested in the exercise likely to be more important to the manufacturer of the thread than, say, a confidence interval on the mean tensile strength?
+\end{exercise}
+\begin{solution}
+The mean alone does not describe weak pieces. The prediction limit characterizes the strength of a single future piece, while the tolerance limit gives, with 95\% confidence, a lower bound exceeded by at least 99\% of the manufactured pieces. These quantities are directly relevant to specifications and reliability.
+\end{solution}
+
+\begin{exercise}{9.24}
+Refer to Exercise 9.22. Fifty pieces of thread were tested under similar conditions, giving $\bar x=78.3$ kg and $s=5.6$ kg. Assume normally distributed tensile strengths. Suppose that specifications by a buyer of the thread are that the tensile strength of the material must be at least 62 kilograms. The manufacturer is satisfied if at most 5\% of the manufactured pieces have tensile strength less than 62 kilograms. Is there cause for concern? Use a one-sided 99\% tolerance limit that is exceeded by 95\% of the tensile strength values.
+\end{exercise}
+\begin{solution}
+For $n=50$, confidence $99\%$, and population coverage $95\%$, Table A.7 gives $k=2.269$ for a one-sided bound.
+\[
+\bar x-ks=78.3-(2.269)(5.6)\approx\boxed{65.5936}.
+\]
+The lower limit is above 62 kg. Under the normal model, we are 99\% confident that at least 95\% of the pieces exceed this lower limit and therefore meet the specification. There is no cause for concern on this criterion.
+\end{solution}
+
+\begin{exercise}{9.25}
+Consider the drying time measurements in Exercise 9.14 (hours):
+\[
+\begin{array}{ccccc}\toprule
+3.4 & 2.5 & 4.8 & 2.9 & 3.6\\
+2.8 & 3.3 & 5.6 & 3.7 & 2.8\\
+4.4 & 4.0 & 5.2 & 3.0 & 4.8\\
+\bottomrule\end{array}
+\]
+Suppose the 15 observations in the data set are supplemented by a 16th value of 6.9 hours. In the context of the original 15 observations, is the 16th value an outlier? Show work. Assume normality as in Exercise 9.14.
+\end{exercise}
+\begin{solution}
+From the observations, 
+\[
+n=15,\qquad\bar x=\frac{56.8}{15}\approx3.786667,\qquad s=\sqrt{\frac{\sum_i(x_i-\bar x)^2}{14}}\approx0.97091.
+\]
+For a future independent observation from the normal population, use the prediction interval with $14$ degrees of freedom. Here $t_{0.025}(14)\approx 2.1448$.
+\[
+\bar x\pm t_{0.025}(14)s\sqrt{1+1/n}\approx 3.7866667\pm 2.1448(0.9709102)\sqrt{1+1/15}\approx 3.7866667\pm 2.150689.
+\]
+The prediction interval is 
+\[
+\boxed{\bigl(1.636,\ 5.9374\bigr)}.
+\]
+The value $6.9$ is above the upper 95\% prediction limit based on the original observations. Thus it is flagged as a potential outlier by this criterion.
+\end{solution}
+
+\begin{exercise}{9.26}
+Consider the data in Exercise 9.13 ($n=12$, $\bar x=48.50$, $s=1.5$, and normally distributed Rockwell hardness). Suppose the manufacturer of the shearing pins insists that the Rockwell hardness of the product be less than or equal to 44.0 only 5\% of the time. What is your reaction? Use a tolerance limit calculation as the basis for your judgment.
+\end{exercise}
+\begin{solution}
+Use a lower one-sided tolerance limit with 95\% confidence and 95\% coverage. For $n=12$, confidence $95\%$, and population coverage $95\%$, Table A.7 gives $k=2.736$ for a one-sided bound.
+\[
+\bar x-ks=48.5-(2.736)(1.5)\approx\boxed{44.396}.
+\]
+This exceeds 44.0. The data support the claim that at most 5\% of pins have hardness at or below 44.0, at the chosen confidence level. They do not establish the proportion to be exactly 5\%.
+\end{solution}
+
+\begin{exercise}{9.27}
+Consider the situation of Case Study 9.1 on page 301 with a larger sample of metal pieces. The diameters are as follows: $1.01$, $0.97$, $1.03$, $1.04$, $0.99$, $0.98$, $1.01$, $1.03$, $0.99$, $1.0$, $1.0$, $0.99$, $0.98$, $1.01$, $1.02$, $0.99$ centimeters. Once again the normality assumption may be made. Do the following and compare your results to those of the case study (99\% confidence interval $(0.9781,1.0331)$, prediction interval $(0.9186,1.0926)$, and 99\% tolerance interval $(0.8937,1.1175)$ for 95\% coverage). Discuss how they are different and why.
+\begin{exercisesubparts}
+\item Compute a 99\% confidence interval on the mean diameter.
+\item Compute a 99\% prediction interval on the next diameter to be measured.
+\item Compute a 99\% tolerance interval for coverage of the central 95\% of the distribution of diameters.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+From the observations, 
+\[
+n=16,\qquad\bar x=\frac{16.04}{16}\approx1.0025,\qquad s=\sqrt{\frac{\sum_i(x_i-\bar x)^2}{15}}\approx0.020166.
+\]
+\begin{exercisesubparts}
+\item Under the normal population model with unknown standard deviation, use Student's $t$ distribution with $15$ degrees of freedom. Here $t_{0.005}(15)\approx 2.9467$.
+\[
+\bar x\pm t_{0.005}(15)\frac{s}{\sqrt n}\approx 1.0025\pm 2.9467\frac{0.020166}{\sqrt{16}}\approx 1.0025\pm 0.014856.
+\]
+The confidence interval is 
+\[
+\boxed{\bigl(0.9876,\ 1.0174\bigr)}.
+\]
+
+\item For a future independent observation from the normal population, use the prediction interval with $15$ degrees of freedom. Here $t_{0.005}(15)\approx 2.9467$.
+\[
+\bar x\pm t_{0.005}(15)s\sqrt{1+1/n}\approx 1.0025\pm 2.9467(0.020166)\sqrt{1+1/16}\approx 1.0025\pm 0.061252.
+\]
+The prediction interval is 
+\[
+\boxed{\bigl(0.9412,\ 1.0638\bigr)}.
+\]
+
+\item For $n=16$, confidence $99\%$, and population coverage $95\%$, Table A.7 gives $k=3.421$ for two-sided limits.
+\[
+\bar x\pm ks=1.0025\pm(3.421)(0.020166)\approx\boxed{\bigl(0.9335,\ 1.0715\bigr)}.
+\]
+
+\end{exercisesubparts}
+All three intervals are narrower than in the case study. The larger sample reduces the standard error and the critical factors; its observed standard deviation is also smaller. The prediction and tolerance intervals remain wider than the confidence interval for the mean because they describe individual values and population coverage, respectively.
+\end{solution}
+
+\begin{exercise}{9.29}
+Let us define $S^{\prime 2}=\frac1n\sum_{i=1}^n(X_i-\bar X)^2$. Show that $\Exp[S^{\prime 2}]=\frac{n-1}{n}\sigma^2$, and hence $S^{\prime 2}$ is a biased estimator for $\sigma^2$.
+\end{exercise}
+\begin{solution}
+For an independent random sample with finite variance $\sigma^2$, $S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2$ is unbiased. Since $S^{\prime 2}=\frac{n-1}{n}S^2$, linearity gives
+\[
+\Exp[S^{\prime 2}]=\frac{n-1}{n}\Exp[S^2]=\boxed{\frac{n-1}{n}\sigma^2}.
+\]
+For $\sigma^2>0$ and finite $n$, this is less than $\sigma^2$, so the estimator is biased.
+\end{solution}
+
+\begin{exercise}{9.30}
+Consider $S^{\prime 2}=\frac1n\sum_{i=1}^n(X_i-\bar X)^2$, the estimator of $\sigma^2$ from Exercise 9.29. Analysts often use $S^{\prime 2}$ rather than dividing $\sum_{i=1}^n(X_i-\bar X)^2$ by $n-1$, the degrees of freedom in the sample.
+\begin{exercisesubparts}
+\item What is the bias of $S^{\prime 2}$?
+\item Show that the bias of $S^{\prime 2}$ approaches zero as $n\to\infty$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item By Exercise 9.29,
+\[
+\Bias(S^{\prime 2})=\Exp[S^{\prime 2}]-\sigma^2=\frac{n-1}{n}\sigma^2-\sigma^2=\boxed{-\frac{\sigma^2}{n}}.
+\]
+
+\item For fixed $\sigma^2$, $\displaystyle\lim_{n\to\infty}(-\sigma^2/n)=0$. Thus $S^{\prime 2}$ is asymptotically unbiased.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.31}
+If $X\sim\Bin(n,p)$, show that
+\begin{exercisesubparts}
+\item $\hat p=X/n$ is an unbiased estimator of $p$;
+\item $\hat p^{\prime}=\dfrac{X+\sqrt n/2}{n+\sqrt n}$ is a biased estimator of $p$.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item As $\Exp[X]=np$,
+\[
+\Exp[\hat p]=\frac{\Exp[X]}{n}=p.
+\]
+
+\item By linearity,
+\[
+\Exp[\hat p^{\prime}]=\frac{np+\sqrt n/2}{n+\sqrt n},\qquad\Bias(\hat p^{\prime})=\boxed{\frac{1/2-p}{\sqrt n+1}}.
+\]
+The estimator is biased except at $p=1/2$ (the qualification to the statement).
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.32}
+Show that the estimator $\hat p^{\prime}=(X+\sqrt n/2)/(n+\sqrt n)$ of Exercise 9.31(b), where $X\sim\Bin(n,p)$, becomes unbiased as $n\to\infty$.
+\end{exercise}
+\begin{solution}
+By the expectation calculation in Exercise 9.31(b),
+\[
+\Bias(\hat p^{\prime})=\frac{1/2-p}{\sqrt n+1}\longrightarrow0\qquad(n\to\infty).
+\]
+Equivalently, $\Exp[\hat p^{\prime}]\to p$, so the estimator is asymptotically unbiased.
+\end{solution}
+
+\begin{exercise}{9.33}
+Compare $S^2$ and $S^{\prime 2}$ (see Exercise 9.29), the two estimators of $\sigma^2$, to determine which is more efficient. Assume these estimators are found using $X_1,\ldots,X_n$, independent random variables from $\Normal(\mu,\sigma^2)$. Which estimator is more efficient considering only the variance of the estimators? Here $S^2=\frac1{n-1}\sum_i(X_i-\bar X)^2$ and $S^{\prime 2}=\frac1n\sum_i(X_i-\bar X)^2$. \textit{Hint.} Make use of Theorem 8.4 and the fact that the variance of a chi-squared random variable with $\nu$ degrees of freedom is $2\nu$, from Section 6.7.
+\end{exercise}
+\begin{solution}
+By Theorem 8.4, $Q=(n-1)S^2/\sigma^2\sim\chi^2_{n-1}$. Therefore
+\[
+\Var(S^2)=\frac{\sigma^4}{(n-1)^2}\Var(Q)=\frac{2\sigma^4}{n-1}.
+\]
+Since $S^{\prime 2}=(n-1)S^2/n$,
+\[
+\Var(S^{\prime 2})=\left(\frac{n-1}{n}\right)^2\Var(S^2)=\frac{2(n-1)\sigma^4}{n^2}<\Var(S^2).
+\]
+Thus $S^{\prime 2}$ has smaller variance for $n\ge2$ and $\sigma^2>0$. This comparison ignores its bias, as requested.
+\end{solution}
+
+\begin{exercise}{9.35}
+A random sample of size $n_1=30$ is taken from a normal population with a standard deviation of $\sigma_1=4$ and sample mean of $\bar x_1=65$. A second random sample of size $n_2=48$ is taken from a different normal population with a standard deviation of $\sigma_2=3$ and sample mean of $\bar x_2=58$. Find a 98\% confidence interval for $\mu_1-\mu_2$.
+\end{exercise}
+\begin{solution}
+Take sample 1 minus sample 2. The independent normal populations have known variances, so use the normal interval. With $z_{0.01}\approx2.3263$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm z_{0.01}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}\approx 7\pm 2.3263\sqrt{\frac{4^2}{30}+\frac{3^2}{48}}.
+\]
+The confidence interval for $\mu_1-\mu_2$ is 
+\[
+\boxed{\bigl(5.0249,\ 8.9751\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.36}
+Two kinds of light bulbs are being compared for their longevity. 62 pieces of each type of bulb are tested under similar conditions. Brand A has an average life of 720 hours with a standard deviation of 30 hours, while brand B has an average life of 860 hours with a standard deviation of 42 hours. Construct a 90\% confidence interval for the difference of their population means.
+\end{exercise}
+\begin{solution}
+Use A as sample 1 and B as sample 2. For the two independent large samples, use the normal approximation with the sample variances in place of the unknown population variances. With $z_{0.05}\approx1.6449$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm z_{0.05}\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\approx -140\pm 1.6449\sqrt{\frac{30^2}{62}+\frac{42^2}{62}}.
+\]
+The confidence interval for $\mu_A-\mu_B$ is 
+\[
+\boxed{\bigl(-150.78,\ -129.22\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.37}
+A study was conducted to determine if a certain treatment has any effect on the amount of metal removed in a pickling operation. A random sample of 100 pieces was immersed in a bath for 24 hours without the treatment, yielding an average of 12.2 millimeters of metal removed and a sample standard deviation of 1.1 millimeters. A second sample of 200 pieces was exposed to the treatment, followed by the 24-hour immersion in the bath, resulting in an average removal of 9.1 millimeters of metal with a sample standard deviation of 0.9 millimeter. Compute a 98\% confidence interval estimate for the difference between the population means. Does the treatment appear to reduce the mean amount of metal removed?
+\end{exercise}
+\begin{solution}
+Take sample 1 minus sample 2. For the two independent large samples, use the normal approximation with the sample variances in place of the unknown population variances. With $z_{0.01}\approx2.3263$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm z_{0.01}\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\approx 3.1\pm 2.3263\sqrt{\frac{1.1^2}{100}+\frac{0.9^2}{200}}.
+\]
+The confidence interval for $\mu_1-\mu_2$ is 
+\[
+\boxed{\bigl(2.8044,\ 3.3956\bigr)}.
+\]
+The interval is entirely positive, so the treatment appears to reduce the population mean amount removed.
+\end{solution}
+
+\begin{exercise}{9.38}
+Two catalysts in a batch chemical process are being compared for their effect on the output of the process reaction. A sample of 12 batches was prepared using catalyst 1, and a sample of 10 batches was prepared using catalyst 2. The 12 batches for which catalyst 1 was used in the reaction gave an average yield of 85 with a sample standard deviation of 4, and the 10 batches for which catalyst 2 was used gave an average yield of 81 and a sample standard deviation of 5. Find a 90\% confidence interval for the difference between the population means, assuming that the populations are approximately normally distributed with equal variances.
+\end{exercise}
+\begin{solution}
+Take sample 1 minus sample 2. For independent normal samples with a common unknown variance, use the pooled $t$ interval.
+\[
+s_p^2=\frac{(11)(4)^2+(9)(5)^2}{20}\approx20.05,\qquad \nu=20.
+\]
+ With $t_{0.05}(20)\approx1.7247$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm t_{0.05}(20)s_p\sqrt{\frac1{n_1}+\frac1{n_2}}\approx 4\pm 1.7247\sqrt{20.05\left(\frac1{12}+\frac1{10}\right)}.
+\]
+The confidence interval for $\mu_1-\mu_2$ is 
+\[
+\boxed{\bigl(0.6933,\ 7.3067\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.39}
+In a common university examination for communicative English, 16 of the mathematics graduates score an average of 78 marks with a standard deviation of 6, and 22 of the physics graduates score an average of 72 marks with a standard deviation of 8. Construct a 95\% confidence interval for the difference between the average scores for the two batches. Assume that the population is approximately normally distributed with equal variances.
+\end{exercise}
+\begin{solution}
+Take mathematics as sample 1 and physics as sample 2. Take sample 1 minus sample 2. For independent normal samples with a common unknown variance, use the pooled $t$ interval.
+\[
+s_p^2=\frac{(15)(6)^2+(21)(8)^2}{36}\approx52.333333,\qquad \nu=36.
+\]
+ With $t_{0.025}(36)\approx2.0281$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm t_{0.025}(36)s_p\sqrt{\frac1{n_1}+\frac1{n_2}}\approx 6\pm 2.0281\sqrt{52.333333\left(\frac1{16}+\frac1{22}\right)}.
+\]
+The confidence interval for $\mu_1-\mu_2$ is 
+\[
+\boxed{\bigl(1.1794,\ 10.8206\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.40}
+In a study conducted at Virginia Tech on the development of ectomycorrhizal, a symbiotic relationship between the roots of trees and a fungus, in which minerals are transferred from the fungus to the trees and sugars from the trees to the fungus, 20 northern red oak seedlings exposed to the fungus \textit{Pisolithus tinctorus} were grown in a greenhouse. All seedlings were planted in the same type of soil and received the same amount of sunshine and water. Half received no nitrogen at planting time, to serve as a control, and the other half received 368 ppm of nitrogen in the form $\mathrm{NaNO_3}$. The stem weights, in grams, at the end of 140 days were recorded as follows:
+\[
+\begin{array}{cc}\toprule
+\text{No Nitrogen} & \text{Nitrogen}\\\midrule
+0.32 & 0.26\\
+0.53 & 0.43\\
+0.28 & 0.47\\
+0.37 & 0.49\\
+0.47 & 0.52\\
+0.43 & 0.75\\
+0.36 & 0.79\\
+0.42 & 0.86\\
+0.38 & 0.62\\
+0.43 & 0.46\\
+\bottomrule\end{array}
+\]
+Construct a 95\% confidence interval for the difference in the mean stem weight between seedlings that receive no nitrogen and those that receive 368 ppm of nitrogen. Assume the populations to be normally distributed with equal variances.
+\end{exercise}
+\begin{solution}
+The sample summaries are
+\[
+\begin{array}{c@{\qquad}rrr}\toprule &n&\bar x&s\\\midrule 1&10&0.399&0.072793\\2&10&0.565&0.186741\\\bottomrule\end{array}
+\]
+Take sample 1 minus sample 2. For independent normal samples with a common unknown variance, use the pooled $t$ interval.
+\[
+s_p^2=\frac{(9)(0.0727935)^2+(9)(0.1867411)^2}{18}\approx0.020086,\qquad \nu=18.
+\]
+ With $t_{0.025}(18)\approx2.1009$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm t_{0.025}(18)s_p\sqrt{\frac1{n_1}+\frac1{n_2}}\approx -0.166\pm 2.1009\sqrt{0.020086\left(\frac1{10}+\frac1{10}\right)}.
+\]
+The confidence interval for $\mu_1-\mu_2$ is 
+\[
+\boxed{\bigl(-0.2992,\ -0.0328\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.42}
+An experiment reported in \textit{Popular Science} compared fuel economies for two types of similarly equipped diesel mini-trucks. Let us suppose that 12 Volkswagen and 10 Toyota trucks were tested in 90-kilometer-per-hour steady-paced trials. If the 12 Volkswagen trucks averaged 16 kilometers per liter with a standard deviation of 1.0 kilometer per liter and the 10 Toyota trucks averaged 11 kilometers per liter with a standard deviation of 0.8 kilometer per liter, construct a 90\% confidence interval for the difference between the average kilometers per liter for these two mini-trucks. Assume that the distances per liter for the truck models are approximately normally distributed with equal variances.
+\end{exercise}
+\begin{solution}
+Take sample 1 minus sample 2. For independent normal samples with a common unknown variance, use the pooled $t$ interval.
+\[
+s_p^2=\frac{(11)(1)^2+(9)(0.8)^2}{20}\approx0.838,\qquad \nu=20.
+\]
+ With $t_{0.05}(20)\approx1.7247$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm t_{0.05}(20)s_p\sqrt{\frac1{n_1}+\frac1{n_2}}\approx 5\pm 1.7247\sqrt{0.838\left(\frac1{12}+\frac1{10}\right)}.
+\]
+The confidence interval for $\mu_1-\mu_2$ is 
+\[
+\boxed{\bigl(4.324,\ 5.676\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.43}
+A taxi company is trying to decide whether to purchase brand A or brand B tires for its fleet of taxis. To estimate the difference in the two brands, an experiment is conducted using 12 of each brand. The tires are run until they wear out. The results are
+\[
+\begin{array}{ccc}\toprule
+\text{Brand} & \bar x\text{ (km)} & s\text{ (km)}\\\midrule
+A & 36{,}300 & 5000\\
+B & 38{,}100 & 6100\\
+\bottomrule\end{array}
+\]
+Compute a 95\% confidence interval for $\mu_A-\mu_B$ assuming the populations to be approximately normally distributed. You may not assume that the variances are equal.
+\end{exercise}
+\begin{solution}
+For independent normal samples with unknown variances not assumed equal, use the unequal-variance $t$ procedure. The adjusted degrees of freedom are
+\[
+\nu^*=\frac{(s_1^2/n_1+s_2^2/n_2)^2}{(s_1^2/n_1)^2/(n_1-1)+(s_2^2/n_2)^2/(n_2-1)}\approx21.1839,\qquad \nu=21.
+\]
+ With $t_{0.025}(21)\approx2.0796$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm t_{0.025}(21)\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\approx -1800\pm 2.0796\sqrt{\frac{5000^2}{12}+\frac{6100^2}{12}}.
+\]
+The confidence interval for $\mu_A-\mu_B$ is 
+\[
+\boxed{\bigl(-6535.02,\ 2935.02\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.46}
+The following data represent the running times of films produced by two motion-picture companies.
+\[
+\begin{array}{cccccccc}\toprule
+\text{Company} & \multicolumn{7}{c}{\text{Time (minutes)}}\\\midrule
+\text{I} & 103 & 94 & 110 & 87 & 98 &  & \\
+\text{II} & 97 & 82 & 123 & 92 & 175 & 88 & 118\\
+\bottomrule\end{array}
+\]
+Compute a 90\% confidence interval for the difference between the average running times of films produced by the two companies. Assume that the running-time populations are approximately normally distributed with unequal variances.
+\end{exercise}
+\begin{solution}
+The sample summaries are
+\[
+\begin{array}{c@{\qquad}rrr}\toprule &n&\bar x&s\\\midrule 1&5&98.4&8.734987\\2&7&110.714286&32.185474\\\bottomrule\end{array}
+\]
+Take sample 1 minus sample 2. For independent normal samples with unknown variances not assumed equal, use the unequal-variance $t$ procedure. The adjusted degrees of freedom are
+\[
+\nu^*=\frac{(s_1^2/n_1+s_2^2/n_2)^2}{(s_1^2/n_1)^2/(n_1-1)+(s_2^2/n_2)^2/(n_2-1)}\approx7.1866,\qquad \nu=7.
+\]
+ With $t_{0.05}(7)\approx1.8946$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm t_{0.05}(7)\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\approx -12.3142857\pm 1.8946\sqrt{\frac{8.7349871^2}{5}+\frac{32.1854744^2}{7}}.
+\]
+The confidence interval for $\mu_1-\mu_2$ is 
+\[
+\boxed{\bigl(-36.5209,\ 11.8923\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.49}
+Two different brands of latex paint are being considered for use. Fifteen specimens of each type of paint were selected, and the drying times, in hours, were as follows:
+\[
+\begin{array}{cccccccccc}\toprule
+\multicolumn{5}{c}{\text{Paint A}} & \multicolumn{5}{c}{\text{Paint B}}\\\midrule
+3.5 & 2.7 & 3.9 & 4.2 & 3.6 & 4.7 & 3.9 & 4.5 & 5.5 & 4.0\\
+2.7 & 3.3 & 5.2 & 4.2 & 2.9 & 5.3 & 4.3 & 6.0 & 5.2 & 3.7\\
+4.4 & 5.2 & 4.0 & 4.1 & 3.4 & 5.5 & 6.2 & 5.1 & 5.4 & 4.8\\
+\bottomrule\end{array}
+\]
+Assume the drying time is normally distributed with $\sigma_A=\sigma_B$. Find a 95\% confidence interval on $\mu_B-\mu_A$, where $\mu_A$ and $\mu_B$ are the mean drying times.
+\end{exercise}
+\begin{solution}
+Take paint B as sample 1 and paint A as sample 2. The sample summaries are
+\[
+\begin{array}{c@{\qquad}rrr}\toprule &n&\bar x&s\\\midrule 1&15&4.94&0.753847\\2&15&3.82&0.779377\\\bottomrule\end{array}
+\]
+For independent normal samples with a common unknown variance, use the pooled $t$ interval.
+\[
+s_p^2=\frac{(14)(0.7538473)^2+(14)(0.779377)^2}{28}\approx0.587857,\qquad \nu=28.
+\]
+ With $t_{0.025}(28)\approx2.0484$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm t_{0.025}(28)s_p\sqrt{\frac1{n_1}+\frac1{n_2}}\approx 1.12\pm 2.0484\sqrt{0.587857\left(\frac1{15}+\frac1{15}\right)}.
+\]
+The confidence interval for $\mu_B-\mu_A$ is 
+\[
+\boxed{\bigl(0.5465,\ 1.6935\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.50}
+Two types of medicine, X and Y, are tested on two groups of insomnia patients to help them sleep. The time until they fall asleep after taking the medicine is recorded. The results are as follows:
+\[
+\begin{array}{cccc}\toprule
+\text{Medicine} & n & \bar x & s\\\midrule
+\text{X} & 12 & 24 & 4.2\\
+\text{Y} & 16 & 18 & 3.6\\
+\bottomrule\end{array}
+\]
+Assuming that the variances are equal, construct a 99\% confidence interval for the difference in the true average time between the two samples.
+\end{exercise}
+\begin{solution}
+Assuming independent approximately normal samples, take medicine X minus medicine Y. For independent normal samples with a common unknown variance, use the pooled $t$ interval.
+\[
+s_p^2=\frac{(11)(4.2)^2+(15)(3.6)^2}{26}\approx14.94,\qquad \nu=26.
+\]
+ With $t_{0.005}(26)\approx2.7787$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm t_{0.005}(26)s_p\sqrt{\frac1{n_1}+\frac1{n_2}}\approx 6\pm 2.7787\sqrt{14.94\left(\frac1{12}+\frac1{16}\right)}.
+\]
+The confidence interval for $\mu_X-\mu_Y$ is 
+\[
+\boxed{\bigl(1.8985,\ 10.1015\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.51}
+In a random sample of 1000 homes in a certain city, it is found that 228 are heated by oil. Find 99\% confidence intervals for the proportion of homes in this city that are heated by oil using both methods presented on page 317.
+\end{exercise}
+\begin{solution}
+The sample proportion is $\hat p=228/1000\approx0.228$, and $z_{0.005}\approx2.5758$. The normal approximation is appropriate since both observed counts are at least 5. Using Method 1,
+\[
+\hat p\pm z_{0.005}\sqrt{\frac{\hat p(1-\hat p)}{n}}\approx0.228\pm 0.034174.
+\]
+\[
+\boxed{\bigl(0.1938,\ 0.2622\bigr)}.
+\]
+For Method 2, set $z=z_{0.005}$. Solving $(\hat p-p)^2\le z^2p(1-p)/n$ gives the limits
+\[
+\frac{\hat p+z^2/(2n)\pm z\sqrt{\hat p(1-\hat p)/n+z^2/(4n^2)}}{1+z^2/n}.
+\]
+The center is approximately $0.229793$ and the half-width $0.034108$, so the interval is
+\[
+\boxed{\bigl(0.1957,\ 0.2639\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.52}
+Compute 95\% confidence intervals, using both methods on page 317, for the proportion of defective items in a process when it is found that a sample of size 100 yields 8 defectives.
+\end{exercise}
+\begin{solution}
+The sample proportion is $\hat p=8/100\approx0.08$, and $z_{0.025}\approx1.96$. The normal approximation is appropriate since both observed counts are at least 5. Using Method 1,
+\[
+\hat p\pm z_{0.025}\sqrt{\frac{\hat p(1-\hat p)}{n}}\approx0.08\pm 0.053172.
+\]
+\[
+\boxed{\bigl(0.0268,\ 0.1332\bigr)}.
+\]
+For Method 2, set $z=z_{0.025}$. Solving $(\hat p-p)^2\le z^2p(1-p)/n$ gives the limits
+\[
+\frac{\hat p+z^2/(2n)\pm z\sqrt{\hat p(1-\hat p)/n+z^2/(4n^2)}}{1+z^2/n}.
+\]
+The center is approximately $0.095537$ and the half-width $0.054444$, so the interval is
+\[
+\boxed{\bigl(0.0411,\ 0.15\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.53}
+\begin{exercisesubparts}
+\item A random sample of 200 voters in a town is selected, and 114 are found to support an annexation suit. Find the 96\% confidence interval for the fraction of the voting population favoring the suit.
+\item What can we assert with 96\% confidence about the possible size of our error if we estimate the fraction of voters favoring the annexation suit to be 0.57?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The sample proportion is $\hat p=114/200\approx0.57$, and $z_{0.02}\approx2.0537$. The normal approximation is appropriate since both observed counts are at least 5. Using Method 1,
+\[
+\hat p\pm z_{0.02}\sqrt{\frac{\hat p(1-\hat p)}{n}}\approx0.57\pm 0.071896.
+\]
+\[
+\boxed{\bigl(0.4981,\ 0.6419\bigr)}.
+\]
+
+\item The margin of error is approximately $\boxed{0.0719}$; the 96\% confidence procedure bounds the error by this amount.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.54}
+A home appliances manufacturing firm producing wet grinders decided to conduct a quality check before marketing their product. From a random sample of 400 units, 18 failed to satisfy the quality requirements. Find a 95\% confidence interval for the proportion of wet grinders from the population that satisfies all the quality requirements of the product.
+\end{exercise}
+\begin{solution}
+There are $400-18=382$ satisfactory units. The sample proportion is $\hat p=382/400\approx0.955$, and $z_{0.025}\approx1.96$. The normal approximation is appropriate since both observed counts are at least 5. Using Method 1,
+\[
+\hat p\pm z_{0.025}\sqrt{\frac{\hat p(1-\hat p)}{n}}\approx0.955\pm 0.020315.
+\]
+\[
+\boxed{\bigl(0.9347,\ 0.9753\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.55}
+Records from a city hospital say that the probability ($p$) that a confirmed dengue patient stays in the hospital for more than 5 days is 0.7. A new type of medicine claims fast recovery from the fever. A sample of 36 patients admitted with dengue fever is administered with the new medicine and 12 of them recover and leave the hospital within 5 days.
+\begin{exercisesubparts}
+\item Construct a 95\% confidence interval for $p$.
+\item Would you conclude that the new medicine shortens recovery time?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item Here $p$ refers to a stay exceeding 5 days under the new medicine, so the number of such stays is $36-12=24$. The sample proportion is $\hat p=24/36\approx0.66666667$, and $z_{0.025}\approx1.96$. The normal approximation is appropriate since both observed counts are at least 5. Using Method 1,
+\[
+\hat p\pm z_{0.025}\sqrt{\frac{\hat p(1-\hat p)}{n}}\approx0.66666667\pm 0.153989.
+\]
+\[
+\boxed{\bigl(0.5127,\ 0.8207\bigr)}.
+\]
+
+\item The previous value $p=0.7$ belongs to this interval. The data do not provide clear evidence that the new medicine reduces the probability of a stay exceeding 5 days. The textbook answer for part (a) uses the complementary proportion, the probability of leaving within 5 days.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.56}
+An international logistic company decided to conduct a qualifying test on computer skills for all the job applicants to that company. From a random sample of 120 applicants, 90 qualified.
+\begin{exercisesubparts}
+\item Compute a 95\% confidence interval for the proportion of qualifying applicants.
+\item What can we assert with 95\% confidence about the possible size of our error if we estimate the proportion of the qualifying applicants to be 0.75?
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The sample proportion is $\hat p=90/120\approx0.75$, and $z_{0.025}\approx1.96$. The normal approximation is appropriate since both observed counts are at least 5. Using Method 1,
+\[
+\hat p\pm z_{0.025}\sqrt{\frac{\hat p(1-\hat p)}{n}}\approx0.75\pm 0.077474.
+\]
+\[
+\boxed{\bigl(0.6725,\ 0.8275\bigr)}.
+\]
+
+\item The margin of error is approximately $\boxed{0.0775}$ at the stated confidence level.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.58}
+In the newspaper article referred to in Exercise 9.57, 32\% of the 1600 adults polled said the U.S. space program should emphasize scientific exploration. How large a sample of adults is needed for the poll if one wishes to be 95\% confident that the estimated percentage will be within 2\% of the true percentage?
+\end{exercise}
+\begin{solution}
+Use the preliminary estimate $p_0=0.32$ and the desired absolute margin $e=0.02$. The normal-approximation margin of error must be at most $e=0.02$. With $z_{0.025}\approx 1.959964$, we require
+\[
+n\ge \frac{z_{\alpha/2}^2p_0(1-p_0)}{e^2}\approx \frac{1.959964^2(0.32)(0.68)}{0.02^2}\approx 2089.7536.
+\]
+Rounding up gives $\boxed{n=2090}$.
+\end{solution}
+
+\begin{exercise}{9.59}
+How large a sample is needed if we wish to be 96\% confident that our sample proportion in Exercise 9.53 (114 of 200 voters favoring the suit) will be within 0.02 of the true fraction of the voting population?
+\end{exercise}
+\begin{solution}
+Use the preliminary estimate $p_0=114/200=0.57$. The normal-approximation margin of error must be at most $e=0.02$. With $z_{0.02}\approx 2.053749$, we require
+\[
+n\ge \frac{z_{\alpha/2}^2p_0(1-p_0)}{e^2}\approx \frac{2.053749^2(0.57)(0.43)}{0.02^2}\approx 2584.5088.
+\]
+Rounding up gives $\boxed{n=2585}$.
+\end{solution}
+
+\begin{exercise}{9.62}
+According to a new bulletin released by the health department, liquor consumption among adolescents of a certain town has increased in recent years. Someone comments: ``it is due to the lack of providing awareness on the ill effects of liquor consumption to students from educational institutions. How large a sample is needed to estimate the percentage of citizens who support this statement, so that we are at least 95\% confident that the estimate is within 1\% of the true percentage?
+\end{exercise}
+\begin{solution}
+No preliminary estimate is given. Since $p(1-p)\le1/4$, take $p_0=1/2$ for conservative sample-size planning. The normal-approximation margin of error must be at most $e=0.01$. With $z_{0.025}\approx 1.959964$, we require
+\[
+n\ge \frac{z_{\alpha/2}^2p_0(1-p_0)}{e^2}\approx \frac{1.959964^2(0.5)(0.5)}{0.01^2}\approx 9603.6471.
+\]
+Rounding up gives $\boxed{n=9604}$.
+\end{solution}
+
+\begin{exercise}{9.63}
+A study is conducted to estimate the percentage of college students who are fond of musical instruments. How large a sample is needed if one wishes to be at least 90\% confident that the estimate is within 1\% of the true percentage?
+\end{exercise}
+\begin{solution}
+Without a preliminary estimate, use $p_0=1/2$, which maximizes $p(1-p)$. The normal-approximation margin of error must be at most $e=0.01$. With $z_{0.05}\approx 1.644854$, we require
+\[
+n\ge \frac{z_{\alpha/2}^2p_0(1-p_0)}{e^2}\approx \frac{1.644854^2(0.5)(0.5)}{0.01^2}\approx 6763.8586.
+\]
+Rounding up gives $\boxed{n=6764}$.
+\end{solution}
+
+\begin{exercise}{9.65}
+In a socio-economic survey conducted among 1200 randomly selected villagers from a coastal village A, 672 earn their living by fishing. From a nearby village B, 744 out of the 1200 villagers earn their living by fishing. Compute a 90\% confidence interval for the difference between the proportions of villagers who earn their living by fishing from the villages, A and B.
+\end{exercise}
+\begin{solution}
+Use village A as sample 1 and village B as sample 2. The observed proportions are $\hat p_1=672/1200\approx0.56$ and $\hat p_2=744/1200\approx0.62$. For independent samples, the normal-approximation interval for $p_A-p_B$ is based on separate estimated variances. With $z_{0.05}\approx1.6449$,
+\[
+(\hat p_1-\hat p_2)\pm z_{0.05}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}
+\]
+\[
+\approx -0.06\pm0.032966.
+\]
+The interval is 
+\[
+\boxed{\bigl(-0.093,\ -0.027\bigr)}.
+\]
+The interval is entirely negative, supporting a lower fishing proportion in village A. The answer printed in Appendix B does not give the difference of proportions specified here.
+\end{solution}
+
+\begin{exercise}{9.66}
+In the authorized service center of an internationally reputed automobile company, 16 of the 100 cars entered for service had mechanical defects. In another sample, 6 of the 120 cars had electrical defects. Compute a 95\% confidence interval for the difference between the proportions of cars with these two types of defects. Is there a significant difference between the two types of defects?
+\end{exercise}
+\begin{solution}
+Let sample 1 refer to mechanical defects and sample 2 to electrical defects. The observed proportions are $\hat p_1=16/100\approx0.16$ and $\hat p_2=6/120\approx0.05$. For independent samples, the normal-approximation interval for $p_1-p_2$ is based on separate estimated variances. With $z_{0.025}\approx1.96$,
+\[
+(\hat p_1-\hat p_2)\pm z_{0.025}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}
+\]
+\[
+\approx 0.11\pm0.081753.
+\]
+The interval is 
+\[
+\boxed{\bigl(0.0282,\ 0.1918\bigr)}.
+\]
+Zero is excluded; the data support a greater proportion of mechanical defects at this confidence level.
+\end{solution}
+
+\begin{exercise}{9.67}
+A clinical trial was conducted to determine if a certain type of inoculation has an effect on the incidence of a certain disease. A sample of 1000 rats was kept in a controlled environment for a period of 1 year, and 500 of the rats were given the inoculation. In the group not inoculated, there were 120 incidences of the disease, while 98 of the rats in the inoculated group contracted it. If $p_1$ is the probability of incidence of the disease in uninoculated rats and $p_2$ the probability of incidence in inoculated rats, compute a 90\% confidence interval for $p_1-p_2$.
+\end{exercise}
+\begin{solution}
+The observed proportions are $\hat p_1=120/500\approx0.24$ and $\hat p_2=98/500\approx0.196$. For independent samples, the normal-approximation interval for $p_1-p_2$ is based on separate estimated variances. With $z_{0.05}\approx1.6449$,
+\[
+(\hat p_1-\hat p_2)\pm z_{0.05}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}
+\]
+\[
+\approx 0.044\pm0.042892.
+\]
+The interval is 
+\[
+\boxed{\bigl(0.0011,\ 0.0869\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.68}
+In the study \textit{Germination and Emergence of Broccoli}, conducted by the Department of Horticulture at Virginia Tech, a researcher found that at $5^{\circ}\mathrm C$, 10 broccoli seeds out of 20 germinated, while at $15^{\circ}\mathrm C$, 15 out of 20 germinated. Compute a 95\% confidence interval for the difference between the proportions of germination at the two different temperatures and decide if there is a significant difference.
+\end{exercise}
+\begin{solution}
+Take the $5^{\circ}\mathrm C$ group minus the $15^{\circ}\mathrm C$ group. The observed proportions are $\hat p_1=10/20\approx0.5$ and $\hat p_2=15/20\approx0.75$. For independent samples, the normal-approximation interval for $p_1-p_2$ is based on separate estimated variances. With $z_{0.025}\approx1.96$,
+\[
+(\hat p_1-\hat p_2)\pm z_{0.025}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}
+\]
+\[
+\approx -0.25\pm0.289883.
+\]
+The interval is 
+\[
+\boxed{\bigl(-0.5399,\ 0.0399\bigr)}.
+\]
+Zero lies within the interval, so a difference is not established by this procedure. The sample sizes are small, with one observed failure count equal to 5; the normal approximation is only marginally justified.
+\end{solution}
+
+\begin{exercise}{9.69}
+Among 465 final semester boys of an engineering college, 180 got placed through the campus recruitment drive. Among 324 girls, 142 got placed through the campus recruitment drive. Compute a 90\% confidence interval for the difference between the proportion of boys and girls who were placed through the campus recruitment drive. Is there a significant difference in the results?
+\end{exercise}
+\begin{solution}
+Take boys as sample 1 and girls as sample 2. The observed proportions are $\hat p_1=180/465\approx0.387097$ and $\hat p_2=142/324\approx0.438272$. For independent samples, the normal-approximation interval for $p_1-p_2$ is based on separate estimated variances. With $z_{0.05}\approx1.6449$,
+\[
+(\hat p_1-\hat p_2)\pm z_{0.05}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}
+\]
+\[
+\approx -0.051175\pm0.058619.
+\]
+The interval is 
+\[
+\boxed{\bigl(-0.1098,\ 0.0074\bigr)}.
+\]
+Since zero lies in the interval, these data do not establish a difference at the stated confidence level.
+\end{solution}
+
+\begin{exercise}{9.73}
+Construct a 95\% confidence interval for $\sigma^2$ in Exercise 9.9 on page 303 (normally distributed sugar contents, $n=20$, $s=2.45$ grams).
+\end{exercise}
+\begin{solution}
+For a normal population, $Q=(n-1)S^2/\sigma^2\sim\chi^2_{19}$. The critical values are
+\[
+\chi^2_{0.025}(19)\approx32.8523,\qquad\chi^2_{0.975}(19)\approx8.9065.
+\]
+Inverting the central chi-squared probability gives the variance limits
+\[
+\frac{(n-1)s^2}{\chi^2_{\alpha/2}(\nu)}\quad\text{and}\quad\frac{(n-1)s^2}{\chi^2_{1-\alpha/2}(\nu)}.
+\]
+\[
+\left(\frac{19(2.45)^2}{32.8523},\ \frac{19(2.45)^2}{8.9065}\right)\approx\boxed{\bigl(3.4715,\ 12.805\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.74}
+Construct a 99\% confidence interval for $\sigma^2$ in Exercise 9.11 on page 303. The nine diameters, in centimeters, are $1.01$, $0.97$, $1.03$, $1.04$, $0.99$, $0.98$, $0.99$, $1.01$, $1.03$; assume an approximately normal population.
+\end{exercise}
+\begin{solution}
+From the observations, 
+\[
+n=9,\qquad\bar x=\frac{9.05}{9}\approx1.005556,\qquad s=\sqrt{\frac{\sum_i(x_i-\bar x)^2}{8}}\approx0.024552.
+\]
+For a normal population, $Q=(n-1)S^2/\sigma^2\sim\chi^2_{8}$. The critical values are
+\[
+\chi^2_{0.005}(8)\approx21.955,\qquad\chi^2_{0.995}(8)\approx1.3444.
+\]
+Inverting the central chi-squared probability gives the variance limits
+\[
+\frac{(n-1)s^2}{\chi^2_{\alpha/2}(\nu)}\quad\text{and}\quad\frac{(n-1)s^2}{\chi^2_{1-\alpha/2}(\nu)}.
+\]
+\[
+\left(\frac{8(0.0245515)^2}{21.955},\ \frac{8(0.0245515)^2}{1.3444}\right)\approx\boxed{\bigl(0.0002196,\ 0.0035869\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.75}
+Construct a 99\% confidence interval for $\sigma$ in Exercise 9.12 on page 303 (approximately normal calorie contents, $n=10$, $s=15$ calories).
+\end{exercise}
+\begin{solution}
+For a normal population, $Q=(n-1)S^2/\sigma^2\sim\chi^2_{9}$. The critical values are
+\[
+\chi^2_{0.005}(9)\approx23.5894,\qquad\chi^2_{0.995}(9)\approx1.7349.
+\]
+Inverting the central chi-squared probability gives the variance limits
+\[
+\frac{(n-1)s^2}{\chi^2_{\alpha/2}(\nu)}\quad\text{and}\quad\frac{(n-1)s^2}{\chi^2_{1-\alpha/2}(\nu)}.
+\]
+\[
+\left(\frac{9(15)^2}{23.5894},\ \frac{9(15)^2}{1.7349}\right)\approx\bigl(85.8438,\ 1167.1921\bigr).
+\]
+Taking square roots, the confidence interval for $\sigma$ is
+\[
+\boxed{\bigl(9.2652,\ 34.1642\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.76}
+Construct a 90\% confidence interval for $\sigma$ in Exercise 9.13 on page 303 (normal Rockwell hardness measurements, $n=12$, $s=1.5$).
+\end{exercise}
+\begin{solution}
+For a normal population, $Q=(n-1)S^2/\sigma^2\sim\chi^2_{11}$. The critical values are
+\[
+\chi^2_{0.05}(11)\approx19.6751,\qquad\chi^2_{0.95}(11)\approx4.5748.
+\]
+Inverting the central chi-squared probability gives the variance limits
+\[
+\frac{(n-1)s^2}{\chi^2_{\alpha/2}(\nu)}\quad\text{and}\quad\frac{(n-1)s^2}{\chi^2_{1-\alpha/2}(\nu)}.
+\]
+\[
+\left(\frac{11(1.5)^2}{19.6751},\ \frac{11(1.5)^2}{4.5748}\right)\approx\bigl(1.2579,\ 5.4101\bigr).
+\]
+Taking square roots, the confidence interval for $\sigma$ is
+\[
+\boxed{\bigl(1.1216,\ 2.326\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.77}
+Construct a 98\% confidence interval for $\sigma_1/\sigma_2$ in Exercise 9.42 on page 315, where $\sigma_1$ and $\sigma_2$ are, respectively, the standard deviations for the distances traveled per liter of fuel by the Volkswagen and Toyota mini-trucks. The independent normal samples give $n_1=12$, $s_1=1.0$, $n_2=10$, and $s_2=0.8$.
+\end{exercise}
+\begin{solution}
+For independent normal samples, $F=(S_1^2/\sigma_1^2)/(S_2^2/\sigma_2^2)\sim F_{11,9}$. With $\alpha/2=0.01$, the right-tail critical values are
+\[
+f_{0.01}(11,9)\approx5.1779,\qquad f_{0.01}(9,11)\approx4.6315.
+\]
+Using the reciprocal relation for the lower critical value, the variance-ratio limits are
+\[
+\frac{s_1^2}{s_2^2}\frac1{f_{\alpha/2}(\nu_1,\nu_2)},\qquad\frac{s_1^2}{s_2^2}f_{\alpha/2}(\nu_2,\nu_1).
+\]
+\[
+\left(\frac{1.5625}{5.1779},\ (1.5625)(4.6315)\right)\approx\bigl(0.3018,\ 7.2368\bigr).
+\]
+Taking square roots gives the confidence interval for $\sigma_1/\sigma_2$:
+\[
+\boxed{\bigl(0.5493,\ 2.6901\bigr)}.
+\]
+\end{solution}
+
+\begin{exercise}{9.78}
+Construct a 90\% confidence interval for $\sigma_1^2/\sigma_2^2$ in Exercise 9.43 on page 315 (brand A: $n_1=12$, $s_1=5000$ km; brand B: $n_2=12$, $s_2=6100$ km; approximately normal populations). Were we justified in assuming that $\sigma_1^2\ne\sigma_2^2$ when we constructed the confidence interval for $\mu_1-\mu_2$?
+\end{exercise}
+\begin{solution}
+For independent normal samples, $F=(S_1^2/\sigma_1^2)/(S_2^2/\sigma_2^2)\sim F_{11,11}$. With $\alpha/2=0.05$, the right-tail critical values are
+\[
+f_{0.05}(11,11)\approx2.8179,\qquad f_{0.05}(11,11)\approx2.8179.
+\]
+Using the reciprocal relation for the lower critical value, the variance-ratio limits are
+\[
+\frac{s_1^2}{s_2^2}\frac1{f_{\alpha/2}(\nu_1,\nu_2)},\qquad\frac{s_1^2}{s_2^2}f_{\alpha/2}(\nu_2,\nu_1).
+\]
+\[
+\left(\frac{0.6718624}{2.8179},\ (0.6718624)(2.8179)\right)\approx\boxed{\bigl(0.2384,\ 1.8933\bigr)}.
+\]
+The interval contains 1, so equality of the variances is compatible with the data. The unequal-variance procedure is still valid as an approximation and does not require assuming equality; the data do not establish unequal variances.
+\end{solution}
+
+\begin{exercise}{9.79}
+Construct a 90\% confidence interval for $\sigma_1^2/\sigma_2^2$ in Exercise 9.46 on page 315. The running times (minutes) for the two companies are I: $103$, $94$, $110$, $87$, $98$; II: $97$, $82$, $123$, $92$, $175$, $88$, $118$. Assume approximately normal populations. Should we have assumed $\sigma_1^2=\sigma_2^2$ in constructing our confidence interval for $\mu_{\mathrm I}-\mu_{\mathrm{II}}$?
+\end{exercise}
+\begin{solution}
+The sample summaries are
+\[
+\begin{array}{c@{\qquad}rrr}\toprule &n&\bar x&s\\\midrule 1&5&98.4&8.734987\\2&7&110.714286&32.185474\\\bottomrule\end{array}
+\]
+For independent normal samples, $F=(S_1^2/\sigma_1^2)/(S_2^2/\sigma_2^2)\sim F_{4,6}$. With $\alpha/2=0.05$, the right-tail critical values are
+\[
+f_{0.05}(4,6)\approx4.5337,\qquad f_{0.05}(6,4)\approx6.1631.
+\]
+Using the reciprocal relation for the lower critical value, the variance-ratio limits are
+\[
+\frac{s_1^2}{s_2^2}\frac1{f_{\alpha/2}(\nu_1,\nu_2)},\qquad\frac{s_1^2}{s_2^2}f_{\alpha/2}(\nu_2,\nu_1).
+\]
+\[
+\left(\frac{0.0736554}{4.5337},\ (0.0736554)(6.1631)\right)\approx\boxed{\bigl(0.0162,\ 0.4539\bigr)}.
+\]
+The interval lies below 1, so the data indicate smaller variance for company I. The equal-variance assumption is not supported.
+\end{solution}
+
+\begin{exercise}{9.80}
+Construct a 95\% confidence interval for $\sigma_A^2/\sigma_B^2$ in Exercise 9.49. The drying times, in hours, for the two brands are:
+\[
+\begin{array}{cccccccccc}\toprule
+\multicolumn{5}{c}{\text{Paint A}} & \multicolumn{5}{c}{\text{Paint B}}\\\midrule
+3.5 & 2.7 & 3.9 & 4.2 & 3.6 & 4.7 & 3.9 & 4.5 & 5.5 & 4.0\\
+2.7 & 3.3 & 5.2 & 4.2 & 2.9 & 5.3 & 4.3 & 6.0 & 5.2 & 3.7\\
+4.4 & 5.2 & 4.0 & 4.1 & 3.4 & 5.5 & 6.2 & 5.1 & 5.4 & 4.8\\
+\bottomrule\end{array}
+\]
+Assume normal populations. Should the equal-variance assumption be used?
+\end{exercise}
+\begin{solution}
+The sample summaries are
+\[
+\begin{array}{c@{\qquad}rrr}\toprule &n&\bar x&s\\\midrule 1&15&3.82&0.779377\\2&15&4.94&0.753847\\\bottomrule\end{array}
+\]
+For independent normal samples, $F=(S_1^2/\sigma_1^2)/(S_2^2/\sigma_2^2)\sim F_{14,14}$. With $\alpha/2=0.025$, the right-tail critical values are
+\[
+f_{0.025}(14,14)\approx2.9786,\qquad f_{0.025}(14,14)\approx2.9786.
+\]
+Using the reciprocal relation for the lower critical value, the variance-ratio limits are
+\[
+\frac{s_1^2}{s_2^2}\frac1{f_{\alpha/2}(\nu_1,\nu_2)},\qquad\frac{s_1^2}{s_2^2}f_{\alpha/2}(\nu_2,\nu_1).
+\]
+\[
+\left(\frac{1.0688788}{2.9786},\ (1.0688788)(2.9786)\right)\approx\boxed{\bigl(0.3589,\ 3.1837\bigr)}.
+\]
+The interval includes 1. Thus a common variance is compatible with the data, though not proved; the pooled procedure is reasonable under that assumption.
+\end{solution}
+
+\begin{exercise}{9.103}
+A survey was done with the hope of comparing salaries of chemical plant managers employed in two areas of the country, the northern and west central regions. An independent random sample of 300 plant managers was selected from each of the two regions. These managers were asked their annual salaries. The results are as follows:
+\[
+\begin{array}{cccc}\toprule
+\text{Region} & n & \bar x\text{ (dollars)} & s\text{ (dollars)}\\\midrule
+\text{North} & 300 & 102{,}300 & 5700\\
+\text{West Central} & 300 & 98{,}500 & 3800\\
+\bottomrule\end{array}
+\]
+\begin{exercisesubparts}
+\item Construct a 99\% confidence interval for $\mu_1-\mu_2$, the difference in the mean salaries.
+\item What assumption did you make in (a) about the distribution of annual salaries for the two regions? Is the assumption of normality necessary? Why or why not?
+\item What assumption did you make about the two variances? Is the assumption of equality of variances reasonable? Explain!
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item Take sample 1 minus sample 2. For the two independent large samples, use the normal approximation with the sample variances in place of the unknown population variances. With $z_{0.005}\approx2.5758$, the limits are
+\[
+(\bar x_1-\bar x_2)\pm z_{0.005}\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\approx 3800\pm 2.5758\sqrt{\frac{5700^2}{300}+\frac{3800^2}{300}}.
+\]
+The confidence interval for $\mu_1-\mu_2$ is 
+\[
+\boxed{\bigl(2781.22,\ 4818.78\bigr)}.
+\]
+
+\item Independent random samples with finite variances are assumed. Normality is not necessary: the large sample sizes justify a normal approximation by the CLT, provided the distributions are not excessively skewed.
+\item No common variance is assumed. The observed standard deviations differ substantially ($5700$ versus $3800$, a variance ratio of $2.25$), so imposing equality is unnecessary and not especially plausible.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.104}
+Consider Review Exercise 9.103. Let us assume that the data have not been collected yet and that previous statistics suggest that $\sigma_1=\sigma_2=\$4000$. Are the sample sizes of 300 per region in Review Exercise 9.103 sufficient to produce a 95\% confidence interval on $\mu_1-\mu_2$ having a width of only \$1000? Show all work.
+\end{exercise}
+\begin{solution}
+For independent samples of equal size $n$, the full width of the normal interval is
+\[
+W=2z_{0.025}\sqrt{\frac{\sigma_1^2}{n}+\frac{\sigma_2^2}{n}}=2z_{0.025}(4000)\sqrt{\frac2n}.
+\]
+At $n=300$, $W\approx 1280.24>1000$ dollars. Thus the sample sizes are insufficient. For a width at most 1000, 
+\[
+n\ge 2\left(\frac{1.959964(4000)}{500}\right)^2\approx 491.7067,
+\]
+so at least $\boxed{492}$ managers per region are required.
+\end{solution}
+
+\begin{exercise}{9.105}
+A labor union is becoming defensive about gross absenteeism by its members. The union leaders had always claimed that, in a typical month, 95\% of its members were absent less than 10 hours. The union decided to check this by monitoring a random sample of 300 of its members. The number of hours absent was recorded for each of the 300 members. The results were $\bar x=6.5$ hours and $s=2.5$ hours. Use the data to respond to this claim, using a one-sided tolerance limit and choosing the confidence level to be 99\%. Be sure to interpret what you learn from the tolerance limit calculation.
+\end{exercise}
+\begin{solution}
+Assuming an approximately normal population, use an upper tolerance bound. For $n=300$, confidence $99\%$, and population coverage $95\%$, Table A.7 gives $k=1.868$ for a one-sided bound.
+\[
+\bar x+ks=6.5+(1.868)(2.5)\approx\boxed{11.17}.
+\]
+With 99\% confidence, at least 95\% of members are absent for no more than 11.17 hours. Because this bound exceeds 10 hours, the calculation does not substantiate the union\textquotesingle s claim at that confidence level. It does not by itself prove the claim false.
+\end{solution}
+
+\begin{exercise}{9.107}
+Refer to Review Exercise 9.106, in which 8 of 30 randomly selected firms dealing in wireless products had implemented new software to improve productivity. Suppose there is concern about whether the point estimate $\hat p=8/30$ is accurate enough because the confidence interval around $p$ is not sufficiently narrow. Using $\hat p$ as the estimate of $p$, how many companies would need to be sampled in order to have a 95\% confidence interval with a width of only 0.05?
+\end{exercise}
+\begin{solution}
+The desired margin is half the full width: $e=0.05/2=0.025$. Use the preliminary estimate $p_0=8/30$. The normal-approximation margin of error must be at most $e=0.025$. With $z_{0.025}\approx 1.959964$, we require
+\[
+n\ge \frac{z_{\alpha/2}^2p_0(1-p_0)}{e^2}\approx \frac{1.959964^2(0.26666667)(0.73333333)}{0.025^2}\approx 1201.9498.
+\]
+Rounding up gives $\boxed{n=1202}$. This is the required total sample size under the planning approximation.
+\end{solution}
+
+\begin{exercise}{9.108}
+A bank has implemented a new online banking system in which it is observed that the waiting time for 18 out of 120 random actions is more than 15 seconds. In order to increase the service performance, the server capacity has been increased. Now, it is found that the waiting time for 6 out of 120 random actions is more than 15 seconds.
+\begin{exercisesubparts}
+\item Compute a 95\% confidence interval for $p_1-p_2$, where $p_1$ is the population proportion of waiting times exceeding 15 seconds before an increase in the server capacity and $p_2$ is the corresponding population proportion after the increase in the server capacity.
+\item Is there information in the confidence interval found in Part (a) that would suggest that $p_1>p_2$? Explain.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The observed proportions are $\hat p_1=18/120\approx0.15$ and $\hat p_2=6/120\approx0.05$. For independent samples, the normal-approximation interval for $p_1-p_2$ is based on separate estimated variances. With $z_{0.025}\approx1.96$,
+\[
+(\hat p_1-\hat p_2)\pm z_{0.025}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}
+\]
+\[
+\approx 0.1\pm0.074847.
+\]
+The interval is 
+\[
+\boxed{\bigl(0.0252,\ 0.1748\bigr)}.
+\]
+
+\item Yes. The interval is entirely positive, suggesting that the proportion of waiting times longer than 15 seconds decreased after the capacity increase.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.109}
+A sugar packaging machine helps the manufacturer pack various quantities of sugar in leak-proof pouches. The machine is capable of functioning at an average speed of 120 pouches per minute, with a standard deviation of 6 pouches. However, there is some concern within the company about the proper functioning of the machine and it is stopped for maintenance. After maintenance, 25 samples are collected for the duration of one minute and the sample standard deviation is found to be 4.3 pouches. Find a 95\% confidence interval of the variance in the speed of the machine. Does it appear from the range of the confidence interval that maintenance enhanced the speed as far as variability is concerned? Assume normality in the distribution of the speed.
+\end{exercise}
+\begin{solution}
+For a normal population, $Q=(n-1)S^2/\sigma^2\sim\chi^2_{24}$. The critical values are
+\[
+\chi^2_{0.025}(24)\approx39.3641,\qquad\chi^2_{0.975}(24)\approx12.4012.
+\]
+Inverting the central chi-squared probability gives the variance limits
+\[
+\frac{(n-1)s^2}{\chi^2_{\alpha/2}(\nu)}\quad\text{and}\quad\frac{(n-1)s^2}{\chi^2_{1-\alpha/2}(\nu)}.
+\]
+\[
+\left(\frac{24(4.3)^2}{39.3641},\ \frac{24(4.3)^2}{12.4012}\right)\approx\boxed{\bigl(11.2732,\ 35.7838\bigr)}.
+\]
+The previous variance $6^2=36$ is above the upper limit. This supports a reduction in variability after maintenance; it says nothing by itself about a change in mean speed.
+\end{solution}
+
+\begin{exercise}{9.111}
+Consider the statistic $S_p^2$, the pooled estimate of $\sigma^2$ discussed in Section 9.8. It is used when one is willing to assume that $\sigma_1^2=\sigma_2^2=\sigma^2$. Show that the estimator is unbiased for $\sigma^2$ (i.e., show that $\Exp[S_p^2]=\sigma^2$). You may make use of results from any theorem or example in this chapter.
+\end{exercise}
+\begin{solution}
+For the two samples of sizes $n_1,n_2\ge2$,
+\[
+S_p^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}.
+\]
+As $\Exp[S_1^2]=\Exp[S_2^2]=\sigma^2$, linearity gives
+\[
+\begin{aligned}\Exp[S_p^2]&=\frac{(n_1-1)\Exp[S_1^2]+(n_2-1)\Exp[S_2^2]}{n_1+n_2-2}\\&=\frac{(n_1+n_2-2)\sigma^2}{n_1+n_2-2}=\boxed{\sigma^2}.\end{aligned}
+\]
+Therefore the pooled estimator is unbiased.
+\end{solution}
+
+\begin{exercise}{9.112}
+A group of human factor researchers are concerned about reaction to a stimulus by airplane pilots in a certain cockpit arrangement. An experiment was conducted in a simulation laboratory, and 15 pilots were used with average reaction time of 3.2 seconds with a sample standard deviation of 0.6 second. It is of interest to characterize the extreme (i.e., worst case scenario). To that end, do the following:
+\begin{exercisesubparts}
+\item Give a particular important one-sided 99\% confidence bound on the mean reaction time. What assumption, if any, must you make on the distribution of reaction times?
+\item Give a 99\% one-sided prediction interval and give an interpretation of what it means. Must you make an assumption about the distribution of reaction times to compute this bound?
+\item Compute a one-sided tolerance bound with 99\% confidence that involves 95\% of reaction times. Again, give an interpretation and assumptions about the distribution, if any. (Note: The one-sided tolerance limit values are also included in Table A.7.)
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+All three bounds are upper bounds because long reaction times are of concern. Assume an independent random sample from an approximately normal population.
+\begin{exercisesubparts}
+\item With $\nu=14$ and $t_{0.01}(14)\approx2.6245$, the upper confidence bound is
+\[
+\bar x+t_{0.01}(14)\frac{s}{\sqrt n}=3.2+(2.6245)\frac{0.6}{\sqrt{15}}\approx\boxed{3.6066}.
+\]
+This bounds the population mean from above at the 99\% confidence level. For this small sample, the $t$ procedure assumes normality (approximately normal for an approximate result).
+\item For a one-sided prediction bound, $t_{0.01}(14)\approx2.6245$. 
+\[
+\bar x+t_{0.01}(14)s\sqrt{1+1/n}=3.2+(2.6245)(0.6)\sqrt{1+1/15}\approx\boxed{4.8263}.
+\]
+The bound covers a single future independent reaction time with 99\% probability over repetitions. The prediction calculation uses the normal population model.
+\item For $n=15$, confidence $99\%$, and population coverage $95\%$, Table A.7 gives $k=3.102$ for a one-sided bound.
+\[
+\bar x+ks=3.2+(3.102)(0.6)\approx\boxed{5.0612}.
+\]
+Under the normal model, we are 99\% confident that at least 95\% of reaction times lie below this bound. All bounds are in seconds.
+\end{exercisesubparts}
+\end{solution}
+
+\begin{exercise}{9.113}
+A leading manufacturing company produces high quality, durable galvanized bolt nuts. The company claims that the proportion of the defective bolts produced is 0.02. A construction company that uses the bolts made by this firm randomly tested 500 bolts and found 13 of them to be defective.
+\begin{exercisesubparts}
+\item Compute a 95\% two-sided confidence interval on the proportion of defective bolts.
+\item Compute an appropriate 95\% one-sided confidence interval on the proportion of defective bolts.
+\item Interpret the intervals from Parts (a) and (b) and comment on the claim made by the company.
+\end{exercisesubparts}
+\end{exercise}
+\begin{solution}
+\begin{exercisesubparts}
+\item The sample proportion is $\hat p=13/500\approx0.026$, and $z_{0.025}\approx1.96$. The normal approximation is appropriate since both observed counts are at least 5. Using Method 1,
+\[
+\hat p\pm z_{0.025}\sqrt{\frac{\hat p(1-\hat p)}{n}}\approx0.026\pm 0.013949.
+\]
+\[
+\boxed{\bigl(0.0121,\ 0.0399\bigr)}.
+\]
+
+\item The concern is that the defective proportion exceeds the claimed value, so use a lower one-sided bound. With $z_{0.05}\approx1.6449$,
+\[
+L=\hat p-z_{0.05}\sqrt{\frac{\hat p(1-\hat p)}{n}}\approx 0.026-1.6449\sqrt{\frac{(0.026)(1-0.026)}{500}}\approx\boxed{0.01429}.
+\]
+The one-sided confidence set is $(L,1]$ (intersecting the interval with the parameter space).
+\item The claimed $p=0.02$ lies in both intervals. These data do not establish that the defective proportion is greater than 0.02, but neither interval proves the company\textquotesingle s claim.
+\end{exercisesubparts}
+\end{solution}
+\end{document}

@@ -725,4 +725,93 @@ Therefore
 \end{problemsubparts}
 \end{solution}
 
+\Needspace{12\baselineskip}
+\begin{problem}{8.1}
+Let $X_1,\ldots,X_{16}$ be a random sample from a normal population with mean $\mu$ and variance $\sigma^2=9$. Let $S^2$ denote the sample variance.
+\begin{problemsubparts}
+\item State the sampling distribution of $\dfrac{15S^2}{9}$.
+\item Find the value $c$ satisfying $\Prob(S^2>c)=0.05$.
+\end{problemsubparts}
+\textit{Note.} The following upper-tail critical values are provided:
+\[
+\chi^2_{0.05}(14)\approx23.7,\qquad
+\chi^2_{0.05}(15)\approx25.0,\qquad
+\chi^2_{0.05}(16)\approx26.3.
+\]
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+\item For a random sample from a normal population, $(n-1)S^2/\sigma^2\sim\chi^2_{n-1}$. With $n=16$ and $\sigma^2=9$,
+\[
+\boxed{\frac{15S^2}{9}\sim\chi^2_{15}}.
+\]
+\item By part (a),
+\[
+\Prob(S^2>c)=\Prob\left(\frac{15S^2}{9}>\frac{15c}{9}\right)=0.05.
+\]
+The upper-tail critical value at 15 degrees of freedom is $\chi^2_{0.05}(15)\approx25.0$. Hence
+\[
+\frac{15c}{9}\approx25.0,\qquad \boxed{c\approx15}.
+\]
+\end{problemsubparts}
+\end{solution}
+
+\begin{problem}{8.2}
+A company claims that the average training time is 40 hours. A random sample of 25 trainees yields a sample mean of 42 hours and a sample standard deviation of 5 hours. Assume that the training times are normally distributed. The company maintains its claim if the computed $t$-statistic lies between $-t_{0.025}$ and $t_{0.025}$.
+\begin{problemsubparts}
+\item Compute the $t$-statistic and state its degrees of freedom.
+\item Should the company maintain its claim? Explain your conclusion.
+\end{problemsubparts}
+\textit{Note.} The following upper-tail critical values are provided:
+\[
+t_{0.025}(23)\approx2.069,\quad
+ t_{0.025}(24)\approx2.064,\quad
+ t_{0.025}(25)\approx2.060.
+\]
+\end{problem}
+
+\begin{solution}
+\begin{problemsubparts}
+\item Under the claimed mean $\mu=40$, the observed Student statistic is
+\[
+ t=\frac{\bar x-40}{s/\sqrt n}
+ =\frac{42-40}{5/\sqrt{25}}=\boxed{2}.
+\]
+The degrees of freedom are $\boxed{\nu=n-1=24}$.
+\item The given critical value is $t_{0.025}(24)\approx2.064$. Since
+\[
+ -2.064<2<2.064,
+\]
+the statistic lies within the prescribed interval. The company should maintain its claim under the stated rule; this does not establish that the population mean is exactly 40 hours.
+\end{problemsubparts}
+\end{solution}
+
+\Needspace{10\baselineskip}
+\begin{problem}{8.3}
+Let $X_1,\ldots,X_n$ be an independent random sample from a normal population with mean $\mu$ and variance $\sigma^2>0$, where $n\ge2$. Let
+\[
+S^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2
+\]
+be the sample variance. Show that the variance of $S^2$ decreases as the sample size $n$ increases. You may use the fact that a chi-squared random variable with $\nu$ degrees of freedom has variance $2\nu$.
+\end{problem}
+
+\begin{solution}
+By the sampling distribution of the variance for a normal population,
+\[
+Q=\frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1},
+\qquad \Var(Q)=2(n-1).
+\]
+Since $S^2=\sigma^2Q/(n-1)$, the variance formula for a constant multiple gives
+\[
+\begin{aligned}
+\Var(S^2)
+&=\left(\frac{\sigma^2}{n-1}\right)^2\Var(Q)\\
+&=\frac{\sigma^4}{(n-1)^2}\cdot2(n-1)\\
+&=\boxed{\frac{2\sigma^4}{n-1}}.
+\end{aligned}
+\]
+For fixed $\sigma^2>0$, this quantity decreases strictly as $n$ increases and converges to zero as $n\to\infty$.
+\end{solution}
+
 \end{document}

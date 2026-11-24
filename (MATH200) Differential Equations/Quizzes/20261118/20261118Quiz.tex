@@ -31,10 +31,13 @@ Consider the differential equation
 \[
     y(x)=\sum_{n=0}^{\infty}a_nz^n.
 \]
-Since $x=z+1$, substituting into $y''-(z+1)y'-y=0$ gives
+Since $x=z+1$, the equation becomes $y''-(z+1)y'-y=0$. Differentiating the series and collecting equal powers of $z$ gives
 \[
-    \sum_{n=0}^{\infty}
-    (n+1)\left((n+2)a_{n+2}-a_{n+1}-a_n\right)z^n=0.
+    \begin{aligned}
+    0&=\sum_{n=0}^{\infty}(n+2)(n+1)a_{n+2}z^n
+       -\sum_{n=0}^{\infty}(n+1)(a_{n+1}+a_n)z^n\\
+     &=\sum_{n=0}^{\infty}(n+1)((n+2)a_{n+2}-a_{n+1}-a_n)z^n.
+    \end{aligned}
 \]
 Thus the recurrence relation is
 \[
@@ -49,7 +52,6 @@ Thus the recurrence relation is
     \end{aligned}}
     \qquad z=x-1.
 \]
-Each series displays its first four nonzero terms.
 \end{solution}
 
 % Boyce Section 5.2, Problem 2; all subparts (a)--(d).
@@ -67,9 +69,17 @@ Consider the differential equation
 \end{problem}
 
 \begin{solution}
-\noindent\textup{(a)} Substitute $y(x)=\sum_{n=0}^{\infty}a_nx^n$ into the equation:
+\noindent\textup{(a)} Seek a power series solution
 \[
-    \sum_{n=0}^{\infty}(n+1)\left((n+2)a_{n+2}-a_n\right)x^n=0.
+    y(x)=\sum_{n=0}^{\infty}a_nx^n.
+\]
+Differentiating term by term and substituting into the differential equation gives
+\[
+    \begin{aligned}
+    0&=\sum_{n=0}^{\infty}(n+2)(n+1)a_{n+2}x^n
+       -\sum_{n=0}^{\infty}(n+1)a_nx^n\\
+     &=\sum_{n=0}^{\infty}(n+1)((n+2)a_{n+2}-a_n)x^n.
+    \end{aligned}
 \]
 Therefore
 \[
@@ -177,7 +187,7 @@ Dividing by $e^x$ gives $y''+xe^{-x}y=0$. Write
     y=\sum_{n=0}^{\infty}a_nx^n,
     \qquad xe^{-x}=\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{(k-1)!}x^k.
 \]
-Equating coefficients yields
+Multiplying the two series for $xe^{-x}$ and $y$ by the Cauchy product and equating coefficients in $y''+xe^{-x}y=0$ yields
 \[
     (n+2)(n+1)a_{n+2}
       +\sum_{k=1}^{n}\frac{(-1)^{k-1}}{(k-1)!}a_{n-k}=0,
@@ -185,10 +195,8 @@ Equating coefficients yields
 \]
 The recurrence gives
 \[
-    \begin{aligned}
-      a_2&=0, &a_3&=-\frac{a_0}{6}, &a_4&=\frac{a_0-a_1}{12},\\
-      a_5&=\frac{2a_1-a_0}{40}, &a_6&=\frac{2a_0-3a_1}{180}.
-    \end{aligned}
+    a_2=0, \quad a_3=-\frac{a_0}{6}, \quad a_4=\frac{a_0-a_1}{12},
+    \quad a_5=\frac{2a_1-a_0}{40}, \quad a_6=\frac{2a_0-3a_1}{180}.
 \]
 Choosing $(a_0, a_1)=(1, 0)$ for $y_1$ and $(0, 1)$ for $y_2$ then gives
 \[
@@ -197,7 +205,7 @@ Choosing $(a_0, a_1)=(1, 0)$ for $y_1$ and $(0, 1)$ for $y_2$ then gives
       y_2(x)&=x-\frac{x^4}{12}+\frac{x^5}{20}-\frac{x^6}{60}+\cdots.
     \end{aligned}}
 \]
-Since $W(y_1, y_2)(0)=1$, these solutions form a fundamental set. Both coefficients in the standard equation, $0$ and $xe^{-x}$, are entire, so the radius of convergence of each series is
+The initial coefficients give $y_1(0)=y_2'(0)=1$ and $y_1'(0)=y_2(0)=0$, so $W(y_1, y_2)(0)=1\ne0$. Thus these solutions form a fundamental set. Both coefficients in the standard equation, $0$ and $xe^{-x}$, are entire, so the radius of convergence of each series is
 \[
     \boxed{R=\infty}.
 \]
@@ -261,8 +269,8 @@ The characteristic equation is
 \]
 whose roots are $r=-1\pm3i$. Therefore
 \[
-    \boxed{y(x)=|x|^{-1}\left(c_1\cos(3\ln|x|)
-          +c_2\sin(3\ln|x|)\right)}, \qquad x\ne0.
+    \boxed{y(x)=|x|^{-1}(c_1\cos(3\ln|x|)
+          +c_2\sin(3\ln|x|))}, \qquad x\ne0.
 \]
 For $x<0$, substituting $u=-x>0$ gives the same Euler equation in $u$, so the form above applies on either side of $0$, with independent constants on each interval.
 \end{solution}
@@ -308,7 +316,7 @@ As the initial point is $-1$, the relevant interval is $x<0$, on which
 \]
 Differentiating gives
 \[
-    y'(x)=x\bigl(2c_1+c_2+2c_2\ln(-x)\bigr).
+    y'(x)=x(2c_1+c_2+2c_2\ln(-x)).
 \]
 From $y(-1)=c_1=2$ and $y'(-1)=-2c_1-c_2=2$, we obtain $c_2=-6$. Hence
 \[
@@ -326,18 +334,18 @@ The graph is shown below, with an open circle at $x=0$ because the differential 
     height=0.37\textwidth,
     axis lines=middle,
     xmin=-2.15, xmax=0.35,
-    ymin=-11.5, ymax=3.6,
+    ymin=-12.0, ymax=3.6,
     xlabel={$x$}, ylabel={$y(x)$},
     xtick={-2,-1,0},
     ytick={-10,-5,0,2},
     tick label style={font=\small},
     label style={font=\small},
     clip=false,
-    samples=250
+    samples=400
 ]
-    \addplot[black,thick,domain=-2.05:-0.025] {x^2*(2-6*ln(-x))};
+    \addplot[black,thick,domain=-2.15:-0.0001] {x^2*(2-6*ln(-x))};
     \addplot[only marks,mark=*,mark size=1.8pt,black] coordinates {(-1,2)};
-    \addplot[only marks,mark=o,mark size=2pt,black] coordinates {(0,0)};
+    \addplot[only marks,mark=*,mark size=2pt,black,mark options={solid,fill=white,draw=black}] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -369,17 +377,17 @@ Both extend analytically to $x=0$, which is therefore a regular singular point.
 \[
     y=\sum_{n=0}^{\infty}a_nx^{n+r}, \qquad a_0\ne0.
 \]
-Substituting into $x^2y''+2xy=0$ and equating coefficients gives
+Substituting into $x^2y''+2xy=0$ gives
 \[
-    a_0r(r-1)=0, \qquad
-    (n+r)(n+r-1)a_n+2a_{n-1}=0 \quad(n\geq1).
+    a_0r(r-1)x^r+\sum_{n=1}^{\infty}((n+r)(n+r-1)a_n+2a_{n-1})x^{n+r}=0.
 \]
-Hence the indicial equation, its roots, and the recurrence relation are
+Since $a_0\ne0$, the lowest-order term gives the indicial equation and roots
 \[
-    \boxed{r(r-1)=0, \qquad r_1=1, \quad r_2=0},
+    \boxed{r(r-1)=0, \qquad r_1=1, \quad r_2=0}.
 \]
+The remaining coefficients give the recurrence relation
 \[
-    \boxed{a_n=-\frac{2a_{n-1}}{(n+r)(n+r-1)}}, \qquad n\geq1.
+    \boxed{(n+r)(n+r-1)a_n+2a_{n-1}=0}, \qquad n\geq1.
 \]
 
 \noindent\textup{(c)} For the larger root $r=1$, take $a_0=1$. The recurrence becomes
@@ -392,7 +400,7 @@ Thus the required solution is
     \boxed{y_1(x)=x\sum_{n=0}^{\infty}\frac{(-2)^n}{n!(n+1)!}x^n
     =x-x^2+\frac{x^3}{3}-\frac{x^4}{18}+\cdots}, \qquad x>0.
 \]
-The smaller root differs from $r_1$ by an integer, so the conditional smaller-root task does not apply.
+The roots differ by $1$, so the smaller-root case of the Frobenius method in this section does not apply. In fact, $r=0$ and $n=1$ in the recurrence would force $a_0=0$.
 \end{solution}
 
 % Boyce Section 5.5, Problem 4; applicable subparts (a)--(c).
@@ -415,16 +423,21 @@ Consider the differential equation
 \]
 are analytic at $x=0$, it is a regular singular point.
 
-\noindent\textup{(b)} Substituting $y=\sum_{n=0}^{\infty}a_nx^{n+r}$ with $a_0\ne0$ into $2x^2y''+2xy'-xy=0$ yields
+\noindent\textup{(b)} Seek a Frobenius series
 \[
-    2r^2a_0=0, \qquad
-    2(n+r)^2a_n-a_{n-1}=0 \quad(n\geq1).
+    y=\sum_{n=0}^{\infty}a_nx^{n+r}, \qquad a_0\ne0.
 \]
-Therefore the indicial root is repeated, and
+Substituting into $2x^2y''+2xy'-xy=0$ gives
 \[
-    \boxed{r^2=0, \qquad r_1=r_2=0},
-    \qquad
-    \boxed{a_n=\frac{a_{n-1}}{2(n+r)^2}} \quad(n\geq1).
+    2r^2a_0x^r+\sum_{n=1}^{\infty}(2(n+r)^2a_n-a_{n-1})x^{n+r}=0.
+\]
+Since $a_0\ne0$, the indicial equation and its repeated root are
+\[
+    \boxed{r^2=0, \qquad r_1=r_2=0}.
+\]
+The recurrence relation is
+\[
+    \boxed{2(n+r)^2a_n-a_{n-1}=0}, \qquad n\geq1.
 \]
 
 \noindent\textup{(c)} For $r=0$ and $a_0=1$,
@@ -437,7 +450,7 @@ Consequently,
     \boxed{y_1(x)=\sum_{n=0}^{\infty}\frac{x^n}{2^n(n!)^2}
     =1+\frac{x}{2}+\frac{x^2}{16}+\frac{x^3}{288}+\cdots}, \qquad x>0.
 \]
-The indicial root is repeated, so there is no distinct smaller root to treat here.
+The indicial root is repeated, so there is no distinct smaller root.
 \end{solution}
 
 % Boyce Section 5.6, Problem 2; both subparts (a), (b).
@@ -459,7 +472,7 @@ Consider the differential equation
 \]
 The only finite singular point is $x=0$. Since $xp(x)=-(2+x)$ and $x^2q(x)=2+x^2$ are analytic there, $x=0$ is regular singular.
 
-\noindent\textup{(b)} At $x=0$,
+\noindent\textup{(b)} The indicial equation is $r(r-1)+p_0r+q_0=0$. At $x=0$,
 \[
     p_0=\lim_{x\to0}xp(x)=-2, \qquad
     q_0=\lim_{x\to0}x^2q(x)=2.
@@ -491,7 +504,12 @@ Consider the differential equation
 \]
 The singular points are $0$ and $-2$. At $x=0$, both $xp(x)=1/(3(x+2))$ and $x^2q(x)=-x^2/(3(x+2))$ are analytic. At $x=-2$, both $(x+2)p(x)=1/(3x)$ and $(x+2)^2q(x)=-(x+2)/3$ are analytic. Hence both points are regular singular.
 
-\noindent\textup{(b)} At $x=0$, the limits are $p_0=1/6$ and $q_0=0$, giving
+\noindent\textup{(b)} At each regular singular point $x_0$, use $r(r-1)+p_0r+q_0=0$, where
+\[
+    p_0=\lim_{x\to x_0}(x-x_0)p(x), \qquad
+    q_0=\lim_{x\to x_0}(x-x_0)^2q(x).
+\]
+At $x=0$, the limits are $p_0=1/6$ and $q_0=0$, giving
 \[
     \boxed{r(r-1)+\frac16r=r\left(r-\frac56\right)=0},
     \qquad \boxed{r_1=\frac56, \quad r_2=0}.
@@ -532,7 +550,7 @@ has a pole, so $x=0$ is an irregular singular point. At $x=1$,
 \]
 are analytic. Therefore $x=1$ is the only regular singular point.
 
-\noindent\textup{(b)} At $x=1$,
+\noindent\textup{(b)} For the indicial equation $r(r-1)+p_0r+q_0=0$ at $x=1$,
 \[
     p_0=\lim_{x\to1}(x-1)p(x)=2, \qquad
     q_0=\lim_{x\to1}(x-1)^2q(x)=0.
@@ -560,7 +578,15 @@ Consider the differential equation
 \begin{solution}
 \noindent\textup{(a)} The equation has $p(x)=0$ and $q(x)=1/x$ in standard form. Since $xp(x)=0$ and $x^2q(x)=x$ are analytic at $0$, the point is regular singular.
 
-\noindent\textup{(b)} Substitute $y=\sum_{n=0}^{\infty}a_nx^{n+r}$, $a_0\ne0$, into $x^2y''+xy=0$. The lowest-order term gives
+\noindent\textup{(b)} Seek a Frobenius series for $x>0$,
+\[
+    y=\sum_{n=0}^{\infty}a_nx^{n+r}, \qquad a_0\ne0.
+\]
+Substitution into $x^2y''+xy=0$ gives
+\[
+    a_0r(r-1)x^r+\sum_{n=1}^{\infty}((n+r)(n+r-1)a_n+a_{n-1})x^{n+r}=0.
+\]
+The coefficient of $x^r$ must vanish. Hence
 \[
     \boxed{r(r-1)=0, \qquad r_1=1, \quad r_2=0}.
 \]
@@ -573,19 +599,31 @@ Taking $r=1$ and $a_0=1$ yields $a_n=-a_{n-1}/(n(n+1))$, hence
 \[
     \boxed{y_1(x)=x-\frac{x^2}{2}+\frac{x^3}{12}+\cdots}.
 \]
-The roots differ by an integer, so the second solution may contain a logarithm. Let $L[y]=xy''+y$ and write
+Since $r_1-r_2=1$, Theorem 5.6.1 gives a second solution of the form
 \[
-    y_2=-y_1\ln x+v(x), \qquad
-    v(x)=1+\sum_{n=1}^{\infty}b_nx^n.
+    y_2=Cy_1\ln x+v(x), \qquad v(x)=1+\sum_{n=1}^{\infty}b_nx^n.
 \]
-As $L[y_1\ln x]=2y_1'-y_1/x$, the equation $L[y_2]=0$ becomes
+Let $L[y]=xy''+y$. By the product rule and $L[y_1]=0$,
 \[
-    xv''+v=2y_1'-\frac{y_1}{x}
-    =1-\frac32x+\frac5{12}x^2+\cdots.
+    L[y_1\ln x]=2y_1'-\frac{y_1}{x}.
 \]
-We may choose $b_1=0$ (adding a multiple of $y_1$ only changes the normalization). Comparing the coefficient of $x$ gives $2b_2=-3/2$, so $b_2=-3/4$. Therefore
+Thus $L[y_2]=0$ gives
 \[
-    \boxed{y_2(x)=1-x\ln x+x^2\left(\frac12\ln x-\frac34\right)+\cdots},
+    xv''+v=-C\left(2y_1'-\frac{y_1}{x}\right)
+    =-C\left(1-\frac32x+\frac5{12}x^2+\cdots\right).
+\]
+The left-hand side expands as
+\[
+    xv''+v=1+(2b_2+b_1)x+(6b_3+b_2)x^2+\cdots.
+\]
+The constant term gives $C=-1$. Since $y_1=x+\cdots$, we may set $b_1=0$ by adding a suitable multiple of $y_1$ to $y_2$. Comparing the coefficients of $x$ and $x^2$ then gives
+\[
+    2b_2=-\frac32, \qquad 6b_3+b_2=\frac5{12},
+    \qquad b_2=-\frac34, \quad b_3=\frac7{36}.
+\]
+Therefore
+\[
+    \boxed{y_2(x)=-y_1(x)\ln x+1-\frac34x^2+\frac7{36}x^3+\cdots},
     \qquad x>0.
 \]
 The solutions are independent since $y_1(x)\to0$ while $y_2(x)\to1$ as $x\to0^+$.
@@ -607,7 +645,15 @@ Consider the differential equation
 \begin{solution}
 \noindent\textup{(a)} Dividing by $x$ gives $p(x)=1/x$ and $q(x)=-1/x$. Since $xp(x)=1$ and $x^2q(x)=-x$ are analytic at $0$, it is a regular singular point.
 
-\noindent\textup{(b)} Writing $y=\sum_{n=0}^{\infty}a_nx^{n+r}$ with $a_0\ne0$, the coefficient of $x^r$ gives the indicial equation
+\noindent\textup{(b)} For $x>0$, substitute
+\[
+    y=\sum_{n=0}^{\infty}a_nx^{n+r}, \qquad a_0\ne0,
+\]
+into $x^2y''+xy'-xy=0$. Collecting powers of $x$ gives
+\[
+    a_0r^2x^r+\sum_{n=1}^{\infty}((n+r)^2a_n-a_{n-1})x^{n+r}=0.
+\]
+The lowest-order term gives the indicial equation and its repeated root:
 \[
     \boxed{r(r-1)+r=r^2=0, \qquad r_1=r_2=0}.
 \]
@@ -620,14 +666,25 @@ For $r=0$ and $a_0=1$, we have $a_n=1/(n!)^2$, so
 \[
     \boxed{y_1(x)=1+x+\frac{x^2}{4}+\cdots}.
 \]
-Since the indicial root is repeated, seek $y_2=y_1\ln x+v(x)$ with $v(x)=\sum_{n=1}^{\infty}b_nx^n$. Let $L[y]=xy''+y'-y$. The identity $L[y_1\ln x]=2y_1'$ gives
+Since the indicial root is repeated, Theorem 5.6.1 gives a second solution of the form
+\[
+    y_2=y_1\ln x+v(x), \qquad v(x)=\sum_{n=1}^{\infty}b_nx^n.
+\]
+Let $L[y]=xy''+y'-y$. By the product rule and $L[y_1]=0$, we have $L[y_1\ln x]=2y_1'$. Hence $L[y_2]=0$ becomes
 \[
     xv''+v'-v=-2y_1'=-2-x-\frac{x^2}{6}+\cdots.
 \]
-Comparing the constant and linear coefficients yields $b_1=-2$ and $4b_2-b_1=-1$, so $b_2=-3/4$. Thus
+Here the left-hand side is
 \[
-    \boxed{y_2(x)=\ln x+x(\ln x-2)
-         +x^2\left(\frac14\ln x-\frac34\right)+\cdots},
+    xv''+v'-v=b_1+(4b_2-b_1)x+(9b_3-b_2)x^2+\cdots.
+\]
+Comparing the constant, linear, and quadratic terms gives
+\[
+    b_1=-2, \qquad 4b_2-b_1=-1, \qquad 9b_3-b_2=-\frac16.
+\]
+Thus $b_2=-3/4$ and $b_3=-11/108$, and the second solution is
+\[
+    \boxed{y_2(x)=y_1(x)\ln x-2x-\frac34x^2-\frac{11}{108}x^3+\cdots},
     \qquad x>0.
 \]
 The logarithmic behavior of $y_2$ near $0$ shows that it is not a multiple of $y_1$.

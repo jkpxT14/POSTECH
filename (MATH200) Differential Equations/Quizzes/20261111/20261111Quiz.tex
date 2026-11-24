@@ -14,6 +14,17 @@
 
 \quiztitle{20261111 Quiz}
 
+\begin{notation}
+The textbook denotes the unit step function by $u_c(t)$. We use $H(t-c)$, with the convention
+\[
+    u_c(t)=H(t-c)=
+    \begin{cases}
+        0, & t<c,\\
+        1, & t\geq c.
+    \end{cases}
+\]
+\end{notation}
+
 % Boyce Section 6.1, Problem 6.
 \begin{problem}{6.1.6}
 Use the linearity of the Laplace transform to find the Laplace transform of
@@ -33,7 +44,7 @@ By linearity,
     \begin{aligned}
     \mathcal{L}\{f(t)\}(s)
       &=\frac12\left(\frac{1}{s-a-b}+\frac{1}{s-a+b}\right)\\
-      &=\boxed{\frac{s-a}{(s-a)^2-b^2}},\qquad s>a+|b|.
+      &=\boxed{\frac{s-a}{(s-a)^2-b^2}}, \qquad s>a+|b|.
     \end{aligned}
 \]
 \end{solution}
@@ -53,9 +64,10 @@ Since $\sinh(bt)=(e^{bt}-e^{-bt})/2$, linearity gives
     \begin{aligned}
     \mathcal{L}\{f(t)\}(s)
       &=\frac12\left(\frac{1}{s-a-b}-\frac{1}{s-a+b}\right)\\
-      &=\boxed{\frac{b}{(s-a)^2-b^2}},\qquad s>a+|b|.
+      &=\boxed{\frac{b}{(s-a)^2-b^2}}, \qquad s>a+|b|.
     \end{aligned}
 \]
+If $b=0$, the function is identically zero, so its transform is zero for all real $s$.
 \end{solution}
 
 % Boyce Section 6.1, Problem 10.
@@ -72,12 +84,17 @@ Euler's formula yields
 \[
     e^{at}\cos(bt)=\frac12\left(e^{(a+ib)t}+e^{(a-ib)t}\right).
 \]
-Thus, using the exponential transform and combining the conjugate terms,
+For $s>a$, integration gives
+\[
+    \mathcal{L}\{e^{(a\pm ib)t}\}(s)=\int_0^\infty e^{-(s-a\mp ib)t}\,\dd t
+    =\frac{1}{s-a\mp ib}.
+\]
+By linearity,
 \[
     \begin{aligned}
     \mathcal{L}\{f(t)\}(s)
       &=\frac12\left(\frac{1}{s-a-ib}+\frac{1}{s-a+ib}\right)\\
-      &=\boxed{\frac{s-a}{(s-a)^2+b^2}},\qquad s>a.
+      &=\boxed{\frac{s-a}{(s-a)^2+b^2}}, \qquad s>a.
     \end{aligned}
 \]
 \end{solution}
@@ -92,14 +109,15 @@ where $a$ and $b$ are real constants.
 \end{problem}
 
 \begin{solution}
-Using $\sin(bt)=(e^{ibt}-e^{-ibt})/(2i)$, we obtain
+Using $\sin(bt)=(e^{ibt}-e^{-ibt})/(2i)$ and the exponential transform $\mathcal{L}\{e^{(a\pm ib)t}\}(s)=1/(s-a\mp ib)$ for $s>a$, we obtain
 \[
     \begin{aligned}
     \mathcal{L}\{f(t)\}(s)
       &=\frac{1}{2i}\left(\frac{1}{s-a-ib}-\frac{1}{s-a+ib}\right)\\
-      &=\boxed{\frac{b}{(s-a)^2+b^2}},\qquad s>a.
+      &=\boxed{\frac{b}{(s-a)^2+b^2}}, \qquad s>a.
     \end{aligned}
 \]
+If $b=0$, the function is identically zero, so its transform is zero for all real $s$.
 \end{solution}
 
 % Boyce Section 6.1, Problem 18.
@@ -192,12 +210,21 @@ Use the Laplace transform to solve the initial value problem
     y^{(4)}-4y'''+6y''-4y'+y=0,
 \]
 \[
-    y(0)=0,\qquad y'(0)=1,\qquad y''(0)=0,\qquad y'''(0)=1.
+    y(0)=0, \qquad y'(0)=1, \qquad y''(0)=0, \qquad y'''(0)=1.
 \]
 \end{problem}
 
 \begin{solution}
-Let $Y(s)=\mathcal{L}\{y(t)\}(s)$. Taking transforms and using all four initial conditions gives
+Let $Y(s)=\mathcal{L}\{y(t)\}(s)$. Using the initial conditions in the transforms of the derivatives gives
+\[
+    \begin{aligned}
+    \mathcal{L}\{y'(t)\}(s)&=sY(s), &
+    \mathcal{L}\{y''(t)\}(s)&=s^2Y(s)-1,\\
+    \mathcal{L}\{y'''(t)\}(s)&=s^3Y(s)-s, &
+    \mathcal{L}\{y^{(4)}(t)\}(s)&=s^4Y(s)-s^2-1.
+    \end{aligned}
+\]
+Substitution into the transformed equation and collection of terms yield
 \[
     (s^4-4s^3+6s^2-4s+1)Y(s)=s^2-4s+7.
 \]
@@ -214,33 +241,31 @@ Taking inverse transforms,
 \[
     \boxed{y(t)=e^t\left(t-t^2+\frac23t^3\right)}.
 \]
-This expression satisfies the differential equation and the four prescribed initial conditions.
 \end{solution}
 
 % Boyce Section 6.2, Problem 15.
 \begin{problem}{6.2.15}
 Use the Laplace transform to solve the initial value problem
 \[
-    y''-2y'+2y=\cos t,\qquad y(0)=1,\qquad y'(0)=1.
+    y''-2y'+2y=\cos t, \qquad y(0)=1, \qquad y'(0)=1.
 \]
 \end{problem}
 
 \begin{solution}
-Taking Laplace transforms yields
+Let $Y(s)=\mathcal{L}\{y(t)\}(s)$. Taking Laplace transforms and using $y(0)=y'(0)=1$ gives
 \[
     (s^2-2s+2)Y(s)=s-1+\frac{s}{s^2+1}.
 \]
-Partial fractions give
+Completing the square in $s^2-2s+2$ and setting up partial fractions, we obtain
 \[
-    Y(s)=\frac{4(s-1)+3}{5((s-1)^2+1)}
-          +\frac{s-2}{5(s^2+1)}.
+    Y(s)=\frac{(s-1)(s^2+1)+s}{((s-1)^2+1)(s^2+1)}
+        =\frac{A(s-1)+B}{(s-1)^2+1}+\frac{Cs+D}{s^2+1}.
 \]
-Therefore
+Clearing denominators and comparing coefficients gives $A=4/5$, $B=3/5$, $C=1/5$, and $D=-2/5$. Taking the inverse transform term by term yields
 \[
     \boxed{y(t)=\frac15\left(e^t(4\cos t+3\sin t)
                        +\cos t-2\sin t\right)}.
 \]
-The solution satisfies both initial conditions and the given differential equation.
 \end{solution}
 
 
@@ -254,7 +279,7 @@ Sketch the graph of the function
 \end{problem}
 
 \begin{solution}
-Here $u_c(t)=H(t-c)$ denotes the unit step function, with $H(0)=1$ as in the textbook. The value of $g$ changes at $t=2, 3, 4$, and
+The unit step functions turn on at $t=2, 3, 4$, respectively, so
 \[
     g(t)=
     \begin{cases}
@@ -271,7 +296,7 @@ The filled and open circles indicate included and excluded endpoint values, resp
     width=0.76\textwidth,
     height=0.38\textwidth,
     axis lines=middle,
-    xmin=0, xmax=5.5,
+    xmin=-0.15, xmax=5.5,
     ymin=-3.8, ymax=4.2,
     xlabel={$t$}, ylabel={$g(t)$},
     xtick={0,1,2,3,4,5},
@@ -283,8 +308,8 @@ The filled and open circles indicate included and excluded endpoint values, resp
     \addplot[black,thick] coordinates {(0,0) (2,0)};
     \addplot[black,thick] coordinates {(2,1) (3,1)};
     \addplot[black,thick] coordinates {(3,3) (4,3)};
-    \addplot[black,thick] coordinates {(4,-3) (5.35,-3)};
-    \addplot[only marks,mark=o,mark size=2pt,black] coordinates {(2,0) (3,1) (4,3)};
+    \addplot[black,thick] coordinates {(4,-3) (5.5,-3)};
+    \addplot[only marks,mark=*,mark size=2pt,black,mark options={solid,fill=white,draw=black}] coordinates {(2,0) (3,1) (4,3)};
     \addplot[only marks,mark=*,mark size=1.8pt,black] coordinates {(0,0) (2,1) (3,3) (4,-3)};
 \end{axis}
 \end{tikzpicture}
@@ -302,7 +327,7 @@ Sketch the graph of the function
 \end{problem}
 
 \begin{solution}
-Because $u_\pi(t)=H(t-\pi)$, the function is
+The unit step function is zero before $t=\pi$ and one thereafter, so
 \[
     g(t)=
     \begin{cases}
@@ -317,7 +342,7 @@ Thus the graph coincides with the $t$-axis until $t=\pi$ and then follows an upw
     width=0.76\textwidth,
     height=0.38\textwidth,
     axis lines=middle,
-    xmin=0, xmax=6.6,
+    xmin=-0.15, xmax=6.6,
     ymin=-1.2, ymax=35,
     xlabel={$t$}, ylabel={$g(t)$},
     xtick={0,3.14159265359,6.28318530718},
@@ -329,8 +354,7 @@ Thus the graph coincides with the $t$-axis until $t=\pi$ and then follows an upw
     samples=200
 ]
     \addplot[black,thick] coordinates {(0,0) (3.14159265359,0)};
-    \addplot[black,thick,domain=3.14159265359:6.5] {3*(x-pi)^2};
-    \addplot[only marks,mark=*,mark size=1.8pt,black] coordinates {(3.14159265359,0)};
+    \addplot[black,thick,domain=3.14159265359:6.55] {3*(x-pi)^2};
 \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -362,7 +386,7 @@ Consider the function
     width=0.76\textwidth,
     height=0.37\textwidth,
     axis lines=middle,
-    xmin=0, xmax=4.35,
+    xmin=-0.12, xmax=4.35,
     ymin=-0.15, ymax=1.25,
     xlabel={$t$}, ylabel={$f(t)$},
     xtick={0,1,2,3,4},
@@ -374,8 +398,8 @@ Consider the function
     \addplot[black,thick] coordinates {(0,0) (1,1)};
     \addplot[black,thick] coordinates {(1,0) (2,1)};
     \addplot[black,thick] coordinates {(2,0) (3,1)};
-    \addplot[black,thick] coordinates {(3,0) (4.2,0)};
-    \addplot[only marks,mark=o,mark size=2pt,black] coordinates {(1,1) (2,1) (3,1)};
+    \addplot[black,thick] coordinates {(3,0) (4.35,0)};
+    \addplot[only marks,mark=*,mark size=2pt,black,mark options={solid,fill=white,draw=black}] coordinates {(1,1) (2,1) (3,1)};
     \addplot[only marks,mark=*,mark size=1.8pt,black] coordinates {(0,0) (1,0) (2,0) (3,0)};
 \end{axis}
 \end{tikzpicture}
@@ -385,7 +409,7 @@ Consider the function
 \[
     \boxed{f(t)=t-u_1(t)-u_2(t)-(t-2)u_3(t)}.
 \]
-Equivalently, since $u_c(t)=H(t-c)$,
+Equivalently,
 \[
     f(t)=t-H(t-1)-H(t-2)-(t-2)H(t-3).
 \]
@@ -458,19 +482,17 @@ Find the Laplace transform of the function
 \end{problem}
 
 \begin{solution}
-The function is nonzero only on $[0, 1)$ and $[2, 3)$. Hence
+For $t\geq0$, the function switches between $1$ and $0$ at $t=1, 2, 3$, so
 \[
-    \begin{aligned}
-    \mathcal{L}\{f(t)\}(s)
-       &=\int_0^1 e^{-st}\,\dd t+\int_2^3 e^{-st}\,\dd t\\
-       &=\frac{1-e^{-s}}{s}+\frac{e^{-2s}-e^{-3s}}{s}.
-    \end{aligned}
+    f(t)=1-H(t-1)+H(t-2)-H(t-3).
 \]
-Thus
+For $s>0$, apply $\mathcal{L}\{H(t-c)\}(s)=e^{-cs}/s$ to each step function and $\mathcal{L}\{1\}(s)=1/s$. Since $f$ vanishes for $t\geq3$, its transform in fact exists for all real $s$. Integrating over $[0, 1]$ and $[2, 3]$ gives the same formula for $s\ne0$, and the integral at $s=0$ equals $2$. Hence
 \[
-    \boxed{\mathcal{L}\{f(t)\}(s)
-    =\frac{1-e^{-s}+e^{-2s}-e^{-3s}}{s}},
-    \qquad s>0.
+    \boxed{\mathcal{L}\{f(t)\}(s)=
+    \begin{cases}
+        \dfrac{1-e^{-s}+e^{-2s}-e^{-3s}}{s}, & s\ne0,\\[0.5em]
+        2, & s=0.
+    \end{cases}}
 \]
 \end{solution}
 
@@ -502,7 +524,7 @@ where
     width=0.76\textwidth,
     height=0.37\textwidth,
     axis lines=middle,
-    xmin=0, xmax=10.5,
+    xmin=-0.3, xmax=10.5,
     ymin=-0.25, ymax=4.2,
     xlabel={$t$}, ylabel={$g(t)$},
     xtick={0,3,6,9},
@@ -512,8 +534,8 @@ where
     clip=false
 ]
     \addplot[black,thick] coordinates {(0,0) (6,3)};
-    \addplot[black,thick] coordinates {(6,3) (10.2,3)};
-    \addplot[only marks,mark=*,mark size=1.8pt,black] coordinates {(0,0) (6,3)};
+    \addplot[black,thick] coordinates {(6,3) (10.5,3)};
+    \addplot[only marks,mark=*,mark size=1.8pt,black] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture}
 \end{center}
@@ -522,7 +544,7 @@ where
 \[
     g(t)=\frac{t}{2}-\frac{1}{2}H(t-6)(t-6).
 \]
-Taking Laplace transforms and using the initial conditions gives
+Let $Y(s)=\mathcal{L}\{y(t)\}(s)$. Taking Laplace transforms and using the initial conditions gives
 \[
     (s^2+1)Y(s)-2
      =\frac{1-e^{-6s}}{2s^2},
@@ -556,7 +578,7 @@ Solve the initial value problem
 \end{problem}
 
 \begin{solution}
-Taking Laplace transforms gives
+Let $Y(s)=\mathcal{L}\{y(t)\}(s)$. Using $\mathcal{L}\{\delta(t-3)\}(s)=e^{-3s}$ and the initial conditions, we obtain
 \[
     (s^2-1)Y(s)-s=-5e^{-3s},
 \]
@@ -568,7 +590,7 @@ Using $\mathcal{L}^{-1}\{s/(s^2-1)\}(t)=\cosh t$ and $\mathcal{L}^{-1}\{1/(s^2-1
 \[
     \boxed{y(t)=\cosh t-5H(t-3)\sinh(t-3)}.
 \]
-The impulse at $t=3$ leaves $y$ continuous and produces the jump $y'(3^+)-y'(3^-)=-5$, as required by the equation.
+Since $\sinh 0=0$ and $\cosh 0=1$, the impulse at $t=3$ leaves $y$ continuous and produces the jump $y'(3^+)-y'(3^-)=-5$, as required by the equation.
 \end{solution}
 
 % Boyce Section 6.6, Problem 4.
@@ -741,16 +763,12 @@ Let $Y(s)=\mathcal{L}\{y(t)\}(s)$ and $G(s)=\mathcal{L}\{g(t)\}(s)$. The initial
 \[
     (4s^2+4s+17)Y(s)=G(s)+4.
 \]
-Since
-\[
-    4s^2+4s+17=4\left((s+\tfrac12)^2+4\right),
-\]
-we obtain
+Completing the square gives $4s^2+4s+17=4((s+1/2)^2+4)$, so
 \[
     Y(s)=\frac{1}{(s+\tfrac12)^2+4}
     +\frac{G(s)}{4((s+\tfrac12)^2+4)}.
 \]
-The first term has inverse transform $\frac{1}{2}e^{-t/2}\sin(2t)$. The impulse-response kernel corresponding to the second term is
+The first term has inverse transform $\frac{1}{2}e^{-t/2}\sin(2t)$. The inverse transform of the factor multiplying $G(s)$ is
 \[
     h(t)=\mathcal{L}^{-1}\left\{\frac{1}{4((s+\tfrac12)^2+4)}\right\}(t)
         =\frac{1}{8}e^{-t/2}\sin(2t).
