@@ -5,6 +5,7 @@ $M_{m\times n}(F), \ F^{m\times n}$ & Space of $m\times n$ matrices over the fie
 $M_n(F)$ & Space (and matrix algebra) of $n\times n$ matrices over $F$ \\
 $\mathbf{A}=(a_{ij}), \ \mathbf{A}=[a_{ij}]$ & Matrix with $(i, j)$-entry $a_{ij}$ \\
 $\mathbf{A}^{\mathrm{T}}$ & Transpose of $\mathbf{A}$ \\
+$\overline{\mathbf{A}}$ & Entrywise complex conjugate of $\mathbf{A}$ \\
 $\mathbf{A}^{\mathrm{H}}$ & Conjugate transpose of $\mathbf{A}$ \\
 $\mathbf{A}^{-1}$ & Inverse of $\mathbf{A}$ \\
 $\mathbf{I}_n, \ \mathbf{I}$ & Identity matrix \\
@@ -29,6 +30,7 @@ $V, W$ & Vector spaces, usually over an understood field $F$ \\
 $\Hom_F(V, W)$ & Vector space of $F$-linear maps from $V$ to $W$ \\
 $\End_F(V)$ & $F$-algebra of $F$-linear endomorphisms of $V$ \\
 $\mathcal{L}(X, Y)$ & Bounded linear maps between normed spaces $X$ and $Y$ \\
+$\mathcal{L}(X)$ & Bounded linear operators from $X$ to itself \\
 $\dim V$ & Dimension of $V$ \\
 $\Span(\mathbf{v}_1, \dots, \mathbf{v}_k)$ & Span of the listed vectors \\
 $U\oplus V$ & Direct sum \\
@@ -49,7 +51,7 @@ $\mathbf{u}^{\mathrm{H}}\mathbf{v}$ & Standard Hermitian inner product on $\C^n$
 $\|\mathbf{v}\|$ & Norm of $\mathbf{v}$ \\
 $\|\mathbf{x}\|_p$ & Vector $p$-norm, for $1\le p<\infty$ \\
 $\|\mathbf{x}\|_\infty$ & Vector infinity norm \\
-$\|T\|_{\mathrm{op}}$ & Operator norm $\displaystyle\sup_{\|\mathbf{x}\|\le1}\|T\mathbf{x}\|$ of a bounded linear map $T\colon X\to Y$ \\
+$\|T\|_{\mathrm{op}}, \ \|T\|$ & Operator norm $\displaystyle\sup_{\|\mathbf{x}\|\le1}\|T\mathbf{x}\|$ of a bounded linear map $T\colon X\to Y$ \\
 $\|\mathbf{A}\|_{\mathrm{F}}$ & Frobenius norm of $\mathbf{A}$ \\
 $\mathbf{u}\perp\mathbf{v}$ & Orthogonality \\
 $U^\perp$ & Orthogonal complement of the subspace $U$ \\
@@ -79,7 +81,7 @@ $\mathbf{P}_\lambda$ & Spectral projection associated with the eigenvalue $\lamb
 $\mathbf{A}=\mathbf{P}\mathbf{D}\mathbf{P}^{-1}$ & Diagonalization of a diagonalizable matrix \\
 $\mathbf{A}=\mathbf{Q}\mathbf{D}\mathbf{Q}^{\mathrm{T}}$ & Orthogonal diagonalization of a real symmetric matrix \\
 $\mathbf{A}=\mathbf{U}\mathbf{D}\mathbf{U}^{\mathrm{H}}$ & Unitary diagonalization of a complex normal matrix \\
-$\displaystyle\mathbf{A}=\sum_{\lambda\in\sigma(\mathbf{A})} \lambda\mathbf{P}_\lambda$ & Spectral decomposition of $\mathbf{A}$ \\
+$\displaystyle\mathbf{A}=\sum_{\lambda\in\sigma(\mathbf{A})} \lambda\mathbf{P}_\lambda$ & Spectral decomposition of a diagonalizable matrix $\mathbf{A}$ \\
 $e^{\mathbf{A}}, \ \exp(\mathbf{A})$ & Matrix exponential \\
 $\mathbf{A}=\mathbf{L}\mathbf{U}$ & LU factorization, with $\mathbf{L}$ lower triangular and $\mathbf{U}$ upper triangular \\
 $\mathbf{A}=\mathbf{Q}\mathbf{R}$ & QR factorization \\

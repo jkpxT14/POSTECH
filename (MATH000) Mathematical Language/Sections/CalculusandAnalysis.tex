@@ -26,6 +26,8 @@ $f(x)\sim g(x)$ & Asymptotic equivalence in the stated limiting regime, typicall
 $f_n\ptwto f, \ f_n\ptwlabelto f$ & Pointwise convergence of $f_n$ to $f$ \\*
 $f_n\unifto f, \ f_n\uniflabelto f$ & Uniform convergence \\
 $f_n\aeto f$ & Convergence almost everywhere \\
+$x_n\rightharpoonup x$ & Weak convergence \\
+$x_n^*\overset{*}{\rightharpoonup}x^*$ & Weak-* convergence in a continuous dual space \\
 $f'(a)$ & First derivative of $f$ at $a$ \\
 $f^{(n)}(a)$ & $n$th derivative of $f$ at $a$ \\
 $\displaystyle\frac{\dd y}{\dd x}$ & Derivative of $y$ with respect to $x$ \\[0.50em]
@@ -35,10 +37,12 @@ $\displaystyle\frac{\partial^2 f}{\partial x_j\partial x_i}, \ \partial_{ji}f, \
 $D_{\mathbf{v}}f(\mathbf{a}), \ \partial_{\mathbf{v}}f(\mathbf{a})$ & Directional derivative of $f$ at $\mathbf{a}$ along $\mathbf{v}$ \\
 $\displaystyle\dd f=\sum_{i=1}^n\frac{\partial f}{\partial x_i}\,\dd x_i$ & Total differential of a scalar function of $n$ variables \\
 $\alpha=(\alpha_1, \dots, \alpha_n)\in\Nzero^n$ & Multi-index \\
-$|\alpha|, \ \alpha!$ & Order $|\alpha|=\alpha_1+\cdots+\alpha_n$ and factorial $\alpha!=\alpha_1!\cdots\alpha_n!$ of a multi-index \\
+$|\alpha|=\alpha_1+\cdots+\alpha_n$ & Order of a multi-index \\
+$\alpha!=\alpha_1!\cdots\alpha_n!$ & Factorial of a multi-index \\
 $\mathbf{x}^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial for $\mathbf{x}=(x_1, \dots, x_n)$ \\
 $D^\alpha f, \ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$ \\
-$\mathbf{J}_{\mathbf{F}}(\mathbf{a}), \ D\mathbf{F}(\mathbf{a})$ & Jacobian matrix of $\mathbf{F}$ at $\mathbf{a}$ \\
+$Df(a)$ & Total (Fr\'echet) derivative of $f$ at $a$, as a linear map \\
+$\mathbf{J}_{\mathbf{F}}(\mathbf{a}), \ D\mathbf{F}(\mathbf{a})$ & Jacobian matrix of $\mathbf{F}$ at $\mathbf{a}$; $D\mathbf{F}(\mathbf{a})$ when identified with its matrix \\
 $\det\mathbf{J}_{\mathbf{F}}(\mathbf{a}), \ \det D\mathbf{F}(\mathbf{a})$ & Jacobian determinant of $\mathbf{F}$ at $\mathbf{a}$ \\
 $\Hess f$ & Hessian matrix of $f$ \\
 $\nabla f, \ \operatorname{grad}f$ & Gradient of $f$ \\
@@ -70,6 +74,7 @@ $\PV, \ \operatorname{P.V.}$ & Principal value (in particular, Cauchy principal 
 $\displaystyle\sum_{k=1}^{n} a_k$ & Finite sum \\[0.10em]
 $\displaystyle\sum_{k=1}^{\infty} a_k$ & Infinite series \\[0.10em]
 $\displaystyle\prod_{k=1}^{n} a_k$ & Finite product \\[0.10em]
+$\displaystyle\prod_{k=1}^{\infty}a_k$ & Infinite product \\
 $\displaystyle\sum_{n=0}^{\infty}a_n(x-a)^n$ & Power series centered at $a$ \\[0.10em]
 $\displaystyle\sum_{n=-\infty}^{\infty}a_n(z-z_0)^n$ & Laurent series centered at $z_0$ \\[0.10em]
 $\displaystyle\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & $n$th Taylor polynomial of $f$ about $a$ \\
@@ -116,6 +121,7 @@ $\mathcal{A}$ & $\sigma$-algebra of measurable subsets of $X$, when the underlyi
 $\mathcal{B}(X)$ & Borel $\sigma$-algebra of a topological space $X$ \\
 $\mu(E)$ & Measure of a measurable set $E\in\mathcal{A}$ \\
 $\displaystyle\int_E f\,\dd\mu$ & Integral of $f$ over $E$ with respect to the measure $\mu$ \\
+$(f\ast g)(x)$ & Convolution of functions $f$ and $g$ \\
 $f=g\ \textnormal{a.e.}, \quad f=g\ \mu\textnormal{-a.e.}$ & Equality almost everywhere, with the measure omitted when understood \\
 $\displaystyle\esssup_{x\in E} f(x)$ & Essential supremum of $f$ on $E$ \\
 $\displaystyle\essinf_{x\in E} f(x)$ & Essential infimum of $f$ on $E$ \\
@@ -124,7 +130,8 @@ $C^k(\Omega)$ & $k$ times continuously differentiable functions on $\Omega$ \\*
 $C^\infty(\Omega)$ & Smooth functions on $\Omega$ \\
 $C_b(X)$ & Bounded continuous scalar-valued functions on $X$ \\
 $\operatorname{supp}f$ & Support of $f$ \\
-$C_c(\Omega), \ C_c^\infty(\Omega)$ & Continuous and smooth functions on $\Omega$ with compact support, respectively \\
+$C_c(\Omega)$ & Continuous functions on $\Omega$ with compact support \\
+$C_c^\infty(\Omega)$ & Smooth functions on $\Omega$ with compact support \\
 $V_a^b(f)$ & Total variation of $f$ on $[a, b]$ \\
 $\mathrm{BV}([a, b])$ & Functions of bounded variation on $[a, b]$ \\
 $\mathcal{R}([a, b])$ & Functions Riemann integrable on $[a, b]$ \\*
@@ -136,7 +143,8 @@ $\ell^\infty$ & Space of bounded scalar sequences \\
 $\|f\|_\infty$ & Supremum norm of a bounded scalar-valued function $f$ \\
 $\|f\|_{L^p(X, \mu)}$ & $L^p$-norm of $f$ on $X$ with respect to $\mu$ \\
 $\|f\|_{L^p(\Omega)}, \ \|f\|_p$ & $L^p$-norm of $f$ on $\Omega$ \\
-$\|f\|_{L^\infty(\Omega)}$ & Essential supremum norm of $f$ on $\Omega$ \\
+$\|f\|_{L^\infty(\Omega)}, \ \|f\|_\infty$ & Essential supremum norm of $f$ on $\Omega$ in the $L^\infty$ context \\
+$\|x\|_{\ell^p}$ & $\ell^p$-norm of the sequence $x$ \\
 $B_r(x)$ & Open ball of radius $r$ centered at $x$ \\*
 $\overline{B}_r(x)=\{y\mid d(x, y)\le r\}$ & Closed ball of radius $r$ centered at $x$; not necessarily the closure of $B_r(x)$ \\
 $\widehat{\C}=\C\cup\{\infty\}$ & Extended complex plane, equivalently the Riemann sphere \\

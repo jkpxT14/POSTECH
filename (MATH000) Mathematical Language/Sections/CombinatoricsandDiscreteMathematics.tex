@@ -20,10 +20,14 @@ $B_n$ & $n$th Bell number; number of partitions of an $n$-element set \\
 $p(n)$ & Number of integer partitions of $n$, with $p(0)=1$ \\
 $\displaystyle H_n=\sum_{k=1}^n\frac{1}{k}$ & $n$th harmonic number for $n\ge1$, with $H_0=0$ \\
 $(X, \preceq)$ & Partially ordered set (poset) \\
-$\prec, \ \succeq, \ \succ$ & Strict and reverse order relations associated with $\preceq$ \\
+$x\preceq y$ & Order relation of a poset \\
+$x\prec y$ & Strict order associated with $\preceq$ \\
+$x\succeq y$ & Reverse order associated with $\preceq$ \\
+$x\succ y$ & Strict reverse order associated with $\preceq$ \\
 $\le_{\mathrm{lex}}$ & Lexicographic order \\
 $x\lessdot y$ & Cover relation: $y$ covers $x$ \\
-$x\wedge y, \ x\vee y$ & Meet and join of $x$ and $y$ in a lattice, respectively \\
+$x\wedge y$ & Meet of $x$ and $y$ in a lattice \\
+$x\vee y$ & Join of $x$ and $y$ in a lattice \\
 $B_n, \ 2^{[n]}$ & Boolean lattice of subsets of $[n]$, ordered by inclusion \\
 $G=(V, E)$ & Graph with vertex set $V$ and edge set $E$; simple and undirected unless stated otherwise \\
 $V(G)$ & Vertex set of $G$ \\
@@ -32,8 +36,10 @@ $u\sim v$ & Adjacent vertices $u$ and $v$ in a graph \\
 $N(v), \ \Gamma(v)$ & Neighborhood of vertex $v$ \\
 $N[v]=N(v)\cup\{v\}$ & Closed neighborhood of the vertex $v$ \\
 $\deg_G(v), \ \deg(v)$ & Degree of vertex $v$ \\
-$\deg^+(v), \ \deg^-(v)$ & Out-degree and in-degree of $v$ in a directed graph \\
-$\delta(G), \ \Delta(G)$ & Minimum and maximum vertex degrees, respectively, of a nonempty finite graph $G$ \\
+$\deg^+(v)$ & Out-degree of $v$ in a directed graph \\
+$\deg^-(v)$ & In-degree of $v$ in a directed graph \\
+$\delta(G)$ & Minimum vertex degree of a nonempty finite graph $G$ \\
+$\Delta(G)$ & Maximum vertex degree of a nonempty finite graph $G$ \\
 $d_G(u, v), \ d(u, v)$ & Graph distance between vertices $u$ and $v$ \\
 $G[S]$ & Subgraph of $G$ induced by the vertex set $S\subseteq V(G)$ \\
 $G-v, \ G-S$ & Graph obtained by deleting the vertex $v$, or all vertices in $S$, together with their incident edges \\

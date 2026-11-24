@@ -14,7 +14,8 @@ $M(x, y)\,\dd x+N(x, y)\,\dd y=0$ & Differential form of a first-order different
 $M_x, M_y, N_x, N_y$ & Subscript notation for the corresponding partial derivatives \\
 $L[y]$ & Linear differential operator applied to $y$ \\
 $\displaystyle L[y]=\sum_{k=0}^{n}a_k(t)y^{(k)}$ & General $n$th-order linear differential operator, with $a_n\not\equiv0$ \\
-$L[y]=0, \ L[y]=g$ & Homogeneous and nonhomogeneous linear differential equations, respectively \\
+$L[y]=0$ & Homogeneous linear differential equation \\
+$L[y]=g$ & Nonhomogeneous linear differential equation for nonzero $g$ \\
 $y_{\mathrm{h}}, \ y_{\mathrm{c}}$ & Homogeneous or complementary part of a solution \\
 $y_{\mathrm{p}}$ & Particular solution \\
 $c_1, c_2, \dots$ & Arbitrary constants in a general solution \\
@@ -39,29 +40,37 @@ $\partial_{\mathbf{n}}u$ & Normal derivative of $u$ along the unit normal $\math
 $u|_{\partial\Omega}=g$ & Dirichlet boundary condition on $\partial\Omega$ \\
 $\partial_{\mathbf{n}}u|_{\partial\Omega}=g$ & Neumann boundary condition on $\partial\Omega$ \\
 $\alpha u+\beta\,\partial_{\mathbf{n}}u=g$ & Robin boundary condition on $\partial\Omega$ \\
-$a_n, \ b_n$ & Fourier coefficients of a real $2L$-periodic function \\
-$a_n$ & $\displaystyle a_n=\frac{1}{L}\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}\,\dd x$ for $n\ge0$ \\
-$b_n$ & $\displaystyle b_n=\frac{1}{L}\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}\,\dd x$ for $n\ge1$ \\
+$a_n$ & Cosine coefficient of a real $2L$-periodic function: $\displaystyle a_n=\frac{1}{L}\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}\,\dd x$ for $n\ge0$ \\
+$b_n$ & Sine coefficient of a real $2L$-periodic function: $\displaystyle b_n=\frac{1}{L}\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}\,\dd x$ for $n\ge1$ \\
 $\widehat f(\boldsymbol{\xi}), \ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform: $\displaystyle\widehat f(\boldsymbol{\xi})=\int_{\R^n}f(\mathbf{x})e^{-2\pi i\mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\mathbf{x}$ \\
 $\mathcal{F}^{-1}$ & Inverse Fourier transform under the stated normalization \\
 $-(py')'+qy=\lambda wy$ & Sturm--Liouville eigenvalue equation, where $p$, $q$, and $w$ are functions of $x$ \\
-$\lambda_n, \ \phi_n$ & Sturm--Liouville eigenvalue and corresponding eigenfunction \\
+$\lambda_n$ & Sturm--Liouville eigenvalue \\
+$\phi_n$ & Sturm--Liouville eigenfunction corresponding to $\lambda_n$ \\
 $\langle f, g\rangle_w$ & Weighted inner product, $\displaystyle\langle f, g\rangle_w\coloneqq\int_a^b\overline{f(x)}g(x)w(x)\,\dd x$ \\
 $\langle\phi_m, \phi_n\rangle_w=\delta_{mn}$ & Weighted orthonormality of eigenfunctions \\
 $G(x, \xi), \ G(\mathbf{x}, \boldsymbol{\xi})$ & Green's function \\
-$\operatorname{Ai}(x), \ \operatorname{Bi}(x)$ & Airy functions \\
+$\operatorname{Ai}(x)$ & Airy function of the first kind \\
+$\operatorname{Bi}(x)$ & Airy function of the second kind \\
 $J_\nu(x)$ & Bessel function of the first kind of order $\nu$ \\
 $Y_\nu(x), \ N_\nu(x)$ & Bessel function of the second kind of order $\nu$ \\
-$I_\nu(x), \ K_\nu(x)$ & Modified Bessel functions of the first and second kinds \\
-$H_\nu^{(1)}(x), \ H_\nu^{(2)}(x)$ & Hankel functions of the first and second kinds \\
+$I_\nu(x)$ & Modified Bessel function of the first kind of order $\nu$ \\
+$K_\nu(x)$ & Modified Bessel function of the second kind of order $\nu$ \\
+$H_\nu^{(1)}(x)$ & Hankel function of the first kind of order $\nu$ \\
+$H_\nu^{(2)}(x)$ & Hankel function of the second kind of order $\nu$ \\
 $P_n(x)$ & Legendre polynomial of degree $n$ \\
-$P_\nu(x), \ Q_\nu(x)$ & Legendre functions of the first and second kinds \\
+$P_\nu(x)$ & Legendre function of the first kind of degree $\nu$ \\
+$Q_\nu(x)$ & Legendre function of the second kind of degree $\nu$ \\
 $P_\ell^m(x)$ & Associated Legendre function for integer degree $\ell$ and order $m$ \\
-$H_n(x), \ \mathrm{He}_n(x)$ & Physicists' and probabilists' Hermite polynomials, respectively \\
-$L_n^{(\alpha)}(x), \ L_n(x)$ & Generalized and ordinary Laguerre polynomials \\
-$T_n(x), \ U_n(x)$ & Chebyshev polynomials of the first and second kinds \\
+$H_n(x)$ & Physicists' Hermite polynomial \\
+$\mathrm{He}_n(x)$ & Probabilists' Hermite polynomial \\
+$L_n^{(\alpha)}(x)$ & Generalized Laguerre polynomial \\
+$L_n(x)$ & Ordinary Laguerre polynomial $L_n^{(0)}(x)$ \\
+$T_n(x)$ & Chebyshev polynomial of the first kind \\
+$U_n(x)$ & Chebyshev polynomial of the second kind \\
 $P_n^{(\alpha, \beta)}(x)$ & Jacobi polynomial \\
 $C_n^{(\lambda)}(x)$ & Gegenbauer (ultraspherical) polynomial \\
-$\operatorname{erf}(x), \ \operatorname{erfc}(x)$ & Error function and complementary error function \\
+$\operatorname{erf}(x)$ & Error function \\
+$\operatorname{erfc}(x)$ & Complementary error function \\
 ${}_2F_1(a, b; c; z)$ & Gauss hypergeometric function \\
 \end{notationtable}
