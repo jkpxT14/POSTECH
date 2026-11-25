@@ -14,6 +14,9 @@
 % Mathematics and figures.
 \RequirePackage{amsmath,amssymb,amsthm}
 \RequirePackage{mathtools}
+% Arc accent as specified by MATH000 (requires yhmath fonts).
+\DeclareSymbolFont{mlarcs}{OMX}{yhex}{m}{n}
+\DeclareMathAccent{\arc}{\mathord}{mlarcs}{"F3}
 \RequirePackage{dsfont}
 \RequirePackage{enumitem}
 \RequirePackage{graphicx}
