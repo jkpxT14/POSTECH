@@ -33,7 +33,7 @@ $\ker\mathbf{A}, \ \Null(\mathbf{A})$ & Null space of $\mathbf{A}$ \\
 $V, W$ & Vector spaces, usually over an understood field $F$ \\
 $\Hom_F(V, W)$ & Vector space of $F$-linear maps from $V$ to $W$ \\
 $\End_F(V)$ & $F$-algebra of $F$-linear endomorphisms of $V$ \\
-$\mathcal{L}(X, Y), \ \mathcal{L}(X)$ & Space of bounded linear maps from $X$ to $Y$; $\mathcal{L}(X)=\mathcal{L}(X, X)$ \\
+$\mathcal{L}(X, Y), \ \mathcal{L}(X)$ & Space of bounded linear maps from the normed space $X$ to the normed space $Y$; $\mathcal{L}(X)=\mathcal{L}(X, X)$ \\
 $\dim V$ & Dimension of $V$ \\
 $\Span(\mathbf{v}_1, \dots, \mathbf{v}_k)$ & Span of the listed vectors \\
 $U\oplus V$ & Direct sum \\
@@ -57,10 +57,10 @@ $T^*$ & Adjoint of a bounded linear operator $T$ between Hilbert spaces \\
 $\mathbf{u}\cdot\mathbf{v}, \ \mathbf{u}^{\mathrm{T}}\mathbf{v}$ & Standard Euclidean inner product on $\R^n$ \\
 $\mathbf{u}^{\mathrm{H}}\mathbf{v}$ & Standard Hermitian inner product on $\C^n$ \\
 $\|\mathbf{v}\|$ & Norm of $\mathbf{v}$ \\
-$\|\mathbf{x}\|_p$ & Vector $p$-norm, for $1\le p<\infty$ \\
-$\|\mathbf{x}\|_\infty$ & Vector infinity norm \\
-$\|T\|_{\mathrm{op}}, \ \|T\|$ & Operator norm $\displaystyle\sup_{\|\mathbf{x}\|\le1}\|T\mathbf{x}\|$ of a bounded linear map $T\colon X\to Y$ \\
-$\|\mathbf{A}\|_p$ & Matrix norm induced by the vector $p$-norm, for $1\le p\le\infty$ \\
+$\|\mathbf{x}\|_p$ & Vector $p$-norm: $\displaystyle\|\mathbf{x}\|_p=\left(\sum_{i=1}^n|x_i|^p\right)^{1/p}$, for $1\leq p<\infty$ \\[0.15em]
+$\|\mathbf{x}\|_\infty$ & Vector infinity norm: $\displaystyle\|\mathbf{x}\|_\infty=\max_{1\leq i\leq n}|x_i|$ \\
+$\|T\|_{\mathrm{op}}, \ \|T\|$ & Operator norm $\displaystyle\sup_{\|\mathbf{x}\|\leq1}\|T\mathbf{x}\|$ of a bounded linear map $T\colon X\to Y$ \\
+$\|\mathbf{A}\|_p$ & Induced matrix norm: $\displaystyle\|\mathbf{A}\|_p=\sup_{\mathbf{x}\ne\mathbf{0}}\frac{\|\mathbf{A}\mathbf{x}\|_p}{\|\mathbf{x}\|_p}$, for $1\leq p\leq\infty$ \\[0.15em]
 $\|\mathbf{A}\|_{\mathrm{F}}$ & Frobenius norm $\displaystyle\sqrt{\sum_{i, j}|a_{ij}|^2}$ of $\mathbf{A}$ \\
 $\mathbf{u}\perp\mathbf{v}$ & Orthogonality \\
 $U^\perp$ & Orthogonal complement of the subspace $U$ \\
@@ -71,8 +71,8 @@ $\mathbf{A}^{\mathrm{T}}=\mathbf{A}$ & Real symmetric matrix \\
 $\mathbf{A}^{\mathrm{T}}=-\mathbf{A}$ & Real skew-symmetric matrix \\
 $\mathbf{A}^{\mathrm{H}}=\mathbf{A}$ & Hermitian matrix \\
 $\mathbf{A}^{\mathrm{H}}=-\mathbf{A}$ & Skew-Hermitian matrix \\
-$\mathbf{Q}^{\mathrm{T}}\mathbf{Q}=\mathbf{I}$ & Real orthogonal matrix $\mathbf{Q}$ \\
-$\mathbf{U}^{\mathrm{H}}\mathbf{U}=\mathbf{I}$ & Unitary matrix $\mathbf{U}$ \\
+$\mathbf{Q}^{\mathrm{T}}\mathbf{Q}=\mathbf{I}$ & Real orthogonal matrix $\mathbf{Q}$ (square) \\
+$\mathbf{U}^{\mathrm{H}}\mathbf{U}=\mathbf{I}$ & Unitary matrix $\mathbf{U}$ (complex square matrix) \\
 $\mathbf{A}\mathbf{A}^{\mathrm{H}}=\mathbf{A}^{\mathrm{H}}\mathbf{A}$ & Normal matrix \\
 $\mathbf{P}$ & Projection matrix ($\mathbf{P}^2=\mathbf{P}$) \\*
 $\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathrm{T}}$ & Orthogonal projection matrix over $\R$ \\*
@@ -92,8 +92,8 @@ $\mathbf{A}=\mathbf{Q}\mathbf{D}\mathbf{Q}^{\mathrm{T}}$ & Orthogonal diagonaliz
 $\mathbf{A}=\mathbf{U}\mathbf{D}\mathbf{U}^{\mathrm{H}}$ & Unitary diagonalization of a complex normal matrix \\
 $\displaystyle\mathbf{A}=\sum_{\lambda\in\sigma(\mathbf{A})} \lambda\mathbf{P}_\lambda$ & Spectral decomposition of a diagonalizable matrix $\mathbf{A}$ \\
 $e^{\mathbf{A}}, \ \exp(\mathbf{A})$ & Matrix exponential \\
-$\mathbf{A}=\mathbf{L}\mathbf{U}$ & LU factorization, with $\mathbf{L}$ lower triangular and $\mathbf{U}$ upper triangular \\
-$\mathbf{A}=\mathbf{Q}\mathbf{R}$ & QR factorization \\
+$\mathbf{A}=\mathbf{L}\mathbf{U}$ & LU factorization, with $\mathbf{L}$ lower triangular and $\mathbf{U}$ upper triangular; with row pivoting, $\mathbf{P}\mathbf{A}=\mathbf{L}\mathbf{U}$ \\
+$\mathbf{A}=\mathbf{Q}\mathbf{R}$ & QR factorization; $\mathbf{Q}$ has orthonormal columns and $\mathbf{R}$ is upper triangular (upper trapezoidal in general) \\
 $\mathbf{A}=\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\mathrm{H}}$ & Singular value decomposition (SVD) of $\mathbf{A}$ \\
 $\sigma_i(\mathbf{A})$ & $i$th singular value of $\mathbf{A}$ \\
 $\mathbf{A}^\dagger$ & Moore--Penrose pseudoinverse of $\mathbf{A}$ \\

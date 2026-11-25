@@ -6,7 +6,7 @@ $n!$ & Factorial \\
 $n!!$ & Double factorial: product of positive integers of the same parity not exceeding $n$, with $0!!=(-1)!!=1$ \\
 $a^{\underline{k}}$ & Falling factorial, $a(a-1)\cdots(a-k+1)$ \\*
 $a^{\overline{k}}, \ (a)_k$ & Rising factorial, $a(a+1)\cdots(a+k-1)$; $(a)_k$ is the rising Pochhammer symbol in special-functions contexts \\
-${}_nP_r$ & Number of ordered selections of $r$ distinct elements from an $n$-element set, $\displaystyle {}_nP_r=\frac{n!}{(n-r)!}$ for $0\le r\le n$ \\
+${}_nP_r$ & Number of ordered selections of $r$ distinct elements from an $n$-element set, $\displaystyle {}_nP_r=\frac{n!}{(n-r)!}$ for $0\leq r\leq n$ \\
 $\displaystyle\binom{n}{r}, \ {}_nC_r$ & Number of $r$-element subsets of an $n$-element set \\*
 $\displaystyle\left(\!\binom{n}{r}\!\right), \ {}_nH_r$ & $r$-combinations with repetition from $n$ types; equals $\displaystyle\binom{n+r-1}{r}$ \\
 $\displaystyle\binom{n}{n_1, \dots, n_k}$ & Multinomial coefficient, for nonnegative integers $n_1, \dots, n_k$ with $n_1+\cdots+n_k=n$ \\
@@ -14,20 +14,23 @@ $\displaystyle\genfrac{[}{]}{0pt}{}{n}{k}, \ c(n, k)$ & Unsigned Stirling number
 $\displaystyle(-1)^{n-k}\genfrac{[}{]}{0pt}{}{n}{k}, \ s(n, k)$ & Signed Stirling number of the first kind; $s(n, k)=(-1)^{n-k}c(n, k)$ \\[0.45em]
 $\displaystyle\genfrac{\{}{\}}{0pt}{}{n}{k}, \ S(n, k)$ & Stirling number of the second kind; partitions of an $n$-element set into $k$ nonempty blocks \\
 $D_n, \ !n$ & Number of derangements of $n$ elements; permutations with no fixed points \\
-$C_n$ & $n$th Catalan number, $\displaystyle C_n=\frac{1}{n+1}\binom{2n}{n}$ for $n\ge0$ \\
+$C_n$ & $n$th Catalan number, $\displaystyle C_n=\frac{1}{n+1}\binom{2n}{n}$ for $n\geq0$ \\
 $B_n$ & $n$th Bell number; number of partitions of an $n$-element set \\
 $p(n)$ & Number of integer partitions of $n$, with $p(0)=1$ \\
-$\displaystyle H_n=\sum_{k=1}^n\frac{1}{k}$ & $n$th harmonic number for $n\ge1$, with $H_0=0$ \\
+$\displaystyle H_n=\sum_{k=1}^n\frac{1}{k}$ & $n$th harmonic number for $n\geq1$, with $H_0=0$ \\
+$\displaystyle A(x)=\sum_{n=0}^{\infty}a_nx^n$ & Ordinary generating function of the sequence $(a_n)_{n\geq0}$ \\*
+$\displaystyle A(x)=\sum_{n=0}^{\infty}a_n\frac{x^n}{n!}$ & Exponential generating function of the sequence $(a_n)_{n\geq0}$ \\
+$[x^n]F(x)$ & Coefficient of $x^n$ in the formal power series or generating function $F(x)$ \\
 $(X, \preceq)$ & Partially ordered set (poset) \\
 $x\preceq y$ & Order relation of a poset \\
 $x\prec y$ & Strict order associated with $\preceq$ \\
 $x\succeq y$ & Reverse order associated with $\preceq$ \\
 $x\succ y$ & Strict reverse order associated with $\preceq$ \\
-$\le_{\mathrm{lex}}$ & Lexicographic order \\
+$\leq_{\mathrm{lex}}$ & Lexicographic order \\
 $x\lessdot y$ & Cover relation: $y$ covers $x$ \\
 $x\wedge y$ & Meet of $x$ and $y$ in a lattice \\
-$x\vee y$ & Join of $x$ and $y$ in a lattice \\
-$B_n, \ 2^{[n]}$ & Boolean lattice of subsets of $[n]$, ordered by inclusion \\
+$x\vee y$ & Join of $x$ and $y$ in a lattice \\*
+$2^{[n]}, \ B_n$ & Boolean lattice of subsets of $[n]$, ordered by inclusion \\
 $G=(V, E)$ & Graph with vertex set $V$ and edge set $E$; simple and undirected unless stated otherwise \\
 $V(G)$ & Vertex set of $G$ \\
 $E(G)$ & Edge set of $G$ \\
@@ -36,8 +39,8 @@ $|E(G)|$ & Size of a graph $G$ \\
 $uv, \ \{u, v\}$ & Undirected edge joining $u$ and $v$ \\
 $(u, v)$ & Directed edge from $u$ to $v$ \\
 $u\sim v$ & Adjacent vertices $u$ and $v$ in a graph \\
-$N(v), \ \Gamma(v)$ & Neighborhood of vertex $v$ \\
-$N[v]=N(v)\cup\{v\}$ & Closed neighborhood of the vertex $v$ \\
+$N(v), \ \Gamma(v)$ & Open neighborhood of vertex $v$ \\
+$N[v]=N(v)\cup\{v\}$ & Closed neighborhood of vertex $v$ \\
 $\deg_G(v), \ \deg(v)$ & Degree of vertex $v$ \\
 $\deg^+(v)$ & Out-degree of $v$ in a directed graph \\
 $\deg^-(v)$ & In-degree of $v$ in a directed graph \\
@@ -67,7 +70,4 @@ $\omega(G)$ & Clique number of $G$: maximum size of a complete vertex set \\
 $\Aut(G)$ & Automorphism group of the graph $G$ \\
 $\tau(G), \ T(G)$ & Number of spanning trees of $G$ \\
 $R(k, \ell), \ r(k, \ell), \ R(k), \ r(k)$ & Ramsey numbers; $R(k)=R(k, k)$ in the diagonal case \\
-$\displaystyle A(x)=\sum_{n=0}^{\infty}a_nx^n$ & Ordinary generating function of the sequence $(a_n)_{n\ge0}$ \\
-$\displaystyle\sum_{n=0}^{\infty}a_n\frac{x^n}{n!}$ & Exponential generating function of the sequence $(a_n)_{n\ge0}$ \\
-$[x^n]F(x)$ & Coefficient of $x^n$ in the formal power series or generating function $F(x)$ \\
 \end{notationtable}

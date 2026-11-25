@@ -1,8 +1,8 @@
 \section{Set Theory and Logic}
 
 \begin{notationtable}
-$\N=\{1, 2, 3, \dots\}, \ \Z_{\ge1}, \ \Z^+$ & Positive integers \\
-$\Nzero=\{0, 1, 2, 3, \dots\}, \ \Z_{\ge0}$ & Nonnegative integers \\
+$\N=\{1, 2, 3, \dots\}, \ \Z_{\geq1}, \ \Z^+$ & Positive integers \\
+$\Nzero=\{0, 1, 2, 3, \dots\}, \ \Z_{\geq0}$ & Nonnegative integers \\
 $\Z$ & Integers \\
 $\Q$ & Rational numbers \\
 $\R$ & Real numbers \\
@@ -12,9 +12,10 @@ $x\in A$ & $x$ is an element of $A$. \\*
 $x\notin A$ & $x$ is not an element of $A$. \\
 $A\subseteq B$ & $A$ is a subset of $B$; equality is allowed. \\*
 $A\subsetneq B$ & $A$ is a proper subset of $B$. \\*
-$A\not\subseteq B$ & $A$ is not a subset of $B$. \\
+$A\nsubseteq B$ & $A$ is not a subset of $B$. \\
 $A\supseteq B$ & $A$ is a superset of $B$; equality is allowed. \\*
-$A\supsetneq B$ & $A$ is a proper superset of $B$. \\
+$A\supsetneq B$ & $A$ is a proper superset of $B$. \\*
+$A\nsupseteq B$ & $A$ is not a superset of $B$. \\
 $A\cup B$ & Union \\
 $A\cap B$ & Intersection \\
 $(A_i)_{i\in I}$ & Indexed family of sets \\
@@ -44,14 +45,14 @@ $A/{\sim}$ & Set of equivalence classes \\
 $\dom f$ & Domain of $f$ \\
 $\codom f$ & Codomain of $f$ \\
 $f(A)$ & Image of $A$ under $f$ \\
-$f^{-1}(B)$ & Preimage of $B$ under $f$ \\
 $\im f$ & Image of the map $f$ \\
+$f^{-1}(B)$ & Preimage of $B$ under $f$ \\
 $Y^X$ & Set of all functions from $X$ to $Y$ \\
-$f^{-1}\colon Y\to X$ & Inverse function of a bijection $f\colon X\to Y$ \\
 $f\colon X\hookrightarrow Y$ & Injective map \\*
 $f\colon X\twoheadrightarrow Y$ & Surjective map \\*
-$f\colon X\bijarrow Y$ & Bijective map \\
+$f\colon X\bijarrow Y$ & Bijective map (adopted arrow) \\
 $f\colon X\xrightarrow{\sim}Y$ & Isomorphism; for sets, equivalently a bijection \\
+$f^{-1}\colon Y\to X$ & Inverse function of a bijection $f\colon X\to Y$ \\
 $\indicator{A}(x)$ & Indicator function of $A$ \\
 $\forall x\in A$ & For every $x\in A$ \\
 $\exists x\in A$ & There exists $x\in A$. \\

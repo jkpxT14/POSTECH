@@ -34,7 +34,7 @@ $f^{(n)}(a)$ & $n$th derivative of $f$ at $a$ \\
 $\displaystyle\frac{\dd y}{\dd x}$ & Derivative of $y$ with respect to $x$ \\[0.50em]
 $\displaystyle\frac{\dd^n y}{\dd x^n}$ & $n$th derivative of $y$ with respect to $x$ in Leibniz notation \\[0.50em]
 $\displaystyle\frac{\partial f}{\partial x_i}, \ \partial_i f, \ f_{x_i}$ & Partial derivative with respect to $x_i$ \\[0.50em]
-$\displaystyle\frac{\partial^2 f}{\partial x_j\partial x_i}, \ \partial_{ji}f, \ f_{x_i x_j}$ & Mixed partial derivative, first with respect to $x_i$ and then $x_j$ \\[0.14em]
+$\begin{aligned}&\frac{\partial^2 f}{\partial x_j\partial x_i}, \ \partial_j\partial_i f,\\ &\partial_{ji}f, \ f_{x_i x_j}\end{aligned}$ & Mixed partial derivative, first with respect to $x_i$ and then $x_j$ \\[0.14em]
 $D_{\mathbf{v}}f(\mathbf{a}), \ \partial_{\mathbf{v}}f(\mathbf{a})$ & Directional derivative of $f$ at $\mathbf{a}$ along $\mathbf{v}$ \\
 $\displaystyle\dd f=\sum_{i=1}^n\frac{\partial f}{\partial x_i}\,\dd x_i$ & Total differential of a scalar function of $n$ variables \\
 $\alpha=(\alpha_1, \dots, \alpha_n)\in\Nzero^n$ & Multi-index \\
@@ -44,7 +44,7 @@ $\mathbf{x}^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial f
 $D^\alpha f, \ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$ \\
 $Df(a)$ & Total (Fr\'echet) derivative of $f$ at $a$, as a linear map \\
 $\mathbf{J}_{\mathbf{F}}(\mathbf{a}), \ D\mathbf{F}(\mathbf{a})$ & Jacobian matrix of $\mathbf{F}$ at $\mathbf{a}$; $D\mathbf{F}(\mathbf{a})$ when identified with its matrix \\
-$\det(\mathbf{J}_{\mathbf{F}}(\mathbf{a})), \ \det(D\mathbf{F}(\mathbf{a}))$ & Jacobian determinant of $\mathbf{F}$ at $\mathbf{a}$ \\
+$\det(\mathbf{J}_{\mathbf{F}}(\mathbf{a})), \ \det(D\mathbf{F}(\mathbf{a}))$ & Jacobian determinant of $\mathbf{F}$ at $\mathbf{a}$, for a square Jacobian matrix \\
 $\Hess f$ & Hessian matrix of $f$ \\
 $\nabla f, \ \operatorname{grad}f$ & Gradient of $f$ \\
 $\nabla\cdot\mathbf{F}, \ \operatorname{div}\mathbf{F}$ & Divergence of $\mathbf{F}$ \\
@@ -83,7 +83,7 @@ $\displaystyle\sum_{n=-\infty}^{\infty}a_n(z-z_0)^n$ & Laurent series centered a
 $T_n(x)$ & $n$th Taylor polynomial of $f$ about $a$: $\displaystyle T_n(x)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ \\*
 $R_n(x)=f(x)-T_n(x)$ & Taylor remainder \\*
 $\displaystyle\sum_{k=0}^{\infty}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & Taylor series of $f$ about $a$ \\
-$\widehat f(n)$ & $n$th complex Fourier coefficient: $\displaystyle\widehat f(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}\,\dd x$ \\*
+$\widehat f(n)$ & $n$th complex Fourier coefficient of a $2\pi$-periodic function: $\displaystyle\widehat f(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}\,\dd x$ \\*
 $\displaystyle f(x)\sim\sum_{n=-\infty}^{\infty}\widehat f(n)e^{inx}$ & Complex Fourier series of a $2\pi$-periodic function; $\sim$ denotes Fourier expansion here, not asymptotic equivalence \\
 $S_Nf$ & $N$th symmetric Fourier partial sum: $\displaystyle S_Nf(x)=\sum_{n=-N}^{N}\widehat f(n)e^{inx}$ \\
 $\sigma_Nf$ & $N$th Fej\`er mean: $\displaystyle\sigma_Nf(x)=\frac{1}{N+1}\sum_{k=0}^{N}S_kf(x)$ \\
@@ -99,11 +99,11 @@ $\tan x$ & Tangent \\
 $\csc x$ & Cosecant \\
 $\sec x$ & Secant \\
 $\cot x$ & Cotangent \\
-$\arcsin x, \ \sin^{-1}x$ & Principal inverse sine, $[-1, 1]\to[-\pi/2, \pi/2]$ \\
-$\arccos x, \ \cos^{-1}x$ & Principal inverse cosine, $[-1, 1]\to[0, \pi]$ \\
-$\arctan x, \ \tan^{-1}x$ & Principal inverse tangent, $\R\to(-\pi/2, \pi/2)$ \\
-$\arccsc x, \ \csc^{-1}x$ & Principal inverse cosecant with range $[-\pi/2, 0)\cup(0, \pi/2]$ \\
-$\arcsec x, \ \sec^{-1}x$ & Principal inverse secant with range $[0, \pi/2)\cup(\pi/2, \pi]$ \\
+$\arcsin x, \ \sin^{-1}x$ & Principal real inverse sine, $[-1, 1]\to[-\pi/2, \pi/2]$ \\
+$\arccos x, \ \cos^{-1}x$ & Principal real inverse cosine, $[-1, 1]\to[0, \pi]$ \\
+$\arctan x, \ \tan^{-1}x$ & Principal real inverse tangent, $\R\to(-\pi/2, \pi/2)$ \\
+$\arccsc x, \ \csc^{-1}x$ & Principal real inverse cosecant, with domain $\R\setminus(-1, 1)$ and range $[-\pi/2, 0)\cup(0, \pi/2]$ \\
+$\arcsec x, \ \sec^{-1}x$ & Principal real inverse secant, with domain $\R\setminus(-1, 1)$ and range $[0, \pi/2)\cup(\pi/2, \pi]$ \\
 $\arccot x, \ \cot^{-1}x$ & Principal real inverse cotangent, $\R\to(0, \pi)$ \\
 $\sinh x$ & Hyperbolic sine \\
 $\cosh x$ & Hyperbolic cosine \\
@@ -114,9 +114,9 @@ $\coth x$ & Hyperbolic cotangent \\
 $\arcsinh x, \ \sinh^{-1}x$ & Principal real inverse hyperbolic sine, $\R\to\R$ \\
 $\arccosh x, \ \cosh^{-1}x$ & Principal real inverse hyperbolic cosine, $[1, \infty)\to[0, \infty)$ \\
 $\arctanh x, \ \tanh^{-1}x$ & Principal real inverse hyperbolic tangent, $(-1, 1)\to\R$ \\
-$\arccsch x, \ \csch^{-1}x$ & Principal inverse hyperbolic cosecant \\
-$\arcsech x, \ \sech^{-1}x$ & Principal inverse hyperbolic secant \\
-$\arccoth x, \ \coth^{-1}x$ & Principal inverse hyperbolic cotangent \\
+$\arccsch x, \ \csch^{-1}x$ & Principal real inverse hyperbolic cosecant, $\R\setminus\{0\}\to\R\setminus\{0\}$ \\
+$\arcsech x, \ \sech^{-1}x$ & Principal real inverse hyperbolic secant, $(0, 1]\to[0, \infty)$ \\
+$\arccoth x, \ \coth^{-1}x$ & Principal real inverse hyperbolic cotangent, $\R\setminus[-1, 1]\to\R\setminus\{0\}$ \\
 $\Gamma(z)$ & Gamma function \\
 $\psi(z)$ & Digamma function, $\psi(z)=\Gamma'(z)/\Gamma(z)$ \\
 $B(x, y)$ & Beta function \\
@@ -143,26 +143,26 @@ $V_a^b(f)$ & Total variation of $f$ on $[a, b]$ \\
 $\mathrm{BV}([a, b])$ & Functions of bounded variation on $[a, b]$ \\
 $\mathcal{R}([a, b])$ & Functions Riemann integrable on $[a, b]$ \\*
 $\mathcal{R}([a, b], \alpha)$ & Functions Riemann--Stieltjes integrable on $[a, b]$ with respect to $\alpha$ \\
+$\|f\|_\infty$ & Supremum norm of a bounded scalar-valued function $f$ \\
 $L^p(\Omega), \ L^p(X, \mu)$ & Lebesgue $L^p$ spaces on $\Omega$ or $(X, \mu)$, modulo almost-everywhere equality \\*
 $L^\infty(\Omega), \ L^\infty(X, \mu)$ & Essentially bounded measurable functions on $\Omega$ or $(X, \mu)$, modulo almost-everywhere equality \\
+$\|f\|_{L^p(\Omega)}, \ \|f\|_{L^p(X, \mu)}, \ \|f\|_p$ & $L^p$-norm, for $1\leq p<\infty$, on $\Omega$ or $(X, \mu)$ \\
+$\|f\|_{L^\infty(\Omega)}, \ \|f\|_{L^\infty(X, \mu)}, \ \|f\|_\infty$ & Essential supremum norm on $\Omega$ or $(X, \mu)$ in the $L^\infty$ context \\
 $\ell^p$ & Space of $p$-summable scalar sequences \\
 $\ell^\infty$ & Space of bounded scalar sequences \\
-$\|f\|_\infty$ & Supremum norm of a bounded scalar-valued function $f$ \\
-$\|f\|_{L^p(\Omega)}, \ \|f\|_{L^p(X, \mu)}, \ \|f\|_p$ & $L^p$-norm on $\Omega$ or the measure space $(X, \mu)$ \\
-$\|f\|_{L^\infty(\Omega)}, \ \|f\|_\infty$ & Essential supremum norm of $f$ on $\Omega$ in the $L^\infty$ context \\
-$\|x\|_{\ell^p}$ & $\ell^p$-norm of the sequence $x$ \\*
+$\|x\|_{\ell^p}$ & $\ell^p$-norm of the sequence $x$, for $1\leq p<\infty$ \\*
 $\|x\|_{\ell^\infty}$ & Infinity norm of a bounded scalar sequence $x$ \\
 $B_r(x)$ & Open ball of radius $r$ centered at $x$ \\*
-$\overline{B}_r(x)=\{y\mid d(x, y)\le r\}$ & Closed ball of radius $r$ centered at $x$; not necessarily the closure of $B_r(x)$ \\
+$\overline{B}_r(x)=\{y\mid d(x, y)\leq r\}$ & Closed ball of radius $r$ centered at $x$; not necessarily the closure of $B_r(x)$ \\
 $\widehat{\C}=\C\cup\{\infty\}$ & Extended complex plane, equivalently the Riemann sphere \\
 $i^2=-1$ & Imaginary unit \\
 $z=x+iy$ & Complex number with real part $x$ and imaginary part $y$ \\
 $\RePart z, \ \Re z$ & Real part of $z$ \\
-$\ImPart z, \ \Im z$ & Imaginary part of $z$; distinct from lowercase $\im$ for image \\
+$\ImPart z, \ \Im z$ & Imaginary part of $z$ \\
 $\overline{z}$ & Complex conjugate \\
 $|z|$ & Complex modulus \\
 $\arg z$ & Argument of a nonzero complex number $z$; its values differ by integer multiples of $2\pi$ \\
-$\Arg z$ & Principal argument of $z\ne0$, with $-\pi<\Arg z\le\pi$ \\
+$\Arg z$ & Principal argument of $z\ne0$, with $-\pi<\Arg z\leq\pi$ \\
 $\log z, \ \ln z$ & General multivalued complex logarithm for $z\ne0$; $\displaystyle\log z=\{\ln|z|+i(\Arg z+2\pi k)\mid k\in\Z\}$ \\
 $\Log z, \ \Ln z$ & Principal complex logarithm for $z\ne0$; $\displaystyle\Log z=\ln|z|+i\Arg z$. On $\C\setminus(-\infty, 0]$, it is the analytic principal branch, with $-\pi<\Arg z<\pi$ \\
 $\mathcal{O}(U)$ & Holomorphic functions on an open set $U\subseteq\C$ \\

@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{MathematicalLanguageStyle}[2026/11/08 MATH000 document style]
+\ProvidesPackage{MathematicalLanguageStyle}[2026/11/25 MATH000 document style]
 
 % Mathematical Language style and canonical notation
 % (MATH000) Mathematical Language - Notation and Conventions
@@ -63,8 +63,8 @@
 \newcommand{\indicator}[1]{\mathds{1}_{#1}}
 \newcommand{\Pow}{\mathcal{P}}
 
-% Upright differential
-\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+% Upright differential; add a thin space before it in integrals.
+\newcommand{\dd}{\mathrm{d}}
 
 % Logarithms and inverse trigonometric functions
 \DeclareMathOperator{\Arg}{Arg}
@@ -88,7 +88,6 @@
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\err}{err}
 \DeclareMathOperator{\rref}{rref}
-\DeclareMathOperator{\Mult}{Mult}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\codom}{codom}
 \DeclareMathOperator{\id}{id}
@@ -143,6 +142,7 @@
 \DeclareMathOperator{\MSE}{MSE}
 \DeclareMathOperator{\Bern}{Bern}
 \DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Mult}{Mult}
 \DeclareMathOperator{\Geom}{Geom}
 \DeclareMathOperator{\NegBin}{NegBin}
 \DeclareMathOperator{\Poi}{Pois}
@@ -314,7 +314,12 @@
   {0.72em}
   {}
 \titlespacing*{\section}{0pt}{1.40em}{0.62em}
-\pretocmd{\section}{\Needspace{7\baselineskip}}{}{}
+\pretocmd{\section}{%
+  \Needspace{7\baselineskip}%
+  \ifdim\pagetotal<\baselineskip
+    \thispagestyle{mathlanguageopening}%
+  \fi
+}{}{}
 
 % Subsections are reserved for future use.
 \titleformat{\subsection}
@@ -326,11 +331,14 @@
 
 % Running identity.
 \setlength{\headheight}{14pt}
-\newpagestyle{mathlanguage}{%
-  \sethead{\small\textit{(MATH000) Mathematical Language}}{}{\small\textit{\sectiontitle}}%
+\newcommand{\ml@runningstyle}[1]{%
+  \sethead{\small\textit{(MATH000) Mathematical Language}}{}{#1\small\textit{\sectiontitle}}%
   \setfoot{}{\small\thepage}{}%
   \setheadrule{0.4pt}%
 }
+\newpagestyle{mathlanguage}{\ml@runningstyle{}}
+% A section starting a new page should not inherit the preceding section's header.
+\newpagestyle{mathlanguageopening}{\ml@runningstyle{\bottitlemarks}}
 \pagestyle{mathlanguage}
 
 \setlist[itemize]{leftmargin=1.4em,itemsep=0.15em,topsep=0.25em}
