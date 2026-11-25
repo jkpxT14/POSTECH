@@ -33,6 +33,8 @@ $\ker\mathbf{A}, \ \Null(\mathbf{A})$ & Null space of $\mathbf{A}$ \\
 $V, W$ & Vector spaces, usually over an understood field $F$ \\
 $\Hom_F(V, W)$ & Vector space of $F$-linear maps from $V$ to $W$ \\
 $\End_F(V)$ & $F$-algebra of $F$-linear endomorphisms of $V$ \\
+$\det(T)$ & Determinant of a linear endomorphism $T$ of a finite-dimensional vector space \\*
+$\tr(T)$ & Trace of a linear endomorphism $T$ of a finite-dimensional vector space \\
 $\mathcal{L}(X, Y), \ \mathcal{L}(X)$ & Space of bounded linear maps from the normed space $X$ to the normed space $Y$; $\mathcal{L}(X)=\mathcal{L}(X, X)$ \\
 $\dim V$ & Dimension of $V$ \\
 $\Span(\mathbf{v}_1, \dots, \mathbf{v}_k)$ & Span of the listed vectors \\
@@ -62,7 +64,7 @@ $\|\mathbf{x}\|_\infty$ & Vector infinity norm: $\displaystyle\|\mathbf{x}\|_\in
 $\|T\|_{\mathrm{op}}, \ \|T\|$ & Operator norm $\displaystyle\sup_{\|\mathbf{x}\|\leq1}\|T\mathbf{x}\|$ of a bounded linear map $T\colon X\to Y$ \\
 $\|\mathbf{A}\|_p$ & Induced matrix norm: $\displaystyle\|\mathbf{A}\|_p=\sup_{\mathbf{x}\ne\mathbf{0}}\frac{\|\mathbf{A}\mathbf{x}\|_p}{\|\mathbf{x}\|_p}$, for $1\leq p\leq\infty$ \\[0.15em]
 $\|\mathbf{A}\|_{\mathrm{F}}$ & Frobenius norm $\displaystyle\sqrt{\sum_{i, j}|a_{ij}|^2}$ of $\mathbf{A}$ \\
-$\mathbf{u}\perp\mathbf{v}$ & Orthogonality \\
+$\mathbf{u}\perp\mathbf{v}$ & Orthogonality \\*
 $U^\perp$ & Orthogonal complement of the subspace $U$ \\
 $\proj_U(\mathbf{x})$ & Orthogonal projection of $\mathbf{x}$ onto the subspace $U$ \\*
 $\proj_{\mathbf{v}}(\mathbf{x})$ & Orthogonal projection of $\mathbf{x}$ onto $\Span(\mathbf{v})$ \\
@@ -71,9 +73,9 @@ $\mathbf{A}^{\mathrm{T}}=\mathbf{A}$ & Real symmetric matrix \\
 $\mathbf{A}^{\mathrm{T}}=-\mathbf{A}$ & Real skew-symmetric matrix \\
 $\mathbf{A}^{\mathrm{H}}=\mathbf{A}$ & Hermitian matrix \\
 $\mathbf{A}^{\mathrm{H}}=-\mathbf{A}$ & Skew-Hermitian matrix \\
-$\mathbf{Q}^{\mathrm{T}}\mathbf{Q}=\mathbf{I}$ & Real orthogonal matrix $\mathbf{Q}$ (square) \\
+$\mathbf{Q}^{\mathrm{T}}\mathbf{Q}=\mathbf{I}$ & Orthogonal matrix $\mathbf{Q}$ (real square matrix) \\
 $\mathbf{U}^{\mathrm{H}}\mathbf{U}=\mathbf{I}$ & Unitary matrix $\mathbf{U}$ (complex square matrix) \\
-$\mathbf{A}\mathbf{A}^{\mathrm{H}}=\mathbf{A}^{\mathrm{H}}\mathbf{A}$ & Normal matrix \\
+$\mathbf{A}\mathbf{A}^{\mathrm{H}}=\mathbf{A}^{\mathrm{H}}\mathbf{A}$ & Normal matrix (square matrix, usually complex) \\
 $\mathbf{P}$ & Projection matrix ($\mathbf{P}^2=\mathbf{P}$) \\*
 $\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathrm{T}}$ & Orthogonal projection matrix over $\R$ \\*
 $\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathrm{H}}$ & Orthogonal projection matrix over $\C$ \\
@@ -86,13 +88,13 @@ $\mathbf{J}_k(\lambda)$ & Jordan block of size $k$ with eigenvalue $\lambda$ \\
 $\sigma(\mathbf{A}), \ \spec(\mathbf{A})$ & Spectrum of $\mathbf{A}$ \\
 $\rho(\mathbf{A})$ & Spectral radius \\
 $\mathbf{A}\sim\mathbf{B}$ & Similar square matrices \\
-$\mathbf{P}_\lambda$ & Spectral projection associated with the eigenvalue $\lambda$ \\
+$\mathbf{P}_\lambda$ & Spectral projection associated with the eigenvalue $\lambda$; not necessarily orthogonal \\
 $\mathbf{A}=\mathbf{P}\mathbf{D}\mathbf{P}^{-1}$ & Diagonalization of a diagonalizable matrix \\
 $\mathbf{A}=\mathbf{Q}\mathbf{D}\mathbf{Q}^{\mathrm{T}}$ & Orthogonal diagonalization of a real symmetric matrix \\
 $\mathbf{A}=\mathbf{U}\mathbf{D}\mathbf{U}^{\mathrm{H}}$ & Unitary diagonalization of a complex normal matrix \\
 $\displaystyle\mathbf{A}=\sum_{\lambda\in\sigma(\mathbf{A})} \lambda\mathbf{P}_\lambda$ & Spectral decomposition of a diagonalizable matrix $\mathbf{A}$ \\
 $e^{\mathbf{A}}, \ \exp(\mathbf{A})$ & Matrix exponential \\
-$\mathbf{A}=\mathbf{L}\mathbf{U}$ & LU factorization, with $\mathbf{L}$ lower triangular and $\mathbf{U}$ upper triangular; with row pivoting, $\mathbf{P}\mathbf{A}=\mathbf{L}\mathbf{U}$ \\
+$\mathbf{A}=\mathbf{L}\mathbf{U}$ & LU factorization, with $\mathbf{L}$ lower triangular and $\mathbf{U}$ upper triangular; with row pivoting, $\mathbf{P}\mathbf{A}=\mathbf{L}\mathbf{U}$, where $\mathbf{P}$ is a permutation matrix \\
 $\mathbf{A}=\mathbf{Q}\mathbf{R}$ & QR factorization; $\mathbf{Q}$ has orthonormal columns and $\mathbf{R}$ is upper triangular (upper trapezoidal in general) \\
 $\mathbf{A}=\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\mathrm{H}}$ & Singular value decomposition (SVD) of $\mathbf{A}$ \\
 $\sigma_i(\mathbf{A})$ & $i$th singular value of $\mathbf{A}$ \\

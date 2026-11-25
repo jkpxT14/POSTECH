@@ -5,8 +5,8 @@ Prefer parentheses for ordinary grouping when delimiters are interchangeable, in
 In LaTeX mathematical source, put one source-space after punctuation commas and semicolons. TeX determines the typeset spacing; retain explicit spacing commands only where typographically appropriate.
 
 \begin{ruletable}
-Scalars & Ordinary mathematical italic letters, for example $a, b, c, \lambda, t$. \\
-Variables and Labels & Use mathematical italic for variables and indices, and upright Roman type for descriptive labels and abbreviations, unless established mathematical notation calls for otherwise. \\
+Scalars & Mathematical italic letters, for example $a, b, c, \lambda, t$; traditional uppercase Greek letterforms are retained. \\
+Variables and Labels & Use mathematical italic for variables and indices, and upright Roman type for descriptive labels and abbreviations; established mathematical letterforms and notation are respected. \\
 Vectors and Matrices & Letter symbols for vectors and matrices are bold, typically lowercase and uppercase, respectively; Greek vector and matrix symbols are also bold. Vectors are columns by default, for example $\mathbf{x}=(x_1, \dots, x_n)^{\mathrm{T}}$; established field-specific conventions are respected. \\
 Matrix Delimiters & Parentheses are preferred; square brackets are a standard alternative. \\
 Dimension Subscripts & Use dimension subscripts when informative; omit them when the dimension is clear or irrelevant. \\
@@ -33,7 +33,7 @@ $[a, b]$ & Closed interval \\
 $[a, b)$ & Left-closed, right-open interval \\
 $(a, b]$ & Left-open, right-closed interval \\
 $\{a_1, \dots, a_n\}$ & Set delimiters \\
-$\{x\in A\mid P(x)\}, \ \{x\in A\colon P(x)\}$ & Set-builder notation \\
+$\{x\in A\mid P(x)\}, \ \{x\in A:P(x)\}$ & Set-builder notation \\
 $\langle x, y\rangle$ & Pairing or inner product, according to context \\
 $ab, \ a\cdot b, \ a\times b$ & Multiplication; juxtaposition is preferred where unambiguous \\
 $\displaystyle\frac{a}{b}, \ a/b, \ a\div b$ & Division; the fraction form is preferred unless an inline form is more suitable \\
@@ -41,9 +41,11 @@ $|x|$ & Absolute value, modulus, cardinality, or order, according to context \\
 $\|x\|$ & Norm \\
 $a=b$ & Equality \\
 $a\ne b$ & Non-equality \\
+$a<b, \ a>b$ & Strict inequalities \\*
+$a\leq b, \ a\geq b$ & Non-strict inequalities \\
 $a\coloneqq b$ & $a$ is defined to be $b$. \\
 $a\equiv b$ & Identity, equivalence, or congruence, according to context \\
-$a\cong b$ & Isomorphism or congruence, according to context \\
+$A\cong B$ & Isomorphism or congruence, according to context \\
 $a\approx b$ & Approximation \\
 $f\colon X\to Y$ & Function or map from $X$ to $Y$ \\
 $x\mapsto f(x)$ & Elementwise rule of a map \\

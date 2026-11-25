@@ -36,14 +36,14 @@ $H(t-a), \ u(t-a)$ & Heaviside or unit-step function shifted to $t=a$; its value
 $\delta(t), \ \delta(t-a)$ & Dirac delta distribution, or unit impulse, centered at $0$ or shifted to $t=a$ \\
 $u_x, u_t, u_{xx}, u_{xy}, u_{tt}, \dots$ & Subscript notation for partial derivatives of a scalar function $u$ \\
 $\partial_{\mathbf{n}}u$ & Normal derivative of $u$ along the unit normal $\mathbf{n}$; outward on $\partial\Omega$ for boundary conditions \\
-$u|_{\partial\Omega}=g$ & Dirichlet boundary condition on $\partial\Omega$ \\
-$\partial_{\mathbf{n}}u|_{\partial\Omega}=g$ & Neumann boundary condition on $\partial\Omega$ \\
+$u|_{\partial\Omega}=g$ & Dirichlet boundary condition on $\partial\Omega$ \\*
+$\partial_{\mathbf{n}}u|_{\partial\Omega}=g$ & Neumann boundary condition on $\partial\Omega$ \\*
 $\alpha u+\beta\,\partial_{\mathbf{n}}u=g$ & Robin boundary condition on $\partial\Omega$ \\
 $a_n$ & Cosine coefficient of a real $2L$-periodic function: $\displaystyle a_n=\frac{1}{L}\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}\,\dd x$ for $n\geq0$ \\*
 $b_n$ & Sine coefficient of a real $2L$-periodic function: $\displaystyle b_n=\frac{1}{L}\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}\,\dd x$ for $n\geq1$ \\*
 $\begin{aligned} &f(x)\sim\frac{a_0}{2}+\sum_{n=1}^\infty\bigg(\\[-0.15em]&\quad a_n\cos\frac{n\pi x}{L}+b_n\sin\frac{n\pi x}{L}\bigg)\end{aligned}$ & Real Fourier series of a $2L$-periodic function \\
 $\widehat f(\boldsymbol{\xi}), \ (\mathcal{F}f)(\boldsymbol{\xi})$ & Fourier transform: $\displaystyle\widehat f(\boldsymbol{\xi})=\int_{\R^n}f(\mathbf{x})e^{-2\pi i\mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\mathbf{x}$ \\*
-$\mathcal{F}^{-1}, \ (\mathcal{F}^{-1}\widehat f)(\mathbf{x})$ & Inverse Fourier transform and its value at $\mathbf{x}$ under the stated normalization \\
+$\mathcal{F}^{-1}, \ (\mathcal{F}^{-1}\widehat f)(\mathbf{x})$ & Inverse Fourier transform under the stated normalization: $\displaystyle(\mathcal{F}^{-1}\widehat f)(\mathbf{x})=\int_{\R^n}\widehat f(\boldsymbol{\xi})e^{2\pi i\mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\boldsymbol{\xi}$ \\
 $-(py')'+qy=\lambda wy$ & Sturm--Liouville eigenvalue equation, where $p$, $q$, and $w$ are functions of $x$ \\
 $\lambda_n$ & Sturm--Liouville eigenvalue \\
 $\phi_n$ & Sturm--Liouville eigenfunction corresponding to $\lambda_n$ \\
@@ -64,8 +64,8 @@ $Q_\nu(x)$ & Legendre function of the second kind of degree $\nu$ \\
 $P_\ell^m(x)$ & Associated Legendre function for integer degree $\ell$ and order $m$ \\
 $H_n(x)$ & Physicists' Hermite polynomial \\
 $\mathrm{He}_n(x)$ & Probabilists' Hermite polynomial \\
+$L_n(x)$ & Ordinary Laguerre polynomial $L_n^{(0)}(x)$ \\*
 $L_n^{(\alpha)}(x)$ & Generalized Laguerre polynomial \\
-$L_n(x)$ & Ordinary Laguerre polynomial $L_n^{(0)}(x)$ \\
 $T_n(x)$ & Chebyshev polynomial of the first kind \\
 $U_n(x)$ & Chebyshev polynomial of the second kind \\
 $P_n^{(\alpha, \beta)}(x)$ & Jacobi polynomial \\
