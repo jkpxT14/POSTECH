@@ -4,12 +4,12 @@ Points are typically denoted by uppercase letters and lines by lowercase letters
 
 \begin{notationtable}
 $\triangle ABC$ & Triangle with vertices $A, B, C$ \\
-$\angle ABC$ & Geometric angle with vertex $B$ \\
+$\angle ABC, \ \angle B$ & Geometric angle with vertex $B$; $\angle B$ when unambiguous \\
 $m\angle ABC$ & Measure of the angle $\angle ABC$ \\
 $\angle(\ell, m)$ & Directed angle from the line $\ell$ to the line $m$, taken modulo $\pi$ \\
 $\overline{AB}$ & Segment joining $A$ and $B$ \\
 $AB$ & Length of $\overline{AB}$ \\
-$\overrightarrow{AB}$ & Ray from $A$ through $B$, or vector from $A$ to $B$, according to context \\
+$\overrightarrow{AB}$ & Ray from $A$ through $B$ \\*
 $\overrightarrow{AB}=\mathbf{b}-\mathbf{a}$ & Vector from $A$ to $B$ when $\mathbf{a}$ and $\mathbf{b}$ are the corresponding position vectors \\
 $\overleftrightarrow{AB}$ & Line through $A$ and $B$ \\
 $\ell\parallel m$ & Lines $\ell$ and $m$ are parallel \\
@@ -17,8 +17,7 @@ $\ell\perp m$ & Lines $\ell$ and $m$ are perpendicular \\
 $\triangle ABC\cong\triangle DEF$ & Congruent triangles; corresponding vertices are listed in the same order \\
 $\triangle ABC\sim\triangle DEF$ & Similar triangles; corresponding vertices are listed in the same order \\
 $[ABC]$ & Area of $\triangle ABC$ \\
-$C(O, r)$ & Circle with center $O$ and radius $r$ \\
-$\odot O$ & Circle centered at $O$ \\
+$C(O, r), \ \odot O$ & Circle centered at $O$; $C(O, r)$ specifies radius $r$ \\
 $\PointPower_{\omega}(P)$ & Power of $P$ with respect to the circle $\omega$ \\
 $(ABC)$ & Circle through the noncollinear points $A, B, C$; in particular, the circumcircle of $\triangle ABC$ \\
 $\widehat{AB}, \ \widehat{ACB}$ & Arcs specified by their endpoints, with an additional point used when needed to distinguish the intended arc \\
@@ -51,22 +50,29 @@ $d_{\mathbb{H}}$ & Hyperbolic distance \\
 $\gamma\colon I\to\R^n$ & Parametrized curve in $\R^n$ \\
 $\dot\gamma(t)$ & Velocity (tangent) vector of $\gamma$ at $t$ \\
 $s$ & Arc-length parameter \\
-$\mathbf{T}, \ \mathbf{N}, \ \mathbf{B}$ & Unit tangent, principal normal, and binormal vectors of the Frenet frame \\
+$\mathbf{T}$ & Unit tangent vector of the Frenet frame \\*
+$\mathbf{N}$ & Principal normal vector of the Frenet frame \\*
+$\mathbf{B}$ & Binormal vector of the Frenet frame \\
 $\kappa$ & Curvature of a regular curve \\
 $\tau$ & Torsion of a space curve \\
-$T_pM$ & Tangent space of the manifold or regular surface $M$ at $p$ \\
+$\mathbf{r}(u, v)$ & Parametrized surface \\
+$T_pM$ & Tangent space of the manifold or regular surface $M$ at $p$ \\*
 $T_p^*M$ & Cotangent space of $M$ at $p$ \\
-$TM$ & Tangent bundle of $M$ \\
+$TM$ & Tangent bundle of $M$ \\*
 $T^*M$ & Cotangent bundle of $M$ \\
 $\dd f_p$ & Differential of a smooth map $f$ at $p$ \\
 $\mathbf{n}\colon M\to S^2$ & Gauss map of an oriented surface $M\subseteq\R^3$, assigning its unit normal vector \\
-$\mathrm{I}$ & First fundamental form of a regular surface \\
-$\mathrm{II}$ & Second fundamental form of a regular surface \\
+$\mathrm{I}$ & First fundamental form of a regular surface \\*
+$E, F, G$ & Coefficients of the first fundamental form \\
+$\mathrm{II}$ & Second fundamental form of a regular surface \\*
+$e, f, g$ & Coefficients of the second fundamental form \\
+$S_p=-\dd\mathbf{n}_p$ & Shape operator at $p$ under the negative differential convention \\
 $\kappa_1, \ \kappa_2$ & Principal curvatures of a regular surface \\
 $K=\kappa_1\kappa_2$ & Gaussian curvature of a regular surface \\
 $\displaystyle H=\frac{\kappa_1+\kappa_2}{2}$ & Mean curvature of a regular surface under the average convention \\
 $(M, g)$ & Riemannian manifold $M$ with Riemannian metric $g$ \\
 $g_p$ & Riemannian inner product on $T_pM$ \\
+$g_{ij}$ & Components of the Riemannian metric in local coordinates \\
 $d_g(p, q)$ & Riemannian distance between $p$ and $q$ under metric $g$ \\
 $\nabla_XY$ & Covariant derivative of $Y$ along $X$ \\
 $\Gamma^k_{ij}$ & Christoffel symbols of a connection in local coordinates \\

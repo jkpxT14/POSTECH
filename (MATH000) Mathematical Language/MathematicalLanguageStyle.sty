@@ -15,6 +15,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{amsthm}
 \RequirePackage{mathtools}
+\RequirePackage{trimclip}
 % Closed-surface integral without changing the existing integral glyphs.
 \DeclareFontFamily{U}{esint}{}
 \DeclareFontShape{U}{esint}{m}{n}{<-> esint10}{}
@@ -85,6 +86,9 @@
 
 % Named operators
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\err}{err}
+\DeclareMathOperator{\rref}{rref}
+\DeclareMathOperator{\Mult}{Mult}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\codom}{codom}
 \DeclareMathOperator{\id}{id}
@@ -175,6 +179,29 @@
 % double arrowhead. \joinrel joins the two relation glyphs without ad hoc spacing.
 \DeclareRobustCommand{\bijarrow}{\mathrel{\lhook\joinrel\twoheadrightarrow}}
 
+% Proper normal subgroup: use the upper part of AMS \trianglelefteq and
+% the lower part of AMS \lneq. Both glyphs share the same advance width,
+% baseline, and lower-bar geometry in the AMS 10, 7, and 5 point fonts.
+% Clipping at the baseline preserves the original vector outlines and
+% selects the corresponding optical size through \mathpalette.
+\newsavebox{\ml@trianglebox}
+\newsavebox{\ml@neqbox}
+\DeclareRobustCommand{\triangleleftneq}{\mathrel{\mathpalette\ml@triangleleftneq\relax}}
+\newcommand{\ml@triangleleftneq}[2]{%
+  \begingroup
+  \sbox{\ml@trianglebox}{$\m@th#1\trianglelefteq$}%
+  \sbox{\ml@neqbox}{$\m@th#1\lneq$}%
+  \edef\ml@upperclip{0pt \the\dp\ml@trianglebox\space 0pt 0pt}%
+  % AMS TFM depth omits part of the negating stroke; include its full ink.
+  \edef\ml@lowerclip{0pt \the\dimexpr-\wd\ml@neqbox/6\relax\space 0pt \the\ht\ml@neqbox}%
+  \hbox{%
+    \rlap{\expandafter\clipbox\expandafter{\ml@upperclip}{\usebox{\ml@trianglebox}}}%
+    \raisebox{0pt}[0pt][\dp\ml@neqbox]{%
+      \expandafter\clipbox\expandafter{\ml@lowerclip}{\usebox{\ml@neqbox}}}%
+  }%
+  \endgroup
+}
+
 % Convergence conventions
 \newcommand{\ptwto}{\to}
 \newcommand{\unifto}{\rightrightarrows}
@@ -207,7 +234,7 @@
   \par\vspace{0.05em}%
   \small
   \renewcommand{\arraystretch}{1.20}%
-  \begin{longtable}{@{}L{0.27\textwidth}L{0.65\textwidth}@{}}%
+  \begin{longtable}{@{}L{0.31\textwidth}L{0.61\textwidth}@{}}%
   \toprule
   Notation & Meaning \\
   \midrule

@@ -13,7 +13,7 @@ $\min A$ & Minimum of $A$ \\*
 $\max A$ & Maximum of $A$ \\
 $\inf A$ & Infimum of $A$ \\*
 $\sup A$ & Supremum of $A$ \\
-$\displaystyle\argmin_{x\in A}f(x)$ & Set of minimizers of $f$ over $A$ \\
+$\displaystyle\argmin_{x\in A}f(x)$ & Set of minimizers of $f$ over $A$ \\*
 $\displaystyle\argmax_{x\in A}f(x)$ & Set of maximizers of $f$ over $A$ \\
 $\overline{\R}=\R\cup\{-\infty, +\infty\}$ & Extended real line \\
 $\displaystyle\lim_{n\to\infty}x_n=x, \ x_n\to x$ & Convergence of a sequence \\
@@ -26,6 +26,7 @@ $f(x)\sim g(x)$ & Asymptotic equivalence in the stated limiting regime, typicall
 $f_n\ptwto f, \ f_n\ptwlabelto f$ & Pointwise convergence of $f_n$ to $f$ \\*
 $f_n\unifto f, \ f_n\uniflabelto f$ & Uniform convergence \\
 $f_n\aeto f$ & Convergence almost everywhere \\
+$f_n\Lpto{p}f$ & Convergence in $L^p$ \\
 $x_n\rightharpoonup x$ & Weak convergence \\
 $x_n^*\overset{*}{\rightharpoonup}x^*$ & Weak-* convergence in a continuous dual space \\
 $f'(a)$ & First derivative of $f$ at $a$ \\
@@ -43,7 +44,7 @@ $\mathbf{x}^\alpha=x_1^{\alpha_1}\cdots x_n^{\alpha_n}$ & Multi-index monomial f
 $D^\alpha f, \ \partial^\alpha f$ & Mixed partial derivative specified by the multi-index $\alpha$ \\
 $Df(a)$ & Total (Fr\'echet) derivative of $f$ at $a$, as a linear map \\
 $\mathbf{J}_{\mathbf{F}}(\mathbf{a}), \ D\mathbf{F}(\mathbf{a})$ & Jacobian matrix of $\mathbf{F}$ at $\mathbf{a}$; $D\mathbf{F}(\mathbf{a})$ when identified with its matrix \\
-$\det\mathbf{J}_{\mathbf{F}}(\mathbf{a}), \ \det D\mathbf{F}(\mathbf{a})$ & Jacobian determinant of $\mathbf{F}$ at $\mathbf{a}$ \\
+$\det(\mathbf{J}_{\mathbf{F}}(\mathbf{a})), \ \det(D\mathbf{F}(\mathbf{a}))$ & Jacobian determinant of $\mathbf{F}$ at $\mathbf{a}$ \\
 $\Hess f$ & Hessian matrix of $f$ \\
 $\nabla f, \ \operatorname{grad}f$ & Gradient of $f$ \\
 $\nabla\cdot\mathbf{F}, \ \operatorname{div}\mathbf{F}$ & Divergence of $\mathbf{F}$ \\
@@ -52,7 +53,7 @@ $\Delta f$ & Laplacian of $f$ \\
 $\displaystyle\int f(x)\,\dd x$ & Indefinite integral of $f$ \\[0.10em]
 $\displaystyle\int_a^b f(x)\,\dd x$ & Definite integral over $[a, b]$ \\[0.10em]
 $\left.F(x)\right|_a^b, \ [F(x)]_a^b$ & Evaluation at the endpoints: $F(b)-F(a)$ \\[0.10em]
-$\displaystyle\int_a^\infty f(x)\,\dd x, \ \int_{-\infty}^b f(x)\,\dd x$ & Improper integrals over unbounded intervals \\[0.10em]
+$\displaystyle\int_a^\infty f(x)\,\dd x, \ \int_{-\infty}^b f(x)\,\dd x$ & Improper integrals over unbounded intervals; also $\int_{-\infty}^{\infty}f(x)\,\dd x$ \\[0.10em]
 $\displaystyle\int_a^b f\,\dd\alpha$ & Riemann--Stieltjes integral of $f$ over $[a, b]$ with respect to $\alpha$ \\
 $P=\{x_0, \dots, x_n\}$ & Partition of $[a, b]$, with $a=x_0<\cdots<x_n=b$ \\
 $\displaystyle\sum_{i=1}^n f(\xi_i)\Delta x_i$ & Tagged Riemann sum with sample points $\xi_i$ and subinterval widths $\Delta x_i$ \\
@@ -73,12 +74,17 @@ $\gamma^{-1}$ & Reversed parametrized path $\gamma$ \\
 $\PV, \ \operatorname{P.V.}$ & Principal value (in particular, Cauchy principal value) \\
 $\displaystyle\sum_{k=1}^{n} a_k$ & Finite sum \\[0.10em]
 $\displaystyle\sum_{k=1}^{\infty} a_k$ & Infinite series \\[0.10em]
+$\displaystyle s_n=\sum_{k=1}^{n}a_k$ & Partial sum of a series \\
 $\displaystyle\prod_{k=1}^{n} a_k$ & Finite product \\[0.10em]
 $\displaystyle\prod_{k=1}^{\infty}a_k$ & Infinite product \\
 $\displaystyle\sum_{n=0}^{\infty}a_n(x-a)^n$ & Power series centered at $a$ \\[0.10em]
+$R$ & Radius of convergence of a power series \\
 $\displaystyle\sum_{n=-\infty}^{\infty}a_n(z-z_0)^n$ & Laurent series centered at $z_0$ \\[0.10em]
-$\displaystyle\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & $n$th Taylor polynomial of $f$ about $a$ \\
-$\widehat f(n)$ & $n$th complex Fourier coefficient: $\displaystyle\widehat f(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}\,\dd x$ \\
+$T_n(x)$ & $n$th Taylor polynomial of $f$ about $a$: $\displaystyle T_n(x)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$ \\*
+$R_n(x)=f(x)-T_n(x)$ & Taylor remainder \\*
+$\displaystyle\sum_{k=0}^{\infty}\frac{f^{(k)}(a)}{k!}(x-a)^k$ & Taylor series of $f$ about $a$ \\
+$\widehat f(n)$ & $n$th complex Fourier coefficient: $\displaystyle\widehat f(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}\,\dd x$ \\*
+$\displaystyle f(x)\sim\sum_{n=-\infty}^{\infty}\widehat f(n)e^{inx}$ & Complex Fourier series of a $2\pi$-periodic function; $\sim$ denotes Fourier expansion here, not asymptotic equivalence \\
 $S_Nf$ & $N$th symmetric Fourier partial sum: $\displaystyle S_Nf(x)=\sum_{n=-N}^{N}\widehat f(n)e^{inx}$ \\
 $\sigma_Nf$ & $N$th Fej\`er mean: $\displaystyle\sigma_Nf(x)=\frac{1}{N+1}\sum_{k=0}^{N}S_kf(x)$ \\
 $e^x, \ \exp x$ & Exponential function \\
@@ -123,11 +129,12 @@ $\mu(E)$ & Measure of a measurable set $E\in\mathcal{A}$ \\
 $\displaystyle\int_E f\,\dd\mu$ & Integral of $f$ over $E$ with respect to the measure $\mu$ \\
 $(f\ast g)(x)$ & Convolution of functions $f$ and $g$ \\
 $f=g\ \textnormal{a.e.}, \quad f=g\ \mu\textnormal{-a.e.}$ & Equality almost everywhere, with the measure omitted when understood \\
+$\displaystyle\essinf_{x\in E} f(x)$ & Essential infimum of $f$ on $E$ \\*
 $\displaystyle\esssup_{x\in E} f(x)$ & Essential supremum of $f$ on $E$ \\
-$\displaystyle\essinf_{x\in E} f(x)$ & Essential infimum of $f$ on $E$ \\
 $C(\Omega), \ C^0(\Omega)$ & Continuous functions on $\Omega$ \\*
 $C^k(\Omega)$ & $k$ times continuously differentiable functions on $\Omega$ \\*
 $C^\infty(\Omega)$ & Smooth functions on $\Omega$ \\
+$C^k(\Omega; \R^m)$ & $C^k$ maps from $\Omega$ into $\R^m$ \\
 $C_b(X)$ & Bounded continuous scalar-valued functions on $X$ \\
 $\operatorname{supp}f$ & Support of $f$ \\
 $C_c(\Omega)$ & Continuous functions on $\Omega$ with compact support \\
@@ -141,10 +148,10 @@ $L^\infty(\Omega), \ L^\infty(X, \mu)$ & Essentially bounded measurable function
 $\ell^p$ & Space of $p$-summable scalar sequences \\
 $\ell^\infty$ & Space of bounded scalar sequences \\
 $\|f\|_\infty$ & Supremum norm of a bounded scalar-valued function $f$ \\
-$\|f\|_{L^p(X, \mu)}$ & $L^p$-norm of $f$ on $X$ with respect to $\mu$ \\
-$\|f\|_{L^p(\Omega)}, \ \|f\|_p$ & $L^p$-norm of $f$ on $\Omega$ \\
+$\|f\|_{L^p(\Omega)}, \ \|f\|_{L^p(X, \mu)}, \ \|f\|_p$ & $L^p$-norm on $\Omega$ or the measure space $(X, \mu)$ \\
 $\|f\|_{L^\infty(\Omega)}, \ \|f\|_\infty$ & Essential supremum norm of $f$ on $\Omega$ in the $L^\infty$ context \\
-$\|x\|_{\ell^p}$ & $\ell^p$-norm of the sequence $x$ \\
+$\|x\|_{\ell^p}$ & $\ell^p$-norm of the sequence $x$ \\*
+$\|x\|_{\ell^\infty}$ & Infinity norm of a bounded scalar sequence $x$ \\
 $B_r(x)$ & Open ball of radius $r$ centered at $x$ \\*
 $\overline{B}_r(x)=\{y\mid d(x, y)\le r\}$ & Closed ball of radius $r$ centered at $x$; not necessarily the closure of $B_r(x)$ \\
 $\widehat{\C}=\C\cup\{\infty\}$ & Extended complex plane, equivalently the Riemann sphere \\

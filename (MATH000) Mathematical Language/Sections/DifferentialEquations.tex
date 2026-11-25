@@ -12,8 +12,7 @@ $y'+p(t)y=g(t)$ & Standard form of a first-order linear differential equation \\
 $\mu(t)$ & Integrating factor for a first-order linear differential equation \\
 $M(x, y)\,\dd x+N(x, y)\,\dd y=0$ & Differential form of a first-order differential equation \\
 $M_x, M_y, N_x, N_y$ & Subscript notation for the corresponding partial derivatives \\
-$L[y]$ & Linear differential operator applied to $y$ \\
-$\displaystyle L[y]=\sum_{k=0}^{n}a_k(t)y^{(k)}$ & General $n$th-order linear differential operator, with $a_n\not\equiv0$ \\
+$L[y]$ & Linear differential operator applied to $y$; in order $n$, $\displaystyle L[y]=\sum_{k=0}^{n}a_k(t)y^{(k)}$ with $a_n\not\equiv0$ \\
 $L[y]=0$ & Homogeneous linear differential equation \\
 $L[y]=g$ & Nonhomogeneous linear differential equation for nonzero $g$ \\
 $y_{\mathrm{h}}, \ y_{\mathrm{c}}$ & Homogeneous or complementary part of a solution \\
@@ -40,10 +39,11 @@ $\partial_{\mathbf{n}}u$ & Normal derivative of $u$ along the unit normal $\math
 $u|_{\partial\Omega}=g$ & Dirichlet boundary condition on $\partial\Omega$ \\
 $\partial_{\mathbf{n}}u|_{\partial\Omega}=g$ & Neumann boundary condition on $\partial\Omega$ \\
 $\alpha u+\beta\,\partial_{\mathbf{n}}u=g$ & Robin boundary condition on $\partial\Omega$ \\
-$a_n$ & Cosine coefficient of a real $2L$-periodic function: $\displaystyle a_n=\frac{1}{L}\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}\,\dd x$ for $n\ge0$ \\
-$b_n$ & Sine coefficient of a real $2L$-periodic function: $\displaystyle b_n=\frac{1}{L}\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}\,\dd x$ for $n\ge1$ \\
-$\widehat f(\boldsymbol{\xi}), \ \mathcal{F}f(\boldsymbol{\xi})$ & Fourier transform: $\displaystyle\widehat f(\boldsymbol{\xi})=\int_{\R^n}f(\mathbf{x})e^{-2\pi i\mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\mathbf{x}$ \\
-$\mathcal{F}^{-1}$ & Inverse Fourier transform under the stated normalization \\
+$a_n$ & Cosine coefficient of a real $2L$-periodic function: $\displaystyle a_n=\frac{1}{L}\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}\,\dd x$ for $n\ge0$ \\*
+$b_n$ & Sine coefficient of a real $2L$-periodic function: $\displaystyle b_n=\frac{1}{L}\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}\,\dd x$ for $n\ge1$ \\*
+$\begin{aligned} &f(x)\sim\frac{a_0}{2}+\sum_{n=1}^\infty\bigg(\\[-0.15em]&\quad a_n\cos\frac{n\pi x}{L}+b_n\sin\frac{n\pi x}{L}\bigg)\end{aligned}$ & Real Fourier series of a $2L$-periodic function \\
+$\widehat f(\boldsymbol{\xi}), \ (\mathcal{F}f)(\boldsymbol{\xi})$ & Fourier transform: $\displaystyle\widehat f(\boldsymbol{\xi})=\int_{\R^n}f(\mathbf{x})e^{-2\pi i\mathbf{x}\cdot\boldsymbol{\xi}}\,\dd\mathbf{x}$ \\*
+$\mathcal{F}^{-1}, \ (\mathcal{F}^{-1}\widehat f)(\mathbf{x})$ & Inverse Fourier transform and its value at $\mathbf{x}$ under the stated normalization \\
 $-(py')'+qy=\lambda wy$ & Sturm--Liouville eigenvalue equation, where $p$, $q$, and $w$ are functions of $x$ \\
 $\lambda_n$ & Sturm--Liouville eigenvalue \\
 $\phi_n$ & Sturm--Liouville eigenfunction corresponding to $\lambda_n$ \\

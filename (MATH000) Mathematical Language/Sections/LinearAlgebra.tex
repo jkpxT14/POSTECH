@@ -4,6 +4,11 @@
 $M_{m\times n}(F), \ F^{m\times n}$ & Space of $m\times n$ matrices over the field $F$ \\
 $M_n(F)$ & Space (and matrix algebra) of $n\times n$ matrices over $F$ \\
 $\mathbf{A}=(a_{ij}), \ \mathbf{A}=[a_{ij}]$ & Matrix with $(i, j)$-entry $a_{ij}$ \\
+$(\mathbf{A}\mid\mathbf{b})$ & Augmented matrix with coefficient matrix $\mathbf{A}$ and right-hand side $\mathbf{b}$ \\
+$\rref(\mathbf{A})$ & Reduced row echelon form of $\mathbf{A}$ \\
+$R_i\leftrightarrow R_j$ & Interchange rows $i$ and $j$ \\*
+$R_i\leftarrow cR_i$ & Scale row $i$ by a nonzero scalar $c$ \\*
+$R_i\leftarrow R_i+cR_j$ & Add $c$ times row $j$ to row $i$, for $i\ne j$ \\
 $\mathbf{A}^{\mathrm{T}}$ & Transpose of $\mathbf{A}$ \\
 $\overline{\mathbf{A}}$ & Entrywise complex conjugate of $\mathbf{A}$ \\
 $\mathbf{A}^{\mathrm{H}}$ & Conjugate transpose of $\mathbf{A}$ \\
@@ -15,7 +20,6 @@ $\mathbf{i}, \ \mathbf{j}, \ \mathbf{k}$ & Standard basis vectors of $\R^3$, alo
 $\ones$ & All-ones vector \\
 $\mathbf{D}$ & Diagonal matrix \\
 $\diag(d_1, \dots, d_n)$ & Diagonal matrix with entries $d_1, \dots, d_n$ \\
-$\mathbf{P}$ & Projection matrix \\
 $\det(\mathbf{A}), \ |\mathbf{A}|$ & Determinant \\
 $\rk(\mathbf{A}), \ \operatorname{rank}(\mathbf{A})$ & Rank \\
 $\tr(\mathbf{A}), \ \trace(\mathbf{A})$ & Trace \\
@@ -29,21 +33,25 @@ $\ker\mathbf{A}, \ \Null(\mathbf{A})$ & Null space of $\mathbf{A}$ \\
 $V, W$ & Vector spaces, usually over an understood field $F$ \\
 $\Hom_F(V, W)$ & Vector space of $F$-linear maps from $V$ to $W$ \\
 $\End_F(V)$ & $F$-algebra of $F$-linear endomorphisms of $V$ \\
-$\mathcal{L}(X, Y)$ & Bounded linear maps between normed spaces $X$ and $Y$ \\
-$\mathcal{L}(X)$ & Bounded linear operators from $X$ to itself \\
+$\mathcal{L}(X, Y), \ \mathcal{L}(X)$ & Space of bounded linear maps from $X$ to $Y$; $\mathcal{L}(X)=\mathcal{L}(X, X)$ \\
 $\dim V$ & Dimension of $V$ \\
 $\Span(\mathbf{v}_1, \dots, \mathbf{v}_k)$ & Span of the listed vectors \\
 $U\oplus V$ & Direct sum \\
+$V\otimes_F W$ & Tensor product of vector spaces $V$ and $W$ over $F$ \\
 $V/U$ & Quotient vector space of $V$ by its vector subspace $U\subseteq V$; elements are cosets $\mathbf{v}+U$ \\
 $\ker T$ & Kernel of a linear map $T$ \\
 $\nullity(T)=\dim\ker T$ & Nullity of a linear map $T$ \\
 $\im T$ & Image of a linear map $T$ \\
+$\rk(T)=\dim\im T$ & Rank of a linear map $T$ \\
 $\mathcal{B}=(\mathbf{b}_1, \dots, \mathbf{b}_n)$ & Ordered basis \\
 $[\mathbf{v}]_{\mathcal{B}}$ & Coordinate vector of $\mathbf{v}$ with respect to the ordered basis $\mathcal{B}$ \\
 $[T]_{\mathcal{C}\leftarrow\mathcal{B}}$ & Matrix of $T\colon V\to W$ relative to domain basis $\mathcal{B}$ and codomain basis $\mathcal{C}$ \\
 $[T]_{\mathcal{B}}$ & Matrix of an endomorphism $T\colon V\to V$ when the same basis $\mathcal{B}$ is used in the domain and codomain \\
 $\mathbf{P}_{\mathcal{C}\leftarrow\mathcal{B}}$ & Change-of-coordinate matrix from basis $\mathcal{B}$ to basis $\mathcal{C}$ \\
-$V^*$ & Algebraic dual of a vector space $V$; for a normed space $X$, $X^*$ usually denotes the continuous dual \\
+$V^*$ & Algebraic dual of a vector space $V$ \\*
+$\mathcal{B}^*$ & Dual basis associated with a finite-dimensional basis $\mathcal{B}$ \\*
+$T^*\colon W^*\to V^*$ & Dual map of $T\colon V\to W$, given by $T^*(\varphi)=\varphi\circ T$ \\
+$X^*$ & Continuous dual of a normed space $X$ \\
 $\langle\mathbf{u}, \mathbf{v}\rangle, \ (\mathbf{u}, \mathbf{v})$ & Inner product. Over complex spaces, the inner product is conjugate-linear in the first argument and linear in the second \\
 $T^*$ & Adjoint of a bounded linear operator $T$ between Hilbert spaces \\
 $\mathbf{u}\cdot\mathbf{v}, \ \mathbf{u}^{\mathrm{T}}\mathbf{v}$ & Standard Euclidean inner product on $\R^n$ \\
@@ -52,11 +60,12 @@ $\|\mathbf{v}\|$ & Norm of $\mathbf{v}$ \\
 $\|\mathbf{x}\|_p$ & Vector $p$-norm, for $1\le p<\infty$ \\
 $\|\mathbf{x}\|_\infty$ & Vector infinity norm \\
 $\|T\|_{\mathrm{op}}, \ \|T\|$ & Operator norm $\displaystyle\sup_{\|\mathbf{x}\|\le1}\|T\mathbf{x}\|$ of a bounded linear map $T\colon X\to Y$ \\
-$\|\mathbf{A}\|_{\mathrm{F}}$ & Frobenius norm of $\mathbf{A}$ \\
+$\|\mathbf{A}\|_p$ & Matrix norm induced by the vector $p$-norm, for $1\le p\le\infty$ \\
+$\|\mathbf{A}\|_{\mathrm{F}}$ & Frobenius norm $\displaystyle\sqrt{\sum_{i, j}|a_{ij}|^2}$ of $\mathbf{A}$ \\
 $\mathbf{u}\perp\mathbf{v}$ & Orthogonality \\
 $U^\perp$ & Orthogonal complement of the subspace $U$ \\
-$\proj_U\mathbf{x}$ & Orthogonal projection of $\mathbf{x}$ onto the subspace $U$ \\
-$\proj_{\mathbf{v}}\mathbf{x}$ & Orthogonal projection of $\mathbf{x}$ onto $\Span(\mathbf{v})$ \\
+$\proj_U(\mathbf{x})$ & Orthogonal projection of $\mathbf{x}$ onto the subspace $U$ \\*
+$\proj_{\mathbf{v}}(\mathbf{x})$ & Orthogonal projection of $\mathbf{x}$ onto $\Span(\mathbf{v})$ \\
 $\mathbf{u}\times\mathbf{v}$ & Cross product in $\R^3$ \\
 $\mathbf{A}^{\mathrm{T}}=\mathbf{A}$ & Real symmetric matrix \\
 $\mathbf{A}^{\mathrm{T}}=-\mathbf{A}$ & Real skew-symmetric matrix \\
@@ -65,8 +74,8 @@ $\mathbf{A}^{\mathrm{H}}=-\mathbf{A}$ & Skew-Hermitian matrix \\
 $\mathbf{Q}^{\mathrm{T}}\mathbf{Q}=\mathbf{I}$ & Real orthogonal matrix $\mathbf{Q}$ \\
 $\mathbf{U}^{\mathrm{H}}\mathbf{U}=\mathbf{I}$ & Unitary matrix $\mathbf{U}$ \\
 $\mathbf{A}\mathbf{A}^{\mathrm{H}}=\mathbf{A}^{\mathrm{H}}\mathbf{A}$ & Normal matrix \\
-$\mathbf{P}^2=\mathbf{P}$ & Projection matrix \\
-$\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathrm{T}}$ & Orthogonal projection matrix over $\R$ \\
+$\mathbf{P}$ & Projection matrix ($\mathbf{P}^2=\mathbf{P}$) \\*
+$\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathrm{T}}$ & Orthogonal projection matrix over $\R$ \\*
 $\mathbf{P}^2=\mathbf{P}=\mathbf{P}^{\mathrm{H}}$ & Orthogonal projection matrix over $\C$ \\
 $\chi_{\mathbf{A}}(t), \ p_{\mathbf{A}}(t)$ & Characteristic polynomial of $\mathbf{A}$, with $\chi_{\mathbf{A}}(t)=\det(t\mathbf{I}-\mathbf{A})$ \\*
 $m_{\mathbf{A}}(t), \ \mu_{\mathbf{A}}(t)$ & Minimal polynomial of $\mathbf{A}$ \\

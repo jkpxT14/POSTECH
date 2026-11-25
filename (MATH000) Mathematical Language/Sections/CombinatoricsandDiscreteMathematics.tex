@@ -4,9 +4,8 @@
 $[n]=\{1, 2, \dots, n\}$ & Standard $n$-element set; $[0]=\varnothing$ when needed \\
 $n!$ & Factorial \\
 $n!!$ & Double factorial: product of positive integers of the same parity not exceeding $n$, with $0!!=(-1)!!=1$ \\
-$n^{\underline{k}}$ & Falling factorial, $n(n-1)\cdots(n-k+1)$ \\*
-$n^{\overline{k}}$ & Rising factorial, $n(n+1)\cdots(n+k-1)$ \\
-$(a)_k$ & Rising Pochhammer symbol $a(a+1)\cdots(a+k-1)$ in special-functions contexts \\
+$a^{\underline{k}}$ & Falling factorial, $a(a-1)\cdots(a-k+1)$ \\*
+$a^{\overline{k}}, \ (a)_k$ & Rising factorial, $a(a+1)\cdots(a+k-1)$; $(a)_k$ is the rising Pochhammer symbol in special-functions contexts \\
 ${}_nP_r$ & Number of ordered selections of $r$ distinct elements from an $n$-element set, $\displaystyle {}_nP_r=\frac{n!}{(n-r)!}$ for $0\le r\le n$ \\
 $\displaystyle\binom{n}{r}, \ {}_nC_r$ & Number of $r$-element subsets of an $n$-element set \\*
 $\displaystyle\left(\!\binom{n}{r}\!\right), \ {}_nH_r$ & $r$-combinations with repetition from $n$ types; equals $\displaystyle\binom{n+r-1}{r}$ \\
@@ -32,6 +31,10 @@ $B_n, \ 2^{[n]}$ & Boolean lattice of subsets of $[n]$, ordered by inclusion \\
 $G=(V, E)$ & Graph with vertex set $V$ and edge set $E$; simple and undirected unless stated otherwise \\
 $V(G)$ & Vertex set of $G$ \\
 $E(G)$ & Edge set of $G$ \\
+$|V(G)|$ & Order of a graph $G$ \\
+$|E(G)|$ & Size of a graph $G$ \\
+$uv, \ \{u, v\}$ & Undirected edge joining $u$ and $v$ \\
+$(u, v)$ & Directed edge from $u$ to $v$ \\
 $u\sim v$ & Adjacent vertices $u$ and $v$ in a graph \\
 $N(v), \ \Gamma(v)$ & Neighborhood of vertex $v$ \\
 $N[v]=N(v)\cup\{v\}$ & Closed neighborhood of the vertex $v$ \\
@@ -41,6 +44,8 @@ $\deg^-(v)$ & In-degree of $v$ in a directed graph \\
 $\delta(G)$ & Minimum vertex degree of a nonempty finite graph $G$ \\
 $\Delta(G)$ & Maximum vertex degree of a nonempty finite graph $G$ \\
 $d_G(u, v), \ d(u, v)$ & Graph distance between vertices $u$ and $v$ \\
+$\kappa(G)$ & Vertex connectivity of $G$ \\
+$\lambda(G)$ & Edge connectivity of $G$ \\
 $G[S]$ & Subgraph of $G$ induced by the vertex set $S\subseteq V(G)$ \\
 $G-v, \ G-S$ & Graph obtained by deleting the vertex $v$, or all vertices in $S$, together with their incident edges \\
 $G-e$ & Graph obtained by deleting the edge $e$ \\
@@ -54,6 +59,7 @@ $\mathbf{A}(G), \ \mathbf{A}_G$ & Adjacency matrix of $G$ \\
 $\mathbf{D}(G), \ \mathbf{D}_G$ & Degree matrix of $G$, the diagonal matrix of vertex degrees in the chosen vertex order \\
 $\mathbf{L}(G), \ \mathbf{L}_G$ & Graph Laplacian, usually $\mathbf{D}(G)-\mathbf{A}(G)$ \\
 $\chi(G)$ & Chromatic number of $G$ \\
+$\chi'(G)$ & Edge chromatic number of $G$ \\
 $P_G(k)$ & Chromatic polynomial of $G$, counting proper colorings with $k$ labeled colors \\
 $\nu(G)$ & Matching number of $G$: the maximum size of a matching (a set of pairwise vertex-disjoint edges) \\
 $\alpha(G)$ & Independence number of $G$: maximum size of an independent vertex set \\
